@@ -14,7 +14,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## VALIDATED COMPONENTS
 
-- Repaired implementation plus EXP02 shard writer, direct candidate diagnostics, alias-intervention harness, and the EXP03-A density + EXP03-B orbital + EXP03-C combined mechanisms: 91 tests pass.
+- Repaired implementation plus EXP02 shard writer, direct candidate diagnostics, alias-intervention harness, EXP03-A/B/C mechanisms, and the EXP-REF-01 reference benchmark: 95 tests pass.
 - Deterministic engine and multi-step diagnostic-ID permutation fixture.
 - Scalar and independent vectorized force paths on 32 controlled worlds.
 - Periodic detector, ID/order/translation-invariant phenotype fixtures.
@@ -31,11 +31,11 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## ACTIVE EXPERIMENT
 
-**Particle Dynamics substrate decision / kill-switch evaluation** — DUE. The full causal ladder is complete and negative: CORE V0 CASE A (D-017), EXP03-A density NEGATIVE (D-018), EXP03-B orbital NEGATIVE (D-019), EXP03-C density+orbital NEGATIVE (D-020). No CORE V0 / density / orbital law family produced audited constituent-turnover individuality. Substrate switching requires the documented kill-switch review and is not undertaken autonomously.
+**Next-substrate selection / design** — Particle Dynamics is RETIRED for this question (D-021). The full causal ladder is negative (D-017..D-020) AND the EXP-REF-01 measurement positive control PASSED (the frozen stack recognizes and separates a known persistent dissipative organization from static flux), so the negatives are substrate results, not measurement blindness. Kill-switch review: `docs/PARTICLE_DYNAMICS_KILL_SWITCH_REVIEW.md`. Next substrate proposal (Flow-Lenia candidate, not assumed): `docs/NEXT_SUBSTRATE_PROPOSAL.md`. Substrate NOT switched autonomously — awaiting user confirmation of the candidate.
 
 ## LAST COMPLETED EXPERIMENT
 
-`EXP03C-COMBINED-COREV0-20260710-001`: matched OFF/ON density+orbital screen (64 laws x 3 seeds x 3 cadences). OFF reproduces CORE V0 (r=0.733); ON |circ| 0.10->1.01 but 0 screening-permitted laws vs 2 OFF (D-019 hypothesis falsified) — SCREEN NEGATIVE (D-020). Ladder exhausted. Preceding: EXP03-B orbital NEGATIVE (D-019); EXP03-A density NEGATIVE (D-018); CORE V0 CASE A (D-017).
+`EXP-REF-01-COREV0-20260710-001`: measurement positive control. Frozen stack RECOGNIZED a known persistent dissipative organization under turnover (P=1.0, M->0.25, probe-positive) and SEPARATED it from static flux on frozen observables (|circ| 0.147 vs 0; vdisp 0.090 vs 0) -> PASS (D-021, retire Particle Dynamics). Preceding: EXP03-C NEGATIVE (D-020); EXP03-B NEGATIVE (D-019); EXP03-A NEGATIVE (D-018); CORE V0 CASE A (D-017).
 
 ## OBSERVED
 
@@ -94,7 +94,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## NEXT ACTION
 
-Conduct the Particle Dynamics substrate decision / kill-switch review: consolidate the four negative results (D-017..D-020) against the documented Particle Dynamics kill-switch, and decide (with the user) whether to (a) retire the Particle Dynamics substrate for the persistent-individuality question and design a new substrate under the same falsifiable protocol, or (b) revisit the observer/measurement stack (detector/tracker/P/M) before any substrate switch. Do not switch substrate, lower thresholds, add mutation/type-transition/recycling, or introduce a composite score. Keep P and M separate.
+Confirm the next substrate with the user (Flow-Lenia is the primary candidate, not an assumption; see NEXT_SUBSTRATE_PROPOSAL). Then preregister EXP_FL_00: port P/M/detector/tracker with a PASSIVE tracer field, establish a neutral control, run the EXP-REF-01 measurement positive control on the NEW stack BEFORE any law search, and only then screen — under the same falsifiable protocol (no composite, no threshold relaxation, P/M separate, same-state causal intervention carried over). Do not switch substrate before this confirmation.
 
 ## MODEL NOTE (2026-07-10)
 

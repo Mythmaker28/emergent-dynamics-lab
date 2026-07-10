@@ -220,3 +220,25 @@ EXP03-C combined (NEGATIVE, this). Across the full preregistered Particle Dynami
 produced audited constituent-turnover individuality. A **Particle Dynamics substrate decision / kill-switch
 evaluation** is now due per the charter; substrate switching requires the documented kill-switch review and is not
 undertaken autonomously here. Thresholds unchanged; no composite; laws 0/52 not reopened.
+
+## D-021 — Retire Particle Dynamics for the current question (EXP-REF-01 measurement positive control PASS)
+
+**Date:** 2026-07-10 (RUN-20260710-2015-EXPREF01). Model: claude-opus-4-8 (Fable 5 lock lifted by user).
+
+**Decision:** Before any substrate switch, EXP-REF-01 (protocol @0ab80d1) tested whether the FROZEN
+detector/tracker/P/M stack can recognize a KNOWN persistent dissipative organization under constituent turnover
+and separate it from the static-flux null. A scripted rotating packet with gradual membership turnover was fed to
+the frozen stack alongside a matched zero-velocity static-flux null (P not recalibrated; ID labels passive). The
+stack RECOGNIZED the reference (single continuous track, P=1.0, M->0.25, 55 probe-positive endpoints) and
+SEPARATED it from the null on frozen dynamical observables (|circulation| 0.147 vs 0.000; velocity dispersion
+0.090 vs 0.000), even though raw P/M were identical for both. Per the preregistered (user-specified) rule the
+measurement is adequate, so the ladder negatives (D-017..D-020) are SUBSTRATE results. **Retire Particle Dynamics
+for the persistent-individuality question.** See `docs/PARTICLE_DYNAMICS_KILL_SWITCH_REVIEW.md`. Propose the next
+substrate with Flow-Lenia as a candidate to be tested, not assumed (`docs/NEXT_SUBSTRATE_PROPOSAL.md`).
+
+**Reason:** The measurement is not blind to persistent dissipative organization; the substrate genuinely lacked
+auditable turnover-individuality across the preregistered ladder. Thresholds unchanged; no composite; no free-form
+observer retuning was performed; substrate not switched autonomously (a user decision point).
+
+**Scope caveat:** observer separation was established vs the zero-velocity static-flux null; the flowing-occupancy
+alias is resolved only by the same-state causal intervention, which the next substrate must carry.
