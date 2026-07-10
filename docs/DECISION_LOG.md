@@ -164,3 +164,22 @@ threshold was lowered; a negative result stays negative.
 **Falsification / reopen:** A CORE V0 law whose displaced candidate re-establishes with genuine turnover,
 exceeding placebo, no old-site regeneration, clean alias audit, across a majority of fresh seeds, would reopen
 the question. None observed.
+
+## D-018 — EXP03-A (density preference) screen NEGATIVE; advance to EXP03-B
+
+**Date:** 2026-07-10 (RUN-20260710-1850-EXP03A). Model: claude-opus-4-8 (Fable 5 lock explicitly lifted by user).
+
+**Decision:** The preregistered EXP03-A screen (protocol @3406ef0; isolated comfortable-neighbour density mechanism,
+neutral limit = CORE V0 bit-for-bit) ran matched OFF/ON on 64 Halton laws x 3 seeds x 3 cadences. The OFF arm
+reproduces CORE V0 (descriptive r(P,M)=0.7328; permits {17,52}, incl. known survivor 52). Under ON, density
+preference lowered mean P (-0.064) and mean M (-0.042), reduced long tracks (2293->2042), raised censoring
+(15227->20511), and yielded **0 screening-permitted laws vs 2 for CORE V0**. Density preference did not enrich the
+high-P/low-M regime; it depleted it. Per the frozen decision rule this is EXP03-A SCREEN NEGATIVE. Advance to
+EXP03-B (CORE V0 + orbital/transverse interaction only). No fresh-seed hold-out triggered; thresholds unchanged;
+no composite; laws 0/52 not reopened (their appearance is only the OFF=CORE V0 control).
+
+**Reason:** Falsifier F1 confirmed (ON did not increase the eligible-law count over OFF). The mechanism's net
+effect is homeostatic settling / reduced coherent persistence, consistent with PASS B, not turnover-individuality.
+
+**Falsification / reopen:** A pre-declared (not post-hoc) density parameterisation under which ON yields more
+screening-permitted laws than OFF with genuine turnover would reopen EXP03-A. Not observed.
