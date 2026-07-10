@@ -1,0 +1,138 @@
+{
+  "boundary": "P not recalibrated; passive cohorts; field M = cohort mass Jaccard. Separation vs zero-velocity static-flux null; flowing-occupancy alias resolved only by same-state causal intervention (carried into EXP_FL_01).",
+  "checks": {
+    "cohort_partition_preserved": true,
+    "detector_tracker_on_real_dynamics": true,
+    "determinism": true,
+    "expref01_recognized": true,
+    "expref01_separated": true,
+    "mass_conservation": true,
+    "nonnegativity": true,
+    "passive_tracer_invariance": true,
+    "reference_path_agreement": true
+  },
+  "experiment_id": "EXP-FL-00-20260710-001",
+  "expref01_null": {
+    "M_min_main": 0.06723256998499962,
+    "P_max_main": 1.0,
+    "P_min_main": 1.0,
+    "entity_count_range": [
+      1,
+      1
+    ],
+    "example_probe": [
+      [
+        0,
+        1,
+        1.0,
+        0.4297
+      ],
+      [
+        1,
+        2,
+        1.0,
+        0.4297
+      ],
+      [
+        2,
+        3,
+        1.0,
+        0.4297
+      ],
+      [
+        3,
+        4,
+        1.0,
+        0.4297
+      ],
+      [
+        4,
+        5,
+        1.0,
+        0.4297
+      ]
+    ],
+    "main_track_obs": 61,
+    "mean_abs_circulation": 0.0,
+    "mean_center_velocity": 0.0,
+    "mean_velocity_dispersion": 0.0,
+    "n_probe_positive_main": 173,
+    "n_snapshots": 61,
+    "n_tracks": 1,
+    "single_entity_per_snapshot": true
+  },
+  "expref01_reference": {
+    "M_min_main": 0.06723256998499962,
+    "P_max_main": 1.0,
+    "P_min_main": 1.0,
+    "entity_count_range": [
+      1,
+      1
+    ],
+    "example_probe": [
+      [
+        0,
+        1,
+        1.0,
+        0.4297
+      ],
+      [
+        1,
+        2,
+        1.0,
+        0.4297
+      ],
+      [
+        2,
+        3,
+        1.0,
+        0.4297
+      ],
+      [
+        3,
+        4,
+        1.0,
+        0.4297
+      ],
+      [
+        4,
+        5,
+        1.0,
+        0.4297
+      ]
+    ],
+    "main_track_obs": 61,
+    "mean_abs_circulation": 0.9871081382151248,
+    "mean_center_velocity": 1.0813174792229571e-16,
+    "mean_velocity_dispersion": 1.2168246411552843,
+    "n_probe_positive_main": 173,
+    "n_snapshots": 61,
+    "n_tracks": 1,
+    "single_entity_per_snapshot": true
+  },
+  "git_commit": "817d417bb8a79cc33e4c35c8b48b0d83ec0c2a29",
+  "metrics": {
+    "cohort_partition_err": 5.773159728050814e-15,
+    "determinism": 0.0,
+    "mass_drift": 1.142224114781077e-16,
+    "max_track_len": 21,
+    "min_A": 0.0011213384472187813,
+    "refpath_err": 1.5543122344752192e-15,
+    "tracer_invariance": 0.0
+  },
+  "passed": true,
+  "protocol_sha": "817d417bb8a79cc33e4c35c8b48b0d83ec0c2a29",
+  "spec": {
+    "concentration_n": 2.0,
+    "concentration_theta": 1.2,
+    "dt": 0.3,
+    "flow_gain": 1.0,
+    "growth_mu": 0.15,
+    "growth_sigma": 0.017,
+    "kernel_mu": 0.5,
+    "kernel_radius": 10.0,
+    "kernel_sigma": 0.15,
+    "size": 64
+  },
+  "verdict": "QUALIFIED_LAUNCH_EXP_FL_01"
+}

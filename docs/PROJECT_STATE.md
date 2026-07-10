@@ -6,7 +6,7 @@ Can CORE V0 local particle laws produce auditable high phenotype continuity unde
 
 ## CURRENT SUBSTRATE
 
-Periodic 2D Particle Dynamics / Particle Life-like dynamics.
+Flow-Lenia (mass-conservative continuous CA) for the persistent-individuality question, as of D-021/D-022. Particle Dynamics CORE V0 retired for this question but preserved and reusable.
 
 ## CURRENT CORE VERSION
 
@@ -14,7 +14,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## VALIDATED COMPONENTS
 
-- Repaired implementation plus EXP02 shard writer, direct candidate diagnostics, alias-intervention harness, EXP03-A/B/C mechanisms, and the EXP-REF-01 reference benchmark: 95 tests pass.
+- Repaired implementation plus EXP02 shard writer, alias-intervention harness, EXP03-A/B/C mechanisms, EXP-REF-01 benchmark, and the Flow-Lenia mass-conservative core + field stack: 99 tests pass.
 - Deterministic engine and multi-step diagnostic-ID permutation fixture.
 - Scalar and independent vectorized force paths on 32 controlled worlds.
 - Periodic detector, ID/order/translation-invariant phenotype fixtures.
@@ -31,7 +31,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## ACTIVE EXPERIMENT
 
-**Next-substrate selection / design** — Particle Dynamics is RETIRED for this question (D-021). The full causal ladder is negative (D-017..D-020) AND the EXP-REF-01 measurement positive control PASSED (the frozen stack recognizes and separates a known persistent dissipative organization from static flux), so the negatives are substrate results, not measurement blindness. Kill-switch review: `docs/PARTICLE_DYNAMICS_KILL_SWITCH_REVIEW.md`. Next substrate proposal (Flow-Lenia candidate, not assumed): `docs/NEXT_SUBSTRATE_PROPOSAL.md`. Substrate NOT switched autonomously — awaiting user confirmation of the candidate.
+**EXP-FL-01 (Flow-Lenia blind regime map)** — NEXT AUTHORIZED. Substrate switched to Flow-Lenia; EXP_FL_00 QUALIFIED the mass-conservative core + field measurement stack (D-022; all 9 checks pass, EXP-REF-01 recognized+separated on the new stack). Particle Dynamics remains RETIRED for this question (D-021). The full causal ladder is negative (D-017..D-020) AND the EXP-REF-01 measurement positive control PASSED (the frozen stack recognizes and separates a known persistent dissipative organization from static flux), so the negatives are substrate results, not measurement blindness. Kill-switch review: `docs/PARTICLE_DYNAMICS_KILL_SWITCH_REVIEW.md`. Next substrate proposal (Flow-Lenia candidate, not assumed): `docs/NEXT_SUBSTRATE_PROPOSAL.md`. Substrate NOT switched autonomously — awaiting user confirmation of the candidate.
 
 ## LAST COMPLETED EXPERIMENT
 

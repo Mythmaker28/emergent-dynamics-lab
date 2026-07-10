@@ -242,3 +242,20 @@ observer retuning was performed; substrate not switched autonomously (a user dec
 
 **Scope caveat:** observer separation was established vs the zero-velocity static-flux null; the flowing-occupancy
 alias is resolved only by the same-state causal intervention, which the next substrate must carry.
+
+## D-022 — Flow-Lenia field stack QUALIFIED (EXP_FL_00); launch EXP_FL_01 blind regime map
+
+**Date:** 2026-07-10 (RUN-20260710-2030-EXPFL00). Model: claude-opus-4-8 (Fable 5 lock lifted by user).
+
+**Decision:** EXP_FL_00 (protocol @817d417) implemented a minimal fixed-law mass-conservative Flow-Lenia core
+(FFT potential, concentration-limited flow, reintegration-tracking transport) with strictly passive cohort tracers
+(same operator, never influencing dynamics, sum==A), a field detector + frozen geometry tracker + field phenotype
+(P=exp(-RMS dPhi), declared scales, not recalibrated), and a preregistered cohort field M(tau). All nine
+qualification checks PASS: mass conservation (~1.6e-16), nonnegativity, cohort-partition, determinism,
+passive-tracer invariance, FFT-vs-direct reference-path agreement (~1.6e-15), detector/tracker on real dynamics,
+and the EXP-REF-01 positive control (recognized + separated) on the new field stack. **QUALIFIED** -> preregister
+and autonomously launch EXP_FL_01 as a blind low-discrepancy regime map under the same five evidence levels and
+causal discipline (no composite; thresholds frozen; P/M separate; same-state causal intervention carried over).
+
+**Reason:** The new substrate + measurement stack meet the same falsifiable-protocol bar Particle Dynamics was
+held to, verified independently, before any law search.
