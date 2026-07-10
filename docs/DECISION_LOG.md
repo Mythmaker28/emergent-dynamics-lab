@@ -276,3 +276,19 @@ causal intervention remains the survivor-resolving tool for any future candidate
 
 **Reason:** F1/F2 confirmed — no permission; the observed persistence is the trivial static/cohesive-blob regime
 (no turnover), not turnover-individuality.
+
+## D-024 — Tracer resolution G*=8 verified adequate (EXP_FL_00B); map #1 negative not a resolution artifact
+
+**Date:** 2026-07-10 (RUN-20260710-2115-EXPFL00B). Model: claude-opus-4-8 (Fable 5 lock lifted by user).
+
+**Decision:** A preregistered passive-tracer resolution sensitivity check (protocol @357bc2f) compared cohort
+granularities 8/16/32 (plus a 64 convergence probe) on the validated turnover reference and on blind static map-#1
+regimes. Dynamics are identical across granularity (A max diff 0.0 -> cohorts strictly passive). The reference
+turnover is resolved at all granularities (M_min 0.067/0.0024/...). Static regimes stay at mean M ~0.991 across
+8/16/32 -> finer tracers do NOT fabricate turnover. By the pre-declared measurement-resolution criterion (coarsest
+adequate + convergent; yield-independent) the selected cohort resolution is **G*=8**. The EXP-FL-01 map #1 negative
+is therefore a genuine regime result, not a tracer under-resolution artifact. Map #2 must widen the flux-favouring
+PARAMETER DOMAIN, not the tracer granularity.
+
+**Reason:** Prevents reactively lowering M to manufacture candidates; the metric resolution is validated against
+the known-turnover reference and shown specific on static regimes.

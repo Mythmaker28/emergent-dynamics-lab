@@ -1,0 +1,31 @@
+{
+  "granularities": [
+    8,
+    16,
+    32
+  ],
+  "reference_min_M_by_G": {
+    "8": 0.06723256998499962,
+    "16": 0.002357541598446966,
+    "32": 0.002356788616381813,
+    "64": 0.002356788616381813
+  },
+  "static_regime_M_by_G": {
+    "8": {
+      "mean_M": 0.9916367315410584,
+      "min_M": 0.9670295234885334
+    },
+    "16": {
+      "mean_M": 0.9914759839291631,
+      "min_M": 0.966970062852216
+    },
+    "32": {
+      "mean_M": 0.9910983973816325,
+      "min_M": 0.9669171652342259
+    }
+  },
+  "dynamics_identical_across_G_maxdiff": 0.0,
+  "criterion": "coarsest G resolving reference turnover (M_min_ref<=0.15) and convergent (|dM_min_ref to next finer|<=0.10); static M is specificity-only; selection is independent of candidate yield / target-quadrant occupancy",
+  "selected_cohort_resolution": 8,
+  "passive_invariance_ok": true
+}
