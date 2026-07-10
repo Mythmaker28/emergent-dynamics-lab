@@ -110,7 +110,18 @@ def run_field_stack(cfg: RefFieldConfig, snaps) -> dict[str, Any]:
     }
 
 
-def gaussian_blobs_state(spec: FlowLeniaSpec, seed: int, n_blobs: int = 3) -> FlowLeniaState:
+def _cohort_grid(n: int, n_cohorts: int):
+    """Deterministic square-ish spatial partition of the grid into n_cohorts bands."""
+    cols = int(round(n_cohorts ** 0.5))
+    while n_cohorts % cols:
+        cols -= 1
+    rows = n_cohorts // cols
+    yy, xx = np.meshgrid(np.arange(n), np.arange(n), indexing="ij")
+    band = (xx * cols // n) + cols * (yy * rows // n)
+    return band % n_cohorts
+
+
+def gaussian_blobs_state(spec: FlowLeniaSpec, seed: int, n_blobs: int = 3, n_cohorts: int = 8) -> FlowLeniaState:
     rng = np.random.default_rng(seed)
     n = spec.size
     yy, xx = np.meshgrid(np.arange(n), np.arange(n), indexing="ij")
@@ -119,11 +130,8 @@ def gaussian_blobs_state(spec: FlowLeniaSpec, seed: int, n_blobs: int = 3) -> Fl
         cy, cx = rng.uniform(0, n, 2); r = rng.uniform(5, 10)
         d2 = np.minimum((yy - cy) % n, (cy - yy) % n) ** 2 + np.minimum((xx - cx) % n, (cx - xx) % n) ** 2
         A += rng.uniform(0.6, 1.0) * np.exp(-d2 / (2 * r ** 2))
-    # 8 spatial cohorts partitioning A
-    cohorts = np.zeros((8, n, n))
-    for c in range(8):
-        band = (xx // (n // 4) + 4 * (yy // (n // 2))) % 8
-        cohorts[c] = A * (band == c)
+    band = _cohort_grid(n, n_cohorts)
+    cohorts = np.stack([A * (band == c) for c in range(n_cohorts)], axis=0)
     return FlowLeniaState(A, cohorts)
 
 
