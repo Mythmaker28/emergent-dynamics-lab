@@ -29,6 +29,7 @@ def test_tiny_baseline_writes_reproducible_artifacts(tmp_path: Path) -> None:
     assert summary["runs"] == 1
     assert manifest["git_commit"] == "fixture-sha"
     assert manifest["sampling"]["method"] == "Halton low-discrepancy sequence"
+    assert manifest["sampling"]["probability_estimate"] is False
     for filename in (
         "laws.json",
         "measurements.csv",

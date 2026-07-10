@@ -36,3 +36,10 @@
 **Decision:** Use a deterministic Halton low-discrepancy sequence (skip 32) for the current baseline and eligible EXP02 sampling.  
 **Reason:** It is a justified quasi-random design with no SciPy dependency and fully deterministic mapping to LawSpec.
 
+## D-007 — Frozen same-endpoint, cross-cadence fresh-seed gate
+
+**Date:** 2026-07-10
+
+**Decision:** Hold out laws 1, 3, 6, and 10 using the exact rule in `docs/experiments/HOLDOUT_COREV0_01_PROTOCOL.md`, then retain only laws qualifying in at least two of five fresh seeds.
+
+**Reason:** The baseline probe is populated but heavily pseudoreplicated and partly lineage-complex. Requiring clean long tracks, identical physical endpoints under multiple cadences, multiple screening seeds, and fresh-seed survival tests robustness without changing P/M thresholds. The count is not a probability estimate.

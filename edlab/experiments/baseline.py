@@ -35,6 +35,8 @@ from ..validation.nulls import (
 @dataclass(frozen=True)
 class BaselineConfig:
     n_laws: int = 12
+    law_indices: tuple[int, ...] | None = None
+    experiment_kind: str = "baseline"
     seeds: tuple[int, ...] = (101, 202, 303)
     n_particles: int = 64
     n_types: int = 3
@@ -50,6 +52,10 @@ class BaselineConfig:
     def __post_init__(self) -> None:
         if self.n_laws < 1 or not self.seeds:
             raise ValueError("baseline requires at least one law and seed")
+        if self.law_indices is not None and not self.law_indices:
+            raise ValueError("law_indices must be non-empty when provided")
+        if self.experiment_kind not in {"baseline", "holdout"}:
+            raise ValueError("experiment_kind must be 'baseline' or 'holdout'")
         if not self.snapshot_cadences or min(self.snapshot_cadences) < 1:
             raise ValueError("snapshot cadences must be positive")
         base = min(self.snapshot_cadences)
@@ -58,7 +64,9 @@ class BaselineConfig:
 
     def as_dict(self) -> dict[str, Any]:
         data = asdict(self)
-        for key in ("seeds", "snapshot_cadences", "lag_indices"):
+        for key in ("seeds", "snapshot_cadences", "lag_indices", "law_indices"):
+            if data[key] is None:
+                continue
             data[key] = list(data[key])
         return data
 
@@ -179,9 +187,20 @@ def run_baseline(
         static_motif_material_flux_null(),
         tracker_cadence_sensitivity_null(),
     ]
-    laws = [law_from_halton(index, config.n_types) for index in range(config.n_laws)]
+    selected_indices = (
+        tuple(range(config.n_laws))
+        if config.law_indices is None
+        else tuple(config.law_indices)
+    )
+    laws = [(index, law_from_halton(index, config.n_types)) for index in selected_indices]
     (output_dir / "laws.json").write_text(
-        json.dumps([law.as_dict() for law in laws], indent=2),
+        json.dumps(
+            [
+                {"law_index": law_index, "law_spec": law.as_dict()}
+                for law_index, law in laws
+            ],
+            indent=2,
+        ),
         encoding="utf-8",
     )
 
@@ -193,7 +212,7 @@ def run_baseline(
     base_cadence = min(config.snapshot_cadences)
     run_count = 0
 
-    for law_index, law in enumerate(laws):
+    for law_index, law in laws:
         for seed in config.seeds:
             run_count += 1
             run = RunSpec(
@@ -316,7 +335,12 @@ def run_baseline(
         json.dumps(summary, indent=2, sort_keys=True),
         encoding="utf-8",
     )
-    summary_markdown = f"""# {experiment_id} — Current Independently Executed Baseline
+    study_title = (
+        "Current Independently Executed Baseline"
+        if config.experiment_kind == "baseline"
+        else "Frozen Fresh-seed Hold-out"
+    )
+    summary_markdown = f"""# {experiment_id} — {study_title}
 
 ## HISTORICAL AGENT-REPORTED
 
@@ -360,9 +384,14 @@ def run_baseline(
         "substrate": "particle_dynamics",
         "core_mechanism_version": "CORE_V0",
         "sampling": {
-            "method": "Halton low-discrepancy sequence",
+            "method": (
+                "Halton low-discrepancy sequence"
+                if config.experiment_kind == "baseline"
+                else "frozen candidate LawSpecs selected from the baseline"
+            ),
             "skip": 32,
-            "screening_only": True,
+            "screening_only": config.experiment_kind == "baseline",
+            "probability_estimate": False,
         },
         "config": config.as_dict(),
         "world_spec": world.as_dict(),

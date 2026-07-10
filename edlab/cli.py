@@ -36,6 +36,8 @@ def _parser() -> argparse.ArgumentParser:
     baseline.add_argument("--output", type=Path, required=True)
     baseline.add_argument("--experiment-id", required=True)
     baseline.add_argument("--laws", type=int, default=12)
+    baseline.add_argument("--law-indices", type=int, nargs="+")
+    baseline.add_argument("--kind", choices=("baseline", "holdout"), default="baseline")
     baseline.add_argument("--seeds", type=int, nargs="+", default=[101, 202, 303])
     baseline.add_argument("--particles", type=int, default=64)
     baseline.add_argument("--steps", type=int, default=600)
@@ -56,6 +58,8 @@ def main(argv: list[str] | None = None) -> int:
     else:
         config = BaselineConfig(
             n_laws=args.laws,
+            law_indices=None if args.law_indices is None else tuple(args.law_indices),
+            experiment_kind=args.kind,
             seeds=tuple(args.seeds),
             n_particles=args.particles,
             steps=args.steps,

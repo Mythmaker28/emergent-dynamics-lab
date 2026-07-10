@@ -46,6 +46,10 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - Created durable project state, charter, protocol, decision, experiment, run, scheduling, held-out scope, and low-probability idea documents.
 - Installed an isolated `.venv` and executed 20 tests successfully.
 - Launched independent post-implementation numerical and tracker audits; they are still in progress at this journal update.
+- Committed the vertical slice at `5fa941bf7c0b757f5535965fad62c190a94fefa6` and pushed `main` to the private remote.
+- Acquired the active-run lock and executed `BASELINE-COREV0-20260710-001` from that exact SHA: 12 laws × 3 seeds × 600 steps, with observer cadences 10/30/60.
+- Audited all unchanged initial-probe rows against track length, split/merge/ambiguity history, and same-endpoint cross-cadence consistency.
+- Frozen the fresh-seed hold-out protocol before running it; selected laws 1, 3, 6, and 10 by the documented rule without changing P/M thresholds.
 
 ## FILES READ
 
@@ -69,6 +73,8 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - `.\.venv\Scripts\python.exe -m pytest -q` — 20 passed.
 - `.\.venv\Scripts\python.exe -m edlab.cli validate-forces` — 32 fixtures passed; maximum absolute error `2.220446049250313e-16`.
 - `.\.venv\Scripts\python.exe -m edlab.cli nulls` — all three required nulls passed.
+- `.\.venv\Scripts\python.exe -m edlab.cli baseline --output results\BASELINE-COREV0-20260710-001 --experiment-id BASELINE-COREV0-20260710-001 --laws 12 --seeds 101 202 303 --particles 64 --steps 600 --cadences 10 30 60`
+- `.\.venv\Scripts\python.exe -m edlab.experiments.audit_candidates results\BASELINE-COREV0-20260710-001`
 
 ## OBSERVED
 
@@ -82,6 +88,9 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - Current 32-fixture force-path error is far inside the frozen tolerance.
 - Static-flux null produces the expected same lineage with `P=1`, `M=0`; it is explicitly a false positive.
 - Tracker/cadence fixture survives cadences 10/30/60 and distance scales 0.8/1.0/1.2.
+- The current baseline produced 36,722 repeated measurement rows and 384 rows in the initial probe; descriptive `r(P,M)=0.733162`.
+- Of those, 115 rows lie on tracks with at least eight observations and no logged split/merge/ambiguity; 20 physical endpoint pairs are probe-positive at the same endpoints under at least two cadences.
+- Probe prevalence increases with sparser cadence, so candidate occupancy is not interpreted as a discovery.
 
 ## INFERRED
 

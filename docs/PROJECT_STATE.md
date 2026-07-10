@@ -22,16 +22,17 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 - Separate P and M plus orthogonal construct fixtures.
 - ID-permutation and static-material-flux nulls.
 - Conservative scheduled-run lock semantics.
+- Current independent baseline: every first kill-switch gate green.
 
 Independent post-implementation numerical and tracker audits are active and not yet integrated.
 
 ## ACTIVE EXPERIMENT
 
-`BASELINE-COREV0-20260710-001` — implementation complete; run awaits committed code SHA.
+`HOLDOUT-COREV0-20260710-001` — protocol frozen before fresh-seed execution; laws `{1,3,6,10}`, seeds `{404,505,606,707,808}`.
 
 ## LAST COMPLETED EXPERIMENT
 
-None in the new repository. Historical artefacts at `9992e6c` were audited, but the historical simulation was not rerun.
+`BASELINE-COREV0-20260710-001` from commit `5fa941bf7c0b757f5535965fad62c190a94fefa6`: 12 laws × 3 seeds, 36 runs, 600 steps, cadences 10/30/60.
 
 ## OBSERVED
 
@@ -40,11 +41,15 @@ None in the new repository. Historical artefacts at `9992e6c` were audited, but 
 - Historical local branch and commit exist; isolated historical tests: 19/19 pass.
 - Archived historical CSV: 7,079 rows, Pearson `0.675724`, 0 rows for `P>0.8,M<0.5`.
 - Current implementation tests: 20/20 pass.
+- Current independent baseline: 36 runs, 36,722 repeated measurement rows, descriptive Pearson `r(P,M)=0.733162`, P range `0.287298–0.999985`, M range `0–1`.
+- The unchanged initial probe contains 384 rows. Candidate audit finds 115 rows on clean tracks with at least eight observations and 20 physical endpoint pairs probe-positive under at least two cadences.
+- The frozen cross-cadence/multi-seed rule selects laws `{1,3,6,10}` for fresh-seed hold-out.
 
 ## INFERRED
 
 - The historical code is useful as audited reference behavior but its per-run P calibration and incomplete provenance should not be copied.
 - The current tracker removes the historical hard dependency on shared IDs, reducing a central false-negative risk.
+- Probe occupancy rises from `0.68%` at cadence 10 to `2.37%` at cadence 60, so sparse-observer effects remain a serious alternative explanation.
 
 ## OPEN HYPOTHESES
 
@@ -63,7 +68,7 @@ None in the new repository. Historical artefacts at `9992e6c` were audited, but 
 
 ## NEXT ACTION
 
-Commit and push the validated vertical slice, then execute `BASELINE-COREV0-20260710-001` from that exact SHA and integrate the independent numerical/tracker audits.
+Commit/push the baseline and frozen hold-out protocol, reproduce the candidate audit from its committed code, then execute the 20 fresh-seed hold-out runs without changing thresholds or tracker settings.
 
 ## DO NOT RESURRECT
 

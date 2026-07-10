@@ -1,0 +1,76 @@
+{
+  "correlation_p_m_descriptive_only": 0.7331624703861438,
+  "experiment_id": "BASELINE-COREV0-20260710-001",
+  "force_validation": {
+    "absolute_tolerance": 1e-12,
+    "fixtures": 32,
+    "max_absolute_error": 2.220446049250313e-16,
+    "max_scaled_error": 8.83537559120172e-05,
+    "passed": true,
+    "relative_tolerance": 1e-10
+  },
+  "git_commit": "5fa941bf7c0b757f5535965fad62c190a94fefa6",
+  "initial_probe": {
+    "count": 384,
+    "definition": "P > 0.8 and M < 0.5"
+  },
+  "kill_switch_all_green": true,
+  "kill_switch_gates": {
+    "cadence_control_nonempty": true,
+    "id_permutation_null": true,
+    "material_retention_varies": true,
+    "phenotype_continuity_varies": true,
+    "second_force_path": true,
+    "static_flux_false_positive_null": true,
+    "tracker_auditable": true,
+    "tracker_cadence_sensitivity_null": true
+  },
+  "lineage_event_counts": {
+    "ambiguous_association": 460,
+    "birth": 2334,
+    "continuity": 14603,
+    "disappearance": 1845,
+    "merge": 344,
+    "split": 224
+  },
+  "m_max": 1.0,
+  "m_min": 0.0,
+  "measurement_rows": 36722,
+  "measurements_by_cadence": {
+    "10": 26638,
+    "30": 7261,
+    "60": 2823
+  },
+  "null_models": [
+    {
+      "detail": "maximum physical-array difference after 20 steps: 0",
+      "material_retention": null,
+      "name": "ID_PERMUTATION",
+      "passed": true,
+      "phenotype_continuity": null
+    },
+    {
+      "detail": "same_lineage=True; this is an expected probe-positive null, not evidence of dynamical individuality",
+      "material_retention": 0.0,
+      "name": "STATIC_MOTIF_WITH_MATERIAL_FLUX",
+      "passed": true,
+      "phenotype_continuity": 1.0
+    },
+    {
+      "detail": "{\"cadence=10,distance_scale=0.8\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=10,distance_scale=1.0\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=10,distance_scale=1.2\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=30,distance_scale=0.8\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=30,distance_scale=1.0\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=30,distance_scale=1.2\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=60,distance_scale=0.8\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=60,distance_scale=1.0\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=60,distance_scale=1.2\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}}",
+      "material_retention": 0.0,
+      "name": "TRACKER_CADENCE_SENSITIVITY",
+      "passed": true,
+      "phenotype_continuity": 1.0
+    }
+  ],
+  "p_max": 0.9999851363299829,
+  "p_min": 0.2872975073660087,
+  "runs": 36,
+  "statistical_warning": "Rows repeat tracks and lags and are not independent replicates; correlation is descriptive.",
+  "tracks_by_cadence": {
+    "10": 1007,
+    "30": 747,
+    "60": 580
+  }
+}
