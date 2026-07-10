@@ -2,6 +2,10 @@
 
 **Frozen before any hold-out trajectory is executed.**
 
+## Disposition appended after execution
+
+**INVALIDATED_SELECTION_BUG.** The analysis implementation counted a second cadence before requiring that cadence's track to be clean and long. The intended rule therefore selected only law 3, not `{1,3,6,10}`. All 20 executed runs and artefacts are preserved, but no hold-out disposition is accepted from this experiment. A new protocol uses new unseen seeds and the corrected clean-cadence join.
+
 ## Interpretation boundary
 
 This hold-out tests whether a high-P/low-M **occupancy regime** recurs under fresh seeds. It cannot by itself distinguish persistent dynamical organization from the live `STATIC_MOTIF_WITH_MATERIAL_FLUX` or `SPARSE_LOOKALIKE_ALIAS` nulls. Survival is not scientific promotion.
@@ -59,4 +63,3 @@ Any survivor may still be static material flux, sparse look-alike stitching, or 
 - Fewer than two qualifying fresh seeds rejects a law under this diagnostic gate.
 - Direct dense-trajectory audit showing occupancy replacement supports the null explanation.
 - Failure under a frozen controlled perturbation rejects persistent organization.
-

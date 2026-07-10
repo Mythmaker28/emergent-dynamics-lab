@@ -60,6 +60,8 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - Executed repaired `BASELINE-COREV0-20260710-002` from exact audited SHA `eebd7fa`: 36 runs and full association-edge artefacts.
 - Re-audited the initial probe: 384 raw rows, 230 without logged complex events inside the interval, and 384 explicitly unresolved sparse-alias risks.
 - Froze `HOLDOUT-COREV0-20260710-002` as a recurrence-only diagnostic, not scientific promotion.
+- Executed hold-out 002 (20 runs), then found that the candidate-audit join counted corroborating cadences before requiring each cadence to be clean/long.
+- Invalidated hold-out 002 without accepting its apparent survivors. Corrected baseline selection yields law 3 only; froze hold-out 003 with five unseen seeds.
 
 ## FILES READ
 
@@ -123,6 +125,7 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - The first heartbeat creation call used an invalid destination and was rejected; retrying with the native thread destination succeeded.
 - The first automation-directory inspection reused PowerShell's read-only `$HOME` variable; a renamed local variable corrected the check.
 - The first baseline's candidate path was stopped rather than continued: its tracker could silently alias sparse look-alikes, and its numerical API had uncovered out-of-domain failures.
+- Hold-out 002 was executed but invalidated because the cross-cadence cleanliness join was wrong; its outputs are preserved and not used for promotion.
 
 ## DECISIONS MADE
 

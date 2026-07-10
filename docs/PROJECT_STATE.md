@@ -28,7 +28,7 @@ Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STO
 
 ## ACTIVE EXPERIMENT
 
-`HOLDOUT-COREV0-20260710-002` — diagnostic protocol frozen; next execute 20 fresh-seed runs without code/threshold changes.
+`HOLDOUT-COREV0-20260710-003` — corrected diagnostic protocol frozen for law 3 and unseen seeds `{909,1010,1111,1212,1313}`.
 
 ## LAST COMPLETED EXPERIMENT
 
@@ -51,6 +51,8 @@ Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STO
 - Repaired code uses `hypot`, finite/domain guards, force/one-step validation, full association-edge records, correct current timestamps, measurement interval flags, expanded tracker/detector sensitivity, and an explicit sparse-alias null.
 - Final independent numerical re-audit `NUM3`: PASS exact; 29 tests, 1,024 fixtures, and 167 subnormal radii all pass.
 - Repaired baseline 002 preserves 36,722 measurements, descriptive `r(P,M)=0.733162`, and 384 raw probe rows; 230 rows lack logged ambiguity/split/merge inside their interval, but all 384 retain unresolved alias risk.
+- Candidate-audit join bug found after hold-out 002: corroborating cadences were not always independently clean. Hold-out 002 is invalidated with no accepted disposition.
+- Corrected baseline selection yields only law 3, supported by screening seeds 101 and 303.
 
 ## INFERRED
 
@@ -75,7 +77,7 @@ Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STO
 
 ## NEXT ACTION
 
-Commit/push baseline 002, its candidate audit, the final numerical re-audit journal, and the frozen diagnostic hold-out 002 protocol. Then execute the 20 fresh-seed diagnostic runs.
+Commit/push the corrected audit code, invalidated hold-out 002 artefacts, and hold-out 003 preregistration. Rerun derived audits from a clean commit, then execute law 3 on five unseen seeds.
 
 ## DO NOT RESURRECT
 

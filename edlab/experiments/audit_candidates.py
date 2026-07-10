@@ -110,10 +110,29 @@ def audit_initial_probe(result_dir: Path) -> dict[str, Any]:
         for row in track_clean
         if int(row["track_observations"]) >= 8
     ]
+    clean_endpoint_cadences: dict[tuple[int, int, int, int], set[int]] = defaultdict(set)
+    for row in long_track_clean:
+        endpoint = (
+            int(row["law_index"]),
+            int(row["seed"]),
+            int(row["start_step"]),
+            int(row["end_step"]),
+        )
+        clean_endpoint_cadences[endpoint].add(int(row["snapshot_cadence"]))
+    for row in probe_rows:
+        endpoint = (
+            int(row["law_index"]),
+            int(row["seed"]),
+            int(row["start_step"]),
+            int(row["end_step"]),
+        )
+        row["clean_long_track_probe_cadence_count_same_endpoints"] = len(
+            clean_endpoint_cadences[endpoint]
+        )
     cross_cadence = [
         row
         for row in long_track_clean
-        if int(row["probe_cadence_count_same_endpoints"]) >= 2
+        if int(row["clean_long_track_probe_cadence_count_same_endpoints"]) >= 2
     ]
 
     def group_counts(rows: list[dict[str, Any]], column: str) -> dict[str, int]:
@@ -238,9 +257,18 @@ def audit_initial_probe(result_dir: Path) -> dict[str, Any]:
         capture_output=True,
         text=True,
     ).stdout.strip()
+    analysis_git_dirty = bool(
+        subprocess.run(
+            ["git", "status", "--porcelain"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+    )
     analysis_manifest = {
         "analysis": "initial exploratory probe lineage/cadence audit",
         "analysis_git_commit": analysis_git_commit,
+        "analysis_git_dirty": analysis_git_dirty,
         "parent_experiment_id": parent_manifest["experiment_id"],
         "parent_experiment_git_commit": parent_manifest["git_commit"],
         "source_sha256": {
