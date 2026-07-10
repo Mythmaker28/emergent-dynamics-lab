@@ -62,6 +62,8 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - Froze `HOLDOUT-COREV0-20260710-002` as a recurrence-only diagnostic, not scientific promotion.
 - Executed hold-out 002 (20 runs), then found that the candidate-audit join counted corroborating cadences before requiring each cadence to be clean/long.
 - Invalidated hold-out 002 without accepting its apparent survivors. Corrected baseline selection yields law 3 only; froze hold-out 003 with five unseen seeds.
+- Executed corrected hold-out 003 on law 3 with five unseen seeds. Only seed 909 qualifies; the frozen `>=2/5` gate fails, so the candidate is rejected without a probability claim.
+- Preregistered broad EXP02 (300 laws × 3 screening seeds) and an explicit streaming/checksummed artifact policy before execution.
 
 ## FILES READ
 

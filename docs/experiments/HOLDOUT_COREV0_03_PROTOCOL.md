@@ -32,3 +32,6 @@ If fewer than two qualify, the 12-law baseline signal is not robust under this g
 
 Even if two or more qualify, every row retains static-flux/look-alike alias risk and requires dense trajectory audit plus controlled perturbation before any mechanistic promotion.
 
+## Disposition appended after execution
+
+**COMPLETED — NEGATIVE UNDER FROZEN GATE.** One of five fresh seeds (`909`) qualifies; the required threshold was at least two. Law 3 is rejected for perturbation preparation under this protocol. This count is not interpreted as an event probability. The result does not invalidate Particle Dynamics; it closes only the 12-law baseline candidate path and authorizes the preregistered broad EXP02 screen.

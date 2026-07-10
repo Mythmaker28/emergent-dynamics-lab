@@ -28,11 +28,11 @@ Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STO
 
 ## ACTIVE EXPERIMENT
 
-`HOLDOUT-COREV0-20260710-003` — corrected diagnostic protocol frozen for law 3 and unseen seeds `{909,1010,1111,1212,1313}`.
+`EXP02-COREV0-20260710-001` — preregistered; implementation task is a streaming/chunked artifact writer equivalent to the validated small runner.
 
 ## LAST COMPLETED EXPERIMENT
 
-`BASELINE-COREV0-20260710-002` from exact audited commit `eebd7fa8292aa3bc089f0c2a991e451888f7ebe3`: 36 runs completed with repaired audit artefacts. Baseline/hold-out 001 remain superseded historical records.
+`HOLDOUT-COREV0-20260710-003`: five unseen seeds for law 3; completed negative under the corrected frozen gate (one qualifying seed, required at least two).
 
 ## OBSERVED
 
@@ -53,6 +53,7 @@ Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STO
 - Repaired baseline 002 preserves 36,722 measurements, descriptive `r(P,M)=0.733162`, and 384 raw probe rows; 230 rows lack logged ambiguity/split/merge inside their interval, but all 384 retain unresolved alias risk.
 - Candidate-audit join bug found after hold-out 002: corroborating cadences were not always independently clean. Hold-out 002 is invalidated with no accepted disposition.
 - Corrected baseline selection yields only law 3, supported by screening seeds 101 and 303.
+- Corrected hold-out 003: 5 runs, 5,885 repeated measurement rows, 30 raw probe rows; only seed 909 satisfies the clean-long cross-cadence endpoint rule. Frozen gate fails 1/5 < 2/5.
 
 ## INFERRED
 
@@ -77,7 +78,7 @@ Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STO
 
 ## NEXT ACTION
 
-Commit/push the corrected audit code, invalidated hold-out 002 artefacts, and hold-out 003 preregistration. Rerun derived audits from a clean commit, then execute law 3 on five unseen seeds.
+Commit/push hold-out 003 raw/derived artefacts and negative disposition. Implement a streaming EXP02 writer, prove equivalence on a tiny fixture, then execute the 300-law × 3-seed screen.
 
 ## DO NOT RESURRECT
 
