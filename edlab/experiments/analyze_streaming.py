@@ -20,6 +20,7 @@ import numpy as np
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from matplotlib.patches import Patch
 
 from .baseline import _hash_file
 from .streaming import (
@@ -265,13 +266,27 @@ def _plot_law_probe_fraction(law_rows: list[dict[str, Any]], output: Path) -> No
     figure, axis = plt.subplots(figsize=(9.5, 8.0))
     positions = np.arange(len(top))
     axis.barh(positions, [row["probe_fraction"] for row in top], color=colors)
-    axis.set_yticks(positions, [str(row["law_index"]) for row in top])
+    axis.set_yticks(
+        positions,
+        [
+            f"{row['law_index']}*" if row["eligible_law"] else str(row["law_index"])
+            for row in top
+        ],
+    )
     axis.set(
         xlabel="Initial-probe row fraction (descriptive only)",
         ylabel="Law index",
         title="Top probe occupancy laws; orange passed the frozen seed gate",
     )
     axis.grid(axis="x", alpha=0.25)
+    axis.legend(
+        handles=[
+            Patch(color="#D55E00", label="Passed frozen 2/3-seed gate (*)"),
+            Patch(color="#0072B2", label="Did not pass that gate"),
+        ],
+        loc="lower right",
+        frameon=False,
+    )
     _atomic_save_figure(output, figure)
 
 
