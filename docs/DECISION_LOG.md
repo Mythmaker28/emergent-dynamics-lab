@@ -259,3 +259,20 @@ causal discipline (no composite; thresholds frozen; P/M separate; same-state cau
 
 **Reason:** The new substrate + measurement stack meet the same falsifiable-protocol bar Particle Dynamics was
 held to, verified independently, before any law search.
+
+## D-023 — EXP-FL-01 first blind Flow-Lenia map NEGATIVE (persistence without turnover)
+
+**Date:** 2026-07-10 (RUN-20260710-2045-EXPFL01). Model: claude-opus-4-8 (Fable 5 lock lifted by user).
+
+**Decision:** The preregistered blind Halton regime map (protocol @b2b3124; 24 Flow-Lenia laws x 3 seeds on the
+qualified field stack) produced persistent structures in every law (mean field P=0.987; all laws have long tracks)
+but with essentially no constituent turnover (mean field M=0.990; 0 probe-positive rows; mean |circulation|=0),
+yielding 0 screening-permitted laws. Because EXP_FL_00 already validated that the same 8-cohort field M registers
+turnover when present (EXP-REF-01 reference M_min=0.067), M~0.99 here is a genuine regime result, not measurement
+blindness. Per the frozen rule EXP-FL-01 (map #1) is SCREEN NEGATIVE. Authorized next step: PRE-DECLARE a wider/
+refined blind map (finer cohort granularity for M sensitivity and a flux-favouring parameter range) under the same
+protocol and five evidence levels; no threshold relaxation, no composite, no visual selection. The same-state
+causal intervention remains the survivor-resolving tool for any future candidate.
+
+**Reason:** F1/F2 confirmed — no permission; the observed persistence is the trivial static/cohesive-blob regime
+(no turnover), not turnover-individuality.
