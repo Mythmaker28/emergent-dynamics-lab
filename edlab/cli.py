@@ -9,6 +9,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from .experiments.baseline import BaselineConfig, run_baseline
+from .experiments.streaming import run_streaming_screen
 from .validation.forces import validate_force_paths
 from .validation.nulls import (
     id_permutation_null,
@@ -43,6 +44,14 @@ def _parser() -> argparse.ArgumentParser:
     baseline.add_argument("--particles", type=int, default=64)
     baseline.add_argument("--steps", type=int, default=600)
     baseline.add_argument("--cadences", type=int, nargs="+", default=[10, 30, 60])
+    streaming = subparsers.add_parser("stream-screen")
+    streaming.add_argument("--output", type=Path, required=True)
+    streaming.add_argument("--experiment-id", required=True)
+    streaming.add_argument("--laws", type=int, required=True)
+    streaming.add_argument("--seeds", type=int, nargs="+", required=True)
+    streaming.add_argument("--particles", type=int, default=64)
+    streaming.add_argument("--steps", type=int, default=600)
+    streaming.add_argument("--cadences", type=int, nargs="+", default=[10, 30, 60])
     return parser
 
 
@@ -57,7 +66,7 @@ def main(argv: list[str] | None = None) -> int:
             asdict(tracker_cadence_sensitivity_null()),
             asdict(sparse_lookalike_alias_null()),
         ]
-    else:
+    elif args.command == "baseline":
         config = BaselineConfig(
             n_laws=args.laws,
             law_indices=None if args.law_indices is None else tuple(args.law_indices),
@@ -68,6 +77,21 @@ def main(argv: list[str] | None = None) -> int:
             snapshot_cadences=tuple(args.cadences),
         )
         result = run_baseline(
+            output_dir=args.output,
+            experiment_id=args.experiment_id,
+            git_commit=_git_head(),
+            config=config,
+        )
+    else:
+        config = BaselineConfig(
+            n_laws=args.laws,
+            experiment_kind="baseline",
+            seeds=tuple(args.seeds),
+            n_particles=args.particles,
+            steps=args.steps,
+            snapshot_cadences=tuple(args.cadences),
+        )
+        result = run_streaming_screen(
             output_dir=args.output,
             experiment_id=args.experiment_id,
             git_commit=_git_head(),
