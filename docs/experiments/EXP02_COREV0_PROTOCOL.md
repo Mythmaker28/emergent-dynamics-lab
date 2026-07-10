@@ -55,3 +55,7 @@ EXP02 must use a streaming/chunked writer. Full raw association, observation, ev
 - Do not execute until the streaming artifact path is implemented and tested against the baseline runner on a small equivalence fixture.
 - Do not proceed to hold-out until EXP02 completes and the predeclared rule is applied.
 - Do not change substrate or add density/orbital mechanisms during EXP02.
+
+## Post-execution audit note — 2026-07-10
+
+This section records an observed representation defect; it does not alter the preregistered laws, seeds, thresholds, or candidate rule. The root `measurement_aggregates.csv` grouped on raw float-string `tau` and fragmented nominally identical lags. Raw measurement rows and integer `start_step`/`end_step` are intact. Per D-013, downstream analysis groups by integer step delta and emits `analysis/measurement_aggregates_corrected.csv`; the parent aggregate remains preserved as evidence of the error.

@@ -773,7 +773,9 @@ def run_streaming_screen(
     probe_count = resolved_probe_count = 0
     cadence_counts: Counter[int] = Counter()
     event_counts: Counter[str] = Counter()
-    aggregate: dict[tuple[int, int, int, str], dict[str, float | int]] = defaultdict(
+    aggregate: dict[
+        tuple[int, int, int, int, str], dict[str, float | int]
+    ] = defaultdict(
         lambda: {
             "rows": 0,
             "probe_rows": 0,
@@ -833,11 +835,19 @@ def run_streaming_screen(
                 replace = int(reservoir_rng.integers(0, count))
                 if replace < reservoir_size:
                     reservoir[replace] = (p_value, m_value)
+            step_delta = int(row["end_step"]) - int(row["start_step"])
+            if step_delta <= 0 or step_delta % cadence:
+                raise RuntimeError(
+                    f"invalid measurement step delta in {shard / 'measurements.csv'}"
+                )
+            lag_snapshots = step_delta // cadence
+            normalized_tau = f"{step_delta * config.dt:.12g}"
             key = (
                 int(row["law_index"]),
                 int(row["seed"]),
                 cadence,
-                row["tau"],
+                lag_snapshots,
+                normalized_tau,
             )
             stats = aggregate[key]
             stats["rows"] += 1
@@ -853,13 +863,16 @@ def run_streaming_screen(
             event_counts[row["kind"]] += 1
 
     aggregate_rows: list[dict[str, Any]] = []
-    for (law_index, seed, cadence, tau), stats in sorted(aggregate.items()):
+    for (law_index, seed, cadence, lag_snapshots, tau), stats in sorted(
+        aggregate.items()
+    ):
         rows = int(stats["rows"])
         aggregate_rows.append(
             {
                 "law_index": law_index,
                 "seed": seed,
                 "snapshot_cadence": cadence,
+                "lag_snapshots": lag_snapshots,
                 "tau": tau,
                 **stats,
                 "mean_p": float(stats["sum_p"]) / rows,

@@ -31,7 +31,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## ACTIVE EXPERIMENT
 
-`EXP02-COREV0-20260710-001` — preregistered, zero runs. Local recovery gates pass and independent audit returned `GO_AFTER_CLEAN_COMMIT`; commit/push plus exact-SHA recheck remain before the 900-run launch.
+`EXP02-COREV0-20260710-001` — raw/base batch COMPLETE at launch SHA `6c59378`: 900/900 runs. Independent integrity, statistical, and frozen candidate-rule audits pass with required caveats; chunk-aware committed analysis is being generated before any hold-out protocol.
 
 ## LAST COMPLETED EXPERIMENT
 
@@ -57,6 +57,10 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 - Candidate-audit join bug found after hold-out 002: corroborating cadences were not always independently clean. Hold-out 002 is invalidated with no accepted disposition.
 - Corrected baseline selection yields only law 3, supported by screening seeds 101 and 303.
 - Corrected hold-out 003: 5 runs, 5,885 repeated measurement rows, 30 raw probe rows; only seed 909 satisfies the clean-long cross-cadence endpoint rule. Frozen gate fails 1/5 < 2/5.
+- EXP02: 648,740 measurements, descriptive `r(P,M)=0.731581`, 10,302 unchanged-probe rows, 7,186 interval-complexity-unflagged rows, 2,400 whole-track clean-long rows, and 94 same-endpoint cross-cadence endpoints.
+- Independent candidate audit finds exactly nine laws eligible in two of three screening seeds: `{0,12,35,52,73,94,209,225,298}`. None qualifies in all three; all retain sparse-alias/static-flux risk and none is promoted.
+- Independent statistical QA verified all 3,600 raw CSV hashes/sizes/row counts and found 10,101/86,573 tracks (11.67%) censored at time 12.
+- The parent `measurement_aggregates.csv` fragmented nominally equal float `tau` keys. Raw data are intact; D-013 requires a separate integer-step corrected aggregate and preserves the flawed parent file unchanged.
 
 ## INFERRED
 
@@ -83,7 +87,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## NEXT ACTION
 
-Commit the 35-test recovery gate, rerun the full suite and official CLI smoke on the resulting clean SHA, push, and obtain the short exact-SHA recovery recheck. If green, launch/recover the preregistered 300-law × 3-seed EXP02 screen without changing that SHA or the frozen reservoir.
+Commit the chunk-aware analysis and D-013 correction, run it from a clean analysis SHA, and require exact agreement with both independent audits. Then directly inspect the nine eligible laws' descriptors/association edges/static-occupancy alternatives and freeze unseen hold-out seeds only for candidates that survive that audit.
 
 ## DO NOT RESURRECT
 

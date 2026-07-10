@@ -1,3 +1,4 @@
+import csv
 import json
 import math
 import subprocess
@@ -7,6 +8,10 @@ from pathlib import Path
 import pytest
 
 from edlab.experiments import streaming as streaming_module
+from edlab.experiments.analyze_streaming import (
+    analyze_streaming_screen,
+    qualify_run_candidate_rows,
+)
 from edlab.experiments.baseline import BaselineConfig, halton_point, run_baseline
 from edlab.experiments.streaming import RAW_FILENAMES, run_streaming_screen
 
@@ -414,3 +419,114 @@ def test_streaming_multi_run_index_and_raw_totals_are_consistent(tmp_path: Path)
         for filename in RAW_FILENAMES
     }
     assert summary["raw_row_counts"] == manifest["raw_row_counts"] == totals
+    aggregate_rows = list(
+        csv.DictReader(
+            (output / "measurement_aggregates.csv").open(
+                newline="", encoding="utf-8"
+            )
+        )
+    )
+    assert all(int(row["lag_snapshots"]) == 1 for row in aggregate_rows)
+    assert len(
+        {
+            (
+                row["law_index"],
+                row["seed"],
+                row["snapshot_cadence"],
+                row["lag_snapshots"],
+            )
+            for row in aggregate_rows
+        }
+    ) == len(aggregate_rows)
+
+
+def test_candidate_gate_cleans_each_cadence_before_endpoint_join() -> None:
+    def row(cadence: int, track_id: int, p_value: float = 0.9) -> dict[str, str]:
+        return {
+            "law_index": "5",
+            "seed": "2001",
+            "snapshot_cadence": str(cadence),
+            "track_id": str(track_id),
+            "start_step": "0",
+            "end_step": "60",
+            "phenotype_continuity": str(p_value),
+            "material_retention": "0.4",
+            "interval_has_ambiguity": "False",
+            "interval_has_split_or_merge": "False",
+        }
+
+    rows = [row(10, 1), row(30, 2), row(60, 3, p_value=0.8)]
+    observation_counts = {(10, 1): 8, (30, 2): 8, (60, 3): 8}
+    rejected_rows, rejected_endpoints = qualify_run_candidate_rows(
+        rows,
+        observation_counts=observation_counts,
+        complex_tracks={(30, 2)},
+    )
+    assert rejected_rows == []
+    assert rejected_endpoints == set()
+
+    accepted_rows, accepted_endpoints = qualify_run_candidate_rows(
+        rows,
+        observation_counts=observation_counts,
+        complex_tracks=set(),
+    )
+    assert len(accepted_rows) == 2
+    assert accepted_endpoints == {(5, 2001, 0, 60)}
+    assert {row["snapshot_cadence"] for row in accepted_rows} == {"10", "30"}
+    assert all(row["unresolved_sparse_alias_risk"] for row in accepted_rows)
+
+
+def test_chunk_aware_analysis_writes_auditable_outputs(tmp_path: Path) -> None:
+    output = tmp_path / "analysis-fixture"
+    screen_summary = run_streaming_screen(
+        output_dir=output,
+        experiment_id="TEST-ANALYSIS",
+        git_commit="parent-fixture-sha",
+        config=BaselineConfig(
+            n_laws=1,
+            seeds=(7,),
+            n_particles=64,
+            n_types=2,
+            steps=60,
+            snapshot_cadences=(10, 30),
+            lag_indices=(1,),
+        ),
+        reservoir_size=8,
+    )
+    analysis = analyze_streaming_screen(
+        output,
+        analysis_git_commit="analysis-fixture-sha",
+        analysis_git_scope_clean=True,
+    )
+    analysis_dir = output / "analysis"
+    analysis_manifest = json.loads(
+        (analysis_dir / "analysis_manifest.json").read_text(encoding="utf-8")
+    )
+    assert analysis["measurements"] == screen_summary["measurement_rows"]
+    assert analysis["integrity"]["runs"] == 1
+    assert analysis["integrity"]["non_finite_measurement_rows"] == 0
+    assert analysis_manifest["status"] == "COMPLETE"
+    assert analysis_manifest["parent_git_commit"] == "parent-fixture-sha"
+    for filename in (
+        "pm_joint_density.csv",
+        "measurement_aggregates_corrected.csv",
+        "pm_by_cadence_tau.csv",
+        "pm_by_cadence_tau_flags.csv",
+        "law_screening.csv",
+        "lineage_summary.csv",
+        "cross_cadence_candidate_rows.csv",
+        "pareto_frontier.csv",
+        "law_parameter_correlations.csv",
+        "exp02_analysis_summary.json",
+        "exp02_analysis_summary.md",
+        "pm_joint_density.png",
+        "probe_by_cadence_tau.png",
+        "law_probe_fraction.png",
+    ):
+        assert (analysis_dir / filename).exists()
+    all_headers = "\n".join(
+        path.read_text(encoding="utf-8").splitlines()[0] if path.stat().st_size else ""
+        for path in analysis_dir.glob("*.csv")
+    )
+    assert "theseus_score" not in all_headers
+    assert "memory_score" not in all_headers

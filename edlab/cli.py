@@ -8,6 +8,7 @@ import subprocess
 from dataclasses import asdict
 from pathlib import Path
 
+from .experiments.analyze_streaming import analyze_streaming_screen
 from .experiments.baseline import BaselineConfig, run_baseline
 from .experiments.streaming import run_streaming_screen
 from .validation.forces import validate_force_paths
@@ -84,6 +85,8 @@ def _parser() -> argparse.ArgumentParser:
     streaming.add_argument("--steps", type=int, default=600)
     streaming.add_argument("--cadences", type=int, nargs="+", default=[10, 30, 60])
     streaming.add_argument("--reservoir-size", type=int, default=100_000)
+    analysis = subparsers.add_parser("analyze-stream-screen")
+    analysis.add_argument("--output", type=Path, required=True)
     return parser
 
 
@@ -114,7 +117,7 @@ def main(argv: list[str] | None = None) -> int:
             git_commit=_git_head(),
             config=config,
         )
-    else:
+    elif args.command == "stream-screen":
         git_scope_clean = _git_scope_clean(args.output)
         if not git_scope_clean:
             raise RuntimeError(
@@ -135,6 +138,17 @@ def main(argv: list[str] | None = None) -> int:
             config=config,
             reservoir_size=args.reservoir_size,
             git_scope_clean=git_scope_clean,
+        )
+    else:
+        git_scope_clean = _git_scope_clean(args.output)
+        if not git_scope_clean:
+            raise RuntimeError(
+                "analyze-stream-screen requires a clean Git scope outside its output directory"
+            )
+        result = analyze_streaming_screen(
+            args.output,
+            analysis_git_commit=_git_head(),
+            analysis_git_scope_clean=git_scope_clean,
         )
     print(json.dumps(result, indent=2, sort_keys=True))
     return 0
