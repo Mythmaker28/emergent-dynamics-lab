@@ -14,7 +14,7 @@ RUN-20260710-0343-001
 
 ## END TIME
 
-In progress.
+2026-07-10 16:06:45 +02:00
 
 ## STARTING GIT STATE
 
@@ -64,6 +64,11 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - Invalidated hold-out 002 without accepting its apparent survivors. Corrected baseline selection yields law 3 only; froze hold-out 003 with five unseen seeds.
 - Executed corrected hold-out 003 on law 3 with five unseen seeds. Only seed 909 qualifies; the frozen `>=2/5` gate fails, so the candidate is rejected without a probability claim.
 - Preregistered broad EXP02 (300 laws × 3 screening seeds) and an explicit streaming/checksummed artifact policy before execution.
+- Implemented the EXP02 per-run shard writer with plan fingerprints, temporary-directory publication, SHA-256/size validation, fail-closed plan drift/corruption handling, resumable completed shards, streaming aggregates, a bounded reservoir plot, raw index, and CLI entry point.
+- Added a non-vacuous equivalence fixture: all four raw CSV tables match the full validated runner byte for byte; a completed shard resumes without recomputation; changed SHA/plan and corrupt raw are rejected. The full suite is 31/31 passing.
+- Preserved the independent streaming-design journal. That audit recommended a flat append/checkpoint alternative and additional interruption-injection/finalizer gates, but its agent turn ended on an external usage limit before finalizing its journal. EXP02 was not launched; the limitation is recorded rather than hidden.
+- Two native 30-minute heartbeats arrived while this primary run held the conservative lock. No duplicate experiment batch was launched.
+- Committed the tested writer at `850a2ffa6ad52d8888975bbebc483e0d26c7efdf` as a coherent pre-execution checkpoint.
 
 ## FILES READ
 
@@ -91,6 +96,9 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - `.\.venv\Scripts\python.exe -m edlab.experiments.audit_candidates results\BASELINE-COREV0-20260710-001`
 - `.\.venv\Scripts\python.exe -c "from edlab.validation.forces import validate_force_paths; print(validate_force_paths(fixtures=1024))"` — passed with zero path error after the final subnormal fix.
 - Full 167-radius subnormal sweep from `1e-158` to `5e-324` — zero failures and zero path disagreement after the final fix.
+- `.\.venv\Scripts\python.exe -m pytest -q` after the streaming implementation — 31 passed.
+- `git check-ignore -v results\EXP02-COREV0-20260710-001\raw\...` — confirmed `results/**/raw/` exclusion.
+- Byte-equivalence/resume integrity tests executed through `tests/test_experiment_pipeline.py`.
 
 ## OBSERVED
 
@@ -108,19 +116,23 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - Of those, 115 rows lie on tracks with at least eight observations and no logged split/merge/ambiguity; 20 physical endpoint pairs are probe-positive at the same endpoints under at least two cadences.
 - Probe prevalence increases with sparser cadence, so candidate occupancy is not interpreted as a discovery.
 - Independent audits falsified the original claim that every technical gate was green; baseline 001 and hold-out 001 are now explicitly superseded for candidate interpretation.
+- Repaired hold-out 003 is negative under its frozen gate: one qualifying fresh seed out of five, with at least two required; this is not a probability estimate.
+- EXP02 has zero scientific runs. Its writer passes local equivalence/integrity tests, but explicit crash injection and final `COMPLETE` publication remain pre-execution gates.
 
 ## INFERRED
 
-- The current technical vertical slice satisfies its local test suite, but the first independently executed natural baseline has not yet run.
-- The historical implementation is useful as audited reference behavior, but its per-run phenotype scaling and incomplete manifest should not be migrated.
+- The technical vertical slice, repaired baseline, and corrected fresh-seed hold-out are complete; the authorized scientific sequence now points to broad EXP02.
+- The historical implementation is useful as audited reference behavior, but its per-run phenotype scaling and incomplete manifest were not migrated.
+- Per-run immutable shards trade a few thousand local files for simple atomicity, bounded memory, precise run-level checksums, and restart without concatenation repair. This is acceptable only if the remaining crash/finalization gates pass.
 
 ## HYPOTHESIS
 
-- None yet about the scientific phenomenon.
+- CORE V0 may still contain rare regimes outside the 12-law diagnostic slice, but EXP02 must test this without changing observables or thresholds.
 
 ## WHAT WOULD FALSIFY THIS?
 
-- Not applicable before experimental observations.
+- A failure of shard/full byte equivalence, recovery integrity, exact plan identity, or committed index verification blocks EXP02 execution.
+- Failure of the preregistered EXP02 candidate rule on broad screening is a negative CORE V0 result and routes to EXP03-A without threshold relaxation.
 
 ## FAILURES / DEAD ENDS
 
@@ -128,6 +140,7 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - The first automation-directory inspection reused PowerShell's read-only `$HOME` variable; a renamed local variable corrected the check.
 - The first baseline's candidate path was stopped rather than continued: its tracker could silently alias sparse look-alikes, and its numerical API had uncovered out-of-domain failures.
 - Hold-out 002 was executed but invalidated because the cross-cadence cleanliness join was wrong; its outputs are preserved and not used for promotion.
+- The independent streaming-design subagent hit an external usage limit after writing a detailed but unfinished journal. Its partial state is preserved with `PARTIAL_USAGE_LIMIT_JOURNAL_PRESERVED`; it is not represented as a completed approval.
 
 ## DECISIONS MADE
 
@@ -138,12 +151,13 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 ## UNRESOLVED RISKS
 
 - Native heartbeat overlap semantics are not documented as a hard non-overlap guarantee; the explicit repository lock must remain part of every scheduled run.
-- Natural baseline P/M non-triviality and empirical tracker sensitivity remain unobserved until the committed baseline executes.
+- EXP02 crash injection, orphan temporary-shard disposition, final `COMPLETE` manifest semantics, and independent recovery audit remain open before 900-run execution.
+- Raw EXP02 shards are intentionally local/ignored and therefore need regeneration/index verification after loss; committed checksums are not a remote raw backup.
 
 ## HANDOFF
 
-In progress. Commit/push the validated vertical slice, run the current independent baseline from that SHA, integrate the two post-implementation audits, and update durable state/results.
+From clean pushed code checkpoint `850a2ff`, add interruption-injection tests and a finalizer `COMPLETE` gate with expected/completed run counts and indexed-output verification. Re-run the suite and obtain an independent recovery verdict. Only then acquire a new run lock and launch/recover the preregistered 900-run EXP02 screen.
 
 ## ENDING GIT STATE
 
-In progress.
+Branch `main`; code checkpoint `850a2ff`; final documentation commit follows this journal update. Worktree must be clean and synchronized before lock release.

@@ -14,7 +14,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## VALIDATED COMPONENTS
 
-- Repaired local implementation: 29 tests pass after independent numerical/tracker audit findings.
+- Repaired implementation plus the local EXP02 shard writer: 31 tests pass.
 - Deterministic engine and multi-step diagnostic-ID permutation fixture.
 - Scalar and independent vectorized force paths on 32 controlled worlds.
 - Periodic detector, ID/order/translation-invariant phenotype fixtures.
@@ -22,13 +22,14 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 - Separate P and M plus orthogonal construct fixtures.
 - ID-permutation and static-material-flux nulls.
 - Conservative scheduled-run lock semantics.
-- Baseline 001's original all-green claim is superseded by independent audits; repaired gates await baseline 002.
-
-Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STOP-REPAIR`; their findings are implemented locally and await exact-SHA re-audit.
+- Baseline 001's original all-green claim is superseded by independent audits; repaired baseline 002 and hold-out 003 are complete.
+- Exact-SHA numerical re-audit `NUM3` passed all 29 then-current tests, 1,024 force/one-step fixtures, and 167 subnormal radii.
+- EXP02 per-run shards are written through temporary directories and atomic rename, pinned to a plan hash, verified by SHA-256/size on resume, and summarized without retaining all runs in memory.
+- The streaming fixture proves byte-for-byte equality of all four raw tables against the full runner, rejects plan drift/corruption, and resumes without recomputation.
 
 ## ACTIVE EXPERIMENT
 
-`EXP02-COREV0-20260710-001` — preregistered; implementation task is a streaming/chunked artifact writer equivalent to the validated small runner.
+`EXP02-COREV0-20260710-001` — preregistered, zero runs. The local streaming writer gate passes; crash-injection/finalizer completeness review remains before the 900-run launch.
 
 ## LAST COMPLETED EXPERIMENT
 
@@ -40,7 +41,7 @@ Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STO
 - New private GitHub repository `Mythmaker28/emergent-dynamics-lab` exists and is the `origin` remote.
 - Historical local branch and commit exist; isolated historical tests: 19/19 pass.
 - Archived historical CSV: 7,079 rows, Pearson `0.675724`, 0 rows for `P>0.8,M<0.5`.
-- Current implementation tests: 20/20 pass.
+- Current implementation tests: 31/31 pass.
 - Current independent baseline: 36 runs, 36,722 repeated measurement rows, descriptive Pearson `r(P,M)=0.733162`, P range `0.287298–0.999985`, M range `0–1`.
 - The unchanged initial probe contains 384 rows. Candidate audit finds 115 rows on clean tracks with at least eight observations and 20 physical endpoint pairs probe-positive under at least two cadences.
 - The frozen cross-cadence/multi-seed rule selects laws `{1,3,6,10}` for fresh-seed hold-out.
@@ -75,10 +76,12 @@ Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STO
 - Repeated track/tau rows are pseudoreplicates, not independent trials.
 - Right-censoring at the finite observation horizon.
 - Static material-flux false positives.
+- EXP02 raw shards are intentionally local/ignored; committed indexes and checksums prove integrity of present files but are not a remote raw-data backup.
+- Crash recovery is fail-closed for missing, mismatched, or corrupt completed shards, but interruption injection and final `COMPLETE` publication still need an explicit independent preflight test.
 
 ## NEXT ACTION
 
-Commit/push hold-out 003 raw/derived artefacts and negative disposition. Implement a streaming EXP02 writer, prove equivalence on a tiny fixture, then execute the 300-law × 3-seed screen.
+From clean SHA `850a2ff`, add interruption-injection tests and a finalizer `COMPLETE` gate (expected/completed runs plus indexed output verification). Re-run the full suite and an independent recovery audit; only then launch/recover the preregistered 300-law × 3-seed EXP02 screen.
 
 ## DO NOT RESURRECT
 
