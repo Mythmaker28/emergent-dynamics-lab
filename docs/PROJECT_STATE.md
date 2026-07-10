@@ -14,7 +14,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## VALIDATED COMPONENTS
 
-- Repaired implementation plus EXP02 shard writer, direct candidate diagnostics, alias-intervention harness, and the EXP03-A density + EXP03-B orbital mechanisms: 80 tests pass.
+- Repaired implementation plus EXP02 shard writer, direct candidate diagnostics, alias-intervention harness, and the EXP03-A density + EXP03-B orbital + EXP03-C combined mechanisms: 91 tests pass.
 - Deterministic engine and multi-step diagnostic-ID permutation fixture.
 - Scalar and independent vectorized force paths on 32 controlled worlds.
 - Periodic detector, ID/order/translation-invariant phenotype fixtures.
@@ -31,11 +31,11 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## ACTIVE EXPERIMENT
 
-`EXP03-C` (CORE V0 + density preference + orbital interaction) — NEXT AUTHORIZED. `EXP03-B-ORBITAL-COREV0-20260710-001` is COMPLETE and NEGATIVE: an isolated orbital/transverse interaction injects circulation and turnover but yields 0 screening-permitted laws vs 2 for CORE V0 (raw probe rises but no robust clean-long cross-cadence candidates). EXP03-A (density) was also NEGATIVE (D-018). CORE V0 survivors {0,52} remain closed (D-017).
+**Particle Dynamics substrate decision / kill-switch evaluation** — DUE. The full causal ladder is complete and negative: CORE V0 CASE A (D-017), EXP03-A density NEGATIVE (D-018), EXP03-B orbital NEGATIVE (D-019), EXP03-C density+orbital NEGATIVE (D-020). No CORE V0 / density / orbital law family produced audited constituent-turnover individuality. Substrate switching requires the documented kill-switch review and is not undertaken autonomously.
 
 ## LAST COMPLETED EXPERIMENT
 
-`EXP03B-ORBITAL-COREV0-20260710-001`: matched OFF/ON orbital screen (64 laws x 3 seeds x 3 cadences). OFF reproduces CORE V0 (r=0.733); ON injects circulation (|circ| 0.10->0.64) + turnover but yields 0 screening-permitted laws vs 2 OFF — SCREEN NEGATIVE (D-019). Preceding: EXP03-A density NEGATIVE (D-018); ALIAS-INTERVENTION CASE A (D-017).
+`EXP03C-COMBINED-COREV0-20260710-001`: matched OFF/ON density+orbital screen (64 laws x 3 seeds x 3 cadences). OFF reproduces CORE V0 (r=0.733); ON |circ| 0.10->1.01 but 0 screening-permitted laws vs 2 OFF (D-019 hypothesis falsified) — SCREEN NEGATIVE (D-020). Ladder exhausted. Preceding: EXP03-B orbital NEGATIVE (D-019); EXP03-A density NEGATIVE (D-018); CORE V0 CASE A (D-017).
 
 ## OBSERVED
 
@@ -94,7 +94,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## NEXT ACTION
 
-Begin EXP03-C: CORE V0 + density preference + orbital interaction (both validated mechanisms combined; mutation/type-transition/recycling OFF). Neutral limit = both strengths 0 = CORE V0. Reuse frozen observers/nulls/P-M separation; no composite; no post-hoc threshold change. Preregister and commit before screening; then matched screen with the same five-level reporting and, if a predefined signal appears, the frozen hold-out + alias-intervention discipline. EXP03-C is the final Particle Dynamics causal family before a substrate decision.
+Conduct the Particle Dynamics substrate decision / kill-switch review: consolidate the four negative results (D-017..D-020) against the documented Particle Dynamics kill-switch, and decide (with the user) whether to (a) retire the Particle Dynamics substrate for the persistent-individuality question and design a new substrate under the same falsifiable protocol, or (b) revisit the observer/measurement stack (detector/tracker/P/M) before any substrate switch. Do not switch substrate, lower thresholds, add mutation/type-transition/recycling, or introduce a composite score. Keep P and M separate.
 
 ## MODEL NOTE (2026-07-10)
 

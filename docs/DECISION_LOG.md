@@ -202,3 +202,21 @@ mixing/circulation, not turnover-individuality).
 
 **Falsification / reopen:** A pre-declared orbital parameterisation under which ON yields more screening-permitted
 laws than OFF with robust turnover would reopen EXP03-B. Not observed.
+
+## D-020 — EXP03-C (density+orbital) screen NEGATIVE; Particle Dynamics ladder exhausted, substrate decision due
+
+**Date:** 2026-07-10 (RUN-20260710-1945-EXP03C). Model: claude-opus-4-8 (Fable 5 lock lifted by user).
+
+**Decision:** The preregistered EXP03-C screen (protocol @ed06075; combined validated density + orbital
+mechanisms; neutral limit both strengths 0 = CORE V0 bit-for-bit; partial limits recover EXP03-A/B) ran matched
+OFF/ON on 64 laws x 3 seeds x 3 cadences. OFF reproduces CORE V0 (r=0.7328, permits {17,52}). ON injected the most
+circulation of the ladder (|circ| 0.103->1.012) yet lowered P (0.853->0.588), lowered M (0.836->0.427), collapsed
+long tracks (2293->513), and REDUCED the raw probe fraction (0.0163->0.0059), yielding **0 screening-permitted
+laws vs 2 OFF**. The D-019 hypothesis that density homeostasis would bound orbital mixing to yield candidates is
+falsified. Per the frozen rule EXP03-C is SCREEN NEGATIVE.
+
+**Ladder outcome:** CORE V0 (CASE A, D-017), EXP03-A density (NEGATIVE, D-018), EXP03-B orbital (NEGATIVE, D-019),
+EXP03-C combined (NEGATIVE, this). Across the full preregistered Particle Dynamics causal ladder, no law family
+produced audited constituent-turnover individuality. A **Particle Dynamics substrate decision / kill-switch
+evaluation** is now due per the charter; substrate switching requires the documented kill-switch review and is not
+undertaken autonomously here. Thresholds unchanged; no composite; laws 0/52 not reopened.
