@@ -3,12 +3,12 @@
 ## OBSERVED
 
 - Probe definition was not changed: `P > 0.8, M < 0.5`.
-- Probe rows: 384 / 36722.
-- Unique cadence-scoped tracks with a probe row: 206.
-- Rows without a complex lineage event inside their measurement interval: 221.
-- Rows on tracks with no split, merge, or ambiguous-association event anywhere: 159.
-- Such rows on tracks with at least 8 observations: 115 across 52 tracks.
-- Clean long-track probe endpoints reproduced as probe-positive at the same physical endpoints under at least two cadences: 10 endpoints (20 cadence rows).
+- Probe rows: 254 / 17448.
+- Unique cadence-scoped tracks with a probe row: 141.
+- Rows without a complex lineage event inside their measurement interval: 167.
+- Rows on tracks with no split, merge, or ambiguous-association event anywhere: 114.
+- Such rows on tracks with at least 8 observations: 70 across 42 tracks.
+- Clean long-track probe endpoints reproduced as probe-positive at the same physical endpoints under at least two cadences: 2 endpoints (4 cadence rows).
 
 ## INFERRED
 

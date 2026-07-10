@@ -37,6 +37,20 @@ def _sha256(path: Path) -> str:
 
 
 def audit_initial_probe(result_dir: Path) -> dict[str, Any]:
+    analysis_git_commit = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    analysis_git_dirty = bool(
+        subprocess.run(
+            ["git", "status", "--porcelain"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+    )
     measurements = _read_csv(result_dir / "measurements.csv")
     events = _read_csv(result_dir / "lineage_events.csv")
     observations = _read_csv(result_dir / "entity_observations.csv")
@@ -251,20 +265,6 @@ def audit_initial_probe(result_dir: Path) -> dict[str, Any]:
 """
     (result_dir / "candidate_audit.md").write_text(markdown, encoding="utf-8")
     parent_manifest = json.loads((result_dir / "manifest.json").read_text(encoding="utf-8"))
-    analysis_git_commit = subprocess.run(
-        ["git", "rev-parse", "HEAD"],
-        check=True,
-        capture_output=True,
-        text=True,
-    ).stdout.strip()
-    analysis_git_dirty = bool(
-        subprocess.run(
-            ["git", "status", "--porcelain"],
-            check=True,
-            capture_output=True,
-            text=True,
-        ).stdout.strip()
-    )
     analysis_manifest = {
         "analysis": "initial exploratory probe lineage/cadence audit",
         "analysis_git_commit": analysis_git_commit,
