@@ -59,8 +59,8 @@ def flow_lenia_law_from_halton(law_index: int) -> FlowLeniaSpec:
     )
 
 
-def screen_one(cfg: EXPFL01Config, law_index: int, seed: int) -> dict[str, Any]:
-    spec = flow_lenia_law_from_halton(law_index)
+def screen_one(cfg: EXPFL01Config, law_index: int, seed: int, spec=None) -> dict[str, Any]:
+    spec = spec if spec is not None else flow_lenia_law_from_halton(law_index)
     eng = FlowLeniaEngine(spec)
     st = gaussian_blobs_state(spec, seed)
     snaps = eng.simulate(st, cfg.steps, cfg.cadence)
@@ -144,3 +144,33 @@ def assemble_summary(cfg: EXPFL01Config, records: list[dict[str, Any]]) -> dict[
                                   "5_causal_reestablishment": "not evaluated in this screen"},
         "boundary": "P and M separate; no composite; thresholds frozen; same-state causal intervention carried over for any survivor.",
     }
+
+
+def flow_lenia_law_from_halton_v2(law_index: int) -> FlowLeniaSpec:
+    """Map #2 blind sampler: SUBSTANTIALLY WIDER, mechanistically FLUX-FAVOURING domain vs map #1.
+
+    Rationale: map #1 settled into static cohesive blobs (flow -> equilibrium, mass locked in dense lumps). To
+    reach the material-throughput regime we (a) raise advection (flow_gain up, dt up) and (b) LOWER the
+    concentration cap theta so dense lumps are penalised and mass keeps flowing, plus wider kernel/growth ranges.
+    Differences from map #1: flow_gain now varied [0.8,2.5] (was fixed 1.0); concentration_theta varied
+    [0.30,1.20] (was fixed 1.2); dt [0.20,0.60] (was [0.20,0.50]); growth_mu [0.05,0.30] (was [0.08,0.26]);
+    growth_sigma [0.008,0.050]; kernel_mu [0.25,0.75]; kernel_sigma [0.08,0.28]; concentration_n [1.0,3.0]. Blind
+    Halton over these 8 dims; the expansion is mechanistic (favour flux), NOT tuned to candidate yield.
+    """
+    p = halton_point(law_index + 32, 8)
+    return FlowLeniaSpec(
+        size=64, kernel_radius=10.0,
+        kernel_mu=float(0.25 + 0.50 * p[0]),
+        kernel_sigma=float(0.08 + 0.20 * p[1]),
+        growth_mu=float(0.05 + 0.25 * p[2]),
+        growth_sigma=float(0.008 + 0.042 * p[3]),
+        dt=float(0.20 + 0.40 * p[4]),
+        flow_gain=float(0.8 + 1.7 * p[5]),
+        concentration_theta=float(0.30 + 0.90 * p[6]),
+        concentration_n=float(1.0 + 2.0 * p[7]),
+    )
+
+
+def screen_records_v2(cfg: EXPFL01Config, law_indices) -> list:
+    return [screen_one(cfg, li, seed, spec=flow_lenia_law_from_halton_v2(li))
+            for li in law_indices for seed in cfg.seeds]
