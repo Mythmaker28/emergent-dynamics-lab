@@ -14,7 +14,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## VALIDATED COMPONENTS
 
-- Repaired implementation plus EXP02 shard writer, direct candidate diagnostics, alias-intervention harness, and the EXP03-A density mechanism: 63 tests pass.
+- Repaired implementation plus EXP02 shard writer, direct candidate diagnostics, alias-intervention harness, and the EXP03-A density + EXP03-B orbital mechanisms: 80 tests pass.
 - Deterministic engine and multi-step diagnostic-ID permutation fixture.
 - Scalar and independent vectorized force paths on 32 controlled worlds.
 - Periodic detector, ID/order/translation-invariant phenotype fixtures.
@@ -31,11 +31,11 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## ACTIVE EXPERIMENT
 
-`EXP03-B` (CORE V0 + orbital/transverse interaction only) — NEXT AUTHORIZED. `EXP03-A-DENSITY-COREV0-20260710-001` is COMPLETE and NEGATIVE: an isolated comfortable-neighbour density-preference mechanism did not enrich the high-P/low-M regime versus CORE V0 (0 vs 2 screening-permitted laws); it depleted it. CORE V0 survivors {0,52} remain closed (D-017).
+`EXP03-C` (CORE V0 + density preference + orbital interaction) — NEXT AUTHORIZED. `EXP03-B-ORBITAL-COREV0-20260710-001` is COMPLETE and NEGATIVE: an isolated orbital/transverse interaction injects circulation and turnover but yields 0 screening-permitted laws vs 2 for CORE V0 (raw probe rises but no robust clean-long cross-cadence candidates). EXP03-A (density) was also NEGATIVE (D-018). CORE V0 survivors {0,52} remain closed (D-017).
 
 ## LAST COMPLETED EXPERIMENT
 
-`EXP03A-DENSITY-COREV0-20260710-001`: matched OFF/ON density-preference screen (64 laws x 3 seeds x 3 cadences). OFF reproduces CORE V0 (r(P,M)=0.733); ON yields 0 screening-permitted laws vs 2 OFF and lowers P/M — SCREEN NEGATIVE (D-018). Preceding: ALIAS-INTERVENTION CASE A (D-017); HOLDOUT04 survivors {0,52}.
+`EXP03B-ORBITAL-COREV0-20260710-001`: matched OFF/ON orbital screen (64 laws x 3 seeds x 3 cadences). OFF reproduces CORE V0 (r=0.733); ON injects circulation (|circ| 0.10->0.64) + turnover but yields 0 screening-permitted laws vs 2 OFF — SCREEN NEGATIVE (D-019). Preceding: EXP03-A density NEGATIVE (D-018); ALIAS-INTERVENTION CASE A (D-017).
 
 ## OBSERVED
 
@@ -94,7 +94,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## NEXT ACTION
 
-Begin EXP03-B: CORE V0 + orbital/transverse interaction ONLY (density preference OFF; mutation/type-transition/recycling OFF). Reuse the frozen observers, nulls, tracker audits, P/M separation; no composite score; no post-hoc threshold change. Preregister and commit the EXP03-B protocol and low-discrepancy screen before any run; require a neutral limit reducing exactly to CORE V0; then screen and, if a predefined signal appears, apply the frozen fresh-seed hold-out and alias-intervention discipline.
+Begin EXP03-C: CORE V0 + density preference + orbital interaction (both validated mechanisms combined; mutation/type-transition/recycling OFF). Neutral limit = both strengths 0 = CORE V0. Reuse frozen observers/nulls/P-M separation; no composite; no post-hoc threshold change. Preregister and commit before screening; then matched screen with the same five-level reporting and, if a predefined signal appears, the frozen hold-out + alias-intervention discipline. EXP03-C is the final Particle Dynamics causal family before a substrate decision.
 
 ## MODEL NOTE (2026-07-10)
 

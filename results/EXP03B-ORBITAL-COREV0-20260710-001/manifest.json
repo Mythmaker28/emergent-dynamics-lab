@@ -1,0 +1,59 @@
+{
+  "code_version": "0.1.0",
+  "config": {
+    "conditions": [
+      "OFF",
+      "ON"
+    ],
+    "cross_cadence": 2,
+    "detection_radius": 0.11,
+    "dt": 0.02,
+    "enroll_min_obs": 8,
+    "lag_indices": [
+      1,
+      3,
+      6
+    ],
+    "min_entity_size": 4,
+    "n_laws": 64,
+    "n_particles": 64,
+    "n_types": 3,
+    "orbital_range_range": [
+      0.12,
+      0.28
+    ],
+    "orbital_strength_mag_range": [
+      0.4,
+      1.6
+    ],
+    "seed_offset_per_law": 100000,
+    "seeds": [
+      7001,
+      7002,
+      7003
+    ],
+    "snapshot_cadences": [
+      10,
+      30,
+      60
+    ],
+    "speed_scale": 0.25,
+    "steps": 600,
+    "tracker_distance": 0.16,
+    "tracker_min_size_ratio": 0.25
+  },
+  "dependencies": {
+    "numpy": "2.2.6",
+    "python": "3.10.12"
+  },
+  "experiment_id": "EXP03B-ORBITAL-COREV0-20260710-001",
+  "git_commit": "a7885001f3a815b0a0d14e299da46a0a8531e326",
+  "output_sha256": {
+    "decision.md": "a1b57f38ed7800a970f60d806b37c17bd68f18f65070e9299769c31ac5f2138e",
+    "exp03b_pm_comparison.png": "ed0b1b77c41e19313cafde8e87a22623afe883745e9b29918e8029ca9ffa4bc1",
+    "screen_runs.csv": "efa3f9f3d0eb69e1f933f860cb2b6c7730e34cd3d7f65ef7e137993948c3ba39",
+    "summary.json": "8314f32257f28258b2e2023c742d5dd1dde9b8728d9919f1ae34ce3e7e51a84f"
+  },
+  "protocol_sha": "a7885001f3a815b0a0d14e299da46a0a8531e326",
+  "timestamp_utc": "2026-07-10T17:23:48.060668+00:00"
+}

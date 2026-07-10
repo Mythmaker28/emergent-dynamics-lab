@@ -183,3 +183,22 @@ effect is homeostatic settling / reduced coherent persistence, consistent with P
 
 **Falsification / reopen:** A pre-declared (not post-hoc) density parameterisation under which ON yields more
 screening-permitted laws than OFF with genuine turnover would reopen EXP03-A. Not observed.
+
+## D-019 — EXP03-B (orbital interaction) screen NEGATIVE; advance to EXP03-C
+
+**Date:** 2026-07-10 (RUN-20260710-1930-EXP03B). Model: claude-opus-4-8 (Fable 5 lock lifted by user).
+
+**Decision:** The preregistered EXP03-B screen (protocol @a788500; isolated transverse/orbital pair force,
+neutral limit = CORE V0 bit-for-bit, momentum conserved) ran matched OFF/ON on 64 laws x 3 seeds x 3 cadences.
+OFF reproduces CORE V0 (r=0.7328, permits {17,52}, |circ|=0.103). ON injected circulation (|circ|->0.640) and
+drove pervasive mixing (mean M 0.836->0.324, long tracks 2293->563, censoring 15227->47048); the RAW probe
+fraction rose (0.0163->0.0239) but the frozen clean-long cross-cadence gate yielded **0 screening-permitted laws
+vs 2 OFF**. Orbital alone does not enrich the robust candidate regime; the raw probe increase is the low-M
+look-alike regime the gate rejects (PASS B). Per the frozen rule this is EXP03-B SCREEN NEGATIVE. Advance to
+EXP03-C (CORE V0 + density + orbital). No hold-out; thresholds unchanged; no composite; laws 0/52 not reopened.
+
+**Reason:** Falsifier F1 confirmed (ON permitted 0 < OFF 2); F2 relevant (raw probe rise explained by
+mixing/circulation, not turnover-individuality).
+
+**Falsification / reopen:** A pre-declared orbital parameterisation under which ON yields more screening-permitted
+laws than OFF with robust turnover would reopen EXP03-B. Not observed.
