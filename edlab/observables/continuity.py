@@ -3,9 +3,13 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 from ..entities.detection import EntityObservation
 from .phenotype import phenotype_similarity
+
+if TYPE_CHECKING:
+    from ..entities.tracking import LineageEvent
 
 
 @dataclass(frozen=True)
@@ -20,6 +24,9 @@ class ContinuityMeasurement:
     material_retention: float
     start_count: int
     end_count: int
+    interval_has_ambiguity: bool
+    interval_has_split_or_merge: bool
+    unresolved_sparse_alias_risk: bool
 
 
 def material_retention(left_ids: frozenset[int], right_ids: frozenset[int]) -> float:
@@ -33,6 +40,7 @@ def measure_tracks(
     tracks: dict[int, list[EntityObservation]],
     *,
     lag_indices: tuple[int, ...] = (1, 3, 6),
+    events: list["LineageEvent"] | None = None,
 ) -> list[ContinuityMeasurement]:
     measurements: list[ContinuityMeasurement] = []
     for track_id, observations in sorted(tracks.items()):
@@ -43,6 +51,17 @@ def measure_tracks(
             for start_index in range(len(ordered) - lag):
                 left = ordered[start_index]
                 right = ordered[start_index + lag]
+                relevant_events = [
+                    event
+                    for event in (events or [])
+                    if left.snapshot_step < event.snapshot_step <= right.snapshot_step
+                    and (
+                        track_id in event.parent_track_ids
+                        or track_id in event.child_track_ids
+                    )
+                ]
+                p_value = phenotype_similarity(left.phenotype, right.phenotype)
+                m_value = material_retention(left.particle_ids, right.particle_ids)
                 measurements.append(
                     ContinuityMeasurement(
                         track_id=track_id,
@@ -51,14 +70,19 @@ def measure_tracks(
                         start_time=left.time,
                         end_time=right.time,
                         tau=right.time - left.time,
-                        phenotype_continuity=phenotype_similarity(
-                            left.phenotype, right.phenotype
-                        ),
-                        material_retention=material_retention(
-                            left.particle_ids, right.particle_ids
-                        ),
+                        phenotype_continuity=p_value,
+                        material_retention=m_value,
                         start_count=len(left.particle_ids),
                         end_count=len(right.particle_ids),
+                        interval_has_ambiguity=any(
+                            event.kind == "ambiguous_association"
+                            for event in relevant_events
+                        ),
+                        interval_has_split_or_merge=any(
+                            event.kind in {"split", "merge"}
+                            for event in relevant_events
+                        ),
+                        unresolved_sparse_alias_risk=(p_value > 0.8 and m_value < 0.5),
                     )
                 )
     return measurements

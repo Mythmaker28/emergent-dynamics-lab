@@ -2,6 +2,10 @@
 
 **Frozen before any hold-out trajectory is executed.**
 
+## Disposition appended after independent audits
+
+**SUPERSEDED — NEVER EXECUTED.** Independent tracker and numerical audits found a silent sparse look-alike alias, compatibility alternatives mislabeled as resolved split/merge, incomplete association-edge persistence, subnormal norm underflow, and an unconstrained half-box domain. The project stopped before running these hold-out seeds. The rule below remains intact as a historical preregistration; a repaired baseline must produce a new candidate rule and new protocol ID.
+
 ## Parent screening artefact
 
 - Experiment: `BASELINE-COREV0-20260710-001`.
@@ -72,4 +76,3 @@ Even a retained law may still be a static material-flux or look-alike-stitching 
 
 - Fewer than two qualifying fresh seeds rejects a law for perturbation preparation under this protocol.
 - A retained law that fails direct trajectory audit or controlled perturbation is not evidence of persistent dynamical individuality.
-

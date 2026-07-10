@@ -27,6 +27,7 @@ from ..substrates.particle_dynamics.engine import initialize_world, simulate
 from ..validation.forces import validate_force_paths
 from ..validation.nulls import (
     id_permutation_null,
+    sparse_lookalike_alias_null,
     static_motif_material_flux_null,
     tracker_cadence_sensitivity_null,
 )
@@ -186,6 +187,7 @@ def run_baseline(
         id_permutation_null(),
         static_motif_material_flux_null(),
         tracker_cadence_sensitivity_null(),
+        sparse_lookalike_alias_null(),
     ]
     selected_indices = (
         tuple(range(config.n_laws))
@@ -207,6 +209,7 @@ def run_baseline(
     measurement_rows: list[dict[str, Any]] = []
     event_rows: list[dict[str, Any]] = []
     observation_rows: list[dict[str, Any]] = []
+    association_rows: list[dict[str, Any]] = []
     cadence_track_counts: Counter[int] = Counter()
     cadence_measurement_counts: Counter[int] = Counter()
     base_cadence = min(config.snapshot_cadences)
@@ -240,7 +243,11 @@ def run_baseline(
                 tracker = LineageTracker(tracker_spec, box_size=world.box_size)
                 selected = [snapshot for snapshot in snapshots if snapshot.step % cadence == 0]
                 for snapshot in selected:
-                    tracked = tracker.update(entities_by_step[snapshot.step])
+                    tracked = tracker.update(
+                        entities_by_step[snapshot.step],
+                        snapshot_step=snapshot.step,
+                        time=snapshot.time,
+                    )
                     for item in tracked:
                         entity = item.entity
                         observation_rows.append(
@@ -249,14 +256,20 @@ def run_baseline(
                                 "seed": seed,
                                 "snapshot_cadence": cadence,
                                 "track_id": item.track_id,
+                                "local_index": entity.local_index,
                                 "step": entity.snapshot_step,
                                 "time": entity.time,
+                                "centroid_json": json.dumps(entity.centroid.tolist()),
                                 "particle_ids_json": json.dumps(sorted(entity.particle_ids)),
                                 "phenotype_vector_json": json.dumps(entity.phenotype.vector.tolist()),
                                 "phenotype_raw_json": json.dumps(entity.phenotype.raw, sort_keys=True),
                             }
                         )
-                measurements = measure_tracks(tracker.tracks, lag_indices=config.lag_indices)
+                measurements = measure_tracks(
+                    tracker.tracks,
+                    lag_indices=config.lag_indices,
+                    events=tracker.events,
+                )
                 cadence_track_counts[cadence] += len(tracker.tracks)
                 cadence_measurement_counts[cadence] += len(measurements)
                 for measurement in measurements:
@@ -283,10 +296,20 @@ def run_baseline(
                             "detail": event.detail,
                         }
                     )
+                for edge in tracker.association_edges:
+                    association_rows.append(
+                        {
+                            "law_index": law_index,
+                            "seed": seed,
+                            "snapshot_cadence": cadence,
+                            **asdict(edge),
+                        }
+                    )
 
     _write_csv(output_dir / "measurements.csv", measurement_rows)
     _write_csv(output_dir / "lineage_events.csv", event_rows)
     _write_csv(output_dir / "entity_observations.csv", observation_rows)
+    _write_csv(output_dir / "association_edges.csv", association_rows)
 
     p_values = np.array([row["phenotype_continuity"] for row in measurement_rows], dtype=float)
     m_values = np.array([row["material_retention"] for row in measurement_rows], dtype=float)
@@ -295,16 +318,37 @@ def run_baseline(
     else:
         correlation = None
     probe_count = int(np.sum((p_values > 0.8) & (m_values < 0.5))) if len(p_values) else 0
+    resolved_probe_count = sum(
+        1
+        for row in measurement_rows
+        if row["phenotype_continuity"] > 0.8
+        and row["material_retention"] < 0.5
+        and not row["interval_has_ambiguity"]
+        and not row["interval_has_split_or_merge"]
+    )
     p_range = float(np.ptp(p_values)) if len(p_values) else 0.0
     m_range = float(np.ptp(m_values)) if len(m_values) else 0.0
     event_counts = Counter(row["kind"] for row in event_rows)
     cadence_has_measurements = all(cadence_measurement_counts[cadence] > 0 for cadence in config.snapshot_cadences)
+    null_by_name = {result.name: result for result in null_results}
     gates = {
         "second_force_path": force_validation.passed,
-        "id_permutation_null": null_results[0].passed,
-        "static_flux_false_positive_null": null_results[1].passed,
-        "tracker_cadence_sensitivity_null": null_results[2].passed,
-        "tracker_auditable": len(event_rows) > 0 and len(event_counts) > 0,
+        "id_permutation_null": null_by_name["ID_PERMUTATION"].passed,
+        "static_flux_false_positive_null": null_by_name[
+            "STATIC_MOTIF_WITH_MATERIAL_FLUX"
+        ].passed,
+        "tracker_cadence_sensitivity_null": null_by_name[
+            "TRACKER_CADENCE_SENSITIVITY"
+        ].passed,
+        "sparse_lookalike_alias_null_live": null_by_name[
+            "SPARSE_LOOKALIKE_ALIAS"
+        ].passed,
+        "tracker_auditable": (
+            len(event_rows) > 0
+            and len(event_counts) > 0
+            and len(association_rows) > 0
+            and all("interval_has_ambiguity" in row for row in measurement_rows)
+        ),
         "cadence_control_nonempty": cadence_has_measurements,
         "phenotype_continuity_varies": p_range > 1e-9,
         "material_retention_varies": m_range > 1e-9,
@@ -315,7 +359,12 @@ def run_baseline(
         "runs": run_count,
         "measurement_rows": len(measurement_rows),
         "correlation_p_m_descriptive_only": correlation,
-        "initial_probe": {"definition": "P > 0.8 and M < 0.5", "count": probe_count},
+        "initial_probe": {
+            "definition": "P > 0.8 and M < 0.5",
+            "raw_count": probe_count,
+            "lineage_resolved_count": resolved_probe_count,
+            "all_rows_retain_unresolved_sparse_alias_risk": True,
+        },
         "p_min": float(p_values.min()) if len(p_values) else None,
         "p_max": float(p_values.max()) if len(p_values) else None,
         "m_min": float(m_values.min()) if len(m_values) else None,
@@ -354,7 +403,9 @@ def run_baseline(
 - P range: {summary['p_min']} to {summary['p_max']}.
 - M range: {summary['m_min']} to {summary['m_max']}.
 - Descriptive r(P,M): {correlation}.
-- Initial exploratory probe count P>0.8, M<0.5: {probe_count}.
+- Initial exploratory probe raw count P>0.8, M<0.5: {probe_count}.
+- Probe rows without logged ambiguity/split/merge inside the interval: {resolved_probe_count}.
+- Every probe row retains unresolved sparse look-alike/static-flux alias risk.
 - Kill-switch gates: `{json.dumps(gates, sort_keys=True)}`.
 
 ## INFERRED

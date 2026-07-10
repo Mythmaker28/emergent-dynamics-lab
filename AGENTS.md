@@ -50,6 +50,7 @@ It must record role, run ID, start/end time, starting/ending Git state, assigned
 - `P > 0.8, M < 0.5` is only `INITIAL EXPLORATORY PROBE — NOT AN IDENTITY DEFINITION`.
 - Do not lower thresholds after a negative result.
 - The static motif with complete material flux is an expected probe-positive null, not a discovery.
+- Sparse look-alike exchange is an expected unresolved alias null. A clean track or fresh-seed survivor is not enough to reject it.
 - Historical values are labeled precisely. Code/tests/artefacts at `9992e6c` were audited; the historical simulation was not independently rerun.
 - Mutation, neighbor-induced type transition, and particle recycling remain OFF.
 - Do not switch substrate before EXP02 and EXP03-A/B/C plus tracker/cadence/time controls meet the documented Particle Dynamics kill-switch.
@@ -59,6 +60,7 @@ It must record role, run ID, start/end time, starting/ending Git state, assigned
 - Run relevant tests after code changes.
 - Compare any physics/backend change to the scalar reference path at the frozen float64 criterion `abs(error) <= 1e-12 + 1e-10*abs(reference)`.
 - Run tracker/cadence sensitivity controls before interpreting rare candidates after tracker, detector, or cadence changes.
+- Persist all association edges and individual gate terms; do not treat many-to-many compatibility as resolved split/merge.
 - Preserve raw descriptor and lineage evidence needed to audit P/M.
 - Three seeds per law are screening, never a reliable probability estimate.
 
@@ -82,4 +84,3 @@ Do not invent a direction merely to keep the automation busy.
 10. push when authentication permits;
 11. release the active-run lock only after finish/checkpoint;
 12. leave one exact next authorized action.
-

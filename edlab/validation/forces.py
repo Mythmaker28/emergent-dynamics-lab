@@ -7,7 +7,12 @@ from dataclasses import dataclass
 import numpy as np
 
 from ..specs import LawSpec, WorldSpec
-from ..substrates.particle_dynamics.engine import forces_reference, forces_vectorized, initialize_world
+from ..substrates.particle_dynamics.engine import (
+    forces_reference,
+    forces_vectorized,
+    initialize_world,
+    step,
+)
 
 
 @dataclass(frozen=True)
@@ -15,6 +20,8 @@ class ForceValidationResult:
     fixtures: int
     max_absolute_error: float
     max_scaled_error: float
+    max_one_step_absolute_error: float
+    max_one_step_scaled_error: float
     absolute_tolerance: float
     relative_tolerance: float
     passed: bool
@@ -28,12 +35,15 @@ def validate_force_paths(
 ) -> ForceValidationResult:
     max_absolute_error = 0.0
     max_scaled_error = 0.0
+    max_one_step_absolute_error = 0.0
+    max_one_step_scaled_error = 0.0
     passed = True
     for fixture in range(fixtures):
         rng = np.random.default_rng(10_000 + fixture)
         n_types = 1 + fixture % 4
+        particle_counts = (2, 3, 8, 16, 32, 64)
         world = WorldSpec(
-            n_particles=2 + fixture % 15,
+            n_particles=particle_counts[fixture % len(particle_counts)],
             n_types=n_types,
             box_size=0.7 + 0.03 * (fixture % 7),
             initial_speed=0.03,
@@ -54,12 +64,36 @@ def validate_force_paths(
         max_absolute_error = max(max_absolute_error, float(absolute.max(initial=0.0)))
         max_scaled_error = max(max_scaled_error, float(scaled.max(initial=0.0)))
         passed = passed and bool(np.all(absolute <= tolerance))
+        reference_step = step(state, law, world, 0.01, backend="reference")
+        vectorized_step = step(state, law, world, 0.01, backend="vectorized")
+        reference_arrays = np.concatenate(
+            [reference_step.positions.ravel(), reference_step.velocities.ravel()]
+        )
+        vectorized_arrays = np.concatenate(
+            [vectorized_step.positions.ravel(), vectorized_step.velocities.ravel()]
+        )
+        step_absolute = np.abs(reference_arrays - vectorized_arrays)
+        step_tolerance = absolute_tolerance + relative_tolerance * np.abs(reference_arrays)
+        step_scaled = np.divide(
+            step_absolute,
+            step_tolerance,
+            out=np.zeros_like(step_absolute),
+            where=step_tolerance > 0,
+        )
+        max_one_step_absolute_error = max(
+            max_one_step_absolute_error, float(step_absolute.max(initial=0.0))
+        )
+        max_one_step_scaled_error = max(
+            max_one_step_scaled_error, float(step_scaled.max(initial=0.0))
+        )
+        passed = passed and bool(np.all(step_absolute <= step_tolerance))
     return ForceValidationResult(
         fixtures=fixtures,
         max_absolute_error=max_absolute_error,
         max_scaled_error=max_scaled_error,
+        max_one_step_absolute_error=max_one_step_absolute_error,
+        max_one_step_scaled_error=max_one_step_scaled_error,
         absolute_tolerance=absolute_tolerance,
         relative_tolerance=relative_tolerance,
         passed=passed,
     )
-

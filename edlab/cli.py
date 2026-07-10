@@ -12,6 +12,7 @@ from .experiments.baseline import BaselineConfig, run_baseline
 from .validation.forces import validate_force_paths
 from .validation.nulls import (
     id_permutation_null,
+    sparse_lookalike_alias_null,
     static_motif_material_flux_null,
     tracker_cadence_sensitivity_null,
 )
@@ -54,6 +55,7 @@ def main(argv: list[str] | None = None) -> int:
             asdict(id_permutation_null()),
             asdict(static_motif_material_flux_null()),
             asdict(tracker_cadence_sensitivity_null()),
+            asdict(sparse_lookalike_alias_null()),
         ]
     else:
         config = BaselineConfig(

@@ -50,6 +50,10 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - Acquired the active-run lock and executed `BASELINE-COREV0-20260710-001` from that exact SHA: 12 laws × 3 seeds × 600 steps, with observer cadences 10/30/60.
 - Audited all unchanged initial-probe rows against track length, split/merge/ambiguity history, and same-endpoint cross-cadence consistency.
 - Frozen the fresh-seed hold-out protocol before running it; selected laws 1, 3, 6, and 10 by the documented rule without changing P/M thresholds.
+- Stopped before hold-out when independent tracker and numerical audits returned `STOP/REPAIR` and `REQUEST CHANGES`.
+- Read both independent audit journals and preserved their disagreement with the original all-green baseline summary.
+- Repaired subnormal distance underflow, half-box domain ambiguity, non-finite specs, one-step backend validation, split/merge semantics, empty-snapshot timestamps, association-edge persistence, measurement interval flags, and tracker/detector sensitivity coverage.
+- Added the silent sparse look-alike exchange as an explicit live unresolved null; no hold-out survivor can be treated as individuality without direct trajectory/intervention evidence.
 
 ## FILES READ
 
@@ -91,6 +95,7 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - The current baseline produced 36,722 repeated measurement rows and 384 rows in the initial probe; descriptive `r(P,M)=0.733162`.
 - Of those, 115 rows lie on tracks with at least eight observations and no logged split/merge/ambiguity; 20 physical endpoint pairs are probe-positive at the same endpoints under at least two cadences.
 - Probe prevalence increases with sparser cadence, so candidate occupancy is not interpreted as a discovery.
+- Independent audits falsified the original claim that every technical gate was green; baseline 001 and hold-out 001 are now explicitly superseded for candidate interpretation.
 
 ## INFERRED
 
@@ -109,6 +114,7 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 
 - The first heartbeat creation call used an invalid destination and was rejected; retrying with the native thread destination succeeded.
 - The first automation-directory inspection reused PowerShell's read-only `$HOME` variable; a renamed local variable corrected the check.
+- The first baseline's candidate path was stopped rather than continued: its tracker could silently alias sparse look-alikes, and its numerical API had uncovered out-of-domain failures.
 
 ## DECISIONS MADE
 

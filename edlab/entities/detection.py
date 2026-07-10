@@ -61,6 +61,10 @@ def connected_components_periodic(
 ) -> list[tuple[int, ...]]:
     """Connected components in a periodic proximity graph."""
 
+    if connection_radius >= box_size / 2.0:
+        raise ValueError(
+            "connection_radius must be strictly below box_size/2 for unique minimum-image edges"
+        )
     n = positions.shape[0]
     union_find = _UnionFind(n)
     for left in range(n - 1):
@@ -112,4 +116,3 @@ def detect_entities(
             )
         )
     return observations
-

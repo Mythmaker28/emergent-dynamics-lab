@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
+import math
 from typing import Any
 
 import numpy as np
@@ -31,6 +32,14 @@ class LawSpec:
             raise ValueError("interaction must contain at least one type")
         if not np.isfinite(matrix).all():
             raise ValueError("interaction must contain finite values")
+        scalar_values = (
+            self.repulsion_strength,
+            self.short_range,
+            self.interaction_range,
+            self.damping,
+        )
+        if not all(math.isfinite(value) for value in scalar_values):
+            raise ValueError("LawSpec scalar values must be finite")
         if self.repulsion_strength <= 0:
             raise ValueError("repulsion_strength must be positive")
         if not 0 < self.short_range < self.interaction_range:
@@ -62,6 +71,8 @@ class WorldSpec:
     initial_speed: float = 0.04
 
     def __post_init__(self) -> None:
+        if not all(math.isfinite(value) for value in (self.box_size, self.initial_speed)):
+            raise ValueError("WorldSpec scalar values must be finite")
         if self.n_particles < 2:
             raise ValueError("n_particles must be at least two")
         if self.n_types < 1:
@@ -84,6 +95,8 @@ class RunSpec:
     backend: str = "vectorized"
 
     def __post_init__(self) -> None:
+        if not math.isfinite(self.dt):
+            raise ValueError("dt must be finite")
         if self.dt <= 0:
             raise ValueError("dt must be positive")
         if self.steps < 1:
@@ -109,6 +122,8 @@ class DetectionSpec:
     min_size: int = 4
 
     def __post_init__(self) -> None:
+        if not math.isfinite(self.connection_radius):
+            raise ValueError("connection_radius must be finite")
         if self.connection_radius <= 0:
             raise ValueError("connection_radius must be positive")
         if self.min_size < 2:
@@ -124,6 +139,8 @@ class PhenotypeSpec:
     speed_scale: float = 0.25
 
     def __post_init__(self) -> None:
+        if not all(math.isfinite(value) for value in (self.length_scale, self.speed_scale)):
+            raise ValueError("phenotype scales must be finite")
         if self.length_scale <= 0 or self.speed_scale <= 0:
             raise ValueError("phenotype scales must be positive")
 
@@ -137,6 +154,11 @@ class TrackerSpec:
     min_size_ratio: float = 0.25
 
     def __post_init__(self) -> None:
+        if not all(
+            math.isfinite(value)
+            for value in (self.max_centroid_distance, self.min_size_ratio)
+        ):
+            raise ValueError("tracker parameters must be finite")
         if self.max_centroid_distance <= 0:
             raise ValueError("max_centroid_distance must be positive")
         if not 0 <= self.min_size_ratio <= 1:

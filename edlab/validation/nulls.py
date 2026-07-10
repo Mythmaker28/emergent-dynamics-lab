@@ -150,30 +150,77 @@ def tracker_cadence_sensitivity_null() -> NullResult:
     for cadence in (10, 30, 60):
         selected_steps = [step for step in base_steps if step % cadence == 0]
         for distance_scale in (0.8, 1.0, 1.2):
-            tracker = LineageTracker(
-                TrackerSpec(
-                    max_centroid_distance=0.16 * distance_scale,
-                    min_size_ratio=0.25,
+            for size_ratio in (0.2, 0.25, 0.3):
+                tracker = LineageTracker(
+                    TrackerSpec(
+                        max_centroid_distance=0.16 * distance_scale,
+                        min_size_ratio=size_ratio,
+                    ),
+                    box_size=1.0,
+                )
+                tracked = []
+                for step in selected_steps:
+                    tracked.extend(
+                        tracker.update(
+                            [observation(step)],
+                            snapshot_step=step,
+                            time=step * 0.02,
+                        )
+                    )
+                track_ids = {item.track_id for item in tracked}
+                cell_passed = len(track_ids) == 1 and len(tracker.tracks) == 1
+                passed = passed and cell_passed
+                first = tracked[0].entity
+                last = tracked[-1].entity
+                p_value = phenotype_similarity(first.phenotype, last.phenotype)
+                m_value = material_retention(first.particle_ids, last.particle_ids)
+                endpoint_p = min(endpoint_p, p_value)
+                endpoint_m = max(endpoint_m, m_value)
+                cells[
+                    f"cadence={cadence},distance_scale={distance_scale},size_ratio={size_ratio}"
+                ] = {
+                    "passed": cell_passed,
+                    "tracks": len(track_ids),
+                    "endpoint_p": p_value,
+                    "endpoint_m": m_value,
+                }
+    detector_world = WorldSpec(n_particles=6, n_types=1, initial_speed=0.0)
+    detector_positions = np.array(
+        [
+            [0.47, 0.48],
+            [0.50, 0.48],
+            [0.53, 0.48],
+            [0.47, 0.52],
+            [0.50, 0.52],
+            [0.53, 0.52],
+        ]
+    )
+    detector_state = ParticleState(
+        detector_positions,
+        np.zeros_like(detector_positions),
+        np.zeros(6, dtype=int),
+        np.arange(6),
+    )
+    for radius_scale in (0.8, 1.0, 1.2):
+        for min_size in (3, 4, 5):
+            detected = detect_entities(
+                detector_state,
+                snapshot_step=0,
+                time=0.0,
+                world=detector_world,
+                detection=DetectionSpec(
+                    connection_radius=0.06 * radius_scale,
+                    min_size=min_size,
                 ),
-                box_size=1.0,
+                phenotype_spec=PhenotypeSpec(length_scale=0.06, speed_scale=0.25),
             )
-            tracked = []
-            for step in selected_steps:
-                tracked.extend(tracker.update([observation(step)]))
-            track_ids = {item.track_id for item in tracked}
-            cell_passed = len(track_ids) == 1 and len(tracker.tracks) == 1
+            cell_passed = len(detected) == 1 and len(detected[0].particle_ids) == 6
             passed = passed and cell_passed
-            first = tracked[0].entity
-            last = tracked[-1].entity
-            p_value = phenotype_similarity(first.phenotype, last.phenotype)
-            m_value = material_retention(first.particle_ids, last.particle_ids)
-            endpoint_p = min(endpoint_p, p_value)
-            endpoint_m = max(endpoint_m, m_value)
-            cells[f"cadence={cadence},distance_scale={distance_scale}"] = {
+            cells[
+                f"detector_radius_scale={radius_scale},detector_min_size={min_size}"
+            ] = {
                 "passed": cell_passed,
-                "tracks": len(track_ids),
-                "endpoint_p": p_value,
-                "endpoint_m": m_value,
+                "entities": len(detected),
             }
     return NullResult(
         name="TRACKER_CADENCE_SENSITIVITY",
@@ -181,4 +228,72 @@ def tracker_cadence_sensitivity_null() -> NullResult:
         phenotype_continuity=endpoint_p,
         material_retention=endpoint_m,
         detail=json.dumps(cells, sort_keys=True),
+    )
+
+
+def sparse_lookalike_alias_null() -> NullResult:
+    """Expose an observational alias that P/M and sparse occupancy tracking cannot resolve.
+
+    Two identical occupancies exchange complete material sets between snapshots.
+    Geometry/size association remains at each location, so the tracker produces
+    high-P/low-M continuity without a competing edge. Passing this null means
+    the limitation remains visible; it is never evidence for individuality.
+    """
+
+    phenotype = Phenotype(
+        ("fixture_geometry", "fixture_speed"),
+        np.array([0.4, 0.0]),
+        {"fixture_geometry": 0.4, "fixture_speed": 0.0},
+    )
+
+    def entity(local_index: int, step: int, x: float, ids: range) -> EntityObservation:
+        return EntityObservation(
+            local_index=local_index,
+            snapshot_step=step,
+            time=float(step),
+            particle_indices=tuple(range(6)),
+            particle_ids=frozenset(ids),
+            centroid=np.array([x, 0.5]),
+            phenotype=phenotype,
+        )
+
+    left_ids = range(0, 6)
+    right_ids = range(100, 106)
+    first = [entity(0, 0, 0.35, left_ids), entity(1, 0, 0.65, right_ids)]
+    second = [entity(0, 1, 0.35, right_ids), entity(1, 1, 0.65, left_ids)]
+    tracker = LineageTracker(
+        TrackerSpec(max_centroid_distance=0.12, min_size_ratio=0.5), box_size=1.0
+    )
+    first_tracked = tracker.update(first)
+    second_tracked = tracker.update(second)
+    p_values = [
+        phenotype_similarity(first[index].phenotype, second[index].phenotype)
+        for index in range(2)
+    ]
+    m_values = [
+        material_retention(first[index].particle_ids, second[index].particle_ids)
+        for index in range(2)
+    ]
+    same_location_tracks = all(
+        first_tracked[index].track_id == second_tracked[index].track_id
+        for index in range(2)
+    )
+    ambiguity_logged = any(
+        event.kind == "ambiguous_association" for event in tracker.events
+    )
+    passed = (
+        same_location_tracks
+        and all(value == 1.0 for value in p_values)
+        and all(value == 0.0 for value in m_values)
+        and not ambiguity_logged
+    )
+    return NullResult(
+        name="SPARSE_LOOKALIKE_ALIAS",
+        passed=passed,
+        phenotype_continuity=min(p_values),
+        material_retention=max(m_values),
+        detail=(
+            "expected unresolved observational alias: occupancy tracks persist with P=1/M=0 "
+            "and no competing spatial edge; hold-out cannot by itself reject this null"
+        ),
     )

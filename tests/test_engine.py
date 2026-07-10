@@ -1,4 +1,5 @@
 import numpy as np
+import pytest
 
 from edlab.specs import LawSpec, RunSpec, WorldSpec
 from edlab.state import ParticleState
@@ -16,6 +17,7 @@ def test_force_paths_agree_on_32_controlled_worlds() -> None:
     result = validate_force_paths(fixtures=32)
     assert result.passed
     assert result.max_scaled_error <= 1.0
+    assert result.max_one_step_scaled_error <= 1.0
 
 
 def test_asymmetric_matrix_direction_is_receiver_source_ordered() -> None:
@@ -78,6 +80,43 @@ def test_cutoff_zero_distance_and_empty_states_are_finite() -> None:
         np.testing.assert_allclose(backend(cutoff, law, 1.0), 0.0, atol=1e-15)
         assert np.isfinite(backend(coincident, law, 1.0)).all()
         assert backend(empty, law, 1.0).shape == (0, 2)
+
+
+def test_vectorized_distance_does_not_underflow_for_subnormal_separation() -> None:
+    law = LawSpec(np.ones((1, 1)))
+    state = ParticleState(
+        np.array([[0.0, 0.0], [1e-162, 0.0]]),
+        np.zeros((2, 2)),
+        np.zeros(2, dtype=int),
+        np.arange(2),
+    )
+    reference = forces_reference(state, law, 1.0)
+    vectorized = forces_vectorized(state, law, 1.0)
+    assert np.linalg.norm(reference) > 0
+    np.testing.assert_allclose(vectorized, reference, atol=1e-12, rtol=1e-10)
+
+
+def test_non_unique_half_box_interaction_domain_is_rejected() -> None:
+    state = ParticleState(
+        np.array([[0.0, 0.0], [0.5, 0.0]]),
+        np.zeros((2, 2)),
+        np.zeros(2, dtype=int),
+        np.arange(2),
+    )
+    law = LawSpec(np.ones((1, 1)), interaction_range=0.5)
+    for backend in (forces_reference, forces_vectorized):
+        with pytest.raises(ValueError, match="box_size/2"):
+            backend(state, law, 1.0)
+
+
+@pytest.mark.parametrize("value", [float("nan"), float("inf"), -float("inf")])
+def test_non_finite_spec_values_are_rejected(value: float) -> None:
+    with pytest.raises(ValueError, match="finite"):
+        LawSpec(np.ones((1, 1)), damping=value)
+    with pytest.raises(ValueError, match="finite"):
+        WorldSpec(n_particles=2, n_types=1, box_size=value)
+    with pytest.raises(ValueError, match="finite"):
+        RunSpec(seed=1, dt=value)
 
 
 def test_determinism_and_diagnostic_id_permutation() -> None:

@@ -13,6 +13,8 @@ The interaction matrix may be asymmetric, so momentum conservation is not assert
 
 `abs(F_vectorized-F_reference) <= 1e-12 + 1e-10*abs(F_reference)`.
 
+All interaction, detector, and tracker reaches must be strictly smaller than `box_size/2`; the antipodal minimum-image direction is not unique. Vector distances use scale-stable `hypot`. Validation covers per-state forces and one integrated step. Long trajectories from different backends are not expected to remain identical in a sensitive system; a run fixes and records one backend.
+
 ## Entity detector
 
 At each snapshot, connect particles whose minimum-image Euclidean distance is `<= connection_radius`. Entities are connected components with at least `min_size` particles. This choice can bridge structures through chains and is not a universal individuality definition.
@@ -45,6 +47,10 @@ Candidate edges require only:
 
 Greedy deterministic association maximizes `size_ratio*exp(-distance/max_distance)`. It does not read diagnostic IDs or final P. All feasible alternatives are retained through split, merge, and `ambiguous_association` events; selected edges log their physical score. Measurements adjacent to complex lineage events require explicit audit before interpretation.
 
+Every parent/child pair is persisted with centroid distance, size ratio, individual gate results, score, selection status, and classification. One-to-many and many-to-one events are called split/merge only when their candidate topology is unambiguous; many-to-many cases remain `ambiguous_association`. The track semantics are occupancy/organization continuity, not proved identity.
+
+Sparse look-alike exchange remains observationally non-identifiable from P/M and location alone. It is a mandatory live unresolved null. Every initial-probe row retains this alias risk until denser trajectory audit or intervention rejects it.
+
 ## Controls
 
 Required live controls are:
@@ -56,4 +62,3 @@ Required live controls are:
 5. orthogonal material-only and phenotype-only fixtures.
 
 Every kill-switch gate must be green before EXP02 interpretation.
-

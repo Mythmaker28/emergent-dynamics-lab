@@ -14,7 +14,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## VALIDATED COMPONENTS
 
-- Local implementation: 20 tests passed before the first repository commit.
+- Repaired local implementation: 28 tests pass after independent numerical/tracker audit findings.
 - Deterministic engine and multi-step diagnostic-ID permutation fixture.
 - Scalar and independent vectorized force paths on 32 controlled worlds.
 - Periodic detector, ID/order/translation-invariant phenotype fixtures.
@@ -22,17 +22,17 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 - Separate P and M plus orthogonal construct fixtures.
 - ID-permutation and static-material-flux nulls.
 - Conservative scheduled-run lock semantics.
-- Current independent baseline: every first kill-switch gate green.
+- Baseline 001's original all-green claim is superseded by independent audits; repaired gates await baseline 002.
 
-Independent post-implementation numerical and tracker audits are active and not yet integrated.
+Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STOP-REPAIR`; their findings are implemented locally and await exact-SHA re-audit.
 
 ## ACTIVE EXPERIMENT
 
-`HOLDOUT-COREV0-20260710-001` — protocol frozen before fresh-seed execution; laws `{1,3,6,10}`, seeds `{404,505,606,707,808}`.
+`PIPELINE-REPAIR-20260710-001` — code repaired; next is commit, independent re-audit, then `BASELINE-COREV0-20260710-002`.
 
 ## LAST COMPLETED EXPERIMENT
 
-`BASELINE-COREV0-20260710-001` from commit `5fa941bf7c0b757f5535965fad62c190a94fefa6`: 12 laws × 3 seeds, 36 runs, 600 steps, cadences 10/30/60.
+`BASELINE-COREV0-20260710-001` from commit `5fa941bf7c0b757f5535965fad62c190a94fefa6`: completed but superseded for candidate interpretation after independent audits. `HOLDOUT-COREV0-20260710-001` was never run.
 
 ## OBSERVED
 
@@ -44,6 +44,9 @@ Independent post-implementation numerical and tracker audits are active and not 
 - Current independent baseline: 36 runs, 36,722 repeated measurement rows, descriptive Pearson `r(P,M)=0.733162`, P range `0.287298–0.999985`, M range `0–1`.
 - The unchanged initial probe contains 384 rows. Candidate audit finds 115 rows on clean tracks with at least eight observations and 20 physical endpoint pairs probe-positive under at least two cadences.
 - The frozen cross-cadence/multi-seed rule selects laws `{1,3,6,10}` for fresh-seed hold-out.
+- Independent numerical audit: nominal force agreement passed 10,000 fixtures, but the old vector norm failed at `r≈1e-158`; half-box reach and non-finite specs were unconstrained.
+- Independent tracker audit: direct P/M/ID separation passed, but sparse look-alike alias, false split/merge semantics, incomplete edge logs, and stale death timestamps failed the stronger lineage/audit gate.
+- Repaired code now uses `hypot`, finite/domain guards, one-step validation, full association-edge records, correct current timestamps, measurement interval flags, expanded tracker/detector sensitivity, and an explicit sparse-alias null.
 
 ## INFERRED
 
@@ -68,7 +71,7 @@ Independent post-implementation numerical and tracker audits are active and not 
 
 ## NEXT ACTION
 
-Commit/push the baseline and frozen hold-out protocol, reproduce the candidate audit from its committed code, then execute the 20 fresh-seed hold-out runs without changing thresholds or tracker settings.
+Commit/push the repaired pipeline with both audit journals, obtain bounded independent re-audits of the exact SHA, then execute a new baseline ID. Do not run the superseded hold-out.
 
 ## DO NOT RESURRECT
 

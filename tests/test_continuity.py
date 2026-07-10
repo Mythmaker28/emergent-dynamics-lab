@@ -7,6 +7,7 @@ from edlab.specs import DetectionSpec, PhenotypeSpec, WorldSpec
 from edlab.state import ParticleState
 from edlab.validation.nulls import (
     static_motif_material_flux_null,
+    sparse_lookalike_alias_null,
     tracker_cadence_sensitivity_null,
 )
 
@@ -61,3 +62,11 @@ def test_tracker_cadence_sensitivity_null_survives_predeclared_grid() -> None:
     assert result.passed
     assert result.phenotype_continuity == 1.0
     assert result.material_retention == 0.0
+
+
+def test_sparse_lookalike_alias_remains_explicit_unresolved_null() -> None:
+    result = sparse_lookalike_alias_null()
+    assert result.passed
+    assert result.phenotype_continuity == 1.0
+    assert result.material_retention == 0.0
+    assert "unresolved" in result.detail

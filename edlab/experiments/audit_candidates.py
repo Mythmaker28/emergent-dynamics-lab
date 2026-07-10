@@ -79,6 +79,7 @@ def audit_initial_probe(result_dir: Path) -> dict[str, Any]:
                 "track_ever_complex": bool(complex_events),
                 "complex_event_in_interval": bool(interval_events),
                 "interval_complex_kinds": ";".join(sorted(set(interval_events))),
+                "unresolved_sparse_alias_risk": True,
             }
         )
         probe_rows.append(enriched)
@@ -147,6 +148,7 @@ def audit_initial_probe(result_dir: Path) -> dict[str, Any]:
         "definition": "P > 0.8 and M < 0.5; unchanged initial exploratory probe",
         "total_measurement_rows": len(measurements),
         "probe_rows": len(probe_rows),
+        "probe_rows_with_unresolved_sparse_alias_risk": len(probe_rows),
         "probe_unique_tracks": len(probe_tracks),
         "interval_clean_probe_rows": len(interval_clean),
         "track_clean_probe_rows": len(track_clean),
@@ -247,6 +249,7 @@ def audit_initial_probe(result_dir: Path) -> dict[str, Any]:
                 "measurements.csv",
                 "lineage_events.csv",
                 "entity_observations.csv",
+                "association_edges.csv",
             )
         },
         "outputs": {

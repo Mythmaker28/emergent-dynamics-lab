@@ -34,6 +34,7 @@ def test_tiny_baseline_writes_reproducible_artifacts(tmp_path: Path) -> None:
         "laws.json",
         "measurements.csv",
         "lineage_events.csv",
+        "association_edges.csv",
         "entity_observations.csv",
         "summary.json",
         "summary.md",
