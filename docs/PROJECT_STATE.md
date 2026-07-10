@@ -96,6 +96,14 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 Begin EXP03-A: CORE V0 + density preference only (mutation/type-transition/recycling OFF). Reuse the frozen observers, nulls, tracker audits, and P/M separation; no composite score; no post-hoc threshold change. Design and preregister the EXP03-A protocol and screening before any run, then screen and, if a predefined signal appears, apply the same fresh-seed hold-out and alias-intervention discipline used for CORE V0.
 
+## MODEL-LOCK HOLD (2026-07-10)
+
+EXP03-A is authorized but **not yet started**. Run `RUN-20260710-1847-EXP03A-MODELCHECK` verified the durable
+state (EXP02 COMPLETE; ALIAS-INTERVENTION CASE A; D-017 present; laws {0,52} closed) and then STOPPED without
+implementing EXP03-A because the session `<env>` reported the active model as `claude-opus-4-8`, which violates
+the required Fable 5 model lock. Per the user protocol, no EXP03-A design/mechanism/screening was performed under
+Opus 4.8. EXP03-A must be built in a genuine Fable 5 session. No science changed; nothing reopened.
+
 ## DO NOT RESURRECT
 
 - Historical Hopfield/CA claims or legacy memory scores.
