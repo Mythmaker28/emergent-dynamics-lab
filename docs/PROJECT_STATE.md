@@ -14,7 +14,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## VALIDATED COMPONENTS
 
-- Repaired local implementation: 28 tests pass after independent numerical/tracker audit findings.
+- Repaired local implementation: 29 tests pass after independent numerical/tracker audit findings.
 - Deterministic engine and multi-step diagnostic-ID permutation fixture.
 - Scalar and independent vectorized force paths on 32 controlled worlds.
 - Periodic detector, ID/order/translation-invariant phenotype fixtures.
@@ -46,7 +46,9 @@ Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STO
 - The frozen cross-cadence/multi-seed rule selects laws `{1,3,6,10}` for fresh-seed hold-out.
 - Independent numerical audit: nominal force agreement passed 10,000 fixtures, but the old vector norm failed at `r≈1e-158`; half-box reach and non-finite specs were unconstrained.
 - Independent tracker audit: direct P/M/ID separation passed, but sparse look-alike alias, false split/merge semantics, incomplete edge logs, and stale death timestamps failed the stronger lineage/audit gate.
-- Repaired code now uses `hypot`, finite/domain guards, one-step validation, full association-edge records, correct current timestamps, measurement interval flags, expanded tracker/detector sensitivity, and an explicit sparse-alias null.
+- First re-audit found one residual subnormal ordering error in the scalar force path; the reference now normalizes direction before multiplying magnitude, with a smallest-positive-subnormal regression test.
+- Local post-fix validation: 1,024 force/one-step fixtures pass exactly and all 167 radii from `1e-158` through the minimum positive subnormal pass with zero path disagreement. Independent final numerical re-audit is still required.
+- Repaired code uses `hypot`, finite/domain guards, force/one-step validation, full association-edge records, correct current timestamps, measurement interval flags, expanded tracker/detector sensitivity, and an explicit sparse-alias null.
 
 ## INFERRED
 

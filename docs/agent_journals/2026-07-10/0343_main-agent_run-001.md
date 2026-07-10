@@ -54,6 +54,8 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - Read both independent audit journals and preserved their disagreement with the original all-green baseline summary.
 - Repaired subnormal distance underflow, half-box domain ambiguity, non-finite specs, one-step backend validation, split/merge semantics, empty-snapshot timestamps, association-edge persistence, measurement interval flags, and tracker/detector sensitivity coverage.
 - Added the silent sparse look-alike exchange as an explicit live unresolved null; no hold-out survivor can be treated as individuality without direct trajectory/intervention evidence.
+- Exact-SHA re-audit `NUM2` confirmed all repairs except an extreme subnormal order-of-operations residual; fixed `magnitude*dx/distance` to `magnitude*(dx/distance)` and added the minimum positive float64 regression.
+- Local post-fix verification: 29 tests pass; 1,024 force/one-step fixtures pass; 167 radii from `1e-158` to the smallest positive subnormal show zero reference/vectorized disagreement.
 
 ## FILES READ
 
@@ -79,6 +81,8 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - `.\.venv\Scripts\python.exe -m edlab.cli nulls` — all three required nulls passed.
 - `.\.venv\Scripts\python.exe -m edlab.cli baseline --output results\BASELINE-COREV0-20260710-001 --experiment-id BASELINE-COREV0-20260710-001 --laws 12 --seeds 101 202 303 --particles 64 --steps 600 --cadences 10 30 60`
 - `.\.venv\Scripts\python.exe -m edlab.experiments.audit_candidates results\BASELINE-COREV0-20260710-001`
+- `.\.venv\Scripts\python.exe -c "from edlab.validation.forces import validate_force_paths; print(validate_force_paths(fixtures=1024))"` — passed with zero path error after the final subnormal fix.
+- Full 167-radius subnormal sweep from `1e-158` to `5e-324` — zero failures and zero path disagreement after the final fix.
 
 ## OBSERVED
 

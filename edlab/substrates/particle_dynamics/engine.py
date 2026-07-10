@@ -77,8 +77,10 @@ def forces_reference(state: ParticleState, law: LawSpec, box_size: float) -> np.
                 )
                 envelope = 1.0 - abs(2.0 * phase - 1.0)
                 magnitude = law.interaction[state.types[i], state.types[j]] * envelope
-            forces[i, 0] += magnitude * dx / distance
-            forces[i, 1] += magnitude * dy / distance
+            # Normalize before applying magnitude. Multiplying a subnormal
+            # displacement first can quantize/underflow before division.
+            forces[i, 0] += magnitude * (dx / distance)
+            forces[i, 1] += magnitude * (dy / distance)
     return forces
 
 

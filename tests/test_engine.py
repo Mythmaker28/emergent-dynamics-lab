@@ -96,6 +96,21 @@ def test_vectorized_distance_does_not_underflow_for_subnormal_separation() -> No
     np.testing.assert_allclose(vectorized, reference, atol=1e-12, rtol=1e-10)
 
 
+def test_force_paths_agree_at_smallest_positive_subnormal() -> None:
+    law = LawSpec(np.ones((1, 1)))
+    separation = np.nextafter(0.0, 1.0)
+    state = ParticleState(
+        np.array([[0.0, 0.0], [separation, 0.0]]),
+        np.zeros((2, 2)),
+        np.zeros(2, dtype=int),
+        np.arange(2),
+    )
+    reference = forces_reference(state, law, 1.0)
+    vectorized = forces_vectorized(state, law, 1.0)
+    np.testing.assert_array_equal(vectorized, reference)
+    np.testing.assert_allclose(np.abs(reference[:, 0]), law.repulsion_strength)
+
+
 def test_non_unique_half_box_interaction_domain_is_rejected() -> None:
     state = ParticleState(
         np.array([[0.0, 0.0], [0.5, 0.0]]),
