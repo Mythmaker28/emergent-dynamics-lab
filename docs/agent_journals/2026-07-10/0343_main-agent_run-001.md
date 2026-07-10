@@ -56,6 +56,10 @@ Take operational responsibility for the Emergent Dynamics Lab project: merge the
 - Added the silent sparse look-alike exchange as an explicit live unresolved null; no hold-out survivor can be treated as individuality without direct trajectory/intervention evidence.
 - Exact-SHA re-audit `NUM2` confirmed all repairs except an extreme subnormal order-of-operations residual; fixed `magnitude*dx/distance` to `magnitude*(dx/distance)` and added the minimum positive float64 regression.
 - Local post-fix verification: 29 tests pass; 1,024 force/one-step fixtures pass; 167 radii from `1e-158` to the smallest positive subnormal show zero reference/vectorized disagreement.
+- Independent `NUM3` re-audit of `eebd7fa` returned exact PASS on the same 29 tests, 1,024 fixtures, all 167 subnormal radii, half-box rejection, and non-finite validation.
+- Executed repaired `BASELINE-COREV0-20260710-002` from exact audited SHA `eebd7fa`: 36 runs and full association-edge artefacts.
+- Re-audited the initial probe: 384 raw rows, 230 without logged complex events inside the interval, and 384 explicitly unresolved sparse-alias risks.
+- Froze `HOLDOUT-COREV0-20260710-002` as a recurrence-only diagnostic, not scientific promotion.
 
 ## FILES READ
 

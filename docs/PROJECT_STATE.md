@@ -28,11 +28,11 @@ Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STO
 
 ## ACTIVE EXPERIMENT
 
-`PIPELINE-REPAIR-20260710-001` — code repaired; next is commit, independent re-audit, then `BASELINE-COREV0-20260710-002`.
+`HOLDOUT-COREV0-20260710-002` — diagnostic protocol frozen; next execute 20 fresh-seed runs without code/threshold changes.
 
 ## LAST COMPLETED EXPERIMENT
 
-`BASELINE-COREV0-20260710-001` from commit `5fa941bf7c0b757f5535965fad62c190a94fefa6`: completed but superseded for candidate interpretation after independent audits. `HOLDOUT-COREV0-20260710-001` was never run.
+`BASELINE-COREV0-20260710-002` from exact audited commit `eebd7fa8292aa3bc089f0c2a991e451888f7ebe3`: 36 runs completed with repaired audit artefacts. Baseline/hold-out 001 remain superseded historical records.
 
 ## OBSERVED
 
@@ -49,6 +49,8 @@ Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STO
 - First re-audit found one residual subnormal ordering error in the scalar force path; the reference now normalizes direction before multiplying magnitude, with a smallest-positive-subnormal regression test.
 - Local post-fix validation: 1,024 force/one-step fixtures pass exactly and all 167 radii from `1e-158` through the minimum positive subnormal pass with zero path disagreement. Independent final numerical re-audit is still required.
 - Repaired code uses `hypot`, finite/domain guards, force/one-step validation, full association-edge records, correct current timestamps, measurement interval flags, expanded tracker/detector sensitivity, and an explicit sparse-alias null.
+- Final independent numerical re-audit `NUM3`: PASS exact; 29 tests, 1,024 fixtures, and 167 subnormal radii all pass.
+- Repaired baseline 002 preserves 36,722 measurements, descriptive `r(P,M)=0.733162`, and 384 raw probe rows; 230 rows lack logged ambiguity/split/merge inside their interval, but all 384 retain unresolved alias risk.
 
 ## INFERRED
 
@@ -73,7 +75,7 @@ Independent numerical and tracker audits completed with `REQUEST CHANGES` / `STO
 
 ## NEXT ACTION
 
-Commit/push the repaired pipeline with both audit journals, obtain bounded independent re-audits of the exact SHA, then execute a new baseline ID. Do not run the superseded hold-out.
+Commit/push baseline 002, its candidate audit, the final numerical re-audit journal, and the frozen diagnostic hold-out 002 protocol. Then execute the 20 fresh-seed diagnostic runs.
 
 ## DO NOT RESURRECT
 

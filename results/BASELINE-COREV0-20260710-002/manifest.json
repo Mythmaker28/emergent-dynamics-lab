@@ -1,0 +1,98 @@
+{
+  "backend": "vectorized validated against scalar reference",
+  "code_version": "0.1.0",
+  "config": {
+    "detection_radius": 0.11,
+    "dt": 0.02,
+    "experiment_kind": "baseline",
+    "lag_indices": [
+      1,
+      3,
+      6
+    ],
+    "law_indices": null,
+    "min_entity_size": 4,
+    "n_laws": 12,
+    "n_particles": 64,
+    "n_types": 3,
+    "seeds": [
+      101,
+      202,
+      303
+    ],
+    "snapshot_cadences": [
+      10,
+      30,
+      60
+    ],
+    "steps": 600,
+    "tracker_distance": 0.16,
+    "tracker_min_size_ratio": 0.25
+  },
+  "core_mechanism_version": "CORE_V0",
+  "dependencies": {
+    "matplotlib": "3.11.0",
+    "numpy": "2.5.1",
+    "python": "3.12.10"
+  },
+  "detection_spec": {
+    "connection_radius": 0.11,
+    "min_size": 4
+  },
+  "experiment_id": "BASELINE-COREV0-20260710-002",
+  "git_commit": "eebd7fa8292aa3bc089f0c2a991e451888f7ebe3",
+  "law_specs_path": "laws.json",
+  "output_paths": [
+    "association_edges.csv",
+    "entity_observations.csv",
+    "laws.json",
+    "lineage_events.csv",
+    "measurements.csv",
+    "p_m_audit.png",
+    "summary.json",
+    "summary.md"
+  ],
+  "output_sha256": {
+    "association_edges.csv": "8efd1227971a060887f36385a9ccafa156f85bd0728b41785b46dfadc0f441f8",
+    "entity_observations.csv": "6dfcf9bf8286dd72b665816b0aaff59b43237903cc1c0a485f405fe002d205d4",
+    "laws.json": "7330794fbee7dd9b5e2c7b51b1f414762c759abb256783a11056b915068a1003",
+    "lineage_events.csv": "fd6c590942760b9c57a9824972f24ad61d42f18b89858287124fabe9f31682e8",
+    "measurements.csv": "7ffc93a7d68b49a081cc29fa5f610f42b99a0c334ca56be821853dfce92270b6",
+    "p_m_audit.png": "454d32062441fb81481f798557863c5d2014de7681627d70a82afe45debf71cf",
+    "summary.json": "aa74381e35d6f0bd0f6ccc6c802aae13087e95404f2dfdaf6190b1d8d269cb8f",
+    "summary.md": "98c4dd634fb000532fc93e718bd17dd46275c51297fd15eb965ce5a7792200c7"
+  },
+  "phenotype_spec": {
+    "length_scale": 0.11,
+    "speed_scale": 0.25
+  },
+  "run_spec_template": {
+    "backend": "vectorized",
+    "dt": 0.02,
+    "simulated_time": 12.0,
+    "steps": 600
+  },
+  "sampling": {
+    "method": "Halton low-discrepancy sequence",
+    "probability_estimate": false,
+    "screening_only": true,
+    "skip": 32
+  },
+  "seeds": [
+    101,
+    202,
+    303
+  ],
+  "substrate": "particle_dynamics",
+  "timestamp_utc": "2026-07-10T02:31:45.261711+00:00",
+  "tracker_spec": {
+    "max_centroid_distance": 0.16,
+    "min_size_ratio": 0.25
+  },
+  "world_spec": {
+    "box_size": 1.0,
+    "initial_speed": 0.04,
+    "n_particles": 64,
+    "n_types": 3
+  }
+}
