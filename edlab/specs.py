@@ -200,3 +200,32 @@ class DensityPreferenceSpec:
 
     def as_dict(self) -> dict[str, Any]:
         return asdict(self)
+
+
+@dataclass(frozen=True)
+class OrbitalSpec:
+    """Isolated EXP03-B mechanism: a transverse (tangential) pair force perpendicular to the connecting line.
+
+    For a pair within ``orbital_range`` the force on the receiver is along ``rot90(unit(pos_j - pos_i))`` with a
+    triangular envelope peaking at mid-range, scaled by ``orbital_strength`` (signed = chirality). The pair force
+    is equal-and-opposite (linear momentum conserved) but exerts a torque about the pair midpoint, injecting
+    circulation that a purely radial (central) interaction cannot produce. ``orbital_strength = 0`` is the NEUTRAL
+    LIMIT and reduces exactly to CORE V0.
+    """
+
+    orbital_strength: float = 0.0
+    orbital_range: float = 0.18
+
+    def __post_init__(self) -> None:
+        for value in (self.orbital_strength, self.orbital_range):
+            if not math.isfinite(value):
+                raise ValueError("OrbitalSpec values must be finite")
+        if self.orbital_range <= 0:
+            raise ValueError("orbital_range must be positive")
+
+    @property
+    def is_neutral(self) -> bool:
+        return self.orbital_strength == 0.0
+
+    def as_dict(self) -> dict[str, Any]:
+        return asdict(self)
