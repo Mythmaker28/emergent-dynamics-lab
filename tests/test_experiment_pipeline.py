@@ -9,6 +9,7 @@ import pytest
 
 from edlab.experiments import streaming as streaming_module
 from edlab.experiments.analyze_streaming import (
+    _candidate_direct_diagnostic,
     analyze_streaming_screen,
     qualify_run_candidate_rows,
 )
@@ -476,6 +477,61 @@ def test_candidate_gate_cleans_each_cadence_before_endpoint_join() -> None:
     assert all(row["unresolved_sparse_alias_risk"] for row in accepted_rows)
 
 
+def test_candidate_direct_diagnostic_recomputes_pm_and_periodic_motion() -> None:
+    candidate = {
+        "law_index": 5,
+        "seed": 2001,
+        "snapshot_cadence": 10,
+        "track_id": 1,
+        "start_step": 0,
+        "end_step": 20,
+        "phenotype_continuity": 1.0,
+        "material_retention": 1.0 / 3.0,
+    }
+    observations = [
+        {
+            "snapshot_cadence": "10",
+            "track_id": "1",
+            "step": str(step),
+            "centroid_json": json.dumps(centroid),
+            "particle_ids_json": json.dumps(ids),
+            "phenotype_vector_json": json.dumps([0.2, 0.4]),
+        }
+        for step, centroid, ids in (
+            (0, [0.95, 0.05], [1, 2]),
+            (10, [0.99, 0.05], [1, 2]),
+            (20, [0.02, 0.05], [2, 3]),
+        )
+    ]
+    edges = [
+        {
+            "snapshot_cadence": "10",
+            "parent_track_id": "1",
+            "snapshot_step": str(step),
+            "selected": "True",
+            "distance_gate_passed": "True",
+            "size_gate_passed": "True",
+            "centroid_distance": str(distance),
+            "score": "0.9",
+            "classification": "unique_candidate",
+        }
+        for step, distance in ((10, 0.04), (20, 0.03))
+    ]
+    result = _candidate_direct_diagnostic(
+        candidate,
+        observations=observations,
+        association_edges=edges,
+        box_size=1.0,
+    )
+    assert math.isclose(result["centroid_path_length"], 0.07, abs_tol=1e-12)
+    assert math.isclose(result["centroid_net_displacement"], 0.07, abs_tol=1e-12)
+    assert result["material_retention_absolute_error"] == 0.0
+    assert result["phenotype_continuity_absolute_error"] == 0.0
+    assert result["selected_edge_transitions"] == 2
+    assert result["compatible_unselected_edges"] == 0
+    assert result["static_occupancy_or_lookalike_alias_rejected"] is False
+
+
 def test_chunk_aware_analysis_writes_auditable_outputs(tmp_path: Path) -> None:
     output = tmp_path / "analysis-fixture"
     screen_summary = run_streaming_screen(
@@ -515,6 +571,8 @@ def test_chunk_aware_analysis_writes_auditable_outputs(tmp_path: Path) -> None:
         "law_screening.csv",
         "lineage_summary.csv",
         "cross_cadence_candidate_rows.csv",
+        "eligible_candidate_direct_diagnostics.csv",
+        "eligible_candidate_direct_by_law.csv",
         "pareto_frontier.csv",
         "law_parameter_correlations.csv",
         "exp02_analysis_summary.json",

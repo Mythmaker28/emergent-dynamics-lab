@@ -170,6 +170,136 @@ def _law_features(law_spec: dict[str, Any]) -> dict[str, float]:
     }
 
 
+def _periodic_displacement(
+    start: np.ndarray, end: np.ndarray, box_size: float
+) -> np.ndarray:
+    return (end - start + 0.5 * box_size) % box_size - 0.5 * box_size
+
+
+def _candidate_direct_diagnostic(
+    candidate_row: dict[str, Any],
+    *,
+    observations: list[dict[str, str]],
+    association_edges: list[dict[str, str]],
+    box_size: float,
+) -> dict[str, Any]:
+    cadence = int(candidate_row["snapshot_cadence"])
+    track_id = int(candidate_row["track_id"])
+    start_step = int(candidate_row["start_step"])
+    end_step = int(candidate_row["end_step"])
+    track_observations = sorted(
+        (
+            row
+            for row in observations
+            if int(row["snapshot_cadence"]) == cadence
+            and int(row["track_id"]) == track_id
+            and start_step <= int(row["step"]) <= end_step
+        ),
+        key=lambda row: int(row["step"]),
+    )
+    if (
+        not track_observations
+        or int(track_observations[0]["step"]) != start_step
+        or int(track_observations[-1]["step"]) != end_step
+    ):
+        raise RuntimeError("candidate direct audit is missing endpoint observations")
+    centroids = [
+        np.asarray(json.loads(row["centroid_json"]), dtype=np.float64)
+        for row in track_observations
+    ]
+    step_distances = [
+        float(np.linalg.norm(_periodic_displacement(first, second, box_size)))
+        for first, second in zip(centroids, centroids[1:])
+    ]
+    net_displacement = float(
+        np.linalg.norm(_periodic_displacement(centroids[0], centroids[-1], box_size))
+    )
+    start_ids = set(json.loads(track_observations[0]["particle_ids_json"]))
+    end_ids = set(json.loads(track_observations[-1]["particle_ids_json"]))
+    union = start_ids | end_ids
+    recomputed_m = len(start_ids & end_ids) / len(union) if union else 1.0
+    start_vector = np.asarray(
+        json.loads(track_observations[0]["phenotype_vector_json"]), dtype=np.float64
+    )
+    end_vector = np.asarray(
+        json.loads(track_observations[-1]["phenotype_vector_json"]), dtype=np.float64
+    )
+    descriptor_rms = float(np.sqrt(np.mean(np.square(start_vector - end_vector))))
+    recomputed_p = float(math.exp(-descriptor_rms))
+
+    edge_groups: dict[int, list[dict[str, str]]] = defaultdict(list)
+    for edge in association_edges:
+        if (
+            int(edge["snapshot_cadence"]) == cadence
+            and int(edge["parent_track_id"]) == track_id
+            and start_step < int(edge["snapshot_step"]) <= end_step
+        ):
+            edge_groups[int(edge["snapshot_step"])].append(edge)
+    selected_distances: list[float] = []
+    score_margins: list[float] = []
+    compatible_alternatives = 0
+    selected_classifications: Counter[str] = Counter()
+    for edges in edge_groups.values():
+        selected = [edge for edge in edges if _as_bool(edge["selected"])]
+        if len(selected) != 1:
+            raise RuntimeError("candidate interval lacks one selected edge per transition")
+        chosen = selected[0]
+        selected_distances.append(float(chosen["centroid_distance"]))
+        selected_classifications[chosen["classification"]] += 1
+        alternatives = [
+            edge
+            for edge in edges
+            if not _as_bool(edge["selected"])
+            and _as_bool(edge["distance_gate_passed"])
+            and _as_bool(edge["size_gate_passed"])
+        ]
+        compatible_alternatives += len(alternatives)
+        if alternatives:
+            score_margins.append(
+                float(chosen["score"])
+                - max(float(edge["score"]) for edge in alternatives)
+            )
+    expected_transitions = max(0, len(track_observations) - 1)
+    if len(selected_distances) != expected_transitions:
+        raise RuntimeError("candidate association-edge interval is incomplete")
+    return {
+        **candidate_row,
+        "interval_observations": len(track_observations),
+        "centroid_path_length": float(sum(step_distances)),
+        "centroid_net_displacement": net_displacement,
+        "centroid_step_distance_mean": (
+            float(np.mean(step_distances)) if step_distances else 0.0
+        ),
+        "centroid_step_distance_max": max(step_distances, default=0.0),
+        "start_material_count": len(start_ids),
+        "end_material_count": len(end_ids),
+        "retained_material_count": len(start_ids & end_ids),
+        "lost_material_count": len(start_ids - end_ids),
+        "gained_material_count": len(end_ids - start_ids),
+        "recomputed_material_retention": recomputed_m,
+        "material_retention_absolute_error": abs(
+            recomputed_m - float(candidate_row["material_retention"])
+        ),
+        "descriptor_rms_change": descriptor_rms,
+        "recomputed_phenotype_continuity": recomputed_p,
+        "phenotype_continuity_absolute_error": abs(
+            recomputed_p - float(candidate_row["phenotype_continuity"])
+        ),
+        "selected_edge_transitions": len(selected_distances),
+        "selected_centroid_distance_mean": (
+            float(np.mean(selected_distances)) if selected_distances else None
+        ),
+        "selected_centroid_distance_max": max(selected_distances, default=None),
+        "compatible_unselected_edges": compatible_alternatives,
+        "selected_score_margin_min": min(score_margins, default=None),
+        "selected_classifications_json": json.dumps(
+            dict(sorted(selected_classifications.items())), sort_keys=True
+        ),
+        "static_occupancy_or_lookalike_alias_rejected": False,
+        "direct_audit_disposition": "OBSERVATIONAL_ALIAS_UNRESOLVED",
+    }
+
+
 def _atomic_save_figure(path: Path, figure: plt.Figure) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     descriptor, temp_name = tempfile.mkstemp(
@@ -330,6 +460,7 @@ def analyze_streaming_screen(
     interval_flag_clean_probe_rows = 0
     clean_long_probe_rows = 0
     cross_cadence_rows: list[dict[str, Any]] = []
+    direct_candidate_rows_all: list[dict[str, Any]] = []
     cross_endpoints: set[tuple[int, int, int, int]] = set()
     cross_endpoints_by_law_seed: Counter[tuple[int, int]] = Counter()
     candidate_seeds_by_law: dict[int, set[int]] = defaultdict(set)
@@ -358,8 +489,9 @@ def analyze_streaming_screen(
                 raise RuntimeError(f"analysis source verification failure: {path}")
             raw_totals[filename] += int(entry["row_counts"][filename])
 
+        observation_rows = list(_iter_csv(shard / "entity_observations.csv"))
         observation_stats: dict[tuple[int, int], list[int]] = {}
-        for row in _iter_csv(shard / "entity_observations.csv"):
+        for row in observation_rows:
             key = (int(row["snapshot_cadence"]), int(row["track_id"]))
             step = int(row["step"])
             stats = observation_stats.setdefault(key, [0, step, step])
@@ -401,6 +533,16 @@ def analyze_streaming_screen(
         )
         if qualified_endpoints:
             candidate_seeds_by_law[law_index].add(seed)
+            association_rows = list(_iter_csv(shard / "association_edges.csv"))
+            for candidate_row in qualified_rows:
+                direct_candidate_rows_all.append(
+                    _candidate_direct_diagnostic(
+                        candidate_row,
+                        observations=observation_rows,
+                        association_edges=association_rows,
+                        box_size=float(parent_manifest["world_spec"]["box_size"]),
+                    )
+                )
         for endpoint in qualified_endpoints:
             cross_endpoints.add(endpoint)
             cross_endpoints_by_law_seed[(law_index, seed)] += 1
@@ -562,11 +704,66 @@ def analyze_streaming_screen(
     eligible_laws = sorted(
         law for law, seeds in candidate_seeds_by_law.items() if len(seeds) >= 2
     )
+    eligible_law_set = set(eligible_laws)
+    direct_candidate_rows = [
+        row
+        for row in direct_candidate_rows_all
+        if int(row["law_index"]) in eligible_law_set
+    ]
+    if any(
+        float(row["material_retention_absolute_error"]) > 1e-12
+        or float(row["phenotype_continuity_absolute_error"]) > 1e-12
+        for row in direct_candidate_rows
+    ):
+        raise RuntimeError("candidate direct descriptor/material recomputation mismatch")
+    direct_by_law_rows: list[dict[str, Any]] = []
+    for law_index in eligible_laws:
+        rows = [
+            row for row in direct_candidate_rows if int(row["law_index"]) == law_index
+        ]
+        direct_by_law_rows.append(
+            {
+                "law_index": law_index,
+                "diagnostic_rows": len(rows),
+                "seeds_json": json.dumps(
+                    sorted({int(row["seed"]) for row in rows})
+                ),
+                "endpoints": len(
+                    {
+                        (
+                            int(row["seed"]),
+                            int(row["start_step"]),
+                            int(row["end_step"]),
+                        )
+                        for row in rows
+                    }
+                ),
+                "centroid_path_length_median": float(
+                    np.median([float(row["centroid_path_length"]) for row in rows])
+                ),
+                "centroid_net_displacement_median": float(
+                    np.median(
+                        [float(row["centroid_net_displacement"]) for row in rows]
+                    )
+                ),
+                "material_retention_median": float(
+                    np.median([float(row["material_retention"]) for row in rows])
+                ),
+                "phenotype_continuity_median": float(
+                    np.median([float(row["phenotype_continuity"]) for row in rows])
+                ),
+                "compatible_unselected_edges_total": sum(
+                    int(row["compatible_unselected_edges"]) for row in rows
+                ),
+                "static_alias_rejected": False,
+                "disposition": "FRESH_SEED_DIAGNOSTIC_ONLY_ALIAS_UNRESOLVED",
+            }
+        )
     cross_endpoint_rows: list[dict[str, Any]] = []
     for row in cross_cadence_rows:
         law_index = int(row["law_index"])
         row["eligible_seed_count_for_law"] = len(candidate_seeds_by_law[law_index])
-        row["eligible_law"] = law_index in eligible_laws
+        row["eligible_law"] = law_index in eligible_law_set
         cross_endpoint_rows.append(row)
 
     law_rows: list[dict[str, Any]] = []
@@ -713,6 +910,44 @@ def analyze_streaming_screen(
             "eligible_law_count": len(eligible_laws),
             "all_rows_retain_unresolved_sparse_alias_risk": True,
         },
+        "direct_candidate_diagnostics": {
+            "eligible_laws": eligible_laws,
+            "rows": len(direct_candidate_rows),
+            "endpoints": len(
+                {
+                    (
+                        int(row["law_index"]),
+                        int(row["seed"]),
+                        int(row["start_step"]),
+                        int(row["end_step"]),
+                    )
+                    for row in direct_candidate_rows
+                }
+            ),
+            "material_retention_recompute_max_absolute_error": max(
+                (
+                    float(row["material_retention_absolute_error"])
+                    for row in direct_candidate_rows
+                ),
+                default=0.0,
+            ),
+            "phenotype_continuity_recompute_max_absolute_error": max(
+                (
+                    float(row["phenotype_continuity_absolute_error"])
+                    for row in direct_candidate_rows
+                ),
+                default=0.0,
+            ),
+            "compatible_unselected_edges_total": sum(
+                int(row["compatible_unselected_edges"])
+                for row in direct_candidate_rows
+            ),
+            "static_occupancy_or_lookalike_alias_rejected_rows": sum(
+                bool(row["static_occupancy_or_lookalike_alias_rejected"])
+                for row in direct_candidate_rows
+            ),
+            "disposition": "FRESH_SEED_DIAGNOSTIC_ONLY_ALIAS_UNRESOLVED",
+        },
         "expected_screening_seeds": sorted(expected_seeds),
         "lineage_event_counts": dict(sorted(event_counts.items())),
         "lifecycle_accounting": {
@@ -777,6 +1012,14 @@ def analyze_streaming_screen(
     _atomic_write_csv(
         analysis_dir / "cross_cadence_candidate_rows.csv", cross_endpoint_rows
     )
+    _atomic_write_csv(
+        analysis_dir / "eligible_candidate_direct_diagnostics.csv",
+        direct_candidate_rows,
+    )
+    _atomic_write_csv(
+        analysis_dir / "eligible_candidate_direct_by_law.csv",
+        direct_by_law_rows,
+    )
     _atomic_write_csv(analysis_dir / "pareto_frontier.csv", pareto_rows)
     _atomic_write_csv(
         analysis_dir / "law_parameter_correlations.csv", correlation_rows
@@ -793,6 +1036,7 @@ def analyze_streaming_screen(
 - Initial-probe rows: {probe_rows}; clean-long rows: {clean_long_probe_rows}.
 - Frozen cross-cadence rule: {len(cross_endpoints)} endpoints in {len(cross_endpoints_by_law_seed)} law/seed pairs.
 - Laws qualifying in at least two of three screening seeds: `{eligible_laws}`.
+- Direct descriptor/material/centroid/association diagnostics cover {len(direct_candidate_rows)} cadence rows for those laws; P/M recomputation is exact and zero rows reject the static-occupancy/look-alike alias.
 - Parent float-tau fragmentation detected: {fragmented_parent_groups > 0} ({fragmented_parent_groups} logical groups affected); this analysis uses integer step deltas and preserves the parent artefact unchanged.
 - Horizon-censored tracks: {horizon_tracks}/{total_tracks}; simulations with a final entity: {simulations_with_final_entity}/{len(raw_index)}.
 - Row-weighted probe fraction: {probe_rows / len(p_values)}; equal-run mean: {float(np.mean(run_probe_fractions))}.
