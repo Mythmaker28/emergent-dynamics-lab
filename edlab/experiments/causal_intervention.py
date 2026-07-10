@@ -207,14 +207,14 @@ def apply_displacement(state: ParticleState, indices, delta, box: float) -> Part
 
 
 def largest_other_component(state, candidate_indices, cfg, world, det, phe):
-    """A size-comparable non-candidate connected component to serve as a displacement placebo target."""
+    """The largest non-candidate connected component (EntityObservation) — the displacement placebo target."""
     obsv = detect_entities(state, snapshot_step=0, time=0.0, world=world, detection=det, phenotype_spec=phe)
     cand = set(int(i) for i in candidate_indices)
     others = [o for o in obsv if not (set(int(i) for i in o.particle_indices) & cand)]
     if not others:
         return None
     others.sort(key=lambda o: (-len(o.particle_indices), o.local_index))
-    return tuple(int(i) for i in others[0].particle_indices)
+    return others[0]
 
 
 # --------------------------------------------------------------------------- branch readout
@@ -228,74 +228,84 @@ def _carrier(entities, C):
     return best
 
 
-def measure_branch(cfg, snapshots, C, phi_star, old_centroid, new_centroid, world, det, phe, t_star):
-    """Per-snapshot readouts following constituents (by diagnostic IDs) and sites. Returns rows + summary."""
+def measure_branch(cfg, snapshots, focus_ids, phi_star, origin_centroid, home_centroid,
+                   world, det, phe, t_star):
+    """Follow the branch's DISPLACED set (or the candidate, in-place, for control/sham) by diagnostic IDs.
+
+    origin_centroid = where the followed set started; home_centroid = where it is expected after the
+    branch operation (origin for control/sham; origin+delta for perturbed/placebo). Diagnostic IDs are used
+    ONLY to follow constituents for measurement; physics/detection/tracking remain geometry-only.
+    """
     rows = []
-    Cset = frozenset(int(i) for i in C)
-    old_c = np.asarray(old_centroid)
-    new_c = np.asarray(new_centroid)
+    F = frozenset(int(i) for i in focus_ids)
+    origin = np.asarray(origin_centroid)
+    home = np.asarray(home_centroid)
     for s in snapshots:
         if s.step == 0:
             continue  # relative step 0 == pre-intervention state
         ents = detect_entities(s.state, snapshot_step=s.step, time=s.time, world=world,
                                detection=det, phenotype_spec=phe)
         best_P = max((phenotype_similarity(phi_star, e.phenotype) for e in ents), default=0.0)
-        carrier = _carrier(ents, Cset)
+        carrier = _carrier(ents, F)
         if carrier is not None:
             carrier_P = phenotype_similarity(phi_star, carrier.phenotype)
-            carrier_M = material_retention(Cset, carrier.particle_ids)
+            carrier_M = material_retention(F, carrier.particle_ids)
             carrier_size = len(carrier.particle_indices)
-            carrier_dist_new = periodic_distance(carrier.centroid, new_c, world.box_size)
-            carrier_dist_old = periodic_distance(carrier.centroid, old_c, world.box_size)
+            carrier_dist_home = periodic_distance(carrier.centroid, home, world.box_size)
+            carrier_dist_origin = periodic_distance(carrier.centroid, origin, world.box_size)
         else:
             carrier_P = carrier_M = 0.0
             carrier_size = 0
-            carrier_dist_new = carrier_dist_old = float("nan")
-        # site entities: highest-P entity whose centroid is within site_radius of the site
+            carrier_dist_home = carrier_dist_origin = float("nan")
+
         def site_entity(site):
             near = [e for e in ents if periodic_distance(e.centroid, site, world.box_size) <= cfg.site_radius]
-            if not near:
-                return None
-            return max(near, key=lambda e: phenotype_similarity(phi_star, e.phenotype))
-        old_e = site_entity(old_c)
-        new_e = site_entity(new_c)
+            return max(near, key=lambda e: phenotype_similarity(phi_star, e.phenotype)) if near else None
+        origin_e = site_entity(origin)
         rows.append({
             "rel_step": s.step, "abs_step": t_star + s.step, "time": s.time,
             "best_P_anywhere": best_P,
             "carrier_P": carrier_P, "carrier_M": carrier_M, "carrier_size": carrier_size,
-            "carrier_dist_new": carrier_dist_new, "carrier_dist_old": carrier_dist_old,
-            "old_site_P": (phenotype_similarity(phi_star, old_e.phenotype) if old_e else 0.0),
-            "old_site_M_vs_C": (material_retention(Cset, old_e.particle_ids) if old_e else float("nan")),
-            "old_site_size": (len(old_e.particle_indices) if old_e else 0),
-            "new_site_P": (phenotype_similarity(phi_star, new_e.phenotype) if new_e else 0.0),
-            "new_site_M_vs_C": (material_retention(Cset, new_e.particle_ids) if new_e else float("nan")),
-            "new_site_size": (len(new_e.particle_indices) if new_e else 0),
+            "carrier_dist_home": carrier_dist_home, "carrier_dist_origin": carrier_dist_origin,
+            "origin_site_P": (phenotype_similarity(phi_star, origin_e.phenotype) if origin_e else 0.0),
+            "origin_site_M_vs_focus": (material_retention(F, origin_e.particle_ids) if origin_e else float("nan")),
+            "origin_site_size": (len(origin_e.particle_indices) if origin_e else 0),
         })
 
     P = cfg.persist_p
     ms = cfg.min_entity_size
-    def carrier_ok(r):
+    sr = cfg.site_radius
+    def ok(r):
         return r["carrier_size"] >= ms and r["carrier_P"] > P
-    consec = 0
+    def at_home(r):
+        d = r["carrier_dist_home"]
+        return d == d and d <= sr  # not-nan and within site radius
+    # longest consecutive run of organized-at-home (robust to the immediate post-displacement transient dip)
+    longest = cur = 0
     for r in rows:
-        if carrier_ok(r):
-            consec += 1
+        if ok(r) and at_home(r):
+            cur += 1; longest = max(longest, cur)
         else:
-            break
-    old_regen = [r for r in rows if r["old_site_P"] > P and (r["old_site_M_vs_C"] < cfg.material_low)]
-    carrier_at_new = [r for r in rows if carrier_ok(r) and r["carrier_dist_new"] <= cfg.site_radius]
+            cur = 0
+    n = len(rows)
+    late = rows[max(0, n - (n + 1) // 2):]  # last ~half of the window
+    late_home_frac = (sum(1 for r in late if ok(r) and at_home(r)) / len(late)) if late else 0.0
+    final_ok_home = bool(rows) and ok(rows[-1]) and at_home(rows[-1])
+    reestablished = bool(late_home_frac >= 0.5 and final_ok_home)
+    origin_regen = [r for r in rows if r["origin_site_P"] > P and (r["origin_site_M_vs_focus"] < cfg.material_low)]
     summary = {
-        "n_post_snapshots": len(rows),
+        "n_post_snapshots": n,
         "best_P_max": max((r["best_P_anywhere"] for r in rows), default=0.0),
         "best_P_final": rows[-1]["best_P_anywhere"] if rows else 0.0,
-        "carrier_persist_snapshots": sum(1 for r in rows if carrier_ok(r)),
-        "carrier_persist_consecutive": consec,
+        "carrier_organized_at_home_snapshots": sum(1 for r in rows if ok(r) and at_home(r)),
+        "carrier_longest_consec_at_home": longest,
+        "carrier_late_home_frac": late_home_frac,
+        "carrier_reestablished_at_home": reestablished,
         "carrier_P_final": rows[-1]["carrier_P"] if rows else 0.0,
         "carrier_M_final": rows[-1]["carrier_M"] if rows else 0.0,
-        "carrier_at_new_site_snapshots": len(carrier_at_new),
-        "old_site_regen_any": bool(old_regen),
-        "old_site_regen_first_rel_step": (old_regen[0]["rel_step"] if old_regen else None),
-        "old_site_regen_count": len(old_regen),
+        "origin_regen_any": bool(origin_regen),
+        "origin_regen_first_rel_step": (origin_regen[0]["rel_step"] if origin_regen else None),
+        "origin_regen_count": len(origin_regen),
     }
     return rows, summary
 
@@ -379,7 +389,9 @@ def run_causal_experiment(*, output_dir: Path, experiment_id: str, git_commit: s
             control_state = S.copy()
             sham_state = apply_displacement(S, enr.candidate_indices, (0.0, 0.0), box)
             perturbed_state = apply_displacement(S, enr.candidate_indices, config.delta, box)
-            placebo_idx = largest_other_component(S, enr.candidate_indices, config, world, det, phe)
+            placebo_obs = largest_other_component(S, enr.candidate_indices, config, world, det, phe)
+            placebo_idx = (tuple(int(i) for i in placebo_obs.particle_indices)
+                           if placebo_obs is not None else None)
             placebo_state = (apply_displacement(S, placebo_idx, config.delta, box)
                              if placebo_idx is not None else None)
 
@@ -398,15 +410,30 @@ def run_causal_experiment(*, output_dir: Path, experiment_id: str, git_commit: s
             if placebo_state is not None:
                 branches["PLACEBO"] = placebo_state
 
+            # per-branch focus = the DISPLACED set (candidate for control/sham/perturbed; C' for placebo),
+            # each measured against its OWN reference phenotype and its own origin/home site.
+            from ..entities.detection import periodic_centroid
+            focus = {
+                "CONTROL":   (enr.candidate_ids, phi_star, old_c, old_c),
+                "SHAM":      (enr.candidate_ids, phi_star, old_c, old_c),
+                "PERTURBED": (enr.candidate_ids, phi_star, old_c, new_c),
+            }
+            if placebo_obs is not None:
+                cprime = np.asarray(periodic_centroid(S.positions[np.asarray(placebo_idx)], box))
+                focus["PLACEBO"] = (tuple(sorted(int(i) for i in placebo_obs.particle_ids)),
+                                    placebo_obs.phenotype, cprime, (cprime + delta) % box)
+
             branch_summaries = {}
             for name, state0 in branches.items():
                 snaps = simulate(state0, law, world, run)
-                rows, summ = measure_branch(config, snaps, C, phi_star, old_c, new_c, world, det, phe,
-                                            t_star=enr.first_eligible_end)
+                f_ids, f_phi, f_origin, f_home = focus[name]
+                rows, summ = measure_branch(config, snaps, f_ids, f_phi, f_origin, f_home,
+                                            world, det, phe, t_star=enr.first_eligible_end)
                 flags = branch_lineage_flags(config, snaps, world, det, phe, old_c)
                 branch_summaries[name] = summ
                 brow = {**{k: base[k] for k in ("law_index", "seed", "first_eligible_end", "candidate_size")},
-                        "branch": name, "initial_centroid_displacement": (init_disp if name in ("PERTURBED", "PLACEBO") else 0.0),
+                        "branch": name,
+                        "initial_centroid_displacement": (init_disp if name in ("PERTURBED", "PLACEBO") else 0.0),
                         "sham_equals_control": sham_identity, "perturb_max_abs_move": moved,
                         "momentum_conserved": momentum_conserved, "types_conserved": types_conserved,
                         **summ,
@@ -417,28 +444,34 @@ def run_causal_experiment(*, output_dir: Path, experiment_id: str, git_commit: s
                 for r in rows:
                     traj_rows.append({"law_index": law_index, "seed": seed, "branch": name, **r})
 
-            # pre-declared per-seed alias classification (raw quantities also logged)
+            # comparative, robust classification (faithful to the frozen protocol decision rule)
             pert = branch_summaries["PERTURBED"]; ctrl = branch_summaries["CONTROL"]
             plac = branch_summaries.get("PLACEBO")
+            plac_frac = plac["carrier_late_home_frac"] if plac else 0.0
             non_informative = init_disp <= config.tracker_distance
-            catastrophic = pert["carrier_persist_snapshots"] == 0 and pert["best_P_max"] <= config.persist_p
-            occupancy = pert["old_site_regen_any"]
-            carrier_travels = (pert["carrier_at_new_site_snapshots"] > 0
-                               and pert["carrier_persist_consecutive"] >= 3
-                               and not pert["old_site_regen_any"])
-            exceeds_placebo = (plac is None) or (pert["carrier_persist_consecutive"]
-                                                 > plac["carrier_persist_consecutive"])
+            catastrophic = (pert["carrier_organized_at_home_snapshots"] == 0
+                            and pert["best_P_max"] <= config.persist_p)
+            occupancy = pert["origin_regen_any"]
+            # individuality signal: displaced candidate re-establishes organization at the NEW site,
+            # exceeds a displaced random clump by a pre-declared margin, and the old site does not regenerate.
+            margin = 0.25
+            individuality = bool(pert["carrier_reestablished_at_home"]
+                                 and (pert["carrier_late_home_frac"] - plac_frac) > margin
+                                 and not occupancy)
             base.update({
                 "init_centroid_displacement": init_disp, "sham_equals_control": sham_identity,
                 "perturb_max_abs_move": moved, "momentum_conserved": momentum_conserved,
                 "placebo_available": placebo_state is not None,
                 "class_non_informative": non_informative, "class_catastrophic": catastrophic,
-                "class_occupancy_alias": occupancy, "class_carrier_travels": carrier_travels,
-                "carrier_travels_exceeds_placebo": bool(carrier_travels and exceeds_placebo),
-                "pert_carrier_persist_consec": pert["carrier_persist_consecutive"],
-                "ctrl_carrier_persist_consec": ctrl["carrier_persist_consecutive"],
-                "pert_old_site_regen": pert["old_site_regen_any"],
-                "pert_best_P_max": pert["best_P_max"],
+                "class_occupancy_alias": occupancy, "class_individuality_signal": individuality,
+                "pert_reestablished": pert["carrier_reestablished_at_home"],
+                "plac_reestablished": (plac["carrier_reestablished_at_home"] if plac else None),
+                "pert_late_home_frac": pert["carrier_late_home_frac"],
+                "ctrl_late_home_frac": ctrl["carrier_late_home_frac"],
+                "plac_late_home_frac": plac_frac,
+                "pert_longest_consec_home": pert["carrier_longest_consec_at_home"],
+                "ctrl_longest_consec_home": ctrl["carrier_longest_consec_at_home"],
+                "pert_origin_regen": occupancy, "pert_best_P_max": pert["best_P_max"],
             })
             enroll_rows.append(base)
 
@@ -456,8 +489,8 @@ def run_causal_experiment(*, output_dir: Path, experiment_id: str, git_commit: s
                                if r["law_index"] == law_index and not r["enrolled"]],
             "n_enrolled": len(law_enr),
             "n_occupancy_alias": sum(1 for r in law_enr if r["class_occupancy_alias"]),
-            "n_carrier_travels": sum(1 for r in law_enr if r["class_carrier_travels"]),
-            "n_carrier_travels_exceeds_placebo": sum(1 for r in law_enr if r["carrier_travels_exceeds_placebo"]),
+            "n_individuality_signal": sum(1 for r in law_enr if r["class_individuality_signal"]),
+            "n_pert_reestablished": sum(1 for r in law_enr if r["pert_reestablished"]),
             "n_catastrophic": sum(1 for r in law_enr if r["class_catastrophic"]),
             "n_non_informative": sum(1 for r in law_enr if r["class_non_informative"]),
             "all_sham_equals_control": all(r["sham_equals_control"] for r in law_enr) if law_enr else None,

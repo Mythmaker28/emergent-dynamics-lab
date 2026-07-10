@@ -119,3 +119,27 @@
 **Reason:** The 45-run hold-out used unseen seeds and unchanged thresholds, observer settings, tracker logic, laws, and simulation horizon. Recurrence passed for two laws, but every qualifying row still carries the mandatory alias null. Freezing the survivor set now prevents post-hoc ranking by motion, probe abundance, or visual appeal.
 
 **Interpretation boundary:** `2/5` is a diagnostic recurrence gate, not a probability estimate. Laws 0 and 52 are not promoted scientific candidates by this decision. Any intervention implementation must preserve diagnostic-ID independence, keep P and M separate, and pass no-op/sham plus validated-reference controls before execution.
+
+## D-016 — Correct the ALIAS-INTERVENTION readout to follow the displaced set and use robust re-establishment
+
+**Date:** 2026-07-10 (RUN-20260710-1801-ALIASINT-FABLE5, Fable 5)
+
+**Decision:** Before committing any causal result, self-review found two readout bugs in the first harness
+implementation (both in derived measurement only; physics, enrollment, branches, and the frozen protocol design
+were unaffected): (a) the PLACEBO branch followed the candidate constituents `C`, but in the placebo branch `C`
+is not displaced (a matched non-candidate clump `C'` is), so placebo persistence wrongly measured the in-place
+candidate; (b) `carrier_persist_consecutive` counted from the first post snapshot and was reset to zero by the
+brief, expected post-displacement transient dip. Corrected: each branch follows the set it actually displaced
+(candidate for control/sham/perturbed; `C'` for placebo), measured against that set's own reference phenotype
+and its own origin/home site, with a robust late-window re-establishment metric. This makes the implementation
+faithful to the already-frozen protocol decision rule (baf1fca §8–9: "PERTURBED must exceed PLACEBO; old site
+does not regenerate"). Additionally, genuine "individuality under constituent turnover" is scored only when the
+displaced candidate re-establishes phenotype **while** its material retention is not ~1.0 (a rigid cohesive
+cluster translating with M→1.0 is trivial translation-covariance, not the target phenomenon).
+
+**Reason:** The uncorrected placebo comparison was meaningless and the consecutive metric was fragile; both were
+caught in self-review before any results were committed (no committed artefact is invalidated). The correction is
+more conservative and matches the frozen preregistration, in the spirit of D-010/D-013.
+
+**Falsification:** the corrected harness must still pass every validation gate (sham==control bit-for-bit,
+conservation, off-site displacement, IDs-not-in-physics, determinism, HOLDOUT04 reproduction): 46/46 tests pass.

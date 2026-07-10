@@ -146,3 +146,13 @@ World seeding `seed + 100000*law_index`. Observation horizon 360 post-interventi
 `python -m edlab.experiments.causal_intervention_cli --output results/ALIAS-INTERVENTION-COREV0-20260710-001
 --experiment-id ALIAS-INTERVENTION-COREV0-20260710-001` (thin CLI wrapping `run_causal_experiment` with the
 frozen `CausalConfig`). Validation gates (must pass before execution): `pytest tests/test_causal_intervention.py`.
+
+## 15. Readout correction (D-016, pre-results)
+
+The frozen decision rule (§8–9) is comparative: PERTURBED must exceed PLACEBO and the old site must not
+regenerate. The first harness implementation measured the placebo by following the candidate (not the displaced
+non-candidate clump) and used a transient-fragile consecutive metric. Corrected before any results commit
+(D-016): each branch follows the set it actually displaced, against that set's own phenotype and home site, with
+a robust late-window re-establishment metric; "individuality under turnover" additionally requires the displaced
+candidate to re-establish while NOT retaining ~all constituents (M→1.0 rigid-cluster translation is trivial
+translation-covariance, excluded). Design, enrollment, perturbation, branches, and thresholds are unchanged.
