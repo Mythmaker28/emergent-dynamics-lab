@@ -1,5 +1,7 @@
 import json
 import math
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -135,6 +137,14 @@ def test_streaming_rejects_plan_drift_and_corrupt_shards(tmp_path: Path) -> None
             config=config,
             reservoir_size=8,
         )
+    with pytest.raises(RuntimeError, match="different experiment plan"):
+        run_streaming_screen(
+            output_dir=output,
+            experiment_id="TEST-INTEGRITY",
+            git_commit="fixture-sha",
+            config=config,
+            reservoir_size=9,
+        )
 
     measurement_path = (
         output / "raw" / "runs" / "law-0000_seed-7" / "measurements.csv"
@@ -148,3 +158,259 @@ def test_streaming_rejects_plan_drift_and_corrupt_shards(tmp_path: Path) -> None
             config=config,
             reservoir_size=8,
         )
+
+
+def test_streaming_final_manifest_is_last_and_crash_resume_is_idempotent(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    output = tmp_path / "stream"
+    config = BaselineConfig(
+        n_laws=1,
+        seeds=(7,),
+        n_particles=64,
+        n_types=2,
+        steps=60,
+        snapshot_cadences=(10, 30),
+        lag_indices=(1,),
+    )
+
+    def injected_finalizer_crash(*_args: object, **_kwargs: object) -> None:
+        raise RuntimeError("INJECTED_FINALIZER_CRASH")
+
+    with monkeypatch.context() as patcher:
+        patcher.setattr(
+            streaming_module, "_atomic_plot_sample", injected_finalizer_crash
+        )
+        with pytest.raises(RuntimeError, match="INJECTED_FINALIZER_CRASH"):
+            run_streaming_screen(
+                output_dir=output,
+                experiment_id="TEST-CRASH-RESUME",
+                git_commit="fixture-sha",
+                config=config,
+                reservoir_size=8,
+            )
+
+    shard = output / "raw" / "runs" / "law-0000_seed-7"
+    assert (shard / "run_manifest.json").is_file()
+    assert not (output / "manifest.json").exists()
+
+    orphan = output / "raw" / "runs" / ".law-0000_seed-7-abrupt-process-exit"
+    orphan.mkdir()
+    (orphan / "unpublished.marker").write_text("not committed", encoding="utf-8")
+    unlogged_quarantine = output / "raw" / "quarantine" / "prior-unlogged"
+    unlogged_quarantine.mkdir(parents=True)
+    (unlogged_quarantine / "prior.marker").write_text("preserve", encoding="utf-8")
+    recovery_log_temp = output / "raw" / ".recovery_log.json-double-crash.tmp"
+    recovery_log_temp.write_text("partial recovery log", encoding="utf-8")
+
+    def fail_if_recomputed(**_kwargs: object) -> object:
+        raise AssertionError("verified completed raw shard must not be recomputed")
+
+    with monkeypatch.context() as patcher:
+        patcher.setattr(streaming_module, "_execute_one_run", fail_if_recomputed)
+        summary = run_streaming_screen(
+            output_dir=output,
+            experiment_id="TEST-CRASH-RESUME",
+            git_commit="fixture-sha",
+            config=config,
+            reservoir_size=8,
+        )
+
+    manifest_path = output / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    assert manifest["status"] == "COMPLETE"
+    assert manifest["expected_runs"] == manifest["completed_runs"] == 1
+    assert manifest["completion"] == {
+        "all_planned_runs_present": True,
+        "all_shards_verified": True,
+        "derived_outputs_published_atomically": True,
+        "manifest_published_last": True,
+    }
+    assert summary["raw_row_counts"] == manifest["raw_row_counts"]
+    assert manifest["recovery"]["events_this_invocation"] == 3
+    recovery_log = json.loads(
+        (output / "raw" / "recovery_log.json").read_text(encoding="utf-8")
+    )
+    assert {event["kind"] for event in recovery_log} == {
+        "UNPUBLISHED_TEMP_QUARANTINED",
+        "QUARANTINE_INVENTORY_RECONCILED",
+    }
+    unpublished_event = next(
+        event
+        for event in recovery_log
+        if event["source"]
+        == "raw/runs/.law-0000_seed-7-abrupt-process-exit"
+    )
+    assert (
+        output / unpublished_event["target"] / "unpublished.marker"
+    ).read_text(encoding="utf-8") == "not committed"
+    reconciled_event = next(
+        event
+        for event in recovery_log
+        if event["kind"] == "QUARANTINE_INVENTORY_RECONCILED"
+    )
+    assert reconciled_event["target"] == "raw/quarantine/prior-unlogged"
+
+    manifest_before = manifest_path.read_bytes()
+
+    def fail_if_rewritten(*_args: object, **_kwargs: object) -> None:
+        raise AssertionError("verified COMPLETE experiment must not be rewritten")
+
+    with monkeypatch.context() as patcher:
+        patcher.setattr(streaming_module, "_execute_one_run", fail_if_recomputed)
+        patcher.setattr(streaming_module, "_atomic_write_json", fail_if_rewritten)
+        resumed = run_streaming_screen(
+            output_dir=output,
+            experiment_id="TEST-CRASH-RESUME",
+            git_commit="fixture-sha",
+            config=config,
+            reservoir_size=8,
+        )
+    assert resumed == summary
+    assert manifest_path.read_bytes() == manifest_before
+    post_complete_temp = output / "raw" / ".recovery_log.json-post-complete.tmp"
+    post_complete_temp.write_text("unexpected", encoding="utf-8")
+    with pytest.raises(RuntimeError, match="orphan temporary work"):
+        run_streaming_screen(
+            output_dir=output,
+            experiment_id="TEST-CRASH-RESUME",
+            git_commit="fixture-sha",
+            config=config,
+            reservoir_size=8,
+        )
+
+
+def test_streaming_complete_manifest_rejects_derived_output_drift(tmp_path: Path) -> None:
+    output = tmp_path / "stream"
+    config = BaselineConfig(
+        n_laws=1,
+        seeds=(7,),
+        n_particles=32,
+        n_types=2,
+        steps=30,
+        snapshot_cadences=(10, 30),
+        lag_indices=(1,),
+    )
+    run_streaming_screen(
+        output_dir=output,
+        experiment_id="TEST-DERIVED-INTEGRITY",
+        git_commit="fixture-sha",
+        config=config,
+        reservoir_size=8,
+    )
+    summary_markdown = output / "summary.md"
+    summary_markdown.write_text(
+        summary_markdown.read_text(encoding="utf-8") + "\ncorruption\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(RuntimeError, match="committed output verification failure"):
+        run_streaming_screen(
+            output_dir=output,
+            experiment_id="TEST-DERIVED-INTEGRITY",
+            git_commit="fixture-sha",
+            config=config,
+            reservoir_size=8,
+        )
+
+
+def test_streaming_recovers_after_real_process_exit_before_shard_publish(
+    tmp_path: Path,
+) -> None:
+    output = tmp_path / "abrupt"
+    child_code = r'''
+import os
+import sys
+from pathlib import Path
+from edlab.experiments.baseline import BaselineConfig
+from edlab.experiments.streaming import run_streaming_screen
+
+def crash_before_publish(_temp_dir: Path) -> None:
+    os._exit(73)
+
+run_streaming_screen(
+    output_dir=Path(sys.argv[1]),
+    experiment_id="TEST-REAL-PROCESS-EXIT",
+    git_commit="fixture-sha",
+    config=BaselineConfig(
+        n_laws=1,
+        seeds=(7,),
+        n_particles=32,
+        n_types=2,
+        steps=30,
+        snapshot_cadences=(10, 30),
+        lag_indices=(1,),
+    ),
+    reservoir_size=8,
+    _before_shard_publish=crash_before_publish,
+)
+'''
+    child = subprocess.run(
+        [sys.executable, "-c", child_code, str(output)],
+        cwd=Path(__file__).parents[1],
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    assert child.returncode == 73, child.stderr
+    orphan_dirs = [
+        path
+        for path in (output / "raw" / "runs").iterdir()
+        if path.name.startswith(".law-")
+    ]
+    assert len(orphan_dirs) == 1
+    assert not (output / "manifest.json").exists()
+
+    summary = run_streaming_screen(
+        output_dir=output,
+        experiment_id="TEST-REAL-PROCESS-EXIT",
+        git_commit="fixture-sha",
+        config=BaselineConfig(
+            n_laws=1,
+            seeds=(7,),
+            n_particles=32,
+            n_types=2,
+            steps=30,
+            snapshot_cadences=(10, 30),
+            lag_indices=(1,),
+        ),
+        reservoir_size=8,
+    )
+    assert summary["runs"] == 1
+    assert summary["recovery"]["events_this_invocation"] == 1
+    assert json.loads((output / "manifest.json").read_text(encoding="utf-8"))[
+        "status"
+    ] == "COMPLETE"
+
+
+def test_streaming_multi_run_index_and_raw_totals_are_consistent(tmp_path: Path) -> None:
+    output = tmp_path / "multi"
+    summary = run_streaming_screen(
+        output_dir=output,
+        experiment_id="TEST-MULTI-RUN-INDEX",
+        git_commit="fixture-sha",
+        config=BaselineConfig(
+            n_laws=2,
+            seeds=(7, 8),
+            n_particles=32,
+            n_types=2,
+            steps=30,
+            snapshot_cadences=(10, 30),
+            lag_indices=(1,),
+        ),
+        reservoir_size=8,
+    )
+    raw_index = json.loads((output / "raw_index.json").read_text(encoding="utf-8"))
+    manifest = json.loads((output / "manifest.json").read_text(encoding="utf-8"))
+    assert summary["runs"] == manifest["expected_runs"] == 4
+    assert manifest["completed_runs"] == 4
+    assert {entry["run_key"] for entry in raw_index} == {
+        "law-0000_seed-7",
+        "law-0000_seed-8",
+        "law-0001_seed-7",
+        "law-0001_seed-8",
+    }
+    totals = {
+        filename: sum(entry["row_counts"][filename] for entry in raw_index)
+        for filename in RAW_FILENAMES
+    }
+    assert summary["raw_row_counts"] == manifest["raw_row_counts"] == totals

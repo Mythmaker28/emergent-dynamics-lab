@@ -40,9 +40,18 @@ All qualifying rows retain unresolved sparse-alias/static-flux risk. Eligibility
 
 EXP02 must use a streaming/chunked writer. Full raw association, observation, event, and measurement tables may live under an ignored `raw/` directory with checksums and schema/index committed. Commit LawSpecs, manifest, summaries, aggregates, figures, candidate rows, checksums, and exact regeneration commands. Do not attempt a multi-gigabyte in-memory list or an absurd Git commit.
 
+### Frozen execution artifact contract
+
+- The recovery unit is one immutable `(law_index, seed)` directory under `raw/runs/`; each contains the unchanged measurement, lineage-event, entity-observation, and association-edge CSV streams plus its own manifest.
+- The experiment plan hash fixes code SHA, configuration, law indices, seeds, and schema before the first shard.
+- A shard becomes committed only by same-parent atomic directory rename after its files and per-run manifest are flushed. Unpublished temporaries after abrupt termination are quarantined and logged, never counted as completed runs.
+- Every resume verifies byte size, SHA-256, and actual CSV row count before reusing a shard. Plan drift or any raw/index/derived mismatch stops rather than repairs silently.
+- Derived files are atomically replaced. The root `manifest.json` is published last and may say `status=COMPLETE` only for 900/900 verified runs with consistent raw index, row totals, hashes, output sizes, and regeneration command.
+- Raw shards remain local and Git-ignored. Their committed checksums prove integrity of files that are present; they are not represented as a remote backup.
+- Execution remains sequential for this first broad screen. Storage/recovery changes do not authorize a physics, detector, tracker, observable, threshold, or substrate change.
+
 ## Stop conditions
 
 - Do not execute until the streaming artifact path is implemented and tested against the baseline runner on a small equivalence fixture.
 - Do not proceed to hold-out until EXP02 completes and the predeclared rule is applied.
 - Do not change substrate or add density/orbital mechanisms during EXP02.
-

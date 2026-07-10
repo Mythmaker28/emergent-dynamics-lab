@@ -14,7 +14,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## VALIDATED COMPONENTS
 
-- Repaired implementation plus the local EXP02 shard writer: 31 tests pass.
+- Repaired implementation plus the local EXP02 shard writer: 35 tests pass.
 - Deterministic engine and multi-step diagnostic-ID permutation fixture.
 - Scalar and independent vectorized force paths on 32 controlled worlds.
 - Periodic detector, ID/order/translation-invariant phenotype fixtures.
@@ -26,10 +26,12 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 - Exact-SHA numerical re-audit `NUM3` passed all 29 then-current tests, 1,024 force/one-step fixtures, and 167 subnormal radii.
 - EXP02 per-run shards are written through temporary directories and atomic rename, pinned to a plan hash, verified by SHA-256/size on resume, and summarized without retaining all runs in memory.
 - The streaming fixture proves byte-for-byte equality of all four raw tables against the full runner, rejects plan drift/corruption, and resumes without recomputation.
+- Recovery fault injection includes a real child-process `os._exit(73)` after shard fsync and before atomic publication; restart quarantines the unpublished directory and converges to one verified result.
+- Final derived files are atomically published, `manifest.json` is last, and `COMPLETE` requires all planned identities, hashes, sizes, actual CSV row counts, raw-index/summary consistency, and an exact reproduction command.
 
 ## ACTIVE EXPERIMENT
 
-`EXP02-COREV0-20260710-001` — preregistered, zero runs. The local streaming writer gate passes; crash-injection/finalizer completeness review remains before the 900-run launch.
+`EXP02-COREV0-20260710-001` — preregistered, zero runs. Local recovery gates pass and independent audit returned `GO_AFTER_CLEAN_COMMIT`; commit/push plus exact-SHA recheck remain before the 900-run launch.
 
 ## LAST COMPLETED EXPERIMENT
 
@@ -41,7 +43,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 - New private GitHub repository `Mythmaker28/emergent-dynamics-lab` exists and is the `origin` remote.
 - Historical local branch and commit exist; isolated historical tests: 19/19 pass.
 - Archived historical CSV: 7,079 rows, Pearson `0.675724`, 0 rows for `P>0.8,M<0.5`.
-- Current implementation tests: 31/31 pass.
+- Current implementation tests: 35/35 pass.
 - Current independent baseline: 36 runs, 36,722 repeated measurement rows, descriptive Pearson `r(P,M)=0.733162`, P range `0.287298–0.999985`, M range `0–1`.
 - The unchanged initial probe contains 384 rows. Candidate audit finds 115 rows on clean tracks with at least eight observations and 20 physical endpoint pairs probe-positive under at least two cadences.
 - The frozen cross-cadence/multi-seed rule selects laws `{1,3,6,10}` for fresh-seed hold-out.
@@ -77,11 +79,11 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 - Right-censoring at the finite observation horizon.
 - Static material-flux false positives.
 - EXP02 raw shards are intentionally local/ignored; committed indexes and checksums prove integrity of present files but are not a remote raw-data backup.
-- Crash recovery is fail-closed for missing, mismatched, or corrupt completed shards, but interruption injection and final `COMPLETE` publication still need an explicit independent preflight test.
+- Crash recovery is fail-closed for missing, mismatched, or corrupt completed shards. Directory metadata fsync is not portable on this Windows path, so post-crash re-verification remains the durability boundary.
 
 ## NEXT ACTION
 
-From clean SHA `850a2ff`, add interruption-injection tests and a finalizer `COMPLETE` gate (expected/completed runs plus indexed output verification). Re-run the full suite and an independent recovery audit; only then launch/recover the preregistered 300-law × 3-seed EXP02 screen.
+Commit the 35-test recovery gate, rerun the full suite and official CLI smoke on the resulting clean SHA, push, and obtain the short exact-SHA recovery recheck. If green, launch/recover the preregistered 300-law × 3-seed EXP02 screen without changing that SHA or the frozen reservoir.
 
 ## DO NOT RESURRECT
 

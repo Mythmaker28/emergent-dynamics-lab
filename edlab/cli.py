@@ -29,6 +29,37 @@ def _git_head() -> str:
     return result.stdout.strip()
 
 
+def _git_scope_clean(output_dir: Path) -> bool:
+    repository = Path(
+        subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
+            check=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
+    ).resolve()
+    output = output_dir.resolve()
+    try:
+        allowed_prefix = output.relative_to(repository).as_posix()
+    except ValueError:
+        allowed_prefix = ""
+    status = subprocess.run(
+        ["git", "status", "--porcelain=v1", "--untracked-files=all", "-z"],
+        check=True,
+        capture_output=True,
+    ).stdout
+    for entry in status.split(b"\0"):
+        if not entry:
+            continue
+        path = entry[3:].decode("utf-8", errors="surrogateescape").replace("\\", "/")
+        if allowed_prefix and (
+            path == allowed_prefix or path.startswith(f"{allowed_prefix}/")
+        ):
+            continue
+        return False
+    return True
+
+
 def _parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="edlab")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -52,6 +83,7 @@ def _parser() -> argparse.ArgumentParser:
     streaming.add_argument("--particles", type=int, default=64)
     streaming.add_argument("--steps", type=int, default=600)
     streaming.add_argument("--cadences", type=int, nargs="+", default=[10, 30, 60])
+    streaming.add_argument("--reservoir-size", type=int, default=100_000)
     return parser
 
 
@@ -83,6 +115,11 @@ def main(argv: list[str] | None = None) -> int:
             config=config,
         )
     else:
+        git_scope_clean = _git_scope_clean(args.output)
+        if not git_scope_clean:
+            raise RuntimeError(
+                "stream-screen requires a clean Git scope outside its output directory"
+            )
         config = BaselineConfig(
             n_laws=args.laws,
             experiment_kind="baseline",
@@ -96,6 +133,8 @@ def main(argv: list[str] | None = None) -> int:
             experiment_id=args.experiment_id,
             git_commit=_git_head(),
             config=config,
+            reservoir_size=args.reservoir_size,
+            git_scope_clean=git_scope_clean,
         )
     print(json.dumps(result, indent=2, sort_keys=True))
     return 0

@@ -15,7 +15,7 @@ from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from importlib.metadata import version
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Callable, Iterable
 
 import matplotlib
 import numpy as np
@@ -45,6 +45,8 @@ RAW_FILENAMES = (
     "association_edges.csv",
 )
 RAW_SCHEMA_VERSION = 1
+DISK_BYTES_PER_REMAINING_RUN = 4 * 1024 * 1024
+FINALIZATION_HEADROOM_BYTES = 512 * 1024 * 1024
 
 
 def _canonical_sha256(value: Any) -> str:
@@ -55,6 +57,160 @@ def _canonical_sha256(value: Any) -> str:
         ensure_ascii=True,
     ).encode("utf-8")
     return hashlib.sha256(payload).hexdigest()
+
+
+def _atomic_write_bytes(path: Path, payload: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temp_name = tempfile.mkstemp(
+        prefix=f".{path.name}-", suffix=".tmp", dir=path.parent
+    )
+    temp_path = Path(temp_name)
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_path, path)
+    except BaseException:
+        temp_path.unlink(missing_ok=True)
+        raise
+
+
+def _atomic_write_text(path: Path, text: str) -> None:
+    _atomic_write_bytes(path, text.encode("utf-8"))
+
+
+def _atomic_write_json(path: Path, value: Any) -> None:
+    _atomic_write_text(path, json.dumps(value, indent=2, sort_keys=True))
+
+
+def _atomic_write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temp_name = tempfile.mkstemp(
+        prefix=f".{path.name}-", suffix=".tmp", dir=path.parent
+    )
+    os.close(descriptor)
+    temp_path = Path(temp_name)
+    try:
+        _write_csv(temp_path, rows)
+        with temp_path.open("r+b") as handle:
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_path, path)
+    except BaseException:
+        temp_path.unlink(missing_ok=True)
+        raise
+
+
+def _csv_data_row_count(path: Path) -> int:
+    if path.stat().st_size == 0:
+        return 0
+    with path.open(newline="", encoding="utf-8") as handle:
+        reader = csv.reader(handle)
+        next(reader, None)
+        return sum(1 for _row in reader)
+
+
+def _disk_preflight(output_dir: Path, remaining_runs: int) -> dict[str, int]:
+    free_bytes = shutil.disk_usage(output_dir).free
+    required_free_bytes = (
+        FINALIZATION_HEADROOM_BYTES
+        + remaining_runs * DISK_BYTES_PER_REMAINING_RUN
+    )
+    if free_bytes < required_free_bytes:
+        raise RuntimeError(
+            "insufficient disk headroom for streaming screen: "
+            f"free={free_bytes}, required={required_free_bytes}, "
+            f"remaining_runs={remaining_runs}"
+        )
+    return {
+        "free_bytes_at_preflight": free_bytes,
+        "required_free_bytes": required_free_bytes,
+        "remaining_runs_at_preflight": remaining_runs,
+        "assumed_bytes_per_remaining_run": DISK_BYTES_PER_REMAINING_RUN,
+        "finalization_headroom_bytes": FINALIZATION_HEADROOM_BYTES,
+    }
+
+
+def _orphan_work_paths(output_dir: Path, raw_root: Path) -> list[Path]:
+    top_level = [
+        path
+        for path in output_dir.iterdir()
+        if path.name.startswith(".") and path.name.endswith(".tmp")
+    ]
+    raw_temps = (
+        [path for path in raw_root.iterdir() if path.name.startswith(".law-")]
+        if raw_root.exists()
+        else []
+    )
+    raw_dir = output_dir / "raw"
+    raw_atomic_temps = (
+        [
+            path
+            for path in raw_dir.iterdir()
+            if path.name.startswith(".") and path.name.endswith(".tmp")
+        ]
+        if raw_dir.exists()
+        else []
+    )
+    return sorted(top_level + raw_temps + raw_atomic_temps, key=lambda path: str(path))
+
+
+def _quarantine_orphan_work(output_dir: Path, raw_root: Path) -> dict[str, Any]:
+    orphan_paths = _orphan_work_paths(output_dir, raw_root)
+    log_path = output_dir / "raw" / "recovery_log.json"
+    history: list[dict[str, Any]] = []
+    if log_path.exists():
+        history = json.loads(log_path.read_text(encoding="utf-8"))
+        if not isinstance(history, list):
+            raise RuntimeError("invalid raw recovery log")
+    quarantine_root = output_dir / "raw" / "quarantine"
+    new_events: list[dict[str, Any]] = []
+    for source in orphan_paths:
+        quarantine_root.mkdir(parents=True, exist_ok=True)
+        target = quarantine_root / source.name.lstrip(".")
+        suffix = 1
+        while target.exists():
+            target = quarantine_root / f"{source.name.lstrip('.')}-{suffix}"
+            suffix += 1
+        os.replace(source, target)
+        event = {
+            "kind": "UNPUBLISHED_TEMP_QUARANTINED",
+            "source": str(source.relative_to(output_dir)).replace("\\", "/"),
+            "target": str(target.relative_to(output_dir)).replace("\\", "/"),
+            "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        }
+        history.append(event)
+        new_events.append(event)
+    logged_targets = {
+        event.get("target") for event in history if isinstance(event, dict)
+    }
+    if quarantine_root.exists():
+        for target in sorted(quarantine_root.iterdir(), key=lambda path: path.name):
+            relative_target = str(target.relative_to(output_dir)).replace("\\", "/")
+            if relative_target in logged_targets:
+                continue
+            event = {
+                "kind": "QUARANTINE_INVENTORY_RECONCILED",
+                "source": None,
+                "target": relative_target,
+                "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+            }
+            history.append(event)
+            new_events.append(event)
+    if new_events:
+        _atomic_write_json(log_path, history)
+    return {
+        "events_total": len(history),
+        "events_this_invocation": len(new_events),
+        "log_relative_path": (
+            str(log_path.relative_to(output_dir)).replace("\\", "/")
+            if log_path.exists()
+            else None
+        ),
+        "log_sha256": _hash_file(log_path) if log_path.exists() else None,
+        "log_size": log_path.stat().st_size if log_path.exists() else 0,
+    }
 
 
 @dataclass
@@ -216,6 +372,7 @@ def _write_shard_atomic(
     law_index: int,
     seed: int,
     input_sha256: str,
+    before_publish: Callable[[Path], None] | None = None,
 ) -> Path:
     final_dir = run_root / run_key
     if final_dir.exists():
@@ -232,26 +389,27 @@ def _write_shard_atomic(
             path = temp_dir / filename
             rows = rows_by_file[filename]
             _write_csv(path, rows)
+            with path.open("r+b") as handle:
+                handle.flush()
+                os.fsync(handle.fileno())
             row_counts[filename] = len(rows)
             hashes[filename] = _hash_file(path)
             sizes[filename] = path.stat().st_size
-        (temp_dir / "run_manifest.json").write_text(
-            json.dumps(
-                {
-                    "law_index": law_index,
-                    "seed": seed,
-                    "raw_schema_version": RAW_SCHEMA_VERSION,
-                    "input_sha256": input_sha256,
-                    "row_counts": row_counts,
-                    "sha256": hashes,
-                    "sizes": sizes,
-                    "complete": True,
-                },
-                indent=2,
-                sort_keys=True,
-            ),
-            encoding="utf-8",
+        _atomic_write_json(
+            temp_dir / "run_manifest.json",
+            {
+                "law_index": law_index,
+                "seed": seed,
+                "raw_schema_version": RAW_SCHEMA_VERSION,
+                "input_sha256": input_sha256,
+                "row_counts": row_counts,
+                "sha256": hashes,
+                "sizes": sizes,
+                "complete": True,
+            },
         )
+        if before_publish is not None:
+            before_publish(temp_dir)
         os.replace(temp_dir, final_dir)
     except BaseException:
         shutil.rmtree(temp_dir, ignore_errors=True)
@@ -289,7 +447,12 @@ def _verify_shard(
             raise RuntimeError(f"missing raw shard file: {path}")
         expected_size = manifest.get("sizes", {}).get(filename)
         expected_hash = manifest.get("sha256", {}).get(filename)
-        if path.stat().st_size != expected_size or _hash_file(path) != expected_hash:
+        expected_rows = manifest.get("row_counts", {}).get(filename)
+        if (
+            path.stat().st_size != expected_size
+            or _hash_file(path) != expected_hash
+            or _csv_data_row_count(path) != expected_rows
+        ):
             raise RuntimeError(f"raw shard checksum failure: {path}")
     return manifest
 
@@ -332,8 +495,155 @@ def _plot_sample(
         va="top",
         family="monospace",
     )
-    fig.savefig(output, dpi=160)
+    fig.savefig(output, dpi=160, format="png")
     plt.close(fig)
+
+
+def _atomic_plot_sample(
+    sample: list[tuple[float, float]],
+    *,
+    p_hist: np.ndarray,
+    m_hist: np.ndarray,
+    output: Path,
+) -> None:
+    descriptor, temp_name = tempfile.mkstemp(
+        prefix=f".{output.stem}-", suffix=".png.tmp", dir=output.parent
+    )
+    os.close(descriptor)
+    temp_path = Path(temp_name)
+    try:
+        _plot_sample(sample, p_hist=p_hist, m_hist=m_hist, output=temp_path)
+        with temp_path.open("r+b") as handle:
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temp_path, output)
+    except BaseException:
+        temp_path.unlink(missing_ok=True)
+        raise
+
+
+def _run_input_sha256(plan_sha256: str, law_index: int, seed: int) -> str:
+    return _canonical_sha256(
+        {
+            "plan_sha256": plan_sha256,
+            "law_index": law_index,
+            "seed": seed,
+        }
+    )
+
+
+def _reproduction_command(
+    output_dir: Path,
+    experiment_id: str,
+    config: BaselineConfig,
+    reservoir_size: int,
+) -> str:
+    seeds = " ".join(str(seed) for seed in config.seeds)
+    cadences = " ".join(str(cadence) for cadence in config.snapshot_cadences)
+    return (
+        ".\\.venv\\Scripts\\python.exe -m edlab.cli stream-screen "
+        f'--output "{output_dir}" --experiment-id {experiment_id} '
+        f"--laws {config.n_laws} --seeds {seeds} --particles {config.n_particles} "
+        f"--steps {config.steps} --cadences {cadences} --reservoir-size {reservoir_size}"
+    )
+
+
+def _verify_complete_manifest(
+    *,
+    output_dir: Path,
+    plan: dict[str, Any],
+    config: BaselineConfig,
+    law_indices: tuple[int, ...],
+) -> dict[str, Any]:
+    manifest_path = output_dir / "manifest.json"
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise RuntimeError("invalid final manifest") from exc
+    expected_runs = len(law_indices) * len(config.seeds)
+    required = {
+        "status": "COMPLETE",
+        "experiment_id": plan["experiment_id"],
+        "git_commit": plan["git_commit"],
+        "plan_sha256": plan["plan_sha256"],
+        "expected_runs": expected_runs,
+        "completed_runs": expected_runs,
+    }
+    for key, expected in required.items():
+        if manifest.get(key) != expected:
+            raise RuntimeError(
+                f"invalid COMPLETE manifest: {key}={manifest.get(key)!r}, "
+                f"expected {expected!r}"
+            )
+    output_paths = manifest.get("output_paths")
+    output_hashes = manifest.get("output_sha256")
+    output_sizes = manifest.get("output_sizes")
+    if not isinstance(output_paths, list) or not isinstance(output_hashes, dict):
+        raise RuntimeError("invalid COMPLETE manifest output index")
+    if not isinstance(output_sizes, dict) or "manifest.json" in output_paths:
+        raise RuntimeError("invalid COMPLETE manifest size index")
+    for relative_path in output_paths:
+        path = output_dir / relative_path
+        if (
+            not path.is_file()
+            or path.stat().st_size != output_sizes.get(relative_path)
+            or _hash_file(path) != output_hashes.get(relative_path)
+        ):
+            raise RuntimeError(f"committed output verification failure: {path}")
+
+    raw_index_path = output_dir / "raw_index.json"
+    if manifest.get("raw_index_sha256") != _hash_file(raw_index_path):
+        raise RuntimeError("raw index hash mismatch")
+    raw_index = json.loads(raw_index_path.read_text(encoding="utf-8"))
+    if not isinstance(raw_index, list) or len(raw_index) != expected_runs:
+        raise RuntimeError("raw index run count mismatch")
+    entries = {entry.get("run_key"): entry for entry in raw_index}
+    if len(entries) != expected_runs:
+        raise RuntimeError("raw index contains duplicate run keys")
+    raw_totals: Counter[str] = Counter()
+    for law_index in law_indices:
+        for seed in config.seeds:
+            run_key = _run_key(law_index, seed)
+            entry = entries.get(run_key)
+            if entry is None:
+                raise RuntimeError(f"raw index missing run: {run_key}")
+            shard = output_dir / str(entry.get("relative_path"))
+            run_manifest = _verify_shard(
+                shard,
+                law_index=law_index,
+                seed=seed,
+                input_sha256=_run_input_sha256(
+                    plan["plan_sha256"], law_index, seed
+                ),
+            )
+            for key, value in run_manifest.items():
+                if entry.get(key) != value:
+                    raise RuntimeError(
+                        f"raw index metadata mismatch for {run_key}: {key}"
+                    )
+            for filename, rows in run_manifest["row_counts"].items():
+                raw_totals[filename] += int(rows)
+    raw_totals_dict = dict(sorted(raw_totals.items()))
+    if manifest.get("raw_row_counts") != raw_totals_dict:
+        raise RuntimeError("manifest/raw-index row-count inconsistency")
+    recovery = manifest.get("recovery", {})
+    recovery_log_relative = recovery.get("log_relative_path")
+    if recovery_log_relative is not None:
+        recovery_log_path = output_dir / recovery_log_relative
+        if (
+            not recovery_log_path.is_file()
+            or recovery_log_path.stat().st_size != recovery.get("log_size")
+            or _hash_file(recovery_log_path) != recovery.get("log_sha256")
+        ):
+            raise RuntimeError("recovery log verification failure")
+    summary = json.loads((output_dir / "summary.json").read_text(encoding="utf-8"))
+    if (
+        summary.get("runs") != expected_runs
+        or summary.get("raw_row_counts") != raw_totals_dict
+        or summary.get("measurement_rows") != raw_totals_dict.get("measurements.csv", 0)
+    ):
+        raise RuntimeError("summary/raw-index consistency failure")
+    return summary
 
 
 def run_streaming_screen(
@@ -343,17 +653,22 @@ def run_streaming_screen(
     git_commit: str,
     config: BaselineConfig,
     reservoir_size: int = 100_000,
+    git_scope_clean: bool = False,
+    _before_shard_publish: Callable[[Path], None] | None = None,
 ) -> dict[str, Any]:
     if reservoir_size < 0:
         raise ValueError("reservoir_size must be non-negative")
     output_dir.mkdir(parents=True, exist_ok=True)
     law_indices = _planned_law_indices(config)
+    expected_runs = len(law_indices) * len(config.seeds)
     plan = {
         "raw_schema_version": RAW_SCHEMA_VERSION,
         "experiment_id": experiment_id,
         "git_commit": git_commit,
+        "git_scope_clean": git_scope_clean,
         "config": config.as_dict(),
         "law_indices": list(law_indices),
+        "reservoir_size": reservoir_size,
     }
     plan["plan_sha256"] = _canonical_sha256(plan)
     plan_path = output_dir / "stream_plan.json"
@@ -366,11 +681,30 @@ def run_streaming_screen(
     elif (output_dir / "raw").exists():
         raise RuntimeError("raw shards exist without a stream_plan.json audit anchor")
     else:
-        plan_path.write_text(
-            json.dumps(plan, indent=2, sort_keys=True), encoding="utf-8"
-        )
+        _atomic_write_json(plan_path, plan)
     raw_root = output_dir / "raw" / "runs"
     raw_root.mkdir(parents=True, exist_ok=True)
+    manifest_path = output_dir / "manifest.json"
+    if manifest_path.exists():
+        orphan_paths = _orphan_work_paths(output_dir, raw_root)
+        if orphan_paths:
+            raise RuntimeError(
+                "orphan temporary work exists beside a COMPLETE manifest; audit required"
+            )
+        return _verify_complete_manifest(
+            output_dir=output_dir,
+            plan=plan,
+            config=config,
+            law_indices=law_indices,
+        )
+    recovery = _quarantine_orphan_work(output_dir, raw_root)
+    completed_before = sum(
+        1
+        for law_index in law_indices
+        for seed in config.seeds
+        if (raw_root / _run_key(law_index, seed) / "run_manifest.json").is_file()
+    )
+    disk_preflight = _disk_preflight(output_dir, expected_runs - completed_before)
     world = WorldSpec(
         n_particles=config.n_particles,
         n_types=config.n_types,
@@ -383,7 +717,8 @@ def run_streaming_screen(
         config.tracker_min_size_ratio,
     )
     laws = [(index, law_from_halton(index, config.n_types)) for index in law_indices]
-    (output_dir / "laws.json").write_text(
+    _atomic_write_text(
+        output_dir / "laws.json",
         json.dumps(
             [
                 {"law_index": law_index, "law_spec": law.as_dict()}
@@ -391,21 +726,20 @@ def run_streaming_screen(
             ],
             indent=2,
         ),
-        encoding="utf-8",
     )
 
     shard_paths: list[Path] = []
     for law_index, _law in laws:
         for seed in config.seeds:
             run_key = _run_key(law_index, seed)
-            run_input_sha256 = _canonical_sha256(
-                {
-                    "plan_sha256": plan["plan_sha256"],
-                    "law_index": law_index,
-                    "seed": seed,
-                }
+            run_input_sha256 = _run_input_sha256(
+                plan["plan_sha256"], law_index, seed
             )
             final_dir = raw_root / run_key
+            if final_dir.exists() and not (final_dir / "run_manifest.json").is_file():
+                raise RuntimeError(
+                    f"incomplete existing shard requires audit: {final_dir}"
+                )
             if not (final_dir / "run_manifest.json").exists():
                 rows = _execute_one_run(
                     law_index=law_index,
@@ -423,6 +757,7 @@ def run_streaming_screen(
                     law_index=law_index,
                     seed=seed,
                     input_sha256=run_input_sha256,
+                    before_publish=_before_shard_publish,
                 )
             _verify_shard(
                 final_dir,
@@ -456,9 +791,12 @@ def run_streaming_screen(
     reservoir: list[tuple[float, float]] = []
     reservoir_rng = np.random.default_rng(20260710)
     raw_index: list[dict[str, Any]] = []
+    raw_totals: Counter[str] = Counter()
 
     for shard in sorted(shard_paths):
         run_manifest = json.loads((shard / "run_manifest.json").read_text(encoding="utf-8"))
+        for filename, rows in run_manifest["row_counts"].items():
+            raw_totals[filename] += int(rows)
         raw_index.append(
             {
                 "run_key": shard.name,
@@ -528,10 +866,12 @@ def run_streaming_screen(
                 "mean_m": float(stats["sum_m"]) / rows,
             }
         )
-    _write_csv(output_dir / "measurement_aggregates.csv", aggregate_rows)
-    (output_dir / "raw_index.json").write_text(
-        json.dumps(raw_index, indent=2, sort_keys=True), encoding="utf-8"
-    )
+    if len(shard_paths) != expected_runs:
+        raise RuntimeError(
+            f"cannot finalize incomplete screen: {len(shard_paths)}/{expected_runs} runs"
+        )
+    _atomic_write_csv(output_dir / "measurement_aggregates.csv", aggregate_rows)
+    _atomic_write_json(output_dir / "raw_index.json", raw_index)
 
     count = moments.count
     correlation = moments.correlation()
@@ -547,6 +887,8 @@ def run_streaming_screen(
         "git_commit": git_commit,
         "runs": len(shard_paths),
         "measurement_rows": count,
+        "reservoir_size": reservoir_size,
+        "raw_row_counts": dict(sorted(raw_totals.items())),
         "correlation_p_m_descriptive_only": correlation,
         "p_min": None if count == 0 else p_min,
         "p_max": None if count == 0 else p_max,
@@ -563,12 +905,13 @@ def run_streaming_screen(
         "force_validation": asdict(force_validation),
         "null_models": [asdict(result) for result in null_results],
         "raw_storage": "local ignored per-run shards; committed checksums/index",
+        "recovery": recovery,
+        "disk_preflight": disk_preflight,
         "statistical_warning": "Rows are repeated windows, not independent replicates.",
     }
-    (output_dir / "summary.json").write_text(
-        json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8"
-    )
-    (output_dir / "summary.md").write_text(
+    _atomic_write_json(output_dir / "summary.json", summary)
+    _atomic_write_text(
+        output_dir / "summary.md",
         f"""# {experiment_id} — Streaming CORE V0 Screen
 
 ## OBSERVED
@@ -592,9 +935,8 @@ def run_streaming_screen(
 
 - Raw shard checksum failure, non-equivalence to the validated full runner, null failure, or fresh-seed failure invalidates promotion.
 """,
-        encoding="utf-8",
     )
-    _plot_sample(
+    _atomic_plot_sample(
         reservoir,
         p_hist=p_hist,
         m_hist=m_hist,
@@ -610,8 +952,13 @@ def run_streaming_screen(
         output_dir / "p_m_audit.png",
     ]
     manifest = {
+        "status": "COMPLETE",
         "experiment_id": experiment_id,
         "git_commit": git_commit,
+        "git_scope_clean": git_scope_clean,
+        "plan_sha256": plan["plan_sha256"],
+        "expected_runs": expected_runs,
+        "completed_runs": len(shard_paths),
         "code_version": "0.1.0",
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "substrate": "particle_dynamics",
@@ -640,10 +987,31 @@ def run_streaming_screen(
             "shard_root": "raw/runs",
             "resume_unit": "complete per-run shard",
         },
+        "raw_row_counts": dict(sorted(raw_totals.items())),
+        "raw_index_sha256": _hash_file(output_dir / "raw_index.json"),
+        "analysis_parameters": {
+            "reservoir_size": reservoir_size,
+            "histogram_bins_per_axis": 50,
+        },
+        "recovery": recovery,
+        "disk_preflight": disk_preflight,
+        "reproduction_command": _reproduction_command(
+            output_dir, experiment_id, config, reservoir_size
+        ),
+        "completion": {
+            "all_planned_runs_present": len(shard_paths) == expected_runs,
+            "all_shards_verified": True,
+            "derived_outputs_published_atomically": True,
+            "manifest_published_last": True,
+        },
         "output_paths": [path.name for path in committed_outputs],
         "output_sha256": {path.name: _hash_file(path) for path in committed_outputs},
+        "output_sizes": {path.name: path.stat().st_size for path in committed_outputs},
     }
-    (output_dir / "manifest.json").write_text(
-        json.dumps(manifest, indent=2, sort_keys=True), encoding="utf-8"
+    _atomic_write_json(output_dir / "manifest.json", manifest)
+    return _verify_complete_manifest(
+        output_dir=output_dir,
+        plan=plan,
+        config=config,
+        law_indices=law_indices,
     )
-    return summary
