@@ -1,0 +1,26 @@
+{
+  "experiment_id": "HOLDOUT-COREV0-20260710-004",
+  "parent_experiment_id": "EXP02-COREV0-20260710-001",
+  "experiment_git_commit": "d9d9a52ee5ff11a5807b0c34596de524d914b8f9",
+  "frozen_laws": [0, 12, 35, 52, 73, 94, 209, 225, 298],
+  "fresh_seeds": [3001, 3002, 3003, 3004, 3005],
+  "frozen_gate": "At least one P>0.8,M<0.5 same-step endpoint under >=2 cadences, each cadence track >=8 observations and never split/merge/ambiguous; retain law in >=2/5 fresh seeds",
+  "qualifying_seeds_by_law": {
+    "0": [3002, 3004],
+    "12": [],
+    "35": [3005],
+    "52": [3001, 3003],
+    "73": [3001],
+    "94": [3004],
+    "209": [],
+    "225": [],
+    "298": []
+  },
+  "surviving_laws": [0, 52],
+  "rejected_laws": [12, 35, 73, 94, 209, 225, 298],
+  "survivor_count": 2,
+  "probability_estimate": false,
+  "all_survivors_retain_unresolved_sparse_alias_risk": true,
+  "scientific_disposition": "DIAGNOSTIC_RECURRENCE_ONLY_INTERVENTION_REQUIRED",
+  "thresholds_changed": false
+}

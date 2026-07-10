@@ -14,7 +14,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## VALIDATED COMPONENTS
 
-- Repaired implementation plus the local EXP02 shard writer: 35 tests pass.
+- Repaired implementation plus the local EXP02 shard writer and direct candidate diagnostics: 38 tests pass.
 - Deterministic engine and multi-step diagnostic-ID permutation fixture.
 - Scalar and independent vectorized force paths on 32 controlled worlds.
 - Periodic detector, ID/order/translation-invariant phenotype fixtures.
@@ -31,11 +31,11 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## ACTIVE EXPERIMENT
 
-`HOLDOUT-COREV0-20260710-004` — preregistered before execution for all nine EXP02-eligible laws on five unseen seeds; 45 runs, unchanged `>=2/5` diagnostic recurrence gate.
+`ALIAS-INTERVENTION-COREV0-20260710-001` — design stage only for the frozen HOLDOUT04 survivors `{0,52}`. No intervention run is authorized until a sham-controlled, alias-rejecting protocol and its implementation tests are frozen on a clean SHA.
 
 ## LAST COMPLETED EXPERIMENT
 
-`EXP02-COREV0-20260710-001`: 900/900 complete and analyzed; nine laws pass the frozen screening permission gate, all alias-unresolved.
+`HOLDOUT-COREV0-20260710-004`: 45/45 complete under the frozen five-seed gate. Laws `{0,52}` recur in exactly two of five fresh seeds each; all other laws fail. Both survivors remain diagnostic and alias-unresolved.
 
 ## OBSERVED
 
@@ -43,7 +43,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 - New private GitHub repository `Mythmaker28/emergent-dynamics-lab` exists and is the `origin` remote.
 - Historical local branch and commit exist; isolated historical tests: 19/19 pass.
 - Archived historical CSV: 7,079 rows, Pearson `0.675724`, 0 rows for `P>0.8,M<0.5`.
-- Current implementation tests: 35/35 pass.
+- Current implementation tests: 38/38 pass.
 - Current independent baseline: 36 runs, 36,722 repeated measurement rows, descriptive Pearson `r(P,M)=0.733162`, P range `0.287298–0.999985`, M range `0–1`.
 - The unchanged initial probe contains 384 rows. Candidate audit finds 115 rows on clean tracks with at least eight observations and 20 physical endpoint pairs probe-positive under at least two cadences.
 - The frozen cross-cadence/multi-seed rule selects laws `{1,3,6,10}` for fresh-seed hold-out.
@@ -62,18 +62,23 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 - Independent statistical QA verified all 3,600 raw CSV hashes/sizes/row counts and found 10,101/86,573 tracks (11.67%) censored at time 12.
 - The parent `measurement_aggregates.csv` fragmented nominally equal float `tau` keys. Raw data are intact; D-013 requires a separate integer-step corrected aggregate and preserves the flawed parent file unchanged.
 - Direct diagnostics cover 47 cadence rows / 22 endpoints for the nine eligible laws: P and M recompute exactly, no compatible unselected edge is hidden, and zero rows reject static occupancy/look-alike alias.
+- HOLDOUT04 executed all 45 preregistered law/seed runs from clean SHA `d9d9a52`: 41,889 measurement rows, descriptive `r(P,M)=0.698846`, 502 unchanged-probe rows, 140 whole-track-clean long rows, and 10 same-endpoint cross-cadence endpoints.
+- Under the unchanged `>=2/5` fresh-seed gate, law 0 qualifies in seeds `{3002,3004}` and law 52 in `{3001,3003}`. Laws `{12,35,73,94,209,225,298}` fail and are not replaced.
+- Every HOLDOUT04 probe and survivor retains unresolved static-flux/sparse-look-alike alias risk. The hold-out count is not an event-probability estimate and is not scientific promotion.
 
 ## INFERRED
 
 - The historical code is useful as audited reference behavior but its per-run P calibration and incomplete provenance should not be copied.
 - The current tracker removes the historical hard dependency on shared IDs, reducing a central false-negative risk.
 - Probe occupancy rises from `0.68%` at cadence 10 to `2.37%` at cadence 60, so sparse-observer effects remain a serious alternative explanation.
+- Fresh-seed recurrence narrows the diagnostic target to laws `{0,52}` but does not distinguish an organization that moves or recovers from a stationary occupancy alias.
 
 ## OPEN HYPOTHESES
 
 - CORE V0 may still couple loss of material to loss of morphology.
 - Sparse snapshots or tracker thresholds may erase rare fast-turnover lineages.
 - Density preference and orbital interactions may shift the joint P/M distribution if CORE V0 remains negative.
+- A preregistered intervention that displaces a detected organization relative to its former spatial site, compared with an exact sham, may reject stationary occupancy without using diagnostic IDs for association or physics.
 
 ## KNOWN MEASUREMENT RISKS
 
@@ -88,7 +93,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## NEXT ACTION
 
-Commit the frozen HOLDOUT-COREV0-20260710-004 protocol and updated EXP02 direct diagnostics, run 45 law/seed simulations from that clean SHA, apply the corrected candidate audit, and accept only `>=2/5` recurrence. Do not promote a survivor without an alias-rejecting intervention.
+Independently verify the HOLDOUT04 disposition, then freeze and implement the smallest sham-controlled dense-trajectory intervention for laws `{0,52}` that can reject stationary occupancy/look-alike flux. Validate intervention bookkeeping against no-op/sham/reference paths before execution; keep P and M separate and make no promotion from recurrence alone.
 
 ## DO NOT RESURRECT
 
