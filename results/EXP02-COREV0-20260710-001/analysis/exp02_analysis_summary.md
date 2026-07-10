@@ -7,6 +7,7 @@
 - Initial-probe rows: 10302; clean-long rows: 2400.
 - Frozen cross-cadence rule: 94 endpoints in 78 law/seed pairs.
 - Laws qualifying in at least two of three screening seeds: `[0, 12, 35, 52, 73, 94, 209, 225, 298]`.
+- Direct descriptor/material/centroid/association diagnostics cover 47 cadence rows for those laws; P/M recomputation is exact and zero rows reject the static-occupancy/look-alike alias.
 - Parent float-tau fragmentation detected: True (7280 logical groups affected); this analysis uses integer step deltas and preserves the parent artefact unchanged.
 - Horizon-censored tracks: 10101/86573; simulations with a final entity: 899/900.
 - Row-weighted probe fraction: 0.015880013564756296; equal-run mean: 0.021255479220088542.

@@ -1,6 +1,6 @@
 {
   "analysis": "EXP02 chunk-aware distribution and frozen candidate audit",
-  "analysis_git_commit": "a2f536f9f4f2481a0f147954ba78e2017be3b6a5",
+  "analysis_git_commit": "c8bdb7683422e3af6c26f7eeda69772993fd5d44",
   "analysis_git_scope_clean": true,
   "candidate_rule": "P>0.8,M<0.5; each cadence track>=8 observations and never complex; same step endpoints under >=2 cadences; law eligible in >=2/3 seeds",
   "grouping_correction": {
@@ -9,8 +9,10 @@
   },
   "output_sha256": {
     "cross_cadence_candidate_rows.csv": "6f754301d2bf5aec93fe31d6beca8f6da8f19ff3fd2b929c4f505df95a53d85a",
-    "exp02_analysis_summary.json": "3674bc0b0c383905a3517de5f16e047dc699b74b27496782bc76d2dd68993c98",
-    "exp02_analysis_summary.md": "1ec294f1f0cc22868e6294cef007552a08266556fcbcf646b2e87c24f34bc4a7",
+    "eligible_candidate_direct_by_law.csv": "738598baa60169811f68ea18c9dc00a18a2c465f3d2e12cbe90ba8007105346f",
+    "eligible_candidate_direct_diagnostics.csv": "4df7ae87870e28fe8751b8092bda6c7bd8dd5cd5489e863cb1f4dda1bd8a7989",
+    "exp02_analysis_summary.json": "795c94ed0714f6657bc6b5af812967f8d5e8fce6048f0f8947fd87f57ce0ed5a",
+    "exp02_analysis_summary.md": "eb6b95d72fde74b90c7feacd0dbe644e9570f3eb885c20a5b31c0196e6b11111",
     "law_parameter_correlations.csv": "41d70f434053595ff60603d5db108cc76eeb5646c2305ceca7ecdfa4f8b6c4ba",
     "law_probe_fraction.png": "f711378b3a5f3ddcdd38a6aabaed600e123d95184cb03955a96146070fd8462f",
     "law_screening.csv": "57c6b3eee8ae7e8309a55b0f1b6dd4c17c4fabe495a0157eb1bbcde835bb1ef2",
@@ -25,8 +27,10 @@
   },
   "output_sizes": {
     "cross_cadence_candidate_rows.csv": 23486,
-    "exp02_analysis_summary.json": 3438,
-    "exp02_analysis_summary.md": 1578,
+    "eligible_candidate_direct_by_law.csv": 1593,
+    "eligible_candidate_direct_diagnostics.csv": 18566,
+    "exp02_analysis_summary.json": 3928,
+    "exp02_analysis_summary.md": 1765,
     "law_parameter_correlations.csv": 4070,
     "law_probe_fraction.png": 81713,
     "law_screening.csv": 94450,
@@ -41,6 +45,8 @@
   },
   "outputs": [
     "cross_cadence_candidate_rows.csv",
+    "eligible_candidate_direct_by_law.csv",
+    "eligible_candidate_direct_diagnostics.csv",
     "exp02_analysis_summary.json",
     "exp02_analysis_summary.md",
     "law_parameter_correlations.csv",
@@ -60,5 +66,5 @@
   "parent_manifest_sha256": "f9572c61648d45bcdd26777bff684950e8b6d866dea21158e1eb3ad58829a7c9",
   "parent_raw_index_sha256": "8f2a6e5b18ae8365fc9831a81687a1c3d2c7a9d2e2885624cbc341e2885ec8de",
   "status": "COMPLETE",
-  "timestamp_utc": "2026-07-10T15:07:34.900205+00:00"
+  "timestamp_utc": "2026-07-10T15:13:13.513093+00:00"
 }

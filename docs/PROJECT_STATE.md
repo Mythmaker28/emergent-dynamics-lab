@@ -31,11 +31,11 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## ACTIVE EXPERIMENT
 
-`EXP02-COREV0-20260710-001` — COMPLETE and analyzed: 900/900 runs at launch SHA `6c59378`, chunk-aware analysis SHA `a2f536f`. Independent and primary calculations agree exactly on integrity, statistics, censoring, and nine eligible laws. Direct candidate diagnostics remain required before freezing the fresh-seed hold-out.
+`HOLDOUT-COREV0-20260710-004` — preregistered before execution for all nine EXP02-eligible laws on five unseen seeds; 45 runs, unchanged `>=2/5` diagnostic recurrence gate.
 
 ## LAST COMPLETED EXPERIMENT
 
-`HOLDOUT-COREV0-20260710-003`: five unseen seeds for law 3; completed negative under the corrected frozen gate (one qualifying seed, required at least two).
+`EXP02-COREV0-20260710-001`: 900/900 complete and analyzed; nine laws pass the frozen screening permission gate, all alias-unresolved.
 
 ## OBSERVED
 
@@ -61,6 +61,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 - Independent candidate audit finds exactly nine laws eligible in two of three screening seeds: `{0,12,35,52,73,94,209,225,298}`. None qualifies in all three; all retain sparse-alias/static-flux risk and none is promoted.
 - Independent statistical QA verified all 3,600 raw CSV hashes/sizes/row counts and found 10,101/86,573 tracks (11.67%) censored at time 12.
 - The parent `measurement_aggregates.csv` fragmented nominally equal float `tau` keys. Raw data are intact; D-013 requires a separate integer-step corrected aggregate and preserves the flawed parent file unchanged.
+- Direct diagnostics cover 47 cadence rows / 22 endpoints for the nine eligible laws: P and M recompute exactly, no compatible unselected edge is hidden, and zero rows reject static occupancy/look-alike alias.
 
 ## INFERRED
 
@@ -87,7 +88,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## NEXT ACTION
 
-Compute direct descriptor/centroid/material-turnover/association-edge diagnostics for all 199 cross-cadence rows of the nine eligible laws, without inventing a post-hoc exclusion threshold. If source integrity remains green, freeze a five-unseen-seed hold-out for all nine laws under the unchanged gate; any survivor remains alias-unresolved pending intervention.
+Commit the frozen HOLDOUT-COREV0-20260710-004 protocol and updated EXP02 direct diagnostics, run 45 law/seed simulations from that clean SHA, apply the corrected candidate audit, and accept only `>=2/5` recurrence. Do not promote a survivor without an alias-rejecting intervention.
 
 ## DO NOT RESURRECT
 
