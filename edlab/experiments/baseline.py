@@ -72,7 +72,9 @@ class BaselineConfig:
         return data
 
 
-_PRIMES = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53)
+_PRIMES = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67)
+# NOTE: appended 59,61,67 (2026-07-10) so EXP03-C can request 19 Halton dims. Additive only:
+# law_from_halton and EXP03-A/B use <=16 primes, so all prior law generation is byte-identical.
 
 
 def _radical_inverse(index: int, base: int) -> float:
