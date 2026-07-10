@@ -166,3 +166,37 @@ class TrackerSpec:
 
     def as_dict(self) -> dict[str, Any]:
         return asdict(self)
+
+
+@dataclass(frozen=True)
+class DensityPreferenceSpec:
+    """Isolated EXP03-A mechanism: homeostatic force toward a comfortable local density.
+
+    A particle measures a soft local neighbor count (density proxy) within ``density_radius`` and feels a force
+    along the direction of its local neighbor mass, signed by (comfortable_density - local_density): below the
+    comfortable density it is drawn toward neighbors, above it is pushed away. This is a many-body, type-agnostic
+    homeostatic term that a pairwise type-interaction cannot represent. ``density_strength = 0`` is the NEUTRAL
+    LIMIT and reduces exactly to CORE V0.
+    """
+
+    density_strength: float = 0.0
+    comfortable_density: float = 1.0
+    density_radius: float = 0.2
+
+    def __post_init__(self) -> None:
+        for value in (self.density_strength, self.comfortable_density, self.density_radius):
+            if not math.isfinite(value):
+                raise ValueError("DensityPreferenceSpec values must be finite")
+        if self.density_strength < 0:
+            raise ValueError("density_strength must be non-negative (0 = neutral CORE V0 limit)")
+        if self.comfortable_density < 0:
+            raise ValueError("comfortable_density must be non-negative")
+        if self.density_radius <= 0:
+            raise ValueError("density_radius must be positive")
+
+    @property
+    def is_neutral(self) -> bool:
+        return self.density_strength == 0.0
+
+    def as_dict(self) -> dict[str, Any]:
+        return asdict(self)
