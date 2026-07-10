@@ -143,3 +143,24 @@ more conservative and matches the frozen preregistration, in the spirit of D-010
 
 **Falsification:** the corrected harness must still pass every validation gate (sham==control bit-for-bit,
 conservation, off-site displacement, IDs-not-in-physics, determinism, HOLDOUT04 reproduction): 46/46 tests pass.
+
+## D-017 — Close CORE V0 survivors {0,52} after alias-intervention (CASE A); advance to EXP03-A
+
+**Date:** 2026-07-10 (RUN-20260710-1801-ALIASINT-FABLE5, Fable 5)
+
+**Decision:** ALIAS-INTERVENTION-COREV0-20260710-001 executed the frozen same-state matched-branch displacement
+test on fresh causal seeds 5001-5040 per law. Enrolled 5 (law 0) and 9 (law 52) first-eligible-endpoint units;
+all sham branches equalled control bit-for-bit; no non-informative or catastrophic interventions. Genuine
+constituent-turnover individuality (displaced candidate re-establishes at the new site, exceeds a displaced
+non-candidate placebo, old site does not regenerate, material retention below the turnover threshold) occurred in
+0/5 and 0/9 units. Three law-52 units re-established only as rigid cohesive clusters (M~1.0, no turnover) and did
+not reach the majority bar. Per the frozen decision rule this is CASE A: close laws 0 and 52 as CORE V0
+candidates and proceed to EXP03-A.
+
+**Reason:** The stationary-occupancy / sparse look-alike alias is not rejected across a majority of enrolled fresh
+seeds. High P under low M in CORE V0 is not shown to reflect constituent-carried dynamical individuality. No
+threshold was lowered; a negative result stays negative.
+
+**Falsification / reopen:** A CORE V0 law whose displaced candidate re-establishes with genuine turnover,
+exceeding placebo, no old-site regeneration, clean alias audit, across a majority of fresh seeds, would reopen
+the question. None observed.

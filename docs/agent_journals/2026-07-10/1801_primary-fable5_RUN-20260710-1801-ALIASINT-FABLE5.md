@@ -99,3 +99,70 @@ LAW 0 / LAW 52 -> frozen causal protocol -> same-state matched branches (CONTROL
 ## UNRESOLVED RISKS / HANDOFF / ENDING GIT STATE
 
 In progress.
+
+---
+
+## EXECUTION + DECISION (appended at run completion)
+
+### OBSERVED (causal execution)
+
+- Froze protocol `docs/experiments/ALIAS_INTERVENTION_COREV0_01_PROTOCOL.md` at **baf1fca**; validated harness
+  (46/46 tests incl. sham==control bit-for-bit, conservation, off-site displacement, IDs-not-in-physics,
+  determinism, HOLDOUT04 reproduction). PASS A + PASS B audits (Fable 5) applied pre-freeze.
+- Self-review of the FIRST results found two readout bugs (placebo followed the candidate not the displaced
+  clump; consecutive-from-start metric fragile). Corrected as **D-016** (harness **b00322d**) BEFORE committing
+  any result; re-ran. Both buggy and corrected reasoning documented; no committed artefact invalidated.
+- Executed fresh causal seeds 5001-5040/law (unseen). Enrolled first-eligible-endpoint units: law 0 = 5,
+  law 52 = 9; 66 censored (recorded). Two seed-halves (identical union), deterministic, assembled to
+  `results/ALIAS-INTERVENTION-COREV0-20260710-001/` (manifest + sha256 + figure verified programmatically:
+  valid PNG 1200x1950, non-degenerate, multi-colour).
+- sham==control bit-for-bit in all 14 units. No non-informative (F4), no catastrophic (F5).
+- Genuine turnover-individuality (displaced candidate re-establishes at new site, exceeds displaced-placebo,
+  old site does not regenerate, M below turnover threshold): **0/5 (law 0), 0/9 (law 52)**. Three law-52 units
+  re-establish only as rigid cohesive clusters (M~1.0, no turnover) and do not reach the majority bar. Law 0
+  seed 5004 shows the occupancy signature (old site regenerates from turnover; displaced constituents do not).
+
+### INFERRED
+
+- CORE V0 high-P/low-M for survivors {0,52} is not shown to be constituent-carried individuality; the
+  stationary-occupancy / look-alike alias is NOT rejected at majority. Where a displaced candidate persists, it
+  is a trivially bound cohesive cluster (translation-covariance), not turnover-individuality.
+
+### DECISION — CASE A (D-017)
+
+Close laws 0 and 52 as CORE V0 candidates. Proceed to EXP03-A (CORE + density preference). No threshold lowered.
+
+### WHAT WOULD FALSIFY THIS?
+
+A CORE V0 law whose displaced candidate re-establishes with genuine turnover, exceeding placebo, no old-site
+regeneration, clean alias audit, across a majority of fresh seeds. None observed.
+
+### FABLE 5 AUDIT
+
+PASS A (enrollment/tracker) and PASS B (intervention/sham): see `1820_fable5-audit-passA_*` and
+`1828_fable5-audit-passB_*`. Both converged: decision must be comparative vs PLACEBO; primary carrier readout is
+tracker-independent; scope is occupancy/look-alike rejection, not internal self-repair. No Opus 4.8; no subagents.
+
+### MODEL USED
+
+primary claude-fable-5; remained on Fable 5: yes; model switch: no; Opus 4.8 used: no; subagents: none.
+
+### RUNTIME LOCK / SCHEDULED TASK
+
+Lock transferred from orphaned RUN-20260710-1609-EXP02REC to this run (verified committed checkpoint). The mount
+forbids unlink until cowork deletion enabled. No Cowork-side emergent-dynamics scheduled task exists (only an
+unrelated one-time `cashline-go-nogo-12juillet`); the project's 30-min heartbeat is a Codex-side native task not
+visible/controllable from this environment — no duplicate created; model-lock note to be surfaced to the user.
+
+### HANDOFF / NEXT AUTHORIZED ACTION
+
+Design and preregister the **EXP03-A** protocol (CORE V0 + density preference only; mutation/type-transition/
+recycling OFF), reusing frozen observers, nulls, tracker audits, P/M separation; no composite score. Screen, and
+if a predefined signal appears, apply the same fresh-seed hold-out + alias-intervention discipline. Release this
+run's lock after commit/checkpoint. Push is pending remote auth (unavailable in this environment).
+
+### ENDING GIT STATE
+
+HEAD after freeze commit baf1fca and correction b00322d; results/decision/index commit to follow. origin/main not
+updated (no push auth here); all work committed locally. Working tree: only benign CRLF result-file churn remains
+uncommitted (verified identical content).

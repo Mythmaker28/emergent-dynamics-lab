@@ -14,7 +14,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## VALIDATED COMPONENTS
 
-- Repaired implementation plus the local EXP02 shard writer and direct candidate diagnostics: 38 tests pass.
+- Repaired implementation plus EXP02 shard writer, direct candidate diagnostics, and the alias-intervention harness: 46 tests pass.
 - Deterministic engine and multi-step diagnostic-ID permutation fixture.
 - Scalar and independent vectorized force paths on 32 controlled worlds.
 - Periodic detector, ID/order/translation-invariant phenotype fixtures.
@@ -31,11 +31,11 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## ACTIVE EXPERIMENT
 
-`ALIAS-INTERVENTION-COREV0-20260710-001` — design stage only for the frozen HOLDOUT04 survivors `{0,52}`. No intervention run is authorized until a sham-controlled, alias-rejecting protocol and its implementation tests are frozen on a clean SHA.
+`EXP03-A` (CORE V0 + density preference) — NEXT AUTHORIZED. `ALIAS-INTERVENTION-COREV0-20260710-001` is COMPLETE (CASE A): the frozen same-state matched-branch displacement test closed CORE V0 survivors `{0,52}`; neither shows constituent-turnover individuality across a majority of fresh seeds and the occupancy/look-alike alias is not rejected.
 
 ## LAST COMPLETED EXPERIMENT
 
-`HOLDOUT-COREV0-20260710-004`: 45/45 complete under the frozen five-seed gate. Laws `{0,52}` recur in exactly two of five fresh seeds each; all other laws fail. Both survivors remain diagnostic and alias-unresolved.
+`ALIAS-INTERVENTION-COREV0-20260710-001`: same-state matched branches (CONTROL/SHAM/PERTURBED/PLACEBO) on fresh seeds 5001-5040. Enrolled 5 (law 0) + 9 (law 52) first-eligible-endpoint units; sham==control bit-for-bit in all; 0/5 and 0/9 genuine turnover-individuality; CASE A close. Preceding: HOLDOUT-COREV0-20260710-004 (45/45; survivors `{0,52}` at 2/5 each).
 
 ## OBSERVED
 
@@ -65,6 +65,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 - HOLDOUT04 executed all 45 preregistered law/seed runs from clean SHA `d9d9a52`: 41,889 measurement rows, descriptive `r(P,M)=0.698846`, 502 unchanged-probe rows, 140 whole-track-clean long rows, and 10 same-endpoint cross-cadence endpoints.
 - Under the unchanged `>=2/5` fresh-seed gate, law 0 qualifies in seeds `{3002,3004}` and law 52 in `{3001,3003}`. Laws `{12,35,73,94,209,225,298}` fail and are not replaced.
 - Every HOLDOUT04 probe and survivor retains unresolved static-flux/sparse-look-alike alias risk. The hold-out count is not an event-probability estimate and is not scientific promotion.
+- ALIAS-INTERVENTION (frozen protocol @baf1fca, harness @b00322d): rigid off-site displacement of the candidate constituents, matched CONTROL/SHAM/PERTURBED/PLACEBO from an identical pre-intervention state. Enrolled units law0=5/40, law52=9/40 (rest censored). sham==control bit-for-bit everywhere; no F4/F5. Genuine turnover-individuality 0/5 and 0/9; three law-52 units re-establish only as rigid cohesive clusters (M~1.0, no turnover). Occupancy/look-alike NOT rejected at majority; CORE V0 survivors closed (CASE A, D-017).
 
 ## INFERRED
 
@@ -93,7 +94,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## NEXT ACTION
 
-Independently verify the HOLDOUT04 disposition, then freeze and implement the smallest sham-controlled dense-trajectory intervention for laws `{0,52}` that can reject stationary occupancy/look-alike flux. Validate intervention bookkeeping against no-op/sham/reference paths before execution; keep P and M separate and make no promotion from recurrence alone.
+Begin EXP03-A: CORE V0 + density preference only (mutation/type-transition/recycling OFF). Reuse the frozen observers, nulls, tracker audits, and P/M separation; no composite score; no post-hoc threshold change. Design and preregister the EXP03-A protocol and screening before any run, then screen and, if a predefined signal appears, apply the same fresh-seed hold-out and alias-intervention discipline used for CORE V0.
 
 ## DO NOT RESURRECT
 
