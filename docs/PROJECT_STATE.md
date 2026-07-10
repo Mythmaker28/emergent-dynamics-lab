@@ -31,7 +31,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## ACTIVE EXPERIMENT
 
-`EXP02-COREV0-20260710-001` — raw/base batch COMPLETE at launch SHA `6c59378`: 900/900 runs. Independent integrity, statistical, and frozen candidate-rule audits pass with required caveats; chunk-aware committed analysis is being generated before any hold-out protocol.
+`EXP02-COREV0-20260710-001` — COMPLETE and analyzed: 900/900 runs at launch SHA `6c59378`, chunk-aware analysis SHA `a2f536f`. Independent and primary calculations agree exactly on integrity, statistics, censoring, and nine eligible laws. Direct candidate diagnostics remain required before freezing the fresh-seed hold-out.
 
 ## LAST COMPLETED EXPERIMENT
 
@@ -87,7 +87,7 @@ Periodic 2D Particle Dynamics / Particle Life-like dynamics.
 
 ## NEXT ACTION
 
-Commit the chunk-aware analysis and D-013 correction, run it from a clean analysis SHA, and require exact agreement with both independent audits. Then directly inspect the nine eligible laws' descriptors/association edges/static-occupancy alternatives and freeze unseen hold-out seeds only for candidates that survive that audit.
+Compute direct descriptor/centroid/material-turnover/association-edge diagnostics for all 199 cross-cadence rows of the nine eligible laws, without inventing a post-hoc exclusion threshold. If source integrity remains green, freeze a five-unseen-seed hold-out for all nine laws under the unchanged gate; any survivor remains alias-unresolved pending intervention.
 
 ## DO NOT RESURRECT
 

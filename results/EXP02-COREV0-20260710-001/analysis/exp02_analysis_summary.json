@@ -1,0 +1,112 @@
+{
+  "analysis_git_commit": "a2f536f9f4f2481a0f147954ba78e2017be3b6a5",
+  "analysis_git_scope_clean": true,
+  "correlation_p_m_descriptive_only": 0.7315812256812678,
+  "expected_screening_seeds": [
+    2001,
+    2002,
+    2003
+  ],
+  "initial_probe": {
+    "all_rows_retain_unresolved_sparse_alias_risk": true,
+    "clean_long_rows": 2400,
+    "cross_cadence_endpoints": 94,
+    "cross_cadence_rows": 199,
+    "definition": "P > 0.8 and M < 0.5; not an identity definition",
+    "eligible_law_count": 9,
+    "eligible_laws_min_two_of_three_seeds": [
+      0,
+      12,
+      35,
+      52,
+      73,
+      94,
+      209,
+      225,
+      298
+    ],
+    "interval_flag_clean_rows": 7186,
+    "law_seed_pairs": 78,
+    "laws_with_any_qualifying_seed": 69,
+    "raw_rows": 10302
+  },
+  "integrity": {
+    "canonical_nonempty_run_cadence_lag_groups": 7487,
+    "corrected_grouping": "integer step_delta and lag_snapshots",
+    "fragmented_parent_logical_groups": 7280,
+    "non_finite_measurement_rows": 0,
+    "parent_aggregate_rows": 36937,
+    "parent_aggregate_tau_fragmentation_detected": true,
+    "parent_status": "COMPLETE",
+    "raw_row_counts": {
+      "association_edges.csv": 1742852,
+      "entity_observations.csv": 369483,
+      "lineage_events.csv": 456754,
+      "measurements.csv": 648740
+    },
+    "runs": 900
+  },
+  "lifecycle_accounting": {
+    "births_minus_disappearances": 10101,
+    "horizon_tracks": 10101,
+    "identity_closes": true,
+    "tracks": 86573
+  },
+  "lineage_event_counts": {
+    "ambiguous_association": 873,
+    "birth": 86573,
+    "continuity": 282910,
+    "disappearance": 76472,
+    "merge": 6072,
+    "split": 3854
+  },
+  "m_equal_one_fraction": 0.5340012948176465,
+  "m_equal_zero_fraction": 0.005917624934488393,
+  "m_mean": 0.825062984240146,
+  "m_quantiles": {
+    "q01": 0.08571428571428572,
+    "q05": 0.29411764705882354,
+    "q25": 0.6666666666666666,
+    "q50": 1.0,
+    "q75": 1.0,
+    "q95": 1.0,
+    "q99": 1.0
+  },
+  "measurements": 648740,
+  "p_mean": 0.8445416208552944,
+  "p_quantiles": {
+    "q01": 0.4685299585086983,
+    "q05": 0.5968434128831276,
+    "q25": 0.7704628589816475,
+    "q50": 0.8716845292146558,
+    "q75": 0.9480679169332026,
+    "q95": 0.9951077231223776,
+    "q99": 0.9994718389175792
+  },
+  "parent_experiment_id": "EXP02-COREV0-20260710-001",
+  "parent_git_commit": "6c593780ab33326fd0957f73bb885bfe1c15ab84",
+  "pareto_frontier_rows": 9,
+  "pseudoreplication_diagnostics": {
+    "equal_run_mean_probe_fraction": 0.021255479220088542,
+    "row_weighted_probe_fraction": 0.015880013564756296,
+    "run_measurement_rows_max": 2026,
+    "run_measurement_rows_median": 644.5,
+    "run_measurement_rows_min": 138,
+    "run_row_count_probe_fraction_correlation": -0.42418230897281856
+  },
+  "right_censoring": {
+    "horizon_measurement_windows": 18985,
+    "horizon_probe_rows": 228,
+    "horizon_step": 600,
+    "horizon_time": 12.0,
+    "horizon_track_fraction": 0.11667609993877999,
+    "horizon_tracks": 10101,
+    "median_horizon_track_span_time": 3.6,
+    "median_track_span_time": 0.2,
+    "simulations": 900,
+    "simulations_with_final_entity": 899,
+    "total_tracks": 86573
+  },
+  "right_censoring_warning": "Absence by simulated time 12 is right-censored, not proof of impossibility.",
+  "statistical_warning": "Measurement rows repeat tracks, overlapping windows, cadences, and lags; counts/correlations are descriptive and not independent evidence."
+}

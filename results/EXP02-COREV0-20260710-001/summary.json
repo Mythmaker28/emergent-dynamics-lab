@@ -1,0 +1,93 @@
+{
+  "correlation_p_m_descriptive_only": 0.7315812256812778,
+  "disk_preflight": {
+    "assumed_bytes_per_remaining_run": 4194304,
+    "finalization_headroom_bytes": 536870912,
+    "free_bytes_at_preflight": 165992230912,
+    "remaining_runs_at_preflight": 900,
+    "required_free_bytes": 4311744512
+  },
+  "experiment_id": "EXP02-COREV0-20260710-001",
+  "force_validation": {
+    "absolute_tolerance": 1e-12,
+    "fixtures": 32,
+    "max_absolute_error": 0.0,
+    "max_one_step_absolute_error": 0.0,
+    "max_one_step_scaled_error": 0.0,
+    "max_scaled_error": 0.0,
+    "passed": true,
+    "relative_tolerance": 1e-10
+  },
+  "git_commit": "6c593780ab33326fd0957f73bb885bfe1c15ab84",
+  "initial_probe": {
+    "all_rows_retain_unresolved_sparse_alias_risk": true,
+    "definition": "P > 0.8 and M < 0.5",
+    "lineage_resolved_count": 7186,
+    "raw_count": 10302
+  },
+  "lineage_event_counts": {
+    "ambiguous_association": 873,
+    "birth": 86573,
+    "continuity": 282910,
+    "disappearance": 76472,
+    "merge": 6072,
+    "split": 3854
+  },
+  "m_max": 1.0,
+  "m_min": 0.0,
+  "measurement_rows": 648740,
+  "measurements_by_cadence": {
+    "10": 488004,
+    "30": 117799,
+    "60": 42937
+  },
+  "null_models": [
+    {
+      "detail": "maximum physical-array difference after 20 steps: 0",
+      "material_retention": null,
+      "name": "ID_PERMUTATION",
+      "passed": true,
+      "phenotype_continuity": null
+    },
+    {
+      "detail": "same_lineage=True; this is an expected probe-positive null, not evidence of dynamical individuality",
+      "material_retention": 0.0,
+      "name": "STATIC_MOTIF_WITH_MATERIAL_FLUX",
+      "passed": true,
+      "phenotype_continuity": 1.0
+    },
+    {
+      "detail": "{\"cadence=10,distance_scale=0.8,size_ratio=0.2\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=10,distance_scale=0.8,size_ratio=0.25\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=10,distance_scale=0.8,size_ratio=0.3\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=10,distance_scale=1.0,size_ratio=0.2\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=10,distance_scale=1.0,size_ratio=0.25\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=10,distance_scale=1.0,size_ratio=0.3\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=10,distance_scale=1.2,size_ratio=0.2\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=10,distance_scale=1.2,size_ratio=0.25\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=10,distance_scale=1.2,size_ratio=0.3\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=30,distance_scale=0.8,size_ratio=0.2\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=30,distance_scale=0.8,size_ratio=0.25\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=30,distance_scale=0.8,size_ratio=0.3\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=30,distance_scale=1.0,size_ratio=0.2\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=30,distance_scale=1.0,size_ratio=0.25\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=30,distance_scale=1.0,size_ratio=0.3\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=30,distance_scale=1.2,size_ratio=0.2\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=30,distance_scale=1.2,size_ratio=0.25\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=30,distance_scale=1.2,size_ratio=0.3\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=60,distance_scale=0.8,size_ratio=0.2\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=60,distance_scale=0.8,size_ratio=0.25\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=60,distance_scale=0.8,size_ratio=0.3\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=60,distance_scale=1.0,size_ratio=0.2\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=60,distance_scale=1.0,size_ratio=0.25\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=60,distance_scale=1.0,size_ratio=0.3\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=60,distance_scale=1.2,size_ratio=0.2\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=60,distance_scale=1.2,size_ratio=0.25\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"cadence=60,distance_scale=1.2,size_ratio=0.3\": {\"endpoint_m\": 0.0, \"endpoint_p\": 1.0, \"passed\": true, \"tracks\": 1}, \"detector_radius_scale=0.8,detector_min_size=3\": {\"entities\": 1, \"passed\": true}, \"detector_radius_scale=0.8,detector_min_size=4\": {\"entities\": 1, \"passed\": true}, \"detector_radius_scale=0.8,detector_min_size=5\": {\"entities\": 1, \"passed\": true}, \"detector_radius_scale=1.0,detector_min_size=3\": {\"entities\": 1, \"passed\": true}, \"detector_radius_scale=1.0,detector_min_size=4\": {\"entities\": 1, \"passed\": true}, \"detector_radius_scale=1.0,detector_min_size=5\": {\"entities\": 1, \"passed\": true}, \"detector_radius_scale=1.2,detector_min_size=3\": {\"entities\": 1, \"passed\": true}, \"detector_radius_scale=1.2,detector_min_size=4\": {\"entities\": 1, \"passed\": true}, \"detector_radius_scale=1.2,detector_min_size=5\": {\"entities\": 1, \"passed\": true}}",
+      "material_retention": 0.0,
+      "name": "TRACKER_CADENCE_SENSITIVITY",
+      "passed": true,
+      "phenotype_continuity": 1.0
+    },
+    {
+      "detail": "expected unresolved observational alias: occupancy tracks persist with P=1/M=0 and no competing spatial edge; hold-out cannot by itself reject this null",
+      "material_retention": 0.0,
+      "name": "SPARSE_LOOKALIKE_ALIAS",
+      "passed": true,
+      "phenotype_continuity": 1.0
+    }
+  ],
+  "p_max": 0.999994945594525,
+  "p_min": 0.014542551540068933,
+  "raw_row_counts": {
+    "association_edges.csv": 1742852,
+    "entity_observations.csv": 369483,
+    "lineage_events.csv": 456754,
+    "measurements.csv": 648740
+  },
+  "raw_storage": "local ignored per-run shards; committed checksums/index",
+  "recovery": {
+    "events_this_invocation": 0,
+    "events_total": 0,
+    "log_relative_path": null,
+    "log_sha256": null,
+    "log_size": 0
+  },
+  "reservoir_size": 100000,
+  "runs": 900,
+  "statistical_warning": "Rows are repeated windows, not independent replicates."
+}
