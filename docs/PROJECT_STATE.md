@@ -14,7 +14,7 @@ Flow-Lenia (mass-conservative continuous CA) for the persistent-individuality qu
 
 ## VALIDATED COMPONENTS
 
-- Repaired implementation plus EXP02 shard writer, alias-intervention harness, EXP03-A/B/C, EXP-REF-01, the Flow-Lenia core + field stack, and the EXP-FL-01 blind screen: 101 tests pass.
+- Repaired implementation plus EXP02, alias-intervention, EXP03-A/B/C, EXP-REF-01, the Flow-Lenia core + field stack, EXP-FL-01 map #1/#2, and the tracer sensitivity check: 101 tests pass.
 - Deterministic engine and multi-step diagnostic-ID permutation fixture.
 - Scalar and independent vectorized force paths on 32 controlled worlds.
 - Periodic detector, ID/order/translation-invariant phenotype fixtures.
@@ -31,7 +31,7 @@ Flow-Lenia (mass-conservative continuous CA) for the persistent-individuality qu
 
 ## ACTIVE EXPERIMENT
 
-**EXP-FL-01 map #2 (wider/refined blind Flow-Lenia map)** — NEXT AUTHORIZED. EXP-FL-01 map #1 was SCREEN NEGATIVE (D-023): every sampled regime is a persistent static/cohesive blob (P=0.987) with no turnover (M=0.990), 0 permitted laws. EXP_FL_00 qualified the stack (D-022); Particle Dynamics retired (D-021). Next: pre-declare a wider/refined blind map (finer cohorts for M sensitivity + a flux-favouring parameter range) under the same protocol; no threshold relaxation. The full causal ladder is negative (D-017..D-020) AND the EXP-REF-01 measurement positive control PASSED (the frozen stack recognizes and separates a known persistent dissipative organization from static flux), so the negatives are substrate results, not measurement blindness. Kill-switch review: `docs/PARTICLE_DYNAMICS_KILL_SWITCH_REVIEW.md`. Next substrate proposal (Flow-Lenia candidate, not assumed): `docs/NEXT_SUBSTRATE_PROPOSAL.md`. Substrate NOT switched autonomously — awaiting user confirmation of the candidate.
+**Flow-Lenia material-throughput mechanism decision** — PENDING USER. EXP-FL-01 map #2 (720 blind flux-favouring runs) was SCREEN NEGATIVE (D-025): 720/720 persistent structures (P~0.99), min mean-M=0.933, 0%% of runs with M<0.8, 0 permitted. Tracer resolution verified adequate (D-024; not a metric artefact). Assessment: the minimal fixed-law mass-conservative Flow-Lenia core LACKS a material-throughput mechanism. EXP_FL_00 qualified the stack (D-022); Particle Dynamics retired (D-021). Next (user decision): a mass-conservative single-law Flow-Lenia config WITH genuine material throughput (glider regeneration / open-flux), same falsifiable protocol; no metric relaxation. The full causal ladder is negative (D-017..D-020) AND the EXP-REF-01 measurement positive control PASSED (the frozen stack recognizes and separates a known persistent dissipative organization from static flux), so the negatives are substrate results, not measurement blindness. Kill-switch review: `docs/PARTICLE_DYNAMICS_KILL_SWITCH_REVIEW.md`. Next substrate proposal (Flow-Lenia candidate, not assumed): `docs/NEXT_SUBSTRATE_PROPOSAL.md`. Substrate NOT switched autonomously — awaiting user confirmation of the candidate.
 
 ## LAST COMPLETED EXPERIMENT
 
@@ -94,7 +94,7 @@ Flow-Lenia (mass-conservative continuous CA) for the persistent-individuality qu
 
 ## NEXT ACTION
 
-Pre-declare and commit EXP-FL-01 map #2: a wider/refined blind Flow-Lenia regime map with finer cohort granularity (M turnover sensitivity) and a parameter range favouring sustained mass flux (to leave the static-blob regime), sampled by low discrepancy, under the same frozen protocol and five evidence levels. Do NOT relax P/M thresholds, add a composite score, or select laws visually. If a law earns screening permission, apply the frozen fresh-seed hold-out -> direct alias audit -> same-state matched-branch causal intervention (displace a creature's mass off-site).
+USER DECISION: whether to extend Flow-Lenia with a mass-conservative, single-law MATERIAL-THROUGHPUT mechanism (e.g. a glider/traveling-structure regime with mass regeneration, or an explicit open-flux / balanced source-sink term) so that persistent structures can exchange constituents. If approved, preregister EXP_FL_02 under the same falsifiable protocol: qualified field stack, passive-tracer field M (G*=8), five evidence levels, frozen P/M thresholds, no composite, no visual selection; screen blind, and route any screening permission through fresh-seed hold-out -> alias audit -> same-state mass-displacement causal intervention. Do NOT relax the metric or add a composite to force a signal.
 
 
 ## MODEL NOTE (2026-07-10)

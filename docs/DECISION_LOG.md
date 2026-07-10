@@ -292,3 +292,24 @@ PARAMETER DOMAIN, not the tracer granularity.
 
 **Reason:** Prevents reactively lowering M to manufacture candidates; the metric resolution is validated against
 the known-turnover reference and shown specific on static regimes.
+
+## D-025 — EXP-FL-01 map #2 NEGATIVE (720 runs); minimal Flow-Lenia core lacks material throughput
+
+**Date:** 2026-07-10 (RUN-20260710-2130-EXPFL01M2). Model: claude-opus-4-8 (Fable 5 lock lifted by user).
+
+**Decision:** The preregistered wide blind map (protocol @79f0cbd; 240 laws x 3 seeds over a mechanistically
+flux-favouring domain -- flow_gain [0.8,2.5], concentration_theta [0.30,1.20], dt [0.20,0.60], wider kernel/growth
+vs map #1) yielded 0 screening-permitted laws. Persistent structures form in 720/720 runs (P median 0.99) but with
+essentially no constituent turnover: minimum mean field M across all runs = 0.933; 0.0% of runs have mean M < 0.8;
+mean |circulation| = 0.0003. Verified NOT a metric artefact (tracer G*=8 adequate and granularity-invariant, D-024)
+nor a map-size artefact (720 runs, wide domain). ASSESSMENT (not a metric change): the minimal fixed-law
+mass-conservative Flow-Lenia core lacks a material-throughput mechanism -- conserved mass advects as coherent,
+self-retaining lumps and does not pass constituents through persistent structures. EXP-FL-01 map #2 is SCREEN
+NEGATIVE. Authorized next step (user decision): a mass-conservative, single-law Flow-Lenia configuration that
+introduces genuine material throughput (glider/traveling-structure regime with mass regeneration, or an explicit
+open-flux / balanced source-sink term), preregistered under the same falsifiable protocol, same passive-tracer M,
+qualified stack, and same-state causal intervention. No metric relaxation; no composite; no visual selection.
+
+**Reason:** F1/F2 confirmed at scale; the observed persistence is rigid mass-lump persistence, not turnover-
+individuality; the limiting factor is a missing throughput mechanism, established by quantification rather than by
+loosening the measure.
