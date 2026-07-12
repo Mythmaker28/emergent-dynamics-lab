@@ -420,3 +420,32 @@ identically-shaped screen (24 permitted vs 0 control) died under replication (D-
 including the imposed-pattern/occupancy check -> same-state CONTROL/SHAM/PERTURBED/PLACEBO causal intervention WITH
 the continued-turnover requirement -> observer (cadence/tracker) sensitivity -> adversarial re-audit; explicit
 denominators, censored seeds, effect sizes, Wilson CIs. No threshold changes, no composite, no visual selection.
+
+## D-031 — EXP-RD-02 NEGATIVE: no audited individuality survives the frozen chain in the open RD substrate
+
+**Date:** 2026-07-11 (RUN-20260711-0000-EXPRD02). Model: claude-opus-4-8 (Fable 5 lock lifted by user).
+
+**Decision:** The nine EXP-RD-01 screening-permitted laws {1,5,7,10,11,13,14,16,19} were FROZEN (no ranking,
+replacement or visual selection) and run through the frozen chain. **Level 3 fresh-seed hold-out: 9/9 SURVIVE**
+(seven at 5/5) -- the screening signal recurs robustly on unseen seeds. **Level 4 alias audit:** 0/8
+dissolution/reformation, but laws 5, 11, 14 are stationary (occupancy-suspect), law 11 shows heavy fragmentation
+(27 splits, 20 ambiguous), law 13 has no eligible clean-long track. **Level 5 causal intervention** (9 laws x 10
+UNSEEN causal seeds = 90 units; CONTROL/SHAM/PERTURBED/PLACEBO from identical states; SHAM == CONTROL bit-for-bit
+in every unit; denominator N_POST = 15): **AUDITED 6/90 = 6.7% [Wilson 95% CI 3.1%, 13.8%]**, 0 censored;
+**destroyed = 75/90 (83%)**, placebo_failure 6, occupancy_alias 3, frozen_lump 0. **Preregistered observer
+sensitivity: 0/6 audited units survive** (all fail cadence; all survive both tracker perturbations) -> all six are
+withdrawn as observer artefacts. **NET: 0 audited successes survive.**
+
+**EXP-RD-02 is NEGATIVE. Nothing is promoted.** Displacing an open-RD dissipative structure destroys it in 83% of
+units: the organization is maintained by its LOCATION in the chemical field, not carried by its material. The
+Flow-Lenia frozen-lump failure did not recur (0 frozen lumps) because these structures do not survive displacement
+at all. This run is the project's clearest demonstration that Level 3 (recurrence: 9/9) and Level 5 (causal
+re-establishment: 0) are genuinely different levels.
+
+**Self-flagged method weakness (not used as a rescue):** my cadence perturbation also shifts the enrollment time
+(t* = WARMUP_SNAP * cadence), conflating observer and enrollment changes; all 6 units survive the PURE tracker
+perturbations. The remedy is a future pre-declared sensitivity that perturbs the observer WITHOUT moving the
+enrollment point. It does not change this verdict: the 6/90 base rate, the 83% destruction rate and the
+placebo/occupancy failures already fail to support a claim.
+
+No thresholds, composites, mechanisms or laws were changed.
