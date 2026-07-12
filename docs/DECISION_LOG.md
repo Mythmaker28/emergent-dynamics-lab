@@ -582,3 +582,24 @@ already-negative or non-promoted status.
 
 **Next:** motile open-system substrate (docs/NEXT_SUBSTRATE_MOTILE_PROPOSAL.md), whose qualification gate includes
 the scrambled-cargo null from day one.
+
+## D-036 — Gray-Scott formally retired; causal methodology generalized (R1–R6); EXP-MO-00 authorized
+
+**Date:** 2026-07-12
+**Status:** ACCEPTED (D-035 accepted in full)
+
+**Classical Gray-Scott is formally RETIRED for the current question and tested domain** (open Gray-Scott, spot/
+labyrinth regimes, the 24-law Halton domain F∈[0.010,0.060], k∈[0.040,0.070], Du∈[0.10,0.20], Dv∈[0.04,0.10]).
+The retirement is scoped: it is a statement about this substrate on this question, not a universal claim.
+**The previously negative substrates (Particle Dynamics D-021, Flow-Lenia D-027) are NOT rerun.**
+
+**Causal methodology generalized — binding on all future substrates** (`docs/CAUSAL_METHODOLOGY.md`):
+R1 never pool qualitatively unequal null arms; report each separately. R2 a null incapable of producing the measured
+outcome carries no eliminative weight and may not enter a decision rule. R3 the decisive null is the
+organization-destroying (scrambled-cargo) null; it is mandatory and the primary statistic is the paired
+intact-vs-scrambled comparison. R4 **GATE-0** — organization must be load-bearing — precedes every law search.
+R5 every intervention carries executable assertions that it changed its intended variable. R6 observer sensitivity
+is offline, at fixed physics and fixed `t*`.
+
+**EXP-MO-00 authorized:** minimal genuinely open **motile polar-field** substrate. GATE-0 first. No blind law map
+may begin unless GATE-0 passes. If GATE-0 fails, the substrate is retired immediately — no rescue mechanisms.
