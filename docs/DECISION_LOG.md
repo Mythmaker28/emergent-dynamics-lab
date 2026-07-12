@@ -400,3 +400,23 @@ The full open-RD qualification re-passes 12/12 with the new tracer.
 
 **Consequence:** the tracer is FROZEN at (8 spatial, 8 temporal, tau=250). EXP-RD-01 (blind matched OPEN vs exact
 CLOSED map) is authorized.
+
+## D-030 — EXP-RD-01 blind map: 9 OPEN screening-permitted laws, 0 in the exact CLOSED limit (NOT candidates)
+
+**Date:** 2026-07-10 (RUN-20260710-2345-EXPRD00B continuation). Model: claude-opus-4-8 (lock lifted).
+
+**Decision:** The preregistered blind matched map (protocol @b3badb8; 24 Halton laws over F,k,Du,Dv x 3 seeds x
+{CLOSED = exact limit F=k=0, OPEN}; frozen temporal-feed-cohort tracer, frozen P/M and thresholds) gives:
+CLOSED mean M 0.990, 0 probe rows, **0 permitted laws**; OPEN mean M 0.381, median min-M 0.009, 8629 probe rows,
+**9 permitted laws** {1,5,7,10,11,13,14,16,19}, production 6.4x CLOSED. Openness reaches the continued-turnover
+regime the exact closed limit cannot.
+
+**NOTHING IS PROMOTED.** Screening permission is not a candidate. The Flow-Lenia precedent is explicit: an
+identically-shaped screen (24 permitted vs 0 control) died under replication (D-027: 2/46 audited on unseen seeds,
+65% frozen lumps, last two cadence artefacts). Live falsifier here: OPEN shows ~3x the track count of CLOSED
+(21.3 vs 6.7) -> fragmentation/churn; imposed-pattern/occupancy alias untested at this stage.
+
+**Mandatory next chain (frozen, in order):** fresh-seed hold-out (>=2/5 unseen seeds) -> direct alias audit
+including the imposed-pattern/occupancy check -> same-state CONTROL/SHAM/PERTURBED/PLACEBO causal intervention WITH
+the continued-turnover requirement -> observer (cadence/tracker) sensitivity -> adversarial re-audit; explicit
+denominators, censored seeds, effect sizes, Wilson CIs. No threshold changes, no composite, no visual selection.
