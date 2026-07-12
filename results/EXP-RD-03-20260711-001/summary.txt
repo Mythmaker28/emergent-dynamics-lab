@@ -1,0 +1,38 @@
+EXP-RD-03 SUMMARY
+==============================================================================
+PART A - observer-ONLY sensitivity on the 6 EXP-RD-02 provisional successes
+  fixed physics, fixed pre-intervention state, fixed t*=400, fixed branches;
+  ONLY offline observation cadence {25,50,100} x readout site radius {0.8,1.0,1.2} vary (9 settings).
+  observer-robust (AUDITED in 9/9 settings): 4/6 -> [(11, 12003), (14, 12001), (14, 12006), (14, 12008)]
+  observer-fragile: 2/6 -> (1,12007) and (7,12007), both borderline at the frozen frac_new>0.5 line
+     (frac_new = 0.47 and 0.50 at cadence 25: finer sampling includes more of the recovery transient).
+  => EXP-RD-02 corrected rate: 4/90 = 4.4% [Wilson 1.7%, 10.9%]
+  => OBSERVER ROBUSTNESS: RESOLVED (it was UNRESOLVED under the invalid RD-02 test, which reported 0/6).
+
+PART B - causal-boundary nested support sweep (9 frozen laws x 4 unseen seeds 13001-13004 = 36 units)
+  supports from each law's own diffusion length ell=sqrt(Du/F); U, V and ALL temporal cohorts translated together.
+  n_post=15; sham==control bit-for-bit in 36/36; 0 censored.
+    S0_mask                      5/36 =  13.9%  [Wilson 6.1%, 28.7%]
+    S1_small_halo                3/36 =   8.3%  [Wilson 2.9%, 21.8%]
+    S2_one_diffusion_length      1/36 =   2.8%  [Wilson 0.5%, 14.2%]
+    S3_two_diffusion_lengths     4/36 =  11.1%  [Wilson 4.4%, 25.3%]
+  => Broadening the support does NOT improve re-establishment. All four intervals overlap.
+  => BOUNDARY HYPOTHESIS REFUTED: the 'destroyed' outcomes are NOT an entity-boundary artefact,
+     and re-establishment is NOT niche/site-carried (carrying the U-depletion field + RD halo does not help).
+
+  compact (S0/S1) successes: 6 units; after observer-ONLY sensitivity: 1 robust -> [(14, 13002)]
+  => compact + observer-robust: 1/36 = 2.8% [Wilson 0.5%, 14.2%]
+
+COMBINED over ALL unseen causal seeds (RD-02 n=90 + RD-03B n=36 = 126):
+  observer-robust compact causal re-establishment with continued turnover:
+     5/126 = 4.0%  [Wilson 1.7%, 9.0%]
+  units: [(11, 12003), (14, 12001), (14, 12006), (14, 12008), (14, 13002)]
+  by law: {11: 1, 14: 4}  <-- law 14 supplies 4/5, replicating across TWO independent unseen seed batches
+
+VERDICT (frozen decision rule of EXP_RD_03_PROTOCOL.md):
+  - broad-support requirement? NO -> 'niche/site-carried REJECT' does NOT apply.
+  - no support succeeds? NO -> 'retire classical Gray-Scott' does NOT apply.
+  - compact support re-establishes under continued turnover AND a subset survives observer-only
+    sensitivity -> RETAIN AS CANDIDATE. Gray-Scott is NOT retired.
+  - NO PROMOTION: the rate is 4% against a ~75-83% destruction base rate, and the pipeline's
+    own false-positive rate is NOT yet measured. That measurement is the next required step.

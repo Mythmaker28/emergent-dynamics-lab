@@ -485,3 +485,31 @@ not only the detected V mask.
 anyway. A frozen rule must not be applied through a test that is known to be invalid; the correct action was to
 declare the test void and the question unresolved. Applying a broken falsifier is not rigour — it is
 falsification theatre, and it destroys true positives exactly as readily as false ones.
+
+## D-033 — EXP-RD-03: candidate RETAINED (no promotion); boundary hypothesis refuted; observer robustness resolved
+
+**Date:** 2026-07-12
+**Status:** CANDIDATE RETAINED — NO PROMOTION. Gray-Scott NOT retired.
+**Protocol:** docs/experiments/EXP_RD_03_PROTOCOL.md (SHA 9c3aba3798c946b7b28f99c1a4f36f0078f77baf), frozen at 280a1e8.
+
+- **Part A (observer-ONLY, fixed physics / fixed `t*` = 400 / fixed branches):** 4/6 EXP-RD-02 provisional successes
+  AUDITED in **all 9** observer settings (cadence {25,50,100} x site radius {0.8,1.0,1.2}). Observer robustness
+  **RESOLVED**. Corrected EXP-RD-02 rate **4/90 = 4.4 % [1.7 %, 10.9 %]**. The 2 fragile units are borderline at the
+  frozen `frac_new > 0.5` line; threshold unchanged.
+- **Part B (nested supports from `ell = sqrt(Du/F)`; U, V and all cohorts translated together):** 36 units, 0 censored.
+  S0 5/36 (13.9 %), S1 3/36 (8.3 %), S2 1/36 (2.8 %), S3 4/36 (11.1 %) — **no improvement with support size**.
+  **Entity-boundary hypothesis REFUTED**; re-establishment is **not** niche/site-carried. Neither the "broad niche →
+  reject" nor the "no support succeeds → retire" branch of the frozen rule applies.
+- **Ambient-spot null (added; could have killed everything):** CONTROL frac_new_organized = **0.00 in 5/5**;
+  PERTURBED 0.60–1.00. Nothing phenotype-matching grows at the destination on its own.
+- **Combined (126 unseen causal units):** observer-robust, compact-support causal re-establishment with continued
+  turnover = **5/126 = 4.0 % [Wilson 1.7 %, 9.0 %]**. Law **14** supplies 4/5, replicating across two independent
+  unseen seed batches.
+
+**Retracted within the same analysis:** the support-monotonicity argument (5/5 S0-successes fail at S3) is
+**confounded** — enlarging the support also imports a U-depleted halo into the destination, chemically starving the
+re-forming spot. It carries **no eliminative weight**. Using it would have repeated the exact error of D-032.
+
+**Blocking gap:** the pipeline's **false-positive rate has never been measured**. 4 % positive is not
+distinguishable from 4 % artefact. **EXP-RD-04 Part 3 (non-entity cargo → false-positive rate) is run FIRST**;
+if the noise floor matches 4 %, the candidate is withdrawn and classical Gray-Scott is retired.
