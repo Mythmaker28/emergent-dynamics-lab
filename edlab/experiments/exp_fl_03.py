@@ -66,7 +66,7 @@ def causal_unit(law_index: int, seed: int, cfg: EXPFL02Config | None = None,
 
     def run_branch(A0, C0):
         st = ThroughputState(A0.copy(), s_star.R.copy(), C0.copy(), s_star.cohorts_R.copy())
-        out = eng.simulate(st, HORIZON, cadence)[1:]      # exclude t=0 -> exactly n_post snapshots
+        out = eng.simulate(st, HORIZON, cadence)[1:]      # exclude t=0; denominator = actual snapshot count
         newP = []; oldP = []; new_track = []
         for s in out:
             F, _ = flow_field(s.A, spec, eng._fK)
@@ -82,7 +82,7 @@ def causal_unit(law_index: int, seed: int, cfg: EXPFL02Config | None = None,
                 new_track.append(max(nn, key=lambda e: e.size))
             else:
                 new_track.append(None)
-        assert len(newP) == n_post
+        denom = len(newP)          # EXPLICIT denominator actually used (may differ from HORIZON//cadence)
         # CONTINUED TURNOVER on the re-established new-site structure (frozen M, frozen lags)
         cont = False; minM_post = 1.0; res_end = None
         valid = [(i, e) for i, e in enumerate(new_track) if e is not None]
@@ -96,7 +96,7 @@ def causal_unit(law_index: int, seed: int, cfg: EXPFL02Config | None = None,
         if valid:
             last = valid[-1][1]
             res_end = float(last.cohort_mass[G_SPATIAL:].sum() / max(last.cohort_mass.sum(), 1e-12))
-        return {"n_post": n_post,
+        return {"n_post": denom,
                 "frac_new_organized": float(np.mean([p > ORGANIZED_P for p in newP])),
                 "frac_old_organized": float(np.mean([p > ORGANIZED_P for p in oldP])),
                 "continued_turnover": bool(cont), "min_M_post": float(minM_post),

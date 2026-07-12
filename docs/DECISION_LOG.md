@@ -337,3 +337,26 @@ selection; the static-flux null and passive-tracer invariance remain in force.
 **Reason:** Unlike CORE V0 law 52 (rigid cluster, M~1.0, trivial translation-covariance), these structures combine
 genuine constituent turnover (M<0.5 with measured reservoir-origin uptake) with constituent-carried organization
 under a placebo-controlled displacement.
+
+## D-027 — EXP-FL-03: the EXP-FL-02 positive is WITHDRAWN (non-replication + frozen lumps + observer artefact)
+
+**Date:** 2026-07-10 (RUN-20260710-2300-EXPFL03). Model: claude-opus-4-8 (Fable 5 lock lifted by user).
+
+**Decision:** With laws {2,16,40,59}, the mechanism, P/M and all thresholds FROZEN before any run (protocol
+@14c3a97), the causal intervention was replicated on 12 UNSEEN seeds per law (48 units; explicit denominator
+N_POST = actual post-snapshot count, 15 at cadence 10). Result: **AUDITED 2/46 enrolled = 4.3% [Wilson 95% CI
+1.2%-14.5%]** (2 censored, reported), versus 4/4 laws audited on the single seed 9501 in EXP-FL-02. The DOMINANT
+failure mode is **frozen_lump = 30/46 (65%)**: structures re-establish at the new site, exceed the placebo, leave
+the old site unregenerated -- and then STOP exchanging constituents (trivial translation-covariance; the same
+failure that killed CORE V0 law 52). The preregistered observer-sensitivity check kills the last two: **0/2 survive
+cadence 5/20** (they survive tracker x0.8/x1.2). placebo_failure = 0 and occupancy_alias = 0; sham == control
+bit-for-bit in every unit. An adversarial re-audit sustained objections O1 (seed luck), O2 (frozen lumps), O3
+(observer artefact) and found no route by which the positive could be real.
+
+**NET: 0 audited successes survive. The EXP-FL-02 diagnostic survivors {2,16,40,59} are WITHDRAWN. Nothing is
+promoted.** No threshold, metric, mechanism or law was changed to reach this conclusion. Falsifiers F1, F2, F5 confirmed.
+
+**Recommendation:** STOP adding mechanisms to the closed, globally mass-conservative Flow-Lenia system. Its
+active/reservoir exchange yields constituent turnover WITHOUT sustained constituent-carried individuality. The next
+honest step is a genuinely OPEN-SYSTEM / reaction-diffusion substrate (true sources and sinks, non-equilibrium
+driving), preregistered under the same falsifiable protocol.
