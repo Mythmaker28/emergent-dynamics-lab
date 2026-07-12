@@ -78,12 +78,44 @@ class RDState:
         return float(self.U.sum() + self.V.sum())
 
 
-FEED_COHORT = -1              # last cohort index is the FEED (external-origin) cohort
+@dataclass(frozen=True)
+class TracerSpec:
+    """Passive origin tracers: spatial-origin cohorts + ROTATING TEMPORAL FEED cohorts (pulse-chase).
+
+    A single permanent FEED cohort saturates: once feed-origin mass dominates a structure, the cohort composition
+    stops changing and CONTINUED turnover becomes invisible. Temporal feed cohorts fix this: material fed during
+    time-window w is labelled by w, so a structure that keeps replacing its material keeps shifting its composition
+    toward newer temporal cohorts, and M(tau) keeps registering turnover indefinitely.
+    """
+
+    n_spatial: int = 8          # initial-origin spatial cohorts (verified resolution, D-024)
+    n_temporal: int = 8         # rotating temporal FEED cohorts (SELECTED, EXP-RD-00B)
+    tau_feed: int = 250         # steps per temporal cohort (SELECTED); cycle = n_temporal * tau_feed
+
+    def __post_init__(self) -> None:
+        if self.n_spatial < 1 or self.n_temporal < 1 or self.tau_feed < 1:
+            raise ValueError("TracerSpec values must be >= 1")
+
+    @property
+    def n_cohorts(self) -> int:
+        return self.n_spatial + self.n_temporal
+
+    @property
+    def cycle(self) -> int:
+        return self.n_temporal * self.tau_feed
+
+    def active_feed_cohort(self, step: int) -> int:
+        """Index of the currently active temporal feed cohort at `step`."""
+        return self.n_spatial + ((step // self.tau_feed) % self.n_temporal)
+
+    def as_dict(self) -> dict[str, Any]:
+        return asdict(self)
 
 
 @dataclass
 class RDEngine:
     spec: GrayScottSpec
+    tracer: TracerSpec = field(default_factory=TracerSpec)
 
     def step(self, st: RDState) -> RDState:
         s = self.spec
@@ -115,7 +147,8 @@ class RDEngine:
         CU = CU * keepU
         if s.F > 0.0:
             U = U + dt * s.F
-            CU[FEED_COHORT] = CU[FEED_COHORT] + dt * s.F      # new material is EXTERNAL-origin
+            active = self.tracer.active_feed_cohort(st.step)   # PULSE-CHASE: fed material is labelled by WHEN it entered
+            CU[active] = CU[active] + dt * s.F
         return RDState(U, V, CU, CV, st.step + 1)
 
     def simulate(self, st: RDState, steps: int, snapshot_interval: int) -> list[RDState]:

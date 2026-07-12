@@ -6,7 +6,7 @@ import numpy as np
 
 from edlab.substrates.reaction_diffusion.engine import (GrayScottSpec, RDEngine, RDState, laplacian,
                                                         laplacian_reference)
-from edlab.experiments.exp_rd_00 import rd_state, qualify, N_COHORTS, build_control_snapshots, run_control_through_stack
+from edlab.experiments.exp_rd_00 import rd_state, qualify, N_COHORTS, G_SPATIAL, build_control_snapshots, run_control_through_stack
 
 OPEN = GrayScottSpec(F=0.025, k=0.055)
 CLOSED = GrayScottSpec(F=0.0, k=0.0)
@@ -43,7 +43,7 @@ def test_tracers_partition_and_are_passive_and_feed_cohort_grows():
     snaps = RDEngine(OPEN).simulate(st, 400, 50)
     assert max(float(np.max(np.abs(s.CU.sum(0) - s.U))) for s in snaps) < 1e-9
     assert max(float(np.max(np.abs(s.CV.sum(0) - s.V))) for s in snaps) < 1e-9
-    assert float(snaps[-1].CU[-1].sum() + snaps[-1].CV[-1].sum()) > 0.0   # FEED (external-origin) cohort grows
+    assert float(snaps[-1].CU[G_SPATIAL:].sum() + snaps[-1].CV[G_SPATIAL:].sum()) > 0.0   # TEMPORAL feed cohorts grow
     z = rd_state(OPEN, 1); z.CU = np.zeros_like(z.CU); z.CV = np.zeros_like(z.CV)
     sz = RDEngine(OPEN).simulate(z, 400, 50)
     for a, b in zip(snaps, sz):

@@ -380,3 +380,23 @@ organization on P/M alone (both P=1.0, M_min=0.065) and is separated ONLY by the
 authorized under the five evidence levels, frozen thresholds, continued-turnover requirement,
 CONTROL/SHAM/PERTURBED/PLACEBO causal discipline and observer-sensitivity checks. No composite score, no visual
 selection, no threshold relaxation.
+
+## D-029 — Temporal feed cohorts (pulse-chase) replace the saturating single FEED cohort
+
+**Date:** 2026-07-10 (RUN-20260710-2345-EXPRD00B). Model: claude-opus-4-8 (Fable 5 lock lifted by user).
+
+**Decision:** The EXP-RD-00 tracer used a single permanent FEED cohort, which SATURATES: once feed-origin mass
+dominates a structure its cohort composition stops changing and CONTINUED turnover becomes invisible. Confirmed:
+the legacy tracer reports median late-window M = 0.936 on a continuously-replacing structure that is 100%
+feed-origin (blind), with discrimination of only 0.064 against a ceased-turnover control. Replaced by ROTATING
+TEMPORAL FEED COHORTS (pulse-chase): fed material is labelled by WHEN it entered; the reaction transfer carries the
+source species' local cohort proportions; homogeneous removal scales all cohorts equally; cohorts remain strictly
+passive (zeroing them leaves U,V bit-identical) and partition both species exactly. Two pre-declared controls:
+C1 continuous throughput must still register turnover (median late M < 0.5); C2 one-time replacement then the EXACT
+closed limit must report no further turnover; discrimination > 0.30. Temporal resolution selected by this
+measurement-discrimination criterion ONLY (coarsest adequate; never candidate yield or quadrant occupancy):
+**TracerSpec(n_spatial=8, n_temporal=8, tau_feed=250)** -> C1 late-M 0.109, C2 late-M 1.000, discrimination 0.891.
+The full open-RD qualification re-passes 12/12 with the new tracer.
+
+**Consequence:** the tracer is FROZEN at (8 spatial, 8 temporal, tau=250). EXP-RD-01 (blind matched OPEN vs exact
+CLOSED map) is authorized.

@@ -8,7 +8,7 @@ import numpy as np
 
 from ..entities.tracking import LineageTracker
 from ..specs import TrackerSpec
-from ..substrates.reaction_diffusion.engine import (GrayScottSpec, RDEngine, RDState, laplacian,
+from ..substrates.reaction_diffusion.engine import (GrayScottSpec, RDEngine, RDState, TracerSpec, laplacian,
                                                     laplacian_reference)
 from ..substrates.reaction_diffusion.observables import (
     RDDetectionSpec, RDPhenotypeSpec, detect_rd_entities, to_entity_observation,
@@ -16,8 +16,9 @@ from ..substrates.reaction_diffusion.observables import (
 )
 from .exp_fl_00 import _cohort_grid
 
-G_SPATIAL = 8                      # verified tracer resolution (D-024), + 1 FEED cohort
-N_COHORTS = G_SPATIAL + 1
+TRACER = TracerSpec()             # qualified tracer (EXP-RD-00B): 8 spatial + 8 temporal feed cohorts
+G_SPATIAL = TRACER.n_spatial
+N_COHORTS = TRACER.n_cohorts
 DET = RDDetectionSpec(); PHE = RDPhenotypeSpec()
 
 
@@ -135,7 +136,7 @@ def qualify() -> dict[str, Any]:
     homog = max(float(np.ptp(s.U)) + float(np.ptp(s.V)) for s in su)
     # (4) tracer partition + FEED cohort growth
     part = max(max(float(np.max(np.abs(s.CU.sum(0) - s.U))), float(np.max(np.abs(s.CV.sum(0) - s.V)))) for s in so)
-    feed_growth = float(so[-1].CU[-1].sum() + so[-1].CV[-1].sum())
+    feed_growth = float(so[-1].CU[G_SPATIAL:].sum() + so[-1].CV[G_SPATIAL:].sum())   # all TEMPORAL feed cohorts
     # (5) tracers passive: zeroing cohorts must not change U,V
     z = rd_state(open_spec, 1); z.CU = np.zeros_like(z.CU); z.CV = np.zeros_like(z.CV)
     sz = RDEngine(open_spec).simulate(z, 400, 50)

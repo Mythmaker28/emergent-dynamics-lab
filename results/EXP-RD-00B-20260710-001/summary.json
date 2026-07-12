@@ -1,0 +1,50 @@
+{
+ "candidates": {
+  "tau500_T4": {
+   "tau_feed": 500,
+   "n_temporal": 4,
+   "C1_late_M": 0.8506627995763363,
+   "C2_late_M": 0.999999999999998,
+   "discrimination": 0.14933720042366172,
+   "adequate": false,
+   "C1_feed_frac_end": 1.0
+  },
+  "tau250_T8": {
+   "tau_feed": 250,
+   "n_temporal": 8,
+   "C1_late_M": 0.10924827219090222,
+   "C2_late_M": 0.9999999999999981,
+   "discrimination": 0.890751727809096,
+   "adequate": true,
+   "C1_feed_frac_end": 1.0
+  },
+  "tau125_T16": {
+   "tau_feed": 125,
+   "n_temporal": 16,
+   "C1_late_M": 0.03195251563246947,
+   "C2_late_M": 0.9999999999999981,
+   "discrimination": 0.9680474843675286,
+   "adequate": true,
+   "C1_feed_frac_end": 1.0
+  },
+  "tau62_T32": {
+   "tau_feed": 62,
+   "n_temporal": 32,
+   "C1_late_M": 0.011138138105269826,
+   "C2_late_M": 0.9999999999999979,
+   "discrimination": 0.988861861894728,
+   "adequate": true,
+   "C1_feed_frac_end": 1.0
+  }
+ },
+ "legacy_single_feed_cohort": {
+  "C1_late_M": 0.9360206985219997,
+  "C2_late_M": 0.999999999999998,
+  "discrimination": 0.06397930147799835,
+  "C1_feed_frac_end": 1.0,
+  "fails_as_predicted": true
+ },
+ "criterion": "adequate iff median_late_M(C1) < 0.5 AND median_late_M(C2)-median_late_M(C1) > 0.30; select the COARSEST adequate tau_feed; never uses candidate yield or quadrant occupancy",
+ "selected": "tau250_T8",
+ "passed": true
+}
