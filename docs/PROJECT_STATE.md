@@ -6,7 +6,14 @@ Can CORE V0 local particle laws produce auditable high phenotype continuity unde
 
 ## CURRENT SUBSTRATE
 
-**NONE. All substrates retired.** Motile polar field RETIRED at qualification (D-037) — it produces no localized
+**Open chemotactic self-aggregation (EXP-CH-00) — R7 PASSED (D-038), laws {2, 4, 5}.** First substrate to clear the
+localization gate. Cohesion is constitutive (cells secrete `c` and climb `grad(c)`); finite-density regularization
+(receptor saturation + volume exclusion, in flux AND growth) is in the core, and `0 <= rho <= rho_max` is a proven
+invariant. Validated: exact closed limit, uniform-stays-uniform, bitwise-passive tracers, determinism, continued
+cohort turnover (M = 0.24-0.43), and cohesion CAUSED by the chemotactic field (`chi0=0` -> PR = 1.000, no
+localization). **GATE-0 is the only authorized next step. No law map unless GATE-0 passes.**
+
+**Retired:** Motile polar field RETIRED at qualification (D-037) — it produces no localized
 entity: bistable between a space-filling phase and extinction across 21 declared parameter points. GATE-0 never ran.
 Classical Gray-Scott RETIRED (D-035). Flow-Lenia retired (D-027). Particle Dynamics retired (D-021). All preserved.
 

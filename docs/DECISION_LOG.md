@@ -632,3 +632,42 @@ the assertion fired loudly on the first real unit. R5 paid for itself within one
 **R7 added to `docs/CAUSAL_METHODOLOGY.md`:** localization precedes everything. A substrate must be shown to produce
 localized, persistent, turning-over structures **before** GATE-0. Gate order is now **R7 → GATE-0 (R4) → law search**.
 GATE-0 presupposes an entity; do not ask whether organization matters before establishing that something is organized.
+
+## D-038 — EXP-CH-00: R7 PASSES (laws 2, 4, 5). First substrate to clear the localization gate. GATE-0 authorized.
+
+**Date:** 2026-07-12
+**Status:** R7 PASS — substrate RETAINED, GATE-0 authorized (and nothing beyond it)
+**Protocol:** docs/experiments/EXP_CH_00_PROTOCOL.md (SHA 119188cf74052267cc02239c8d87e40630ce7147), frozen before any screen.
+
+Open chemotactic self-aggregation substrate. **Cohesion is constitutive**: cells secrete `c` and climb `grad(c)`, so
+the field they produce pulls them together. The **finite-density regularization is in the core, not a rescue**:
+receptor saturation `1/(1+(c/c_sat)^2)` and volume exclusion `q(rho)=max(0,1-rho/rho_max)` in **both** the
+chemotactic flux (evaluated on the RECEIVING cell) and the growth source. `0 <= rho <= rho_max` is a **proven
+invariant** (asserted in tests), so blow-up is impossible.
+
+**R7 (blind Halton sample of the frozen bounded domain, 32 points, threshold-independent diagnostics):**
+- **4/32 localized at t\* and persistent through the window: laws 2, 4, 5, 18.** 20/32 space-filling, 0 diverged.
+- **Across 5 qualification seeds (>= 80 % required): law 2 → 5/5, law 5 → 5/5, law 4 → 4/5 → PASS.
+  Law 18 → 3/5 → FAIL (PR 0.152, 0.153 against the frozen 0.15). Law 18 REJECTED; no threshold relaxed.**
+- Survivors: PR 0.107–0.145, **entity Rg 1.2–2.1 cells**, largest component <= 0.8 % of the domain, occupancy
+  <= 0.15 at **every** threshold in the frozen band {0.2,0.3,0.4,0.5,0.6}. `rho <= rho_max` in 32/32.
+
+**Validation (laws 2, 4, 5, all pass):** uniform state stays **exactly** uniform (rho ptp = 0.0, c ptp = 0.0 — the
+forcing provably cannot impose a pattern); exact closed limit `g0=k=0` conserves mass (drift 0.0e+00–2.2e-16);
+`sum_c C == rho` cell-wise (err ~2e-15); determinism bitwise; **passive tracers bitwise** (cohort relabelling leaves
+`rho`, `c`, `N` bit-identical); **continued temporal-cohort turnover** (min M = 0.24–0.43 < 0.5).
+**CAUSAL CONTROL: with `chi0 = 0`, PR = 1.000 and localization FAILS for all three laws — cohesion is *caused* by
+the internal chemotactic field, not assumed.**
+
+**TWO CORRECTIONS made before any qualification result was used (both disclosed in the protocol):**
+1. **The finite-density claim was false as first implemented.** `q` multiplied the *donor* cell and did not
+   regularize growth at all; a smoke test reached `rho = 1.408 > rho_max = 1.0`. Fixed; the bound is now proven.
+2. **The global radius-of-gyration criterion could not fire.** It measures the spread of the ENSEMBLE, not of an
+   entity: a synthetic field of **30 perfectly compact spots scores global Rg = 23.9 against 26.1 for a uniform
+   field** (`tests/test_chemotaxis.py::test_global_rg_cannot_detect_compact_multispot`). It was therefore incapable
+   of passing ANY multi-spot localized state — the same "test that cannot fire" defect as the pooled null (R2) and
+   the Nyquist-violating cadence. Corrected to a **per-entity Rg**. **PR, occupancy and component thresholds were
+   NOT touched**, and the same frozen 32 points were re-run from scratch.
+
+**Next and only next: GATE-0** — intact vs organization-destroyed scrambled cargo on laws {2, 4, 5}. **No law map is
+authorized unless GATE-0 passes.**

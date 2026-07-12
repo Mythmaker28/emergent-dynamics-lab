@@ -17,22 +17,33 @@ Periodic lattice, `dx = 1`, explicit time step `dt`. Fields: `rho` (cells), `c` 
 cells), `N` (nutrient, fed homogeneously), `C` (passive origin cohorts partitioning `rho`, exactly).
 
 ```
-d(rho)/dt = -div( J )                +  g0 * rho * N     -  k * rho
+d(rho)/dt = -div( J )      +  g0 * rho * N * q(rho)   -  k * rho          [q = volume-filling factor]
 d(c)/dt   = D_c * lap(c)             +  s * rho          -  delta * c
 d(N)/dt   = D_N * lap(N)             -  g0 * rho * N      +  F * (N0 - N)
 
-J = -D_rho * grad(rho)  +  rho * chi(rho, c) * grad(c)        [cells climb the gradient]
+J = -D_rho * grad(rho)  +  chi(c) * rho_donor * q(rho_receiver) * grad(c)   [cells climb the gradient]
 
-chi(rho, c) = chi0 * (1 / (1 + (c / c_sat)^2))        <- SATURATING CHEMOTACTIC RESPONSE (receptor saturation)
-                   * max(0, 1 - rho / rho_max)        <- VOLUME EXCLUSION (volume-filling Keller-Segel)
+chi(c)  = chi0 / (1 + (c / c_sat)^2)      <- SATURATING CHEMOTACTIC RESPONSE (receptor saturation)
+q(rho)  = max(0, 1 - rho / rho_max)       <- VOLUME EXCLUSION (volume-filling Keller-Segel)
 ```
+
+`q` appears in BOTH the chemotactic flux and the growth source, and in the flux it is evaluated on the **receiving**
+cell. Both details are load-bearing and both were wrong in my first draft (see the correction note below).
 
 **The finite-density regularization is predeclared and constitutive.** Two independent mechanisms, both in `chi`:
 - **Receptor saturation** `1/(1+(c/c_sat)^2)`: chemotactic drift vanishes where the signal is strong, so a forming
   aggregate stops pulling ever harder on itself.
-- **Volume exclusion** `max(0, 1 - rho/rho_max)`: the chemotactic flux goes to **exactly zero** at `rho = rho_max`.
-  This is the volume-filling Keller–Segel of Hillen & Painter: it makes the system **globally bounded — blow-up is
-  impossible and `rho <= rho_max` is preserved**. Density is finite by construction, not by tuning.
+- **Volume exclusion** `q(rho) = max(0, 1 - rho/rho_max)`: chemotactic filling of a cell stops **exactly** at
+  `rho = rho_max` (volume-filling Keller–Segel, Hillen & Painter), and the **same factor regularizes the growth
+  source**, so cells cannot be born into a full cell either. Together these make `0 <= rho <= rho_max` an
+  **invariant**: blow-up is impossible and the bound is proven, not tuned (`tests/test_chemotaxis.py`).
+
+**CORRECTION made before any qualification result was used (full disclosure).** My first draft claimed this bound but
+did not implement it: `q` multiplied the *donor* cell (so a cell already at `rho_max` could still be filled) and did
+**not** regularize growth at all. A smoke test on Halton point 0 reached `rho = 1.408 > rho_max = 1.0` — the
+"globally bounded" claim was **false**. Both defects are fixed above and the invariant is now asserted in tests. The
+pre-fix diagnostics of point 0 were computed under different equations and carry no information about the corrected
+substrate; the full 32-point qualification is run from scratch on the corrected equations.
 
 **Openness.** `N` is fed spatially homogeneously by `F*(N0 - N)` — detector-independent, and (as required) provably
 incapable of imposing a pattern: a uniform state stays exactly uniform. Cells are created by `g0*rho*N` (consuming

@@ -73,8 +73,11 @@ class ChemoEngine:
         dc = c_p - c                            # chemotactic drift is +chi*grad(c): sign(dc) sets the direction
         c_face = 0.5 * (c + c_p)
         up_is_i = dc > 0                        # cells climb the gradient: if c_{i+1} > c_i, donor is i
-        rho_up = np.where(up_is_i, rho, rho_p)
-        chi = (sp.chi0 / (1.0 + (c_face / sp.c_sat) ** 2)) * np.maximum(0.0, 1.0 - rho_up / sp.rho_max)
+        rho_up = np.where(up_is_i, rho, rho_p)       # DONOR   (supplies the cells)
+        rho_dn = np.where(up_is_i, rho_p, rho)       # RECEIVER (must have room for them)
+        # VOLUME EXCLUSION is evaluated on the RECEIVER: a cell already at rho_max cannot be filled further.
+        # (Evaluating it on the donor, as in my first draft, still permits overfilling -- observed rho = 1.408.)
+        chi = (sp.chi0 / (1.0 + (c_face / sp.c_sat) ** 2)) * np.maximum(0.0, 1.0 - rho_dn / sp.rho_max)
         chemo = chi * dc * rho_up               # advective, upwind, saturating + volume-excluded
         diff = -sp.D_rho * (rho_p - rho)        # Fickian
         flux = chemo + diff
@@ -102,8 +105,10 @@ class ChemoEngine:
         rho = rho + dt * drho
         C = C + dt * dC
 
-        # growth (into the ACTIVE temporal cohort) and homogeneous death (removes local cohort proportions)
-        g = dt * sp.g0 * rho * N
+        # growth (into the ACTIVE temporal cohort) and homogeneous death (removes local cohort proportions).
+        # The SAME volume-filling factor regularizes the SOURCE: growth vanishes at rho_max. Without it the
+        # finite-density guarantee is vacuous -- growth alone drove rho to 1.408 > rho_max in the first draft.
+        g = dt * sp.g0 * rho * N * np.maximum(0.0, 1.0 - rho / sp.rho_max)
         rho = rho + g
         C[self.tracer.active_feed_cohort(st.step)] += g
         keep = 1.0 - dt * sp.k

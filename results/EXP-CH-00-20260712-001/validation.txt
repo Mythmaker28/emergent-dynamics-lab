@@ -1,0 +1,27 @@
+EXP-CH-00 SUBSTRATE VALIDATION (R7 survivors: laws 2, 4, 5)
+
+LAW 2
+  openness  : uniform state stays uniform -> rho ptp 0.0e+00, c ptp 0.0e+00
+  closed lim: g0=k=0 rel mass drift 0.0e+00   cohort partition err 2.3e-15
+  determinism True   passive tracers (bitwise) True
+  turnover  : min cohort-M (lag 3) = 0.4315  -> continued turnover True
+  CAUSAL    : chi0 ON  PR=0.107 localized=True
+              chi0 = 0 PR=1.000 localized=False  -> cohesion is CAUSED by the chemotactic field: True
+
+LAW 4
+  openness  : uniform state stays uniform -> rho ptp 0.0e+00, c ptp 0.0e+00
+  closed lim: g0=k=0 rel mass drift 2.2e-16   cohort partition err 2.4e-15
+  determinism True   passive tracers (bitwise) True
+  turnover  : min cohort-M (lag 3) = 0.2853  -> continued turnover True
+  CAUSAL    : chi0 ON  PR=0.145 localized=True
+              chi0 = 0 PR=1.000 localized=False  -> cohesion is CAUSED by the chemotactic field: True
+
+LAW 5
+  openness  : uniform state stays uniform -> rho ptp 0.0e+00, c ptp 0.0e+00
+  closed lim: g0=k=0 rel mass drift 0.0e+00   cohort partition err 1.8e-15
+  determinism True   passive tracers (bitwise) True
+  turnover  : min cohort-M (lag 3) = 0.2382  -> continued turnover True
+  CAUSAL    : chi0 ON  PR=0.135 localized=True
+              chi0 = 0 PR=1.000 localized=False  -> cohesion is CAUSED by the chemotactic field: True
+
+ALL VALIDATION CHECKS PASS for laws 2, 4, 5: True
