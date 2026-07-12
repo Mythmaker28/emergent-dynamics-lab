@@ -671,3 +671,22 @@ the internal chemotactic field, not assumed.**
 
 **Next and only next: GATE-0** — intact vs organization-destroyed scrambled cargo on laws {2, 4, 5}. **No law map is
 authorized unless GATE-0 passes.**
+
+## D-039 — Laws {2,4,5} FROZEN. The 32-point R7 run is CANDIDATE SELECTION, not a prevalence estimate.
+
+**Date:** 2026-07-12
+**Status:** ACCEPTED (D-038 accepted; its status downgraded as below)
+
+**Laws {2, 4, 5} are FROZEN.** No law may be added, replaced, ranked or visually selected.
+
+**Statistical status of the 32-point R7 screen, corrected.** D-038 reported "4/32 localized". That figure is **NOT a
+preregistered estimate of localized-regime prevalence** and must never be quoted as one: the **per-entity Rg repair
+occurred after the first readout of those same 32 points**. Although the repair was justified a priori (a synthetic
+field of 30 perfectly compact spots proves the global-Rg criterion cannot fire) and although PR, occupancy and
+component thresholds were untouched, the diagnostic was nonetheless *changed after seeing data from those points*.
+The run is therefore recorded as an **R7 QUALIFICATION / CANDIDATE-SELECTION exercise** whose only output is the
+frozen candidate set {2, 4, 5}. Any honest prevalence estimate would require a fresh Halton block screened with the
+now-frozen diagnostic; none is claimed.
+
+**Consequently: ALL GATE-0 evidence uses entirely unseen seeds.** Qualification consumed 5001–5005 and 7001–7002.
+GATE-0 uses per-law disjoint unseen blocks: law 2 → 40001–40040, law 4 → 41001–41040, law 5 → 42001–42040.
