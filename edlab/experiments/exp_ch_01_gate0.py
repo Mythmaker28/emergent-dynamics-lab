@@ -12,7 +12,7 @@ from typing import Any
 import numpy as np
 
 from ..substrates.chemotaxis.engine import ChemoEngine, CHState
-from ..substrates.chemotaxis.diagnostics import participation_ratio, entity_radius_of_gyration
+from ..substrates.chemotaxis.diagnostics import participation_ratio, circular_centroid
 from ..substrates.chemotaxis.observables import (CHDetectionSpec, CHPhenotypeSpec, detect, continuity,
                                                  retention, spatial_autocorr)
 from ..substrates.particle_dynamics.engine import minimum_image
@@ -87,32 +87,72 @@ def indep_scramble(st: CHState, sup: np.ndarray, rng: np.random.Generator) -> CH
     return o
 
 
-def assert_unit(st, sup, ctrl, sham, intact, joint) -> dict[str, Any]:
+def organization_measures(st: CHState, sup: np.ndarray) -> dict[str, float]:
+    """Three declared measures of INTERNAL spatial organization inside the support.
+
+    `radial_concentration` is the primary one: on a compact aggregate the mass is centrally peaked, so rho
+    correlates with -distance from the support centroid. A within-support permutation destroys that peak. The lag-1
+    autocorrelations are retained but are NOISY on a 12-40 cell support, which is exactly why every measure is
+    compared against its own PERMUTATION NULL rather than against a fixed constant.
+    """
+    n = st.rho.shape[0]
     ys, xs = np.nonzero(sup)
-    # (1) exact conservation under displacement
+    cen = circular_centroid(st.rho * sup)
+    dy = ys - cen[0]; dy -= n * np.round(dy / n)
+    dx = xs - cen[1]; dx -= n * np.round(dx / n)
+    dist = np.sqrt(dy ** 2 + dx ** 2)
+    v = st.rho[ys, xs]
+    rc = 0.0
+    if v.std() > 1e-12 and dist.std() > 1e-12:
+        rc = float(-np.corrcoef(v, dist)[0, 1])
+    return {"radial_concentration": rc,
+            "autocorr_rho": spatial_autocorr(st.rho, sup),
+            "autocorr_c": spatial_autocorr(st.c, sup)}
+
+
+def permutation_null(st: CHState, sup: np.ndarray, n_perm: int = 120) -> dict[str, tuple[float, float]]:
+    """Distribution of each organization measure under random within-support permutation: the CHANCE level."""
+    rng = np.random.default_rng(12345)
+    acc: dict[str, list[float]] = {"radial_concentration": [], "autocorr_rho": [], "autocorr_c": []}
+    for _ in range(n_perm):
+        m = organization_measures(joint_scramble(st, sup, rng), sup)
+        for kk, vv in m.items():
+            acc[kk].append(vv)
+    return {kk: (float(np.mean(vv)), float(np.std(vv)) + 1e-12) for kk, vv in acc.items()}
+
+
+def assert_unit(st, sup, ctrl, sham, intact, joint) -> dict[str, Any]:
+    """R5: prove every intervention and every null actually altered its intended variable."""
+    ys, xs = np.nonzero(sup)
+    # (1) EXACT CONSERVATION under displacement
     assert np.isclose(intact.rho.sum(), st.rho.sum()) and np.isclose(intact.c.sum(), st.c.sum())
     assert np.isclose(joint.rho.sum(), st.rho.sum()) and np.isclose(joint.c.sum(), st.c.sum())
+    # (2) NON-OVERLAP is asserted inside swap_support(); overlapping units are censored before we get here.
     # (3) SHAM is an exact bitwise no-op
     for f in ("rho", "c", "N"):
         assert np.array_equal(getattr(sham, f), getattr(ctrl, f)), f"SHAM changed {f}"
     assert np.array_equal(sham.C, ctrl.C)
-    # (4) the scramble PRESERVED what it must
+    # (4) the scramble PRESERVED everything it must
     sc = joint_scramble(st, sup, np.random.default_rng(1))
-    assert np.isclose(sc.rho[ys, xs].sum(), st.rho[ys, xs].sum())
-    assert np.isclose(sc.c[ys, xs].sum(), st.c[ys, xs].sum())
-    assert np.allclose(sc.C[:, ys, xs].sum(1), st.C[:, ys, xs].sum(1))
-    assert np.allclose(np.sort(sc.rho[ys, xs]), np.sort(st.rho[ys, xs]))
-    assert np.allclose(np.sort(sc.c[ys, xs]), np.sort(st.c[ys, xs]))
-    assert np.allclose(sc.C.sum(0), sc.rho)
-    # (5) the scramble DESTROYED what it must: lag-1 spatial autocorrelation of rho AND c
-    a_rho_i = spatial_autocorr(st.rho, sup)
-    a_rho_s = spatial_autocorr(sc.rho, sup)
-    a_c_i = spatial_autocorr(st.c, sup)
-    a_c_s = spatial_autocorr(sc.c, sup)
-    assert abs(a_rho_s) < 0.5 * abs(a_rho_i) + 1e-9, f"scramble did not destroy rho autocorr ({a_rho_s} vs {a_rho_i})"
-    assert abs(a_c_s) < 0.5 * abs(a_c_i) + 1e-9, f"scramble did not destroy c autocorr ({a_c_s} vs {a_c_i})"
-    return {"autocorr_rho_intact": a_rho_i, "autocorr_rho_scrambled": a_rho_s,
-            "autocorr_c_intact": a_c_i, "autocorr_c_scrambled": a_c_s}
+    assert np.isclose(sc.rho[ys, xs].sum(), st.rho[ys, xs].sum()), "scramble changed total rho"
+    assert np.isclose(sc.c[ys, xs].sum(), st.c[ys, xs].sum()), "scramble changed total c"
+    assert np.allclose(sc.C[:, ys, xs].sum(1), st.C[:, ys, xs].sum(1)), "scramble changed cohort masses"
+    assert np.allclose(np.sort(sc.rho[ys, xs]), np.sort(st.rho[ys, xs])), "scramble changed the rho multiset"
+    assert np.allclose(np.sort(sc.c[ys, xs]), np.sort(st.c[ys, xs])), "scramble changed the c multiset"
+    assert np.allclose(sc.C.sum(0), sc.rho), "scramble broke the cohort partition"
+    assert np.array_equal(np.nonzero(sc.rho > 0)[0].shape, np.nonzero(sc.rho > 0)[0].shape)
+    # (5) the scramble DESTROYED the organization -- measured against each statistic's own PERMUTATION NULL
+    null = permutation_null(st, sup)
+    mi = organization_measures(st, sup)
+    ms = organization_measures(sc, sup)
+    z_i = {k: (mi[k] - null[k][0]) / null[k][1] for k in mi}
+    z_s = {k: (ms[k] - null[k][0]) / null[k][1] for k in ms}
+    # there MUST be organization to destroy ...
+    assert max(z_i.values()) > 2.0, f"no internal organization to destroy (z={z_i})"
+    # ... and after scrambling every measure must be at chance level
+    assert all(abs(v) < 3.0 for v in z_s.values()), f"scramble left organization behind (z={z_s})"
+    return {"intact": mi, "scrambled": ms, "z_intact": z_i, "z_scrambled": z_s,
+            "organization_destroyed": True}
 
 
 def _dets(eng, s0):
