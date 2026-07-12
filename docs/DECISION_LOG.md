@@ -721,3 +721,35 @@ has no truth conditions. Both dead substrates had exactly one kind of entity.
 **Gate order is now: R7 → R8 → GATE-0 → law map.**
 
 Six substrates, six negatives. Nothing promoted. `origin/main` still requires the user's credentials to push.
+
+## D-041 — D-040 accepted; TWO OVERCLAIMS in it CORRECTED; R8 split into three separately-fireable gates
+
+**Date:** 2026-07-12
+**Status:** CORRECTION (D-040's verdict stands; two of its inferences were too strong)
+
+Chemotactic substrate **retired for the current question**. Gate order **R7 → R8 → GATE-0 → law map** stands.
+
+**OVERCLAIM 1 — "self-assembly defeats load-bearing organization" was stated as a universal. It is not.**
+Correct statement: **self-assembly from noise implies GATE-0 failure *here* because this substrate has essentially
+ONE interchangeable aggregate attractor.** A substrate can perfectly well self-assemble entities from noise *and*
+have load-bearing organization — provided the assembly is **multistable**, i.e. the same global law admits several
+metastable internal organizations. Then a scrambled cargo may re-assemble *an* entity while failing to recover *the
+source* entity. Spontaneity is not the problem; **uniqueness of the attractor** is. R7 and GATE-0 are in tension
+**only for single-attractor substrates**.
+
+**OVERCLAIM 2 — "individuality was never expressible" was stated as a universal. It is not.**
+Correct statement: individuality was **not identifiable in the tested single-phenotype substrates**. This is a
+property of Gray-Scott spots and chemotactic aggregates (one entity type, mutually interchangeable), not a claim
+about individuality in general, and not a claim about substrates we have not tested. The failure was one of
+**identifiability**, not of expressibility.
+
+**Consequence: R8 is split into three gates, each of which must be shown to be able to FIRE and to FAIL on synthetic
+cases before it is used on any substrate** (`docs/R8_GATES.md`):
+- **R8-A diversity** — between-entity phenotype distance > within-entity temporal drift, by a frozen margin, after
+  removing translation, rotation and other trivial symmetries.
+- **R8-B predictive identity** — a frozen classifier / nearest-neighbour rule fitted on EARLY states only must
+  re-identify the same entity later and on held-out trajectories, despite constituent turnover. **Position, total
+  mass, absolute orientation and tracker ID are FORBIDDEN identity features.**
+- **R8-C causal identity** — intact displaced cargo must preferentially reconstruct its **source-specific**
+  phenotype; organization-destroyed scrambled cargo may reconstruct a *generic* entity but must not recover the
+  **source identity** at the same rate. **The primary outcome is identity-specific recovery, not entity presence.**
