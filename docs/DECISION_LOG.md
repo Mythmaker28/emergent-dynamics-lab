@@ -513,3 +513,35 @@ re-forming spot. It carries **no eliminative weight**. Using it would have repea
 **Blocking gap:** the pipeline's **false-positive rate has never been measured**. 4 % positive is not
 distinguishable from 4 % artefact. **EXP-RD-04 Part 3 (non-entity cargo → false-positive rate) is run FIRST**;
 if the noise floor matches 4 %, the candidate is withdrawn and classical Gray-Scott is retired.
+
+## D-034 — CORRECTION to D-033: support sweep is INCONCLUSIVE, not refuting; law-14 denominators restated
+
+**Date:** 2026-07-12
+**Status:** CORRECTION (D-033 stands except as amended here)
+
+**(1) The causal-boundary hypothesis is NOT refuted. The support sweep is INCONCLUSIVE.**
+D-033 concluded "entity-boundary hypothesis REFUTED" from the fact that re-establishment does not improve with
+support size. That inference is invalid. Enlarging the support is **not** a clean "carry more of the entity"
+operation: it simultaneously **transports a chemically U-depleted halo into the destination**, which locally starves
+the re-forming spot. The two effects are **confounded with opposite signs**, so a null or negative trend across
+supports is uninformative about the true entity boundary. The sweep establishes only that:
+- re-establishment does not *require* a broad support (the "niche/site-carried → REJECT" branch does not fire), and
+- no support tested produces a *higher* rate than the bare mask.
+It does **not** establish where the entity boundary lies. **Recorded as INCONCLUSIVE.** I had already retracted the
+monotonicity claim on these grounds and then failed to apply the same reasoning to the aggregate trend — the same
+error, one level up.
+
+**(2) Law-14 denominators. The phrase "law 14 supplies 4/5" was a share of SUCCESSES, not a rate.**
+Corrected, against ENROLLED units (observer-robust = AUDITED in all 9 offline observer settings):
+
+| law | batch 1 (12001–12010) | batch 2 (13001–13004) | pooled | observer-robust rate, Wilson 95% |
+|---|---|---|---|---|
+| 14 | 3/10 | 1/4 | **4/14** | **28.6 % [11.7 %, 54.6 %]** |
+| 11 | 1/10 | 0/4 | 1/14 | 7.1 % [1.3 %, 31.5 %] |
+| 1, 5, 7, 10, 13, 16, 19 | — | — | 0/14 each | 0.0 % [0.0 %, 21.5 %] |
+| **all other 8 laws pooled** | | | **1/112** | **0.9 % [0.2 %, 4.9 %]** |
+| **ALL** | | | **5/126** | **4.0 % [1.7 %, 9.0 %]** |
+
+Law 14 (28.6 %) and the other laws pooled (0.9 %) have non-overlapping Wilson intervals. **Law 14 was NOT
+preselected.** This concentration is a POST-HOC observation and cannot be tested on the data that produced it.
+It is a **hypothesis for prospective replication**, and is treated as nothing more.
