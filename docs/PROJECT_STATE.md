@@ -6,19 +6,22 @@ Can CORE V0 local particle laws produce auditable high phenotype continuity unde
 
 ## CURRENT SUBSTRATE
 
-**Open chemotactic self-aggregation (EXP-CH-00) — R7 PASSED (D-038), laws {2, 4, 5}.** First substrate to clear the
-localization gate. Cohesion is constitutive (cells secrete `c` and climb `grad(c)`); finite-density regularization
-(receptor saturation + volume exclusion, in flux AND growth) is in the core, and `0 <= rho <= rho_max` is a proven
-invariant. Validated: exact closed limit, uniform-stays-uniform, bitwise-passive tracers, determinism, continued
-cohort turnover (M = 0.24-0.43), and cohesion CAUSED by the chemotactic field (`chi0=0` -> PR = 1.000, no
-localization). **GATE-0 is the only authorized next step. No law map unless GATE-0 passes.**
+**NONE — chemotactic substrate RETIRED (D-040).** GATE-0 failed on all three frozen laws: the joint-scrambled cargo
+(everything preserved, only positions permuted) re-established as often as the intact aggregate — 42.5 % vs 45.0 %,
+37.1 % vs 37.1 %, 26.9 % vs 23.1 %; Holm McNemar p = 1.000 throughout. PLACEBO = 0 % in all three laws, so the
+non-entity control would have "passed" all three: the Gray-Scott false positive exactly reproduced.
 
-**Retired:** Motile polar field RETIRED at qualification (D-037) — it produces no localized
-entity: bistable between a space-filling phase and extinction across 21 declared parameter points. GATE-0 never ran.
-Classical Gray-Scott RETIRED (D-035). Flow-Lenia retired (D-027). Particle Dynamics retired (D-021). All preserved.
+**Retired:** chemotaxis (D-040), motile polar (D-037), Gray-Scott (D-035), Flow-Lenia (D-027), Particle Dynamics
+(D-021). Six substrates, six negatives, nothing promoted.
 
-**Gate order (binding, `docs/CAUSAL_METHODOLOGY.md`): R7 localization -> GATE-0/R4 load-bearing organization ->
-law search.** Any future substrate must clear R7 and GATE-0 before a single law is screened.
+**Gate order (binding, `docs/CAUSAL_METHODOLOGY.md` R1-R8):
+R7 localization -> R8 distinguishability -> GATE-0 load-bearing organization -> law map.**
+
+**R8 is the lesson of the last two deaths.** An entity that self-assembles from noise (which R7 rewards) will
+re-assemble from a scrambled lump — so R7 and GATE-0 are in structural tension. And a substrate whose entities are
+all interchangeable cannot support individuality at all: "the same individual re-established" has no truth
+conditions when there is only one kind of thing. **Any next substrate must first demonstrate many mutually
+distinguishable entity configurations, with the entity NOT the unique attractor of generic matter.**
 
 ## CURRENT CORE VERSION
 

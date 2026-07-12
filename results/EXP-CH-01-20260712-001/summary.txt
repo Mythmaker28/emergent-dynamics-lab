@@ -1,0 +1,38 @@
+EXP-CH-01 / GATE-0 -- chemotactic substrate. Laws {2,4,5} FROZEN. PER LAW, NEVER POOLED.
+Protocol SHA 9d3e6320, frozen before any unit. Entirely unseen, disjoint per-law seed blocks. N = 40/law.
+
+=== LAW 2 ===  enrolled 40/40  censored 0 (0 no-entity, 0 overlap)
+  internal organization above chance (z>2): 30/40  |  GATE-0-valid units: 30/40
+    INTACT          18/40 =  45.0%  [30.7,  60.2]
+    JOINT_SCRAMBLE  17/40 =  42.5%  [28.5,  57.8] <- PRIMARY NULL
+    INDEP_SCRAMBLE  14/40 =  35.0%  [22.1,  50.5]
+    PLACEBO          0/40 =   0.0%  [ 0.0,   8.8] (no eliminative weight, R2)
+    paired INTACT vs JOINT-SCRAMBLE: both=15, intact-only=3, scrambled-only=2
+    exact McNemar p=1.0000 | diff=+0.025 (margin 0.25) | Newcombe CI [-0.184,+0.231]
+
+=== LAW 4 ===  enrolled 35/40  censored 5 (5 no-entity, 0 overlap)
+  internal organization above chance (z>2): 32/35  |  GATE-0-valid units: 32/35
+    INTACT          13/35 =  37.1%  [23.2,  53.7]
+    JOINT_SCRAMBLE  13/35 =  37.1%  [23.2,  53.7] <- PRIMARY NULL
+    INDEP_SCRAMBLE  13/35 =  37.1%  [23.2,  53.7]
+    PLACEBO          0/35 =   0.0%  [ 0.0,   9.9] (no eliminative weight, R2)
+    paired INTACT vs JOINT-SCRAMBLE: both=10, intact-only=3, scrambled-only=3
+    exact McNemar p=1.0000 | diff=+0.000 (margin 0.25) | Newcombe CI [-0.216,+0.216]
+
+=== LAW 5 ===  enrolled 26/40  censored 14 (14 no-entity, 0 overlap)
+  internal organization above chance (z>2): 12/26  |  GATE-0-valid units: 12/26
+    INTACT           6/26 =  23.1%  [11.0,  42.1]
+    JOINT_SCRAMBLE   7/26 =  26.9%  [13.7,  46.1] <- PRIMARY NULL
+    INDEP_SCRAMBLE   9/26 =  34.6%  [19.4,  53.8]
+    PLACEBO          0/26 =   0.0%  [ 0.0,  12.9] (no eliminative weight, R2)
+    paired INTACT vs JOINT-SCRAMBLE: both=4, intact-only=2, scrambled-only=3
+    exact McNemar p=1.0000 | diff=-0.038 (margin 0.25) | Newcombe CI [-0.265,+0.193]
+
+PREDECLARED DECISION (per law; Holm-Bonferroni over 3 laws, FWER 0.05):
+  law 2: intact>0 PASS | Holm McNemar p=1.0000 FAIL | diff>0.25 & LB>0 FAIL  ==>  GATE-0 FAIL
+  law 4: intact>0 PASS | Holm McNemar p=1.0000 FAIL | diff>0.25 & LB>0 FAIL  ==>  GATE-0 FAIL
+  law 5: intact>0 PASS | Holm McNemar p=1.0000 FAIL | diff>0.25 & LB>0 FAIL  ==>  GATE-0 FAIL
+
+==================================================================================
+VERDICT: NO LAW PASSES GATE-0  ->  SUBSTRATE RETIRED before any law map
+==================================================================================

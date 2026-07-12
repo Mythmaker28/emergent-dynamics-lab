@@ -50,3 +50,22 @@ constituent turnover for a structure that was the entire lattice).
 **Order of gates: R7 (a localized entity exists) → GATE-0/R4 (its organization is load-bearing) → law search.**
 GATE-0 presupposes an entity. Do not test whether organization matters before establishing that there is something
 organized.
+
+## R8 — Distinguishability precedes individuality (added 2026-07-12, EXP-CH-01)
+Before GATE-0, a substrate must be shown to support **many mutually distinguishable, non-interchangeable entity
+configurations**, and the entity must **not be the unique attractor** the dynamics relaxes to from generic matter.
+
+Two facts, learned five substrates in:
+1. **Self-assembly defeats load-bearing organization.** If an entity forms spontaneously from noise (which is what
+   R7 rewards), then it will re-form from a scrambled lump of its own material, and GATE-0 must fail. Gray-Scott
+   spots self-replicate; chemotactic aggregates self-assemble. Both re-established from scrambled cargo at the same
+   rate as the intact entity. **R7 and GATE-0 are in structural tension, and R8 is what resolves it.**
+2. **Interchangeable entities make individuality vacuous.** If every entity in the substrate has the same phenotype,
+   then "the same individual re-established" has no truth conditions: any entity of the right type satisfies it.
+   Both dead substrates had exactly one kind of entity.
+
+**Operational test (before GATE-0):** the substrate must produce, from different seeds, entities whose frozen
+phenotypes are **reliably discriminable** — between-entity phenotype distance must exceed within-entity temporal
+drift by a preregistered margin. If all entities are alike, retire the substrate: there is no individuality to test.
+
+**Gate order (binding): R7 localization → R8 distinguishability → GATE-0 load-bearing organization → law map.**

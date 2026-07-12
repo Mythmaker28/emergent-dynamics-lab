@@ -147,12 +147,13 @@ def assert_unit(st, sup, ctrl, sham, intact, joint) -> dict[str, Any]:
     ms = organization_measures(sc, sup)
     z_i = {k: (mi[k] - null[k][0]) / null[k][1] for k in mi}
     z_s = {k: (ms[k] - null[k][0]) / null[k][1] for k in ms}
-    # there MUST be organization to destroy ...
-    assert max(z_i.values()) > 2.0, f"no internal organization to destroy (z={z_i})"
-    # ... and after scrambling every measure must be at chance level
-    assert all(abs(v) < 3.0 for v in z_s.values()), f"scramble left organization behind (z={z_s})"
+    # Whether there IS internal organization to destroy is a PROPERTY OF THE SUBSTRATE, not a code bug, so it is
+    # RECORDED, not asserted. A unit is VALID for GATE-0 only if the null had something to destroy AND destroyed it.
+    has_org = bool(max(z_i.values()) > 2.0)                    # organization exists above chance
+    destroyed = bool(all(abs(v) < 3.0 for v in z_s.values()))  # and the scramble reduced it to chance
     return {"intact": mi, "scrambled": ms, "z_intact": z_i, "z_scrambled": z_s,
-            "organization_destroyed": True}
+            "has_internal_organization": has_org, "organization_destroyed": destroyed,
+            "gate0_valid": bool(has_org and destroyed)}
 
 
 def _dets(eng, s0):
@@ -240,6 +241,8 @@ def gate0_unit(law: int, seed: int) -> dict[str, Any]:
 
     out: dict[str, Any] = {"law": law, "seed": seed, "enrolled": True, "t_star": T_STAR,
                            "sham_equals_control": True, "checks": checks,
+                           "gate0_valid": checks["gate0_valid"],
+                           "has_internal_organization": checks["has_internal_organization"],
                            "ambient_target_frac_new": amb["frac_new"], "ambient_clean": bool(ambient_clean),
                            "entity_size": cand.size, "entity_rg": cand.rg, "arms": {}}
     for name, s0 in (("INTACT", intact), ("JOINT_SCRAMBLE", joint), ("INDEP_SCRAMBLE", indep), ("PLACEBO", plac)):

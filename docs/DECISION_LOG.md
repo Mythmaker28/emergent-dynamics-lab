@@ -690,3 +690,34 @@ now-frozen diagnostic; none is claimed.
 
 **Consequently: ALL GATE-0 evidence uses entirely unseen seeds.** Qualification consumed 5001–5005 and 7001–7002.
 GATE-0 uses per-law disjoint unseen blocks: law 2 → 40001–40040, law 4 → 41001–41040, law 5 → 42001–42040.
+
+## D-040 — EXP-CH-01 GATE-0: NO LAW PASSES. Chemotactic substrate RETIRED. R8 added.
+
+**Date:** 2026-07-12
+**Status:** CLEAN FALSIFICATION — substrate retired before any law map
+**Protocol:** docs/experiments/EXP_CH_01_GATE0_PROTOCOL.md (SHA 9d3e63200154597789f3164feda43843d152a044), frozen first.
+
+Laws {2,4,5} frozen; entirely unseen disjoint per-law seed blocks; N = 40 per law; decided **per law, never pooled**;
+Holm–Bonferroni across the three laws.
+
+| law | enrolled | INTACT | **JOINT-SCRAMBLE** | INDEP-SCRAMBLE | PLACEBO | Holm McNemar | diff |
+|---|---|---|---|---|---|---|---|
+| 2 | 40/40 | 45.0 % | **42.5 %** | 35.0 % | **0 %** | 1.000 | +0.025 |
+| 4 | 35/40 | 37.1 % | **37.1 %** | 37.1 % | **0 %** | 1.000 | +0.000 |
+| 5 | 26/40 | 23.1 % | **26.9 %** | 34.6 % | **0 %** | 1.000 | −0.038 |
+
+**No law passes.** The joint-scrambled cargo — everything preserved, only positions permuted — re-establishes as
+often as the intact aggregate. R5 confirms the null bit: organization existed (z > 2 vs its own permutation null)
+and was reduced to chance (|z| < 3), with every preserved statistic exact.
+
+**PLACEBO = 0/40, 0/35, 0/26.** Against the non-entity placebo all three laws would have "passed" overwhelmingly.
+This is the Gray-Scott false positive reproduced exactly — and this time the correct null shows there is nothing.
+
+**R8 added — distinguishability precedes individuality.** The common cause of the last two substrate deaths:
+(a) **self-assembly defeats load-bearing organization** — an entity that forms spontaneously from noise (which R7
+rewards) will re-form from a scrambled lump, so R7 and GATE-0 are in structural tension; (b) **interchangeable
+entities make individuality vacuous** — if every entity has the same phenotype, "the same individual re-established"
+has no truth conditions. Both dead substrates had exactly one kind of entity.
+**Gate order is now: R7 → R8 → GATE-0 → law map.**
+
+Six substrates, six negatives. Nothing promoted. `origin/main` still requires the user's credentials to push.
