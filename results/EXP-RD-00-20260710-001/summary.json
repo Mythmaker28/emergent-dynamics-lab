@@ -1,0 +1,51 @@
+{
+ "checks": {
+  "openness_material_not_conserved": true,
+  "exact_closed_limit_conserves": true,
+  "homogeneity_null_no_imposed_pattern": true,
+  "tracer_partition": true,
+  "feed_cohort_grows": true,
+  "tracers_passive": true,
+  "determinism": true,
+  "nonnegativity": true,
+  "reference_path_agreement": true,
+  "detector_tracker_on_real_dynamics": true,
+  "positive_control_recognized": true,
+  "negative_control_separated": true
+ },
+ "passed": true,
+ "metrics": {
+  "open_drift": 0.9936770006130295,
+  "closed_drift": 1.99763884556111e-16,
+  "homogeneity_ptp": 0.0,
+  "tracer_partition_err": 6.661338147750939e-16,
+  "feed_cohort_mass": 8911.909020578525,
+  "tracer_invariance": 0.0,
+  "determinism": 0.0,
+  "min_field": 0.0,
+  "refpath": 3.885780586188048e-16,
+  "max_track_len": 77
+ },
+ "positive_control": {
+  "n_tracks": 1,
+  "main_obs": 31,
+  "single_entity": true,
+  "P_max": 1.0,
+  "P_min": 1.0,
+  "M_min": 0.06485678620911005,
+  "n_probe": 83,
+  "mean_production": 0.1165424227956465,
+  "mean_activity": 0.08501553458088601
+ },
+ "negative_control": {
+  "n_tracks": 1,
+  "main_obs": 31,
+  "single_entity": true,
+  "P_max": 1.0,
+  "P_min": 1.0,
+  "M_min": 0.06485678620911005,
+  "n_probe": 83,
+  "mean_production": 0.0,
+  "mean_activity": 0.0
+ }
+}

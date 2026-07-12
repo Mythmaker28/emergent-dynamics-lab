@@ -360,3 +360,23 @@ promoted.** No threshold, metric, mechanism or law was changed to reach this con
 active/reservoir exchange yields constituent turnover WITHOUT sustained constituent-carried individuality. The next
 honest step is a genuinely OPEN-SYSTEM / reaction-diffusion substrate (true sources and sinks, non-equilibrium
 driving), preregistered under the same falsifiable protocol.
+
+## D-028 — OPEN reaction-diffusion substrate QUALIFIED (EXP-RD-00); Flow-Lenia closed system retired
+
+**Date:** 2026-07-10 (RUN-20260710-2330-EXPRD00). Model: claude-opus-4-8 (Fable 5 lock lifted by user).
+
+**Decision:** Following D-027 (EXP-FL-02 positive withdrawn; closed Flow-Lenia retired, no rescue mechanisms), a
+minimal genuinely OPEN reaction-diffusion substrate (Gray-Scott) was implemented and qualified: spatially
+homogeneous, detector-independent feed F*(1-U) and removal (F+k)*V; real source and sinks (material NOT conserved,
++99.4% from a non-equilibrium probe); an EXACT controlled limit F=k=0 that conserves U+V (drift 0.0); passive
+origin tracers partitioning BOTH species with an explicit FEED (external-origin) cohort; and the frozen P/M
+separation with unchanged thresholds. All 12 qualification checks PASS, including the **HOMOGENEITY NULL**
+(a uniform state remains exactly uniform, ptp = 0.0 -> the forcing provably cannot impose a spatial pattern) and
+the POSITIVE/NEGATIVE measurement controls: a frozen/imposed pattern is INDISTINGUISHABLE from a real dissipative
+organization on P/M alone (both P=1.0, M_min=0.065) and is separated ONLY by the open-system rates
+(production/activity 0.117/0.085 vs 0.000/0.000).
+
+**Consequence:** EXP-RD-01 (blind low-discrepancy map over F, k, Du, Dv, matched OPEN vs the exact CLOSED limit) is
+authorized under the five evidence levels, frozen thresholds, continued-turnover requirement,
+CONTROL/SHAM/PERTURBED/PLACEBO causal discipline and observer-sensitivity checks. No composite score, no visual
+selection, no threshold relaxation.
