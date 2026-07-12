@@ -753,3 +753,29 @@ cases before it is used on any substrate** (`docs/R8_GATES.md`):
 - **R8-C causal identity** — intact displaced cargo must preferentially reconstruct its **source-specific**
   phenotype; organization-destroyed scrambled cargo may reconstruct a *generic* entity but must not recover the
   **source identity** at the same rate. **The primary outcome is identity-specific recovery, not entity presence.**
+
+## D-042 — EXP-MA-00: R8 FAILS; multistable droplet substrate RETIRED. No GATE-0, no law map.
+
+**Date:** 2026-07-12
+**Status:** RETIRED AT R8 (GATE-0 never authorized)
+**Protocol:** docs/experiments/EXP_MA_00_PROTOCOL.md (SHA f59dd700baac59620c50f739b2fb2ad6ce4b0e13), frozen first.
+
+**Structural finding: in this frozen domain, localization and multistability are mutually exclusive.**
+Blind 32-point Halton screen (`lam ∈ [0.5,6.0]`): the only laws that pass R7 (2, 4) have **mixed** droplets
+(demixing_index 0.043 / 0.008); every genuinely demixed law (5, 9, 16, 17, 18; 0.18–0.42, Janus-scale) **fails R7**.
+**0/32 are both localized and demixed.** Median demixing over all 115 detected entities: 0.012.
+
+**R8 on the R7 survivors (unseen seeds 7101–7108):** law 2 → R8-A ratio **1.42** (need > 2.0) FAIL, R8-B accuracy
+**0.19** vs chance 0.12 FAIL. Law 4 → **1.31** FAIL, **0.15** FAIL. **The built-in `lam = 0` NEGATIVE CONTROL fails
+identically** (1.32 / 0.21): at the laws that localize, the demixing term is doing nothing, and the frozen law is
+statistically indistinguishable from the control with multistability switched off.
+
+**Substrate RETIRED. No mechanism added. GATE-0 and the law map remain unauthorized**, exactly as preregistered.
+
+**Scope, stated precisely:** this does NOT show multistable substrates cannot support individuality. It shows that
+**this** two-species demixing droplet, **in this bounded domain**, cannot cohere and structure its interior at the
+same time — cohesion (shared attractant) and demixing (mutual repulsion) **compete for the same flux**. A substrate
+whose cohesion and internal structure ride on **different, non-competing degrees of freedom** is not excluded; it is
+what this result points to.
+
+Seven substrates, seven negatives. Nothing promoted.

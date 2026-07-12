@@ -1,0 +1,16 @@
+EXP-MA-00 -- R8-A (diversity) and R8-B (predictive identity). Entirely unseen seeds 7101-7108.
+Metrics proven fireable on synthetic cases (tests/test_r8_gates.py, 10 cases; tests/test_multistable_phenotype.py, 5).
+
+ law condition                   #ent  R8-A ratio  (need>2)  R8-B acc  chance  verdict
+   2 frozen law (lam as drawn)      8        1.42      FAIL      0.19    0.12  R8 FAIL
+   2 NEGATIVE CONTROL lam=0         8        1.32      FAIL      0.21    0.12  R8 FAIL
+   4 frozen law (lam as drawn)      8        1.31      FAIL      0.15    0.12  R8 FAIL
+   4 NEGATIVE CONTROL lam=0         2   insufficient entities
+
+Every law that passed R7 FAILS R8-A and R8-B. Entities under the same law are NOT more different from each
+other than each is from itself over time (ratio 1.3-1.4, need > 2.0), and a classifier fitted on early states
+cannot re-identify them later (accuracy 0.15-0.19 vs chance 0.12).
+
+The lam=0 NEGATIVE CONTROL fails identically (ratio 1.32, acc 0.21) -- as it must. The frozen laws are
+statistically indistinguishable from the control in which demixing is switched OFF: at the laws that
+localize, `lam` is doing nothing.

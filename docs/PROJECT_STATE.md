@@ -6,7 +6,24 @@ Can CORE V0 local particle laws produce auditable high phenotype continuity unde
 
 ## CURRENT SUBSTRATE
 
-**NONE — chemotactic substrate RETIRED (D-040).** GATE-0 failed on all three frozen laws: the joint-scrambled cargo
+**NONE — multistable droplet RETIRED at R8 (D-042); chemotactic RETIRED at GATE-0 (D-040).**
+
+EXP-MA-00: in the frozen domain, **localization and multistability are mutually exclusive** — the laws that localize
+have mixed droplets (demixing 0.043/0.008), every genuinely demixed law fails R7, and **0/32 are both**. On the R7
+survivors, R8-A = 1.31-1.42 (need > 2.0) and R8-B = 0.15-0.19 (chance 0.12), both FAIL — and the built-in `lam = 0`
+NEGATIVE CONTROL fails identically, so the demixing term is **inert** wherever entities exist. Cause: cohesion
+(shared attractant) and demixing (mutual repulsion) **compete for the same flux**. GATE-0 was never authorized.
+
+**Seven substrates, seven negatives. Nothing promoted.**
+
+**Gates (binding): R7 localization -> R8-A diversity -> R8-B predictive identity -> R8-C causal identity -> GATE-0 ->
+law map** (`docs/R8_GATES.md`, `docs/CAUSAL_METHODOLOGY.md`). Every metric must pass synthetic must-pass AND
+must-fail cases before use.
+
+**What EXP-MA-00 points to (not a patch, a different substrate):** cohesion and internal structure must ride on
+**different, non-competing degrees of freedom**, so that structuring the interior costs the entity no cohesion.
+
+## SUPERSEDED GATE-0 failed on all three frozen laws: the joint-scrambled cargo
 (everything preserved, only positions permuted) re-established as often as the intact aggregate — 42.5 % vs 45.0 %,
 37.1 % vs 37.1 %, 26.9 % vs 23.1 %; Holm McNemar p = 1.000 throughout. PLACEBO = 0 % in all three laws, so the
 non-entity control would have "passed" all three: the Gray-Scott false positive exactly reproduced.
