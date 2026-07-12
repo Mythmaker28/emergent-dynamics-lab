@@ -29,3 +29,11 @@ in front of every future substrate. Gray-Scott would have failed GATE-0 on day o
 Four negatives now: Particle Dynamics, Flow-Lenia (closed), Flow-Lenia (throughput), Gray-Scott. Nothing has been
 promoted. That is the correct outcome for a program that has not yet found a substrate in which organization is
 load-bearing — which is now, finally, the question we know how to ask first.
+
+## A second, smaller process bug found while closing out
+My D-032 and D-033 edits to `PROJECT_STATE.md` **silently did nothing**: I used `str.replace` against
+`"## Current substrate"` while the file has `"## CURRENT SUBSTRATE"`. `str.replace` returns the string unchanged on
+no match, so the script "succeeded" and the commit went through with a stale PROJECT_STATE pinned at D-031 — for
+three decisions. Found only because the D-035 patch used `.index()` and threw. Fixed, and every PROJECT_STATE patch
+now asserts its target exists before writing. Same failure family as the tracker no-op: **an operation that cannot
+fail loudly will eventually fail silently.**

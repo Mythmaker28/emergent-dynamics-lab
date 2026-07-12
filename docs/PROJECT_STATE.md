@@ -6,7 +6,9 @@ Can CORE V0 local particle laws produce auditable high phenotype continuity unde
 
 ## CURRENT SUBSTRATE
 
-OPEN reaction-diffusion (Gray-Scott) with spatially homogeneous feed/removal, as of D-028. Closed Flow-Lenia retired (D-027); Particle Dynamics retired (D-021). Both preserved and reusable.
+**NONE. All substrates retired.** Classical Gray-Scott RETIRED (D-035). Flow-Lenia retired (D-027).
+Particle Dynamics retired (D-021). All preserved and reusable.
+**Next: motile open-system substrate** — `docs/NEXT_SUBSTRATE_MOTILE_PROPOSAL.md`.
 
 ## CURRENT CORE VERSION
 
@@ -31,11 +33,41 @@ OPEN reaction-diffusion (Gray-Scott) with spatially homogeneous feed/removal, as
 
 ## ACTIVE EXPERIMENT
 
-**Open-RD substrate: causal individuality NOT established (D-031).** EXP-RD-02 ran the frozen chain on the 9 frozen laws: hold-out 9/9 survive, but the causal intervention gives AUDITED 6/90 = 6.7% [3.1,13.8] with 83% destroyed, and 0/6 survive observer sensitivity -> NET 0 audited. Nothing promoted. Prior: EXP-RD-01 (D-030) gave 9 OPEN screening-permitted laws vs 0 in the exact CLOSED limit. NOTHING is promoted: the Flow-Lenia precedent (D-027) shows an identically-shaped screen died under replication. Tracer FROZEN (D-029); substrate QUALIFIED (D-028). The OPEN Gray-Scott substrate is QUALIFIED (D-028; 12/12, homogeneity null proves the forcing cannot impose a pattern; imposed-pattern control separated only by open-system rates). Closed Flow-Lenia retired (D-027). Prior: EXP-FL-03 WITHDREW the EXP-FL-02 positive (D-027): on 12 unseen seeds/law the audited rate collapsed to 2/46 (4.3%) and 0/2 survived cadence sensitivity; the dominant failure is frozen_lump (30/46) — structures re-establish but STOP turning over. Nothing is promoted. Prior: EXP-FL-02 (isolated mass-conservative reservoir-exchange throughput; exact OFF limit = current core) produced the project's first placebo-controlled, alias-audited causal survivors (D-026). NOT promoted: one causal seed per law. Prior: EXP-FL-01 map #2 (720 blind flux-favouring runs) was SCREEN NEGATIVE (D-025): 720/720 persistent structures (P~0.99), min mean-M=0.933, 0%% of runs with M<0.8, 0 permitted. Tracer resolution verified adequate (D-024; not a metric artefact). Assessment: the minimal fixed-law mass-conservative Flow-Lenia core LACKS a material-throughput mechanism. EXP_FL_00 qualified the stack (D-022); Particle Dynamics retired (D-021). Next (user decision): a mass-conservative single-law Flow-Lenia config WITH genuine material throughput (glider regeneration / open-flux), same falsifiable protocol; no metric relaxation. The full causal ladder is negative (D-017..D-020) AND the EXP-REF-01 measurement positive control PASSED (the frozen stack recognizes and separates a known persistent dissipative organization from static flux), so the negatives are substrate results, not measurement blindness. Kill-switch review: `docs/PARTICLE_DYNAMICS_KILL_SWITCH_REVIEW.md`. Next substrate proposal (Flow-Lenia candidate, not assumed): `docs/NEXT_SUBSTRATE_PROPOSAL.md`. Substrate NOT switched autonomously — awaiting user confirmation of the candidate.
+**NONE — Gray-Scott RETIRED (D-035, 2026-07-12). The decisive null fired.**
+
+EXP-RD-04 (protocol SHA c08a2cc, frozen at f9da63d before any run; law 14 frozen; seeds 14001–14040 entirely unseen;
+40/40 enrolled, 0 censored; sham==control 40/40): a **scrambled cargo** — identical total U mass, identical total V
+mass, identical per-cohort mass, identical per-cell value multiset, identical destination, identical support
+geometry, identical |DELTA|, with **only its internal organization destroyed** — re-establishes **19/40 = 47.5 %**
+[32.9, 62.5] versus **17/40 = 42.5 %** [28.5, 57.8] for the intact entity. 16 units succeed under both. Paired exact
+McNemar **p = 0.625**. Predeclared rule required S1 ∧ S2 ∧ S3; **S3 FAILED** → **candidate WITHDRAWN, Gray-Scott
+RETIRED**.
+
+What the causal protocol had been measuring was **delivery of sufficient V-rich material to a receptive site**, not
+individuality. Continued cohort turnover, absence of old-site regeneration, observer robustness across 9 settings,
+and a clean ambient null are **all satisfied by a scrambled lump**.
+
+**S2 PASSED only as a pooling artefact**: NULL-NE and NULL-NE-M score 0/40 by construction (a non-entity region has
+no V to regrow), so pooling them diluted the floor from 47.5 % to 15.8 % and let a dead candidate clear the 0.10
+margin (Newcombe LB +0.108). Only the paired organization-destroying null caught it. **A null that cannot fire is
+not a null.**
+
+**BINDING (all future substrates): the scrambled-cargo null NULL-SC is a mandatory arm of every causal
+intervention.** Every prior stage used a straw-man low-V PLACEBO (NULL-NE class) and therefore never tested a
+positive against a cargo with the right matter and the wrong organization. **GATE-0** now precedes every law search:
+a substrate is rejected unless intact cargo re-establishes where scrambled cargo does not. Gray-Scott would have
+failed GATE-0 on day one.
+
+**Superseded record (kept for audit):** EXP-RD-02 ran the frozen chain on the 9 frozen laws: hold-out 9/9 survive, but the causal intervention gives AUDITED 6/90 = 6.7% [3.1,13.8] with 83% destroyed, and 0/6 survive observer sensitivity -> NET 0 audited. Nothing promoted. Prior: EXP-RD-01 (D-030) gave 9 OPEN screening-permitted laws vs 0 in the exact CLOSED limit. NOTHING is promoted: the Flow-Lenia precedent (D-027) shows an identically-shaped screen died under replication. Tracer FROZEN (D-029); substrate QUALIFIED (D-028). The OPEN Gray-Scott substrate is QUALIFIED (D-028; 12/12, homogeneity null proves the forcing cannot impose a pattern; imposed-pattern control separated only by open-system rates). Closed Flow-Lenia retired (D-027). Prior: EXP-FL-03 WITHDREW the EXP-FL-02 positive (D-027): on 12 unseen seeds/law the audited rate collapsed to 2/46 (4.3%) and 0/2 survived cadence sensitivity; the dominant failure is frozen_lump (30/46) — structures re-establish but STOP turning over. Nothing is promoted. Prior: EXP-FL-02 (isolated mass-conservative reservoir-exchange throughput; exact OFF limit = current core) produced the project's first placebo-controlled, alias-audited causal survivors (D-026). NOT promoted: one causal seed per law. Prior: EXP-FL-01 map #2 (720 blind flux-favouring runs) was SCREEN NEGATIVE (D-025): 720/720 persistent structures (P~0.99), min mean-M=0.933, 0%% of runs with M<0.8, 0 permitted. Tracer resolution verified adequate (D-024; not a metric artefact). Assessment: the minimal fixed-law mass-conservative Flow-Lenia core LACKS a material-throughput mechanism. EXP_FL_00 qualified the stack (D-022); Particle Dynamics retired (D-021). Next (user decision): a mass-conservative single-law Flow-Lenia config WITH genuine material throughput (glider regeneration / open-flux), same falsifiable protocol; no metric relaxation. The full causal ladder is negative (D-017..D-020) AND the EXP-REF-01 measurement positive control PASSED (the frozen stack recognizes and separates a known persistent dissipative organization from static flux), so the negatives are substrate results, not measurement blindness. Kill-switch review: `docs/PARTICLE_DYNAMICS_KILL_SWITCH_REVIEW.md`. Next substrate proposal (Flow-Lenia candidate, not assumed): `docs/NEXT_SUBSTRATE_PROPOSAL.md`. Substrate NOT switched autonomously — awaiting user confirmation of the candidate.
 
 ## LAST COMPLETED EXPERIMENT
 
-`EXP-REF-01-COREV0-20260710-001`: measurement positive control. Frozen stack RECOGNIZED a known persistent dissipative organization under turnover (P=1.0, M->0.25, probe-positive) and SEPARATED it from static flux on frozen observables (|circ| 0.147 vs 0; vdisp 0.090 vs 0) -> PASS (D-021, retire Particle Dynamics). Preceding: EXP03-C NEGATIVE (D-020); EXP03-B NEGATIVE (D-019); EXP03-A NEGATIVE (D-018); CORE V0 CASE A (D-017).
+`EXP-RD-04-20260712-001`: matched-null false-positive floor + prospective law-14 replication → **CLEAN
+FALSIFICATION** (D-035). Preceding: EXP-RD-03 (D-033/D-034) — observer robustness RESOLVED (4/6 audited in all 9
+offline observer settings at fixed physics / fixed `t*`); nested-support sweep **INCONCLUSIVE** on the entity
+boundary (larger supports also transport a chemically depleted U halo — confounded with opposite signs); law-14
+rate restated against ENROLLED units as 4/14 = 28.6 % [11.7, 54.6] vs 1/112 = 0.9 % for all other laws pooled.
+EXP-RD-02 observer eliminations WITHDRAWN as invalid (D-032). Earlier: `EXP-REF-01-COREV0-20260710-001`: measurement positive control. Frozen stack RECOGNIZED a known persistent dissipative organization under turnover (P=1.0, M->0.25, probe-positive) and SEPARATED it from static flux on frozen observables (|circ| 0.147 vs 0; vdisp 0.090 vs 0) -> PASS (D-021, retire Particle Dynamics). Preceding: EXP03-C NEGATIVE (D-020); EXP03-B NEGATIVE (D-019); EXP03-A NEGATIVE (D-018); CORE V0 CASE A (D-017).
 
 ## OBSERVED
 
