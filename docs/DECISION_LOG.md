@@ -449,3 +449,39 @@ enrollment point. It does not change this verdict: the 6/90 base rate, the 83% d
 placebo/occupancy failures already fail to support a claim.
 
 No thresholds, composites, mechanisms or laws were changed.
+
+## D-032 — EXP-RD-02 observer-sensitivity eliminations WITHDRAWN; Gray-Scott NOT retired
+
+**Date:** 2026-07-11
+**Status:** CORRECTION (supersedes the observer-sensitivity portion of D-031; D-031 is retained unmodified)
+**Protocol:** docs/experiments/EXP_RD_03_PROTOCOL.md (SHA 9c3aba3798c946b7b28f99c1a4f36f0078f77baf)
+
+D-031 withdrew the six audited causal units of EXP-RD-02 on an "observer sensitivity" test. That test is
+**invalid** and its eliminations are **withdrawn**:
+
+1. **Cadence was not an observer-only perturbation.** Enrollment used `t* = WARMUP_SNAP * cadence`. Changing the
+   cadence therefore changed the **enrollment time**, enrolling a **different structure at a different time**.
+   It perturbed the physics/enrollment, not the observation.
+2. **The tracker perturbation was a no-op.** `tracker_scale` constructed a `TrackerSpec` that the causal readout
+   never consumes (the readout is detection + site proximity; the lineage tracker is not in that path). The
+   reported "survives tracker x0.8/x1.2" was **vacuous**, not evidence.
+
+**Corrected verdict of EXP-RD-02:**
+- **No promotion.**
+- **6/90 = 6.7% [Wilson 3.1%, 13.8%] PROVISIONAL causal successes** — units (1,12007), (7,12007), (11,12003),
+  (14,12001), (14,12006), (14,12008). They are **not** recorded as observer failures.
+- **Observer robustness: UNRESOLVED.**
+- **Gray-Scott is NOT retired.** All other EXP-RD-02 findings stand: hold-out 9/9; destroyed 75/90; placebo_failure 6;
+  occupancy_alias 3; frozen_lump 0; sham==control bit-for-bit in every unit; 0 censored.
+
+**Consequence:** EXP-RD-03 is preregistered in two parts — (A) observer-ONLY sensitivity at strictly fixed physics,
+fixed pre-intervention state, fixed `t*` and fixed branches, varying only offline observation cadence and readout
+site radius; (B) a causal-boundary displacement sweep over nested supports derived mechanistically from each law's
+diffusion length `ell = sqrt(Du/F)`, because a Gray-Scott entity may include its U-depletion field and RD halo and
+not only the detected V mask.
+
+**Self-criticism recorded:** I had already flagged the enrollment/cadence confound in my own adversarial re-audit
+(objection O5, docs/agent_journals/2026-07-11/0010_exprd02-adversarial-reaudit_*.md) and applied the frozen rule
+anyway. A frozen rule must not be applied through a test that is known to be invalid; the correct action was to
+declare the test void and the question unresolved. Applying a broken falsifier is not rigour — it is
+falsification theatre, and it destroys true positives exactly as readily as false ones.

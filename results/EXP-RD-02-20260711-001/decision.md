@@ -1,3 +1,8 @@
+> **AMENDED 2026-07-11 (D-032).** The observer-sensitivity eliminations below are **WITHDRAWN as invalid**:
+> the cadence perturbation also moved the enrollment time (`t* = WARMUP_SNAP * cadence`), and `tracker_scale`
+> never entered the causal readout (a no-op). Corrected verdict: **no promotion; 6/90 provisional causal
+> successes; observer robustness UNRESOLVED; Gray-Scott NOT retired.** See D-032 and EXP-RD-03.
+
 # EXP-RD-02 — Decision: NEGATIVE. No audited individuality survives the frozen chain.
 
 Protocol frozen in `docs/experiments/EXP_RD_01_PROTOCOL.md` @b3badb8. RUN-20260711-0000-EXPRD02.
