@@ -6,9 +6,12 @@ Can CORE V0 local particle laws produce auditable high phenotype continuity unde
 
 ## CURRENT SUBSTRATE
 
-**NONE. All substrates retired.** Classical Gray-Scott RETIRED (D-035). Flow-Lenia retired (D-027).
-Particle Dynamics retired (D-021). All preserved and reusable.
-**Next: motile open-system substrate** — `docs/NEXT_SUBSTRATE_MOTILE_PROPOSAL.md`.
+**NONE. All substrates retired.** Motile polar field RETIRED at qualification (D-037) — it produces no localized
+entity: bistable between a space-filling phase and extinction across 21 declared parameter points. GATE-0 never ran.
+Classical Gray-Scott RETIRED (D-035). Flow-Lenia retired (D-027). Particle Dynamics retired (D-021). All preserved.
+
+**Gate order (binding, `docs/CAUSAL_METHODOLOGY.md`): R7 localization -> GATE-0/R4 load-bearing organization ->
+law search.** Any future substrate must clear R7 and GATE-0 before a single law is screened.
 
 ## CURRENT CORE VERSION
 

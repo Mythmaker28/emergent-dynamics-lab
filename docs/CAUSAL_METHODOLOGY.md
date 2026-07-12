@@ -38,3 +38,15 @@ silently* — see the tracker no-op (D-032) and the PROJECT_STATE patch no-op (D
 ## R6 — Observer sensitivity is offline, at fixed physics
 Observer perturbations re-observe a **stored trajectory** at a **fixed `t*`** with fixed branches. Any "observer"
 knob that also moves enrollment or physics is not an observer knob (D-032).
+
+## R7 — Localization precedes everything (added 2026-07-12, EXP-MO-00)
+Before GATE-0, and before any law search, a substrate must be shown to produce **localized** structures — spatial
+extent much smaller than the domain — that **persist** and **turn over**. A space-filling active phase and an
+extinct phase both trivially contain no individuals, and every downstream observable computed on them is an
+artefact: the periodic centroid of a domain-filling field is ill-defined and will happily report persistence,
+motility and turnover that do not exist (EXP-MO-00 reported persistence 24/24, speed 0.95 cells/step and complete
+constituent turnover for a structure that was the entire lattice).
+
+**Order of gates: R7 (a localized entity exists) → GATE-0/R4 (its organization is load-bearing) → law search.**
+GATE-0 presupposes an entity. Do not test whether organization matters before establishing that there is something
+organized.

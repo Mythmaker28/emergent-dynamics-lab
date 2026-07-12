@@ -603,3 +603,32 @@ is offline, at fixed physics and fixed `t*`.
 
 **EXP-MO-00 authorized:** minimal genuinely open **motile polar-field** substrate. GATE-0 first. No blind law map
 may begin unless GATE-0 passes. If GATE-0 fails, the substrate is retired immediately — no rescue mechanisms.
+
+## D-037 — EXP-MO-00: qualification FAILED; motile polar substrate RETIRED before GATE-0; R7 added
+
+**Date:** 2026-07-12
+**Status:** SUBSTRATE RETIRED AT QUALIFICATION (GATE-0 never run)
+**Protocol:** docs/experiments/EXP_MO_00_GATE0_PROTOCOL.md (SHA 779749854bacd74a1abf293c5965c8e3edb2e2ba)
+
+The minimal open motile polar-field substrate **does not produce a localized entity**. Its active phase is a
+Fisher-KPP invasion front with uniform steady state `rho* = F*(R0 - k/g0)/k`, so it is **bistable between the only
+two outcomes that contain no entities**: `rho* > 0.30` → the phase fills the whole 64x64 lattice (the "detected
+entity" at t* is **4096/4096 cells**); `rho* < 0.30` → extinction. **21 declared parameter points across two
+preregistered grids** found no localized regime (12/12 extinct; 8/9 extinct + 1/9 space-filling). Selection criteria
+were declared before searching and never referenced intact-vs-scrambled separation.
+
+**The search stopped there.** Localizing the structure would require adding cohesion / density-dependent
+aggregation — a **rescue mechanism**, forbidden. **Substrate RETIRED.**
+
+**Two of my own results are VOID and are withdrawn:**
+1. The first qualification (persistence 24/24, speed 0.95 cells/step, min M ≈ 8e-7) was computed on a **space-filling
+   field** whose periodic centroid is ill-defined. There was no structure.
+2. The instrument validation (**INTACT 27/27 robust vs SCRAMBLED 0/27**) was **displacing the entire lattice**. It
+   looked like a decisive positive. It was an artefact.
+
+**R5 caught it**: a whole-domain support overlaps its own translate, so the displacement cannot conserve mass, and
+the assertion fired loudly on the first real unit. R5 paid for itself within one experiment of being written.
+
+**R7 added to `docs/CAUSAL_METHODOLOGY.md`:** localization precedes everything. A substrate must be shown to produce
+localized, persistent, turning-over structures **before** GATE-0. Gate order is now **R7 → GATE-0 (R4) → law search**.
+GATE-0 presupposes an entity; do not ask whether organization matters before establishing that something is organized.

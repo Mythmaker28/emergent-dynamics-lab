@@ -55,6 +55,11 @@ def swap_support(st: MPState, sup: np.ndarray, dy: int, dx: int) -> MPState:
     n = st.rho.shape[0]
     ys, xs = np.nonzero(sup)
     ty, tx = (ys + dy) % n, (xs + dx) % n
+    # A swap between a set and its translate is conservative ONLY if the two are disjoint. If they overlap the map
+    # is not a bijection, cells get double-written, and material is destroyed. Fail LOUDLY (R5); the caller censors.
+    if (dy, dx) != (0, 0):
+        shifted = np.roll(np.roll(sup, dy, 0), dx, 1)
+        assert not np.any(shifted & sup), "support overlaps its own translate: displacement would not conserve mass"
     o = st.copy()
     for f_new, f_old in ((o.rho, st.rho), (o.py, st.py), (o.px, st.px), (o.R, st.R)):
         f_new[ys, xs] = f_old[ty, tx]
@@ -193,10 +198,17 @@ def gate0_unit(seed: int) -> dict[str, Any]:
         return {"seed": seed, "enrolled": False}
     cand = max(ents, key=lambda e: e.size)
     if cand.size < 3 * DET.min_cells:
-        return {"seed": seed, "enrolled": False}
+        return {"seed": seed, "enrolled": False, "reason": "candidate too small"}
 
     sup = np.zeros((n, n), dtype=bool)
     sup[cand.cells[:, 0], cand.cells[:, 1]] = True
+    # CENSORING RULE (forced by the frozen protocol's exact-conservation requirement, declared before any GATE-0
+    # outcome was inspected -- the assertion fired on the very first unit). If the entity is large or elongated
+    # enough that its support overlaps its own translate by DELTA, NO conservative displacement of it exists, so
+    # the unit cannot be measured by any arm and is CENSORED. Censored units are reported with their denominator
+    # and are excluded identically from every arm, so no arm is advantaged.
+    if np.any(np.roll(np.roll(sup, DELTA[0], 0), DELTA[1], 1) & sup):
+        return {"seed": seed, "enrolled": False, "reason": "support_overlaps_translate"}
     old_c = np.asarray(cand.centroid)
     new_c = (old_c + np.array(DELTA)) % n
     rng = np.random.default_rng(770000 + seed)
