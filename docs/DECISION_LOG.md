@@ -313,3 +313,27 @@ qualified stack, and same-state causal intervention. No metric relaxation; no co
 **Reason:** F1/F2 confirmed at scale; the observed persistence is rigid mass-lump persistence, not turnover-
 individuality; the limiting factor is a missing throughput mechanism, established by quantification rather than by
 loosening the measure.
+
+## D-026 — EXP-FL-02 reservoir-exchange throughput: first placebo-controlled causal survivors {2,16,40,59}
+
+**Date:** 2026-07-10 (RUN-20260710-2200-EXPFL02). Model: claude-opus-4-8 (Fable 5 lock lifted by user).
+
+**Decision:** The isolated, globally mass-conservative active-field/reservoir exchange (protocol @30c01b0; EXACT
+OFF limit reproducing the current core bit-for-bit; spatially generic; detector-independent; no glider mechanism)
+was screened matched OFF/ON (64 laws x 3 seeds). ON reached the turnover regime the minimal core could never
+reach (median min-M 0.224 vs 0.969; 24 permitted laws vs 0 for OFF). Discipline was then followed end to end:
+fresh-seed hold-out (>=2/5, unseen seeds) -> 21/24 survivors; direct alias audit -> 6 rejected as
+dissolution/look-alike, 15 persistent-with-turnover; same-state matched-branch causal intervention
+(CONTROL/SHAM/PERTURBED/PLACEBO, sham==control bit-for-bit in every unit) -> **4/15 show audited, placebo-
+controlled re-establishment: laws {2,16,40,59}** (displaced structures carry their organization to the new site;
+old site does not regenerate; placebo produces nothing). Law 53 was REJECTED because its placebo also organized
+(a placebo-criterion correction applied before deciding, per D-016's lesson).
+
+**Status: DIAGNOSTIC SURVIVORS, NOT A DISCOVERY.** Based on one causal seed per law. Required before any claim:
+multi-seed causal replication; verification that the re-established structure continues to turn over; independent
+adversarial re-audit; field-stack cadence/tracker sensitivity. No thresholds changed; no composite; no visual
+selection; the static-flux null and passive-tracer invariance remain in force.
+
+**Reason:** Unlike CORE V0 law 52 (rigid cluster, M~1.0, trivial translation-covariance), these structures combine
+genuine constituent turnover (M<0.5 with measured reservoir-origin uptake) with constituent-carried organization
+under a placebo-controlled displacement.

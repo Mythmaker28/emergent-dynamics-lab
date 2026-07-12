@@ -134,3 +134,146 @@ def screen_one(cfg: EXPFL02Config, law_index: int, condition: str, seed: int) ->
 def screen_records(cfg: EXPFL02Config, law_indices) -> list[dict[str, Any]]:
     return [screen_one(cfg, li, cond, seed)
             for li in law_indices for cond in cfg.conditions for seed in cfg.seeds]
+
+
+def alias_audit_track(cfg: EXPFL02Config, law_index: int, seed: int) -> dict[str, Any]:
+    """Direct alias audit on the eligible track: is the low M a PERSISTENT structure exchanging constituents, or
+    blob dissolution/reformation (look-alike)? Reports mass stability, net displacement, reservoir-origin uptake."""
+    spec, tspec = throughput_law_from_halton(law_index, on=True)
+    eng = ThroughputEngine(spec, tspec)
+    snaps = eng.simulate(throughput_state(spec, tspec, seed), cfg.steps, cfg.cadence)
+    det = FieldDetectionSpec(cfg.threshold, cfg.min_cells); phe = FieldPhenotypeSpec(cfg.length_scale, cfg.speed_scale)
+    trk = LineageTracker(TrackerSpec(cfg.tracker_distance, cfg.tracker_min_size_ratio), box_size=spec.size)
+    rec: dict[int, list[Any]] = {}
+    for s in snaps:
+        F, _ = flow_field(s.A, spec, eng._fK)
+        fes = detect_field_entities(s.A, F, s.cohorts_A, snapshot_step=s.step, time=float(s.step),
+                                    detection=det, phenotype_spec=phe)
+        tracked = trk.update([to_entity_observation(e) for e in fes], snapshot_step=s.step, time=float(s.step))
+        by_local = {e.local_index: e for e in fes}
+        for to in tracked:
+            fe = by_local[to.entity.local_index]
+            rec.setdefault(to.track_id, []).append(fe)
+    complex_tracks: set[int] = set()
+    for e in trk.events:
+        if e.kind in {"split", "merge", "ambiguous_association"}:
+            complex_tracks |= set(e.parent_track_ids) | set(e.child_track_ids)
+    best = None
+    for tid, fes in rec.items():
+        if tid in complex_tracks or len(fes) < cfg.enroll_min_obs:
+            continue
+        for lag in cfg.lag_indices:
+            for i in range(len(fes) - lag):
+                p_ = phenotype_continuity(fes[i].phenotype, fes[i + lag].phenotype)
+                m_ = field_material_retention(fes[i].cohort_mass, fes[i + lag].cohort_mass)
+                if p_ > 0.8 and m_ < 0.5:
+                    best = (tid, fes); break
+            if best: break
+        if best: break
+    if best is None:
+        return {"law_index": law_index, "seed": seed, "eligible": False}
+    tid, fes = best
+    mass = np.array([f.phenotype.raw["mass"] for f in fes])
+    cents = np.array([f.centroid for f in fes])
+    from ..substrates.particle_dynamics.engine import minimum_image
+    disp = float(np.linalg.norm(minimum_image(cents[-1] - cents[0], spec.size)))
+    path = float(sum(np.linalg.norm(minimum_image(cents[i+1]-cents[i], spec.size)) for i in range(len(cents)-1)))
+    res_frac = [float(f.cohort_mass[G_SPATIAL:].sum() / max(f.cohort_mass.sum(), 1e-12)) for f in fes]
+    return {
+        "law_index": law_index, "seed": seed, "eligible": True, "track_obs": len(fes),
+        "mass_median": float(np.median(mass)), "mass_cv": float(mass.std() / max(mass.mean(), 1e-12)),
+        "mass_min_over_median": float(mass.min() / max(np.median(mass), 1e-12)),
+        "net_displacement_cells": disp, "path_length_cells": path,
+        "reservoir_origin_frac_start": res_frac[0], "reservoir_origin_frac_end": res_frac[-1],
+        "n_tracks_in_run": len(rec),
+        # alias-compatible if the structure dissolves (mass collapse) rather than persisting through turnover
+        "dissolution_alias": bool(mass.min() / max(np.median(mass), 1e-12) < 0.35),
+    }
+
+
+# ---------------------------------------------------------------- Level 5: same-state causal intervention
+
+def _displace_mass(A, cohorts_A, cells, dy, dx):
+    """Mass-conservatively relocate the mass of `cells` by (dy,dx). Zero-displacement is an exact no-op."""
+    n = A.shape[0]
+    mask = np.zeros_like(A); mask[cells[:, 0], cells[:, 1]] = 1.0
+    keep = A * (1.0 - mask)
+    moved = np.roll(np.roll(A * mask, dy, axis=0), dx, axis=1)
+    A2 = keep + moved
+    C2 = np.empty_like(cohorts_A)
+    for c in range(cohorts_A.shape[0]):
+        km = cohorts_A[c] * (1.0 - mask)
+        mv = np.roll(np.roll(cohorts_A[c] * mask, dy, axis=0), dx, axis=1)
+        C2[c] = km + mv
+    return A2, C2
+
+
+def causal_intervention(cfg: EXPFL02Config, law_index: int, seed: int, delta=(20, 20),
+                        horizon: int = 150) -> dict[str, Any]:
+    """Same-state matched branches: CONTROL / SHAM (no-op pipeline) / PERTURBED (displace the structure's mass
+    off-site) / PLACEBO (displace a matched non-candidate mass region). Tests occupancy vs constituent-carried."""
+    spec, tspec = throughput_law_from_halton(law_index, on=True)
+    eng = ThroughputEngine(spec, tspec)
+    det = FieldDetectionSpec(cfg.threshold, cfg.min_cells); phe = FieldPhenotypeSpec(cfg.length_scale, cfg.speed_scale)
+    snaps = eng.simulate(throughput_state(spec, tspec, seed), cfg.steps, cfg.cadence)
+    # enroll: first snapshot (after warmup) with a detected entity of decent size = the candidate structure
+    star = None
+    for s in snaps[8:]:
+        F, _ = flow_field(s.A, spec, eng._fK)
+        fes = detect_field_entities(s.A, F, s.cohorts_A, snapshot_step=s.step, time=float(s.step),
+                                    detection=det, phenotype_spec=phe)
+        if fes:
+            big = max(fes, key=lambda e: e.size)
+            if big.size >= 3 * cfg.min_cells:
+                star = (s, big); break
+    if star is None:
+        return {"law_index": law_index, "seed": seed, "enrolled": False}
+    s_star, cand = star
+    phi_star = cand.phenotype
+    old_c = np.asarray(cand.centroid)
+    dy, dx = int(delta[0]), int(delta[1])
+    new_c = (old_c + np.array([dy, dx])) % spec.size
+
+    def run_branch(A0, C0):
+        st = ThroughputState(A0.copy(), s_star.R.copy(), C0.copy(), s_star.cohorts_R.copy())
+        out = eng.simulate(st, horizon, cfg.cadence)
+        near_new = []; near_old = []
+        for s in out[1:]:
+            F, _ = flow_field(s.A, spec, eng._fK)
+            fes = detect_field_entities(s.A, F, s.cohorts_A, snapshot_step=s.step, time=float(s.step),
+                                        detection=det, phenotype_spec=phe)
+            def best_near(site):
+                cand_l = [e for e in fes if float(np.linalg.norm(
+                    minimum_image(np.asarray(e.centroid) - site, spec.size))) <= 12.0]
+                if not cand_l: return 0.0
+                return max(phenotype_continuity(phi_star, e.phenotype) for e in cand_l)
+            near_new.append(best_near(new_c)); near_old.append(best_near(old_c))
+        return {"P_new_site_mean": float(np.mean(near_new)), "P_new_site_final": float(near_new[-1]),
+                "P_old_site_mean": float(np.mean(near_old)), "P_old_site_final": float(near_old[-1]),
+                "frac_new_site_organized": float(np.mean([p > 0.8 for p in near_new])),
+                "frac_old_site_organized": float(np.mean([p > 0.8 for p in near_old]))}
+
+    from ..substrates.particle_dynamics.engine import minimum_image
+    cells = cand.cells
+    A_ctrl, C_ctrl = s_star.A, s_star.cohorts_A
+    A_sham, C_sham = _displace_mass(s_star.A, s_star.cohorts_A, cells, 0, 0)          # pipeline no-op
+    A_pert, C_pert = _displace_mass(s_star.A, s_star.cohorts_A, cells, dy, dx)        # displace the structure
+    # placebo: displace a matched non-candidate mass region (same cell count, elsewhere)
+    occupied = np.zeros_like(s_star.A, dtype=bool); occupied[cells[:, 0], cells[:, 1]] = True
+    ys, xs = np.nonzero(~occupied & (s_star.A > 0))
+    k = min(len(cells), len(ys))
+    pcells = np.stack([ys[:k], xs[:k]], axis=1)
+    A_plac, C_plac = _displace_mass(s_star.A, s_star.cohorts_A, pcells, dy, dx)
+
+    sham_identical = bool(np.array_equal(A_sham, A_ctrl) and np.array_equal(C_sham, C_ctrl))
+    branches = {"CONTROL": run_branch(A_ctrl, C_ctrl), "SHAM": run_branch(A_sham, C_sham),
+                "PERTURBED": run_branch(A_pert, C_pert), "PLACEBO": run_branch(A_plac, C_plac)}
+    p = branches["PERTURBED"]
+    # occupancy alias: after displacing the structure, the OLD site regenerates the phenotype anyway
+    occupancy_alias = p["frac_old_site_organized"] > 0.5
+    # constituent-carried: the displaced mass re-establishes the organization at the NEW site
+    carried = p["frac_new_site_organized"] > 0.5
+    return {"law_index": law_index, "seed": seed, "enrolled": True, "t_star": int(s_star.step),
+            "sham_equals_control": sham_identical, "cand_cells": int(len(cells)),
+            "branches": branches, "occupancy_alias": occupancy_alias, "constituent_carried": carried,
+            "audited_reestablishment": bool(carried and not occupancy_alias)}
