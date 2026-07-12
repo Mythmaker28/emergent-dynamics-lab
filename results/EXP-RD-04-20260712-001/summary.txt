@@ -1,0 +1,31 @@
+EXP-RD-04 -- matched-null false-positive floor + prospective law-14 replication
+Protocol SHA c08a2cc6b1d8233c75db5352b1728a6944f2cd7d, frozen at f9da63d BEFORE any run.
+law 14 (frozen, no new laws) | seeds 14001-14040 (entirely unseen) | enrolled 40/40 | censored 0
+sham==control bit-for-bit: 40/40
+scrambled cargo matches intact low-order stats EXACTLY (mass, per-cohort mass, value multiset): 40/40
+non-entity source found: 40/40
+n_post = 15 at the reference observer; endpoint = AUDITED in ALL 9 offline observer settings.
+
+arm         AUDITED_ROBUST    rate     Wilson 95%
+INTACT      17/40              42.5%   [28.5%, 57.8%]
+NULL_SC     19/40              47.5%   [32.9%, 62.5%]
+NULL_NE     0/40                0.0%   [0.0%, 8.8%]
+NULL_NE_M   0/40                0.0%   [0.0%, 8.8%]
+NULL POOLED 19/120             15.8%   [10.4%, 23.4%]   <-- false-positive FLOOR
+
+PREDECLARED DECISION RULE (all three required):
+  S1  p_intact > 0                                      : 42.5%            -> PASS
+  S2  Newcombe 95% LB of (p_intact - p_null) > 0.10      : LB = +0.108  (CI [+0.108, +0.429])  -> PASS
+  S3  exact McNemar INTACT vs NULL-SC, p < 0.05         : b=1 c=3 both=16, p = 0.625  -> FAIL
+
+PAIRED INTACT vs SCRAMBLED (the decisive null): concordant successes = 16,
+  intact-only = 1, scrambled-only = 3. The scrambled cargo -- identical total U mass, identical total V
+  mass, identical per-cohort mass, identical multiset of per-cell values, identical destination, identical
+  support geometry, identical |DELTA| -- with its INTERNAL ORGANIZATION DESTROYED, re-establishes
+  19/40 = 47.5% of the time, versus 17/40 = 42.5% for the intact entity.
+
+AMBIENT-TARGET CONTROL (CONTROL branch scored at the destination): fires 3/40 = 7.5% [2.6%, 19.9%]
+
+==============================================================================
+VERDICT: CANDIDATE WITHDRAWN -- classical Gray-Scott RETIRED
+==============================================================================

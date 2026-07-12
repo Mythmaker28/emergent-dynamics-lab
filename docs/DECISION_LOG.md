@@ -545,3 +545,40 @@ Corrected, against ENROLLED units (observer-robust = AUDITED in all 9 offline ob
 Law 14 (28.6 %) and the other laws pooled (0.9 %) have non-overlapping Wilson intervals. **Law 14 was NOT
 preselected.** This concentration is a POST-HOC observation and cannot be tested on the data that produced it.
 It is a **hypothesis for prospective replication**, and is treated as nothing more.
+
+## D-035 — EXP-RD-04: candidate WITHDRAWN; classical Gray-Scott RETIRED; scrambled-cargo null made mandatory
+
+**Date:** 2026-07-12
+**Status:** CLEAN FALSIFICATION
+**Protocol:** docs/experiments/EXP_RD_04_PROTOCOL.md (SHA c08a2cc6b1d8233c75db5352b1728a6944f2cd7d), frozen at f9da63d.
+
+Law 14 (frozen), seeds 14001–14040 (entirely unseen), 40/40 enrolled, 0 censored, sham==control 40/40.
+Endpoint AUDITED_ROBUST (audited in all 9 offline observer settings), identical for every arm; matched to the same
+pre-intervention state, destination, support geometry, total U/V mass, cohort composition and |DELTA|.
+
+- INTACT **17/40 = 42.5 %** [28.5, 57.8]
+- **NULL-SC (scrambled cargo, organization destroyed, everything else identical) 19/40 = 47.5 %** [32.9, 62.5]
+- NULL-NE 0/40; NULL-NE-M 0/40; null pooled 19/120 = 15.8 %
+- Ambient-target control fires 3/40 = 7.5 %
+
+Decision rule: S1 PASS (42.5 % > 0); S2 PASS (Newcombe LB +0.108 > 0.10); **S3 FAIL** (exact McNemar b=1, c=3,
+both=16, **p = 0.625**). All three were required → **CANDIDATE WITHDRAWN, classical Gray-Scott RETIRED.**
+
+**Interpretation.** The scrambled lump re-establishes at least as often as the intact entity. What the causal
+protocol was measuring was **delivery of sufficient V-rich material to a receptive site**, not the persistence of an
+organized individual. Continued cohort turnover, absence of old-site regeneration, observer robustness and a clean
+ambient null are **all satisfied by a scrambled lump** — they were never evidence of individuality.
+
+**S2's PASS was a pooling artefact.** NULL-NE / NULL-NE-M score 0 by construction (no V to regrow), so pooling them
+diluted the true floor from 47.5 % to 15.8 % and let a dead candidate clear the margin. Only S3 — the paired,
+organization-destroying null — caught it.
+
+**BINDING METHODOLOGICAL CHANGE (all future substrates):** the **scrambled-cargo null is a mandatory arm of every
+causal intervention**. No re-establishment claim may be made without it. Every prior causal stage of this project
+used a *non-candidate, low-V* PLACEBO — a straw-man null of the NULL-NE class — and therefore **never tested any
+positive against a cargo with the right matter and the wrong organization**. This retroactively removes the
+evidential weight of the EXP-FL-02 survivors and the EXP-RD-02/03 candidates; it does not change their
+already-negative or non-promoted status.
+
+**Next:** motile open-system substrate (docs/NEXT_SUBSTRATE_MOTILE_PROPOSAL.md), whose qualification gate includes
+the scrambled-cargo null from day one.
