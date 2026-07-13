@@ -1,0 +1,79 @@
+{
+ "substrate": "spatially embedded Boolean network (edlab/substrates/boolnet)",
+ "why": "the Game-of-Life library cannot express program!=architecture, feedback, or a held-out implementation (one preregistered development cycle, D-062). The mission forbids weakening the requirements to stay in Game of Life.",
+ "cells": {
+  "ops": [
+   "off",
+   "wire",
+   "clk",
+   "not",
+   "and",
+   "or",
+   "xor",
+   "reg",
+   "const1"
+  ],
+  "reg": "next = we ? data : self  -- a genuine directed CYCLE; the PROGRAM is its initial value"
+ },
+ "components": [
+  "clk",
+  "bus",
+  "chan_i",
+  "reg_i",
+  "gate_i",
+  "out_i",
+  "ring (feedback)",
+  "decoy (inert)"
+ ],
+ "interventions": {
+  "ABLATION": "clamp to 0 for the WHOLE window (the analogue of destruction; a clamp is REVERSIBLE, so a brief clamp measures only a transient)",
+  "PULSE": "clamp to 0 for ONE step (distinguishes memory from feed-forward)",
+  "CONTEXT": "hold cells at 1 for the whole window, to open gates and expose structure behind them"
+ },
+ "implementations": {
+  "direct": {
+   "gate": "AND(sig, reg)",
+   "cells": 1,
+   "latency": 1
+  },
+  "demorgan": {
+   "gate": "NOT(OR(NOT sig, NOT reg))",
+   "cells": 4,
+   "latency": 3,
+   "note": "output-wire length compensates, so TOTAL latency is identical (26) and the measured causal graph is IDENTICAL (18 edges). Same A_TOPO, same A_TAU, same F, different M."
+  }
+ },
+ "delay_edit": "a DETOUR in the channel (jog out and back), adding 2*d cells while the gate row and the output wire length are held fixed. MEASURED clk->out0 = 26/27/29/31/35 for d=0/1/2/3/5. My first version pushed the gate DOWN and shortened the output wire, so the total latency was UNCHANGED -- a delay edit that edited nothing. The qualification bar caught it.",
+ "qualification_bar": [
+  "positive functional control",
+  "negative functional control (program 000 -> 0 edges)",
+  "intervention non-vacuity",
+  "exactly matched observation windows (OBS=96)",
+  "two independent graph paths (declared wiring vs measured intervention) must agree",
+  "exactly periodic",
+  "component separation",
+  "no hidden dependence on evaluator labels"
+ ],
+ "measured": {
+  "period": {
+   "base": 8,
+   "with_feedback_ring": 24
+  },
+  "active_graph_edges_by_program": {
+   "111": 18,
+   "101": 12,
+   "010": 6,
+   "000": 0
+  },
+  "structural_graph_edges_by_program_under_context": {
+   "111": 18,
+   "101": 18,
+   "010": 18,
+   "000": 18
+  },
+  "clk_to_out0_delay": 26,
+  "implementations_same_measured_graph": true
+ },
+ "status": "QUALIFIED",
+ "hash": "5f0b48e65eb8fc60"
+}
