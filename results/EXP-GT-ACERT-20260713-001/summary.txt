@@ -1,0 +1,49 @@
+EXP-GT-A-CERT -- ARCHITECTURE RESOLUTION CERTIFICATE (causal-graph space, not column distance)
+========================================================================================================
+
+STEP 1 -- DELAY TOLERANCE DERIVED FROM THE DEVELOPMENT NULL: 0 steps
+         null deviations observed: [0, 0, 0, 0, 0, 0, 0, 0]
+
+STEP 2 -- NULLS (A must say SAME):
+   PASS  phase +15                                  A=SAME          G=SAME      delays=[214, 214, 214, 214]
+   PASS  phase +30                                  A=SAME          G=SAME      delays=[214, 214, 214, 214]
+   PASS  phase +45                                  A=SAME          G=SAME      delays=[214, 214, 214, 214]
+   PASS  translate +10                              A=SAME          G=SAME      delays=[214, 214, 214, 214]
+   PASS  translate +20                              A=SAME          G=SAME      delays=[214, 214, 214, 214]
+   PASS  spacing 40->45                             A=SAME          G=DIFFERENT delays=[214, 214, 214, 214]
+   PASS  inert decoration                           A=SAME          G=SAME      delays=[214, 214, 214, 214]
+   PASS  decoy eaters (gate density, off-track)     A=SAME          G=SAME      delays=[214, 214, 214, 214]
+   false-DIFFERENT rate: 0/8
+
+STEP 3 -- POSITIVES (A must say DIFFERENT):
+   PASS  delay edit k=1 (4 steps)                             A=DIFFERENT  G=SAME      edges 4->4
+   PASS  delay edit k=2 (8 steps)                             A=DIFFERENT  G=SAME      edges 4->4
+   PASS  delay edit k=4 (16 steps)                            A=DIFFERENT  G=SAME      edges 4->4
+   PASS  delay edit k=8 (32 steps)                            A=DIFFERENT  G=SAME      edges 4->4
+   PASS  edge ADDED (cross-stream inhibitor)                  A=DIFFERENT  G=SAME      edges 4->5
+   PASS  node ADDED (5th channel)                             A=DIFFERENT  G=DIFFERENT edges 4->5
+   PASS  redundant 2-path vs direct 1-path                    A=DIFFERENT  G=DIFFERENT edges 1->2
+   PASS  SAME FUNCTION, different mechanism (gate vs inhibitor) A=DIFFERENT  G=SAME      edges 4->5
+   false-SAME rate: 0/8
+
+STEP 4 -- CERTIFIED RESOLUTION:
+   smallest_detectable_delay_edit_steps   : 4
+   delay_tolerance_from_null              : 0
+   smallest_detectable_edge_edit          : ONE edge (cross-stream inhibitor adds gunSW->out and one emergent shielding edge)
+   smallest_detectable_node_edit          : ONE node (a 5th channel)
+   redundancy_change                      : DETECTED (1-path vs 2-path into one output node)
+   component_separation_limit_cells       : 4
+
+STEP 5 -- ABSTENTION MUST FIRE:
+   PASS  coverage-starved probe -> A=INDETERMINATE  (uncovered outputs [2, 3])
+
+STEP 6 -- all three verdicts fired: {'SAME': True, 'DIFFERENT': True, 'INDETERMINATE': True}
+
+========================================================================================================
+VERDICT: QUALIFIED
+
+NOT CERTIFIED (stated, not hidden):
+   * program_invariance: NOT CONSTRUCTIBLE in this family. A memory bit of 0 is implemented by ADDING an eater, so the program IS part of the causal graph. Any 'pass' here would be vacuous. Requires a substrate with STATE-based memory (a latch/storage loop). EXP-GT-02B's program-invariance PASS is hereby marked VACUOUS.
+   * component_separation: components whose matter is separated by <= 4 empty cells MERGE and cannot be resolved by this probe.
+   * redundancy_with_identical_F: not realizable in this component library without a glider reflector; the redundant path doubles the stream rate, and this is disclosed, not hidden.
+========================================================================================================

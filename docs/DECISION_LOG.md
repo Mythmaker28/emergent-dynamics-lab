@@ -1200,3 +1200,102 @@ against a real architectural difference, and a finer tolerance would have had no
 declared graph **empirically verified against the dynamics** by privileged knockout, each layout passing the
 viability assertion. Only then may EXP-GT-A-CERT derive a resolution — in **causal-graph space** (smallest
 detectable edge edit / delay change / redundancy change), **never in column-distance space**.
+
+## D-054 — A verified GoL architecture library with genuine topological contrasts. SETTLE=400 was never settled.
+
+**Date:** 2026-07-13
+**Status:** INSTRUMENT PREREQUISITE BUILT. EXP-SC-01 remains BLOCKED.
+
+D-053 showed the benchmark contained exactly **one** causal architecture (four independent parallel channels) drawn
+at three spacings — so `A` had **nothing to resolve**. This supplies what was missing. Every primitive was found
+**empirically** and locked by tests; none is taken from Game-of-Life folklore.
+
+**Verified primitives.** A **delay edit**: a gun moved by (k,k) keeps its diagonal, so the output *column* is
+identical, but the stream arrives **exactly 4k steps earlier** (finest edit: 4 steps). A **cross-stream
+inhibitor**: an SW (column-mirrored) gun's stream *mutually annihilates* an SE stream — both are consumed, nothing
+reaches the output — which adds a genuine edge **and**, emergently, a **shielding edge**: the inhibitor stream is
+consumed by its target, so ablating the target's gun frees it to travel on and kill the *next* channel. **A naive
+declared graph misses that edge; the measured graph finds it.** An **inert block** (output bit-identical), a
+**decoy eater** (gate-like density and appearance, off-track, causally silent — the trap for any observer keying on
+looks instead of causation), and a **redundant two-path**.
+
+**CROWN CASE: `GATE3` (a channel closed by a memory gate) and `XINHIB` (the same channel closed by a cross-stream
+inhibitor) produce a FRAME-FOR-FRAME IDENTICAL output series** (mean 1.9967, |FFT| distance 0.000000) **with
+completely different causal graphs.** `F` cannot separate them. Only causal tomography can.
+
+**Two independent paths to every graph.** `predict_active()` derives it from **geometry**; `measured_graph()`
+derives it by **intervention**. They share no code and must agree **edge-for-edge**, or the circuit is **rejected**,
+not patched. This differential check caught **three of my own bugs**: an SW gun whose bounding box **overlapped**
+gun3 (so ablating one mutilated the other — no component-overlap assertion had ever existed); a delay edit on an
+*interior* channel that closed the 4-column gap to its neighbour and **killed the circuit while remaining perfectly
+"periodic"** (an empty grid is periodic); and a redundant-path edge the geometry missed.
+
+**DISCLOSED DEFECT INHERITED FROM EXP-GT-02/02B: `SETTLE = 400` was described as "a common established state". It is
+not.** These circuits are still transient at t=400 and become exactly periodic (grid period **60**) only from ~700.
+`SETTLE` is now **720**. The S/F/L heads are **preserved exactly**; this is a protocol correction, not a retune.
+
+14/14 architectures admitted (viable, non-overlapping, both graph paths agreeing). 21 tests.
+
+## D-055 — EXP-GT-A-CERT: A is CERTIFIED in causal-graph space. Resolution 4 steps / 1 edge / 1 node. Program-invariance is VACUOUS here.
+
+**Date:** 2026-07-13
+**Status:** **QUALIFIED — on development data.** EXP-SC-01 remains **BLOCKED** (held-out evaluation not yet run).
+**Run:** `results/EXP-GT-ACERT-20260713-001`. Certificate: `docs/ARCHITECTURE_RESOLUTION_CERTIFICATE.md`.
+Contract: `docs/OBSERVABILITY_CONTRACT.md`. S (D-051), F and L (D-052) **preserved exactly**. D-046 unchanged,
+D_int untouched. **No head was tuned to pass a case; no threshold was derived from a held-out circuit.**
+
+**The blind head sees only raw frames, its own interventions, and the declared output line.** It recovers the hidden
+causal graph of every development circuit — including the **emergent shielding edge** that the hand-written wiring
+diagram did not contain.
+
+**DERIVED TOLERANCE = 0 steps.** Across all eight development nulls — clock phase (+15/+30/+45), translation
+(+10/+20), spacing (40→45), inert decoration, and decoy eaters — the maximum delay deviation is **zero**.
+**false-DIFFERENT: 0/8. false-SAME: 0/8.**
+
+**CERTIFIED RESOLUTION: delay edit 4 steps** (the finest the substrate admits) · **edge edit 1** · **node edit 1** ·
+**redundancy change detected** · **component separation limit 4 cells**.
+
+**All three verdicts fired correctly.** Starved of coverage, `A` returns **INDETERMINATE**, not SAME: an output that
+is demonstrably live and whose cause was never found is *missing evidence, not evidence of sameness*.
+
+**ONE PREREGISTERED REPAIR CYCLE, on development data only, and it is disclosed.** The first certificate FAILED:
+false-DIFFERENT 2/8, false-SAME 1/8, resolution 8 steps. Two defects, both in the estimator, both visible **only
+because the null was measured rather than assumed**:
+1. **The delay estimator was phase-dependent.** Ablating at *t*=0 destroys whatever is in the box *at that phase*,
+   so a naive "first frame the output changes" onset swung by **15 steps** (214 vs 229 under a half-period shift).
+   A causal delay is a property of the **path**, not of when we happened to strike it — it is now the **earliest
+   onset over a full cycle of strike phases**. The null deviation fell from 15 to **0**.
+2. **Floor-quantizing a delay is not "within tolerance".** 214 and 229 differ by 15, but with tol = 15 they land in
+   buckets 13 and 14 and the head called them DIFFERENT. **A boundary between two buckets is not a tolerance.**
+   Delays are now compared **pairwise** after the components are matched by edge structure.
+
+**A REAL CONFOUND, CORRECTED — and it invalidates naive ablation tomography.** A destructive **micro**-ablation does
+not *remove* a component; it can **REPLACE** it. A 5×5 tile cleared inside a Gosper gun does not delete the gun — it
+**mutilates it into a different working machine** that emits a stream down a new diagonal, arriving at output
+columns that carry nothing in the intact circuit (measured: 55–58, 95–98, 135–138). The first tomography inferred a
+graph of a system **that never existed**: 20 spurious "components" for a 4-component circuit, with edges in which
+*deleting matter made an output rise*. **Interventions are now applied at the scale of a DISCOVERED COMPONENT and
+must be PROVED clean** (efficacy, specificity, non-shattering, non-overlap). An intervention that fails verification
+is **CONFOUNDED and excluded** — not quietly used anyway.
+
+**Also corrected: an abstention caused by the observer's own impatience is not honest uncertainty.** The
+non-shattering test initially fired at *t* = OBS, before a freed stream had time to refill the pipeline to the
+boundary — flagging **two perfectly clean ablations as confounded**. Periodicity is now judged after a full
+re-settle.
+
+**NOT CERTIFIED — and this is the most important line in the certificate.**
+**`A`'s invariance to a PROGRAM change is NOT CONSTRUCTIBLE on this substrate.** In this circuit family a memory bit
+of 0 is implemented by **ADDING AN EATER**, so setting a bit adds a node and two edges: **the program IS the
+architecture.** "Same architecture, different program" **cannot be built here**, and any head that "passes"
+program-invariance in this family passes a test that **cannot fire**. **EXP-GT-02B's A head passed it by comparing
+channel POSITIONS, which no program can move — that PASS is hereby marked VACUOUS.** Certifying that `A` ignores the
+program requires a substrate whose memory is a **STATE of fixed wiring** (a latch or storage loop), not a component
+that appears and disappears. **This is a required property of the next benchmark and it is on the benchmark card.**
+
+Also not certified: component separation ≤ 4 cells (matter closer than this merges); redundancy with identical `F`
+(not realizable without a glider reflector — the redundant path doubles the stream rate, disclosed not faked); and
+**held-out generalization, which has not been tested.**
+
+**NEXT AUTHORIZED ACTION:** EXP-GT-03 — quarantine every inspected circuit as `DIAGNOSTIC_ONLY`, generate entirely
+new held-out families with a frozen manifest and hashes and executable leakage assertions, **freeze every head**,
+and evaluate the full factorized observer prospectively. **EXP-SC-01 stays BLOCKED.**

@@ -1,0 +1,236 @@
+{
+ "note": "development only; no held-out circuit is touched anywhere in this file",
+ "delay_null": {
+  "deviations": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "DERIVED_TOLERANCE": 0,
+  "rule": "tolerance = the LARGEST delay deviation observed across the development nulls. Derived from data, declared before any held-out case is seen."
+ },
+ "nulls": [
+  {
+   "case": "phase +15",
+   "n_edges": 4,
+   "delays": [
+    214,
+    214,
+    214,
+    214
+   ],
+   "max_delay_deviation_vs_base": 0,
+   "G": "SAME",
+   "A": "SAME",
+   "pass": true
+  },
+  {
+   "case": "phase +30",
+   "n_edges": 4,
+   "delays": [
+    214,
+    214,
+    214,
+    214
+   ],
+   "max_delay_deviation_vs_base": 0,
+   "G": "SAME",
+   "A": "SAME",
+   "pass": true
+  },
+  {
+   "case": "phase +45",
+   "n_edges": 4,
+   "delays": [
+    214,
+    214,
+    214,
+    214
+   ],
+   "max_delay_deviation_vs_base": 0,
+   "G": "SAME",
+   "A": "SAME",
+   "pass": true
+  },
+  {
+   "case": "translate +10",
+   "n_edges": 4,
+   "delays": [
+    214,
+    214,
+    214,
+    214
+   ],
+   "max_delay_deviation_vs_base": 0,
+   "G": "SAME",
+   "A": "SAME",
+   "pass": true
+  },
+  {
+   "case": "translate +20",
+   "n_edges": 4,
+   "delays": [
+    214,
+    214,
+    214,
+    214
+   ],
+   "max_delay_deviation_vs_base": 0,
+   "G": "SAME",
+   "A": "SAME",
+   "pass": true
+  },
+  {
+   "case": "spacing 40->45",
+   "n_edges": 4,
+   "delays": [
+    214,
+    214,
+    214,
+    214
+   ],
+   "max_delay_deviation_vs_base": 0,
+   "G": "DIFFERENT",
+   "A": "SAME",
+   "pass": true
+  },
+  {
+   "case": "inert decoration",
+   "n_edges": 4,
+   "delays": [
+    214,
+    214,
+    214,
+    214
+   ],
+   "max_delay_deviation_vs_base": 0,
+   "G": "SAME",
+   "A": "SAME",
+   "pass": true
+  },
+  {
+   "case": "decoy eaters (gate density, off-track)",
+   "n_edges": 4,
+   "delays": [
+    214,
+    214,
+    214,
+    214
+   ],
+   "max_delay_deviation_vs_base": 0,
+   "G": "SAME",
+   "A": "SAME",
+   "pass": true
+  }
+ ],
+ "false_DIFFERENT_rate": "0/8",
+ "positives": [
+  {
+   "case": "delay edit k=1 (4 steps)",
+   "kind": "delay",
+   "A": "DIFFERENT",
+   "pass": true,
+   "G": "SAME",
+   "edges_ref": 4,
+   "edges_case": 4
+  },
+  {
+   "case": "delay edit k=2 (8 steps)",
+   "kind": "delay",
+   "A": "DIFFERENT",
+   "pass": true,
+   "G": "SAME",
+   "edges_ref": 4,
+   "edges_case": 4
+  },
+  {
+   "case": "delay edit k=4 (16 steps)",
+   "kind": "delay",
+   "A": "DIFFERENT",
+   "pass": true,
+   "G": "SAME",
+   "edges_ref": 4,
+   "edges_case": 4
+  },
+  {
+   "case": "delay edit k=8 (32 steps)",
+   "kind": "delay",
+   "A": "DIFFERENT",
+   "pass": true,
+   "G": "SAME",
+   "edges_ref": 4,
+   "edges_case": 4
+  },
+  {
+   "case": "edge ADDED (cross-stream inhibitor)",
+   "kind": "edge",
+   "A": "DIFFERENT",
+   "pass": true,
+   "G": "SAME",
+   "edges_ref": 4,
+   "edges_case": 5
+  },
+  {
+   "case": "node ADDED (5th channel)",
+   "kind": "node",
+   "A": "DIFFERENT",
+   "pass": true,
+   "G": "DIFFERENT",
+   "edges_ref": 4,
+   "edges_case": 5
+  },
+  {
+   "case": "redundant 2-path vs direct 1-path",
+   "kind": "redundancy",
+   "A": "DIFFERENT",
+   "pass": true,
+   "G": "DIFFERENT",
+   "edges_ref": 1,
+   "edges_case": 2
+  },
+  {
+   "case": "SAME FUNCTION, different mechanism (gate vs inhibitor)",
+   "kind": "mechanism",
+   "A": "DIFFERENT",
+   "pass": true,
+   "G": "SAME",
+   "edges_ref": 4,
+   "edges_case": 5
+  }
+ ],
+ "false_SAME_rate": "0/8",
+ "resolution": {
+  "smallest_detectable_delay_edit_steps": 4,
+  "delay_tolerance_from_null": 0,
+  "smallest_detectable_edge_edit": "ONE edge (cross-stream inhibitor adds gunSW->out and one emergent shielding edge)",
+  "smallest_detectable_node_edit": "ONE node (a 5th channel)",
+  "redundancy_change": "DETECTED (1-path vs 2-path into one output node)",
+  "component_separation_limit_cells": 4
+ },
+ "indeterminate": {
+  "case": "coverage-starved probe: components may only be found in cols 0-100, so two LIVE outputs have no discoverable source",
+  "uncovered_outputs": [
+   2,
+   3
+  ],
+  "A": "INDETERMINATE",
+  "pass": true,
+  "why": "an output that is demonstrably live and whose cause was never found is missing evidence, not evidence of sameness. Fabricating SAME here would be the failure mode the observability contract exists to forbid."
+ },
+ "all_three_verdicts_fired": {
+  "SAME": true,
+  "DIFFERENT": true,
+  "INDETERMINATE": true
+ },
+ "VERDICT": "QUALIFIED",
+ "NOT_CERTIFIED": {
+  "program_invariance": "NOT CONSTRUCTIBLE in this family. A memory bit of 0 is implemented by ADDING an eater, so the program IS part of the causal graph. Any 'pass' here would be vacuous. Requires a substrate with STATE-based memory (a latch/storage loop). EXP-GT-02B's program-invariance PASS is hereby marked VACUOUS.",
+  "component_separation": "components whose matter is separated by <= 4 empty cells MERGE and cannot be resolved by this probe.",
+  "redundancy_with_identical_F": "not realizable in this component library without a glider reflector; the redundant path doubles the stream rate, and this is disclosed, not hidden."
+ }
+}
