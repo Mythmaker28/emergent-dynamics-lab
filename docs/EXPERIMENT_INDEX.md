@@ -25,3 +25,21 @@
 | EXP-RD-00B-20260710-001 | COMPLETED_TRACER_QUALIFIED | Temporal feed cohorts (pulse-chase) replacing the saturating single FEED cohort | 2 controls x 5 tracer configs | `results/EXP-RD-00B-20260710-001/`; protocol `docs/experiments/EXP_RD_00B_PROTOCOL.md` | Legacy single-FEED cohort FAILS (late-M 0.936, blind). Selected tau=250,T=8: C1 0.109 / C2 1.000 / discrimination 0.891. Tracer FROZEN (D-029) |
 | EXP-RD-01-20260710-001 | COMPLETED_SCREEN_CANDIDATES | Blind matched OPEN vs EXACT-CLOSED Gray-Scott map (24 laws x 3 seeds x 2) | 144 | `results/EXP-RD-01-20260710-001/`; protocol `docs/experiments/EXP_RD_01_PROTOCOL.md` @b3badb8 | OPEN: 9 permitted laws, mean M 0.381, median min-M 0.009. CLOSED (exact limit): 0 permitted, mean M 0.990. NOTHING PROMOTED (D-030); mandatory hold-out -> alias -> causal (continued turnover) -> observer sensitivity chain pending |
 | EXP-RD-02-20260711-001 | COMPLETED_NEGATIVE | Frozen chain for the 9 OPEN permitted laws: hold-out -> alias audit -> causal -> observer sensitivity | 45 hold-out + 90 causal + 24 sensitivity | `results/EXP-RD-02-20260711-001/` | Hold-out 9/9 SURVIVE; causal AUDITED 6/90 = 6.7%% [3.1,13.8]; destroyed 75/90 (83%%); 0/6 survive observer sensitivity -> NET 0 audited. NEGATIVE (D-031) |
+
+## EXP-GT-A0 — ontology audit of the A head (D-053)
+**FAILED — ONTOLOGY.** The pair labelled "different ARCHITECTURE" is the SAME causal graph. `A = SAME` was correct;
+D-052's tolerance repair is WITHDRAWN. Also found: a DEAD held-out circuit, and an EXP-GT-00 "PASS" that was credit
+for a wrong answer. The benchmark had never contained one genuinely different causal architecture.
+
+## EXP-GT-A-CERT — architecture resolution certificate (D-055)
+**QUALIFIED (development).** Blind interventional tomography in causal-graph space. Delay tolerance DERIVED from the
+null = 0. false-DIFFERENT 0/8, false-SAME 0/8. Resolution: 4-step delay edit, 1 edge, 1 node, redundancy detected.
+All three verdicts fired. NOT certifiable here: A's invariance to a program change (the program IS the architecture).
+
+## EXP-GT-03 — frozen factorized observer, prospective on unseen families (D-056)
+**FAILED — IMPLEMENTATION.** Passes translation, layout, inert circuitry, decoys, interior-channel delay edit, node
+addition, exact copy, and L on all three regimes. Fails on: (1) phase invariance on unseen phases — **the
+development null used the estimator's own strike phases and therefore could not fire**; (2) over-abstention on any
+confounded intervention, contradicting the observability contract; (3) an E1 expected label that was wrong (a
+handoff that moves a component changes its causal delay, so A is right to call it DIFFERENT).
+Hold-outs QUARANTINED. One repair cycle authorized, on development data only.
