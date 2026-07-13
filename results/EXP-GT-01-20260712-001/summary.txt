@@ -1,0 +1,25 @@
+EXP-GT-01 -- FACTORIZED ground-truth metrology. Protocol SHA d3ac99b3, frozen before any result.
+Heads A/S/F/M are reported SEPARATELY and are NEVER collapsed into a composite score.
+Observer sees only raw cells + blinded pulses at unlabeled sites. No positions, labels, bits or causal graph.
+
+comparison                                 A       S       F       M    expected (A,S,F,M)
+E1 handoff (development impl)          1.000   0.182   0.503   0.264    same,same,same,DIFF
+E1 handoff (HELD-OUT impl)             1.000   0.182   0.503   0.264    same,same,same,DIFF
+(c) identical output, diff memory      0.027   0.000   0.000   0.467    same,DIFF,same,DIFF
+(a) same arch, diff program            0.353   0.000   0.500   0.304    same,DIFF,DIFF,DIFF
+(b) diff architecture, same program    1.000   0.091   0.000   0.905    DIFF,same,same,DIFF
+
+PER-HEAD VERDICTS (each against its OWN criterion; no composite):
+  E1 SHIP-OF-THESEUS  A,S,F preserved & M changed, BOTH impls incl. HELD-OUT : FAIL
+  (c) identical output, different memory   (A same, S differs, F same)       : FAIL
+  (a) same arch, different program         (S and F differ)                  : FAIL
+  (b) different architecture, same program (A differs, S same)               : FAIL
+  L  continuous run -> same-lineage
+  L  exact copy     -> INDETERMINATE (exact copy: trajectories identical)
+     The L head REPORTS INDETERMINACY rather than guessing: two identical circuits produce literally
+     identical trajectories, so lineage is NOT identifiable from trajectories alone. Saying so is the
+     only honest answer, and a scalar observer had no way to say it.
+
+========================================================================================
+VERDICT: FACTORIZED OBSERVER FAILS -> droplets remain BLOCKED
+========================================================================================

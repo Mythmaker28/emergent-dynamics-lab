@@ -4,22 +4,27 @@
 
 Can CORE V0 local particle laws produce auditable high phenotype continuity under low material retention, beyond tracker and static-flux artefacts?
 
-## CURRENT WORK — EXP-GT-00 metrology branch (D-048)
+## CURRENT WORK — EXP-GT-01 factorized metrology (D-049, D-050). EXP-SC-01 BLOCKED.
 
-**EXP-SC-01 is BLOCKED.** A ground-truth Game-of-Life benchmark (verified glider/channel -> inhibit gate -> memory
-bit -> tiny FSM; output = 194 x open channels exactly) was built to validate any dynamic-identity representation
-BEFORE it touches the droplet substrate. The discovery observer sees only raw cell states; the evaluator holds
-component locations, causal graph, memory contents, I/O and program identity.
+**The identity target is FACTORIZED** (never a composite): **A** causal architecture · **S** program/memory ·
+**F** functional I/O · **L** lineage · **M** microscopic material. Every challenge carries an expected VECTOR.
 
-**Observer v1 FAILS the benchmark.** It passes (d) exact copies (0.000), (c) IDENTICAL OUTPUT / different mechanism
-(1.417), (a) different program (1.213), (b) different architecture (0.684) -- but FAILS **(e) progressive component
-replacement (1.518, must be small)**. separation = 0.45 < 1.0. It keys on flow/output statistics and therefore
-**mistakes "same individual, parts replaced" for "different individual"** -- the exact Ship-of-Theseus confusion this
-programme exists to avoid. On the droplets there is no ground truth, so this would never have been detected.
+**BUILT AND VERIFIED: E1, a real Ship-of-Theseus gate.** A component is handed off to a functionally equivalent but
+microscopically distinct implementation (relief installed BEFORE the incumbent is removed, so the gate is never
+unmanned). All three assertions hold: trajectory changed (441/701 frames), replacement occurred (old persistent
+cells 0, new 7), **I/O identical at EVERY timestep - no silent interval.** A held-out implementation passes too.
+E2 (damage-and-repair) is separated and is NOT the Ship-of-Theseus gate.
 
-**Next: a replacement-invariant representation, developed and frozen on EXP-GT-00, evaluated on held-out
-architectures/programs/layouts, and only then used in EXP-SC-01.**
-**D-046 unchanged. D_int untouched. No threshold moved. No substrate tuned.**
+**The L head reports INDETERMINATE for an exact copy** instead of guessing - lineage is not identifiable from
+trajectories alone. A scalar could not express this.
+
+**Observer v2 FAILS the suite (D-050), with two DIAGNOSABLE defects - the value of factorizing:**
+1. **S head is BLIND** (0.000 for 1010 vs 0101, which differ in memory): the blinded probe grid is too coarse to
+   land on the channel tracks. **The probe design has an unstated, unverified RESOLUTION requirement.**
+2. **A and F heads are CONFOUNDED**: E1 fingerprints were computed on a mid-flight post-handoff frame and compared
+   against fresh grids - comparing transients, not architectures. Fingerprints must be PHASE-MATCHED.
+
+**Droplets remain BLOCKED. No head tuned to pass. EXP-GT-00 preserved unchanged.**
 
 ## CURRENT SUBSTRATE
 

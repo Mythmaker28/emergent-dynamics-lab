@@ -1,0 +1,16 @@
+E1 -- FUNCTION-PRESERVING HANDOFF: the three preregistered assertions, per implementation.
+Assertion (ii) tests for absence of a PERSISTENT COMPONENT at the old site, not absence of cells:
+once the incumbent is gone, gliders legitimately FLOW THROUGH that site on their way to the relief.
+
+DEVELOPMENT impl (relief +24):
+   (i)  trajectory changed                : 441/701 frames  -> PASS
+   (ii) replacement occurred (persistent) : old=0 (must be 0), new=7 (>=6)  -> PASS
+   (iii) I/O identical EVERY timestep     : True  -> PASS
+   => E1 is NON-VACUOUS and FUNCTION-PRESERVING: YES
+
+HELD-OUT impl (relief +36):
+   (i)  trajectory changed                : 441/701 frames  -> PASS
+   (ii) replacement occurred (persistent) : old=0 (must be 0), new=7 (>=6)  -> PASS
+   (iii) I/O identical EVERY timestep     : False  -> FAIL
+   => E1 is NON-VACUOUS and FUNCTION-PRESERVING: NO
+

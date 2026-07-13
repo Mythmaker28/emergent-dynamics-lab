@@ -969,3 +969,74 @@ genuinely leak; 526/701 frames differ) and installs a fresh one, with function c
 **EXP-SC-01 IS BLOCKED.** No representation may be used on the droplet substrate until it passes EXP-GT-00 and is
 then frozen and evaluated on held-out architectures, programs and layouts. **D-046 is unchanged; D_int untouched; no
 substrate tuning; no threshold moved.**
+
+## D-049 — D-048 accepted. The observer's ONTOLOGY was wrong, not its weights. EXP-GT-01 preregistered.
+
+**Date:** 2026-07-12
+**Status:** ACCEPTED. EXP-SC-01 remains BLOCKED. EXP-GT-00 observer and results preserved UNCHANGED.
+
+**The diagnosis is not "tune the weights until (e) passes".** A single scalar identity distance was being asked to
+answer five different questions at once — causal architecture, program/memory state, input-output function,
+historical lineage, and material implementation. Under component replacement, **material** changes while
+**architecture, program, function and lineage** are preserved; a scalar has no way to say that, so it said
+"different individual". The failure is **ontological**, and tuning a scalar would only have hidden it.
+
+**EXP-GT-01 preregisters a FACTORIZED ground-truth target** (`docs/experiments/EXP_GT_01_PROTOCOL.md`):
+**A** causal architecture · **S** program/memory state · **F** functional I/O equivalence · **L** historical lineage ·
+**M** microscopic/material implementation. **Every challenge carries an explicit expected VECTOR, not a same/different
+label. Heads are never collapsed into a composite score** (that would recreate the very error being fixed, and
+composites are banned project-wide).
+
+**The replacement challenge is split**, because the old one conflated two different things:
+- **E1 — function-preserving handoff** (the real Ship-of-Theseus gate): a component is replaced by a functionally
+  equivalent but **microscopically distinct** implementation, with **assertions** that (i) the grid trajectory
+  changed, (ii) the replacement actually occurred, and (iii) the **complete input-output behaviour is identical at
+  every timestep — no silent interval**. Expected vector: **A=same, S=same, F=same, L=same, M=DIFFERENT.**
+- **E2 — damage-and-repair**: functional continuity may legitimately break while lineage and recovery continuity
+  hold. Expected vector: **A=same, S=same, F=BROKEN-then-restored, L=same, M=different.**
+  **E2 is NOT used as the hard Ship-of-Theseus gate.** The old EXP-GT-00 challenge (e) was an E2-style
+  damage-and-repair masquerading as an E1 gate — which is a second reason it produced a nonsense verdict.
+
+**EXP-GT-00 is preserved unchanged** as the record of a failed observer. **EXP-SC-01 stays blocked.**
+
+## D-050 — EXP-GT-01: factorized suite built; observer v2 FAILS it. Droplets stay BLOCKED.
+
+**Date:** 2026-07-12
+**Status:** OBSERVER v2 FAILS the factorized ground-truth suite. EXP-SC-01 remains BLOCKED.
+**Protocol:** docs/experiments/EXP_GT_01_PROTOCOL.md (SHA d3ac99b316a235207422519fd36978034ee42f97), frozen first.
+EXP-GT-00's observer and results are **preserved unchanged**.
+
+**What was built and VERIFIED:**
+- **E1, the real Ship-of-Theseus gate, is now non-vacuous.** A gate component is handed off to a functionally
+  equivalent but microscopically distinct implementation (relief installed *before* the incumbent is removed, so the
+  gate is never unmanned). All three assertions hold: **trajectory changed (441/701 frames), replacement actually
+  occurred (old persistent cells 0, new 7), and I/O identical at EVERY timestep — no silent interval.**
+  A **held-out implementation** also passes the assertions. (My first held-out value put the relief *below* the
+  output line; assertion (iii) caught it. That is what assertions are for.)
+- **E2 (damage-and-repair) is separated** and is **not** used as the Ship-of-Theseus gate.
+- **The L head reports INDETERMINACY for an exact copy** rather than guessing: two identical circuits produce
+  literally identical trajectories, so lineage is **not identifiable from trajectories alone**. Saying so is the only
+  honest answer — **and a scalar observer had no way to say it.** The factorized ontology is already earning its keep.
+
+**Observer v2 (blinded causal-response fingerprints) FAILS:**
+
+| comparison | A | S | F | M | expected |
+|---|---|---|---|---|---|
+| E1 handoff (dev) | 1.000 | 0.182 | 0.503 | 0.264 | same, same, same, DIFF |
+| E1 handoff (held-out) | 1.000 | 0.182 | 0.503 | 0.264 | same, same, same, DIFF |
+| (c) identical output, different memory | 0.027 | **0.000** | 0.000 | 0.467 | same, **DIFF**, same, DIFF |
+| (a) same arch, different program | 0.353 | **0.000** | 0.500 | 0.304 | same, **DIFF**, DIFF, DIFF |
+| (b) different arch, same program | 1.000 | 0.091 | 0.000 | 0.905 | DIFF, same, same, DIFF |
+
+**Two specific, diagnosable defects — the value of factorizing:**
+1. **The S head is BLIND.** It scores **0.000** for 1010 vs 0101, which differ in memory. The blinded probe grid
+   (stride 20) is too coarse to land on the channel tracks, so no pulse ever discriminates a gated channel from an
+   open one. **The probe grid has a RESOLUTION requirement that was never stated or verified** — a must-pass case is
+   required: a probe design must be shown able to read a known memory word before it is trusted to read an unknown one.
+2. **The A and F heads are CONFOUNDED.** Fingerprints for the E1 arms were computed on the **post-handoff final
+   frame** — a mid-flight state with gliders in transit — and compared against fingerprints from a **fresh** grid.
+   That compares *different transients*, not different architectures. Fingerprints must be **phase-matched**.
+
+**Verdict: FAIL. The droplets remain BLOCKED.** No head is tuned to pass; both defects require a corrected probe
+design and phase-matched comparison, each with its own must-pass case, in the next iteration.
+**D-046 unchanged. D_int untouched. No threshold moved. No substrate tuned. No composite score anywhere.**
