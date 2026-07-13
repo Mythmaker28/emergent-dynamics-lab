@@ -1,0 +1,45 @@
+EXP-GT-ACERT3 -- ARCHITECTURE RESOLUTION CERTIFICATE V3 (head V4; development only)
+========================================================================================================================
+clock T=60 | null 30223fb0f362ee75 phases [16, 1, 38, 7, 4, 49, 34, 40, 33, 54, 15, 37] | coverage FULL CYCLE
+PHASE INVARIANCE: INVARIANT over 13 phases INCLUDING the six that killed V3 [2, 3, 5, 32, 33, 35]
+
+  case                                               A_TOPO                 A_TAU                    G                    F                  M         
+  1. pure phase shift +16                            OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK SAME/SAME
+  1. pure phase shift +1                             OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK SAME/SAME
+  1. pure phase shift +38                            OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK SAME/SAME
+  1. pure phase shift +7                             OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK SAME/SAME
+  1. pure phase shift +4                             OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK SAME/SAME
+  1. pure phase shift +49                            OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK SAME/SAME
+  1b. MUST-PASS: phase 33 (V3 was UNUSABLE here)     OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK SAME/SAME
+  2. pure translation +10                            OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  3. different spacing, same topology                OK SAME/SAME           OK SAME/SAME             OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  4. delay edit, UNGATED path (k=1, 4 steps)         OK SAME/SAME           OK DIFFERENT/DIFFERENT   OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  4b. delay edit, UNGATED path (k=4, 16 steps)       OK SAME/SAME           OK DIFFERENT/DIFFERENT   OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  4c. MUST-PASS: delay edit on a GATED path (k=5) -- V3 FALSE-SAME OK SAME/SAME           OK DIFFERENT/DIFFERENT   OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  4d. delay edit on a GATED path (k=2, 8 steps)      OK SAME/SAME           OK DIFFERENT/DIFFERENT   OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  5. ONE EDGE ADDED (cross-stream inhibitor)         OK DIFFERENT/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  6. ONE EDGE REMOVED (inhibitor deleted)            OK DIFFERENT/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  7. ONE NODE ADDED (fifth channel)                  OK DIFFERENT/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  8. inert decoration added                          OK SAME/SAME           OK SAME/SAME             OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  9. decoy gate (gate density, no causal effect)     OK SAME/SAME           OK SAME/SAME             OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  10. direct 1-path vs redundant 2-path              OK DIFFERENT/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  13/14. CROWN: identical output, different graph    OK DIFFERENT/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+
+  false-SAME (A_TOPO) 0/5   false-DIFFERENT (A_TOPO) 0/15   A_TAU failures 0   total head failures 0/20 cases
+
+  PHASE-RESOLVED VALIDITY: bad strike phases per component [6, 6, 6, 6] of 60 -> PASS (fires, and does not fire everywhere)
+  ABSTENTION: PASS -> A_TOPO=INDETERMINATE (unsourced live [2, 3])
+  NON-VACUITY: A_TOPO fired ['DIFFERENT', 'INDETERMINATE', 'SAME'] (all three True); A_TAU fired ['DIFFERENT', 'INDETERMINATE', 'SAME']
+
+  CERTIFIED RESOLUTION:
+    delay_edit_UNGATED                 4 steps
+    delay_edit_GATED                   8 steps (k=2) -- V3 could not do this AT ALL
+    edge_edit                          1 edge
+    node_edit                          1 node
+    redundancy                         detected
+    component_separation_limit_cells   4
+    A_TAU_tolerance                    0.0
+
+========================================================================================================================
+VERDICT: QUALIFIED
+========================================================================================================================

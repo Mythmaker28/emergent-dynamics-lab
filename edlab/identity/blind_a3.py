@@ -1,4 +1,13 @@
-"""ARCHITECTURE HEAD V3 -- A_TOPO / A_TAU / G, on FULL-CYCLE phase tomography.
+"""ARCHITECTURE HEAD V3 -- RETIRED (D-058). PRESERVED UNCHANGED. DO NOT PATCH. DO NOT USE.
+
+Superseded by edlab/identity/blind_a4.py (docs/ARCHITECTURE_HEAD_V4_SPEC.md). It is kept because the record of a
+failed observer is evidence, and because the way it failed is the most useful thing this project has learned:
+it made timing phase-invariant by taking the MEDIAN OVER ALL STRIKE PHASES -- integrating the nuisance out -- and
+thereby integrated out the signal too, going blind to a delay edit on a gated path.
+
+---- original header follows ----
+
+ARCHITECTURE HEAD V3 -- A_TOPO / A_TAU / G, on FULL-CYCLE phase tomography.
 
 WHY V3 EXISTS (D-056). V2 failed prospectively for three reasons, and all three were design errors, not tolerances:
 

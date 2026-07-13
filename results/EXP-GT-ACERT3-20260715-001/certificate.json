@@ -1,0 +1,836 @@
+{
+ "null": {
+  "seed": 20260715,
+  "period": 60,
+  "phase_origins": [
+   16,
+   1,
+   38,
+   7,
+   4,
+   49,
+   34,
+   40,
+   33,
+   54,
+   15,
+   37
+  ],
+  "coverage": {
+   "period": 60,
+   "phases": [
+    1,
+    4,
+    7,
+    15,
+    16,
+    33,
+    34,
+    37,
+    38,
+    40,
+    49,
+    54
+   ],
+   "quantile_bins": [
+    [
+     1,
+     4,
+     7
+    ],
+    [
+     15,
+     16
+    ],
+    [
+     33,
+     34,
+     37,
+     38,
+     40
+    ],
+    [
+     49,
+     54
+    ]
+   ],
+   "coverage": "FULL CYCLE"
+  },
+  "generator": "edlab/experiments/gt_nulls2.py -- imports NOTHING from any observer; no sort-and-truncate",
+  "supersedes": "gt_nulls.py, which was BIASED toward small phases (D-058)",
+  "hash": "30223fb0f362ee75",
+  "used_in_certificate": [
+   16,
+   1,
+   38,
+   7,
+   4,
+   49
+  ],
+  "coverage_assertion": {
+   "period": 60,
+   "phases": [
+    1,
+    4,
+    7,
+    15,
+    16,
+    33,
+    34,
+    37,
+    38,
+    40,
+    49,
+    54
+   ],
+   "quantile_bins": [
+    [
+     1,
+     4,
+     7
+    ],
+    [
+     15,
+     16
+    ],
+    [
+     33,
+     34,
+     37,
+     38,
+     40
+    ],
+    [
+     49,
+     54
+    ]
+   ],
+   "coverage": "FULL CYCLE"
+  }
+ },
+ "clock": {
+  "inferred_period": 60,
+  "harmonics": "resolved by construction (SMALLEST exact period)"
+ },
+ "phase_invariance": {
+  "phases_checked": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   7,
+   16,
+   32,
+   33,
+   35,
+   38,
+   49
+  ],
+  "verdict": "INVARIANT",
+  "includes_V3_killer_phases": [
+   2,
+   3,
+   5,
+   32,
+   33,
+   35
+  ],
+  "valid_phase_fracs": {
+   "0": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "16": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "1": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "38": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "7": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "4": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "49": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "2": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "3": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "5": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "32": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "33": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "35": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ]
+  }
+ },
+ "families": [
+  {
+   "case": "1. pure phase shift +16",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "1. pure phase shift +1",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "1. pure phase shift +38",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "1. pure phase shift +7",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "1. pure phase shift +4",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "1. pure phase shift +49",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "1b. MUST-PASS: phase 33 (V3 was UNUSABLE here)",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "2. pure translation +10",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "3. different spacing, same topology",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "4. delay edit, UNGATED path (k=1, 4 steps)",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "4b. delay edit, UNGATED path (k=4, 16 steps)",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "4c. MUST-PASS: delay edit on a GATED path (k=5) -- V3 FALSE-SAME",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "4d. delay edit on a GATED path (k=2, 8 steps)",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "5. ONE EDGE ADDED (cross-stream inhibitor)",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "6. ONE EDGE REMOVED (inhibitor deleted)",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "7. ONE NODE ADDED (fifth channel)",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "8. inert decoration added",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "9. decoy gate (gate density, no causal effect)",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "10. direct 1-path vs redundant 2-path",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  },
+  {
+   "case": "13/14. CROWN: identical output, different graph",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "coverage": {
+    "c1": true,
+    "c2": true
+   }
+  }
+ ],
+ "rates": {
+  "false_SAME_A_TOPO": "0/5",
+  "false_DIFFERENT_A_TOPO": "0/15",
+  "A_TAU_failures": 0,
+  "head_failures": 0,
+  "cases": 20
+ },
+ "phase_resolved_validity": {
+  "bad_phases_per_component": [
+   6,
+   6,
+   6,
+   6
+  ],
+  "period": 60,
+  "pass": true,
+  "note": "NON-VACUITY: the validity check must FIRE (some phases ARE bad -- 6 of 60, the ones that killed V3) and must not fire everywhere. Under V3 one bad phase invalidated the whole circuit; here it costs that phase only, and the bad phases live in the validity mask, which rotates with the circuit and is part of the A_TAU signature."
+ },
+ "abstention": {
+  "unsourced_live": [
+   2,
+   3
+  ],
+  "A_TOPO": "INDETERMINATE",
+  "pass": true
+ },
+ "non_vacuity": {
+  "A_TOPO_fired": [
+   "DIFFERENT",
+   "INDETERMINATE",
+   "SAME"
+  ],
+  "all_three": true,
+  "A_TAU_fired": [
+   "DIFFERENT",
+   "INDETERMINATE",
+   "SAME"
+  ]
+ },
+ "resolution": {
+  "delay_edit_UNGATED": "4 steps",
+  "delay_edit_GATED": "8 steps (k=2) -- V3 could not do this AT ALL",
+  "edge_edit": "1 edge",
+  "node_edit": "1 node",
+  "redundancy": "detected",
+  "component_separation_limit_cells": 4,
+  "A_TAU_tolerance": 0.0
+ },
+ "VERDICT": "QUALIFIED",
+ "not_constructible": {
+  "feedback": "NOT CONSTRUCTIBLE in this component library (no causal cycle exists; guns are sources). The head reads component->component dependency and would see a cycle if one existed.",
+  "program_invariance": "NOT CONSTRUCTIBLE: the program IS the architecture here (D-055). EXP-GT-02B's pass was VACUOUS."
+ }
+}
