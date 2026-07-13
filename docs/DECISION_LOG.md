@@ -1817,3 +1817,82 @@ temporal provenance, not scope calibration.
 **Per §13, automatic construction of further observers STOPS.** The programme-level synthesis of what is and is not
 identifiable is in `docs/PROGRAMME_SYNTHESIS.md`. **EXP-SC-01 remains BLOCKED** — through three observers, and
 blocking it was right every time: each would have produced a confident, wrong description of an unknown world.
+
+---
+
+## D-070 — programme-level synthesis. Capability matrix; R8-B-dynamic does not require minimality; Route B is legitimate **conditional on repertoire-limited transfer**. STOP for strategic review.
+
+**Scope of D-069, restated exactly.** `FAILED — IMPLEMENTATION / MODEL MINIMALITY`, with an independent
+evaluator-ground-truth defect of mine. The active observer is retired under its **full-hierarchy criterion**. The
+causal source–transducer **ontology is not falsified**. **It predicted every measured function correctly** and
+**failed the preregistered minimal-representation criterion** on 3/24. It is not fully qualified, and it did not
+fail to understand the prospective worlds.
+
+**Prospectively DEMONSTRATED (G6, frozen, run once, against a privileged intervention-derived audit):** causal
+source recovery (count 100 %, identities 100 %) · temporal provenance (0 fabricated rows, 0 excluded rows, no
+degradation from lag 17 to lag 56) · reachable-manifold function (100 % vs privileged simulation) · hidden-state
+detection (6/6, on the true state machines and nowhere else) · calibrated abstention · active experiment planning
+(49 % of an exhaustive schedule on development; the plan is a function of the world).
+
+**FAILED:** minimal transducer-class identification — 3/24 — because the search can widen but cannot **eliminate a
+redundant history variable**. Full capability matrix across all seven observer generations, with every capability
+marked `QUALIFIED` / `DIAGNOSTIC ONLY` / `FAILED` / `UNTESTED`: `docs/CAPABILITY_MATRIX.md`.
+
+### The strategic question
+
+**Does R8-B-dynamic require a provably minimal causal model, or only a stable, discriminative causal-response
+fingerprint?**
+
+**It does not require minimality.** Minimality is a property of a **description**; R8-B is a **matching problem**
+over **responses**. Two descriptions that are observationally equivalent on the reachable manifold predict
+identically — which is precisely the D-069 failure: the `xor3` table was right on every row and only the *class
+label* was wrong. A response-based fingerprint is invariant to that error by construction; a fingerprint carrying
+class labels or lag sets inherits it and would manufacture **false DIFFERENCE**.
+
+Four binding conditions: **(C1)** response-only — no class, lag set, arity or minimality quantity may enter;
+**(C2)** the active planner is switched **OFF** inside the fingerprint (a coordinate system that adapts to the
+thing it measures is not one) and used only to design a frozen battery on ground truth; **(C3)** timed and untimed
+components reported separately, never composited; **(C4)** SAME is never claimed — only
+`INDISTINGUISHABLE-UNDER-REPERTOIRE`, above a preregistered coverage floor.
+
+### Routes
+
+**Route A** (block until a bidirectional grow-and-prune observer exists) remains **mandatory** for any claim of
+architecture, minimal structure, or "the same individual" — and is **not compelled by this use case**. Building it
+to satisfy R8-B would be scope creep driven by the benchmark rather than the question.
+
+**Route B** (narrow prospective qualification of the frozen causal-response layer) is **logically legitimate**,
+using only prospectively qualified capabilities and excluding model class and minimality completely.
+
+**Specified, NOT executed: `EXP-GT-FINGERPRINT-00`** — a NEW prospective claim, not a post-hoc rescue. Invariance
+under redundant lags, retiming, microscopically different implementations, channel distance, and **progressive
+implementation replacement mid-trajectory** (the Ship-of-Theseus arm — the direct analogue of R8-B's early/late
+split under constituent turnover). Discrimination of different functions, source counts, true hidden state and
+context-gated paths. **Mandatory abstention** on the off-manifold twins. And a **must-fail case (F11)**: a
+deliberately contaminated fingerprint carrying the class label must be shown to break — otherwise C1 is decoration.
+
+### THE HARD GATE — and it is where this most likely stops
+
+Ground truth offers **rich** intervention access. The droplet offers almost none. A qualification obtained under
+rich access transferred to a poor one would be the same category of error as every retirement in this programme.
+**`EXP-GT-FINGERPRINT-00` must therefore contain a REPERTOIRE-LIMITED ARM**, crippled to droplet-like access, and
+the fingerprint must qualify **there**.
+
+- qualifies only under rich access → **transfer NOT authorized; continued blocking; end of route.**
+- qualifies under the limited repertoire → **and only then** → `SC-PILOT-CAUSAL-FINGERPRINT` may be defined:
+  explicitly **exploratory**, the R8-B matching statistic **unchanged** on a fingerprint feature space, with
+  **β = 0.10, `D_int` and every droplet equation untouched**. A PASS would authorize one sentence — *"a
+  causal-response fingerprint is predictive across the early/late split under repertoire R at coverage c"* — and
+  **could not be called proof of identity**, nor a GATE-0, nor a law-map step. A FAIL would be a **stronger
+  negative** than the phenotype-based R8-B failure and would close the question.
+
+**Dominant risk: FALSE SAMENESS.** A poor repertoire yields a small reachable manifold; on a small manifold
+genuinely different entities collapse into one fingerprint — and the collapse would present itself as *"identity
+persists"*, which is the answer this programme has an interest in seeing. That is the failure mode most likely to
+fool me, and §6 of the synthesis exists to catch it.
+
+**Route B is not recommended in order to resume droplet experiments.** If the repertoire-limited arm fails, the
+correct outcome is continued blocking and a publication-oriented metrology synthesis.
+
+**NOTHING EXECUTED. NO OBSERVER BUILT. NO RETIRED IMPLEMENTATION MODIFIED. EXP-SC-01 REMAINS BLOCKED.
+STOPPING FOR STRATEGIC REVIEW.**

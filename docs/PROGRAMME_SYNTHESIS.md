@@ -10,6 +10,20 @@ Three observers have been built and retired under a one-development-cycle / one-
 | D-067 | **source-transducer** (sources, not taps; reachable manifold) | 20/20 | **FAIL** — 12/24 false abstentions | **temporal provenance**: negative index fabricated source histories |
 | D-069 | **active experiment planner** (version space, provenance contract) | 15/15 + 20/20 | **FAIL** — transducer class 21/24 | **model minimality**: the version space widens and never narrows |
 
+> ### The exact scope of the D-069 verdict
+>
+> **FAILED — IMPLEMENTATION / MODEL MINIMALITY**, with an independent evaluator ground-truth defect of mine.
+> The observer is retired under its **full-hierarchy criterion**. The causal source-transducer **ontology is not
+> falsified**, and neither is the observer's comprehension of the worlds:
+>
+> - **It predicted every measured function correctly** — every table agrees with privileged simulation, on every
+>   row of every world, including four implementations it had never seen.
+> - **It failed the preregistered minimal-representation criterion** on 3/24, because its search can *widen* a
+>   history window but cannot *eliminate a redundant history variable*.
+>
+> It is **not fully qualified**. It did **not** fail to understand the prospective worlds. Both statements are
+> required, and neither may be dropped.
+
 ---
 
 ## I. What is now ESTABLISHED as identifiable in this substrate
