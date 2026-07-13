@@ -1,0 +1,55 @@
+EXP-GT-ACERT2 -- ARCHITECTURE RESOLUTION CERTIFICATE V2 (development only)
+======================================================================================================================
+clock: T = 60 (resolved by construction (SMALLEST exact period))
+null contract: STRUCTURAL -- the estimator has no free phase parameter to select   strike=EXHAUSTIVE (0..T-1)   null manifest 0f4cfb50c963255d
+independent phase origins (drawn from a seed, NOT from the head): [1, 4, 6, 8, 9, 10, 11, 14, 16, 17, 20, 23]
+PHASE INVARIANCE: INVARIANT over 9 phases; max median-delay deviation = 0.0  ==> DERIVED A_TAU TOLERANCE = 0.0
+
+  case                                             A_TOPO                   A_TAU                    G                      F                    M           
+  1. pure phase shift +1                           OK SAME/SAME             OK SAME/SAME             OK SAME/SAME           OK SAME/SAME         OK SAME/SAME
+  1. pure phase shift +4                           OK SAME/SAME             OK SAME/SAME             OK SAME/SAME           OK SAME/SAME         OK SAME/SAME
+  1. pure phase shift +6                           OK SAME/SAME             OK SAME/SAME             OK SAME/SAME           OK SAME/SAME         OK SAME/SAME
+  1. pure phase shift +8                           OK SAME/SAME             OK SAME/SAME             OK SAME/SAME           OK SAME/SAME         OK SAME/SAME
+  1. pure phase shift +9                           OK SAME/SAME             OK SAME/SAME             OK SAME/SAME           OK SAME/SAME         OK SAME/SAME
+  1. pure phase shift +10                          OK SAME/SAME             OK SAME/SAME             OK SAME/SAME           OK SAME/SAME         OK SAME/SAME
+  2. pure translation +10                          OK SAME/SAME             OK SAME/SAME             OK SAME/SAME           OK SAME/SAME         OK DIFFERENT/DIFFERENT
+  2. pure translation +20                          OK SAME/SAME             OK SAME/SAME             OK SAME/SAME           OK SAME/SAME         OK DIFFERENT/DIFFERENT
+  3. different spacing, same topology              OK SAME/SAME             OK SAME/SAME             OK DIFFERENT/DIFFERENT OK SAME/SAME         OK DIFFERENT/DIFFERENT
+  4. path-delay edit k=1 (4 steps)                 OK SAME/SAME             OK DIFFERENT/DIFFERENT   OK DIFFERENT/DIFFERENT OK SAME/SAME         OK DIFFERENT/DIFFERENT
+  4. path-delay edit k=2 (8 steps)                 OK SAME/SAME             OK DIFFERENT/DIFFERENT   OK DIFFERENT/DIFFERENT OK SAME/SAME         OK DIFFERENT/DIFFERENT
+  4. path-delay edit k=4 (16 steps)                OK SAME/SAME             OK DIFFERENT/DIFFERENT   OK DIFFERENT/DIFFERENT OK SAME/SAME         OK DIFFERENT/DIFFERENT
+  4. path-delay edit k=8 (32 steps)                OK SAME/SAME             OK DIFFERENT/DIFFERENT   OK DIFFERENT/DIFFERENT OK SAME/SAME         OK DIFFERENT/DIFFERENT
+  5. ONE EDGE ADDED (cross-stream inhibitor)       OK DIFFERENT/DIFFERENT   OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  6. ONE EDGE REMOVED (inhibitor deleted)          OK DIFFERENT/DIFFERENT   OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  7. ONE NODE ADDED (fifth channel)                OK DIFFERENT/DIFFERENT   OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  8. inert decoration added                        OK SAME/SAME             OK SAME/SAME             OK DIFFERENT/DIFFERENT OK SAME/SAME         OK DIFFERENT/DIFFERENT
+  9. decoy gate (gate density, no causal effect)   OK SAME/SAME             OK SAME/SAME             OK DIFFERENT/DIFFERENT OK SAME/SAME         OK DIFFERENT/DIFFERENT
+  10. direct 1-path vs redundant 2-path            OK DIFFERENT/DIFFERENT   OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  13/14. CROWN: identical output, different graph  OK DIFFERENT/DIFFERENT   OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK SAME/SAME         OK DIFFERENT/DIFFERENT
+
+  false-SAME (A_TOPO)      : 0/5
+  false-DIFFERENT (A_TOPO) : 0/15
+  total head failures      : 0 over 20 cases
+
+  15. CONFOUND DETECTION   : PASS -> CONFOUNDED
+      PARTIAL COMPONENT: the box (6, 11, 42, 47) is not a whole discovered component (it cuts into [(5, 13, 45, 80
+      NON-VACUITY: the mutilated gun fires a NEW stream, landing at output columns [55, 56, 57, 58] that the intact circuit never touches. The gun was not removed -- it was REPLACED.
+  16. ABSTENTION           : PASS -> A_TOPO=INDETERMINATE (unsourced live outputs [2, 3])
+
+  NON-VACUITY: A_TOPO fired ['DIFFERENT', 'INDETERMINATE', 'SAME'] (all three: True); A_TAU fired ['DIFFERENT', 'INDETERMINATE', 'SAME']
+
+  CERTIFIED RESOLUTION:
+    delay_edit                         4 steps (the finest the substrate admits)
+    edge_edit                          1 edge
+    node_edit                          1 node
+    redundancy                         detected (1-path vs 2-path)
+    component_separation_limit_cells   4
+    tau_tolerance_derived              0.0
+
+  NOT CONSTRUCTIBLE (stated, not hidden):
+    * 11. feed-forward vs FEEDBACK: NOT CONSTRUCTIBLE in this component library. A causal CYCLE needs a component whose existence depends on another whose existence depends on it. Guns are sources and depend on nothing; the only dependent component found is the collision remnant, which depends on BOTH guns and on which nothing depends (measured: destroys=[remnant] from each gun, and ablating the remnant has no persistent effect -- it regenerates). The head DOES read dependency structure (component->component edges), so it would see a cycle if one existed. REQUIRED PROPERTY OF THE NEXT COMPONENT LIBRARY.
+    * 12. same graph, different PROGRAM word: NOT CONSTRUCTIBLE (D-055). A memory bit of 0 is implemented by ADDING AN EATER, so the program IS part of the causal graph. A_TOPO correctly reports DIFFERENT. Any head that 'passes' program-invariance here passes a test that CANNOT FIRE -- EXP-GT-02B's pass was VACUOUS. Requires STATE-based memory (a latch/storage loop).
+
+======================================================================================================================
+VERDICT: QUALIFIED
+======================================================================================================================
