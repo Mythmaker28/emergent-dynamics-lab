@@ -834,3 +834,27 @@ fails O2 (dRg 1.95).** The post-hoc window did not replicate. Taking it would ha
 into R8.
 
 Eight substrates, eight negatives. Nothing promoted.
+
+## D-045 — D-044 STANDS under its own criterion, but O2 was MIS-SPECIFIED; EXP-SC-00B authorized with O2'
+
+**Date:** 2026-07-12
+**Status:** CORRECTION OF SCOPE (D-044's result is unchanged and is NOT reinterpreted)
+
+**D-044 remains a valid result under its original preregistered O2.** It is not amended, not reinterpreted, and its
+seeds (8001, 8101, 8102) are **not reused**.
+
+**But O2 was the wrong criterion, and its failure does NOT show the architecture is invalid.**
+O2 demanded **near-invariance of entity radius** across internal states (|dRg| <= 1.5 cells). An internal state whose
+whole purpose is to **alter uptake** must alter growth, and therefore must alter morphology. **O2 and O4 were
+contradictory by construction** — which is exactly why no `beta` could satisfy both, and why at the weakest coupling
+both failed at once. That is a property of my criterion, not of the substrate.
+
+**Functional orthogonality requires (a) scaffold-independent cohesion and (b) VIABILITY across identity states — not
+identical body size.** Size and shape are *expected* to differ; they must be **reported, not thresholded away**.
+
+**EXP-SC-00B authorized** as a **new prospective qualification on entirely unseen seeds** (8201–8203), replacing O2
+with **O2'** (viability, not invariance) and strengthening O4 to **O4'** (the internal state must predict future
+behaviour **after controlling for current mass, radius, density and size** — so identity cannot be a proxy for
+trivial morphology). O1 and O3 unchanged. `beta` selected prospectively on a frozen grid by O1/O2'/O3/O4' only.
+If no `beta` preserves viability across internal states, the substrate is retired and identity coupling moves to
+**motility direction, oscillatory phase, or probe response** — channels that do not feed the scaffold's mass balance.

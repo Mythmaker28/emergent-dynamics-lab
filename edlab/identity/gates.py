@@ -86,3 +86,37 @@ def r8c_causal_identity(source: np.ndarray, intact: list[np.ndarray], scrambled:
     ri, rs = rate(intact), rate(scrambled)
     return {"intact_source_identity_rate": ri, "scrambled_source_identity_rate": rs,
             "difference": ri - rs, "margin": margin, "passes": bool((ri - rs) > margin)}
+
+
+def partial_correlation(y: np.ndarray, x: np.ndarray, Z: np.ndarray) -> float:
+    """Pearson correlation of x and y AFTER linearly removing the controls Z (with intercept) from BOTH.
+
+    This is the metric that stops an 'identity effect' from being a proxy for trivial morphology: if the internal
+    state only predicts uptake because bigger droplets happen to be u-dominant AND bigger droplets eat more, the
+    naive correlation fires and the PARTIAL correlation must not. That confound is a required must-fail test case.
+    """
+    y = np.asarray(y, float).ravel()
+    x = np.asarray(x, float).ravel()
+    Z = np.asarray(Z, float)
+    if Z.ndim == 1:
+        Z = Z[:, None]
+    A = np.hstack([np.ones((len(y), 1)), Z])
+    def resid(v):
+        coef, *_ = np.linalg.lstsq(A, v, rcond=None)
+        return v - A @ coef
+    ry, rx = resid(y), resid(x)
+    sy, sx = ry.std(), rx.std()
+    if sy < 1e-12 or sx < 1e-12:
+        return 0.0
+    return float(np.mean((ry - ry.mean()) * (rx - rx.mean())) / (sy * sx))
+
+
+def partial_correlation_test(y, x, Z, n_perm: int = 2000, seed: int = 0) -> dict:
+    """Partial correlation with a permutation p-value (x is permuted; y and Z are held fixed)."""
+    r = partial_correlation(y, x, Z)
+    rng = np.random.default_rng(seed)
+    x = np.asarray(x, float).ravel()
+    null = np.array([abs(partial_correlation(y, rng.permutation(x), Z)) for _ in range(n_perm)])
+    p = float((null >= abs(r)).mean())
+    return {"r_partial": r, "p_permutation": p, "n": int(len(x)),
+            "passes": bool(abs(r) >= 0.30 and p < 0.05)}

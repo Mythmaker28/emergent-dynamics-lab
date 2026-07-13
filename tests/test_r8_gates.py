@@ -110,3 +110,47 @@ def test_r8c_entity_presence_is_NOT_the_outcome():
     always_present_wrong_identity = [others[0] + 0.1 * RNG.standard_normal(F) for _ in range(20)]
     r = r8c_causal_identity(src, [], always_present_wrong_identity, others)
     assert r["scrambled_source_identity_rate"] == 0.0
+
+
+# ----------------------------------------------------------------- O4' partial correlation (EXP-SC-00B)
+from edlab.identity.gates import partial_correlation, partial_correlation_test   # noqa: E402
+
+
+def test_partialcorr_MUST_PASS_genuine_effect_independent_of_controls():
+    """Internal state genuinely drives future uptake, independently of size/mass -> the metric MUST fire."""
+    rng = np.random.default_rng(1)
+    n = 120
+    Z = rng.normal(size=(n, 3))                       # mass, radius, density
+    sig = rng.normal(size=n)                          # internal state, independent of morphology
+    uptake = 1.5 * sig + 0.4 * Z[:, 0] + 0.3 * rng.normal(size=n)
+    r = partial_correlation_test(uptake, sig, Z, n_perm=400, seed=2)
+    assert r["passes"] and r["r_partial"] > 0.7, r
+
+
+def test_partialcorr_MUST_FAIL_when_effect_is_entirely_a_morphology_confound():
+    """THE decisive case. sig and uptake are correlated ONLY because both are driven by SIZE. A naive correlation
+    fires; the partial correlation MUST NOT. This is what stops identity from being a proxy for body size."""
+    rng = np.random.default_rng(3)
+    n = 150
+    size = rng.normal(size=n)
+    sig = 2.0 * size + 0.3 * rng.normal(size=n)       # big droplets happen to be u-dominant
+    uptake = 3.0 * size + 0.3 * rng.normal(size=n)    # big droplets happen to eat more
+    Z = size[:, None]
+    naive = float(np.corrcoef(uptake, sig)[0, 1])
+    assert abs(naive) > 0.8                                        # the naive correlation DOES fire
+    r = partial_correlation_test(uptake, sig, Z, n_perm=400, seed=4)
+    assert not r["passes"], r                                       # the partial correlation MUST NOT
+    assert abs(r["r_partial"]) < 0.3
+
+
+def test_partialcorr_MUST_FAIL_when_there_is_no_effect():
+    rng = np.random.default_rng(5)
+    n = 120
+    Z = rng.normal(size=(n, 3))
+    sig = rng.normal(size=n)
+    uptake = 0.8 * Z[:, 1] + rng.normal(size=n)
+    assert not partial_correlation_test(uptake, sig, Z, n_perm=400, seed=6)["passes"]
+
+
+def test_partialcorr_is_zero_when_x_is_constant():
+    assert partial_correlation(np.arange(10.0), np.ones(10), np.zeros((10, 1))) == 0.0
