@@ -1686,3 +1686,72 @@ boundary parent back through conductors to the cell that *originates* it, and de
 source. The input space of a module is the set of assignments the machine **can actually realize** — a truth table
 measured off that manifold is not the module's function, and must either be declared off-manifold or abstained
 from. Independence between parents must be **tested**, never assumed from the fact that they are distinct cells.
+
+---
+
+## D-066 — the source-transducer observer QUALIFIES on development (EXP-GT-SOURCE, 20/20)
+
+A conceptually new observer (`edlab/identity/sources.py`), not a repair of the retired one. The object is no longer
+a box with wires. It is a **transducer from a minimal set of independent causal sources, and their histories, to an
+output, measured only on the joint histories the world can actually realize.**
+
+Four things that were previously one are now kept apart: the **spatial frontier** (geometry), a **boundary tap** (a
+consequence), an **independent source** (a root — a cause), and the **reachable manifold** (what the dynamics can
+produce). Interventions are applied to **sources, never to taps**: a tap is a consequence, and clamping it
+fabricates a world.
+
+20/20 on development. Three taps yield two causes (`dup_same`); a duplicated source, an inverted-delayed tap and a
+history-dependent detector are all resolved to one cause; two registers with **byte-identical baseline series** are
+kept independent (`and3`) while a wire and its own buffer are merged; `AND(x,x)`, active clock-correlated
+decoration and a three-neighbour wire bundle are all rejected; a state machine yields `FINITE_STATE` **and no
+invented table**; two modules identical on the manifold and different only off it yield **INDETERMINATE, not SAME**
+(`lag8`), while two modules with **byte-identical free-running outputs** are correctly separated by clamping the
+source (`lag15`) rather than abstained from. Every verdict — SAME, DIFFERENT, INDEPENDENT, DEPENDENT, UNRESOLVED,
+INDETERMINATE — was shown able to fire.
+
+## D-067 — the source-transducer observer FAILS the single prospective run. **RETIRED.**
+
+`EXP-GT-SOURCE-P`, 8 fresh worlds, jointly holding out topology, layout, phase, program, implementation, delay
+asymmetry, source-duplication pattern and intervention schedule, with four gate implementations never used or
+inspected during development. Frozen observer, run once.
+
+**FALSE ABSTENTION 12/24.** Twelve modules declared `FINITE_STATE` — *"this module remembers something I cannot
+explain"* — and **not one is a state machine.** Transducer class 50 %, function on the reachable manifold 29.2 %.
+The verdicts are graded exactly by distance from the clock: 0 on channel 0, 4 on channel 1, 8 on channel 2.
+
+**The cause.** `harvest()` labels each sample's source history as `g[t − d]`. When the lag `d` exceeds `t`, the
+index is negative and numpy reads from the **end** of the array. The row is labelled with a source history from a
+different time — a state the world never produced. The observer whose entire thesis is *never evaluate a function
+on states the world cannot realize* **fabricated source histories itself, by indexing before the beginning of
+time**. Its consistency check worked perfectly: it detected the contradiction and reported hidden state. The thing
+hiding state was the array index. `assert_manifold_generated` guarded the wrong side of the pair — it verified that
+every row had a *generated output*, never that the row was *labelled with the history that produced it*.
+
+**Why development missed it.** All 20 development cases inspect **channel 0 of three** — the only channel whose
+clock lag falls below the settle margin, hence the only one where the defect cannot appear. A certificate that
+exercises one third of the ground truth available to it is not a certificate.
+
+**An error of mine, reported because it inflates the failure rather than excusing it.** On closed-gate channels the
+observer named the **write-enable rail** as the second source instead of the register — and it is *right*: pulsing
+`we` makes the register load, and `y = clk AND we` is a correct, complete description at coverage 1.0. My
+`truth_sources` had filtered that cell out as an "inert rail", a justification I wrote **in order to make the ground
+truth produce the source count I expected**. That is the D-053 error, committed by me, in the scorer, after
+everything. It means part of the scored false certainty is mine — and it changes nothing: the 12 false abstentions
+are real and fail the run on their own.
+
+**RETIRED per the preregistered rule.** Preserved unchanged, not patched, no second cycle.
+Classification: **MANIFOLD IDENTIFICATION** (primary), with a **SCOPE CALIBRATION** failure in my own verification.
+**Not** source discovery: source counts were 95.8 % correct and every uncorrupted channel was classed correctly.
+
+**EXP-SC-01 remains BLOCKED.**
+
+### Next strategy
+
+An **active experiment-planning observer** that chooses interventions to maximise causal identifiability instead of
+executing a fixed tomography schedule — and that, before estimating any function, proves that every feature it uses
+was **observed inside the window it claims to have observed it in**. Two standing additions to the method,
+independent of any observer:
+
+1. **A certificate must exercise every instance the world offers, not the most convenient one.** Channel 0 was
+   easiest to write and is the only channel that could not fail.
+2. **An assertion must guard the side that can be wrong.** "Every row was generated" was true, and useless.

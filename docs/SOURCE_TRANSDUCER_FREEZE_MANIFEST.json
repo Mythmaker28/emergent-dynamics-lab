@@ -1,0 +1,66 @@
+{
+ "protocol": "EXP-GT-SOURCE-TRANSDUCER-00",
+ "frozen_at": "2026-07-14",
+ "status": "FROZEN before the prospective split was generated. One development cycle, one prospective run.",
+ "development_certificate": {
+  "experiment": "EXP-GT-SOURCE",
+  "cases": 20,
+  "passed": 20,
+  "qualified": true
+ },
+ "hashes": {
+  "edlab/identity/sources.py": "a1606c96c533d4b2a1b8eed0e99f68ec778cd0cd90e5be9f97874b8779582411",
+  "edlab/identity/hier.py": "f73424143ea170aae825be1f7bf31c1acbc8ea1effdca18d7e4514c0cbf1c5cc",
+  "edlab/substrates/boolnet/engine.py": "1b0a44c3854d3539eba0830e76e9a82bcefbe3d1375369654e3ab20cfde2dc10",
+  "edlab/substrates/boolnet/circuits.py": "748d308f77f6b57d8ddf9df9d9eae1fb5cc0227c4f779f1ed3837fa9c36b441b",
+  "edlab/substrates/boolnet/evaluator.py": "9ee96c475640799a4e46c694123434c865e0729725e77ea68bae479a15199112",
+  "edlab/experiments/exp_gt_source.py": "c7513eecdd2ef3ee13d0a9d04dec2023f91b2af4d53c7311b10bc1f6d09f9085"
+ },
+ "frozen_constants": {
+  "MAX_LAG": 64,
+  "MAX_HISTORY": 6,
+  "MAX_SOURCES": 5,
+  "SETTLE_MARGIN": 32,
+  "OBS": 96,
+  "SETTLE": 64,
+  "CLK_PERIOD": 8,
+  "CLK_DUTY": "3-of-8"
+ },
+ "admissible_intervention_repertoire": {
+  "for_STRUCTURE (ancestry, lags, independence)": "one-step pulses on cells, every phase of the inferred period",
+  "for_FUNCTION (the reachable manifold)": "SUSTAINED source regimes only: free running, plus constant clamps on every subset of the module's sources. Transient pulses are NOT used to populate the manifold. A one-step glitch is not an operating regime, and letting a single transient sample define a row of a law is how an artefact becomes a physics. This is a DECLARED restriction: a pulse WOULD reach some rows that clamps cannot, so every coverage figure below is coverage RELATIVE TO THIS REPERTOIRE, and that is exactly what the INDETERMINATE verdict is reporting.",
+  "never": "clamping a boundary TAP. A tap is a consequence; clamping it fabricates a world."
+ },
+ "development_family": [
+  "direct",
+  "direct_buf",
+  "demorgan",
+  "nand2",
+  "xor_or",
+  "or_gate",
+  "xor_gate",
+  "single_parent",
+  "dup_same",
+  "dup_lag",
+  "inv_lag",
+  "lag15_or",
+  "lag15_xor",
+  "lag8_and",
+  "lag8_or",
+  "cascade",
+  "and3",
+  "two_en",
+  "toggle"
+ ],
+ "held_out_implementations": {
+  "tri_tap": "one source through THREE taps at three lags + a register: 4 taps, 2 causes",
+  "sync3": "duplicated clock tap + TWO registers with byte-identical baseline series: 4 taps, 3 causes",
+  "edge_xor": "identical current input, different history, different output (a rising-edge detector)",
+  "reg_delay": "the SAME macro function built out of INTERNAL STATE and a different delay: contains a register and yet is NOT a state machine at its interface"
+ },
+ "burned": {
+  "xnor_and/and_or prospective worlds (D-065)": "DIAGNOSTIC_ONLY, never used as evidence here",
+  "development family": "used for qualification; may not appear in any prospective split"
+ },
+ "failure_rule": "One development cycle, one frozen prospective run. If it fails: preserve, retire, do not patch; classify the failure as source discovery / manifold identification / transducer inference / scope calibration; keep EXP-SC-01 BLOCKED; move to an active experiment-planning observer."
+}

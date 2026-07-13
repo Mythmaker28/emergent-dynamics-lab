@@ -88,6 +88,18 @@ def build(program=(1, 0, 1), chan_cols=(6, 20, 34), impl="direct", extra_delay=0
         comps[f"reg{i}"] = [rr]
         edges.append((f"reg{i}", f"reg{i}", 1))      # THE CYCLE
 
+        # A SECOND register, holding the SAME program bit. Its baseline series is therefore IDENTICAL to the
+        # first's -- two sources PERFECTLY SYNCHRONIZED in the baseline, yet independently clampable. An observer
+        # that merges sources by correlation must fail here; only an INTERVENTION separates them.
+        rr2 = (4, cc + 3)
+        if impl in ("and3", "two_en", "sync3"):
+            op[rr2] = REG
+            src[rr2[0], rr2[1], 0] = _idx(20, 1)     # we = 0
+            src[rr2[0], rr2[1], 1] = _idx(20, 1)
+            st[rr2] = program[i]
+            comps[f"reg2{i}"] = [rr2]
+            edges.append((f"reg2{i}", f"reg2{i}", 1))
+
         # ---- signal channel: one cell per step of delay.
         #      A DELAY EDIT is a DETOUR, not a longer drop. My first version pushed the gate DOWN by
         #      `extra_delay` rows and thereby SHORTENED the output wire by the same amount -- the total latency
@@ -211,6 +223,222 @@ def build(program=(1, 0, 1), chan_cols=(6, 20, 34), impl="direct", extra_delay=0
             src[gy + 2, cc, 1] = _idx(gy + 1, cc + 1)
             gcells = [(gy, cc), (gy, cc + 1), (gy + 1, cc), (gy + 1, cc + 1), (gy + 2, cc)]
             glat = 3
+        elif impl == "dup_same":
+            # ONE SOURCE, TWO IDENTICAL TAPS. Two wire chains of EQUAL length carry the same channel into the same
+            # gate, so the region's frontier has THREE taps but only TWO independent sources. This is the abstract
+            # form of the failure that retired the previous observer (D-065) -- built here from scratch in
+            # DEVELOPMENT, never from the burned world. out = chan(t-3) AND reg.
+            op[gy, cc] = WIRE;      src[gy, cc, 0] = _idx(gy - 1, cc)
+            op[gy, cc + 1] = WIRE;  src[gy, cc + 1, 0] = _idx(gy - 1, cc)
+            op[gy + 1, cc] = AND
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            src[gy + 1, cc, 1] = _idx(gy, cc + 1)
+            op[gy + 2, cc] = AND
+            src[gy + 2, cc, 0] = _idx(gy + 1, cc)
+            src[gy + 2, cc, 1] = _idx(*rr)
+            gcells = [(gy, cc), (gy, cc + 1), (gy + 1, cc), (gy + 2, cc)]
+            glat = 3
+        elif impl in ("dup_lag", "inv_lag"):
+            # ONE SOURCE, TWO TAPS AT DIFFERENT LAGS (and, for inv_lag, opposite POLARITY). The gate sees the
+            # channel now and the channel two steps ago. Still ONE independent source -- with a HISTORY.
+            op[gy, cc] = WIRE;      src[gy, cc, 0] = _idx(gy - 1, cc)            # tap A, depth 1
+            op[gy, cc + 1] = WIRE;  src[gy, cc + 1, 0] = _idx(gy - 1, cc)        # tap B chain, depth 1
+            op[gy + 1, cc + 1] = WIRE; src[gy + 1, cc + 1, 0] = _idx(gy, cc + 1)  # depth 2
+            op[gy + 2, cc + 1] = NOT if impl == "inv_lag" else WIRE               # depth 3
+            src[gy + 2, cc + 1, 0] = _idx(gy + 1, cc + 1)
+            op[gy + 1, cc] = AND
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            src[gy + 1, cc, 1] = _idx(gy + 2, cc + 1)
+            op[gy + 3, cc] = AND
+            src[gy + 3, cc, 0] = _idx(gy + 1, cc)
+            src[gy + 3, cc, 1] = _idx(*rr)
+            gcells = [(gy, cc), (gy, cc + 1), (gy + 1, cc + 1), (gy + 2, cc + 1),
+                      (gy + 1, cc), (gy + 3, cc)]
+            glat = 3
+        elif impl in ("lag8_and", "lag8_or"):
+            # THE GENUINELY OFF-MANIFOLD PAIR. Two taps of ONE source separated by EXACTLY ONE CLOCK PERIOD (8).
+            # The clock is periodic, so x(t-a) and x(t-a-8) are THE SAME VALUE in free running -- and a constant
+            # clamp makes them the same value too. Under every SUSTAINED source regime the pair lies on the
+            # diagonal: (0,1) and (1,0) CANNOT BE PRODUCED. AND and OR agree on the whole diagonal and differ only
+            # off it. An observer that calls them SAME has invented behaviour; one that calls them DIFFERENT claims
+            # to have seen what the world does not do. Only INDETERMINATE is honest.
+            op[gy, cc] = WIRE; src[gy, cc, 0] = _idx(gy - 1, cc)                  # tap A, depth 1
+            prev = (gy - 1, cc)
+            for k in range(9):                                                    # tap B chain, depth 9
+                cell = (gy + k, cc + 1)
+                op[cell] = WIRE
+                src[cell[0], cell[1], 0] = _idx(*prev)
+                prev = cell
+            op[gy + 1, cc] = AND if impl == "lag8_and" else OR
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            src[gy + 1, cc, 1] = _idx(gy + 8, cc + 1)
+            op[gy + 2, cc] = AND
+            src[gy + 2, cc, 0] = _idx(gy + 1, cc)
+            src[gy + 2, cc, 1] = _idx(*rr)
+            gcells = [(gy, cc)] + [(gy + k, cc + 1) for k in range(9)] + [(gy + 1, cc), (gy + 2, cc)]
+            glat = 3
+        elif impl in ("lag15_or", "lag15_xor"):
+            # THE OFF-MANIFOLD PAIR. Two taps of ONE source at lags differing by FOUR. The clock is high for 3 of
+            # every 8 steps, so x(t-2) and x(t-6) are NEVER BOTH HIGH: the assignment (1,1) is UNREACHABLE. OR and
+            # XOR agree on every reachable row and differ ONLY on that unreachable one. Any observer that reports
+            # them SAME is inventing off-manifold behaviour; any observer that reports them DIFFERENT is claiming
+            # to have seen what the world cannot produce. The only honest verdict is INDETERMINATE.
+            op[gy, cc] = WIRE; src[gy, cc, 0] = _idx(gy - 1, cc)                  # tap A, depth 1
+            prev = (gy - 1, cc)
+            for k in range(5):                                                    # tap B chain, depth 5
+                cell = (gy + k, cc + 1)
+                op[cell] = WIRE
+                src[cell[0], cell[1], 0] = _idx(*prev)
+                prev = cell
+            op[gy + 1, cc] = OR if impl == "lag15_or" else XOR
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            src[gy + 1, cc, 1] = _idx(gy + 4, cc + 1)
+            op[gy + 2, cc] = AND
+            src[gy + 2, cc, 0] = _idx(gy + 1, cc)
+            src[gy + 2, cc, 1] = _idx(*rr)
+            gcells = [(gy, cc)] + [(gy + k, cc + 1) for k in range(5)] + [(gy + 1, cc), (gy + 2, cc)]
+            glat = 3
+        # ---------------- HELD OUT FOR THE PROSPECTIVE RUN. Never used or inspected during development. ----------
+        elif impl == "tri_tap":
+            # ONE source through THREE taps at THREE lags, plus a register. Frontier: 4 taps. Causes: 2.
+            for k in range(3):                                        # three chains of depth 1, 2, 3
+                for j in range(k + 1):
+                    cell = (gy + j, cc + 1 + k)
+                    op[cell] = WIRE
+                    src[cell[0], cell[1], 0] = _idx(gy - 1, cc) if j == 0 else _idx(gy + j - 1, cc + 1 + k)
+            op[gy + 3, cc] = AND
+            src[gy + 3, cc, 0] = _idx(gy, cc + 1)                     # depth 1
+            src[gy + 3, cc, 1] = _idx(gy + 1, cc + 2)                 # depth 2
+            op[gy + 4, cc] = AND
+            src[gy + 4, cc, 0] = _idx(gy + 3, cc)
+            src[gy + 4, cc, 1] = _idx(gy + 2, cc + 3)                 # depth 3 -- aligned at depth 4
+            op[gy + 5, cc] = AND
+            src[gy + 5, cc, 0] = _idx(gy + 4, cc)
+            src[gy + 5, cc, 1] = _idx(*rr)
+            gcells = ([(gy + j, cc + 1 + k) for k in range(3) for j in range(k + 1)]
+                      + [(gy + 3, cc), (gy + 4, cc), (gy + 5, cc)])
+            glat = 4
+        elif impl == "sync3":
+            # DUPLICATED clock tap AND two registers whose baseline series are byte-identical. Four taps, three
+            # causes, two of which no passive observation can ever tell apart.
+            op[gy, cc] = WIRE;     src[gy, cc, 0] = _idx(gy - 1, cc)
+            op[gy, cc + 1] = WIRE; src[gy, cc + 1, 0] = _idx(gy - 1, cc)
+            op[gy + 1, cc] = AND
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            src[gy + 1, cc, 1] = _idx(gy, cc + 1)
+            op[gy + 2, cc] = AND
+            src[gy + 2, cc, 0] = _idx(gy + 1, cc)
+            src[gy + 2, cc, 1] = _idx(*rr)
+            op[gy + 3, cc] = AND
+            src[gy + 3, cc, 0] = _idx(gy + 2, cc)
+            src[gy + 3, cc, 1] = _idx(4, cc + 3)
+            gcells = [(gy, cc), (gy, cc + 1), (gy + 1, cc), (gy + 2, cc), (gy + 3, cc)]
+            glat = 4
+        elif impl == "edge_xor":
+            # IDENTICAL CURRENT INPUT, DIFFERENT HISTORY, DIFFERENT OUTPUT. A rising-edge detector: the output is
+            # XOR of the channel now and the channel two steps ago. Reading only the present value of the clock
+            # cannot predict it, and any observer that tries will find one input row giving two different answers.
+            op[gy, cc] = WIRE;     src[gy, cc, 0] = _idx(gy - 1, cc)
+            op[gy, cc + 1] = WIRE; src[gy, cc + 1, 0] = _idx(gy - 1, cc)
+            op[gy + 1, cc + 1] = WIRE; src[gy + 1, cc + 1, 0] = _idx(gy, cc + 1)
+            op[gy + 2, cc + 1] = WIRE; src[gy + 2, cc + 1, 0] = _idx(gy + 1, cc + 1)
+            op[gy + 1, cc] = XOR
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            src[gy + 1, cc, 1] = _idx(gy + 2, cc + 1)
+            op[gy + 2, cc] = AND
+            src[gy + 2, cc, 0] = _idx(gy + 1, cc)
+            src[gy + 2, cc, 1] = _idx(*rr)
+            gcells = [(gy, cc), (gy, cc + 1), (gy + 1, cc + 1), (gy + 2, cc + 1), (gy + 1, cc), (gy + 2, cc)]
+            glat = 3
+        elif impl == "reg_delay":
+            # THE SAME MACRO FUNCTION, BUILT OUT OF INTERNAL STATE. The delay is produced by a REGISTER that latches
+            # the channel every step -- its write-enable is derived INSIDE the module from OR(x, NOT x), which is 1
+            # by construction and is therefore NOT an external source. The module CONTAINS state and yet its
+            # input-output relation is a STATIC function with a delay. An observer that equates "has a register"
+            # with "is a state machine" must fail here; the class must be read off the BEHAVIOUR, not the parts.
+            op[gy, cc] = WIRE;     src[gy, cc, 0] = _idx(gy - 1, cc)          # depth 1
+            op[gy, cc + 1] = NOT;  src[gy, cc + 1, 0] = _idx(gy - 1, cc)      # depth 1, inverted
+            op[gy, cc + 2] = WIRE; src[gy, cc + 2, 0] = _idx(gy - 1, cc)      # depth 1 (the data path)
+            op[gy + 1, cc + 2] = WIRE; src[gy + 1, cc + 2, 0] = _idx(gy, cc + 2)   # depth 2
+            op[gy + 1, cc + 1] = OR                                            # depth 2: ALWAYS 1
+            src[gy + 1, cc + 1, 0] = _idx(gy, cc)
+            src[gy + 1, cc + 1, 1] = _idx(gy, cc + 1)
+            op[gy + 2, cc] = REG                                               # depth 3: a D-latch
+            src[gy + 2, cc, 0] = _idx(gy + 1, cc + 1)                          # we = 1, always
+            src[gy + 2, cc, 1] = _idx(gy + 1, cc + 2)                          # data = the channel, depth 2
+            op[gy + 3, cc] = AND
+            src[gy + 3, cc, 0] = _idx(gy + 2, cc)
+            src[gy + 3, cc, 1] = _idx(*rr)
+            gcells = [(gy, cc), (gy, cc + 1), (gy, cc + 2), (gy + 1, cc + 2), (gy + 1, cc + 1),
+                      (gy + 2, cc), (gy + 3, cc)]
+            glat = 4
+        elif impl == "cascade":
+            # TWO TAPS THAT ARE NOT INDEPENDENT OF EACH OTHER. A conductor separates an upstream gate from a
+            # downstream one, so the downstream region's frontier carries (i) the upstream gate's output, whose
+            # ancestry is {clock, register}, and (ii) the raw channel, whose ancestry is {clock}. The first is a
+            # FUNCTION of the second: w1 = AND(chan, reg) can never be 1 while chan is 0. Clamping the two taps
+            # independently -- which is what the retired observer did -- asks the world for a state it forbids.
+            # Traced to ROOTS there are exactly two causes, and every row of the table exists.
+            op[gy, cc] = AND
+            src[gy, cc, 0] = _idx(gy - 1, cc)
+            src[gy, cc, 1] = _idx(*rr)
+            op[gy + 1, cc] = WIRE                       # THE SEPARATOR: it makes the next gate a separate region
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            op[gy, cc + 1] = WIRE
+            src[gy, cc + 1, 0] = _idx(gy - 1, cc)
+            op[gy + 1, cc + 1] = WIRE
+            src[gy + 1, cc + 1, 0] = _idx(gy, cc + 1)
+            op[gy + 2, cc] = AND
+            src[gy + 2, cc, 0] = _idx(gy + 1, cc)
+            src[gy + 2, cc, 1] = _idx(gy + 1, cc + 1)
+            gcells = [(gy, cc), (gy + 1, cc), (gy, cc + 1), (gy + 1, cc + 1), (gy + 2, cc)]
+            glat = 3
+        elif impl == "and3":
+            # A GENUINE THREE-SOURCE GATE: clock, register, and a second register that is BASELINE-IDENTICAL to the
+            # first. Merging them by correlation would be wrong; only intervention tells them apart.
+            op[gy, cc] = AND
+            src[gy, cc, 0] = _idx(gy - 1, cc)
+            src[gy, cc, 1] = _idx(*rr)
+            op[gy + 1, cc] = AND
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            src[gy + 1, cc, 1] = _idx(4, cc + 3)
+            gcells = [(gy, cc), (gy + 1, cc)]
+            glat = 2
+        elif impl == "two_en":
+            # TWO TAPS OF THE COMMON HIDDEN CLOCK, EACH INDEPENDENTLY MANIPULABLE DOWNSTREAM through its own
+            # enable register. The shared clock must NOT collapse them into one source: the enables are separate
+            # independent sources, and the clock is one source entering at two lags.
+            op[gy, cc] = WIRE; src[gy, cc, 0] = _idx(gy - 1, cc)                  # depth 1
+            op[gy, cc + 1] = WIRE; src[gy, cc + 1, 0] = _idx(gy - 1, cc)          # depth 1
+            op[gy + 1, cc + 1] = WIRE; src[gy + 1, cc + 1, 0] = _idx(gy, cc + 1)  # depth 2
+            op[gy + 1, cc] = AND                                                   # enable A
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            src[gy + 1, cc, 1] = _idx(*rr)
+            op[gy + 2, cc + 1] = AND                                               # enable B
+            src[gy + 2, cc + 1, 0] = _idx(gy + 1, cc + 1)
+            src[gy + 2, cc + 1, 1] = _idx(4, cc + 3)
+            op[gy + 3, cc] = AND
+            src[gy + 3, cc, 0] = _idx(gy + 1, cc)
+            src[gy + 3, cc, 1] = _idx(gy + 2, cc + 1)
+            gcells = [(gy, cc), (gy, cc + 1), (gy + 1, cc + 1),
+                      (gy + 1, cc), (gy + 2, cc + 1), (gy + 3, cc)]
+            glat = 3
+        elif impl == "toggle":
+            # A MODULE WITH INTERNAL STATE. The channel is the WRITE-ENABLE of a register whose data is its own
+            # negation, so the output FLIPS on every clock-high. IDENTICAL current inputs, DIFFERENT histories,
+            # DIFFERENT outputs. No static truth table and no finite lag window can describe it, and an observer
+            # that emits one is lying. The register's period is 16 while the clock's is 8 -- the output is not a
+            # function of ANY finite window of the clock.
+            # the inverter sits BESIDE the state, not beneath it: the output wire drops straight down the gate's
+            # own column and would otherwise overwrite it. (It did. The toggle stopped toggling, the period stayed
+            # 8, and the functional control caught it -- which is what the functional control is for.)
+            op[gy, cc + 1] = NOT
+            src[gy, cc + 1, 0] = _idx(gy, cc)
+            op[gy, cc] = REG
+            src[gy, cc, 0] = _idx(gy - 1, cc)          # write-enable = the channel
+            src[gy, cc, 1] = _idx(gy, cc + 1)          # data = the negation of its own state
+            gcells = [(gy, cc + 1), (gy, cc)]          # gcells[-1] is the output cell: the state
+            glat = 1
         elif impl == "single_parent":
             # CONTROL: two incoming edges, ONE effective parent. AND(x, x) = x. It has the SHAPE of a gate and is
             # NOT one. A detector that counts incoming edges instead of MANIPULATING them will call this a gate.
@@ -247,11 +475,13 @@ def build(program=(1, 0, 1), chan_cols=(6, 20, 34), impl="direct", extra_delay=0
             glat = 3
         comps[f"gate{i}"] = gcells
         edges.append((f"chan{i}", f"gate{i}", glat))
-        if impl != "single_parent":
+        if impl not in ("single_parent", "toggle"):
             # the SINGLE-EFFECTIVE-PARENT control has TWO incoming edges and ONE parent -- AND(x, x) = x. It is
             # declared honestly: the register does NOT feed it. It exists so a detector that COUNTS incoming
             # edges instead of MANIPULATING them is caught calling it a gate.
             edges.append((f"reg{i}", f"gate{i}", glat))
+        if impl in ("and3", "two_en", "sync3"):
+            edges.append((f"reg2{i}", f"gate{i}", glat))
 
         gout = gcells[-1]
         outw = []

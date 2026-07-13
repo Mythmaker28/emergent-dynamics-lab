@@ -1,0 +1,1322 @@
+{
+ "source_ancestry_graphs": {
+  "direct": {
+   "region": [
+    [
+     8,
+     6
+    ]
+   ],
+   "frontier_taps": [
+    [
+     4,
+     8
+    ],
+    [
+     7,
+     6
+    ]
+   ],
+   "roots_reached": [
+    [
+     1,
+     1
+    ],
+    [
+     4,
+     8
+    ]
+   ],
+   "tap_to_source": {
+    "(4, 8)": [
+     {
+      "tap": [
+       4,
+       8
+      ],
+      "lag": 0,
+      "polarity": 1
+     }
+    ],
+    "(1, 1)": [
+     {
+      "tap": [
+       7,
+       6
+      ],
+      "lag": 11,
+      "polarity": 1
+     }
+    ]
+   }
+  },
+  "demorgan": {
+   "region": [
+    [
+     8,
+     6
+    ],
+    [
+     8,
+     7
+    ],
+    [
+     9,
+     6
+    ],
+    [
+     10,
+     6
+    ]
+   ],
+   "frontier_taps": [
+    [
+     4,
+     8
+    ],
+    [
+     7,
+     6
+    ]
+   ],
+   "roots_reached": [
+    [
+     1,
+     1
+    ],
+    [
+     4,
+     8
+    ]
+   ],
+   "tap_to_source": {
+    "(4, 8)": [
+     {
+      "tap": [
+       4,
+       8
+      ],
+      "lag": 0,
+      "polarity": 1
+     }
+    ],
+    "(1, 1)": [
+     {
+      "tap": [
+       7,
+       6
+      ],
+      "lag": 11,
+      "polarity": 1
+     }
+    ]
+   }
+  },
+  "dup_same": {
+   "region": [
+    [
+     9,
+     6
+    ],
+    [
+     10,
+     6
+    ]
+   ],
+   "frontier_taps": [
+    [
+     4,
+     8
+    ],
+    [
+     8,
+     6
+    ],
+    [
+     8,
+     7
+    ]
+   ],
+   "roots_reached": [
+    [
+     1,
+     1
+    ],
+    [
+     4,
+     8
+    ]
+   ],
+   "tap_to_source": {
+    "(4, 8)": [
+     {
+      "tap": [
+       4,
+       8
+      ],
+      "lag": 0,
+      "polarity": 1
+     }
+    ],
+    "(1, 1)": [
+     {
+      "tap": [
+       8,
+       6
+      ],
+      "lag": 12,
+      "polarity": 1
+     },
+     {
+      "tap": [
+       8,
+       7
+      ],
+      "lag": 12,
+      "polarity": 1
+     }
+    ]
+   }
+  },
+  "dup_lag": {
+   "region": [
+    [
+     9,
+     6
+    ],
+    [
+     11,
+     6
+    ]
+   ],
+   "frontier_taps": [
+    [
+     4,
+     8
+    ],
+    [
+     8,
+     6
+    ],
+    [
+     10,
+     7
+    ]
+   ],
+   "roots_reached": [
+    [
+     1,
+     1
+    ],
+    [
+     4,
+     8
+    ]
+   ],
+   "tap_to_source": {
+    "(4, 8)": [
+     {
+      "tap": [
+       4,
+       8
+      ],
+      "lag": 0,
+      "polarity": 1
+     }
+    ],
+    "(1, 1)": [
+     {
+      "tap": [
+       8,
+       6
+      ],
+      "lag": 12,
+      "polarity": 1
+     },
+     {
+      "tap": [
+       10,
+       7
+      ],
+      "lag": 14,
+      "polarity": 1
+     }
+    ]
+   }
+  },
+  "inv_lag": {
+   "region": [
+    [
+     9,
+     6
+    ],
+    [
+     10,
+     7
+    ],
+    [
+     11,
+     6
+    ]
+   ],
+   "frontier_taps": [
+    [
+     4,
+     8
+    ],
+    [
+     8,
+     6
+    ],
+    [
+     9,
+     7
+    ]
+   ],
+   "roots_reached": [
+    [
+     1,
+     1
+    ],
+    [
+     4,
+     8
+    ]
+   ],
+   "tap_to_source": {
+    "(4, 8)": [
+     {
+      "tap": [
+       4,
+       8
+      ],
+      "lag": 0,
+      "polarity": 1
+     }
+    ],
+    "(1, 1)": [
+     {
+      "tap": [
+       8,
+       6
+      ],
+      "lag": 12,
+      "polarity": 1
+     },
+     {
+      "tap": [
+       9,
+       7
+      ],
+      "lag": 13,
+      "polarity": 1
+     }
+    ]
+   }
+  },
+  "cascade": {
+   "region": [
+    [
+     10,
+     6
+    ]
+   ],
+   "frontier_taps": [
+    [
+     9,
+     6
+    ],
+    [
+     9,
+     7
+    ]
+   ],
+   "roots_reached": [
+    [
+     1,
+     1
+    ],
+    [
+     4,
+     8
+    ]
+   ],
+   "tap_to_source": {
+    "(4, 8)": [
+     {
+      "tap": [
+       9,
+       6
+      ],
+      "lag": 2,
+      "polarity": 1
+     }
+    ],
+    "(1, 1)": [
+     {
+      "tap": [
+       9,
+       6
+      ],
+      "lag": 13,
+      "polarity": 1
+     },
+     {
+      "tap": [
+       9,
+       7
+      ],
+      "lag": 13,
+      "polarity": 1
+     }
+    ]
+   }
+  },
+  "and3": {
+   "region": [
+    [
+     8,
+     6
+    ],
+    [
+     9,
+     6
+    ]
+   ],
+   "frontier_taps": [
+    [
+     4,
+     8
+    ],
+    [
+     4,
+     9
+    ],
+    [
+     7,
+     6
+    ]
+   ],
+   "roots_reached": [
+    [
+     1,
+     1
+    ],
+    [
+     4,
+     8
+    ],
+    [
+     4,
+     9
+    ]
+   ],
+   "tap_to_source": {
+    "(4, 8)": [
+     {
+      "tap": [
+       4,
+       8
+      ],
+      "lag": 0,
+      "polarity": 1
+     }
+    ],
+    "(4, 9)": [
+     {
+      "tap": [
+       4,
+       9
+      ],
+      "lag": 0,
+      "polarity": 1
+     }
+    ],
+    "(1, 1)": [
+     {
+      "tap": [
+       7,
+       6
+      ],
+      "lag": 11,
+      "polarity": 1
+     }
+    ]
+   }
+  },
+  "two_en": {
+   "region": [
+    [
+     9,
+     6
+    ],
+    [
+     10,
+     7
+    ],
+    [
+     11,
+     6
+    ]
+   ],
+   "frontier_taps": [
+    [
+     4,
+     8
+    ],
+    [
+     4,
+     9
+    ],
+    [
+     8,
+     6
+    ],
+    [
+     9,
+     7
+    ]
+   ],
+   "roots_reached": [
+    [
+     1,
+     1
+    ],
+    [
+     4,
+     8
+    ],
+    [
+     4,
+     9
+    ]
+   ],
+   "tap_to_source": {
+    "(4, 8)": [
+     {
+      "tap": [
+       4,
+       8
+      ],
+      "lag": 0,
+      "polarity": 1
+     }
+    ],
+    "(4, 9)": [
+     {
+      "tap": [
+       4,
+       9
+      ],
+      "lag": 0,
+      "polarity": 1
+     }
+    ],
+    "(1, 1)": [
+     {
+      "tap": [
+       8,
+       6
+      ],
+      "lag": 12,
+      "polarity": 1
+     },
+     {
+      "tap": [
+       9,
+       7
+      ],
+      "lag": 13,
+      "polarity": 1
+     }
+    ]
+   }
+  },
+  "toggle": {
+   "region": [
+    [
+     8,
+     6
+    ],
+    [
+     8,
+     7
+    ]
+   ],
+   "frontier_taps": [
+    [
+     7,
+     6
+    ]
+   ],
+   "roots_reached": [
+    [
+     1,
+     1
+    ]
+   ],
+   "tap_to_source": {
+    "(1, 1)": [
+     {
+      "tap": [
+       7,
+       6
+      ],
+      "lag": 11,
+      "polarity": 1
+     }
+    ]
+   }
+  },
+  "lag8_and": {
+   "region": [
+    [
+     9,
+     6
+    ],
+    [
+     10,
+     6
+    ]
+   ],
+   "frontier_taps": [
+    [
+     4,
+     8
+    ],
+    [
+     8,
+     6
+    ],
+    [
+     16,
+     7
+    ]
+   ],
+   "roots_reached": [
+    [
+     1,
+     1
+    ],
+    [
+     4,
+     8
+    ]
+   ],
+   "tap_to_source": {
+    "(4, 8)": [
+     {
+      "tap": [
+       4,
+       8
+      ],
+      "lag": 0,
+      "polarity": 1
+     }
+    ],
+    "(1, 1)": [
+     {
+      "tap": [
+       8,
+       6
+      ],
+      "lag": 12,
+      "polarity": 1
+     },
+     {
+      "tap": [
+       16,
+       7
+      ],
+      "lag": 20,
+      "polarity": 1
+     }
+    ]
+   }
+  },
+  "lag8_or": {
+   "region": [
+    [
+     9,
+     6
+    ],
+    [
+     10,
+     6
+    ]
+   ],
+   "frontier_taps": [
+    [
+     4,
+     8
+    ],
+    [
+     8,
+     6
+    ],
+    [
+     16,
+     7
+    ]
+   ],
+   "roots_reached": [
+    [
+     1,
+     1
+    ],
+    [
+     4,
+     8
+    ]
+   ],
+   "tap_to_source": {
+    "(4, 8)": [
+     {
+      "tap": [
+       4,
+       8
+      ],
+      "lag": 0,
+      "polarity": 1
+     }
+    ],
+    "(1, 1)": [
+     {
+      "tap": [
+       8,
+       6
+      ],
+      "lag": 12,
+      "polarity": 1
+     },
+     {
+      "tap": [
+       16,
+       7
+      ],
+      "lag": 20,
+      "polarity": 1
+     }
+    ]
+   }
+  }
+ },
+ "reachable_manifold_maps": {
+  "direct": {
+   "features": [
+    [
+     [
+      1,
+      1
+     ],
+     12
+    ],
+    [
+     [
+      4,
+      8
+     ],
+     1
+    ]
+   ],
+   "observed_rows": {
+    "(0, 0)": 0,
+    "(1, 0)": 0,
+    "(0, 1)": 0,
+    "(1, 1)": 1
+   },
+   "n_observed": 4,
+   "n_possible": 4,
+   "coverage": 1.0,
+   "complete": true
+  },
+  "demorgan": {
+   "features": [
+    [
+     [
+      1,
+      1
+     ],
+     14
+    ],
+    [
+     [
+      4,
+      8
+     ],
+     3
+    ]
+   ],
+   "observed_rows": {
+    "(0, 0)": 0,
+    "(1, 0)": 0,
+    "(0, 1)": 0,
+    "(1, 1)": 1
+   },
+   "n_observed": 4,
+   "n_possible": 4,
+   "coverage": 1.0,
+   "complete": true
+  },
+  "dup_same": {
+   "features": [
+    [
+     [
+      1,
+      1
+     ],
+     14
+    ],
+    [
+     [
+      4,
+      8
+     ],
+     1
+    ]
+   ],
+   "observed_rows": {
+    "(0, 0)": 0,
+    "(1, 0)": 0,
+    "(0, 1)": 0,
+    "(1, 1)": 1
+   },
+   "n_observed": 4,
+   "n_possible": 4,
+   "coverage": 1.0,
+   "complete": true
+  },
+  "dup_lag": {
+   "features": [
+    [
+     [
+      1,
+      1
+     ],
+     14
+    ],
+    [
+     [
+      1,
+      1
+     ],
+     16
+    ],
+    [
+     [
+      4,
+      8
+     ],
+     1
+    ]
+   ],
+   "observed_rows": {
+    "(0, 1, 0)": 0,
+    "(0, 0, 0)": 0,
+    "(1, 0, 0)": 0,
+    "(1, 1, 0)": 0,
+    "(0, 1, 1)": 0,
+    "(0, 0, 1)": 0,
+    "(1, 0, 1)": 0,
+    "(1, 1, 1)": 1
+   },
+   "n_observed": 8,
+   "n_possible": 8,
+   "coverage": 1.0,
+   "complete": true
+  },
+  "inv_lag": {
+   "features": [
+    [
+     [
+      1,
+      1
+     ],
+     14
+    ],
+    [
+     [
+      1,
+      1
+     ],
+     16
+    ],
+    [
+     [
+      4,
+      8
+     ],
+     1
+    ]
+   ],
+   "observed_rows": {
+    "(0, 1, 0)": 0,
+    "(0, 0, 0)": 0,
+    "(1, 0, 0)": 0,
+    "(1, 1, 0)": 0,
+    "(0, 1, 1)": 0,
+    "(0, 0, 1)": 0,
+    "(1, 0, 1)": 1,
+    "(1, 1, 1)": 0
+   },
+   "n_observed": 8,
+   "n_possible": 8,
+   "coverage": 1.0,
+   "complete": true
+  },
+  "cascade": {
+   "features": [
+    [
+     [
+      1,
+      1
+     ],
+     14
+    ],
+    [
+     [
+      4,
+      8
+     ],
+     3
+    ]
+   ],
+   "observed_rows": {
+    "(0, 0)": 0,
+    "(1, 0)": 0,
+    "(0, 1)": 0,
+    "(1, 1)": 1
+   },
+   "n_observed": 4,
+   "n_possible": 4,
+   "coverage": 1.0,
+   "complete": true
+  },
+  "and3": {
+   "features": [
+    [
+     [
+      1,
+      1
+     ],
+     13
+    ],
+    [
+     [
+      4,
+      8
+     ],
+     2
+    ],
+    [
+     [
+      4,
+      9
+     ],
+     1
+    ]
+   ],
+   "observed_rows": {
+    "(0, 0, 0)": 0,
+    "(1, 0, 0)": 0,
+    "(0, 0, 1)": 0,
+    "(1, 0, 1)": 0,
+    "(0, 1, 0)": 0,
+    "(1, 1, 0)": 0,
+    "(0, 1, 1)": 0,
+    "(1, 1, 1)": 1
+   },
+   "n_observed": 8,
+   "n_possible": 8,
+   "coverage": 1.0,
+   "complete": true
+  },
+  "two_en": {
+   "features": [
+    [
+     [
+      1,
+      1
+     ],
+     14
+    ],
+    [
+     [
+      1,
+      1
+     ],
+     15
+    ],
+    [
+     [
+      4,
+      8
+     ],
+     2
+    ],
+    [
+     [
+      4,
+      9
+     ],
+     2
+    ]
+   ],
+   "observed_rows": {
+    "(0, 1, 0, 0)": 0,
+    "(0, 0, 0, 0)": 0,
+    "(1, 0, 0, 0)": 0,
+    "(1, 1, 0, 0)": 0,
+    "(0, 1, 0, 1)": 0,
+    "(0, 0, 0, 1)": 0,
+    "(1, 0, 0, 1)": 0,
+    "(1, 1, 0, 1)": 0,
+    "(0, 1, 1, 0)": 0,
+    "(0, 0, 1, 0)": 0,
+    "(1, 0, 1, 0)": 0,
+    "(1, 1, 1, 0)": 0,
+    "(0, 1, 1, 1)": 0,
+    "(0, 0, 1, 1)": 0,
+    "(1, 0, 1, 1)": 0,
+    "(1, 1, 1, 1)": 1
+   },
+   "n_observed": 16,
+   "n_possible": 16,
+   "coverage": 1.0,
+   "complete": true
+  },
+  "toggle": {
+   "features": [
+    [
+     [
+      1,
+      1
+     ],
+     12
+    ]
+   ],
+   "observed_rows": {},
+   "n_observed": null,
+   "n_possible": null,
+   "coverage": null,
+   "complete": null
+  },
+  "lag8_and": {
+   "features": [
+    [
+     [
+      1,
+      1
+     ],
+     14
+    ],
+    [
+     [
+      1,
+      1
+     ],
+     22
+    ],
+    [
+     [
+      4,
+      8
+     ],
+     1
+    ]
+   ],
+   "observed_rows": {
+    "(0, 0, 0)": 0,
+    "(1, 1, 0)": 0,
+    "(0, 0, 1)": 0,
+    "(1, 1, 1)": 1
+   },
+   "n_observed": 4,
+   "n_possible": 8,
+   "coverage": 0.5,
+   "complete": false
+  },
+  "lag8_or": {
+   "features": [
+    [
+     [
+      1,
+      1
+     ],
+     14
+    ],
+    [
+     [
+      1,
+      1
+     ],
+     22
+    ],
+    [
+     [
+      4,
+      8
+     ],
+     1
+    ]
+   ],
+   "observed_rows": {
+    "(0, 0, 0)": 0,
+    "(1, 1, 0)": 0,
+    "(0, 0, 1)": 0,
+    "(1, 1, 1)": 1
+   },
+   "n_observed": 4,
+   "n_possible": 8,
+   "coverage": 0.5,
+   "complete": false
+  }
+ },
+ "source_tap_equivalence_classes": {
+  "direct": {
+   "n_taps": 2,
+   "n_independent_sources": 2,
+   "tap_pair_verdicts": {
+    "(4, 8)|(7, 6)": "INDEPENDENT_SOURCES"
+   }
+  },
+  "demorgan": {
+   "n_taps": 2,
+   "n_independent_sources": 2,
+   "tap_pair_verdicts": {
+    "(4, 8)|(7, 6)": "INDEPENDENT_SOURCES"
+   }
+  },
+  "dup_same": {
+   "n_taps": 3,
+   "n_independent_sources": 2,
+   "tap_pair_verdicts": {
+    "(4, 8)|(8, 6)": "INDEPENDENT_SOURCES",
+    "(4, 8)|(8, 7)": "INDEPENDENT_SOURCES",
+    "(8, 6)|(8, 7)": "SAME_SOURCE_DIFFERENT_TAP"
+   }
+  },
+  "dup_lag": {
+   "n_taps": 3,
+   "n_independent_sources": 2,
+   "tap_pair_verdicts": {
+    "(4, 8)|(8, 6)": "INDEPENDENT_SOURCES",
+    "(4, 8)|(10, 7)": "INDEPENDENT_SOURCES",
+    "(8, 6)|(10, 7)": "SAME_SOURCE_DIFFERENT_TAP"
+   }
+  },
+  "inv_lag": {
+   "n_taps": 3,
+   "n_independent_sources": 2,
+   "tap_pair_verdicts": {
+    "(4, 8)|(8, 6)": "INDEPENDENT_SOURCES",
+    "(4, 8)|(9, 7)": "INDEPENDENT_SOURCES",
+    "(8, 6)|(9, 7)": "SAME_SOURCE_DIFFERENT_TAP"
+   }
+  },
+  "cascade": {
+   "n_taps": 2,
+   "n_independent_sources": 2,
+   "tap_pair_verdicts": {
+    "(9, 6)|(9, 7)": "DEPENDENT_COMMON_CAUSE"
+   }
+  },
+  "and3": {
+   "n_taps": 3,
+   "n_independent_sources": 3,
+   "tap_pair_verdicts": {
+    "(4, 8)|(4, 9)": "INDEPENDENT_SOURCES",
+    "(4, 8)|(7, 6)": "INDEPENDENT_SOURCES",
+    "(4, 9)|(7, 6)": "INDEPENDENT_SOURCES"
+   }
+  },
+  "two_en": {
+   "n_taps": 4,
+   "n_independent_sources": 3,
+   "tap_pair_verdicts": {
+    "(4, 8)|(4, 9)": "INDEPENDENT_SOURCES",
+    "(4, 8)|(8, 6)": "INDEPENDENT_SOURCES",
+    "(4, 8)|(9, 7)": "INDEPENDENT_SOURCES",
+    "(4, 9)|(8, 6)": "INDEPENDENT_SOURCES",
+    "(4, 9)|(9, 7)": "INDEPENDENT_SOURCES",
+    "(8, 6)|(9, 7)": "SAME_SOURCE_DIFFERENT_TAP"
+   }
+  },
+  "toggle": {
+   "n_taps": 1,
+   "n_independent_sources": 1,
+   "tap_pair_verdicts": {}
+  },
+  "lag8_and": {
+   "n_taps": 3,
+   "n_independent_sources": 2,
+   "tap_pair_verdicts": {
+    "(4, 8)|(8, 6)": "INDEPENDENT_SOURCES",
+    "(4, 8)|(16, 7)": "INDEPENDENT_SOURCES",
+    "(8, 6)|(16, 7)": "SAME_SOURCE_DIFFERENT_TAP"
+   }
+  },
+  "lag8_or": {
+   "n_taps": 3,
+   "n_independent_sources": 2,
+   "tap_pair_verdicts": {
+    "(4, 8)|(8, 6)": "INDEPENDENT_SOURCES",
+    "(4, 8)|(16, 7)": "INDEPENDENT_SOURCES",
+    "(8, 6)|(16, 7)": "SAME_SOURCE_DIFFERENT_TAP"
+   }
+  }
+ },
+ "timed_and_untimed_transducers": {
+  "direct": {
+   "class": "DELAYED_STATIC",
+   "lags_per_source": {
+    "(1, 1)": [
+     12
+    ],
+    "(4, 8)": [
+     1
+    ]
+   },
+   "untimed": "the table above, with lags abstracted away",
+   "timed": "the table above, WITH the lags"
+  },
+  "demorgan": {
+   "class": "DELAYED_STATIC",
+   "lags_per_source": {
+    "(1, 1)": [
+     14
+    ],
+    "(4, 8)": [
+     3
+    ]
+   },
+   "untimed": "the table above, with lags abstracted away",
+   "timed": "the table above, WITH the lags"
+  },
+  "dup_same": {
+   "class": "DELAYED_STATIC",
+   "lags_per_source": {
+    "(1, 1)": [
+     14
+    ],
+    "(4, 8)": [
+     1
+    ]
+   },
+   "untimed": "the table above, with lags abstracted away",
+   "timed": "the table above, WITH the lags"
+  },
+  "dup_lag": {
+   "class": "FINITE_HISTORY(0)",
+   "lags_per_source": {
+    "(1, 1)": [
+     14,
+     16
+    ],
+    "(4, 8)": [
+     1
+    ]
+   },
+   "untimed": "the table above, with lags abstracted away",
+   "timed": "the table above, WITH the lags"
+  },
+  "inv_lag": {
+   "class": "FINITE_HISTORY(0)",
+   "lags_per_source": {
+    "(1, 1)": [
+     14,
+     16
+    ],
+    "(4, 8)": [
+     1
+    ]
+   },
+   "untimed": "the table above, with lags abstracted away",
+   "timed": "the table above, WITH the lags"
+  },
+  "cascade": {
+   "class": "DELAYED_STATIC",
+   "lags_per_source": {
+    "(1, 1)": [
+     14
+    ],
+    "(4, 8)": [
+     3
+    ]
+   },
+   "untimed": "the table above, with lags abstracted away",
+   "timed": "the table above, WITH the lags"
+  },
+  "and3": {
+   "class": "DELAYED_STATIC",
+   "lags_per_source": {
+    "(1, 1)": [
+     13
+    ],
+    "(4, 8)": [
+     2
+    ],
+    "(4, 9)": [
+     1
+    ]
+   },
+   "untimed": "the table above, with lags abstracted away",
+   "timed": "the table above, WITH the lags"
+  },
+  "two_en": {
+   "class": "FINITE_HISTORY(0)",
+   "lags_per_source": {
+    "(1, 1)": [
+     14,
+     15
+    ],
+    "(4, 8)": [
+     2
+    ],
+    "(4, 9)": [
+     2
+    ]
+   },
+   "untimed": "the table above, with lags abstracted away",
+   "timed": "the table above, WITH the lags"
+  },
+  "toggle": {
+   "class": "FINITE_STATE",
+   "lags_per_source": {
+    "(1, 1)": [
+     12
+    ]
+   },
+   "untimed": "the table above, with lags abstracted away",
+   "timed": "the table above, WITH the lags"
+  },
+  "lag8_and": {
+   "class": "FINITE_HISTORY(0)",
+   "lags_per_source": {
+    "(1, 1)": [
+     14,
+     22
+    ],
+    "(4, 8)": [
+     1
+    ]
+   },
+   "untimed": "the table above, with lags abstracted away",
+   "timed": "the table above, WITH the lags"
+  },
+  "lag8_or": {
+   "class": "FINITE_HISTORY(0)",
+   "lags_per_source": {
+    "(1, 1)": [
+     14,
+     22
+    ],
+    "(4, 8)": [
+     1
+    ]
+   },
+   "untimed": "the table above, with lags abstracted away",
+   "timed": "the table above, WITH the lags"
+  }
+ }
+}

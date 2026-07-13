@@ -82,6 +82,15 @@ _LIVE_IF = {
     "direct": lambda b: bool(b), "direct_buf": lambda b: bool(b), "demorgan": lambda b: bool(b),
     "nand2": lambda b: bool(b), "single_parent": lambda b: True,   # AND(clk,clk) = clk: always live, program-blind
     "xor_or": lambda b: bool(b), "and_or": lambda b: bool(b), "xnor_and": lambda b: bool(b),   # all compute AND
+    # the source-transducer development family: every one of these is dead when its register(s) hold 0, and
+    # carries a genuine square wave when they hold 1 -- except the TOGGLE, whose output flips on every clock-high
+    # and is therefore ALIVE regardless of the program. Its register is not wired to it at all.
+    "dup_same": lambda b: bool(b), "dup_lag": lambda b: bool(b), "inv_lag": lambda b: bool(b),
+    "lag15_or": lambda b: bool(b), "lag15_xor": lambda b: bool(b),
+    "lag8_and": lambda b: bool(b), "lag8_or": lambda b: bool(b), "cascade": lambda b: bool(b),
+    "tri_tap": lambda b: bool(b), "sync3": lambda b: bool(b),
+    "edge_xor": lambda b: bool(b), "reg_delay": lambda b: bool(b),
+    "and3": lambda b: bool(b), "two_en": lambda b: bool(b), "toggle": lambda b: True,
     "or_gate": lambda b: not bool(b), "xor_gate": lambda b: True,
 }
 
@@ -163,8 +172,13 @@ def assert_qualified(m: Machine) -> dict:
         # signal path. (Grouping it with the clock is what produced measured-only=[('out0','out0')] on the
         # saturated OR machine -- the evaluator denying an edge it had itself just measured.)
         downstream = is_gate or is_out
-        if m.impl in ("direct", "direct_buf", "demorgan", "nand2", "xor_or", "and_or", "xnor_and"):
+        if m.impl in ("direct", "direct_buf", "demorgan", "nand2", "xor_or", "and_or", "xnor_and",
+                      "dup_same", "dup_lag", "inv_lag", "lag15_or", "lag15_xor", "lag8_and", "lag8_or",
+                      "cascade", "and3", "two_en",
+                      "tri_tap", "sync3", "edge_xor", "reg_delay"):
             return b == 1                              # p=0: out is constant 0; every clamp-to-0 is vacuous
+        if m.impl == "toggle":
+            return not (is_reg or n == f"reg2{j}")     # the register is not an input to a toggle
         if m.impl == "or_gate":
             return (is_reg or downstream) if b == 1 else (not is_reg)
         if m.impl == "xor_gate":
