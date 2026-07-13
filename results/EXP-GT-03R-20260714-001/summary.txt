@@ -1,0 +1,42 @@
+EXP-GT-03R -- the REPAIRED observer, FROZEN, on ENTIRELY NEW hold-outs
+manifest f321ddbba18d8f49   leakage: NONE   A_TAU_TOL=0.0 (frozen; derived from the independent null)
+==========================================================================================================================
+
+  case                                                 A_TOPO                 A_TAU                    G                    F                  M           
+  same topology, different LAYOUT (sp42 vs sp46)       OK SAME/SAME           OK SAME/SAME             OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  TRANSLATION-equivalent machine                       XX INDETERMINATE/SAME  XX INDETERMINATE/SAME    OK SAME/SAME         OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  PHASE-SHIFTED equivalent machine                     OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK SAME/SAME
+  same topology, different CAUSAL DELAY (k=5, ch1)     OK SAME/SAME           XX SAME/DIFFERENT        OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  same topology, different CAUSAL DELAY (k=7, ch2)     OK SAME/SAME           OK DIFFERENT/DIFFERENT   OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  DIFFERENT topology, same F (gate vs cross-inhibitor) OK DIFFERENT/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  EDGE ADDED (cross-stream inhibitor)                  XX INDETERMINATE/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  NODE ADDED (five channels, sp50)                     OK DIFFERENT/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  INERT decoration                                     OK SAME/SAME           OK SAME/SAME             OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  same topology, different S (program word)            XX INDETERMINATE/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  exact copy, reset history                            OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK SAME/SAME
+
+E1 -- FUNCTION-PRESERVING HANDOFF (SS6-corrected expected vector):
+   assertions: {'trajectory_changed_frames': 864, 'old_component_cells_left': 0, 'new_component_cells': 7, 'io_identical_every_timestep': True, 'no_exact_restoration': True}
+   A_TOPO=SAME/SAME  A_TAU=DIFFERENT/DIFFERENT  G=DIFFERENT/DIFFERENT  F=SAME/SAME  M=DIFFERENT/DIFFERENT  L=SAME/SAME
+
+E2 -- DAMAGE AND REPAIR (never the Ship-of-Theseus gate): {'timesteps_with_broken_IO': 311, 'function_recovered_in_tail': True, 'tail_rate_control': 2.0, 'tail_rate_repaired': 2.0}
+
+L -- three regimes:
+   OK continuously observed run          -> SAME            (expected SAME)
+   OK observationally identical copy     -> INDETERMINATE   (expected INDETERMINATE)
+   OK different circuit (branch)         -> DIFFERENT       (expected DIFFERENT)
+
+S -- the certified D-051 probe, preserved exactly:
+   OK same word, different layout (in scope) -> SAME            (expected SAME)
+   OK different word, same layout (in scope) -> DIFFERENT       (expected DIFFERENT)
+   OK sp46 layout (OUT OF S's certified scan window) -> OUT_OF_SCOPE    (expected OUT_OF_SCOPE)
+
+HELD-OUT COMPONENT IMPLEMENTATION: HELD-OUT IMPLEMENTATION NOT AVAILABLE  -> subclaim INDETERMINATE
+   rejected for neighbour destruction: ['BOAT', 'SNAKE', 'BEEHIVE']
+   rejected as reactive seeds (declared component != realized component): ['LOAF', 'EATER2']
+   manufactured evidence: REFUSED (SS5.1)
+
+==========================================================================================================================
+head failures: {'pairwise': 5, 'E1': 0, 'L': 0, 'S': 0, 'total': 5}
+VERDICT: FAILED — GROUND-TRUTH GENERALIZATION
+==========================================================================================================================

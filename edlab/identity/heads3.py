@@ -64,11 +64,46 @@ def head_L(w1, w2) -> str:
 
 
 # --------------------------------------------------------------------------- S (certified probe, D-051)
-def head_S(g1, g2) -> str:
-    """The CERTIFIED stride-1 blind injection/deletion probe (D-051), PRESERVED EXACTLY. Not re-derived, not
-    retuned. It reads the memory word; two circuits with the same word score SAME."""
+def _read_word(g):
+    """The CERTIFIED stride-1 blind injection/deletion probe (D-051), PRESERVED EXACTLY -- not re-derived, not
+    retuned. Memoised on disk only: the exhaustive scan is ~9 s and the cache changes nothing scientific."""
+    import hashlib, os, pickle
     from ..experiments.exp_gt_02 import blind_scan, read_memory
-    w1, w2 = read_memory(blind_scan(g1)), read_memory(blind_scan(g2))
+    d = os.path.join("results", "_s_cache")
+    os.makedirs(d, exist_ok=True)
+    fp = os.path.join(d, hashlib.sha256(g.tobytes()).hexdigest()[:24] + ".pkl")
+    if os.path.exists(fp):
+        return pickle.load(open(fp, "rb"))
+    w = read_memory(blind_scan(g))
+    pickle.dump(w, open(fp, "wb"))
+    return w
+
+
+def s_in_scope(a) -> bool:
+    """THE CERTIFIED S PROBE HAS A DECLARED SCOPE, and a held-out family can fall outside it.
+
+    D-051 certified S narrowly -- "the declared memory-word family across the development and held-out layouts;
+    NOT a universal memory detector" -- and its blind scan runs over columns [SCAN_LO, SCAN_HI) = [20, 200).
+    A channel is only visible to the DELETION arm if its track column at DELETE_ROW lies inside that window.
+    On the held-out sp46 layout the fourth channel's deletion column is 212, and S duly reads a 3-bit word.
+
+    That is NOT an S failure and NOT an S pass. It is OUT OF SCOPE, and saying so is the honest answer. S is
+    PRESERVED EXACTLY (mission SS7); the split, not the instrument, has to respect the instrument's declared
+    range. Reporting this as identifiability rather than as a verdict is the whole point of the observability
+    contract."""
+    from ..experiments.exp_gt_02 import SCAN_LO, SCAN_HI, DELETE_ROW, INJECT_ROW
+    from ..substrates.life.library import se_diag, GUN_ROW
+    for g in [c for c in a.components if c.kind == "se_gun"]:
+        d = se_diag(g.row, g.col)
+        for row in (INJECT_ROW, DELETE_ROW):
+            if not (SCAN_LO <= d + row < SCAN_HI):
+                return False
+    return True
+
+
+def head_S(g1, g2) -> str:
+    """Reads the memory word; two circuits with the same word score SAME."""
+    w1, w2 = _read_word(g1), _read_word(g2)
     if w1["n_channels"] != w2["n_channels"]:
         return "DIFFERENT"
     return "SAME" if w1["word"] == w2["word"] else "DIFFERENT"

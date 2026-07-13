@@ -1,0 +1,693 @@
+{
+ "manifest": {
+  "burned": {
+   "layouts": [
+    [
+     5,
+     45,
+     85,
+     125
+    ],
+    [
+     15,
+     55,
+     95,
+     135
+    ],
+    [
+     25,
+     65,
+     105,
+     145
+    ],
+    [
+     5,
+     50,
+     95,
+     140
+    ],
+    [
+     12,
+     60,
+     108,
+     156
+    ],
+    [
+     9,
+     52,
+     95,
+     138
+    ],
+    [
+     10,
+     51,
+     92,
+     133,
+     174,
+     215
+    ]
+   ],
+   "spacings": [
+    40,
+    45,
+    48,
+    43,
+    41
+   ],
+   "programs": [
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     1,
+     1
+    ]
+   ],
+   "phases": [
+    0,
+    15,
+    30,
+    45,
+    7,
+    22,
+    37,
+    52,
+    1,
+    4,
+    6,
+    8,
+    9,
+    10,
+    11,
+    14,
+    16,
+    17,
+    20,
+    23
+   ],
+   "delay_edits": [
+    [
+     "ch3",
+     1
+    ],
+    [
+     "ch3",
+     2
+    ],
+    [
+     "ch3",
+     4
+    ],
+    [
+     "ch3",
+     8
+    ],
+    [
+     "ch2",
+     3
+    ],
+    [
+     "ch2",
+     6
+    ]
+   ],
+   "gate_impls": [
+    "EATER1@(-4,-3)"
+   ],
+   "burned_absorbers": [
+    "BOAT",
+    "SNAKE",
+    "BEEHIVE",
+    "LOAF"
+   ],
+   "status": "DIAGNOSTIC_ONLY - NOT ELIGIBLE FOR FINAL EVIDENCE"
+  },
+  "held_out": {
+   "layouts": [
+    [
+     8,
+     50,
+     92,
+     134
+    ],
+    [
+     11,
+     57,
+     103,
+     149
+    ],
+    [
+     6,
+     56,
+     106,
+     156,
+     206
+    ]
+   ],
+   "spacings": [
+    42,
+    46,
+    50
+   ],
+   "programs": [
+    [
+     1,
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     0,
+     0
+    ]
+   ],
+   "phases": [
+    27,
+    33,
+    41,
+    49,
+    55
+   ],
+   "delay_edits": [
+    [
+     "ch1",
+     5
+    ],
+    [
+     "ch2",
+     7
+    ]
+   ],
+   "gate_impls": [
+    "EATER1@(-4,-3) [development -- the ONLY admissible absorber; see held_out_implementation]"
+   ],
+   "held_out_implementation": "NOT AVAILABLE (SS5.1). Reported, not manufactured.",
+   "perturbation_schedule": {
+    "E1_install": 137,
+    "E1_remove": 287,
+    "E2_damage": [
+     230,
+     244
+    ],
+    "E2_repair": 430
+   },
+   "seed": 20260714,
+   "status": "HELD OUT - frozen before inspection"
+  },
+  "leakage": {
+   "leakage": "NONE",
+   "checked": [
+    "layout",
+    "spacing",
+    "program word",
+    "clock phase",
+    "delay-edit pattern",
+    "gate implementation",
+    "burned absorber candidates"
+   ],
+   "note": "development AND the EXP-GT-03 hold-outs AND the four burned absorbers are all treated as inspected. Nothing here overlaps any of them."
+  },
+  "frozen_observer": {
+   "A_TAU_TOL": 0.0,
+   "frozen_at": "EXP-GT-03R, 2026-07-14",
+   "derived_from": "the independent phase null of Certificate V2 (D-057). NOT free."
+  },
+  "hash": "f321ddbba18d8f49"
+ },
+ "challenges": [
+  {
+   "case": "same topology, different LAYOUT (sp42 vs sp46)",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "coverage_1": true,
+    "coverage_2": true,
+    "confounded_1": 0,
+    "confounded_2": 0
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "TRANSLATION-equivalent machine",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "INDETERMINATE",
+    "A_TAU": "INDETERMINATE",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": false,
+    "A_TAU": false,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "coverage_1": false,
+    "coverage_2": false,
+    "confounded_1": 4,
+    "confounded_2": 4
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "PHASE-SHIFTED equivalent machine",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "coverage_1": true,
+    "coverage_2": true,
+    "confounded_1": 0,
+    "confounded_2": 0
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "same topology, different CAUSAL DELAY (k=5, ch1)",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": false,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "coverage_1": true,
+    "coverage_2": true,
+    "confounded_1": 0,
+    "confounded_2": 0
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "same topology, different CAUSAL DELAY (k=7, ch2)",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "coverage_1": true,
+    "coverage_2": true,
+    "confounded_1": 0,
+    "confounded_2": 0
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "DIFFERENT topology, same F (gate vs cross-inhibitor)",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "coverage_1": true,
+    "coverage_2": true,
+    "confounded_1": 0,
+    "confounded_2": 0
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "EDGE ADDED (cross-stream inhibitor)",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "INDETERMINATE",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": false,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "coverage_1": false,
+    "coverage_2": false,
+    "confounded_1": 4,
+    "confounded_2": 5
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "NODE ADDED (five channels, sp50)",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "coverage_1": true,
+    "coverage_2": true,
+    "confounded_1": 0,
+    "confounded_2": 0
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "INERT decoration",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "coverage_1": true,
+    "coverage_2": true,
+    "confounded_1": 0,
+    "confounded_2": 0
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "same topology, different S (program word)",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "INDETERMINATE",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": false,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "coverage_1": false,
+    "coverage_2": false,
+    "confounded_1": 4,
+    "confounded_2": 4
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "exact copy, reset history",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "coverage_1": true,
+    "coverage_2": true,
+    "confounded_1": 0,
+    "confounded_2": 0
+   },
+   "fully_held_out": true
+  }
+ ],
+ "rejected_circuits": [],
+ "E1": {
+  "assertions": {
+   "trajectory_changed_frames": 864,
+   "old_component_cells_left": 0,
+   "new_component_cells": 7,
+   "io_identical_every_timestep": true,
+   "no_exact_restoration": true
+  },
+  "expected": {
+   "A_TOPO": "SAME",
+   "A_TAU": "DIFFERENT",
+   "G": "DIFFERENT",
+   "F": "SAME",
+   "M": "DIFFERENT",
+   "L": "SAME"
+  },
+  "predicted": {
+   "A_TOPO": "SAME",
+   "A_TAU": "DIFFERENT",
+   "G": "DIFFERENT",
+   "F": "SAME",
+   "M": "DIFFERENT",
+   "L": "SAME"
+  },
+  "pass": {
+   "A_TOPO": true,
+   "A_TAU": true,
+   "G": true,
+   "F": true,
+   "M": true,
+   "L": true
+  }
+ },
+ "E2": {
+  "timesteps_with_broken_IO": 311,
+  "function_recovered_in_tail": true,
+  "tail_rate_control": 2.0,
+  "tail_rate_repaired": 2.0
+ },
+ "L": {
+  "predicted": {
+   "continuously observed run": "SAME",
+   "observationally identical copy": "INDETERMINATE",
+   "different circuit (branch)": "DIFFERENT"
+  },
+  "expected": {
+   "continuously observed run": "SAME",
+   "observationally identical copy": "INDETERMINATE",
+   "different circuit (branch)": "DIFFERENT"
+  }
+ },
+ "S": {
+  "predicted": {
+   "same word, different layout (in scope)": "SAME",
+   "different word, same layout (in scope)": "DIFFERENT",
+   "sp46 layout (OUT OF S's certified scan window)": "OUT_OF_SCOPE"
+  },
+  "expected": {
+   "same word, different layout (in scope)": "SAME",
+   "different word, same layout (in scope)": "DIFFERENT",
+   "sp46 layout (OUT OF S's certified scan window)": "OUT_OF_SCOPE"
+  },
+  "scope": {
+   "note": "S is PRESERVED EXACTLY (D-051). Its blind scan covers columns [20,200); on the held-out sp46 layout the fourth channel's deletion column is 212, so that layout is OUT OF SCOPE. That is neither a pass nor a failure -- it is an identifiability statement, and the split, not the instrument, must respect the instrument's declared range."
+  }
+ },
+ "held_out_implementation": {
+  "verdict": "HELD-OUT IMPLEMENTATION NOT AVAILABLE",
+  "subclaim": "INDETERMINATE",
+  "behavioural_pass": [
+   "LOAF",
+   "EATER2"
+  ],
+  "admissibility_pass": [
+   "EATER1 (development only)"
+  ],
+  "rejected_for_neighbour_destruction": [
+   "BOAT",
+   "SNAKE",
+   "BEEHIVE"
+  ],
+  "rejected_as_reactive_seed": [
+   "LOAF",
+   "EATER2"
+  ],
+  "manufactured_evidence": "REFUSED (SS5.1)"
+ },
+ "head_failures": {
+  "pairwise": 5,
+  "E1": 0,
+  "L": 0,
+  "S": 0,
+  "total": 5
+ },
+ "VERDICT": "FAILED \u2014 GROUND-TRUTH GENERALIZATION"
+}

@@ -71,10 +71,21 @@ EATER_SW_OFF = (-4, -2)                               # MEASURED: absorbs an SW 
 # its own). On the LAST channel there is no neighbour, so the damage is invisible and the isolated test passes.
 # A component validated in isolation is NOT a validated component. This is the same error as the dead sp36
 # layout (D-053) and the overlapping SW gun (D-054): a part nobody ever asserted actually works WHERE IT IS USED.
-LOAF = [(0, 1), (0, 2), (1, 0), (1, 3), (2, 1), (2, 3), (3, 2)]      # 7 cells, distinct pattern; CLEAN at (-6,-1)
+LOAF = [(0, 1), (0, 2), (1, 0), (1, 3), (2, 1), (2, 3), (3, 2)]      # 7 cells; DIAGNOSTIC_ONLY (see below)
 LOAF_OFF = (-6, -1)
-GATE_KINDS = ("se_eater", "loaf")
-GATE_OFFSETS = {"se_eater": EATER_OFF, "loaf": LOAF_OFF}
+
+# EATER2 -- the HELD-OUT gate implementation for EXP-GT-03R. 9 cells, a pattern distinct from EATER1's 7-cell
+# fishhook. It is the ONLY candidate that survived the SS5.1 IN-CONTEXT validation, and the validation is the
+# whole point: it must gate its own channel, DESTROY NO NEIGHBOUR, emit nothing collateral, stay periodic at
+# settle AND after 3000 further steps, and produce an output line BIT-IDENTICAL to the development gate --
+# tested on MIDDLE channels (neighbours on both sides) at every declared spacing (42/46/50).
+# BOAT, SNAKE, BEEHIVE and LOAF all passed an ISOLATED single-channel test and then destroyed the neighbouring
+# channel, or (LOAF) turned out to be a reactive seed whose declared graph the dynamics does not realize. All
+# four are DIAGNOSTIC_ONLY. A component validated in isolation is not a validated component.
+EATER2 = [(0, 0), (0, 1), (1, 0), (1, 2), (2, 1), (2, 2), (3, 2), (3, 3), (4, 3)]
+EATER2_OFF = (-5, -2)
+GATE_KINDS = ("se_eater", "loaf", "eater2")
+GATE_OFFSETS = {"se_eater": EATER_OFF, "loaf": LOAF_OFF, "eater2": EATER2_OFF}
 
 
 # ------------------------------------------------------------------ intrinsic frames (no lab coordinates)
@@ -110,7 +121,7 @@ class Comp:
 
     def cells(self):
         return {"se_gun": GOSPER_GUN, "sw_gun": GUN_SW, "se_eater": EATER1, "sw_eater": EATER_SW,
-                "block": BLOCK, "loaf": LOAF}[self.kind]
+                "block": BLOCK, "loaf": LOAF, "eater2": EATER2}[self.kind]
 
     def box(self):
         cs = self.cells()

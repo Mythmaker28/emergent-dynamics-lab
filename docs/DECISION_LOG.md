@@ -1366,3 +1366,90 @@ is not a validated component** — the same error as the dead sp36 layout (D-053
    build a conceptually different one.**
 
 **EXP-SC-01 remains BLOCKED. No composite. No head tuned to pass. S/F/L preserved exactly.**
+
+## D-058 — EXP-GT-03R: the repaired A head FAILS prospectively. **A-HEAD V3 IS RETIRED.** Not patched.
+
+**Date:** 2026-07-14
+**Status:** **FAILED — GROUND-TRUTH GENERALIZATION → RETIRED.** EXP-SC-01 remains **BLOCKED**.
+**Run:** `results/EXP-GT-03R-20260714-001` (manifest `f321ddbba18d8f49`, leakage NONE).
+Everything is **preserved**: V2, V3, both certificates, both sets of contaminated hold-outs, every failure.
+**No head was retuned. No threshold was lowered. The failed hold-outs will not be reused.**
+
+This was the **one authorized repair cycle** for the ablation-tomography A design. It failed. Under mission §8 the
+design is **RETIRED**, and a conceptually different observer is authorized without further permission.
+
+### What passed, and it is not nothing
+
+On entirely new hold-outs (layouts sp42/sp46/sp50, spacings 42/46/50, programs 1011/0110, phases 27–55, delay
+patterns k=5/k=7, five-channel topology), the frozen V3 observer got **right**: layout change, phase shift, inert
+decoration, node addition, a different-topology/same-F pair, exact copy, **E1 in full** (A_TOPO=SAME, A_TAU=DIFFERENT,
+G=DIFFERENT, F=SAME, M=DIFFERENT, L=SAME — with every assertion firing: 864 frames changed, incumbent gone, relief
+established, **I/O identical at every timestep**, no exact restoration), **E2**, **L** on all three regimes, and **S**
+(preserved exactly, D-051). **F, M and G passed every single case.**
+
+The **A_TOPO/A_TAU/G ontology (§2) is NOT retired.** It is vindicated: separating topology from timing is what let
+E1 be labelled correctly at last — a handoff that *moves* a part preserves connectivity and changes path length, and
+D-056 had scored the head wrong for saying so.
+
+### The three failures — all one disease
+
+**1. THE INTERVENTION'S VALIDITY IS PHASE-SENSITIVE, AND THE CERTIFICATE COULD NOT SEE IT.**
+Clearing a component's box for `HOLD` steps clips an in-flight glider at some strike phases and leaves a block.
+Measured on the **development** circuit — the one the certificate certified — **6 of 60 clock phases (2, 3, 5, 32,
+33, 35) make every intervention unusable**: at phase 33, `valid=0, confounded=4`. The head detects this and abstains,
+which is *correct*; but it therefore **cannot identify the architecture at 10% of phases**, and three held-out cases
+came back INDETERMINATE where the evidence should have been decisive.
+
+**2. THE "INDEPENDENT" NULL GENERATOR WAS ITSELF BIASED.** `gt_nulls.draw_phase_nulls` did
+`sorted(set(lcg(...)))[:n]` — **sorting and truncating**, which keeps only the smallest draws. The raw LCG produced
+31, 48, 33, 58; the generator returned `[1,4,6,8,9,10,11,14,16,17,20,23]`, **all ≤ 23**. The bad phases at 32/33/35
+were **unreachable by construction**. I wrote a module whose entire purpose was independence from the estimator, and
+put a bias in the sampler. **The third instance in this project of: the test and the thing tested were not
+independent.**
+
+**3. A_TAU CANNOT RESOLVE A DELAY EDIT ON A GATED PATH — AND THIS IS THE DEEPEST RESULT OF THE SESSION.**
+Move a gun 5 rows along its own diagonal on a *gated* channel. The evaluator measures the gate→output causal delay
+moving **184 → 164** — a real 20-step change of causal timing. The blind head reports **median 185.5 in BOTH
+circuits**. A **false-SAME on the certified edit scale**.
+
+The cause is not a bug. It is the repair itself. **D-056 failed because the delay estimator was phase-sensitive, so
+V3 made it phase-invariant by taking the MEDIAN OVER ALL 60 STRIKE PHASES — i.e. by integrating the phase out. For
+an edge whose onset is gated by a periodic arrival, that marginal is invariant to exactly the quantity it is meant to
+measure.**
+
+> **The cure for a nuisance parameter is not always to integrate it out. Integrating it out can integrate out the
+> signal along with the nuisance.**
+
+V3 resolves a delay edit on an **ungated (source)** edge — the k=7 case passed. It is blind to one on an **inhibitor**
+edge. The information is *present* (after the gate is removed, channel 1's stream reaches the output at a shifted
+phase **relative to the other channels**) — but every V3 summary (median onset, |FFT| magnitude) **discards relative
+phase**. So it is a head limitation, **not** a fundamental non-identifiability, and mission stop-condition 2 does not
+apply.
+
+### RETIREMENT
+
+**A-head V3 (ablation tomography with box-clearing, per-component validity, and phase-marginalized timing) is
+RETIRED.** `edlab/identity/blind_a3.py` is preserved unchanged and marked RETIRED. It will not be patched.
+
+**What is retired:** the *estimator* — destructive box-ablation whose cleanliness is a hostage to the microstate at
+the moment of the strike, per-component (not per-phase) validity, and timing represented as a phase **marginal**.
+**What survives:** the **ontology** (A_TOPO / A_TAU / G, never composited), the observability contract, the
+whole-component specificity rule, the two-level coverage rule, and the E1/E2 expected-vector spec.
+
+### NEXT AUTHORIZED ACTION — a conceptually different observer, no permission required (§8)
+
+**ARCHITECTURE HEAD V4**, preregistered in `docs/ARCHITECTURE_HEAD_V4_SPEC.md`, restarting certification from
+must-pass/must-fail cases — including the two that killed V3 (**strike phase 33**, and a **delay edit on a gated
+path**). Its three conceptual changes:
+
+1. **Validity is PHASE-RESOLVED.** Each `(component, strike-phase)` pair is graded independently; the graph is built
+   from the valid pairs. A phase at which the probe misbehaves costs that phase, not the whole circuit.
+2. **DO NOT INTEGRATE OUT THE NUISANCE — QUOTIENT BY IT.** Timing is the full phase-resolved response profile
+   `τ(φ)`. A global phase shift acts on the data as a **common cyclic rotation of every edge's profile**. So
+   invariance is obtained by **quotienting by that group action** (comparing profiles up to a *common* shift, e.g.
+   via their pairwise differences), never by averaging. A *relative* timing change is not a group element and
+   therefore **survives**.
+3. **The null generator is rebuilt** with an executable uniformity/coverage assertion, because the old one was
+   biased and that bias is not inherited.
+
+**EXP-SC-01 remains BLOCKED. No composite. S, F and L preserved exactly.**
