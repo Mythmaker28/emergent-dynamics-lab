@@ -1,0 +1,25 @@
+EXP-SC-00B -- PROSPECTIVE orthogonality qualification. Protocol SHA a6d30187, frozen before any run.
+Substrate UNCHANGED. Entirely unseen seeds 8201-8203. D-044's seeds (8001,8101,8102) NOT reused.
+
+O1 (scaffold coheres with the internal network OFF; beta-independent): PASS  PR=[0.126, 0.116, 0.116]
+O3 (internal fields alone create no entity): PASS
+
+O2' = VIABILITY per internal state (localization, no invasion, no extinction, no catastrophic
+      fragmentation, persistence >= 0.8, continued turnover). Size and shape are REPORTED, not thresholded.
+
+ beta |  O2- u  O2- v O2- rnd | O2 pass | r_partial  p_perm    n O4 pass | QUALIFIES
+ 0.05 |  False   True   False |   False |    +0.379  0.0000   94    True | no
+ 0.10 |   True   True    True |    True |    +0.521  0.0000   96    True | *** QUALIFIES
+ 0.20 |   True  False   False |   False |    +0.731  0.0000  109    True | no
+ 0.30 |  False  False    True |   False |    +0.736  0.0000  108    True | no
+ 0.45 |  False  False    True |   False |    +0.568  0.0000  115    True | no
+ 0.60 |  False  False    True |   False |    +0.145  0.1470  101   False | no
+
+SELECTION RULE (frozen): smallest beta in the grid passing O1/O2'/O3/O4' -> 0.1
+
+REPORTED (not thresholded) morphology by internal state, at the selected beta:
+   state u       entities=[24, 21, 24]  median size=14 cells  median Rg=1.45
+   state v       entities=[12, 11, 11]  median size=14 cells  median Rg=1.40
+   state random  entities=[15, 17, 17]  median size=14 cells  median Rg=1.39
+   -> body size and shape DIFFER across internal states, as they must for an uptake coupling.
+      O2' does not penalise that; it requires only that every state remains VIABLE.

@@ -135,3 +135,42 @@ def qualify_beta(beta: float) -> dict:
     return {"beta": beta, "O2prime": o2, "O2prime_pass": all(r["passes"] for r in o2),
             "O4prime": o4, "O4prime_pass": bool(o4["passes"]),
             "qualifies": bool(all(r["passes"] for r in o2) and o4["passes"])}
+
+
+# ---------------------------------------------------------------- R8-A / R8-B (substrate UNCHANGED, beta frozen)
+BETA_SELECTED = 0.10                 # selected prospectively by O1/O2'/O3/O4' (EXP-SC-00B). NOT retuned.
+R8_SEEDS = tuple(range(8301, 8313))  # 12 entirely unseen seeds
+R8_WINDOW = 1200
+R8_CADENCE = 100
+
+
+def identity_trajectory(seed: int, beta: float = BETA_SELECTED) -> list[list[float]]:
+    """PRIMARY phenotype trajectory of the largest entity. Excludes total mass, radius, position, orientation."""
+    sp = replace(SPEC, beta=beta)
+    eng = ScaffoldEngine(sp, TRACER)
+    st = seed_state(sp, TRACER, seed, "random")     # internal organization must SELF-organize, not be imposed
+    for _ in range(T_STAR):
+        st = eng.step(st)
+    traj = []
+    for s in eng.simulate(st, R8_WINDOW, R8_CADENCE):
+        es = detect(s, DET, sp.rho_max)
+        if es:
+            traj.append(max(es, key=lambda e: e.size).phenotype.tolist())
+    return traj
+
+
+def r8_ab(beta: float = BETA_SELECTED) -> dict:
+    from ..identity.gates import r8a_diversity, r8b_predictive_identity
+    trajs = []
+    for sd in R8_SEEDS:
+        t = identity_trajectory(sd, beta)
+        if len(t) >= 8:
+            trajs.append(np.asarray(t))
+    if len(trajs) < 3:
+        return {"beta": beta, "n_entities": len(trajs), "insufficient": True}
+    T = min(t.shape[0] for t in trajs)
+    trajs = [t[:T] for t in trajs]
+    h = T // 2
+    return {"beta": beta, "n_entities": len(trajs), "n_obs": T, "insufficient": False,
+            "R8A": r8a_diversity(trajs),
+            "R8B": r8b_predictive_identity([t[:h] for t in trajs], [t[h:] for t in trajs])}
