@@ -6,7 +6,28 @@ Can CORE V0 local particle laws produce auditable high phenotype continuity unde
 
 ## CURRENT SUBSTRATE
 
-**NONE — scaffold+internal-network RETIRED at orthogonality O2 (D-044).** Eight substrates, eight negatives.
+**NONE — scaffold+internal-network RETIRED at R8-B (D-046).** Nine substrates, nine negatives. Nothing promoted.
+
+**EXP-SC-00B QUALIFIED prospectively** at beta=0.10 on unseen seeds: **O1** (scaffold coheres with the internal
+network OFF), **O2'** (every internal state viable -- size DIFFERS across states and is reported, not thresholded),
+**O3** (internal fields alone create no entity), and **O4': r_partial = +0.521, p < 0.0005, n = 96** -- the internal
+state predicts **FUTURE uptake after controlling for mass, radius, density and size**. That is the strongest causal
+result this project has produced: identity is efficacious and is not a proxy for morphology.
+
+**R8-A PASS** (ratio 2.12, margin 2.0). **R8-B FAIL** (accuracy 0.286 vs chance 0.083; required chance+0.25 = 0.333).
+3.4x chance is a real signal and does not meet the preregistered bar. **The bar was not moved.**
+
+**CAUSE: within-entity drift (0.394) is nearly half the between-entity distance (0.836).** The internal organizations
+are diverse but **NOT temporally stable** -- they coarsen and rearrange while the material is replaced.
+**Identity exists here; it does not persist.**
+
+**NEXT REQUIREMENT (declared, not yet built): the internal organization must be PINNED, not merely multistable.**
+Lowering `D_int` now would be tuning-after-failure on the exact parameter the failure points to, and is FORBIDDEN.
+The pinning mechanism must be declared in a new protocol before it is run.
+
+**D-044 stands unchanged under its original O2. It is NOT reinterpreted.** Its O2 was mis-specified (size-invariance
+contradicts an uptake coupling by construction, D-045) -- which is why EXP-SC-00B re-qualified prospectively with
+O2' (viability) on entirely fresh seeds.
 
 EXP-SC-00 passed **O1** (scaffold coheres with the internal network OFF: PR 0.133, Rg 2.36), **O3** (internal fields
 alone create zero entities) and **O4** (flipping the internal state changes FUTURE uptake by 13-28%; the beta=0

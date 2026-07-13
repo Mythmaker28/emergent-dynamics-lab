@@ -1,0 +1,17 @@
+EXP-SC-00B -- R8-A / R8-B. Substrate UNCHANGED; beta = 0.10 (selected prospectively by O1/O2'/O3/O4').
+12 entirely unseen seeds [8301, 8302, 8303, 8304, 8305, 8306, 8307, 8308, 8309, 8310, 8311, 8312], 13 observations each.
+Identity features: internal_heterogeneity, n_u_domains, interface_fraction, radial_u, janus_sig.
+EXCLUDED by construction: total mass, radius, position, absolute orientation.
+
+R8-A  diversity
+   within-entity temporal drift   = 0.3941
+   between-entity distance        = 0.8355
+   separation ratio               = 2.12   (frozen margin 2.0)  -> PASS
+
+R8-B  predictive identity (1-NN prototypes fitted on EARLY half only, tested on LATE half)
+   accuracy = 0.286   chance = 0.083   (need > chance + 0.25)
+   n_entities = 12  n_observations = 84  -> FAIL
+
+==============================================================================
+R8 FAILS -> substrate retired; identity coupling moves to motility / oscillatory phase / probe response.
+==============================================================================

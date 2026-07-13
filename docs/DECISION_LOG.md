@@ -858,3 +858,38 @@ behaviour **after controlling for current mass, radius, density and size** — s
 trivial morphology). O1 and O3 unchanged. `beta` selected prospectively on a frozen grid by O1/O2'/O3/O4' only.
 If no `beta` preserves viability across internal states, the substrate is retired and identity coupling moves to
 **motility direction, oscillatory phase, or probe response** — channels that do not feed the scaffold's mass balance.
+
+## D-046 — EXP-SC-00B: qualifies prospectively (O1/O2'/O3/O4' PASS), then FAILS R8-B. Substrate RETIRED.
+
+**Date:** 2026-07-12
+**Status:** RETIRED AT R8-B (R8-C never reached)
+**Protocol:** docs/experiments/EXP_SC_00B_PROTOCOL.md (SHA a6d301870b29b4ef046194b68466727dc6e4ddb6), frozen first.
+Substrate UNCHANGED. Unseen seeds only. D-044's seeds not reused; D-044 not reinterpreted.
+
+**QUALIFICATION PASSES at `beta = 0.10`** (frozen prospective rule, selection references no identity outcome):
+- **O1 PASS** — scaffold coheres with the internal network disabled (PR 0.126/0.116/0.116).
+- **O2' PASS** — every internal state independently viable (localization, no invasion, no extinction, no
+  catastrophic fragmentation, persistence 1.00, continued turnover) on 3 states x 3 unseen seeds. Body size DIFFERS
+  across states (u: 21–24 entities; v: 11–12) and is **reported, not thresholded** — vindicating the O2 -> O2' fix.
+- **O3 PASS** — internal fields alone create zero entities.
+- **O4' PASS — r_partial = +0.521, permutation p < 0.0005, n = 96.** The internal state predicts **future** uptake
+  **after controlling for mass, radius, density and size.** Identity is causally efficacious and is **not** a proxy
+  for morphology (the confound case is a must-fail unit test the metric provably rejects).
+
+**R8-A PASS** — between-entity distance 0.836 vs within-entity drift 0.394 → ratio **2.12** (margin 2.0).
+**R8-B FAIL** — early-half prototypes re-identify late-half observations at accuracy **0.286** vs chance 0.083;
+required chance + 0.25 = **0.333**. **3.4x chance is a real signal but does not meet the preregistered bar. The bar
+is not moved.**
+
+**Cause:** within-entity temporal drift (0.394) is nearly half the between-entity distance (0.836). The internal
+organizations are diverse but **not temporally stable** — the toggle domains coarsen and rearrange while the material
+is replaced. R8-A only just passes for the same reason. **Identity exists here; it does not persist.**
+
+**Scope:** this does NOT invalidate the scaffold+internal-network architecture — the architecture worked on every
+orthogonality criterion, including the strongest causal result this project has produced (O4', r = +0.52). What
+failed is the **pinning** of the internal organization under constituent turnover. Lowering `D_int` or strengthening
+bistability now would be **tuning-after-failure and is forbidden**. The next substrate must declare a **pinning
+mechanism in advance**.
+
+Nine substrates, nine negatives. Nothing promoted. But O4' is the first time an internal identity has been shown to
+causally predict future behaviour independently of trivial morphology.
