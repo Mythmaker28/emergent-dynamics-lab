@@ -779,3 +779,58 @@ whose cohesion and internal structure ride on **different, non-competing degrees
 what this result points to.
 
 Seven substrates, seven negatives. Nothing promoted.
+
+## D-043 — D-042 accepted and SCOPED; EXP-SC-00 authorized (orthogonal scaffold + internal network)
+
+**Date:** 2026-07-12
+**Status:** ACCEPTED, scoped
+
+**EXP-MA-00 retired for the current question and the tested parameter domain.** Scope, precisely:
+**in that architecture** localization and demixing are antagonistic **because cohesion and internal structuring
+compete through the same transport flux** — a single advective term moved both species, so any parameter regime
+strong enough to cohere overwhelmed the repulsion, and any regime strong enough to demix tore the droplet apart.
+**This does NOT generalize to multistable droplets in general**, nor to architectures in which cohesion and internal
+structure are carried by different degrees of freedom. It is a statement about one coupling, in one bounded box.
+
+**EXP-SC-00 authorized**, designed from the outset with **functionally orthogonal degrees of freedom**:
+(1) a localized **open scaffold** (chemotactic cohesion + volume exclusion) providing cohesion and finite-density
+support — the mechanism already validated at R7 in EXP-CH-00; (2) an **internal bistable reaction network confined
+to the scaffold**, which plays **no part in cohesion**; (3) passive temporal tracers; (4) a **causal coupling by
+which the internal state predicts a future behavioural observable** (nutrient uptake), so identity is not a
+decorative label. `beta = 0` (no coupling) is a built-in negative control for (4).
+
+**Nothing may be screened until an ORTHOGONALITY QUALIFICATION (O1–O4) passes**
+(`docs/experiments/EXP_SC_00_PROTOCOL.md`), then R8-A → R8-B → R8-C, in that order.
+**No law map, no GATE-0, until at least two distinguishable, temporally persistent internal organizations exist
+under the same frozen global law on unseen seeds.**
+
+## D-044 — EXP-SC-00: orthogonality FAILS at O2; substrate RETIRED before R8. Couplings must be separated, not just DOFs.
+
+**Date:** 2026-07-12
+**Status:** RETIRED AT ORTHOGONALITY QUALIFICATION (R8 never reached)
+**Protocol:** docs/experiments/EXP_SC_00_PROTOCOL.md (SHA aed457c2) + Amendment 1 (SHA fc4f4d97), frozen first.
+
+Scaffold = **exactly** the EXP-CH-00 law-2 R7 survivor. All metrics passed synthetic must-pass/must-fail cases first.
+
+**PASS: O1** — scaffold coheres with the internal network disabled (PR 0.133, Rg 2.36). **O3** — internal fields alone
+create zero entities. **O4** — flipping the internal state changes future specific uptake by 13–28 %; the `beta = 0`
+negative control changes it by **0.0 %**. Identity is causally efficacious, not decorative.
+
+**FAIL: O2** — at **every** `beta` in the declared grid (0.05, 0.10, 0.15, 0.20), on **both** unseen seeds. Entity Rg
+varies across internal states by 1.83–4.12 cells (tolerance 1.5). At the smallest coupling O2 *and* O4 both fail:
+**no coupling strength makes identity efficacious while leaving localization invariant.**
+
+**Finding (scoped):** identity acting through **uptake** is not orthogonal to cohesion, because **uptake feeds growth
+and growth feeds the scaffold's mass balance**. Third instance of one pattern: EXP-MA-00 shared the *transport flux*;
+EXP-SC-00 shares the *mass balance*. **Separating the degrees of freedom is not enough — the COUPLINGS must be
+separated too.** This points at couplings that do not feed the scaffold's mass balance (motility *direction*,
+oscillation *phase*, response to an external probe). Not added here; that is a new substrate, preregistered from the
+outset.
+
+**Near-miss, recorded:** at hand-set `beta = 0.6` O2 failed; a post-hoc scan "found" `beta = 0.15` passing O2+O4 on
+the very seed the failure was seen on (dRg 1.04). Rather than adopt it, `beta` was re-declared as **prospectively
+selected** by the qualification on a frozen grid and unseen seeds (Amendment 1). **On unseen seed 8101, `beta = 0.15`
+fails O2 (dRg 1.95).** The post-hoc window did not replicate. Taking it would have carried a non-qualifying substrate
+into R8.
+
+Eight substrates, eight negatives. Nothing promoted.

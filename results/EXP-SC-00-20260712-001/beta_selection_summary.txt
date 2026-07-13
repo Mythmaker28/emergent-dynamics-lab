@@ -1,0 +1,23 @@
+EXP-SC-00 -- PROSPECTIVE beta selection (Amendment 1, SHA fc4f4d97, declared BEFORE this run).
+Frozen grid (0.05, 0.10, 0.15, 0.20); entirely unseen seeds 8101, 8102; rule = SMALLEST beta passing
+O1..O4 on BOTH seeds. Selection references ONLY O1-O4, never any identity outcome.
+
+  beta   seed   O1   O2     dPR    dRg   O3   O4   uptake  verdict
+  0.05   8101    P    F   0.012   1.83    P    F     8.2%  fail
+  0.05   8102    P    P   0.012   0.63    P    F     4.7%  fail
+  0.10   8101    P    F   0.023   1.86    P    P    13.0%  fail
+  0.10   8102    P    F   0.021   3.64    P    P    13.8%  fail
+  0.15   8101    P    F   0.035   1.95    P    P    16.6%  fail
+  0.15   8102    P    F   0.032   2.81    P    P    20.3%  fail
+  0.20   8101    P    F   0.047   1.95    P    P    21.2%  fail
+  0.20   8102    P    F   0.045   4.12    P    P    28.4%  fail
+
+beta values passing O1-O4 on BOTH unseen seeds: NONE
+
+O2 fails at EVERY beta in the grid on unseen seeds. The failing quantity is always dRg (entity radius of
+gyration varies across internal states by 1.83-3.64 cells, tolerance 1.5) -- and it already fails at
+beta = 0.05, where O4 fails too (8.2% < 10%): there is NO coupling strength at which the internal state is
+both causally efficacious AND leaves localization invariant.
+
+Note: beta = 0.15 PASSED O2 on the post-hoc seed 8001 (dRg 1.04) and FAILS on unseen 8101 (dRg 1.95).
+The post-hoc window did not replicate. That is exactly what the prospective rule was written to catch.

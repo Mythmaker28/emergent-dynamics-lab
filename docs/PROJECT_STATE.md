@@ -6,7 +6,23 @@ Can CORE V0 local particle laws produce auditable high phenotype continuity unde
 
 ## CURRENT SUBSTRATE
 
-**NONE — multistable droplet RETIRED at R8 (D-042); chemotactic RETIRED at GATE-0 (D-040).**
+**NONE — scaffold+internal-network RETIRED at orthogonality O2 (D-044).** Eight substrates, eight negatives.
+
+EXP-SC-00 passed **O1** (scaffold coheres with the internal network OFF: PR 0.133, Rg 2.36), **O3** (internal fields
+alone create zero entities) and **O4** (flipping the internal state changes FUTURE uptake by 13-28%; the beta=0
+control changes it by 0.0% -- identity is causally efficacious, not decorative). It **failed O2** at every beta in the
+declared grid on unseen seeds: entity Rg varies across internal states by 1.83-4.12 cells (tol 1.5), and at the
+weakest coupling O2 AND O4 both fail -- **no coupling strength makes identity efficacious while leaving localization
+invariant.**
+
+**THE FINDING (third instance of one pattern): separating the DEGREES OF FREEDOM is not enough -- the COUPLINGS must
+be separated too.** EXP-MA-00 shared the *transport flux*; EXP-SC-00 shares the *mass balance* (uptake feeds growth;
+growth feeds the scaffold). **Any next substrate must couple identity to a behaviour that does NOT feed the
+scaffold's mass balance** -- motility *direction*, oscillation *phase*, or response to an external probe. Not uptake.
+
+**Gates (binding): R7 -> R8-A -> R8-B -> R8-C -> GATE-0 -> law map** (`docs/R8_GATES.md`,
+`docs/CAUSAL_METHODOLOGY.md` R1-R8), plus the EXP-SC-00 orthogonality qualification O1-O4 for any
+scaffold+internal architecture. Every metric must pass synthetic must-pass AND must-fail cases before use.
 
 EXP-MA-00: in the frozen domain, **localization and multistability are mutually exclusive** — the laws that localize
 have mixed droplets (demixing 0.043/0.008), every genuinely demixed law fails R7, and **0/32 are both**. On the R7

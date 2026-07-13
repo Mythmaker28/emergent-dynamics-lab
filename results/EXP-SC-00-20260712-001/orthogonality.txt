@@ -1,0 +1,23 @@
+EXP-SC-00 -- ORTHOGONALITY QUALIFICATION (O1-O4). Protocol SHA aed457c2, frozen before any screen.
+Scaffold = EXACTLY the EXP-CH-00 law-2 parameters (an R7 survivor, D-038), not hand-chosen.
+Every metric passed synthetic must-pass AND must-fail cases first (tests/test_scaffold.py, 8 cases).
+
+O1  scaffold coheres with the internal network DISABLED (a = 0):
+      PR=0.133 (<=0.15)  entity_Rg=2.36 (<=8)  entities=16  -> PASS
+
+O2  distinct internal states leave localization broadly intact:
+      state u       PR=0.227  Rg=5.32  entities= 28  localized=False
+      state v       PR=0.088  Rg=0.97  entities=  0  localized=True
+      state random  PR=0.125  Rg=4.95  entities= 18  localized=True
+      spread: dPR=0.139 (tol 0.05)  dRg=4.36 (tol 1.5)  -> FAIL
+
+O3  internal fields ALONE cannot create an entity: entities=0  -> PASS
+
+O4  internal state alters a FUTURE behavioural observable (specific uptake, 300 steps later):
+      beta=0.6 : keep=0.00154 flip=0.00064  change=58.6%  (need >= 10%)
+      beta=0   : keep=0.00136 flip=0.00136  change=0.0%  (must be < 10%)  [NEGATIVE CONTROL]
+      -> PASS
+
+================================================================================
+ORTHOGONALITY: FAILED -> retire, no mechanism added
+================================================================================
