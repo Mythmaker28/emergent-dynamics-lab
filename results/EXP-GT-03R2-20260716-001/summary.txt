@@ -1,0 +1,38 @@
+EXP-GT-03R2 -- head V4, FROZEN, on a THIRD entirely-new hold-out split
+manifest e7e9955892e0495c | leakage NONE | A_TAU_TOL=0.0 (frozen)
+============================================================================================================================
+
+  case                                                 A_TOPO                 A_TAU                    G                    F                  M         
+  same topology, different LAYOUT (sp44 vs sp47)       OK SAME/SAME           OK SAME/SAME             OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  TRANSLATION-equivalent machine                       OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  PHASE-SHIFTED equivalent machine                     OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK SAME/SAME
+  delay edit, UNGATED path (ch2, k=4)                  OK SAME/SAME           OK DIFFERENT/DIFFERENT   OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  delay edit, UNGATED path (ch1, k=6, sp47)            OK SAME/SAME           OK DIFFERENT/DIFFERENT   OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  delay edit on a GATED path (ch3, k=4)                OK SAME/SAME           OK DIFFERENT/DIFFERENT   OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  DIFFERENT topology, same F (gate vs cross-inhibitor) OK DIFFERENT/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  EDGE ADDED (cross-stream inhibitor)                  OK DIFFERENT/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  NODE ADDED (five channels, sp52)                     OK DIFFERENT/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  INERT decoration                                     OK SAME/SAME           OK SAME/SAME             OK DIFFERENT/DIFFERENT OK SAME/SAME       OK DIFFERENT/DIFFERENT
+  same topology, different S (program word)            OK DIFFERENT/DIFFERENT OK INDETERMINATE/INDETERMINATE OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  exact copy, reset history                            OK SAME/SAME           OK SAME/SAME             OK SAME/SAME         OK SAME/SAME       OK SAME/SAME
+
+E1 -- FUNCTION-PRESERVING HANDOFF:
+   assertions: {'trajectory_changed_frames': 838, 'old_component_cells_left': 0, 'new_component_cells': 7, 'io_identical_every_timestep': True, 'no_exact_restoration': True}
+   A_TOPO=SAME/SAME  A_TAU=DIFFERENT/DIFFERENT  G=DIFFERENT/DIFFERENT  F=SAME/SAME  M=DIFFERENT/DIFFERENT  L=SAME/SAME
+
+E2 -- DAMAGE AND REPAIR: {'timesteps_with_broken_IO': 311, 'function_recovered_in_tail': True, 'tail_rate_control': 2.0, 'tail_rate_repaired': 2.0}
+
+L:
+   OK continuously observed run          -> SAME
+   OK observationally identical copy     -> INDETERMINATE
+   OK different circuit (branch)         -> DIFFERENT
+
+S (certified D-051 probe, preserved exactly):
+   OK held-out layouts vs S's certified scan window -> OUT_OF_SCOPE
+
+HELD-OUT COMPONENT IMPLEMENTATION: HELD-OUT IMPLEMENTATION NOT AVAILABLE -> subclaim INDETERMINATE
+
+============================================================================================================================
+head failures: {'pairwise': 0, 'E1': 0, 'L': 0, 'S': 0, 'total': 0}
+VERDICT: QUALIFIED
+============================================================================================================================

@@ -1,0 +1,850 @@
+{
+ "manifest": {
+  "burned": {
+   "spacings": [
+    40,
+    45,
+    48,
+    43,
+    41,
+    42,
+    46,
+    50
+   ],
+   "programs": [
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     0,
+     1,
+     0
+    ],
+    [
+     0,
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     1,
+     1
+    ],
+    [
+     1,
+     0,
+     1,
+     1
+    ],
+    [
+     0,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     1,
+     0,
+     0
+    ]
+   ],
+   "phases": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    14,
+    15,
+    16,
+    17,
+    20,
+    22,
+    23,
+    27,
+    30,
+    32,
+    33,
+    34,
+    35,
+    37,
+    38,
+    40,
+    41,
+    45,
+    49,
+    52,
+    54,
+    55
+   ],
+   "delay_edits": [
+    [
+     "ch3",
+     1
+    ],
+    [
+     "ch3",
+     2
+    ],
+    [
+     "ch3",
+     4
+    ],
+    [
+     "ch3",
+     8
+    ],
+    [
+     "ch2",
+     3
+    ],
+    [
+     "ch2",
+     6
+    ],
+    [
+     "ch1",
+     5
+    ],
+    [
+     "ch2",
+     7
+    ],
+    [
+     "ch3",
+     5
+    ]
+   ],
+   "status": "DIAGNOSTIC_ONLY - NOT ELIGIBLE FOR FINAL EVIDENCE"
+  },
+  "held_out": {
+   "layouts": [
+    [
+     7,
+     51,
+     95,
+     139
+    ],
+    [
+     10,
+     57,
+     104,
+     151
+    ],
+    [
+     5,
+     57,
+     109,
+     161,
+     213
+    ]
+   ],
+   "spacings": [
+    44,
+    47,
+    52
+   ],
+   "programs": [
+    [
+     0,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     0,
+     0,
+     1
+    ]
+   ],
+   "phases": [
+    19,
+    26,
+    43,
+    51,
+    58
+   ],
+   "delay_edits": [
+    [
+     "ch2",
+     4
+    ],
+    [
+     "ch1",
+     6
+    ]
+   ],
+   "seed": 20260716,
+   "gate_impls": [
+    "EATER1@(-4,-3) -- see held_out_implementation_status()"
+   ],
+   "perturbation_schedule": {
+    "E1_install": 151,
+    "E1_remove": 311,
+    "E2_damage": [
+     260,
+     276
+    ],
+    "E2_repair": 470
+   },
+   "status": "HELD OUT - frozen before inspection"
+  },
+  "leakage": {
+   "leakage": "NONE",
+   "checked": [
+    "spacing",
+    "program word",
+    "clock phase",
+    "delay-edit pattern"
+   ],
+   "note": "development, the EXP-GT-03 hold-outs AND the EXP-GT-03R hold-outs are all treated as inspected. Nothing here overlaps any of them."
+  },
+  "frozen_observer": {
+   "head": "V4",
+   "A_TAU_TOL": 0.0,
+   "frozen_at": "EXP-GT-03R2",
+   "derived_from": "the independent, coverage-asserted phase null of Certificate V3"
+  },
+  "hash": "e7e9955892e0495c"
+ },
+ "challenges": [
+  {
+   "case": "same topology, different LAYOUT (sp44 vs sp47)",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "complete_1": true,
+    "complete_2": true,
+    "valid_phase_fracs_1": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ],
+    "valid_phase_fracs_2": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ]
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "TRANSLATION-equivalent machine",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "complete_1": true,
+    "complete_2": true,
+    "valid_phase_fracs_1": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ],
+    "valid_phase_fracs_2": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ]
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "PHASE-SHIFTED equivalent machine",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "complete_1": true,
+    "complete_2": true,
+    "valid_phase_fracs_1": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ],
+    "valid_phase_fracs_2": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ]
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "delay edit, UNGATED path (ch2, k=4)",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "complete_1": true,
+    "complete_2": true,
+    "valid_phase_fracs_1": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ],
+    "valid_phase_fracs_2": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ]
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "delay edit, UNGATED path (ch1, k=6, sp47)",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "complete_1": true,
+    "complete_2": true,
+    "valid_phase_fracs_1": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ],
+    "valid_phase_fracs_2": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ]
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "delay edit on a GATED path (ch3, k=4)",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "DIFFERENT",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "complete_1": true,
+    "complete_2": true,
+    "valid_phase_fracs_1": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ],
+    "valid_phase_fracs_2": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ]
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "DIFFERENT topology, same F (gate vs cross-inhibitor)",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "complete_1": true,
+    "complete_2": true,
+    "valid_phase_fracs_1": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ],
+    "valid_phase_fracs_2": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     0.6
+    ]
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "EDGE ADDED (cross-stream inhibitor)",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "complete_1": true,
+    "complete_2": true,
+    "valid_phase_fracs_1": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ],
+    "valid_phase_fracs_2": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0,
+     0.6
+    ]
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "NODE ADDED (five channels, sp52)",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "complete_1": true,
+    "complete_2": true,
+    "valid_phase_fracs_1": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ],
+    "valid_phase_fracs_2": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ]
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "INERT decoration",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "complete_1": true,
+    "complete_2": true,
+    "valid_phase_fracs_1": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ],
+    "valid_phase_fracs_2": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0,
+     1.0,
+     1.0
+    ]
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "same topology, different S (program word)",
+   "expected": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "predicted": {
+    "A_TOPO": "DIFFERENT",
+    "A_TAU": "INDETERMINATE",
+    "G": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "complete_1": true,
+    "complete_2": true,
+    "valid_phase_fracs_1": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ],
+    "valid_phase_fracs_2": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0,
+     1.0
+    ]
+   },
+   "fully_held_out": true
+  },
+  {
+   "case": "exact copy, reset history",
+   "expected": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "predicted": {
+    "A_TOPO": "SAME",
+    "A_TAU": "SAME",
+    "G": "SAME",
+    "F": "SAME",
+    "M": "SAME"
+   },
+   "pass": {
+    "A_TOPO": true,
+    "A_TAU": true,
+    "G": true,
+    "F": true,
+    "M": true
+   },
+   "identifiability": {
+    "complete_1": true,
+    "complete_2": true,
+    "valid_phase_fracs_1": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ],
+    "valid_phase_fracs_2": [
+     0.9,
+     0.9,
+     0.9,
+     0.9,
+     1.0
+    ]
+   },
+   "fully_held_out": true
+  }
+ ],
+ "E1": {
+  "assertions": {
+   "trajectory_changed_frames": 838,
+   "old_component_cells_left": 0,
+   "new_component_cells": 7,
+   "io_identical_every_timestep": true,
+   "no_exact_restoration": true
+  },
+  "expected": {
+   "A_TOPO": "SAME",
+   "A_TAU": "DIFFERENT",
+   "G": "DIFFERENT",
+   "F": "SAME",
+   "M": "DIFFERENT",
+   "L": "SAME"
+  },
+  "predicted": {
+   "A_TOPO": "SAME",
+   "A_TAU": "DIFFERENT",
+   "G": "DIFFERENT",
+   "F": "SAME",
+   "M": "DIFFERENT",
+   "L": "SAME"
+  },
+  "pass": {
+   "A_TOPO": true,
+   "A_TAU": true,
+   "G": true,
+   "F": true,
+   "M": true,
+   "L": true
+  }
+ },
+ "E2": {
+  "timesteps_with_broken_IO": 311,
+  "function_recovered_in_tail": true,
+  "tail_rate_control": 2.0,
+  "tail_rate_repaired": 2.0
+ },
+ "L": {
+  "predicted": {
+   "continuously observed run": "SAME",
+   "observationally identical copy": "INDETERMINATE",
+   "different circuit (branch)": "DIFFERENT"
+  },
+  "expected": {
+   "continuously observed run": "SAME",
+   "observationally identical copy": "INDETERMINATE",
+   "different circuit (branch)": "DIFFERENT"
+  }
+ },
+ "S": {
+  "predicted": {
+   "held-out layouts vs S's certified scan window": "OUT_OF_SCOPE"
+  },
+  "expected": {
+   "held-out layouts vs S's certified scan window": "OUT_OF_SCOPE"
+  }
+ },
+ "held_out_implementation": {
+  "verdict": "HELD-OUT IMPLEMENTATION NOT AVAILABLE",
+  "subclaim": "INDETERMINATE",
+  "behavioural_pass": [
+   "LOAF",
+   "EATER2"
+  ],
+  "admissibility_pass": [
+   "EATER1 (development only)"
+  ],
+  "rejected_for_neighbour_destruction": [
+   "BOAT",
+   "SNAKE",
+   "BEEHIVE"
+  ],
+  "rejected_as_reactive_seed": [
+   "LOAF",
+   "EATER2"
+  ],
+  "manufactured_evidence": "REFUSED (SS5.1)"
+ },
+ "head_failures": {
+  "pairwise": 0,
+  "E1": 0,
+  "L": 0,
+  "S": 0,
+  "total": 0
+ },
+ "VERDICT": "QUALIFIED"
+}

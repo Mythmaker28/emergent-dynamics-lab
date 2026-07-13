@@ -306,7 +306,13 @@ def predict_active(a: Arch) -> dict:
     gate_of = {}
     for gn, gc_ in gates.items():
         off = GATE_OFFSETS[gates[gn].kind]
-        d = (gc_.col - off[1]) - 35                # the gate sits at track column (d + 35) + off_dx, at row 35
+        # ROW-AGNOSTIC. A gate placed for row R sits at (R + off_dy, (d + R) + off_dx), so
+        #     col - row - (off_dx - off_dy) = d
+        # for ANY R. The first version hardcoded R = 35 and therefore failed to recognise a gate that had been
+        # MOVED -- which is exactly what an E1 handoff does. The evaluator would then declare the channel LIVE
+        # and reject its own circuit. A ground-truth predictor that assumes where a part is cannot audit a
+        # benchmark in which parts move.
+        d = (gc_.col - gc_.row) - (off[1] - off[0])
         if d in outs:
             gate_of[d] = gn
 

@@ -1453,3 +1453,73 @@ path**). Its three conceptual changes:
    biased and that bias is not inherited.
 
 **EXP-SC-01 remains BLOCKED. No composite. S, F and L preserved exactly.**
+
+## D-060 — EXP-GT-03R2: architecture head V4 QUALIFIES prospectively. EXP-SC-01 still BLOCKED (hierarchy not run).
+
+**Date:** 2026-07-16
+**Status:** **QUALIFIED** on a third, entirely-new hold-out split. **EXP-SC-01 remains BLOCKED** — mission §11
+requires the hierarchical discovery benchmark, and it has not been run.
+**Run:** `results/EXP-GT-03R2-20260716-001` (manifest `e7e9955892e0495c`, leakage NONE).
+Everything preserved. **No head retuned. TAU_TOL frozen at 0.0, derived from the coverage-asserted independent null.**
+
+The split touches **neither** burned hold-out set (EXP-GT-03's, burned diagnosing D-056; EXP-GT-03R's, burned
+diagnosing D-058) on any axis: spacings 44/47/52, programs 0111/1001, phases 19/26/43/51/58, delay patterns
+(ch2,k=4) and (ch1,k=6), a five-channel topology, a new perturbation schedule, a new seed.
+
+**RESULT: 0 head failures.**
+
+| | |
+|---|---|
+| 12 pairwise cases (layout · translation · phase · **delay edit on an ungated path** · **delay edit on a GATED path** · different-topology/same-F · edge added · node added · inert decoration · program word · exact copy) | **12/12** |
+| **E1-B** — function-preserving handoff, fresh configuration, head run **exactly once** | **6/6** — `A_TOPO=SAME, A_TAU=DIFFERENT, G=DIFFERENT, F=SAME, M=DIFFERENT, L=SAME` |
+| E2 — damage and repair | fires (311 timesteps broken) and recovers |
+| L — three regimes | **3/3**, including correct **INDETERMINATE** on observationally identical data |
+| S — the certified D-051 probe, preserved exactly | correctly reports **OUT_OF_SCOPE** for layouts outside its scan window |
+
+**The case that killed V3 now passes prospectively.** A delay edit on a **gated** path — where V3 returned a
+false-SAME on its own certified edit scale — gives `A_TOPO = SAME, A_TAU = DIFFERENT`. **Quotienting by the phase
+group recovers exactly the signal that marginalizing over it destroyed.**
+
+### Two things I must not paper over
+
+**1. THE FIRST HELD-OUT E1 WAS OUT OF SCOPE, AND ITS REBUILD IS DIAGNOSTIC, NOT PROSPECTIVE.**
+I placed the E1 relief **one row** from gun0 — inside the head's **certified component-separation limit of 4 cells**
+(D-057/D-059). The head merged them and reported a different topology. **That is a split-design error of mine, not a
+head failure**: I graded the instrument on a case its certificate says *in advance* it cannot resolve — the same
+mistake as putting a held-out layout outside `S`'s scan window. I rebuilt the case in scope and it passed. **But a
+held-out case that has been inspected and re-designed after its failure is no longer prospective evidence, whatever
+it says afterwards.** That E1 is marked **DIAGNOSTIC_ONLY**. The prospective E1 claim rests **only** on **E1-B**, a
+fresh configuration (sp47, channel 2), in scope by construction, on which the head was run **exactly once**.
+
+The line drawn, and it is the honest one: **I may search the PHYSICS to build a valid handoff** (does the relief
+establish? is the I/O unbroken? — ground-truth facts, checked by assertions). **I may not search the HEAD'S ANSWER.**
+No head is consulted anywhere during construction.
+
+**2. THE HEAD HAS NO SCOPE SELF-CHECK. It silently merged two components and emitted a confident verdict.**
+V4 declares a component-separation limit of 4 cells but **never checks that the data respect it**. When two
+components fall inside the limit it merges them and reports DIFFERENT — a **fabricated certainty**, which the
+observability contract forbids. It should return INDETERMINATE.
+
+**This is NOT patched.** Patching an estimator after a prospective run is exactly what §8 forbids, and — this is the
+test of whether the rule is being obeyed honestly — **fixing it could not rescue any case anyway**: it would only
+turn DIFFERENT into INDETERMINATE, and E1's expected label was SAME. It is recorded as a **required property of the
+next head**, with an executable scope assertion now guarding every benchmark case.
+
+### Still NOT available, unchanged
+
+**HELD-OUT COMPONENT IMPLEMENTATION: NOT AVAILABLE → subclaim INDETERMINATE.** Every candidate clears exactly one of
+the two bars. BOAT/SNAKE/BEEHIVE pass in isolation and **destroy the neighbouring channel** in context. LOAF/EATER2
+pass the behavioural bar — EATER2 even reproduces the development gate's output line **bit-for-bit** at spacings
+42/46/50 on middle channels — and fail admissibility: both are **reactive seeds**, not still lifes, so their declared
+component is empty at settle and `assert_graph_agrees` rejects them. §5.1 forbids manufacturing evidence by reusing a
+development component at a new position, **so I did not**.
+
+**Required property of the next component library:** a **still-life** absorber, distinct from EATER1, whose declared
+footprint **is** its settled footprint. Also still required: **state-based memory** (a latch/storage loop), without
+which `A`'s program-invariance is not constructible; and a **causal cycle**, without which feedback is not testable.
+
+### NEXT AUTHORIZED ACTION
+
+**EXP-GT-HIERARCHY-00** (mission §9): blind hierarchical discovery from raw trajectories and self-chosen
+interventions — micro-patterns, velocities, channels, clock, gates, memory, program, I/O, FSM, macro causal graph,
+with counterfactual validation and calibrated abstention. **Not started.** **EXP-SC-01 stays BLOCKED until it passes.**
