@@ -4,46 +4,50 @@
 
 Can CORE V0 local particle laws produce auditable high phenotype continuity under low material retention, beyond tracker and static-flux artefacts?
 
-## CURRENT WORK — head V4 QUALIFIED prospectively (D-060). NEXT: EXP-GT-HIERARCHY-00. EXP-SC-01 still BLOCKED.
+## CURRENT WORK — Phases 0 and 1 DONE. Next: EXP-GT-HIERARCHY-00 (Phases 2-6). EXP-SC-01 still BLOCKED.
 
-**Three architecture heads were built. Two were retired. The third qualifies.**
+**PHASE 0 — SCOPE ADMISSION: QUALIFIED (D-061).** A SEPARATE controller; V4 is frozen and untouched.
+An A/S/F decision is now INVALID unless admission returns ADMITTED.
+**The hard part: an unresolved merge cannot be detected by LOOKING** -- two components 2 cells apart merge into
+one blob and no amount of staring at it tells you it was two. That is what "below the resolution limit" MEANS.
+**So admission is CAUSAL: a component is ATOMIC iff no proper sub-part can be cleanly ablated to a DIFFERENT
+effect.** 10/10. It refuses the merged case V4 answered confidently, admits every valid case, and all four refusal
+codes fire. **Audit of D-060: 12/12 ADMITTED, 12/12 correct -- the prospective claim STANDS and is now known to be
+CALIBRATED as well as right.**
+Three of my own bugs were caught by the certificate, and one nearly became a false scientific claim: atomicity
+judged at a SINGLE phase compared clean sub-parts against a NULL baseline at the 6 phases where the whole ablation
+is itself invalid, and refused four ordinary phase-shift nulls AND every cross-inhibitor circuit. I was one commit
+from recording, as a finding, that the crown case is out of scope. **It is not.**
+**AN ADMISSION CONTROLLER THAT REFUSES VALID CASES IS NOT CONSERVATIVE; IT IS BROKEN.**
 
-**V2 (D-056) FAILED - IMPLEMENTATION.** Its delay estimator struck at phases (0,15,30,45) and its development
-phase-null used THE SAME FOUR PHASES: the null was drawn from the estimator's own free choices and could not fire.
-On held-out phases every delay moved 214 -> 222. **A null that cannot fire is not a null.**
+**PHASE 1 — COMPONENT LIBRARY V2: QUALIFIED (D-062). THE WORLD CHANGED.**
+One preregistered Game-of-Life cycle confirmed that GoL **cannot express** the three missing questions:
+program != architecture (a memory bit is an eater that must be ADDED), feedback (guns are sources; no edge enters
+any gun; mutual glider annihilation is symmetric so there is no latch), and a held-out implementation. The mission
+forbids weakening the requirements to stay in Game of Life, so the world changed.
 
-**V3 (D-058) FAILED and is RETIRED.** It closed the phase loophole by striking at EVERY phase and taking the
-MEDIAN -- integrating the phase out. That is invariant, and it is also blind: for an edge gated by a PERIODIC
-ARRIVAL the median is invariant to exactly the delay it exists to measure. The evaluator saw a gate->output delay
-move 184 -> 164; V3 reported 185.5 in both. Also: 6 of 60 strike phases make a box-ablation unusable, and the
-"independent" null generator was itself BIASED (sort-and-truncate) so it could never draw them.
-**THE CURE FOR A NUISANCE PARAMETER IS NOT ALWAYS TO INTEGRATE IT OUT. INTEGRATING IT OUT CAN INTEGRATE OUT THE
-SIGNAL ALONG WITH THE NUISANCE.**
+**SECOND GROUND-TRUTH WORLD: a spatially embedded BOOLEAN NETWORK.** Signals advance one cell per step, so
+**PATH LENGTH IS DELAY**. The ontology, observability contract, admission layer and phase quotient carry over.
 
-**V4 (D-059, D-060) QUALIFIES.** It keeps the whole phase-resolved profile tau(phi) and gets invariance BY SYMMETRY:
-a global phase shift is a COMMON CYCLIC ROTATION of every profile, so the canonical form is the minimum over all
-rotations taken TOGETHER. A RELATIVE shift is not a group element and survives. Validity is graded PER (component,
-phase). The null generator is rebuilt and ASSERTS ITS OWN COVERAGE.
+  * **1A PROGRAM != ARCHITECTURE.** Memory is a REGISTER with a self-loop; the op/src arrays are BIT-IDENTICAL
+    across four programs. ACTIVE graph: 18/12/6/0 edges (program-dependent). **STRUCTURAL graph under a CONTEXT
+    that opens the gates: 18/18/18/18 -- IDENTICAL.**
+    THE FINDING: **structure behind a closed gate is NOT identifiable from single interventions.** It requires
+    CONDITIONAL ones -- hold a context that opens the gates, then probe. A blind observer must DISCOVER the
+    context cells, as the cells whose clamping has a PERMANENT effect: **the memory signature**. Context-discovery
+    is a RUNG on the hierarchy ladder, not an oracle.
+  * **1B FEEDBACK.** A one-step clamp of a register changes the output PERMANENTLY; the same clamp on a wire gives
+    exactly ONE blip and is forgotten. **Transient in -> permanent out is the signature of a cycle.**
+  * **1C HELD-OUT IMPLEMENTATION.** direct AND vs De Morgan: identical output traces, 3 cells differ, different
+    microtrajectories, and the SAME measured graph and delay. Same A_TOPO/A_TAU/F, different M -- a perfect E1.
 
-**A is now THREE separate verdicts (binding):** **A_TOPO** (topology, modulo isomorphism; no delays, no geometry),
-**A_TAU** (timing), **G** (layout; auxiliary; NEVER composited; G is not identity).
+The qualification bar caught four of my own defects (an observation window shorter than the causal path; a decoy
+that overwrote a channel; a delay edit that edited nothing; and a NON-VACUITY CHECK THAT WAS OFF BY ONE and
+certified a silent no-op -- worse than none, because it looks like rigour).
 
-**PROSPECTIVE (D-060, third fresh hold-out split, 0 head failures):** 12/12 pairwise cases; E1-B 6/6 on a fresh
-configuration with the head run EXACTLY ONCE (A_TOPO=SAME, A_TAU=DIFFERENT, G=DIFFERENT, F=SAME, M=DIFFERENT,
-L=SAME); E2 fires and recovers; L 3/3 incl. correct INDETERMINATE; S correctly reports OUT_OF_SCOPE.
-**The case that killed V3 -- a delay edit on a GATED path -- now passes.**
-
-**DISCLOSED, NOT PAPERED OVER:** the first held-out E1 was OUT OF SCOPE (relief one row from a gun, inside the
-certified 4-cell separation limit); its rebuild is DIAGNOSTIC_ONLY, and the prospective E1 claim rests only on the
-fresh E1-B. And **the head has no scope self-check** -- it merged two components and emitted a confident verdict.
-NOT patched (section 8 forbids it after a prospective run, and patching could not rescue any case anyway).
-
-**NOT CONSTRUCTIBLE HERE:** program-invariance (the program IS the architecture; EXP-GT-02B's pass was VACUOUS),
-feedback (no causal cycle), and a held-out COMPONENT IMPLEMENTATION (every candidate either destroys a neighbour in
-context or is a reactive seed). All three are required properties of the next component library.
-
-**NEXT: EXP-GT-HIERARCHY-00** -- blind hierarchical discovery from raw trajectories and self-chosen interventions.
-**NOT STARTED. EXP-SC-01 remains BLOCKED until it passes.** S/F/L preserved exactly. D-046 unchanged. No composite.
+**NEXT: EXP-GT-HIERARCHY-00 (Phases 2-6).** Protocol PREREGISTERED and frozen in
+`docs/HIERARCHICAL_DISCOVERY_PROTOCOL.md`. **NOT STARTED.** The observer has still never been asked to discover a
+hierarchy it was not told the shape of. **EXP-SC-01 remains BLOCKED behind it.**
 
 ## CURRENT SUBSTRATE
 
