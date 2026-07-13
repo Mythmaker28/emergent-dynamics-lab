@@ -50,7 +50,7 @@ def _idx(r, c):
 
 
 def build(program=(1, 0, 1), chan_cols=(6, 20, 34), impl="direct", extra_delay=0,
-          feedback=False, decoy=False, arch_id="M") -> Machine:
+          feedback=False, decoy=False, arch_id="M", clk_phase=0) -> Machine:
     """One fixed architecture. `program` is the registers' INITIAL CONTENTS -- it does not touch the wiring.
 
     Layout, per channel at column cc:
@@ -138,6 +138,87 @@ def build(program=(1, 0, 1), chan_cols=(6, 20, 34), impl="direct", extra_delay=0
             src[gy, cc, 1] = _idx(*rr)
             gcells = [(gy, cc)]
             glat = 1
+        elif impl == "nand2":
+            # AND built as NAND then NOT: 2 cells, latency 2. A THIRD implementation of the same function.
+            op[gy, cc] = AND
+            src[gy, cc, 0] = _idx(gy - 1, cc)
+            src[gy, cc, 1] = _idx(*rr)
+            op[gy + 1, cc] = NOT
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            op[gy + 2, cc] = NOT
+            src[gy + 2, cc, 0] = _idx(gy + 1, cc)
+            gcells = [(gy, cc), (gy + 1, cc), (gy + 2, cc)]
+            glat = 3
+        elif impl == "or_gate":
+            # A DIFFERENT FUNCTION. With the register at 0, OR(x,0) = x -- IDENTICAL short-term output to AND(x,1)?
+            # No: identical to AND under bit 0 (both 0)? The point of this control is that OR and XOR AGREE on the
+            # baseline program bit and DISAGREE on the other -- only manipulating the context separates them.
+            op[gy, cc] = OR
+            src[gy, cc, 0] = _idx(gy - 1, cc)
+            src[gy, cc, 1] = _idx(*rr)
+            gcells = [(gy, cc)]
+            glat = 1
+        elif impl == "xor_gate":
+            op[gy, cc] = XOR
+            src[gy, cc, 0] = _idx(gy - 1, cc)
+            src[gy, cc, 1] = _idx(*rr)
+            gcells = [(gy, cc)]
+            glat = 1
+        elif impl == "xor_or":
+            # DEVELOPMENT, RECONVERGENT: AND(x,r) = XOR( OR(x,r), XOR(x,r) ). Two junctions read the SAME two
+            # parents and reconverge on a third -- a DIAMOND, not a chain. Growth by absorbing unary neighbours
+            # alone shatters it into three modules, which is why the module boundary cannot be a growth rule at
+            # all: it is the maximal connected cluster of COMPUTING cells, bounded by conductors.
+            op[gy, cc] = OR
+            src[gy, cc, 0] = _idx(gy - 1, cc)
+            src[gy, cc, 1] = _idx(*rr)
+            op[gy, cc + 1] = XOR
+            src[gy, cc + 1, 0] = _idx(gy - 1, cc)
+            src[gy, cc + 1, 1] = _idx(*rr)
+            op[gy + 1, cc] = XOR
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            src[gy + 1, cc, 1] = _idx(gy, cc + 1)
+            gcells = [(gy, cc), (gy, cc + 1), (gy + 1, cc)]
+            glat = 2
+        elif impl == "and_or":
+            # HELD OUT -- NEVER USED OR INSPECTED DURING THE REPAIR. AND(x,r) = AND( AND(x,r), OR(x,r) ).
+            op[gy, cc] = AND
+            src[gy, cc, 0] = _idx(gy - 1, cc)
+            src[gy, cc, 1] = _idx(*rr)
+            op[gy, cc + 1] = OR
+            src[gy, cc + 1, 0] = _idx(gy - 1, cc)
+            src[gy, cc + 1, 1] = _idx(*rr)
+            op[gy + 1, cc] = AND
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            src[gy + 1, cc, 1] = _idx(gy, cc + 1)
+            gcells = [(gy, cc), (gy, cc + 1), (gy + 1, cc)]
+            glat = 2
+        elif impl == "xnor_and":
+            # HELD OUT -- NEVER USED OR INSPECTED DURING THE REPAIR. AND(x,r) = AND( x, NOT(XOR(x,r)) ), with the
+            # x path re-timed by two buffers so the two arguments meet in the same step. Its two inputs therefore
+            # reach the output at DIFFERENT latencies: an asymmetry no development implementation has.
+            op[gy, cc] = WIRE
+            src[gy, cc, 0] = _idx(gy - 1, cc)
+            op[gy + 1, cc] = WIRE
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            op[gy, cc + 1] = XOR
+            src[gy, cc + 1, 0] = _idx(gy - 1, cc)
+            src[gy, cc + 1, 1] = _idx(*rr)
+            op[gy + 1, cc + 1] = NOT
+            src[gy + 1, cc + 1, 0] = _idx(gy, cc + 1)
+            op[gy + 2, cc] = AND
+            src[gy + 2, cc, 0] = _idx(gy + 1, cc)
+            src[gy + 2, cc, 1] = _idx(gy + 1, cc + 1)
+            gcells = [(gy, cc), (gy, cc + 1), (gy + 1, cc), (gy + 1, cc + 1), (gy + 2, cc)]
+            glat = 3
+        elif impl == "single_parent":
+            # CONTROL: two incoming edges, ONE effective parent. AND(x, x) = x. It has the SHAPE of a gate and is
+            # NOT one. A detector that counts incoming edges instead of MANIPULATING them will call this a gate.
+            op[gy, cc] = AND
+            src[gy, cc, 0] = _idx(gy - 1, cc)
+            src[gy, cc, 1] = _idx(gy - 1, cc)
+            gcells = [(gy, cc)]
+            glat = 1
         elif impl == "direct_buf":
             # A DELAY-MATCHED direct gate: AND followed by two buffers, so the LATENCY THROUGH THE OBJECT is 3 --
             # the same as the De Morgan twin. It exists so that macro SAME can FIRE. Without it the certificate
@@ -166,7 +247,11 @@ def build(program=(1, 0, 1), chan_cols=(6, 20, 34), impl="direct", extra_delay=0
             glat = 3
         comps[f"gate{i}"] = gcells
         edges.append((f"chan{i}", f"gate{i}", glat))
-        edges.append((f"reg{i}", f"gate{i}", glat))
+        if impl != "single_parent":
+            # the SINGLE-EFFECTIVE-PARENT control has TWO incoming edges and ONE parent -- AND(x, x) = x. It is
+            # declared honestly: the register does NOT feed it. It exists so a detector that COUNTS incoming
+            # edges instead of MANIPULATING them is caught calling it a gate.
+            edges.append((f"reg{i}", f"gate{i}", glat))
 
         gout = gcells[-1]
         outw = []
@@ -197,11 +282,39 @@ def build(program=(1, 0, 1), chan_cols=(6, 20, 34), impl="direct", extra_delay=0
             src[r, c, 0] = _idx(r, c - 1) if k else -1
         comps["decoy"] = dec
 
-    net = Net(H, W, op, src, CLK_PERIOD, st)
+    if decoy == "active":
+        # A HARDER INERT CONTROL. The dead decoy above is constant 0 -- it never even enters the candidate set, so
+        # rejecting it proves nothing. This one is DRIVEN BY THE CLOCK: it blinks, it is unmistakably alive, it
+        # correlates with every channel in the machine (they share the clock) -- and it computes nothing and drives
+        # nothing. A detector that mistakes ACTIVITY or CORRELATION for computation must fail here.
+        dec = [(16, 45 + k) for k in range(6)]
+        for k, (r, c) in enumerate(dec):
+            op[r, c] = WIRE
+            src[r, c, 0] = _idx(1, 1) if k == 0 else _idx(r, c - 1)
+        comps["decoy_active"] = dec
+        edges.append(("clk", "decoy_active", 1))
+
+    if decoy == "cross":
+        # THE WIRE-JUNCTION CONTROL: many incoming GEOMETRIC neighbours, ONE causal parent, no joint computation.
+        # Three wires carrying three DIFFERENT channels are laid side by side at (14, 45..47), and a fourth cell
+        # sits directly beneath the middle one. It touches all three; it reads only one. A detector that infers
+        # parents from SPATIAL ADJACENCY calls this a 3-input gate. Parents are causal or they are nothing.
+        cross = []
+        for k, cc in enumerate(chan_cols[:3]):
+            r, c = 14, 45 + k
+            op[r, c] = WIRE
+            src[r, c, 0] = _idx(2, cc)          # each taps a DIFFERENT channel
+            cross.append((r, c))
+        op[15, 46] = WIRE
+        src[15, 46, 0] = _idx(14, 46)           # ONE causal parent, three geometric neighbours
+        cross.append((15, 46))
+        comps["decoy_cross"] = cross
+
+    net = Net(H, W, op, src, CLK_PERIOD, st, clk_phase=int(clk_phase))
     outs = tuple((OUT_ROW, cc) for cc in chan_cols)
     return Machine(net, tuple(program), comps, tuple(edges), outs, arch_id=arch_id, impl=impl,
                    meta={"chan_cols": tuple(chan_cols), "extra_delay": extra_delay,
-                         "feedback": feedback, "decoy": decoy})
+                         "feedback": feedback, "decoy": decoy, "clk_phase": int(clk_phase)})
 
 
 SETTLE = 64

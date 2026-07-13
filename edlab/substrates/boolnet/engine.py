@@ -50,6 +50,12 @@ class Net:
     period: int = 8                     # clock period
     state: np.ndarray = None            # (H,W) uint8 -- the ONLY thing the observer ever sees
     meta: dict = field(default_factory=dict)
+    clk_phase: int = 0                  # PHASE of the clock. A prospective hold-out varies it, so the observer
+                                        # must INFER the phase rather than inherit the one it was developed on.
+                                        # LAST field on purpose: every existing positional Net(...) call is
+                                        # unchanged. (Inserting it after `period` silently shifted `state` into
+                                        # `clk_phase` and the differential check against the reference engine
+                                        # caught it on the first run -- which is what that check is for.)
 
     def __post_init__(self):
         if self.state is None:
@@ -57,7 +63,7 @@ class Net:
 
     def copy(self):
         return Net(self.H, self.W, self.op.copy(), self.src.copy(), self.period,
-                   self.state.copy(), dict(self.meta))
+                   self.state.copy(), dict(self.meta), self.clk_phase)
 
 
 def step(net: Net, t: int, clamp=None) -> Net:
@@ -80,7 +86,7 @@ def step(net: Net, t: int, clamp=None) -> Net:
     # plain AND reads 5 instead of 1. That is a genuine IDENTIFIABILITY TRAP built into the clock, not a bug in
     # the observer -- and the honest fix is to remove the degeneracy from the world rather than to paper over it
     # in the estimator. A 3-of-8 duty cycle makes NOT(x) a shift of nothing.
-    clk = np.int8(1 if ((t + 1) % net.period) < 3 else 0)
+    clk = np.int8(1 if ((t + 1 + net.clk_phase) % net.period) < 3 else 0)
 
     nxt = np.zeros_like(s)
     nxt[op == CONST1] = 1
@@ -124,7 +130,7 @@ def step_reference(net: Net, t: int, clamp=None) -> Net:
         elif o == CONST1:
             nxt[i] = 1
         elif o == CLK:
-            nxt[i] = 1 if ((t + 1) % net.period) < 3 else 0
+            nxt[i] = 1 if ((t + 1 + net.clk_phase) % net.period) < 3 else 0
         elif o == WIRE:
             nxt[i] = val(src[i, 0])
         elif o == NOT:

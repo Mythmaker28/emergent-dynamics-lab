@@ -49,10 +49,12 @@ class World:
         self.n_interventions = 0
 
     def _settled(self):
-        cur = self._net
-        for k in range(SETTLE):
-            cur = step(cur, k)
-        return cur
+        if getattr(self, "_s0", None) is None:
+            cur = self._net
+            for k in range(SETTLE):
+                cur = step(cur, k)
+            self._s0 = cur
+        return self._s0
 
     def trace(self, clamp=None, hold=OBS, steps=OBS):
         """clamp = {(r,c): v}. hold = how many steps it is held (OBS = ABLATION, 1 = PULSE)."""
@@ -69,6 +71,22 @@ class World:
 
     def raw(self, steps=OBS):
         return self.trace()[0]
+
+    def pulse_at(self, cell, value, at_step, steps, bg=None):
+        """Force `cell` to `value` at EXACTLY one step, against a background context `bg` held for the whole window.
+        The only way to isolate a DIRECT causal edge: an indirect effect needs at least two steps, so whatever
+        deviates one step later is a direct child and nothing else. The pulse OVERRIDES bg at its own step, so a
+        context variable can itself be pulsed."""
+        self.n_interventions += 1
+        cur = self._settled()
+        grids = []
+        for k in range(steps):
+            cl = dict(bg) if bg else {}
+            if k == at_step:
+                cl[cell] = value
+            cur = step(cur, SETTLE + k, cl or None)
+            grids.append(cur.state.copy())
+        return np.stack(grids)
 
 
 # ------------------------------------------------------------------ rung 1-4: micro-patterns, clock, channels

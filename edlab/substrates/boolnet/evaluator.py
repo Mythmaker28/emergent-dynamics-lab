@@ -71,17 +71,33 @@ def measured_graph(m: Machine) -> dict:
             "baseline": base}
 
 
+# What the gate's FUNCTION implies for a channel's output, given its program bit. `live` means a real square wave
+# (the clock reaches the output); not-live means a stuck line, whether stuck high or stuck low.
+#   AND(clk, p): out = clk if p=1, else 0        -> live iff p = 1
+#   OR (clk, p): out = 1  if p=1, else clk       -> live iff p = 0     (STUCK HIGH when p=1 -- not dead: saturated)
+#   XOR(clk, p): out = ~clk if p=1, else clk     -> live ALWAYS
+# My first bar hardcoded the AND row and so declared the OR and XOR machines BROKEN when they were working exactly
+# as built. A ground-truth check that only knows one gate is not ground truth; it is a hidden assumption.
+_LIVE_IF = {
+    "direct": lambda b: bool(b), "direct_buf": lambda b: bool(b), "demorgan": lambda b: bool(b),
+    "nand2": lambda b: bool(b), "single_parent": lambda b: True,   # AND(clk,clk) = clk: always live, program-blind
+    "xor_or": lambda b: bool(b), "and_or": lambda b: bool(b), "xnor_and": lambda b: bool(b),   # all compute AND
+    "or_gate": lambda b: not bool(b), "xor_gate": lambda b: True,
+}
+
+
 def viable(m: Machine) -> tuple:
-    """POSITIVE CONTROL: every channel whose program bit is 1 must actually carry the clock to its output;
-    every channel whose bit is 0 must be silent. NEGATIVE CONTROL is the bit-0 case -- a criterion that cannot
-    fail is not a criterion."""
+    """POSITIVE CONTROL: every channel the gate's function says must carry the clock to its output does so.
+    NEGATIVE CONTROL: every channel it says must be a stuck line IS one -- a criterion that cannot fail is not a
+    criterion. The expectation comes from the gate's function AND the program, never from the program alone."""
     tr = _trace(m)
     live = []
     for j in range(len(m.out_cells)):
         col = [x[j] for x in tr]
         live.append(any(col) and not all(col))          # a real square wave, not a stuck line
-    expect = [bool(b) for b in m.program]
-    return live == expect, {"live": live, "expected_from_program": expect}
+    f = _LIVE_IF[m.impl]
+    expect = [f(b) for b in m.program]
+    return live == expect, {"live": live, "expected": expect, "impl": m.impl, "program": tuple(m.program)}
 
 
 def assert_qualified(m: Machine) -> dict:
@@ -123,7 +139,40 @@ def assert_qualified(m: Machine) -> dict:
     # channel, not the register, not the gate itself -- has any measurable effect on output j. Every edge into
     # out_j is severed. That is not a defect of the benchmark: it is the very distinction A_TOPO must be read
     # off the STRUCTURAL graph to avoid, and here the two are separable BY CONSTRUCTION for the first time.
-    active_decl = {(n, o) for (n, o) in decl_pairs if m.program[int(o[3:])] != 0}
+    # WHICH declared edges are ACTIVE is a fact about the GATE'S FUNCTION and the program bit -- edge by edge,
+    # not output by output. My first bar wrote `program[j] != 0`, which is the AND row of the table and nothing
+    # else, and it duly declared the OR and XOR machines broken when they were working exactly as built.
+    #
+    #   AND(clk, p)  p=1: out = clk. Ablating clk, the channel, the gate OR the register all kill it -> ALL active.
+    #                p=0: out = 0 forever. Nothing upstream moves it, not even the gate -> NO edge is active.
+    #   OR (clk, p)  p=1: out = 1 forever, SATURATED. Clamping the clock changes nothing (1 or clk = 1), so the
+    #                     clock is severed; but clamping the REGISTER to 0 re-opens the channel, and clamping the
+    #                     GATE to 0 kills the output -> ONLY gate and register are active.
+    #                p=0: out = clk. Clock, channel and gate are active; clamping the register to 0 is VACUOUS
+    #                     (it already holds 0) -> the register edge is NOT measurable here. Absence of a vacuous
+    #                     intervention's effect is not absence of an edge; it is absence of an experiment.
+    #   XOR(clk, p)  p=1: out = ~clk -- everything upstream is active, the register included (clamping it flips
+    #                     the polarity back).
+    #                p=0: out = clk; the register clamp is again vacuous.
+    #   AND(x, x)    the register is not wired to it at all: signal path only, at every program bit.
+    def _active(n, j):
+        b = int(m.program[j])
+        is_reg, is_gate, is_out = n == f"reg{j}", n == f"gate{j}", n == f"out{j}"
+        # the OUTPUT WIRE is DOWNSTREAM of the gate, so the gate's saturation cannot sever it: whenever the output
+        # is not already constant 0, clamping its own wire to 0 moves it. It belongs with the gate, not with the
+        # signal path. (Grouping it with the clock is what produced measured-only=[('out0','out0')] on the
+        # saturated OR machine -- the evaluator denying an edge it had itself just measured.)
+        downstream = is_gate or is_out
+        if m.impl in ("direct", "direct_buf", "demorgan", "nand2", "xor_or", "and_or", "xnor_and"):
+            return b == 1                              # p=0: out is constant 0; every clamp-to-0 is vacuous
+        if m.impl == "or_gate":
+            return (is_reg or downstream) if b == 1 else (not is_reg)
+        if m.impl == "xor_gate":
+            return True if b == 1 else (not is_reg)
+        if m.impl == "single_parent":
+            return not is_reg                          # the register is not wired to AND(x, x) at all
+        raise AssertionError(f"no ground-truth activity rule for impl {m.impl!r}")
+    active_decl = {(n, o) for (n, o) in decl_pairs if _active(n, int(o[3:]))}
     missing = sorted(active_decl - meas_pairs)
     extra = sorted(meas_pairs - active_decl)
     if missing or extra:
@@ -196,3 +245,14 @@ def _trace_ctx(m: Machine, context=None, probe=None):
         cur = step(cur, SETTLE + k, dict(cl) if cl else None)
         out.append(tuple(int(cur.state[r, c]) for (r, c) in m.out_cells))
     return out
+
+
+# The declared component `gate{i}` is a LAYOUT grouping: for `direct_buf` it also contains two pure WIRE buffers,
+# and for `xnor_and` two re-timing buffers. Those cells CONDUCT; they do not compute. The MINIMAL COMPUTING
+# SUBGRAPH -- which is what a module IS -- excludes them, and an observer that reports the AND alone is RIGHT, not
+# short by two cells. Scoring boundary quality against the layout grouping would penalise the correct answer, which
+# is the D-053 error (marking the observer wrong when it was right). Ground truth for BOUNDARY is the gate core.
+def gate_core(m: Machine, i: int) -> set:
+    """The cells of gate{i} that COMPUTE: everything but the pure conductors."""
+    from .engine import WIRE
+    return {c for c in m.components[f"gate{i}"] if int(m.net.op[c]) != WIRE}

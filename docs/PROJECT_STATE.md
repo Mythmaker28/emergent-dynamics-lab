@@ -253,3 +253,47 @@ intervention artefacts are deterministic and independently reproducible regardle
 - `theseus_score`, composite `memory_score`, or post-hoc threshold relaxation.
 - Mutation, neighbor contagion/type transition, or particle recycling before the causal ladder authorizes them.
 - Claims that the historical 7,079-row experiment was independently reproduced.
+
+
+---
+
+# HEAD (2026-07-14) — the repaired discovery architecture is RETIRED; EXP-SC-01 stays BLOCKED
+
+**D-064.** The single authorized repair of D-063 was built and qualified on development: **EXP-GT-MODULES, 18/18**.
+A gate is no longer a *position* but a **maximal connected cluster of computing cells, bounded by conductors**,
+whose boundary, parents, outputs, truth table, delays and quotient are all **inferred by intervention**. Five of my
+own defects had to be removed to get there: an ablation cannot isolate a direct edge (a **one-step pulse** can); a
+structural edge can be **dynamically masked** by saturation (contexts, unioned); a **constant-zero cell can still
+be a causal parent**; a vacuous copy test read **absence of evidence as evidence of absence**; and the boundary is
+**not a growth rule** (growth shatters on a reconvergent diamond, with the winner decided by iteration order).
+
+**D-065.** The frozen observer was then run **exactly once** on a fresh split holding out topology, layout, phase,
+program, module implementation and intervention schedule, including two gate implementations never used or
+inspected during the repair. **It FAILED.**
+
+*What was fixed, and it is real:* on unseen implementations — gate recall **100 %** (was 0.00), boundary **exact**
+(IoU 1.000), parents, outputs, internal delay and cell count all **100 %**.
+
+*What failed:* function accuracy **50 %** on unseen implementations, conditional edges 58 %, and **false certainty
+6/24** against a bar of zero written into the harness before the run. Cause: `xnor_and`'s module boundary includes a
+**re-timing buffer carrying a delayed copy of another parent**; the detector clamped it as an independent input,
+measured the function **off the manifold the machine can realize**, and confidently emitted a three-input table.
+Consequently it **cannot recognize an unseen implementation of AND as the same macro object as the AND it knows** —
+the entire purpose of the repair.
+
+Same error as D-053 and D-063: **a representational boundary mistaken for a causal one.**
+
+**Per the preregistered rule: RETIRED. No second repair cycle.** Nothing is patched or re-tuned. The eight
+prospective worlds are **BURNED** (`DIAGNOSTIC_ONLY`).
+
+## What a conceptually different discovery observer must do
+
+1. A module's interface is its **independent causal sources**, not its conductor-bounded frontier: trace every
+   boundary parent back through conductors to the cell that originates it, and deduplicate parents that share one.
+2. Measure the truth table on the **reachable manifold** of parent assignments. Off-manifold rows are
+   counterfactually meaningful but are **not the module's function**, and must never enter a quotient.
+3. **Test** independence between parents; never infer it from their being distinct cells.
+4. Where the manifold cannot be established, the answer is **INDETERMINATE** — not a confident table.
+
+**EXP-SC-01 remains BLOCKED** and will stay blocked until the *complete minimal hierarchy* — not merely gate
+detection — qualifies prospectively.

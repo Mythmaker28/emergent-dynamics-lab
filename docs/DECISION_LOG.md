@@ -1605,3 +1605,84 @@ under contexts that vary each parent independently. Then: **generate an entirely
 **If the repaired observer still fails, the discovery design is RETIRED.**
 
 **EXP-SC-01 remains BLOCKED.**
+
+---
+
+## D-064 — the repair of D-063 QUALIFIES on development (EXP-GT-MODULES, 18/18)
+
+`edlab/identity/modules.py`. The retired detector defined a gate as *the earliest cell in a discovered memory's
+influence cone* — a **position**, not a computation. It is replaced by **implementation-independent causal module
+discovery**: a module is the **maximal connected cluster of computing cells, bounded by conductors**, whose
+boundary has ≥ 2 independently manipulable parents, and whose boundary, parents, outputs, truth table, delays and
+quotient are all **inferred by intervention**.
+
+Five findings, each of which had first appeared as a defect of mine:
+
+1. **An ablation cannot isolate a direct edge.** Clamping one input of an AND only shows at its output when the
+   *other* input is favourable, so "the child deviates one step after the parent" is phase-dependent and found the
+   gate in *no* implementation. A **one-step pulse** isolates it: nothing else differs at step `t`, so whatever
+   differs at `t+1` is a direct child. Sweeping `t` over a period covers every phase; the flip forces the negation
+   of the cell's own value, so it is non-vacuous by construction.
+2. **A structural edge can be dynamically masked** (A3). With its register at 1, `OR(x,1)` is *saturated*: the
+   channel→gate edge is invisible, the gate has one parent, and it *disappears* — measured, 0 modules. The graph is
+   therefore built under every discovered context and unioned, and each edge records the contexts in which it fires.
+3. **A cell that is constant zero can still be a causal parent.** De Morgan's `NOT(reg)` is constant 0 while the
+   register holds 1; a candidate set built from baseline activity excludes it and the OR never gets its second
+   parent. A part of the machine that is quiet today is still part of the machine.
+4. **Absence of evidence taken as evidence of absence.** A passive copy test on a wire whose input has gone silent
+   returns "not a copy" — and made the gate's own output wire look like a computation. Polarity is now read off the
+   **pulse**, which moves the parent by construction and is defined even for a register that never moves on its own.
+5. **The boundary is not a growth rule.** Growing outward from a junction works on a *chain* and shatters on a
+   *diamond*; which junction "won" depended on iteration order — an arbitrary answer dressed as a measured one.
+
+Certificate: 18/18 on development circuits only. Positives fire on one-cell, 3-cell, 4-cell and **reconvergent**
+gates; negatives fire on wires, on **active clock-correlated decoration**, on a cell with **three active geometric
+neighbours and one causal parent**, and on `AND(x,x)` (**two incoming edges, one effective parent**). The `or_gate`
+and `xor_gate` worlds emit **byte-identical output traces** at program 000 and are separated **only** by
+manipulating a discovered register context. The burned De Morgan hold-out was not used as evidence.
+
+## D-065 — the repaired design FAILS the single prospective run. **RETIRED.**
+
+`EXP-GT-HIER-R`, 8 fresh worlds, jointly holding out topology, layout, phase (development ran *entirely* at
+`clk_phase = 0`), program, module implementation and intervention schedule, including two gate implementations
+never used or inspected during the repair. The frozen observer was run **once**.
+
+**What the repair fixed, and it is real.** On the unseen implementations: gate recall **100 %** (it was 0.00),
+boundary **exact 100 %** (mean IoU 1.000), parent interface **100 %**, output interface **100 %**, internal delay
+**100 %**, micro cell count **100 %**. The conceptual failure of D-063 — a gate is a position — is gone.
+
+**What it failed.** Function accuracy **50 %** on unseen implementations (75 % overall), conditional-edge accuracy
+58 % on unseen, and **FALSE CERTAINTY 6/24** against a bar of **zero** that was written into the harness *before*
+the run. Every failure is `xnor_and`.
+
+**The cause, stated without reference to any of my labels.** `xnor_and`'s module is bounded by conductors, so its
+boundary parents are the register, the channel's last cell, **and a re-timing buffer carrying a delayed copy of
+that same channel cell**. The detector treated all three as *independent* inputs, clamped them independently —
+exploring assignments the machine can never realize — and confidently reported a three-input table with no
+two-input reduction. Consequently
+`macro_quotient(one-cell AND, unseen xnor_and AND) = DIFFERENT / DIFFERENT`: **the observer cannot recognize an
+unseen implementation of AND as the same macro object as the AND it already knows.** That was the entire purpose
+of the repair.
+
+I built the "coincident correlation" control at the **cell** level (`AND(x,x)`) and it passed. I never built it at
+the **module boundary** level, and nothing in the development family had a buffer feeding a boundary. The held-out
+world did — by construction, since I designed it for asymmetric input latency — and the design broke on precisely
+that.
+
+It is the same error as D-053 (two "architectures" that were one causal graph) and D-063 (a gate that was a
+position): **a representational boundary mistaken for a causal one.** The conductor-bounded frontier is a graph
+artefact; the module's real inputs are its independent causal *sources*.
+
+**Per the preregistered rule, this discovery architecture is RETIRED. No second repair cycle.** No threshold is
+adjusted; no implementation-specific template is added. `edlab/identity/modules.py` is preserved unchanged, and the
+eight prospective worlds are **BURNED** (`DIAGNOSTIC_ONLY`).
+
+**EXP-SC-01 remains BLOCKED.**
+
+### Design direction for a conceptually different observer (not implemented here)
+
+A module's interface must be its **independent causal sources**, not its conductor-bounded frontier: trace every
+boundary parent back through conductors to the cell that *originates* it, and deduplicate parents that share a
+source. The input space of a module is the set of assignments the machine **can actually realize** — a truth table
+measured off that manifold is not the module's function, and must either be declared off-manifold or abstained
+from. Independence between parents must be **tested**, never assumed from the fact that they are distinct cells.
