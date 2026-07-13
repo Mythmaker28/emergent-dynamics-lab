@@ -1523,3 +1523,85 @@ which `A`'s program-invariance is not constructible; and a **causal cycle**, wit
 **EXP-GT-HIERARCHY-00** (mission §9): blind hierarchical discovery from raw trajectories and self-chosen
 interventions — micro-patterns, velocities, channels, clock, gates, memory, program, I/O, FSM, macro causal graph,
 with counterfactual validation and calibrated abstention. **Not started.** **EXP-SC-01 stays BLOCKED until it passes.**
+
+## D-063 — EXP-GT-HIERARCHY-00: the three addenda QUALIFY. Blind discovery FAILS prospectively. Hold-outs burned.
+
+**Date:** 2026-07-18
+**Status:** **addenda QUALIFIED · discovery FAILED — DISCOVERY.** EXP-SC-01 remains **BLOCKED**.
+**Run:** `results/EXP-GT-HIER-20260718-001`. Everything preserved. V4, admission, S/F/L/M/G all untouched.
+
+### The three binding addenda: ALL PASS
+
+**A1 — admission is SCALE-RELATIVE.** The 4-cell De Morgan gate, taken as **one composite macro-object**, is
+**ADMITTED** even though its internal NOTs have distinct internal effects — *that is what being made of parts
+means*. Two gates with **different external interfaces** forced into one object are **OUT_OF_SCOPE**: a sub-part
+leaking an interface the parent does not have is the merged-blob signature, one level up. **D-061 is re-read, not
+revised: it certified admission at the ELEMENTARY-COMPONENT level, and it remains valid there.**
+
+**A2 — architecture is MULTI-SCALE.** direct vs De Morgan: **DIFFERENT at micro**. At macro the observer must
+**EARN** the quotient — and it correctly **REFUSES** it (`INDETERMINATE`), because the De Morgan gate has **3 steps
+of latency through the object** while the direct gate has **1**; their *total* path latencies match only because
+the output wire compensates. Given a **delay-matched** direct gate (AND + 2 buffers, latency 3), the observer
+**establishes all three** — functional, interface **and** delay equivalence — and returns **SAME**. *The quotient
+can both fire and be refused.*
+
+**A3 — structure is CONTEXT-DEPENDENT.** With **no** discovered context the certificate returns
+**`STRUCTURAL_GRAPH_INCOMPLETE`**, never a false absence. With contexts **discovered blind** (the memory
+signature), the known conditional paths are revealed and the graph is **COMPLETE**. Edges carry explicit
+conditions `X → Y | S=1`.
+
+### What the blind observer actually recovered — from raw cells and its own interventions only
+
+**Clock period · clock source · all 3 gates · all 3 registers · the write-enable · 14 components — EXACT**, on the
+development worlds, with **no count hard-coded at any rung** and **no evaluator label anywhere in its path**.
+It separates registers from the global write-enable **by interface breadth alone**.
+
+### Prospective result: **FAILED — DISCOVERY**
+
+| held-out world | T | source | gate P/R | mem R | counterfactual |
+|---|---|---|---|---|---|
+| p010, new layout | ✅ | ✅ | 1.00 / 1.00 | 1.00 | 0.69 |
+| **p110, De Morgan** | ✅ | ❌ | **0.00 / 0.00** | 1.00 | 0.90 |
+| p001, delay-2 detour | ✅ | ❌ | 1.00 / 1.00 | 1.00 | 0.69 |
+| p111, feedback + decoy | ✅ | ✅ | 1.00 / 1.00 | 1.00 | 1.00 |
+
+**1. THE GATE DETECTOR DOES NOT TRANSFER TO AN UNSEEN IMPLEMENTATION.** It finds gates as *the earliest cell in a
+discovered memory's influence cone*. In the direct implementation that cell **is** the AND. In De Morgan the first
+cell downstream of the register is `NOT(reg)` — which has **no output interface** under the gate-opening context —
+so the detector finds **nothing**. **Gate recall 0.00 on the one held-out world with a different micro-implementation.**
+It was calibrated, without my noticing, on a single gate implementation.
+
+**2. Source detection fails** on the De Morgan and detour worlds, and **counterfactual accuracy falls to 0.69**:
+predicted interfaces of memories and gates do not always match the observed set of changed outputs.
+
+### A benchmark-label error of mine, corrected (D-053 class, again)
+
+I scored `clock_period_correct` against the **clock cell's** period. In the world with the feedback ring the
+**fundamental period of the WORLD is 24** (lcm of the clock's 8 and the ring's 3) — and the observer correctly
+reported **24**. **I marked the observer wrong when it was right.** The truth is now taken from the evaluator's own
+`period_of()`, not from a constant I assumed. **The observer infers the period of the world, which is the only
+thing it can see, and that is the right quantity.**
+
+### Two identifiability traps found in the substrate itself, and removed rather than papered over
+
+- **An ablation ONSET is not a DELAY.** With a square-wave clock the first step at which an output deviates depends
+  on the **phase**, not the path length: the three cells of a buffered gate reported onsets 17/17/12, giving a
+  "latency" of 6 for an object whose true latency is 3. Latency is now measured by **exact series alignment**,
+  which is phase-invariant. *The same disease that killed A-head V2 and V3, in a new substrate.*
+- **With a 50 % duty cycle, `NOT(x)` is EXACTLY `x` delayed by half a period.** Inversion and delay become
+  indistinguishable, and the De Morgan gate's latency read 7 instead of 3. This is a genuine identifiability trap
+  **built into the clock**. The honest fix is to remove the degeneracy from the **world**, not to patch the
+  estimator: the clock now has a **3-of-8 duty cycle**, and `NOT(x)` is a shift of nothing.
+
+### Failure classification and next action
+
+**Type: OBSERVABILITY / IMPLEMENTATION** — the gate detector's rule is *implementation-specific*, not a physics or
+ontology failure. **Preserved. The held-out worlds are now BURNED** (`DIAGNOSTIC_ONLY`).
+
+**ONE preregistered repair cycle is authorized, on DEVELOPMENT data only.** The gate detector must be rebuilt on a
+principle that does not assume a gate implementation — e.g. **a gate is a cell with TWO causal parents**, found by
+testing whether a cell's series is a lagged copy of *one* upstream cell (a wire) or a *function of two* (a gate),
+under contexts that vary each parent independently. Then: **generate an entirely new held-out split** and re-run.
+**If the repaired observer still fails, the discovery design is RETIRED.**
+
+**EXP-SC-01 remains BLOCKED.**

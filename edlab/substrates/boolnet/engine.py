@@ -61,7 +61,53 @@ class Net:
 
 
 def step(net: Net, t: int, clamp=None) -> Net:
-    """One synchronous update. `clamp` is a dict {(r,c): value} -- the observer's ONLY way to intervene."""
+    """One synchronous update, VECTORISED. `clamp` is a dict {(r,c): value} -- the observer's ONLY intervention.
+
+    The reference implementation was a Python loop over every cell. It is kept below as `step_reference` and this
+    path is proved bit-identical to it on adversarial random nets (`assert_equivalent_to_reference`). Speed is a
+    CORRECTNESS matter, not an engineering one: blind memory discovery must PULSE EVERY CELL, and a probe too slow
+    to run exhaustively is a probe that gets sub-sampled -- which is exactly what made the S head blind in
+    EXP-GT-01.
+    """
+    s = net.state.reshape(-1).astype(np.int8)
+    op = net.op.reshape(-1)
+    src = net.src.reshape(-1, 3)
+    a = np.where(src[:, 0] >= 0, s[src[:, 0]], 0)
+    b = np.where(src[:, 1] >= 0, s[src[:, 1]], 0)
+    # ASYMMETRIC DUTY CYCLE, and it is not cosmetic.
+    # With a 50%-duty square wave, NOT(x) is EXACTLY x delayed by half a period. Inversion and delay become
+    # indistinguishable, so the latency through a De Morgan gate reads 7 instead of 3 and the latency through a
+    # plain AND reads 5 instead of 1. That is a genuine IDENTIFIABILITY TRAP built into the clock, not a bug in
+    # the observer -- and the honest fix is to remove the degeneracy from the world rather than to paper over it
+    # in the estimator. A 3-of-8 duty cycle makes NOT(x) a shift of nothing.
+    clk = np.int8(1 if ((t + 1) % net.period) < 3 else 0)
+
+    nxt = np.zeros_like(s)
+    nxt[op == CONST1] = 1
+    nxt[op == CLK] = clk
+    m = op == WIRE
+    nxt[m] = a[m]
+    m = op == NOT
+    nxt[m] = 1 - a[m]
+    m = op == AND
+    nxt[m] = a[m] & b[m]
+    m = op == OR
+    nxt[m] = a[m] | b[m]
+    m = op == XOR
+    nxt[m] = a[m] ^ b[m]
+    m = op == REG                      # next = we ? data : self  -- the SELF term is the causal CYCLE
+    nxt[m] = np.where(a[m].astype(bool), b[m], s[m])
+
+    out = net.copy()
+    out.state = nxt.reshape(net.H, net.W).astype(np.uint8)
+    if clamp:
+        for (r, c), v in clamp.items():
+            out.state[r, c] = v
+    return out
+
+
+def step_reference(net: Net, t: int, clamp=None) -> Net:
+    """The original cell-by-cell reference. Never deleted; it is the second independent path."""
     H, W = net.H, net.W
     s = net.state.reshape(-1).astype(np.int8)
     op = net.op.reshape(-1)
@@ -78,7 +124,7 @@ def step(net: Net, t: int, clamp=None) -> Net:
         elif o == CONST1:
             nxt[i] = 1
         elif o == CLK:
-            nxt[i] = 1 if ((t + 1) % net.period) < (net.period // 2) else 0
+            nxt[i] = 1 if ((t + 1) % net.period) < 3 else 0
         elif o == WIRE:
             nxt[i] = val(src[i, 0])
         elif o == NOT:
@@ -90,8 +136,6 @@ def step(net: Net, t: int, clamp=None) -> Net:
         elif o == XOR:
             nxt[i] = val(src[i, 0]) ^ val(src[i, 1])
         elif o == REG:
-            # THE MEMORY. next = we ? data : self.  The SELF input is a genuine directed CYCLE, and it is what
-            # makes the program a STATE of fixed wiring rather than a change to the wiring.
             we, data = val(src[i, 0]), val(src[i, 1])
             nxt[i] = data if we else s[i]
     out = net.copy()
@@ -100,6 +144,28 @@ def step(net: Net, t: int, clamp=None) -> Net:
         for (r, c), v in clamp.items():
             out.state[r, c] = v
     return out
+
+
+def assert_equivalent_to_reference(trials: int = 12, seed: int = 20260718) -> int:
+    """DIFFERENTIAL VERIFICATION. The fast path is not trusted because it looks right; it is trusted because it
+    is proved bit-identical to the reference on adversarial random nets, including every op and self-loops."""
+    rng = np.random.default_rng(seed)
+    checks = 0
+    for _ in range(trials):
+        H, W = 7, 9
+        n = H * W
+        op = rng.integers(0, 9, size=(H, W))
+        src = rng.integers(-1, n, size=(H, W, 3))
+        st = (rng.random((H, W)) < 0.4).astype(np.uint8)
+        net = Net(H, W, op, src, 6, st)
+        a, b = net.copy(), net.copy()
+        for t in range(10):
+            a = step(a, t)
+            b = step_reference(b, t)
+            if not np.array_equal(a.state, b.state):
+                raise AssertionError("boolnet: vectorised step DISAGREES with the reference")
+            checks += 1
+    return checks
 
 
 def run(net: Net, steps: int, t0: int = 0, clamp_fn=None):

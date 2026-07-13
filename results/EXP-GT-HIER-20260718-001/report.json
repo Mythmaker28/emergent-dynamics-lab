@@ -1,0 +1,190 @@
+{
+ "addenda": {
+  "A1": {
+   "cases": [
+    {
+     "case": "COMPOSITE: the 4-cell De Morgan gate as one macro-object",
+     "expected": "ADMITTED",
+     "verdict": "ADMITTED",
+     "pass": true,
+     "n_subparts": 4
+    },
+    {
+     "case": "MERGE: two gates with different interfaces forced into one object",
+     "expected": "OUT_OF_SCOPE",
+     "verdict": "OUT_OF_SCOPE",
+     "pass": true,
+     "leaks": [
+      {
+       "cell": [
+        8,
+        20
+       ],
+       "leaked_outputs": [
+        1
+       ]
+      }
+     ]
+    }
+   ],
+   "pass": true
+  },
+  "A2": {
+   "cases": [
+    {
+     "case": "MICRO level: direct vs De Morgan",
+     "expected": "DIFFERENT",
+     "verdict": "DIFFERENT",
+     "pass": true,
+     "detail": {
+      "direct": [
+       100,
+       97
+      ],
+      "demorgan": [
+       100,
+       91
+      ]
+     }
+    },
+    {
+     "case": "MACRO: direct (latency 1) vs De Morgan (latency 3) -- quotient must be REFUSED",
+     "expected": "INDETERMINATE",
+     "verdict": "INDETERMINATE",
+     "pass": true,
+     "checks": {
+      "functional_equivalence": true,
+      "interface_equivalence": true,
+      "delay_equivalence": false
+     }
+    },
+    {
+     "case": "MACRO: delay-matched direct (latency 3) vs De Morgan -- quotient EARNED",
+     "expected": "SAME",
+     "verdict": "SAME",
+     "pass": true,
+     "checks": {
+      "functional_equivalence": true,
+      "interface_equivalence": true,
+      "delay_equivalence": true
+     }
+    }
+   ],
+   "pass": true
+  },
+  "A3": {
+   "cases": [
+    {
+     "case": "NO context discovered -> must NOT claim a complete structural graph",
+     "expected": "STRUCTURAL_GRAPH_INCOMPLETE",
+     "verdict": "STRUCTURAL_GRAPH_INCOMPLETE",
+     "pass": true
+    },
+    {
+     "case": "contexts DISCOVERED and known conditional paths revealed -> COMPLETE",
+     "expected": "COMPLETE",
+     "verdict": "COMPLETE",
+     "pass": true,
+     "n_contexts": 4
+    },
+    {
+     "case": "conditional edges are explicitly labelled X->Y|S=1",
+     "expected": "yes",
+     "verdict": "yes",
+     "pass": true,
+     "n_conditional": 42
+    }
+   ],
+   "pass": true,
+   "controls": 6
+  }
+ },
+ "addenda_pass": true,
+ "development": {
+  "worlds": [
+   {
+    "world": "DEV p111",
+    "clock_period_correct": true,
+    "source_correct": true,
+    "gate_precision": 1.0,
+    "gate_recall": 1.0,
+    "memory_recall": 1.0,
+    "memory_cells_found": 3,
+    "n_components": 14,
+    "n_interventions": 3380,
+    "counterfactual_accuracy": 1.0,
+    "counterfactual_n": 12
+   },
+   {
+    "world": "DEV p101",
+    "clock_period_correct": true,
+    "source_correct": true,
+    "gate_precision": 1.0,
+    "gate_recall": 1.0,
+    "memory_recall": 1.0,
+    "memory_cells_found": 4,
+    "n_components": 14,
+    "n_interventions": 3369,
+    "counterfactual_accuracy": 0.8461538461538461,
+    "counterfactual_n": 13
+   }
+  ]
+ },
+ "held_out": {
+  "worlds": [
+   {
+    "world": "HO p010 sp(4,19,37)",
+    "clock_period_correct": true,
+    "source_correct": true,
+    "gate_precision": 1.0,
+    "gate_recall": 1.0,
+    "memory_recall": 1.0,
+    "memory_cells_found": 4,
+    "n_components": 14,
+    "n_interventions": 3363,
+    "counterfactual_accuracy": 0.6923076923076923,
+    "counterfactual_n": 13
+   },
+   {
+    "world": "HO p110 demorgan",
+    "clock_period_correct": true,
+    "source_correct": false,
+    "gate_precision": 0.0,
+    "gate_recall": 0.0,
+    "memory_recall": 1.0,
+    "memory_cells_found": 4,
+    "n_components": 8,
+    "n_interventions": 3392,
+    "counterfactual_accuracy": 0.9,
+    "counterfactual_n": 10
+   },
+   {
+    "world": "HO p001 delay2",
+    "clock_period_correct": true,
+    "source_correct": false,
+    "gate_precision": 1.0,
+    "gate_recall": 1.0,
+    "memory_recall": 1.0,
+    "memory_cells_found": 4,
+    "n_components": 17,
+    "n_interventions": 3390,
+    "counterfactual_accuracy": 0.6923076923076923,
+    "counterfactual_n": 13
+   },
+   {
+    "world": "HO p111 feedback+decoy",
+    "clock_period_correct": true,
+    "source_correct": true,
+    "gate_precision": 1.0,
+    "gate_recall": 1.0,
+    "memory_recall": 1.0,
+    "memory_cells_found": 3,
+    "n_components": 14,
+    "n_interventions": 3407,
+    "counterfactual_accuracy": 1.0,
+    "counterfactual_n": 12
+   }
+  ]
+ },
+ "VERDICT": "FAILED \u2014 DISCOVERY"
+}

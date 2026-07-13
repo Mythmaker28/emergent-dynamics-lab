@@ -1,0 +1,31 @@
+EXP-GT-HIERARCHY-00 -- blind hierarchical discovery (Boolean-network worlds)
+==============================================================================================================
+
+THE THREE BINDING ADDENDA:
+  A1: PASS
+     PASS  COMPOSITE: the 4-cell De Morgan gate as one macro-object           -> ADMITTED
+     PASS  MERGE: two gates with different interfaces forced into one object  -> OUT_OF_SCOPE
+  A2: PASS
+     PASS  MICRO level: direct vs De Morgan                                   -> DIFFERENT
+     PASS  MACRO: direct (latency 1) vs De Morgan (latency 3) -- quotient mus -> INDETERMINATE
+     PASS  MACRO: delay-matched direct (latency 3) vs De Morgan -- quotient E -> SAME
+  A3: PASS
+     PASS  NO context discovered -> must NOT claim a complete structural grap -> STRUCTURAL_GRAPH_INCOMPLETE
+     PASS  contexts DISCOVERED and known conditional paths revealed -> COMPLE -> COMPLETE
+     PASS  conditional edges are explicitly labelled X->Y|S=1                 -> yes
+
+DEVELOPMENT WORLDS (the observer sees only raw cells, its own interventions, and the output cells):
+  world                      T  src  gateP  gateR  memR  comps  cfact  probes
+  DEV p111                  OK   OK   1.00   1.00  1.00     14   1.00    3380
+  DEV p101                  OK   OK   1.00   1.00  1.00     14   0.85    3369
+
+HELD_OUT WORLDS (the observer sees only raw cells, its own interventions, and the output cells):
+  world                      T  src  gateP  gateR  memR  comps  cfact  probes
+  HO p010 sp(4,19,37)       OK   OK   1.00   1.00  1.00     14   0.69    3363
+  HO p110 demorgan          OK   XX   0.00   0.00  1.00      8   0.90    3392
+  HO p001 delay2            OK   XX   1.00   1.00  1.00     17   0.69    3390
+  HO p111 feedback+decoy    OK   OK   1.00   1.00  1.00     14   1.00    3407
+
+==============================================================================================================
+VERDICT: FAILED — DISCOVERY
+==============================================================================================================

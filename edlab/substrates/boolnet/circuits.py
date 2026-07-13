@@ -138,6 +138,20 @@ def build(program=(1, 0, 1), chan_cols=(6, 20, 34), impl="direct", extra_delay=0
             src[gy, cc, 1] = _idx(*rr)
             gcells = [(gy, cc)]
             glat = 1
+        elif impl == "direct_buf":
+            # A DELAY-MATCHED direct gate: AND followed by two buffers, so the LATENCY THROUGH THE OBJECT is 3 --
+            # the same as the De Morgan twin. It exists so that macro SAME can FIRE. Without it the certificate
+            # would only ever show the quotient being refused, and a criterion that can only fail is not a
+            # criterion either.
+            op[gy, cc] = AND
+            src[gy, cc, 0] = _idx(gy - 1, cc)
+            src[gy, cc, 1] = _idx(*rr)
+            op[gy + 1, cc] = WIRE
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            op[gy + 2, cc] = WIRE
+            src[gy + 2, cc, 0] = _idx(gy + 1, cc)
+            gcells = [(gy, cc), (gy + 1, cc), (gy + 2, cc)]
+            glat = 3
         else:                                        # DE MORGAN: NOT(OR(NOT s, NOT r)) -- 4 cells, 3 steps latency
             op[gy, cc] = NOT
             src[gy, cc, 0] = _idx(gy - 1, cc)
