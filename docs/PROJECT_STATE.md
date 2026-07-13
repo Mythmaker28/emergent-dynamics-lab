@@ -4,27 +4,28 @@
 
 Can CORE V0 local particle laws produce auditable high phenotype continuity under low material retention, beyond tracker and static-flux artefacts?
 
-## CURRENT WORK — EXP-GT-01 factorized metrology (D-049, D-050). EXP-SC-01 BLOCKED.
+## CURRENT WORK — EXP-GT-02 instrument repair (D-051). EXP-SC-01 still BLOCKED.
 
-**The identity target is FACTORIZED** (never a composite): **A** causal architecture · **S** program/memory ·
-**F** functional I/O · **L** lineage · **M** microscopic material. Every challenge carries an expected VECTOR.
+**OBSERVABILITY CONTRACT (binding):** every case is labelled with the relation AND whether it is identifiable from
+the observations. Every head may output **INDETERMINATE**. **Correct abstention is a PASS; fabricating a relation the
+data cannot support is a FAILURE.** No scalar composite, ever.
 
-**BUILT AND VERIFIED: E1, a real Ship-of-Theseus gate.** A component is handed off to a functionally equivalent but
-microscopically distinct implementation (relief installed BEFORE the incumbent is removed, so the gate is never
-unmanned). All three assertions hold: trajectory changed (441/701 frames), replacement occurred (old persistent
-cells 0, new 7), **I/O identical at EVERY timestep - no silent interval.** A held-out implementation passes too.
-E2 (damage-and-repair) is separated and is NOT the Ship-of-Theseus gate.
+**S HEAD: REPAIRED AND COVERAGE-CERTIFIED.** v2's stride-20 probe never intersected the channel tracks (at
+gun_col+29 = 34/74/114/154) -- blind by construction. Replaced by an exhaustive stride-1 blind scan using INJECTION
+(upstream; absorbed iff a gate lies on the diagonal -> GATED channels) and DELETION (downstream; a blind 5x5 tile
+cleared for 8 steps -> output drops iff a live stream passes -> OPEN channels). No labels/positions/bits/causal graph.
+**Certificate GRANTED: reads 1010, 0101, 1111, 0000 exactly, and the same words across a HELD-OUT layout;
+must-fail controls (identical words -> SAME) pass; 1010 vs 0101 -> DIFFERENT (the case the old head scored 0.000 on).**
+The certificate itself caught a frame-count mismatch (272 vs 281 frames) that made the deletion arm fire at EVERY
+column including empty space -- before a single unknown program was read.
 
-**The L head reports INDETERMINATE for an exact copy** instead of guessing - lineage is not identifiable from
-trajectories alone. A scalar could not express this.
+**STILL OUTSTANDING:** A and F need PHASE MATCHING (accumulate over a complete clock period; re-settle to a common
+established state; never compare a transient post-handoff frame with a fresh init). L must demonstrate calibrated
+SAME/DIFFERENT/INDETERMINATE, including correct abstention on exact copies. E1/E2 evaluated separately on
+development AND held-out replacement implementations.
 
-**Observer v2 FAILS the suite (D-050), with two DIAGNOSABLE defects - the value of factorizing:**
-1. **S head is BLIND** (0.000 for 1010 vs 0101, which differ in memory): the blinded probe grid is too coarse to
-   land on the channel tracks. **The probe design has an unstated, unverified RESOLUTION requirement.**
-2. **A and F heads are CONFOUNDED**: E1 fingerprints were computed on a mid-flight post-handoff frame and compared
-   against fresh grids - comparing transients, not architectures. Fingerprints must be PHASE-MATCHED.
-
-**Droplets remain BLOCKED. No head tuned to pass. EXP-GT-00 preserved unchanged.**
+**EXP-SC-01 stays BLOCKED until A, S and F pass held-out criteria and L is calibrated.**
+**Observer v2 and its failures preserved unchanged. D-046 unchanged. D_int untouched.**
 
 ## CURRENT SUBSTRATE
 

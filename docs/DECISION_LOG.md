@@ -1040,3 +1040,49 @@ EXP-GT-00's observer and results are **preserved unchanged**.
 **Verdict: FAIL. The droplets remain BLOCKED.** No head is tuned to pass; both defects require a corrected probe
 design and phase-matched comparison, each with its own must-pass case, in the next iteration.
 **D-046 unchanged. D_int untouched. No threshold moved. No substrate tuned. No composite score anywhere.**
+
+## D-051 — EXP-GT-02: S head REPAIRED and COVERAGE-CERTIFIED. A/F/L repairs pending. Droplets stay BLOCKED.
+
+**Date:** 2026-07-12
+**Status:** PARTIAL INSTRUMENT REPAIR. **EXP-SC-01 remains BLOCKED.**
+**Protocol:** docs/experiments/EXP_GT_02_PROTOCOL.md (SHA ca9a0c5a76fb77aab67d5bb5f8083231d0a2bcf1), frozen first.
+**Observer v2 (EXP-GT-01) and its failures are preserved unchanged.**
+
+**OBSERVABILITY CONTRACT preregistered.** Every case carries **two** labels — the relation (SAME/DIFFERENT) **and
+whether it is identifiable from the supplied observations**. Every head may output **INDETERMINATE**, and **correct
+abstention is a PASS**; resolving a relation the data cannot support is **fabrication and scored as failure**.
+
+**S HEAD: REPAIRED AND CERTIFIED.** The v2 stride-20 grid never intersected the channel tracks (they sit at
+`gun_col + 29` = 34/74/114/154; a stride-20 scan from 20 touches none of them), so S was **blind by construction**
+and no distance function could have been tuned into sight. Replaced by an **exhaustive stride-1 blind scan** with two
+intervention types and **no access to labels, positions, bits or the causal graph**:
+- **INJECTION** upstream: a standardized pulse absorbed iff its diagonal meets a gate ⇒ marks **GATED** channels.
+- **DELETION** downstream: a blind 5x5 tile cleared for 8 steps (≥ 2 glider periods, so no clock phase can hide a
+  stream) ⇒ output drops iff a live stream passes ⇒ marks **OPEN** channels.
+
+**COVERAGE CERTIFICATE — GRANTED.** The probe reconstructs **every known word, exactly**:
+
+| circuit | probe reads | truth | channels |
+|---|---|---|---|
+| dev 1010 / 0101 / 1111 / 0000 | 1010 / 0101 / 1111 / 0000 | ✔ all correct | 4/4 |
+| **held-out layout** 1010 / 0101 | 1010 / 0101 | ✔ correct | 4/4 |
+
+**MUST-FAIL controls PASS** (identical words → SAME, including across a held-out layout).
+**MUST-PASS discriminations PASS** — including **1010 vs 0101 → DIFFERENT**, *the exact case on which the old S head
+scored 0.000*.
+
+**A bug found and disclosed by the certificate itself:** the deletion arm originally summed the output over **272**
+frames against a **281**-frame baseline, so it "detected a drop" at **every column, including empty space** — an
+accounting artefact, not a signal. Both arms are now frame-matched. **The certificate caught it before a single
+unknown program was read.** That is precisely what a coverage certificate is for.
+
+**STILL OUTSTANDING (droplets stay blocked):**
+- **A and F**: phase matching not yet implemented — fingerprints must be accumulated over a **complete inferred clock
+  period** and configurations **re-settled** to a common established state. **A transient post-handoff frame must
+  never be compared with a fresh initialization** (v2's confound).
+- **L**: must demonstrate **calibrated SAME / DIFFERENT / INDETERMINATE**, including correct abstention on exact
+  copies.
+- E1 and E2 evaluated separately, on development **and entirely held-out** replacement implementations.
+
+**EXP-SC-01 remains BLOCKED until A, S and F pass their held-out criteria and L is calibrated. No composite score.
+No head tuned to pass. D-046 unchanged, D_int untouched.**

@@ -1,0 +1,23 @@
+EXP-GT-02 -- S HEAD COVERAGE CERTIFICATE (protocol SHA ca9a0c5a, frozen before any result)
+Exhaustive stride-1 blind scan. No component labels, positions, program bits or causal graph are used.
+
+circuit       probe reads  ground truth  channels   verdict
+dev|0000             0000          0000         4   CORRECT
+dev|0101             0101          0101         4   CORRECT
+dev|1010             1010          1010         4   CORRECT
+dev|1111             1111          1111         4   CORRECT
+held|0101            0101          0101         4   CORRECT
+held|1010            1010          1010         4   CORRECT
+
+MUST-FAIL CONTROLS (identical words must be reported SAME, not DIFFERENT):
+  program compared with itself               -> SAME      (expected SAME)   PASS
+  IDENTICAL word across a HELD-OUT layout    -> SAME      (expected SAME)   PASS
+  IDENTICAL word across a HELD-OUT layout    -> SAME      (expected SAME)   PASS
+
+MUST-PASS DISCRIMINATIONS (different words must be reported DIFFERENT):
+  the case the OLD S head scored 0.000 on    -> DIFFERENT (expected DIFFERENT)  PASS
+  all-open vs all-gated                      -> DIFFERENT (expected DIFFERENT)  PASS
+
+================================================================================
+S COVERAGE CERTIFICATE: GRANTED -- the probe can read KNOWN words, so it may read unknown ones
+================================================================================
