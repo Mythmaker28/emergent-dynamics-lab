@@ -1755,3 +1755,65 @@ independent of any observer:
 1. **A certificate must exercise every instance the world offers, not the most convenient one.** Channel 0 was
    easiest to write and is the only channel that could not fail.
 2. **An assertion must guard the side that can be wrong.** "Every row was generated" was true, and useless.
+
+---
+
+## D-068 — the ACTIVE causal observer QUALIFIES on development (EXP-GT-PROV 20/20, EXP-GT-ACTIVE 15/15)
+
+Two contracts were built **before** the observer that depends on them.
+
+**TEMPORAL PROVENANCE (`provenance.py`).** A feature is not a number; it is a claim — *"at time t−d, in episode e,
+source s held value v"* — and every claim is **re-read from the episode and compared byte-for-byte**. `_idx()`
+REFUSES a negative index rather than wrapping. The window is sized to the widest hypothesis the observer will
+**test** (`max_lag + MAX_HISTORY`), and sampling begins at `max(margin, max_lag)`, not at a constant chosen in
+advance. 20/20, including the D-067 defect injected and caught three separate ways.
+
+**GROUND-TRUTH CAUSAL AUDIT (`audit.py`).** A variable is causal if an admissible intervention on it changes the
+downstream distribution — even if it is silent in the baseline. The write-enable rail **is** a cause; the
+privileged source set is program-dependent. Two paths (declared wiring, intervention-derived) must agree or the
+world is rejected before the observer sees it.
+
+**THE OBSERVER (`active.py`).** It plans. It holds a lazily-refined version space, predicts what each admissible
+regime would reveal *before paying for it* (possible because the sources are roots), executes the most informative,
+and then **validates by predicting a regime it has never run**. A regime whose outcome is already known is
+inadmissible — not caution, but expense. Development: 15/15 across **45 transducers, exactly 15 per channel** —
+unlike the certificate that missed D-067, which inspected channel 0 of three. Cost 150/306 episodes (49 %), with
+6 distinct exploration plans across 15 worlds.
+
+## D-069 — the active observer FAILS the single prospective run. **RETIRED.**
+
+8 fresh worlds, jointly holding out topology, layout, program, phase, implementation, **channel distance**, source
+duplication, delay asymmetry and context schedule; four implementations never used or inspected. Run once.
+
+**What it established, prospectively, on unseen implementations:**
+independent source **count** 100 % · source **identities** 100 % against the privileged audit ·
+**function on the reachable manifold 100 %** against privileged simulation · hidden state claimed on exactly the
+two true state machines and nowhere else · partial manifold correctly returned as `EQUIVALENCE_CLASS_ONLY` ·
+**0 fabricated provenance rows, 0 excluded rows, and NO degradation from lag 17 to lag 56.**
+**The D-067 defect is definitively gone.**
+
+**What failed: transducer CLASS, 21/24.** All three failures are `xor3`, whose output gate reads its two inputs at
+different depths. The observer measured both clock lags — correctly — and its table agrees with the privileged
+simulation on **every row**. But the second lag is **functionally redundant**: the minimal model is
+`DELAYED_STATIC` with one lag, and it reported `FINITE_HISTORY` with two.
+
+> **The version space only ever WIDENS.** On contradiction it escalates to a longer history. It never asks the
+> opposite question — *is this lag necessary?* — so it returns a correct model with too many arguments and derives
+> the wrong class from it. §7 asks for the smallest predictive representation; a search that only grows cannot find
+> one.
+
+**And my scorer was wrong for the third time.** `TRUE["xor3"]` was a lambda hand-declared from the circuit I
+*intended* to build, not the one I built. §2 required an intervention-derived second path for every claimed
+function and I built it only for the sources; under my own contract that world should have been rejected before the
+observer ran. Scored correctly, the observer's function accuracy is 100 % — my defective scorer flagged the right
+rows for the wrong reason. It does not rescue the design (the class bar fails on the correct ground truth too), but
+it is on the record: three observers retired, and in **two** of them my own evaluator was independently wrong, each
+time in the direction that made the ground truth produce the number I expected.
+
+**RETIRED per the preregistered rule.** Preserved unchanged, not patched, no second cycle.
+Classification: **TRANSDUCER INFERENCE / MODEL MINIMALITY.** Not source discovery, not manifold identification, not
+temporal provenance, not scope calibration.
+
+**Per §13, automatic construction of further observers STOPS.** The programme-level synthesis of what is and is not
+identifiable is in `docs/PROGRAMME_SYNTHESIS.md`. **EXP-SC-01 remains BLOCKED** — through three observers, and
+blocking it was right every time: each would have produced a confident, wrong description of an unknown world.

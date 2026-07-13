@@ -372,6 +372,74 @@ def build(program=(1, 0, 1), chan_cols=(6, 20, 34), impl="direct", extra_delay=0
             gcells = [(gy, cc), (gy, cc + 1), (gy, cc + 2), (gy + 1, cc + 2), (gy + 1, cc + 1),
                       (gy + 2, cc), (gy + 3, cc)]
             glat = 4
+        # ------------- HELD OUT for EXP-GT-ACTIVE-P. Never used or inspected during development. -------------
+        elif impl == "or3":
+            # OR, built by De Morgan out of three inverters: NOT(AND(NOT chan, NOT reg)). A function and a
+            # micro-implementation the active observer has never met together.
+            op[gy, cc] = NOT;     src[gy, cc, 0] = _idx(gy - 1, cc)
+            op[gy, cc + 1] = NOT; src[gy, cc + 1, 0] = _idx(*rr)
+            op[gy + 1, cc] = AND
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            src[gy + 1, cc, 1] = _idx(gy, cc + 1)
+            op[gy + 2, cc] = NOT; src[gy + 2, cc, 0] = _idx(gy + 1, cc)
+            gcells = [(gy, cc), (gy, cc + 1), (gy + 1, cc), (gy + 2, cc)]
+            glat = 3
+        elif impl == "xor3":
+            # XOR = AND(OR(a,b), NOT(AND(a,b))). Reconvergent, four cells, and a function whose truth table cannot
+            # be guessed from any single-input marginal.
+            op[gy, cc] = OR
+            src[gy, cc, 0] = _idx(gy - 1, cc)
+            src[gy, cc, 1] = _idx(*rr)
+            op[gy, cc + 1] = AND
+            src[gy, cc + 1, 0] = _idx(gy - 1, cc)
+            src[gy, cc + 1, 1] = _idx(*rr)
+            op[gy + 1, cc + 1] = NOT
+            src[gy + 1, cc + 1, 0] = _idx(gy, cc + 1)
+            op[gy + 1, cc] = AND
+            src[gy + 1, cc, 0] = _idx(gy, cc)
+            src[gy + 1, cc, 1] = _idx(gy, cc + 1)
+            op[gy + 2, cc] = AND
+            src[gy + 2, cc, 0] = _idx(gy, cc)
+            src[gy + 2, cc, 1] = _idx(gy + 1, cc + 1)
+            gcells = [(gy, cc), (gy, cc + 1), (gy + 1, cc + 1), (gy + 1, cc), (gy + 2, cc)]
+            glat = 2
+        elif impl == "fsm_gate":
+            # A SECOND, DIFFERENT STATE MACHINE: a toggle whose write-enable is itself GATED by the register.
+            # Identical current inputs, different histories, different outputs -- and it is a genuine state
+            # machine, not a starved history. The observer must say FINITE_STATE here and nowhere else.
+            op[gy, cc] = AND                                   # the gated write-enable
+            src[gy, cc, 0] = _idx(gy - 1, cc)
+            src[gy, cc, 1] = _idx(*rr)
+            op[gy + 1, cc + 1] = NOT                           # data = the negation of the state
+            src[gy + 1, cc + 1, 0] = _idx(gy + 1, cc)
+            op[gy + 1, cc] = REG
+            src[gy + 1, cc, 0] = _idx(gy, cc)                  # we = AND(chan, reg)
+            src[gy + 1, cc, 1] = _idx(gy + 1, cc + 1)          # data = NOT(self)
+            gcells = [(gy, cc), (gy + 1, cc + 1), (gy + 1, cc)]
+            glat = 2
+        elif impl == "lag8_dm":
+            # The lag-8 tap structure -- two taps of ONE source a full clock period apart, so half the manifold is
+            # unreachable under every sustained regime -- combined by an OR built out of De Morgan inverters. The
+            # observer must report a PARTIAL manifold and refuse to claim the rows it cannot generate.
+            op[gy, cc] = WIRE; src[gy, cc, 0] = _idx(gy - 1, cc)
+            prev = (gy - 1, cc)
+            for k in range(9):
+                cell = (gy + k, cc + 2)
+                op[cell] = WIRE
+                src[cell[0], cell[1], 0] = _idx(*prev)
+                prev = cell
+            op[gy + 1, cc] = NOT;     src[gy + 1, cc, 0] = _idx(gy, cc)
+            op[gy + 1, cc + 1] = NOT; src[gy + 1, cc + 1, 0] = _idx(gy + 8, cc + 2)
+            op[gy + 2, cc] = AND
+            src[gy + 2, cc, 0] = _idx(gy + 1, cc)
+            src[gy + 2, cc, 1] = _idx(gy + 1, cc + 1)
+            op[gy + 3, cc] = NOT; src[gy + 3, cc, 0] = _idx(gy + 2, cc)
+            op[gy + 4, cc] = AND
+            src[gy + 4, cc, 0] = _idx(gy + 3, cc)
+            src[gy + 4, cc, 1] = _idx(*rr)
+            gcells = ([(gy, cc)] + [(gy + k, cc + 2) for k in range(9)]
+                      + [(gy + 1, cc), (gy + 1, cc + 1), (gy + 2, cc), (gy + 3, cc), (gy + 4, cc)])
+            glat = 5
         elif impl == "cascade":
             # TWO TAPS THAT ARE NOT INDEPENDENT OF EACH OTHER. A conductor separates an upstream gate from a
             # downstream one, so the downstream region's frontier carries (i) the upstream gate's output, whose

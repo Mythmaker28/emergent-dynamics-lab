@@ -89,6 +89,8 @@ _LIVE_IF = {
     "lag15_or": lambda b: bool(b), "lag15_xor": lambda b: bool(b),
     "lag8_and": lambda b: bool(b), "lag8_or": lambda b: bool(b), "cascade": lambda b: bool(b),
     "tri_tap": lambda b: bool(b), "sync3": lambda b: bool(b),
+    "or3": lambda b: not bool(b), "xor3": lambda b: True,
+    "fsm_gate": lambda b: bool(b), "lag8_dm": lambda b: bool(b),
     "edge_xor": lambda b: bool(b), "reg_delay": lambda b: bool(b),
     "and3": lambda b: bool(b), "two_en": lambda b: bool(b), "toggle": lambda b: True,
     "or_gate": lambda b: not bool(b), "xor_gate": lambda b: True,
@@ -175,7 +177,13 @@ def assert_qualified(m: Machine) -> dict:
         if m.impl in ("direct", "direct_buf", "demorgan", "nand2", "xor_or", "and_or", "xnor_and",
                       "dup_same", "dup_lag", "inv_lag", "lag15_or", "lag15_xor", "lag8_and", "lag8_or",
                       "cascade", "and3", "two_en",
-                      "tri_tap", "sync3", "edge_xor", "reg_delay"):
+                      "tri_tap", "sync3", "edge_xor", "reg_delay", "fsm_gate", "lag8_dm"):
+            return b == 1
+        if m.impl == "or3":
+            return (is_reg or downstream) if b == 1 else (not is_reg)
+        if m.impl == "xor3":
+            return True if b == 1 else (not is_reg)
+        if m.impl == "__never__":
             return b == 1                              # p=0: out is constant 0; every clamp-to-0 is vacuous
         if m.impl == "toggle":
             return not (is_reg or n == f"reg2{j}")     # the register is not an input to a toggle

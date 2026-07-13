@@ -1,0 +1,85 @@
+{
+ "protocol": "EXP-GT-ACTIVE-CAUSAL-00",
+ "frozen_at": "2026-07-14",
+ "status": "FROZEN before the prospective split was generated. One development cycle, one prospective run.",
+ "certificates": {
+  "EXP-GT-PROV  (temporal provenance)": {
+   "cases": 20,
+   "passed": 20,
+   "qualified": true
+  },
+  "EXP-GT-ACTIVE (development)": {
+   "cases": 15,
+   "passed": 15,
+   "qualified": true,
+   "transducers": 45,
+   "channels": "15 per channel, exactly balanced"
+  }
+ },
+ "hashes": {
+  "edlab/identity/provenance.py": "8fd611dcc71b15f6f3d9a36ac6ea45ffe2edff5df79a3063ac6d7b7df3dfaacc",
+  "edlab/identity/active.py": "23c670fb22db23a9a37cecae4d1563b4a6aedd2076667ec653c52aa166c4894f",
+  "edlab/identity/hier.py": "f73424143ea170aae825be1f7bf31c1acbc8ea1effdca18d7e4514c0cbf1c5cc",
+  "edlab/substrates/boolnet/engine.py": "1b0a44c3854d3539eba0830e76e9a82bcefbe3d1375369654e3ab20cfde2dc10",
+  "edlab/substrates/boolnet/circuits.py": "5e4811e6e3f1f0dffa51ec7401e04a23fd806b9a3a52bf9cd4fbaf470bcf4e95",
+  "edlab/substrates/boolnet/evaluator.py": "8b3d9b138acd95862fddbcfa6e6e8c7e2f6ac71135083b450408f2ed841a77cb",
+  "edlab/substrates/boolnet/audit.py": "4618659960980e5764fbf02e699c01604c8a942bbcc03db693a5b54dd0428490",
+  "edlab/experiments/exp_gt_prov.py": "5da55d9fb6b3c2e018a4be5fa4fb3d3cb85642684a38668a0cbccd548fc13807",
+  "edlab/experiments/exp_gt_active.py": "be10b3be38ce2fd14b65642ce9cbc3037508bdad12f8148e452cb28cb0d57fab"
+ },
+ "frozen_constants": {
+  "MAX_SOURCES": 5,
+  "MAX_HISTORY": 6,
+  "SETTLE_MARGIN": 32,
+  "MAX_LAG": 80,
+  "MAX_EPISODES": 24,
+  "CLK_PERIOD": 8,
+  "CLK_DUTY": "3-of-8"
+ },
+ "temporal_provenance_contract": {
+  "window": "T = required_window(max_lag + MAX_HISTORY, period, settle_margin) -- sized to the WIDEST hypothesis the observer will TEST, not the lags it first measured",
+  "sampling_start": "t_lo = max(settle_margin, max_lag_tested). NOT a constant chosen in advance.",
+  "index": "_idx() REFUSES a negative index. numpy would return the far end of the array; that fabricated history retired the previous observer (D-067).",
+  "assertion": "every row's source samples are RE-READ from the exact episode and timestamp they claim and compared byte-for-byte. The PAIR is verified, not the output alone."
+ },
+ "admissible_interventions": {
+  "structure (ancestry, lags, dissociation)": "one-step source pulses at every phase",
+  "function (the manifold)": "sustained source regimes only: free running + constant clamps on source subsets",
+  "never": "clamping a boundary TAP as though it were an independent source"
+ },
+ "planner": "lazy version space over lag-window hypotheses; EXPLORE the regime predicted to reveal the most unseen source-history rows; then VALIDATE by predicting a regime never executed. A regime whose outcome is already known under the live hypothesis is not caution, it is expense.",
+ "verdicts": [
+  "IDENTIFIED",
+  "EQUIVALENCE_CLASS_ONLY",
+  "INDETERMINATE",
+  "INSUFFICIENT_HISTORY",
+  "INSUFFICIENT_INTERVENTION_ACCESS",
+  "OUT_OF_SCOPE",
+  "CONFOUNDED"
+ ],
+ "ground_truth": "PRIVILEGED and INTERVENTION-DERIVED (audit.py). A variable is causal if an admissible intervention on it changes the downstream distribution -- even if it is silent in baseline. The write-enable rail IS a cause; excluding it to match an expected source count is what the D-067 scorer did, and it is forbidden.",
+ "development_family": [
+  "direct",
+  "demorgan",
+  "dup_same",
+  "dup_lag",
+  "inv_lag",
+  "lag8_and",
+  "lag8_or",
+  "cascade",
+  "and3",
+  "two_en",
+  "toggle",
+  "tri_tap",
+  "sync3",
+  "edge_xor",
+  "reg_delay"
+ ],
+ "held_out_implementations": {
+  "or3": "OR built by De Morgan out of three inverters -- unseen function AND unseen micro-implementation",
+  "xor3": "XOR = AND(OR(a,b), NOT(AND(a,b))) -- reconvergent, 5 cells",
+  "fsm_gate": "a SECOND state machine: a toggle whose write-enable is gated by the register",
+  "lag8_dm": "lag-8 taps (half the manifold unreachable) combined by a De Morgan OR -- partial manifold"
+ },
+ "failure_rule": "One development cycle, one frozen prospective run. If it fails: preserve, retire, do not patch, classify, keep EXP-SC-01 BLOCKED, STOP building further observers, and produce a PROGRAMME-LEVEL SYNTHESIS of what is and is not identifiable before any new direction."
+}
