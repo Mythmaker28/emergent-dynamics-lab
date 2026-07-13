@@ -1,0 +1,33 @@
+EXP-GT-ADMIT -- SCOPE ADMISSION CERTIFICATE (head V4 frozen and untouched)
+====================================================================================================================
+
+  PASS  separation BELOW the certified limit (relief 1 cell from a gun) -- V4 answered this CONFIDENTLY -> OUT_OF_SCOPE           (expected OUT_OF_SCOPE)
+  PASS  separation ABOVE the certified limit (relief 4 empty cells clear)          -> ADMITTED               (expected ADMITTED)
+  PASS  plain 4-channel circuit                                                    -> ADMITTED               (expected ADMITTED)
+  PASS  circuit with inert decoration                                              -> ADMITTED               (expected ADMITTED)
+  PASS  plain circuit at strike phase 33 (a phase where the whole ablation is invalid) -> ADMITTED               (expected ADMITTED)
+  PASS  cross-inhibitor (collision debris 1 cell apart at the annihilation site)   -> ADMITTED               (expected ADMITTED)
+  PASS  coverage-starved probe (components findable only in cols 0-100)            -> INSUFFICIENT_COVERAGE  (expected INSUFFICIENT_COVERAGE)
+
+  structural checks (the OBSERVED tomography record is mutated; no hidden label is read):
+  PASS  biased/sampled phase schedule (the quotient's group action is unsupported) -> OUT_OF_SCOPE           (expected OUT_OF_SCOPE)
+  PASS  insufficient valid-strike coverage (10 of 60 phases)                       -> INSUFFICIENT_COVERAGE  (expected INSUFFICIENT_COVERAGE)
+  PASS  an edge inferred from a SINGLE strike (an anecdote, not a measurement)     -> CONFOUNDED             (expected CONFOUNDED)
+
+  ADMISSION MUST NOT GAG THE HEAD -- all three verdicts still fire on admitted cases:
+     SAME (inert decoration)            admission=ADMITTED               A_TOPO=SAME
+     DIFFERENT (edge added)             admission=ADMITTED               A_TOPO=DIFFERENT
+     INDETERMINATE (under-covered)      admission=INSUFFICIENT_COVERAGE  A_TOPO=N/A (correctly not admitted)
+
+  NON-VACUITY: can ADMIT=True, can REFUSE=True, verdicts seen=['ADMITTED', 'CONFOUNDED', 'INSUFFICIENT_COVERAGE', 'OUT_OF_SCOPE']
+
+  CERTIFIED LIMITS:
+     component_separation_cells         4
+     min_valid_strike_fraction          0.5
+     min_observed_clock_periods         6
+     min_strikes_per_edge               2
+
+====================================================================================================================
+failures: 0
+VERDICT: QUALIFIED
+====================================================================================================================

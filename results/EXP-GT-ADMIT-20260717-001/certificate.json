@@ -1,0 +1,171 @@
+{
+ "frozen_before_use": true,
+ "cases": [
+  {
+   "case": "separation BELOW the certified limit (relief 1 cell from a gun) -- V4 answered this CONFIDENTLY",
+   "expected": "OUT_OF_SCOPE",
+   "verdict": "OUT_OF_SCOPE",
+   "pass": true,
+   "atomic": false,
+   "valid_phase_fracs": [
+    0.9,
+    0.9,
+    0.9,
+    1.0
+   ],
+   "why": "component(s) [(5, 18, 7, 42)] are NOT causally atomic: a proper sub-part can be cleanly ablated to a DIFFERENT effect. They are an unresolved MERGE of parts closer than the certified separation limit (4 cells), and the instrument cannot say what it merged."
+  },
+  {
+   "case": "separation ABOVE the certified limit (relief 4 empty cells clear)",
+   "expected": "ADMITTED",
+   "verdict": "ADMITTED",
+   "pass": true,
+   "atomic": true,
+   "valid_phase_fracs": [
+    0.9,
+    0.9,
+    0.9,
+    0.9,
+    1.0
+   ],
+   "why": null
+  },
+  {
+   "case": "plain 4-channel circuit",
+   "expected": "ADMITTED",
+   "verdict": "ADMITTED",
+   "pass": true,
+   "atomic": true,
+   "valid_phase_fracs": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "why": null
+  },
+  {
+   "case": "circuit with inert decoration",
+   "expected": "ADMITTED",
+   "verdict": "ADMITTED",
+   "pass": true,
+   "atomic": true,
+   "valid_phase_fracs": [
+    0.9,
+    0.9,
+    0.9,
+    0.9,
+    1.0
+   ],
+   "why": null
+  },
+  {
+   "case": "plain circuit at strike phase 33 (a phase where the whole ablation is invalid)",
+   "expected": "ADMITTED",
+   "verdict": "ADMITTED",
+   "pass": true,
+   "atomic": true,
+   "valid_phase_fracs": [
+    0.9,
+    0.9,
+    0.9,
+    0.9
+   ],
+   "why": null
+  },
+  {
+   "case": "cross-inhibitor (collision debris 1 cell apart at the annihilation site)",
+   "expected": "ADMITTED",
+   "verdict": "ADMITTED",
+   "pass": true,
+   "atomic": true,
+   "valid_phase_fracs": [
+    0.9,
+    0.9,
+    0.9,
+    0.9,
+    0.9,
+    0.6
+   ],
+   "why": null
+  },
+  {
+   "case": "coverage-starved probe (components findable only in cols 0-100)",
+   "expected": "INSUFFICIENT_COVERAGE",
+   "verdict": "INSUFFICIENT_COVERAGE",
+   "pass": true,
+   "atomic": true,
+   "valid_phase_fracs": [
+    0.9,
+    0.9
+   ],
+   "why": {
+    "unsourced_live": [
+     2,
+     3
+    ],
+    "unexplained_suppressed": []
+   }
+  }
+ ],
+ "structural_cases": [
+  {
+   "case": "biased/sampled phase schedule (the quotient's group action is unsupported)",
+   "expected": "OUT_OF_SCOPE",
+   "verdict": "OUT_OF_SCOPE",
+   "pass": true,
+   "why": "the phase quotient requires an exhaustive strike schedule"
+  },
+  {
+   "case": "insufficient valid-strike coverage (10 of 60 phases)",
+   "expected": "INSUFFICIENT_COVERAGE",
+   "verdict": "INSUFFICIENT_COVERAGE",
+   "pass": true,
+   "why": "a component has only 0.17 valid strike phases"
+  },
+  {
+   "case": "an edge inferred from a SINGLE strike (an anecdote, not a measurement)",
+   "expected": "CONFOUNDED",
+   "verdict": "CONFOUNDED",
+   "pass": true,
+   "why": [
+    [
+     0,
+     0
+    ]
+   ]
+  }
+ ],
+ "head_verdicts_still_fire": {
+  "SAME (inert decoration)": {
+   "admission": "ADMITTED",
+   "A_TOPO": "SAME"
+  },
+  "DIFFERENT (edge added)": {
+   "admission": "ADMITTED",
+   "A_TOPO": "DIFFERENT"
+  },
+  "INDETERMINATE (under-covered)": {
+   "admission": "INSUFFICIENT_COVERAGE",
+   "A_TOPO": "N/A (correctly not admitted)"
+  }
+ },
+ "non_vacuity": {
+  "admission_can_ADMIT": true,
+  "admission_can_REFUSE": true,
+  "verdicts_seen": [
+   "ADMITTED",
+   "CONFOUNDED",
+   "INSUFFICIENT_COVERAGE",
+   "OUT_OF_SCOPE"
+  ]
+ },
+ "failures": 0,
+ "VERDICT": "QUALIFIED",
+ "certified_limits": {
+  "component_separation_cells": 4,
+  "min_valid_strike_fraction": 0.5,
+  "min_observed_clock_periods": 6,
+  "min_strikes_per_edge": 2
+ }
+}
