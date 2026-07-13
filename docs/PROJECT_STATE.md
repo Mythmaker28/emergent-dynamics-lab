@@ -4,6 +4,23 @@
 
 Can CORE V0 local particle laws produce auditable high phenotype continuity under low material retention, beyond tracker and static-flux artefacts?
 
+## CURRENT WORK — EXP-GT-00 metrology branch (D-048)
+
+**EXP-SC-01 is BLOCKED.** A ground-truth Game-of-Life benchmark (verified glider/channel -> inhibit gate -> memory
+bit -> tiny FSM; output = 194 x open channels exactly) was built to validate any dynamic-identity representation
+BEFORE it touches the droplet substrate. The discovery observer sees only raw cell states; the evaluator holds
+component locations, causal graph, memory contents, I/O and program identity.
+
+**Observer v1 FAILS the benchmark.** It passes (d) exact copies (0.000), (c) IDENTICAL OUTPUT / different mechanism
+(1.417), (a) different program (1.213), (b) different architecture (0.684) -- but FAILS **(e) progressive component
+replacement (1.518, must be small)**. separation = 0.45 < 1.0. It keys on flow/output statistics and therefore
+**mistakes "same individual, parts replaced" for "different individual"** -- the exact Ship-of-Theseus confusion this
+programme exists to avoid. On the droplets there is no ground truth, so this would never have been detected.
+
+**Next: a replacement-invariant representation, developed and frozen on EXP-GT-00, evaluated on held-out
+architectures/programs/layouts, and only then used in EXP-SC-01.**
+**D-046 unchanged. D_int untouched. No threshold moved. No substrate tuned.**
+
 ## CURRENT SUBSTRATE
 
 **NONE — scaffold+internal-network RETIRED at R8-B (D-046).** Nine substrates, nine negatives. Nothing promoted.

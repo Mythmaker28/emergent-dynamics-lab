@@ -1,0 +1,20 @@
+EXP-GT-00 -- ground-truth metrology on a Game-of-Life computational hierarchy
+Discovery observer sees ONLY raw cell states. Evaluator holds component locations, causal graph,
+memory contents, I/O and program identity, and never shows them.\n
+COMPONENT HIERARCHY, each verified empirically (nothing canonical trusted unchecked):
+  glider/channel -> period-4 displacement (+1,+1) | eater absorbs a stream and survives
+  inhibit gate / MEMORY BIT -> bit=1: output 194 (flows)   bit=0: output 0 (inhibited)
+  tiny FSM -> output = 194 x (open channels), EXACTLY as the hidden causal model predicts\n
+(e) component replacement now genuinely perturbs the run: 526/701 frames differ
+    and FUNCTION CONTINUES: output sum 388 (intact) vs 662 (replaced)\n
+FIVE CHALLENGE CLASSES (frozen observer, distances in representation space):
+  (d) exact copy, reset history           d = 0.0000   MUST be ~0        PASS
+  (e) progressive component replacement   d = 1.5176   MUST be small     FAIL
+  (c) IDENTICAL OUTPUT, diff mechanism    d = 1.4169   MUST be LARGE     PASS
+  (a) same arch, diff program             d = 1.2131   MUST be LARGE     PASS
+  (a) same arch, diff output              d = 1.2189   MUST be LARGE     PASS
+  (b) diff architecture, same program     d = 0.6840   MUST be > 0       PASS
+\n  SEPARATION  min(different)/max(same) = 0.45   (must exceed 1.0)
+\n==============================================================================
+VERDICT: OBSERVER FAILS -- not fit to use on the droplet substrate
+==============================================================================

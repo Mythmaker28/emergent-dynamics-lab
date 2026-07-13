@@ -893,3 +893,79 @@ mechanism in advance**.
 
 Nine substrates, nine negatives. Nothing promoted. But O4' is the first time an internal identity has been shown to
 causally predict future behaviour independently of trivial morphology.
+
+## D-047 — D-046 stands; its INTERPRETATION corrected. D_int untouched. EXP-GT-00 (metrology) authorized first.
+
+**Date:** 2026-07-12
+**Status:** INTERPRETATION CORRECTION (D-046 unchanged; nothing promoted; no retrospective rescoring)
+
+**D-046 is unchanged.** The frozen **snapshot-based** R8-B failed (accuracy 0.286 vs required 0.333) and nothing is
+promoted. No threshold is moved, no result rescored.
+
+**What EXP-SC-00B DID establish:**
+- internal states that are **behaviourally efficacious** (O4': r_partial = +0.521, p < 0.0005, after controlling for
+  mass, radius, density and size — identity is not a proxy for morphology), and
+- internal states that are **between-entity diverse** (R8-A: ratio 2.12).
+
+**What it did NOT establish: longitudinal individual identity.** The snapshot representation could not re-identify an
+entity with its own earlier self. That is a failure of a **snapshot** representation on a **dynamic** object — it is
+NOT evidence that no dynamic identity exists, and it is NOT evidence that one does.
+
+**D_int is NOT lowered and no pinning mechanism is added.** Doing so now would be a new substrate motivated directly
+by the observed failure, on the exact parameter the failure points at, and it risks converting a *dynamic* identity
+into a **constructed static barcode** — which would be a measurement artefact dressed as a discovery.
+
+**Order of work, authorized:**
+1. **EXP-GT-00 — a separate GROUND-TRUTH METROLOGY branch.** A minimal Game-of-Life computational hierarchy
+   (glider/channel → logic gate → memory bit → tiny FSM). The discovery observer sees **only raw cell-state
+   trajectories**; a separate evaluator retains the hidden component locations, causal graph, memory states, inputs,
+   outputs and program identity. A dynamic-identity representation must be **validated against this ground truth**
+   before it is trusted on the droplet substrate.
+2. **EXP-SC-01** — R8-B-**dynamic** on the **unchanged** beta = 0.10 scaffold substrate, entirely unseen seeds,
+   fixed-length temporal windows instead of single snapshots. Representation, classifier, threshold, window length
+   and censoring rules frozen **before** any EXP-SC-01 outcome is inspected, and only after passing synthetic AND
+   ground-truth must-pass/must-fail cases.
+3. If dynamic identity passes prospectively → **R8-C**. If **both** static and dynamic R8-B fail → retire the
+   substrate, and **only then** design an intrinsically pinned internal-organization substrate with the pinning
+   mechanism declared from the outset.
+
+## D-048 — EXP-GT-00: ground-truth benchmark built and VERIFIED; observer v1 FAILS it. EXP-SC-01 BLOCKED.
+
+**Date:** 2026-07-12
+**Status:** METROLOGY BRANCH WORKING — it rejected the observer before it could touch the science.
+
+**The benchmark is real and verified.** Game-of-Life computational hierarchy, every component checked empirically:
+glider/channel (period-4 displacement exactly (+1,+1)); eater (absorbs a stream, survives); **inhibit gate / memory
+bit** (bit=1 → output 194, bit=0 → output 0); **tiny FSM** (output = 194 × open channels, exactly as the hidden
+causal model predicts). The discovery observer sees **only raw cell states**; the evaluator holds component
+locations, causal graph, memory contents, I/O and program identity, and never shows them.
+
+**Observer v1 (persistent-site transverse profile on intrinsic axes + population spectrum + output autocorrelation)
+FAILS.**
+
+| challenge | distance | required | verdict |
+|---|---|---|---|
+| (d) exact copy, reset history | 0.000 | ≈ 0 | PASS |
+| (c) **identical visible output, different mechanism** | 1.417 | LARGE | **PASS** |
+| (a) same architecture, different program | 1.213 | LARGE | PASS |
+| (a) same architecture, different output | 1.219 | LARGE | PASS |
+| (b) different architecture, same program | 0.684 | > 0 | PASS |
+| **(e) progressive component replacement** | **1.518** | **small** | **FAIL** |
+
+**separation = min(different)/max(same) = 0.45 — below 1.0. The observer is NOT fit for use.**
+
+**Why it fails — and it is the failure that matters most.** Under progressive micro-component replacement the
+representation moves **further** (1.518) than it does between genuinely different programs (1.213–1.417). The
+observer keys on **flow and output statistics**, which are disturbed while a component is briefly absent (output
+388 → 662 during the gaps). It therefore **mistakes "same individual, parts replaced" for "different individual"** —
+the exact Ship-of-Theseus confusion the whole research programme is about. Had this representation been taken
+straight to the droplets, it would have manufactured identity changes out of constituent turnover.
+
+**A second silent no-op caught (the 6th of this session).** Challenge (e) as first written deleted a still-life eater
+and re-placed an identical one at the same phase — restoring the exact grid: **0/701 frames differed**. It could not
+fire, and it "passed" at d = 0.0000. It now removes the component, lets the channel run open for 6 steps (gliders
+genuinely leak; 526/701 frames differ) and installs a fresh one, with function continuing throughout.
+
+**EXP-SC-01 IS BLOCKED.** No representation may be used on the droplet substrate until it passes EXP-GT-00 and is
+then frozen and evaluated on held-out architectures, programs and layouts. **D-046 is unchanged; D_int untouched; no
+substrate tuning; no threshold moved.**
