@@ -1,0 +1,39 @@
+EXP-GT-03 -- FROZEN factorized observer, PROSPECTIVE on entirely unseen families
+manifest hash 308268400dd3ac49   leakage: NONE   A_DELAY_TOL=0 (frozen, derived from the dev null)
+====================================================================================================================
+
+  case                                                       A                      F                    M                    G                 
+  translated/rearranged equivalent machine                   OK SAME/SAME           OK SAME/SAME         OK DIFFERENT/DIFFERENT OK SAME/SAME      
+  phase-shifted equivalent machine                           XX DIFFERENT/SAME      OK SAME/SAME         OK SAME/SAME         OK SAME/SAME      
+  different LAYOUT, same graph (sp48 vs sp43)                OK SAME/SAME           OK SAME/SAME         OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  additional inert circuitry                                 OK SAME/SAME           OK SAME/SAME         OK DIFFERENT/DIFFERENT OK SAME/SAME      
+  decoy gates (gate density, off-track)                      OK SAME/SAME           OK SAME/SAME         OK DIFFERENT/DIFFERENT OK SAME/SAME      
+  architecture change, identical program (delay k=3, INTERIOR channel) OK DIFFERENT/DIFFERENT OK SAME/SAME         OK DIFFERENT/DIFFERENT OK SAME/SAME      
+  architecture change, identical program (delay k=6, INTERIOR channel) OK DIFFERENT/DIFFERENT OK SAME/SAME         OK DIFFERENT/DIFFERENT OK SAME/SAME      
+  node ADDED (six channels)                                  OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT
+  edge ADDED (cross-stream inhibitor)                        XX INDETERMINATE/DIFFERENT OK DIFFERENT/DIFFERENT OK DIFFERENT/DIFFERENT OK SAME/SAME      
+  SAME OUTPUT, DIFFERENT MECHANISM (gate vs cross-inhibitor) XX INDETERMINATE/DIFFERENT OK SAME/SAME         OK DIFFERENT/DIFFERENT OK SAME/SAME      
+  exact copy, reset history                                  OK SAME/SAME           OK SAME/SAME         OK SAME/SAME         OK SAME/SAME      
+
+E1 -- FUNCTION-PRESERVING HANDOFF (the real Ship-of-Theseus gate):
+   assertions: {'trajectory_changed_frames': 764, 'old_component_cells_left': 0, 'new_component_cells': 7, 'io_identical_every_timestep': True}
+   A=DIFFERENT/DIFFERENT  F=SAME/SAME  M=DIFFERENT/DIFFERENT  L=SAME/SAME
+
+E2 -- DAMAGE AND REPAIR (never the Ship-of-Theseus gate):
+   {'timesteps_with_broken_IO': 264, 'function_recovered_in_tail': True, 'tail_rate_control': 2.6666666666666665, 'tail_rate_repaired': 2.6666666666666665}
+
+L -- three preregistered regimes:
+   OK continuous run                               -> SAME            (expected SAME)
+   OK exact copy (observationally identical)       -> INDETERMINATE   (expected INDETERMINATE)
+   OK different circuit                            -> DIFFERENT       (expected DIFFERENT)
+
+CIRCUITS REJECTED BY THE BENCHMARK'S OWN ADMISSION CRITERIA (not head failures):
+   UNSEEN component implementation (LOAF gate vs EATER1 gate)
+      HO_GATE_LOAF: GEOMETRIC prediction and INTERVENTIONAL measurement DISAGREE.
+  predicted only: ['gate3->out[164]']
+  measured only : []
+
+====================================================================================================================
+total head failures: 3
+VERDICT: FAILED — GROUND-TRUTH GENERALIZATION
+====================================================================================================================

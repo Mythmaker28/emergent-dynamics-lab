@@ -62,6 +62,20 @@ EATER_SW = [(y, _EMAXX - x) for y, x in EATER1]       # column-mirrored eater ->
 EATER_OFF = (-4, -3)                                  # FROZEN from EXP-GT-00: absorbs an SE stream and survives
 EATER_SW_OFF = (-4, -2)                               # MEASURED: absorbs an SW stream and survives
 
+# HELD-OUT gate implementation, found by an empirical search over standard still lifes -- AND VALIDATED IN
+# CONTEXT, on a MIDDLE channel that HAS a neighbour to damage.
+#
+# THREE CANDIDATES WERE REJECTED, and the reason is a lesson, not a footnote. BOAT, SNAKE and BEEHIVE all
+# "absorb the stream and survive" when tested on a SINGLE channel in isolation -- and all three, dropped into the
+# real circuit, DESTROY THE NEXT CHANNEL ALONG (snake kills channels i and i+1; beehive kills i+1 and not even
+# its own). On the LAST channel there is no neighbour, so the damage is invisible and the isolated test passes.
+# A component validated in isolation is NOT a validated component. This is the same error as the dead sp36
+# layout (D-053) and the overlapping SW gun (D-054): a part nobody ever asserted actually works WHERE IT IS USED.
+LOAF = [(0, 1), (0, 2), (1, 0), (1, 3), (2, 1), (2, 3), (3, 2)]      # 7 cells, distinct pattern; CLEAN at (-6,-1)
+LOAF_OFF = (-6, -1)
+GATE_KINDS = ("se_eater", "loaf")
+GATE_OFFSETS = {"se_eater": EATER_OFF, "loaf": LOAF_OFF}
+
 
 # ------------------------------------------------------------------ intrinsic frames (no lab coordinates)
 def se_diag(r: int, c: int) -> int:
@@ -95,8 +109,8 @@ class Comp:
     name: str = ""
 
     def cells(self):
-        return {"se_gun": GOSPER_GUN, "sw_gun": GUN_SW, "se_eater": EATER1,
-                "sw_eater": EATER_SW, "block": BLOCK}[self.kind]
+        return {"se_gun": GOSPER_GUN, "sw_gun": GUN_SW, "se_eater": EATER1, "sw_eater": EATER_SW,
+                "block": BLOCK, "loaf": LOAF}[self.kind]
 
     def box(self):
         cs = self.cells()
@@ -263,7 +277,7 @@ def predict_active(a: Arch) -> dict:
     path to a causal graph is a claim; two independent agreeing paths is a measurement."""
     guns = {c.name: c for c in a.components if c.kind == "se_gun"}
     sws = [c for c in a.components if c.kind == "sw_gun"]
-    gates = {c.name: c for c in a.components if c.kind == "se_eater"}
+    gates = {c.name: c for c in a.components if c.kind in GATE_KINDS}
     outs = a.out_nodes()
 
     # which SE track does each SW stream reach first (and is consumed by)?
@@ -280,8 +294,8 @@ def predict_active(a: Arch) -> dict:
     # a gate sits on a track iff its row/col lie on that diagonal (the gate is PROGRAM, never architecture)
     gate_of = {}
     for gn, gc_ in gates.items():
-        d = (gc_.col - EATER_OFF[1]) - (gc_.row - EATER_OFF[0]) + 13 - 35 + 35
-        d = (gc_.col - EATER_OFF[1]) - 35          # track column at row 35 was (d + 35)
+        off = GATE_OFFSETS[gates[gn].kind]
+        d = (gc_.col - off[1]) - 35                # the gate sits at track column (d + 35) + off_dx, at row 35
         if d in outs:
             gate_of[d] = gn
 

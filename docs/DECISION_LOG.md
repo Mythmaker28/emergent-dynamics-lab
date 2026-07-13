@@ -1299,3 +1299,70 @@ Also not certified: component separation ≤ 4 cells (matter closer than this me
 **NEXT AUTHORIZED ACTION:** EXP-GT-03 — quarantine every inspected circuit as `DIAGNOSTIC_ONLY`, generate entirely
 new held-out families with a frozen manifest and hashes and executable leakage assertions, **freeze every head**,
 and evaluate the full factorized observer prospectively. **EXP-SC-01 stays BLOCKED.**
+
+## D-056 — EXP-GT-03: the frozen observer FAILS prospectively. The development null could not fire. Hold-outs quarantined.
+
+**Date:** 2026-07-13
+**Status:** **FAILED — IMPLEMENTATION.** EXP-SC-01 remains **BLOCKED**. D-046 unchanged, D_int untouched.
+**Run:** `results/EXP-GT-03-20260713-001`. Manifest `docs/GROUND_TRUTH_SPLIT_MANIFEST.json` (hash 308268400dd3ac49).
+Card: `docs/BENCHMARK_CARD.md`. **No head was retuned. The failure is preserved.**
+
+The observer was **frozen** (`A_DELAY_TOL = 0`, derived from the development null, D-055) and evaluated on held-out
+families sharing **no** layout, spacing, program word, clock phase, topology instance or component implementation
+with development — `assert_no_leakage()` proves it executably.
+
+**IT PASSES** translation, layout change (sp48 vs sp43), inert circuitry, decoy gates, a delay edit on an **interior**
+channel (an edit the development layout physically cannot host), node addition (six channels), exact copy, and `L` on
+all three regimes including correct **INDETERMINATE** on observationally identical data. `F`, `M` and `G` pass every
+case. E1's assertions all hold (764 frames differ, incumbent gone, relief established 7/7, **I/O identical at every
+timestep**), and E2 breaks F for 264 steps and recovers.
+
+**IT FAILS on three, and the first one is the lesson of the session.**
+
+**1. `A` IS NOT PHASE-INVARIANT ON UNSEEN PHASES — AND THE DEVELOPMENT NULL COULD NOT HAVE CAUGHT IT.**
+The delay estimator strikes at phases **(0, 15, 30, 45)** and takes the earliest onset. The development phase-null
+used **THE SAME FOUR PHASES.** The estimator's sampling grid and the null's test grid **coincided**, so the null was
+structurally incapable of detecting that the strike grid is too coarse. On the held-out phases (7, 22, 37, 52) —
+disjoint **by design of the split** — every delay moves **214 → 222**, and `A` reports **DIFFERENT on a pure phase
+shift**: the exact false-DIFFERENT the certificate reported as **0/8**.
+
+**The certificate was not wrong; it was uninformative, and it could not know.** This is the project's own D-035 rule
+turned on its author: **a null that cannot fire is not a null.** The held-out set caught it in one run. *This is
+what held-out evaluation is for, and it is the strongest argument in the whole session for never certifying an
+instrument on development data alone.*
+
+**2. `A` OVER-ABSTAINS, in contradiction of its own contract.** It returns INDETERMINATE if **any** intervention is
+confounded. `OBSERVABILITY_CONTRACT.md` says a confounded intervention is **"excluded from the evidence"** — not
+that it invalidates the graph. On held-out cross-inhibitor circuits the collision remnant cannot be cleanly ablated,
+so `A` abstains **even though it recovered the correct graph and coverage was complete** (`uncovered = []`). Two
+cases lost, including the crown case. **The code does not implement its own preregistered spec.**
+
+**3. A DELAY-PRESERVING E1 IS NOT CONSTRUCTIBLE, so the E1 expected label was WRONG — a D-053-class error, mine.**
+The handoff installs the relief 12 rows upstream, which **changes the component's causal delay** (184 → 229). A delay
+is part of the causal graph, so a handoff that MOVES a component **is** an architectural change and **`A` is RIGHT to
+call it DIFFERENT.** The expected label is corrected: the case is a **DISPLACED handoff**, not an E1. A true E1 needs
+an in-place material swap, and the only clean unseen absorber (the LOAF) is a **reactive seed**, not a still life,
+which cannot be installed into a running stream.
+
+**A CIRCUIT WAS REJECTED BY THE BENCHMARK'S OWN ADMISSION CRITERIA, and that is the machinery working.** The LOAF
+gate's declared graph (`gate3 → out[164]`) is **not** the graph the dynamics realizes (measured: no such edge), so
+`assert_graph_agrees` rejected it. Grading a head against it would have been grading against a mislabelled case —
+the precise error D-053 exists to prevent. **Consequence: there is NO validated held-out component implementation.**
+BOAT, SNAKE and BEEHIVE all absorb cleanly **in isolation** and then **destroy the neighbouring channel** in the real
+circuit; on the last channel there is no neighbour, so the isolated test passes. **A component validated in isolation
+is not a validated component** — the same error as the dead sp36 layout (D-053) and the overlapping SW gun (D-054).
+
+**QUARANTINE.** The EXP-GT-03 held-out families have now been inspected while diagnosing these failures. They are
+**`DIAGNOSTIC_ONLY — NOT ELIGIBLE FOR FINAL EVIDENCE`**. Their results are preserved; none may certify anything.
+
+**NEXT AUTHORIZED ACTION — one preregistered repair cycle, on DEVELOPMENT DATA ONLY:**
+1. make the delay estimator's strike phases cover the **full grid period**, so the estimator's sampling grid can
+   never again coincide with the null's test grid — **and preregister a phase null whose phases are DISJOINT from the
+   estimator's, so that it CAN fire**;
+2. make `head_A` implement its contract: **exclude** a confounded locus from the evidence; abstain **only** on
+   insufficient coverage;
+3. **generate entirely NEW held-out families** (the current ones are burned);
+4. re-freeze and re-run as **EXP-GT-03B**. **If the repaired observer still fails, RETIRE this observer design and
+   build a conceptually different one.**
+
+**EXP-SC-01 remains BLOCKED. No composite. No head tuned to pass. S/F/L preserved exactly.**

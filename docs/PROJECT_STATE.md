@@ -4,49 +4,56 @@
 
 Can CORE V0 local particle laws produce auditable high phenotype continuity under low material retention, beyond tracker and static-flux artefacts?
 
-## CURRENT WORK — EXP-GT-03 (held-out) is the next action. EXP-SC-01 still BLOCKED.
+## CURRENT WORK — EXP-GT-03 FAILED prospectively (D-056). Repair cycle authorized. EXP-SC-01 still BLOCKED.
 
 **D-052's diagnosis was WRONG and is WITHDRAWN (D-053).** The pair labelled "different ARCHITECTURE" is the SAME
-causal graph: identical declared edges (`build()` writes edges over channel ORDINALS -- gun columns never enter),
-isomorphic VERIFIED active-influence graphs, identical measured delays (174,174,234,234). They differ ONLY in gun
-spacing (40 vs 45). **A = SAME was CORRECT.** Sharpening A's tolerance would have tuned it into a LAYOUT detector.
-Label corrected to **A=SAME, G=DIFFERENT**. A new head **G** (geometric embedding) is introduced -- reported
-separately, NEVER composited, and G is NOT identity.
+causal graph (identical declared edges -- `build()` writes edges over channel ORDINALS, gun columns never enter;
+isomorphic verified active graphs; identical measured delays). They differ ONLY in gun spacing. **A = SAME was
+CORRECT.** Sharpening A's tolerance would have tuned it into a LAYOUT detector. New head **G** (geometric embedding)
+introduced -- reported separately, NEVER composited, and G is NOT identity. Also: `ARCH_HELD_OUT[1]` is a **DEAD
+CIRCUIT** (zero output; minimum viable gun spacing = 38) that shipped as a "held-out architecture" since EXP-GT-00,
+and EXP-GT-00's case (b) "PASS" was **credit for a wrong answer**.
 
-**Two further benchmark bugs found by the same audit.** `ARCH_HELD_OUT[1]=(10,46,82,118)` is a **DEAD CIRCUIT** --
-zero output on all four channels (the gun spans 36 columns, so at spacing 36 adjacent guns touch and annihilate;
-minimum viable spacing = 38). It shipped as a "held-out architecture" since EXP-GT-00: **nobody had ever asserted
-that a declared circuit computes anything.** And EXP-GT-00's case (b) "PASS" was **credit for a wrong answer** on
-the same mislabelled pair -- observer v1 was a **G** detector, never an **A** detector.
+**A GENUINE ARCHITECTURE LIBRARY BUILT (D-054):** delay edits (4k steps, same diagonal + output column),
+cross-stream inhibitor (one added edge + one EMERGENT shielding edge), node addition, redundancy, inert decoration,
+decoy gates. Every declared graph verified by TWO independent paths (geometry and intervention) that must agree
+edge-for-edge or the circuit is REJECTED. **CROWN CASE: a channel closed by a MEMORY GATE and by a CROSS-STREAM
+INHIBITOR emit a frame-for-frame IDENTICAL output series -- F cannot separate them; A = DIFFERENT.**
 
-**THE BLOCKER WAS: the benchmark had never contained ONE genuinely different causal architecture.** Every circuit
-was 4 independent parallel channels. A had nothing to resolve. **Now it does (D-054):** delay edits (4k steps, same
-diagonal and output column), a cross-stream inhibitor (one added edge + one EMERGENT shielding edge), node addition,
-redundancy, inert decoration, and decoy eaters (gate density, zero causal effect). Every declared graph is verified
-by TWO independent paths -- geometry and intervention -- which must agree edge-for-edge or the circuit is rejected.
+**A CERTIFIED ON DEVELOPMENT (D-055, QUALIFIED):** blind interventional tomography in causal-graph space. Delay
+tolerance DERIVED from the null = 0. false-DIFFERENT 0/8, false-SAME 0/8. Resolution: **4-step delay edit, 1 edge,
+1 node**, redundancy detected. INDETERMINATE fires. All three verdicts fired.
 
-**A IS CERTIFIED (D-055, QUALIFIED on development data).** Blind interventional tomography in CAUSAL-GRAPH space.
-**Delay tolerance DERIVED from the null: 0 steps. false-DIFFERENT 0/8. false-SAME 0/8.**
-**Resolution: 4-step delay edit (the finest the substrate admits), 1 edge, 1 node, redundancy detected.**
-INDETERMINATE fires on a coverage-starved probe. All three verdicts fired.
+**EXP-GT-03 FAILED PROSPECTIVELY (D-056) -- FAILED - IMPLEMENTATION.** The frozen observer PASSES translation,
+layout change, inert circuitry, decoy gates, an interior-channel delay edit, node addition, exact copy, and L on all
+three regimes. F/M/G pass everything. It FAILS on three:
 
-**CROWN CASE:** a channel closed by a MEMORY GATE and the same channel closed by a CROSS-STREAM INHIBITOR emit a
-**frame-for-frame identical output series** -- F cannot separate them -- and **A = DIFFERENT**. The blind head also
-recovers an **emergent shielding edge** no wiring diagram declared.
+1. **A IS NOT PHASE-INVARIANT ON UNSEEN PHASES -- AND THE DEVELOPMENT NULL COULD NOT HAVE CAUGHT IT.** The delay
+   estimator strikes at phases (0,15,30,45); the development phase-null used **THE SAME FOUR PHASES**. The
+   estimator's sampling grid and the null's test grid COINCIDED, so the null was structurally incapable of firing.
+   On held-out phases (7,22,37,52) every delay moves 214 -> 222 and A calls a pure phase shift DIFFERENT.
+   **A null that cannot fire is not a null (D-035), turned on its author. The hold-out caught it in one run.**
+2. **A OVER-ABSTAINS**, contradicting its own contract: it returns INDETERMINATE if ANY intervention is confounded,
+   though the contract says a confounded locus is merely EXCLUDED from the evidence. It abstains on the crown case
+   even though it recovered the correct graph and coverage was complete.
+3. **A delay-preserving E1 is NOT CONSTRUCTIBLE** -- a handoff that MOVES a component changes its causal delay
+   (184 -> 229), which IS an architectural change. A is right; the expected label was wrong (my error, D-053 class).
 
-**NOT CERTIFIED, AND IT MATTERS: A's invariance to a PROGRAM change is NOT CONSTRUCTIBLE here.** A memory bit of 0
-is implemented by ADDING an eater, so **the program IS the architecture**. Any "pass" is a test that cannot fire --
-and **EXP-GT-02B's program-invariance PASS is hereby marked VACUOUS** (it compared channel POSITIONS, which no
-program can move). This requires a substrate with **STATE-based memory** (a latch/storage loop). **Required property
-of the next benchmark.**
+**Also: there is NO validated held-out COMPONENT IMPLEMENTATION.** BOAT/SNAKE/BEEHIVE all absorb cleanly IN
+ISOLATION and destroy the neighbouring channel in the real circuit. The LOAF was REJECTED by the benchmark's own
+graph-agreement assertion. **A component validated in isolation is not a validated component.**
 
-**S (D-051), F and L (D-052) are preserved EXACTLY.** Disclosed protocol defect: EXP-GT-02/02B used SETTLE=400 and
-called it "a common established state" -- it is not; these circuits become exactly periodic (period 60) only from
-~700. SETTLE is now 720.
+**NOT CERTIFIABLE HERE AT ALL: A's invariance to a PROGRAM change.** A memory bit of 0 is implemented by ADDING an
+eater -- **the program IS the architecture**. **EXP-GT-02B's program-invariance PASS is VACUOUS.** Requires a
+substrate with STATE-based memory (a latch/storage loop). Required property of the next benchmark.
 
-**NEXT: EXP-GT-03.** Quarantine every inspected circuit as DIAGNOSTIC_ONLY, generate new held-out families with a
-frozen manifest + hashes + executable leakage assertions, FREEZE every head, and evaluate prospectively.
-**EXP-SC-01 remains BLOCKED. D-046 unchanged. D_int untouched. No composite, ever.**
+**HOLD-OUTS QUARANTINED (DIAGNOSTIC_ONLY).** **NEXT: one preregistered repair cycle on DEVELOPMENT DATA ONLY** --
+(1) strike phases must cover the full period AND the phase null must use phases DISJOINT from the estimator's, so it
+CAN fire; (2) head_A must implement its contract (exclude a confounded locus; abstain only on insufficient
+coverage); (3) generate ENTIRELY NEW hold-outs; (4) re-freeze and re-run as EXP-GT-03B. **If it still fails, RETIRE
+this observer design.**
+
+**S (D-051), F and L (D-052) preserved EXACTLY. EXP-SC-01 BLOCKED. D-046 unchanged. D_int untouched. No composite.**
 
 ## CURRENT SUBSTRATE
 

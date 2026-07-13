@@ -1,0 +1,156 @@
+{
+ "development": {
+  "layouts": [
+   [
+    5,
+    45,
+    85,
+    125
+   ],
+   [
+    15,
+    55,
+    95,
+    135
+   ],
+   [
+    25,
+    65,
+    105,
+    145
+   ],
+   [
+    5,
+    50,
+    95,
+    140
+   ]
+  ],
+  "programs": [
+   [
+    1,
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    1,
+    1,
+    0
+   ],
+   [
+    1,
+    0,
+    1,
+    0
+   ]
+  ],
+  "phases": [
+   0,
+   15,
+   30,
+   45
+  ],
+  "gate_impls": [
+   "EATER1@(-4,-3)"
+  ],
+  "topologies": [
+   "BASE4",
+   "XINHIB@sw190",
+   "FIVE_CHAN@165",
+   "DELAY_ch3_k1",
+   "DELAY_ch3_k2",
+   "DELAY_ch3_k4",
+   "DELAY_ch3_k8",
+   "INERT3",
+   "DECOY2",
+   "DIRECT1",
+   "REDUNDANT2"
+  ],
+  "status": "DIAGNOSTIC_ONLY - NOT ELIGIBLE FOR FINAL EVIDENCE"
+ },
+ "held_out": {
+  "layouts": [
+   [
+    12,
+    60,
+    108,
+    156
+   ],
+   [
+    9,
+    52,
+    95,
+    138
+   ],
+   [
+    10,
+    51,
+    92,
+    133,
+    174,
+    215
+   ]
+  ],
+  "programs": [
+   [
+    0,
+    1,
+    0,
+    1
+   ],
+   [
+    1,
+    1,
+    0,
+    1
+   ],
+   [
+    0,
+    0,
+    1,
+    1
+   ]
+  ],
+  "phases": [
+   7,
+   22,
+   37,
+   52
+  ],
+  "gate_impls": [
+   "LOAF@(-6,-1)"
+  ],
+  "topologies": [
+   "HO_BASE4@sp48",
+   "HO_BASE4@sp43",
+   "HO_XINHIB@sw201/sp48",
+   "HO_DELAY_ch2_k3",
+   "HO_DELAY_ch2_k6",
+   "HO_SIX@sp41",
+   "HO_INERT@newspots",
+   "HO_DECOY@newspots",
+   "HO_GATE_LOAF"
+  ],
+  "status": "HELD OUT - frozen before inspection"
+ },
+ "leakage": {
+  "leakage": "NONE",
+  "checked": [
+   "layout",
+   "spacing",
+   "program",
+   "phase",
+   "gate_impl",
+   "topology"
+  ]
+ },
+ "frozen_observer": {
+  "A_DELAY_TOL": 0,
+  "derived_from": "the EXP-GT-A-CERT development null (D-055). NOT a free parameter.",
+  "frozen_at": "EXP-GT-03, 2026-07-13"
+ },
+ "hash": "308268400dd3ac49",
+ "status": "RUN 1 EXECUTED AND FAILED. These held-out families are now DIAGNOSTIC_ONLY (inspected during diagnosis). New hold-outs must be generated after the repair."
+}

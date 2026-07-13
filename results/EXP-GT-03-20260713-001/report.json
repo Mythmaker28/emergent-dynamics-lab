@@ -1,0 +1,444 @@
+{
+ "manifest": {
+  "development": {
+   "layouts": [
+    [
+     5,
+     45,
+     85,
+     125
+    ],
+    [
+     15,
+     55,
+     95,
+     135
+    ],
+    [
+     25,
+     65,
+     105,
+     145
+    ],
+    [
+     5,
+     50,
+     95,
+     140
+    ]
+   ],
+   "programs": [
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     0
+    ],
+    [
+     1,
+     0,
+     1,
+     0
+    ]
+   ],
+   "phases": [
+    0,
+    15,
+    30,
+    45
+   ],
+   "gate_impls": [
+    "EATER1@(-4,-3)"
+   ],
+   "topologies": [
+    "BASE4",
+    "XINHIB@sw190",
+    "FIVE_CHAN@165",
+    "DELAY_ch3_k1",
+    "DELAY_ch3_k2",
+    "DELAY_ch3_k4",
+    "DELAY_ch3_k8",
+    "INERT3",
+    "DECOY2",
+    "DIRECT1",
+    "REDUNDANT2"
+   ],
+   "status": "DIAGNOSTIC_ONLY - NOT ELIGIBLE FOR FINAL EVIDENCE"
+  },
+  "held_out": {
+   "layouts": [
+    [
+     12,
+     60,
+     108,
+     156
+    ],
+    [
+     9,
+     52,
+     95,
+     138
+    ],
+    [
+     10,
+     51,
+     92,
+     133,
+     174,
+     215
+    ]
+   ],
+   "programs": [
+    [
+     0,
+     1,
+     0,
+     1
+    ],
+    [
+     1,
+     1,
+     0,
+     1
+    ],
+    [
+     0,
+     0,
+     1,
+     1
+    ]
+   ],
+   "phases": [
+    7,
+    22,
+    37,
+    52
+   ],
+   "gate_impls": [
+    "LOAF@(-6,-1)"
+   ],
+   "topologies": [
+    "HO_BASE4@sp48",
+    "HO_BASE4@sp43",
+    "HO_XINHIB@sw201/sp48",
+    "HO_DELAY_ch2_k3",
+    "HO_DELAY_ch2_k6",
+    "HO_SIX@sp41",
+    "HO_INERT@newspots",
+    "HO_DECOY@newspots",
+    "HO_GATE_LOAF"
+   ],
+   "status": "HELD OUT - frozen before inspection"
+  },
+  "leakage": {
+   "leakage": "NONE",
+   "checked": [
+    "layout",
+    "spacing",
+    "program",
+    "phase",
+    "gate_impl",
+    "topology"
+   ]
+  },
+  "frozen_observer": {
+   "A_DELAY_TOL": 0,
+   "derived_from": "the EXP-GT-A-CERT development null (D-055). NOT a free parameter.",
+   "frozen_at": "EXP-GT-03, 2026-07-13"
+  },
+  "hash": "308268400dd3ac49"
+ },
+ "challenges": [
+  {
+   "case": "translated/rearranged equivalent machine",
+   "expected": {
+    "A": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "predicted": {
+    "A": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "pass": {
+    "A": true,
+    "F": true,
+    "M": true,
+    "G": true
+   }
+  },
+  {
+   "case": "phase-shifted equivalent machine",
+   "expected": {
+    "A": "SAME",
+    "F": "SAME",
+    "M": "SAME",
+    "G": "SAME"
+   },
+   "predicted": {
+    "A": "DIFFERENT",
+    "F": "SAME",
+    "M": "SAME",
+    "G": "SAME"
+   },
+   "pass": {
+    "A": false,
+    "F": true,
+    "M": true,
+    "G": true
+   }
+  },
+  {
+   "case": "different LAYOUT, same graph (sp48 vs sp43)",
+   "expected": {
+    "A": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "DIFFERENT"
+   },
+   "predicted": {
+    "A": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "DIFFERENT"
+   },
+   "pass": {
+    "A": true,
+    "F": true,
+    "M": true,
+    "G": true
+   }
+  },
+  {
+   "case": "additional inert circuitry",
+   "expected": {
+    "A": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "predicted": {
+    "A": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "pass": {
+    "A": true,
+    "F": true,
+    "M": true,
+    "G": true
+   }
+  },
+  {
+   "case": "decoy gates (gate density, off-track)",
+   "expected": {
+    "A": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "predicted": {
+    "A": "SAME",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "pass": {
+    "A": true,
+    "F": true,
+    "M": true,
+    "G": true
+   }
+  },
+  {
+   "case": "architecture change, identical program (delay k=3, INTERIOR channel)",
+   "expected": {
+    "A": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "predicted": {
+    "A": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "pass": {
+    "A": true,
+    "F": true,
+    "M": true,
+    "G": true
+   }
+  },
+  {
+   "case": "architecture change, identical program (delay k=6, INTERIOR channel)",
+   "expected": {
+    "A": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "predicted": {
+    "A": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "pass": {
+    "A": true,
+    "F": true,
+    "M": true,
+    "G": true
+   }
+  },
+  {
+   "case": "node ADDED (six channels)",
+   "expected": {
+    "A": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT",
+    "G": "DIFFERENT"
+   },
+   "predicted": {
+    "A": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT",
+    "G": "DIFFERENT"
+   },
+   "pass": {
+    "A": true,
+    "F": true,
+    "M": true,
+    "G": true
+   }
+  },
+  {
+   "case": "edge ADDED (cross-stream inhibitor)",
+   "expected": {
+    "A": "DIFFERENT",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "predicted": {
+    "A": "INDETERMINATE",
+    "F": "DIFFERENT",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "pass": {
+    "A": false,
+    "F": true,
+    "M": true,
+    "G": true
+   }
+  },
+  {
+   "case": "SAME OUTPUT, DIFFERENT MECHANISM (gate vs cross-inhibitor)",
+   "expected": {
+    "A": "DIFFERENT",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "predicted": {
+    "A": "INDETERMINATE",
+    "F": "SAME",
+    "M": "DIFFERENT",
+    "G": "SAME"
+   },
+   "pass": {
+    "A": false,
+    "F": true,
+    "M": true,
+    "G": true
+   }
+  },
+  {
+   "case": "exact copy, reset history",
+   "expected": {
+    "A": "SAME",
+    "F": "SAME",
+    "M": "SAME",
+    "G": "SAME"
+   },
+   "predicted": {
+    "A": "SAME",
+    "F": "SAME",
+    "M": "SAME",
+    "G": "SAME"
+   },
+   "pass": {
+    "A": true,
+    "F": true,
+    "M": true,
+    "G": true
+   }
+  }
+ ],
+ "n_head_failures": 3,
+ "rejected_circuits": [
+  {
+   "case": "UNSEEN component implementation (LOAF gate vs EATER1 gate)",
+   "why": "HO_GATE_LOAF: GEOMETRIC prediction and INTERVENTIONAL measurement DISAGREE.\n  predicted only: ['gate3->out[164]']\n  measured only : []"
+  }
+ ],
+ "E1": {
+  "assertions": {
+   "trajectory_changed_frames": 764,
+   "old_component_cells_left": 0,
+   "new_component_cells": 7,
+   "io_identical_every_timestep": true
+  },
+  "expected": {
+   "A": "DIFFERENT",
+   "F": "SAME",
+   "M": "DIFFERENT",
+   "L": "SAME"
+  },
+  "predicted": {
+   "A": "DIFFERENT",
+   "F": "SAME",
+   "M": "DIFFERENT",
+   "L": "SAME"
+  },
+  "pass": {
+   "A": true,
+   "F": true,
+   "M": true,
+   "L": true
+  }
+ },
+ "E2": {
+  "assertions": {
+   "timesteps_with_broken_IO": 264,
+   "function_recovered_in_tail": true,
+   "tail_rate_control": 2.6666666666666665,
+   "tail_rate_repaired": 2.6666666666666665
+  },
+  "note": "F breaks transiently and recovers; lineage stays observable. E2 is NEVER the Ship-of-Theseus equivalence gate."
+ },
+ "L": {
+  "continuous run": "SAME",
+  "exact copy (observationally identical)": "INDETERMINATE",
+  "different circuit": "DIFFERENT",
+  "expected": {
+   "continuous run": "SAME",
+   "exact copy (observationally identical)": "INDETERMINATE",
+   "different circuit": "DIFFERENT"
+  }
+ },
+ "total_head_failures": 3,
+ "VERDICT": "FAILED \u2014 GROUND-TRUTH GENERALIZATION"
+}
