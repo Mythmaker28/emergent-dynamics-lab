@@ -1086,3 +1086,50 @@ unknown program was read.** That is precisely what a coverage certificate is for
 
 **EXP-SC-01 remains BLOCKED until A, S and F pass their held-out criteria and L is calibrated. No composite score.
 No head tuned to pass. D-046 unchanged, D_int untouched.**
+
+## D-052 — EXP-GT-02B: F and L PASS. A fails on held-out for want of a CERTIFIED RESOLUTION. Droplets stay BLOCKED.
+
+**Date:** 2026-07-12
+**Status:** PARTIAL REPAIR. **EXP-SC-01 remains BLOCKED.**
+**Protocol:** docs/experiments/EXP_GT_02B_PROTOCOL.md (SHA 3fdd3cc69f075a38048dfa1c0084ce6411abe176), frozen first.
+The certified S head (D-051) is **preserved exactly**; its scope is recorded narrowly (the declared word family,
+development + held-out layouts — **not** a universal memory detector). Observer v2 preserved unchanged.
+
+**Clock inferred from RAW trajectories, no hidden labels → period 30 = the true gun period.** The passive signature
+is an **FFT magnitude over a fixed window every inferred period divides**, so it is cyclic-phase-invariant **by
+construction, not by alignment**. Configurations are **re-settled**; a post-handoff transient is **never** compared
+with a fresh initialization.
+
+| comparison | A | F | expected | |
+|---|---|---|---|---|
+| **PURE PHASE SHIFT** (+15 = half period) | SAME | SAME | A=SAME, F=SAME | **PASS** |
+| different ARCHITECTURE, same function | **SAME** | SAME | A=**DIFFERENT**, F=SAME | **FAIL** |
+| different PROGRAM (1010 vs 0101) | SAME | DIFFERENT | A=SAME, F=DIFFERENT | **PASS** |
+| E1 handoff, development impl | SAME | SAME | A=SAME, F=SAME | **PASS** |
+| E1 handoff, **HELD-OUT** impl | SAME | SAME | A=SAME, F=SAME | **PASS** |
+
+**F: 5/5 PASS** — phase-invariant; SAME across different architectures implementing the same function; DIFFERENT on a
+different program; SAME across both E1 handoffs.
+**L: 3/3 PASS** — continuously observed E1 handoff → **SAME**; observed branch with divergent trajectories →
+**DIFFERENT**; exact copies with observationally identical data → **INDETERMINATE**. **Correct abstention, not
+fabricated certainty.**
+
+**A: STRUCTURAL BUG FIXED, RESOLUTION NOT CERTIFIED.** A was contaminated by the program: a channel's detected
+*column* depends on how it is gated (absorbed injection at ~gun+30, deleted stream at ~gun+63), so A moved when only
+S moved. Rebuilt on the **intrinsic diagonal** `d = row − col` — the invariant a glider actually travels along —
+which is identical however the channel is gated. A now correctly reports SAME under phase shift, SAME under a program
+change, and SAME across both E1 handoffs.
+
+**But A FAILS the decisive case**: the held-out layout's channel gaps differ by **5 columns**, while A's
+**preregistered tolerance is 6.0**. The architectural difference is **below A's declared resolution**, so it reports
+SAME. **The tolerance is NOT retuned** — that would be exactly the weight-tuning this experiment forbids, and the
+held-out architecture is the very case it would be tuned on.
+
+**The missing instrument step, and it is the S lesson again:** A needs a **RESOLUTION CERTIFICATE**, exactly parallel
+to S's coverage certificate. The tolerance must be **derived from the development null** (the phase-shift-only
+comparison, which is the measured noise floor), declared **before** evaluation, and A must **certify the minimum
+architectural difference it can resolve** before it is trusted to say two architectures are the same.
+**An instrument must certify what it can resolve before its "SAME" is worth anything.**
+
+**EXP-SC-01 remains BLOCKED** until A passes prospectively on held-out cases. No composite. No head tuned to pass.
+D-046 unchanged, D_int untouched.

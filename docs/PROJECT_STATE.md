@@ -4,28 +4,32 @@
 
 Can CORE V0 local particle laws produce auditable high phenotype continuity under low material retention, beyond tracker and static-flux artefacts?
 
-## CURRENT WORK — EXP-GT-02 instrument repair (D-051). EXP-SC-01 still BLOCKED.
+## CURRENT WORK — EXP-GT-02B (D-052). EXP-SC-01 still BLOCKED.
 
-**OBSERVABILITY CONTRACT (binding):** every case is labelled with the relation AND whether it is identifiable from
-the observations. Every head may output **INDETERMINATE**. **Correct abstention is a PASS; fabricating a relation the
-data cannot support is a FAILURE.** No scalar composite, ever.
+**S: certified (D-051), preserved exactly.** Scope recorded narrowly: the declared memory-word family across the
+development and held-out layouts. **NOT a universal memory detector.**
 
-**S HEAD: REPAIRED AND COVERAGE-CERTIFIED.** v2's stride-20 probe never intersected the channel tracks (at
-gun_col+29 = 34/74/114/154) -- blind by construction. Replaced by an exhaustive stride-1 blind scan using INJECTION
-(upstream; absorbed iff a gate lies on the diagonal -> GATED channels) and DELETION (downstream; a blind 5x5 tile
-cleared for 8 steps -> output drops iff a live stream passes -> OPEN channels). No labels/positions/bits/causal graph.
-**Certificate GRANTED: reads 1010, 0101, 1111, 0000 exactly, and the same words across a HELD-OUT layout;
-must-fail controls (identical words -> SAME) pass; 1010 vs 0101 -> DIFFERENT (the case the old head scored 0.000 on).**
-The certificate itself caught a frame-count mismatch (272 vs 281 frames) that made the deletion arm fire at EVERY
-column including empty space -- before a single unknown program was read.
+**F: 5/5 PASS.** Phase-invariant (clock inferred from raw trajectories -> 30 = true gun period; passive signature is
+an FFT MAGNITUDE over a fixed window every inferred period divides -> cyclic-phase-invariant BY CONSTRUCTION).
+SAME across different architectures implementing the same function; DIFFERENT on a different program; SAME across
+both E1 handoffs (development AND held-out implementations).
 
-**STILL OUTSTANDING:** A and F need PHASE MATCHING (accumulate over a complete clock period; re-settle to a common
-established state; never compare a transient post-handoff frame with a fresh init). L must demonstrate calibrated
-SAME/DIFFERENT/INDETERMINATE, including correct abstention on exact copies. E1/E2 evaluated separately on
-development AND held-out replacement implementations.
+**L: 3/3 PASS.** Continuous E1 handoff -> SAME. Observed branch with divergent trajectories -> DIFFERENT.
+Exact copies with observationally identical data -> **INDETERMINATE** (correct abstention, not fabricated certainty).
 
-**EXP-SC-01 stays BLOCKED until A, S and F pass held-out criteria and L is calibrated.**
-**Observer v2 and its failures preserved unchanged. D-046 unchanged. D_int untouched.**
+**A: structural bug FIXED, resolution NOT CERTIFIED -> still FAILS.** A was contaminated by the program (a channel's
+detected COLUMN depends on how it is gated), and is now rebuilt on the intrinsic DIAGONAL d = row - col. It correctly
+ignores phase, ignores the program, and survives both E1 handoffs -- **but reports SAME for two DIFFERENT
+architectures**, because the held-out layout's channel gaps differ by 5 columns while A's preregistered tolerance is
+6.0. **The tolerance is NOT retuned** (that would be tuning on the held-out case).
+
+**NEXT: an A RESOLUTION CERTIFICATE** -- the S lesson one level up. The tolerance must be DERIVED from the
+development null (the phase-shift comparison = the measured noise floor), declared before any held-out evaluation,
+and A must certify the SMALLEST architectural difference it can resolve. **An instrument must certify what it can
+resolve before its "SAME" means anything.**
+
+**EXP-SC-01 stays BLOCKED until A passes prospectively on held-out cases.** No composite. No head tuned to pass.
+Observer v2 preserved unchanged. D-046 unchanged. D_int untouched.
 
 ## CURRENT SUBSTRATE
 

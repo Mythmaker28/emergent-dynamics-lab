@@ -1,0 +1,24 @@
+EXP-GT-02B -- A / F / L repaired by PHASE MATCHING + intrinsic-frame causal tomography.
+Protocol SHA 3fdd3cc6, frozen first. Gold-standard exhaustive stride-1 blind scan.
+Clock inferred from RAW trajectories (no hidden labels): period 30 = the true gun period.
+Every head reported SEPARATELY. No composite, ever.
+
+comparison                                          A          F   expected        
+PHASE SHIFT ONLY (+15 = half period)             SAME       SAME   A=SAME      F=SAME      PASS
+different ARCHITECTURE, same function            SAME       SAME   A=DIFFERENT F=SAME      FAIL
+different PROGRAM (1010 vs 0101)                 SAME  DIFFERENT   A=SAME      F=DIFFERENT PASS
+E1 handoff, development impl                     SAME       SAME   A=SAME      F=SAME      PASS
+E1 handoff, HELD-OUT impl                        SAME       SAME   A=SAME      F=SAME      PASS
+
+HEAD L -- three preregistered regimes (correct ABSTENTION passes; fabricated certainty FAILS):
+   continuously observed E1 handoff             -> SAME           (expected SAME         ) PASS
+   exact copy, observationally identical data   -> INDETERMINATE  (expected INDETERMINATE) PASS
+   observed branch, divergent trajectories      -> DIFFERENT      (expected DIFFERENT    ) PASS
+
+==============================================================================================
+VERDICT: FAILURES REMAIN
+  S: preserved exactly as certified (D-051). Scope: the declared word family, dev + held-out layouts only.
+  Disclosed limitation: in THIS benchmark the memory word fully determines the I/O transfer relation, so S
+  and F are extensionally equal here -- different procedures, same answers. A property of the benchmark,
+  stated in advance, NOT evidence that the heads are independent.
+==============================================================================================
