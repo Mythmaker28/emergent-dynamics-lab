@@ -4,56 +4,46 @@
 
 Can CORE V0 local particle laws produce auditable high phenotype continuity under low material retention, beyond tracker and static-flux artefacts?
 
-## CURRENT WORK — EXP-GT-03 FAILED prospectively (D-056). Repair cycle authorized. EXP-SC-01 still BLOCKED.
+## CURRENT WORK — head V4 QUALIFIED prospectively (D-060). NEXT: EXP-GT-HIERARCHY-00. EXP-SC-01 still BLOCKED.
 
-**D-052's diagnosis was WRONG and is WITHDRAWN (D-053).** The pair labelled "different ARCHITECTURE" is the SAME
-causal graph (identical declared edges -- `build()` writes edges over channel ORDINALS, gun columns never enter;
-isomorphic verified active graphs; identical measured delays). They differ ONLY in gun spacing. **A = SAME was
-CORRECT.** Sharpening A's tolerance would have tuned it into a LAYOUT detector. New head **G** (geometric embedding)
-introduced -- reported separately, NEVER composited, and G is NOT identity. Also: `ARCH_HELD_OUT[1]` is a **DEAD
-CIRCUIT** (zero output; minimum viable gun spacing = 38) that shipped as a "held-out architecture" since EXP-GT-00,
-and EXP-GT-00's case (b) "PASS" was **credit for a wrong answer**.
+**Three architecture heads were built. Two were retired. The third qualifies.**
 
-**A GENUINE ARCHITECTURE LIBRARY BUILT (D-054):** delay edits (4k steps, same diagonal + output column),
-cross-stream inhibitor (one added edge + one EMERGENT shielding edge), node addition, redundancy, inert decoration,
-decoy gates. Every declared graph verified by TWO independent paths (geometry and intervention) that must agree
-edge-for-edge or the circuit is REJECTED. **CROWN CASE: a channel closed by a MEMORY GATE and by a CROSS-STREAM
-INHIBITOR emit a frame-for-frame IDENTICAL output series -- F cannot separate them; A = DIFFERENT.**
+**V2 (D-056) FAILED - IMPLEMENTATION.** Its delay estimator struck at phases (0,15,30,45) and its development
+phase-null used THE SAME FOUR PHASES: the null was drawn from the estimator's own free choices and could not fire.
+On held-out phases every delay moved 214 -> 222. **A null that cannot fire is not a null.**
 
-**A CERTIFIED ON DEVELOPMENT (D-055, QUALIFIED):** blind interventional tomography in causal-graph space. Delay
-tolerance DERIVED from the null = 0. false-DIFFERENT 0/8, false-SAME 0/8. Resolution: **4-step delay edit, 1 edge,
-1 node**, redundancy detected. INDETERMINATE fires. All three verdicts fired.
+**V3 (D-058) FAILED and is RETIRED.** It closed the phase loophole by striking at EVERY phase and taking the
+MEDIAN -- integrating the phase out. That is invariant, and it is also blind: for an edge gated by a PERIODIC
+ARRIVAL the median is invariant to exactly the delay it exists to measure. The evaluator saw a gate->output delay
+move 184 -> 164; V3 reported 185.5 in both. Also: 6 of 60 strike phases make a box-ablation unusable, and the
+"independent" null generator was itself BIASED (sort-and-truncate) so it could never draw them.
+**THE CURE FOR A NUISANCE PARAMETER IS NOT ALWAYS TO INTEGRATE IT OUT. INTEGRATING IT OUT CAN INTEGRATE OUT THE
+SIGNAL ALONG WITH THE NUISANCE.**
 
-**EXP-GT-03 FAILED PROSPECTIVELY (D-056) -- FAILED - IMPLEMENTATION.** The frozen observer PASSES translation,
-layout change, inert circuitry, decoy gates, an interior-channel delay edit, node addition, exact copy, and L on all
-three regimes. F/M/G pass everything. It FAILS on three:
+**V4 (D-059, D-060) QUALIFIES.** It keeps the whole phase-resolved profile tau(phi) and gets invariance BY SYMMETRY:
+a global phase shift is a COMMON CYCLIC ROTATION of every profile, so the canonical form is the minimum over all
+rotations taken TOGETHER. A RELATIVE shift is not a group element and survives. Validity is graded PER (component,
+phase). The null generator is rebuilt and ASSERTS ITS OWN COVERAGE.
 
-1. **A IS NOT PHASE-INVARIANT ON UNSEEN PHASES -- AND THE DEVELOPMENT NULL COULD NOT HAVE CAUGHT IT.** The delay
-   estimator strikes at phases (0,15,30,45); the development phase-null used **THE SAME FOUR PHASES**. The
-   estimator's sampling grid and the null's test grid COINCIDED, so the null was structurally incapable of firing.
-   On held-out phases (7,22,37,52) every delay moves 214 -> 222 and A calls a pure phase shift DIFFERENT.
-   **A null that cannot fire is not a null (D-035), turned on its author. The hold-out caught it in one run.**
-2. **A OVER-ABSTAINS**, contradicting its own contract: it returns INDETERMINATE if ANY intervention is confounded,
-   though the contract says a confounded locus is merely EXCLUDED from the evidence. It abstains on the crown case
-   even though it recovered the correct graph and coverage was complete.
-3. **A delay-preserving E1 is NOT CONSTRUCTIBLE** -- a handoff that MOVES a component changes its causal delay
-   (184 -> 229), which IS an architectural change. A is right; the expected label was wrong (my error, D-053 class).
+**A is now THREE separate verdicts (binding):** **A_TOPO** (topology, modulo isomorphism; no delays, no geometry),
+**A_TAU** (timing), **G** (layout; auxiliary; NEVER composited; G is not identity).
 
-**Also: there is NO validated held-out COMPONENT IMPLEMENTATION.** BOAT/SNAKE/BEEHIVE all absorb cleanly IN
-ISOLATION and destroy the neighbouring channel in the real circuit. The LOAF was REJECTED by the benchmark's own
-graph-agreement assertion. **A component validated in isolation is not a validated component.**
+**PROSPECTIVE (D-060, third fresh hold-out split, 0 head failures):** 12/12 pairwise cases; E1-B 6/6 on a fresh
+configuration with the head run EXACTLY ONCE (A_TOPO=SAME, A_TAU=DIFFERENT, G=DIFFERENT, F=SAME, M=DIFFERENT,
+L=SAME); E2 fires and recovers; L 3/3 incl. correct INDETERMINATE; S correctly reports OUT_OF_SCOPE.
+**The case that killed V3 -- a delay edit on a GATED path -- now passes.**
 
-**NOT CERTIFIABLE HERE AT ALL: A's invariance to a PROGRAM change.** A memory bit of 0 is implemented by ADDING an
-eater -- **the program IS the architecture**. **EXP-GT-02B's program-invariance PASS is VACUOUS.** Requires a
-substrate with STATE-based memory (a latch/storage loop). Required property of the next benchmark.
+**DISCLOSED, NOT PAPERED OVER:** the first held-out E1 was OUT OF SCOPE (relief one row from a gun, inside the
+certified 4-cell separation limit); its rebuild is DIAGNOSTIC_ONLY, and the prospective E1 claim rests only on the
+fresh E1-B. And **the head has no scope self-check** -- it merged two components and emitted a confident verdict.
+NOT patched (section 8 forbids it after a prospective run, and patching could not rescue any case anyway).
 
-**HOLD-OUTS QUARANTINED (DIAGNOSTIC_ONLY).** **NEXT: one preregistered repair cycle on DEVELOPMENT DATA ONLY** --
-(1) strike phases must cover the full period AND the phase null must use phases DISJOINT from the estimator's, so it
-CAN fire; (2) head_A must implement its contract (exclude a confounded locus; abstain only on insufficient
-coverage); (3) generate ENTIRELY NEW hold-outs; (4) re-freeze and re-run as EXP-GT-03B. **If it still fails, RETIRE
-this observer design.**
+**NOT CONSTRUCTIBLE HERE:** program-invariance (the program IS the architecture; EXP-GT-02B's pass was VACUOUS),
+feedback (no causal cycle), and a held-out COMPONENT IMPLEMENTATION (every candidate either destroys a neighbour in
+context or is a reactive seed). All three are required properties of the next component library.
 
-**S (D-051), F and L (D-052) preserved EXACTLY. EXP-SC-01 BLOCKED. D-046 unchanged. D_int untouched. No composite.**
+**NEXT: EXP-GT-HIERARCHY-00** -- blind hierarchical discovery from raw trajectories and self-chosen interventions.
+**NOT STARTED. EXP-SC-01 remains BLOCKED until it passes.** S/F/L preserved exactly. D-046 unchanged. No composite.
 
 ## CURRENT SUBSTRATE
 
