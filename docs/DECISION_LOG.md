@@ -1133,3 +1133,70 @@ architectural difference it can resolve** before it is trusted to say two archit
 
 **EXP-SC-01 remains BLOCKED** until A passes prospectively on held-out cases. No composite. No head tuned to pass.
 D-046 unchanged, D_int untouched.
+
+## D-053 — EXP-GT-A0: the "A failure" was a BENCHMARK-ONTOLOGY ERROR. D-052's repair is WITHDRAWN. Tolerance untouched.
+
+**Date:** 2026-07-13
+**Status:** **FAILED — ONTOLOGY.** EXP-SC-01 remains BLOCKED. D-046 unchanged, D_int untouched.
+**Run:** `results/EXP-GT-A0-20260713-001`. Observer v2, the certified S head (D-051), and F/L (D-052) are all
+**preserved exactly**. **No threshold was moved. No head was tuned.**
+
+**D-052 recorded that `A` failed because two architectures' channel gaps differ by 5 columns while `A`'s
+preregistered tolerance is 6.0, and prescribed an A RESOLUTION CERTIFICATE to sharpen it. That prescription is
+withdrawn, because the label it would have been graded against is wrong.**
+
+**The two "architectures" are the same causal graph.** `build()` writes its edges over **channel ordinals** —
+`(gun_i → out_i)`, `(gun_i → gate_i → out_i)`. **The gun columns never enter the graph.** Verified on all three
+programs, against **both** ground-truth graphs:
+
+| program | sp40 vs sp45 | declared edges identical | structurally isomorphic | **verified active-influence isomorphic** | **measured delays equal** |
+|---|---|---|---|---|---|
+| 1010 | — | **yes** | yes | **yes** | **yes** — (174,174,234,234) |
+| 0101 | — | **yes** | yes | **yes** | **yes** |
+| 1111 | — | **yes** | yes | **yes** | **yes** — (234,234,234,234) |
+
+The active-influence graph is **measured, not assumed**: every gun and every gate is ablated in turn and the
+per-channel output response is recorded with its delay. The two layouts differ **only in gun-column spacing**
+(40 vs 45). `arch_id = "A" + "-".join(gun_cols)` was a **layout id wearing an architecture's name**.
+
+**`A = SAME` was the CORRECT answer.** Expected label corrected to **A = SAME, G = DIFFERENT**.
+
+**Why this matters more than a relabelling.** Had the prescribed repair been executed, `A`'s tolerance would have
+been driven below the layout noise floor so that a 5-column spacing change read as DIFFERENT — i.e. **`A` would
+have been tuned into a layout detector, destroying the translation/layout invariance that is its entire
+definition.** The instrument was right and the reference was wrong. **Sharpening a ruler because it disagrees with
+a mislabelled standard is how an instrument gets silently broken.** The ban on tuning a head to pass a case is not
+enough on its own: **the expected label must itself be auditable.**
+
+**`G` — geometric embedding — is introduced** as an auxiliary diagnostic head. It records layout (channel spacings,
+translation-invariant). It is **reported separately and NEVER composited**, and **G is not identity**. `A` is
+**graph-isomorphism-aware and embedding-invariant**, and is read off the **structural** graph (program-independent),
+not the **active-influence** graph (program-dependent — a closed gate severs a path that structurally still exists).
+Binding ontology: `docs/IDENTITY_ONTOLOGY.md`.
+
+**SECOND BUG, found by the same audit: `ARCH_HELD_OUT[1] = (10,46,82,118)` is a DEAD CIRCUIT.** Zero output on all
+four channels under programs 1010 and 1111; under 0101 it emits debris with spurious cross-channel influence
+(`gate2` ablation perturbs **all four** outputs). Cause: the Gosper gun spans **36 columns**, so at spacing 36
+adjacent guns **touch** and annihilate. Each gun works **alone** at each of those columns, so the fault is the
+**layout**, not the component. Swept spacing 34–49: **34–37 BROKEN, ≥38 VIABLE**. This layout has been in the
+benchmark manifest since EXP-GT-00. **It is VOID and quarantined.** No reported EXP-GT-00/01/02/02B metric depends
+on it (all decisive comparisons used sp45), but its representations were computed and stored as if valid.
+**Nobody had ever asserted that a declared circuit computes anything.** A **viability assertion** — every declared
+channel actually carries a stream, and the declared graph is the graph the dynamics realizes — is now **mandatory
+for every circuit admitted to the benchmark**.
+
+**THIRD CONSEQUENCE: EXP-GT-00's case (b) "PASS" is CORRECTED to a FAIL.** `d_diff_arch_same_program = 0.684`
+against a criterion of "must be > 0" was **credit for reporting a large distance between two systems with the same
+causal architecture**. Under the corrected label the criterion inverts. Observer v1's persistent-site transverse
+profile is **layout-sensitive by construction** — it was a **G** detector, never an **A** detector. EXP-GT-00's
+artefacts are **preserved unchanged**; only the label moves.
+
+**THE BLOCKER, stated plainly: the benchmark has never contained ONE genuinely different causal architecture.**
+Every circuit in the family is four independent parallel channels `gun_i → (gate_i) → out_i` — no edge addition, no
+edge removal, no delay change, no redundancy, no feedback, no cross-channel coupling. **`A` has never been tested
+against a real architectural difference, and a finer tolerance would have had nothing to resolve.**
+
+**NEXT AUTHORIZED ACTION:** build a **verified circuit library with genuine topological contrasts**, each circuit's
+declared graph **empirically verified against the dynamics** by privileged knockout, each layout passing the
+viability assertion. Only then may EXP-GT-A-CERT derive a resolution — in **causal-graph space** (smallest
+detectable edge edit / delay change / redundancy change), **never in column-distance space**.

@@ -1,0 +1,41 @@
+EXP-GT-A0 -- ONTOLOGY AUDIT OF THE A HEAD (run BEFORE touching any tolerance)
+fast/reference differential step checks proved equal: 480
+
+VIABILITY -- the positive control the benchmark never had:
+  A_TRAIN_sp40   spacings=[40, 40, 40]   VIABLE       per-channel output [0.671, 0.671, 0.671, 0.671]
+  H50_sp45       spacings=[45, 45, 45]   VIABLE       per-channel output [0.671, 0.671, 0.671, 0.671]
+  H46_sp36       spacings=[36, 36, 36]   *** DEAD *** per-channel output [0.0, 0.0, 0.0, 0.0]
+
+DECISIVE COMPARISON -- same program, different layout:
+  prog   pair                             decl=  s-iso  a-iso  dly=   G         
+  1010   A_TRAIN_sp40 vs H50_sp45         True   True   True   True   DIFFERENT 
+  1010   A_TRAIN_sp40 vs H46_sp36         True   True   False  False  DIFFERENT 
+  1010   H50_sp45 vs H46_sp36             True   True   False  False  DIFFERENT 
+  0101   A_TRAIN_sp40 vs H50_sp45         True   True   True   True   DIFFERENT 
+  0101   A_TRAIN_sp40 vs H46_sp36         True   True   False  False  DIFFERENT 
+  0101   H50_sp45 vs H46_sp36             True   True   False  False  DIFFERENT 
+  1111   A_TRAIN_sp40 vs H50_sp45         True   True   True   True   DIFFERENT 
+  1111   A_TRAIN_sp40 vs H46_sp36         True   True   False  False  DIFFERENT 
+  1111   H50_sp45 vs H46_sp36             True   True   False  False  DIFFERENT 
+
+======================================================================================================
+VERDICT: FAILED -- ONTOLOGY   (a benchmark-label error, NOT an observer-resolution failure)
+
+  1. The pair labelled 'different ARCHITECTURE, same function' (sp40 vs sp45) is the SAME causal
+     graph: identical DECLARED edge sets (build() writes edges over channel ordinals, never over
+     columns), isomorphic VERIFIED active-influence graphs, and identical measured causal delays
+     (174,174,234,234). It differs ONLY in gun-column spacing.
+     => expected label corrected to  A = SAME, G = DIFFERENT.  A's answer was RIGHT.
+     => D-052's 'A needs a finer resolution' is WITHDRAWN. Lowering the tolerance would have tuned
+        A into a LAYOUT detector -- destroying the invariance A exists to provide.
+
+  2. ARCH_HELD_OUT[1] = (10,46,82,118), spacing 36, is a DEAD circuit: zero output on all four
+     channels. The gun spans 36 columns, so at spacing 36 adjacent guns touch and annihilate.
+     Each gun works ALONE at each of those columns -- the fault is the LAYOUT, not the component.
+     Minimum viable spacing measured = 38. This layout is VOID and is quarantined.
+
+  3. The benchmark has never contained ONE genuinely different causal architecture. Every circuit
+     in the family is 4 independent parallel channels gun_i -> (gate_i) -> out_i. A has therefore
+     never been tested against a real architectural difference and CANNOT be certified until such
+     architectures exist.
+======================================================================================================

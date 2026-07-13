@@ -1,0 +1,638 @@
+{
+ "differential_step_checks": 480,
+ "architectures": {
+  "A_TRAIN_sp40": {
+   "gun_cols": [
+    5,
+    45,
+    85,
+    125
+   ],
+   "spacings": [
+    40,
+    40,
+    40
+   ],
+   "n_channels": 4,
+   "extent": 120
+  },
+  "H50_sp45": {
+   "gun_cols": [
+    5,
+    50,
+    95,
+    140
+   ],
+   "spacings": [
+    45,
+    45,
+    45
+   ],
+   "n_channels": 4,
+   "extent": 135
+  },
+  "H46_sp36": {
+   "gun_cols": [
+    10,
+    46,
+    82,
+    118
+   ],
+   "spacings": [
+    36,
+    36,
+    36
+   ],
+   "n_channels": 4,
+   "extent": 108
+  }
+ },
+ "viability": {
+  "A_TRAIN_sp40": {
+   "viable": true,
+   "per_channel_mean_output": [
+    0.671,
+    0.671,
+    0.671,
+    0.671
+   ]
+  },
+  "H50_sp45": {
+   "viable": true,
+   "per_channel_mean_output": [
+    0.671,
+    0.671,
+    0.671,
+    0.671
+   ]
+  },
+  "H46_sp36": {
+   "viable": false,
+   "per_channel_mean_output": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  }
+ },
+ "programs": {
+  "A_TRAIN_sp40|1010": {
+   "declared_edges": [
+    "gate1->out1",
+    "gate3->out3",
+    "gun0->out0",
+    "gun1->gate1",
+    "gun1->out1",
+    "gun2->out2",
+    "gun3->gate3",
+    "gun3->out3"
+   ],
+   "verified_active_edges": [
+    "gate1->out1",
+    "gate3->out3",
+    "gun0->out0",
+    "gun2->out2"
+   ],
+   "delays": {
+    "gun0->out0": 234,
+    "gate1->out1": 174,
+    "gun2->out2": 234,
+    "gate3->out3": 174
+   },
+   "baseline_channel_means": [
+    0.671,
+    0.0,
+    0.671,
+    0.0
+   ],
+   "cross_channel_edges": []
+  },
+  "A_TRAIN_sp40|0101": {
+   "declared_edges": [
+    "gate0->out0",
+    "gate2->out2",
+    "gun0->gate0",
+    "gun0->out0",
+    "gun1->out1",
+    "gun2->gate2",
+    "gun2->out2",
+    "gun3->out3"
+   ],
+   "verified_active_edges": [
+    "gate0->out0",
+    "gate2->out2",
+    "gun1->out1",
+    "gun3->out3"
+   ],
+   "delays": {
+    "gate0->out0": 174,
+    "gun1->out1": 234,
+    "gate2->out2": 174,
+    "gun3->out3": 234
+   },
+   "baseline_channel_means": [
+    0.0,
+    0.671,
+    0.0,
+    0.671
+   ],
+   "cross_channel_edges": []
+  },
+  "A_TRAIN_sp40|1111": {
+   "declared_edges": [
+    "gun0->out0",
+    "gun1->out1",
+    "gun2->out2",
+    "gun3->out3"
+   ],
+   "verified_active_edges": [
+    "gun0->out0",
+    "gun1->out1",
+    "gun2->out2",
+    "gun3->out3"
+   ],
+   "delays": {
+    "gun0->out0": 234,
+    "gun1->out1": 234,
+    "gun2->out2": 234,
+    "gun3->out3": 234
+   },
+   "baseline_channel_means": [
+    0.671,
+    0.671,
+    0.671,
+    0.671
+   ],
+   "cross_channel_edges": []
+  },
+  "H50_sp45|1010": {
+   "declared_edges": [
+    "gate1->out1",
+    "gate3->out3",
+    "gun0->out0",
+    "gun1->gate1",
+    "gun1->out1",
+    "gun2->out2",
+    "gun3->gate3",
+    "gun3->out3"
+   ],
+   "verified_active_edges": [
+    "gate1->out1",
+    "gate3->out3",
+    "gun0->out0",
+    "gun2->out2"
+   ],
+   "delays": {
+    "gun0->out0": 234,
+    "gate1->out1": 174,
+    "gun2->out2": 234,
+    "gate3->out3": 174
+   },
+   "baseline_channel_means": [
+    0.671,
+    0.0,
+    0.671,
+    0.0
+   ],
+   "cross_channel_edges": []
+  },
+  "H50_sp45|0101": {
+   "declared_edges": [
+    "gate0->out0",
+    "gate2->out2",
+    "gun0->gate0",
+    "gun0->out0",
+    "gun1->out1",
+    "gun2->gate2",
+    "gun2->out2",
+    "gun3->out3"
+   ],
+   "verified_active_edges": [
+    "gate0->out0",
+    "gate2->out2",
+    "gun1->out1",
+    "gun3->out3"
+   ],
+   "delays": {
+    "gate0->out0": 174,
+    "gun1->out1": 234,
+    "gate2->out2": 174,
+    "gun3->out3": 234
+   },
+   "baseline_channel_means": [
+    0.0,
+    0.671,
+    0.0,
+    0.671
+   ],
+   "cross_channel_edges": []
+  },
+  "H50_sp45|1111": {
+   "declared_edges": [
+    "gun0->out0",
+    "gun1->out1",
+    "gun2->out2",
+    "gun3->out3"
+   ],
+   "verified_active_edges": [
+    "gun0->out0",
+    "gun1->out1",
+    "gun2->out2",
+    "gun3->out3"
+   ],
+   "delays": {
+    "gun0->out0": 234,
+    "gun1->out1": 234,
+    "gun2->out2": 234,
+    "gun3->out3": 234
+   },
+   "baseline_channel_means": [
+    0.671,
+    0.671,
+    0.671,
+    0.671
+   ],
+   "cross_channel_edges": []
+  },
+  "H46_sp36|1010": {
+   "declared_edges": [
+    "gate1->out1",
+    "gate3->out3",
+    "gun0->out0",
+    "gun1->gate1",
+    "gun1->out1",
+    "gun2->out2",
+    "gun3->gate3",
+    "gun3->out3"
+   ],
+   "verified_active_edges": [],
+   "delays": {},
+   "baseline_channel_means": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "cross_channel_edges": []
+  },
+  "H46_sp36|0101": {
+   "declared_edges": [
+    "gate0->out0",
+    "gate2->out2",
+    "gun0->gate0",
+    "gun0->out0",
+    "gun1->out1",
+    "gun2->gate2",
+    "gun2->out2",
+    "gun3->out3"
+   ],
+   "verified_active_edges": [
+    "gate2->out0",
+    "gate2->out1",
+    "gate2->out2",
+    "gate2->out3"
+   ],
+   "delays": {
+    "gate2->out0": 262,
+    "gate2->out1": 110,
+    "gate2->out2": 89,
+    "gate2->out3": 244
+   },
+   "baseline_channel_means": [
+    0.066,
+    1.983,
+    1.143,
+    0.0
+   ],
+   "cross_channel_edges": [
+    "gate2->out0",
+    "gate2->out1",
+    "gate2->out3"
+   ]
+  },
+  "H46_sp36|1111": {
+   "declared_edges": [
+    "gun0->out0",
+    "gun1->out1",
+    "gun2->out2",
+    "gun3->out3"
+   ],
+   "verified_active_edges": [],
+   "delays": {},
+   "baseline_channel_means": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "cross_channel_edges": []
+  }
+ },
+ "comparisons": [
+  {
+   "program": "1010",
+   "arch_pair": [
+    "A_TRAIN_sp40",
+    "H50_sp45"
+   ],
+   "declared_structural_edges_identical": true,
+   "declared_structural_isomorphic": true,
+   "verified_active_isomorphic": true,
+   "verified_delays_equal": true,
+   "delays_x": [
+    174,
+    174,
+    234,
+    234
+   ],
+   "delays_y": [
+    174,
+    174,
+    234,
+    234
+   ],
+   "G": "DIFFERENT",
+   "spacings": [
+    [
+     40,
+     40,
+     40
+    ],
+    [
+     45,
+     45,
+     45
+    ]
+   ]
+  },
+  {
+   "program": "1010",
+   "arch_pair": [
+    "A_TRAIN_sp40",
+    "H46_sp36"
+   ],
+   "declared_structural_edges_identical": true,
+   "declared_structural_isomorphic": true,
+   "verified_active_isomorphic": false,
+   "verified_delays_equal": false,
+   "delays_x": [
+    174,
+    174,
+    234,
+    234
+   ],
+   "delays_y": [],
+   "G": "DIFFERENT",
+   "spacings": [
+    [
+     40,
+     40,
+     40
+    ],
+    [
+     36,
+     36,
+     36
+    ]
+   ]
+  },
+  {
+   "program": "1010",
+   "arch_pair": [
+    "H50_sp45",
+    "H46_sp36"
+   ],
+   "declared_structural_edges_identical": true,
+   "declared_structural_isomorphic": true,
+   "verified_active_isomorphic": false,
+   "verified_delays_equal": false,
+   "delays_x": [
+    174,
+    174,
+    234,
+    234
+   ],
+   "delays_y": [],
+   "G": "DIFFERENT",
+   "spacings": [
+    [
+     45,
+     45,
+     45
+    ],
+    [
+     36,
+     36,
+     36
+    ]
+   ]
+  },
+  {
+   "program": "0101",
+   "arch_pair": [
+    "A_TRAIN_sp40",
+    "H50_sp45"
+   ],
+   "declared_structural_edges_identical": true,
+   "declared_structural_isomorphic": true,
+   "verified_active_isomorphic": true,
+   "verified_delays_equal": true,
+   "delays_x": [
+    174,
+    174,
+    234,
+    234
+   ],
+   "delays_y": [
+    174,
+    174,
+    234,
+    234
+   ],
+   "G": "DIFFERENT",
+   "spacings": [
+    [
+     40,
+     40,
+     40
+    ],
+    [
+     45,
+     45,
+     45
+    ]
+   ]
+  },
+  {
+   "program": "0101",
+   "arch_pair": [
+    "A_TRAIN_sp40",
+    "H46_sp36"
+   ],
+   "declared_structural_edges_identical": true,
+   "declared_structural_isomorphic": true,
+   "verified_active_isomorphic": false,
+   "verified_delays_equal": false,
+   "delays_x": [
+    174,
+    174,
+    234,
+    234
+   ],
+   "delays_y": [
+    89,
+    110,
+    244,
+    262
+   ],
+   "G": "DIFFERENT",
+   "spacings": [
+    [
+     40,
+     40,
+     40
+    ],
+    [
+     36,
+     36,
+     36
+    ]
+   ]
+  },
+  {
+   "program": "0101",
+   "arch_pair": [
+    "H50_sp45",
+    "H46_sp36"
+   ],
+   "declared_structural_edges_identical": true,
+   "declared_structural_isomorphic": true,
+   "verified_active_isomorphic": false,
+   "verified_delays_equal": false,
+   "delays_x": [
+    174,
+    174,
+    234,
+    234
+   ],
+   "delays_y": [
+    89,
+    110,
+    244,
+    262
+   ],
+   "G": "DIFFERENT",
+   "spacings": [
+    [
+     45,
+     45,
+     45
+    ],
+    [
+     36,
+     36,
+     36
+    ]
+   ]
+  },
+  {
+   "program": "1111",
+   "arch_pair": [
+    "A_TRAIN_sp40",
+    "H50_sp45"
+   ],
+   "declared_structural_edges_identical": true,
+   "declared_structural_isomorphic": true,
+   "verified_active_isomorphic": true,
+   "verified_delays_equal": true,
+   "delays_x": [
+    234,
+    234,
+    234,
+    234
+   ],
+   "delays_y": [
+    234,
+    234,
+    234,
+    234
+   ],
+   "G": "DIFFERENT",
+   "spacings": [
+    [
+     40,
+     40,
+     40
+    ],
+    [
+     45,
+     45,
+     45
+    ]
+   ]
+  },
+  {
+   "program": "1111",
+   "arch_pair": [
+    "A_TRAIN_sp40",
+    "H46_sp36"
+   ],
+   "declared_structural_edges_identical": true,
+   "declared_structural_isomorphic": true,
+   "verified_active_isomorphic": false,
+   "verified_delays_equal": false,
+   "delays_x": [
+    234,
+    234,
+    234,
+    234
+   ],
+   "delays_y": [],
+   "G": "DIFFERENT",
+   "spacings": [
+    [
+     40,
+     40,
+     40
+    ],
+    [
+     36,
+     36,
+     36
+    ]
+   ]
+  },
+  {
+   "program": "1111",
+   "arch_pair": [
+    "H50_sp45",
+    "H46_sp36"
+   ],
+   "declared_structural_edges_identical": true,
+   "declared_structural_isomorphic": true,
+   "verified_active_isomorphic": false,
+   "verified_delays_equal": false,
+   "delays_x": [
+    234,
+    234,
+    234,
+    234
+   ],
+   "delays_y": [],
+   "G": "DIFFERENT",
+   "spacings": [
+    [
+     45,
+     45,
+     45
+    ],
+    [
+     36,
+     36,
+     36
+    ]
+   ]
+  }
+ ]
+}
