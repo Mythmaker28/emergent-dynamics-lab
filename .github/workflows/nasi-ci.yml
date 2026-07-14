@@ -1,0 +1,33 @@
+name: nasi-ci
+on: [push, pull_request]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.10", "3.12"]   # pinned reference + one newer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "${{ matrix.python }}" }
+      - run: pip install "numpy>=1.26,<3"
+      - name: Freeze verification
+        run: cd noise_aware && python verify_freeze.py
+      - name: Historical failure regressions (no false {0})
+        run: cd noise_aware && PYTHONPYCACHEPREFIX=/tmp/pyc python -B regressions.py
+      - name: Low-SNR development gates
+        run: cd noise_aware && PYTHONPYCACHEPREFIX=/tmp/pyc python -B run_dev.py 300
+      - name: Deterministic reproduction
+        run: make reproduce-nasi
+      - name: Cache-poisoning invariance
+        run: cd noise_aware && python cache_poison_test.py
+      - name: Figures regenerate from raw artifacts
+        run: cd noise_aware && PYTHONPYCACHEPREFIX=/tmp/pyc python -B make_figures.py
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build pinned container
+        run: docker build -t nasi-repro .
+      - name: Reproduce inside container (no host cache)
+        run: docker run --rm nasi-repro make reproduce-paper-all
