@@ -86,3 +86,38 @@ worlds.
 
 It is **not fully qualified**, and it is **not a failure of comprehension**. It is a failure of *description
 minimality*, and that distinction is the entire content of the strategic question that follows.
+
+
+---
+
+# EXP-GT-CONTINUOUS-FINGERPRINT-00 — Continuous-Observable Causal Response Fingerprint
+
+**RESULT: FAIL (prospective). RETIRED.** Development 52/52; prospective 52/54; **gate G2 failed**.
+
+| capability | status |
+|---|---|
+| continuous response representation on a float observable of order 1e-3 | **DEFINED** (NSRC — noise-standardized response curve) |
+| exact invariance to an affine change of readout units | **DEMONSTRATED** — prospective deviation **0.0** |
+| sensitivity to internal gain, preserved alongside that invariance | **DEMONSTRATED** — gain x2 -> d = 170.6 |
+| separation of sign, latency, latency structure, saturation, feedback-vs-FIR, extra causes | **DEMONSTRATED** |
+| genuine hidden-state detection (bistable memory) | **DEMONSTRATED** — d = 204.2 |
+| repertoire-relative equivalence (false sameness reported, never SAME) | **DEMONSTRATED** — limited d = 2.51 / rich d = 88.9 |
+| abstention on silent / unreadable / nonstationary / in-flight / access-restricted / off-contract systems | **DEMONSTRATED** |
+| **DIFFERENCE pairs all separate under the frozen instrument** | ### **FAILED** — `P_cascade` refused by a falsely-firing in-flight guard |
+| droplet transfer | **NOT CLAIMED. NOT ADMISSIBLE.** |
+| partition robustness | **NOT EXERCISED. UNRESOLVED.** |
+
+**4. (D-074) THE SETTLING CRITERION DOES NOT TRANSFER ACROSS RESPONSE ORDER.** The in-flight guard's threshold
+(a row is still moving if its tail changes by >5% of its own peak) was calibrated, implicitly, on **first-order**
+development systems whose transients collapse fast (`P_leak`: 0.66%). A **second-order** prospective cascade with
+`T3 = 21` has a slower tail (**5.3%**) and trips it. The instrument then **abstained on a case it could have
+decided** — the privileged path puts the true settling time at 108, well inside the 160-sample window.
+
+**A fabricated abstention is exactly as dishonest as a fabricated certainty, and harder to notice, because it
+looks like caution.** This is the failure mode the programme had not previously catalogued, and it is now on the
+record.
+
+**5. THE MEASUREMENT-CONTRACT THEOREM.** Absolute gain is **not identifiable** when both the output scale and the
+noise scale are free: a halved noise floor and a doubled gain are the same observation. The noise scale is
+therefore **declared, not inferred**, and the admission layer **refuses** cross-channel comparisons. This is a debt
+any droplet mapping must pay **physically** — "field noise" is on the unresolved list for exactly this reason.

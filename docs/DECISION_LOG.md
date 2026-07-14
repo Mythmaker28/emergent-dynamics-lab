@@ -2043,3 +2043,67 @@ a **continuous ground-truth substrate with known causal structure**, its own dev
 prospective run. That is a well-posed piece of work and it is **not** authorized here.
 
 **EXP-SC-01 remains BLOCKED.**
+
+
+---
+
+## D-074 — EXP-GT-CONTINUOUS-FINGERPRINT-00: FAIL. Instrument RETIRED. Droplet pilot remains BLOCKED.
+
+**Context.** D-073 returned `PREFLIGHT_FAIL`: the frozen Boolean fingerprint is **undefined** on a continuous
+observable. Cast to `uint8` -> universal false sameness. Exact float inequality -> universal false difference,
+including a system against **its own later self**. Both were **reproduced on the new substrate**, confirming the
+problem being solved is the real one (uint8 -> all zeros; float inequality -> 304/304 samples differ).
+
+**What was done.** A new continuous ground-truth substrate (`ctrans`), a privileged evaluator that never imports
+the instrument, a dev/prospective split **committed at `de97ee0` before the instrument existed** (verifiably
+disjoint: no shared names, no shared spec fingerprints, disjoint seeds, disjoint parameter grids, one topology
+reserved to prospective), a preregistered protocol with exact gates G1–G10 and a calibration rule
+(`SAFETY=2.0, SEP_FACTOR=3.0`) fixed **before any distance was seen**, and a new instrument
+(`cfingerprint.py`) frozen and hash-gated.
+
+**Development: 52/52. Two-path validation: 52/52, 0 disagreements. Must-fail controls: 7/8.**
+
+**Prospective: 52/54. G2 FAILED.** `P_cascade` was refused by the in-flight guard, which fired on a genuinely
+slower **second-order** tail (5.3% of peak vs the 5% threshold). The privileged path puts its true settling time at
+**108**, inside the 160-sample window. **The instrument abstained on a case it could have decided.**
+
+**Decision.** Per the freeze manifest's own failure rule, written before the run: the version is **RETIRED**, not
+repaired. The fix is a one-line threshold change; **it is not made**, because a repaired instrument would be one
+tuned on its hold-out, and the hold-out is now **burned**. A future version requires a **new split** and a **new
+authorization**.
+
+**Five defects were found and are preserved, not hidden:**
+
+1. **Metric aggregation (observer failure).** A MEAN over probe blocks diluted the `supply_cause` pair's real
+   separation of 21.8 down to 8.6 with 24 blocks of pure noise. Fixed by the **quantifier**: "indistinguishable
+   under the repertoire" is a FOR-ALL, certified by its WORST case, so the aggregate is a **max**.
+2. **Noise-scale estimator error x signal (normalization failure).** `z = r/sigma_hat`, so a 1.4% error in
+   `sigma_hat` injects `eps * z_signal` into a system's comparison **with itself**. Signature: **more repeats made
+   the instrument worse** (null 5.2 -> 9.4 -> 25.8 at R=4/8/16). Fixed by independent per-probe baselines and by
+   quotienting over one common scale clipped to the estimator's own confidence band. **Declared price: gain
+   differences below ~4% are not resolvable.**
+3. **Thresholds below the noise they threshold (observer failure).** `Z_DET=5` ("five sigma") sat below the drift
+   excursion; a **silent system scored 1/32 "responses"** and was handed a confident DIFFERENT. Recalibrated on
+   **noise-only** rows.
+4. **Benchmark-label failure.** `D_noisy` was built at true SNR **1.97** — marginally *above* its noise floor, not
+   below it. The instrument correctly detected it. **The failing thing was the system, not the instrument.** The
+   system was fixed; the threshold was **not** moved, because moving it would have been fitting a threshold to a
+   label.
+5. **Evaluator / ground-truth failure — caught by the two-path check, which is what it is for.** The privileged
+   evaluator quotiented by a **free affine map**, which absorbs a doubled gain (`a=2`) and an inverted sign
+   (`a=-1`), and it duly certified two flagship DIFFERENCE cases as EQUIVALENT. **A benchmark whose truth path is
+   wrong cannot fail an instrument; it can only slander one.**
+
+**Also recorded: L6 DID NOT FIRE.** The lexicographic phase quotient is stable in this benchmark. The cyclic-shift
+quotient remains the principled choice but is **not demonstrated load-bearing here**. A control that does not fire
+is not a control, and the protection is **unproven**, not proven.
+
+**Infrastructure hazard, recorded.** The repository is mounted on a filesystem with coarse mtimes on which Python's
+bytecode cache is unreliable: a **stale `.pyc` masked a truncated source file**, and an early "differential
+verification" that appeared to reproduce reference numbers exactly was in fact **running old bytecode and verifying
+nothing**. All runs now use a per-run `PYTHONPYCACHEPREFIX` and every source file is `py_compile`d from disk before
+use. Classified: **provenance / implementation failure**.
+
+`SC-PILOT-CONTINUOUS-FINGERPRINT-PREFLIGHT`: **NOT AUTHORIZED.**
+`SC-PILOT-CAUSAL-FINGERPRINT` remains **BLOCKED**. `EXP-SC-01` remains **BLOCKED**.
+No droplet experiment was launched. `beta`, `D_int` and the droplet equations were not touched.
