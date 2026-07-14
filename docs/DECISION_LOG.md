@@ -2419,3 +2419,24 @@ VERDICTS: SIGN-SAFE IDENTIFIABILITY THEOREM: PASS. SIGN-SAFE INSTRUMENT PROSPECT
 STRUCTURAL PASS — QUANTITATIVE FAIL. ONE-COMMAND REPRODUCTION: PASS (container unverified). PUBLICATION STATUS:
 METHODS PAPER SOLID (peer-review submission needs external human review + container E2E). Historical CRD-03 sign
 bug documented, not patched. DROPLET PILOT and EXP-SC-01 remain BLOCKED.
+
+## D-085 — FINAL HARDENING: theorems PASS, large hold-out FAILS (low-SNR null-gate), publication BLOCKED
+THEOREMS SOUND: 0 validity violations across 4000 eps-separated trials (T6-A/B/C/E). The earlier 0.995/0.970 were
+INFORMATIVENESS rates, not pass rates; all 14 residual cases were safe refusals (near-equal betas -> channels agree
+-> common-mode not excludable without an anchor), and the theorem conclusions held in every one.
+SIGN-CONTRACT PROVENANCE: all 8 point identifications in the benchmark were ORACLE-derived (anchor/sign read from
+ground truth). Blind rerun -> 0 points, safety preserved. Point-identification claims are now explicitly CONDITIONAL
+on externally established contracts; the benchmark does NOT show such contracts are obtainable from passive data.
+LARGE HOLD-OUT FAILED: preregistered N=2000 stratified generator (a76f8a7), instrument hash-gated at 09016d7, run
+once. 541/1333 emitted sets EXCLUDE the truth (40.6%); blind arm 541/541. Single systematic cause: the
+null-response gate (median(amp) < 2*median(null)) MISFIRES at SNR=5, emitting POINT={0} ("no response") against a
+real response (hand-verified case i=1: true |q|=0.428, instrument said 0). The 10-case prospective had no low-SNR
+stratum and passed; the stratified hold-out failed immediately. STOP RULE INVOKED: failure preserved, instrument NOT
+patched, hold-out BURNED. A harness bug (passing a_i instead of 1/a_i) was found and corrected first; signsafe.py
+was never modified (hash-gated throughout) -- documented as an erratum.
+CLAIM C12 ("never emits a set excluding the truth") WITHDRAWN. Theorems unaffected (the defect is an implementation
+detection gate, not the identifiability theory). FHN: Track A (structural transfer; quantitative ctrans-specific).
+Docker/CI never built -> clean reproduction INCOMPLETE.
+VERDICTS: THEOREM PACKAGE: PASS. LARGE DISTRIBUTIONAL HOLD-OUT: FAIL. CLEAN REPRODUCTION: INCOMPLETE.
+CROSS-SUBSTRATE: STRUCTURAL PASS. PUBLICATION STATUS: NOT READY. EXTERNAL HUMAN REVIEW: PENDING.
+DROPLET CAUSAL-CONTINUITY PILOT remains BLOCKED. EXP-SC-01 remains BLOCKED.
