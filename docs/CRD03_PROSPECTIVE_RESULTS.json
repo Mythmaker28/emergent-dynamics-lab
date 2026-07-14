@@ -1,0 +1,129 @@
+{
+ "Q1": {
+  "adm": "REFERENCE_SYSTEM_IDENTIFIABLE",
+  "Estat": "LOWER_BOUND_ONLY",
+  "E_over": 0.9997825623286495,
+  "A_over": 1.00017820764002,
+  "note": "slow + drift, clean",
+  "expect": {
+   "E": "nz",
+   "A": "nz",
+   "P": "z"
+  }
+ },
+ "Q2": {
+  "adm": "REFERENCE_CONTAMINATION_CORRECTED",
+  "Estat": "ESTIMATED",
+  "E_over": 1.0000572945779966,
+  "A_over": 0.9999545299057839,
+  "note": "kappa=0.12 single ref -> correct",
+  "expect": {
+   "adm": "CORR"
+  }
+ },
+ "Q3": {
+  "adm": "REFERENCE_CONTAMINATION_CORRECTED",
+  "Estat": "ESTIMATED",
+  "E_over": 0.9993561510155121,
+  "A_over": 1.0008580919073145,
+  "note": "third-order + contamination",
+  "expect": {
+   "adm": "CORR"
+  }
+ },
+ "Q4": {
+  "adm": "REFERENCE_SYSTEM_IDENTIFIABLE",
+  "Estat": "LOWER_BOUND_ONLY",
+  "E_over": 0.9998167354522789,
+  "A_over": 0.9998930014201337,
+  "note": "ringing, clean",
+  "expect": {
+   "E": "nz",
+   "A": "nz"
+  }
+ },
+ "Q5": {
+  "adm": "REFERENCE_SYSTEM_IDENTIFIABLE",
+  "Estat": "LOWER_BOUND_ONLY",
+  "E_over": 0.8116645964252373,
+  "A_over": 0.9020680181295198,
+  "note": "common-mode -> lower bound",
+  "expect": {
+   "adm": "IDENT",
+   "lower_bound": true
+  }
+ },
+ "Q6": {
+  "adm": "REFERENCE_CONTAMINATION_CORRECTED",
+  "Estat": "ESTIMATED",
+  "E_over": 0.9865510597110999,
+  "A_over": 0.9933520084160815,
+  "note": "multiscale + differential contamination",
+  "expect": {
+   "adm": "CORR_OR_IND"
+  }
+ },
+ "Q7": {
+  "adm": "REFERENCE_SYSTEM_IDENTIFIABLE",
+  "Estat": "LOWER_BOUND_ONLY",
+  "E_over": 1.000991889542018,
+  "A_over": 1.0000356134324755,
+  "note": "feedback + nonlinear signed",
+  "expect": {
+   "even": true
+  }
+ },
+ "Q8": {
+  "adm": "REFERENCE_SYSTEM_IDENTIFIABLE",
+  "Estat": "LOWER_BOUND_ONLY",
+  "E_over": 1.005372696997346,
+  "A_over": 1.0041112972355006,
+  "note": "persistent, clean",
+  "expect": {
+   "E": "nz",
+   "P": "nz"
+  }
+ },
+ "Q9": {
+  "adm": "REFERENCE_MIXTURE_ILL_CONDITIONED",
+  "Estat": "INDETERMINATE_REFERENCE",
+  "E_over": null,
+  "A_over": null,
+  "note": "collinear refs -> abstain",
+  "expect": {
+   "adm": "ILL"
+  }
+ },
+ "Q10": {
+  "adm": "REFERENCE_SYSTEM_IDENTIFIABLE",
+  "Estat": "LOWER_BOUND_ONLY",
+  "E_over": 1.0010576706893817,
+  "A_over": 1.0002137004800522,
+  "note": "transient, clean",
+  "expect": {
+   "E": "nz",
+   "A": "nz",
+   "P": "z"
+  }
+ },
+ "Q11": {
+  "adm": "REFERENCE_SYSTEM_IDENTIFIABLE",
+  "Estat": "LOWER_BOUND_ONLY",
+  "E_over": 1.000184914814681,
+  "A_over": 1.0000962567421063,
+  "note": "hysteresis",
+  "expect": {
+   "adm": "SIGNV_OR_IDENT"
+  }
+ },
+ "Q12": {
+  "adm": "REFERENCE_SYSTEM_IDENTIFIABLE",
+  "Estat": "NULL_COMPATIBLE",
+  "E_over": null,
+  "A_over": null,
+  "note": "silent -> equivalence class",
+  "expect": {
+   "collision": true
+  }
+ }
+}

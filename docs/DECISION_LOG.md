@@ -2346,3 +2346,21 @@ proper difference-in-differences); Python salted-hash seeds making runs non-repr
 hash); and a degenerate AR(1) noise floor plus a 9s/arm Python OU loop (floor moved to the corrected residual; OU
 blocked-vectorised, matching the literal recurrence to 1e-15, 300x faster).
 CRD-01 stands unaltered. SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## D-081 — CRD-03: redundant references + signed interventions PASS in ground truth; transfer needs passive observables
+The CRD-02 contamination failure is FIXED. Redundant passive references with DISTINCT drift couplings + signed
+interventions correct DIFFERENTIAL reference contamination: the preregistered CRD-02 case (kappa=0.12 single
+reference) -> CORRECTED, E/E*=1.00 A/A*=1.00 (was a silent 21% attenuation, floor kappa~0.15). Corrected out to
+kappa~0.35. 21/21 dev cases, 15/15 dev gates; prospective 12/12 under a verified hash gate, all prospective gates
+pass, opened once. Q2 (kappa=0.12 on an UNSEEN system) CORRECTED 1.00; unseen topologies (third-order, underdamped,
+multiscale, feedback) recovered; collinear references abstain (ill-conditioned).
+IDENTIFIABILITY THEOREM (symbolic + numeric, established BEFORE the instrument): drift-free signals z_i =
+s(1-alpha_i kappa_i) span a 2-D space regardless of reference count; reference disagreement is a linear combination
+of them. => shape always identifiable; DIFFERENTIAL contamination identifiable to kappa~0.002 (contamination
+attenuates, largest-amplitude channel is cleanest, exact if any reference clean); COMMON-MODE contamination
+(kappa_i prop a_i) exactly unidentifiable AND undetectable by any passive scheme -> reported as a LOWER BOUND
+(D4 0.72, Q5 0.81). Absolute scale UNAVAILABLE on ctrans; not fabricated from privileged truth.
+Transfer: MAPPING_REQUIRES_NEW_PASSIVE_OBSERVABLE (>=3 passive references of distinct drift coupling; signed
+schedule plausible; no oracle; G15 physical plausibility PASS). Verdict: GROUND_TRUTH PASS -- PASSIVE OBSERVABLE
+DESIGN REQUIRED. Publication: METHODS PREPRINT READY.
+CRD-01, CRD-02 unaltered. SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED. Prospective 14xx burned.
