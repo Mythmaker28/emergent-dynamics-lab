@@ -2209,3 +2209,54 @@ v00 and v01 untouched; v00's six frozen files still verify byte-for-byte; v00 te
 `SC-PILOT-CONTINUOUS-FINGERPRINT-PREFLIGHT`: **NOT AUTHORIZED.**
 `SC-PILOT-CAUSAL-FINGERPRINT` remains **BLOCKED**. `EXP-SC-01` remains **BLOCKED**.
 No droplet experiment. beta, D_int and the droplet equations untouched.
+
+
+---
+
+## D-077 — EXP-GT-CONTINUOUS-FINGERPRINT-03: BENCHMARK_INVALID. The target quantity is ill-posed. BRANCH CLOSED — NO V04.
+
+**Preregistered at cc39c6c, before any fitting:** alpha=0.05 MARGINAL coverage; disjoint FIT(14)/CAL(14)/CHALLENGE(22)
+partition (verified: no system, parameter tuple or seed appears twice; none matches a sealed-prospective system; the
+reserved third-order cascade appears nowhere in development); a MATCHED SHAM channel (baseline episodes only,
+differing solely in the absence of intervention amplitude) to measure the drift scale v02's differenced `sd` was
+blind to; ridge on label-free features, fit-set CV only; split conformal; radii from FIT-SET NULLS only
+(r_cont=7.96, r_sep=23.88).
+
+**The sham channel works** -- it returns a per-system drift scale of 1.264 noise units, exactly the quantity that
+set v02's floor. **Then the pre-fit truth check (G11) failed, and it failed for a reason that invalidates the
+question itself.**
+
+**THE FINDING. The fingerprint distance is an RMS OVER AN OBSERVATION WINDOW. For any TRANSIENT difference it
+dilutes at EXACTLY sqrt(W/W') and TENDS TO ZERO as the window grows.** Measured noise-free, same metric, only the
+window changed: v00 burned cascade 47.35 -> 22.64 (0.478); v01 T4 30.18 -> 14.45 (0.479); gain x2 115.32 -> 55.13
+(0.478); sign 230.64 -> 110.27 (0.478). sqrt(320/1400) = 0.478. **The PERSISTENT hidden-state pair does NOT dilute
+(346.43 -> 348.01, ratio 1.005) -- the control that proves the effect is the METRIC's normalization, not the
+systems.**
+
+**Therefore "the distance at a longer window" is not a fact about the pair. It is a fact about the pair AND the
+window.** The privileged path places the v00 burned cascade at D_inf=22.64, BELOW the preregistered r_sep=23.88 --
+inside the ambiguity gap -- so G5 (must classify) and G2 (no confident wrong verdict) cannot both hold.
+Construction truth and privileged truth DISAGREE. **G11 forbids scoring. BENCHMARK_INVALID.** The radii were
+preregistered and are NOT moved; the target was preregistered and is NOT redefined after seeing that it fails.
+
+**RETROSPECTIVE CONSEQUENCE FOR THE WHOLE BRANCH: for a FIXED window the instrument already sees everything it will
+ever see. There is no "unseen remainder" affecting D_W -- the only uncertainty is MEASUREMENT NOISE. v00's in-flight
+guard, v01's tail-uncertainty bound and v02's resolution certificate were each defeated by A QUANTITY THAT DOES NOT
+EXIST.** The one legitimate truncation concern is PERSISTENCE, which does not dilute and is already captured by any
+window exceeding the settling time plus the declared delay horizon. v00's persistence logic was addressing the real
+problem; its in-flight guard was addressing a phantom.
+
+**A well-posed continuous fingerprint needs a WINDOW-INVARIANT discrepancy functional -- an integral rather than a
+mean, or normalization by response energy rather than window length. That changes the METRIC, the one component
+unchanged since v00, and is therefore a NEW PROGRAMME, not a new version.**
+
+**STATUS.** No freeze manifest -- v03 never earned one. No calibration was performed -- the calibration set is
+untouched. **The sealed prospective split (31 systems, 27 cases) was NEVER SPENT** and remains sealed; audited
+again: no Q_* acquisition has ever existed on disk or in git history.
+
+Methodological synthesis of v00-v03 written to docs/CFP03_SYNTHESIS.md.
+
+`SC-PILOT-CONTINUOUS-FINGERPRINT-PREFLIGHT`: **NOT AUTHORIZED.**
+`SC-PILOT-CAUSAL-FINGERPRINT` remains **BLOCKED**. `EXP-SC-01` remains **BLOCKED**.
+**CONTINUOUS-FINGERPRINT BRANCH CLOSED — NO V04.**
+No droplet experiment was ever executed in this branch. beta, D_int and the droplet equations untouched.

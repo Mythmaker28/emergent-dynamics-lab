@@ -195,3 +195,42 @@ acquisition.
 (`D_lo = 45.52` vs `r_sep = 22.89`, DECIDABLE_SETTLED); harmless slow tails classify; non-settling, out-of-contract,
 drifting and silent systems abstain; gain, hidden state and extra causes separate; continuity and
 EQUIVALENCE_CLASS_ONLY hold. **None of it matters: the battery cannot SEE the remainders it must act on.**
+
+
+---
+
+# EXP-GT-CONTINUOUS-FINGERPRINT-03 — Drift-Aware Risk-Calibrated Fingerprint
+
+**RESULT: BENCHMARK_INVALID.** The target quantity is ill-posed. Detected BEFORE any predictor was fitted. The
+calibration set was never touched; the sealed prospective split was never touched. **BRANCH CLOSED — NO V04.**
+
+**11. (D-077) THE FINGERPRINT DISTANCE IS NOT A PROPERTY OF A PAIR OF SYSTEMS. IT IS A PROPERTY OF THE PAIR AND
+THE OBSERVATION WINDOW.**
+
+An RMS-over-window metric DILUTES any TRANSIENT difference at exactly the normalization rate and tends to ZERO as
+the window grows. Measured on noise-free traces, same metric, only the window changed:
+
+| pair | W=320 | W=1400 | ratio |
+|---|---|---|---|
+| v00 burned cascade | 47.35 | 22.64 | **0.478** |
+| v01 T4 | 30.18 | 14.45 | **0.479** |
+| gain x2 | 115.32 | 55.13 | **0.478** |
+| sign inversion | 230.64 | 110.27 | **0.478** |
+| **hidden state (PERSISTENT)** | 346.43 | 348.01 | **1.005** |
+
+`sqrt(320/1400) = 0.478`. **The persistent difference does not dilute. That control proves the effect is the
+METRIC, not the systems.**
+
+**CONSEQUENCE, and it retrospectively explains the whole branch: for a FIXED window the instrument already sees
+everything it will ever see. There is no "unseen remainder" affecting D_W -- the only uncertainty is measurement
+noise. v00's in-flight guard, v01's tail bound and v02's resolution certificate were each defeated by a quantity
+THAT DOES NOT EXIST.** The one legitimate truncation concern is PERSISTENCE, which does not dilute and is fully
+captured by any window exceeding the settling time plus the declared delay horizon.
+
+**12. A RISK-CALIBRATED INSTRUMENT IS ONLY AS MEANINGFUL AS THE QUANTITY WHOSE RISK IT CALIBRATES.** v03's retreat
+from proof to conformal risk was sound in principle, but it inherited the ill-posed target. The two-path truth
+check caught it before a single parameter was fitted.
+
+**13. A WELL-POSED CONTINUOUS FINGERPRINT NEEDS A WINDOW-INVARIANT DISCREPANCY FUNCTIONAL** -- an integral rather
+than a mean, or normalization by response energy rather than window length. That is a change to the METRIC, the one
+component unchanged since v00, and therefore a NEW PROGRAMME, not a new version.
