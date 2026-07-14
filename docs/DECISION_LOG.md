@@ -2386,3 +2386,21 @@ NOT executed; no equation/beta/D_int/rho/U/V modified; only passive read-only di
 no trajectory, verified). Quantum option NOT WARRANTED (the obstacle is observational rank-deficiency, not
 computation). The CRD-03 methods result is UNAFFECTED and is in fact instantiated by this failure (T5): METHODS
 PREPRINT READY FOR INDEPENDENT REPLICATION. SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## D-083 — Independent replication: core reproduces, lower-bound theorem T6 FALSIFIED, quantitative transfer FAILS
+Clean-room reimplementation (independent_replication/recover.py, imports numpy only) reproduces the CRD-03 core:
+differential contamination identifiable/correctable (kappa=0.12 -> 1.001), common-mode unidentifiable (bound),
+collinear abstains. So the historical PASS is not a code artifact.
+BUT the lower-bound claim is FALSIFIED. argmax-amplitude assumes sign(lam_i*e_i)>=0 (attenuation). Under
+amplification (e_i<0, OR g_i<0 with e_i>0) the FROZEN instrument returns CORRECTED with q_hat/q=1.106 (confident
+10.5% OVERSTATEMENT); point-estimate coverage 0/40 amplifying, 3/40 mixed-sign. Never tested: all historical cases
+used kappa>=0 and positive couplings; the droplet c_global has a=-0.50, so real substrates hit it. FIX (T6-prime):
+report bracket [min|v|,max|v|] (40/40 coverage all regimes, sign-agnostic); emit a point only under an established
+sign contract, else abstain. Verified independently.
+Second substrate (FitzHugh-Nagumo): contamination LOGIC transfers (differential located, common-mode bounded,
+amplifying abstains) but clean-case accuracy biased (q_hat/q~0.86) -> quantitative accuracy is ctrans-specific.
+VERDICTS: CRD-03 INDEPENDENT REPLICATION: INDETERMINATE (core reproduces; a load-bearing operational claim fails
+audit and must be restricted). SECOND SUBSTRATE: PASS (structural identifiability transfers) with quantitative
+caveat. PUBLICATION STATUS: REPLICATION COMPLETE — CONSOLIDATION INCOMPLETE (T6 retraction + FHN gap + no
+one-command rebuild). Historical CRD-03 freeze NOT rewritten; flaw documented. DROPLET CAUSAL-CONTINUITY PILOT
+remains BLOCKED. EXP-SC-01 remains BLOCKED.
