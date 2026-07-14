@@ -43,10 +43,18 @@ for r in issued:
     reg[g][1]+=1; reg[g][0]+=(r["point_contains"] is False)
 cata=sum(1 for r in issued if r["catastrophic"])
 labels=list(reg.keys()); rates=[reg[k][0]/reg[k][1] for k in labels]
-axB.bar(labels,rates,color=["#8e44ad","#16a085","#c0392b","#7f8c8d"][:len(labels)])
-for i,k in enumerate(labels): axB.text(i,rates[i]+0.01,f"{reg[k][0]}/{reg[k][1]}",ha="center",fontsize=8)
-axB.set_ylabel("P(q not in I_point | issued)"); axB.set_ylim(0,1.0)
-axB.set_title(f"Panel B: invalid point-cert rate by regime (catastrophic={cata})")
+errs=[[],[]]
+for k in labels:
+    p,l,h=wilson(reg[k][0],reg[k][1]); errs[0].append(max(0,p-l)); errs[1].append(max(0,h-p))
+axB.bar(labels,rates,yerr=errs,capsize=4,color=["#8e44ad","#16a085","#c0392b","#7f8c8d"][:len(labels)])
+for i,k in enumerate(labels):
+    axB.text(i,rates[i]+0.05,f"{reg[k][0]}/{reg[k][1]}",ha="center",fontsize=8)
+axB.axhline(0.05,ls="--",color="k",lw=1,label="5% reference")
+ch=labels.index("contam_highSNR") if "contam_highSNR" in labels else None
+if ch is not None: axB.annotate("stable unidentified bias",(ch,rates[ch]),xytext=(ch-0.3,0.8),fontsize=8,arrowprops=dict(arrowstyle="->"))
+axB.set_ylabel("P(q not in I_point | issued)"); axB.set_ylim(0,1.0); axB.legend(fontsize=7)
+gtot=sum(reg[k][0] for k in labels); gden=sum(reg[k][1] for k in labels)
+axB.set_title(f"Panel B: invalid point-cert rate by regime\nglobal {gtot}/{gden}, catastrophic {cata}/{gden}")
 plt.tight_layout()
 outp=os.path.join(OUT,"fig_pc_twopanel.png"); fig.savefig(outp,dpi=110,bbox_inches="tight"); plt.close(fig)
 json.dump([dict(figure="fig_pc_twopanel.png",
