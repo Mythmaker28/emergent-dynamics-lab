@@ -154,3 +154,44 @@ mean. The fix — a longer observation window — is a BATTERY CHANGE and theref
 **7. A CHECK AND A BOUND WANT DIFFERENT CONFIDENCE LEVELS.** Using one constant for both inflates the remainder
 estimate to ~15 noise units on *pure noise*, drowning the ~20-unit remainders it exists to find. Conservatism
 applied to the wrong quantity is not caution; it is noise.
+
+
+---
+
+# EXP-GT-CONTINUOUS-FINGERPRINT-02 — Resolution-Certified Tail-Aware Continuous Fingerprint
+
+**RESULT: FAIL AT DEVELOPMENT. Not frozen. Prospective NOT run — the sealed split remains untouched.**
+
+**8. (D-076) THE TAIL-BOUND METHOD HAS A RESOLUTION CEILING THAT NO OBSERVATION HORIZON CAN RAISE.**
+
+Preregistered gate: `B_critical(W) >= 3 * B_noise(W)`. Measured across the preregistered grid
+{160, 240, 320, 480, 640}, the ratio is **0.89 / 2.55 / 2.56 / 1.18 / 0.29** — it **PEAKS AT 2.56 AND COLLAPSES**,
+and never reaches 3.0.
+
+```
+B_noise  improves as exp(-(W-84)/(3*TAU_MAX))      B_signal decays as exp(-W/tau)
+```
+
+**The signal decays faster than the noise floor improves whenever tau < 3*TAU_MAX -- true for essentially every
+in-contract system, because TAU_MAX is by definition the slowest one admitted. A LONGER WINDOW DESTROYS THE VERY
+EVIDENCE IT WAS SUPPOSED TO REVEAL.**
+
+At the end of v01 the agent proposed a longer window as the fix. **That hypothesis is falsified by measurement.**
+The failure is structural: a successor must change the METHOD, not the budget.
+
+**9. THE NOISE FLOOR IS DRIFT-LIMITED, NOT WHITE-NOISE-LIMITED.** The white-noise model predicts B_noise -> 0.58 by
+W=320; measured **3.49**, and it stops improving. Sub-block MEANS wander with the slow baseline while `sd`, derived
+by differencing, is BLIND TO DRIFT BY CONSTRUCTION. The longer you look, the more the baseline has wandered.
+Consequence: the out-of-contract bars are NOT constants across horizons (carrying v01's values across the grid made
+the NULL itself come back out of contract).
+
+**10. A PREFIX OF A LONG EPISODE IS NOT A SHORT EPISODE WITH THE SAME SEED.** The engine draws measurement noise
+(T samples) then drift from the same RNG stream, so the drift sequence depends on episode length. Measured
+`max|Z_long[:320] - Z_short(320)| = 6.48` **on a system compared with itself**. v01's T7/T8 varied the window by
+re-simulating and were therefore measuring the RNG. Window-invariance controls MUST use nested prefixes of one
+acquisition.
+
+**What v02 does achieve (13/15 dev gates at W=320):** the v00 burned cascade is fixed BY BOUND
+(`D_lo = 45.52` vs `r_sep = 22.89`, DECIDABLE_SETTLED); harmless slow tails classify; non-settling, out-of-contract,
+drifting and silent systems abstain; gain, hidden state and extra causes separate; continuity and
+EQUIVALENCE_CLASS_ONLY hold. **None of it matters: the battery cannot SEE the remainders it must act on.**

@@ -1,0 +1,195 @@
+{
+ "W": 320,
+ "r_cont": 7.629781011074882,
+ "r_sep": 22.889343033224645,
+ "tail_noise": 4.187287867527903,
+ "B_noise": {
+  "max": 3.4894065562732526,
+  "q999": 3.434240692582531,
+  "mean": 1.2570125272028163,
+  "n": 96
+ },
+ "gates": [
+  {
+   "gate": "D1",
+   "desc": "burned v00 cascade",
+   "pair": "R_leak_burned|R_cascade_burned",
+   "verdict": "DIFFERENT",
+   "tail": "DECIDABLE_SETTLED",
+   "d_obs": 45.52202375188338,
+   "D_lo": 45.52202375188338,
+   "D_hi": 45.52202375188338,
+   "pass": true
+  },
+  {
+   "gate": "D2",
+   "desc": "v01 T4 (resolution gate decides)",
+   "pair": "V_multi_strong|V_multi_tailonly",
+   "verdict": "INDETERMINATE",
+   "tail": "INDETERMINATE_IN_FLIGHT",
+   "d_obs": 22.57210724157012,
+   "D_lo": 5.945611245422976,
+   "D_hi": Infinity,
+   "pass": true
+  },
+  {
+   "gate": "D4",
+   "desc": "harmless slow tail",
+   "pair": "V_multi_strong|V_multi_strong_g2",
+   "verdict": "DIFFERENT",
+   "tail": "DECIDABLE_SLOW_TAIL",
+   "d_obs": 183.32188698014505,
+   "D_lo": 183.32188698014505,
+   "D_hi": 183.32188698014505,
+   "pass": true
+  },
+  {
+   "gate": "D5",
+   "desc": "non-settling",
+   "pair": "V_nonsettle|V_leak",
+   "verdict": "INDETERMINATE",
+   "tail": "INDETERMINATE_IN_FLIGHT",
+   "d_obs": 952.552231812634,
+   "D_lo": 2.738144664344647,
+   "D_hi": Infinity,
+   "pass": true
+  },
+  {
+   "gate": "D5b",
+   "desc": "out-of-contract slow",
+   "pair": "V_slow_oos|V_leak",
+   "verdict": "INDETERMINATE",
+   "tail": "INDETERMINATE_IN_FLIGHT",
+   "d_obs": 104.71483619488019,
+   "D_lo": 104.71483619488019,
+   "D_hi": Infinity,
+   "pass": true
+  },
+  {
+   "gate": "D8",
+   "desc": "drift",
+   "pair": "V_drifty|V_leak",
+   "verdict": "INDETERMINATE",
+   "tail": "INDETERMINATE_IN_FLIGHT",
+   "d_obs": 102.08439424822673,
+   "D_lo": 97.8554834404141,
+   "D_hi": Infinity,
+   "pass": true
+  },
+  {
+   "gate": "D8b",
+   "desc": "the NULL",
+   "pair": "V_leak|V_leak",
+   "verdict": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+   "tail": "DECIDABLE_SETTLED",
+   "d_obs": 3.815951192382084,
+   "D_lo": 3.815951192382084,
+   "D_hi": 3.815951192382084,
+   "pass": true
+  },
+  {
+   "gate": "D9a",
+   "desc": "gain",
+   "pair": "V_leak|V_leak_gain2",
+   "verdict": "DIFFERENT",
+   "tail": "DECIDABLE_SETTLED",
+   "d_obs": 107.82347797135462,
+   "D_lo": 107.82347797135462,
+   "D_hi": 107.82347797135462,
+   "pass": true
+  },
+  {
+   "gate": "D9b",
+   "desc": "sign",
+   "pair": "V_leak|V_leak_sign",
+   "verdict": "INDETERMINATE",
+   "tail": "INDETERMINATE_IN_FLIGHT",
+   "d_obs": 225.31207512754335,
+   "D_lo": 225.31207512754335,
+   "D_hi": Infinity,
+   "pass": false
+  },
+  {
+   "gate": "D9c",
+   "desc": "hidden state",
+   "pair": "V_mem_p|V_mem_m",
+   "verdict": "DIFFERENT",
+   "tail": "DECIDABLE_SLOW_TAIL",
+   "d_obs": 354.52143178982027,
+   "D_lo": 351.83187570141706,
+   "D_hi": 359.18169080799254,
+   "pass": true
+  },
+  {
+   "gate": "D9d",
+   "desc": "extra cause",
+   "pair": "V_leak|V_supply",
+   "verdict": "DIFFERENT",
+   "tail": "DECIDABLE_SETTLED",
+   "d_obs": 54.33939048916103,
+   "D_lo": 54.33939048916103,
+   "D_hi": 54.33939048916103,
+   "pass": true
+  },
+  {
+   "gate": "D9e",
+   "desc": "delayed 2nd component",
+   "pair": "V_delayed2|V_delayed2_w",
+   "verdict": "INDETERMINATE",
+   "tail": "INDETERMINATE_IN_FLIGHT",
+   "d_obs": 51.433592787853016,
+   "D_lo": 51.433592787853016,
+   "D_hi": Infinity,
+   "pass": false
+  },
+  {
+   "gate": "D10a",
+   "desc": "equivalent microimpl.",
+   "pair": "V_leak|V_leak_dead",
+   "verdict": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+   "tail": "DECIDABLE_SETTLED",
+   "d_obs": 3.3070063225837303,
+   "D_lo": 3.3070063225837303,
+   "D_hi": 3.3070063225837303,
+   "pass": true
+  },
+  {
+   "gate": "D10b",
+   "desc": "unit change",
+   "pair": "V_leak|V_leak_units",
+   "verdict": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+   "tail": "DECIDABLE_SETTLED",
+   "d_obs": 3.1958513333477985,
+   "D_lo": 3.1958513333477985,
+   "D_hi": 3.1958513333477985,
+   "pass": true
+  },
+  {
+   "gate": "D11",
+   "desc": "limited-access collision",
+   "pair": "V_leak|V_hidden",
+   "verdict": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+   "tail": "DECIDABLE_SETTLED",
+   "d_obs": 3.1788416087118985,
+   "D_lo": 3.1788416087118985,
+   "D_hi": 3.1788416087118985,
+   "pass": true
+  },
+  {
+   "gate": "Dsil",
+   "desc": "silent",
+   "pair": "V_silent_dead|V_leak",
+   "verdict": "INDETERMINATE",
+   "tail": "DECIDABLE_SETTLED",
+   "d_obs": 111.46589931854363,
+   "D_lo": 111.46589931854363,
+   "D_hi": 111.46589931854363,
+   "pass": true
+  }
+ ],
+ "resolution_gate": {
+  "T4_B": 8.92,
+  "k_B_noise": 10.468219668819758,
+  "PASS": false
+ }
+}

@@ -2160,3 +2160,52 @@ v00's six frozen files were NOT modified and still verify byte-for-byte against 
 `SC-PILOT-CONTINUOUS-FINGERPRINT-PREFLIGHT`: **NOT AUTHORIZED.**
 `SC-PILOT-CAUSAL-FINGERPRINT` remains **BLOCKED**. `EXP-SC-01` remains **BLOCKED**.
 No droplet experiment. beta, D_int and the droplet equations untouched.
+
+
+---
+
+## D-076 — EXP-GT-CONTINUOUS-FINGERPRINT-02: FAIL AT DEVELOPMENT. Sealed split untouched. The longer-window hypothesis is FALSIFIED.
+
+**Preregistered at 44121e9, before any sweep:** horizon grid {160,240,320,480,640}, margin k=3.0, admissibility
+`B_critical(W) >= k*B_noise(W)`, decision-relevance defined privileged and instrument-independent, and the rule
+"select the SMALLEST horizon passing every gate, not the prettiest separation".
+
+**MEASURED RATIO B_signal/B_noise ACROSS THE GRID: 0.89 / 2.55 / 2.56 / 1.18 / 0.29.**
+**IT PEAKS AT 2.56 AND COLLAPSES. IT NEVER REACHES 3.0. THE BAR WAS NOT MOVED.**
+
+**THE STRUCTURAL RESULT.** B_noise improves as exp(-(W-84)/(3*TAU_MAX)); B_signal decays as exp(-W/tau). The signal
+dies faster than the floor improves whenever tau < 3*TAU_MAX -- true for essentially every in-contract system,
+since TAU_MAX is BY DEFINITION the slowest admitted. **A longer window destroys the very evidence it was supposed
+to reveal.** At the end of v01 the previous agent (me) proposed exactly this fix. It is now falsified by
+measurement. The tail-bound FAMILY has a resolution ceiling no horizon can raise; a successor must change the
+METHOD, not the budget.
+
+**SECOND FINDING: the floor is DRIFT-limited.** White-noise theory predicts B_noise -> 0.58 at W=320; measured 3.49,
+and it stops improving. Sub-block means wander with the OU baseline while `sd` (a differenced white-noise estimate)
+is blind to drift by construction. The longer you look, the more the baseline has wandered. Corollary: the
+out-of-contract bars are NOT constants -- carrying v01's W=160 values across the grid made EVERY pair, including
+the NULL, come back OUT OF CONTRACT.
+
+**THIRD FINDING, and it invalidates v01's controls retrospectively:** a PREFIX of a long episode is NOT a short
+episode with the same seed. The engine draws noise (T samples) then drift from the same RNG stream, so drift
+depends on episode length. Measured max|Z_long[:320] - Z_short(320)| = 6.48 ON A SYSTEM COMPARED WITH ITSELF.
+v01's T7/T8 re-simulated to vary the window and were therefore measuring the RNG. v02 supplies prefix().
+
+**WHAT v02 ACHIEVES (13/15 dev gates at the best horizon W=320):** D1 -- the v00 burned cascade classifies BY BOUND
+(D_lo=45.52 vs r_sep=22.89, DECIDABLE_SETTLED), no exception anywhere. Harmless slow tails classify; non-settling,
+out-of-contract, drifting and silent systems abstain; gain, hidden state, extra causes separate; continuity and
+EQUIVALENCE_CLASS_ONLY hold. Failing: sign and delayed-second-component (drift-driven false-unbounded blocks).
+
+**T4 abstains at W=320 -- FOR THE WRONG REASON.** Its bracket straddles because a block went unbounded from DRIFT,
+not because the bound resolved the remainder (B=8.92 < k*B_noise=10.47). A CORRECT-BY-ACCIDENT VERDICT IS NOT A
+QUALIFICATION.
+
+**DECISION: RETIRED AT DEVELOPMENT. The sealed prospective split (31 systems, 27 cases, third-order cascade) was
+NOT touched and is NOT burned.** Audited: no Q_* acquisition has ever existed on disk or in git history. No more
+flexible estimator was invented after seeing the failure, per the preregistered stop rule. No freeze manifest was
+written -- v02 never earned one.
+
+v00 and v01 untouched; v00's six frozen files still verify byte-for-byte; v00 tests 11/11.
+`SC-PILOT-CONTINUOUS-FINGERPRINT-PREFLIGHT`: **NOT AUTHORIZED.**
+`SC-PILOT-CAUSAL-FINGERPRINT` remains **BLOCKED**. `EXP-SC-01` remains **BLOCKED**.
+No droplet experiment. beta, D_int and the droplet equations untouched.
