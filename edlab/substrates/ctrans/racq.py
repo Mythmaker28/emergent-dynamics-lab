@@ -133,20 +133,29 @@ def episode(spec, probe, T, seed, C: RContract, sign: int = 1):
     refs = []
     for ai, ki in zip(C.couplings, C.kappa):
         refs.append(ai * d + ki * s + rng.normal(0.0, C.xi, T))
-    comp = C.comp_kappa * s + 0.30 * (ai * d) + rng.normal(0.0, C.xi, T)   # complementary "null" probe channel
+    a_comp = 1.0                                       # complementary channel's DECLARED drift coupling (fixed)
+    comp = C.comp_kappa * s + a_comp * d + rng.normal(0.0, C.xi, T)   # complementary "null" probe channel
     return {"y": y, "refs": np.array(refs), "comp": comp, "s_true": s, "sC": sC, "d": d}
 
 
+def _null_probe(probe):
+    return Probe(probe.name, probe.target, "none", 0.0, 0, probe.onset)
+
+
 def acquire(spec, probe, T, seeds, C: RContract):
-    """Signed acquisition: for every seed, a +u and a -u episode (SEPARATE -> independent drift realizations)."""
-    P, M = [], []
+    """Redundant-reference signed acquisition. For every seed, THREE separate episodes (independent drift):
+       +u (active), 0 (unprobed, for the baseline-removing difference-in-differences), -u (ARM B diagnostic)."""
+    nul = _null_probe(probe)
+    P, U, M = [], [], []
     for k in seeds:
         P.append(episode(spec, probe, T, k, C, +1))
-        M.append(episode(spec, probe, T, k ^ 0x5163, C, -1))   # -u episode: SEPARATE drift realization
+        U.append(episode(spec, nul, T, k ^ 0x1111, C, +1))         # unprobed: SEPARATE drift realization
+        M.append(episode(spec, probe, T, k ^ 0x5163, C, -1))       # -u: SEPARATE drift realization
     def stack(key, arr):
         return np.array([e[key] for e in arr])
-    out = {"yP": stack("y", P), "yM": stack("y", M),
-           "rP": np.array([e["refs"] for e in P]), "rM": np.array([e["refs"] for e in M]),
+    out = {"yP": stack("y", P), "yU": stack("y", U), "yM": stack("y", M),
+           "rP": np.array([e["refs"] for e in P]), "rU": np.array([e["refs"] for e in U]),
+           "rM": np.array([e["refs"] for e in M]),
            "cP": stack("comp", P), "cM": stack("comp", M),
            "sP": stack("s_true", P), "sM": stack("s_true", M)}      # s_true PRIVILEGED
     return out

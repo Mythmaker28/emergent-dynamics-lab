@@ -75,10 +75,12 @@ def analyse(acq, t_probe=W_PRE):
     al = _calib(yP, yM, rP, rM)
     diversity = _coupling_diversity(al)
 
-    # ODD, drift-free channels z_i = s_odd*(1-alpha_i kappa_i). Drift is even -> cancels in the odd part.
-    yO, yE = _odd_even(yP, yM)
+    # ODD, drift-free channels z_i = s_odd*(1-alpha_i kappa_i). The odd part (y+ - y-)/2 removes the baseline sC
+    # (even in u) and the references remove the drift. The residual drift (d+ - d-)/2 is further suppressed by the
+    # per-reference correction. Signed recovery targets the ODD response; ARM B's even part is a diagnostic.
+    yO = (yP - yM) / 2.0
     rO = (rP - rM) / 2.0
-    z = np.stack([(yO - al[i] * rO[:, i, :]).mean(axis=0) for i in range(nref)])   # (nref, T), ensemble mean
+    z = np.stack([(yO - al[i] * rO[:, i, :]).mean(axis=0) for i in range(nref)])   # (nref, T) ensemble mean
     w = slice(t_probe, t_probe + W_FIXED)
 
     def disagree(i, j):
@@ -87,8 +89,9 @@ def analyse(acq, t_probe=W_PRE):
 
     pairs = [(i, j) for i in range(nref) for j in range(i + 1, nref)]
     dis = {(i, j): disagree(i, j) for i, j in pairs}
-
-    rep = {"alpha": al.tolist(), "diversity": diversity, "disagree": {f"{i}{j}": v for (i, j), v in dis.items()}}
+    a_i = 1.0 / np.where(np.abs(al) > 1e-9, al, 1e-9)      # recovered drift couplings a_i (up to a)
+    rep = {"alpha": al.tolist(), "diversity": diversity, "cond": float(max(a_i) / max(min(a_i), 1e-9)),
+           "disagree": {f"{i}{j}": v for (i, j), v in dis.items()}}
 
     # reference diversity gate (D6 / must-fail 2: collinear references)
     if diversity < DIVERSITY_MIN:
@@ -96,14 +99,15 @@ def analyse(acq, t_probe=W_PRE):
         rep["cond"] = float("inf")
         return None, rep
 
-    # observation-matrix conditioning for latent (d, s): rows [a,1],[a_i, kappa_i]. kappa unknown; use the
-    # drift-coupling geometry (a_i) and the estimated disagreement to condition. If all z agree, cond is set by
-    # coupling spread; if the estimated contamination lies along the common-mode direction, s is unidentifiable.
-    a_i = 1.0 / np.where(np.abs(al) > 1e-9, al, 1e-9)      # recovered drift couplings a_i (up to a)
-    H = np.vstack([[1.0, 1.0]] + [[ai, 0.0] for ai in a_i])  # placeholder s-column filled after kappa est
-    cond_geom = float(np.linalg.cond(np.vstack([[1.0], a_i.reshape(-1, 1)[:, 0]]).reshape(-1, 1)
-                                     @ np.array([[1.0]])) if False else max(a_i) / max(min(a_i), 1e-9))
-    rep["cond"] = cond_geom
+    # NULL-RESPONSE GATE: a probe that does not excite the system carries no response. Its z is noise, and
+    # noise-level "disagreement" is not contamination. Detect via odd-signal SNR against the pre-window.
+    pre = slice(max(0, t_probe - W_FIXED), t_probe)
+    sig_amp = float(np.median([np.std(z[i, w]) for i in range(nref)]))
+    null_amp = float(np.median([np.std(z[i, pre]) for i in range(nref)])) + 1e-30
+    if sig_amp < 2.0 * null_amp:
+        rep["status"] = IDENT
+        rep["null_response"] = True
+        return np.median(z, axis=0), rep
 
     # RECOVERY PRINCIPLE: contamination ATTENUATES (kappa_i>=0, alpha_i>0 => |z_i| = |s|*(1-alpha_i kappa_i) <= |s|),
     # so the LARGEST-amplitude drift-free channel is the LEAST contaminated, and equals |s| exactly if any
@@ -142,26 +146,54 @@ def analyse(acq, t_probe=W_PRE):
     return None, rep
 
 def signed_consistency(acq, t_probe=W_PRE):
-    """Is the response ODD in u as the signed contract assumes? Hysteresis / strong even part violates it."""
-    yP, yM = acq["yP"], acq["yM"]
-    yO, yE = _odd_even(yP, yM)
+    """Is the response ODD in u? The EVEN part must be measured DRIFT-FREE, or residual drift (d+ + d- does not
+    vanish across independent +/- episodes) masquerades as a sustained even component and false-flags clean
+    linear responses. So the even part is reference-corrected: z_even = (y+ + y-)/2 - alpha_i*(r+ + r-)/2, drift
+    removed the same way the odd channels remove it."""
+    yP, yM, rP, rM = acq["yP"], acq["yM"], acq["rP"], acq["rM"]
+    al = _calib(yP, yM, rP, rM)
     w = slice(t_probe, t_probe + W_FIXED)
     pre = slice(max(0, t_probe - W_FIXED), t_probe)
+    yO = (yP - yM) / 2.0
+    yEven = (yP + yM) / 2.0
+    rEven = (rP + rM) / 2.0
+    # drift-free even part: use the median over references of the corrected even signal
+    zE = np.median(np.stack([(yEven - al[i] * rEven[:, i, :]).mean(0) for i in range(len(al))]), axis=0)
     odd_pow = float(np.std(yO[:, w].mean(0)))
-    even_pow = float(np.std(yE[:, w].mean(0) - yE[:, pre].mean(0).mean()))
-    even_null = float(np.std(yE[:, pre].mean(0)))
-    return {"odd": odd_pow, "even": even_pow, "even_null": even_null,
-            "even_significant": bool(even_pow > K_SIG * even_null + 0.05 * odd_pow),
-            "even_frac": even_pow / (odd_pow + 1e-30)}
-
+    odd_null = float(np.std(yO[:, pre].mean(0))) + 1e-30
+    even_pow = float(np.std(zE[w] - zE[pre].mean()))
+    even_null = float(np.std(zE[pre])) + 1e-30
+    responsive = odd_pow > 3.0 * odd_null
+    ev = zE[w] - zE[pre].mean()
+    # HYSTERESIS SIGNATURE: an order-dependent history offset accumulates like the INTEGRAL of the response,
+    # so the even part correlates with cumsum(odd response). Residual drift (OU) and a static even nonlinearity
+    # (which follows the response, not its integral) do not. This separates hysteresis from both.
+    odd_mean = yO[:, w].mean(0)
+    cum = np.cumsum(odd_mean - odd_mean.mean())
+    cum = cum - cum.mean()
+    evc = ev - ev.mean()
+    denom = (np.std(evc) * np.std(cum) + 1e-30)
+    hyst_corr = float(np.mean(evc * cum) / denom)          # correlation of even part with the response integral
+    frac = even_pow / (odd_pow + 1e-30)
+    sig = bool(frac > 0.25)
+    return {"odd": odd_pow, "even": even_pow, "even_null": even_null, "responsive": responsive,
+            "even_significant": bool(sig and responsive), "even_frac": frac, "hyst_corr": hyst_corr,
+            "hysteretic": bool(responsive and frac > 0.25 and abs(hyst_corr) > 0.6)}
 
 def complementary_null(acq, t_probe=W_PRE):
-    """A complementary probe aimed at a region that must NOT carry the response. If it does, the reference/region
-    is not passive."""
-    cP, cM = acq["cP"], acq["cM"]
-    cO = ((cP - cM) / 2.0).mean(axis=0)
+    """A complementary probe aimed at a region that must NOT carry the response. Its drift must be removed first
+    (residual drift across independent +/- episodes is not a response), THEN a surviving probe-locked signal
+    means the region is not passive. Drift-corrected against reference 0 (declared coupling a_comp = 1)."""
+    cP, cM, rP, rM, yP, yM = acq["cP"], acq["cM"], acq["rP"], acq["rM"], acq["yP"], acq["yM"]
+    al = _calib(yP, yM, rP, rM)
+    # comp = comp_kappa*s + a_comp*d ; reference r0 = a_0*d + ... ; alpha0 = a/a_0, a_comp=1 => correct with 1/a_0
+    inv_a0 = 1.0 / (1.0 / al[0]) if al[0] != 0 else 0.0     # a_0 = a/al[0]; scale so a_comp*d cancels
+    cO = ((cP - cM) / 2.0).mean(0)
+    r0O = ((rP[:, 0, :] - rM[:, 0, :]) / 2.0).mean(0)
+    scale = float(np.dot(cO[:t_probe], r0O[:t_probe]) / (np.dot(r0O[:t_probe], r0O[:t_probe]) + 1e-30))  # pre-window
+    cc = cO - scale * r0O                                   # drift-removed complementary odd signal
     w = slice(t_probe, t_probe + W_FIXED)
     pre = slice(max(0, t_probe - W_FIXED), t_probe)
-    sig = float(np.max(np.abs(cO[w])))
-    null = float(np.std(cO[pre])) + 1e-12
+    sig = float(np.std(cc[w]))
+    null = float(np.std(cc[pre])) + 1e-12
     return {"ratio": sig / null, "non_null": bool(sig / null > COMP_NULL_K)}
