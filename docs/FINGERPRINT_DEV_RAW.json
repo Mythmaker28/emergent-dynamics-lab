@@ -1,0 +1,298 @@
+{
+ "cases": [
+  {
+   "case": "[rich] CONTINUITY: behaviourally equivalent systems are never called DIFFERENT",
+   "PASS": true,
+   "detail": "7 pairs, max distance 0.0000; verdicts ['INDISTINGUISHABLE_UNDER_REPERTOIRE']"
+  },
+  {
+   "case": "[rich] DIFFERENCE: systems with different function or hidden state SEPARATE",
+   "PASS": true,
+   "detail": "5 pairs, min distance 0.0301; verdicts ['DIFFERENT']"
+  },
+  {
+   "case": "[rich] the continuity and difference regions do not overlap (a real gap)",
+   "PASS": true,
+   "detail": "max continuity 0.0000 < min difference 0.0301; radii r_c=0.0075, r_s=0.0226"
+  },
+  {
+   "case": "[rich] a REDUNDANT TAP creates no fingerprint difference (three taps, two causes)",
+   "PASS": true,
+   "detail": "AND_direct vs AND_dup_same: d=0.0000"
+  },
+  {
+   "case": "[rich] hidden state is separated from a LATCH (same parts, different behaviour)",
+   "PASS": true,
+   "detail": "reg_delay CONTAINS a register and is not a state machine; toggle is. d=0.3302"
+  },
+  {
+   "case": "[rich] RICH access RESCUES a system the droplet repertoire cannot interrogate at all",
+   "PASS": true,
+   "detail": "OR_bit1 responsiveness = 0.08 under rich access (0.00 under the droplet repertoire): unclamping its register makes it speak"
+  },
+  {
+   "case": "[droplet] CONTINUITY: behaviourally equivalent systems are never called DIFFERENT",
+   "PASS": true,
+   "detail": "7 pairs, max distance 0.0000; verdicts ['INDISTINGUISHABLE_UNDER_REPERTOIRE']"
+  },
+  {
+   "case": "[droplet] DIFFERENCE: systems with different function or hidden state SEPARATE",
+   "PASS": true,
+   "detail": "5 pairs, min distance 0.0602; verdicts ['DIFFERENT']"
+  },
+  {
+   "case": "[droplet] the continuity and difference regions do not overlap (a real gap)",
+   "PASS": true,
+   "detail": "max continuity 0.0000 < min difference 0.0602; radii r_c=0.015, r_s=0.0451"
+  },
+  {
+   "case": "[droplet] a REDUNDANT TAP creates no fingerprint difference (three taps, two causes)",
+   "PASS": true,
+   "detail": "AND_direct vs AND_dup_same: d=0.0000"
+  },
+  {
+   "case": "[droplet] hidden state is separated from a LATCH (same parts, different behaviour)",
+   "PASS": true,
+   "detail": "reg_delay CONTAINS a register and is not a state machine; toggle is. d=0.4115"
+  },
+  {
+   "case": "[droplet] a SILENT system is INDETERMINATE, never matched",
+   "PASS": true,
+   "detail": "OR_bit1 responsiveness = 0.00: a saturated gate answers nothing to any admissible droplet probe"
+  },
+  {
+   "case": "C1 systems distinguishable under RICH access are INDISTINGUISHABLE under the droplet repertoire",
+   "PASS": true,
+   "detail": "rich=['DIFFERENT', 'DIFFERENT', 'DIFFERENT', 'DIFFERENT']  droplet=['INDISTINGUISHABLE_UNDER_REPERTOIRE', 'INDISTINGUISHABLE_UNDER_REPERTOIRE', 'INDISTINGUISHABLE_UNDER_REPERTOIRE', 'INDISTINGUISHABLE_UNDER_REPERTOIRE']  -- and the droplet arm reports them as an EQUIVALENCE CLASS, not as the same system"
+  },
+  {
+   "case": "C2 FALSE SAMENESS INCREASES as experimental access gets poorer (measured, not assumed)",
+   "PASS": true,
+   "detail": "collisions: rich 0/4, droplet 4/4"
+  },
+  {
+   "case": "E1 function-preserving REPLACEMENT during one continuous trajectory: behaviour uninterrupted",
+   "PASS": true,
+   "detail": "identical before the swap; a bounded transient of 14 steps; uninterrupted from t=54"
+  },
+  {
+   "case": "E1 the fingerprint SURVIVES the replacement (pre/post distance inside the continuity radius)",
+   "PASS": true,
+   "detail": "pre-replacement vs post-replacement fingerprint distance = 0.0000 (continuity radius 0.015)"
+  },
+  {
+   "case": "L1 MUST-FAIL: re-adding the class label and lag set RECREATES the false difference (D-069)",
+   "PASS": true,
+   "detail": "clean d=0.0000 (INDISTINGUISHABLE) -> contaminated d=0.0612 (DIFFERENT). The exclusion of description-level quantities is LOAD-BEARING, not decoration."
+  },
+  {
+   "case": "L2 MUST-FAIL: removing the discriminating probe COLLAPSES two different systems into one fingerprint",
+   "PASS": true,
+   "detail": "with the register step d=0.0347 (DIFFERENT under rich) -> without it d=0.0000 (INDISTINGUISHABLE). PROBE-REPERTOIRE ADEQUACY IS LOAD-BEARING: the difference was real and the poorer repertoire cannot see it."
+  }
+ ],
+ "n_pass": 18,
+ "n": 18,
+ "QUALIFIED": true,
+ "radii": {
+  "rich": {
+   "r_continuity": 0.0075,
+   "r_separation": 0.0226,
+   "max_continuity_distance": 0.0,
+   "min_difference_distance": 0.030092592592592598,
+   "gap": 0.030092592592592598
+  },
+  "droplet": {
+   "r_continuity": 0.015,
+   "r_separation": 0.0451,
+   "max_continuity_distance": 0.0,
+   "min_difference_distance": 0.060185185185185196,
+   "gap": 0.060185185185185196
+  }
+ },
+ "distances": {
+  "rich": {
+   "continuity": [
+    [
+     "AND_direct",
+     "AND_demorgan",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND_nand2",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND_xor_or",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND_dup_same",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND_reg_delay",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND_retimed",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND_layout",
+     0.0
+    ]
+   ],
+   "difference": [
+    [
+     "AND_direct",
+     "XOR_gate",
+     0.2263
+    ],
+    [
+     "AND_direct",
+     "STATE_toggle",
+     0.3302
+    ],
+    [
+     "AND_reg_delay",
+     "STATE_toggle",
+     0.3302
+    ],
+    [
+     "AND_reg_delay",
+     "STATE_fsm",
+     0.3228
+    ],
+    [
+     "LAG15_or",
+     "LAG15_xor",
+     0.0301
+    ]
+   ],
+   "collision": [
+    [
+     "AND_direct",
+     "OR_bit0",
+     0.1368
+    ],
+    [
+     "AND_direct",
+     "AND3",
+     0.0319
+    ],
+    [
+     "XOR_gate",
+     "XOR_3cell",
+     0.0347
+    ],
+    [
+     "STATE_toggle",
+     "STATE_fsm",
+     0.0319
+    ]
+   ]
+  },
+  "droplet": {
+   "continuity": [
+    [
+     "AND_direct",
+     "AND_demorgan",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND_nand2",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND_xor_or",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND_dup_same",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND_reg_delay",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND_retimed",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND_layout",
+     0.0
+    ]
+   ],
+   "difference": [
+    [
+     "AND_direct",
+     "XOR_gate",
+     0.2675
+    ],
+    [
+     "AND_direct",
+     "STATE_toggle",
+     0.4115
+    ],
+    [
+     "AND_reg_delay",
+     "STATE_toggle",
+     0.4115
+    ],
+    [
+     "AND_reg_delay",
+     "STATE_fsm",
+     0.4115
+    ],
+    [
+     "LAG15_or",
+     "LAG15_xor",
+     0.0602
+    ]
+   ],
+   "collision": [
+    [
+     "AND_direct",
+     "OR_bit0",
+     0.0
+    ],
+    [
+     "AND_direct",
+     "AND3",
+     0.0
+    ],
+    [
+     "XOR_gate",
+     "XOR_3cell",
+     0.0
+    ],
+    [
+     "STATE_toggle",
+     "STATE_fsm",
+     0.0
+    ]
+   ]
+  }
+ },
+ "e1": {
+  "t_swap": 40,
+  "transient_steps": 14,
+  "uninterrupted_after": 54,
+  "identical_before_swap": 1
+ },
+ "e1_fingerprint_distance": 0.0
+}

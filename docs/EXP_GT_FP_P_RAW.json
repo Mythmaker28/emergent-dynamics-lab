@@ -1,0 +1,263 @@
+{
+ "rich": {
+  "rows": [
+   {
+    "arm": "rich",
+    "kind": "CONTINUITY",
+    "a": "P_AND_a",
+    "b": "P_AND_b",
+    "note": "two unseen AND implementations (and_or vs xnor_and)",
+    "distance": 0.0,
+    "verdict": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "expected": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "rich",
+    "kind": "CONTINUITY",
+    "a": "P_AND_a",
+    "b": "P_AND_c",
+    "note": "unseen AND vs a buffered AND",
+    "distance": 0.0,
+    "verdict": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "expected": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "rich",
+    "kind": "CONTINUITY",
+    "a": "P_AND_a",
+    "b": "P_AND_lay",
+    "note": "unseen AND: DIFFERENT layout, phase and detour",
+    "distance": 0.0,
+    "verdict": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "expected": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "rich",
+    "kind": "DIFFERENCE",
+    "a": "P_AND_a",
+    "b": "P_XOR",
+    "note": "different reachable truth table",
+    "distance": 0.1973,
+    "verdict": "DIFFERENT",
+    "expected": "DIFFERENT",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "rich",
+    "kind": "DIFFERENCE",
+    "a": "P_AND_a",
+    "b": "P_STATE",
+    "note": "combinational vs genuine hidden state",
+    "distance": 0.2274,
+    "verdict": "DIFFERENT",
+    "expected": "DIFFERENT",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "rich",
+    "kind": "DIFFERENCE",
+    "a": "P_LATCH",
+    "b": "P_STATE",
+    "note": "a LATCH is not a state machine",
+    "distance": 0.2274,
+    "verdict": "DIFFERENT",
+    "expected": "DIFFERENT",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "rich",
+    "kind": "DIFFERENCE",
+    "a": "P_AND_a",
+    "b": "P_TRI",
+    "note": "different reachable function (three-lag AND)",
+    "distance": 0.0833,
+    "verdict": "DIFFERENT",
+    "expected": "DIFFERENT",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "rich",
+    "kind": "DIFFERENCE",
+    "a": "P_AND_a",
+    "b": "P_DUPLAG",
+    "note": "different reachable function (two-lag AND)",
+    "distance": 0.1391,
+    "verdict": "DIFFERENT",
+    "expected": "DIFFERENT",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "rich",
+    "kind": "COLLISION",
+    "a": "P_AND_a",
+    "b": "P_OR",
+    "note": "OR(clk,0) = AND(clk,1). No droplet probe can step the register.",
+    "distance": 0.1368,
+    "verdict": "DIFFERENT",
+    "expected": "DIFFERENT",
+    "ok": true,
+    "coverage": 1.0
+   }
+  ],
+  "responsive": {
+   "P_AND_a": 0.417,
+   "P_AND_b": 0.417,
+   "P_AND_c": 0.417,
+   "P_AND_lay": 0.417,
+   "P_OR": 0.5,
+   "P_XOR": 0.417,
+   "P_STATE": 0.375,
+   "P_LATCH": 0.417,
+   "P_TRI": 0.354,
+   "P_DUPLAG": 0.375
+  },
+  "e1": {
+   "pre_post_distance": 0.0,
+   "within_continuity": true
+  }
+ },
+ "droplet": {
+  "rows": [
+   {
+    "arm": "droplet",
+    "kind": "CONTINUITY",
+    "a": "P_AND_a",
+    "b": "P_AND_b",
+    "note": "two unseen AND implementations (and_or vs xnor_and)",
+    "distance": 0.0,
+    "verdict": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "expected": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "droplet",
+    "kind": "CONTINUITY",
+    "a": "P_AND_a",
+    "b": "P_AND_c",
+    "note": "unseen AND vs a buffered AND",
+    "distance": 0.0,
+    "verdict": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "expected": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "droplet",
+    "kind": "CONTINUITY",
+    "a": "P_AND_a",
+    "b": "P_AND_lay",
+    "note": "unseen AND: DIFFERENT layout, phase and detour",
+    "distance": 0.0,
+    "verdict": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "expected": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "droplet",
+    "kind": "DIFFERENCE",
+    "a": "P_AND_a",
+    "b": "P_XOR",
+    "note": "different reachable truth table",
+    "distance": 0.2094,
+    "verdict": "DIFFERENT",
+    "expected": "DIFFERENT",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "droplet",
+    "kind": "DIFFERENCE",
+    "a": "P_AND_a",
+    "b": "P_STATE",
+    "note": "combinational vs genuine hidden state",
+    "distance": 0.3647,
+    "verdict": "DIFFERENT",
+    "expected": "DIFFERENT",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "droplet",
+    "kind": "DIFFERENCE",
+    "a": "P_LATCH",
+    "b": "P_STATE",
+    "note": "a LATCH is not a state machine",
+    "distance": 0.3647,
+    "verdict": "DIFFERENT",
+    "expected": "DIFFERENT",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "droplet",
+    "kind": "DIFFERENCE",
+    "a": "P_AND_a",
+    "b": "P_TRI",
+    "note": "different reachable function (three-lag AND)",
+    "distance": 0.1049,
+    "verdict": "DIFFERENT",
+    "expected": "DIFFERENT",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "droplet",
+    "kind": "DIFFERENCE",
+    "a": "P_AND_a",
+    "b": "P_DUPLAG",
+    "note": "different reachable function (two-lag AND)",
+    "distance": 0.1548,
+    "verdict": "DIFFERENT",
+    "expected": "DIFFERENT",
+    "ok": true,
+    "coverage": 1.0
+   },
+   {
+    "arm": "droplet",
+    "kind": "COLLISION",
+    "a": "P_AND_a",
+    "b": "P_OR",
+    "note": "OR(clk,0) = AND(clk,1). No droplet probe can step the register.",
+    "distance": 0.0,
+    "verdict": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "expected": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+    "ok": true,
+    "coverage": 1.0
+   }
+  ],
+  "responsive": {
+   "P_AND_a": 0.667,
+   "P_AND_b": 0.667,
+   "P_AND_c": 0.667,
+   "P_AND_lay": 0.667,
+   "P_OR": 0.667,
+   "P_XOR": 0.667,
+   "P_STATE": 0.583,
+   "P_LATCH": 0.667,
+   "P_TRI": 0.542,
+   "P_DUPLAG": 0.583
+  },
+  "e1": {
+   "pre_post_distance": 0.0,
+   "within_continuity": true
+  }
+ },
+ "e1_trajectory": {
+  "identical_before_swap": true,
+  "transient_steps": 14,
+  "uninterrupted_after": 54
+ }
+}

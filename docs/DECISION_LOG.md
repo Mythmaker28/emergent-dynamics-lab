@@ -1896,3 +1896,74 @@ correct outcome is continued blocking and a publication-oriented metrology synth
 
 **NOTHING EXECUTED. NO OBSERVER BUILT. NO RETIRED IMPLEMENTATION MODIFIED. EXP-SC-01 REMAINS BLOCKED.
 STOPPING FOR STRATEGIC REVIEW.**
+
+---
+
+## D-071 — scope clarifications appended (two capabilities that do not travel)
+
+**1. Temporal provenance is qualified ONLY for the certified Boolean-world pipeline and its executable provenance
+contract.** The 20/20 certificate is a statement about `provenance.py`, `Episode`, `_idx` and the assertion that
+re-reads every source sample from its own episode — not about any other substrate's data path.
+
+**2. Exact direct-edge recovery is established ONLY in the synchronous Boolean substrate under one-step pulse
+access.** "Flip a cell at step t and whatever differs at t+1 is a direct child" is a theorem about a synchronous,
+discrete, unit-delay rule with arbitrary single-cell write access. A droplet is continuous and diffusive; there is
+no "one step later", and no experimenter flips one lattice site of its interior.
+
+**Neither is assumed to transfer to droplets.** Any droplet claim must re-earn both under that substrate's own
+access constraints.
+
+## D-072 — EXP-GT-FINGERPRINT-00: **BOTH ARMS PASS PROSPECTIVELY.** SC-PILOT-CAUSAL-FINGERPRINT authorized (exploratory), NOT executed. EXP-SC-01 remains BLOCKED.
+
+**The claim, and nothing wider:** a frozen, standardized causal-response fingerprint remains **stable** under
+microscopically different but behaviourally equivalent implementations while **distinguishing** systems that differ
+in reachable function or genuine hidden state. Model minimality, architecture discovery and lineage identity are
+**outside** the claim. The instrument **never says SAME**: its verdicts are `INDISTINGUISHABLE_UNDER_REPERTOIRE`,
+`DIFFERENT`, `INDETERMINATE`.
+
+**Development: 18/18, both arms.** Continuity distances **exactly 0.0000**; a real gap in each arm.
+**Prospective: 9/9, both arms. Zero false difference. Zero false sameness.** Seven of ten systems use
+implementations never fingerprinted; topologies and phases used in no development world. **The droplet arm
+qualified INDEPENDENTLY** — a rich-access pass could not have authorized transfer, and did not have to.
+
+**E1, the Ship-of-Theseus arm:** two microscopically different AND implementations, **swapped mid-trajectory**.
+Behaviour identical before the swap, a bounded 14-step transient, uninterrupted thereafter — and the
+**pre/post fingerprint distance is 0.0000**. The material of the computation is replaced while the behaviour
+continues, and the fingerprint does not move.
+
+**The two load-bearing controls both fired.** **L1:** re-adding the class label and lag set **recreates** the D-069
+false difference (0.0000 → 0.0612) — the exclusion of description-level quantities is load-bearing, not decoration.
+**L2:** removing the discriminating probe **collapses** two genuinely different systems into one fingerprint
+(0.0347 → 0.0000) — probe-repertoire adequacy is load-bearing.
+
+**Four defects development caught, any of which would have been a false result:** a deviation-only fingerprint is
+**blind to output inversion** (d(AND, XOR) = 0.0000, a false sameness); **zero-padding turned latency into a
+difference** (d = 0.0946 between a channel and its own lengthened twin); the rich battery's **length depended on the
+system** (a coordinate system with a variable number of axes); and a response **still in flight** was recorded as
+permanent (the memory signature contaminated by impatience — D-067's error arriving from the other end of the
+trace).
+
+**A benchmark-label correction, made on development, before the freeze, with a stated principle.** I declared
+`(xor3, xor_gate)` and `(toggle, fsm_gate)` to be continuity pairs; under rich access the fingerprint separated
+them, **and it was right to**: `xor3`'s reconvergent paths **glitch** on a register step, and `fsm_gate` **freezes**
+where `toggle` does not. Measured responses, not labels. **The benchmark was wrong; the measurement was not.**
+Principle: **equivalence is relative to a repertoire.**
+
+**THE COST OF POOR ACCESS, MEASURED.** 4/4 pairs DIFFERENT under rich access are INDISTINGUISHABLE under the
+droplet repertoire — a third cause, a gated state machine, the redundant-lag system, and an OR that equals an AND
+at its own register value. **False sameness rises as access falls.** That is a property of the droplet, and it
+bounds everything the pilot could ever claim.
+
+**DECISION (mission §8): both arms passed independently → `SC-PILOT-CAUSAL-FINGERPRINT` is AUTHORIZED as an
+EXPLORATORY experiment and is NOT EXECUTED here.** β = 0.10, `D_int` and every substrate equation are untouched.
+The strongest sentence a pilot pass could authorize is: *"under the frozen available perturbation repertoire,
+within-droplet causal-response continuity exceeded between-droplet similarity during material turnover"* — which is
+**not** proof of persistent individual identity, **not** preserved minimal architecture, **not** life, **not**
+selfhood, and **not** a resolved Ship-of-Theseus case.
+
+**Declared limitations, before the run and not discovered after it:** the two STATE systems reuse development
+implementations (the substrate has no unseen state machine and I would not add one after the instrument was
+frozen); and this qualifies the fingerprint **logic** under a droplet-*like* repertoire in a **Boolean** substrate —
+per D-071 the droplet must build and certify its **own** provenance contract.
+
+**EXP-SC-01 REMAINS BLOCKED. Stopping for strategic review.**

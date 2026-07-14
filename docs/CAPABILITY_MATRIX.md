@@ -47,6 +47,27 @@ failure is recorded in the `model minimality` row, where it belongs.
 
 ---
 
+## SCOPE CLARIFICATIONS (D-071) — two capabilities that must not be assumed to travel
+
+**1. Temporal provenance is qualified ONLY for the certified Boolean-world pipeline and its executable provenance
+contract.** The 20/20 certificate and the "0 fabricated / 0 excluded rows" result are statements about
+`provenance.py`, `Episode`, `_idx` and the assertion that re-reads every source sample from its own episode. They
+are **not** a statement about any other substrate's data path. A continuous reaction-diffusion field has no
+episodes, no discrete lags and no cell samples to re-read; its provenance contract does not exist yet and would
+have to be built and certified separately.
+
+**2. Exact direct-edge recovery is established ONLY in the synchronous Boolean substrate, under the declared
+one-step pulse access.** "Flip a cell at step t and whatever differs at t+1 is a direct child" is a theorem about
+a **synchronous, discrete, unit-delay** update rule with **arbitrary single-cell write access**. It has no droplet
+analogue: droplet dynamics are continuous and diffusive (there is no "one step later"), and no experimenter can
+flip one lattice site of a physical droplet's interior.
+
+**Neither capability is assumed to transfer to droplets.** Any droplet claim must re-earn both from scratch, under
+that substrate's own access constraints. This is recorded here precisely because the temptation to quote a Boolean
+result in a continuous substrate is exactly the category of error that retired three observers.
+
+---
+
 ## The scope of the D-069 verdict, stated exactly
 
 **G6 predicted every measured function correctly.** Its tables agree with privileged simulation on **every row of

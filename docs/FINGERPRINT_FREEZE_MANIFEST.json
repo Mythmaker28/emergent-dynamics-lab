@@ -1,0 +1,96 @@
+{
+ "protocol": "EXP-GT-FINGERPRINT-00",
+ "frozen_at": "2026-07-14",
+ "claim": "A frozen, standardized causal-response fingerprint can remain stable under microscopically different but behaviourally equivalent implementations, while distinguishing systems that differ in reachable function or genuine hidden state.",
+ "OUTSIDE_the_claim": [
+  "model minimality",
+  "architecture discovery",
+  "lineage identity",
+  "any assertion that two systems are the SAME INDIVIDUAL"
+ ],
+ "development_certificate": {
+  "experiment": "EXP-GT-FINGERPRINT-00 dev",
+  "cases": 18,
+  "passed": 18,
+  "qualified": true
+ },
+ "hashes": {
+  "edlab/identity/fingerprint.py": "798fff0390ab073d12f0881556f29d1d316586d9d397ed9f6ac1ae5f866798ad",
+  "edlab/identity/provenance.py": "8fd611dcc71b15f6f3d9a36ac6ea45ffe2edff5df79a3063ac6d7b7df3dfaacc",
+  "edlab/substrates/boolnet/fpworld.py": "fab5fd247f168d1e55950d4065827a6a397a60590085d94429db784a5cd3cff5",
+  "edlab/substrates/boolnet/engine.py": "1b0a44c3854d3539eba0830e76e9a82bcefbe3d1375369654e3ab20cfde2dc10",
+  "edlab/substrates/boolnet/circuits.py": "5e4811e6e3f1f0dffa51ec7401e04a23fd806b9a3a52bf9cd4fbaf470bcf4e95",
+  "edlab/substrates/boolnet/evaluator.py": "8b3d9b138acd95862fddbcfa6e6e8c7e2f6ac71135083b450408f2ed841a77cb",
+  "edlab/experiments/exp_gt_fp.py": "cf3677731facc323c8b9d32b07f27f5dd6942a02c8a73fff73e2730cf7e6f10b"
+ },
+ "FROZEN_probe_battery": {
+  "coordinate_system": "FIXED. The active planner is switched OFF. Every system receives the same probe types, amplitudes, durations, relative timings, contexts, observation windows, order and normalization. No probe is selected in response to a system's observed ambiguity.",
+  "addresses": "fixed by the LAYOUT, not by which components exist -- a system with a second register must not receive a longer battery than one without.",
+  "droplet_arm": [
+   "drive_high (clamp the exogenous drive HIGH, 6 steps)",
+   "drive_low (clamp it LOW, 6 steps)",
+   "drive_pulse_up",
+   "drive_pulse_down",
+   "supply_pulse_up (local perturbation at the entity's own external supply line)",
+   "supply_pulse_down"
+  ],
+  "rich_arm": "the droplet battery PLUS sustained clamps on three internal slots (register, second-register, write-enable). NO droplet analogue exists for these.",
+  "phases": "every probe at all 8 clock-phase offsets; the 8 rows are sorted lexicographically -- an exact GROUP QUOTIENT over the phase, not an average over it.",
+  "constants": {
+   "T_OBS": 200,
+   "T_PROBE": 80,
+   "W_RESP": 96,
+   "W_ALIGN": 40,
+   "D_HOLD": 6,
+   "TAIL": 16,
+   "COVERAGE_FLOOR": 0.5
+  }
+ },
+ "FROZEN_fingerprint_content": {
+  "included": [
+   "provenance-valid time-resolved responses of the DECLARED BEHAVIOURAL OUTPUT",
+   "the absolute response, not merely the deviation (a deviation-only fingerprint is BLIND TO OUTPUT INVERSION: AND and XOR deviate on exactly the same steps)",
+   "onset-aligned response shape (responders) / entity's own rising edge (non-responders)",
+   "recovery dynamics: does a TRANSIENT probe leave a PERMANENT mark?",
+   "coverage and responsiveness, recorded explicitly"
+  ],
+  "excluded_completely": [
+   "transducer-class labels",
+   "selected lag sets",
+   "model complexity",
+   "DELAYED_STATIC / FINITE_HISTORY / any such name",
+   "inferred minimal architecture",
+   "evaluator-supplied component identities",
+   "active-planner sequences",
+   "tracker IDs"
+  ],
+  "latency": "REPORTED SEPARATELY, never entered into any distance."
+ },
+ "FROZEN_matching": {
+  "distance": "mean over PROBE BLOCKS of each block's normalized Hamming distance (per-block, so no probe dominates by being long)",
+  "verdicts": [
+   "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+   "DIFFERENT",
+   "INDETERMINATE"
+  ],
+  "there_is_no_SAME": "Two systems no admissible probe can separate are an EQUIVALENCE CLASS, not one individual.",
+  "radii": {
+   "rich": {
+    "r_continuity": 0.0075,
+    "r_separation": 0.0226,
+    "max_continuity_distance": 0.0,
+    "min_difference_distance": 0.030092592592592598,
+    "gap": 0.030092592592592598
+   },
+   "droplet": {
+    "r_continuity": 0.015,
+    "r_separation": 0.0451,
+    "max_continuity_distance": 0.0,
+    "min_difference_distance": 0.060185185185185196,
+    "gap": 0.060185185185185196
+   }
+  }
+ },
+ "development_finding_recorded_before_freeze": "The redundant-lag system (xor3) and the gated state machine (fsm_gate) ARE separable under RICH access -- xor3's reconvergent paths GLITCH on a register step, and fsm_gate freezes where toggle does not. These are MEASURED RESPONSES, not labels. They are indistinguishable under the droplet repertoire. The challenge matrix was corrected accordingly, on development, before the freeze, with a stated principle: equivalence is relative to a repertoire.",
+ "failure_rule": "If EITHER arm fails prospectively: do not authorize droplets; preserve; close the instrumental branch with a metrology report. If the rich arm passes and the droplet arm fails: causal fingerprints are valid in principle but NOT identifiable with the available droplet interventions; EXP-SC-01 and the pilot remain BLOCKED."
+}
