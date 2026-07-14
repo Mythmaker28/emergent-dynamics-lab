@@ -68,21 +68,33 @@ def _fit_cm(rpre, cpre):
 
     Two taps span exactly the declared model. This is not an extra degree of freedom bought to improve a number;
     it is the minimum basis in which the acquisition contract's own algebra closes.
+
+    POOLED OVER REPEATS. g0, g1, lam are constants OF THE CONTRACT, not properties of a repeat: the coupling
+    gains and the lag do not change from one repetition to the next. Estimating them once from all repeats is
+    both the correct estimator and R times cheaper. `rpre`, `cpre` are (R, W_PRE).
     """
+    rpre = np.atleast_2d(rpre)
+    cpre = np.atleast_2d(cpre)
     n = LAG_MAX + 1
-    best = (0.0, 0.0, 0, float(np.var(rpre[n:-n])))
-    r_ = rpre[n:-n]
+    r_ = rpre[:, n:-n].ravel()
+    best = (0.0, 0.0, 0, float(np.var(r_)))
     for lam in range(-LAG_MAX, LAG_MAX + 1):
-        c0 = cpre[n:-n]
-        c1 = np.roll(cpre, lam)[n:-n]
-        X = np.stack([c0, c1], axis=1)
-        try:
-            g, *_ = np.linalg.lstsq(X, r_, rcond=1e-8)
-        except np.linalg.LinAlgError:
-            continue
-        v = float(np.var(r_ - X @ g))
+        c0 = cpre[:, n:-n].ravel()
+        c1 = np.roll(cpre, lam, axis=1)[:, n:-n].ravel()
+        # closed-form 2x2 normal equations -- same answer as lstsq, without the SVD
+        a11 = c0 @ c0; a12 = c0 @ c1; a22 = c1 @ c1
+        b1 = c0 @ r_; b2 = c1 @ r_
+        det = a11 * a22 - a12 * a12
+        if abs(det) <= 1e-12 * max(a11 * a22, 1e-300):
+            if a11 <= 0:
+                continue
+            g0, g1 = b1 / a11, 0.0             # rank-deficient (lam == 0): fall back to the single tap
+        else:
+            g0 = (b1 * a22 - b2 * a12) / det
+            g1 = (b2 * a11 - b1 * a12) / det
+        v = float(np.var(r_ - g0 * c0 - g1 * c1))
         if v < best[3]:
-            best = (float(g[0]), float(g[1]), lam, v)
+            best = (float(g0), float(g1), lam, v)
     return best
 
 
@@ -103,12 +115,7 @@ def correct(yA, yC, yD, yS, t_probe):
     se = float(np.median([sigma_eps(dA[r, pre]) for r in range(R)]))
     drift_amp = float(np.median([np.std(cm[r, pre]) for r in range(R)]))
 
-    g0s, g1s, ls = [], [], []
-    for r in range(R):
-        g0, g1, lam, v = _fit_cm(dA[r, pre], cm[r, pre])
-        g0s.append(g0); g1s.append(g1); ls.append(lam)
-    g0_hat, g1_hat = float(np.median(g0s)), float(np.median(g1s))
-    lam_hat = int(np.median(ls))
+    g0_hat, g1_hat, lam_hat, _v = _fit_cm(dA[:, pre], cm[:, pre])
     if drift_amp < DRIFT_FLOOR * se:
         g0_hat = g1_hat = 0.0       # no drift to reject: correcting against a pure-noise proxy only INJECTS noise
         lam_hat = 0
@@ -132,21 +139,121 @@ def correct(yA, yC, yD, yS, t_probe):
         verdict = NOT_ESTAB
     return A, S, {"verdict": verdict, "rdnr": float(rdnr), "sigma_eps": se, "drift_amp": drift_amp,
                   "g0_hat": g0_hat, "g1_hat": g1_hat, "lam_hat": lam_hat,
-                  "g_spread": float(np.std(g0s) + np.std(g1s)),
+                  "g_spread": 0.0,
                   "resid_pre": resid, "cmrr": float((drift_amp / resid) ** 2) if resid > 0 else np.inf}
 
 
-def contamination(yC_by_probe, t_probe):
-    """Does the CONTROL respond to the probe? An honest control's baseline is probe-INDEPENDENT.
+def contamination(sham_by_probe, t_probe):
+    """Does the CONTROL leak the intervention? Detected on THE SHAM DEVIATION, which is a null BY CONSTRUCTION.
 
-    Pre-intervention the control's ensemble mean is identical across probes (same episode, deterministic carrier).
-    Post-intervention it stays identical -- UNLESS the control is leaking the intervention. So the probe-to-probe
-    spread of the control's ensemble mean, POST versus PRE, is a contamination detector that needs NO oracle.
+    With a control that leaks a fraction kappa of the response, s_C -> s_C + kappa*(s_A - s_C), so the sham
+    deviation is
+                        dS = y_S - y_C = -kappa * (s_A - s_C)
+
+    -- i.e. a PROBE-LOCKED signal, reproducible across phases and repeats, in a channel that must be flat.
+    The sham is supposed to have no response. If it has one, the control is leaking. No oracle is needed.
+
+    MY FIRST DETECTOR WAS WRONG AND SAID EVERY CASE WAS CONTAMINATED, kappa = 0 INCLUDED. It compared the
+    control's probe-to-probe spread POST-intervention against PRE-intervention -- but the OU drift starts at zero
+    and its variance GROWS with time, so the post window holds more drift than the pre window for purely
+    temporal reasons. The statistic confounded 'the control varies with the probe' with 'the drift accumulated'.
+    It is replaced, not re-thresholded.
+
+    The test is between-probe structure against within-probe scatter: a clean sham has no probe-locked component,
+    so its between-probe RMS sits at the standard error of its own phase-to-phase mean. A leaking one does not.
     """
-    M = np.stack([np.asarray(v, float).mean(axis=0) for v in yC_by_probe])  # (P, T)
-    dev = M - M.mean(axis=0, keepdims=True)
-    T = M.shape[1]
-    pre = float(np.abs(dev[:, :t_probe]).max())
-    post = float(np.abs(dev[:, t_probe:min(T, t_probe + W_FIXED)]).max())
-    return {"pre": pre, "post": post, "ratio": post / pre if pre > 0 else np.inf,
-            "contaminated": bool(pre > 0 and post / pre > CONTAM_K)}
+    win = slice(t_probe, t_probe + W_FIXED)
+    ps = sorted(sham_by_probe)
+    S = np.stack([np.stack([np.asarray(x, float)[win] for x in sham_by_probe[p]]) for p in ps])  # (P, PH, W)
+    nph = S.shape[1]
+    Sbar = S.mean(axis=1)                                   # (P, W) -- phase-averaged sham deviation per probe
+    within = float(np.median(S.std(axis=1).mean(axis=1))) / np.sqrt(nph)   # SE of Sbar, from phase scatter
+    dev = Sbar - Sbar.mean(axis=0, keepdims=True)
+    between = float(np.max(np.sqrt((dev ** 2).mean(axis=1))))              # RMS, not max: max over 3840 points
+    ratio = between / within if within > 0 else np.inf                     # would false-fire on noise alone
+    return {"between": between, "within": within, "ratio": float(ratio),
+            "contaminated": bool(ratio > CONTAM_K)}
+
+
+# ============================================================================================================
+# THE FACTORIZED PROFILE. Still factorized. There is no composite identity score here and there never will be.
+# ============================================================================================================
+IND_DRIFT = "INDETERMINATE_DRIFT"
+SEVERITY = {CONTAM: 4, NOT_ESTAB: 3, PARTIAL: 2, ADMISSIBLE: 0, NO_DRIFT: 0}
+
+
+def admit_pooled(reports, contaminated=False):
+    """ONE verdict for the whole acquisition, from the POOLED episodes.
+
+    CRD-00's second bug, restated: MAX-OVER-BLOCKS IS A VERDICT RULE, NOT AN ESTIMATOR. Over enough blocks it
+    stops reporting the typical case and starts selecting the block where the noise conspired.
+
+    I reproduced it here before catching it. Taking the WORST of 64 episode-level admissions made even the pure
+    null (CM-01, K_base vs K_base, no response at all) come back INDETERMINATE_DRIFT -- the unluckiest RDNR draw
+    out of 64 carried the verdict for the whole run.
+
+    Common-mode rejection is a property of the ACQUISITION CONTRACT -- of how the channels are wired to the
+    drift -- not of any one probe episode. So it is estimated ONCE, by the MEDIAN over episodes, and the declared
+    thresholds are applied to that. CONTAMINATION stays a detector (any -> flag): it is a hazard, not a nuisance.
+    """
+    if contaminated:
+        return CONTAM, {}
+    rd = float(np.median([r["rdnr"] for r in reports]))
+    da = float(np.median([r["drift_amp"] for r in reports]))
+    se = float(np.median([r["sigma_eps"] for r in reports]))
+    if da < DRIFT_FLOOR * se:
+        v = NO_DRIFT
+    elif rd <= RDNR_ADMIT:
+        v = ADMISSIBLE
+    elif rd <= RDNR_PARTIAL:
+        v = PARTIAL
+    else:
+        v = NOT_ESTAB
+    return v, {"rdnr": rd, "drift_amp": da, "sigma_eps": se}
+
+
+def _components(dv, t_probe):
+    """One (probe, phase) block -> the factorized quantities. E_trans is an INTEGRAL, never a mean: a mean over a
+    window of length W dilutes any TRANSIENT by exactly sqrt(W'/W). That was the continuous fingerprint's disease."""
+    win = slice(t_probe, t_probe + W_FIXED)
+    late = slice(t_probe + W_FIXED - W_LATE, t_probe + W_FIXED)
+    half = slice(t_probe + W_FIXED - 2 * W_LATE, t_probe + W_FIXED - W_LATE)
+    a = dv[win]
+    return {"E": float(np.sum(a * a)), "P": float(np.mean(dv[late])), "A": float(np.max(np.abs(a))),
+            "P_half": float(np.mean(dv[half])), "argA": int(np.argmax(np.abs(a)))}
+
+
+def profile(dev_by_probe, sham_by_probe, t_probe, verdict):
+    """dev_by_probe / sham_by_probe : {probe: [trace per PHASE]}. Phases are replicates -> MEDIAN.
+    Probes are distinct interventions -> MAX. ('Indistinguishable under the repertoire' is a FOR-ALL, and a
+    FOR-ALL is certified by its worst case.)"""
+    out = {"admission": verdict}
+    if SEVERITY[verdict] >= 2:                  # PARTIAL, NOT_ESTABLISHED or CONTAMINATED
+        for k in ("E_trans", "P_inf", "A_peak", "L_onset", "T_recovery"):
+            out[k] = {"status": IND_DRIFT, "value": None, "band": None}
+        return out                              # NO component verdict on a partially-rejected common mode.
+
+    E, P, A, Ph, bE, bP, bA = [], [], [], [], [], [], []
+    for pr in dev_by_probe:
+        cd = [_components(x, t_probe) for x in dev_by_probe[pr]]
+        cs = [_components(x, t_probe) for x in sham_by_probe[pr]]
+        E.append(np.median([c["E"] for c in cd])); bE.append(max(c["E"] for c in cs))
+        P.append(np.median([c["P"] for c in cd])); bP.append(max(abs(c["P"]) for c in cs))
+        A.append(np.median([c["A"] for c in cd])); bA.append(max(c["A"] for c in cs))
+        Ph.append(np.median([c["P_half"] for c in cd]))
+    i = int(np.argmax(np.abs(A)))               # the worst-case probe carries the verdict
+    Ev, Pv, Av, Pv2 = float(E[i]), float(P[i]), float(A[i]), float(Ph[i])
+    eB, pB, aB = float(bE[i]), float(bP[i]), float(bA[i])
+
+    out["E_trans"] = {"value": Ev, "band": eB,
+                      "status": "RESOLVED" if Ev > R_NULL_E * eB else ("NULL" if Ev <= eB else "INDETERMINATE")}
+    stable = abs(Pv - Pv2) <= K_SIG * pB        # a PERSISTENT offset must still be there half a window earlier
+    out["P_inf"] = {"value": Pv, "band": pB,
+                    "status": ("RESOLVED" if (abs(Pv) > K_SIG * pB and stable)
+                               else ("NULL" if abs(Pv) <= pB else "INDETERMINATE"))}
+    out["A_peak"] = {"value": Av, "band": aB,
+                     "status": "RESOLVED" if Av > K_SIG * aB else ("NULL" if Av <= aB else "INDETERMINATE")}
+    out["L_onset"] = {"value": None, "band": aB, "status": "RESOLVED" if Av > K_SIG * aB else "NULL"}
+    out["T_recovery"] = {"value": None, "band": aB,
+                         "status": "RESOLVED" if out["A_peak"]["status"] == "RESOLVED" else "NULL"}
+    return out

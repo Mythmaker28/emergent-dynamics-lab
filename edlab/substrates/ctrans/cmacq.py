@@ -36,12 +36,21 @@ from .engine import Spec, Probe, observe_noise_free
 
 def ou(T, sigma, tau, rng):
     """One Ornstein-Uhlenbeck realization. Shared by both channels when the contract says so."""
-    phi = np.exp(-1.0 / tau)
-    x = np.zeros(T)
+    if sigma == 0.0:
+        return np.zeros(T)
+    phi = float(np.exp(-1.0 / tau))
     e = rng.normal(0.0, sigma, T)
-    for t in range(1, T):
-        x[t] = phi * x[t - 1] + e[t]
-    return x
+    e[0] = 0.0
+    # x[t] = sum_{k<=t} phi^(t-k) e[k] = phi^t * cumsum(e[k] * phi^-k). Exact, and vectorised.
+    # phi^-k grows like exp(T/tau); at T=1000, tau=500 that is e^2 = 7.4, so the conditioning is harmless.
+    # Guarded anyway -- an unstable fast path that quietly returns garbage is worse than a slow correct one.
+    if T / tau > 30.0:
+        x = np.zeros(T)
+        for t in range(1, T):
+            x[t] = phi * x[t - 1] + e[t]
+        return x
+    k = np.arange(T)
+    return np.power(phi, k) * np.cumsum(e * np.power(phi, -k.astype(float)))
 
 
 def _lag(x, k):

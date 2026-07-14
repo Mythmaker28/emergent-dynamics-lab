@@ -265,3 +265,5 @@ re-imposed "refuse anything that drifts" and threw away the sham machinery this 
 SAME MISTAKE v01 MADE with v00's dead in-flight guard. (b) `max`-over-blocks is a VERDICT rule, not an ESTIMATOR:
 over 32 blocks it selects the block where independent drift realizations conspire. Phases are REPLICATES (median);
 probes are DISTINCT INTERVENTIONS (max).
+
+| CRD-01 common-mode causal decomposition | continuous | DEMONSTRATED (ground truth) / TRANSFER NOT ESTABLISHED (physics) | E/E*=1.01x on the pair CRD-00 got 7.1x wrong; refuses outside its admission region; but needs a simultaneous unprobed copy of the same system, which no droplet can supply |

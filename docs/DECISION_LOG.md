@@ -2306,3 +2306,20 @@ merely its distribution. Not attempted here; this stops for strategic review.
 SC-PILOT-RESPONSE-DECOMPOSITION-PREFLIGHT: NOT AUTHORIZED.
 SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED.
 No droplet experiment. beta, D_int and the droplet equations untouched.
+
+## D-079 — CRD-01: common-mode acquisition PASSES ground truth; physical transfer NOT established
+The Z-17 failure that killed CRD-00 (E_trans overstated 7.1x, A_peak 422.7 vs true ~97) is fixed by CHANGING WHAT
+IS ACQUIRED, not the estimators: a SHARED drift realization across active/control/sham. E/E* = 1.01x, A/A* = 1.00x.
+Prospective 8/8, all 12 gates pass, all 12 must-fail controls fail as required. CRD-00's independent sham is now
+REFUSED (COMMON_MODE_NOT_ESTABLISHED) rather than corrected. The admission verdict TRACKS the accuracy boundary:
+inside it, E/E* <= 1.32x; outside it, the instrument refuses instead of degrading.
+DECISIVE CAVEAT: the passing contract needs a control that is THE SAME SYSTEM, UNPROBED, RECORDED SIMULTANEOUSLY.
+No droplet can supply that -- you cannot intervene and not intervene on the same droplet at once. Classification:
+MAPPING_REQUIRES_NEW_OBSERVABLE -> TRANSFER_NOT_ESTABLISHED. A co-recorded reference channel would reduce the
+requirement to something buildable, but that variant was NOT tested and is therefore NOT claimed.
+Three of my own bugs were caught and fixed by REPLACEMENT, not re-thresholding: a drift proxy sharing measurement
+noise with the deviation it corrected (g_hat = -1.008 on a drift-FREE system -- the correction was injecting
+noise); a worst-of-64 admission that reproduced CRD-00's own max-over-blocks error and failed the pure null; and a
+contamination detector that fired on every case, kappa=0 included, because it confounded drift accumulation with
+probe dependence.
+SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED.
