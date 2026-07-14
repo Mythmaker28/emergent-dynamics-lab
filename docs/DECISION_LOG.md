@@ -2364,3 +2364,25 @@ Transfer: MAPPING_REQUIRES_NEW_PASSIVE_OBSERVABLE (>=3 passive references of dis
 schedule plausible; no oracle; G15 physical plausibility PASS). Verdict: GROUND_TRUTH PASS -- PASSIVE OBSERVABLE
 DESIGN REQUIRED. Publication: METHODS PREPRINT READY.
 CRD-01, CRD-02 unaltered. SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED. Prospective 14xx burned.
+
+## D-082 — PASSIVE OBSERVABLE DESIGN: FAIL — CONTAMINATION DOMINATES
+CRD-03 passed in ground truth but requires >=3 passive references with distinct drift couplings and low causal
+contamination. The frozen scaffold droplet substrate does NOT expose them. Read-only calibration (permitted N
+handle + declared internal-state initial conditions u/v/off; no equation, beta, D_int, rho/U/V modified; operational
+references read only N/rho/c) established:
+ - Spatial N sub-samples are COLLINEAR (couplings all ~0.20) -> must-fail #1 confirmed.
+ - Reference TYPES have diversity (N-mean ~+0.20, N-derivative ~-0.004, attractant c ~-0.50; diversity 7.79,
+   cond 1.14) BUT under a clean strong response the drift-observing references (N_global/background/core, c) carry
+   the response at contam/drift ~0.79-0.90, with kappa_i/a_i CONSTANT across N refs (spread 0.056) = COMMON-MODE,
+   the exact direction CRD-03 proved UNIDENTIFIABLE.
+ - The low-contamination references (N_laplacian, N_flux) have drift couplings ~50x below the measurement's ->
+   the CRD-03 correction amplifies their noise ~50x -> unusable.
+ - No far-field clean region exists (the droplet fills the grid).
+ - Reading internal state U/V/sigma directly WOULD separate response from drift and is FORBIDDEN oracle access.
+PHYSICS: the causal response IS nutrient consumption (uptake via beta*sigma), which depletes N; the environmental
+drift also lives in N. Response and drift share one field -> common-mode contamination is forced by geometry.
+DECISION: FAIL — CONTAMINATION DOMINATES. SC-PILOT-RESPONSE-DECOMPOSITION-PREFLIGHT: NOT AUTHORIZED. The pilot was
+NOT executed; no equation/beta/D_int/rho/U/V modified; only passive read-only diagnostics added (logging changes
+no trajectory, verified). Quantum option NOT WARRANTED (the obstacle is observational rank-deficiency, not
+computation). The CRD-03 methods result is UNAFFECTED and is in fact instantiated by this failure (T5): METHODS
+PREPRINT READY FOR INDEPENDENT REPLICATION. SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED.
