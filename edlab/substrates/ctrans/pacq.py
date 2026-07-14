@@ -41,18 +41,31 @@ TAU_FAST = 9.0          # the fast component. A band-limited reference cannot se
 
 
 def ou(T, sigma, tau, rng):
+    """Ornstein-Uhlenbeck AR(1): x[t] = phi*x[t-1] + e[t]. Vectorised in BLOCKS so it is both fast and stable.
+
+    The closed form x[t] = phi^t * cumsum(e * phi^-k) overflows when phi^-T is large (fast tau). Doing it in
+    blocks of length L keeps phi^-L bounded, and the block boundary carries the state forward exactly. This is
+    the same recurrence, with no Python per-sample loop -- the earlier per-sample loop for fast tau cost ~9s per
+    battery arm and made the DiD run overrun the call budget."""
     if sigma == 0.0:
         return np.zeros(T)
     phi = float(np.exp(-1.0 / tau))
     e = rng.normal(0.0, sigma, T)
     e[0] = 0.0
-    if T / tau > 30.0:
-        x = np.zeros(T)
-        for t in range(1, T):
-            x[t] = phi * x[t - 1] + e[t]
-        return x
-    k = np.arange(T)
-    return np.power(phi, k) * np.cumsum(e * np.power(phi, -k.astype(float)))
+    L = max(1, int(20.0 * tau))                 # phi^-L = exp(L/tau) = exp(20), safely finite
+    x = np.zeros(T)
+    carry = 0.0
+    kfull = np.arange(L, dtype=float)
+    pos = np.power(phi, kfull)
+    neg = np.power(phi, -kfull)
+    for b in range(0, T, L):
+        blk = e[b:b + L].copy()
+        n = len(blk)
+        blk[0] += phi * carry                   # inject the previous block's final state as the driving term
+        xb = pos[:n] * np.cumsum(blk * neg[:n])
+        x[b:b + n] = xb
+        carry = xb[-1]
+    return x
 
 
 def _lag(x, k):
@@ -135,6 +148,25 @@ def episode(sig_y, s_causal, T, seed, C, active: bool):
     if C.no_reference:
         r = np.full(T, np.nan)          # D3 / must-fail 1: the CRD-00 design, with NO reference at all
     return y, r, d_true
+
+
+def acquire_one(spec: Spec, probe: Probe, T: int, seeds, C: PContract, role: str, sign: int = 1):
+    """ONE PROBED episode of ONE system, plus its own simultaneous reference.
+
+    DIFFERENCE-IN-DIFFERENCES semantics (mission sec.3): the causal target is the RESPONSE DIFFERENCE between two
+    systems. Each system is probed in its OWN episode, with its OWN drift realization and its OWN reference; the
+    two corrected episodes are then differenced. So both episodes are PROBED -- the 'sham' is the reference
+    SYSTEM probed, not an unprobed twin. The common probe response cancels in the difference; the added path's
+    response survives.  role in {'A','S'} selects the coupling/lag/contamination parameters for that channel.
+    """
+    sC, sA = signals(spec, probe, T, sign)     # PROBED signal of this system (cached; computed once)
+    causal_for_contam = sA - sC
+    active = (role == "A")
+    Y, Rr = [], []
+    for k in seeds:
+        y, r, _ = episode(sA, causal_for_contam, T, k, C, active)
+        Y.append(y); Rr.append(r)
+    return np.array(Y), np.array(Rr)
 
 
 def acquire_pair(spec: Spec, probe: Probe, T: int, seeds, C: PContract, sign: int = 1):

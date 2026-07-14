@@ -267,3 +267,4 @@ over 32 blocks it selects the block where independent drift realizations conspir
 probes are DISTINCT INTERVENTIONS (max).
 
 | CRD-01 common-mode causal decomposition | continuous | DEMONSTRATED (ground truth) / TRANSFER NOT ESTABLISHED (physics) | E/E*=1.01x on the pair CRD-00 got 7.1x wrong; refuses outside its admission region; but needs a simultaneous unprobed copy of the same system, which no droplet can supply |
+| CRD-02 referenced paired-episode decomposition | continuous | FAIL (development, gate G5) / architecture PHYSICALLY PLAUSIBLE (G14 pass) | drift half solved without an oracle twin: Z-17 E/E*=1.00 A/A*=1.02, admission tracks validity on 8 axes; fails on contamination -- kappa~0.15 identifiability floor leaves a 12% leak as a silent 21% attenuation. Prospective split SEALED. |

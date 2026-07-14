@@ -2323,3 +2323,26 @@ noise); a worst-of-64 admission that reproduced CRD-00's own max-over-blocks err
 contamination detector that fired on every case, kappa=0 included, because it confounded drift accumulation with
 probe dependence.
 SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## D-080 — CRD-02: referenced paired-episode decomposition FAILS AT DEVELOPMENT (contamination gate G5)
+The paired-reference architecture removes CRD-01's unrealizable oracle twin: two SEPARATE episodes (active, sham),
+each with its OWN simultaneous common-mode reference, d_A != d_S, corrected per-episode then differenced
+(difference-in-differences). It WORKS on the drift half of the problem: Z-17 recovered E/E*=1.00 A/A*=1.02 with NO
+oracle twin; different-drift episodes, gain mismatch to x3, lag to 24 samples, bandwidth loss, baseline mismatch,
+persistence, hidden state, and peak/energy factorization all recovered; local unshared drift and no-reference
+rejected; admission tracks validity on every axis EXCEPT one. G14 (physical plausibility) PASSES -- no simultaneous
+twin is required.
+IT FAILS gate G5. Contamination detection has an identifiability floor at kappa ~ 0.15: a 12% reference leak
+(preregistered D4) attenuates the estimate 21% (E/E*=0.79) and is neither detected nor abstained -- clean cases
+reach t-stat 2.8, kappa=0.12 reaches 2.84, so no threshold separates them. A 12% multiplicative reference bias is
+statistically indistinguishable from a 12%-smaller true response without an absolute-scale reference. Five
+detectors tried; none crosses the floor. Per the admission contract ("accepted cases inaccurate before rejection
+-> the admission contract fails"), this is a development-gate failure.
+DECISION: FAIL AT DEVELOPMENT. The prospective split (12xx) is NOT touched and remains sealed. SC-PILOT-RESPONSE-
+DECOMPOSITION-PREFLIGHT: NOT AUTHORIZED. CRD-03, if authorized, must add a SECOND reference of known different
+coupling (b' != b) to make kappa identifiable -- an acquisition change, not an estimator tweak.
+Three of my own bugs were caught and fixed by construction, not tuning: differencing the wrong episodes (fixed by
+proper difference-in-differences); Python salted-hash seeds making runs non-reproducible (fixed by a stable content
+hash); and a degenerate AR(1) noise floor plus a 9s/arm Python OU loop (floor moved to the corrected residual; OU
+blocked-vectorised, matching the literal recurrence to 1e-15, 300x faster).
+CRD-01 stands unaltered. SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED.

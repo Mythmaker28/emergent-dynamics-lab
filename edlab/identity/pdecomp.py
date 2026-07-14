@@ -31,7 +31,10 @@ COH_HARD = 0.50         # below this the reference is essentially uncorrelated w
 RDNR_REPORT = 8.0       # RDNR is a REPORTED diagnostic, not the primary gate (it saturates on irreducible fast
                         # residual); only a gross value signals a broken correction
 DRIFT_FLOOR = 2.0
-CONTAM_K = 3.0
+CONTAM_SUSPECT = 3.0    # across-repeat coherence t-stat: SUSPECT contamination -> abstain (clean cases <= 2.8)
+CONTAM_REJECT = 4.5     # t-stat this high -> REFERENCE_CONTAMINATED (reject). Detection floor is kappa ~ 0.17;
+                        # below it contamination is not separable from the drift the reference shares, and that
+                        # is reported as a frontier, not hidden.
 K_SIG = 1.5
 R_NULL_E = 25.0
 
@@ -138,29 +141,55 @@ def correct_episode(y, r, t_probe):
     return z, rep
 
 
-def contamination(ref_by_probe, t_probe):
-    """Detect a reference that has picked up the causal response it must be blind to.
+def ref_projections(refP, shat, t_probe):
+    """Per-repeat projection of the probed reference onto s_hat, POST intervention. refP: (R, T); shat: (T,).
 
-    The reference sees only DRIFT, which is independent of the probe. So a clean reference has NO probe-locked
-    component: its post-intervention ensemble mean is the same for every probe. A contaminated reference
-    r = ...+ kappa*s carries the probe's own response, so its ensemble mean differs BY probe -- and that survives
-    even when the contamination silently ATTENUATES z (an attenuated response is indistinguishable from a smaller
-    one, so it cannot be caught in the corrected trace; it must be caught in the reference itself).
-
-    ref_by_probe : {probe: [reference trace per phase]}, ensemble-averaged over repeats. Between-probe RMS of the
-    post-intervention reference mean, against within-probe (phase) scatter."""
-    ps = sorted(ref_by_probe)
+    r_P[rep] = b*d_P[rep] + kappa*s + noise. Projecting each repeat onto s:
+        proj[rep] = kappa + <d_P[rep], s>/<s,s> + ...
+    The kappa term is IDENTICAL across repeats; the drift term is INDEPENDENT (each episode its own realization).
+    So the across-repeat MEAN of proj estimates kappa and the across-repeat SCATTER is the drift null. Returns the
+    per-repeat projections; the t-test lives in contamination()."""
     win = slice(t_probe, t_probe + W_FIXED)
-    Rr = np.stack([np.stack([np.asarray(x, float)[win] for x in ref_by_probe[p]]) for p in ps])  # (P, PH, W)
-    if not np.isfinite(Rr).all():
-        return {"ratio": 0.0, "contaminated": False, "no_reference": True}
-    nph = Rr.shape[1]
-    Rbar = Rr.mean(axis=1)                              # (P, W) ensemble+phase mean reference per probe
-    within = float(np.median(Rr.std(axis=1).mean(axis=1))) / np.sqrt(nph)
-    dev = Rbar - Rbar.mean(axis=0, keepdims=True)
-    between = float(np.max(np.sqrt((dev ** 2).mean(axis=1))))
-    ratio = between / within if within > 0 else np.inf
-    return {"ratio": float(ratio), "contaminated": bool(ratio > CONTAM_K), "no_reference": False}
+    pre = slice(max(0, t_probe - W_FIXED), t_probe)
+    sh = np.asarray(shat, float)[win]
+    shpre = np.asarray(shat, float)[pre]
+    sh = sh - sh.mean()
+    den = float(sh @ sh)
+    denpre = float((shpre - shpre.mean()) @ (shpre - shpre.mean()))
+    # RESPONSE-PRESENCE GATE: contamination only matters when there IS a response to leak. If s_hat's in-window
+    # energy is not clearly above its pre-window (null) energy, the projection divides by ~noise and is
+    # meaningless -- that is what gave null cases a spurious t-stat of 3.7. No response -> nothing to contaminate.
+    if den <= 1e-30 or den < 4.0 * denpre:
+        return None
+    out = []
+    for r in range(refP.shape[0]):
+        x = refP[r, win]
+        x = x - x.mean()
+        out.append(float(x @ sh) / den)
+    return out
+
+
+def contamination(proj_by_probe):
+    """t-test: is the reference's projection onto s_hat COHERENT across repeats (contamination) or scattered
+    (drift)? kappa_hat = mean over repeats; SE from the across-repeat scatter. A drift residual that happens to
+    project onto the response in one repeat does not survive the average; a genuine kappa*s does."""
+    ks, ts = [], []
+    for pr in proj_by_probe:
+        for pv in proj_by_probe[pr]:
+            if pv is None or len(pv) < 4:
+                continue
+            a = np.asarray(pv, float)
+            m = float(a.mean()); se = float(a.std(ddof=1) / np.sqrt(len(a)))
+            ks.append(m)
+            ts.append(m / se if se > 0 else 0.0)
+    if not ks:
+        return {"kappa": None, "contaminated": False, "no_reference": True}
+    kappa = float(np.median(np.abs(ks)))
+    tmax = float(np.max(np.abs(ts))) if ts else 0.0
+    level = ("REJECT" if tmax >= CONTAM_REJECT else ("SUSPECT" if tmax >= CONTAM_SUSPECT else "CLEAN"))
+    return {"kappa": kappa, "tstat": tmax, "level": level,
+            "contaminated": bool(level == "REJECT"), "suspect": bool(level == "SUSPECT"),
+            "no_reference": False}
 
 
 # ============================================================================================================
@@ -185,23 +214,30 @@ def _blockstats(shat_blocks, t_probe):
     out = []
     for a in shat_blocks:
         w = a[win]
+        # P-null: scatter of late-window-sized means sampled ACROSS the whole pre-intervention region (truth=0
+        # there), so the band reflects the drift-induced uncertainty of a late-window mean, not the tiny
+        # phase-to-phase scatter of a single window (which made near-zero persistence read INDETERMINATE).
+        pw = a[pre]
+        pmeans = [float(np.mean(pw[i:i + W_LATE])) for i in range(0, max(1, len(pw) - W_LATE), W_LATE // 2)]
         out.append({"E": float(np.sum(w * w)), "A": float(np.max(np.abs(w))),
                     "P": float(np.mean(a[late])), "Ph": float(np.mean(a[half])),
                     "Epre": float(np.sum(a[pre] * a[pre])), "Apre": float(np.max(np.abs(a[pre]))),
-                    "Ppre": float(np.mean(a[pre][-W_LATE:])) if pre.stop - pre.start >= W_LATE else 0.0,
+                    "Pnull": float(np.std(pmeans)) if len(pmeans) > 1 else abs(float(np.mean(pw[-W_LATE:]))),
                     "arg": int(np.argmax(np.abs(w)))})
     return out
 
 
-def profile(shat_by_probe, admissionA, admissionS, contaminated, t_probe):
+def profile(shat_by_probe, admissionA, admissionS, contaminated, t_probe, suspect=False):
     """shat_by_probe: {probe: [s_hat trace per phase]} where s_hat = z_A - z_S. Phases -> replicates (median),
     probes -> distinct interventions (max)."""
     stA = {"status": admissionA}; stS = {"status": admissionS}
     out = {"admission_active": admissionA, "admission_sham": admissionS, "contaminated": contaminated}
 
-    if contaminated:
+    if contaminated or suspect:
+        why = CONTAM if contaminated else IND_REF_C
         for k in ("E_trans", "P_inf", "A_peak", "L_onset", "T_recovery"):
-            out[k] = {"status": CONTAM, "value": None, "lo": None, "hi": None, "coverage": None}
+            out[k] = {"status": why, "value": None, "lo": None, "hi": None, "coverage": None}
+        out["contam_suspect"] = suspect
         return out
     if admissionA != ADM or admissionS != ADM:
         why = IND_REF_C
@@ -215,7 +251,7 @@ def profile(shat_by_probe, admissionA, admissionS, contaminated, t_probe):
         E.append(np.median([c["E"] for c in cs])); bE.append(np.percentile([c["Epre"] for c in cs], 90))
         A.append(np.median([c["A"] for c in cs])); bA.append(np.percentile([c["Apre"] for c in cs], 90))
         P.append(np.median([c["P"] for c in cs])); Ph.append(np.median([c["Ph"] for c in cs]))
-        bP.append(np.std([c["Ppre"] for c in cs]) + 1e-30)
+        bP.append(np.median([c["Pnull"] for c in cs]) + 1e-30)
     i = int(np.argmax(np.abs(A)))
     Ev, Av, Pv, Pv2 = float(E[i]), float(A[i]), float(P[i]), float(Ph[i])
     eB, aB, pB = float(bE[i]), float(bA[i]), float(bP[i])
