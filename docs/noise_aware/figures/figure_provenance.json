@@ -1,0 +1,102 @@
+[
+ {
+  "figure": "fig1_repair_false_zero.png",
+  "sources": [
+   {
+    "file": "../consolidation/HOLDOUT_RESULTS.json",
+    "sha256": "4dbacc5c2c159ca4312a9b6ade3086a20ad92cc95aa813d1cc32e9722be366d6"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_0_1000.json",
+    "sha256": "3d2138e45370f0428f8ca4ec7e889dbc33cb9838ec6c690d0a822e3e10dc5970"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_1000_2000.json",
+    "sha256": "5eddc798feb9cda9e0b5bb78974d1991cb12d09e56734d296dca1d520c4665a6"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_2000_3000.json",
+    "sha256": "fcb23772712130db99107dbdd21b39f2cf5c06ff7d99fa3f3a3d75fd47d0ae8d"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_3000_4000.json",
+    "sha256": "b92299fda1f4b8a8bb90220616eb6f34c7d1c0172a304b7825a2480efa7935f7"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_4000_5000.json",
+    "sha256": "7a8264c1cac2cf08eb1d615dc2d792f480d4953bfb2daf26b55c7bcbc78e4a30"
+   }
+  ],
+  "script": "noise_aware/make_figures.py",
+  "artifact_sha256": "df8a0336d3b2be922f96e7c4dec0fd76e4b6618ae58ec0f2b8398138a36de3d3",
+  "claim": "The historical null-gate produced 0.99 invalid at SNR=5; the new instrument produces 0 false {0} at every SNR."
+ },
+ {
+  "figure": "fig2_coverage_by_snr.png",
+  "sources": [
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_0_1000.json",
+    "sha256": "3d2138e45370f0428f8ca4ec7e889dbc33cb9838ec6c690d0a822e3e10dc5970"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_1000_2000.json",
+    "sha256": "5eddc798feb9cda9e0b5bb78974d1991cb12d09e56734d296dca1d520c4665a6"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_2000_3000.json",
+    "sha256": "fcb23772712130db99107dbdd21b39f2cf5c06ff7d99fa3f3a3d75fd47d0ae8d"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_3000_4000.json",
+    "sha256": "b92299fda1f4b8a8bb90220616eb6f34c7d1c0172a304b7825a2480efa7935f7"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_4000_5000.json",
+    "sha256": "7a8264c1cac2cf08eb1d615dc2d792f480d4953bfb2daf26b55c7bcbc78e4a30"
+   }
+  ],
+  "script": "noise_aware/make_figures.py",
+  "artifact_sha256": "2ebbe2acf67fccfe61d48cd1876a6d38c0a5cda5284039fc67279d23f0d8a48e",
+  "claim": "Set/bound coverage is >=95% in every SNR band, both arms, including low-SNR."
+ },
+ {
+  "figure": "fig3_invalid_point_severity.png",
+  "sources": [
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/invalid_point_forensics.json",
+    "sha256": "6f56d9545a7c11d84f7321307c5d55fd497823db01dff5a5940903d891017152"
+   }
+  ],
+  "script": "noise_aware/make_figures.py",
+  "artifact_sha256": "dfad547eb97a532fed7908118bb890b35f96ac27262d882dbed4ce02e21d949c",
+  "claim": "57 invalid points; 50 are benign near-edge CI tail misses; only 2 are catastrophic (dropout, low-SNR)."
+ },
+ {
+  "figure": "fig4_status_mix.png",
+  "sources": [
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_0_1000.json",
+    "sha256": "3d2138e45370f0428f8ca4ec7e889dbc33cb9838ec6c690d0a822e3e10dc5970"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_1000_2000.json",
+    "sha256": "5eddc798feb9cda9e0b5bb78974d1991cb12d09e56734d296dca1d520c4665a6"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_2000_3000.json",
+    "sha256": "fcb23772712130db99107dbdd21b39f2cf5c06ff7d99fa3f3a3d75fd47d0ae8d"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_3000_4000.json",
+    "sha256": "b92299fda1f4b8a8bb90220616eb6f34c7d1c0172a304b7825a2480efa7935f7"
+   },
+   {
+    "file": "../results/EXP-GT-NASI-PROSPECTIVE/rows_4000_5000.json",
+    "sha256": "7a8264c1cac2cf08eb1d615dc2d792f480d4953bfb2daf26b55c7bcbc78e4a30"
+   }
+  ],
+  "script": "noise_aware/make_figures.py",
+  "artifact_sha256": "9aa57c8d992d5cb0ea7bce4c66d7f8e4f44f717184ca1251a7df8eb484a628e9",
+  "claim": "Informativeness (points/bounds) rises with SNR; abstention dominates at low SNR \u2014 non-vacuity without sacrificing safety."
+ }
+]
