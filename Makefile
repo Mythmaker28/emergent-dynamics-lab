@@ -12,3 +12,11 @@ reproduce-nasi:
 	@cd noise_aware && PYTHONDONTWRITEBYTECODE=0 PYTHONPYCACHEPREFIX=$(NASI_PYC) PYTHONHASHSEED=0 python3 reproduce_nasi.py
 
 reproduce-paper-all: reproduce-paper reproduce-nasi
+
+# Point-certification (PC) deterministic reproduction
+PC_PYC := /tmp/pc_reproduce_pyc
+reproduce-pc:
+	@rm -rf $(PC_PYC)
+	@cd point_cert && PYTHONDONTWRITEBYTECODE=0 PYTHONPYCACHEPREFIX=$(PC_PYC) PYTHONHASHSEED=0 python3 reproduce_pc.py
+
+reproduce-all: reproduce-paper reproduce-nasi reproduce-pc
