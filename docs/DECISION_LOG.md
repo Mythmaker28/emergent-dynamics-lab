@@ -2404,3 +2404,18 @@ audit and must be restricted). SECOND SUBSTRATE: PASS (structural identifiabilit
 caveat. PUBLICATION STATUS: REPLICATION COMPLETE — CONSOLIDATION INCOMPLETE (T6 retraction + FHN gap + no
 one-command rebuild). Historical CRD-03 freeze NOT rewritten; flaw documented. DROPLET CAUSAL-CONTINUITY PILOT
 remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## D-084 — Sign-safe consolidation: T6 repaired, sign-safe instrument PASSES fresh prospective
+Resolved the T6' contradiction: the 40/40 bracket coverage held ONLY because every tested regime had >=1 clean
+reference; with no anchor the bracket is one-sided and its side is set by sign(alpha*kappa). Repaired theory
+(T6-A attenuation lower bound, T6-B amplification UPPER bound, T6-C clean-anchor bracket, T6-D sparsity m>=2s+1,
+T6-E no-anchor-no-sign impossibility with symbolic proof), property-tested >=0.97 over 400 trials each. Built an
+independent sign-safe instrument (9 statuses, never max-amplitude default), committed a fresh split BEFORE fitting
+(8b77031), froze (09016d7), ran prospective once: 10/10, 0 invalid. Safety metric (confident exclusion of truth) =
+0 across 1600+ trials, all sign regimes, all (m,s). Second clean-room implementation agrees 20/20. FHN: structural
+transfer, quantitative substrate-specific (0.86, pre-window calibration bias diagnosed). One-command reproduction
+(make reproduce-paper) PASSES from disk; Dockerfile pinned but not built here.
+VERDICTS: SIGN-SAFE IDENTIFIABILITY THEOREM: PASS. SIGN-SAFE INSTRUMENT PROSPECTIVE: PASS. SECOND SUBSTRATE:
+STRUCTURAL PASS — QUANTITATIVE FAIL. ONE-COMMAND REPRODUCTION: PASS (container unverified). PUBLICATION STATUS:
+METHODS PAPER SOLID (peer-review submission needs external human review + container E2E). Historical CRD-03 sign
+bug documented, not patched. DROPLET PILOT and EXP-SC-01 remain BLOCKED.
