@@ -43,11 +43,11 @@ perturbation leaving a *permanent* mark.
 `and_or` → `xnor_and`, two microscopically different AND implementations, **swapped mid-trajectory**:
 
 ```
-identical before the swap;  bounded transient of 14 steps;  uninterrupted from t = 54
+identical before the swap;  accessible output deviated on ONE step (t=53);  recovered thereafter
 pre-replacement vs post-replacement fingerprint distance = 0.0000   (continuity radius 0.015)
 ```
 
-The material of the computation is replaced while the behaviour continues, and the fingerprint does not move.
+The material of the computation is replaced; the accessible behaviour deviates on **one step** and is then recovered; and the fingerprint does not move. *(See the correction below: 'uninterrupted' is withdrawn.)*
 
 ## Rich-versus-limited collision analysis — the cost of poor access, measured
 
@@ -86,3 +86,23 @@ frozen.
 an exploratory experiment** — and is **not executed here**. It is not EXP-SC-01, and it is not proof of identity.
 
 **EXP-SC-01 itself remains BLOCKED.**
+
+
+---
+
+## CORRECTION (D-073, preflight P1) — the E1 trajectory claim was overstated
+
+The wording above says the accessible behaviour was **"uninterrupted"**. **That is withdrawn.**
+
+Measured on the declared behavioural output: after the mid-trajectory replacement, the accessible output **deviated
+on exactly one step** (t = 53, channel 2). The figure **14** is the **SPAN** from the swap to the last deviating
+step — not a count of deviating steps.
+
+**Corrected claim:**
+
+> The pre-replacement accessible behaviour was **recovered after a bounded 14-step transient**. Continuity was
+> **NOT exact at every intermediate step**.
+
+This changes **no fingerprint verdict**. The E1 *fingerprint* distance of 0.0000 compares the two systems'
+fingerprints and is untouched, as are the development (18/18) and prospective (9/9, both arms) results. Only the
+trajectory wording was wrong, and only it is corrected. See `docs/PREFLIGHT_AUDIT.md` §P1.

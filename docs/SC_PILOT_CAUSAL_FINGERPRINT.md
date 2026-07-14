@@ -1,4 +1,22 @@
-# SC-PILOT-CAUSAL-FINGERPRINT — **AUTHORIZED. NOT EXECUTED.**
+# SC-PILOT-CAUSAL-FINGERPRINT — **BLOCKED AT PREFLIGHT. NOT EXECUTED.**
+
+> ## `PREFLIGHT_FAIL` (D-073)
+>
+> The pilot was authorized and did **not** run. The frozen instrument is **not defined on the droplet's accessible
+> observable**: it decides by **Hamming distance over `uint8` symbols**, and `uptake` is a **continuous float**.
+> Cast to `uint8` every droplet's fingerprint is identical (universal false sameness); compared as floats every
+> droplet differs from its own later self (universal false difference).
+>
+> Executing the pilot would require supplying a quantization rule, a tolerance, and a binary→field-units amplitude
+> mapping — **none of which are in the freeze**, and each of which is a free parameter that materially controls the
+> within-versus-between separation the pilot exists to test. **That is defining the instrument, not adapting it.**
+>
+> The design below is preserved unchanged as the record of what was authorized. See `docs/PREFLIGHT_AUDIT.md`.
+>
+> **EXP-SC-01 remains BLOCKED.**
+
+---
+
 
 Authorized by `EXP-GT-FINGERPRINT-00`, which passed **both** access arms prospectively (9/9 each, zero false
 sameness, zero false difference). Per the mission's §8, that is the only condition under which this may exist.

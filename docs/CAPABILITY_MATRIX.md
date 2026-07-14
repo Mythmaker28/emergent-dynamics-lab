@@ -62,6 +62,12 @@ a **synchronous, discrete, unit-delay** update rule with **arbitrary single-cell
 analogue: droplet dynamics are continuous and diffusive (there is no "one step later"), and no experimenter can
 flip one lattice site of a physical droplet's interior.
 
+**3. (D-073) The RESPONSE REPRESENTATION is qualified ONLY for a BINARY observable.** The frozen fingerprint
+decides by **Hamming distance over `uint8` symbols**. The droplet's accessible observable is a **continuous float**.
+The instrument is **undefined** there: cast to `uint8` every droplet is identical; compared as floats every droplet
+differs from its own later self. Supplying the missing quantization / tolerance / amplitude-mapping rules is
+**instrument definition**, not adaptation. This is why `SC-PILOT-CAUSAL-FINGERPRINT` returned `PREFLIGHT_FAIL`.
+
 **Neither capability is assumed to transfer to droplets.** Any droplet claim must re-earn both from scratch, under
 that substrate's own access constraints. This is recorded here precisely because the temptation to quote a Boolean
 result in a continuous substrate is exactly the category of error that retired three observers.

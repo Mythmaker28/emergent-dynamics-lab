@@ -11,7 +11,7 @@
 | | **[rich] RICH access RESCUES a system the droplet repertoire cannot interrogate at all** | responsiveness 0.00 → 0.08 |
 | **C1** | systems distinguishable under RICH access are INDISTINGUISHABLE under the droplet repertoire | 4/4 |
 | **C2** | **FALSE SAMENESS INCREASES as access gets poorer** — measured, not assumed | collisions: rich 0/4, droplet **4/4** |
-| **E1** | function-preserving **replacement during one continuous trajectory**: behaviour uninterrupted | identical before the swap; bounded transient 14 steps |
+| **E1** | function-preserving **replacement during one continuous trajectory**: behaviour **recovered after a bounded transient** *(corrected — see below)* | identical before the swap; bounded transient 14 steps |
 | **E1** | the fingerprint **survives the replacement** | pre/post distance **0.0000** |
 | **L1** | **MUST-FAIL:** re-adding the class label and lag set **RECREATES the false difference** (D-069) | clean 0.0000 → contaminated **0.0612** |
 | **L2** | **MUST-FAIL:** removing the discriminating probe **COLLAPSES two different systems into one fingerprint** | with the register step 0.0347 → without it **0.0000** |
@@ -35,3 +35,23 @@ is load-bearing.** Neither is an assumption; both are demonstrated by making the
 `xor3`'s reconvergent paths **glitch** on a register step, and `fsm_gate` **freezes** where `toggle` does not.
 These are measured responses, not labels. **The benchmark was wrong; the measurement was not.** The matrix was
 corrected on development, before the freeze, with a stated principle: **equivalence is relative to a repertoire.**
+
+
+---
+
+## CORRECTION (D-073, preflight P1) — the E1 trajectory claim was overstated
+
+The wording above says the accessible behaviour was **"uninterrupted"**. **That is withdrawn.**
+
+Measured on the declared behavioural output: after the mid-trajectory replacement, the accessible output **deviated
+on exactly one step** (t = 53, channel 2). The figure **14** is the **SPAN** from the swap to the last deviating
+step — not a count of deviating steps.
+
+**Corrected claim:**
+
+> The pre-replacement accessible behaviour was **recovered after a bounded 14-step transient**. Continuity was
+> **NOT exact at every intermediate step**.
+
+This changes **no fingerprint verdict**. The E1 *fingerprint* distance of 0.0000 compares the two systems'
+fingerprints and is untouched, as are the development (18/18) and prospective (9/9, both arms) results. Only the
+trajectory wording was wrong, and only it is corrected. See `docs/PREFLIGHT_AUDIT.md` §P1.

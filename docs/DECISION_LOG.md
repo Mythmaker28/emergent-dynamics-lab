@@ -1967,3 +1967,79 @@ frozen); and this qualifies the fingerprint **logic** under a droplet-*like* rep
 per D-071 the droplet must build and certify its **own** provenance contract.
 
 **EXP-SC-01 REMAINS BLOCKED. Stopping for strategic review.**
+
+---
+
+## D-073 — PREFLIGHT AUDIT of SC-PILOT-CAUSAL-FINGERPRINT: **`PREFLIGHT_FAIL`. THE PILOT WAS NOT EXECUTED.**
+
+Repository clean at `b87f4cb` when the audit began. No historical artifact overwritten or amended; every prior
+failure and development diagnostic preserved. **The fingerprint was not tuned, patched or modified.**
+
+### P1 — the 14-step replacement transient. **OUTCOME P1-B.**
+
+My report said *"behaviour uninterrupted"* **and** *"bounded 14-step transient"*. One half of that was wrong.
+Measured on the declared behavioural output: the accessible output **deviated on exactly one step** (t = 53,
+channel 2). **The figure 14 is a SPAN** — from the swap to the last deviating step — **not a count.**
+
+**"Uninterrupted behaviour" is WITHDRAWN.** Corrected claim: *the pre-replacement accessible behaviour was
+recovered after a bounded 14-step transient; continuity was NOT exact at every intermediate step.* This changes no
+fingerprint verdict — the E1 *fingerprint* distance of 0.0000 is untouched, as are 18/18 development and 9/9
+prospective — but the trajectory claim was overstated and is corrected in place.
+
+### P2 — ground-truth independence. **PASS, 18/18.**
+
+A privileged full-state path (`exp_preflight.py`) that **never imports `fingerprint.py`**, decides by **exact
+equality of raw engine traces**, and uses **no distance, no block structure, no radii and no verdict rule** of the
+instrument, reproduces **every** declared expectation on **both** arms — including the droplet-arm collision
+`AND(clk,1) ≡ OR(clk,0)`. Labels were declared from construction and committed at `b87f4cb` **before** the run.
+Declared shared assumption: the two paths share the **nuisance model** (clock phase, internal latency) and nothing
+else.
+
+The audit found **three defects in itself** and fixed them **in the audit, not the instrument**: a single cyclic
+shift cannot absorb phase and latency together; `T_SIG = 128` truncated the longer-latency system's aligned block
+(**a window shorter than the response — the D-067 defect, reappearing in my own audit**); and non-responding rows
+aligned to the window start leak latency (**the same defect the instrument had already found and fixed in its own
+development**). Each produced a false difference *in the audit*. None was in the instrument.
+
+### P3 — the bounded partition-dependence addendum. **NOT EXECUTED.**
+
+The frozen protocol contains **no partition gate** (verified: no *partition* / *lobe* / *alias* / *bifurcation* /
+*observer_relative* / *object count* / *replication* / *duplication* anywhere in `FINGERPRINT_FREEZE_MANIFEST.json`),
+and no stress test covering the seven required cases exists. **Classified honestly as an unexecuted bounded
+diagnostic that is not part of the fingerprint qualification.** No retrospective PASS is fabricated. It would have
+to be executed *inside* any pilot, because within-versus-between logic presupposes an object count.
+
+### P4 — RAISED BY THE AUDIT. **The frozen instrument is not defined on the droplet's observable.**
+
+The instrument builds `uint8` arrays, forms `dev = (obs != bas)` by **exact inequality**, and decides by
+**Hamming distance** — which presupposes **discrete symbols**. The droplet's accessible observable, `uptake`, is a
+**continuous float** of order 1e-3.
+
+- **Cast to `uint8`:** every sample truncates to 0 → every droplet's fingerprint is identical → **universal false
+  sameness.**
+- **Compared as floats:** exact inequality fires on every sample → every droplet differs from every other **and from
+  its own later self** → **universal false difference.**
+
+**Neither is a measurement.** Missing from the freeze: any quantization or thresholding rule for a continuous
+observable; any tolerance `ε` or continuous metric; any mapping from the frozen **binary** probe amplitudes `{0,1}`
+to `N`/`c` field units. **Each is a free parameter that materially controls the within-versus-between separation the
+pilot exists to test.** Supplying them is **defining the instrument**, not adapting it — and a patched instrument
+cannot inherit the prospective qualification of the unpatched one.
+
+**This is exactly the failure the preflight was mandated to catch.** I should have seen it at D-072: I flagged that
+**temporal provenance** does not transfer to a continuous substrate and did not notice that the **response
+representation** does not either. The omission is mine and it is on the record. The capability matrix is updated:
+*the response representation is qualified ONLY for a binary observable.*
+
+### DECISION
+
+**`PREFLIGHT_FAIL` — PILOT NOT EXECUTED.** Per Phase 2: execution would require modifying the instrument, so we
+stop. The fingerprint is **not** patched, and no patched version is called prospectively qualified.
+
+**Recommendation (no work authorized by it).** A droplet pilot requires a **continuous-observable response
+representation** — quantization or a continuous metric, a tolerance, and a physical amplitude mapping — which is a
+**new instrument-definition step**. It cannot be qualified on the Boolean substrate, which is binary; it would need
+a **continuous ground-truth substrate with known causal structure**, its own development certificate, and its own
+prospective run. That is a well-posed piece of work and it is **not** authorized here.
+
+**EXP-SC-01 remains BLOCKED.**
