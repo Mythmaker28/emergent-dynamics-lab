@@ -1,0 +1,90 @@
+{
+ "radii": {
+  "r_continuity": 7.372033709342117,
+  "r_separation": 22.11610112802635
+ },
+ "controls": [
+  {
+   "id": "T1",
+   "breaks": "burned case (P_cascade) as regression",
+   "expected": "classified ONLY if the bound proves it",
+   "observed": "DIFFERENT  D_lo=41.9 >= r_sep=22.1  tail=DECIDABLE_SLOW_TAIL",
+   "PASS": true,
+   "note": "v00 measured 64.15 vs radius 23.36 and abstained. v01 classifies it because D_lo proves the verdict cannot change -- no hard-coded exception exists anywhere in the guard."
+  },
+  {
+   "id": "T2",
+   "breaks": "genuinely in-flight (never settles)",
+   "expected": "must ABSTAIN",
+   "observed": "INDETERMINATE  tail=INDETERMINATE_IN_FLIGHT",
+   "PASS": true,
+   "note": ""
+  },
+  {
+   "id": "T3",
+   "breaks": "slow tail, remainder cannot cross boundary",
+   "expected": "must CLASSIFY",
+   "observed": "DIFFERENT  bracket [152.8, 160.2]  tail=DECIDABLE_SLOW_TAIL",
+   "PASS": true,
+   "note": ""
+  },
+  {
+   "id": "T4",
+   "breaks": "slow tail NEAR the boundary",
+   "expected": "must ABSTAIN",
+   "observed": "DIFFERENT  bracket [29.3, 29.3]  tail=DECIDABLE_SETTLED",
+   "PASS": false,
+   "note": "THE DECISIVE CONTROL, AND IT FAILS. The remainder is real (~10% of the difference energy lies beyond the window, per the privileged path) but its envelope measures 8.25 against a bound noise floor of 9.0. The bound cannot see it, calls the tail SETTLED, and returns a confident DIFFERENT."
+  },
+  {
+   "id": "T5",
+   "breaks": "misleading flat tail (2nd cause at delay 55)",
+   "expected": "naive derivative guard FAILS; frozen guard does not",
+   "observed": "naive(stop@45)=SETTLED:False  frozen=DIFFERENT",
+   "PASS": false,
+   "note": "The naive guard stops in the plateau and never hears the second cause. The frozen guard refuses to assess settling before the declared delay horizon T_TAIL0 = 84."
+  },
+  {
+   "id": "T6",
+   "breaks": "noise/drift must not read as in-flight",
+   "expected": "null SETTLED+INDIST; drift refused as nonstationary",
+   "observed": "null=INDISTINGUISHABL/DECIDABLE_SETTLED ; drifty=INDETERMINATE",
+   "PASS": true,
+   "note": ""
+  },
+  {
+   "id": "T7",
+   "breaks": "verdict stable under window change",
+   "expected": "no classified verdict reverses",
+   "observed": "2 reversals over 5 pairs x 2 windows",
+   "PASS": false,
+   "note": ""
+  },
+  {
+   "id": "T8",
+   "breaks": "artificially short window",
+   "expected": "INDETERMINATEs must increase",
+   "observed": "abstentions: 0 (W=160) -> 0 (W=110)",
+   "PASS": false,
+   "note": ""
+  },
+  {
+   "id": "T9",
+   "breaks": "guard REMOVED",
+   "expected": "a premature/false verdict must appear",
+   "observed": "nonsettling -> DIFFERENT (guard on: INDETERMINATE)",
+   "PASS": true,
+   "note": "With no guard the instrument hands a confident verdict to a system whose response never settles."
+  },
+  {
+   "id": "T10",
+   "breaks": "version 00's guard restored",
+   "expected": "an unnecessary abstention reappears",
+   "observed": "v00 flags 12 rows in flight (frac 0.50 > 0.25) -> v00 ABSTAINS; v01 says DIFFERENT",
+   "PASS": true,
+   "note": "The burned case, exactly as v00 saw it."
+  }
+ ],
+ "passed": 6,
+ "total": 10
+}

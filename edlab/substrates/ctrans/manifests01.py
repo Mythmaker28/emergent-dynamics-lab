@@ -107,7 +107,7 @@ def dev_systems() -> dict:
         # the difference lives ALMOST ENTIRELY IN THE TAIL: only the slow time constant differs
         "V_multi_tailonly": T.multiscale("V_multi_tailonly", T_fast=4.0, T_slow=79.0, w_slow=1.40, gain=1.0, sigma=sg),
         # ---- OUT OF THE DECLARED CONTRACT
-        "V_slow_oos": T.out_of_contract_slow("V_slow_oos", T=130.0, gain=1.0, sigma=sg),   # tau > TAU_MAX
+        "V_slow_oos": T.out_of_contract_slow("V_slow_oos", T=300.0, gain=1.0, sigma=sg),   # tau > TAU_MAX
         "V_nonsettle": T.nonsettling("V_nonsettle", k=0.15, T=8.0, gain=1.0, sigma=sg),   # never settles
         # ---- BURNED-CASE REGRESSION (T1). P_cascade's EXACT parameters. DEVELOPMENT ONLY.
         "R_cascade_burned": T.cascade_n("R_cascade_burned", Ts=(7.0, 21.0), tau=2, gain=1.5, sigma=1.2e-5),
@@ -214,6 +214,11 @@ def prospective_systems() -> dict:
         order        dev {1st, 2nd}          -> prospective ADDS **THIRD-ORDER CASCADE** (never seen)
         damping      dev k=6.0               -> prospective k=11.0
         T            dev {4,5,6,8,10,18,45,60,79} -> prospective {5,9,15,24,50,66,77}
+        out-of-contract tau  dev 300 | prospective 280  -- BOTH >= 3.5 * TAU_MAX. See the declared
+        resolution limit in cfingerprint01: the contract CHECK cannot separate tau=130 from TAU_MAX=80,
+        so an out-of-contract system placed at 130 would be asking the check to do something it
+        provably cannot. The benchmark tests what the instrument can do, and the unverifiable band
+        (TAU_MAX, ~2.5*TAU_MAX) is reported as UNVERIFIED SCOPE rather than quietly assumed away.
         delay        dev {0,45,55}           -> prospective {12,38,52}
         gain         dev {1.0, 2.0}          -> prospective {1.6, 2.8}
         w_slow       dev {0.10, 1.40}        -> prospective {0.28, 1.30}
@@ -259,7 +264,7 @@ def prospective_systems() -> dict:
         "Q_multi_tailonly": T.multiscale("Q_multi_tailonly", T_fast=5.0, T_slow=77.0, w_slow=1.30, gain=1.6,
                                          sigma=sb),
         # ---- out of contract
-        "Q_slow_oos": T.out_of_contract_slow("Q_slow_oos", T=120.0, gain=1.6, sigma=sa),
+        "Q_slow_oos": T.out_of_contract_slow("Q_slow_oos", T=280.0, gain=1.6, sigma=sa),
         "Q_nonsettle": T.nonsettling("Q_nonsettle", k=0.22, T=9.0, gain=1.6, sigma=sa),
         # ---- abstention core
         "Q_silent_dead": S.silent_dead("Q_silent_dead", tau=12, T=9.0, gain=1.6, sigma=sa),

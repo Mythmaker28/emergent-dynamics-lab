@@ -121,3 +121,36 @@ record.
 noise scale are free: a halved noise floor and a doubled gain are the same observation. The noise scale is
 therefore **declared, not inferred**, and the admission layer **refuses** cross-channel comparisons. This is a debt
 any droplet mapping must pay **physically** — "field noise" is on the unresolved list for exactly this reason.
+
+
+---
+
+# EXP-GT-CONTINUOUS-FINGERPRINT-01 — Tail-Aware Continuous Causal Fingerprint
+
+**RESULT: FAIL (development). NOT FROZEN. PROSPECTIVE NOT RUN — the hold-out is PRESERVED, not burned.**
+
+| capability | status |
+|---|---|
+| bound the EVENTUAL distance under window extension, without modelling the tail | **DEFINED** (contract-checked worst-case envelope; bracket, not point estimate) |
+| **v00's fatal case (`P_cascade`) classified BY BOUND, not by exception** | **DEMONSTRATED** — `D_lo = 41.9` vs `r_sep = 22.1`. No hard-coded exception exists in the guard. |
+| genuinely non-settling response abstains | **DEMONSTRATED** |
+| slow-but-harmless tail classifies (`DECIDABLE_SLOW_TAIL`) | **DEMONSTRATED** |
+| noise/drift not read as unresolved response | **DEMONSTRATED** |
+| guard is load-bearing (removing it produces a premature verdict) | **DEMONSTRATED** |
+| v00's guard, restored, reproduces its unnecessary abstention | **DEMONSTRATED** |
+| **slow tail NEAR the decision boundary abstains (T4)** | ### **FAILED — the resolution floor** |
+| out-of-contract detection in the band (TAU_MAX, 2.5x TAU_MAX) | **UNVERIFIED SCOPE — the bound is unsound there and cannot tell** |
+
+**6. (D-075) THE TAIL-UNCERTAINTY BOUND HAS A RESOLUTION FLOOR, AND IT IS THE SAME ORDER AS THE REMAINDERS THAT
+MATTER.** Measured on 288 noise-only blocks, the bound's remaining-envelope statistic reaches **7.40** on pure
+noise, forcing `TAIL_NOISE = 9.0`. The decisive near-boundary control carries a **real** remainder whose envelope
+measures **8.25** — *inside the floor*. The instrument calls it SETTLED and returns a confident DIFFERENT on a pair
+whose answer is still outside the window.
+
+**This is version 00's error in the opposite direction: v00 abstained when it should have spoken; v01 speaks when
+it should abstain.** The floor is set by the tail region's length (76 samples) against the noise on a sub-block
+mean. The fix — a longer observation window — is a BATTERY CHANGE and therefore a new instrument.
+
+**7. A CHECK AND A BOUND WANT DIFFERENT CONFIDENCE LEVELS.** Using one constant for both inflates the remainder
+estimate to ~15 noise units on *pure noise*, drowning the ~20-unit remainders it exists to find. Conservatism
+applied to the wrong quantity is not caution; it is noise.

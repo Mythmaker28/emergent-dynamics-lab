@@ -2107,3 +2107,56 @@ use. Classified: **provenance / implementation failure**.
 `SC-PILOT-CONTINUOUS-FINGERPRINT-PREFLIGHT`: **NOT AUTHORIZED.**
 `SC-PILOT-CAUSAL-FINGERPRINT` remains **BLOCKED**. `EXP-SC-01` remains **BLOCKED**.
 No droplet experiment was launched. `beta`, `D_int` and the droplet equations were not touched.
+
+
+---
+
+## D-075 — EXP-GT-CONTINUOUS-FINGERPRINT-01: FAIL at DEVELOPMENT. Not frozen. Prospective NOT run. Hold-out PRESERVED.
+
+**Context.** v00 died conflating "is the signal still moving?" with "can the unobserved remainder change the
+verdict?". It measured `P_cascade` at 64.15 against a radius of 23.36 and abstained anyway.
+
+**Built.** A tail substrate (first/second/third-order, underdamped, multi-timescale, delayed-onset, delayed second
+component, weak/strong long tails, non-settling, out-of-contract), a NEW split committed at `fb449b2` BEFORE the
+instrument changed (v01 prospective reuses ZERO v00 systems; the burned pair appears ONLY as development regression
+T1), and a tail-uncertainty guard that BOUNDS THE EVENTUAL DISTANCE rather than modelling the tail.
+
+**Development 52/54. Controls 6/10.**
+
+**WHAT WORKS, AND IT IS THE THING THAT MATTERED:** T1 — the burned case classifies BY BOUND (`D_lo = 41.9` vs
+`r_sep = 22.1`), with no hard-coded exception anywhere. v00's exact defect is fixed for the right reason. Also T2
+(non-settling abstains), T3 (slow-but-harmless classifies), T6 (noise is not a cause), T9 (guard load-bearing),
+T10 (v00's guard reproduces its own death).
+
+**WHAT KILLS IT: T4, the decisive control.** The bound's remaining-envelope statistic reaches **7.40 on pure
+noise** (288 noise-only blocks), forcing `TAIL_NOISE = 9.0`. T4's REAL remainder — ~10% of the pair's difference
+energy lies beyond the window, confirmed by the privileged path — measures **8.25**. It sits INSIDE the floor. The
+bound cannot see it, calls it SETTLED, and returns a confident DIFFERENT on a pair whose answer is still partly
+outside the window. **That is v00's error in the opposite direction, on the one case that distinguishes a
+principled tail guard from a threshold-raising hack.**
+
+**Also declared: the out-of-contract check cannot separate tau=130 from TAU_MAX=80** (per-sub-block decay 0.825 vs
+0.732, against comparable noise). It reliably detects only tau > ~2.5 x TAU_MAX. In the band (TAU_MAX,
+2.5 x TAU_MAX) the bound is UNSOUND and cannot tell that it is. UNVERIFIED SCOPE, stated rather than left to be
+found later.
+
+**Six defects preserved, each classified before repair:** (1) I called F0.admit() directly and it SILENTLY
+RE-IMPOSED v00'S IN-FLIGHT GUARD -- six of eight initial failures, T1 among them. Inheriting a core means
+inheriting its bugs unless you name the one you are replacing. (2) estimating the decay RATE from a ratio of two
+noisy block means declared the NULL out of contract -- reading the estimator's variance as the world refusing to
+relax. (3) SUBTRACTING the noise from the decrement when bounding the remainder -- the direction that flatters the
+instrument, and precisely what produced the T4 failure. (4) one confidence constant for both the CHECK and the
+BOUND. (5) TAU_MAX=40 against a 160-sample window would have made the three-way distinction VACUOUS -- caught
+before any instrument code existed. (6) a name-keyed acquisition cache silently served a stale re-parameterised
+system.
+
+**DECISION: RETIRED AT DEVELOPMENT. The prospective split was NOT run and is NOT burned.** Freezing an instrument
+whose defect is already measured, and spending the hold-out to confirm it, would destroy an asset for no
+information. The identified fix -- a LONGER OBSERVATION WINDOW, giving the tail region leverage against its noise
+floor -- is a BATTERY change and therefore a NEW instrument, which is not attempted here.
+
+v00's six frozen files were NOT modified and still verify byte-for-byte against its freeze manifest.
+
+`SC-PILOT-CONTINUOUS-FINGERPRINT-PREFLIGHT`: **NOT AUTHORIZED.**
+`SC-PILOT-CAUSAL-FINGERPRINT` remains **BLOCKED**. `EXP-SC-01` remains **BLOCKED**.
+No droplet experiment. beta, D_int and the droplet equations untouched.
