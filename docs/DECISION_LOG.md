@@ -2260,3 +2260,49 @@ Methodological synthesis of v00-v03 written to docs/CFP03_SYNTHESIS.md.
 `SC-PILOT-CAUSAL-FINGERPRINT` remains **BLOCKED**. `EXP-SC-01` remains **BLOCKED**.
 **CONTINUOUS-FINGERPRINT BRANCH CLOSED — NO V04.**
 No droplet experiment was ever executed in this branch. beta, D_int and the droplet equations untouched.
+
+
+---
+
+## D-078 — EXP-GT-CAUSAL-RESPONSE-DECOMPOSITION-00: FAIL AT DEVELOPMENT (19/20). New split untouched.
+
+NEW PROGRAMME, not continuous-fingerprint v04. The v00-v03 branch stays closed and historically intact; the
+historical sealed hold-out has still never been generated.
+
+**THE CENTRAL REPAIR WORKS.** On nested prefixes of ONE acquisition the old window-normalized scalar dilutes
+144.04 -> 83.17 (ratio 0.577 = sqrt(160/480), exactly), while E_trans -- AN INTEGRAL, NOT A MEAN -- converges
+upward and P_inf correctly stays at zero for a transient with an identical asymptote. The two quantities the old
+scalar conflated are now measured on separate axes and each separates on its own:
+  EQUAL-ENERGY control -> PEAK RATIO 3.09x ; EQUAL-PEAK control -> ENERGY RATIO 7.04x.
+Those controls required a real construction: a single leaky path CANNOT dissociate peak from energy (shape factor
+E/A^2 stays in 18-41 across Tx 1..64; best achievable peak ratio 1.36). My first attempt at them failed silently.
+
+**DEVELOPMENT 19/20**, accuracy-checked against privileged truth (estimated energies land within 0.68-1.21x).
+Passing: pure transient, pure persistent, hidden state, latency, both dissociation controls, gain, sign, units,
+solver, equivalent implementations, limited-access collision (exact zeros, EQUIVALENCE_CLASS_ONLY), DRIFT-ONLY
+(zero causal components on every axis), slow response without drift, and all abstention cases.
+
+**THE FAILURE: Z-17, a slow causal response UNDER HEAVY DRIFT.** E_trans overstated 7.1x (3.05e6 vs a privileged
+4.30e5) and the drift excursion quoted as a causal peak (422.7 vs a true ~97). The instrument SILENTLY CALLS THE
+DRIFT A RESPONSE instead of abstaining -- exactly what gate G8 forbids.
+
+**DIAGNOSIS, MEASURED: A SHAM CAN CALIBRATE A BAND. IT CANNOT SUBTRACT A REALIZATION IT NEVER SAW.** The matched
+sham has the same VARIANCE as the causal trace's drift but is an INDEPENDENT REALIZATION, so debiting its ENERGY is
+unbiased in expectation and useless per pair -- E_raw and E_sham fluctuate independently and their difference
+carries an error of the order of the thing being removed. That is why drift-ONLY passes perfectly (a band suffices)
+and Z-17, which needs an actual subtraction, does not.
+
+**TWO INHERITED ASSUMPTIONS, BOTH FOUND AND NAMED.** (a) The old BASELINE_MAX refusal, imported with admission,
+re-imposed "refuse anything that drifts" and pre-empted the sham machinery -- THE SAME MISTAKE v01 MADE inheriting
+v00's dead in-flight guard. (b) max-over-blocks is a VERDICT rule, not an ESTIMATOR: over 32 blocks it selects the
+block where independent drift realizations conspire. Fixed to median-over-PHASES (replicates), max-over-PROBES
+(distinct interventions). Not enough to save Z-17.
+
+**DECISION: FAIL AT DEVELOPMENT. The new prospective split is NOT touched and remains sealed. No freeze manifest --
+this version never earned one.** A successor must change the ACQUISITION CONTRACT, not the estimator: to SUBTRACT
+drift rather than bound it, the sham must SHARE the drift realization (interleaved / common-mode acquisition), not
+merely its distribution. Not attempted here; this stops for strategic review.
+
+SC-PILOT-RESPONSE-DECOMPOSITION-PREFLIGHT: NOT AUTHORIZED.
+SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+No droplet experiment. beta, D_int and the droplet equations untouched.

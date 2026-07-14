@@ -234,3 +234,34 @@ check caught it before a single parameter was fitted.
 **13. A WELL-POSED CONTINUOUS FINGERPRINT NEEDS A WINDOW-INVARIANT DISCREPANCY FUNCTIONAL** -- an integral rather
 than a mean, or normalization by response energy rather than window length. That is a change to the METRIC, the one
 component unchanged since v00, and therefore a NEW PROGRAMME, not a new version.
+
+
+---
+
+# EXP-GT-CAUSAL-RESPONSE-DECOMPOSITION-00 — Factorized Causal Response Decomposition (NEW PROGRAMME)
+
+**RESULT: FAIL AT DEVELOPMENT (19/20).** Not frozen. The new prospective split was NOT touched.
+
+**14. (D-078) THE FACTORIZATION WORKS. THE DILUTION IS CURED.** On nested prefixes of ONE acquisition, the old
+window-normalized scalar falls 144.04 -> 83.17 (ratio 0.577 = sqrt(160/480), exactly as predicted) while the new
+`E_trans` -- AN INTEGRAL, NOT A MEAN -- converges upward (3.220e6 -> 3.365e6) and `P_inf` correctly stays at ZERO
+for a transient with an identical asymptote. The two quantities the old scalar conflated now live on separate axes.
+
+**15. PEAK AND ENERGY ONLY COME APART WHEN THE SHAPE COMES APART.** A single leaky path CANNOT dissociate them:
+measured, its shape factor E/A^2 stays in 18-41 across Tx from 1 to 64, and the best equal-energy peak ratio
+achievable is 1.36 -- a rounding error, not a control. With a high-pass SPIKE (E/A^2 = 6.9) against a cascade BROAD
+path (E/A^2 = 56.1): EQUAL ENERGY -> peak ratio **3.09x**; EQUAL PEAK -> energy ratio **7.04x**. Both axes separate
+on their own.
+
+**16. (THE FAILURE) A SHAM CAN CALIBRATE A BAND. IT CANNOT SUBTRACT A REALIZATION IT NEVER SAW.** The matched sham
+has the same VARIANCE as the causal trace's drift but is an INDEPENDENT REALIZATION, so debiting its ENERGY is
+unbiased in expectation and useless per pair. Drift-only controls pass perfectly (a band is all they need); a slow
+causal response UNDER HEAVY DRIFT is overstated 7.1x and its drift excursion is quoted as a causal peak. **The
+instrument calls the drift a response instead of abstaining.** A successor must change the ACQUISITION -- a sham
+that SHARES the drift realization (interleaved / common-mode), not merely its distribution -- not the estimator.
+
+**17. TWO INHERITED ASSUMPTIONS, BOTH NAMED.** (a) The old `BASELINE_MAX` refusal, imported with admission,
+re-imposed "refuse anything that drifts" and threw away the sham machinery this programme exists to test -- THE
+SAME MISTAKE v01 MADE with v00's dead in-flight guard. (b) `max`-over-blocks is a VERDICT rule, not an ESTIMATOR:
+over 32 blocks it selects the block where independent drift realizations conspire. Phases are REPLICATES (median);
+probes are DISTINCT INTERVENTIONS (max).
