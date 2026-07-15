@@ -1,0 +1,52 @@
+{
+  "experiment": "EXP-SC-WRITING-DIMENSIONALITY-01",
+  "scope": "Phase A (replicate) + Phase B (frozen-writing bottleneck audit). Phase C (writing redesign) reached-and-justified but NOT executed (preregistered for next session).",
+  "principal_verdict": "FAIL — WRITING REMAINS EFFECTIVELY ONE-DIMENSIONAL (viable regime)",
+  "phase_A": "A-PASS — MCM CORE REPLICATED",
+  "phase_B_primary_label": "SATURATION BOTTLENECK CONFIRMED (single-scalar, saturating+clipped write)",
+  "phase_B_secondary_labels": ["HISTORY-DESIGN BOTTLENECK (confound in prior evidence, corrected)", "VIABILITY-CAPACITY TRADEOFF (the only regime with any 2nd-dim signal is delocalized/non-viable)"],
+  "gates": {
+    "G1_repository_grounded": "PASS",
+    "G2_mcm_core_replicated": "PASS (order collapse 62.8x seed32000 vs cert 70.3x; storage rank-1 reproduced)",
+    "G3_backward_compat_exact": "PASS (max|dev|=0.00e0 over 200 steps, all fields; MCM lam_minus=0 == IOM-00)",
+    "G4_viability_preserved": "PASS-IN-VIABLE-REGIME (matched drives B/C localized, size 32-54; the mismatched original-style regime A with late drive->1.0 DELOCALIZES, largest-entity size ~3321/4096 -> outside viability)",
+    "G6_no_tracker_tag_leakage": "PASS (no identity/label/cohort/seed/probe id enters dynamics)",
+    "G7_input_history_independently_conditioned": "PASS (design corr(p1,p2)=+0.07/-0.20; matched-range families)",
+    "G8_writing_map_dimensionality_estimated": "PASS (three agreeing paths: corr~0.99, sens s2/s1<=0.015, eff-rank 1.00-1.01 -> rank 1)",
+    "G9_saturation_hypothesis": "SUPPORTED-WITH-CORRECTION (memory/slow-component/clip saturation + single-scalar write confirmed; cert's p1-specific 'Psi saturates' mechanism corrected; any 2nd-dim hint required leaving viability + a leaky decoder)",
+    "G10_timescale_observability_audit": "PARTIAL (two-timescale structure characterized: slow m2 saturates, fast m1 graded; full multi-window time-resolved decode not run)",
+    "G11_development_selection_preregistered": "NA (Phase C not executed; preregistration authored)",
+    "G12_prospective_split_sealed": "NA (Phase C not executed; HMC/SC prospective remain SEALED/BLOCKED, untouched)",
+    "G13_two_dims_decoded_prospectively": "NOT REACHED",
+    "G14_incremental_independence": "NOT REACHED",
+    "G15_both_dims_causally_expressed": "NOT REACHED",
+    "G16_erase_transplant_ablation": "PARTIAL (channel-specific lam_minus ablation reproduced 62.8x; erase/transplant inherited from MCM cert)",
+    "G17_clone_ceiling_valid": "INHERITED (MCM cert D_clone dev 0.055 / prosp 0.097)",
+    "G18_no_trivial_scalar_explanation": "NOT REACHED (no positive multi-dim signal to defend; the negative is the result)",
+    "G19_minimality_respected": "PASS (no physics changed; diagnostic only)",
+    "G20_reproduction_readiness_decision": "PASS (decision: REPRODUCTION NOT READY)",
+    "G21_genome_relevance_decision": "PASS (decision: GENOME NOT REQUIRED at this stage)",
+    "G22_quantum_audit_complete": "PASS (classical identifiability/saturation bottleneck; no benchmarkable quantum advantage; QUANTUM NOT USED)"
+  },
+  "key_numbers": {
+    "backward_compat_maxdev_200steps": 0.0,
+    "order_collapse_contrast_seed32000": 62.8,
+    "order_collapse_contrast_cert_dev": 70.3,
+    "storage_effective_rank_m1m2": {"A_mismatch": 1.012, "B_matched_mid": 1.000, "C_matched_low": 1.001},
+    "storage_collinearity_corr_m1m2": {"A_mismatch": 0.988, "C_matched_low": 0.999},
+    "sensitivity_svd_ratio_s2_over_s1": {"A_mismatch": 0.015, "B_matched_mid": 0.000, "C_matched_low": 0.004},
+    "largest_entity_size": {"A_mismatch_DELOCALIZED": 3321, "B_matched_mid": 54, "C_matched_low": 32, "grid_cells": 4096},
+    "mean_m_plus_of_max_2": {"A": 1.94, "B": 2.00, "C": 1.86},
+    "direct_memory_decode_R2_grouped": {"A": {"p1": -0.54, "p2": 0.38}, "B": {"p1": 0.05, "p2": -0.34}, "C": {"p1": 0.18, "p2": 0.03}},
+    "published_cert_row_LOO_p2": 0.570,
+    "leakage_free_grouped_LOO_p2_on_published_data": 0.190,
+    "leakage_inflation": 0.380
+  },
+  "decisions": {
+    "reproduction_readiness": "REPRODUCTION NOT READY",
+    "serial_bottleneck": "NOT AUTHORIZED (multi-dim memory did not pass)",
+    "genome_relevance": "GENOME NOT REQUIRED",
+    "quantum_hardware": "NOT USED",
+    "sealed_assets": "HMC PROSPECTIVE SPLIT sealed; SC-PILOT-CAUSAL-FINGERPRINT blocked; EXP-SC-01 blocked — all untouched"
+  }
+}
