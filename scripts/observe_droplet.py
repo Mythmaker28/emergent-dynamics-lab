@@ -162,6 +162,7 @@ def make_figure(frames, label, seed, preset):
         ax.set_title(title, fontsize=8); ax.set_xticks([]); ax.set_yticks([])
         fig.colorbar(im, ax=ax, fraction=0.046, pad=0.02); ims.append(im)
     bnd_im = axes[0].imshow(_bnd_rgba(f0["boundary"]), interpolation="nearest")
+    bnd_im1 = axes[1].imshow(_bnd_rgba(f0["boundary"]), interpolation="nearest")
     Ms = [fr["M"] for fr in frames]; mp = [fr["mplus_mean"] for fr in frames]; ms = [fr["mminus_std"] for fr in frames]
     xs = list(range(len(frames)))
     tsax.plot(xs, Ms, "k-", label="M (old frac)"); tsax.plot(xs, mp, "b-", label="mean m+ (h1)")
@@ -174,7 +175,7 @@ def make_figure(frames, label, seed, preset):
     def draw(i):
         fr = frames[i]
         for im, (key, *_r) in zip(ims, PANELS): im.set_data(fr[key])
-        bnd_im.set_data(_bnd_rgba(fr["boundary"])); vline.set_xdata([i, i])
+        bnd_im.set_data(_bnd_rgba(fr["boundary"])); bnd_im1.set_data(_bnd_rgba(fr["boundary"])); vline.set_xdata([i, i])
         evtxt.set_text(fr["event"])
         sup.set_text("%s | seed %d | step %d | M=%.2f | tracked size=%d | %s\n%s   "
                      "[engineered cumulative causal memory -- not identity/life/genome]"
