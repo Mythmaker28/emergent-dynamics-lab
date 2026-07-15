@@ -1,0 +1,55 @@
+{
+  "experiment": "EXP-SC-MULTI-CHANNEL-ORGANIZATIONAL-MEMORY-00",
+  "central_dev": {
+    "n": 16,
+    "size": 103.5,
+    "order_caxis": 0.08170513138688751,
+    "order_caxis_ablate_minus": 0.0011619309710839687,
+    "channel_contrast": 70.31834343164225,
+    "order_uaxis": 9.166784187390753e-05,
+    "ablate_all": 0.0,
+    "dose_readout": 0.06625560955298004,
+    "D_clone": 0.05487015889119994,
+    "turnover_M": 0.1203946049917933,
+    "turnover_order_caxis": 0.013704768538401524
+  },
+  "central_prospective": {
+    "n": 12,
+    "size": 93.0,
+    "order_caxis": 0.10883550061884595,
+    "order_caxis_ablate_minus": 0.0014894674120995433,
+    "channel_contrast": 73.07002937070163,
+    "order_uaxis": 6.673019060071672e-05,
+    "ablate_all": 0.0,
+    "dose_readout": 0.07580310169924287,
+    "D_clone": 0.09688666507341706,
+    "turnover_M": 0.12249825962384059,
+    "turnover_order_caxis": 0.04152824357376872
+  },
+  "continuous": {
+    "decode_p1_early_R2": -0.08730074789539755,
+    "decode_p2_late_R2": 0.5695446171715584,
+    "n_dims_decodable": 1,
+    "response_effdim": 1.0796315893143966,
+    "individuation_auc": 0.7483033459595959
+  },
+  "gates": {
+    "G1_storage_audit": true,
+    "G2_backward_compat": true,
+    "G3_viability": true,
+    "G4_turnover": true,
+    "G5_dose_readout": true,
+    "G6_order_readout": true,
+    "G7_erasure": true,
+    "G8_transplant": true,
+    "G9_channel_specificity": true,
+    "G10_response_dimensionality": false,
+    "G11_two_history_dims": false,
+    "G12_individual_specificity": false,
+    "G13_clone_ceiling": true,
+    "G14_no_tag_leakage": true,
+    "G15_minimality": true
+  },
+  "verdict": "PASS \u2014 ORDER-SENSITIVE MEMORY ONLY",
+  "next_project": "Order-sensitive only: do NOT add persistence. The 2nd read-out channel made temporal order causally readable (channel-specific ~70x, dev+prosp), but response stays ~1-D because the write signal Psi saturates so STORAGE is ~1-D in viable regimes. Next: revise WRITING to store independent continuous magnitudes without saturation (or add recurrent internal plasticity), then re-expand functional channels."
+}
