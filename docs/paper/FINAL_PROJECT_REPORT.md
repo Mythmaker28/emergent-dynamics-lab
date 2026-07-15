@@ -1,28 +1,22 @@
-# Final Project Report — Organizational-Memory Boundaries
+# Final Project Report — Organizational-Memory Boundaries (post-TCA-01)
 
-## Paper-readiness
-**ORGANIZATIONAL-MEMORY PAPER: READY — ONE-DIMENSIONAL POSITIVE WITH NEGATIVE BOUNDARY.**
-Existing prospective/sealed data provide a complete h1 evidence chain (decode, deep-turnover survival with CI,
-causal transplant + inert control, trivial-baseline, erase, clone ceiling, cross-family replication). No
-minimal h1 replication required. The h2 negative boundary is preregistered, sealed, adequately powered.
+## POST-INCIDENT PAPER VERDICT
+**PAPER READY — GLOBAL h1 MEMORY WITH LONGITUDINAL QUALIFICATION.**
+The tracker-continuity incident (largest-component reselection) was real and affected turnover-trajectory
+scripts, but the load-bearing h1 result is re-certified on UNTOUCHED seeds under a frozen longitudinal tracker
+(h1 deep R²=0.98, CI [0.97,1.00], 100% survival), and single-timepoint/common-body causal & transplant claims
+are unaffected by code-path audit. The central claim is corrected to a GLOBAL (non-individuating) memory.
 
 ## Final decisions
-- CURRENT ARCHITECTURE: FREEZE AS COMPLETED.
-- h2 ESCALATION: CLOSED.
-- REPRODUCTION: NOT JUSTIFIED. GENOME: NOT JUSTIFIED. QUANTUM HARDWARE: NOT USED.
-- SUBSTRATE-GENERAL CONCLUSION: NOT ESTABLISHED (only the C1c architecture was tested).
-- INDIVIDUATION: NOT SUPPORTED.
+- CURRENT ARCHITECTURE: FREEZE AS COMPLETED. h2 ESCALATION: CLOSED (longitudinal h2=0.34<0.5, unchanged).
+- INDIVIDUAL MEMORY: NOT ESTABLISHED (h1 is global). INDIVIDUATION: NOT SUPPORTED.
+- REPRODUCTION: NOT JUSTIFIED. GENOME: NOT JUSTIFIED. QUANTUM: NOT USED.
+- SUBSTRATE-GENERAL CONCLUSION: NOT ESTABLISHED.
 
 ## Independent assessment
-- Novelty: moderate-to-good. The contribution is not a new organism but a rigorous *falsification ladder* and
-  a clean dissociation (storage vs causal vs turnover-surviving memory) with preregistered kill-switches — a
-  useful negative/methodological result plus one solid engineered positive.
-- Strength: the positive (h1) is robust and multiply controlled; the negative (h2) is honestly and adequately
-  established. The correction chain (row-LOO leakage; single-family collapse; ablation-validity) is itself valuable.
-- Largest remaining weakness: the memory is ENGINEERED and h1 is a low-dimensional cumulative integrator; the
-  work demonstrates causal persistence, not emergence or informational richness. Small entities + simulator
-  specificity limit generality.
-- Minimal h1 replication: NOT required (evidence already prospective and multiply replicated across families).
-- Next: write for a computational-biology / artificial-life methods venue as a positive+boundary result; do
-  NOT pursue reproduction/genome; a genuinely new architecture (active reconstruction / bistable maintenance)
-  is the only scientifically honest way to reopen multi-dimensional memory, and only with a fresh kill-switch.
+The tracker incident, honestly handled, STRENGTHENS the paper: it converts a sloppy "the entity survived
+turnover" into a certified "a continuously tracked droplet retains a global cumulative coordinate through
+turnover (0.98, 100% survival), which does not individuate." The methodological contribution now explicitly
+includes the reselection-vs-longitudinal correction. Largest remaining weakness unchanged: the memory is
+engineered, one-dimensional, and global — causal persistence, not emergence or individuation. Write as a
+positive+boundary+method-correction result; do not pursue reproduction/genome; do not reopen h2.
