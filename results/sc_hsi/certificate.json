@@ -1,0 +1,98 @@
+{
+  "experiment": "EXP-SC-HIDDEN-STATE-CAUSAL-INDIVIDUATION-00",
+  "hidden_existence": {
+    "per_component_R2_on_X": [
+      0.2559882371355491,
+      0.4045321752306993,
+      0.13238291728084806,
+      0.12605139891166983,
+      0.21778834734558772,
+      0.5904528605736028
+    ],
+    "mean_residual_fraction": 0.7121340105870072,
+    "hidden_info_beyond_snapshot": true
+  },
+  "individuation_dev": {
+    "n_within": 600,
+    "n_same_attr_between": 1642,
+    "n_diff_attr_between": 3308,
+    "mean_within": 2.8193636098966404,
+    "mean_same_attr_between": 2.1336961049508605,
+    "mean_diff_attr_between": 3.7391908069116693,
+    "individuation_auc_within_vs_sameattr": 0.3980623223710922,
+    "attractor_sizes": [
+      32,
+      12,
+      46,
+      10
+    ]
+  },
+  "individuation_prospective": {
+    "n_within": 192,
+    "n_same_attr_between": 144,
+    "n_diff_attr_between": 352,
+    "mean_within": 3.00664294352396,
+    "mean_same_attr_between": 2.0356707653146424,
+    "mean_diff_attr_between": 3.7657371948493634,
+    "individuation_auc_within_vs_sameattr": 0.30287905092592593,
+    "attractor_sizes": [
+      12,
+      4,
+      12,
+      4
+    ]
+  },
+  "attractor_dynamics": {
+    "consecutive_same_label_rate": 0.58,
+    "frac_traj_single_class_over_900_steps": 0.23,
+    "n_traj": 100
+  },
+  "temporal_order": {
+    "mean_consecutive": 2.466851038942659,
+    "mean_nonconsecutive": 3.1718761808506213,
+    "order_ratio": 0.7777261461395957
+  },
+  "markov": {
+    "partial_corr_hdist_future_given_xdist": -0.08955899716563505,
+    "corr_xdist_future": -0.08428987628451337
+  },
+  "causal_dev": {
+    "n": 40,
+    "flip_over_clone": 1.811024013477851,
+    "flip_over_clone_probe": 4.458271855365168,
+    "flip_exceeds_clone_probe_frac": 0.975,
+    "scramble_over_clone": 0.058371601589333556,
+    "scramble_over_clone_probe": 0.0057503236823180336,
+    "scramble_exceeds_clone_frac": 0.05
+  },
+  "causal_prospective": {
+    "n": 32,
+    "flip_over_clone": 2.611527183543945,
+    "flip_over_clone_probe": 4.4936169721407575,
+    "flip_exceeds_clone_probe_frac": 1.0,
+    "scramble_over_clone": 0.03717965903170371,
+    "scramble_over_clone_probe": 0.014631501648147086,
+    "scramble_exceeds_clone_frac": 0.03125
+  },
+  "probe_selected": "N+0.5x15",
+  "probe_informativeness": {
+    "median_ratio": 5.665351332802695,
+    "alive_frac": 1.0
+  },
+  "gates": {
+    "G1_snapshot_matching": true,
+    "G2_hidden_diversity": true,
+    "G3_exact_clone_ceiling": true,
+    "G4_non_destructive_probes": true,
+    "G5_attractor_diagnosis": true,
+    "G6_individuation": false,
+    "G7_causal_consequence": true,
+    "G8_intervention_accessibility": true,
+    "G9_temporal_order": null,
+    "G10_no_tracker_leakage": true,
+    "G11_non_vacuity": true,
+    "G12_truth_independence": true
+  },
+  "verdict": "PASS \u2014 GENERIC CAUSAL ATTRACTOR MEMORY",
+  "next_physics_decision": "B \u2014 existing physics contains only GENERIC ATTRACTOR memory; design a new mechanism for individual-specific memory"
+}

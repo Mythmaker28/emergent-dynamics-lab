@@ -1,0 +1,64 @@
+{
+  "experiment": "EXP-SC-INDIVIDUAL-ORGANIZATIONAL-MEMORY-00",
+  "central_dev": {
+    "n": 16,
+    "D_clone": 0.09692276861131215,
+    "E_erase": 4.646565512476994,
+    "E_erase_over_clone": 49.887215768987616,
+    "ablation_E_erase": 0.0,
+    "transplant_over_clone": 5.578585651320631,
+    "order_resp": 0.022013740821465753,
+    "mem_order": 0.4615524934290588,
+    "turnover_M": 0.1520326413282932,
+    "turnover_E_erase": 33.27423828252175
+  },
+  "central_prospective": {
+    "n": 8,
+    "D_clone": 0.09338864709147325,
+    "E_erase": 4.724001781689128,
+    "E_erase_over_clone": 50.64421072129828,
+    "ablation_E_erase": 0.0,
+    "transplant_over_clone": 5.49615789738322,
+    "order_resp": 0.03350466862546064,
+    "mem_order": 0.42975756745004656,
+    "turnover_M": 0.1489707458348627,
+    "turnover_E_erase": 33.22020147671624
+  },
+  "continuous_dev": {
+    "n": 48,
+    "mem_field_effdim": 11.401148720507377,
+    "resp_to_netdose_R2": 0.9477663850012781,
+    "resp_to_history_R2": 0.23827207431686437,
+    "resp_individuation_auc": 0.9428135521885522,
+    "memfield_individuation_auc": 0.5665640782828283,
+    "mem_effect_median": 27.41566207453866
+  },
+  "continuous_prospective": {
+    "n": 32,
+    "mem_field_effdim": 12.555614362865505,
+    "resp_to_netdose_R2": 0.9677683793083498,
+    "resp_to_history_R2": 0.5545015083359097,
+    "resp_individuation_auc": 0.9816313244047619,
+    "memfield_individuation_auc": 0.5610119047619048,
+    "mem_effect_median": 29.574482129099547
+  },
+  "gates": {
+    "G1_viability": true,
+    "G2_turnover_preservation": true,
+    "G3_backward_compat": true,
+    "G4_history_writing": true,
+    "G5_temporal_order_readout": false,
+    "G5_temporal_order_written": false,
+    "G6_causal_readout": true,
+    "G7_erasure": true,
+    "G8_transplant": true,
+    "G9_turnover_continuity": true,
+    "G10_non_categorical": true,
+    "G11_individual_specificity": false,
+    "G12_no_tag_leakage": true,
+    "G13_clone_ceiling": true,
+    "G14_minimality": true
+  },
+  "verdict": "PASS \u2014 HISTORY-CLASS MEMORY ONLY",
+  "next_project_decision": "HISTORY-CLASS memory only: do NOT call it identity. A higher-dimensional / multi-coupled memory is justified: the field WRITES high-cardinality history (mem_field eff dim ~11) but the single scalar coupling tanh(m1+m2) reads out only ~1D (net dose R2~0.95, full-history R2~0.24; temporal order written not read). Next: couple multiple memory components to multiple functions."
+}

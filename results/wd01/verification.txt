@@ -1,0 +1,23 @@
+WD-01 differential verification (second/third independent paths)
+================================================================
+Rank of stored memory (three independent estimators agree -> rank 1):
+  corr(m1,m2):        A=+0.988  B~0(clip-noise)  C=+0.999
+  sensitivity s2/s1:  A=0.015   B=0.000          C=0.004
+  participation ratio (eff rank of m1,m2): A=1.012 B=1.000 C=1.001
+
+Decoder-independence: grouped-LOO ridge AND plain OLS-LOO both keep every
+coordinate <0.5 in every condition; no two-coordinate regime.
+
+Trivial "nothing written / not viable" destroyed for the negative:
+  mean m+ (of max 2.0): A=1.94 B=2.00 C=1.86  -> memory near-maximally written.
+  BUT largest-entity size: A=3321 (delocalized, ~whole 4096-cell grid),
+                           B=54, C=32 (localized/viable).
+  => Only matched B/C are VIABLE; the mismatched original-style A regime leaves
+     viability. Storage is rank-1 in the viable regime.
+
+Leakage proven on the PUBLISHED certificate number (cont_prospective.pkl):
+  certify row-LOO p2 R2 = +0.570  (reproduces published 0.570 exactly)
+  grouped leave-history-out = +0.190  (4 seeds/history no longer share target)
+  inflation from replicate leakage = +0.380
+  => even the certificate's own "partially decodable" dimension is ~0.19 held-out,
+     below the 0.5 gate.

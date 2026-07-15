@@ -1,0 +1,50 @@
+{
+  "experiment": "EXP-SC-SPATIAL-MEMORY-CAUSALITY-01",
+  "principal_verdict": "FAIL — SPATIAL MEMORY DOES NOT SURVIVE TURNOVER",
+  "one_line": "h2 replicates as a prospectively-decodable, frame-independent coordinate, but it lives in the memory VALUE-DISPERSION (not a geometric pattern) and COLLAPSES under modest constituent turnover (gone by M~0.64) while h1 persists intact — so h2 is not a turnover-surviving organizational memory. Positive-claim transplant/causal battery not run (stopping rule).",
+  "hypothesis_outcome": "H1 (organizational spatial memory) FALSIFIED by turnover; H4 (lab-frame artefact) REJECTED (frame-free decode robust; lab-frame edge collapses under translation); result ~ Outcome B (material/maintenance-bound) at the storage level. h1 remains a genuine 1-D turnover-surviving organizational memory.",
+  "gates": {
+    "G1_repository_grounded": "PASS",
+    "G2_phaseC_artifacts_verified": "PASS (ancestry a07b95b..5841b9b; C1c params; manifest hash)",
+    "G3_interpretive_erratum_committed": "PASS (commit d0f47b6)",
+    "G4_C1c_frozen": "PASS (no writing/readout/dynamics change; params verbatim)",
+    "G5_smc01_preregistered": "PASS (d0f47b6)",
+    "G6_fresh_prospective_sealed": "PASS (SHA-256 2d6986fe..., seeds 36xxx disjoint)",
+    "G7_phaseC_storage_replicated": "PASS (sealed prospective: h1 0.81, h2 0.90; shuffled null -0.46)",
+    "G8_original_rank_miss_reported": "PASS (sigma2/1=0.213<0.30 here; Phase C 0.283<0.30; reported honestly; h2 far above shuffled null)",
+    "G9_entity_centric_representation_validated": "PASS (DIST frame-free + rotation-invariant descriptor; h2 in value-dispersion)",
+    "G10_translation_control": "PASS (frame-free decoders translation-invariant by construction; LAB edge collapses -0.77 under translation)",
+    "G11_rotation_reflection_control": "PASS-QUALIFIED (frame-free/dispersion decode is rotation/reflection-invariant; geometric raster too sparse at ~36 cells to resolve a pattern -> no geometric claim)",
+    "G12_boundary_frame_leakage_excluded": "PASS (lab-frame advantage does not survive translation; frame-free decode is the basis)",
+    "G13_environmental_reset": "NOT RUN (moot after P4 turnover failure; stopping rule)",
+    "G14_C1c_turnover_measured": "PASS (PulseChase; M 1.00->0.39; passive cohort, never enters physics)",
+    "G15_h2_survives_turnover": "FAIL (h2 0.73->-0.01 by M~0.64, negative beyond; h1 stays 0.95-0.99)",
+    "G16_full_field_transplant_implemented": "NOT RUN (positive-claim; stopping rule after P4 fail)",
+    "G17_no_donor_material_env_transferred": "N/A (transplant not executed)",
+    "G18_matched_moment_control": "N/A (transplant not executed)",
+    "G19_structured_transplant_sufficiency": "NOT REACHED",
+    "G20_spatial_scramble_necessity": "NOT REACHED",
+    "G21_component_misalignment_control": "NOT REACHED",
+    "G22_local_readout_ablation": "INHERITED (Phase C: h2 causal -0.04 mean-transplant / 0.30 in-place)",
+    "G23_h2_causal_R2_threshold": "FAIL/NOT-REACHED (Phase C in-place 0.30<0.50; not re-tested — turnover failure caps verdict)",
+    "G24_causal_response_dimensionality": "INHERITED (~1; Phase C effdim 1.0-1.1)",
+    "G25_viability_preserved": "PASS (localized size 41-56 through turnover; recipient viability not needed)",
+    "G26_no_tag_tracker_leakage": "PASS (only physical nutrient drive; tracer passive)",
+    "G27_reproduction_readiness_justified": "PASS (decision: REPRODUCTION NOT READY)",
+    "G28_genome_audit": "PASS (GENOME NOT REQUIRED)",
+    "G29_quantum_audit": "PASS (QUANTUM HARDWARE NOT USED)"
+  },
+  "key_numbers": {
+    "sealed_prospective_storage": {"h1_DIST": 0.81, "h2_DIST": 0.90, "h2_entity_mean": 0.58, "sigma2over1": 0.213, "shuffled_h2_null_mean": -0.46},
+    "where_h2_lives_R2": {"entity_mean": 0.24, "DIST_frame_free": 0.73, "GEOM_inv": 0.74, "LAB_absgrid": 0.84, "LAB_after_translation": -0.77},
+    "turnover_h1_vs_h2": [{"M":1.00,"h1":0.96,"h2":0.73},{"M":0.90,"h1":0.96,"h2":0.70},{"M":0.77,"h1":0.95,"h2":0.35},{"M":0.64,"h1":0.96,"h2":-0.01},{"M":0.50,"h1":0.96,"h2":-0.28},{"M":0.39,"h1":0.99,"h2":-0.65}]
+  },
+  "decisions": {
+    "reproduction_readiness": "REPRODUCTION NOT READY (h2 not turnover-surviving; P4 fails)",
+    "serial_bottleneck": "NOT AUTHORIZED",
+    "genome_relevance": "GENOME NOT REQUIRED (a non-persistent second coordinate does not justify a heritable code)",
+    "quantum_hardware": "NOT USED (classical turnover/statistics problem)",
+    "sealed_assets": "HMC PROSPECTIVE SPLIT sealed; SC-PILOT-CAUSAL-FINGERPRINT blocked; EXP-SC-01 blocked — untouched"
+  },
+  "next_experiment": "Not a new memory component or readout. The finding is that h1 (cumulative mean) is a turnover-surviving 1-D organizational memory while a second coordinate (dispersion) is destroyed by the memory's own self-maintenance (templating eta_t + diffusion D_m) + material renewal. If a second persistent coordinate is wanted, the honest next step is a WRITING/maintenance study of whether any minimal, viability-preserving change protects a second coordinate from homogenization across turnover — before any transplant/causal or reproduction work."
+}

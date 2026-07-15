@@ -1,0 +1,38 @@
+{
+  "experiment": "EXP-SC-H2-FINAL-CERTIFICATION-01",
+  "principal_verdict": "FAIL — h2 IS TRANSIENT UNDER DEEP TURNOVER",
+  "architecture_decision": "CLOSE h2 ESCALATION ON THE CURRENT ARCHITECTURE",
+  "one_line": "M<=0.25 is reachable with full viability (48/48, size 49), so this is a real FAIL not a feasibility failure. On a freshly sealed family executed once, held-out h2 at M=0.21 is -0.02 (95% CI [-2.17,0.93]) - retention NOT CERTIFIED; new-material h2=0.28 NOT CERTIFIED; all 4 seed-families fail; h1 stays 0.93. h2 is initial-storage-only, not a turnover-surviving organizational memory.",
+  "gates": {
+    "G1_repository_grounded": "PASS", "G2_dmm_artifacts_verified": "PASS", "G3_dmm_interpretive_erratum_committed": "PASS (5e1196f)",
+    "G4_diffusion_ablation_unit_tested": "PASS (D_m=0 changes one-step field 3.4e-3)",
+    "G5_templating_ablation_unit_tested": "PASS (eta_t=0 changes one-step field 8.4e-4)",
+    "G6_executed_configs_verified": "PASS (eng.mem params match runner; ABLATIONS VALID, effect negligible on decode)",
+    "G7_C1c_frozen": "PASS (verbatim; no physics/param/metric change)",
+    "G8_power_analysis_completed": "PASS (deep-turnover effect <0.50; lower-bound>0.50 unreachable for any N)",
+    "G9_sample_size_justified": "PASS (4x12 frozen; larger N cannot change decision sign)",
+    "G10_fresh_prospective_sealed": "PASS (SHA-256 4265b98c..., seeds 38501-4 disjoint 32-37xxx)",
+    "G11_prospective_executed_once": "PASS",
+    "G12_initial_h1_passes": "PASS (0.94)",
+    "G13_initial_h2_passes": "MARGINAL (0.80; 95% CI [0.48,0.93], lower bound just under 0.50 at n=12)",
+    "G14_deep_turnover_reached": "PASS (M=0.21<=0.25, 48/48 viable)",
+    "G15_deep_turnover_h1_passes": "PASS (0.93)",
+    "G16_deep_turnover_h2_passes": "FAIL (h2=-0.02, CI[-2.17,0.93], lower bound <=0.50)",
+    "G17_new_material_h2_passes": "FAIL (0.28 < 0.50)",
+    "G18_incremental_independence_passes": "NOT REACHED (retention failed)",
+    "G19_cross_family_stability_passes": "FAIL (per-seed [-0.37,-0.47,0.09,-0.04]; all fail; range 0.57)",
+    "G20_causal_response_h2_passes": "NOT RUN (retention failed -> causal moot; Phase C already ~1-D)",
+    "G21_h2_dispersion_ablation_collapses_response": "NOT RUN", "G22_memory_inert_control_collapses_response": "NOT RUN",
+    "G23_viability_passes": "PASS (localized size 41-55 through deep turnover; 48/48)",
+    "G24_no_tag_cohort_tracker_leakage": "PASS (passive tracer; no labels in dynamics)",
+    "G25_reproduction_decision_justified": "PASS (NOT READY)", "G26_genome_audit": "PASS (NOT REQUIRED)", "G27_quantum_audit": "PASS (NOT USED)",
+    "G28_final_close_continue_decision_explicit": "PASS (CLOSE h2 escalation)"
+  },
+  "decisions": {
+    "h2_escalation": "CLOSED on the current architecture",
+    "reproduction_readiness": "REPRODUCTION NOT READY", "serial_bottleneck": "NOT AUTHORIZED",
+    "genome_relevance": "GENOME NOT REQUIRED", "quantum_hardware": "NOT USED",
+    "sealed_assets": "HMC PROSPECTIVE SPLIT sealed; SC-PILOT-CAUSAL-FINGERPRINT blocked; EXP-SC-01 blocked — untouched"
+  },
+  "implementation_audit": "ABLATIONS VALID — EFFECT NEGLIGIBLE IN REAL REGIME (not Outcome E; prior DMM turnover audit stands, re-worded)"
+}

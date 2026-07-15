@@ -1,0 +1,41 @@
+{
+  "experiment": "EXP-SC-DISTRIBUTIONAL-MEMORY-MAINTENANCE-01",
+  "principal_verdict": "INDETERMINATE — second-dimension turnover survival not certified on held-out data; SMC-01 collapse corrected as non-robust",
+  "one_line": "SMC-01's h2 turnover-collapse was underpowered (n=14, single family) and does NOT robustly replicate; a 4-seed pool retains h2 to M=0.58 (CI[0.57,0.97]) and new material inherits h2 as well as old (0.77/0.77). The loss is NOT smoothing (ablations identical; dispersion GROWS) and NOT dilution -> no correctable maintenance mechanism (Phase B not authorized). But the sealed prospective family (n=12) is underpowered: h2 0.43-0.48 through turnover, below the 0.50 gate; deep turnover M<=0.25 not robustly reached -> INDETERMINATE.",
+  "phase_A_mechanism": "NOT passive temporal relaxation, NOT dilution, NOT diffusion/templating homogenization. Where h2 degrades at deep turnover it is SNR loss (growing history-independent dispersion) + small-n decoder instability. Closest label: REPRESENTATIONAL DRIFT / MULTIPLE COUPLED CAUSES; SMC-01 loss largely an underpowered-estimation artefact.",
+  "gates": {
+    "G1_repository_grounded": "PASS", "G2_smc01_artifacts_verified": "PASS", "G3_interpretive_erratum_committed": "PASS (5bd46e7)",
+    "G4_C1c_baseline_replicated": "PASS (h2 at rest 0.87-0.97)",
+    "G5_time_turnover_decorrelated": "PASS (ablation branches keep h2 while M falls; smoothing decoupled from turnover)",
+    "G6_no_turnover_control_valid": "PARTIAL (ablation branches serve as maintenance controls; a full frozen-body static branch not separately needed once smoothing shown null)",
+    "G7_turnover_rate_series_valid": "PASS-DIAGNOSTIC (A0/A3/A4/A34 identical trajectories)",
+    "G8_decoder_drift_excluded": "PARTIAL (checkpoint-specific decoders used; deep-turnover estimate unstable across families -> instability, not clean info loss)",
+    "G9_old_new_material_separated": "PASS (old 0.77 vs new 0.77 at M~0.44 -> new material inherits h2)",
+    "G10_h2_loss_mechanism_identified": "PASS-NEGATIVE (not smoothing/dilution/relaxation; SMC-01 loss non-robust)",
+    "G11_maintenance_modification_justified": "FAIL-TO-AUTHORIZE (no correctable mechanism isolated)",
+    "G12_minimal_candidate_preregistered": "N/A (Phase B not authorized)",
+    "G13_fresh_prospective_sealed": "PASS (SHA-256 923d8890..., seeds 37xxx disjoint)",
+    "G14_development_selection_complete": "N/A (no candidate)",
+    "G15_candidate_frozen": "N/A", "G16_prospective_executed_once": "PASS (used to validate passive-retention claim, once)",
+    "G17_initial_storage_passed": "PASS-DEV / MARGINAL-PROSPECTIVE (dev 0.97 CI[0.93,0.99]; prospective 0.87 CI[0.41,0.97])",
+    "G18_deep_turnover_reached": "PARTIAL (M~0.36-0.37 reached; M<=0.25 not robustly)",
+    "G19_h1_survives": "PASS (h1 0.93-0.99 throughout, all families)",
+    "G20_h2_survives": "INDETERMINATE (dev clears to M0.58; prospective below 0.50; deep turnover CI spans zero)",
+    "G21_new_material_acquires_h2": "PASS-PASSIVE (new material inherits local memory distribution via Mf+=g*m; not active reconstruction)",
+    "G22_active_reconstruction_exceeds_passive": "NOT RUN (no maintenance candidate; dilution-recovery not executed)",
+    "G23_maintenance_ablation_collapses_effect": "N/A (no maintenance mechanism)",
+    "G24_environment_reset_passed": "NOT RUN", "G25_physical_response_expresses_h2": "INHERITED-NEGATIVE (Phase C: causal ~1-D)",
+    "G26_viability_preserved": "PASS (localized size 36-55 through turnover)", "G27_no_tag_cohort_tracker_leakage": "PASS (tracer passive; no labels in dynamics)",
+    "G28_reproduction_readiness_justified": "PASS (decision: REPRODUCTION NOT READY)", "G29_genome_audit": "PASS (GENOME NOT REQUIRED)", "G30_quantum_audit": "PASS (NOT USED)"
+  },
+  "key_numbers": {
+    "dev_pool_h2_by_M": {"1.00": 0.97, "0.58": 0.87, "0.36": 0.67}, "dev_pool_h2_CI": {"0.58": [0.57,0.97], "0.36": [-0.21,0.89]},
+    "prospective_h2_by_M": {"1.00": 0.87, "0.60": 0.43, "0.37": 0.48}, "prospective_h2_CI": {"1.00": [0.41,0.97], "0.60": [-0.05,0.84]},
+    "smoothing_ablation": "A0=A4=A3=A34 h2 trajectories identical (0.97->0.78 over 300 steps)",
+    "memory_dispersion_trend": "m1-std GROWS 0.0019->0.0053 during turnover (homogenization falsified)",
+    "old_vs_new_material_h2_stepM044": [0.77, 0.77],
+    "smc01_single_family_crash_not_replicated": true
+  },
+  "decisions": {"reproduction_readiness": "REPRODUCTION NOT READY", "serial_bottleneck": "NOT AUTHORIZED", "phase_B": "NOT AUTHORIZED (no correctable mechanism)", "genome_relevance": "GENOME NOT REQUIRED", "quantum_hardware": "NOT USED", "sealed_assets": "HMC/SC-PILOT/EXP-SC-01 untouched"},
+  "next_experiment": "Power, not mechanism. The decisive uncertainty is statistical: certify (or refute) h2 turnover-retention with many more donors/seeds (>=8) and deeper turnover (M<=0.25) with proper grouped CIs, on a pre-sealed family, BEFORE any maintenance modification. If h2 then robustly clears 0.50 through deep turnover, an ACTIVE-reconstruction (dilution-recovery) test is the next gate; if not, the 1-D organizational-memory conclusion stands and escalation should stop."
+}
