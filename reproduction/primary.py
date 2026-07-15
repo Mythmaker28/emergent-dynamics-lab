@@ -79,6 +79,7 @@ def main(argv=None):
     _require_deps()
     import numpy as np
     from . import decode as DEC
+    from . import figures as FIG
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="assert outputs match reproduction/EXPECTED.json")
     args = ap.parse_args(argv)
@@ -107,6 +108,14 @@ def main(argv=None):
         rows.append((label, rec["h1"]["meanM"], rec["h1"]["point"], rec["h1"]["ci_lo"], rec["h1"]["ci_hi"],
                      rec["h2"]["point"], rec["h2"]["ci_lo"], rec["h2"]["ci_hi"]))
 
+    # tracker-independence: same decode on the 'largest-at-each-frame' tracker features (deep)
+    from .decode import features_from_long as _ffl
+    try:
+        Xl = np.array([_ffl(r['ck'][DEEP_STEP]['largest']) for r in records])
+        yl = np.array([r['h1'] for r in records]); gl = np.array([r['hi'] for r in records])
+        h1_largest_deep = float(DEC.decode_r2(Xl, yl, gl))
+    except Exception:
+        h1_largest_deep = None
     deep = per_ckpt["deep"]
     h1_certified = deep["h1"]["ci_lo"] > THRESHOLD
     h2_not_established = not (deep["h2"]["ci_lo"] > THRESHOLD)   # not established unless lower bound clears
@@ -144,12 +153,16 @@ def main(argv=None):
                    h1_deep=dict(point=deep["h1"]["point"], ci=[deep["h1"]["ci_lo"], deep["h1"]["ci_hi"]]),
                    h2_deep_not_established=bool(h2_not_established),
                    h2_deep=dict(point=deep["h2"]["point"], ci=[deep["h2"]["ci_lo"], deep["h2"]["ci_hi"]])),
+        tracker_independence=dict(h1_deep_longitudinal=deep["h1"]["point"], h1_deep_largest=h1_largest_deep),
     )
     res_path = os.path.join(OUTDIR, "primary_results.json")
     with open(res_path, "w") as f:
         json.dump(results, f, indent=2)
 
-    outputs = {os.path.basename(p): _sha256(p) for p in (csv_path, npz_path, fig_path, res_path)}
+    figpaths = FIG.make_all(per_ckpt, results, OUTDIR)
+    outputs = {os.path.basename(p): _sha256(p) for p in (csv_path, npz_path, fig_path, res_path,
+               figpaths['fig_longitudinal'], figpaths['fig_h1_certification'], figpaths['fig_h2_deepturnover'],
+               figpaths['fig_gate_summary'], figpaths['synthesis_tex'])}
     manifest = dict(inputs={os.path.relpath(RAW, REPO_ROOT): _sha256(RAW)},
                     outputs=outputs, gates=results["gates"])
     with open(os.path.join(OUTDIR, "primary_manifest.json"), "w") as f:

@@ -8,9 +8,9 @@ causal, transplantable, turnover-surviving organizational memory in a simulated 
 
 **Headline results (see the manuscript and `reproduction/`):**
 - **h1** (global cumulative-dose coordinate): decodable, causally necessary, and **retained through deep
-  material turnover** — the load-bearing result (CERTIFIED: held-out R² lower bound ≫ 0.50).
-- **h2** (temporal-order coordinate): stored, but deep-turnover retention is **not established** (CI spans the
-  0.50 threshold); the mechanism of non-persistence is indeterminate. Nothing is claimed as falsified.
+  material turnover** — the load-bearing result: **R²=0.89, 95% CI [0.84,0.96]** (CERTIFIED, lower bound ≫ 0.50).
+- **h2** (temporal-order coordinate): stored, but deep-turnover retention is **not established**: **R²=−0.24,
+  95% CI [−0.78,0.32]** (below the 0.50 threshold); the mechanism of non-persistence is indeterminate. Nothing is claimed as falsified.
 
 ## Reproduce the primary result (one command)
 ```
@@ -22,8 +22,8 @@ Runs in ~20–30 s on 2 vCPU. Reads only committed data (`results/observer/tca_h
 non-zero with a clear message if a dependency or data file is missing. See `release/ENVIRONMENT.md`.
 
 ## Where to start (a reader arriving at the repo)
-1. `docs/paper/full/ORGANIZATIONAL_MEMORY_FULL_MANUSCRIPT_V3.pdf` — the manuscript.
-2. `docs/paper/full/SUPPLEMENT_V3.pdf` — full model spec and provenance.
+1. `docs/paper/full/ORGANIZATIONAL_MEMORY_FULL_MANUSCRIPT_V4.pdf` — the canonical manuscript (V3 retained for history).
+2. `docs/paper/full/SUPPLEMENT_V4.pdf` — full model spec and provenance.
 3. `reproduction/` — one-command deterministic reproduction of the primary certification.
 4. `release/data/` — portable CSV/NPZ/JSON exports (`DATA_SCHEMA.md`), no unpickling required.
 5. `release/CLEANROOM_REPRODUCTION_REPORT.md` — independent-environment reproduction result and the
@@ -36,7 +36,7 @@ non-zero with a clear message if a dependency or data file is missing. See `rele
 
 ## Honest caveats
 - Author/affiliation/funding are placeholders pending the corresponding author.
-- The exact published point estimates (h1 deep 0.98, h2 deep 0.34) were produced by an inline analysis that
-  was not committed; the committed-data reproduction yields the same **conclusions** with slightly different
-  point estimates (h1 deep ≈ 0.89, CERTIFIED; h2 deep ≈ −0.24, not established). See the cleanroom report.
+- **V4 adopts the committed reproducible pipeline as canonical.** The historical V1–V3 headline values
+  (h1 deep 0.98, h2 deep 0.34) were produced by an inline analysis that was never committed and are not
+  recoverable; they are retained only in `HEADLINE_NUMBER_ERRATUM.md`. All conclusions are unchanged.
 - Single simulated model; no external/human replication yet.
