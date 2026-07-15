@@ -1,0 +1,36 @@
+{
+  "experiment": "LOCAL-CAUSAL-INDIVIDUATION-00",
+  "engine": "frozen C1c (unchanged)",
+  "branch": "exp/local-causal-individuation-00",
+  "prospective_seeds_ok": 9,
+  "targets": 27,
+  "separation_cells": 24,
+  "K1_storage_individuation": {
+    "memory_write_diagonal_dominance_median": 9018.164733470054,
+    "range": [
+      2027.7417096858037,
+      32394.996849028837
+    ],
+    "gate": "PASS (>=10)"
+  },
+  "rest_decode": {
+    "own_dose": 0.45,
+    "own_order": 0.654,
+    "neighbour_dose": -0.306,
+    "permutation_null_95": 0.225,
+    "size_baseline": -0.172
+  },
+  "K3_maintenance_deep_turnover": {
+    "M_est": 0.21,
+    "own_dose_R2": 0.368,
+    "own_dose_CI": [
+      0.13965580350092752,
+      0.4605546135784475,
+      0.7219237967791896
+    ],
+    "own_order_R2": -0.659,
+    "neighbour_dose_R2": -0.005,
+    "gate": "NOT ESTABLISHED (lower CI<0.5)"
+  },
+  "verdict": "REST individuation established (storage+expression, neighbour-clean, non-trivial); deep-turnover maintenance NOT established under passive-copy C1c -> proceed to ACTIVE-RECONSTRUCTION-00"
+}
