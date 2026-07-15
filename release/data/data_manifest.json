@@ -1,0 +1,42 @@
+{
+  "note": "Portable exports of committed raw results. Pickles retained for provenance.",
+  "raw_inputs": {
+    "holdout": {
+      "path": "results/observer/tca_holdout_raw.pkl",
+      "sha256": "dbb5a2bb3017dbe60d188109319a5939d1601b1bd0b5295bfb804c1253bffd57"
+    },
+    "causal_transplant": {
+      "path": "results/wd01_phasec/phasec_causal_transplant_raw.pkl",
+      "sha256": "cc9b0cffcd96a8a822070c44ad33d6a54466c347ccf6f7310d2808adbbbf1ca4"
+    },
+    "causal_inplace": {
+      "path": "results/wd01_phasec/phasec_causal_inplace_raw.pkl",
+      "sha256": "7dba2e5d0e9bcff36b14f82eefb3879ee37e3d0f49631fbc1a67d98f564d1b2c"
+    },
+    "h2cert_sealed": {
+      "path": "results/h2cert/h2cert_sealed_raw.pkl",
+      "sha256": "79f0ac25dfaf1aad692b4c37a2ea5e3f678a09b015195e909147e66faa66a2f3"
+    }
+  },
+  "holdout": {
+    "records": 36,
+    "checkpoints": [
+      0,
+      400,
+      650,
+      800
+    ],
+    "seeds": [
+      38502,
+      38503,
+      38504
+    ],
+    "histories": 12
+  },
+  "exports": [
+    "holdout_longitudinal.csv",
+    "holdout_deep_arrays.npz",
+    "causal_transplant.csv",
+    "causal_inplace.csv"
+  ]
+}
