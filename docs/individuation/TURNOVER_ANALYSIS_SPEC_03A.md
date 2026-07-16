@@ -1,3 +1,8 @@
+# HISTORICAL CLAUDE 03A ANALYSIS — NON-AUTHORITATIVE
+
+Superseded by the canonical specification in `PRESEAL_CANDIDATE_PROTOCOL.md` §6-7 and the frozen implementation
+`turnover_statistics.py`. Do not execute or seal from this file.
+
 # LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03A — Repaired statistical-analysis specification (TASK 2 + access structure)
 
 *Frozen before prospective data. Makes graded **own-history ownership** the co-primary gate; demotes the

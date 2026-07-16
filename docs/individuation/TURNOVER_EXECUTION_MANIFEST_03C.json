@@ -1,0 +1,73 @@
+{
+  "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-03C",
+  "authorization_status": "AWAITING_EXPLICIT_HUMAN_APPROVAL",
+  "operator_authorization": false,
+  "required_human_approval_phrase": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03C",
+  "seed_plan": {
+    "primary": {
+      "first": 54001,
+      "last": 54050,
+      "count": 50
+    },
+    "reserve": {
+      "first": 54051,
+      "last": 54096,
+      "count": 46
+    },
+    "total_hard_cap": 96,
+    "minimum_valid_worlds": 18
+  },
+  "reserve_activation": {
+    "all_primary_complete": true,
+    "trigger": "valid_worlds < 18",
+    "inputs": [
+      "seed",
+      "eligible",
+      "deep_reached",
+      "rest_assay_valid",
+      "deep_assay_valid",
+      "valid",
+      "reason"
+    ],
+    "endpoint_fields": [],
+    "order": "ascending",
+    "stop": "18 valid worlds or seed 54096"
+  },
+  "analysis": {
+    "label": "own cumulative dose for every scope",
+    "outer_validation": "leave one original world/seed out",
+    "ridge_lambda": 1.0,
+    "uncertainty": "fixed original-world fold scores/losses",
+    "bootstrap_refit": false
+  },
+  "environment": {
+    "python": "3.10.12",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3"
+  },
+  "protected_git_blobs": {
+    "docs/individuation/PRESEAL_CANDIDATE_PROTOCOL.md": "c4c40c9b001d83a25ae2934ca7e051ef825cdb7f",
+    "docs/individuation/TURNOVER_SEED_MANIFEST.md": "1d6f969ff617d0a194a9713ef30b0c6a665ca4d4",
+    "docs/individuation/TURNOVER_POWER.md": "bac576bce5198f0fe9294f42f74e3d60cab95c28",
+    "docs/individuation/TURNOVER_REPRODUCTION.md": "218707f98b49eec98a260b75298b91a094f6cebb",
+    "docs/individuation/TURNOVER_RISK_REGISTER.md": "6bdb707fe390085c967e856335aea3c7fab3fe4d",
+    "experiments/individuation/turnover_prospective_runner.py": "5f1913367be4c5e1a43c6da17cce3c05c259e67f",
+    "experiments/individuation/turnover_ownership_analyze.py": "49eceab402cdbffd71976eb49a1678368f084654",
+    "experiments/individuation/turnover_statistics.py": "c4890ab06b38de4d6c20e73e31b20e4574c3b05d",
+    "experiments/individuation/turnover_scope_features.py": "d36ac3622a6939bc321ac3d3bb3a63b71a9e513b",
+    "experiments/individuation/turnover_event_evidence.py": "35ef8e0cfe9bd530b888d1a290fa5e0750c0948b",
+    "experiments/individuation/turnover_dev_runner.py": "40169bf8d7075acfdd821457a77eba5b38893fa8",
+    "experiments/individuation/test_turnover_preseal_03c.py": "97920c46ee188ccfdcef8726fb23cd18a4956dc9",
+    "experiments/individuation/causal_confirm.py": "aeb80a235844452948a08a6db3cfa04046dd1fa2",
+    "experiments/individuation/nonmerging_confirm.py": "b3af9dbfdaf1b0150006c4822976f9f0b1a51d97",
+    "experiments/individuation/bijective_tracker.py": "089d00bd62866e49756e6d5fc117f06eeec7d3c7",
+    "experiments/individuation/material_tracer.py": "cf72a13efd78ceb7e6d1d61291b2d3b930b4e0dd",
+    "edlab/experiments/sc_mcm/engine.py": "2a2aaf47b65eb1dd0ecb6b1189c64fcda7eff0e2",
+    "edlab/experiments/sc_mcm/config.py": "573a2d9f7202a0ab1e3a3c7984e8645142f20956",
+    "edlab/experiments/sc_iom/engine.py": "497e233345d03312c740a57d10d4aaa89e603fd2",
+    "edlab/substrates/scaffold/engine.py": "7c91b9112ab3dde57621251a159d3c1368ad2311",
+    "edlab/substrates/scaffold/observables.py": "196539e07b9b62d11b47a6310c3fdaa1a0308223"
+  },
+  "prospective_data_opened": false,
+  "seeds_executed": []
+}

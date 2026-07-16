@@ -1,3 +1,8 @@
+# HISTORICAL CLAUDE 03A POWER NOTE — NON-AUTHORITATIVE
+
+The Beta-Binomial cap repair is retained, but the external `54097-54120` reserve is withdrawn. See the canonical
+`TURNOVER_POWER.md` for the reconciled 50+46 family under the hard cap of 96.
+
 # LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03A — Power & feasibility repair (TASK 4)
 
 *Corrects the parent's 50-seed / ≥18-valid proposal, which was internally inconsistent under small-sample

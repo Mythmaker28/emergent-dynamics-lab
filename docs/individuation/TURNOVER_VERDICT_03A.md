@@ -1,3 +1,8 @@
+# HISTORICAL CLAUDE 03A VERDICT — NOT OPERATOR AUTHORIZATION
+
+The “GO FOR SEAL” recommendation below did not authorize sealing or execution. See the authoritative
+`PRESEAL_CANDIDATE.json` and `PRESEAL_CANDIDATE_PROTOCOL.md`.
+
 # LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03A — Verdict (français)
 
 *Même agent que le design `244bc32`. Auto-audit adversarial (j'ai cherché à falsifier ma propre interprétation),

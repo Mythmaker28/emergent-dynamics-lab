@@ -28,6 +28,7 @@ cc = _load("cc", "causal_confirm.py")
 nm = _load("nm", "nonmerging_confirm.py")
 bt = _load("bt", "bijective_tracker.py")
 mt = _load("mt", "material_tracer.py")
+te = _load("te", "turnover_event_evidence.py")
 
 from edlab.substrates.scaffold.observables import detect
 from edlab.experiments.sc_mcm import config as C
@@ -65,15 +66,22 @@ def _match_entity(ents, mask):
 
 def turnover(S0, cents, reg0, eng, record=True, cap=TURN_CAP):
     """Neutral turnover on the UNPERTURBED world with per-target passive tracers + bijective tracker.
-    Returns trajectory, first-censor events, and the deep snapshot (or None if feasibility invalid)."""
+    Returns trajectory, first-censor events, persisted event evidence, and the deep snapshot.
+
+    When a censoring event occurs, the world is invalid at that first step. The engine is nevertheless advanced
+    for exactly five additional evidence-only frames so a persistent fission can be distinguished from transient
+    fragmentation and a local mass collapse (death) from tracking loss. No daughter or replacement component is
+    selected as a continuation, and the follow-up cannot restore feasibility.
+    """
     Sturn, base = mt.seed_tracers(S0, reg0)
     mt.assert_no_feed_collision(eng.tracer, base, cap + 2)
     tr = bt.BijectiveTracker(theta=THETA)
     tr.seed([m.copy() for m in reg0], 0)
-    traj = []; first_censor = {}; deep = None
+    traj = []; first_censor = {}; deep = None; event_evidence = []
     for t in range(1, cap + 1):
         Sturn = eng.step(Sturn)
         ents = detect(Sturn, DET); emasks = [cc.mask(e) for e in ents]; esz = [int(m.sum()) for m in emasks]
+        parent_masks = [tr.tracks[i].mask.copy() for i in range(K)]
         ev = tr.update(emasks, t)
         for tid, stt in ev.items(): first_censor.setdefault(int(tid), (t, stt))
         alive = [tr.tracks[i].status == bt.ALIVE for i in range(K)]
@@ -108,8 +116,23 @@ def turnover(S0, cents, reg0, eng, record=True, cap=TURN_CAP):
             traj.append(dict(t=t, cov=float(cov), alive=[bool(a) for a in alive], censor_exit=True,
                              up_ref=float('nan'), world_mean_up=float('nan'),
                              per=[(dict(M=diag[i]) if alive[i] else None) for i in range(K)]))
+            active = []
+            for tid, raw_status in ev.items():
+                rec_ev, state_ev = te.start_event(
+                    raw_status, int(tid), t, parent_masks, emasks, Sturn.rho
+                )
+                active.append((rec_ev, state_ev))
+            for dt_evidence in range(1, te.CONFIRM_FRAMES + 1):
+                Sturn = eng.step(Sturn)
+                comps_follow = [cc.mask(e) for e in detect(Sturn, DET)]
+                for rec_ev, state_ev in active:
+                    te.append_followup(
+                        rec_ev, state_ev, t + dt_evidence, comps_follow, Sturn.rho
+                    )
+            event_evidence.extend(te.finalize(rec_ev) for rec_ev, _ in active)
             break
-    return dict(base=base, traj=traj, first_censor={str(k): v for k, v in first_censor.items()}, deep=deep)
+    return dict(base=base, traj=traj, first_censor={str(k): v for k, v in first_censor.items()},
+                event_evidence=event_evidence, deep=deep)
 
 
 def _valid(beh_dict):
@@ -176,7 +199,7 @@ def run_seed(seed):
     # ---- TURNOVER (writing active, neutral) + passive-decay null ----
     tov = turnover(S0, cents, reg0, eng, record=True)
     result["turnover"] = dict(first_censor=tov["first_censor"], traj=tov["traj"],
-                              n_rec=len(tov["traj"]))
+                              event_evidence=tov["event_evidence"], n_rec=len(tov["traj"]))
     if tov["deep"] is None:
         # feasibility diagnosis
         last = tov["traj"][-1] if tov["traj"] else None

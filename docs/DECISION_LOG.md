@@ -2440,3 +2440,24 @@ Docker/CI never built -> clean reproduction INCOMPLETE.
 VERDICTS: THEOREM PACKAGE: PASS. LARGE DISTRIBUTIONAL HOLD-OUT: FAIL. CLEAN REPRODUCTION: INCOMPLETE.
 CROSS-SUBSTRATE: STRUCTURAL PASS. PUBLICATION STATUS: NOT READY. EXTERNAL HUMAN REVIEW: PENDING.
 DROPLET CAUSAL-CONTINUITY PILOT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## D-086 — Turnover PRESEAL 03C reconciles authority, family, approval, scopes, inference, and event evidence
+
+**Date:** 2026-07-16
+
+**Decision:** On the separate integration branch, supersede the non-authoritative Claude 03A addenda with direct
+repairs to the existing canonical PRESEAL files. Freeze primary seeds `54001-54050`, feasibility reserve
+`54051-54096`, hard cap 96, and minimum 18 valid original worlds. Reserve activation may use feasibility fields
+only. Require a separate human-approval JSON bound to the exact execution-manifest Git blob.
+
+**Statistical decision:** all L/N/P/E/G/B decoders use the same own-dose label and outer leave-one-original-world-
+out predictions. Scaling is training-only, lambda is fixed, and uncertainty is computed from fixed original-world
+fold losses. No bootstrap CV retraining across duplicated worlds is permitted.
+
+**Measurement decision:** persist exact target-local, geometric-neighbour, pair, target-memory-masked environment,
+complete target-centred world, and body scopes before the deep assay. Persist five evidence-only frames after the
+first censor so fission, transient fragmentation, merge, loss, and death are distinguishable without following a
+daughter.
+
+**Authorization boundary:** Claude's “GO FOR SEAL” is not operator authorization. No `54xxx` seed was run. The
+committed approval template remains unauthorized.

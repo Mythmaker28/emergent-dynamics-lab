@@ -2,6 +2,7 @@
 
 | Experiment ID | Status | Substrate/mechanism | Runs | Artefacts | Interpretation |
 |---|---|---|---:|---|---|
+| LCI-CAUSAL-TURNOVER-PRESEAL-03C | PRESEAL_CANDIDATE_NOT_AUTHORIZED | Passive-copy C1c turnover; target-local versus distributed access | 0 prospective | `docs/individuation/PRESEAL_CANDIDATE.json`; `PRESEAL_CANDIDATE_PROTOCOL.md`; `TURNOVER_EXECUTION_MANIFEST_03C.json` | Exact 50+46 family under cap 96; grouped LOWO inference and event evidence frozen; no `54xxx` seed executed |
 | HIST-EXP01-9992e6c | AUDITED_NOT_RERUN | Historical Particle Life CORE | 8 archived | local Git object `9992e6c`; historical CSV/results | Code/tests/artefacts independently audited; historical simulation not independently rerun |
 | BASELINE-COREV0-20260710-001 | SUPERSEDED_FOR_INTERPRETATION | Pre-repair Particle Dynamics CORE V0 | 36 | `results/BASELINE-COREV0-20260710-001/` | Technical exploratory artefact; original all-green/candidate disposition invalidated by independent numerical/tracker audits |
 | HOLDOUT-COREV0-20260710-001 | SUPERSEDED_NOT_RUN | Frozen pre-repair laws 1,3,6,10 | 0 | `docs/experiments/HOLDOUT_COREV0_01_PROTOCOL.md` | Stopped before execution; retained only as historical preregistration |

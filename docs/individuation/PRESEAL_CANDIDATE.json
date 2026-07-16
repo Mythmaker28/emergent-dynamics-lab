@@ -1,142 +1,69 @@
 {
-  "mission": "LCI-CAUSAL-TURNOVER-PREREG-03",
-  "status": "PRESEAL_CANDIDATE \u2014 NOT AUTHORIZED FOR PROSPECTIVE RUN",
-  "authorization": "NONE \u2014 requires explicit Tommy GO before any 54xxx seed",
-  "branch": "design/lci-causal-turnover-prereg-03",
-  "parent_commit": "9c8a62c",
-  "frozen_lineage": {
-    "merge_audit": "6470513",
-    "preseal_nonmerging": "9b7580bc",
-    "results_nonmerging": "830c2d0",
-    "rstar_addendum": "9c8a62c"
+  "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-03C",
+  "status": "AUTHORITATIVE PRESEAL CANDIDATE - NOT AUTHORIZED - NO 54xxx EXECUTED",
+  "operator_authorization": false,
+  "claude_go_for_seal_is_authorization": false,
+  "integration_branch": "codex/lci-causal-turnover-preseal-integration-03c",
+  "integration_parent": "cd74eda96cbcf6e1489f8a6572d1eda8f619b8a1",
+  "claude_parent": "244bc3262580f1344db1b00582f626a48c75ab4e",
+  "canonical_protocol": "docs/individuation/PRESEAL_CANDIDATE_PROTOCOL.md",
+  "canonical_analysis_implementation": [
+    "experiments/individuation/turnover_statistics.py",
+    "experiments/individuation/turnover_ownership_analyze.py"
+  ],
+  "seed_plan": {
+    "primary": "54001-54050",
+    "primary_count": 50,
+    "reserve": "54051-54096",
+    "reserve_count": 46,
+    "total_hard_cap": 96,
+    "minimum_valid_original_worlds": 18,
+    "reserve_activation": "all primary complete AND valid_worlds < 18; feasibility projection only; ascending seeds; stop at 18 valid or seed 54096"
   },
-  "untouched": {
-    "main": "f3921a4",
-    "V4": "23b53ae",
-    "release": "present",
-    "C1c": "unchanged",
-    "probe": "uniform 0.25x5",
-    "bijective_tracker": "unchanged"
+  "scope_contract": {
+    "label_for_every_scope": "own cumulative dose",
+    "L": "target memory, frozen 11-D features",
+    "N": "periodic geometric-nearest neighbour, same 11-D features",
+    "P": "target + nearest + farther neighbour, frozen 33-D features",
+    "E": "complete target-centred physical field stack with target m1/m2 cells exactly zeroed",
+    "G": "complete target-centred physical field stack without masking",
+    "B": "frozen 8-D body/environment baseline",
+    "labels_in_feature_sidecars": false,
+    "diagnostic_cohorts_in_features": false
   },
-  "question": "Does a droplet with its own local history retain (1) that information, (2) its causal capacity over its feeding, (3) its distinction from neighbours, after deep matter renewal (M_i<=0.25) while remaining a distinct physical component?",
-  "engine": {
-    "class": "MultiChannelMemoryEngine",
-    "C1c": {
-      "eta_w": 0.015,
-      "eta_d1": 0.35,
-      "eta_d2": 0.006,
-      "k_exp": 1.0
-    },
-    "lam_plus": 0.25,
-    "lam_minus": 0.15,
-    "detection": {
-      "threshold": 0.3,
-      "min_cells": 12
-    },
-    "K": 3,
-    "sep": 24,
-    "minsize": 45,
-    "warm": 800,
-    "phase": 60,
-    "settle": 120,
-    "amp_range": [
-      0.005,
-      0.035
-    ]
+  "inference_contract": {
+    "outer_validation": "leave one original world/seed out",
+    "ridge_lambda": 1.0,
+    "scaling": "training worlds only",
+    "uncertainty": "Student-t interval over fixed original-world fold scores",
+    "secondary_bootstrap": "fixed original-world fold scores only; no model refitting",
+    "duplicate_world_cv_retraining": false,
+    "post_outcome_feature_choice": false,
+    "coordinate_switching": false
   },
-  "probe": {
-    "mode": "uniform",
-    "amp": 0.25,
-    "dur": 5,
-    "cum_inject": "1.25 N0",
-    "horizon": 40,
-    "settle_std": 40,
-    "cover_cap": 0.15,
-    "theta": 0.1
-  },
-  "turnover": {
-    "M_target": 0.25,
-    "turn_cap": 1500,
-    "rec_cadence": 10,
-    "writing": "active_neutral_C1c_unchanged",
-    "passive_decay_null": "eta_w=0",
-    "material_tracer": "per-target passive cohorts (strictly observational)"
-  },
-  "gates": {
-    "G0_feasibility": {
-      "min_valid_worlds": 12,
-      "seed_cap": 50,
-      "no_post_outcome_extension": true
-    },
-    "G1_rest_storage": {
-      "DD_min": 10,
-      "off_max": 0.05
-    },
-    "G2_rest_readout": "paired worldboot own-dose lower-CI>null95 and own>neighbour",
-    "G3_deep_storage": "own-dose deep > within-world null AND > neighbour AND > global-mean-history (PRIMARY-at-risk)",
-    "G4_deep_causal": "worldboot lower-CI own>0, own-sham>0, own-neigh>0, ablation~0, tracked&fixed same sign",
-    "G5_retention": "report rest/deep/ratio/diff; causal-survival=deep own lower-CI>0; strong-retention threshold JUSTIFIED (no auto 0.50)",
-    "G6": "G0 & G1 & G3 & G4 & own distinct from neighbour/sham & global cannot explain (G4 alone insufficient)"
-  },
-  "global_channel": {
-    "up_ref_in_regime_ratio_global_over_local": 0.0006,
-    "verdict": "up_ref cannot resynchronize; homogenization is LOCAL"
-  },
-  "proposed_family": {
-    "seeds": "54001-54050",
-    "count": 50,
-    "registry_checked": "absent across 18 branches",
-    "opened": false
-  },
-  "power": {
-    "interventional_gates": "over-powered at >=6 valid",
-    "G0_needs_seeds": "44-49 for >=12 valid @90%",
-    "G3_needs": ">=18 valid AND real effect (at risk)"
-  },
-  "dev_summary": {
-    "eligible": 8,
-    "feasible": 4,
-    "feasibility_fraction": 0.5,
-    "failure_modes": {
-      "1": 1,
-      "2": 1,
-      "0": 2
-    },
-    "deep_own_worldCI": [
-      0.1142318495726242,
-      0.13125560232653652,
-      0.14827935508044887
+  "event_contract": {
+    "evidence_followup_frames": 5,
+    "classes": [
+      "FISSION",
+      "TRANSIENT_FRAGMENTATION",
+      "MERGE",
+      "LOSS",
+      "DEATH",
+      "AMBIGUOUS"
     ],
-    "deep_own_neigh_worldCI": [
-      0.11423186857551723,
-      0.13125562850289,
-      0.14827938843026273
-    ],
-    "deep_own_mean": 0.13125560232653652,
-    "deep_storage_own_dose_R2": 0.13520418069826556,
-    "deep_storage_neigh_dose_R2": 0.5804777225451667,
-    "retention_ratio": 0.6833924438927548
+    "daughter_selected_as_continuation": false
   },
-  "environment": {
-    "python_dev": "3.11.15",
-    "python_lock": "3.10.12",
-    "numpy": "2.2.6",
-    "scipy": "1.15.3",
-    "matplotlib": "3.10.9"
+  "ablation_contract": {
+    "lambda_plus_only": {
+      "lam_plus": 0.0,
+      "lam_minus": 0.15
+    },
+    "full_ablation_reported_separately": true
   },
-  "candidate_hashes": {
-    "runner": "090acd655734bd0e6c2cba9a8b4dda79b5ba9fb6de6552e100aa01a70dfb7e3a",
-    "analyze": "bbb6afbc67e57a93947f3a3d29b9e442b7dc48cb18c32144cf9743cecd08e137",
-    "material_tracer": "d1f5a48d21b2939f639122b89da4e68ec178907cfbb459afd837eeaeb2b1f72d",
-    "tests": "be2859be3fd0bbcf46d197536da7936542c2da1e3f9714265fbb4be5397a02a2",
-    "protocol": "0f55ec5564e58bce168e8874eece6d6c1e4e9522d2b482a6cebdab6c6a8cca68",
-    "independent_view": "4469b246db6d30408208fe536bfbc9d877957abc9fa602db916914e625425db8",
-    "engine_audit": "29a77572cfb667b08c68809e6c96455043f7547326503deb6066843fa524c441",
-    "material_tracer_spec": "39bfd5243172ec8fec6f5fbe55da9c13f26582b0cad0423e7f6442c454593c74",
-    "global_channel_audit": "751623aa6852f88e95258a333264ceace385251f3ab0626c63ecc7059d8b1c19",
-    "power": "9007f1e681e6d49bcce6f056a0fcacdd7829d693ff971896e59530337b203345",
-    "dev_certificate": "9551309ea5784050a79d4bd0c471873f619294b42f916509440bc84ab017af65"
-  },
-  "reproduction": "docs/individuation/TURNOVER_REPRODUCTION.md",
-  "claims": "NONE established prospectively; DEV effect sizes only; no identity/life/agency; ACTIVE-RECONSTRUCTION not pursued"
+  "execution_manifest": "docs/individuation/TURNOVER_EXECUTION_MANIFEST_03C.json",
+  "execution_manifest_git_blob": "e109d7eabbc944b1d25d743c13c2f7561e7fccca",
+  "approval_template": "docs/individuation/TURNOVER_EXECUTION_APPROVAL_TEMPLATE_03C.json",
+  "approval_template_authorized": false,
+  "dev_diagnostics": "EXPLORATORY ONLY; n=4 feasible worlds; not prospective evidence",
+  "claims": "No identity, individual-memory, reproduction, heredity, active-reconstruction, or evolution claim is authorized."
 }

@@ -1,125 +1,15 @@
 {
   "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03A",
-  "status": "PRESEAL_CANDIDATE (REPAIRED + RED-TEAM RECONCILED) \u2014 NOT AUTHORIZED FOR PROSPECTIVE RUN \u2014 NOT SEALED",
-  "authorization": "NONE \u2014 requires explicit Tommy GO; a fresh agent then audits, verifies hashes/seeds, runs once, applies frozen analysis",
-  "branch": "design/lci-causal-turnover-preseal-repair-03a",
-  "parent_commit": "244bc32",
-  "preserved": {
-    "main": "f3921a4",
-    "V4": "23b53ae",
-    "confirm02_preseal": "9b7580bc",
-    "confirm02_results": "830c2d0",
-    "rstar_addendum": "9c8a62c",
-    "parent_design": "244bc32"
-  },
-  "central_question": "Does droplet-specific causal information survive deep material turnover under the passive-copy C1c architecture? (NOT: does some nonzero memory-coupled feeding effect remain?)",
-  "five_levels": [
-    "material replacement M_i",
-    "any local memory amplitude",
-    "OWN graded history vs neighbour/global (PRIMARY)",
-    "causal expression of retained own info",
-    "active reconstruction (OUT OF SCOPE)"
-  ],
-  "primary_gates": {
-    "G0_feasibility": "co-primary; >=18 valid worlds at cap 96",
-    "G3_OWNERSHIP": "co-primary; own-dose R2 > within-world null AND > neighbour-dose AND > global-dose; worldboot lower CI(own-max(neigh,global))>0; size/mass/position/env baselines must fail",
-    "ACCESS_LPEG": "co-reported; own-dose across scopes L/P/E/G with frozen interpretations",
-    "G4_interventional": "SECONDARY; null = algebraic prediction D; cannot carry G6 alone"
-  },
-  "mechanistic_nulls": {
-    "A": "C1c normal",
-    "B": "eta_w=0 passive carry-over (m+ ratio 0.44)",
-    "C": "up_ref=0 global irrelevant (ratio 1.00, own identical)",
-    "D": "algebraic prediction: obs=0.87x pred (pure coupling)",
-    "E": "copy-disabled: m+ collapses to 0.26x (passive copy necessary)"
-  },
-  "decision_tree": {
-    "A": "own survives & causally expressed -> supported",
-    "B": "local effect survives, own not distinguishable -> passive/homogenized, NOT individuation",
-    "C": "storage survives, causal fails -> silent trace",
-    "D": "neither survives -> passive C1c fails",
-    "E": "too few valid worlds -> feasibility failure",
-    "F": "global channel explains -> claim fails"
-  },
-  "dev_predicted_outcome": "B or D (interventional=pure coupling; passive copy necessary; ownership unresolved-leaning-absent at n=4)",
-  "geometry_frozen": {
-    "probe": "uniform 0.25x5 (not R*)",
-    "tracker": "bijective",
-    "material_tracer": "per-target passive cohorts, zero feedback",
-    "M_target": 0.25,
-    "turn_cap": 1500,
-    "cover_cap": 0.15,
-    "theta": 0.1
-  },
-  "power": {
-    "method": "Beta-Binomial (Jeffreys) propagating DEV eligibility 8/10 & feasibility 4/8",
-    "net_p_per_seed_mean": 0.387,
-    "family_cap": 96,
-    "P_Nvalid_ge_18": 0.93,
-    "P_Nvalid_ge_24": 0.82,
-    "parent_50seed_P_ge18": 0.57,
-    "reserve": "54097-54120 eligibility-only, pre-outcome trigger, hard cap 120",
-    "compute_min_est": 83
-  },
-  "proposed_family": {
-    "seeds": "54001-54096",
-    "count": 96,
-    "registry_checked": "absent across 18 branches",
-    "opened": false,
-    "outcomes_inspected": false,
-    "frozen_runner": "turnover_prospective_runner.py (guarded)"
-  },
-  "dev_diagnostics_summary": {
-    "algebraic_obs_over_pred": 0.8658984740502635,
-    "upref0_mplus_ratio": 1.0010044687820954,
-    "copydisabled_mplus_ratio": 0.2623607153885138,
-    "etaw0_mplus_ratio": 0.4383685439490732,
-    "access_LPEG": {
-      "L": {
-        "own_dose_R2": -0.212,
-        "perm_null95": 0.206,
-        "beats_null": false
-      },
-      "P": {
-        "own_dose_R2": -0.403,
-        "perm_null95": 0.112,
-        "beats_null": false
-      },
-      "E": {
-        "own_dose_R2": -0.357,
-        "perm_null95": -0.082,
-        "beats_null": false
-      },
-      "G": {
-        "own_dose_R2": -0.36,
-        "perm_null95": -0.36,
-        "beats_null": false
-      }
-    },
-    "own11_dose_R2": 0.135,
-    "neigh11_dose_R2": 0.58
-  },
-  "environment": {
-    "python_dev": "3.11.15",
-    "numpy": "2.2.6",
-    "scipy": "1.15.3",
-    "matplotlib": "3.10.9"
-  },
-  "candidate_hashes": {
-    "self_audit": "9ac50a5cc5ccb447409951de14bc313cbde28a5a79d69859b4b02a8c93f0dbbc",
-    "protocol_repair": "fa2ea8c1003f689573b2476e5e320629a6c8e6c5229dec88d4576b3661b78912",
-    "analysis_spec": "e16e61695b1ca4d51f1094b311bbda6fcfa46696654a218ca0005f56c7bc39cc",
-    "mechanistic_nulls": "4b4d91e83f41bd1cca81927a565a3d0701b4acf4281e1fab7e36d6c431200e0c",
-    "power_repair": "bdb522e31184f56de75111443eb1628ae186f7cc4ed410fa1d0655ea81946e25",
-    "fission_policy": "ce868dae57115dda30805564f5a485fa82a8d73fc78e6d02500ff2f1840ea02d",
-    "seed_manifest": "405ead117e286b2b4796d26210c66b3dd2c5bdc6a5ee52496ca70f49d37c7347",
-    "risk_register": "b8b8d5fcfedfdfbf381f696e0ba91c7e184a5c7b30620975d6cd413bbcf2c522",
-    "reproduction": "6420d285619f719f1f4a74810120504dbab48b58744f752e61c977446cb65cf1",
-    "diagnostics_certificate": "9eb0025a9c60c0cdd8b975f46073b2cd0febf4dca1340e74de84a26c32be74a0",
-    "events": "857aac3adda186bde6320a6953c27af52c14448a0005a1b965e5644682ec4e66",
-    "diag_engine": "8ba3ac5650cb460d68642d8f4077f3334067ff264c6e976b34364b5bc294480a",
-    "diagnostics_runner": "cf2d7516e7e9dc3aa486bebfa5ef4e0e06791598cfd408e74025b4cdd3f79eef",
-    "access_analyze": "69ee7ac4dc332a91814a3f1c6a354db3c684c127320cdae0703a7edc391c55d6",
-    "diagnostics_raw": "6f6eca640d4b48715cc1324dfc8b131e045e04deac68d60ae3352c67e0cd4f87",
-    "ownership_analyze": "ae22ed80d96efe910c95d1cee787bf1d6e69c125a165f3ac222659e4d3de1415",
-    "prospective_runner": "4601c48cec5241025ae146665701d68393110cb869c8e24f1a09e62
+  "status": "HISTORICAL CLAUDE REPAIR - SUPERSEDED BY AUTHORITATIVE PRESEAL 03C",
+  "valid_json_repair": "The cd74eda Git blob was truncated inside candidate_hashes.prospective_runner and was not parseable JSON.",
+  "operator_authorization": false,
+  "claude_go_for_seal_is_authorization": false,
+  "superseded_by": "docs/individuation/PRESEAL_CANDIDATE.json",
+  "canonical_protocol": "docs/individuation/PRESEAL_CANDIDATE_PROTOCOL.md",
+  "integration_note": "docs/individuation/TURNOVER_INTEGRATION_RECONCILIATION_03C.md",
+  "preserved_commits": {
+    "parent": "244bc3262580f1344db1b00582f626a48c75ab4e",
+    "initial_repair": "ca7929bedb4e9eb08695a82484619e344b8c4085",
+    "red_team_addendum": "cd74eda96cbcf6e1489f8a6572d1eda8f619b8a1"
+  }
+}

@@ -1,3 +1,7 @@
+# HISTORICAL CLAUDE 03A PROTOCOL ADDENDUM — NON-AUTHORITATIVE
+
+Superseded by the actual canonical file `PRESEAL_CANDIDATE_PROTOCOL.md`, which has now been repaired directly.
+
 # LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03A — Repaired protocol + decision tree (TASK 5/6)
 
 *Amends `PRESEAL_CANDIDATE_PROTOCOL.md` (parent 244bc32). Only the changes below differ from the parent; everything

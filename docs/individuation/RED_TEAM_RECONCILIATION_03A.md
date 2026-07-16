@@ -1,3 +1,8 @@
+# HISTORICAL CLAUDE 03A RECONCILIATION — DESIGN INPUT, NOT AUTHORIZATION
+
+Claude's “GO FOR SEAL” below is not operator authorization. The integrated canonical repair is
+`TURNOVER_INTEGRATION_RECONCILIATION_03C.md`.
+
 # LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03A — Red-team reconciliation
 
 *Resolves the six parallel-audit points. Two of them (2, 3) were **real defects that changed a reported DEV

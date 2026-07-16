@@ -1,5 +1,19 @@
 # Project State
 
+## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER-PRESEAL-03C (2026-07-16)
+
+On branch `codex/lci-causal-turnover-preseal-integration-03c`, Claude's repair commits `ca7929b` and `cd74eda`
+have been independently reconciled into the actual canonical PRESEAL files. Status:
+**PRESEAL CANDIDATE — NOT AUTHORIZED — ZERO 54xxx SEEDS EXECUTED**.
+
+Exact family: primary `54001-54050`, feasibility reserve `54051-54096`, hard cap 96, minimum 18 valid original
+worlds. Reserve activation is outcome-blinded and reads feasibility only. Execution requires a separate human-
+approval JSON bound to the exact execution-manifest Git blob. Grouped inference, complete L/N/P/E/G/B scopes,
+lambda-plus-only ablation, and persisted evidence distinguishing fission, transient fragmentation, merge, loss,
+and death are frozen and unit-tested.
+
+This branch does not alter or authorize V4.1 results, CONFIRM-02, or any prospective turnover result.
+
 ## CURRENT QUESTION
 
 Can CORE V0 local particle laws produce auditable high phenotype continuity under low material retention, beyond tracker and static-flux artefacts?

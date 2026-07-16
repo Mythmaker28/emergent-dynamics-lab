@@ -1,3 +1,8 @@
+# HISTORICAL CLAUDE 03A SEED PLAN — NON-AUTHORITATIVE
+
+Superseded by `TURNOVER_SEED_MANIFEST.md`. The authoritative family is 50 primary seeds (`54001-54050`) plus 46
+feasibility-reserve seeds (`54051-54096`) under one total hard cap of 96.
+
 # LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03A — Corrected seed manifest (NOT opened)
 
 ## DEV seeds (this + parent mission)
