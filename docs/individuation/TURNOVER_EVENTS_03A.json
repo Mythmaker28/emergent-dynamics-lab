@@ -1,0 +1,128 @@
+{
+  "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03A",
+  "policy": "fission/merge/split/ambiguity/loss/death classified SEPARATELY; genuine fission censors the trajectory; never silently select a daughter; fission events preserved as SECONDARY dataset, NOT reproduction",
+  "class_counts": {
+    "FISSION": 3,
+    "FEASIBLE": 4,
+    "LOSS_OR_DEATH": 1,
+    "INELIGIBLE": 2
+  },
+  "per_seed": [
+    {
+      "seed": 50001,
+      "cls": "CENSORED",
+      "detail": [
+        {
+          "track": 1,
+          "step": 153,
+          "status": "SPLIT",
+          "event_class": "FISSION"
+        }
+      ]
+    },
+    {
+      "seed": 50002,
+      "cls": "FEASIBLE",
+      "deep_step": 847,
+      "M": [
+        0.19399027122102552,
+        0.24979364401673357,
+        0.14509491462257568
+      ]
+    },
+    {
+      "seed": 50003,
+      "cls": "CENSORED",
+      "detail": [
+        {
+          "track": 2,
+          "step": 236,
+          "status": "LOST",
+          "event_class": "LOSS_OR_DEATH"
+        }
+      ]
+    },
+    {
+      "seed": 50004,
+      "cls": "FEASIBLE",
+      "deep_step": 793,
+      "M": [
+        0.2494180137355821,
+        0.24976935420627078,
+        0.21932890413506204
+      ]
+    },
+    {
+      "seed": 50005,
+      "cls": "FEASIBLE",
+      "deep_step": 831,
+      "M": [
+        0.16378143695398298,
+        0.23030102225923835,
+        0.24993830710442896
+      ]
+    },
+    {
+      "seed": 50006,
+      "cls": "CENSORED",
+      "detail": [
+        {
+          "track": 0,
+          "step": 692,
+          "status": "SPLIT",
+          "event_class": "FISSION"
+        }
+      ]
+    },
+    {
+      "seed": 50007,
+      "cls": "FEASIBLE",
+      "deep_step": 890,
+      "M": [
+        0.22705715851499184,
+        0.21010424776025538,
+        0.2496506369279655
+      ]
+    },
+    {
+      "seed": 50008,
+      "cls": "INELIGIBLE"
+    },
+    {
+      "seed": 50009,
+      "cls": "CENSORED",
+      "detail": [
+        {
+          "track": 0,
+          "step": 436,
+          "status": "SPLIT",
+          "event_class": "FISSION"
+        }
+      ]
+    },
+    {
+      "seed": 50010,
+      "cls": "INELIGIBLE"
+    }
+  ],
+  "fission_secondary_dataset": [
+    {
+      "seed": 50001,
+      "track": 1,
+      "step": 153,
+      "note": "genuine fission; trajectory CENSORED; secondary dataset only, NO reproduction claim"
+    },
+    {
+      "seed": 50006,
+      "track": 0,
+      "step": 692,
+      "note": "genuine fission; trajectory CENSORED; secondary dataset only, NO reproduction claim"
+    },
+    {
+      "seed": 50009,
+      "track": 0,
+      "step": 436,
+      "note": "genuine fission; trajectory CENSORED; secondary dataset only, NO reproduction claim"
+    }
+  ]
+}
