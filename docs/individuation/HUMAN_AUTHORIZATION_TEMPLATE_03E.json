@@ -1,0 +1,38 @@
+{
+  "schema": "LCI-TURNOVER-HUMAN-AUTHORIZATION-03E-v2-INVALID",
+  "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-03E",
+  "status": "INVALID_NOT_AUTHORIZED_REAUDIT_FAILED",
+  "authorized": false,
+  "one_execution_only": false,
+  "authorization_id": "",
+  "approved_by": "",
+  "approved_at_utc": "",
+  "execution_manifest_git_blob": "4297d70b58897c4dbb95f9d9921f2b12464ad921",
+  "runner_git_blob": "e4ab213df9ddf9c100cadabcfa742154ab0d1ba4",
+  "analysis_library_git_blob": "6dd7efa947a33e4d27c41a97c98a64d67ea92c05",
+  "canonical_analysis_driver_git_blob": null,
+  "final_seal_manifest_git_blob": null,
+  "final_seal_sha256": null,
+  "approval_phrase_template": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03E FINAL_SEAL_SHA256=<FINAL_SEAL_SHA256>",
+  "approval_phrase": "",
+  "seed_family": {
+    "primary": "54001-54050",
+    "reserve": "54051-54096",
+    "hard_cap": 96,
+    "minimum_valid_worlds": 18
+  },
+  "invalid_reasons": [
+    "Fresh independent re-audit 03F returned NOT READY - REPAIR REQUIRED.",
+    "FINAL_SEAL_MANIFEST_03E.json was intentionally not created.",
+    "The canonical runner does not execute, record, and close the frozen family.",
+    "Authorization remains replayable across distinct fresh run directories.",
+    "The ledger does not enforce the seed family, terminal closure, or truncation resistance.",
+    "Runtime scientific code and environment identities are not compared against a parsed final seal.",
+    "No canonical raw-data analysis driver or executable A-F outcome evaluator exists.",
+    "The exact declared Linux/Python 3.11.15 environment was not recreated.",
+    "The manifest and earlier approval template use different required approval phrases."
+  ],
+  "activation_condition": "NONE. This artifact cannot be activated or edited into an authorization. A new repair, fresh independent passing re-audit, and new cryptographic seal are required first.",
+  "future_exact_phrase_if_and_only_if_resealed": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03E FINAL_SEAL_SHA256=<FINAL_SEAL_SHA256>",
+  "note": "Unfilled, invalid, and non-authorizing. Do not execute any seed in 54001-54096."
+}

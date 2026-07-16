@@ -1,0 +1,221 @@
+{
+  "schema": "LCI-CAUSAL-TURNOVER-FINAL-REAUDIT-03F-v1",
+  "mission": "LCI-CAUSAL-TURNOVER-FINAL-RE-AUDIT-03F",
+  "role": "fresh independent auditor",
+  "issued_at": "2026-07-16T19:02:05+02:00",
+  "remote": "https://github.com/Mythmaker28/emergent-dynamics-lab.git",
+  "audit_branch": "audit/lci-causal-turnover-final-re-audit-03f",
+  "audited_repair_branch": "repair/lci-causal-turnover-preseal-03e",
+  "audited_commit": "23b6e9b3c667705158af833c1cf8458a03c8fb66",
+  "audited_parent": "a5e0a552b3f34a8cf9912292cd74bce3c6aee2d3",
+  "prior_audit_commit": "9038ff08f7487e10f3615c269ed2a3af7197e2cb",
+  "prior_audit_parent": "a5e0a552b3f34a8cf9912292cd74bce3c6aee2d3",
+  "protected_archive": {
+    "ref": "archive/main-f3921a4",
+    "commit": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+    "verified": true,
+    "ancestor_of_turnover_line": false,
+    "note": "The archive is a protected separate paper/consolidation lineage."
+  },
+  "provenance": {
+    "repair_commit_file_count": 17,
+    "repair_commit_added_lines": 1459,
+    "manifest_protected_blob_count": 21,
+    "manifest_protected_blobs_matching_git": 21,
+    "git_fsck_full": "PASS",
+    "structured_seed_records_54001_54096_found": false,
+    "filenames_containing_54001_54096_found_in_history": false
+  },
+  "verdict": "NOT READY - REPAIR REQUIRED",
+  "ready_for_human_authorization": false,
+  "final_seal_created": false,
+  "final_seal_manifest": null,
+  "prospective_execution": {
+    "performed": false,
+    "prospective_outputs_created": false,
+    "seeds_executed": [],
+    "seed_range_prohibited_during_audit": "54001-54096"
+  },
+  "audit_matrix": {
+    "A_provenance_and_authority": {
+      "status": "FAIL",
+      "reason": "Exact refs and blobs verify, but unchanged 03C artifacts still declare themselves authoritative/canonical and the old executable pipeline remains reachable."
+    },
+    "B_prior_blocker_closure": {
+      "status": "FAIL",
+      "reason": "Only B6 closes; B1-B5 retain material implementation or reproducibility failures."
+    },
+    "C_access_scopes": {
+      "status": "FAIL",
+      "reason": "Low dimensions and E/Gm target masking pass, but Gf does not nest target-local L and the old raw high-dimensional decoder remains reachable."
+    },
+    "D_ownership_and_causal_gates": {
+      "status": "FAIL",
+      "reason": "The statistical functions exist but no canonical raw-data driver constructs all batteries, evaluates the gates, and emits the decision."
+    },
+    "E_statistical_integrity": {
+      "status": "FAIL",
+      "reason": "Grouped LOWO and fixed-fold uncertainty pass in the library, but a distributed synthetic cannot be classified as F through committed code."
+    },
+    "F_authorization_and_ledger": {
+      "status": "FAIL",
+      "reason": "Authorization can be replayed in different run directories; invalid seed and post-completion appends are accepted; truncation of the terminal close remains a valid chain prefix."
+    },
+    "G_family_power_and_feasibility": {
+      "status": "FAIL",
+      "reason": "Frozen constants and power regenerate, but the 03E runner has no reserve activation or family execution calls."
+    },
+    "H_tracking_and_event_evidence": {
+      "status": "PASS",
+      "reason": "Committed tests and source audit distinguish fission, transient fragmentation, merge, loss, and death and preserve observational tracing."
+    },
+    "I_environment": {
+      "status": "FAIL",
+      "reason": "The exact Linux/Python 3.11.15 environment was not recreated and the environment lock is not an installable requirements file."
+    },
+    "J_decision_tree": {
+      "status": "FAIL",
+      "reason": "The A-F JSON is present, but its expressions are strings and no executable evaluator selects one outcome."
+    }
+  },
+  "prior_blocker_closure": {
+    "B1_authorization_final_seal_ledger": "FAIL",
+    "B2_ownership_permutation_causal_gates": "FAIL",
+    "B3_E_G_dimensionality_and_scope": "FAIL",
+    "B4_canonical_A_F_tree": "FAIL",
+    "B5_environment_and_power": "FAIL",
+    "B6_protected_main_provenance": "PASS"
+  },
+  "frozen_family_values": {
+    "primary_seeds": "54001-54050",
+    "reserve_seeds": "54051-54096",
+    "total_hard_cap": 96,
+    "minimum_valid_worlds": 18,
+    "intended_reserve_activation": "After all primary seeds, if valid_worlds < 18; ascending reserve order; stop at 18 valid worlds or seed 54096.",
+    "activation_outcome_blinded_in_manifest": true,
+    "activation_implemented_by_03e_runner": false
+  },
+  "scope_audit": {
+    "dimensions": {
+      "L": 11,
+      "N": 11,
+      "P": 33,
+      "E": 24,
+      "Gm": 18,
+      "Gf": 18
+    },
+    "same_own_dose_label": true,
+    "E_target_memory_masking": "PASS",
+    "Gm_target_memory_masking": "PASS",
+    "label_or_cohort_id_in_feature_bundle": false,
+    "post_outcome_feature_choice_detected": false,
+    "Gf_nests_L_claim": "FALSIFIED"
+  },
+  "grouped_inference_audit": {
+    "outer_leave_one_original_world_out": "PASS",
+    "original_world_overlap_between_train_and_test": false,
+    "training_only_scaling": "PASS",
+    "ridge_lambda": 1.0,
+    "uncertainty_from_fixed_original_world_fold_losses": "PASS",
+    "bootstrap_retraining_across_duplicated_worlds": false,
+    "duplicate_original_world_guard": "PASS_FOR_EXACT_DUPLICATE_TEST",
+    "canonical_raw_data_analysis_driver": "ABSENT",
+    "executable_A_F_evaluator": "ABSENT"
+  },
+  "red_team_results": {
+    "same_approval_two_fresh_run_directories": "ACCEPTED_BOTH",
+    "approval_without_runner_or_analysis_blob_fields": "ACCEPTED",
+    "arbitrary_seed_99999": "ACCEPTED",
+    "seed_append_after_completion": "ACCEPTED",
+    "completion_entry_deleted_then_verify_chain": "ACCEPTED_VALID_PREFIX",
+    "retained_entry_tampering": "DETECTED",
+    "entry_reordering": "DETECTED",
+    "partial_seed_checkpoint_resume_protocol": "ABSENT",
+    "concurrent_append_synchronization": "ABSENT"
+  },
+  "runner_static_audit": {
+    "calls_run_seed": 0,
+    "calls_record_seed": 0,
+    "calls_close_run": 0,
+    "reserve_activation_function": false
+  },
+  "power_regeneration": {
+    "mean_valid_probability": 0.38636363636363635,
+    "P_valid_ge_18_at_50": 0.57090375417469,
+    "P_valid_ge_18_at_96": 0.9245190233241,
+    "status": "PASS"
+  },
+  "environment": {
+    "declared": {
+      "python": "3.11.15",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "matplotlib": "3.10.9",
+      "platform": "Linux-x86_64",
+      "lock_git_blob": "536e84e24b2b7e049a25e6d55f6a8be4053c9578",
+      "lock_canonical_sha256": "a0bdccc0c2d91d7df9b1781df9198fa6d9131bd45a1e46e4c18b72a8f86aea0e"
+    },
+    "exact_environment_recreated": false,
+    "docker_engine": "UNAVAILABLE_WSL_UPDATE_REQUIRED",
+    "lock_installability": "FAIL_INVALID_REQUIREMENT_platform_equals_Linux_x86_64",
+    "substitute_test_environment": {
+      "python": "3.12.10",
+      "platform": "Windows",
+      "numpy": "2.2.6",
+      "scipy": "1.15.3",
+      "matplotlib": "3.10.9"
+    }
+  },
+  "tests": [
+    {
+      "command": "python experiments/individuation/test_turnover_preseal_03e.py",
+      "result": "PASS_18_CHECKS",
+      "environment": "substitute Windows Python 3.12.10"
+    },
+    {
+      "command": "python experiments/individuation/test_turnover_preseal_03c.py",
+      "result": "PASS_9_OF_9",
+      "environment": "substitute Windows Python 3.12.10"
+    },
+    {
+      "command": "python experiments/individuation/test_bijective_tracker.py",
+      "result": "PASS_10_OF_10",
+      "environment": "substitute Windows Python 3.12.10"
+    },
+    {
+      "command": "python experiments/individuation/test_turnover_tracer.py",
+      "result": "PASS",
+      "environment": "substitute Windows Python 3.12.10; existing DEV fixtures only"
+    },
+    {
+      "command": "python experiments/individuation/turnover_prospective_runner_03e.py --selfcheck",
+      "result": "PASS",
+      "environment": "substitute Windows Python 3.12.10; no engine and no seed"
+    },
+    {
+      "command": "python experiments/individuation/turnover_power_regen.py",
+      "result": "PASS",
+      "environment": "substitute Windows Python 3.12.10; deterministic quadrature"
+    },
+    {
+      "command": "python -m compileall experiments/individuation",
+      "result": "PASS_FOR_AUDITED_03E_MODULES",
+      "environment": "substitute Windows Python 3.12.10"
+    }
+  ],
+  "seal_blocking_reasons": [
+    "The canonical runner does not execute, persist, or close the prospective family.",
+    "One authorization is replayable across arbitrary fresh run directories.",
+    "The ledger does not enforce seed family, order, terminal closure, or truncation resistance.",
+    "Runtime code and environment identity are not checked against a parsed final seal.",
+    "No canonical raw-data analysis driver or executable A-F evaluator exists.",
+    "Gf does not nest L as claimed.",
+    "Repository authority remains ambiguous between 03C and 03E artifacts.",
+    "The exact declared environment could not be recreated and its lock is not installable."
+  ],
+  "human_authorization_template": {
+    "path": "docs/individuation/HUMAN_AUTHORIZATION_TEMPLATE_03E.json",
+    "status": "INVALID_NOT_AUTHORIZED_REAUDIT_FAILED",
+    "usable": false
+  }
+}
