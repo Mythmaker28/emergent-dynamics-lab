@@ -1,5 +1,22 @@
 # Project State
 
+## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER-PRESEAL-03G (2026-07-16)
+
+On branch `repair/lci-causal-turnover-end-to-end-03g`, exact parent
+`23b6e9b3c667705158af833c1cf8458a03c8fb66`, the 03F implementation blockers are repaired as one executable chain:
+seal verification, exact authorization binding, canonical-directory ledger FSM, ordered family execution, atomic raw
+publication, raw validation, grouped analyzer, frozen gates, A–F decision, and result certification.
+
+The authoritative prospective platform is Windows AMD64 with CPython 3.12.10 and the installable transitive lock
+`docs/individuation/TURNOVER_ENVIRONMENT_LOCK_03G.txt`. A fresh environment reproduced the complete 03G integration
+suite. The DEV-only chain used previously opened seed `50001`, reached `CERTIFIED`, refused a second fresh start,
+resumed idempotently, and remained explicitly `DEV/EXPLORATORY`.
+
+Status: **IMPLEMENTED — PRESEAL CANDIDATE — NOT AUTHORIZED — NO FINAL SEAL — ZERO 54xxx SEEDS EXECUTED**.
+03C and 03E remain historical and are machine-marked superseded by
+`docs/individuation/TURNOVER_CANONICAL_INDEX_03G.json`. V4, V4.1, CONFIRM-02, `main`, and the protected archive were
+not modified.
+
 ## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER-PRESEAL-03C (2026-07-16)
 
 On branch `codex/lci-causal-turnover-preseal-integration-03c`, Claude's repair commits `ca7929b` and `cd74eda`

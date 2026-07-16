@@ -1,0 +1,29 @@
+{
+  "schema": "LCI-TURNOVER-PRESEAL-CANDIDATE-03G-v1",
+  "mission": "LCI-TURNOVER-END-TO-END-IMPLEMENTATION-REPAIR-03G",
+  "status": "IMPLEMENTED_NOT_SEALED_NOT_AUTHORIZED_NOT_PROSPECTIVELY_EXECUTED",
+  "exact_parent": "23b6e9b3c667705158af833c1cf8458a03c8fb66",
+  "fresh_audit": "e18024b098f20dda0125a9010703a968e49cb171",
+  "fresh_audit_verdict": "NOT READY - REPAIR REQUIRED",
+  "canonical_index": "docs/individuation/TURNOVER_CANONICAL_INDEX_03G.json",
+  "protocol": "docs/individuation/TURNOVER_PROTOCOL_03G.md",
+  "execution_manifest": "docs/individuation/TURNOVER_EXECUTION_MANIFEST_03G.json",
+  "runner": "experiments/individuation/turnover_runner_03g.py",
+  "ledger": "experiments/individuation/turnover_ledger_03g.py",
+  "raw_schema": "experiments/individuation/turnover_raw_schema_03g.py",
+  "scope_features": "experiments/individuation/turnover_scope_features_03g.py",
+  "statistics": "experiments/individuation/turnover_statistics_03g.py",
+  "analyzer": "experiments/individuation/turnover_analyzer_03g.py",
+  "decision_tree": "docs/individuation/TURNOVER_DECISION_TREE_03G.json",
+  "environment_lock": "docs/individuation/TURNOVER_ENVIRONMENT_LOCK_03G.txt",
+  "family": {
+    "primary": "54001-54050",
+    "reserve": "54051-54096",
+    "hard_cap": 96,
+    "minimum_valid_worlds": 18
+  },
+  "final_seal": null,
+  "valid_human_authorization": null,
+  "prospective_seeds_executed": [],
+  "recommendation": "READY_FOR_FINAL_REAUDIT_AFTER_ALL_COMMITTED_TESTS_AND_DEV_SMOKE_VERIFY"
+}
