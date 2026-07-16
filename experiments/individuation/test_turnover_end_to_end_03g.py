@@ -11,6 +11,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 import numpy as np
 
@@ -152,6 +153,87 @@ class Fixture:
             self.auth_path,
             seed_executor=synthetic_executor(self.style),
             **kwargs,
+        )
+
+
+class ProspectiveAuthorizationFixture:
+    """Temporary seal/manifest fixture that can only reach pre-engine authorization checks."""
+
+    def __init__(self, root: Path):
+        self.dir = root / "authorization-contract"
+        self.dir.mkdir()
+        self.run_rel = str(self.dir.relative_to(ROOT) / "would-be-run").replace("\\", "/")
+        self.run_dir = ROOT / self.run_rel
+        self.manifest_path = self.dir / "manifest.json"
+        self.seal_path = self.dir / "synthetic-seal.json"
+        self.auth_path = self.dir / "authorization.json"
+        manifest = json.loads(
+            (ROOT / "docs/individuation/TURNOVER_EXECUTION_MANIFEST_03G.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        manifest["canonical_run_directory"] = self.run_rel
+        manifest["protected_files"] = protected_files()
+        raw.atomic_write_json(self.manifest_path, manifest)
+        manifest_sha = raw.sha256_file(self.manifest_path)
+        manifest_blob = git_blob(self.manifest_path)
+        seal = {
+            "schema": "LCI-TURNOVER-SEAL-03G-v1",
+            "mode": "PROSPECTIVE",
+            "execution_manifest": {
+                "path": str(self.manifest_path.relative_to(ROOT)).replace("\\", "/"),
+                "sha256": manifest_sha,
+                "git_blob": manifest_blob,
+            },
+            "protected_files": manifest["protected_files"],
+            "environment_lock_sha256": manifest["environment"]["lock_sha256"],
+            "family_sha256": runner.family_sha256(manifest),
+            "watermark": manifest["watermark"],
+        }
+        raw.atomic_write_json(self.seal_path, seal)
+        seal_sha = runner._canonical_seal_sha256(seal)
+        self.base_manifest = manifest
+        self.base_approval = {
+            "schema": "LCI-TURNOVER-HUMAN-AUTHORIZATION-03G-v2",
+            "status": "SYNTHETIC_CONTRACT_TEST_ONLY",
+            "authorized": True,
+            "prospective_authorized": True,
+            "one_execution_only": True,
+            "authorization_id": "SYNTHETIC-AUTHORIZATION-BINDING-03I",
+            "approver": "SYNTHETIC TEST ACTOR - NOT HUMAN AUTHORIZATION",
+            "authorized_at_utc": "2026-07-16T00:00:00Z",
+            "final_seal_sha256": seal_sha,
+            "execution_manifest_sha256": manifest_sha,
+            "execution_manifest_git_blob": manifest_blob,
+            "runner_git_blob": manifest["protected_files"][
+                "experiments/individuation/turnover_runner_03g.py"
+            ]["git_blob"],
+            "analyzer_git_blob": manifest["protected_files"][
+                "experiments/individuation/turnover_analyzer_03g.py"
+            ]["git_blob"],
+            "environment_lock_sha256": manifest["environment"]["lock_sha256"],
+            "family_sha256": runner.family_sha256(manifest),
+            "canonical_run_directory": self.run_rel,
+            "approval_phrase": runner.PROSPECTIVE_APPROVAL_PHRASE_TEMPLATE.replace(
+                runner.FINAL_SEAL_PLACEHOLDER,
+                seal_sha,
+            ),
+        }
+        raw.atomic_write_json(self.auth_path, self.base_approval)
+
+    @property
+    def seal_sha(self) -> str:
+        seal = json.loads(self.seal_path.read_text(encoding="utf-8"))
+        return runner._canonical_seal_sha256(seal)
+
+    def validate(self, *, approval: dict | None = None, manifest: dict | None = None):
+        runner.validate_authorization(
+            copy.deepcopy(self.base_approval if approval is None else approval),
+            copy.deepcopy(self.base_manifest if manifest is None else manifest),
+            self.seal_sha,
+            raw.sha256_file(self.manifest_path),
+            git_blob(self.manifest_path),
+            self.run_dir,
         )
 
 
@@ -313,6 +395,7 @@ class EndToEnd03GTests(unittest.TestCase):
         self.assertEqual(observed, {letter: letter for letter in "ABCDEF"})
 
     def test_seal_code_analysis_family_environment_and_authorization_tamper_fail_closed(self):
+        self._assert_prospective_authorization_binding_contract()
         cases = []
         fixture = self.new_fixture("tamper-seal", "E", seeds=SAFE_SEEDS[:1])
         seal = json.loads(fixture.seal_path.read_text())
@@ -361,6 +444,104 @@ class EndToEnd03GTests(unittest.TestCase):
         wrong["python"] = "0.0.0"
         with self.assertRaises(runner.ExecutionError):
             fixture.execute(actual_environment=wrong)
+
+    def _assert_prospective_authorization_binding_contract(self):
+        fixture = ProspectiveAuthorizationFixture(self.root)
+
+        with self.subTest(contract_case="01-correct-field-and-phrase-accepted"):
+            fixture.validate()
+
+        rejected = []
+
+        approval = copy.deepcopy(fixture.base_approval)
+        approval["approval_phrase"] = runner.PROSPECTIVE_APPROVAL_PHRASE_TEMPLATE
+        rejected.append(("02-literal-brace-placeholder", approval, fixture.base_manifest))
+
+        approval = copy.deepcopy(fixture.base_approval)
+        approval["approval_phrase"] = (
+            "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF "
+            "LCI-CAUSAL-TURNOVER-PRESEAL-03G "
+            "FINAL_SEAL_SHA256=<FINAL_SEAL_SHA256>"
+        )
+        rejected.append(("03-literal-angle-placeholder", approval, fixture.base_manifest))
+
+        approval = copy.deepcopy(fixture.base_approval)
+        approval["approval_phrase"] = runner.PROSPECTIVE_APPROVAL_PHRASE_TEMPLATE.replace(
+            runner.FINAL_SEAL_PLACEHOLDER,
+            "0" * 64,
+        )
+        rejected.append(("04-wrong-hash-in-phrase", approval, fixture.base_manifest))
+
+        approval = copy.deepcopy(fixture.base_approval)
+        approval["final_seal_sha256"] = "0" * 64
+        rejected.append(("05-correct-phrase-wrong-field", approval, fixture.base_manifest))
+
+        approval = copy.deepcopy(fixture.base_approval)
+        approval["approval_phrase"] += "!"
+        rejected.append(("06-correct-field-wrong-phrase", approval, fixture.base_manifest))
+
+        manifest = copy.deepcopy(fixture.base_manifest)
+        manifest["authorization"]["approval_phrase_template"] = (
+            "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF "
+            "LCI-CAUSAL-TURNOVER-PRESEAL-03G FINAL_SEAL_SHA256="
+        )
+        rejected.append(("07-missing-placeholder", fixture.base_approval, manifest))
+
+        manifest = copy.deepcopy(fixture.base_manifest)
+        manifest["authorization"]["approval_phrase_template"] += runner.FINAL_SEAL_PLACEHOLDER
+        rejected.append(("08-duplicate-placeholder", fixture.base_approval, manifest))
+
+        approval = copy.deepcopy(fixture.base_approval)
+        approval["final_seal_sha256"] = fixture.seal_sha.upper()
+        rejected.append(("09-uppercase-hash", approval, fixture.base_manifest))
+
+        for length in (63, 65):
+            approval = copy.deepcopy(fixture.base_approval)
+            approval["final_seal_sha256"] = "a" * length
+            rejected.append((f"10-{length}-character-hash", approval, fixture.base_manifest))
+
+        for suffix, phrase in (
+            ("whitespace", fixture.base_approval["approval_phrase"].replace(" OF ", "  OF ", 1)),
+            ("case", fixture.base_approval["approval_phrase"].replace("AUTHORIZE", "Authorize", 1)),
+        ):
+            approval = copy.deepcopy(fixture.base_approval)
+            approval["approval_phrase"] = phrase
+            rejected.append((f"11-modified-{suffix}", approval, fixture.base_manifest))
+
+        for name, approval, manifest in rejected:
+            with self.subTest(contract_case=name):
+                with self.assertRaises(runner.ExecutionError):
+                    fixture.validate(approval=approval, manifest=manifest)
+
+        invalid = copy.deepcopy(fixture.base_approval)
+        invalid["approval_phrase"] = runner.PROSPECTIVE_APPROVAL_PHRASE_TEMPLATE
+        raw.atomic_write_json(fixture.auth_path, invalid, overwrite=True)
+        files_before = sorted(
+            str(path.relative_to(fixture.dir)) for path in fixture.dir.rglob("*") if path.is_file()
+        )
+        with self.subTest(contract_case="12-failure-before-engine-initialization"):
+            with mock.patch.object(runner.importlib, "import_module") as engine_import:
+                with mock.patch.object(runner.ledger, "initialize") as ledger_initialize:
+                    with self.assertRaises(runner.ExecutionError):
+                        runner.execute_pipeline(
+                            fixture.manifest_path,
+                            fixture.seal_path,
+                            fixture.auth_path,
+                            actual_environment=runner.runtime_environment(),
+                        )
+                    engine_import.assert_not_called()
+                    ledger_initialize.assert_not_called()
+
+        with self.subTest(contract_case="13-no-permission-ledger-or-run-directory"):
+            self.assertFalse(fixture.run_dir.exists())
+            files_after = sorted(
+                str(path.relative_to(fixture.dir))
+                for path in fixture.dir.rglob("*")
+                if path.is_file()
+            )
+            self.assertEqual(files_after, files_before)
+            self.assertFalse(any("permission" in path.lower() for path in files_after))
+            self.assertFalse(any("ledger" in path.lower() for path in files_after))
 
     def _reseal_and_reauthorize(self, fixture: Fixture):
         manifest = json.loads(fixture.manifest_path.read_text())

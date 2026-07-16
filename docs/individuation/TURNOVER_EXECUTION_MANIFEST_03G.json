@@ -2,7 +2,7 @@
   "schema": "LCI-TURNOVER-EXECUTION-MANIFEST-03G-v1",
   "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-03G",
   "mode": "PROSPECTIVE",
-  "status": "NOT_SEALED_NOT_AUTHORIZED_NOT_EXECUTED",
+  "status": "AUTHORIZATION_BINDING_REPAIRED_NOT_SEALED_NOT_AUTHORIZED_NOT_EXECUTED",
   "watermark": "PROSPECTIVE - SCIENTIFIC INTERPRETATION ONLY AFTER VALID SEAL, HUMAN AUTHORIZATION, AND CERTIFIED EXECUTION",
   "canonical_run_directory": "results/LCI-TURNOVER-PROSPECTIVE-03G",
   "seed_plan": {
@@ -19,8 +19,9 @@
     "stop": "18 valid original worlds or seed 54096"
   },
   "authorization": {
-    "schema": "LCI-TURNOVER-HUMAN-AUTHORIZATION-03G-v1",
-    "required_phrase": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03G FINAL_SEAL_SHA256=<FINAL_SEAL_SHA256>",
+    "schema": "LCI-TURNOVER-HUMAN-AUTHORIZATION-03G-v2",
+    "approval_phrase_template": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03G FINAL_SEAL_SHA256={final_seal_sha256}",
+    "allowed_placeholder": "{final_seal_sha256}",
     "template": "docs/individuation/TURNOVER_AUTHORIZATION_TEMPLATE_03G.json"
   },
   "analysis": {
@@ -52,9 +53,9 @@
   },
   "protected_files": {
     ".gitattributes": {"git_blob": "07191d1663193f75605fad6b6f0f9b90f24b9160", "sha256": "5489402203553800f188b27026b9ce3737e3cfd9781f6067607f624d3913646b"},
-    "docs/individuation/PRESEAL_CANDIDATE_03G.json": {"git_blob": "f84d5b28f8a15305eeae47761a4cd6d13b78a155", "sha256": "daf2491df45a257eef76e46ec7a4f8cdf3398394364589ef149d3cb6f620b088"},
-    "docs/individuation/TURNOVER_AUTHORIZATION_TEMPLATE_03G.json": {"git_blob": "860ae5e8a8beecad3a1d2b8df9fcf622bb84e787", "sha256": "86e95c37b2ece76f9dcd11dd18ca3bd6c60bea66ba1acf5eeeba72be37d78572"},
-    "docs/individuation/TURNOVER_CANONICAL_INDEX_03G.json": {"git_blob": "64d07f2d2348b0174577927e82e83c1f423b92ba", "sha256": "597aa8354f22fadd4ab725bdfa4cc519fe07e710676b5678d68d6c6481e7d9fd"},
+    "docs/individuation/PRESEAL_CANDIDATE_03G.json": {"git_blob": "0a888ae5ebd8523f37677840ea58c75cdc91a133", "sha256": "bd31d5e933af75abe1010886fb913379b4e37623c51f1ec7033519fed8625fdb"},
+    "docs/individuation/TURNOVER_AUTHORIZATION_TEMPLATE_03G.json": {"git_blob": "50c215877969108861bed6ab4064da672b307c31", "sha256": "51c571f5686a0dc4d11636a1d7ae848ffa17a2449847742c37f93480a8b136c2"},
+    "docs/individuation/TURNOVER_CANONICAL_INDEX_03G.json": {"git_blob": "445a77662ee1a768297031f37e3eb16f4e371c1f", "sha256": "f84a18fce89b1240b1b3391d361d3c2122ca191115246ce9332629aae6f97475"},
     "docs/individuation/TURNOVER_DECISION_TREE_03G.json": {"git_blob": "1c6a177c6b78bbaeb467575900351dc01e771b59", "sha256": "44a9ec2b3d359f0aed7048c8857df5cc93410466dcacaa21ba772e54c753c4e1"},
     "docs/individuation/TURNOVER_ENVIRONMENT_03G.md": {"git_blob": "c9f04cef2f27655a7d5bd761531f7ceba6df33ff", "sha256": "cefd1ea7e0098ba03250415841ac4c059b3e01d65831c5d0a71a6b8943e3070a"},
     "docs/individuation/TURNOVER_ENVIRONMENT_LOCK_03G.txt": {"git_blob": "3f04127d6895b6a1a2583a416e2be01856b562d8", "sha256": "bdffda614e9fb1062d301a6c25b13737362f54c621a90c6d8d1f52c2271f4f4f"},
@@ -71,7 +72,7 @@
     "experiments/individuation/material_tracer.py": {"git_blob": "cf72a13efd78ceb7e6d1d61291b2d3b930b4e0dd", "sha256": "32b73f7769e36ff4fa69d62f63bc9a5afa0bd0ad2ff86bb0822b042725aa9815"},
     "experiments/individuation/nonmerging_confirm.py": {"git_blob": "b3af9dbfdaf1b0150006c4822976f9f0b1a51d97", "sha256": "9ca619eaed2b5b560acaed06fe2cee8b9339d2299d0d1320d79a0cd897510655"},
     "experiments/individuation/test_bijective_tracker.py": {"git_blob": "710336e11875af570c3d32a29e844781aecbf8e1", "sha256": "e08f3173c84123d9b7d76e45a18f2d612d9ebfd430ba2bfbec37fa44f9eee0a9"},
-    "experiments/individuation/test_turnover_end_to_end_03g.py": {"git_blob": "39f54d91499e40a9aab980b43ae8fb0cc9444957", "sha256": "fcfd6ee29ffbd2edf7ccb91b3af663b49382f6ec9126e927894751914424455b"},
+    "experiments/individuation/test_turnover_end_to_end_03g.py": {"git_blob": "dd0341fa335134095a4f3fddce9412e6a955d9a0", "sha256": "88fb4f3b3491e5579a49ac444216cd35ee823f3e6088363ada918689181bc4a7"},
     "experiments/individuation/test_turnover_preseal_03c.py": {"git_blob": "97920c46ee188ccfdcef8726fb23cd18a4956dc9", "sha256": "c7e44ade997f59274b391a570e2506787daea20131172a09b9bbef33dc33b562"},
     "experiments/individuation/test_turnover_preseal_03e.py": {"git_blob": "6be511302df931600456bdb03fa83032e8bad036", "sha256": "9097e38ccd6c181b983580130c65dcc7fbb2f43ff274fcea24630de0a99319a7"},
     "experiments/individuation/test_turnover_tracer.py": {"git_blob": "9ba680221acfc77248fffdc94e0f74cb11852556", "sha256": "c82ca315757f7b63ec3cdd3a653a9aa50f8eb2b5f75dc9b12beef916c284052a"},
@@ -82,7 +83,7 @@
     "experiments/individuation/turnover_ledger_03g.py": {"git_blob": "7496f9871f1eeda957d2b50782c9396718d1fdb6", "sha256": "91b9f3e9bfff3840f4e2c7034e155134618c324b0d87f4a0c6022efb8e802eab"},
     "experiments/individuation/turnover_power_regen.py": {"git_blob": "703550fa78ba78225418a9ab7ec2be50648f13c8", "sha256": "c727586c5bb9c30ce6057478601fd83017ee3608942cc25eb1d3715aedffc6a4"},
     "experiments/individuation/turnover_raw_schema_03g.py": {"git_blob": "90631d24d783e20f74bbc9bd6d8d034e77f7bebc", "sha256": "59e4b50f05a6f96f99f444dfeae41726961c5d00c8d87ba9098cf77a94b97fb7"},
-    "experiments/individuation/turnover_runner_03g.py": {"git_blob": "74aa24de527280aa7652837923faa4c2ae907708", "sha256": "32b848716bb5c605581c9b1397471e063e9eac4446477ffd10fc221d2af9f9bd"},
+    "experiments/individuation/turnover_runner_03g.py": {"git_blob": "6444fcf8d702da9018472a630f7b8bd86a6d55d1", "sha256": "48098f660221d2c5e7dfa5b7d3c31b6847d11c2876f303c6fdd54f04ccccaba3"},
     "experiments/individuation/turnover_scope_features.py": {"git_blob": "d36ac3622a6939bc321ac3d3bb3a63b71a9e513b", "sha256": "3b485d4fd7d3a6d093ed6bd256314caf955b8991645c4631925def1a2cdcc1f5"},
     "experiments/individuation/turnover_scope_features_03e.py": {"git_blob": "34f1cc4d48804876aecee0a1f13ddeee01118df2", "sha256": "b559910490f92fc756ed5fc375416f3d520c8f5a07bdcdd573d0c343af134535"},
     "experiments/individuation/turnover_scope_features_03g.py": {"git_blob": "6734e90cdc7344bf8f6dd77b6213dd8bb220adae", "sha256": "7bcd05c52094aca6dbd27282b53e93a381e044b7a3229e6e1972fe8ad55d6742"},

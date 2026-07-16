@@ -8,6 +8,7 @@ import importlib.metadata
 import json
 import os
 import platform
+import re
 import socket
 import subprocess
 import sys
@@ -33,10 +34,46 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 PRODUCTION_MANIFEST = ROOT / "docs/individuation/TURNOVER_EXECUTION_MANIFEST_03G.json"
 PRODUCTION_SEAL = ROOT / "docs/individuation/FINAL_SEAL_MANIFEST_03G.json"
+FINAL_SEAL_PLACEHOLDER = "{final_seal_sha256}"
+PROSPECTIVE_APPROVAL_PHRASE_TEMPLATE = (
+    "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF "
+    "LCI-CAUSAL-TURNOVER-PRESEAL-03G "
+    "FINAL_SEAL_SHA256={final_seal_sha256}"
+)
+LOWERCASE_SHA256 = re.compile(r"[0-9a-f]{64}\Z")
 
 
 class ExecutionError(RuntimeError):
     pass
+
+
+def _canonical_seal_sha256(seal: dict) -> str:
+    return hashlib.sha256(canonical_bytes(seal) + b"\n").hexdigest()
+
+
+def _prospective_phrase_template(manifest: dict) -> str:
+    authorization = manifest.get("authorization")
+    if not isinstance(authorization, dict):
+        raise ExecutionError("execution manifest has no authorization contract")
+    template = authorization.get("approval_phrase_template")
+    if not isinstance(template, str):
+        raise ExecutionError("authorization phrase template is absent")
+    if template.count(FINAL_SEAL_PLACEHOLDER) != 1:
+        raise ExecutionError("authorization phrase template must contain exactly one allowed placeholder")
+    if template.count("{") != 1 or template.count("}") != 1:
+        raise ExecutionError("authorization phrase template contains an unrecognized placeholder")
+    if template != PROSPECTIVE_APPROVAL_PHRASE_TEMPLATE:
+        raise ExecutionError("authorization phrase template differs from the frozen exact template")
+    return template
+
+
+def _expected_prospective_phrase(manifest: dict, final_seal_sha256: str) -> str:
+    if LOWERCASE_SHA256.fullmatch(final_seal_sha256) is None:
+        raise ExecutionError("final_seal_sha256 must be exactly 64 lowercase hexadecimal characters")
+    return _prospective_phrase_template(manifest).replace(
+        FINAL_SEAL_PLACEHOLDER,
+        final_seal_sha256,
+    )
 
 
 def _git_blob(path: Path, repo_root: Path) -> str:
@@ -126,8 +163,11 @@ def verify_seal_and_manifest(
     seal_path = seal_path.resolve()
     if not seal_path.exists():
         raise ExecutionError(f"seal is absent: {seal_path}")
-    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    seal = json.loads(seal_path.read_text(encoding="utf-8"))
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        seal = json.loads(seal_path.read_text(encoding="utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ExecutionError("manifest or seal is not valid UTF-8 JSON") from exc
     if manifest.get("schema") != "LCI-TURNOVER-EXECUTION-MANIFEST-03G-v1":
         raise ExecutionError("wrong 03G execution-manifest schema")
     if seal.get("schema") != "LCI-TURNOVER-SEAL-03G-v1":
@@ -167,7 +207,11 @@ def verify_seal_and_manifest(
         raise ExecutionError("environment lock hash mismatch")
     if seal.get("environment_lock_sha256") != manifest["environment"]["lock_sha256"]:
         raise ExecutionError("seal environment lock mismatch")
-    seal_sha = sha256_file(seal_path)
+    seal_sha = (
+        _canonical_seal_sha256(seal)
+        if manifest["mode"] == "PROSPECTIVE"
+        else sha256_file(seal_path)
+    )
     return manifest, seal, seal_sha, manifest_blob
 
 
@@ -188,7 +232,7 @@ def validate_authorization(
     canonical_run_dir: Path,
 ) -> None:
     expected_schema = (
-        "LCI-TURNOVER-HUMAN-AUTHORIZATION-03G-v1"
+        "LCI-TURNOVER-HUMAN-AUTHORIZATION-03G-v2"
         if manifest["mode"] == "PROSPECTIVE"
         else "LCI-TURNOVER-DEV-AUTHORIZATION-03G-v1"
     )
@@ -197,11 +241,27 @@ def validate_authorization(
     if manifest["mode"] == "PROSPECTIVE":
         if approval.get("authorized") is not True or approval.get("prospective_authorized") is not True:
             raise ExecutionError("prospective execution is not authorized")
+        if approval.get("one_execution_only") is not True:
+            raise ExecutionError("prospective authorization is not limited to one execution")
+        final_seal_sha256 = approval.get("final_seal_sha256")
+        if not isinstance(final_seal_sha256, str):
+            raise ExecutionError("authorization field is required: final_seal_sha256")
+        expected_phrase = _expected_prospective_phrase(manifest, seal_sha)
+        if LOWERCASE_SHA256.fullmatch(final_seal_sha256) is None:
+            raise ExecutionError(
+                "final_seal_sha256 must be exactly 64 lowercase hexadecimal characters"
+            )
+        if final_seal_sha256 != seal_sha:
+            raise ExecutionError("authorization binding mismatch: final_seal_sha256")
+        if approval.get("approval_phrase") != expected_phrase:
+            raise ExecutionError("authorization binding mismatch: approval_phrase")
+        required_identity_fields = ("authorization_id", "approver", "authorized_at_utc")
     else:
         if approval.get("dev_authorized") is not True or approval.get("prospective_authorized") is not False:
             raise ExecutionError("DEV fixture cannot authorize prospective execution")
+        expected_phrase = manifest["authorization"]["required_phrase"]
+        required_identity_fields = ("authorization_id", "approved_by", "approved_at_utc")
     expected = {
-        "seal_sha256": seal_sha,
         "execution_manifest_sha256": manifest_sha,
         "execution_manifest_git_blob": manifest_blob,
         "runner_git_blob": manifest["protected_files"][
@@ -213,12 +273,13 @@ def validate_authorization(
         "environment_lock_sha256": manifest["environment"]["lock_sha256"],
         "family_sha256": family_sha256(manifest),
         "canonical_run_directory": manifest["canonical_run_directory"],
-        "approval_phrase": manifest["authorization"]["required_phrase"],
     }
+    if manifest["mode"] != "PROSPECTIVE":
+        expected.update({"seal_sha256": seal_sha, "approval_phrase": expected_phrase})
     for field, value in expected.items():
         if approval.get(field) != value:
             raise ExecutionError(f"authorization binding mismatch: {field}")
-    for field in ("authorization_id", "approved_by", "approved_at_utc"):
+    for field in required_identity_fields:
         if not str(approval.get(field, "")).strip():
             raise ExecutionError(f"authorization field is required: {field}")
 
@@ -306,11 +367,17 @@ def execute_pipeline(
         manifest_blob,
         run_dir,
     )
+    if manifest["mode"] == "PROSPECTIVE":
+        approved_by = approval["approver"]
+        approved_at_utc = approval["authorized_at_utc"]
+    else:
+        approved_by = approval["approved_by"]
+        approved_at_utc = approval["approved_at_utc"]
     primary, reserve, minimum = _family(manifest)
     binding = {
         "authorization_id": approval["authorization_id"],
-        "approved_by": approval["approved_by"],
-        "approved_at_utc": approval["approved_at_utc"],
+        "approved_by": approved_by,
+        "approved_at_utc": approved_at_utc,
         "seal_sha256": seal_sha,
         "execution_manifest_sha256": manifest_sha,
         "execution_manifest_git_blob": manifest_blob,
@@ -426,9 +493,7 @@ def static_selfcheck(manifest_path: Path = PRODUCTION_MANIFEST) -> None:
     assert primary == list(range(54001, 54051))
     assert reserve == list(range(54051, 54097))
     assert minimum == 18
-    assert manifest["authorization"]["required_phrase"].endswith(
-        "FINAL_SEAL_SHA256=<FINAL_SEAL_SHA256>"
-    )
+    assert _prospective_phrase_template(manifest) == PROSPECTIVE_APPROVAL_PHRASE_TEMPLATE
     tree_path = ROOT / manifest["analysis"]["decision_tree"]
     analyzer.validate_decision_tree(json.loads(tree_path.read_text(encoding="utf-8")))
     print("03G STATIC SELF-CHECK PASS - complete runner path present; no engine imported; no seed run")

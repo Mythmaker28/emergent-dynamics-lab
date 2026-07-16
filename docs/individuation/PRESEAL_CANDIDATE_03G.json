@@ -1,10 +1,18 @@
 {
   "schema": "LCI-TURNOVER-PRESEAL-CANDIDATE-03G-v1",
   "mission": "LCI-TURNOVER-END-TO-END-IMPLEMENTATION-REPAIR-03G",
-  "status": "IMPLEMENTED_NOT_SEALED_NOT_AUTHORIZED_NOT_PROSPECTIVELY_EXECUTED",
+  "status": "IMPLEMENTED_AUTHORIZATION_BINDING_REPAIRED_NOT_SEALED_NOT_AUTHORIZED_NOT_PROSPECTIVELY_EXECUTED",
   "exact_parent": "23b6e9b3c667705158af833c1cf8458a03c8fb66",
   "fresh_audit": "e18024b098f20dda0125a9010703a968e49cb171",
   "fresh_audit_verdict": "NOT READY - REPAIR REQUIRED",
+  "authorization_binding_repair": {
+    "parent": "7f005bca81e1a8bbd03ca9aa8f7d114931a686a9",
+    "invalidated_seal_audit": "def070685bf9833a6571766f91c5c7d8a2f8e787",
+    "blocker": "4bf65651d7b5970c6d21f7369f6fc6386c49449f",
+    "retired_seal_sha256": "536cf0351bd65e6fc7efafb2d4a5acc86b99e244abe69c1bbcd8baad04022f62",
+    "retired_seal_status": "RETIRED — AUTHORIZATION TEMPLATE BINDING DEFECT",
+    "report": "docs/individuation/AUTHORIZATION_BINDING_REPAIR_03I.md"
+  },
   "canonical_index": "docs/individuation/TURNOVER_CANONICAL_INDEX_03G.json",
   "protocol": "docs/individuation/TURNOVER_PROTOCOL_03G.md",
   "execution_manifest": "docs/individuation/TURNOVER_EXECUTION_MANIFEST_03G.json",
@@ -25,5 +33,5 @@
   "final_seal": null,
   "valid_human_authorization": null,
   "prospective_seeds_executed": [],
-  "recommendation": "READY_FOR_FINAL_REAUDIT_AFTER_ALL_COMMITTED_TESTS_AND_DEV_SMOKE_VERIFY"
+  "recommendation": "READY_FOR_NARROW_REAUDIT_AFTER_AUTHORIZATION_BINDING_REGRESSION_VERIFY"
 }

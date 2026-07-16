@@ -1,7 +1,7 @@
 {
   "schema": "LCI-TURNOVER-CANONICAL-INDEX-03G-v1",
   "authoritative_version": "03G",
-  "status": "NOT_SEALED_NOT_AUTHORIZED",
+  "status": "AUTHORIZATION_BINDING_REPAIRED_NOT_SEALED_NOT_AUTHORIZED",
   "canonical": {
     "protocol": "docs/individuation/TURNOVER_PROTOCOL_03G.md",
     "preseal_candidate": "docs/individuation/PRESEAL_CANDIDATE_03G.json",
@@ -18,7 +18,15 @@
     "power_regenerator": "experiments/individuation/turnover_power_regen.py",
     "seed_manifest": "docs/individuation/TURNOVER_SEED_MANIFEST_03G.md",
     "authorization_template": "docs/individuation/TURNOVER_AUTHORIZATION_TEMPLATE_03G.json",
+    "authorization_binding_repair": "docs/individuation/AUTHORIZATION_BINDING_REPAIR_03I.md",
+    "authorization_binding_regression": "docs/individuation/AUTHORIZATION_BINDING_REGRESSION_03I.md",
+    "authorization_binding_verdict_fr": "docs/individuation/AUTHORIZATION_BINDING_VERDICT_03I_FR.md",
     "tests": "experiments/individuation/test_turnover_end_to_end_03g.py"
+  },
+  "retired_seal": {
+    "sha256": "536cf0351bd65e6fc7efafb2d4a5acc86b99e244abe69c1bbcd8baad04022f62",
+    "status": "RETIRED — AUTHORIZATION TEMPLATE BINDING DEFECT",
+    "historical_audit_commit": "def070685bf9833a6571766f91c5c7d8a2f8e787"
   },
   "superseded_non_authoritative": {
     "03C": [
@@ -37,5 +45,5 @@
       "experiments/individuation/turnover_statistics_03e.py"
     ]
   },
-  "rule": "Only the 03G runner may consume a future 03G seal and authorization. Superseded runners are historical and must not be used for prospective execution."
+  "rule": "Only the repaired 03G runner may consume a future freshly audited 03G seal and an exact hash-bound v2 authorization. Superseded runners and the retired seal are historical and must not be used for prospective execution."
 }
