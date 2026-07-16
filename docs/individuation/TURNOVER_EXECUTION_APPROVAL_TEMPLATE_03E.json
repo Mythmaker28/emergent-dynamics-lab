@@ -1,0 +1,23 @@
+{
+  "schema": "LCI-TURNOVER-HUMAN-AUTHORIZATION-03E-v1",
+  "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-03E",
+  "status": "INVALID_NOT_AUTHORIZED_NO_FINAL_SEAL",
+  "authorized": false,
+  "one_execution_only": false,
+  "authorization_id": "",
+  "approved_by": "",
+  "approved_at_utc": "",
+  "execution_manifest_git_blob": "SET_BY_FRESH_SEALING_AGENT_TO_MANIFEST_03E_BLOB",
+  "final_seal_manifest_git_blob": null,
+  "final_seal_sha256": null,
+  "approval_phrase_template": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03E FINAL_SEAL_SHA256=<FINAL_SEAL_SHA256>",
+  "approval_phrase": "",
+  "seed_family": {"primary": "54001-54050", "reserve": "54051-54096", "hard_cap": 96, "minimum_valid_worlds": 18},
+  "invalid_reasons": [
+    "This repair (03E) does NOT create FINAL_SEAL_MANIFEST_03E.json; a fresh independent sealing+audit agent must.",
+    "No final-seal Git blob or SHA-256 exists yet, so no valid approval can bind one.",
+    "The runner refuses execution until FINAL_SEAL_MANIFEST_03E.json exists and the approval binds its sha256.",
+    "The committed template is deliberately invalid and must not be edited into an authorization by this mission."
+  ],
+  "note": "Binding is to the FINAL_SEAL sha256 AND the execution-manifest blob AND the frozen approval phrase; a one-use authorization is consumed by the hash-chained execution ledger (turnover_execution_ledger.py)."
+}

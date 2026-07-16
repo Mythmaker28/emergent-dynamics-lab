@@ -1,0 +1,11 @@
+# LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03E — authoritative turnover execution environment (frozen)
+# This lock governs the TURNOVER prospective pipeline ONLY. It is intentionally SEPARATE from the repository-level
+# Dockerfile/pyproject, which serve the V4 paper (Set-Valued Metrology) reproduction and pin different versions
+# (numpy 2.1.3, sympy) for a different pipeline. Determinism is guaranteed only on the tested platform below.
+python==3.11.15
+numpy==2.2.6
+scipy==1.15.3
+matplotlib==3.10.9
+platform==Linux-x86_64
+determinism==byte-identical on this exact interpreter+BLAS; not guaranteed across platforms
+install==python3.11 -m venv venv && venv/bin/pip install numpy==2.2.6 scipy==1.15.3 matplotlib==3.10.9
