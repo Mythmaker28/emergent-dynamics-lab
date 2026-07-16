@@ -1,5 +1,21 @@
 # Project State
 
+## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER-PRESEAL-03G PROSPECTIVE 001 (2026-07-17)
+
+The single hash-bound human authorization was consumed on branch
+`codex/lci-turnover-prospective-03g-001`. The canonical runner completed
+exactly primary seeds `54001-54050` in ascending order, with 21 valid original
+worlds; the minimum of 18 was met and no reserve seed ran. The 108-entry ledger
+verified at terminal state `CERTIFIED`.
+
+Frozen outcome: **B — causal feeding effect without ownership**.
+`FEASIBILITY`, `G_OWN_PERM`, and `G_CAUSAL` pass; `G_LOCAL_EXCLUSION` fails;
+`DISTRIBUTED_ENV` is false. Authorized interpretation: a specific local causal
+feeding effect survives deep turnover, but the target's own graded history is
+not established as locally owned. This is a passive local causal remnant and
+not individual memory. Active reconstruction was not observed. The
+authorization is consumed; no additional prospective execution is authorized.
+
 ## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER-PRESEAL-03G (2026-07-16)
 
 On branch `repair/lci-causal-turnover-end-to-end-03g`, exact parent

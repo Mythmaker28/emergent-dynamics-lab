@@ -2485,3 +2485,27 @@ and is not the sealed prospective execution.
 `6d0bed67339c1b422877b8bfaae6861669597a93`; protected `archive/main-f3921a4` remains the distinct archived lineage
 at `f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77`. Neither ref is modified. No final seal, valid human authorization,
 or `54xxx` execution is created by this decision.
+
+## D-088 — Turnover 03G prospective execution certifies Outcome B without ownership
+
+**Date:** 2026-07-17
+
+**Decision:** Consume the single human authorization bound to final seal
+`cdf7277a00e3017a1389e9334d983364b9aa0af88c646cdec2999e6ad88757fd`
+and accept the frozen executable A-F tree's certified Outcome B. The canonical
+runner completed primary seeds `54001-54050` exactly once and in order. It
+obtained 21 valid original worlds, above the frozen minimum of 18, so no reserve
+seed was executed.
+
+**Scientific interpretation:** `G_OWN_PERM` and `G_CAUSAL` pass, while
+`G_LOCAL_EXCLUSION` fails and `DISTRIBUTED_ENV` is false. A specific local
+causal feeding effect survives deep turnover, but the target's own graded
+history is not established as locally owned. This is a passive local causal
+remnant and not individual memory. No identity, ownership, individuation, life,
+or active-reconstruction claim is authorized.
+
+**Execution boundary:** the 108-entry ledger is terminal `CERTIFIED` and
+verifies at tip
+`0d579d0fa40fd19afe7bfc26140133fc9c57de2b656a7606aa5a5bd8591791aa`.
+The one authorization is consumed. No additional prospective execution is
+authorized.
