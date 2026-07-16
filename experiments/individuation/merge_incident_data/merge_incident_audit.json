@@ -1,0 +1,531 @@
+{
+  "mission": "LCI-CAUSAL-MERGE-INCIDENT-01",
+  "phase": "1 raw audit (POST HOC)",
+  "source_raw": "experiments/individuation/causal_confirmation_raw.json (b415503)",
+  "grid": {
+    "N": 64,
+    "cells": 4096,
+    "rho_threshold": 0.3,
+    "min_cells": 12
+  },
+  "eligible_worlds": 13,
+  "seeds": [
+    52001,
+    52004,
+    52005,
+    52006,
+    52008,
+    52010,
+    52011,
+    52012,
+    52013,
+    52017,
+    52018,
+    52021,
+    52022
+  ],
+  "headline_reproduction": {
+    "eff_own_worldCI": [
+      1.6279965271258443,
+      2.02658267819689,
+      2.4834719732273376
+    ],
+    "worlds_pos": 13,
+    "droplets_pos": 39,
+    "SNR": 8.93448301161388,
+    "eff_fixed_worldCI": [
+      0.36068611369253556,
+      0.5275757720080734,
+      0.7289724849250536
+    ],
+    "fixed_worlds_pos": 13,
+    "ablation_ratio": 0.0,
+    "neigh_ratio": 0.10389870735838663,
+    "sham_ratio": 0.14809757095047596,
+    "tracked_over_fixed_inflation": 4.796177916618511
+  },
+  "merge_signature": {
+    "intact_identical_pairs": 19,
+    "intact_fused_worlds": [
+      52001,
+      52004,
+      52005,
+      52006,
+      52010,
+      52011,
+      52012,
+      52013,
+      52017,
+      52021,
+      52022
+    ],
+    "n_fused_worlds": 11,
+    "all_three_collapsed_worlds": [
+      52005,
+      52010,
+      52012,
+      52017
+    ],
+    "nonfused_worlds": [
+      52008,
+      52018
+    ],
+    "per_branch_identical_pairs": {
+      "intact": 19,
+      "sham": 19,
+      "ablate": 14,
+      "inert": 19,
+      "intact_res": 20,
+      "intact_long": 8,
+      "nodrive": 15
+    },
+    "per_branch_fused_worldcount": {
+      "intact": 11,
+      "sham": 11,
+      "ablate": 10,
+      "inert": 11,
+      "intact_res": 12,
+      "intact_long": 6,
+      "nodrive": 9
+    },
+    "fixed_mask_identical_pairs": 0,
+    "fixed_mask_collapsed": false
+  },
+  "growth": {
+    "median": 19.42105263157895,
+    "min": 1.5333333333333334,
+    "max": 42.84444444444444,
+    "max_grid_coverage": 0.51806640625
+  },
+  "per_world": [
+    {
+      "seed": 52001,
+      "n_detected": 38,
+      "init_sizes": [
+        73,
+        58,
+        56
+      ],
+      "final_sizes": [
+        199,
+        2122,
+        2122
+      ],
+      "unique_final_components": 2,
+      "identical_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "fused": true,
+      "all_three_collapsed": false,
+      "max_grid_coverage": 0.51806640625,
+      "growth_min": 2.7260273972602738,
+      "growth_max": 37.892857142857146,
+      "min_target_separation": 29.659868861992873
+    },
+    {
+      "seed": 52004,
+      "n_detected": 36,
+      "init_sizes": [
+        92,
+        64,
+        47
+      ],
+      "final_sizes": [
+        631,
+        1260,
+        1260
+      ],
+      "unique_final_components": 2,
+      "identical_pairs": [
+        [
+          1,
+          2
+        ]
+      ],
+      "fused": true,
+      "all_three_collapsed": false,
+      "max_grid_coverage": 0.3076171875,
+      "growth_min": 6.858695652173913,
+      "growth_max": 26.80851063829787,
+      "min_target_separation": 25.248737740281022
+    },
+    {
+      "seed": 52005,
+      "n_detected": 36,
+      "init_sizes": [
+        67,
+        62,
+        60
+      ],
+      "final_sizes": [
+        1596,
+        1596,
+        1596
+      ],
+      "unique_final_components": 1,
+      "identical_pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "fused": true,
+      "all_three_collapsed": true,
+      "max_grid_coverage": 0.3896484375,
+      "growth_min": 23.82089552238806,
+      "growth_max": 26.6,
+      "min_target_separation": 25.30268674755748
+    },
+    {
+      "seed": 52006,
+      "n_detected": 35,
+      "init_sizes": [
+        96,
+        71,
+        46
+      ],
+      "final_sizes": [
+        1290,
+        590,
+        1290
+      ],
+      "unique_final_components": 2,
+      "identical_pairs": [
+        [
+          0,
+          2
+        ]
+      ],
+      "fused": true,
+      "all_three_collapsed": false,
+      "max_grid_coverage": 0.31494140625,
+      "growth_min": 8.309859154929578,
+      "growth_max": 28.043478260869566,
+      "min_target_separation": 24.386604091625607
+    },
+    {
+      "seed": 52008,
+      "n_detected": 31,
+      "init_sizes": [
+        88,
+        74,
+        49
+      ],
+      "final_sizes": [
+        1060,
+        129,
+        77
+      ],
+      "unique_final_components": 3,
+      "identical_pairs": [],
+      "fused": false,
+      "all_three_collapsed": false,
+      "max_grid_coverage": 0.2587890625,
+      "growth_min": 1.5714285714285714,
+      "growth_max": 12.045454545454545,
+      "min_target_separation": 27.282042090768535
+    },
+    {
+      "seed": 52010,
+      "n_detected": 39,
+      "init_sizes": [
+        55,
+        49,
+        45
+      ],
+      "final_sizes": [
+        1928,
+        1928,
+        1928
+      ],
+      "unique_final_components": 1,
+      "identical_pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "fused": true,
+      "all_three_collapsed": true,
+      "max_grid_coverage": 0.470703125,
+      "growth_min": 35.054545454545455,
+      "growth_max": 42.84444444444444,
+      "min_target_separation": 25.156898995396936
+    },
+    {
+      "seed": 52011,
+      "n_detected": 32,
+      "init_sizes": [
+        89,
+        76,
+        64
+      ],
+      "final_sizes": [
+        1476,
+        1476,
+        653
+      ],
+      "unique_final_components": 2,
+      "identical_pairs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "fused": true,
+      "all_three_collapsed": false,
+      "max_grid_coverage": 0.3603515625,
+      "growth_min": 10.203125,
+      "growth_max": 19.42105263157895,
+      "min_target_separation": 27.284266971272732
+    },
+    {
+      "seed": 52012,
+      "n_detected": 31,
+      "init_sizes": [
+        88,
+        74,
+        48
+      ],
+      "final_sizes": [
+        2005,
+        2005,
+        2005
+      ],
+      "unique_final_components": 1,
+      "identical_pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "fused": true,
+      "all_three_collapsed": true,
+      "max_grid_coverage": 0.489501953125,
+      "growth_min": 22.78409090909091,
+      "growth_max": 41.770833333333336,
+      "min_target_separation": 25.536285027266842
+    },
+    {
+      "seed": 52013,
+      "n_detected": 30,
+      "init_sizes": [
+        85,
+        84,
+        75
+      ],
+      "final_sizes": [
+        894,
+        894,
+        868
+      ],
+      "unique_final_components": 2,
+      "identical_pairs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "fused": true,
+      "all_three_collapsed": false,
+      "max_grid_coverage": 0.21826171875,
+      "growth_min": 10.51764705882353,
+      "growth_max": 11.573333333333334,
+      "min_target_separation": 25.45390305613695
+    },
+    {
+      "seed": 52017,
+      "n_detected": 37,
+      "init_sizes": [
+        51,
+        50,
+        48
+      ],
+      "final_sizes": [
+        1463,
+        1463,
+        1463
+      ],
+      "unique_final_components": 1,
+      "identical_pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "fused": true,
+      "all_three_collapsed": true,
+      "max_grid_coverage": 0.357177734375,
+      "growth_min": 28.686274509803923,
+      "growth_max": 30.479166666666668,
+      "min_target_separation": 24.706602933435125
+    },
+    {
+      "seed": 52018,
+      "n_detected": 34,
+      "init_sizes": [
+        89,
+        72,
+        62
+      ],
+      "final_sizes": [
+        591,
+        389,
+        923
+      ],
+      "unique_final_components": 3,
+      "identical_pairs": [],
+      "fused": false,
+      "all_three_collapsed": false,
+      "max_grid_coverage": 0.225341796875,
+      "growth_min": 5.402777777777778,
+      "growth_max": 14.887096774193548,
+      "min_target_separation": 24.31895107345007
+    },
+    {
+      "seed": 52021,
+      "n_detected": 39,
+      "init_sizes": [
+        76,
+        49,
+        45
+      ],
+      "final_sizes": [
+        1653,
+        1653,
+        69
+      ],
+      "unique_final_components": 2,
+      "identical_pairs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "fused": true,
+      "all_three_collapsed": false,
+      "max_grid_coverage": 0.403564453125,
+      "growth_min": 1.5333333333333334,
+      "growth_max": 33.734693877551024,
+      "min_target_separation": 24.129254188363166
+    },
+    {
+      "seed": 52022,
+      "n_detected": 36,
+      "init_sizes": [
+        74,
+        65,
+        51
+      ],
+      "final_sizes": [
+        1156,
+        1156,
+        236
+      ],
+      "unique_final_components": 2,
+      "identical_pairs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "fused": true,
+      "all_three_collapsed": false,
+      "max_grid_coverage": 0.2822265625,
+      "growth_min": 4.627450980392157,
+      "growth_max": 17.784615384615385,
+      "min_target_separation": 26.973250637673562
+    }
+  ],
+  "recompute_A_B_C_D": {
+    "A_all_worlds_tracked": {
+      "mean_own": 2.031620230328671,
+      "worlds": 13,
+      "droplets": 39,
+      "note": "reproduces sealed headline; tracker-dependent"
+    },
+    "B_nonduplicated_worlds_only": {
+      "seeds": [
+        52008,
+        52018
+      ],
+      "n_worlds": 2,
+      "mean_own_tracked": 1.3145988024247615,
+      "mean_own_fixed": 0.26590174076100376,
+      "mean_neigh": 0.0006434767465819391,
+      "note": "POST HOC diagnostic on the 2 clean worlds; underpowered; NOT a confirmation"
+    },
+    "C_fixed_mask_tracker_free": {
+      "mean_own_fixed": 0.5329387944723292,
+      "worldCI": [
+        0.36068611369253556,
+        0.5275757720080734,
+        0.7289724849250536
+      ],
+      "fixed_worlds_pos": 13,
+      "note": "tracker-free readout on the geometry snapshot; smaller but sign-stable"
+    },
+    "D_one_per_unique_component": {
+      "n_unique_readout_units": 24,
+      "nominal_droplet_count": 39,
+      "mean_own_tracked": 2.300139040068146,
+      "note": "collapses duplicated tracks to unique final components; 39 nominal -> 24 actual"
+    },
+    "fused_vs_nonfused": {
+      "fused": {
+        "n_droplets": 33,
+        "mean_own": 2.161987762674836,
+        "mean_own_fixed": 0.5814909860562067,
+        "mean_neigh": 0.24732398576064235
+      },
+      "nonfused": {
+        "n_droplets": 6,
+        "mean_own": 1.3145988024247615,
+        "mean_own_fixed": 0.26590174076100376,
+        "mean_neigh": 0.0006434767465819391
+      }
+    }
+  },
+  "spec_vs_impl": {
+    "tracker_spec_says": "one-to-one (a component may be claimed by at most one track); cadence 5 steps",
+    "implementation_in_causal_confirm": "independent per-track max-overlap (NON-bijective); cadence 1 step; censor on overlap<theta but NO cross-track exclusion",
+    "mismatch": true,
+    "consequence": "multiple tracks legally select the same component after physical fusion -> assignment collision on top of a genuine physical merge"
+  },
+  "constraints_note": "All B/C/D are POST HOC diagnostics; none is a new positive confirmation. No world silently removed; no threshold changed after observation."
+}
