@@ -1,0 +1,84 @@
+{
+  "schema": "LCI-TURNOVER-AUTHORIZATION-CONTRACT-REAUDIT-03J-v1",
+  "mission": "LCI-TURNOVER-AUTHORIZATION-CONTRACT-REAUDIT-03J",
+  "audited_commit": "2b1f45357b0e0be22236e5f73a403cecc27778ea",
+  "exact_parent": "7f005bca81e1a8bbd03ca9aa8f7d114931a686a9",
+  "verdict": "NOT_READY_REPAIR_REQUIRED",
+  "blocking_findings": [
+    {
+      "id": "B-03J-01",
+      "check": "whole committed execution manifest contains exactly one {final_seal_sha256} marker",
+      "observed_count": 2,
+      "required_count": 1
+    },
+    {
+      "id": "B-03J-02",
+      "check": "affected canonical indexes bind exact repaired execution-manifest and reproduction-instruction blobs",
+      "execution_manifest_blob": "c65d8ba80b5961ef32ca37f65c6082c93002b928",
+      "reproduction_instructions_blob": "6107c29990071ec0ac9906661bf4bd21ec881337",
+      "observed": "no exact canonical blob references"
+    }
+  ],
+  "provenance": {
+    "changed_files": 22,
+    "blocker_commit": "4bf65651d7b5970c6d21f7369f6fc6386c49449f",
+    "previous_seal_audit": "def070685bf9833a6571766f91c5c7d8a2f8e787",
+    "retired_seal_sha256": "536cf0351bd65e6fc7efafb2d4a5acc86b99e244abe69c1bbcd8baad04022f62",
+    "retired_seal_status": "RETIRED_AUTHORIZATION_TEMPLATE_BINDING_DEFECT",
+    "final_seal_present": false,
+    "valid_permission_present": false,
+    "prospective_directory_present": false,
+    "prospective_54xxx_records_present": false
+  },
+  "repaired_blobs": {
+    "production_runner": "6444fcf8d702da9018472a630f7b8bd86a6d55d1",
+    "execution_manifest": "c65d8ba80b5961ef32ca37f65c6082c93002b928",
+    "authorization_template": "50c215877969108861bed6ab4064da672b307c31",
+    "focused_tests": "dd0341fa335134095a4f3fddce9412e6a955d9a0",
+    "reproduction_instructions": "6107c29990071ec0ac9906661bf4bd21ec881337"
+  },
+  "template_contract": {
+    "exact_phrase_template": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03G FINAL_SEAL_SHA256={final_seal_sha256}",
+    "template_string_utf8": true,
+    "template_string_single_line": true,
+    "template_string_marker_count": 1,
+    "whole_manifest_marker_count": 2,
+    "authoritative_angle_placeholder_count": 0,
+    "calculated_hash_is_required_lowercase_hex64": true,
+    "separate_hash_field_must_equal_calculated_hash": true,
+    "approval_phrase_must_equal_exact_substitution": true,
+    "validation_precedes_ledger_and_engine": true
+  },
+  "focused_cases": {
+    "expected_dispositions_passed": 12,
+    "expected_dispositions_total": 12,
+    "all_failures_pre_ledger": true,
+    "all_failures_pre_engine": true,
+    "all_failures_created_no_prospective_directory": true
+  },
+  "regressions": {
+    "03g": "7/7 PASS including A-F",
+    "03e": "18/18 PASS",
+    "03c": "9/9 PASS",
+    "tracker": "10/10 PASS",
+    "tracer_event": "6/6 PASS",
+    "power_regeneration": "PASS",
+    "clean_environment": "PASS",
+    "protected_map": "37/37 PASS",
+    "dev_resume": "already_certified; 10 entries; terminal",
+    "dev_terminal_tip": "53dceb8c8ec6118911ffdf0b0357d6894dd4341212f8b27e0ebb92cbaf3e9b29"
+  },
+  "scientific_payload": {
+    "scientific_subtree_identical": true,
+    "scientific_subtree_sha256": "e2fe64b82fb6f56d0e88be0ef76af199b05a4ff3e6e0d6f5dfac11d8b57a8b2f",
+    "feasibility_subtree_identical": true,
+    "feasibility_subtree_sha256": "3c0b70d10edab4c3d431764a3963e60fccbe6b7a323c489512dbd4bdad852781",
+    "certificate_outcome_identical": true,
+    "certificate_gates_identical": true,
+    "human_report_byte_identical": true
+  },
+  "new_final_seal_sha256": null,
+  "final_seal_manifest_created": false,
+  "human_authorization_template_03i_created": false,
+  "prospective_execution_performed": false
+}
