@@ -2461,3 +2461,11 @@ daughter.
 
 **Authorization boundary:** Claude's “GO FOR SEAL” is not operator authorization. No `54xxx` seed was run. The
 committed approval template remains unauthorized.
+
+### D-087 — Withhold final PRESEAL seal after independent audit 03D
+
+- Date: 2026-07-16
+- Decision: classify `LCI-CAUSAL-TURNOVER-PRESEAL-03C` as `NOT READY — REPAIR REQUIRED`; do not create `FINAL_SEAL_MANIFEST_03D.json` and do not authorize or execute seeds 54001-54120.
+- Basis: exact integration blobs and grouped LOWO mechanics pass, but the protected main commit is unavailable; authorization lacks final-seal binding, global one-use enforcement, and an immutable ledger; required ownership-null, causal-expression, and local-over-global gates are absent; E/G is unfrozen and underdetermined at the minimum sample size; the required A-F decision tree is absent; and the exact claimed environment is not reconstructible.
+- Consequence: a separate preseal repair and a new independent audit are required before any human authorization can become valid.
+- Evidence: `docs/individuation/FINAL_PRESEAL_AUDIT_03D.md`, `docs/individuation/FINAL_PRESEAL_AUDIT_CERTIFICATE_03D.json`, and `docs/agent_journals/2026-07-16/1731_fresh-independent-audit_RUN-20260716-LCI-PRESEAL-03D.md`.

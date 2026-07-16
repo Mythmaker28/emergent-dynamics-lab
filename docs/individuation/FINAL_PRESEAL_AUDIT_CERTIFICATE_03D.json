@@ -1,0 +1,143 @@
+{
+  "schema": "LCI-TURNOVER-FINAL-PRESEAL-AUDIT-03D-v1",
+  "mission": "LCI-CAUSAL-TURNOVER-FINAL-PRESEAL-AUDIT-03D",
+  "audited_candidate": {
+    "remote": "https://github.com/Mythmaker28/emergent-dynamics-lab.git",
+    "branch": "codex/lci-causal-turnover-preseal-integration-03c",
+    "commit": "a5e0a552b3f34a8cf9912292cd74bce3c6aee2d3",
+    "parent": "cd74eda96cbcf6e1489f8a6572d1eda8f619b8a1",
+    "audit_branch": "audit/lci-causal-turnover-final-preseal-03d"
+  },
+  "canonical_blobs": {
+    "docs/individuation/PRESEAL_CANDIDATE.json": "39a2d036c6810a9f10c00fa803896be5bf251bf5",
+    "docs/individuation/PRESEAL_CANDIDATE_PROTOCOL.md": "c4c40c9b001d83a25ae2934ca7e051ef825cdb7f",
+    "docs/individuation/TURNOVER_EXECUTION_MANIFEST_03C.json": "e109d7eabbc944b1d25d743c13c2f7561e7fccca"
+  },
+  "verdict": "NOT READY - REPAIR REQUIRED",
+  "final_seal_created": false,
+  "final_seal_manifest": null,
+  "prospective_family_opened": false,
+  "seeds_54001_through_54120_executed_by_audit": [],
+  "fake_prospective_results_created": false,
+  "power_recalculation": {
+    "model": "independent posterior draws p_eligible~Beta(8.5,2.5), p_feasible_given_eligible~Beta(4.5,4.5), Binomial(N,p_eligible*p_feasible_given_eligible)",
+    "method": "160x160 Gauss-Jacobi quadrature",
+    "mean_valid_probability": 0.38636363636363635,
+    "probability_at_least_18_given_50": 0.570903754176,
+    "probability_at_least_18_given_96": 0.924519023326,
+    "written_rounded_claim_0_93_matches": true
+  },
+  "scope_dimensions": {
+    "grid": [64, 64],
+    "fields_per_E_or_G": 8,
+    "predictors_per_E_or_G_row": 32768,
+    "minimum_valid_worlds": 18,
+    "targets_per_world": 3,
+    "minimum_outer_training_rows": 51,
+    "predictor_to_training_row_ratio": 642.5098039215686,
+    "frozen_dimension_reduction": false
+  },
+  "gates": {
+    "audit_1_provenance_unused_family": {
+      "status": "FAIL",
+      "material": true,
+      "reason": "Required protected main object f3921a4 is absent and unfetchable; all unopened-family searches otherwise passed."
+    },
+    "audit_2_family_reserve": {
+      "status": "PASS_WITH_LEDGER_CAVEAT",
+      "material": false,
+      "reason": "Family, trigger, order, cap, minimum, and power arithmetic match; immutable record integrity is absent."
+    },
+    "audit_3_execution_authorization": {
+      "status": "FAIL",
+      "material": true,
+      "reason": "No final-seal binding, authorization consumption, immutable ledger, hash chain, completion record, or raw-result checksum."
+    },
+    "audit_4_turnover_geometry": {
+      "status": "PASS",
+      "material": false,
+      "reason": "Tracer, bijective tracker, first-censor rule, five-frame evidence, and event distinctions passed existing DEV/synthetic tests."
+    },
+    "audit_5_access_scopes": {
+      "status": "FAIL",
+      "material": true,
+      "reason": "E/G contain 32768 predictors per row against 51 minimum outer-training rows, with no frozen reduction or adequacy certificate."
+    },
+    "audit_6_statistical_inference": {
+      "status": "FAIL",
+      "material": true,
+      "reason": "No within-world permutation null, no causal-expression gate, no L_over_G gate, and primary pass equals local-storage gate alone."
+    },
+    "audit_7_mechanistic_controls": {
+      "status": "PASS_WITH_DOCUMENTATION_WARNING",
+      "material": false,
+      "reason": "Implemented ablations are distinct, but authoritative wording for eta_w=0 and copy-disabled diagnostics is incomplete."
+    },
+    "audit_8_decision_tree_claims": {
+      "status": "FAIL",
+      "material": true,
+      "reason": "Required A-F outcome tree is not frozen in the authoritative candidate."
+    },
+    "audit_9_environment_reproduction": {
+      "status": "FAIL",
+      "material": true,
+      "reason": "Manifest, requirements lock, pyproject, Dockerfile, and available venv disagree; no committed power regenerator or raw-result certificate checksum exists."
+    }
+  },
+  "material_blocker_ids": [
+    "B1_AUTHORIZATION_AND_LEDGER",
+    "B2_PRIMARY_CAUSAL_OWNERSHIP_GATE",
+    "B3_HIGH_DIMENSIONAL_E_G",
+    "B4_MISSING_A_F_DECISION_TREE",
+    "B5_ENVIRONMENT_CONTRADICTION",
+    "B6_PROTECTED_MAIN_PROVENANCE"
+  ],
+  "tests": [
+    {
+      "name": "turnover_preseal_03c",
+      "result": "PASS 9/9",
+      "data_scope": "synthetic/static only"
+    },
+    {
+      "name": "bijective_tracker",
+      "result": "PASS 10/10",
+      "data_scope": "synthetic only"
+    },
+    {
+      "name": "turnover_tracer",
+      "result": "PASS",
+      "data_scope": "existing DEV seeds 50001/50002 only"
+    },
+    {
+      "name": "prospective_runner_selfcheck",
+      "result": "PASS after manifest-listed sparse paths were materialized",
+      "data_scope": "static; no engine instantiated; no seed executed"
+    },
+    {
+      "name": "python_compile_and_json_parse",
+      "result": "PASS",
+      "data_scope": "static"
+    },
+    {
+      "name": "authorization_AST_audit",
+      "result": "FAIL CONFIRMED",
+      "data_scope": "static; final seal, ledger, and authorization consumption absent"
+    },
+    {
+      "name": "statistical_gate_AST_audit",
+      "result": "FAIL CONFIRMED",
+      "data_scope": "static; permutation null, causal gate, and L_over_G absent"
+    },
+    {
+      "name": "git_object_and_size_audit",
+      "result": "PASS except protected main provenance",
+      "data_scope": "all fetched remote refs and histories"
+    }
+  ],
+  "warnings": [
+    "The first no-checkout Windows clone exposed repository paths containing the invalid Windows character |; the audit used a sparse isolated clone with core.protectNTFS=false.",
+    "The first tracer-test invocation reached its first assertion but failed while printing Unicode under cp1252; rerun with PYTHONIOENCODING=utf-8 passed.",
+    "Tests ran under Python 3.12.10, NumPy 2.5.1, and SciPy 1.18.0, not the manifest environment.",
+    "The first sparse-clone selfcheck failed because manifest-listed edlab files were not materialized; after adding only edlab to the sparse checkout, the static selfcheck passed."
+  ]
+}

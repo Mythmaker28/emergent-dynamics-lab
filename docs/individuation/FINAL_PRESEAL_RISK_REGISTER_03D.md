@@ -1,0 +1,21 @@
+# Final PRESEAL risk register 03D
+
+Status: **NOT READY — REPAIR REQUIRED**. No valid final seal exists.
+
+| ID | severity | risk | evidence | consequence | minimum repair before reseal |
+|---|---|---|---|---|---|
+| PROV-01 | material | Required protected `main` object cannot be verified | `f3921a4` absent from fetched objects and remote refs; remote `main` is `6d0bed6...` | Protected-history invariant is unresolved | Identify the intended full hash and prove its remote ancestry/state |
+| AUTH-01 | material | Approval is not bound to a final seal | runner lines 106-119 validate only the execution-manifest blob | Human approval can refer to a package other than the final audited seal | Bind approval to exact final-seal Git blob and SHA-256 |
+| AUTH-02 | material | `one_execution_only` is not enforced | runner lines 342-408 use only the selected output path; no consumed authorization state | Same approval can initialize multiple outputs | Atomic one-use authorization consumption in an append-only ledger |
+| LEDGER-01 | material | Raw results and resumes are mutable | no hash chain, completion record, duplicate-record rejection, or raw checksum | Resume, tampering, overwrite, and prohibited second execution are not distinguishable | Immutable hash-chained execution ledger and sealed output certificate |
+| STAT-01 | material | Ownership null is missing | no within-world permutation path in `turnover_statistics.py` | Target-specific decoding is not tested against the required world-preserving null | Freeze and validate a within-world ownership null |
+| STAT-02 | material | Causal expression is not a required primary gate | `primary_gate_pass` equals `local_storage_gate.pass` | A primary PASS can occur without prospective causal behavioural expression | Add a paired original-world causal-expression gate and joint decision |
+| STAT-03 | material | Required global-control/decision logic is incomplete | G is co-reported; no `L_over_G`; no A-F tree | Distributed/global explanations are not mapped to a sealed verdict | Freeze complete access comparisons and A-F outcome wording |
+| DIM-01 | material | E/G dimensionality overwhelms minimum sample | 32,768 predictors versus 51 minimum training rows; no reduction | L/E/G comparisons have uncontrolled capacity/regularization asymmetry | Prospectively validate a training-only representation or scope-comparison method at n=18 |
+| ENV-01 | material | Environment declarations conflict | manifest 3.10.12; pyproject >=3.11; Docker 3.11/NumPy 2.1.3/no SciPy; audit venv 3.12.10 | Exact reproduction is unverified | One consistent lock/container, E2E tested and seal-bound |
+| REPRO-01 | high | Power headline has no committed regenerator | value exists in prose; independent audit had to reconstruct quadrature | Headline is not one-command regenerable from candidate artifacts | Commit a deterministic power regenerator and expected output before reseal |
+| REPRO-02 | high | Windows normal checkout is obstructed | unrelated committed filenames contain `|` | Documented Windows commands are not portable from a normal clone | Provide a supported sparse-clone procedure or repair repository portability outside the scientific seal |
+| MECH-01 | moderate | `eta_w=0` and copy-disabled semantics are not authoritative enough | protocol only names DEV diagnostics; only `up_ref=0` is scoped explicitly | Readers can overinterpret diagnostics as same-physics exclusions | State no-new-writing/passive-copy and counterfactual-not-same-physics boundaries in authority |
+| POWER-01 | controlled | Feasibility uncertainty remains broad | posterior mean 0.386; 5th-95th p approximately 0.172-0.625 | Cap can still end below 18 valid worlds | Preserve feasibility-failure outcome; do not extend family |
+| CLAIM-01 | controlled | Feeding effect can be mistaken for individuation | direct `m_plus -> uptake` coupling is algebraic | Positive feeding alone is weak evidence | Keep feeding secondary and require repaired ownership plus causal gates |
+| FAMILY-01 | controlled | Prospective family could be opened prematurely | current template is unauthorized; no final seal | Irreversible loss of prospective status | Do not authorize or run any `54xxx` seed before independent reseal |

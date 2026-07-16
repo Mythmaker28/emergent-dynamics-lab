@@ -1,0 +1,28 @@
+{
+  "schema": "LCI-TURNOVER-HUMAN-AUTHORIZATION-03D-v1",
+  "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-03C",
+  "status": "INVALID_NOT_AUTHORIZED_NO_FINAL_SEAL",
+  "authorized": false,
+  "one_execution_only": false,
+  "authorization_id": "",
+  "approved_by": "",
+  "approved_at_utc": "",
+  "execution_manifest_git_blob": "e109d7eabbc944b1d25d743c13c2f7561e7fccca",
+  "final_seal_manifest_git_blob": null,
+  "final_seal_sha256": null,
+  "approval_phrase_template": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03C FINAL_SEAL_SHA256=<FINAL_SEAL_SHA256>",
+  "approval_phrase": "",
+  "seed_family": {
+    "primary": "54001-54050",
+    "reserve": "54051-54096",
+    "hard_cap": 96,
+    "minimum_valid_worlds": 18
+  },
+  "invalid_reasons": [
+    "FINAL_PRESEAL_AUDIT_03D verdict is NOT READY - REPAIR REQUIRED",
+    "FINAL_SEAL_MANIFEST_03D.json does not exist",
+    "No final seal Git blob or SHA-256 is available",
+    "The current runner does not enforce authorization consumption or bind a final seal"
+  ],
+  "note": "This committed template is deliberately invalid. It must not be edited into an authorization for the audited 03C candidate."
+}

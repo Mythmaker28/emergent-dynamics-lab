@@ -1,5 +1,9 @@
 # Project State
 
+## FINAL PRESEAL AUDIT 03D — 2026-07-16
+
+The exact integration candidate `a5e0a552b3f34a8cf9912292cd74bce3c6aee2d3` was independently audited without prospective execution. Verdict: **NOT READY — REPAIR REQUIRED**. The final seal was withheld because the stated protected main commit is unavailable; authorization is not final-seal-bound, globally single-use, or ledger-backed; required statistical gates are absent; the high-dimensional E/G comparison lacks a frozen defensible design; the required A-F decision tree is absent; and the exact execution environment is not reconstructible. Audit artifacts are indexed under `docs/individuation/FINAL_PRESEAL_AUDIT_03D.md`. No seed in 54001-54120 was executed.
+
 ## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER-PRESEAL-03C (2026-07-16)
 
 On branch `codex/lci-causal-turnover-preseal-integration-03c`, Claude's repair commits `ca7929b` and `cd74eda`

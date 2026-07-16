@@ -2,6 +2,7 @@
 
 | RUN ID | Date | Agent / role | Scope | Experiment ID | Start HEAD | End HEAD | Status | Journal path |
 |---|---|---|---|---|---|---|---|---|
+| RUN-20260716-LCI-PRESEAL-03D | 2026-07-16 | fresh independent final PRESEAL auditor | exact-commit provenance, authorization, scope, grouped inference, environment, and seal audit; no prospective execution | LCI-CAUSAL-TURNOVER-PRESEAL-03C | a5e0a55 | audit branch tip | COMPLETED_NOT_READY_NO_SEEDS | `docs/agent_journals/2026-07-16/1731_fresh-independent-audit_RUN-20260716-LCI-PRESEAL-03D.md` |
 | RUN-20260716-1514-LCI-PRESEAL-03C | 2026-07-16 | independent methodological/statistical integrator | Claude PRESEAL repair reconciliation; canonical spec, authorization, grouped inference, event evidence | LCI-CAUSAL-TURNOVER-PRESEAL-03C | cd74eda | final branch tip | COMPLETED_NOT_AUTHORIZED_NO_SEEDS | `docs/agent_journals/2026-07-16/1514_methodological-integration_RUN-20260716-1514-LCI-PRESEAL-03C.md` |
 | RUN-20260710-0343-001 | 2026-07-10 | primary / integrator | repository, scheduler, vertical slice, baseline | BASELINE-COREV0-20260710-001 | UNBORN | IN_PROGRESS | PARTIAL | `docs/agent_journals/2026-07-10/0343_main-agent_run-001.md` |
 | RUN-20260710-0343-HIST | 2026-07-10 | historical audit | read-only branch/commit/tests/artefacts | HIST-EXP01-9992e6c | UNBORN | UNBORN | COMPLETED | `docs/agent_journals/2026-07-10/0344_historical-audit_RUN-20260710-0343-HIST.md` |
