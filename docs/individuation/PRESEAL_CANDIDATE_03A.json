@@ -1,6 +1,6 @@
 {
   "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03A",
-  "status": "PRESEAL_CANDIDATE (REPAIRED) \u2014 NOT AUTHORIZED FOR PROSPECTIVE RUN \u2014 NOT DEFINITIVELY SEALED",
+  "status": "PRESEAL_CANDIDATE (REPAIRED + RED-TEAM RECONCILED) \u2014 NOT AUTHORIZED FOR PROSPECTIVE RUN \u2014 NOT SEALED",
   "authorization": "NONE \u2014 requires explicit Tommy GO; a fresh agent then audits, verifies hashes/seeds, runs once, applies frozen analysis",
   "branch": "design/lci-causal-turnover-preseal-repair-03a",
   "parent_commit": "244bc32",
@@ -66,7 +66,8 @@
     "count": 96,
     "registry_checked": "absent across 18 branches",
     "opened": false,
-    "outcomes_inspected": false
+    "outcomes_inspected": false,
+    "frozen_runner": "turnover_prospective_runner.py (guarded)"
   },
   "dev_diagnostics_summary": {
     "algebraic_obs_over_pred": 0.8658984740502635,
@@ -107,7 +108,7 @@
   "candidate_hashes": {
     "self_audit": "9ac50a5cc5ccb447409951de14bc313cbde28a5a79d69859b4b02a8c93f0dbbc",
     "protocol_repair": "fa2ea8c1003f689573b2476e5e320629a6c8e6c5229dec88d4576b3661b78912",
-    "analysis_spec": "d9df4a08ec4d1a7671a0b0053beb7c5d455a4aaa5414ae1c22aefd14130d6bd9",
+    "analysis_spec": "e16e61695b1ca4d51f1094b311bbda6fcfa46696654a218ca0005f56c7bc39cc",
     "mechanistic_nulls": "4b4d91e83f41bd1cca81927a565a3d0701b4acf4281e1fab7e36d6c431200e0c",
     "power_repair": "bdb522e31184f56de75111443eb1628ae186f7cc4ed410fa1d0655ea81946e25",
     "fission_policy": "ce868dae57115dda30805564f5a485fa82a8d73fc78e6d02500ff2f1840ea02d",
@@ -119,8 +120,6 @@
     "diag_engine": "8ba3ac5650cb460d68642d8f4077f3334067ff264c6e976b34364b5bc294480a",
     "diagnostics_runner": "cf2d7516e7e9dc3aa486bebfa5ef4e0e06791598cfd408e74025b4cdd3f79eef",
     "access_analyze": "69ee7ac4dc332a91814a3f1c6a354db3c684c127320cdae0703a7edc391c55d6",
-    "diagnostics_raw": "6f6eca640d4b48715cc1324dfc8b131e045e04deac68d60ae3352c67e0cd4f87"
-  },
-  "claims": "NONE prospective; DEV exploratory only; no identity/agency/heredity/reproduction; ACTIVE-RECONSTRUCTION not implemented",
-  "recommendation": "GO FOR SEAL (repaired design) \u2014 but DO NOT seal/run; stop for Tommy authorization"
-}
+    "diagnostics_raw": "6f6eca640d4b48715cc1324dfc8b131e045e04deac68d60ae3352c67e0cd4f87",
+    "ownership_analyze": "ae22ed80d96efe910c95d1cee787bf1d6e69c125a165f3ac222659e4d3de1415",
+    "prospective_runner": "4601c48cec5241025ae146665701d68393110cb869c8e24f1a09e62
