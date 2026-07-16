@@ -1,0 +1,76 @@
+{
+  "schema": "LCI-TURNOVER-DECISION-TREE-03G-v1",
+  "status": "FROZEN_BEFORE_PROSPECTIVE_DATA",
+  "evaluation_precedence": ["E", "F", "A", "C", "B", "D"],
+  "outcomes": {
+    "A": {
+      "name": "turnover-surviving target-specific causal information storage supported",
+      "expression": {
+        "all": ["FEASIBILITY", "G_OWN_PERM", "G_LOCAL_EXCLUSION", "G_CAUSAL"]
+      },
+      "authorized_wording": "On passive-copy C1c, the target's own graded dose information remains locally decodable beyond the frozen within-world null and beyond neighbour, target-memory-masked environment, target-memory-removed global, and body controls; own erasure also specifically reduces own feeding at deep turnover. This supports turnover-surviving target-specific causal information storage only.",
+      "forbidden_claims": ["identity", "life", "individual memory", "reproduction", "heredity", "evolution", "active reconstruction"],
+      "active_reconstruction_future_only": false
+    },
+    "B": {
+      "name": "causal feeding effect without ownership",
+      "expression": {
+        "all": [
+          "FEASIBILITY",
+          {"not": "DISTRIBUTED_ENV"},
+          "G_CAUSAL",
+          {"not": {"all": ["G_OWN_PERM", "G_LOCAL_EXCLUSION"]}}
+        ]
+      },
+      "authorized_wording": "A specific local causal feeding effect survives deep turnover, but the target's own graded history is not established as locally owned. This is a passive local causal remnant and not individual memory.",
+      "forbidden_claims": ["identity", "individual memory", "individuation", "ownership"],
+      "active_reconstruction_future_only": true
+    },
+    "C": {
+      "name": "local stored trace without causal expression",
+      "expression": {
+        "all": ["FEASIBILITY", "G_OWN_PERM", "G_LOCAL_EXCLUSION", {"not": "G_CAUSAL"}]
+      },
+      "authorized_wording": "Own-dose information survives in the frozen target-local representation at deep turnover, but specific causal expression by own-memory erasure is not established.",
+      "forbidden_claims": ["identity", "individual memory", "causal individuation", "agency"],
+      "active_reconstruction_future_only": false
+    },
+    "D": {
+      "name": "passive C1c target-specific persistence fails",
+      "expression": {
+        "all": [
+          "FEASIBILITY",
+          {"not": "DISTRIBUTED_ENV"},
+          {"not": "G_CAUSAL"},
+          {"not": {"all": ["G_OWN_PERM", "G_LOCAL_EXCLUSION"]}}
+        ]
+      },
+      "authorized_wording": "Neither frozen target-local own-dose storage nor its specific causal expression is established at deep turnover under passive-copy C1c.",
+      "forbidden_claims": ["identity", "life", "any positive individuation claim"],
+      "active_reconstruction_future_only": true
+    },
+    "E": {
+      "name": "feasibility failure",
+      "expression": {"not": "FEASIBILITY"},
+      "authorized_wording": "Fewer than the frozen minimum number of geometrically and assay-valid worlds were obtained at the hard cap. The scientific turnover question is not answered by this family.",
+      "forbidden_claims": ["storage conclusion", "causal conclusion", "negative conclusion about C1c"],
+      "active_reconstruction_future_only": false
+    },
+    "F": {
+      "name": "distributed or environmental access",
+      "expression": {"all": ["FEASIBILITY", "DISTRIBUTED_ENV"]},
+      "authorized_wording": "Own-dose information is recoverable from a target-memory-excluded environmental or global representation at comparable held-out performance. Target-local ownership is not established; this is global informational content or environmental access, not local storage.",
+      "forbidden_claims": ["identity", "individual memory", "local ownership", "individuation"],
+      "active_reconstruction_future_only": false
+    }
+  },
+  "global_forbidden_claims": [
+    "identity",
+    "life",
+    "individual memory",
+    "reproduction",
+    "heredity",
+    "evolution",
+    "active reconstruction as an observed result"
+  ]
+}

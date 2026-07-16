@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "LCI-TURNOVER-RAW-03G-v1",
+  "title": "Canonical turnover 03G per-original-world raw record",
+  "type": "object",
+  "required": ["schema", "mode", "watermark", "seed", "world_id", "bindings", "feasibility", "scientific"],
+  "properties": {
+    "schema": {"const": "LCI-TURNOVER-RAW-03G-v1"},
+    "mode": {"enum": ["PROSPECTIVE", "DEV_EXPLORATORY", "SYNTHETIC_TEST"]},
+    "watermark": {"type": "string"},
+    "seed": {"type": "integer"},
+    "world_id": {"type": "integer"},
+    "bindings": {
+      "type": "object",
+      "required": ["seal_sha256", "execution_manifest_sha256", "execution_manifest_git_blob", "environment_lock_sha256", "code_git_blobs", "code_sha256"]
+    },
+    "feasibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eligible", "deep_reached", "rest_assay_valid", "deep_assay_valid", "valid", "reason"],
+      "properties": {
+        "eligible": {"type": "boolean"},
+        "deep_reached": {"type": "boolean"},
+        "rest_assay_valid": {"type": "boolean"},
+        "deep_assay_valid": {"type": "boolean"},
+        "valid": {"type": "boolean"},
+        "reason": {"type": ["string", "null"]}
+      }
+    },
+    "scientific": {
+      "type": "object",
+      "required": ["histories", "target_ids", "target_centroids", "g0", "material_tracer", "tracking_event_evidence", "scopes", "causal_intervention_battery", "lambda_plus_only_control", "censoring_reason", "snapshot_time"]
+    }
+  }
+}

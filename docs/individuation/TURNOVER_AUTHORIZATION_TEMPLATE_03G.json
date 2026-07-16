@@ -1,0 +1,25 @@
+{
+  "schema": "LCI-TURNOVER-HUMAN-AUTHORIZATION-03G-v2",
+  "status": "INVALID_UNFILLED_NOT_AUTHORIZED_NO_FINAL_SEAL",
+  "authorized": false,
+  "prospective_authorized": false,
+  "one_execution_only": false,
+  "authorization_id": "",
+  "approver": "",
+  "authorized_at_utc": "",
+  "final_seal_sha256": null,
+  "execution_manifest_sha256": null,
+  "execution_manifest_git_blob": null,
+  "runner_git_blob": null,
+  "analyzer_git_blob": null,
+  "environment_lock_sha256": null,
+  "family_sha256": null,
+  "canonical_run_directory": "results/LCI-TURNOVER-PROSPECTIVE-03G",
+  "approval_phrase_template": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03G FINAL_SEAL_SHA256={final_seal_sha256}",
+  "approval_phrase": "",
+  "invalid_reasons": [
+    "FINAL_SEAL_MANIFEST_03G.json does not exist.",
+    "The 03G implementation requires a fresh independent final re-audit.",
+    "This template must not be filled or treated as authorization by the repair agent."
+  ]
+}

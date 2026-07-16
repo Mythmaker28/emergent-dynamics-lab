@@ -1,0 +1,49 @@
+{
+  "schema": "LCI-TURNOVER-CANONICAL-INDEX-03G-v1",
+  "authoritative_version": "03G",
+  "status": "AUTHORIZATION_BINDING_REPAIRED_NOT_SEALED_NOT_AUTHORIZED",
+  "canonical": {
+    "protocol": "docs/individuation/TURNOVER_PROTOCOL_03G.md",
+    "preseal_candidate": "docs/individuation/PRESEAL_CANDIDATE_03G.json",
+    "execution_manifest": "docs/individuation/TURNOVER_EXECUTION_MANIFEST_03G.json",
+    "runner": "experiments/individuation/turnover_runner_03g.py",
+    "ledger": "experiments/individuation/turnover_ledger_03g.py",
+    "raw_schema": "experiments/individuation/turnover_raw_schema_03g.py",
+    "raw_schema_document": "docs/individuation/TURNOVER_RAW_SCHEMA_03G.json",
+    "scope_features": "experiments/individuation/turnover_scope_features_03g.py",
+    "statistics": "experiments/individuation/turnover_statistics_03g.py",
+    "analyzer": "experiments/individuation/turnover_analyzer_03g.py",
+    "decision_tree": "docs/individuation/TURNOVER_DECISION_TREE_03G.json",
+    "environment_lock": "docs/individuation/TURNOVER_ENVIRONMENT_LOCK_03G.txt",
+    "power_regenerator": "experiments/individuation/turnover_power_regen.py",
+    "seed_manifest": "docs/individuation/TURNOVER_SEED_MANIFEST_03G.md",
+    "authorization_template": "docs/individuation/TURNOVER_AUTHORIZATION_TEMPLATE_03G.json",
+    "authorization_binding_repair": "docs/individuation/AUTHORIZATION_BINDING_REPAIR_03I.md",
+    "authorization_binding_regression": "docs/individuation/AUTHORIZATION_BINDING_REGRESSION_03I.md",
+    "authorization_binding_verdict_fr": "docs/individuation/AUTHORIZATION_BINDING_VERDICT_03I_FR.md",
+    "tests": "experiments/individuation/test_turnover_end_to_end_03g.py"
+  },
+  "retired_seal": {
+    "sha256": "536cf0351bd65e6fc7efafb2d4a5acc86b99e244abe69c1bbcd8baad04022f62",
+    "status": "RETIRED — AUTHORIZATION TEMPLATE BINDING DEFECT",
+    "historical_audit_commit": "def070685bf9833a6571766f91c5c7d8a2f8e787"
+  },
+  "superseded_non_authoritative": {
+    "03C": [
+      "docs/individuation/PRESEAL_CANDIDATE.json",
+      "docs/individuation/PRESEAL_CANDIDATE_PROTOCOL.md",
+      "docs/individuation/TURNOVER_EXECUTION_MANIFEST_03C.json",
+      "experiments/individuation/turnover_prospective_runner.py"
+    ],
+    "03E": [
+      "docs/individuation/PRESEAL_CANDIDATE_03E.json",
+      "docs/individuation/TURNOVER_PROTOCOL_03E.md",
+      "docs/individuation/TURNOVER_EXECUTION_MANIFEST_03E.json",
+      "experiments/individuation/turnover_prospective_runner_03e.py",
+      "experiments/individuation/turnover_execution_ledger.py",
+      "experiments/individuation/turnover_scope_features_03e.py",
+      "experiments/individuation/turnover_statistics_03e.py"
+    ]
+  },
+  "rule": "Only the repaired 03G runner may consume a future freshly audited 03G seal and an exact hash-bound v2 authorization. Superseded runners and the retired seal are historical and must not be used for prospective execution."
+}

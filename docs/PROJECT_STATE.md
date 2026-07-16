@@ -1,5 +1,36 @@
 # Project State
 
+## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER-PRESEAL-03G (2026-07-16)
+
+On branch `repair/lci-causal-turnover-end-to-end-03g`, exact parent
+`23b6e9b3c667705158af833c1cf8458a03c8fb66`, the 03F implementation blockers are repaired as one executable chain:
+seal verification, exact authorization binding, canonical-directory ledger FSM, ordered family execution, atomic raw
+publication, raw validation, grouped analyzer, frozen gates, A–F decision, and result certification.
+
+The authoritative prospective platform is Windows AMD64 with CPython 3.12.10 and the installable transitive lock
+`docs/individuation/TURNOVER_ENVIRONMENT_LOCK_03G.txt`. A fresh environment reproduced the complete 03G integration
+suite. The DEV-only chain used previously opened seed `50001`, reached `CERTIFIED`, refused a second fresh start,
+resumed idempotently, and remained explicitly `DEV/EXPLORATORY`.
+
+Status: **IMPLEMENTED — PRESEAL CANDIDATE — NOT AUTHORIZED — NO FINAL SEAL — ZERO 54xxx SEEDS EXECUTED**.
+03C and 03E remain historical and are machine-marked superseded by
+`docs/individuation/TURNOVER_CANONICAL_INDEX_03G.json`. V4, V4.1, CONFIRM-02, `main`, and the protected archive were
+not modified.
+
+## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER-PRESEAL-03C (2026-07-16)
+
+On branch `codex/lci-causal-turnover-preseal-integration-03c`, Claude's repair commits `ca7929b` and `cd74eda`
+have been independently reconciled into the actual canonical PRESEAL files. Status:
+**PRESEAL CANDIDATE — NOT AUTHORIZED — ZERO 54xxx SEEDS EXECUTED**.
+
+Exact family: primary `54001-54050`, feasibility reserve `54051-54096`, hard cap 96, minimum 18 valid original
+worlds. Reserve activation is outcome-blinded and reads feasibility only. Execution requires a separate human-
+approval JSON bound to the exact execution-manifest Git blob. Grouped inference, complete L/N/P/E/G/B scopes,
+lambda-plus-only ablation, and persisted evidence distinguishing fission, transient fragmentation, merge, loss,
+and death are frozen and unit-tested.
+
+This branch does not alter or authorize V4.1 results, CONFIRM-02, or any prospective turnover result.
+
 ## CURRENT QUESTION
 
 Can CORE V0 local particle laws produce auditable high phenotype continuity under low material retention, beyond tracker and static-flux artefacts?
@@ -297,3 +328,32 @@ prospective worlds are **BURNED** (`DIAGNOSTIC_ONLY`).
 
 **EXP-SC-01 remains BLOCKED** and will stay blocked until the *complete minimal hierarchy* — not merely gate
 detection — qualifies prospectively.
+
+---
+
+# HEAD (2026-07-16) — 03G authorization binding repaired; narrow re-audit required
+
+Branch `repair/lci-turnover-authorization-binding-03i` is rooted at exact scientific implementation parent
+`7f005bca81e1a8bbd03ca9aa8f7d114931a686a9`.
+
+The only repaired contract is the link between a future final-seal hash and human approval wording. The production
+manifest now freezes one `{final_seal_sha256}` placeholder. The runner calculates the canonical final-seal SHA-256,
+requires the same exact lowercase 64-character hash in the independent v2 authorization field, expands the frozen
+template once, and compares the complete phrase exactly before ledger or engine initialization.
+
+The invalidated seal SHA-256
+`536cf0351bd65e6fc7efafb2d4a5acc86b99e244abe69c1bbcd8baad04022f62` is
+**RETIRED — AUTHORIZATION TEMPLATE BINDING DEFECT**. Its historical commit was not changed and its hash cannot be
+reused as authorization.
+
+Frozen verification passes: 03G 7/7 including A–F and all 13 focused contract cases, 03E 18/18, 03C 9/9, tracker
+10/10, tracer/event checks, DEV certified resume, protected compilation, unchanged power values, and exact clean
+environment. DEV provenance hashes changed only because protected manifest inputs changed; the seed-50001
+scientific and feasibility subtrees remain exactly identical. Engine import count was zero during the DEV
+provenance replay.
+
+No `54xxx` seed ran. No prospective directory, final seal, or valid human authorization exists.
+
+Exact next authorized action: a fresh independent narrow audit of the repair commit. Only a fresh auditor may issue
+a new final seal; only a separate later human authorization may bind that new seal. No prospective execution is
+authorized.

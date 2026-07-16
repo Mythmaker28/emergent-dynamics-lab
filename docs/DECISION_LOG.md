@@ -2440,3 +2440,48 @@ Docker/CI never built -> clean reproduction INCOMPLETE.
 VERDICTS: THEOREM PACKAGE: PASS. LARGE DISTRIBUTIONAL HOLD-OUT: FAIL. CLEAN REPRODUCTION: INCOMPLETE.
 CROSS-SUBSTRATE: STRUCTURAL PASS. PUBLICATION STATUS: NOT READY. EXTERNAL HUMAN REVIEW: PENDING.
 DROPLET CAUSAL-CONTINUITY PILOT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## D-086 — Turnover PRESEAL 03C reconciles authority, family, approval, scopes, inference, and event evidence
+
+**Date:** 2026-07-16
+
+**Decision:** On the separate integration branch, supersede the non-authoritative Claude 03A addenda with direct
+repairs to the existing canonical PRESEAL files. Freeze primary seeds `54001-54050`, feasibility reserve
+`54051-54096`, hard cap 96, and minimum 18 valid original worlds. Reserve activation may use feasibility fields
+only. Require a separate human-approval JSON bound to the exact execution-manifest Git blob.
+
+**Statistical decision:** all L/N/P/E/G/B decoders use the same own-dose label and outer leave-one-original-world-
+out predictions. Scaling is training-only, lambda is fixed, and uncertainty is computed from fixed original-world
+fold losses. No bootstrap CV retraining across duplicated worlds is permitted.
+
+**Measurement decision:** persist exact target-local, geometric-neighbour, pair, target-memory-masked environment,
+complete target-centred world, and body scopes before the deep assay. Persist five evidence-only frames after the
+first censor so fission, transient fragmentation, merge, loss, and death are distinguishable without following a
+daughter.
+
+**Authorization boundary:** Claude's “GO FOR SEAL” is not operator authorization. No `54xxx` seed was run. The
+committed approval template remains unauthorized.
+
+## D-087 — Turnover PRESEAL 03G uses one executable canonical chain on Windows AMD64
+
+**Date:** 2026-07-16
+
+**Decision:** Supersede 03C and 03E for any future prospective turnover execution with the single machine-indexed
+03G path. The path must consume, in order, a verified seal, exact authorization, canonical-directory hash-chained
+ledger, ordered seed family, atomically published canonical raw records, validated raw manifest, frozen grouped
+analysis, executable A–F tree, and result certificate. No disconnected self-check or documentation-only evaluator
+counts as an execution path.
+
+**Platform decision:** Windows AMD64 with CPython 3.12.10 is the authoritative prospective platform. The complete
+transitive pip lock must reproduce exactly in a fresh environment before any final seal. No Linux exact-reproduction
+claim is made by 03G.
+
+**Threat-model decision:** one authorized execution is enforced inside the declared canonical run directory, with
+explicit same-binding resume and cryptographic replay evidence. A malicious actor controlling a copied open-source
+repository cannot be technically prevented from rerunning modified code; that copy has a different untrusted ledger
+and is not the sealed prospective execution.
+
+**Provenance decision:** local `main` and `origin/main` were observed equal at
+`6d0bed67339c1b422877b8bfaae6861669597a93`; protected `archive/main-f3921a4` remains the distinct archived lineage
+at `f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77`. Neither ref is modified. No final seal, valid human authorization,
+or `54xxx` execution is created by this decision.

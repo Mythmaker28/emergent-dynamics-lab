@@ -1,0 +1,91 @@
+{
+  "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03A",
+  "status": "DEV EXPLORATORY \u2014 NON-PROSPECTIVE \u2014 METHOD SUPERSEDED BY PRESEAL 03C",
+  "integration_scope": "Numbers retained as historical DEV diagnostics only. up_ref=0 addresses only that named reference; it does not exclude every distributed channel. The 3-D L/P/E/G summaries are not the authoritative prospective scopes.",
+  "D_algebraic": {
+    "obs_mean": 0.05248862364709259,
+    "pred_mean": 0.060617526442304066,
+    "obs_over_pred": 0.8658984740502635,
+    "ratios": [
+      1.13,
+      1.07,
+      0.76,
+      0.78,
+      0.7,
+      0.76,
+      0.86,
+      1.01,
+      0.75,
+      1.09,
+      0.67,
+      1.05
+    ],
+    "verdict": "observed<=predicted => pure direct algebraic coupling; no dynamical amplification"
+  },
+  "C_upref0": {
+    "mplus_ratio_vs_intact": 1.0010044687820954,
+    "deep_own_upref0": [
+      [
+        0.18207589266570157,
+        0.11262595003255749,
+        0.14921014295500346
+      ],
+      [
+        0.17803329514602684,
+        0.09082799896034865,
+        0.08006623155992565
+      ]
+    ],
+    "verdict": "up_ref=0 leaves memory & causal individuation ~unchanged => global channel causally irrelevant"
+  },
+  "E_copy_disabled": {
+    "mplus_ratio_vs_intact": 0.2623607153885138,
+    "per_droplet": [
+      -0.38,
+      0.21,
+      0.29,
+      0.24,
+      0.36,
+      0.21,
+      0.02,
+      0.31,
+      0.29,
+      -0.08,
+      0.39,
+      0.32
+    ],
+    "verdict": "copy-disabled collapses m+ (ratio<<1) => passive inheritance is NECESSARY to sustain memory"
+  },
+  "B_etaw0": {
+    "mplus_ratio_vs_intact": 0.4383685439490732,
+    "verdict": "eta_w=0 retains a decayed remnant via inheritance => passive carry-over, NOT reconstruction"
+  },
+  "ACCESS_LPEG": {
+    "n_samples": 12,
+    "n_worlds": 4,
+    "note": "EXPLORATORY: n_worlds=4, decode R2 unstable",
+    "L": {
+      "own_dose_R2": -0.212,
+      "perm_null95": 0.206,
+      "beats_null": false
+    },
+    "P": {
+      "own_dose_R2": -0.403,
+      "perm_null95": 0.112,
+      "beats_null": false
+    },
+    "E": {
+      "own_dose_R2": -0.357,
+      "perm_null95": -0.082,
+      "beats_null": false
+    },
+    "G": {
+      "own_dose_R2": -0.36,
+      "perm_null95": -0.36,
+      "beats_null": false
+    },
+    "own11_dose_R2": 0.135,
+    "neigh11_dose_R2": 0.58
+  },
+  "access_interpretation": "L does not clearly beat E/G (or none beat null at n=4) -> ownership NOT established; distributed/homogenized possible"
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "LCI-TURNOVER-FINAL-SEAL-AUDIT-03L-v1",
+  "scope": "TWO_CHECK_CLOSURE_ONLY",
+  "verdict": "READY_FOR_HUMAN_AUTHORIZATION",
+  "audited_commit": "0aaf80aa165b76d91b633105e83d03da5208f643",
+  "exact_parent": "2b1f45357b0e0be22236e5f73a403cecc27778ea",
+  "previous_narrow_audit": "fe539b2c1da707e3b05bd7528ffbe2887fd433b0",
+  "checks": {
+    "manifest_exact_token_count": 1,
+    "manifest_token_only_in_approval_phrase_template": true,
+    "execution_manifest_binding_matches": true,
+    "reproduction_guide_binding_matches": true
+  },
+  "regressions": {
+    "focused_contract": "12/12 PASS",
+    "turnover_03g_integration": "7/7 PASS",
+    "rejection_engine_initialization": 0,
+    "rejection_ledger_initialization": 0,
+    "output_54xxx_present": false
+  },
+  "final_seal": {
+    "path": "docs/individuation/FINAL_SEAL_MANIFEST_03G.json",
+    "sha256": "cdf7277a00e3017a1389e9334d983364b9aa0af88c646cdec2999e6ad88757fd",
+    "canonical_artifact_count": 22,
+    "runner_verification": "PASS",
+    "self_referential_hash_field": false
+  },
+  "human_permission_template": {
+    "path": "docs/individuation/TURNOVER_AUTHORIZATION_TEMPLATE_03G.json",
+    "byte_identical_to_audited_commit": true,
+    "authorization_id_empty": true,
+    "approver_empty": true,
+    "authorized_at_utc_empty": true,
+    "runner_rejects_unfilled_template": true
+  },
+  "generated_authorization_phrase": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03G FINAL_SEAL_SHA256=cdf7277a00e3017a1389e9334d983364b9aa0af88c646cdec2999e6ad88757fd",
+  "preflight": {
+    "hash_bound_phrase_accepted": true,
+    "literal_placeholder_rejected": true,
+    "engine_initialization": 0,
+    "ledger_initialization": 0,
+    "prospective_directory_created": false,
+    "seed_54xxx_executed": false
+  },
+  "human_authorization_present": false,
+  "prospective_execution_performed": false
+}
