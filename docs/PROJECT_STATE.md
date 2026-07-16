@@ -1,5 +1,24 @@
 # Project State
 
+## PAPER RECONCILIATION (2026-07-16) — V4.1 COMPLETE, CERTIFICATION WITHDRAWN
+
+The canonical organizational-memory V4.0 package at `23b53aee...` is preserved
+unchanged under `paper/organizational-memory-v4-1-reconciliation/v4.0/`.
+Analysis of committed artifacts only found that the V4.0 history bootstrap
+relabelled duplicate draws as independent folds; all 3,000 realized replicates
+contained leakage across exact duplicated original-world rows.
+
+The V4.1 primary estimator leaves one complete simulation-seed world out.
+Deep cumulative-drive h1 is 0.6947 across W=3 worlds, with fold scores 0.7454,
+0.4141, and 0.9246. The point remains positive, but the corrected uncertainty
+does not certify a lower bound above 0.50. Deep h2 is -1.1183 and not
+established. Direct 36/36 survival and zero-switch counts reproduce; event-level
+fusion handling and local storage are not reconstructable from the committed
+artifacts.
+
+Paper verdict: **MAJOR REPAIR STILL REQUIRED**. No simulation, submission,
+publication, push, or merge was performed.
+
 ## CURRENT QUESTION
 
 Can CORE V0 local particle laws produce auditable high phenotype continuity under low material retention, beyond tracker and static-flux artefacts?

@@ -2440,3 +2440,28 @@ Docker/CI never built -> clean reproduction INCOMPLETE.
 VERDICTS: THEOREM PACKAGE: PASS. LARGE DISTRIBUTIONAL HOLD-OUT: FAIL. CLEAN REPRODUCTION: INCOMPLETE.
 CROSS-SUBSTRATE: STRUCTURAL PASS. PUBLICATION STATUS: NOT READY. EXTERNAL HUMAN REVIEW: PENDING.
 DROPLET CAUSAL-CONTINUITY PILOT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## D-086 — Organizational-memory V4.1: grouped point survives; certification and local storage withdrawn
+
+The exact canonical V4.0 package is commit `23b53aee...` and remains unchanged.
+Its 3,000-replicate history bootstrap is reproducible but leakage-affected:
+duplicate histories were assigned fresh fold identifiers, allowing exact
+original-world rows to occur in both training and testing. All 3,000 realized
+replicates contained duplicates.
+
+V4.1 freezes simulation seed as the outer original-world group. Deep h1 becomes
+0.6947 over W=3 worlds (folds 0.7454, 0.4141, 0.9246). The point remains
+positive, but neither the descriptive world-fold t interval nor fixed-fold
+world-block resampling supports a lower bound above 0.50. The former
+`CERTIFIED` disposition is withdrawn. Deep h2 is -1.1183 and not established.
+
+The committed artifact reproduces 36/36 recorded surviving trajectories and
+zero recorded switches, but lacks masks, association edges, gate terms,
+ambiguity alternatives, and fusion events. Fusion-free continuity is therefore
+withdrawn as independently verified. Because histories were imposed globally
+and no local/neighbour/environment/world access comparison exists, local
+storage is also withdrawn.
+
+Decision: retain only the bounded claim of positive global informational
+content in the available worlds. Paper verdict: **MAJOR REPAIR STILL
+REQUIRED**. No new simulation is authorized by this paper decision.

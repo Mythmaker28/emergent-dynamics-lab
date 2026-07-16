@@ -1,0 +1,750 @@
+{
+  "analysis": {
+    "name": "ORGANIZATIONAL-MEMORY-PAPER-V4.1-RECONCILIATION",
+    "no_new_simulations": true,
+    "ridge_lambda": 1.0,
+    "primary_outer_group": "original world (simulation seed)",
+    "threshold": 0.5,
+    "uncertainty_warning": "Only 2-4 original worlds are available. World-fold t intervals and exact block resampling are descriptive and cannot support high-confidence certification."
+  },
+  "v4_bootstrap_audit": {
+    "v4_bootstrap_replicates": 3000,
+    "replicates_with_at_least_one_duplicate_history": 3000,
+    "replicates_with_all_unique_histories": 0,
+    "theoretical_probability_all_unique": 5.372321709247828e-05,
+    "theoretical_probability_at_least_one_duplicate": 0.9999462767829075,
+    "unique_history_count_distribution": {
+      "4": 3,
+      "5": 43,
+      "6": 291,
+      "7": 854,
+      "8": 1081,
+      "9": 593,
+      "10": 122,
+      "11": 13
+    },
+    "leakage_finding": "V4 assigned each duplicate draw a new fold id. Every one of the 3000 realized bootstrap replicates therefore placed exact duplicated original-world rows in both training and testing."
+  },
+  "longitudinal": {
+    "initial": {
+      "h1": {
+        "world_grouped_point_r2": 0.7382198217435225,
+        "world_fold_r2": {
+          "38502": 0.7734649026459073,
+          "38503": 0.5479314811712352,
+          "38504": 0.8932630814134246
+        },
+        "world_fold_mean_r2": 0.7382198217435224,
+        "world_fold_t_interval_95_descriptive": [
+          0.3026438564894135,
+          1.1737957869976312
+        ],
+        "world_block_resampling": {
+          "ordered_resamples": 27,
+          "percentile_2_5_50_97_5": [
+            0.5967970558240809,
+            0.7382198217435224,
+            0.8673068093471291
+          ],
+          "min": 0.5479314811712352,
+          "max": 0.8932630814134246,
+          "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+        },
+        "history_grouped_v4_point_r2": 0.7845536422370551,
+        "crossed_world_and_history_exclusion_r2": 0.6021172465274376,
+        "n_rows": 36,
+        "n_original_worlds": 3,
+        "n_histories": 12
+      },
+      "h2": {
+        "world_grouped_point_r2": 0.7631095213138261,
+        "world_fold_r2": {
+          "38502": 0.7487733378224797,
+          "38503": 0.6935990020433822,
+          "38504": 0.8469562240756163
+        },
+        "world_fold_mean_r2": 0.763109521313826,
+        "world_fold_t_interval_95_descriptive": [
+          0.5701485538303425,
+          0.9560704887973096
+        ],
+        "world_block_resampling": {
+          "ordered_resamples": 27,
+          "percentile_2_5_50_97_5": [
+            0.7055534414621868,
+            0.7631095213138261,
+            0.8256832653874366
+          ],
+          "min": 0.6935990020433824,
+          "max": 0.8469562240756163,
+          "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+        },
+        "history_grouped_v4_point_r2": 0.8009566334184146,
+        "crossed_world_and_history_exclusion_r2": 0.661834430319045,
+        "n_rows": 36,
+        "n_original_worlds": 3,
+        "n_histories": 12
+      },
+      "mean_M": 0.9999999999659926,
+      "at_or_below_M_0_25": 0
+    },
+    "moderate": {
+      "h1": {
+        "world_grouped_point_r2": 0.9020140417528734,
+        "world_fold_r2": {
+          "38502": 0.9005525272414623,
+          "38503": 0.8557113720255862,
+          "38504": 0.9497782259915715
+        },
+        "world_fold_mean_r2": 0.9020140417528734,
+        "world_fold_t_interval_95_descriptive": [
+          0.785134233279178,
+          1.0188938502265688
+        ],
+        "world_block_resampling": {
+          "ordered_resamples": 27,
+          "percentile_2_5_50_97_5": [
+            0.8654269556556927,
+            0.9020140417528734,
+            0.9391126579290477
+          ],
+          "min": 0.8557113720255862,
+          "max": 0.9497782259915715,
+          "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+        },
+        "history_grouped_v4_point_r2": 0.9328416009796016,
+        "crossed_world_and_history_exclusion_r2": 0.8841877815473571,
+        "n_rows": 36,
+        "n_original_worlds": 3,
+        "n_histories": 12
+      },
+      "h2": {
+        "world_grouped_point_r2": -0.5102312807051632,
+        "world_fold_r2": {
+          "38502": -0.016213220339958312,
+          "38503": -1.2059332574902926,
+          "38504": -0.3085473642852403
+        },
+        "world_fold_mean_r2": -0.5102312807051638,
+        "world_fold_t_interval_95_descriptive": [
+          -2.050328032763596,
+          1.029865471353269
+        ],
+        "world_block_resampling": {
+          "ordered_resamples": 27,
+          "percentile_2_5_50_97_5": [
+            -1.0114996472958642,
+            -0.5102312807051632,
+            -0.07955228486143612
+          ],
+          "min": -1.2059332574902921,
+          "max": -0.01621322033995809,
+          "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+        },
+        "history_grouped_v4_point_r2": -0.031549419744245855,
+        "crossed_world_and_history_exclusion_r2": -0.9872695878502424,
+        "n_rows": 36,
+        "n_original_worlds": 3,
+        "n_histories": 12
+      },
+      "mean_M": 0.3865448961688351,
+      "at_or_below_M_0_25": 0
+    },
+    "deep_1": {
+      "h1": {
+        "world_grouped_point_r2": 0.8432292005201645,
+        "world_fold_r2": {
+          "38502": 0.8845233957314834,
+          "38503": 0.7079121295333073,
+          "38504": 0.9372520762957025
+        },
+        "world_fold_mean_r2": 0.8432292005201645,
+        "world_fold_t_interval_95_descriptive": [
+          0.5448418549525027,
+          1.1416165460878263
+        ],
+        "world_block_resampling": {
+          "ordered_resamples": 27,
+          "percentile_2_5_50_97_5": [
+            0.7461779038762454,
+            0.8432292005201644,
+            0.9258275288401216
+          ],
+          "min": 0.7079121295333073,
+          "max": 0.9372520762957025,
+          "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+        },
+        "history_grouped_v4_point_r2": 0.8969654746111382,
+        "crossed_world_and_history_exclusion_r2": 0.8040871724889351,
+        "n_rows": 36,
+        "n_original_worlds": 3,
+        "n_histories": 12
+      },
+      "h2": {
+        "world_grouped_point_r2": -0.13149754878007158,
+        "world_fold_r2": {
+          "38502": 0.28501634442570545,
+          "38503": -0.9119308059158029,
+          "38504": 0.23242181514988192
+        },
+        "world_fold_mean_r2": -0.13149754878007183,
+        "world_fold_t_interval_95_descriptive": [
+          -1.8117345782096388,
+          1.5487394806494952
+        ],
+        "world_block_resampling": {
+          "ordered_resamples": 27,
+          "percentile_2_5_50_97_5": [
+            -0.6639877380182371,
+            -0.13149754878007136,
+            0.27362086308261047
+          ],
+          "min": -0.911930805915802,
+          "max": 0.28501634442570567,
+          "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+        },
+        "history_grouped_v4_point_r2": -0.05256714147341213,
+        "crossed_world_and_history_exclusion_r2": -0.46774663857898835,
+        "n_rows": 36,
+        "n_original_worlds": 3,
+        "n_histories": 12
+      },
+      "mean_M": 0.24505327337317911,
+      "at_or_below_M_0_25": 22
+    },
+    "deep": {
+      "h1": {
+        "world_grouped_point_r2": 0.69469387421633,
+        "world_fold_r2": {
+          "38502": 0.7453562063392665,
+          "38503": 0.4140894403564891,
+          "38504": 0.9246359759532347
+        },
+        "world_fold_mean_r2": 0.69469387421633,
+        "world_fold_t_interval_95_descriptive": [
+          0.05126170819275844,
+          1.3381260402399016
+        ],
+        "world_block_resampling": {
+          "ordered_resamples": 27,
+          "percentile_2_5_50_97_5": [
+            0.4858639063194241,
+            0.69469387421633,
+            0.8857920258702081
+          ],
+          "min": 0.4140894403564891,
+          "max": 0.9246359759532347,
+          "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+        },
+        "history_grouped_v4_point_r2": 0.8878243778005908,
+        "crossed_world_and_history_exclusion_r2": 0.6420285121634324,
+        "n_rows": 36,
+        "n_original_worlds": 3,
+        "n_histories": 12
+      },
+      "h2": {
+        "world_grouped_point_r2": -1.1183408783037767,
+        "world_fold_r2": {
+          "38502": -0.09822415398409445,
+          "38503": -3.236242609661466,
+          "38504": -0.020555871265771408
+        },
+        "world_fold_mean_r2": -1.1183408783037774,
+        "world_fold_t_interval_95_descriptive": [
+          -5.6756598575287995,
+          3.4389781009212452
+        ],
+        "world_block_resampling": {
+          "ordered_resamples": 27,
+          "percentile_2_5_50_97_5": [
+            -2.5563386109313675,
+            -1.1183408783037763,
+            -0.037383999188074425
+          ],
+          "min": -3.2362426096614643,
+          "max": -0.020555871265771186,
+          "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+        },
+        "history_grouped_v4_point_r2": -0.23942336375826123,
+        "crossed_world_and_history_exclusion_r2": -1.4229517620174348,
+        "n_rows": 36,
+        "n_original_worlds": 3,
+        "n_histories": 12
+      },
+      "mean_M": 0.1902034032455061,
+      "at_or_below_M_0_25": 34
+    }
+  },
+  "tracker_sensitivity": {
+    "longitudinal": {
+      "world_grouped_point_r2": 0.69469387421633,
+      "world_fold_r2": {
+        "38502": 0.7453562063392665,
+        "38503": 0.4140894403564891,
+        "38504": 0.9246359759532347
+      },
+      "world_fold_mean_r2": 0.69469387421633,
+      "world_fold_t_interval_95_descriptive": [
+        0.05126170819275844,
+        1.3381260402399016
+      ],
+      "world_block_resampling": {
+        "ordered_resamples": 27,
+        "percentile_2_5_50_97_5": [
+          0.4858639063194241,
+          0.69469387421633,
+          0.8857920258702081
+        ],
+        "min": 0.4140894403564891,
+        "max": 0.9246359759532347,
+        "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+      },
+      "history_grouped_v4_point_r2": 0.8878243778005908,
+      "crossed_world_and_history_exclusion_r2": 0.6420285121634324,
+      "n_rows": 36,
+      "n_original_worlds": 3,
+      "n_histories": 12
+    },
+    "largest_at_each_frame": {
+      "world_grouped_point_r2": 0.6706421241795025,
+      "world_fold_r2": {
+        "38502": 0.792759475447433,
+        "38503": 0.37221036710573796,
+        "38504": 0.8469565299853365
+      },
+      "world_fold_mean_r2": 0.6706421241795025,
+      "world_fold_t_interval_95_descriptive": [
+        0.025098584427073245,
+        1.3161856639319318
+      ],
+      "world_block_resampling": {
+        "ordered_resamples": 27,
+        "percentile_2_5_50_97_5": [
+          0.4633293405797719,
+          0.6706421241795025,
+          0.8352138348354574
+        ],
+        "min": 0.37221036710573807,
+        "max": 0.8469565299853367,
+        "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+      },
+      "history_grouped_v4_point_r2": 0.9122887926061685,
+      "crossed_world_and_history_exclusion_r2": 0.660256841878635,
+      "n_rows": 36,
+      "n_original_worlds": 3,
+      "n_histories": 12
+    },
+    "paired_longitudinal_minus_largest": {
+      "mean_difference_r2": 0.02405175003682758,
+      "world_fold_differences": [
+        -0.0474032691081665,
+        0.04187907325075113,
+        0.07767944596789811
+      ],
+      "world_fold_t_interval_95_descriptive": [
+        -0.13597341458505915,
+        0.1840769146587143
+      ]
+    },
+    "fusion_audit": {
+      "event_level_masks_or_edges_committed": false,
+      "merge_or_fusion_flags_present_in_raw": false,
+      "finding": "The summary raw artifact contains lost/switch flags but no mask-overlap edges, ambiguity alternatives, or merge/fusion events. Actual fusion handling cannot be independently reconstructed without new simulation."
+    }
+  },
+  "causal": {
+    "transplant_R_full_h1": {
+      "world_grouped_point_r2": 0.646760721160831,
+      "world_fold_r2": {
+        "35001": 0.6567589818671442,
+        "35002": 0.6971865394461508,
+        "35003": 0.5863366421691987
+      },
+      "world_fold_mean_r2": 0.6467607211608313,
+      "world_fold_t_interval_95_descriptive": [
+        0.5074074847683895,
+        0.7861139575532731
+      ],
+      "world_block_resampling": {
+        "ordered_resamples": 27,
+        "percentile_2_5_50_97_5": [
+          0.6015948157704201,
+          0.6467607211608312,
+          0.6884272353040327
+        ],
+        "min": 0.5863366421691986,
+        "max": 0.6971865394461508,
+        "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+      },
+      "history_grouped_v4_point_r2": 0.5180147861002814,
+      "crossed_world_and_history_exclusion_r2": 0.48065735848426416,
+      "n_rows": 36,
+      "n_original_worlds": 3,
+      "n_histories": 12
+    },
+    "transplant_R_both0_h1": {
+      "world_grouped_point_r2": 0.0,
+      "world_fold_r2": {
+        "35001": 0.0,
+        "35002": 0.0,
+        "35003": 0.0
+      },
+      "world_fold_mean_r2": 0.0,
+      "world_fold_t_interval_95_descriptive": [
+        0.0,
+        0.0
+      ],
+      "world_block_resampling": {
+        "ordered_resamples": 27,
+        "percentile_2_5_50_97_5": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "min": 0.0,
+        "max": 0.0,
+        "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+      },
+      "history_grouped_v4_point_r2": -0.19008264462809832,
+      "crossed_world_and_history_exclusion_r2": -0.19008264462809898,
+      "n_rows": 36,
+      "n_original_worlds": 3,
+      "n_histories": 12
+    },
+    "transplant_R_erase_h1": {
+      "world_grouped_point_r2": 0.0,
+      "world_fold_r2": {
+        "35001": 0.0,
+        "35002": 0.0,
+        "35003": 0.0
+      },
+      "world_fold_mean_r2": 0.0,
+      "world_fold_t_interval_95_descriptive": [
+        0.0,
+        0.0
+      ],
+      "world_block_resampling": {
+        "ordered_resamples": 27,
+        "percentile_2_5_50_97_5": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "min": 0.0,
+        "max": 0.0,
+        "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+      },
+      "history_grouped_v4_point_r2": -0.19008264462809832,
+      "crossed_world_and_history_exclusion_r2": -0.19008264462809898,
+      "n_rows": 36,
+      "n_original_worlds": 3,
+      "n_histories": 12
+    },
+    "transplant_R_full_h2": {
+      "world_grouped_point_r2": 0.353660701993887,
+      "world_fold_r2": {
+        "35001": 0.4007947654542946,
+        "35002": 0.43177248261167056,
+        "35003": 0.2284148579156957
+      },
+      "world_fold_mean_r2": 0.35366070199388694,
+      "world_fold_t_interval_95_descriptive": [
+        0.08148267779411861,
+        0.6258387261936553
+      ],
+      "world_block_resampling": {
+        "ordered_resamples": 27,
+        "percentile_2_5_50_97_5": [
+          0.2657638378823921,
+          0.353660701993887,
+          0.425060643894239
+        ],
+        "min": 0.22841485791569582,
+        "max": 0.43177248261167034,
+        "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+      },
+      "history_grouped_v4_point_r2": 0.1344585453802507,
+      "crossed_world_and_history_exclusion_r2": 0.10023003059145696,
+      "n_rows": 36,
+      "n_original_worlds": 3,
+      "n_histories": 12
+    },
+    "transplant_R_both0_h2": {
+      "world_grouped_point_r2": 0.0,
+      "world_fold_r2": {
+        "35001": 0.0,
+        "35002": 0.0,
+        "35003": 0.0
+      },
+      "world_fold_mean_r2": 0.0,
+      "world_fold_t_interval_95_descriptive": [
+        0.0,
+        0.0
+      ],
+      "world_block_resampling": {
+        "ordered_resamples": 27,
+        "percentile_2_5_50_97_5": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "min": 0.0,
+        "max": 0.0,
+        "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+      },
+      "history_grouped_v4_point_r2": -0.1900826446280992,
+      "crossed_world_and_history_exclusion_r2": -0.1900826446280992,
+      "n_rows": 36,
+      "n_original_worlds": 3,
+      "n_histories": 12
+    },
+    "transplant_R_erase_h2": {
+      "world_grouped_point_r2": 0.0,
+      "world_fold_r2": {
+        "35001": 0.0,
+        "35002": 0.0,
+        "35003": 0.0
+      },
+      "world_fold_mean_r2": 0.0,
+      "world_fold_t_interval_95_descriptive": [
+        0.0,
+        0.0
+      ],
+      "world_block_resampling": {
+        "ordered_resamples": 27,
+        "percentile_2_5_50_97_5": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "min": 0.0,
+        "max": 0.0,
+        "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+      },
+      "history_grouped_v4_point_r2": -0.1900826446280992,
+      "crossed_world_and_history_exclusion_r2": -0.1900826446280992,
+      "n_rows": 36,
+      "n_original_worlds": 3,
+      "n_histories": 12
+    },
+    "inplace_delta_h1": {
+      "world_grouped_point_r2": 0.7038828017480752,
+      "world_fold_r2": {
+        "35001": 0.843202825455985,
+        "35002": 0.5645627780401652
+      },
+      "world_fold_mean_r2": 0.7038828017480752,
+      "world_fold_t_interval_95_descriptive": [
+        -1.06634594333334,
+        2.4741115468294903
+      ],
+      "world_block_resampling": {
+        "ordered_resamples": 4,
+        "percentile_2_5_50_97_5": [
+          0.5750117798182585,
+          0.7038828017480752,
+          0.8327538236778917
+        ],
+        "min": 0.5645627780401652,
+        "max": 0.843202825455985,
+        "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+      },
+      "history_grouped_v4_point_r2": 0.7095013468983873,
+      "crossed_world_and_history_exclusion_r2": 0.5552231262070844,
+      "n_rows": 24,
+      "n_original_worlds": 2,
+      "n_histories": 12
+    },
+    "inplace_delta_h2": {
+      "world_grouped_point_r2": 0.19390033323251166,
+      "world_fold_r2": {
+        "35001": 0.08185630744027228,
+        "35002": 0.30594435902475103
+      },
+      "world_fold_mean_r2": 0.19390033323251166,
+      "world_fold_t_interval_95_descriptive": [
+        -1.2297539979489196,
+        1.6175546644139431
+      ],
+      "world_block_resampling": {
+        "ordered_resamples": 4,
+        "percentile_2_5_50_97_5": [
+          0.09025960937469044,
+          0.19390033323251166,
+          0.29754105709033296
+        ],
+        "min": 0.0818563074402725,
+        "max": 0.3059443590247509,
+        "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+      },
+      "history_grouped_v4_point_r2": 0.2459068588235921,
+      "crossed_world_and_history_exclusion_r2": 0.06449036340145331,
+      "n_rows": 24,
+      "n_original_worlds": 2,
+      "n_histories": 12
+    }
+  },
+  "body_baseline": {
+    "initial": {
+      "memory_features": {
+        "world_grouped_point_r2": 0.8291041006267337,
+        "world_fold_r2": {
+          "38501": 0.8544090778849043,
+          "38502": 0.6930393162508761,
+          "38503": 0.8170375994475632,
+          "38504": 0.9519304089235913
+        },
+        "world_fold_mean_r2": 0.8291041006267338,
+        "world_fold_t_interval_95_descriptive": [
+          0.6587469099498511,
+          0.9994612913036165
+        ],
+        "world_block_resampling": {
+          "ordered_resamples": 256,
+          "percentile_2_5_50_97_5": [
+            0.7333817566593832,
+            0.8291041006267337,
+            0.9182072065545843
+          ],
+          "min": 0.6930393162508761,
+          "max": 0.9519304089235913,
+          "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+        },
+        "history_grouped_v4_point_r2": 0.8165256234529124,
+        "crossed_world_and_history_exclusion_r2": 0.7093265269261917,
+        "n_rows": 48,
+        "n_original_worlds": 4,
+        "n_histories": 12
+      },
+      "body_size_and_mass": {
+        "world_grouped_point_r2": -0.10778833693481071,
+        "world_fold_r2": {
+          "38501": 0.24816460499434823,
+          "38502": -0.5549762292933058,
+          "38503": -0.0284091339518191,
+          "38504": -0.09593258948846572
+        },
+        "world_fold_mean_r2": -0.1077883369348106,
+        "world_fold_t_interval_95_descriptive": [
+          -0.6380271918406077,
+          0.42245051797098654
+        ],
+        "world_block_resampling": {
+          "ordered_resamples": 256,
+          "percentile_2_5_50_97_5": [
+            -0.42333445545793413,
+            -0.10778833693481049,
+            0.16214030637364474
+          ],
+          "min": -0.5549762292933058,
+          "max": 0.24816460499434834,
+          "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+        },
+        "history_grouped_v4_point_r2": 0.06803642075247829,
+        "crossed_world_and_history_exclusion_r2": -0.24518880541891397,
+        "n_rows": 48,
+        "n_original_worlds": 4,
+        "n_histories": 12
+      },
+      "paired_memory_minus_body": {
+        "mean_difference_r2": 0.9368924375615443,
+        "world_fold_differences": [
+          0.606244472890556,
+          1.248015545544182,
+          0.8454467333993823,
+          1.0478629984120569
+        ],
+        "world_fold_t_interval_95_descriptive": [
+          0.49937604462738483,
+          1.3744088304957036
+        ]
+      },
+      "tracker_warning": "This historical H2-CERT comparison used largest-component reselection, not the later longitudinal tracker."
+    },
+    "deep": {
+      "memory_features": {
+        "world_grouped_point_r2": 0.7692018170146087,
+        "world_fold_r2": {
+          "38501": 0.7043426674878024,
+          "38502": 0.7483278886504866,
+          "38503": 0.7119061761374912,
+          "38504": 0.9122305357826547
+        },
+        "world_fold_mean_r2": 0.7692018170146088,
+        "world_fold_t_interval_95_descriptive": [
+          0.6144287859079323,
+          0.9239748481212853
+        ],
+        "world_block_resampling": {
+          "ordered_resamples": 256,
+          "percentile_2_5_50_97_5": [
+            0.7081244218126468,
+            0.7692018170146087,
+            0.8621494458713638
+          ],
+          "min": 0.7043426674878025,
+          "max": 0.9122305357826547,
+          "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+        },
+        "history_grouped_v4_point_r2": 0.9231305222953001,
+        "crossed_world_and_history_exclusion_r2": 0.7409269106805556,
+        "n_rows": 48,
+        "n_original_worlds": 4,
+        "n_histories": 12
+      },
+      "body_size_and_mass": {
+        "world_grouped_point_r2": 0.4538424075858266,
+        "world_fold_r2": {
+          "38501": 0.4686830443437269,
+          "38502": 0.8905891334024283,
+          "38503": 0.17528205578435052,
+          "38504": 0.28081539681280066
+        },
+        "world_fold_mean_r2": 0.45384240758582656,
+        "world_fold_t_interval_95_descriptive": [
+          -0.04808880504093199,
+          0.955773620212585
+        ],
+        "world_block_resampling": {
+          "ordered_resamples": 256,
+          "percentile_2_5_50_97_5": [
+            0.22804872629857553,
+            0.4538424075858266,
+            0.7381456992550215
+          ],
+          "min": 0.17528205578435063,
+          "max": 0.8905891334024283,
+          "nominal_coverage_warning": "Descriptive only: too few original worlds for a reliable nominal 95% cluster-bootstrap confidence interval."
+        },
+        "history_grouped_v4_point_r2": 0.46015181708933617,
+        "crossed_world_and_history_exclusion_r2": 0.3233875272266833,
+        "n_rows": 48,
+        "n_original_worlds": 4,
+        "n_histories": 12
+      },
+      "paired_memory_minus_body": {
+        "mean_difference_r2": 0.31535940942878216,
+        "world_fold_differences": [
+          0.23565962314407551,
+          -0.14226124475194168,
+          0.5366241203531407,
+          0.631415138969854
+        ],
+        "world_fold_t_interval_95_descriptive": [
+          -0.23938064323690533,
+          0.8700994620944696
+        ]
+      },
+      "tracker_warning": "This historical H2-CERT comparison used largest-component reselection, not the later longitudinal tracker."
+    }
+  },
+  "observed_counts": {
+    "records": 36,
+    "original_worlds": 3,
+    "histories": 12,
+    "survived": 36,
+    "lost": 0,
+    "recorded_switches": 0,
+    "deep_M_at_or_below_0_25": 34
+  }
+}
