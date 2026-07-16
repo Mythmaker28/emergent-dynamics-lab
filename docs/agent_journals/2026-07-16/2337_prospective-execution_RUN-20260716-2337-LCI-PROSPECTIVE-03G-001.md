@@ -1,9 +1,9 @@
-# Agent journal — turnover prospective execution 03G
+# Agent journal - turnover prospective execution 03G
 
 - Role: sealed prospective execution operator.
 - Run ID: `RUN-20260716-2337-LCI-PROSPECTIVE-03G-001`.
 - Start time: 2026-07-16 23:37 Europe/Paris.
-- End time: pending.
+- End time: 2026-07-17 00:12 Europe/Paris.
 - Starting Git state:
   `b5c0f02c02fde0bd15a288b961ffc24606199376` on final-seal branch
   `audit/lci-turnover-final-seal-03l`.
@@ -30,6 +30,14 @@
 4. Created a separate execution branch from the committed final-seal audit.
 5. Created the one-execution authorization instance at
    `docs/individuation/TURNOVER_AUTHORIZATION_03G.json`.
+6. Committed the exact authorization before execution at
+   `c158bc0b848710edeafd425f31dfcbd5aefc0934`.
+7. Invoked the production runner once, without `--resume`.
+8. Completed primary seeds `54001-54050` exactly once and in ascending order.
+9. Verified the terminal ledger, every raw hash, raw manifest, analysis
+   certificate, and result report independently after completion.
+10. Indexed the execution artifacts and updated durable project, experiment,
+    run, and decision state.
 
 ## Reproducible command
 
@@ -42,6 +50,8 @@ $python = "C:\Users\tommy\Documents\ising-lci-turnover-03g-clean\Scripts\python.
   --authorization docs\individuation\TURNOVER_AUTHORIZATION_03G.json
 ```
 
+This command was invoked once in fresh mode. Do not invoke it again.
+
 ## OBSERVED
 
 - Human phrase exactly matches the sealed manifest template after substituting
@@ -52,18 +62,28 @@ $python = "C:\Users\tommy\Documents\ising-lci-turnover-03g-clean\Scripts\python.
 - Authorization UTC timestamp: `2026-07-16T21:37:25.726Z`.
 - Canonical prospective directory was absent before authorization.
 - Runtime lock acquisition succeeded with no competing run.
+- The runner started in `fresh` mode and completed 50/50 primary seeds.
+- Seeds started and completed are exactly `54001-54050`; no reserve seed ran.
+- Valid original worlds: 21/50, above the frozen minimum of 18.
+- All 50 raw SHA-256 values match the ledger and raw manifest.
+- Ledger: 108 entries, terminal `CERTIFIED`, verified tip
+  `0d579d0fa40fd19afe7bfc26140133fc9c57de2b656a7606aa5a5bd8591791aa`.
+- Certified outcome: **B - causal feeding effect without ownership**.
+- Gates: `FEASIBILITY=true`, `G_OWN_PERM=true`,
+  `G_LOCAL_EXCLUSION=false`, `G_CAUSAL=true`,
+  `DISTRIBUTED_ENV=false`.
 
 ## INFERRED
 
-The committed authorization instance is eligible for one production-run
-validation. Scientific interpretation remains forbidden until the ledger
-reaches `CERTIFIED`.
+The experiment establishes a specific local causal feeding effect that
+survives deep turnover, but it does not establish that the target's graded
+history is locally owned. This is a passive local causal remnant, not
+individual memory.
 
 ## HYPOTHESIS
 
-The production runner will accept the committed authorization and execute the
-frozen primary family, activate reserve only from the frozen feasibility
-projection if required, and produce exactly one certified A–F outcome.
+The frozen 03G implementation and binding chain produce one auditable
+prospective result without adaptive family or gate changes.
 
 ## WHAT WOULD FALSIFY THIS?
 
@@ -76,7 +96,10 @@ projection if required, and produce exactly one certified A–F outcome.
 
 ## Failures and dead ends
 
-None before execution.
+- Git emitted a sparse-index expansion warning and transient invalid-object
+  diagnostics while staging the pre-execution journal. Direct object reads and
+  `git fsck --connectivity-only --no-dangling` passed before engine launch.
+- No scientific execution failure, retry, resume, or duplicate occurred.
 
 ## Decisions
 
@@ -84,14 +107,20 @@ None before execution.
   execution.
 - The protected unfilled template remains unchanged; this separate instance is
   the authorization consumed by the runner.
-- No scientific, statistical, tracking, family, environment, or A–F rule is
+- No scientific, statistical, tracking, family, environment, or A-F rule is
   modified.
+- Accept frozen Outcome B without broadening its wording.
+- The authorization is consumed; no further prospective execution is
+  authorized.
 
 ## Unresolved risks
 
-- Runtime and reserve use are not yet observed.
-- Final A–F outcome is not yet available.
+- Outcome B does not establish local ownership, individual memory, identity, or
+  active reconstruction.
+- Independent post-result audit has not yet been performed.
 
 ## Handoff
 
-Pending execution and certification.
+Exact next authorized action: independently audit the committed ledger, raw
+manifest, raw records, analysis certificate, and frozen Outcome B
+interpretation. Do not run a second prospective execution.
