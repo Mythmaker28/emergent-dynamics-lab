@@ -1,5 +1,15 @@
 # Project State
 
+## BLOCKER ADDENDUM — TURNOVER 03G HUMAN AUTHORIZATION PHRASE (2026-07-16)
+
+The human supplied the exact phrase containing final-seal SHA-256
+`536cf0351bd65e6fc7efafb2d4a5acc86b99e244abe69c1bbcd8baad04022f62`, but the frozen runner rejected it because
+the execution manifest binds the literal placeholder `<FINAL_SEAL_SHA256>`. The placeholder itself is accepted.
+
+Status: **NOT READY — REPAIR REQUIRED — NO PERMISSION RECORD — NO PROSPECTIVE DIRECTORY — ZERO 54xxx SEEDS
+EXECUTED**. The prior READY conclusion is corrected by
+`docs/individuation/PROSPECTIVE_AUTHORIZATION_BLOCKER_03G.md`.
+
 ## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER FINAL SCIENTIFIC AUDIT 03H RERUN (2026-07-16)
 
 On branch `audit/lci-causal-turnover-final-seal-03h-rerun`, exact target

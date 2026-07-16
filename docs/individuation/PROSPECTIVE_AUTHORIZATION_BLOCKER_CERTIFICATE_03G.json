@@ -1,0 +1,22 @@
+{
+  "schema": "LCI-TURNOVER-PROSPECTIVE-AUTHORIZATION-BLOCKER-03G-v1",
+  "status": "NOT_READY_REPAIR_REQUIRED",
+  "observed_at_utc": "2026-07-16T19:08:43Z",
+  "branch": "audit/lci-causal-turnover-final-seal-03h-rerun",
+  "head": "def070685bf9833a6571766f91c5c7d8a2f8e787",
+  "final_seal_sha256": "536cf0351bd65e6fc7efafb2d4a5acc86b99e244abe69c1bbcd8baad04022f62",
+  "human_phrase": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03G FINAL_SEAL_SHA256=536cf0351bd65e6fc7efafb2d4a5acc86b99e244abe69c1bbcd8baad04022f62",
+  "manifest_required_phrase": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03G FINAL_SEAL_SHA256=<FINAL_SEAL_SHA256>",
+  "human_phrase_validation": {
+    "accepted": false,
+    "error": "authorization binding mismatch: approval_phrase"
+  },
+  "placeholder_phrase_validation": {
+    "accepted": true
+  },
+  "permission_record_created": false,
+  "prospective_directory_created": false,
+  "prospective_seeds_instantiated": [],
+  "prospective_seeds_executed": [],
+  "required_action": "repair phrase binding, re-audit, create a new final seal, and obtain fresh human authorization bound to the new seal"
+}

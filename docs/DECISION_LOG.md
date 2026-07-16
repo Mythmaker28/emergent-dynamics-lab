@@ -2502,3 +2502,20 @@ within `1.48e-12`.
 
 **Authorization boundary:** the accompanying human permission template is unfilled and invalid. This decision
 creates no human authorization, no prospective directory, and no `54xxx` execution.
+
+## D-089 — Refuse turnover execution because the frozen authorization phrase binds a placeholder
+
+**Date:** 2026-07-16
+
+**Observed:** the human supplied the exact phrase with final-seal SHA-256
+`536cf0351bd65e6fc7efafb2d4a5acc86b99e244abe69c1bbcd8baad04022f62`. The unchanged production validator
+rejected it with `authorization binding mismatch: approval_phrase`. The same validator accepted the manifest's
+literal `<FINAL_SEAL_SHA256>` placeholder.
+
+**Decision:** do not substitute the placeholder, do not create a completed permission record, and do not launch
+the prospective execution. The prior READY authorization conclusion is corrected to
+**NOT READY — REPAIR REQUIRED**.
+
+**Repair boundary:** repair only the authorization phrase-binding contract and add a regression test. Because the
+manifest or protected runner bytes will change, perform a fresh audit, create a new final seal, and obtain a fresh
+human phrase bound to that new seal. No `54xxx` seed was instantiated or executed.
