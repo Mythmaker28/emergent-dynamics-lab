@@ -1,0 +1,76 @@
+{
+  "schema": "LCI-TURNOVER-FINAL-SCIENTIFIC-AUDIT-03H-RERUN-v1",
+  "status": "READY",
+  "branch": "audit/lci-causal-turnover-final-seal-03h-rerun",
+  "target_commit": "7f005bca81e1a8bbd03ca9aa8f7d114931a686a9",
+  "target_parent": "23b6e9b3c667705158af833c1cf8458a03c8fb66",
+  "scientific_scope_only": true,
+  "checks": {
+    "clean_provenance": true,
+    "no_54xxx_outputs_or_completed_permission": true,
+    "canonical_index_complete": true,
+    "production_chain_complete": true,
+    "frozen_lifecycle": true,
+    "fresh_repeat_refused": true,
+    "same_permission_resume_only": true,
+    "pre_engine_exact_bindings": true,
+    "reserve_feasibility_only": true,
+    "closed_family_analyzer": true,
+    "duplicate_and_incomplete_raw_refused": true,
+    "outcome_e_below_minimum": true,
+    "one_result_for_all_reachable_gate_assignments": true,
+    "scope_dimensions_and_gfull_slice": true,
+    "three_part_primary_gate": true,
+    "all_six_a_to_f_fixtures": true,
+    "authoritative_environment_recreated": true,
+    "dev_seed_50001_byte_identical": true,
+    "family_power_reproduced": true,
+    "final_seal_valid": true,
+    "unfilled_permission_refused_before_run_directory": true
+  },
+  "tests": {
+    "turnover_03g": "7/7",
+    "turnover_03e": "18/18",
+    "turnover_03c": "9/9",
+    "bijective_tracker": "10/10",
+    "material_tracer": "6/6",
+    "compileall_individuation": "PASS",
+    "static_selfcheck": "PASS"
+  },
+  "environment": {
+    "python": "3.12.10",
+    "python_implementation": "CPython",
+    "system": "Windows",
+    "machine": "AMD64",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.9",
+    "lock_sha256": "bdffda614e9fb1062d301a6c25b13737362f54c621a90c6d8d1f52c2271f4f4f"
+  },
+  "dev_chain": {
+    "seed": 50001,
+    "ledger_tip": "e79cfc4f33cbd788fe1109d43b83d20ef4d6f4d4d295f8a3aad24203cd4fadf0",
+    "raw_sha256": "a43817bb72f62c8a2b0f9f1fa919579840e249546e260d2ebbeea10fa9663df6",
+    "certificate_sha256": "cffe379a6c41e71bc849db98ea5a7c8649b709ea12f87fa2cc793cb49ee87b5f",
+    "raw_byte_identical": true
+  },
+  "power": {
+    "committed_value": 0.9245190233241044,
+    "independent_value": 0.924519023325582,
+    "absolute_difference": 1.48e-12
+  },
+  "final_seal": {
+    "path": "docs/individuation/FINAL_SEAL_MANIFEST_03G.json",
+    "sha256": "536cf0351bd65e6fc7efafb2d4a5acc86b99e244abe69c1bbcd8baad04022f62",
+    "canonical_bytes_verified": true,
+    "no_self_reference": true
+  },
+  "permission_template": {
+    "path": "docs/individuation/HUMAN_AUTHORIZATION_TEMPLATE_03G.json",
+    "sha256": "f9db5c4a1f01101425cfc3bd5e0a93c680c9117f42db1593a1b4756f34b8b01a",
+    "filled": false,
+    "authorized": false,
+    "prospective_authorized": false
+  },
+  "prospective_seeds_executed": []
+}

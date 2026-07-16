@@ -2485,3 +2485,20 @@ and is not the sealed prospective execution.
 `6d0bed67339c1b422877b8bfaae6861669597a93`; protected `archive/main-f3921a4` remains the distinct archived lineage
 at `f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77`. Neither ref is modified. No final seal, valid human authorization,
 or `54xxx` execution is created by this decision.
+
+## D-088 — Turnover 03G passes final scientific audit and is sealed pending human authorization
+
+**Date:** 2026-07-16
+
+**Decision:** Accept the exact 03G target `7f005bca81e1a8bbd03ca9aa8f7d114931a686a9` as scientifically reproducible
+and complete for its frozen declared chain. Create the canonical final seal
+`docs/individuation/FINAL_SEAL_MANIFEST_03G.json`, SHA-256
+`536cf0351bd65e6fc7efafb2d4a5acc86b99e244abe69c1bbcd8baad04022f62`.
+
+**Evidence:** fresh Windows AMD64 CPython 3.12.10 lock installation; all 03G A–F, 03E, 03C, tracker, tracer,
+compilation, and static checks passed; allowed DEV seed `50001` reproduced byte-for-byte; registered fresh replay
+was refused; same-binding resume verified the expected journal tip; independent family-power integration agreed
+within `1.48e-12`.
+
+**Authorization boundary:** the accompanying human permission template is unfilled and invalid. This decision
+creates no human authorization, no prospective directory, and no `54xxx` execution.

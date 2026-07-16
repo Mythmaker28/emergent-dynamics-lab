@@ -1,5 +1,16 @@
 # Project State
 
+## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER FINAL SCIENTIFIC AUDIT 03H RERUN (2026-07-16)
+
+On branch `audit/lci-causal-turnover-final-seal-03h-rerun`, exact target
+`7f005bca81e1a8bbd03ca9aa8f7d114931a686a9` and parent
+`23b6e9b3c667705158af833c1cf8458a03c8fb66`, the frozen 03G chain passed the independent scientific,
+reproducibility, environment, A–F, DEV, and family-power audit.
+
+The canonical final seal is `docs/individuation/FINAL_SEAL_MANIFEST_03G.json`, SHA-256
+`536cf0351bd65e6fc7efafb2d4a5acc86b99e244abe69c1bbcd8baad04022f62`. The accompanying permission template is
+unfilled and invalid. Status: **FINAL SEALED — AWAITING HUMAN AUTHORIZATION — ZERO 54xxx SEEDS EXECUTED**.
+
 ## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER-PRESEAL-03G (2026-07-16)
 
 On branch `repair/lci-causal-turnover-end-to-end-03g`, exact parent
