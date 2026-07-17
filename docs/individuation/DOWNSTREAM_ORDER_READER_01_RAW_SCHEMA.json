@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "DOWNSTREAM-ORDER-READER-01-RAW-v1",
+  "title": "DOWNSTREAM-ORDER-READER-01 original-world raw shard",
+  "type": "object",
+  "required": [
+    "schema", "world_id", "seed", "manifest_sha256",
+    "original_world_statistical_unit", "complete_block",
+    "manipulation_invalid", "numerical_failure", "world_disposition"
+  ],
+  "properties": {
+    "schema": {"const": "DOWNSTREAM-ORDER-READER-01-RAW-v1"},
+    "world_id": {"pattern": "^W[0-9]{3}$"},
+    "seed": {"type": "integer"},
+    "manifest_sha256": {"pattern": "^[0-9a-f]{64}$"},
+    "original_world_statistical_unit": {"const": true},
+    "complete_block": {"type": "boolean"},
+    "manipulation_invalid": {"type": "boolean"},
+    "numerical_failure": {"type": "boolean"},
+    "world_disposition": {"type": "string"},
+    "histories": {"type": "object"},
+    "history_contrasts": {"type": "object"},
+    "delta_A_order": {"type": "number"},
+    "delta_num_world": {"type": "number", "minimum": 0},
+    "source_zero_order_response": {"type": "number"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"complete_block": {"const": true}}},
+      "then": {
+        "required": [
+          "histories", "history_contrasts", "delta_A_order",
+          "delta_num_world", "source_zero_order_response"
+        ]
+      }
+    }
+  ]
+}

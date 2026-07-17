@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "DOWNSTREAM-ORDER-READER-01-SEALED-MANIFEST-v1",
+  "title": "DOWNSTREAM-ORDER-READER-01 immutable prospective manifest",
+  "type": "object",
+  "required": [
+    "schema",
+    "mode",
+    "accepted_parent",
+    "required_branch",
+    "execution_authorized",
+    "human_review",
+    "namespace_audit",
+    "statistical_unit",
+    "fixed_maximum_source_worlds",
+    "minimum_complete_worlds",
+    "design",
+    "world_slots",
+    "bound_files",
+    "execution_authorization",
+    "output_locations",
+    "future_commands"
+  ],
+  "properties": {
+    "schema": {"const": "DOWNSTREAM-ORDER-READER-01-MANIFEST-v1"},
+    "mode": {"const": "PROSPECTIVE_HUMAN_SEALED"},
+    "accepted_parent": {"const": "5ae98861b00f62cde78858234dd03ef4a47f549c"},
+    "required_branch": {"const": "codex/downstream-order-reader-prospective-seal-00"},
+    "execution_authorized": {"const": false},
+    "statistical_unit": {"const": "original source world"},
+    "fixed_maximum_source_worlds": {"const": 48},
+    "minimum_complete_worlds": {"const": 18},
+    "world_slots": {
+      "type": "array",
+      "minItems": 48,
+      "maxItems": 48,
+      "items": {
+        "type": "object",
+        "required": ["world_id", "seed"],
+        "properties": {
+          "world_id": {"pattern": "^W[0-9]{3}$"},
+          "seed": {"type": "integer", "minimum": 58001, "maximum": 58048}
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

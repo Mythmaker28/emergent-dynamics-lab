@@ -1,5 +1,195 @@
 # Project State
 
+## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 PROSPECTIVE SEAL (2026-07-18)
+
+Human review approved sealing but not execution. The immutable manifest now contains exactly 48 unique audited
+seeds `58001-58048` in fixed order. The semantic audit rejects the contaminated candidate blocks from 50xxx
+through 57xxx, distinguishes the incidental invalid-seed test occurrence of `58001` from a scientific assignment,
+and covers all valid refs, the recovered tip of one pre-existing malformed ref, all Git objects and all registered
+worktrees. No engine or world was initialized.
+
+Scientific content remains the accepted no-margin package unchanged: original source world is the unit; minimum
+18 complete worlds; sole primary `delta_A_O`; two-sided 95% Student-t interval; `ceil(0.75*n_complete)` sign rule;
+raw-derived `delta_num`; no body/geometry correction; `m_A`, `m_0` and equivalence authorization absent; exactly
+six scientific classifications; direct source susceptibility and `lam_minus=0` order response secondary only.
+
+The engine-free verifier passes all 25 gates. Manifest SHA-256 is
+`0d40765937ca203269bd7fa935f3db4c999576dabf2d6ca0f96223f777ba03e4`. Execution now requires a separate external
+human authorization object that exactly binds this hash. The authorization file and prospective output directory
+are absent. Disposition: **SEALED_READY_FOR_EXECUTION_REVIEW; STOP FOR EXECUTION**. Exact next action: one final
+explicit human execution authorization; do not invoke the prospective command before it.
+
+## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 PROSPECTIVE PACKAGE (2026-07-18)
+
+The unexecuted prospective package is complete on an isolated branch. It freezes one original-world primary
+interaction in the mass-specific internal +x face-flux sum, two-sided interval/sign classification, a conservative
+raw-derived numerical floor, 48 fixed source-world slots, a minimum of 18 complete blocks, and no adaptive family
+extension. The historical 17/24 completion rate is used only for capacity: its exact 95% interval is
+`[0.4891,0.8738]`; at the lower endpoint, 48 worlds have probability `0.9585` of supplying at least 18 complete
+blocks. No effect power is claimed.
+
+No independent practical or equivalence scale exists, so `m_A`, `m_0` and a dimensionless relevance endpoint are
+absent. This permits only bounded causal detection; it does not permit equivalence, behavioural importance or
+macroscopic importance. The six scientific outcomes distinguish predicted positive attenuation, opposite-sign
+functional access, failure to establish access, equivalence only if separately justified before outcomes,
+manipulation invalidity and unresolved evidence. A missed complete-world floor is `FEASIBILITY_FAIL` with scientific
+`UNRESOLVED`.
+
+The seedless 48-slot manifest validates but cannot execute. Simulator imports are deferred until a separately
+human-sealed manifest passes preflight. Atomic ordered-prefix resume, duplicate prevention, exact raw world
+contrasts and an independent raw-only reproducer are implemented. Nine new package tests and the 27 accepted
+instrument/source/clamp regressions pass (`36 passed`). No 570xx reconstruction, scientific seed/namespace,
+world initialization or outcome occurred.
+
+Disposition: **GO FOR HUMAN SEAL REVIEW; STOP FOR EXECUTION**. Exact next action: human review of the final unsealed
+candidate. Do not audit/select seeds, seal the manifest or execute without a new explicit authorization.
+
+## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 INSTRUMENTATION (2026-07-17)
+
+Human review authorized instrumentation and synthetic qualification only. The revised design now uses one common
+40-step settle at `lam_minus=0.15`, exact settled-state clones, `lam_minus=0.15` versus `0` only during the single
+source-expression update, matched ramps applied afterward, and one common response update at `lam_minus=0.15`.
+This makes the primary `source condition x history order` interaction interpretable without requiring the
+secondary `lam_minus=0` order contrast itself to be equivalent to zero.
+
+The passive logger returns the inherited `_face_flux` array unchanged and stores a read-only copy. Logged/unlogged
+base and no-swap-clamped state hashes match exactly. Seven synthetic fixtures pass: base and clamp passivity,
+revised schedule isolation, ramp geometry, a closed first-moment identity (`-5.55e-17` residual), explicit boundary
+flux, and saturation-induced sign reversal. The endpoint is renamed **mass-specific internal +x face-flux sum**;
+it is not whole-body displacement. Positive attenuation is a directional hypothesis, not a validity theorem.
+
+Disposition: **INSTRUMENT `QUALIFIED`; SCIENTIFIC PREREGISTRATION `REVISE`; NO SEEDS AUTHORIZED**. `m_A` and `m_0`
+are unsealed; earlier tentative numbers are withdrawn as thresholds and cannot be estimated from scientific
+outcomes. No 570xx downstream reconstruction, new namespace, prospective family, feeding primary,
+`BODY-EQUALIZATION` or reader battery was run. Exact next action: human review of the updated causal audit and
+margin rationale.
+
+## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 DESIGN (2026-07-17)
+
+`M_MINUS-ORDER-READER-00` is accepted only as a validated constitutive source calibration. A new code-only audit
+traced the exact update order from history through `m_minus`, end-of-step attractant production, next-step
+chemotactic face flux, material movement, morphology and later feeding. The first non-constitutive downstream
+operator is the actual material face flux used by the engine; its response depends on local gradients, attractant
+saturation, density, free capacity and upwind selection and is not fixed by integrated source susceptibility.
+
+The design selects exactly one endpoint: mass-specific +x material transport under one matched radius-10 local
+attractant ramp (`epsilon_c=0.01`) on the first response update after one unperturbed source-expression update.
+`lam_minus=0` retains ordinary ramp responsiveness and is used causally, through
+`A_h=D_h^0-D_h^0.15`, rather than producing a vacuous zero probe. The frozen expected EARLY-minus-LATE attenuation
+is positive; the practical margin is `0.0001` lattice cells per response update and the ablation equivalence margin
+is `0.00005`. Original world is the unit; all four histories, both ablation conditions and all three ramp arms must
+survive as one complete block; minimum valid `n=18` is proposed.
+
+Recommendation: **`REVISE` — DESIGN COMPLETE, CODE-ONLY QUALIFICATION REQUIRED, NO SEEDS AUTHORIZED**. No engine
+outcome, 570xx continuation, prospective namespace, feeding endpoint, body equalization, additional direction,
+longer horizon or decoder was run. Exact next action: human review of the single flux reader, sign and margins.
+Only if approved may a later run implement and validate the passive logger and synthetic fixtures without a
+scientific seed.
+
+## BRANCH ADDENDUM — M_MINUS-ORDER-READER-00 DEV (2026-07-17)
+
+The exact parent `ea6e6a0ab2ccc3e94eba364ddb459088c96d6033` and its
+`NO_MEMORY_FIRST_STAGE — STOP THIS PREREGISTRATION CANDIDATE` verdict remain unchanged. A code-only audit found
+that `lam_minus` directly and uniquely multiplies local attractant production; the earlier negative reduced-theory
+sign was an algebraic orientation error under the unchanged EARLY-minus-LATE contrast. The one-step fixed-core
+source reader, symmetric `epsilon=2/3` gain probe, qualified 40-step isolation, mass normalization, mechanism
+ablation and decision gates were frozen and pushed at `8349c55` before any new reader output.
+
+Only the 17 already-open parent-complete worlds from 57001–57024 were deterministically reconstructed. The raw
+isolated order susceptibility is positive in 17/17 worlds (mean `0.0003129292`, 95% t CI
+`[0.0002474090,0.0003784494]`); low and high dose are each 17/17 positive; the per-core-mass order contrast is
+17/17 positive (mean `8.989063e-06`, CI `[7.884663e-06,1.009346e-05]`). With `lam_minus=0`, susceptibility is
+exactly zero and attenuation is 100%. All reconstruction/manipulation/determinism gates pass, and a raw-only
+reproducer matches every contrast and the classification without importing the runner or initializing the engine.
+
+DEV classification: **`ORDER_READER_CANDIDATE`**. Maximum claim: DEV evidence that temporal order changes a local
+`m_minus`-linked attractant-production response operator under standardized inputs. This direct source assay does
+not establish feeding-order effects, ownership, individual memory, identity, prospective confirmation, heredity or
+active reconstruction. Exact next action: human review of whether this constitutive source assay is a
+prospectively defensible reader. Do not open seeds, seal a protocol, run an ownership pair, modify 03G/V5, or start
+a generic reader battery automatically.
+
+## BRANCH ADDENDUM — COUNTERFACTUAL-HISTORY-CORE-00 DEV (2026-07-17)
+
+The exact-clone 2 x 2 dose-by-order design was frozen and pushed at commit `e504288` before seed 57001, then ran
+exactly the fresh DEV family `57001-57024` with no extension and no prospective namespace. All 24 independent source
+worlds were eligible and 17 supplied complete four-history deep-turnover/probe blocks. Exact cloning, common
+history-independent boundary, `up_ref=0` isolation, core-Mf preservation and manipulation sham gates passed. An
+independent raw-only analyzer reproduced every primary contrast and the frozen classification without initializing
+the engine.
+
+Frozen result: **`NO_MEMORY_FIRST_STAGE — STOP THIS PREREGISTRATION CANDIDATE — NO PROSPECTIVE EXECUTION`**.
+Coupled and isolated future feeding have positive dose contrasts, but the protocol-targeted core `m_plus` dose first
+stage crosses zero and the core `m_minus` order first stage is significantly opposite its frozen negative sign.
+Order feeding is not established. Strong body and physical-state dose/order differences remain, and `lam_plus=0`
+does not support selective mediation. This is not evidence that history-dependent state is absent; it prevents the
+targeted memory interpretation and does not authorize `DOSE_ONLY` or `DOSE_AND_ORDER`.
+
+Exact next authorized action: human review of `COUNTERFACTUAL_HISTORY_CORE_00_DEV_REPORT.md` and the raw-only
+reproduction. Do not open prospective seeds, seal the draft, merge main, alter 03G/V5, or start active
+reconstruction/division/heredity.
+
+## BRANCH ADDENDUM — BALANCED-HISTORY-ISOLATION-00 DEV (2026-07-17)
+
+The new categorical dose-by-order protocol passed its semantic, namespace, deterministic Latin-square, clamp,
+global-standardization and original-world aggregation gates. The exact DEV family `55001-55024` and manifest were
+frozen and pushed at commit `87f2629` before seed 55001. No prospective namespace was inspected or reserved.
+
+The bounded run ended `DEV-FEASIBILITY-FAIL — REVISE-MECHANICS`: zero of 24 worlds supplied the required four
+eligible pre-history targets. Seventeen worlds supplied three selected targets and seven supplied two. Therefore no
+history assignment was applied, no post-treatment survival occurred, and no deep, first-stage, coupled, isolated,
+transport, or `lam_plus=0` endpoint was evaluated. These effects are not estimable, not zero or absent.
+
+Recommendation: **NO PROSPECTIVE PREREGISTRATION — HUMAN REVIEW REQUIRED**. A replacement must be a new pre-data
+design that preserves original-world inference and orthogonal dose/order balance without retrospectively using the
+2-3 observed targets or extending the seed list. Earlier STOP results, 03G Outcome B, V5 and raw results remain
+unchanged.
+
+Exact next authorized action: human review of `BALANCED_HISTORY_ISOLATION_00_DEV_REPORT.md`. Do not open prospective
+seeds, seal the draft, merge main, alter claims, or start reconstruction/division/heredity.
+
+## BRANCH ADDENDUM — ACCESS-STRUCTURE-00 PHASE 0.5 (2026-07-17)
+
+The explicitly authorized DEV-only operator qualification ran only the already-open family `50001-50010`.
+Deep-feasible worlds 50002, 50004, 50005, and 50007 received complete-state no-op, serialization, sham,
+coordinate-transform, matched, reciprocal crossed, on-manifold environment-reset/body-standardization, dynamic
+`up_ref=0`, and `lam_plus=0` qualifications. The other six worlds retained their existing ineligible or tracker-event
+dispositions and received no operator.
+
+Exact mechanics pass: all no-op/round-trip/sham errors and sham future-feeding bias are zero; active changes stay
+inside declared `C` at surgery; donor-body overlap/IoU is 1; reciprocal-pair conservation is within `9.10e-13`; and
+every active arm is 4/4 viable and bijectively trackable for 40 steps. No active crossed future-feeding outcome was
+computed.
+
+Recommendation remains **REVISE — HUMAN REVIEW REQUIRED — NO PROSPECTIVE SEED AUTHORIZED**. The exact hard
+exchange creates off-manifold interfaces: causal-field mean seam ratios reach `22.87x`, the one-cell halo responds
+strongly after one update, and the disturbance reaches far environment by step 40. Conservation holds across
+reciprocal pairs but requested individual-arm balance does not. These failures can mimic matched-versus-crossed
+synergy, so the operator is not causally interpretable and no preregistration may be sealed.
+
+Exact next authorized action: human review of the Phase 0.5 report. Any boundary-aware/balance correction is a new
+DEV-only authorization decision. Do not open a prospective family, modify 03G/V5, push, merge, or start active
+reconstruction.
+
+## BRANCH ADDENDUM — ACCESS-STRUCTURE-00 PHASE 0 (2026-07-17)
+
+On isolated branch `codex/access-structure-00-phase0` from exact V5 commit `d4a146a`, Phase 0 audited the certified
+03G access scopes and designed a new causal localization experiment without reopening Outcome B. The audit finds
+that `L` was an 11-summary target-memory representation, `E` and `B` were not clean causal compartments, and
+`DISTRIBUTED_ENV=false` excludes only the frozen low-dimensional E/G summaries—not environmental information in
+general.
+
+Recommendation: **REVISE — HUMAN REVIEW REQUIRED — NO PROSPECTIVE SEED AUTHORIZED**. Four already-open feasible
+DEV worlds (50002/50004/50005/50007) reconstruct their committed deep `m_plus` and material vectors to at most
+`1.67e-16` absolute error, so full-state intervention development is technically possible. Prospectively identifying
+local, environmental, redundant, or synergistic access nevertheless requires a validated environment reset,
+standardized-body operator, matched/crossed graft, matched sham, and frozen manipulation-noise/equivalence margins.
+No new seed family was selected or opened; V5 and all 03G raw results remain unchanged.
+
+Exact next authorized action: human review of the Phase-0 report. A later DEV-only manipulation qualification on
+already-open seeds may begin only with explicit approval; prospective seeds require a separate completed and approved
+preregistration.
+
 ## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER-PRESEAL-03G PROSPECTIVE 001 (2026-07-17)
 
 The single hash-bound human authorization was consumed on branch

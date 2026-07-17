@@ -1,0 +1,43 @@
+{
+  "schema": "ACCESS-STRUCTURE-00-PHASE0-DEV-FEASIBILITY-v1",
+  "status": "REVISE_NOT_PROSPECTIVE_READY",
+  "mode": "DEV_ONLY_ALREADY_OPEN_SEEDS",
+  "canonical_parent": "d4a146a241588c0debd3a0cc6133bc6f6bb8824c",
+  "canonical_prior": {
+    "certified_results": "9cb996bb891f9a618e593f2f5c302f30210458de",
+    "independent_raw_reproduction": "a8d6446fade6dbeb984e269fab27ddd5ebf75286",
+    "manuscript_v5": "d4a146a241588c0debd3a0cc6133bc6f6bb8824c"
+  },
+  "dev_family": {
+    "opened_seeds": [50001, 50002, 50003, 50004, 50005, 50006, 50007, 50008, 50009, 50010],
+    "deep_feasible_seeds": [50002, 50004, 50005, 50007],
+    "new_seeds_executed": []
+  },
+  "reconstruction": [
+    {"seed": 50002, "deep_step": 847, "alive": [true, true, true], "max_abs_mplus_error": 1.1102230246251565e-16, "max_abs_material_error": 1.1102230246251565e-16},
+    {"seed": 50004, "deep_step": 793, "alive": [true, true, true], "max_abs_mplus_error": 1.6653345369377348e-16, "max_abs_material_error": 8.326672684688674e-17},
+    {"seed": 50005, "deep_step": 831, "alive": [true, true, true], "max_abs_mplus_error": 0.0, "max_abs_material_error": 0.0},
+    {"seed": 50007, "deep_step": 890, "alive": [true, true, true], "max_abs_mplus_error": 0.0, "max_abs_material_error": 0.0}
+  ],
+  "existing_capabilities": {
+    "full_state_reconstruction": true,
+    "target_memory_erase": true,
+    "common_probe": true,
+    "bijective_and_fixed_mask_readout": true,
+    "global_up_ref_ablation": true,
+    "full_environment_reset": false,
+    "standard_body_in_original_environment": false,
+    "matched_crossed_state_graft": false,
+    "mass_geometry_energy_matched_graft_sham": false,
+    "frozen_manipulation_equivalence_margin": false
+  },
+  "dev_diagnostics_context_only": [
+    {"seed": 50002, "observed_own_fraction_mean": 0.0484, "direct_prediction_mean": 0.0512, "mplus_intact_mean": 0.1994, "mplus_up_ref_zero_mean": 0.1997, "up_ref_zero_own_effect_mean": 0.148, "up_ref_zero_neighbour_effect_mean": 0.0},
+    {"seed": 50004, "observed_own_fraction_mean": 0.0458, "direct_prediction_mean": 0.0616, "mplus_intact_mean": 0.2439, "mplus_up_ref_zero_mean": 0.2442, "up_ref_zero_own_effect_mean": 0.116, "up_ref_zero_neighbour_effect_mean": 0.0},
+    {"seed": 50005, "observed_own_fraction_mean": 0.0544, "direct_prediction_mean": 0.0622, "mplus_intact_mean": 0.2476, "mplus_up_ref_zero_mean": 0.2479},
+    {"seed": 50007, "observed_own_fraction_mean": 0.0613, "direct_prediction_mean": 0.0675, "mplus_intact_mean": 0.2695, "mplus_up_ref_zero_mean": 0.2698}
+  ],
+  "recommendation": "REVISE",
+  "next_authorized_action": "human review, then DEV-only manipulation qualification on already-open 50001-50010 if explicitly approved",
+  "prospective_authorized": false
+}
