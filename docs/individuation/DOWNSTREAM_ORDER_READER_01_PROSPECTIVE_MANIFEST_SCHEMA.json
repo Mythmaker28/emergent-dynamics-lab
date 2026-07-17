@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "DOWNSTREAM-ORDER-READER-01-MANIFEST-v1",
+  "title": "DOWNSTREAM-ORDER-READER-01 prospective manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "mode",
+    "accepted_parent",
+    "execution_authorized",
+    "human_review",
+    "namespace_audit",
+    "statistical_unit",
+    "branches_and_arms_increase_n",
+    "fixed_maximum_source_worlds",
+    "minimum_complete_worlds",
+    "adaptive_extension_after_outcomes",
+    "equivalence_margin",
+    "design",
+    "world_slots"
+  ],
+  "properties": {
+    "schema": {"const": "DOWNSTREAM-ORDER-READER-01-MANIFEST-v1"},
+    "mode": {
+      "enum": ["PROSPECTIVE_UNSEALED_NO_SEEDS", "PROSPECTIVE_HUMAN_SEALED"]
+    },
+    "accepted_parent": {
+      "const": "75e405627e0b48428a5c71f31b8a2025726b763c"
+    },
+    "execution_authorized": {"type": "boolean"},
+    "human_review": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["PENDING", "APPROVED_FOR_EXECUTION"]},
+        "reviewer": {"type": ["string", "null"]},
+        "date": {"type": ["string", "null"]}
+      }
+    },
+    "namespace_audit": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["NOT_PERFORMED", "PASS"]},
+        "evidence": {"type": ["string", "null"]}
+      }
+    },
+    "statistical_unit": {"const": "original source world"},
+    "branches_and_arms_increase_n": {"const": false},
+    "fixed_maximum_source_worlds": {"const": 48},
+    "minimum_complete_worlds": {"const": 18},
+    "adaptive_extension_after_outcomes": {"const": false},
+    "equivalence_margin": {"type": ["number", "null"], "exclusiveMinimum": 0},
+    "design": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "histories", "source_lam_minus", "ramp_arms", "settle_steps",
+        "source_expression_steps", "response_steps", "ramp_epsilon_c",
+        "core_radius", "response_lam_minus", "up_ref_zero"
+      ],
+      "properties": {
+        "histories": {
+          "const": ["H_L_EARLY", "H_L_LATE", "H_H_EARLY", "H_H_LATE"]
+        },
+        "source_lam_minus": {
+          "const": {"zero": 0.0, "intact": 0.15}
+        },
+        "ramp_arms": {
+          "const": {"minus": -1, "sham": 0, "plus": 1}
+        },
+        "settle_steps": {"const": 40},
+        "source_expression_steps": {"const": 1},
+        "response_steps": {"const": 1},
+        "ramp_epsilon_c": {"const": 0.01},
+        "core_radius": {"const": 10},
+        "response_lam_minus": {"const": 0.15},
+        "up_ref_zero": {"const": true}
+      }
+    },
+    "world_slots": {
+      "type": "array",
+      "minItems": 48,
+      "maxItems": 48,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["world_id", "seed"],
+        "properties": {
+          "world_id": {"pattern": "^W[0-9]{3}$"},
+          "seed": {"type": ["integer", "string"]}
+        }
+      }
+    }
+  }
+}

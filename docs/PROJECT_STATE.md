@@ -1,5 +1,30 @@
 # Project State
 
+## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 PROSPECTIVE PACKAGE (2026-07-18)
+
+The unexecuted prospective package is complete on an isolated branch. It freezes one original-world primary
+interaction in the mass-specific internal +x face-flux sum, two-sided interval/sign classification, a conservative
+raw-derived numerical floor, 48 fixed source-world slots, a minimum of 18 complete blocks, and no adaptive family
+extension. The historical 17/24 completion rate is used only for capacity: its exact 95% interval is
+`[0.4891,0.8738]`; at the lower endpoint, 48 worlds have probability `0.9585` of supplying at least 18 complete
+blocks. No effect power is claimed.
+
+No independent practical or equivalence scale exists, so `m_A`, `m_0` and a dimensionless relevance endpoint are
+absent. This permits only bounded causal detection; it does not permit equivalence, behavioural importance or
+macroscopic importance. The six scientific outcomes distinguish predicted positive attenuation, opposite-sign
+functional access, failure to establish access, equivalence only if separately justified before outcomes,
+manipulation invalidity and unresolved evidence. A missed complete-world floor is `FEASIBILITY_FAIL` with scientific
+`UNRESOLVED`.
+
+The seedless 48-slot manifest validates but cannot execute. Simulator imports are deferred until a separately
+human-sealed manifest passes preflight. Atomic ordered-prefix resume, duplicate prevention, exact raw world
+contrasts and an independent raw-only reproducer are implemented. Nine new package tests and the 27 accepted
+instrument/source/clamp regressions pass (`36 passed`). No 570xx reconstruction, scientific seed/namespace,
+world initialization or outcome occurred.
+
+Disposition: **GO FOR HUMAN SEAL REVIEW; STOP FOR EXECUTION**. Exact next action: human review of the final unsealed
+candidate. Do not audit/select seeds, seal the manifest or execute without a new explicit authorization.
+
 ## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 INSTRUMENTATION (2026-07-17)
 
 Human review authorized instrumentation and synthetic qualification only. The revised design now uses one common

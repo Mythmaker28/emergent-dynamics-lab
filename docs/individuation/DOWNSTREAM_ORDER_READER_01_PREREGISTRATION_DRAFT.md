@@ -1,5 +1,10 @@
 # DOWNSTREAM-ORDER-READER-01 — revised preregistration draft
 
+> **Superseded for prospective review.** This instrumentation-stage draft is retained as history. The final
+> unsealed execution-package candidate is
+> `DOWNSTREAM_ORDER_READER_01_PROSPECTIVE_PREREGISTRATION_CANDIDATE.md`; it freezes no scientific margin and
+> supports bounded causal detection only.
+
 Status: **INSTRUMENT QUALIFIED — SCIENTIFIC DRAFT UNSEALED — NO SEED FAMILY ASSIGNED OR OPENED**
 
 ## 1. Question and claim boundary

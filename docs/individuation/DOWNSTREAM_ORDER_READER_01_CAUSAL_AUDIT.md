@@ -1,5 +1,10 @@
 # DOWNSTREAM-ORDER-READER-01 — exact causal-path audit
 
+> **Prospective-package addendum:** the causal path and instrument audit below remain accepted. The final
+> no-margin claim logic, fixed family and updated disposition are recorded in
+> `DOWNSTREAM_ORDER_READER_01_PROSPECTIVE_PACKAGE_REPORT.md` and
+> `DOWNSTREAM_ORDER_READER_01_PROSPECTIVE_PREREGISTRATION_CANDIDATE.md`.
+
 Status: **CODE-ONLY INSTRUMENT QUALIFIED — NO SCIENTIFIC OUTCOME OR SEED OPENED**
 
 Parent: `M_MINUS-ORDER-READER-00` result commit

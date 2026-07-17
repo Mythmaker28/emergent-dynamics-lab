@@ -1,5 +1,9 @@
 # DOWNSTREAM-ORDER-READER-01 — GO / REVISE / STOP after code-only qualification
 
+> **Superseded disposition after prospective-package qualification:** **GO FOR HUMAN SEAL REVIEW; STOP FOR
+> EXECUTION.** No scientific margin was invented; the final package permits bounded causal detection without an
+> equivalence or practical-importance claim. See `DOWNSTREAM_ORDER_READER_01_PROSPECTIVE_PACKAGE_REPORT.md`.
+
 ## Recommendation
 
 **INSTRUMENTATION: `GO`. SCIENTIFIC PREREGISTRATION: `REVISE`.**

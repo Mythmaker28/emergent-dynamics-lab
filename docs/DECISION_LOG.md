@@ -2680,3 +2680,33 @@ unsealed and cannot be learned from scientific outcomes.
 **Disposition:** Instrument `QUALIFIED`; scientific preregistration `REVISE`. No 570xx downstream reconstruction,
 new seed, prospective family, feeding endpoint, reader battery, `BODY-EQUALIZATION`, 03G/V5 change or active
 reconstruction is authorized. Exact next action: human review of the revised audit and margin rationale.
+
+## D-096 — DOWNSTREAM-ORDER-READER-01 freezes a no-margin prospective package
+
+**Date:** 2026-07-18
+
+**Scientific-threshold decision:** Do not invent `m_A`, `m_0` or a dimensionless relevance threshold. The engine and
+frozen probe provide no outcome-independent mapping from a one-step internal face-flux interaction to behavioural or
+macroscopic importance. Freeze a bounded causal-detection claim only. `delta_num` is derived exclusively from
+per-face float64 tolerance, summation/scaling propagation, logger/replay identity and the closed-domain fixture; it
+is instrument resolution, not practical relevance.
+
+**Classification decision:** Preserve exactly six scientific outcomes. A positive two-sided interval beyond
+`delta_num` plus 75% positive world signs is `PREDICTED_ATTENUATION`; the symmetric negative rule is
+`OPPOSITE_SIGN_FUNCTIONAL_ACCESS`, never absence or invalidity. Numerical-null uncertainty without sign convergence
+is `NO_ACCESS_ESTABLISHED`, not absence. Equivalence remains logically defined but is unavailable while the
+scientific margin is null. Conflicting evidence is `UNRESOLVED`; mechanical failures are `MANIPULATION_INVALID`.
+
+**Family decision:** Use the historical 17/24 complete-world rate only for logistics. Freeze exactly 48 source-world
+slots and a minimum of 18 complete original worlds; run all 48 in manifest order, with no adaptive reserve,
+replacement or extension. Fewer than 18 is administrative `FEASIBILITY_FAIL` and scientific `UNRESOLVED`. This is
+capacity analysis, not effect power.
+
+**Engineering decision:** Accept the seedless manifest/schema, deferred-import runner, exact 4 x 2 x 3 gates,
+atomic ordered-prefix resume, duplicate prevention, world-level raw contrasts and independent raw-only reproducer
+after synthetic classification and interruption/restart tests. The package contains no real seed value and its
+template refuses execution before output creation.
+
+**Disposition:** **GO FOR HUMAN SEAL REVIEW; STOP FOR EXECUTION.** No seed namespace audit/selection, manifest seal,
+scientific initialization, 570xx reconstruction, outcome, feeding/morphology endpoint, BODY-EQUALIZATION, 03G/V5
+change or active reconstruction is authorized. Exact next action: human review of the unsealed package.
