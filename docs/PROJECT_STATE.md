@@ -1,5 +1,25 @@
 # Project State
 
+## BRANCH ADDENDUM — COUNTERFACTUAL-HISTORY-CORE-00 DEV (2026-07-17)
+
+The exact-clone 2 x 2 dose-by-order design was frozen and pushed at commit `e504288` before seed 57001, then ran
+exactly the fresh DEV family `57001-57024` with no extension and no prospective namespace. All 24 independent source
+worlds were eligible and 17 supplied complete four-history deep-turnover/probe blocks. Exact cloning, common
+history-independent boundary, `up_ref=0` isolation, core-Mf preservation and manipulation sham gates passed. An
+independent raw-only analyzer reproduced every primary contrast and the frozen classification without initializing
+the engine.
+
+Frozen result: **`NO_MEMORY_FIRST_STAGE — STOP THIS PREREGISTRATION CANDIDATE — NO PROSPECTIVE EXECUTION`**.
+Coupled and isolated future feeding have positive dose contrasts, but the protocol-targeted core `m_plus` dose first
+stage crosses zero and the core `m_minus` order first stage is significantly opposite its frozen negative sign.
+Order feeding is not established. Strong body and physical-state dose/order differences remain, and `lam_plus=0`
+does not support selective mediation. This is not evidence that history-dependent state is absent; it prevents the
+targeted memory interpretation and does not authorize `DOSE_ONLY` or `DOSE_AND_ORDER`.
+
+Exact next authorized action: human review of `COUNTERFACTUAL_HISTORY_CORE_00_DEV_REPORT.md` and the raw-only
+reproduction. Do not open prospective seeds, seal the draft, merge main, alter 03G/V5, or start active
+reconstruction/division/heredity.
+
 ## BRANCH ADDENDUM — BALANCED-HISTORY-ISOLATION-00 DEV (2026-07-17)
 
 The new categorical dose-by-order protocol passed its semantic, namespace, deterministic Latin-square, clamp,

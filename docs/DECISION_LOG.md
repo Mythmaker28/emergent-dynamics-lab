@@ -2577,3 +2577,27 @@ negative scientific results.
 candidate. Do not extend the family, weaken eligibility post hoc, analyze survivor targets, seal the draft or inspect
 a prospective namespace. A new pre-data assignment-unit or world-generation design requires human review. Earlier
 STOP results, 03G Outcome B, V5 and prior raw results remain unchanged.
+
+## D-092 — COUNTERFACTUAL-HISTORY-CORE-00 exact clones are feasible but targeted memory first stages fail
+
+**Date:** 2026-07-17
+
+**Design decision:** Accept the exact-clone repair as a valid DEV counterfactual factorial. Freeze one focal target
+per independent source world, four deterministic low/high dose by EARLY/LATE histories, fixed 1000-step turnover,
+complete-block inference, ordinary and qualified isolated probes, body/physical controls, and `lam_plus=0`
+mediation. Branches are potential outcomes and never independent replicates.
+
+**Execution decision:** The pushed before-data freeze at `e504288` governed exactly seeds `57001-57024`. All 24
+worlds were eligible and 17 supplied complete blocks. Cloning, common-boundary, isolation, global-channel, sham and
+core-preservation gates pass. A raw-only analyzer that neither imports the runner nor initializes the engine
+independently reproduces the counts, contrasts, gates and classification.
+
+**Scientific decision:** Accept `NO_MEMORY_FIRST_STAGE`. The protocol-targeted positive core `m_plus` dose first
+stage crosses zero. The protocol-targeted negative core `m_minus` EARLY-minus-LATE first stage is uniformly positive
+and its sign is not flipped after inspection. Dose feeding is positive under coupling and isolation, but strong body
+and physical-state differences remain and `lam_plus=0` does not support selective mediation; order feeding is not
+established. This rules out the frozen targeted-memory interpretation, not all history-dependent state.
+
+**Disposition:** STOP this preregistration candidate. Do not claim `DOSE_ONLY` or `DOSE_AND_ORDER`, open a
+prospective namespace, seal the draft, modify 03G/V5, or begin reconstruction. A fresh pre-data design separating
+the target memory coordinate from body/physical dose pathways requires human review.

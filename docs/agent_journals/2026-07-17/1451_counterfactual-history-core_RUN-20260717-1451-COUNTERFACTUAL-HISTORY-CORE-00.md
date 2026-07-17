@@ -3,10 +3,11 @@
 - **Role:** independent scientific auditor and exact-clone counterfactual intervention engineer
 - **Run ID:** `RUN-20260717-1451-COUNTERFACTUAL-HISTORY-CORE-00`
 - **Start:** 2026-07-17 14:51:46 +02:00
-- **End:** in progress
+- **End:** 2026-07-17 20:36:43 +02:00
 - **Starting Git state:** clean isolated branch `claude/counterfactual-history-core-00-dev` at exact accepted parent
   `4ef4bed0ee43a8d6edaec2b597e205eeb2393327`
-- **Ending Git state:** in progress
+- **Ending Git state:** coherent final result committed and pushed on
+  `claude/counterfactual-history-core-00-dev`; working tree clean at handoff
 - **Scheduled-run lock:** not applicable; direct human-authorized bounded DEV mission
 - **Authorization boundary:** one fresh DEV-only family of at most 24 original worlds; no prospective or confirmation
   seed, no V5/03G reinterpretation, no main merge, and no reconstruction/division/heredity work
@@ -52,7 +53,48 @@ the original source world as the only statistical unit and stop after DEV for hu
 - A full already-open-seed integration smoke then produced one eligible, exact-clone-valid, four-history-complete
   source world with all four fixed-step deep checks and probes valid. It was a technical smoke only; its scientific
   contrasts were not inspected or used to change the frozen design.
-- No seed in 57001–57024 has yet been initialized.
+- Committed and pushed the exact before-data freeze as
+  `e504288da2b0f2c58d9f3e1fe9914ebb574ab2eb` before seed 57001.
+- Executed the one bounded DEV family:
+
+  ```powershell
+  $py='C:\Users\tommy\Documents\ising v3\.venv\Scripts\python.exe'
+  & $py -m experiments.individuation.counterfactual_history_core_dev `
+    --manifest docs\individuation\COUNTERFACTUAL_HISTORY_CORE_00_MANIFEST.json `
+    --output docs\individuation\COUNTERFACTUAL_HISTORY_CORE_00_DEV_RESULTS.json
+  ```
+
+- The first process was interrupted after 15 atomically persisted worlds. The same command resumed from raw,
+  explicitly skipped 57001-57015, initialized only 57016-57024, and completed exactly 24 unique source worlds.
+- Implemented and ran an independent raw-only reproduction that imports neither runner nor engine:
+
+  ```powershell
+  & $py -m experiments.individuation.counterfactual_history_core_reproduce `
+    --raw docs\individuation\COUNTERFACTUAL_HISTORY_CORE_00_DEV_RESULTS.json `
+    --output docs\individuation\COUNTERFACTUAL_HISTORY_CORE_00_RAW_REPRODUCTION.json
+  ```
+
+- Raw DEV SHA-256: `d4e6f2d9cedcc8b459973e10641b1b28d91b3b52315cbba36120640ef9386da6`.
+- Raw reproduction SHA-256: `d993ca08cafa9d567d4b78a1dc505ab25c18dff2598aeec8fbbe45e9ed479e73`.
+- Wrote the DEV report, updated durable state/indexes, and recorded decision D-092.
+- Final validation:
+
+  ```powershell
+  & $py -m py_compile experiments\individuation\counterfactual_history_core_dev.py `
+    experiments\individuation\counterfactual_history_core_reproduce.py `
+    experiments\individuation\test_counterfactual_history_core_dev.py `
+    experiments\individuation\test_counterfactual_history_core_reproduce.py
+  & $py -m pytest experiments\individuation\test_counterfactual_history_core_dev.py `
+    experiments\individuation\test_counterfactual_history_core_reproduce.py `
+    experiments\individuation\test_access_structure_noswap_operators.py `
+    experiments\individuation\test_turnover_tracer.py -q
+  # 30 passed in 93.88s
+  & $py experiments\individuation\test_bijective_tracker.py
+  # 10/10 checks PASS
+  ```
+
+  `git diff --check` reported no whitespace error; the raw audit confirmed `COMPLETE`, exact ordered unique seeds
+  57001-57024, `NO_MEMORY_FIRST_STAGE`, and raw reproduction pass.
 
 ## OBSERVED
 
@@ -65,6 +107,19 @@ the original source world as the only statistical unit and stop after DEV for hu
 - Canonical and reversed history execution orders give identical label-specific states.
 - The two-cell clamp with `up_ref=0` remains bit-exactly isolated, and the disabled clamp remains bit-identical to
   the ordinary frozen engine.
+- All 24 source worlds were pre-history eligible; 17/24 supplied complete four-history deep/probe blocks. Seven
+  were incomplete due to post-history or turnover tracker events. Failed potential outcomes were not imputed.
+- All eligible worlds passed exact cloning. All complete worlds passed common-boundary, `up_ref=0`, sham and
+  core-Mf-preservation gates. The paired survival-effect gate did not pass its frozen sign requirement.
+- Coupled feeding dose was +0.18776 [0.05195, 0.32357]; isolated feeding dose was +0.17904
+  [0.03878, 0.31930]. Order and interaction feeding intervals crossed zero.
+- The targeted core `m_plus` dose first stage was +0.00040 [-0.00821, 0.00900] and failed. The targeted core
+  `m_minus` EARLY-minus-LATE first stage was +0.00367 [0.00306, 0.00427], uniformly opposite the frozen negative
+  direction; its sign was not flipped.
+- Body mass, body radius, body size and multiple core/world physical baselines retained large dose/order effects.
+  The positive feeding-dose contrast therefore cannot be attributed to the targeted memory coordinate.
+- `lam_plus=0` did not produce a supported selective collapse. The raw-only reproduction passed every comparison,
+  reproduced `NO_MEMORY_FIRST_STAGE`, and recorded `engine_initialized=false`.
 
 ## INFERRED
 
@@ -74,6 +129,9 @@ the original source world as the only statistical unit and stop after DEV for hu
   geometry, material M and global/physical baselines remain reported as possible causal pathways.
 - Gaussian diffusion/spillover from the one focal intervention is a treatment consequence. No neighbour receives
   a separately assigned history in any branch.
+- Exact-clone branching repaired mechanical feasibility, but it did not identify the targeted memory mechanism.
+  Rich history-dependent state and a dose-linked causal feeding pathway may still exist through body or other
+  physical state; `NO_MEMORY_FIRST_STAGE` must not be stated as absence of history dependence.
 
 ## HYPOTHESIS
 
@@ -95,17 +153,28 @@ candidate.
   every small fragment yielded no focal target on open seed 50002. Before any fresh world and before the manifest
   freeze, this was corrected to the existing frozen descending-size greedy separated target set, followed by
   canonical tracker IDs and collar clearance among selected targets. No outcome or memory/feeding value was used.
+- `test_bijective_tracker.py` executes ten checks and calls `sys.exit` at module import, so including it in a combined
+  pytest collection produced an internal `SystemExit` after all ten checks passed. It was rerun through its intended
+  standalone interface (10/10 pass); the remaining four pytest modules then passed 30/30.
 
 ## Decisions
 
 - Exact accepted parent and prior DEV family 55001–55024 are preserved unchanged.
 - A single pre-history focal target is selected before treatment; clones are counterfactual branches, not replicates.
+- Accept the frozen `NO_MEMORY_FIRST_STAGE` decision. Do not relabel it `DOSE_ONLY` or `DOSE_AND_ORDER`, flip the
+  order sign, select a secondary feature, or reinterpret the positive feeding-dose contrast as targeted memory.
+- STOP this preregistration candidate. No prospective seed, seal or active-reconstruction work is authorized.
 
 ## Unresolved risks
 
-- Exact post-clone scheduler/RNG semantics and deep-turnover branch completion remain under audit.
-- A new DEV namespace has not yet been chosen or initialized.
+- Complete-block feeding is based on 17/24 worlds and cannot answer what the failed potential outcomes would have
+  produced. The frozen survival-effect gate passed neither its required common-sign count nor its full decision.
+- The dose-feeding pathway remains scientifically unresolved because body and physical state differ by history.
+- This DEV result does not authorize a prospective family or a new post-hoc mechanism search.
 
 ## Handoff
 
-In progress.
+Human review `COUNTERFACTUAL_HISTORY_CORE_00_DEV_REPORT.md` and the raw-only reproduction. Exact next authorized
+action: decide whether to stop the question or commission a fresh pre-data design that separates the targeted memory
+coordinate from body/physical dose pathways. Do not open prospective seeds, seal the draft, merge main, modify
+03G/V5, or start reconstruction/division/heredity.
