@@ -196,6 +196,15 @@ def test_aggregation_uses_original_world_not_target_rows():
     assert all(row["assigned"] == 5 for row in summary["itt_survival_by_history"].values())
 
 
+def test_incomplete_family_marks_scientific_gates_not_evaluable():
+    summary = bhi.aggregate([])
+    assert summary["conclusion"] == "DEV-FEASIBILITY-FAIL"
+    assert summary["conclusion_reason"] == "FEWER_THAN_FOUR_COMPLETE_WORLDS"
+    assert summary["gates"]["minimum_four_complete_worlds"] is False
+    assert summary["gates"]["dose_first_stage_expected_orientation_and_ci"] is None
+    assert summary["gates"]["manipulation_sham_exact"] is None
+
+
 def test_forbidden_and_unfrozen_namespaces_are_rejected():
     for seed in (50001, 51000, 52001, 53001, 54001, 54120, 55000, 55025):
         with pytest.raises(ValueError):
@@ -210,6 +219,12 @@ def test_manifest_hash_parent_family_and_horizon_are_frozen():
     assert tuple(manifest["seeds"]) == bhi.DEV_SEEDS
     assert bhi.HORIZON == 40
     assert bhi.SETTLE_STD == 40
+
+
+def test_atomic_writer_returns_raw_file_digest(tmp_path):
+    path = tmp_path / "result.json"
+    announced = bhi.atomic_write_json(path, {"line": "one\ntwo"})
+    assert announced == bhi.sha256_file(path)
 
 
 if __name__ == "__main__":

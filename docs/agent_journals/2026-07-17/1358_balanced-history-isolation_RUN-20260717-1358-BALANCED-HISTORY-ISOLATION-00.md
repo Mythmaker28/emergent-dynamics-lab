@@ -3,10 +3,11 @@
 - **Role:** independent scientific auditor and orthogonal dose × temporal-order intervention engineer
 - **Run ID:** `RUN-20260717-1358-BALANCED-HISTORY-ISOLATION-00`
 - **Start:** 2026-07-17 13:58 +02:00
-- **End:** in progress
+- **End:** 2026-07-17 14:32 +02:00
 - **Starting Git state:** clean isolated branch `claude/balanced-history-isolation-00-dev` at exact required parent
   `6d1a5f718b965d2896f2a3e4d6cbcf5c8c83542f`
-- **Ending Git state:** in progress
+- **Ending Git state:** coherent DEV result/index commit on `claude/balanced-history-isolation-00-dev`, based on
+  before-data freeze `87f2629`; clean after explicit-path commit and push
 - **Scheduled-run lock:** not applicable; direct human-authorized bounded DEV mission
 - **Authorization boundary:** one fresh DEV-only family of at most 24 original worlds; no prospective or confirmation
   seed, seal, main merge, V5/03G reinterpretation, publication claim, or active reconstruction/division/heredity
@@ -45,6 +46,35 @@ qualified two-cell history-independent clamp under a frozen common global treatm
   & $py -m pytest experiments\individuation\test_balanced_history_isolation_dev.py -q
   # 13 passed in 3.15s
   ```
+- Committed and pushed the complete before-data freeze as `87f2629` before opening seed 55001.
+- Executed exactly the 24 frozen worlds, with atomic per-world checkpoints and no extension:
+
+  ```powershell
+  & 'C:\Users\tommy\Documents\ising v3\.venv\Scripts\python.exe' `
+    -m experiments.individuation.balanced_history_isolation_dev `
+    --manifest docs\individuation\BALANCED_HISTORY_ISOLATION_00_ASSIGNMENT_MANIFEST.json `
+    --output docs\individuation\BALANCED_HISTORY_ISOLATION_00_DEV_RESULTS.json
+  ```
+
+- Corrected a serialization-only digest announcement to hash persisted Windows bytes and represented downstream
+  gates as `null` when the minimum-world gate made them not evaluable. Resume verification skipped all 24 completed
+  seeds; no engine initialization or scientific result changed.
+- Final raw result SHA-256:
+  `a507a27e92089e417d0dafb27aa66a6bca1674a56a3c457bcae2ac80022a470d`.
+- Final validation:
+
+  ```powershell
+  & $py -m pytest experiments\individuation\test_balanced_history_isolation_dev.py `
+    experiments\individuation\test_access_structure_noswap_operators.py `
+    experiments\individuation\test_turnover_tracer.py -q
+  # 29 passed in 86.21s
+  & $py experiments\individuation\test_bijective_tracker.py
+  # 10/10 checks PASS
+  ```
+
+  A first combined pytest attempt included `test_bijective_tracker.py`, whose standalone import calls `sys.exit(0)`
+  and therefore aborted pytest collection. Its checks printed 10/10 PASS; the clean separate commands above are the
+  authoritative validation.
 
 ## OBSERVED
 
@@ -58,6 +88,11 @@ qualified two-cell history-independent clamp under a frozen common global treatm
 - The validated `up_ref=0` ablation is the primary history-independent global treatment; ordinary and global-matched
   coupled arms remain controls.
 - The cyclic four-row schedule is exactly balanced six times per history per spatial slot and is keyed only by seed.
+- Zero of 24 frozen worlds supplied four eligible pre-history targets. Seventeen supplied three selected targets
+  and seven supplied two. Every world exited before treatment with
+  `fewer_than_four_pre_history_eligible_targets`.
+- No assignment was applied; no target entered history writing, deep turnover, clamp/probe, first stage or
+  `lam_plus=0` mediation. There are zero complete original worlds.
 
 ## INFERRED
 
@@ -67,6 +102,8 @@ qualified two-cell history-independent clamp under a frozen common global treatm
   channel 2. Dose is predeclared positive on `mplus`.
 - Post-treatment survival requires complete-block analysis plus condition-specific intention-to-treat validity;
   individual surviving targets cannot restore factorial balance.
+- Dose, order, interaction, transport, first-stage and mediation effects are not estimable. The eligibility failure
+  cannot be interpreted as absence or as a zero effect.
 
 ## HYPOTHESIS
 
@@ -85,6 +122,11 @@ the prospective-world design would block a preregistration candidate.
 - The main checkout is dirty and was not used. A dedicated worktree was created at the exact parent.
 - Windows-invalid historical filenames required the established sparse-index recovery; the new worktree was verified
   clean before any mission edit.
+- The frozen four-target requirement failed in all 24 worlds before scientific treatment. Per protocol, the family
+  was not extended and observed two/three-target worlds were not retrospectively paired.
+- Initial result output announced the SHA of logical LF text rather than persisted CRLF bytes on Windows. The writer
+  now hashes the actual file; a focused regression locks this. No payload value or simulation was altered by this
+  engineering correction.
 
 ## Decisions
 
@@ -94,14 +136,19 @@ the prospective-world design would block a preregistration candidate.
   controls from this design.
 - Fixed 75% directional consistency plus a world-level 95% Student-t interval as the dose/order first-stage and
   feeding gates. The original world remains the only inferential unit.
+- Final disposition: `DEV-FEASIBILITY-FAIL — REVISE-MECHANICS`; downstream scientific gates are not evaluable.
+- The unsealed preregistration draft is blocked. No prospective design is scientifically justified from this family.
 
 ## Unresolved risks
 
-- Four eligible well-separated pre-history targets may be rare, and all four must also survive deep turnover and fit
-  the qualified radius-10/two-cell geometry. This is intentionally allowed to fail closed as DEV feasibility.
+- A redesigned assignment unit may recover balance across original worlds, but it would be a new protocol and may
+  introduce world-level heterogeneity or lose within-world control. It requires pre-data human review.
 - Only one independent boundary reference exists, so reference reversal cannot be evaluated in this DEV family.
-- Scientific results are not yet available; this journal section is the before-data freeze.
+- Whether dose/order state or causal transport exists remains completely unresolved because no history was applied.
 
 ## Handoff
 
-In progress.
+Human review of `docs/individuation/BALANCED_HISTORY_ISOLATION_00_DEV_REPORT.md`. The next authorized action is to
+decide whether to design a new original-world-balanced assignment scheme or a new pre-treatment eligibility/world
+generation mechanism. Do not inspect/open prospective seeds, extend 55001-55024, weaken eligibility post hoc, seal
+the draft, merge main, alter 03G/V5/legacy STOP results, or begin reconstruction/division/heredity.

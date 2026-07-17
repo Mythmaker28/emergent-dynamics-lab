@@ -1,5 +1,24 @@
 # Project State
 
+## BRANCH ADDENDUM — BALANCED-HISTORY-ISOLATION-00 DEV (2026-07-17)
+
+The new categorical dose-by-order protocol passed its semantic, namespace, deterministic Latin-square, clamp,
+global-standardization and original-world aggregation gates. The exact DEV family `55001-55024` and manifest were
+frozen and pushed at commit `87f2629` before seed 55001. No prospective namespace was inspected or reserved.
+
+The bounded run ended `DEV-FEASIBILITY-FAIL — REVISE-MECHANICS`: zero of 24 worlds supplied the required four
+eligible pre-history targets. Seventeen worlds supplied three selected targets and seven supplied two. Therefore no
+history assignment was applied, no post-treatment survival occurred, and no deep, first-stage, coupled, isolated,
+transport, or `lam_plus=0` endpoint was evaluated. These effects are not estimable, not zero or absent.
+
+Recommendation: **NO PROSPECTIVE PREREGISTRATION — HUMAN REVIEW REQUIRED**. A replacement must be a new pre-data
+design that preserves original-world inference and orthogonal dose/order balance without retrospectively using the
+2-3 observed targets or extending the seed list. Earlier STOP results, 03G Outcome B, V5 and raw results remain
+unchanged.
+
+Exact next authorized action: human review of `BALANCED_HISTORY_ISOLATION_00_DEV_REPORT.md`. Do not open prospective
+seeds, seal the draft, merge main, alter claims, or start reconstruction/division/heredity.
+
 ## BRANCH ADDENDUM — ACCESS-STRUCTURE-00 PHASE 0.5 (2026-07-17)
 
 The explicitly authorized DEV-only operator qualification ran only the already-open family `50001-50010`.

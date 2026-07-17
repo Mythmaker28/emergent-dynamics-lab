@@ -2557,3 +2557,23 @@ phase, halo, balance, or global-channel artefact. Active crossed feeding was del
 reconstruction is authorized. Human review is required. Any boundary-aware/balance correction is a separately
 approved DEV-only revision; if `C/H/E` cannot be separated without destroying the state under test, the next
 decision must be STOP rather than threshold relaxation.
+
+## D-091 — BALANCED-HISTORY-ISOLATION-00 passes semantics/allocation but fails four-target DEV feasibility
+
+**Date:** 2026-07-17
+
+**Design decision:** Accept the fresh categorical 2 x 2 history design as semantically valid. `a1/a2` are two
+consecutive 60-step local nutrient episodes, and the four fixed histories orthogonalize cumulative dose from
+EARLY-versus-LATE order within the historical support. Freeze DEV seeds `55001-55024`, a seed-only cyclic Latin
+square, complete-block original-world inference, the qualified two-cell no-swap clamp, history-independent
+`up_ref=0`, step-40 integrated tracked uptake, fixed first-stage quantities and `lam_plus=0` mediation control.
+
+**Feasibility decision:** The single bounded family produces zero four-target pre-history eligible worlds. Seventeen
+worlds have three selected targets and seven have two. Consequently no assignment is applied and no first-stage,
+feeding, isolation, transport or mediation endpoint exists. The downstream gates are not evaluable; they are not
+negative scientific results.
+
+**Disposition:** Return `DEV-FEASIBILITY-FAIL — REVISE-MECHANICS`. The four-target design is not a prospective
+candidate. Do not extend the family, weaken eligibility post hoc, analyze survivor targets, seal the draft or inspect
+a prospective namespace. A new pre-data assignment-unit or world-generation design requires human review. Earlier
+STOP results, 03G Outcome B, V5 and prior raw results remain unchanged.

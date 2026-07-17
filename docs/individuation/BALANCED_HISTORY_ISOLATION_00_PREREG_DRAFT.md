@@ -1,6 +1,6 @@
 # BALANCED-HISTORY-ISOLATION-00 — prospective preregistration draft
 
-**Status:** unsealed draft; blocked pending DEV results and human review.
+**Status:** unsealed draft; **BLOCKED by `DEV-FEASIBILITY-FAIL`**; human review required.
 
 **Prospective seeds:** not inspected, selected or reserved.
 
@@ -9,6 +9,13 @@
 This document is a handoff scaffold, not a preregistration and not permission to run. The scientific question is
 whether an isolated complete core can causally express temporal order at exactly matched cumulative dose after deep
 material turnover, with cumulative dose serving as the predeclared positive control.
+
+## DEV disposition
+
+The immutable 24-world family produced zero four-target pre-history eligible worlds: 17 worlds supplied three
+selected targets and seven supplied two. No assignment was applied and no first-stage, feeding, isolation,
+transport, or mediation endpoint was evaluated. The current four-target complete-block protocol is therefore not a
+prospective candidate. This draft remains unsealed and blocked; no world count or seed namespace is added.
 
 Any future preregistration must carry forward without outcome-driven changes:
 

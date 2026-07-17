@@ -881,17 +881,21 @@ def aggregate(worlds: list[dict]) -> dict:
         },
         "gates": {
             "minimum_four_complete_worlds": enough,
-            "manipulation_sham_exact": manipulation_valid,
-            "dose_first_stage_expected_orientation_and_ci": dose_stage,
-            "order_first_stage_expected_orientation_and_ci": order_stage,
-            "isolated_dose_feeding_expected_orientation_and_ci": dose_feed,
-            "isolated_order_feeding_consistent_ci_and_coupled_direction": order_feed,
+            "manipulation_sham_exact": manipulation_valid if enough else None,
+            "dose_first_stage_expected_orientation_and_ci": dose_stage if enough else None,
+            "order_first_stage_expected_orientation_and_ci": order_stage if enough else None,
+            "isolated_dose_feeding_expected_orientation_and_ci": dose_feed if enough else None,
+            "isolated_order_feeding_consistent_ci_and_coupled_direction": order_feed if enough else None,
             "global_primary_up_ref_zero": True,
             "qualified_boundary_reference_count": 1,
             "reference_reversal_test_applicable": False,
         },
         "conclusion": conclusion,
-        "conclusion_reason": "FIRST_STAGE_FAIL" if conclusion == "STOP" else None,
+        "conclusion_reason": (
+            "FEWER_THAN_FOUR_COMPLETE_WORLDS" if conclusion == "DEV-FEASIBILITY-FAIL"
+            else "FIRST_STAGE_FAIL" if conclusion == "STOP"
+            else None
+        ),
         "prereg_candidate_go": prereg_go,
         "prospective_execution_authorized": False,
     }
@@ -946,7 +950,9 @@ def atomic_write_json(path: Path, payload: dict) -> str:
     temp = path.with_suffix(path.suffix + ".tmp")
     temp.write_text(text, encoding="utf-8")
     os.replace(temp, path)
-    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+    # Hash the bytes actually persisted. On Windows, text-mode newline
+    # translation can otherwise make the announced digest differ from raw data.
+    return sha256_file(path)
 
 
 def run_family(manifest: dict, output: Path) -> dict:
