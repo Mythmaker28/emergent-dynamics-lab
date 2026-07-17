@@ -2601,3 +2601,30 @@ established. This rules out the frozen targeted-memory interpretation, not all h
 **Disposition:** STOP this preregistration candidate. Do not claim `DOSE_ONLY` or `DOSE_AND_ORDER`, open a
 prospective namespace, seal the draft, modify 03G/V5, or begin reconstruction. A fresh pre-data design separating
 the target memory coordinate from body/physical dose pathways requires human review.
+
+## D-093 — M_MINUS-ORDER-READER-00 identifies a direct DEV reader but does not reopen the parent STOP
+
+**Date:** 2026-07-17
+
+**Theory decision:** Correct the reduced two-timescale sign transparently. Under the unchanged
+EARLY-minus-LATE convention, both memory components are lower for EARLY, but the slowly decaying second component
+has the larger negative difference; therefore `Delta(m1-m2)` is positive. Record `SIGN_THEORY_CORRECTED`. This is
+an algebraic correction, not a reinterpretation of D-092 or a pass of its frozen first-stage prediction.
+
+**Reader decision:** Accept local one-step attractant production as the only direct, sign-identifiable output of
+the existing `m_minus/lam_minus` path. The protocol, `epsilon=2/3` gain perturbation (effective local coefficients
+`0.05/0.15/0.25`), fixed radius-10 support, 40-step standardized isolation, one-step horizon, mass normalization,
+mechanism ablation and original-world gates were pushed at `8349c55` before any new reader output.
+
+**DEV result:** On the 17 already-open parent-complete worlds, raw isolated order susceptibility is positive 17/17
+with a 95% t interval above zero; low and high dose are each 17/17 positive; the mass-normalized contrast is also
+17/17 positive with an interval above zero. `lam_minus=0` produces exact zero and 100% attenuation. All
+manipulation gates pass, and an independent raw-only analyzer reproduces the contrasts and frozen classification.
+Accept `ORDER_READER_CANDIDATE` with the maximum claim that temporal order changes a local `m_minus`-linked
+attractant-production response operator under standardized DEV inputs.
+
+**Boundary and disposition:** The ablation collapse is partly a constitutive identity of this direct source assay.
+It does not establish downstream movement or feeding, ownership, individual memory, identity, heredity,
+prospective confirmation or active reconstruction. Preserve D-092 and the parent STOP unchanged. Human review must
+decide whether direct source production is a prospectively defensible reader; no seed opening, protocol seal,
+ownership pair, 03G/V5 modification or generic reader battery is authorized automatically.

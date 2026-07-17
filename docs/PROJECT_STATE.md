@@ -1,5 +1,28 @@
 # Project State
 
+## BRANCH ADDENDUM — M_MINUS-ORDER-READER-00 DEV (2026-07-17)
+
+The exact parent `ea6e6a0ab2ccc3e94eba364ddb459088c96d6033` and its
+`NO_MEMORY_FIRST_STAGE — STOP THIS PREREGISTRATION CANDIDATE` verdict remain unchanged. A code-only audit found
+that `lam_minus` directly and uniquely multiplies local attractant production; the earlier negative reduced-theory
+sign was an algebraic orientation error under the unchanged EARLY-minus-LATE contrast. The one-step fixed-core
+source reader, symmetric `epsilon=2/3` gain probe, qualified 40-step isolation, mass normalization, mechanism
+ablation and decision gates were frozen and pushed at `8349c55` before any new reader output.
+
+Only the 17 already-open parent-complete worlds from 57001–57024 were deterministically reconstructed. The raw
+isolated order susceptibility is positive in 17/17 worlds (mean `0.0003129292`, 95% t CI
+`[0.0002474090,0.0003784494]`); low and high dose are each 17/17 positive; the per-core-mass order contrast is
+17/17 positive (mean `8.989063e-06`, CI `[7.884663e-06,1.009346e-05]`). With `lam_minus=0`, susceptibility is
+exactly zero and attenuation is 100%. All reconstruction/manipulation/determinism gates pass, and a raw-only
+reproducer matches every contrast and the classification without importing the runner or initializing the engine.
+
+DEV classification: **`ORDER_READER_CANDIDATE`**. Maximum claim: DEV evidence that temporal order changes a local
+`m_minus`-linked attractant-production response operator under standardized inputs. This direct source assay does
+not establish feeding-order effects, ownership, individual memory, identity, prospective confirmation, heredity or
+active reconstruction. Exact next action: human review of whether this constitutive source assay is a
+prospectively defensible reader. Do not open seeds, seal a protocol, run an ownership pair, modify 03G/V5, or start
+a generic reader battery automatically.
+
 ## BRANCH ADDENDUM — COUNTERFACTUAL-HISTORY-CORE-00 DEV (2026-07-17)
 
 The exact-clone 2 x 2 dose-by-order design was frozen and pushed at commit `e504288` before seed 57001, then ran
