@@ -1,0 +1,2214 @@
+{
+  "assignment": {
+    "amplitude_interval": [
+      0.005,
+      0.035
+    ],
+    "categorical_randomization": false,
+    "conditions": "continuous target-specific amplitude pairs; no categorical H_A/H_B labels",
+    "derived_coordinates": {
+      "dose_primary": "a1+a2",
+      "order_secondary": "a2-a1"
+    },
+    "implemented": "six sequential np.random.default_rng(world_seed) uniform draws; one (a1,a2) pair per target",
+    "outcome_independent": true,
+    "phase_duration_steps": 60,
+    "preregistration_discrepancy": "PREREGISTRATION.md states a balanced Latin-square assignment, but exp1_prospective.py, causal_confirm.py, turnover_dev_runner.py and turnover_engine_03g.py all implement unblocked sequential continuous draws.",
+    "separate_randomization_namespace": false,
+    "spatial_blocking_or_latin_square_implemented": false
+  },
+  "audit_gate": {
+    "both_assigned_conditions_within_world": false,
+    "continuous_draws_outcome_independent": true,
+    "exact_history_conditions_recovered": true,
+    "failure_reason": "The implemented protocol has no assigned H_A/H_B conditions and no implemented Latin-square or blocked allocation. Any binary labels would be retrospective relabelling or target selection.",
+    "gate_pass": false,
+    "labels_recoverable_without_future_feeding": "continuous a1,a2,dose,order yes; categorical H_A/H_B no because none exist",
+    "prospective_categorical_A_B_assignment": false,
+    "protocol_predicted_binary_direction": null,
+    "spatially_balanced_assignment": false,
+    "targets_per_assigned_condition_and_world": null
+  },
+  "boundary_reference_audit": {
+    "conclusion": "No second qualified on-manifold, history-independent boundary construction is currently available.",
+    "executed_here": false,
+    "matched_sham_only": "own-trajectory replay is an exact manipulation sham but may carry the target history and is not a common history-independent isolation reference",
+    "qualified_prior_mechanical_reference": "two-cell replay of the same-seed no-history trajectory; outcome-independent and on-manifold",
+    "second_independent_reference": null
+  },
+  "canonical_parent": "8a690f64e31647e949a8cb74fbf7457f706cd437",
+  "causal_estimands": {
+    "delta_coupled": null,
+    "delta_isolated": null,
+    "reason": "assignment gate failed before intervention implementation or execution",
+    "retention_ratio": null,
+    "statistical_unit": "original world",
+    "transport_difference": null
+  },
+  "clamp_or_global_variant_executed": false,
+  "counts": {
+    "deep_turnover_valid": 4,
+    "eligible_worlds_with_both_retroactive_dose_midpoint_classes": 7,
+    "eligible_worlds_with_both_retroactive_order_sign_classes": 7,
+    "initial_geometry_eligible": 8,
+    "initial_geometry_ineligible": 2,
+    "targets_with_continuous_histories": 24,
+    "targets_with_preprobe_nonmemory_change": 24,
+    "worlds_requested": 10
+  },
+  "decision": "STOP-HISTORY-CONTRAST",
+  "feeding_probe_executed": false,
+  "first_stage": {
+    "audit_only_retroactive_dichotomies_not_estimands": {
+      "dose_midpoint_differences": [
+        0.034565746880213355,
+        -0.03126591171297896,
+        -0.015016612207098073,
+        -0.09490383013881387
+      ],
+      "dose_midpoint_same_sign": false,
+      "order_sign_differences": [
+        0.11531896560268107,
+        -0.06819483806183163,
+        0.0846465710419014
+      ],
+      "order_sign_worlds_available": 3,
+      "worlds": [
+        {
+          "deep_step": 847,
+          "dose": [
+            0.04483583591324846,
+            0.03191806755936619,
+            0.0547248532955802
+          ],
+          "material_retention_M": [
+            0.19399027122102552,
+            0.24979364401673357,
+            0.14509491462257568
+          ],
+          "mplus": [
+            0.14556223014544592,
+            0.17635387804028219,
+            0.27627701969554513
+          ],
+          "order": [
+            -0.014474394918075326,
+            -0.013366937220190125,
+            0.0042267184974185
+          ],
+          "retroactive_midpoint_mplus_A_minus_B": 0.034565746880213355,
+          "retroactive_order_sign_mplus_A_minus_B": 0.11531896560268107,
+          "seed": 50002
+        },
+        {
+          "deep_step": 793,
+          "dose": [
+            0.06460522542853481,
+            0.015965773830851016,
+            0.050098999607489925
+          ],
+          "material_retention_M": [
+            0.2494180137355821,
+            0.24976935420627078,
+            0.21932890413506204
+          ],
+          "mplus": [
+            0.2685629253755861,
+            0.26478758228500365,
+            0.19848041576846326
+          ],
+          "order": [
+            -0.0005848616974927223,
+            -0.0038791215321628426,
+            0.01799386218051505
+          ],
+          "retroactive_midpoint_mplus_A_minus_B": -0.03126591171297896,
+          "retroactive_order_sign_mplus_A_minus_B": -0.06819483806183163,
+          "seed": 50004
+        },
+        {
+          "deep_step": 831,
+          "dose": [
+            0.05117315296182679,
+            0.01823050544698818,
+            0.04322578803668378
+          ],
+          "material_retention_M": [
+            0.16378143695398298,
+            0.23030102225923835,
+            0.24993830710442896
+          ],
+          "mplus": [
+            0.24526634780668735,
+            0.2576450484010083,
+            0.23999052458113315
+          ],
+          "order": [
+            0.001996949821454659,
+            0.0021299277368668525,
+            0.021589958193472005
+          ],
+          "retroactive_midpoint_mplus_A_minus_B": -0.015016612207098073,
+          "retroactive_order_sign_mplus_A_minus_B": null,
+          "seed": 50005
+        },
+        {
+          "deep_step": 890,
+          "dose": [
+            0.05621615309705133,
+            0.022450798314585657,
+            0.03595484097575165
+          ],
+          "material_retention_M": [
+            0.22705715851499184,
+            0.21010424776025538,
+            0.2496506369279655
+          ],
+          "mplus": [
+            0.20623529327066853,
+            0.3259355607244787,
+            0.2763426860944861
+          ],
+          "order": [
+            -0.01232281517975423,
+            0.005042549330636623,
+            -0.01805106223590552
+          ],
+          "retroactive_midpoint_mplus_A_minus_B": -0.09490383013881387,
+          "retroactive_order_sign_mplus_A_minus_B": 0.0846465710419014,
+          "seed": 50007
+        }
+      ]
+    },
+    "body_geometry_nutrient_H_A_vs_H_B": null,
+    "categorical_H_A_vs_H_B_first_stage": null,
+    "complete_Mf_and_frozen_11D_H_A_vs_H_B": null,
+    "interpretation": "These descriptive values cannot repair the missing randomization. They also do not show a stable protocol-predicted binary first stage.",
+    "protocol_native_continuous_coordinate": "own cumulative dose is primary; order is secondary and was not expected to survive long washout",
+    "reason": "no categorical histories were assigned"
+  },
+  "future_feeding_fields_accessed": false,
+  "global_channel_audit": {
+    "executed_here": false,
+    "ordinary_dynamic_up_ref": "invalid for local-sufficiency identification if it carries assigned history",
+    "prospective_selection": null,
+    "technically_defensible_variants": [
+      {
+        "identification": "history-independent and time-varying",
+        "physical_validity": "on-manifold if replayed from the matched no-history world",
+        "variant": "predefined no-history up_ref trajectory"
+      },
+      {
+        "identification": "history-independent",
+        "physical_validity": "requires a frozen source/time rule and continuity qualification",
+        "variant": "predefined no-history constant up_ref"
+      },
+      {
+        "identification": "removes global history information",
+        "physical_validity": "engine-valid and previously viable, but a mechanistic ablation rather than ordinary coupling",
+        "variant": "up_ref=0 ablation"
+      }
+    ]
+  },
+  "hypothesis_H_RELATIVE": {
+    "available_dev_observations": "ambient memory and null-reference reversal motivate the hypothesis, while continuous history coordinates remain recoverable; neither fact establishes relative storage",
+    "distinctive_randomized_history_prediction": "not testable without an assigned H_A/H_B first stage",
+    "status": "NOT_TESTED_BY_CAUSAL_CONTRAST"
+  },
+  "mediation": {
+    "lam_plus_zero_executed_here": false,
+    "reason": "no valid randomized-history effect exists to mediate",
+    "result": null
+  },
+  "mode": "DEV_ONLY_AUDIT_GATE",
+  "outcome_blind_access_rule": "the audit accesses only seed, eligibility/feasibility, deep step, histories, centroids, sizes, passive material retention and pre-probe memory diagnostics; no beh/rest_beh/own field is accessed or used",
+  "preprobe_confound_audit": {
+    "comparison": "post-history S0 versus same-seed same-time no-drive; no feeding probe",
+    "conclusion": "The nutrient history is not memory-only: before the proposed intervention it changes body/geometry and at least one of rho/U/V/c/N in the compared targets.",
+    "n_targets_compared": 24,
+    "nonmemory_targets_changed": 24
+  },
+  "provenance": {
+    "assignment_source_files": [
+      "experiments/individuation/exp1_prospective.py",
+      "experiments/individuation/causal_confirm.py",
+      "experiments/individuation/turnover_dev_runner.py",
+      "experiments/individuation/turnover_engine_03g.py"
+    ],
+    "deep_diagnostics_sha256": "6f6eca640d4b48715cc1324dfc8b131e045e04deac68d60ae3352c67e0cd4f87",
+    "deep_diagnostics_source": "experiments/individuation/turnover_dev_diagnostics_raw.json",
+    "raw_sha256": "dd326f0a31b829c8961b660b4a31533c789c19f407d2ccdc22b44fd9d48c8f54",
+    "raw_source": "experiments/individuation/turnover_dev_raw.json"
+  },
+  "raw_files_contain_future_feeding_fields": true,
+  "schema": "HISTORY-TRANSPORT-00-DEV-AUDIT-v1",
+  "seeds_requested": [
+    50001,
+    50002,
+    50003,
+    50004,
+    50005,
+    50006,
+    50007,
+    50008,
+    50009,
+    50010
+  ],
+  "spatial_balance_audit": {
+    "allocation": "unblocked sequential draws assigned to target indices sorted by size",
+    "conclusion": "No design-based spatial balance guarantee exists. Approximate realized balance cannot substitute for the preregistered but unimplemented Latin square.",
+    "implemented_latin_square": false,
+    "target_index_descriptives": {
+      "0": {
+        "dose_midpoint_A_count": 6,
+        "mean_dose": 0.04816437408988394,
+        "n": 8,
+        "order_nonnegative_count": 3
+      },
+      "1": {
+        "dose_midpoint_A_count": 3,
+        "mean_dose": 0.034387578149836326,
+        "n": 8,
+        "order_nonnegative_count": 4
+      },
+      "2": {
+        "dose_midpoint_A_count": 7,
+        "mean_dose": 0.04941575926948245,
+        "n": 8,
+        "order_nonnegative_count": 4
+      }
+    }
+  },
+  "worlds": [
+    {
+      "assignment": {
+        "candidate_labels_audit_only": {
+          "dose_midpoint": {
+            "counts": {
+              "A": 2,
+              "B": 1
+            },
+            "labels": [
+              "A",
+              "B",
+              "A"
+            ],
+            "rule": "A iff dose >= protocol-range midpoint 0.040000",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "order_sign": {
+            "counts": {
+              "A": 1,
+              "B": 2
+            },
+            "labels": [
+              "B",
+              "A",
+              "B"
+            ],
+            "rule": "A iff order=a2-a1 >= 0",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "within_world_extremes": {
+            "A_target": 0,
+            "B_target": 1,
+            "omitted_target": 2,
+            "rule": "A=max dose, B=min dose, omit middle target",
+            "status": "REJECTED_POST_ASSIGNMENT_SELECTION_AND_INCOMPLETE_TARGET_USE"
+          }
+        },
+        "recorded_history_exactly_regenerated": true,
+        "targets": [
+          {
+            "a1": 0.03330261631121956,
+            "a2": 0.030259269419650667,
+            "dose": 0.06356188573087022,
+            "initial_centroid": [
+              12.366546990661686,
+              54.02907633368067
+            ],
+            "initial_size": 78,
+            "order": -0.0030433468915688905,
+            "target": 0
+          },
+          {
+            "a1": 0.005080967439314817,
+            "a2": 0.028979129415770608,
+            "dose": 0.034060096855085424,
+            "initial_centroid": [
+              32.532815184189445,
+              23.09961310680817
+            ],
+            "initial_size": 64,
+            "order": 0.023898161976455792,
+            "target": 1
+          },
+          {
+            "a1": 0.031953076894586936,
+            "a2": 0.00940185941967325,
+            "dose": 0.04135493631426018,
+            "initial_centroid": [
+              52.916096590788484,
+              46.19810442160511
+            ],
+            "initial_size": 45,
+            "order": -0.022551217474913687,
+            "target": 2
+          }
+        ]
+      },
+      "deep_exclusion": "tracker_event:1:SPLIT@153",
+      "deep_step": null,
+      "deep_turnover_valid": false,
+      "initial_exclusion": null,
+      "initial_geometry_eligible": true,
+      "preprobe_confound": {
+        "comparison": "post-history S0 minus same-seed same-time no-drive counterfactual",
+        "comparison_time": 240,
+        "eligible": true,
+        "targets": [
+          {
+            "a1": 0.03330261631121956,
+            "a2": 0.030259269419650667,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.0875584447509278,
+              "mask_iou": 0.6704545454545454,
+              "mass": 25.37451250752064,
+              "rg": -0.3466378743028171,
+              "size": 29
+            },
+            "dose": 0.06356188573087022,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.31954321314496525,
+                "mean": 0.10850765597324177,
+                "rms": 0.1484004010841359
+              },
+              "N": {
+                "max_abs": 1.3447543470931107,
+                "mean": 0.9605373147448604,
+                "rms": 1.00314592400786
+              },
+              "U": {
+                "max_abs": 1.0450488342773607,
+                "mean": 0.16201733455078557,
+                "rms": 0.3021397029441633
+              },
+              "V": {
+                "max_abs": 0.9244398988721143,
+                "mean": 0.2680118522299279,
+                "rms": 0.3474775976320136
+              },
+              "c": {
+                "max_abs": 0.2975325607518673,
+                "mean": 0.19611639939459646,
+                "rms": 0.20810564227265302
+              },
+              "rho": {
+                "max_abs": 0.6566138009337991,
+                "mean": 0.23810041091582346,
+                "rms": 0.290189837324018
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.0030433468915688905,
+            "programmed_center_N_injection": 3.8137131438522136,
+            "programmed_total_N_injection": 657.4386591354279,
+            "target": 0
+          },
+          {
+            "a1": 0.005080967439314817,
+            "a2": 0.028979129415770608,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.1339618110096958,
+              "mask_iou": 0.8157894736842105,
+              "mass": 6.268513691585699,
+              "rg": 0.23698086858394474,
+              "size": 7
+            },
+            "dose": 0.034060096855085424,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.20193266389264358,
+                "mean": 0.07070689607510756,
+                "rms": 0.09569775137491433
+              },
+              "N": {
+                "max_abs": 0.7318075472727289,
+                "mean": 0.5471590620330006,
+                "rms": 0.5624025578280168
+              },
+              "U": {
+                "max_abs": 0.6080615282730601,
+                "mean": 0.16257159535348717,
+                "rms": 0.23142221304946026
+              },
+              "V": {
+                "max_abs": 0.23227808658200377,
+                "mean": 0.05872649877498184,
+                "rms": 0.09155649043617005
+              },
+              "c": {
+                "max_abs": 0.14776829680699932,
+                "mean": 0.08954777582822414,
+                "rms": 0.09218982729701126
+              },
+              "rho": {
+                "max_abs": 0.4057921337107043,
+                "mean": 0.12587668241008249,
+                "rms": 0.16255389223702052
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": 0.023898161976455792,
+            "programmed_center_N_injection": 2.0436058113051256,
+            "programmed_total_N_injection": 284.867694523119,
+            "target": 1
+          },
+          {
+            "a1": 0.031953076894586936,
+            "a2": 0.00940185941967325,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.2588955022277732,
+              "mask_iou": 0.7659574468085106,
+              "mass": 9.248431163388393,
+              "rg": -0.11249187657611426,
+              "size": 11
+            },
+            "dose": 0.04135493631426018,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.21244611456446158,
+                "mean": 0.07378273852920508,
+                "rms": 0.1018043359652183
+              },
+              "N": {
+                "max_abs": 0.6139320588132702,
+                "mean": 0.4732819364045458,
+                "rms": 0.4845629145422389
+              },
+              "U": {
+                "max_abs": 0.5763215440483627,
+                "mean": 0.08589104649797515,
+                "rms": 0.16243065991993283
+              },
+              "V": {
+                "max_abs": 0.513540147453657,
+                "mean": 0.18054135281021996,
+                "rms": 0.22593613208843102
+              },
+              "c": {
+                "max_abs": 0.17106145767251157,
+                "mean": 0.1067902474277203,
+                "rms": 0.11286589916575461
+              },
+              "rho": {
+                "max_abs": 0.35984344264894474,
+                "mean": 0.14487733067384562,
+                "rms": 0.1685684424150464
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.022551217474913687,
+            "programmed_center_N_injection": 2.4812961788556107,
+            "programmed_total_N_injection": 241.32800165271993,
+            "target": 2
+          }
+        ]
+      },
+      "seed": 50001
+    },
+    {
+      "assignment": {
+        "candidate_labels_audit_only": {
+          "dose_midpoint": {
+            "counts": {
+              "A": 2,
+              "B": 1
+            },
+            "labels": [
+              "A",
+              "B",
+              "A"
+            ],
+            "rule": "A iff dose >= protocol-range midpoint 0.040000",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "order_sign": {
+            "counts": {
+              "A": 1,
+              "B": 2
+            },
+            "labels": [
+              "B",
+              "B",
+              "A"
+            ],
+            "rule": "A iff order=a2-a1 >= 0",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "within_world_extremes": {
+            "A_target": 2,
+            "B_target": 1,
+            "omitted_target": 0,
+            "rule": "A=max dose, B=min dose, omit middle target",
+            "status": "REJECTED_POST_ASSIGNMENT_SELECTION_AND_INCOMPLETE_TARGET_USE"
+          }
+        },
+        "recorded_history_exactly_regenerated": true,
+        "targets": [
+          {
+            "a1": 0.029655115415661893,
+            "a2": 0.015180720497586567,
+            "dose": 0.04483583591324846,
+            "initial_centroid": [
+              62.4180561105472,
+              41.05407023976826
+            ],
+            "initial_size": 121,
+            "order": -0.014474394918075326,
+            "target": 0
+          },
+          {
+            "a1": 0.022642502389778156,
+            "a2": 0.00927556516958803,
+            "dose": 0.03191806755936619,
+            "initial_centroid": [
+              17.16714422547283,
+              61.478431349284016
+            ],
+            "initial_size": 55,
+            "order": -0.013366937220190125,
+            "target": 1
+          },
+          {
+            "a1": 0.025249067399080852,
+            "a2": 0.02947578589649935,
+            "dose": 0.0547248532955802,
+            "initial_centroid": [
+              44.365120529902114,
+              10.772416556121708
+            ],
+            "initial_size": 52,
+            "order": 0.0042267184974185,
+            "target": 2
+          }
+        ]
+      },
+      "deep_exclusion": null,
+      "deep_step": 847,
+      "deep_turnover_valid": true,
+      "initial_exclusion": null,
+      "initial_geometry_eligible": true,
+      "preprobe_confound": {
+        "comparison": "post-history S0 minus same-seed same-time no-drive counterfactual",
+        "comparison_time": 240,
+        "eligible": true,
+        "targets": [
+          {
+            "a1": 0.029655115415661893,
+            "a2": 0.015180720497586567,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 2.45912046652101,
+              "mask_iou": 0.5615384615384615,
+              "mass": 46.74492920776408,
+              "rg": -0.28587272567858957,
+              "size": 57
+            },
+            "dose": 0.04483583591324846,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.2828781275926897,
+                "mean": 0.0901971460908482,
+                "rms": 0.12499160484352013
+              },
+              "N": {
+                "max_abs": 1.006004400868525,
+                "mean": 0.7045254834207222,
+                "rms": 0.7405983202638405
+              },
+              "U": {
+                "max_abs": 1.077073846426026,
+                "mean": 0.22694265290297616,
+                "rms": 0.339204241376118
+              },
+              "V": {
+                "max_abs": 0.559440838813891,
+                "mean": 0.12944794555366604,
+                "rms": 0.1935312838254961
+              },
+              "c": {
+                "max_abs": 0.34807338859079306,
+                "mean": 0.17656360159944048,
+                "rms": 0.19449833927722926
+              },
+              "rho": {
+                "max_abs": 0.611527834045656,
+                "mean": 0.1975154252767759,
+                "rms": 0.24509100928321678
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.014474394918075326,
+            "programmed_center_N_injection": 2.6901501547949076,
+            "programmed_total_N_injection": 687.3540332240289,
+            "target": 0
+          },
+          {
+            "a1": 0.022642502389778156,
+            "a2": 0.00927556516958803,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.24445877280695538,
+              "mask_iou": 0.9193548387096774,
+              "mass": 5.250556332087854,
+              "rg": -0.06431160308088035,
+              "size": 3
+            },
+            "dose": 0.03191806755936619,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.17295062984120135,
+                "mean": 0.04657059706600788,
+                "rms": 0.06989049475764361
+              },
+              "N": {
+                "max_abs": 0.3768498309667233,
+                "mean": 0.27020057566328215,
+                "rms": 0.28359333582322166
+              },
+              "U": {
+                "max_abs": 0.42619341140866207,
+                "mean": 0.11442881866362942,
+                "rms": 0.16582475936754498
+              },
+              "V": {
+                "max_abs": 0.21742190277579,
+                "mean": 0.024834489198238083,
+                "rms": 0.05347864026836205
+              },
+              "c": {
+                "max_abs": 0.10639663550721667,
+                "mean": 0.06408792268358418,
+                "rms": 0.0688226730968311
+              },
+              "rho": {
+                "max_abs": 0.24630332964591867,
+                "mean": 0.0759588578679145,
+                "rms": 0.10341869987186296
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.013366937220190125,
+            "programmed_center_N_injection": 1.915084053561971,
+            "programmed_total_N_injection": 122.74553709369134,
+            "target": 1
+          },
+          {
+            "a1": 0.025249067399080852,
+            "a2": 0.02947578589649935,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.045999982020003105,
+              "mask_iou": 0.7777777777777778,
+              "mass": 8.573623388537111,
+              "rg": 0.3074809627578592,
+              "size": 10
+            },
+            "dose": 0.0547248532955802,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.26972729063805245,
+                "mean": 0.09440773919210485,
+                "rms": 0.12786087088285902
+              },
+              "N": {
+                "max_abs": 0.6646411505201698,
+                "mean": 0.570987865032518,
+                "rms": 0.5739283469446625
+              },
+              "U": {
+                "max_abs": 0.6768053016587027,
+                "mean": 0.113554311578375,
+                "rms": 0.1989507330621227
+              },
+              "V": {
+                "max_abs": 0.7066420578776572,
+                "mean": 0.14886429276051913,
+                "rms": 0.2441177461774833
+              },
+              "c": {
+                "max_abs": 0.14516586867660897,
+                "mean": 0.10674130656050974,
+                "rms": 0.10830353308471663
+              },
+              "rho": {
+                "max_abs": 0.3817338027488061,
+                "mean": 0.1475259008245309,
+                "rms": 0.18935654379252564
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": 0.0042267184974185,
+            "programmed_center_N_injection": 3.2834911977348122,
+            "programmed_total_N_injection": 185.67705284874788,
+            "target": 2
+          }
+        ]
+      },
+      "seed": 50002
+    },
+    {
+      "assignment": {
+        "candidate_labels_audit_only": {
+          "dose_midpoint": {
+            "counts": {
+              "A": 2,
+              "B": 1
+            },
+            "labels": [
+              "B",
+              "A",
+              "A"
+            ],
+            "rule": "A iff dose >= protocol-range midpoint 0.040000",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "order_sign": {
+            "counts": {
+              "A": 1,
+              "B": 2
+            },
+            "labels": [
+              "B",
+              "A",
+              "B"
+            ],
+            "rule": "A iff order=a2-a1 >= 0",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "within_world_extremes": {
+            "A_target": 1,
+            "B_target": 0,
+            "omitted_target": 2,
+            "rule": "A=max dose, B=min dose, omit middle target",
+            "status": "REJECTED_POST_ASSIGNMENT_SELECTION_AND_INCOMPLETE_TARGET_USE"
+          }
+        },
+        "recorded_history_exactly_regenerated": true,
+        "targets": [
+          {
+            "a1": 0.017384520131874876,
+            "a2": 0.010356316065956144,
+            "dose": 0.02774083619783102,
+            "initial_centroid": [
+              7.658235489943268,
+              58.24218875411879
+            ],
+            "initial_size": 67,
+            "order": -0.007028204065918732,
+            "target": 0
+          },
+          {
+            "a1": 0.014855536123881873,
+            "a2": 0.03318776642550275,
+            "dose": 0.048043302549384624,
+            "initial_centroid": [
+              46.92657825526049,
+              19.58201761167774
+            ],
+            "initial_size": 64,
+            "order": 0.01833223030162088,
+            "target": 1
+          },
+          {
+            "a1": 0.032725916792603366,
+            "a2": 0.014713514840484665,
+            "dose": 0.04743943163308803,
+            "initial_centroid": [
+              36.7290035869985,
+              46.252239406515635
+            ],
+            "initial_size": 50,
+            "order": -0.0180124019521187,
+            "target": 2
+          }
+        ]
+      },
+      "deep_exclusion": "tracker_event:2:LOST@236",
+      "deep_step": null,
+      "deep_turnover_valid": false,
+      "initial_exclusion": null,
+      "initial_geometry_eligible": true,
+      "preprobe_confound": {
+        "comparison": "post-history S0 minus same-seed same-time no-drive counterfactual",
+        "comparison_time": 240,
+        "eligible": true,
+        "targets": [
+          {
+            "a1": 0.017384520131874876,
+            "a2": 0.010356316065956144,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.06149045830167107,
+              "mask_iou": 0.8461538461538461,
+              "mass": 8.780380467876782,
+              "rg": -0.10377868163329929,
+              "size": 10
+            },
+            "dose": 0.02774083619783102,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.18290605497858947,
+                "mean": 0.05423333562843743,
+                "rms": 0.07571807346090251
+              },
+              "N": {
+                "max_abs": 0.4966386685206916,
+                "mean": 0.36253562682236573,
+                "rms": 0.3742045740723678
+              },
+              "U": {
+                "max_abs": 0.46130008431295744,
+                "mean": 0.1355845700114596,
+                "rms": 0.18444323588100073
+              },
+              "V": {
+                "max_abs": 0.2609266991952204,
+                "mean": 0.044299482900069784,
+                "rms": 0.07366427259079875
+              },
+              "c": {
+                "max_abs": 0.13673095659801604,
+                "mean": 0.07816187675650929,
+                "rms": 0.08326556241801925
+              },
+              "rho": {
+                "max_abs": 0.28347861317906375,
+                "mean": 0.10029361604951087,
+                "rms": 0.12530893501371707
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.007028204065918732,
+            "programmed_center_N_injection": 1.6644501718698612,
+            "programmed_total_N_injection": 216.24563838944678,
+            "target": 0
+          },
+          {
+            "a1": 0.014855536123881873,
+            "a2": 0.03318776642550275,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 2.983488112847114,
+              "mask_iou": 0.5555555555555556,
+              "mass": 29.815657703328103,
+              "rg": 1.9908848089245845,
+              "size": 36
+            },
+            "dose": 0.048043302549384624,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.2608934633423817,
+                "mean": 0.0795375315635441,
+                "rms": 0.10805422325015683
+              },
+              "N": {
+                "max_abs": 0.9417929002346398,
+                "mean": 0.6505155677400359,
+                "rms": 0.6727668348217896
+              },
+              "U": {
+                "max_abs": 0.9074003281660346,
+                "mean": 0.2570042849776927,
+                "rms": 0.3393452937659979
+              },
+              "V": {
+                "max_abs": 0.41120246411818495,
+                "mean": 0.04895568132390258,
+                "rms": 0.08970552591948269
+              },
+              "c": {
+                "max_abs": 0.2233013859041182,
+                "mean": 0.12776835062406022,
+                "rms": 0.13483447265331447
+              },
+              "rho": {
+                "max_abs": 0.4925656853473155,
+                "mean": 0.16528135771291724,
+                "rms": 0.20668425654068723
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": 0.01833223030162088,
+            "programmed_center_N_injection": 2.8825981529630775,
+            "programmed_total_N_injection": 370.74688704074987,
+            "target": 1
+          },
+          {
+            "a1": 0.032725916792603366,
+            "a2": 0.014713514840484665,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 6.898090987028916,
+              "mask_iou": 0.0,
+              "mass": -18.20823395819103,
+              "rg": -3.6295646971290267,
+              "size": -30
+            },
+            "dose": 0.04743943163308803,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.25281417744505036,
+                "mean": 0.08547657510809303,
+                "rms": 0.11694753190874284
+              },
+              "N": {
+                "max_abs": 0.804125136987013,
+                "mean": 0.5600003819051605,
+                "rms": 0.5792819122904025
+              },
+              "U": {
+                "max_abs": 0.8236950799189224,
+                "mean": 0.21103363251882412,
+                "rms": 0.2881915612356759
+              },
+              "V": {
+                "max_abs": 0.5731669156186261,
+                "mean": 0.07849874561423632,
+                "rms": 0.1292165478153551
+              },
+              "c": {
+                "max_abs": 0.2842211338249322,
+                "mean": 0.13632857983068794,
+                "rms": 0.14891278851138487
+              },
+              "rho": {
+                "max_abs": 0.5005099392865777,
+                "mean": 0.16286128490327162,
+                "rms": 0.19974199800766604
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.0180124019521187,
+            "programmed_center_N_injection": 2.8463658979852817,
+            "programmed_total_N_injection": 357.8690234803723,
+            "target": 2
+          }
+        ]
+      },
+      "seed": 50003
+    },
+    {
+      "assignment": {
+        "candidate_labels_audit_only": {
+          "dose_midpoint": {
+            "counts": {
+              "A": 2,
+              "B": 1
+            },
+            "labels": [
+              "A",
+              "B",
+              "A"
+            ],
+            "rule": "A iff dose >= protocol-range midpoint 0.040000",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "order_sign": {
+            "counts": {
+              "A": 1,
+              "B": 2
+            },
+            "labels": [
+              "B",
+              "B",
+              "A"
+            ],
+            "rule": "A iff order=a2-a1 >= 0",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "within_world_extremes": {
+            "A_target": 0,
+            "B_target": 1,
+            "omitted_target": 2,
+            "rule": "A=max dose, B=min dose, omit middle target",
+            "status": "REJECTED_POST_ASSIGNMENT_SELECTION_AND_INCOMPLETE_TARGET_USE"
+          }
+        },
+        "recorded_history_exactly_regenerated": true,
+        "targets": [
+          {
+            "a1": 0.032595043563013765,
+            "a2": 0.03201018186552104,
+            "dose": 0.06460522542853481,
+            "initial_centroid": [
+              49.37270093845035,
+              22.647244186120755
+            ],
+            "initial_size": 68,
+            "order": -0.0005848616974927223,
+            "target": 0
+          },
+          {
+            "a1": 0.00992244768150693,
+            "a2": 0.006043326149344087,
+            "dose": 0.015965773830851016,
+            "initial_centroid": [
+              25.313222479989783,
+              5.923917256452582
+            ],
+            "initial_size": 67,
+            "order": -0.0038791215321628426,
+            "target": 1
+          },
+          {
+            "a1": 0.016052568713487435,
+            "a2": 0.034046430894002486,
+            "dose": 0.050098999607489925,
+            "initial_centroid": [
+              41.23388535815504,
+              46.380962633206025
+            ],
+            "initial_size": 48,
+            "order": 0.01799386218051505,
+            "target": 2
+          }
+        ]
+      },
+      "deep_exclusion": null,
+      "deep_step": 793,
+      "deep_turnover_valid": true,
+      "initial_exclusion": null,
+      "initial_geometry_eligible": true,
+      "preprobe_confound": {
+        "comparison": "post-history S0 minus same-seed same-time no-drive counterfactual",
+        "comparison_time": 240,
+        "eligible": true,
+        "targets": [
+          {
+            "a1": 0.032595043563013765,
+            "a2": 0.03201018186552104,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.0727719066589572,
+              "mask_iou": 0.7428571428571429,
+              "mass": 16.230981618487114,
+              "rg": -0.03280173237431505,
+              "size": 18
+            },
+            "dose": 0.06460522542853481,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.3126006410288895,
+                "mean": 0.10446622713312068,
+                "rms": 0.1423419172350952
+              },
+              "N": {
+                "max_abs": 1.0017533078986793,
+                "mean": 0.7584569712040707,
+                "rms": 0.7781503549908346
+              },
+              "U": {
+                "max_abs": 0.8636929106267586,
+                "mean": 0.28613114216829666,
+                "rms": 0.35460616760518215
+              },
+              "V": {
+                "max_abs": 0.28166953979954756,
+                "mean": 0.04929958813157411,
+                "rms": 0.07929981028240493
+              },
+              "c": {
+                "max_abs": 0.23819163039541624,
+                "mean": 0.14779649563623679,
+                "rms": 0.15454799288782986
+              },
+              "rho": {
+                "max_abs": 0.5146242633021125,
+                "mean": 0.1854611300954163,
+                "rms": 0.23085006429458566
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.0005848616974927223,
+            "programmed_center_N_injection": 3.8763135257120886,
+            "programmed_total_N_injection": 344.6381196749988,
+            "target": 0
+          },
+          {
+            "a1": 0.00992244768150693,
+            "a2": 0.006043326149344087,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.2314600377329602,
+              "mask_iou": 0.9107142857142857,
+              "mass": 4.667715929318646,
+              "rg": 0.04282721058857586,
+              "size": 5
+            },
+            "dose": 0.015965773830851016,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.10290212318585046,
+                "mean": 0.032525682577389047,
+                "rms": 0.044915197339132316
+              },
+              "N": {
+                "max_abs": 0.26867603377685745,
+                "mean": 0.2035100149259623,
+                "rms": 0.20822795502044414
+              },
+              "U": {
+                "max_abs": 0.3188869652590436,
+                "mean": 0.03990709819734917,
+                "rms": 0.08070539502989903
+              },
+              "V": {
+                "max_abs": 0.28925392627406876,
+                "mean": 0.06831159474518596,
+                "rms": 0.09574560752614897
+              },
+              "c": {
+                "max_abs": 0.08068877294637122,
+                "mean": 0.045379607604146666,
+                "rms": 0.04802100671140692
+              },
+              "rho": {
+                "max_abs": 0.18461704304793725,
+                "mean": 0.05961214689242319,
+                "rms": 0.07581135884363772
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.0038791215321628426,
+            "programmed_center_N_injection": 0.9579464298510609,
+            "programmed_total_N_injection": 111.68772728250872,
+            "target": 1
+          },
+          {
+            "a1": 0.016052568713487435,
+            "a2": 0.034046430894002486,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.14106101085305026,
+              "mask_iou": 0.8666666666666667,
+              "mass": 7.573077500271992,
+              "rg": 0.20096259675182804,
+              "size": 6
+            },
+            "dose": 0.050098999607489925,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.24509846180606173,
+                "mean": 0.08260242293627976,
+                "rms": 0.1121089686222038
+              },
+              "N": {
+                "max_abs": 0.6341913372933669,
+                "mean": 0.5302836632802994,
+                "rms": 0.5351608146358532
+              },
+              "U": {
+                "max_abs": 0.595295768235391,
+                "mean": 0.19395664875207413,
+                "rms": 0.2625202778887525
+              },
+              "V": {
+                "max_abs": 0.35726657012269314,
+                "mean": 0.06463695082799469,
+                "rms": 0.11718532797324736
+              },
+              "c": {
+                "max_abs": 0.13614654583019925,
+                "mean": 0.10141967991723602,
+                "rms": 0.10327540638688561
+              },
+              "rho": {
+                "max_abs": 0.3258490208640246,
+                "mean": 0.13791455695783145,
+                "rms": 0.16855644355005717
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": 0.01799386218051505,
+            "programmed_center_N_injection": 3.0059399764493957,
+            "programmed_total_N_injection": 169.98190104861533,
+            "target": 2
+          }
+        ]
+      },
+      "seed": 50004
+    },
+    {
+      "assignment": {
+        "candidate_labels_audit_only": {
+          "dose_midpoint": {
+            "counts": {
+              "A": 2,
+              "B": 1
+            },
+            "labels": [
+              "A",
+              "B",
+              "A"
+            ],
+            "rule": "A iff dose >= protocol-range midpoint 0.040000",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "order_sign": {
+            "counts": {
+              "A": 3,
+              "B": 0
+            },
+            "labels": [
+              "A",
+              "A",
+              "A"
+            ],
+            "rule": "A iff order=a2-a1 >= 0",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "within_world_extremes": {
+            "A_target": 0,
+            "B_target": 1,
+            "omitted_target": 2,
+            "rule": "A=max dose, B=min dose, omit middle target",
+            "status": "REJECTED_POST_ASSIGNMENT_SELECTION_AND_INCOMPLETE_TARGET_USE"
+          }
+        },
+        "recorded_history_exactly_regenerated": true,
+        "targets": [
+          {
+            "a1": 0.024588101570186066,
+            "a2": 0.026585051391640725,
+            "dose": 0.05117315296182679,
+            "initial_centroid": [
+              20.196992701811443,
+              10.88699802481824
+            ],
+            "initial_size": 77,
+            "order": 0.001996949821454659,
+            "target": 0
+          },
+          {
+            "a1": 0.008050288855060664,
+            "a2": 0.010180216591927516,
+            "dose": 0.01823050544698818,
+            "initial_centroid": [
+              35.006641661140016,
+              44.724637433034474
+            ],
+            "initial_size": 75,
+            "order": 0.0021299277368668525,
+            "target": 1
+          },
+          {
+            "a1": 0.01081791492160589,
+            "a2": 0.032407873115077895,
+            "dose": 0.04322578803668378,
+            "initial_centroid": [
+              4.46283439636591,
+              47.61569823144815
+            ],
+            "initial_size": 52,
+            "order": 0.021589958193472005,
+            "target": 2
+          }
+        ]
+      },
+      "deep_exclusion": null,
+      "deep_step": 831,
+      "deep_turnover_valid": true,
+      "initial_exclusion": null,
+      "initial_geometry_eligible": true,
+      "preprobe_confound": {
+        "comparison": "post-history S0 minus same-seed same-time no-drive counterfactual",
+        "comparison_time": 240,
+        "eligible": true,
+        "targets": [
+          {
+            "a1": 0.024588101570186066,
+            "a2": 0.026585051391640725,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.272756012008018,
+              "mask_iou": 0.7471264367816092,
+              "mass": 21.384583555898104,
+              "rg": -0.23143342496816377,
+              "size": 22
+            },
+            "dose": 0.05117315296182679,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.2646913074736428,
+                "mean": 0.0955624077670139,
+                "rms": 0.12968417103812938
+              },
+              "N": {
+                "max_abs": 1.1074007117474087,
+                "mean": 0.7713852261116511,
+                "rms": 0.8049933144343033
+              },
+              "U": {
+                "max_abs": 0.8581288329607651,
+                "mean": 0.20584830179899138,
+                "rms": 0.2966828715349738
+              },
+              "V": {
+                "max_abs": 0.5572386731944015,
+                "mean": 0.12999438525706966,
+                "rms": 0.18853806822885716
+              },
+              "c": {
+                "max_abs": 0.2989644022332928,
+                "mean": 0.15706041931286133,
+                "rms": 0.17022242082881223
+              },
+              "rho": {
+                "max_abs": 0.5440345017445261,
+                "mean": 0.19946347350269852,
+                "rms": 0.2456372120722295
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": 0.001996949821454659,
+            "programmed_center_N_injection": 3.0703891777096075,
+            "programmed_total_N_injection": 604.1770856030529,
+            "target": 0
+          },
+          {
+            "a1": 0.008050288855060664,
+            "a2": 0.010180216591927516,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.08831397167183372,
+              "mask_iou": 0.8809523809523809,
+              "mass": 4.291499457059501,
+              "rg": 0.10235142947334674,
+              "size": 5
+            },
+            "dose": 0.01823050544698818,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.13025106814261542,
+                "mean": 0.04423159168458466,
+                "rms": 0.0614108045543723
+              },
+              "N": {
+                "max_abs": 0.37446334005788806,
+                "mean": 0.2948532198605455,
+                "rms": 0.30400233141364713
+              },
+              "U": {
+                "max_abs": 0.5096729503824684,
+                "mean": 0.08722177903979496,
+                "rms": 0.14013687464678587
+              },
+              "V": {
+                "max_abs": 0.1961432311326542,
+                "mean": 0.04152617917217793,
+                "rms": 0.06669067569334651
+              },
+              "c": {
+                "max_abs": 0.10260983522784517,
+                "mean": 0.05298196363107118,
+                "rms": 0.05575977500535227
+              },
+              "rho": {
+                "max_abs": 0.2763640271021165,
+                "mean": 0.07277451085944978,
+                "rms": 0.09539335425153284
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": 0.0021299277368668525,
+            "programmed_center_N_injection": 1.0938303268192908,
+            "programmed_total_N_injection": 171.55807724330364,
+            "target": 1
+          },
+          {
+            "a1": 0.01081791492160589,
+            "a2": 0.032407873115077895,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.07380487265862272,
+              "mask_iou": 0.8793103448275862,
+              "mass": 7.823518101219008,
+              "rg": 0.07046776092578133,
+              "size": 7
+            },
+            "dose": 0.04322578803668378,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.22052468983053303,
+                "mean": 0.06512738682309883,
+                "rms": 0.09178776059420161
+              },
+              "N": {
+                "max_abs": 0.6285094314605356,
+                "mean": 0.4635823841261747,
+                "rms": 0.4785021391763742
+              },
+              "U": {
+                "max_abs": 0.43680939870143454,
+                "mean": 0.10321663527801818,
+                "rms": 0.1579095109997459
+              },
+              "V": {
+                "max_abs": 0.4731028736183679,
+                "mean": 0.09567062923325627,
+                "rms": 0.15572344864086257
+              },
+              "c": {
+                "max_abs": 0.10446969972407438,
+                "mean": 0.07948474301423011,
+                "rms": 0.08076715649414092
+              },
+              "rho": {
+                "max_abs": 0.25541741560211606,
+                "mean": 0.10786586322361966,
+                "rms": 0.1326019372097042
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": 0.021589958193472005,
+            "programmed_center_N_injection": 2.593547282201027,
+            "programmed_total_N_injection": 172.94958915108103,
+            "target": 2
+          }
+        ]
+      },
+      "seed": 50005
+    },
+    {
+      "assignment": {
+        "candidate_labels_audit_only": {
+          "dose_midpoint": {
+            "counts": {
+              "A": 3,
+              "B": 0
+            },
+            "labels": [
+              "A",
+              "A",
+              "A"
+            ],
+            "rule": "A iff dose >= protocol-range midpoint 0.040000",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "order_sign": {
+            "counts": {
+              "A": 1,
+              "B": 2
+            },
+            "labels": [
+              "A",
+              "B",
+              "B"
+            ],
+            "rule": "A iff order=a2-a1 >= 0",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "within_world_extremes": {
+            "A_target": 2,
+            "B_target": 0,
+            "omitted_target": 1,
+            "rule": "A=max dose, B=min dose, omit middle target",
+            "status": "REJECTED_POST_ASSIGNMENT_SELECTION_AND_INCOMPLETE_TARGET_USE"
+          }
+        },
+        "recorded_history_exactly_regenerated": true,
+        "targets": [
+          {
+            "a1": 0.01319065880888557,
+            "a2": 0.033737557149527454,
+            "dose": 0.046928215958413025,
+            "initial_centroid": [
+              60.90395398575357,
+              59.22599311486499
+            ],
+            "initial_size": 61,
+            "order": 0.020546898340641884,
+            "target": 0
+          },
+          {
+            "a1": 0.03279299887597154,
+            "a2": 0.020808893297733513,
+            "dose": 0.053601892173705055,
+            "initial_centroid": [
+              46.13123463124246,
+              15.207636149903504
+            ],
+            "initial_size": 60,
+            "order": -0.011984105578238029,
+            "target": 1
+          },
+          {
+            "a1": 0.03477622367787296,
+            "a2": 0.02438814197186102,
+            "dose": 0.059164365649733985,
+            "initial_centroid": [
+              13.52984606500547,
+              31.188439647457766
+            ],
+            "initial_size": 49,
+            "order": -0.01038808170601194,
+            "target": 2
+          }
+        ]
+      },
+      "deep_exclusion": "tracker_event:0:SPLIT@692",
+      "deep_step": null,
+      "deep_turnover_valid": false,
+      "initial_exclusion": null,
+      "initial_geometry_eligible": true,
+      "preprobe_confound": {
+        "comparison": "post-history S0 minus same-seed same-time no-drive counterfactual",
+        "comparison_time": 240,
+        "eligible": true,
+        "targets": [
+          {
+            "a1": 0.01319065880888557,
+            "a2": 0.033737557149527454,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.035644672190558446,
+              "mask_iou": 0.7710843373493976,
+              "mass": 17.118503812420265,
+              "rg": -0.23444250368324138,
+              "size": 19
+            },
+            "dose": 0.046928215958413025,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.23294714910382625,
+                "mean": 0.07369697371642608,
+                "rms": 0.10146409704206204
+              },
+              "N": {
+                "max_abs": 1.016634041486578,
+                "mean": 0.644109662324461,
+                "rms": 0.6835916811846425
+              },
+              "U": {
+                "max_abs": 0.5983876043826579,
+                "mean": 0.1191935269590286,
+                "rms": 0.18731112415242904
+              },
+              "V": {
+                "max_abs": 0.6013295816784022,
+                "mean": 0.15157668037882233,
+                "rms": 0.21138168258370654
+              },
+              "c": {
+                "max_abs": 0.1986183358978596,
+                "mean": 0.11539240053129661,
+                "rms": 0.12340677977548438
+              },
+              "rho": {
+                "max_abs": 0.3713726468358109,
+                "mean": 0.1567698086622265,
+                "rms": 0.18681925328148982
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": 0.020546898340641884,
+            "programmed_center_N_injection": 2.8156929575047815,
+            "programmed_total_N_injection": 431.81261668636523,
+            "target": 0
+          },
+          {
+            "a1": 0.03279299887597154,
+            "a2": 0.020808893297733513,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 1.7635084830992538,
+              "mask_iou": 0.5303030303030303,
+              "mass": 21.968386314581206,
+              "rg": 1.6331719833607057,
+              "size": 31
+            },
+            "dose": 0.053601892173705055,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.2984746154308815,
+                "mean": 0.08788642618979951,
+                "rms": 0.124622139814966
+              },
+              "N": {
+                "max_abs": 0.7643627535808285,
+                "mean": 0.5817875785757431,
+                "rms": 0.59663824204638
+              },
+              "U": {
+                "max_abs": 0.6885107863878721,
+                "mean": 0.18774802991650796,
+                "rms": 0.26783726890968385
+              },
+              "V": {
+                "max_abs": 0.8630015661663326,
+                "mean": 0.10614623106179265,
+                "rms": 0.2280087793970925
+              },
+              "c": {
+                "max_abs": 0.2413204137370647,
+                "mean": 0.1317548631568684,
+                "rms": 0.13974901886254415
+              },
+              "rho": {
+                "max_abs": 0.5229998844517825,
+                "mean": 0.16904762001964072,
+                "rms": 0.225935286565425
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.011984105578238029,
+            "programmed_center_N_injection": 3.2161135304223034,
+            "programmed_total_N_injection": 263.83811130681494,
+            "target": 1
+          },
+          {
+            "a1": 0.03477622367787296,
+            "a2": 0.02438814197186102,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.0922433271500161,
+              "mask_iou": 0.7547169811320755,
+              "mass": 12.144013305343634,
+              "rg": -0.014741390335838211,
+              "size": 13
+            },
+            "dose": 0.059164365649733985,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.27337358229700115,
+                "mean": 0.09331806421142066,
+                "rms": 0.1280295440727821
+              },
+              "N": {
+                "max_abs": 0.8688618412395155,
+                "mean": 0.6624679517223169,
+                "rms": 0.6803568989359469
+              },
+              "U": {
+                "max_abs": 0.5987293980959391,
+                "mean": 0.2176542914456462,
+                "rms": 0.276117735990584
+              },
+              "V": {
+                "max_abs": 0.6947658534143479,
+                "mean": 0.11688420332877186,
+                "rms": 0.21256784543337523
+              },
+              "c": {
+                "max_abs": 0.19664513154636099,
+                "mean": 0.13536755945753962,
+                "rms": 0.14021319063296805
+              },
+              "rho": {
+                "max_abs": 0.40523775688363656,
+                "mean": 0.1834111602931913,
+                "rms": 0.2128395936333647
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.01038808170601194,
+            "programmed_center_N_injection": 3.549861938984039,
+            "programmed_total_N_injection": 299.5115008905036,
+            "target": 2
+          }
+        ]
+      },
+      "seed": 50006
+    },
+    {
+      "assignment": {
+        "candidate_labels_audit_only": {
+          "dose_midpoint": {
+            "counts": {
+              "A": 1,
+              "B": 2
+            },
+            "labels": [
+              "A",
+              "B",
+              "B"
+            ],
+            "rule": "A iff dose >= protocol-range midpoint 0.040000",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "order_sign": {
+            "counts": {
+              "A": 1,
+              "B": 2
+            },
+            "labels": [
+              "B",
+              "A",
+              "B"
+            ],
+            "rule": "A iff order=a2-a1 >= 0",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "within_world_extremes": {
+            "A_target": 0,
+            "B_target": 1,
+            "omitted_target": 2,
+            "rule": "A=max dose, B=min dose, omit middle target",
+            "status": "REJECTED_POST_ASSIGNMENT_SELECTION_AND_INCOMPLETE_TARGET_USE"
+          }
+        },
+        "recorded_history_exactly_regenerated": true,
+        "targets": [
+          {
+            "a1": 0.03426948413840278,
+            "a2": 0.02194666895864855,
+            "dose": 0.05621615309705133,
+            "initial_centroid": [
+              56.504711607701054,
+              63.41300860924487
+            ],
+            "initial_size": 86,
+            "order": -0.01232281517975423,
+            "target": 0
+          },
+          {
+            "a1": 0.008704124491974517,
+            "a2": 0.01374667382261114,
+            "dose": 0.022450798314585657,
+            "initial_centroid": [
+              10.24937702540719,
+              35.61873784238738
+            ],
+            "initial_size": 47,
+            "order": 0.005042549330636623,
+            "target": 1
+          },
+          {
+            "a1": 0.027002951605828582,
+            "a2": 0.008951889369923062,
+            "dose": 0.03595484097575165,
+            "initial_centroid": [
+              33.76396282711621,
+              43.488025430172094
+            ],
+            "initial_size": 47,
+            "order": -0.01805106223590552,
+            "target": 2
+          }
+        ]
+      },
+      "deep_exclusion": null,
+      "deep_step": 890,
+      "deep_turnover_valid": true,
+      "initial_exclusion": null,
+      "initial_geometry_eligible": true,
+      "preprobe_confound": {
+        "comparison": "post-history S0 minus same-seed same-time no-drive counterfactual",
+        "comparison_time": 240,
+        "eligible": true,
+        "targets": [
+          {
+            "a1": 0.03426948413840278,
+            "a2": 0.02194666895864855,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 3.553647337515876,
+              "mask_iou": 0.4411764705882353,
+              "mass": 42.88565945883521,
+              "rg": 3.021255802069082,
+              "size": 57
+            },
+            "dose": 0.05621615309705133,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.28985060154438463,
+                "mean": 0.10076129157738178,
+                "rms": 0.13701187936088596
+              },
+              "N": {
+                "max_abs": 1.100884756771583,
+                "mean": 0.8005898456455117,
+                "rms": 0.8281543474744137
+              },
+              "U": {
+                "max_abs": 1.0749917834938012,
+                "mean": 0.22692304519256726,
+                "rms": 0.36698283192381315
+              },
+              "V": {
+                "max_abs": 0.690058808139871,
+                "mean": 0.16931228347790708,
+                "rms": 0.24788548298316745
+              },
+              "c": {
+                "max_abs": 0.364972616943132,
+                "mean": 0.1851877584054196,
+                "rms": 0.20115977670307572
+              },
+              "rho": {
+                "max_abs": 0.6905202718215635,
+                "mean": 0.22163218361127318,
+                "rms": 0.2845018316768869
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.01232281517975423,
+            "programmed_center_N_injection": 3.37296918582308,
+            "programmed_total_N_injection": 588.892297315011,
+            "target": 0
+          },
+          {
+            "a1": 0.008704124491974517,
+            "a2": 0.01374667382261114,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.06022036157515159,
+              "mask_iou": 0.975,
+              "mass": 2.832693548605782,
+              "rg": -0.026722947885275516,
+              "size": 1
+            },
+            "dose": 0.022450798314585657,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.1193220850629822,
+                "mean": 0.039108709340202094,
+                "rms": 0.05360307961439798
+              },
+              "N": {
+                "max_abs": 0.301458232578689,
+                "mean": 0.24058369562689103,
+                "rms": 0.24468346933866314
+              },
+              "U": {
+                "max_abs": 0.23247576562863742,
+                "mean": 0.04300999952462611,
+                "rms": 0.071175358746723
+              },
+              "V": {
+                "max_abs": 0.26587158235211894,
+                "mean": 0.07128454913259659,
+                "rms": 0.09985575334963204
+              },
+              "c": {
+                "max_abs": 0.07215750030731893,
+                "mean": 0.04591219786919777,
+                "rms": 0.04780673436744644
+              },
+              "rho": {
+                "max_abs": 0.14955017308582907,
+                "mean": 0.06469690128086238,
+                "rms": 0.07817500282661309
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": 0.005042549330636623,
+            "programmed_center_N_injection": 1.3470478988751395,
+            "programmed_total_N_injection": 87.18749518884212,
+            "target": 1
+          },
+          {
+            "a1": 0.027002951605828582,
+            "a2": 0.008951889369923062,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.020466832867563355,
+              "mask_iou": 0.8163265306122449,
+              "mass": 7.203478440642137,
+              "rg": 0.09259180253605015,
+              "size": 9
+            },
+            "dose": 0.03595484097575165,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.18973914979654272,
+                "mean": 0.05849489467979223,
+                "rms": 0.08199839037781714
+              },
+              "N": {
+                "max_abs": 0.3819350238430316,
+                "mean": 0.3169958021353426,
+                "rms": 0.31999587463410445
+              },
+              "U": {
+                "max_abs": 0.5457113992616269,
+                "mean": 0.10776815027495185,
+                "rms": 0.16408498846625097
+              },
+              "V": {
+                "max_abs": 0.43414545414210876,
+                "mean": 0.0829055151873155,
+                "rms": 0.14038607731973474
+              },
+              "c": {
+                "max_abs": 0.12333844260611537,
+                "mean": 0.08280038468169836,
+                "rms": 0.08532757252583083
+              },
+              "rho": {
+                "max_abs": 0.29348828103057367,
+                "mean": 0.10583580108893587,
+                "rms": 0.13494171454942624
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.01805106223590552,
+            "programmed_center_N_injection": 2.157290458545099,
+            "programmed_total_N_injection": 121.99190141204353,
+            "target": 2
+          }
+        ]
+      },
+      "seed": 50007
+    },
+    {
+      "assignment": null,
+      "deep_exclusion": null,
+      "deep_step": null,
+      "deep_turnover_valid": false,
+      "initial_exclusion": "fewer_than_K_eligible",
+      "initial_geometry_eligible": false,
+      "preprobe_confound": {
+        "eligible": false,
+        "reason": "fewer_than_K_eligible"
+      },
+      "seed": 50008
+    },
+    {
+      "assignment": {
+        "candidate_labels_audit_only": {
+          "dose_midpoint": {
+            "counts": {
+              "A": 2,
+              "B": 1
+            },
+            "labels": [
+              "B",
+              "A",
+              "A"
+            ],
+            "rule": "A iff dose >= protocol-range midpoint 0.040000",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "order_sign": {
+            "counts": {
+              "A": 2,
+              "B": 1
+            },
+            "labels": [
+              "A",
+              "B",
+              "A"
+            ],
+            "rule": "A iff order=a2-a1 >= 0",
+            "status": "REJECTED_RETROACTIVE_DICHOTOMIZATION_NOT_ASSIGNED"
+          },
+          "within_world_extremes": {
+            "A_target": 2,
+            "B_target": 0,
+            "omitted_target": 1,
+            "rule": "A=max dose, B=min dose, omit middle target",
+            "status": "REJECTED_POST_ASSIGNMENT_SELECTION_AND_INCOMPLETE_TARGET_USE"
+          }
+        },
+        "recorded_history_exactly_regenerated": true,
+        "targets": [
+          {
+            "a1": 0.012088382156452068,
+            "a2": 0.01816530527484384,
+            "dose": 0.030253687431295907,
+            "initial_centroid": [
+              31.210649243358013,
+              5.052241053383767
+            ],
+            "initial_size": 134,
+            "order": 0.00607692311839177,
+            "target": 0
+          },
+          {
+            "a1": 0.03209154543484358,
+            "a2": 0.018738643033880883,
+            "dose": 0.05083018846872446,
+            "initial_centroid": [
+              30.044327879382216,
+              35.10602399491884
+            ],
+            "initial_size": 92,
+            "order": -0.013352902400962693,
+            "target": 1
+          },
+          {
+            "a1": 0.02944143484499208,
+            "a2": 0.03392142379827972,
+            "dose": 0.06336285864327179,
+            "initial_centroid": [
+              6.875164628399981,
+              5.134472161369449
+            ],
+            "initial_size": 55,
+            "order": 0.0044799889532876405,
+            "target": 2
+          }
+        ]
+      },
+      "deep_exclusion": "tracker_event:0:SPLIT@436",
+      "deep_step": null,
+      "deep_turnover_valid": false,
+      "initial_exclusion": null,
+      "initial_geometry_eligible": true,
+      "preprobe_confound": {
+        "comparison": "post-history S0 minus same-seed same-time no-drive counterfactual",
+        "comparison_time": 240,
+        "eligible": true,
+        "targets": [
+          {
+            "a1": 0.012088382156452068,
+            "a2": 0.01816530527484384,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.8601354624017412,
+              "mask_iou": 0.8256880733944955,
+              "mass": 20.749929831632898,
+              "rg": -0.13138251315406002,
+              "size": 19
+            },
+            "dose": 0.030253687431295907,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.21217178633510073,
+                "mean": 0.07631055561919578,
+                "rms": 0.10116932407390171
+              },
+              "N": {
+                "max_abs": 0.8567231937272873,
+                "mean": 0.6538395862354568,
+                "rms": 0.6705690162396413
+              },
+              "U": {
+                "max_abs": 0.6544757801286197,
+                "mean": 0.14146472010612166,
+                "rms": 0.21993356385919555
+              },
+              "V": {
+                "max_abs": 0.6411055124424933,
+                "mean": 0.1468475695265904,
+                "rms": 0.21624661003194307
+              },
+              "c": {
+                "max_abs": 0.1902622910421351,
+                "mean": 0.11614597304593778,
+                "rms": 0.12214846819822396
+              },
+              "rho": {
+                "max_abs": 0.3735530990527985,
+                "mean": 0.15817604498379614,
+                "rms": 0.18696535183862817
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": 0.00607692311839177,
+            "programmed_center_N_injection": 1.8152212458777544,
+            "programmed_total_N_injection": 1094.0536905812537,
+            "target": 0
+          },
+          {
+            "a1": 0.03209154543484358,
+            "a2": 0.018738643033880883,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 5.6674179241152025,
+              "mask_iou": 0.39,
+              "mass": 46.937878612996016,
+              "rg": 4.308501849280333,
+              "size": 61
+            },
+            "dose": 0.05083018846872446,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.3070585679211427,
+                "mean": 0.10187144981562592,
+                "rms": 0.13939728241814933
+              },
+              "N": {
+                "max_abs": 1.1649759237313608,
+                "mean": 0.8090505504787876,
+                "rms": 0.8493454949475577
+              },
+              "U": {
+                "max_abs": 1.397649186320892,
+                "mean": 0.24721809309730877,
+                "rms": 0.4053898335834309
+              },
+              "V": {
+                "max_abs": 0.789424449904897,
+                "mean": 0.13112798158392136,
+                "rms": 0.22468081073619048
+              },
+              "c": {
+                "max_abs": 0.38941807158635977,
+                "mean": 0.16682643396604402,
+                "rms": 0.18500595756429897
+              },
+              "rho": {
+                "max_abs": 0.7738052319250063,
+                "mean": 0.20885267088704842,
+                "rms": 0.27332616832507767
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": -0.013352902400962693,
+            "programmed_center_N_injection": 3.0498113081234677,
+            "programmed_total_N_injection": 720.7613134265822,
+            "target": 1
+          },
+          {
+            "a1": 0.02944143484499208,
+            "a2": 0.03392142379827972,
+            "body_geometry_history_minus_no_drive": {
+              "centroid_distance": 0.14846917563736323,
+              "mask_iou": 0.7407407407407407,
+              "mass": 12.615221714201812,
+              "rg": 0.12333418670797736,
+              "size": 14
+            },
+            "dose": 0.06336285864327179,
+            "local_state_history_minus_no_drive": {
+              "Mf_complete_two_channel": {
+                "max_abs": 0.30662054276840345,
+                "mean": 0.10341635339654262,
+                "rms": 0.14050266104630993
+              },
+              "N": {
+                "max_abs": 0.8940029606951942,
+                "mean": 0.7244494520841971,
+                "rms": 0.7337996089707713
+              },
+              "U": {
+                "max_abs": 0.6546057805059472,
+                "mean": 0.147104565131729,
+                "rms": 0.2387748754493982
+              },
+              "V": {
+                "max_abs": 0.8545465565029648,
+                "mean": 0.1882751849565646,
+                "rms": 0.2994408685004611
+              },
+              "c": {
+                "max_abs": 0.21334624301664018,
+                "mean": 0.136611552318831,
+                "rms": 0.1407181068922271
+              },
+              "rho": {
+                "max_abs": 0.4604388434685536,
+                "mean": 0.18073435225593823,
+                "rms": 0.22634605324148852
+              }
+            },
+            "nonmemory_state_changed": true,
+            "order": 0.0044799889532876405,
+            "programmed_center_N_injection": 3.8017715185963077,
+            "programmed_total_N_injection": 239.41790199403596,
+            "target": 2
+          }
+        ]
+      },
+      "seed": 50009
+    },
+    {
+      "assignment": null,
+      "deep_exclusion": null,
+      "deep_step": null,
+      "deep_turnover_valid": false,
+      "initial_exclusion": "fewer_than_K_eligible",
+      "initial_geometry_eligible": false,
+      "preprobe_confound": {
+        "eligible": false,
+        "reason": "fewer_than_K_eligible"
+      },
+      "seed": 50010
+    }
+  ]
+}
