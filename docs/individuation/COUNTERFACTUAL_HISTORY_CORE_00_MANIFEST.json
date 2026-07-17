@@ -1,0 +1,138 @@
+{
+  "schema": "COUNTERFACTUAL-HISTORY-CORE-00-MANIFEST-v1",
+  "mode": "DEV_ONLY_NO_PROSPECTIVE_AUTHORIZATION",
+  "status": "FROZEN_BEFORE_FIRST_WORLD",
+  "canonical_parent": "4ef4bed0ee43a8d6edaec2b597e205eeb2393327",
+  "statistical_unit": "original source world",
+  "counterfactual_branches_are_replicates": false,
+  "seeds": [
+    57001, 57002, 57003, 57004, 57005, 57006, 57007, 57008,
+    57009, 57010, 57011, 57012, 57013, 57014, 57015, 57016,
+    57017, 57018, 57019, 57020, 57021, 57022, 57023, 57024
+  ],
+  "no_extension_authority": true,
+  "histories": {
+    "H_L_EARLY": {"a1": 0.0175, "a2": 0.0075, "dose": 0.025, "order_coordinate_early_minus_late": 0.01},
+    "H_L_LATE":  {"a1": 0.0075, "a2": 0.0175, "dose": 0.025, "order_coordinate_early_minus_late": -0.01},
+    "H_H_EARLY": {"a1": 0.0325, "a2": 0.0225, "dose": 0.055, "order_coordinate_early_minus_late": 0.01},
+    "H_H_LATE":  {"a1": 0.0225, "a2": 0.0325, "dose": 0.055, "order_coordinate_early_minus_late": -0.01}
+  },
+  "historical_support_half_open": [0.005, 0.035],
+  "episode_duration_steps": 60,
+  "inter_episode_gap_steps": 0,
+  "post_history_settle_steps": 120,
+  "focal_selection": {
+    "rule": "lowest_canonical_tracker_id_among_eligible",
+    "candidate_set_rule": "existing deterministic descending-size greedy set with pairwise separation; then assign spatial canonical tracker IDs",
+    "canonical_order": ["centroid_y", "centroid_x", "negative_size"],
+    "eligibility": {
+      "minimum_detected_size": 45,
+      "maximum_component_grid_fraction_exclusive": 0.15,
+      "minimum_centroid_distance_from_previously_selected_larger_target": 24.0,
+      "body_must_fit_radius_10_core": true,
+      "two_cell_barrier_must_not_intersect_other_selected_target": true,
+      "tracker_seed_mask_nonempty": true
+    },
+    "outcome_inputs": [],
+    "selection_occurs_before_cloning": true
+  },
+  "cloning": {
+    "complete_persistent_fields": ["rho", "U", "V", "c", "N", "C", "uptake", "Mf"],
+    "scheduler_state": "absolute IOMState.step; feed cohort is a pure function of step",
+    "tracker_state": "canonical ordered component masks and fixed focal tracker ID",
+    "rng_state": "no RNG is retained after seeded initialization; engine steps are deterministic",
+    "required_branch_count": 4,
+    "required_pre_treatment_max_abs_difference": 0.0,
+    "common_random_numbers": "vacuous: no stochastic draws occur after cloning"
+  },
+  "execution_order": {
+    "rule": "sha256_seed_history_permutation",
+    "inputs": ["world_seed", "fixed_history_label", "fixed_experiment_literal"],
+    "outcome_inputs": [],
+    "canonical_reverse_invariance_required_before_first_world": true
+  },
+  "nonfocal_protocol": {
+    "direct_assigned_history": "none",
+    "episode_amplitudes": [0.0, 0.0],
+    "note": "Natural physical spillover from the one focal Gaussian is a consequence of focal treatment, not a second assigned history."
+  },
+  "fixed_deep_elapsed_steps": 1000,
+  "deep_material_threshold_M_max": 0.25,
+  "fixed_deep_step_rationale": "Pre-data round margin above the already-open DEV deep range 793-890; fixes elapsed time across histories and was not selected from this family's outcomes.",
+  "complete_block": {
+    "requires_all_four_posthistory_focal_tracks": true,
+    "requires_all_four_fixed_step_deep_M_checks": true,
+    "requires_all_eight_primary_probe_arms": true,
+    "requires_exact_own_replay_sham": true,
+    "survivor_only_analysis": false,
+    "undefined_potential_outcomes_encoded_as_zero": false,
+    "minimum_complete_original_worlds": 4
+  },
+  "probe": {
+    "nutrient_standardization": "N := N0 only",
+    "standardization_settle_steps": 40,
+    "uniform_stimulus_amplitude_per_step": 0.25,
+    "uniform_stimulus_steps": 5,
+    "frozen_horizon_steps": 40,
+    "primary_endpoint": "integrated tracked uptake through step 40",
+    "fixed_mask_endpoint": "tracker-independent convergence control",
+    "earlier_times": "diagnostic only"
+  },
+  "isolated": {
+    "operator": "qualified two-cell no-swap environmental clamp",
+    "barrier_width": 2,
+    "core_radius": 10,
+    "boundary_source": "one common same-seed history-independent no-drive trajectory at the common fixed elapsed time",
+    "up_ref": 0,
+    "focal_core_Mf_erased_standardized_grafted_or_replaced": false
+  },
+  "primary_estimands": {
+    "dose": "0.5 * ((HE + HL) - (LE + LL))",
+    "order": "0.5 * ((LE + HE) - (LL + HL))",
+    "interaction": "(HE - HL) - (LE - LL)",
+    "transport_dose": "dose_isolated - dose_coupled",
+    "transport_order": "order_isolated - order_coupled"
+  },
+  "first_stage": {
+    "protocol_expected_dose_sign": "positive on core mplus_mean",
+    "protocol_expected_order_sign": "negative on core mminus_mean for EARLY minus LATE",
+    "predefined_features": [
+      "m1_mean", "m2_mean", "mplus_mean", "mminus_mean", "frozen_11d_Mf",
+      "Mf standard deviations", "Mf spatial correlation", "Mf roughness", "full_field_core_Mf_vector",
+      "body size", "body mass", "body radius of gyration", "nearest-neighbour distance",
+      "core rho mass", "core N", "core c", "core u", "core v", "core sigma",
+      "world up_ref", "world N", "world c", "world rho mass", "deep material M"
+    ],
+    "feature_selection_from_confirmation_outcomes": false,
+    "per_world_sign_flipping": false
+  },
+  "statistics": {
+    "scaling_and_fitting": "none for primary estimands",
+    "aggregation": "paired factorial contrast inside each original source world",
+    "summary": ["mean", "median", "standard deviation", "95% Student-t interval", "sign counts"],
+    "directional_gate": "at least 75% protocol-aligned signs and 95% t interval excluding zero",
+    "unoriented_gate": "at least 75% common signs and 95% t interval excluding zero",
+    "branches_count_toward_n": false,
+    "droplets_count_toward_n": false
+  },
+  "lam_plus_zero": {
+    "role": "secondary contrast mediation",
+    "changes": "lam_plus only; lam_minus remains intact",
+    "endpoint_availability_is_mediation": false
+  },
+  "namespace_audit": {
+    "fresh_decimal_integer_audit_pass": true,
+    "audited_at_local": "2026-07-17 14:56 +02:00",
+    "decimal_literal_rule": "negative alphanumeric-or-dot boundary search for each integer 57001 through 57024; hexadecimal hash substrings are not seed literals",
+    "audited_scope": [
+      "working tree at accepted parent",
+      "all histories reachable from every valid local and origin-tracking head",
+      "all current remote heads from git ls-remote",
+      "recovered malformed probe/tmp01 commit c8a8b354f10e0988adff4264bf0b1fdffcdf19c9",
+      "commit subjects and bodies"
+    ],
+    "prior_dev_namespaces_not_reused": ["50001-50010", "51000-54120", "55001-55024"],
+    "malformed_ref_preserved": "refs/heads/probe/tmp01",
+    "prospective_namespace_inspected_or_reserved": false
+  }
+}
