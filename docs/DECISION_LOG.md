@@ -2710,3 +2710,29 @@ template refuses execution before output creation.
 **Disposition:** **GO FOR HUMAN SEAL REVIEW; STOP FOR EXECUTION.** No seed namespace audit/selection, manifest seal,
 scientific initialization, 570xx reconstruction, outcome, feeding/morphology endpoint, BODY-EQUALIZATION, 03G/V5
 change or active reconstruction is authorized. Exact next action: human review of the unsealed package.
+
+## D-097 — DOWNSTREAM-ORDER-READER-01 seals 58001-58048 without authorizing execution
+
+**Date:** 2026-07-18
+
+**Human decision:** Approve sealing of the accepted package commit
+`5ae98861b00f62cde78858234dd03ef4a47f549c`; do not approve execution. Preserve D-096's scientific definitions,
+thresholds, eligibility, classification, secondary endpoints, fixed family and claim boundaries without
+substantive modification.
+
+**Namespace decision:** Select exactly `58001-58048`. Reject the candidate 48-slot blocks from 50xxx through 57xxx
+because they contain assigned/opened ranges or a previously rejected bounded integer. The only pre-seal `58001`
+occurrences are explicit invalid-seed rejection tests, not assignments. The audit includes all valid refs, 207
+reachable commits, all Git objects, all registered worktrees and the recovered valid OID from one pre-existing
+malformed ref. No seed was passed to an engine.
+
+**Binding decision:** Seal manifest SHA-256
+`0d40765937ca203269bd7fa935f3db4c999576dabf2d6ca0f96223f777ba03e4` with exact hashes for the accepted frozen
+preregistration, claim table, namespace evidence, runner, qualified instrumentation, raw-only reproducer,
+engine-free verifier, environment and dependency lock. Execution authorization is deliberately absent from the
+manifest and must be supplied later as one external exact-hash authorization object.
+
+**Disposition:** **SEALED_READY_FOR_EXECUTION_REVIEW; NOT AUTHORIZED FOR EXECUTION.** The independent verifier passes
+25/25 gates from a clean committed tree, the prospective output path is absent, and zero engines/worlds were
+initialized. Exact next action: request one final explicit human authorization bound to the immutable manifest
+hash; otherwise stop.

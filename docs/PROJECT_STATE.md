@@ -1,5 +1,24 @@
 # Project State
 
+## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 PROSPECTIVE SEAL (2026-07-18)
+
+Human review approved sealing but not execution. The immutable manifest now contains exactly 48 unique audited
+seeds `58001-58048` in fixed order. The semantic audit rejects the contaminated candidate blocks from 50xxx
+through 57xxx, distinguishes the incidental invalid-seed test occurrence of `58001` from a scientific assignment,
+and covers all valid refs, the recovered tip of one pre-existing malformed ref, all Git objects and all registered
+worktrees. No engine or world was initialized.
+
+Scientific content remains the accepted no-margin package unchanged: original source world is the unit; minimum
+18 complete worlds; sole primary `delta_A_O`; two-sided 95% Student-t interval; `ceil(0.75*n_complete)` sign rule;
+raw-derived `delta_num`; no body/geometry correction; `m_A`, `m_0` and equivalence authorization absent; exactly
+six scientific classifications; direct source susceptibility and `lam_minus=0` order response secondary only.
+
+The engine-free verifier passes all 25 gates. Manifest SHA-256 is
+`0d40765937ca203269bd7fa935f3db4c999576dabf2d6ca0f96223f777ba03e4`. Execution now requires a separate external
+human authorization object that exactly binds this hash. The authorization file and prospective output directory
+are absent. Disposition: **SEALED_READY_FOR_EXECUTION_REVIEW; STOP FOR EXECUTION**. Exact next action: one final
+explicit human execution authorization; do not invoke the prospective command before it.
+
 ## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 PROSPECTIVE PACKAGE (2026-07-18)
 
 The unexecuted prospective package is complete on an isolated branch. It freezes one original-world primary
