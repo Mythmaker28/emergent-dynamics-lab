@@ -2530,3 +2530,30 @@ DEV seeds before any complete preregistration or prospective authorization.
 
 **Execution boundary:** no new family is selected or opened, no prospective seed is run, and active reconstruction
 is not started. Human review is the next action.
+
+## D-090 — ACCESS-STRUCTURE-00 Phase 0.5 exact exchange fails interface and arm-balance gates
+
+**Date:** 2026-07-17
+
+**Decision:** Retain **REVISE** after the explicitly authorized operator qualification on already-open DEV seeds
+`50001-50010`. Define `L` only as the frozen 03G 11-statistic readout; define complete manipulable `C`, body subset
+`B`, one-cell near-interface `H`, far `E`, cross-cutting physical fields `NP`, dynamic/global `G`, and complete
+Markov phase `D`. Replace ambiguous null notation with explicit donor-labelled `C_A H_B E_B` arms and an
+on-manifold same-seed/no-phase-drive reference `0`.
+
+**Engineering decision:** use exact reciprocal core exchange rather than a one-way scaled graft. It preserves each
+donor core under an integer toroidal translation and conserves every state-array total across the reciprocal pair.
+No-op, serialization, same-source, coordinate-transform, and matched shams are exact; sham feeding bias is zero;
+all six active arms are 4/4 viable for 40 steps; dynamic `up_ref=0` and `lam_plus=0,lam_minus=0.15` retain the uptake
+endpoint. These passes establish mechanical feasibility only.
+
+**Failure decision:** reject the current hard-boundary operator for causal inference. Across DEV, causal-field seam
+ratios reach `22.872x` recipient natural boundaries, the one-cell halo changes after one update and the perturbation
+propagates into far environment. Individual-arm mass/physical-field totals are unmatched even though reciprocal
+pair totals conserve within the float64 criterion. A matched/crossed feeding difference could therefore be a seam,
+phase, halo, balance, or global-channel artefact. Active crossed feeding was deliberately not evaluated.
+
+**Execution boundary:** no prospective seed/family, seal, push, merge, V5/03G change, ownership claim, or active
+reconstruction is authorized. Human review is required. Any boundary-aware/balance correction is a separately
+approved DEV-only revision; if `C/H/E` cannot be separated without destroying the state under test, the next
+decision must be STOP rather than threshold relaxation.

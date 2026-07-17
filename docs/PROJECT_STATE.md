@@ -1,5 +1,28 @@
 # Project State
 
+## BRANCH ADDENDUM — ACCESS-STRUCTURE-00 PHASE 0.5 (2026-07-17)
+
+The explicitly authorized DEV-only operator qualification ran only the already-open family `50001-50010`.
+Deep-feasible worlds 50002, 50004, 50005, and 50007 received complete-state no-op, serialization, sham,
+coordinate-transform, matched, reciprocal crossed, on-manifold environment-reset/body-standardization, dynamic
+`up_ref=0`, and `lam_plus=0` qualifications. The other six worlds retained their existing ineligible or tracker-event
+dispositions and received no operator.
+
+Exact mechanics pass: all no-op/round-trip/sham errors and sham future-feeding bias are zero; active changes stay
+inside declared `C` at surgery; donor-body overlap/IoU is 1; reciprocal-pair conservation is within `9.10e-13`; and
+every active arm is 4/4 viable and bijectively trackable for 40 steps. No active crossed future-feeding outcome was
+computed.
+
+Recommendation remains **REVISE — HUMAN REVIEW REQUIRED — NO PROSPECTIVE SEED AUTHORIZED**. The exact hard
+exchange creates off-manifold interfaces: causal-field mean seam ratios reach `22.87x`, the one-cell halo responds
+strongly after one update, and the disturbance reaches far environment by step 40. Conservation holds across
+reciprocal pairs but requested individual-arm balance does not. These failures can mimic matched-versus-crossed
+synergy, so the operator is not causally interpretable and no preregistration may be sealed.
+
+Exact next authorized action: human review of the Phase 0.5 report. Any boundary-aware/balance correction is a new
+DEV-only authorization decision. Do not open a prospective family, modify 03G/V5, push, merge, or start active
+reconstruction.
+
 ## BRANCH ADDENDUM — ACCESS-STRUCTURE-00 PHASE 0 (2026-07-17)
 
 On isolated branch `codex/access-structure-00-phase0` from exact V5 commit `d4a146a`, Phase 0 audited the certified

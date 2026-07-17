@@ -1,125 +1,182 @@
-# ACCESS-STRUCTURE-00 — proposed preregistration skeleton
+# ACCESS-STRUCTURE-00 — proposed preregistration after Phase 0.5
 
-**DRAFT — REVISE — NOT SEALED — NOT AUTHORIZED — DO NOT EXECUTE PROSPECTIVELY**
+**DRAFT v0.5 — REVISE — NOT SEALED — NOT AUTHORIZED — DO NOT EXECUTE PROSPECTIVELY**
 
-This is a design-review artifact, not an executable preregistration. Fields marked `MUST FREEZE` block any seal.
+This is a design-review artifact. It incorporates the DEV-only operator qualification but does not authorize a
+prospective family. Fields marked `BLOCKED` must be resolved and reviewed before any seal.
 
 ## Question and fixed prior
 
 Given certified 03G Outcome B, determine whether the turnover-surviving causal feeding state is accessible from the
-tracked target's local state, from its environment, redundantly from both, or only from their matched combination.
-03G and manuscript V5 are fixed prior evidence and will not be rerun or reinterpreted.
+tracked target's local/core state, from its environment, redundantly from both, or only from their matched
+combination. 03G and manuscript V5 are fixed prior evidence and will not be rerun, reinterpreted, or modified.
 
-## Unit and eligibility
+## Nomenclature
+
+- `L`: exactly the frozen 03G 11-statistic decoder readout. It is never used as a complete state or intervention.
+- `C`: complete manipulable local/core simulator state on a frozen spatial support.
+- `B`: detected body/support/geometry and structural state; `B subset C` operationally.
+- `H`: the declared near-interface causal collar, separate from far environment.
+- `E`: remaining far environment.
+- `NP`: nutrient and physical fields distributed across `C/H/E`, not a separate spatial compartment.
+- `G`: dynamically shared/global channels, especially recomputed `up_ref`.
+- `D`: complete Markov dynamical phase: persistent arrays, scheduler step, and common engine context. No persistent
+  RNG, velocity/momentum, previous-state, flux/gradient buffer, or solver cache exists.
+
+The historical decoder letters are written `N_03G/P_03G` when mentioned. No `L0E0/L1E0` shorthand is permitted.
+
+## Unit, eligibility, and world validity
 
 - Statistical unit: original world.
-- Exactly three targets are selected by the frozen outcome-independent 03G geometry rule before any intervention.
-- All target, donor, and crossed technical replicates are averaged inside original world.
-- A world is valid only if every primary and control branch has three distinct targets, no
-  `MERGE/SPLIT/LOST/AMBIGUOUS` event, coverage below 0.15, finite state, and a valid bijective readout.
+- Exactly three targets are selected by the frozen outcome-independent geometry rule before intervention.
+- Target and crossed technical branches are averaged inside original world before inference.
+- Donors `A/B` are selected without future feeding from a frozen written-history contrast rule. The Phase 0.5
+  candidate maximizes normalized Euclidean contrast in `(dose,order)` and names the higher lexicographic member A.
+- Every opened world, including ineligible and invalid worlds, appears in raw output. Reserve activation may use
+  eligibility variables only.
 - Hard feasibility floor: at least 18 valid original worlds. This is a minimum, not a power justification.
-- `MUST FREEZE`: prospective family size from a design-based power calculation after DEV manipulation qualification.
-- All seeds, including invalid worlds, must appear in raw output. Reserve activation, if any, may read eligibility
-  fields only.
+- `BLOCKED`: prospective family size and reserve rule require a design-based power calculation after a corrected
+  operator passes DEV.
+- A world is invalid if any primary/control branch has fewer than three distinct targets, any
+  `MERGE/SPLIT/LOST/AMBIGUOUS`, coverage `>=0.15`, non-finite state, invalid tracked/fixed-mask readout, failed
+  balance, or failed surgery gate.
 
-## Frozen state partition
+## Candidate spatial partition and state reference
 
-- `L`: target-support intensive memory `Mf/rho`.
-- `B`: target support, `rho`, `U/rho`, and `V/rho`.
-- `E`: `N,c` everywhere plus every physical state variable outside target support.
-- `G`: dynamically recomputed global `up_ref`; not a stored state variable.
-- `C`, material cohorts, target IDs, and tracker IDs: diagnostic only.
+Phase 0.5 used a periodic radius-10 `C`, one-cell four-neighbour `H`, and complementary `E`. This contained every
+qualified DEV source body, but its hard boundary failed the seam gate. Therefore this support is **not frozen for
+prospective use**.
 
-`MUST FREEZE`: exact target support, neutral body `B0`, neutral local state `L0`, standardized environment `E0`,
-donor-to-recipient transform, seam/boundary rule, and energy matching. They must be selected from pre-outcome
-manipulation validity only.
+The candidate standard reference `0` is an on-manifold world from the same seed, law, and absolute scheduler time
+without the two phase drives. Its candidate `C_0/B_0` is the median-area detected component with deterministic
+geometric ties. It is never a literal blank grid or zero field.
 
-## Primary branches
+`BLOCKED`: freeze one boundary-aware `C/H/E` support and construction that preserves complete donor `C/B`, keeps
+far `E` fixed, exposes rather than erases `H`, passes balance, and does not use future feeding.
 
-For each eligible target, create from one canonical deep snapshot:
+## Exact branch sources
 
-| Code | Local state | Body | Environment | Purpose |
+The minimal primary cells, once an operator passes, are:
+
+| Branch | `C/B` source | `H` source | far `E` source | Purpose |
 |---|---|---|---|---|
-| `L0E0` | neutral | standardized/fixed | standardized | double-null reference |
-| `L1E0` | own target | same as `L0E0` | standardized | local causal sufficiency / environment reset |
-| `L0E1` | neutral | same as `L1E1` | original matched | environmental sufficiency / local erase |
-| `L1E1` | own target | same counterfactual body | original matched | joint matched access |
-| `LAEB` | donor A | recipient-standardized | environment B | crossed access; all frozen eligible A!=B pairs |
+| `C_0 H_0 E_0` | on-manifold standard | standard | standard | common reference; not an absence claim |
+| `C_A H_0 E_0` | exact A | standard | standard | local/core causal sufficiency / environment reset |
+| `C_0 H_A E_A` | standard | A | A | environmental sufficiency with standardized core/body |
+| `C_A H_A E_A` | A | A | A | matched joint access |
+| `C_A H_B E_B` | exact A | B | B | crossed access; B differs from A by frozen history rule |
+| `C_B H_A E_A` | exact B | A | A | reciprocal crossed branch and conservation partner |
 
-Repeat the identifying cells with `up_ref=0`. Run `lam_plus=0, lam_minus=0.15` readout-ablation controls, body-only
-controls, exact identity shams, active-operation shams, and fixed-mask readouts.
+To protect the near-interface alternative, add exactly two disambiguation cells rather than a radial scan:
 
-The common probe is the same additive forcing and horizon in every branch. It may not reset away the environment
-whose sufficiency is being tested. `MUST FREEZE`: amplitude, duration, settle rule, horizon, and whether the existing
-03G `0.25 x 5`, horizon 40 schedule remains geometry-valid after manipulation.
+| Branch | Purpose |
+|---|---|
+| `C_0 H_A E_0` | halo-only sufficiency under standard core and far environment |
+| `C_A H_A E_0` | core+matched-halo sufficiency with far environment standardized |
 
-## Manipulation acceptance gates
+Every branch record must state the source of recipient location, `C`, `B`, `H`, `E`, every `NP` array inside and
+outside the support, `G`, `D`, scheduler step, RNG status, coordinate transform, collar construction, balance
+correction, and any recomputation. The current integer-roll/no-blend operator is recorded but rejected.
 
-Before looking at future feeding:
+## Intervention implementation and controls
 
-1. **MASS:** target mass and global conserved quantities match the declared branch contract within
-   `abs(error) <= 1e-12 + 1e-10*abs(reference)`.
-2. **BODY/GEOMETRY:** target `rho`, mask, centroid, radius/shape metrics, and `U,V` are identical wherever the design
-   says body is held fixed; otherwise the branch is invalid.
-3. **ENERGY/NUTRIENT:** declared global and local `N,c` totals match; the correction map is outcome-independent.
-4. **COHORT:** `sum(C)=rho` and diagnostic-cohort zero-feedback hold exactly to the frozen numerical criterion.
-5. **SHAM:** identity graft and active-operation sham remain inside a predeclared disturbance envelope.
-6. **TRACKER:** all primary branches pass bijective and fixed-mask geometry checks; one target failure invalidates the
-   world.
-7. **NO-OP:** every active intervention changes exactly its intended state partition and no forbidden partition.
-8. **REFERENCE:** an unmanipulated branch reproduces the scalar/reference path under the frozen float64 criterion.
+The Phase 0.5 exact reciprocal exchange established that source cores can be preserved without interpolation or
+scaling and totals can be conserved across branch pairs. It failed branch-level balance and interface gates.
 
-`MUST FREEZE`: disturbance metrics, sham/equivalence envelope, and all branch-specific no-op assertions.
+The corrected operator must have one unique implementation used by:
 
-## Primary endpoint and contrasts
+1. no-op continuation;
+2. physics serialization/reconstruction;
+3. same-source reinsert sham;
+4. coordinate-transform roundtrip sham;
+5. matched `C+H+E` reconstruction;
+6. crossed `A/B` exchange;
+7. `C_A H_0 E_0` environment standardization/reset;
+8. `C_0 H_A E_A` body/core standardization with environment preserved;
+9. the two halo-disambiguation arms;
+10. dynamic global `up_ref=0` repetition;
+11. `lam_plus=0, lam_minus=0.15` readout ablation.
 
-Endpoint: integrated feeding on the bijectively tracked target under the common probe. Fixed-mask integrated feeding
-is a convergent control. Let world-level branch means define:
+The readout ablation removes only memory's positive modulation of feeding. It may never zero, bypass, or replace
+the primary uptake endpoint.
 
-- `tau_L = Y(L1E0)-Y(L0E0)`;
-- `tau_E = Y(L0E1)-Y(L0E0)`;
-- `tau_LE = Y(L1E1)-Y(L0E0)`;
-- `tau_S = Y(L1E1)-Y(L1E0)-Y(L0E1)+Y(L0E0)`;
-- `tau_match = Y(L1E1)-mean(Y(LAEB))`.
+## Common probe
 
-`MUST FREEZE`: practical sufficiency margin `delta`, equivalence margin `epsilon`, simultaneous interval or
-multiplicity method, and power. They must come from manipulation noise/design requirements, not future confirmation
-outcomes.
+Primary endpoint: integrated future feeding on the bijectively tracked target under identical external forcing.
+Fixed initial-mask feeding is a convergent tracker-independent control.
 
-## Decision tree
+The existing `0.25 x 5`, horizon-40 uniform additive probe is a candidate only. The 03G `N:=N0` reset plus 40-step
+standardization cannot be reused automatically because it would overwrite part of the environment under test.
 
-Evaluate feasibility and control gates first. If any fails: **FEASIBILITY_FAIL** or **UNRESOLVED**, with no source
-claim.
+`BLOCKED`: qualify and freeze one common probe, surgery-to-probe interval, and horizon after the corrected operator
+passes. The probe may add the same forcing to all branches but may not reset or homogenize `H/E`.
 
-- **LOCAL:** `tau_L` exceeds `delta`, exceeds E/body/sham/cross controls, and the E-only upper equivalence bound is
-  below `epsilon`.
-- **ENVIRONMENTAL:** `tau_E` exceeds `delta` with standardized local state/body, and the L-only upper equivalence
-  bound is below `epsilon`.
-- **REDUNDANT:** both `tau_L` and `tau_E` independently exceed `delta`.
-- **SYNERGISTIC:** `tau_LE` and `tau_S` exceed their margins while both separate upper equivalence bounds are below
-  `epsilon`; positive `tau_match` further supports relational matching.
-- **UNRESOLVED:** every other pattern, including wide uncertainty or merely non-significant separate effects.
+## Pre-outcome kill-switches
 
-The words “absent,” “individual memory,” “identity,” “ownership” beyond this operational access test, and “active
-reconstruction” are forbidden unless a separate future protocol directly establishes them.
+All gates run before any active-arm future feeding is exposed.
+
+1. **Exact path:** no-op, serialization, same-source, coordinate-transform, and matched shams meet
+   `abs(error) <= 1e-12 + 1e-10*abs(reference)` immediately and after continuation.
+2. **Support/body:** complete `B` lies inside `C`; declared supports do not overlap; exact transfers have immediate
+   body overlap and IoU of 1.
+3. **Partition:** only declared `C` and separately declared `H` change at surgery; forbidden far-`E`, scheduler,
+   engine, and observer fields do not.
+4. **Boundary:** every causal-field mean seam ratio is at most the unsealed DEV candidate `1.25x` recipient natural
+   boundary, plus a separately frozen absolute one-step `H` disturbance bound. Thresholds cannot be relaxed later.
+5. **Balance:** arm-level target mass/body state and declared local/global `rho,U,V,N,c` totals meet the frozen
+   float64 criterion. Reciprocal-pair conservation alone does not pass.
+6. **Cohorts/material:** base-cohort `sum(C)=rho`, tracer no-feedback, and donor material accounting pass.
+7. **Sham:** active-operation sham matches every copy, transform, boundary, balance, and numerical call. Its feeding
+   bias lies inside a frozen equivalence margin.
+8. **Tracker/geometry:** all primary and control branches have three distinct bijective tracks, no censor event,
+   coverage `<0.15`, valid fixed-mask convergence, finite arrays, and 40-step viability.
+9. **Global channel:** identifying cells repeat with dynamic `up_ref=0`; initial arrays and all local equations stay
+   unchanged.
+10. **D/RNG:** same engine and scheduler step; no hidden persistent buffer or RNG; no phase scramble.
+11. **Outcome independence:** no feature, decoder, PID estimator, hyperparameter, eligibility rule, pair rule,
+   boundary map, or correction is selected using confirmation outcomes.
+12. **Feasibility fail:** any failure yields `FEASIBILITY_FAIL/UNRESOLVED`; no source or absence claim is allowed.
+
+## Primary contrasts and claim logic
+
+Let world-level means define:
+
+- local/core sufficiency: `Y(C_A H_0 E_0) - Y(C_0 H_0 E_0)`;
+- environmental sufficiency: `Y(C_0 H_A E_A) - Y(C_0 H_0 E_0)`;
+- joint access: `Y(C_A H_A E_A) - Y(C_0 H_0 E_0)`;
+- interaction: joint minus local minus environment plus reference;
+- matching: matched joint minus mean reciprocal crossed branches;
+- halo-only and core+halo contrasts from the two named halo cells.
+
+`BLOCKED`: freeze practical sufficiency margin, equivalence margin, simultaneous interval/multiplicity method, and
+power from design/manipulation noise only.
+
+- **LOCAL OWNERSHIP supported** only if local/core sufficiency exceeds its margin and prospectively exceeds
+  environmental, body, halo, sham, crossed, and global controls.
+- **ENVIRONMENTAL ACCESS supported** only if environment remains sufficient with the same standardized `C_0/B_0`.
+- **REDUNDANT supported** only if local/core and environment are independently sufficient.
+- **SYNERGISTIC supported** only if joint and interaction exceed margins while both separate upper equivalence
+  bounds lie below their margins; matched must exceed crossed without a surgery-artifact failure.
+- **UNRESOLVED** covers wide uncertainty, failed equivalence, halo/phase ambiguity, and all failed controls.
+
+“Not established” never means “absent.” No result establishes identity, individual memory, metaphysical ownership,
+life, or active reconstruction.
 
 ## Secondary analyses
 
-- Fixed before prospective data: `L`, `E`, `L+E`, matched/crossed conditional decoders; body, geometry, nearest-
-  neighbour, and global-channel baselines.
-- Scaling, tuning, and model fitting occur inside held-out original-world folds.
-- Report a named, assumption-explicit continuous PID estimator for unique-L, unique-E, redundancy, and synergy.
-- PID and decoding are secondary; no secondary analysis can rescue a failed causal gate.
-- No feature, decoder, hyperparameter, eligibility rule, or branch map may be selected from confirmation outcomes.
+- Predeclare conditional decoding from frozen `L`, complete named `C/H/E` representations, matched/crossed inputs,
+  and body/geometry/neighbour/global baselines.
+- Scaling, tuning, and fitting occur inside held-out original-world folds.
+- Predeclare one named, assumption-explicit continuous PID estimator for unique-local, unique-environment,
+  redundancy, and synergy.
+- Decoding and PID are secondary and cannot rescue a failed causal or feasibility gate.
 
-## Execution discipline
+## Phase 0.5 evidence and current recommendation
 
-One design review, one finalized preregistration, one explicitly authorized prospective run, and one independent
-raw reproduction. Record code hashes, environment lock, manifests, exact commands, every branch state audit, and
-all raw original worlds. Do not push, merge, submit, modify V5, or start active reconstruction under this draft.
+On the four already-open deep-feasible DEV worlds, exact shams and serialization had zero error, every active arm
+was 4/4 viable for 40 steps, and immediate changes stayed inside the declared core. However, maximum seam ratio was
+22.87, the one-cell halo reacted immediately, and individual-arm totals were unmatched despite paired
+conservation. Active crossed feeding was not evaluated.
 
-## Human gate
-
-Current recommendation: **REVISE**. Human review may authorize a DEV-only manipulation qualification, not a
-prospective family. Prospective authorization requires a later complete preregistration with every `MUST FREEZE`
-field resolved.
+Current recommendation: **REVISE**. Human review is required. No prospective family, seal, push, merge, V5 change,
+or active reconstruction is authorized by this draft.
