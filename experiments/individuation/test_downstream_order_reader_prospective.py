@@ -152,8 +152,8 @@ def test_seedless_manifest_validates_and_execution_refuses_before_output_creatio
     manifest, _ = runner.load_manifest(TEMPLATE, require_execution=False)
     assert all(str(slot["seed"]).startswith("<SEED_") for slot in manifest["world_slots"])
     output = tmp_path / "must-not-exist"
-    with pytest.raises(RuntimeError, match="not human sealed"):
-        runner.run_sealed_family(TEMPLATE, output)
+    with pytest.raises(RuntimeError, match="accepted code commit|not human sealed"):
+        runner.run_sealed_family(TEMPLATE, tmp_path / "no-authorization.json", output)
     assert not output.exists()
 
 
@@ -161,20 +161,51 @@ def sealed_mock_manifest(tmp_path: Path) -> Path:
     manifest = json.loads(TEMPLATE.read_text(encoding="utf-8"))
     manifest.update(
         mode=runner.SEALED_MODE,
-        execution_authorized=True,
-        human_review={"status": "APPROVED_FOR_EXECUTION", "reviewer": "SYNTHETIC_TEST", "date": None},
+        accepted_parent=runner.ACCEPTED_CODE_COMMIT,
+        required_branch=runner.REQUIRED_BRANCH,
+        execution_authorized=False,
+        human_review={"status": "APPROVED_FOR_SEALING_NOT_EXECUTION", "reviewer": "SYNTHETIC_TEST", "date": None},
         namespace_audit={"status": "PASS", "evidence": "SYNTHETIC_TEST_ONLY_NO_WORLD_INITIALIZATION"},
+        no_extension_replacement_or_early_scientific_stop=True,
+        manifest_path="synthetic-sealed-manifest.json",
+        bound_files={"synthetic-test-only": "0" * 64},
+        output_locations={"prospective_run_directory": "synthetic-output"},
+        execution_authorization={
+            "status": "REQUIRED_NOT_PRESENT",
+            "approval_phrase_template": (
+                "AUTHORIZE DOWNSTREAM-ORDER-READER-01 PROSPECTIVE EXECUTION "
+                "MANIFEST-SHA256={manifest_sha256}"
+            ),
+            "repository_authorization_file": None,
+        },
     )
     # Values exist only in pytest's temporary mock manifest; no simulator is imported or called.
     for index, slot in enumerate(manifest["world_slots"], start=1):
         slot["seed"] = index
+    manifest["fixed_execution_order"] = [slot["world_id"] for slot in manifest["world_slots"]]
     path = tmp_path / "synthetic-sealed-manifest.json"
     path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return path
 
 
+def synthetic_authorization(manifest_path: Path) -> Path:
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest_sha = runner.sha256_file(manifest_path)
+    path = manifest_path.with_name("synthetic-authorization.json")
+    path.write_text(json.dumps({
+        "schema": runner.AUTHORIZATION_SCHEMA,
+        "status": "APPROVED_FOR_EXECUTION",
+        "manifest_sha256": manifest_sha,
+        "approval_phrase": manifest["execution_authorization"]["approval_phrase_template"].format(
+            manifest_sha256=manifest_sha,
+        ),
+    }, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    return path
+
+
 def test_atomic_resume_skips_completed_prefix_and_prevents_duplicate_worlds(tmp_path):
     manifest_path = sealed_mock_manifest(tmp_path)
+    authorization_path = synthetic_authorization(manifest_path)
     output = tmp_path / "mock-raw"
     calls = []
 
@@ -192,7 +223,10 @@ def test_atomic_resume_skips_completed_prefix_and_prevents_duplicate_worlds(tmp_
         }
 
     with pytest.raises(RuntimeError, match="synthetic interruption"):
-        runner.run_sealed_family(manifest_path, output, executor=interrupted_executor)
+        runner.run_sealed_family(
+            manifest_path, authorization_path, output,
+            executor=interrupted_executor, enforce_repository_preflight=False,
+        )
     assert calls == [f"W{index:03d}" for index in range(1, 7)]
     assert len(list((output / "worlds").glob("W*.json"))) == 5
 
@@ -209,7 +243,10 @@ def test_atomic_resume_skips_completed_prefix_and_prevents_duplicate_worlds(tmp_
             "numerical_failure": False,
         }
 
-    results = runner.run_sealed_family(manifest_path, output, executor=resumed_executor)
+    results = runner.run_sealed_family(
+        manifest_path, authorization_path, output,
+        executor=resumed_executor, allow_resume=True, enforce_repository_preflight=False,
+    )
     assert resumed_calls[0] == "W006"
     assert resumed_calls[-1] == "W048"
     assert results["classification"]["run_disposition"] == "FEASIBILITY_FAIL"
@@ -220,7 +257,10 @@ def test_atomic_resume_skips_completed_prefix_and_prevents_duplicate_worlds(tmp_
     duplicate["seed"] = 1
     duplicate_path.write_text(json.dumps(duplicate, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     with pytest.raises(RuntimeError, match="seed/slot mismatch|duplicate"):
-        runner.run_sealed_family(manifest_path, output, executor=resumed_executor)
+        runner.run_sealed_family(
+            manifest_path, authorization_path, output,
+            executor=resumed_executor, allow_resume=True, enforce_repository_preflight=False,
+        )
 
 
 def test_raw_only_reproducer_matches_contract_and_imports_no_runner_or_engine(tmp_path):

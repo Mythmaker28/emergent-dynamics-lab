@@ -12,6 +12,7 @@ import hashlib
 import json
 import math
 import os
+import subprocess
 from dataclasses import replace
 from pathlib import Path
 from typing import Callable, Mapping, Sequence
@@ -23,7 +24,10 @@ RUN_STATE_SCHEMA = "DOWNSTREAM-ORDER-READER-01-RUN-STATE-v1"
 RESULTS_SCHEMA = "DOWNSTREAM-ORDER-READER-01-RESULTS-v1"
 PACKAGE_MODE = "PROSPECTIVE_UNSEALED_NO_SEEDS"
 SEALED_MODE = "PROSPECTIVE_HUMAN_SEALED"
-PARENT_COMMIT = "75e405627e0b48428a5c71f31b8a2025726b763c"
+TEMPLATE_PARENT_COMMIT = "75e405627e0b48428a5c71f31b8a2025726b763c"
+ACCEPTED_CODE_COMMIT = "5ae98861b00f62cde78858234dd03ef4a47f549c"
+REQUIRED_BRANCH = "codex/downstream-order-reader-prospective-seal-00"
+AUTHORIZATION_SCHEMA = "DOWNSTREAM-ORDER-READER-01-EXECUTION-AUTHORIZATION-v1"
 
 HISTORY_NAMES = contract.HISTORY_NAMES
 SOURCE_VALUES = {"zero": 0.0, "intact": 0.15}
@@ -72,8 +76,9 @@ def validate_manifest_payload(manifest: Mapping, *, require_execution: bool) -> 
 
     if manifest.get("schema") != contract.MANIFEST_SCHEMA:
         raise RuntimeError("manifest schema mismatch")
-    if manifest.get("accepted_parent") != PARENT_COMMIT:
-        raise RuntimeError("accepted parent mismatch")
+    expected_parent = ACCEPTED_CODE_COMMIT if require_execution else TEMPLATE_PARENT_COMMIT
+    if manifest.get("accepted_parent") != expected_parent:
+        raise RuntimeError("accepted code commit mismatch")
     if manifest.get("statistical_unit") != "original source world":
         raise RuntimeError("statistical unit mismatch")
     if manifest.get("branches_and_arms_increase_n") is not False:
@@ -114,16 +119,26 @@ def validate_manifest_payload(manifest: Mapping, *, require_execution: bool) -> 
     if require_execution:
         if manifest.get("mode") != SEALED_MODE:
             raise RuntimeError("REFUSED: prospective manifest is not human sealed")
-        if manifest.get("execution_authorized") is not True:
-            raise RuntimeError("REFUSED: execution_authorized is not true")
-        if manifest.get("human_review", {}).get("status") != "APPROVED_FOR_EXECUTION":
-            raise RuntimeError("REFUSED: human review is not APPROVED_FOR_EXECUTION")
+        if manifest.get("execution_authorized") is not False:
+            raise RuntimeError("REFUSED: sealed manifest must not embed execution authorization")
+        if manifest.get("human_review", {}).get("status") != "APPROVED_FOR_SEALING_NOT_EXECUTION":
+            raise RuntimeError("REFUSED: human review does not approve this seal")
         if manifest.get("namespace_audit", {}).get("status") != "PASS":
-            raise RuntimeError("REFUSED: future namespace audit is not PASS")
+            raise RuntimeError("REFUSED: namespace audit is not PASS")
         if any(isinstance(seed, bool) or not isinstance(seed, int) for seed in seeds):
             raise RuntimeError("REFUSED: every sealed slot requires one integer seed")
         if len(set(seeds)) != len(seeds):
             raise RuntimeError("REFUSED: duplicate scientific seeds")
+        if manifest.get("fixed_execution_order") != [slot["world_id"] for slot in slots]:
+            raise RuntimeError("REFUSED: fixed manifest execution order mismatch")
+        if manifest.get("no_extension_replacement_or_early_scientific_stop") is not True:
+            raise RuntimeError("REFUSED: fixed-family completion rule mismatch")
+        if manifest.get("required_branch") != REQUIRED_BRANCH:
+            raise RuntimeError("REFUSED: sealed branch binding mismatch")
+        if manifest.get("execution_authorization", {}).get("status") != "REQUIRED_NOT_PRESENT":
+            raise RuntimeError("REFUSED: execution authorization boundary mismatch")
+        if not isinstance(manifest.get("bound_files"), dict) or not manifest["bound_files"]:
+            raise RuntimeError("REFUSED: bound file inventory missing")
     else:
         if manifest.get("mode") != PACKAGE_MODE:
             raise RuntimeError("seedless template mode mismatch")
@@ -140,6 +155,68 @@ def load_manifest(path: Path, *, require_execution: bool) -> tuple[dict, str]:
     manifest = json.loads(raw.decode("utf-8"))
     validate_manifest_payload(manifest, require_execution=require_execution)
     return manifest, sha256_bytes(raw)
+
+
+def _git(repo_root: Path, *args: str) -> str:
+    result = subprocess.run(
+        ["git", *args], cwd=repo_root, check=False, capture_output=True, text=True,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"REFUSED: git {' '.join(args)} failed: {result.stderr.strip()}")
+    return result.stdout.strip()
+
+
+def validate_repository_and_bindings(manifest: Mapping, manifest_path: Path) -> Path:
+    """Fail closed on the branch, accepted ancestry, cleanliness and file hashes."""
+
+    repo_root = Path(_git(manifest_path.resolve().parent, "rev-parse", "--show-toplevel"))
+    branch = _git(repo_root, "branch", "--show-current")
+    if branch != manifest["required_branch"]:
+        raise RuntimeError(f"REFUSED: wrong branch {branch!r}")
+    if _git(repo_root, "status", "--porcelain", "--untracked-files=all"):
+        raise RuntimeError("REFUSED: working tree is dirty")
+    ancestor = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", ACCEPTED_CODE_COMMIT, "HEAD"], cwd=repo_root,
+        check=False, capture_output=True, text=True,
+    )
+    if ancestor.returncode != 0:
+        raise RuntimeError("REFUSED: accepted code commit is not an ancestor of HEAD")
+    if _git(repo_root, "rev-parse", ACCEPTED_CODE_COMMIT) != ACCEPTED_CODE_COMMIT:
+        raise RuntimeError("REFUSED: accepted code commit object mismatch")
+    expected_manifest = (repo_root / manifest["manifest_path"]).resolve()
+    if manifest_path.resolve() != expected_manifest:
+        raise RuntimeError("REFUSED: command does not point to the sealed manifest")
+    for relative, expected_hash in manifest["bound_files"].items():
+        path = (repo_root / relative).resolve()
+        if not path.is_file() or sha256_file(path) != expected_hash:
+            raise RuntimeError(f"REFUSED: bound file hash mismatch: {relative}")
+    return repo_root
+
+
+def validate_execution_authorization(
+    authorization_path: Path,
+    *,
+    manifest: Mapping,
+    manifest_sha256: str,
+) -> dict:
+    """Validate a separate, post-seal human authorization record."""
+
+    try:
+        authorization = json.loads(authorization_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise RuntimeError("REFUSED: valid external execution authorization is required") from exc
+    phrase = manifest["execution_authorization"]["approval_phrase_template"].format(
+        manifest_sha256=manifest_sha256,
+    )
+    expected = {
+        "schema": AUTHORIZATION_SCHEMA,
+        "status": "APPROVED_FOR_EXECUTION",
+        "manifest_sha256": manifest_sha256,
+        "approval_phrase": phrase,
+    }
+    if authorization != expected:
+        raise RuntimeError("REFUSED: execution authorization does not exactly bind this manifest")
+    return authorization
 
 
 def prospective_execution_order(seed: int) -> tuple[str, ...]:
@@ -589,15 +666,30 @@ def _validate_existing_shards(output_dir: Path, manifest: Mapping, manifest_sha2
 
 def run_sealed_family(
     manifest_path: Path,
+    authorization_path: Path,
     output_dir: Path,
     *,
     executor: Callable[[Mapping, Mapping], dict] = execute_scientific_world,
+    allow_resume: bool = False,
+    enforce_repository_preflight: bool = True,
 ) -> dict:
     """Execute/resume the fixed family after human sealing; never extend it."""
 
     manifest, manifest_sha256 = load_manifest(manifest_path, require_execution=True)
+    repo_root = (
+        validate_repository_and_bindings(manifest, manifest_path)
+        if enforce_repository_preflight else manifest_path.resolve().parents[2]
+    )
+    validate_execution_authorization(
+        authorization_path, manifest=manifest, manifest_sha256=manifest_sha256,
+    )
+    expected_output = (repo_root / manifest["output_locations"]["prospective_run_directory"]).resolve()
+    if output_dir.resolve() != expected_output and enforce_repository_preflight:
+        raise RuntimeError("REFUSED: output directory differs from sealed location")
+    if output_dir.exists() and not allow_resume:
+        raise RuntimeError("REFUSED: prospective output already exists; initial execution requires an empty path")
     output_dir.mkdir(parents=True, exist_ok=True)
-    rows = _validate_existing_shards(output_dir, manifest, manifest_sha256)
+    rows = _validate_existing_shards(output_dir, manifest, manifest_sha256) if allow_resume else []
     slots = manifest["world_slots"]
     run_state_path = output_dir / "run_state.json"
     for slot in slots[len(rows):]:
@@ -651,7 +743,9 @@ def main() -> None:
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--validate-template", action="store_true")
     parser.add_argument("--execute", action="store_true")
+    parser.add_argument("--authorization", type=Path)
     parser.add_argument("--output-dir", type=Path)
+    parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
     if args.validate_template == args.execute:
         parser.error("select exactly one of --validate-template or --execute")
@@ -661,7 +755,11 @@ def main() -> None:
         return
     if args.output_dir is None:
         parser.error("--output-dir is required with --execute")
-    results = run_sealed_family(args.manifest, args.output_dir)
+    if args.authorization is None:
+        parser.error("--authorization is required with --execute")
+    results = run_sealed_family(
+        args.manifest, args.authorization, args.output_dir, allow_resume=args.resume,
+    )
     print(json.dumps(results["classification"], indent=2, sort_keys=True))
 
 

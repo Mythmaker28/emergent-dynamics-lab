@@ -1,0 +1,172 @@
+{
+  "schema": "DOWNSTREAM-ORDER-READER-01-MANIFEST-v1",
+  "mode": "PROSPECTIVE_HUMAN_SEALED",
+  "accepted_parent": "5ae98861b00f62cde78858234dd03ef4a47f549c",
+  "required_branch": "codex/downstream-order-reader-prospective-seal-00",
+  "manifest_path": "docs/individuation/DOWNSTREAM_ORDER_READER_01_PROSPECTIVE_MANIFEST.json",
+  "execution_authorized": false,
+  "human_review": {
+    "status": "APPROVED_FOR_SEALING_NOT_EXECUTION",
+    "reviewer": "human scientific decision supplied in mission",
+    "date": "2026-07-18"
+  },
+  "namespace_audit": {
+    "status": "PASS",
+    "evidence": "docs/individuation/DOWNSTREAM_ORDER_READER_01_NAMESPACE_AUDIT.json",
+    "sha256": "d5117c06b4cee189e243bbda0fe477eda4ef4f22e2bf1d1cae0eaca778a5709f",
+    "selected_namespace": "58001-58048"
+  },
+  "frozen_preregistration": {
+    "path": "docs/individuation/DOWNSTREAM_ORDER_READER_01_PROSPECTIVE_PREREGISTRATION_CANDIDATE.md",
+    "sha256": "3041c0853c9e3ab244442b4e17e94fe706276450df8280bb20dda8c31c8dfaee"
+  },
+  "statistical_unit": "original source world",
+  "branches_and_arms_increase_n": false,
+  "fixed_maximum_source_worlds": 48,
+  "minimum_complete_worlds": 18,
+  "adaptive_extension_after_outcomes": false,
+  "no_extension_replacement_or_early_scientific_stop": true,
+  "equivalence_margin": null,
+  "design": {
+    "histories": ["H_L_EARLY", "H_L_LATE", "H_H_EARLY", "H_H_LATE"],
+    "source_lam_minus": {"zero": 0.0, "intact": 0.15},
+    "ramp_arms": {"minus": -1, "sham": 0, "plus": 1},
+    "settle_steps": 40,
+    "source_expression_steps": 1,
+    "response_steps": 1,
+    "ramp_epsilon_c": 0.01,
+    "core_radius": 10,
+    "response_lam_minus": 0.15,
+    "up_ref_zero": true
+  },
+  "scientific_contract": {
+    "sole_primary_estimand": "delta_A_O",
+    "interval": "two-sided 95% original-world Student-t",
+    "directional_sign_rule": "ceil(0.75*n_complete)",
+    "numerical_floor": "raw-derived delta_num",
+    "m_A": null,
+    "m_0": null,
+    "equivalence_claim_authorized": false,
+    "body_geometry_correction": false,
+    "scientific_classifications": [
+      "PREDICTED_ATTENUATION",
+      "OPPOSITE_SIGN_FUNCTIONAL_ACCESS",
+      "NO_ACCESS_ESTABLISHED",
+      "EQUIVALENT_AT_DECLARED_SCALE",
+      "MANIPULATION_INVALID",
+      "UNRESOLVED"
+    ],
+    "secondary_only": [
+      "direct source susceptibility calibration",
+      "lam_minus=0 order response"
+    ],
+    "claim_table": "docs/individuation/DOWNSTREAM_ORDER_READER_01_CLAIM_CLASSIFICATION.md"
+  },
+  "fixed_execution_order": [
+    "W001", "W002", "W003", "W004", "W005", "W006", "W007", "W008",
+    "W009", "W010", "W011", "W012", "W013", "W014", "W015", "W016",
+    "W017", "W018", "W019", "W020", "W021", "W022", "W023", "W024",
+    "W025", "W026", "W027", "W028", "W029", "W030", "W031", "W032",
+    "W033", "W034", "W035", "W036", "W037", "W038", "W039", "W040",
+    "W041", "W042", "W043", "W044", "W045", "W046", "W047", "W048"
+  ],
+  "world_slots": [
+    {"world_id": "W001", "seed": 58001},
+    {"world_id": "W002", "seed": 58002},
+    {"world_id": "W003", "seed": 58003},
+    {"world_id": "W004", "seed": 58004},
+    {"world_id": "W005", "seed": 58005},
+    {"world_id": "W006", "seed": 58006},
+    {"world_id": "W007", "seed": 58007},
+    {"world_id": "W008", "seed": 58008},
+    {"world_id": "W009", "seed": 58009},
+    {"world_id": "W010", "seed": 58010},
+    {"world_id": "W011", "seed": 58011},
+    {"world_id": "W012", "seed": 58012},
+    {"world_id": "W013", "seed": 58013},
+    {"world_id": "W014", "seed": 58014},
+    {"world_id": "W015", "seed": 58015},
+    {"world_id": "W016", "seed": 58016},
+    {"world_id": "W017", "seed": 58017},
+    {"world_id": "W018", "seed": 58018},
+    {"world_id": "W019", "seed": 58019},
+    {"world_id": "W020", "seed": 58020},
+    {"world_id": "W021", "seed": 58021},
+    {"world_id": "W022", "seed": 58022},
+    {"world_id": "W023", "seed": 58023},
+    {"world_id": "W024", "seed": 58024},
+    {"world_id": "W025", "seed": 58025},
+    {"world_id": "W026", "seed": 58026},
+    {"world_id": "W027", "seed": 58027},
+    {"world_id": "W028", "seed": 58028},
+    {"world_id": "W029", "seed": 58029},
+    {"world_id": "W030", "seed": 58030},
+    {"world_id": "W031", "seed": 58031},
+    {"world_id": "W032", "seed": 58032},
+    {"world_id": "W033", "seed": 58033},
+    {"world_id": "W034", "seed": 58034},
+    {"world_id": "W035", "seed": 58035},
+    {"world_id": "W036", "seed": 58036},
+    {"world_id": "W037", "seed": 58037},
+    {"world_id": "W038", "seed": 58038},
+    {"world_id": "W039", "seed": 58039},
+    {"world_id": "W040", "seed": 58040},
+    {"world_id": "W041", "seed": 58041},
+    {"world_id": "W042", "seed": 58042},
+    {"world_id": "W043", "seed": 58043},
+    {"world_id": "W044", "seed": 58044},
+    {"world_id": "W045", "seed": 58045},
+    {"world_id": "W046", "seed": 58046},
+    {"world_id": "W047", "seed": 58047},
+    {"world_id": "W048", "seed": 58048}
+  ],
+  "bound_files": {
+    "docs/individuation/DOWNSTREAM_ORDER_READER_01_PROSPECTIVE_PREREGISTRATION_CANDIDATE.md": "3041c0853c9e3ab244442b4e17e94fe706276450df8280bb20dda8c31c8dfaee",
+    "docs/individuation/DOWNSTREAM_ORDER_READER_01_SEALED_PREREGISTRATION.md": "36567e880e35d3a37d3957cf1b701ff796fa6cd777fe3a24249bd40f58277325",
+    "docs/individuation/DOWNSTREAM_ORDER_READER_01_CLAIM_CLASSIFICATION.md": "16b4366d8fb1514e08e62988937ee5e9edc9cc7fa9417341be57111c3e0e546a",
+    "docs/individuation/DOWNSTREAM_ORDER_READER_01_NAMESPACE_AUDIT.json": "d5117c06b4cee189e243bbda0fe477eda4ef4f22e2bf1d1cae0eaca778a5709f",
+    "docs/individuation/DOWNSTREAM_ORDER_READER_01_NAMESPACE_AUDIT.md": "1ab78bad19dbf599c972705727696b7f9d6f707da1d45ad713b76800fa8396ee",
+    "docs/individuation/DOWNSTREAM_ORDER_READER_01_ENVIRONMENT_PROVENANCE.md": "a913c883bd35fb088c6aa677bce5f8f7b65a50ce2a1de654764f72ea2eb46ec2",
+    "docs/individuation/DOWNSTREAM_ORDER_READER_01_SEALED_COMMANDS.md": "ebb738708f0a3b8e8158e0d5c6b5e8b29791a875969e50c1b66cf66ccc946048",
+    "docs/individuation/DOWNSTREAM_ORDER_READER_01_SEALED_MANIFEST_SCHEMA.json": "96cae4695d688f6c8dbfb730ece2a4960b9f0f0b32c93a090f2953baf2595e37",
+    "docs/individuation/DOWNSTREAM_ORDER_READER_01_RAW_SCHEMA.json": "a5a8f91c82d1d6ea901bb10591f034457a593da7794b9e9016033951d7c3cc63",
+    "experiments/individuation/downstream_order_reader_instrumentation.py": "7fdd628575d719bab133f46dfbf90a3de53f4cc2f2cca1b131e84949446ca30f",
+    "experiments/individuation/downstream_order_reader_contract.py": "26cacb680ea7af10f3c653e3818026863a4ba0b6c1a0d90e11187db97485e548",
+    "experiments/individuation/downstream_order_reader_prospective.py": "c9d2f64b13da26df0bfd6aa2150eb0524a988d53833036c09e46cef1fbf08174",
+    "experiments/individuation/downstream_order_reader_reproduce.py": "d7b8a57c65eae69ba2280f1f3f38f7e0c6f0380b77d9bee11b78f4ea617d9cd0",
+    "experiments/individuation/downstream_order_reader_verify_seal.py": "6d84296f70bfd0229ebbb22397cfc59b46b74f8afd09c521ec72e8fda6568fcc",
+    "requirements-lock.txt": "1ba1417a63de2c7bcfaae8f0ddfed4e9dfe0eacad7a1cdf06fcc2c4517f30ff0"
+  },
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10 MSC v.1943 64 bit",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0",
+    "pytest": "8.4.2",
+    "dependency_lock": "requirements-lock.txt"
+  },
+  "output_locations": {
+    "prospective_run_directory": "results/DOWNSTREAM-ORDER-READER-01-PROSPECTIVE-001",
+    "world_shards": "results/DOWNSTREAM-ORDER-READER-01-PROSPECTIVE-001/worlds/W001.json through W048.json",
+    "results": "results/DOWNSTREAM-ORDER-READER-01-PROSPECTIVE-001/results.json",
+    "run_state": "results/DOWNSTREAM-ORDER-READER-01-PROSPECTIVE-001/run_state.json",
+    "independent_reproduction": "results/DOWNSTREAM-ORDER-READER-01-PROSPECTIVE-001-independent-reproduction.json"
+  },
+  "future_commands": {
+    "seal_verification": "C:\\Users\\tommy\\Documents\\ising v3\\.venv\\Scripts\\python.exe -m experiments.individuation.downstream_order_reader_verify_seal --manifest docs/individuation/DOWNSTREAM_ORDER_READER_01_PROSPECTIVE_MANIFEST.json",
+    "prospective_execution_after_authorization": "C:\\Users\\tommy\\Documents\\ising v3\\.venv\\Scripts\\python.exe -m experiments.individuation.downstream_order_reader_prospective --manifest docs/individuation/DOWNSTREAM_ORDER_READER_01_PROSPECTIVE_MANIFEST.json --authorization C:\\Users\\tommy\\Documents\\DOWNSTREAM_ORDER_READER_01_EXECUTION_AUTHORIZATION.json --execute --output-dir results/DOWNSTREAM-ORDER-READER-01-PROSPECTIVE-001"
+  },
+  "execution_authorization": {
+    "status": "REQUIRED_NOT_PRESENT",
+    "schema": "DOWNSTREAM-ORDER-READER-01-EXECUTION-AUTHORIZATION-v1",
+    "approval_phrase_template": "AUTHORIZE DOWNSTREAM-ORDER-READER-01 PROSPECTIVE EXECUTION MANIFEST-SHA256={manifest_sha256}",
+    "repository_authorization_file": null,
+    "external_authorization_path": "C:\\Users\\tommy\\Documents\\DOWNSTREAM_ORDER_READER_01_EXECUTION_AUTHORIZATION.json"
+  },
+  "sealing_attestation": {
+    "engine_initialized": false,
+    "worlds_initialized": 0,
+    "prospective_output_existed_at_seal": false,
+    "validation_scope": "engine-free verifier, compilation, static checks, and synthetic fixtures only"
+  }
+}
