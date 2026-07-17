@@ -35,6 +35,7 @@ STATE_FIELDS = ("rho", "U", "V", "c", "N", "C", "uptake", "Mf")
 EXTENSIVE_FIELDS = ("rho", "U", "V", "C", "Mf")
 PHYSICAL_INTENSIVE_FIELDS = ("c", "N")
 DERIVED_READOUT_FIELDS = ("uptake",)
+BALANCED_PHYSICAL_FIELDS = ("rho", "U", "V", "c", "N")
 CORE_RADIUS = 10
 HALO_WIDTH = 1
 SERIALIZATION_SCHEMA = "ACCESS-STRUCTURE-00-IOMState-v1"
@@ -357,3 +358,328 @@ def band_change(reference: IOMState, candidate: IOMState, bands: dict[str, np.nd
             }
         result[band_name] = fields
     return result
+
+
+# ---------------------------------------------------------------------------
+# Phase 0.6A boundary-safe, individually balanced operator candidates.
+#
+# These are engineering candidates only.  They never evaluate feeding and do
+# not imply that C is a storage compartment.  The complete four-configuration
+# grid is frozen here and in the Phase 0.6A operator specification before the
+# DEV qualification is executed.
+
+
+@dataclass(frozen=True)
+class BoundarySafeSpec:
+    name: str
+    family: str
+    inner_radius: int
+    outer_radius: int = CORE_RADIUS
+    taper: str = "hard"
+
+    def validate(self) -> None:
+        if self.family not in {
+            "recipient_interface_preserving_interior",
+            "constrained_phase_consistent_projection",
+        }:
+            raise ValueError(f"unsupported boundary-safe family: {self.family}")
+        if not (0 < self.inner_radius < self.outer_radius <= CORE_RADIUS):
+            raise ValueError("boundary-safe radii must satisfy 0 < inner < outer <= CORE_RADIUS")
+        if self.taper not in {"hard", "quintic"}:
+            raise ValueError("boundary-safe taper must be hard or quintic")
+        if self.family == "recipient_interface_preserving_interior" and self.taper != "hard":
+            raise ValueError("recipient-interface-preserving family uses the declared hard interior")
+        if self.family == "constrained_phase_consistent_projection" and self.taper != "quintic":
+            raise ValueError("constrained projection family uses the declared quintic transition")
+
+
+BOUNDARY_SAFE_SPECS = (
+    BoundarySafeSpec(
+        name="RIP_HARD_R9",
+        family="recipient_interface_preserving_interior",
+        inner_radius=9,
+        taper="hard",
+    ),
+    BoundarySafeSpec(
+        name="RIP_HARD_R8",
+        family="recipient_interface_preserving_interior",
+        inner_radius=8,
+        taper="hard",
+    ),
+    BoundarySafeSpec(
+        name="CPP_QUINTIC_R8",
+        family="constrained_phase_consistent_projection",
+        inner_radius=8,
+        taper="quintic",
+    ),
+    BoundarySafeSpec(
+        name="CPP_QUINTIC_R7",
+        family="constrained_phase_consistent_projection",
+        inner_radius=7,
+        taper="quintic",
+    ),
+)
+
+
+class BalanceProjectionError(RuntimeError):
+    """Raised when an individual-arm physical total cannot be matched locally."""
+
+
+def boundary_safe_weights(partition: StatePartition, spec: BoundarySafeSpec) -> np.ndarray:
+    """Outcome-independent donor weight with an exactly recipient-valued outer edge."""
+    spec.validate()
+    d = partition.distance
+    if spec.taper == "hard":
+        return (d <= float(spec.inner_radius)).astype(float)
+    weight = np.zeros_like(d, dtype=float)
+    weight[d <= float(spec.inner_radius)] = 1.0
+    transition = (d > float(spec.inner_radius)) & (d < float(spec.outer_radius))
+    s = (d[transition] - float(spec.inner_radius)) / float(spec.outer_radius - spec.inner_radius)
+    # One minus quintic smoothstep: value and first derivative match at both ends.
+    weight[transition] = 1.0 - (6.0 * s**5 - 15.0 * s**4 + 10.0 * s**3)
+    return weight
+
+
+def boundary_safe_bands(partition: StatePartition, spec: BoundarySafeSpec) -> dict[str, np.ndarray]:
+    """Frozen Phase 0.6A diagnostic partition around the candidate support."""
+    spec.validate()
+    d = partition.distance
+    return {
+        "payload_core": d <= float(spec.inner_radius),
+        "interface_collar": (d > float(spec.inner_radius)) & (d <= float(spec.outer_radius)),
+        "inner_halo": (d > float(spec.outer_radius)) & (d <= float(spec.outer_radius + 1)),
+        "outer_halo": (d > float(spec.outer_radius + 1)) & (d <= float(spec.outer_radius + 3)),
+        "far_environment": d > float(spec.outer_radius + 3),
+    }
+
+
+def _project_nonnegative_total(
+    provisional: np.ndarray,
+    recipient: np.ndarray,
+    weight: np.ndarray,
+) -> tuple[np.ndarray, dict[str, float | bool]]:
+    """Match one recipient total using only a recipient-shaped local correction.
+
+    The spatial correction basis is fixed by the recipient and the declared
+    donor-weight map; the donor/history changes only the scalar amount that must
+    be removed or added.  The outer interface and every cell outside the
+    declared support remain exact recipient values.  A bounded active-set solve
+    preserves non-negativity when material must be removed.
+    """
+    active = weight > 0.0
+    result = np.array(provisional, dtype=float, copy=True)
+    if not active.any():
+        raise BalanceProjectionError("empty boundary-safe correction support")
+    target = float(np.sum(recipient[active], dtype=np.float64))
+    current = float(np.sum(result[active], dtype=np.float64))
+    delta = target - current
+    scale = max(float(np.mean(recipient[active])), 1.0)
+    if abs(delta) <= 1e-14 * scale:
+        return result, {
+            "target_support_total": target,
+            "provisional_support_total": current,
+            "correction": 0.0,
+            "active_set_clipped": False,
+        }
+
+    floor = max(abs(target) / max(1, int(active.sum())) * 1e-12, 1e-15)
+    basis = weight[active] * (np.maximum(recipient[active], 0.0) + floor)
+    if not np.any(basis > 0.0):
+        basis = weight[active].copy()
+    values = result[active].copy()
+    clipped = False
+    if delta > 0.0:
+        values = values + delta * basis / float(basis.sum())
+    else:
+        # Find lambda <= 0 with sum(max(0, values + lambda*basis)) == target.
+        high = 0.0
+        low = -1.0
+        while float(np.maximum(0.0, values + low * basis).sum()) > target:
+            low *= 2.0
+            if low < -1e18:
+                raise BalanceProjectionError("non-negative local balance projection did not bracket")
+        for _ in range(100):
+            mid = 0.5 * (low + high)
+            if float(np.maximum(0.0, values + mid * basis).sum()) > target:
+                high = mid
+            else:
+                low = mid
+        projected = np.maximum(0.0, values + 0.5 * (low + high) * basis)
+        clipped = bool(np.any(values + 0.5 * (low + high) * basis < 0.0))
+        values = projected
+
+    residual = target - float(values.sum(dtype=np.float64))
+    index = int(np.argmax(basis))
+    values[index] += residual
+    if values[index] < -1e-13 or not np.isfinite(values).all():
+        raise BalanceProjectionError("local total projection violated non-negativity or finiteness")
+    values[index] = max(0.0, values[index])
+    result[active] = values
+    result[~active] = recipient[~active]
+    final = float(np.sum(result[active], dtype=np.float64))
+    return result, {
+        "target_support_total": target,
+        "provisional_support_total": current,
+        "final_support_total": final,
+        "correction": float(final - current),
+        "active_set_clipped": clipped,
+    }
+
+
+def _balance_base_cohorts(
+    provisional: np.ndarray,
+    recipient: np.ndarray,
+    rho_after: np.ndarray,
+    weight: np.ndarray,
+) -> tuple[np.ndarray, dict[str, float | int]]:
+    """Balance passive base-cohort rows and global columns by deterministic IPF."""
+    active = weight > 0.0
+    matrix = np.maximum(provisional[:, active], 0.0).astype(float, copy=True)
+    target_rows = np.maximum(rho_after[active], 0.0)
+    target_cols = np.maximum(recipient[:, active].sum(axis=1), 0.0)
+    if not np.isclose(target_rows.sum(), target_cols.sum(), rtol=1e-12, atol=1e-12):
+        raise BalanceProjectionError("base-cohort row and column balance targets disagree")
+
+    if np.allclose(matrix.sum(axis=0), target_rows, rtol=1e-13, atol=1e-13) and np.allclose(
+        matrix.sum(axis=1), target_cols, rtol=1e-13, atol=1e-13
+    ):
+        balanced = matrix
+        iterations = 0
+    else:
+        positive_cols = target_cols > 0.0
+        matrix[~positive_cols, :] = 0.0
+        if positive_cols.any():
+            tiny = max(float(target_rows.sum()) * 1e-18, 1e-18)
+            matrix[positive_cols, :] += tiny
+        iterations = 0
+        for iterations in range(1, 2001):
+            row_sums = matrix.sum(axis=0)
+            nonzero_rows = target_rows > 0.0
+            matrix[:, ~nonzero_rows] = 0.0
+            matrix[:, nonzero_rows] *= (target_rows[nonzero_rows] / row_sums[nonzero_rows])[None, :]
+            col_sums = matrix.sum(axis=1)
+            matrix[positive_cols, :] *= (target_cols[positive_cols] / col_sums[positive_cols])[:, None]
+            if (
+                np.max(np.abs(matrix.sum(axis=0) - target_rows), initial=0.0) <= 5e-12
+                and np.max(np.abs(matrix.sum(axis=1) - target_cols), initial=0.0) <= 5e-12
+            ):
+                break
+        else:
+            raise BalanceProjectionError("base-cohort balancing did not converge")
+        # Finish on the per-cell invariant; the resulting column residual is
+        # recorded and must remain inside the frozen float64 criterion.
+        row_sums = matrix.sum(axis=0)
+        nonzero_rows = target_rows > 0.0
+        matrix[:, nonzero_rows] *= (target_rows[nonzero_rows] / row_sums[nonzero_rows])[None, :]
+
+    result = recipient.copy()
+    result[:, active] = matrix
+    return result, {
+        "iterations": int(iterations),
+        "row_sum_max_abs": float(np.max(np.abs(matrix.sum(axis=0) - target_rows), initial=0.0)),
+        "column_sum_max_abs": float(np.max(np.abs(matrix.sum(axis=1) - target_cols), initial=0.0)),
+    }
+
+
+def boundary_safe_transplant(
+    recipient: IOMState,
+    donor: IOMState,
+    recipient_partition: StatePartition,
+    donor_partition: StatePartition,
+    spec: BoundarySafeSpec,
+    *,
+    appended_tracers: int = 3,
+) -> tuple[IOMState, dict]:
+    """Transplant one donor into one recipient with local per-arm balance.
+
+    Physical fields ``rho,U,V,c,N`` are donor-weighted then projected back to
+    the recipient's own total using only a recipient-shaped correction inside
+    C.  Intensive memory is the protected causal payload and is not total-
+    balanced: matching its mean would erase the history contrast under test.
+    Passive diagnostic cohorts are balanced separately and never influence
+    physics.  The incoming ``uptake`` array is retained from the recipient
+    because it is a previous-step readout that the next update does not read.
+    """
+    spec.validate()
+    shift_rd, _ = _validate_exchange(recipient, donor, recipient_partition, donor_partition)
+    # _validate_exchange returns recipient->donor; donor->recipient is its inverse.
+    donor_to_recipient = tuple(-value for value in shift_rd)
+    weight = boundary_safe_weights(recipient_partition, spec)
+    donor_values = {
+        field: _translated(getattr(donor, field), donor_to_recipient) for field in STATE_FIELDS
+    }
+    result = recipient.copy()
+    balance = {}
+
+    for field in BALANCED_PHYSICAL_FIELDS:
+        rec = getattr(recipient, field)
+        src = donor_values[field]
+        provisional = rec + weight * (src - rec)
+        projected, audit = _project_nonnegative_total(provisional, rec, weight)
+        setattr(result, field, projected)
+        balance[field] = audit
+
+    # Preserve donor intensive memory on the declared weight map while keeping
+    # it coherent with the balanced scaffold density.
+    rec_m = recipient.Mf / np.maximum(recipient.rho, 1e-12)[None, ...]
+    don_m = donor_values["Mf"] / np.maximum(donor_values["rho"], 1e-12)[None, ...]
+    mixed_m = rec_m + weight[None, ...] * (don_m - rec_m)
+    result.Mf = result.rho[None, ...] * mixed_m
+
+    if not (0 <= appended_tracers < recipient.C.shape[0]):
+        raise ValueError("invalid appended tracer count")
+    base_count = recipient.C.shape[0] - appended_tracers
+    provisional_base = recipient.C[:base_count] + weight[None, ...] * (
+        donor_values["C"][:base_count] - recipient.C[:base_count]
+    )
+    base_cohorts, cohort_audit = _balance_base_cohorts(
+        provisional_base, recipient.C[:base_count], result.rho, weight
+    )
+    result.C[:base_count] = base_cohorts
+    appended_audit = {}
+    for channel in range(base_count, recipient.C.shape[0]):
+        provisional = recipient.C[channel] + weight * (
+            donor_values["C"][channel] - recipient.C[channel]
+        )
+        projected, audit = _project_nonnegative_total(
+            provisional, recipient.C[channel], weight
+        )
+        result.C[channel] = projected
+        appended_audit[str(channel)] = audit
+
+    # Explicit phase/readout choice: scheduler parity is donor-matched, while
+    # stale previous-step uptake remains recipient state and is not a payload.
+    result.uptake = recipient.uptake.copy()
+    result.step = recipient.step
+
+    changed = np.zeros_like(weight, dtype=bool)
+    for field in STATE_FIELDS:
+        values = getattr(result, field)
+        original = getattr(recipient, field)
+        changed |= np.any(values != original, axis=0) if values.ndim == 3 else values != original
+    if np.any(changed & ~recipient_partition.core):
+        raise BalanceProjectionError("boundary-safe transplant changed a cell outside C")
+    return result, {
+        "schema": "ACCESS-STRUCTURE-00-PHASE06A-BOUNDARY-OPERATOR-v1",
+        "spec": {
+            "name": spec.name,
+            "family": spec.family,
+            "inner_radius": spec.inner_radius,
+            "outer_radius": spec.outer_radius,
+            "taper": spec.taper,
+        },
+        "recipient_center": list(recipient_partition.center),
+        "donor_center": list(donor_partition.center),
+        "donor_to_recipient_shift": list(donor_to_recipient),
+        "physical_balance": balance,
+        "base_cohort_balance": cohort_audit,
+        "appended_tracer_balance": appended_audit,
+        "memory_total_matched": False,
+        "memory_reason": "Mf/rho is the protected history payload; total-matching it would erase the intended contrast",
+        "uptake_previous_readout": "recipient preserved; not read by next update",
+        "scheduler_step_preserved": True,
+        "persistent_previous_flux_gradient_rng_or_cache": None,
+        "changed_cells": int(changed.sum()),
+        "affected_radius": float(np.max(recipient_partition.distance[changed])) if changed.any() else 0.0,
+        "outside_C_change": False,
+    }
