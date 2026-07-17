@@ -1,0 +1,216 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,array}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{seqsplit}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\hash}[1]{\texttt{\seqsplit{#1}}}
+\renewcommand{\arraystretch}{1.15}
+\setlength{\emergencystretch}{3em}
+\title{Supplementary Information\\\large Causal Persistence Without Ownership}
+\author{[AUTHOR NAME TO BE CONFIRMED]}
+\date{July 2026 -- V5 synthesis candidate}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{Purpose and evidential boundary}
+
+This supplement documents the exact evidential chain underlying the accompanying manuscript. It is a synthesis of committed artifacts, not a new experiment. No simulation engine was imported, no seed was initialized, no parameter was changed, and no result was selected after inspection. Numerical values were recomputed from exact committed raw bytes by a paper-local script. The central result remains the frozen turnover decision: \code{G\_OWN\_PERM=true}, \code{G\_CAUSAL=true}, \code{G\_LOCAL\_EXCLUSION=false}, \code{DISTRIBUTED\_ENV=false}, hence Outcome B. The authorized wording is: a specific local causal feeding effect survives deep turnover, but the target's own graded history is not established as locally owned. This is a passive local causal remnant and not individual memory.
+
+The supplement distinguishes four source families. V4.1 is a corrected historical analysis. CONFIRM-02 is a prospective non-fusing causal experiment without a turnover claim. 03G is the sealed prospective turnover experiment and is the primary evidence for the manuscript. 03M is an independent raw-only reproduction of 03G. The families are not pooled into one estimate and their uncertainty intervals are not treated as exchangeable.
+
+\section{Exact source lineage}
+
+\begin{longtable}{p{0.19\textwidth}p{0.23\textwidth}p{0.50\textwidth}}
+\toprule
+Role & Git commit & Interpretation \\
+\midrule
+\endhead
+V4.1 correction & \hash{847d51ef78d0d55d30f05df275d97aa4af0c558f} & Corrected grouped inference for historical longitudinal data; preserved separately from the prospective turnover lineage. \\
+CONFIRM-02 preseal & \hash{9b7580bc3a09293a4b0b19b70cff8c39c5cb1378} & Frozen non-merging local-intervention protocol. \\
+CONFIRM-02 result & \hash{830c2d006f5278295e965887f8ccedee34d47e67} & Prospective non-fusing result and certificate. \\
+CONFIRM-02 addendum & \hash{9c8a62cd3f6794eb9ac435f638671e5561086cd0} & Post-hoc $R^*$ addendum, kept separate from the prospective certificate. \\
+Turnover result & \hash{9cb996bb891f9a618e593f2f5c302f30210458de} & Sealed one-shot prospective execution, raw records, ledger, and certificate. \\
+Raw reproduction & \hash{a8d6446fade6dbeb984e269fab27ddd5ebf75286} & Independent raw-only implementation and exact comparison. \\
+\bottomrule
+\end{longtable}
+
+The turnover result is an ancestor of the raw-reproduction commit. The CONFIRM-02 result is an ancestor of the turnover result. V4.1 is an independent protected source history. The paper branch begins exactly at the raw-reproduction commit and does not merge, squash, or rewrite any protected source line.
+
+The final seal SHA-256 is
+\begin{center}
+\hash{cdf7277a00e3017a1389e9334d983364b9aa0af88c646cdec2999e6ad88757fd}.
+\end{center}
+The manifest, decision tree, code, environment, scopes, statistics, raw schema, and execution rules were bound before authorization. The human authorization permitted one execution only. The paper package does not create or amend that authorization.
+
+\section{V4.1 correction details}
+
+The historical longitudinal data contain 36 rows: 12 histories in each of three original worlds. All 36 recorded targets survived and the stored tracker summary reports zero identity switches. At the deep checkpoint, the mean passive old-material fraction was 0.1902034 and 34 of 36 rows had $M\leq0.25$. These observations support material-replacement and tracking statements in the historical dataset, subject to the known inability to reconstruct the earlier fusion handling completely.
+
+The corrected h1 grouped estimate is the mean of three leave-one-original-world-out fold scores:
+\[
+(0.7453562,\;0.4140894,\;0.9246360),\qquad \bar R^2=0.6946939.
+\]
+The corresponding three h2 scores are
+\[
+(-0.0982242,\;-3.2362426,\;-0.0205559),\qquad \bar R^2=-1.1183409.
+\]
+Only three independent original worlds contribute to these summaries. The historical claim that deep h1 was ``certified above 0.50'' was therefore withdrawn. The positive h1 point estimate remains a qualified observation; h2 is not established. No interval from the old row-level or duplicate-history bootstrap is reused as a certification interval.
+
+\begin{table}[ht]
+\centering
+\caption{Corrected V4.1 checkpoints. The sample unit for inference is original world ($n=3$); fold intervals are descriptive Student $t$ summaries only.}
+\begin{tabular}{lrrrr}
+\toprule
+Checkpoint & mean $M$ & h1 grouped $R^2$ & h2 grouped $R^2$ & rows with $M\leq0.25$ \\
+\midrule
+Initial & 1.000000 & 0.738220 & 0.763110 & 0/36 \\
+Moderate & 0.386545 & 0.902014 & -0.510231 & 0/36 \\
+Deep-1 & 0.245053 & 0.843229 & -0.131498 & 22/36 \\
+Deep & 0.190203 & 0.694694 & -1.118341 & 34/36 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{CONFIRM-02 non-fusing local intervention}
+
+CONFIRM-02 screened 32 prospective worlds and admitted 23 eligible and valid worlds under the frozen non-merging criteria. Each valid world maintained three physically distinct targets. The assay compared intervention on the target's own local memory with a sham edit, an edit to a neighbouring target, a fixed original mask, and a full ablation. Original world was the inferential unit. All gates G0--G6 passed.
+
+The recomputed mean own feeding contrast was 0.2236416. The certified world-bootstrap interval was [0.1925834, 0.2583435], with certified median 0.2232705. The fixed-mask interval was [0.1799347, 0.2343847], and the own-minus-sham and own-minus-neighbour intervals were both strictly positive. These results establish a target-specific local intervention effect in non-fusing droplets at rest. They do not establish survival under deep turnover and do not test information ownership against the 03G access-scope matrix.
+
+\begin{table}[ht]
+\centering
+\caption{CONFIRM-02 certified world-bootstrap summaries ($n=23$ original worlds; prospective; 5,000 world resamples in the source certificate).}
+\begin{tabular}{lrrr}
+\toprule
+Contrast & lower & median & upper \\
+\midrule
+Own & 0.1925834 & 0.2232705 & 0.2583435 \\
+Own minus sham & 0.1925834 & 0.2232705 & 0.2583435 \\
+Own minus neighbour & 0.1925855 & 0.2232796 & 0.2583562 \\
+Fixed original mask & 0.1799347 & 0.2066244 & 0.2343847 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{03G sealed prospective turnover family}
+
+\subsection{Population and one-shot execution}
+
+The primary seed list was exactly 54001--54050. Each primary seed was executed once in ascending order. Fifty raw world records were committed; there were no duplicate seeds. Twenty-one worlds passed all frozen feasibility, tracking, assay, and turnover criteria. The minimum was 18, so the reserve was not opened and no reserve seed ran. Inference uses the 21 original worlds, never target rows, assay timepoints, pixels, or bootstrap replicates as independent observations.
+
+\subsection{Deep-turnover criterion}
+
+The passive tracer marks old target material at the intervention-defined reference time. It is transported and diluted with density but is not allowed to affect physics, tracking, detection, or association. A world is valid only if the target is retained without disallowed merge, split, loss, boundary ambiguity, or assay failure and if the frozen deep-turnover criterion is reached. The tracer therefore excludes a simple old-cohort explanation. It does not by itself establish active reconstruction because newly incorporated material inherits local intensive memory by construction.
+
+\subsection{Access scopes}
+
+The ownership analysis uses five frozen views. L is the exact target-local memory. N is the nearest-neighbour memory. E excludes target memory but retains the environmental field representation. G-minus-target is a global summary with the target removed. B is a body/environment baseline without target memory. The decoder, preprocessing, ridge penalty, fold construction, and scoring rule were frozen. Every comparison is paired within original world.
+
+The local-exclusion gate requires that L contain information and have a strictly positive lower paired interval relative to N, E, G-minus-target, and B. It is not enough for L to have the largest point estimate. This rule makes the negative result robust to the temptation to rank noisy means after inspection.
+
+\subsection{Uncertainty and permutation}
+
+Own-scope significance was evaluated with 1,000 within-world permutations under seed 20260715; the plus-one corrected $p$ value was 0.000999. Reported 95\% Student $t$ intervals summarize fixed original-world fold scores. A separate 5,000-resample bootstrap of those already fixed scores, using seed 20260715, is available as a robustness description. Neither procedure refits on duplicated original worlds or treats rows within a world as independent.
+
+\section{Primary numerical results}
+
+\begin{table}[ht]
+\centering
+\caption{Primary 03G results. Sample unit is original world, $n=21$; all are prospective. Intervals are Student $t$ intervals over fixed original-world fold scores.}
+\begin{tabular}{lrrr}
+\toprule
+Quantity & lower & mean & upper \\
+\midrule
+Own-scope skill & 0.175323 & 0.395446 & 0.615569 \\
+Causal own contrast & 0.144322 & 0.164845 & 0.185368 \\
+Own minus sham & 0.144322 & 0.164845 & 0.185368 \\
+Own minus neighbour & 0.144322 & 0.164845 & 0.185368 \\
+Fixed original mask & 0.124609 & 0.142157 & 0.159705 \\
+$\lambda_+$-only ablation & 0.013218 & 0.018141 & 0.023064 \\
+L minus N & 0.236324 & 0.530416 & 0.824508 \\
+L minus E & -0.022063 & 0.207168 & 0.436399 \\
+L minus G-minus-target & 0.079680 & 0.489484 & 0.899287 \\
+L minus B & -0.022605 & 0.144610 & 0.311825 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Own-scope skill exceeded the permutation null: the observed mean was 0.3954457, the null 95th percentile was 0.1483314, and $p=0.000999$. Thus \code{G\_OWN\_PERM=true}. The causal own contrast was 0.1648450 [0.1443216, 0.1853683]. Sham and neighbour contrasts retained the frozen direction; the fixed original mask remained positive; and the $\lambda_+$-only ablation reduced the upper interval relative to own to 0.1399, below the frozen collapse fraction 0.5. Thus \code{G\_CAUSAL=true}.
+
+L exceeded N and G-minus-target with positive lower paired intervals. It did not exceed E or B under the frozen rule because both lower intervals crossed zero. Thus \code{G\_LOCAL\_EXCLUSION=false}. Neither E nor G-minus-target independently met the frozen positive-skill rule required to identify a detectable environmental owner, so \code{DISTRIBUTED\_ENV=false}. This last negative diagnostic is not evidence that all environmental or distributed encodings are absent. It says only that the two frozen finite summaries did not meet their positive criteria.
+
+The exact gate vector maps uniquely to Outcome B: causal feeding effect without ownership. The primary conjunction \code{G\_OWN\_PERM AND G\_LOCAL\_EXCLUSION AND G\_CAUSAL} is false. The strongest authorized interpretation is a specific local causal feeding effect that survives deep turnover while the target's own graded history is not established as locally owned.
+
+\section{Independent raw-only reproduction}
+
+The 03M implementation began from the committed raw manifest and per-seed raw JSON, independently rebuilt the frozen estimators, and compared its output recursively to the canonical certificate. It did not import the production engine and did not initialize a seed. It inspected 9,357 terminal leaves, of which 9,283 were numeric. Maximum absolute numeric difference was 0. Boolean, string, list, and mapping leaves also matched. The reproduced gate vector and Outcome B were exact.
+
+This agreement rules out a broad class of certificate-generation and transcription errors. It does not create an independent biological model, an independent dataset, or a second prospective execution. Both analyses necessarily depend on the same committed raw worlds and the same frozen specification.
+
+\section{Correction and transparency chronology}
+
+\begin{enumerate}
+\item \textbf{Row/world leakage.} Earlier uncertainty logic allowed related histories from one original world to cross resampling boundaries. V4.1 grouped by original world and withdrew the old deep certification.
+\item \textbf{Largest-component teleportation.} A largest-component heuristic could transfer identity when component ranking changed. Subsequent protocols used explicit target-origin tracking and logged association events.
+\item \textbf{Fusion incident.} An earlier causal assay admitted a fusion event incompatible with local ownership. CONFIRM-02 replaced that evidence with a prospective non-fusing design.
+\item \textbf{V4 downgrade.} The corrected h1 point estimate remained positive but rests on three worlds; h2 was not established. The old interval is not quoted as valid evidence.
+\item \textbf{Authorization-template defect.} A duplicate literal seal placeholder in packaging prose could make phrase handling ambiguous. It was repaired and regression-tested before the one-shot execution.
+\item \textbf{Seal and one-shot authorization.} Canonical artifacts were hash-bound under final seal \code{cdf727...57fd}; a human phrase authorized exactly one prospective family; 50 primaries ran once; no reserve ran.
+\item \textbf{Raw-only reproduction.} An independently written estimator reproduced every compared terminal value exactly without importing or executing the engine.
+\end{enumerate}
+
+These items are not presented as evidence of infallibility. They show why the claim ladder is narrower than earlier language and why the present negative ownership result is more informative than a polished positive narrative would be.
+
+\section{Claim classification}
+
+\begin{longtable}{p{0.18\textwidth}p{0.34\textwidth}p{0.40\textwidth}}
+\toprule
+Class & Claim & Boundary \\
+\midrule
+\endhead
+Established & The engineered state is own-history decodable after deep turnover in the 21 valid 03G worlds. & Prospective, within the frozen C1c architecture and estimator. \\
+Established & The state has a specific local causal feeding effect after deep turnover. & Directly coupled engineered readout; not emergent agency. \\
+Established & L failed the full local-exclusion conjunction because L-over-E and L-over-B failed. & A failed preregistered gate, not proof of equality. \\
+Established & The frozen tree selected Outcome B. & Unique mapping of the exact gate vector. \\
+Supported with qualification & Historical h1 remained decodable at deep turnover with corrected point estimate $R^2\approx0.6947$. & Only three original worlds; former certification withdrawn. \\
+Supported with qualification & Recorded targets survived with low passive material overlap. & Historical fusion handling is not fully reconstructable. \\
+Not established & Environmental or distributed ownership. & Frozen E and G-minus-target diagnostics did not pass; unmeasured encodings remain possible. \\
+Not established & Active reconstruction, self-repair, reproduction, heredity, evolution, agency, life, or identity. & Outside the implemented mechanisms or evidential scope. \\
+Falsified within tested criteria & Causal persistence is sufficient for individual memory in C1c under the preregistered ownership definition. & The causal gate passed while the ownership gate failed. \\
+\bottomrule
+\end{longtable}
+
+\section{Reproduction commands and guards}
+
+From a clean checkout of \code{a8d6446fade6dbeb984e269fab27ddd5ebf75286}, the paper-local numerical reconstruction is:
+
+\begin{verbatim}
+python paper/persistence-without-ownership-05/scripts/
+  recompute_and_figures_05.py
+python paper/persistence-without-ownership-05/scripts/
+  verify_references_05.py
+python paper/persistence-without-ownership-05/scripts/
+  validate_package_05.py
+\end{verbatim}
+
+Line wrapping above is typographic; each script path is one command-line argument. The numerical script reads source objects with \code{git show COMMIT:PATH}, verifies exact byte hashes, invokes the independent raw-only estimator in analysis mode, and draws figures from generated JSON. It asserts that no engine module was imported and that no seed was executed. It writes only paper-local derived artifacts.
+
+The raw registry lists each source path, commit, Git blob ID, SHA-256, byte count, role, and whether it is protocol, raw data, certificate, or analysis code. \code{SOURCE\_BINDINGS\_05.json} is the compact canonical map. \code{NUMERICAL\_RECONCILIATION\_05.csv} and its Markdown companion expose the headline cross-checks. \code{REFERENCE\_VERIFICATION\_05.json} records DOI metadata verification for all 30 bibliography entries.
+
+\section{Residual risks}
+
+The 21 valid worlds are a selected feasibility subset under frozen rules. The selection was not chosen after outcome inspection, but the estimand remains conditional on successful tracking, assay, and turnover. The access scopes are finite and model-dependent. L-versus-E and L-versus-B intervals are compatible with both modest local advantages and no advantage. Failure to reject is not proof of equivalence. The readout is engineered and directly coupled. The passive inheritance rule is itself a persistence mechanism. The study therefore supports a methodological dissociation, not a general theorem about natural organisms.
+
+The visual diagrams are explanatory and are not additional observations. Figure generators use only the generated reconciliation JSON and fixed diagram coordinates. All inferential values remain tied to original worlds and exact committed raw bytes.
+
+\section{Artifact inventory}
+
+The external-review package contains the full manuscript source and PDF, this supplementary source and PDF, eight figures, claim ledger, numerical reconciliation, experiment/provenance map, figure index, reproduction guide, source bindings, raw registry, DOI verification ledger, cover letter, French public summary, three hostile reviews, a response draft, package validation output, and a PDF visual-QA report. Author identity, affiliation, ORCID, target journal, funding, and conflict declarations remain explicitly unfilled for human completion. No submission, push, upload, or external contact is part of this package.
+
+\end{document}
