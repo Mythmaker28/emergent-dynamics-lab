@@ -1,6 +1,6 @@
 # DOWNSTREAM-ORDER-READER-01 — exact causal-path audit
 
-Status: **DESIGN ONLY — WRITTEN WITHOUT A NEW SCIENTIFIC OUTCOME**
+Status: **CODE-ONLY INSTRUMENT QUALIFIED — NO SCIENTIFIC OUTCOME OR SEED OPENED**
 
 Parent: `M_MINUS-ORDER-READER-00` result commit
 `6ae4a0e31d541f7bda1f424cb8682b960c979612`. The parent result is accepted only as a constitutive source
@@ -75,8 +75,9 @@ flux result can therefore fail despite a positive source calibration.
 
 ## 3. Exactly one selected downstream observable
 
-The selected observable is **mass-specific +x material transport produced by the frozen face-flux operator under a
-matched local attractant ramp**, evaluated on the first response step.
+The selected observable is **the mass-specific internal +x face-flux sum produced by the frozen face-flux operator
+under a matched local attractant ramp**, evaluated on the first response step. It is not named whole-body
+displacement or net transport because the radius-10 core is not a closed material boundary.
 
 Use the existing integer-centered radius-10 qualified core `K`. Let `d_x` be signed periodic displacement along
 array axis `-1` from the integer core centre and define
@@ -102,28 +103,42 @@ For the positive-x faces whose two endpoints lie in `K`, log the exact `F_f` use
 step. With pre-response core mass `M`, define
 
 ```text
-v_h^lambda(a) = dt/M * sum_{x-faces f inside K} F_h,f^lambda(a).
-D_h^lambda    = [v_h^lambda(+1)-v_h^lambda(-1)]/2.
+J_h^lambda(a) = dt/M * sum_{x-faces f with both endpoints in K} F_h,f^lambda(a).
+D_h^lambda    = [J_h^lambda(+1)-J_h^lambda(-1)]/2.
 ```
 
-`D` is an amplitude-specific directional transport response in lattice cells per update. The diffusive term is
-identical across the `+/-` arms and cancels; the remaining contrast is the executed chemotactic response. Dividing
-flux by mass is part of the physical velocity definition, not a fitted correction. No mass, radius, geometry or
-body variable enters a regression, match, exclusion or residualization.
+`J` is an amplitude-specific internal face-flux aggregate in lattice cells per update. The diffusive term is
+identical across the `+/-` arms and cancels from `D`; the remaining contrast is the executed chemotactic response.
+Dividing by pre-ramp core mass is part of the declared observable, not a fitted correction. No mass, radius,
+geometry or body variable enters a regression, match, exclusion or residualization.
+
+On a synthetic closed lattice fixture with the positive-x wrap flux set to zero, the discrete conservative update
+obeys exactly
+
+```text
+sum_x x * delta_rho(x) = dt * sum_{non-wrap +x faces} F_x,
+```
+
+with observed residual `-5.55e-17`. A separate nonzero-boundary fixture proves that boundary flux changes core mass
+while leaving the internal endpoint unchanged. Therefore the closed-fixture first-moment identity is a mechanical
+qualification, not permission to call the open-core endpoint displacement.
 
 No y-axis repeat, radius-of-gyration endpoint, centroid endpoint, decoder, morphology score or feeding endpoint is
 authorized. Direct source susceptibility is retained only as the named positive calibration control.
 
-## 4. Mechanistic ablation and signed theory
+## 4. Revised source-only intervention and directional hypothesis
 
-Repeat the complete standardized settle and source-expression step with `lam_minus=0`, then apply the identical
-three-arm `c` ramp. Unlike the old multiplicative source-gain assay, the directional probe still creates a real
-chemotactic response when `lam_minus=0`; the ablation is therefore not forced to zero by probe construction.
+Every history undergoes exactly one common 40-step settle with `lam_minus=0.15`. Clone that exact settled state.
+Only the next, single source-expression update differs: one clone uses `lam_minus=0.15`, the other
+`lam_minus=0`. Because `lam_minus` enters at the final `c` update, the two source-expression outputs are identical
+in every persistent field except `c`. Apply the matched three-arm ramp only after this source update. Every arm then
+uses one common response engine with `lam_minus=0.15`; the logged primary flux occurs before that response step can
+write its own terminal source.
 
 Define the `lam_minus`-dependent attenuation of directional response for history `h`:
 
 ```text
-A_h = D_h^(lam_minus=0) - D_h^(lam_minus=0.15).
+A_h = D_h^(source lam_minus=0) - D_h^(source lam_minus=0.15).
 ```
 
 The source calibration gives higher EARLY-minus-LATE `m_minus`-linked production. For nonnegative `c`, increasing
@@ -134,17 +149,42 @@ d chi_f / d cbar_f
   = -2 chi0 cbar_f/c_sat^2 / [1+(cbar_f/c_sat)^2]^2 <= 0.
 ```
 
-The preregistered direction is consequently **positive EARLY-minus-LATE attenuation**: EARLY should be more
-saturated and less responsive to the common directional ramp. Existing gradients, spatial source heterogeneity,
-upwind changes and density can reverse this prediction; that is the non-algebraic downstream test, not a reason to
-change the sign later.
+The preregistered directional hypothesis is **positive EARLY-minus-LATE attenuation**: EARLY should be more
+saturated and less responsive to the common directional ramp. This is not a manipulation-validity theorem. A
+matched synthetic fixture gives positive paired response `+2.6175e-4` at ordinary `c` but negative response
+`-2.0241e-6` under strong saturation. Existing gradients, spatial source heterogeneity, upwind changes and density
+can therefore reverse the response without invalidating the logger or ramp. The scientific sign remains fixed as a
+falsifiable hypothesis and cannot be changed after outcomes.
 
-## 5. Audit disposition
+The `lam_minus=0` order contrast is a secondary pathway diagnostic. Failure to show its equivalence to zero would
+show that another order-dependent pathway remains, but would not algebraically invalidate the primary
+EARLY-minus-LATE interaction in `A`, because both source branches start from the same settled state and differ only
+during the declared source-expression update.
+
+## 5. Code-only qualification
+
+The passive logger is a mixin over both `DiagEngine` and the qualified no-swap clamp engine. It calls the inherited
+`_face_flux`, returns that live array unchanged to transport, and stores a separate read-only copy. On the synthetic
+state, logged and unlogged terminal hashes are both
+`39537c88c00a339c2d9e47f33b4578807e58f211abe90907cd1a0dda77c0128f`; recorded axis order is exactly
+`(-2,-1)`. The no-swap-clamped identity also passes.
+
+Seven synthetic fixtures pass: passive base identity, passive clamp identity, common-settle/source-only branching,
+matched ramp geometry, closed first-moment identity, explicit boundary-flux separation, and saturation-induced sign
+reversal. They instantiate no source world and import no downstream outcome runner.
+
+## 6. Margin rationale and disposition
 
 The frozen engine contains a measurable first downstream functional operator, and the proposed probe can be
 constructed without negative `c`, clipping, unequal added attractant, tracker-dependent scoring or a feeding
 endpoint. The observable is technically definable.
 
-It is not yet execution-qualified. A passive flux logger and the ramp construction must first pass code-only
-identity, symmetry, synthetic positive/negative and clamp tests. No scientific seed or already-open history outcome
-is needed for that qualification.
+The earlier numerical proposals `m_A=0.0001` and `m_0=0.00005` are withdrawn as seals. Both margins are
+**UNSEALED**. Synthetic fixtures establish numerical fidelity and possible effect orientation; they do not establish
+a scientifically meaningful minimum effect. A later `m_A` must be justified independently from scientific outcome
+values, using a declared scientific resolution or relevance argument. Any `m_0` must likewise be selected without
+outcomes and remains secondary rather than a primary-validity gate.
+
+The instrument is code-only qualified. The scientific preregistration remains `REVISE` until humans accept a
+margin rationale and the remaining prospective design bindings. No 570xx reconstruction, new seed, family,
+`BODY-EQUALIZATION`, feeding endpoint or reader battery is authorized.

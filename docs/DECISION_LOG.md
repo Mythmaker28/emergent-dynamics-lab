@@ -2656,3 +2656,27 @@ clamp schedule and synthetic controls are not yet code-qualified, and the margin
 seed, scientific outcome, feeding endpoint, generic reader battery, `BODY-EQUALIZATION`, 03G/V5 change or active
 reconstruction is authorized. Exact next action: human review; if approved, authorize code-only implementation and
 synthetic qualification in a separate bounded run.
+
+## D-095 — DOWNSTREAM-ORDER-READER-01 qualifies the instrument and revises causal isolation
+
+**Date:** 2026-07-17
+
+**Human-review decision:** Authorize only passive instrumentation and synthetic qualification. Use one common
+40-step settle at `lam_minus=0.15`; clone the exact settled state; vary `lam_minus` only during one source-expression
+update; apply matched ramps afterward; and use one common `lam_minus=0.15` response update. This supersedes D-094's
+separate-settle construction without opening a scientific outcome.
+
+**Instrumentation decision:** Accept the passive logger after exact state-hash identity for the base diagnostic and
+qualified no-swap engines. Accept matched-ramp geometry, exact source-only branch isolation, a closed first-moment
+identity, explicit boundary-flux separation and a synthetic saturation sign reversal. Rename the endpoint
+**mass-specific internal +x face-flux sum** because the radius-10 core is not a closed material boundary.
+
+**Scientific decision:** Retain positive EARLY-minus-LATE attenuation only as a preregistered directional
+hypothesis. The primary source-condition-by-order interaction remains interpretable if the secondary
+`lam_minus=0` order contrast is nonzero; such a residual narrows specificity rather than invalidating the primary by
+precedence. Withdraw the tentative `m_A=0.0001` and `m_0=0.00005` values as sealed thresholds. Both margins remain
+unsealed and cannot be learned from scientific outcomes.
+
+**Disposition:** Instrument `QUALIFIED`; scientific preregistration `REVISE`. No 570xx downstream reconstruction,
+new seed, prospective family, feeding endpoint, reader battery, `BODY-EQUALIZATION`, 03G/V5 change or active
+reconstruction is authorized. Exact next action: human review of the revised audit and margin rationale.

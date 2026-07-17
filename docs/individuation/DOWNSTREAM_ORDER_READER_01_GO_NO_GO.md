@@ -1,34 +1,37 @@
-# DOWNSTREAM-ORDER-READER-01 — GO / REVISE / STOP
+# DOWNSTREAM-ORDER-READER-01 — GO / REVISE / STOP after code-only qualification
 
 ## Recommendation
 
-**`REVISE` — scientifically coherent design, not yet execution-ready.**
+**INSTRUMENTATION: `GO`. SCIENTIFIC PREREGISTRATION: `REVISE`.**
 
-The exact engine supplies a first non-constitutive downstream target: the chemotactic material face flux used to
-move the scaffold on the step after `m_minus`-dependent attractant production. The proposed single directional
-`c` ramp measures that flux without using feeding, morphology selection, a decoder or a generic reader battery.
-The `lam_minus=0` arm retains ordinary chemotactic response, so it is an informative ablation rather than a
-vacuous zero created by the probe definition.
+The passive exact-face-flux logger, matched ramp, revised source-only branching schedule, closed first-moment
+fixture, boundary-flux diagnostic and sign-reversal fixture all pass synthetically. This qualifies the instrument;
+it does not authorize a scientific outcome.
 
-## Why this is not GO yet
+## What is now qualified
 
-- No passive exact-flux logger has been implemented and proven state-identical.
-- The matched ramp, common collar and response-step scheduling have not passed synthetic fixtures.
-- The proposed practical margin (`0.0001` lattice cells per response update) and ablation equivalence margin
-  (`0.00005`) are pre-outcome scientific judgments that require human acceptance.
-- No prospective seed family has been assigned, inspected or authorized.
+- One common 40-step settle at `lam_minus=0.15` is cloned exactly.
+- `lam_minus` differs only during one source-expression update.
+- Ramp arms are applied afterward and use one common response configuration at `lam_minus=0.15`.
+- Logged and unlogged base outputs have the same state hash; no-swap-clamped outputs also match.
+- The endpoint is explicitly the mass-specific internal +x face-flux sum, not whole-body displacement.
+- A closed fixture satisfies the first-moment identity to residual `-5.55e-17`.
+- Boundary flux is measured separately and cannot silently enter the internal endpoint.
+- Synthetic saturation reverses the paired response sign, confirming that the positive direction is a falsifiable
+  hypothesis rather than a manipulation gate.
 
-## Why this is not STOP
+## Why the scientific preregistration remains REVISE
 
-The observable is directly supported by the frozen equations, occurs before movement/morphology/feeding
-confounding, and is not algebraically determined by the accepted integrated source susceptibility. A bounded
-code-only qualification can decide whether the instrument is valid without producing a new history outcome.
+- `m_A` and `m_0` are unsealed; the earlier numerical proposals are withdrawn as thresholds.
+- Synthetic data cannot determine scientific practical relevance, and no scientific outcome may be used to select
+  either margin.
+- `lam_minus=0` order equivalence is secondary. A remaining order pathway narrows specificity but does not
+  invalidate the primary source-condition-by-order interaction.
+- No prospective family, seed namespace or final classification rule is authorized.
 
 ## Exact next human decision
 
-Approve, revise or reject the single flux-reader definition, its positive attenuation sign and the two practical
-margins. If approved, authorize only code-only implementation and synthetic qualification with no scientific seed.
-A separate later review would be required before assigning or opening any prospective family.
-
-Do not run new seeds, `BODY-EQUALIZATION`, feeding endpoints, additional directions, longer horizons or a reader
-battery.
+Review the updated causal audit and margin rationale. A later human decision may supply or reject an independently
+justified practical-margin rule and complete the scientific preregistration. Do not reconstruct a 570xx downstream
+outcome, open a new seed, run a prospective family, start `BODY-EQUALIZATION`, use feeding as primary, add another
+reader or begin a battery.

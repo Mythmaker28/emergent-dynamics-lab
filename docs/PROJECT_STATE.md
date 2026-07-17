@@ -1,5 +1,25 @@
 # Project State
 
+## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 INSTRUMENTATION (2026-07-17)
+
+Human review authorized instrumentation and synthetic qualification only. The revised design now uses one common
+40-step settle at `lam_minus=0.15`, exact settled-state clones, `lam_minus=0.15` versus `0` only during the single
+source-expression update, matched ramps applied afterward, and one common response update at `lam_minus=0.15`.
+This makes the primary `source condition x history order` interaction interpretable without requiring the
+secondary `lam_minus=0` order contrast itself to be equivalent to zero.
+
+The passive logger returns the inherited `_face_flux` array unchanged and stores a read-only copy. Logged/unlogged
+base and no-swap-clamped state hashes match exactly. Seven synthetic fixtures pass: base and clamp passivity,
+revised schedule isolation, ramp geometry, a closed first-moment identity (`-5.55e-17` residual), explicit boundary
+flux, and saturation-induced sign reversal. The endpoint is renamed **mass-specific internal +x face-flux sum**;
+it is not whole-body displacement. Positive attenuation is a directional hypothesis, not a validity theorem.
+
+Disposition: **INSTRUMENT `QUALIFIED`; SCIENTIFIC PREREGISTRATION `REVISE`; NO SEEDS AUTHORIZED**. `m_A` and `m_0`
+are unsealed; earlier tentative numbers are withdrawn as thresholds and cannot be estimated from scientific
+outcomes. No 570xx downstream reconstruction, new namespace, prospective family, feeding primary,
+`BODY-EQUALIZATION` or reader battery was run. Exact next action: human review of the updated causal audit and
+margin rationale.
+
 ## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 DESIGN (2026-07-17)
 
 `M_MINUS-ORDER-READER-00` is accepted only as a validated constitutive source calibration. A new code-only audit
