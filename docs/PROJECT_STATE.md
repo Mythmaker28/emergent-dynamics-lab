@@ -1,5 +1,24 @@
 # Project State
 
+## BRANCH ADDENDUM — ACCESS-STRUCTURE-00 PHASE 0 (2026-07-17)
+
+On isolated branch `codex/access-structure-00-phase0` from exact V5 commit `d4a146a`, Phase 0 audited the certified
+03G access scopes and designed a new causal localization experiment without reopening Outcome B. The audit finds
+that `L` was an 11-summary target-memory representation, `E` and `B` were not clean causal compartments, and
+`DISTRIBUTED_ENV=false` excludes only the frozen low-dimensional E/G summaries—not environmental information in
+general.
+
+Recommendation: **REVISE — HUMAN REVIEW REQUIRED — NO PROSPECTIVE SEED AUTHORIZED**. Four already-open feasible
+DEV worlds (50002/50004/50005/50007) reconstruct their committed deep `m_plus` and material vectors to at most
+`1.67e-16` absolute error, so full-state intervention development is technically possible. Prospectively identifying
+local, environmental, redundant, or synergistic access nevertheless requires a validated environment reset,
+standardized-body operator, matched/crossed graft, matched sham, and frozen manipulation-noise/equivalence margins.
+No new seed family was selected or opened; V5 and all 03G raw results remain unchanged.
+
+Exact next authorized action: human review of the Phase-0 report. A later DEV-only manipulation qualification on
+already-open seeds may begin only with explicit approval; prospective seeds require a separate completed and approved
+preregistration.
+
 ## BRANCH ADDENDUM — LCI-CAUSAL-TURNOVER-PRESEAL-03G PROSPECTIVE 001 (2026-07-17)
 
 The single hash-bound human authorization was consumed on branch

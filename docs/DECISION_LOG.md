@@ -2509,3 +2509,24 @@ verifies at tip
 `0d579d0fa40fd19afe7bfc26140133fc9c57de2b656a7606aa5a5bd8591791aa`.
 The one authorization is consumed. No additional prospective execution is
 authorized.
+
+## D-089 — ACCESS-STRUCTURE-00 Phase 0 requires intervention qualification before preregistration
+
+**Date:** 2026-07-17
+
+**Decision:** Accept the new causal-localization question as distinct from 03G, preserve certified Outcome B and V5
+unchanged, and adopt **REVISE** rather than GO or STOP. The minimal identifying design is a local/environment 2x2
+factorial (`L0E0`, `L1E0`, `L0E1`, `L1E1`) plus matched-versus-crossed `LAEB`, body controls, global `up_ref`
+ablation, direct-readout ablation, and manipulation-equivalent shams under one common future-feeding probe.
+
+**Scientific boundary:** the 03G `L`, `E`, `B`, and `Gm` variables were finite decoder summaries, not isolated causal
+compartments. `DISTRIBUTED_ENV=false` means that the own-dose label was not established through the frozen
+low-dimensional E/G summaries; it does not establish absence of environmental or relational information.
+
+**Engineering boundary:** already-open DEV deep states are deterministically reconstructible, but the repository has
+no qualified full-environment reset, standardized-body operator, matched/crossed graft, or disturbance-matched graft
+sham. Practical and equivalence margins are also unfrozen. These must be implemented and validated on already-open
+DEV seeds before any complete preregistration or prospective authorization.
+
+**Execution boundary:** no new family is selected or opened, no prospective seed is run, and active reconstruction
+is not started. Human review is the next action.
