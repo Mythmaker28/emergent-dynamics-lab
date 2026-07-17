@@ -55,3 +55,11 @@ def test_frozen_raw_has_exactly_17_original_world_rows():
     assert len(complete) == 17
     assert len({world["seed"] for world in complete}) == 17
 
+
+def test_fixed_model_panels_are_nested_without_stepwise_selection():
+    assert mr.MODEL_PANELS["mass_area"] == ("body_mass", "body_size")
+    assert set(mr.MODEL_PANELS["mass_area"]) < set(mr.MODEL_PANELS["body_geometry"])
+    assert set(mr.MODEL_PANELS["body_geometry"]) < set(mr.MODEL_PANELS["body_geometry_memory"])
+    assert set(mr.MODEL_PANELS["body_geometry_memory"]) - set(mr.MODEL_PANELS["body_geometry"]) == {
+        "mplus_mean", "mminus_mean"
+    }

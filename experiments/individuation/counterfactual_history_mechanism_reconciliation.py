@@ -266,7 +266,7 @@ def _write_json(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     text = json.dumps(payload, indent=2, sort_keys=True, allow_nan=False) + "\n"
     temp = path.with_suffix(path.suffix + ".tmp")
-    temp.write_text(text, encoding="utf-8")
+    temp.write_text(text, encoding="utf-8", newline="\n")
     os.replace(temp, path)
 
 
@@ -461,6 +461,13 @@ def analyze(raw_path: Path, replay_path: Path | None = None) -> dict:
         }
         for arm in core.PRIMARY_ARMS
     }
+    targeted_state = {
+        feature: {
+            contrast: _summary(world["first_stage_contrasts"][feature][contrast] for world in complete)
+            for contrast in ("dose", "order", "interaction")
+        }
+        for feature in ("m1_mean", "m2_mean", "mplus_mean", "mminus_mean")
+    }
     order = {
         "preprobe": {
             "factorial_order": _summary(row["mminus_preprobe"]["factorial"]["order"] for row in per_world),
@@ -511,24 +518,44 @@ def analyze(raw_path: Path, replay_path: Path | None = None) -> dict:
                         "low_early_minus_late": values["H_L_EARLY"] - values["H_L_LATE"],
                         "high_early_minus_late": values["H_H_EARLY"] - values["H_H_LATE"],
                     })
+        by_arm_checkpoint = {
+            arm: {
+                checkpoint: {
+                    "mminus_order": _summary(r["mminus"]["order"] for r in checkpoint_rows
+                                             if r["arm"] == arm and r["checkpoint"] == checkpoint),
+                    "mminus_low_early_minus_late": _summary(r["low_early_minus_late"] for r in checkpoint_rows
+                                                            if r["arm"] == arm and r["checkpoint"] == checkpoint),
+                    "mminus_high_early_minus_late": _summary(r["high_early_minus_late"] for r in checkpoint_rows
+                                                             if r["arm"] == arm and r["checkpoint"] == checkpoint),
+                    "instantaneous_uptake_dose": _summary(r["baseline_uptake"]["dose"] for r in checkpoint_rows
+                                                          if r["arm"] == arm and r["checkpoint"] == checkpoint),
+                }
+                for checkpoint in ("deep_preprobe", "standardized_prestimulus_step40", "probe_horizon_step40")
+            }
+            for arm in core.PRIMARY_ARMS
+        }
         replay_summary = {
             "exact_parent_match": True,
             "n_original_worlds": len(seeds),
-            "by_arm_checkpoint": {
-                arm: {
-                    checkpoint: {
-                        "mminus_order": _summary(r["mminus"]["order"] for r in checkpoint_rows
-                                                 if r["arm"] == arm and r["checkpoint"] == checkpoint),
-                        "mminus_low_early_minus_late": _summary(r["low_early_minus_late"] for r in checkpoint_rows
-                                                                if r["arm"] == arm and r["checkpoint"] == checkpoint),
-                        "mminus_high_early_minus_late": _summary(r["high_early_minus_late"] for r in checkpoint_rows
-                                                                 if r["arm"] == arm and r["checkpoint"] == checkpoint),
-                        "instantaneous_uptake_dose": _summary(r["baseline_uptake"]["dose"] for r in checkpoint_rows
-                                                              if r["arm"] == arm and r["checkpoint"] == checkpoint),
-                    }
-                    for checkpoint in ("deep_preprobe", "standardized_prestimulus_step40", "probe_horizon_step40")
+            "by_arm_checkpoint": by_arm_checkpoint,
+            "isolated_minus_coupled": {
+                checkpoint: {
+                    metric: _summary(
+                        next((r["mminus"]["order"] if metric_key == "mminus_order" else r[metric_key])
+                             for r in checkpoint_rows
+                             if r["seed"] == seed and r["arm"] == "isolated" and r["checkpoint"] == checkpoint)
+                        - next((r["mminus"]["order"] if metric_key == "mminus_order" else r[metric_key])
+                               for r in checkpoint_rows
+                               if r["seed"] == seed and r["arm"] == "coupled" and r["checkpoint"] == checkpoint)
+                        for seed in seeds
+                    )
+                    for metric, metric_key in (
+                        ("mminus_order", "mminus_order"),
+                        ("mminus_low_early_minus_late", "low_early_minus_late"),
+                        ("mminus_high_early_minus_late", "high_early_minus_late"),
+                    )
                 }
-                for arm in core.PRIMARY_ARMS
+                for checkpoint in ("deep_preprobe", "standardized_prestimulus_step40", "probe_horizon_step40")
             },
         }
 
@@ -561,6 +588,7 @@ def analyze(raw_path: Path, replay_path: Path | None = None) -> dict:
         "n_complete_original_worlds": len(complete),
         "complete_seeds": seeds,
         "scalar_sign_derivation": scalar_sign_derivation(),
+        "targeted_state_preprobe": targeted_state,
         "order_state": order,
         "physical_decomposition": physical,
         "feeding": feeding,
@@ -570,9 +598,16 @@ def analyze(raw_path: Path, replay_path: Path | None = None) -> dict:
         "decision_gates": {
             "body_geometry_explains_both_primary_arms": physical_explains,
             "targeted_memory_adds_reproducible_out_of_world_information": memory_adds,
+            "order_sensitive_state_not_reducible_to_body_geometry": None,
+            "reproducible_nonphysical_residual_after_validated_physical_model": False,
             "specific_named_landscape_operator_prediction_remaining": False,
         },
         "decision": decision,
+        "decision_reason": (
+            "Physical carryover is strongly suggested descriptively, but the fixed body/geometry model does not "
+            "generalize in both arms; targeted memory adds no LOWO value; the corrected small mminus order state "
+            "has no established feeding-order function or named landscape perturbation."
+        ),
         "per_world": per_world,
         "claim_boundary": (
             "Targeted memory mediation was not established. This analysis cannot establish absence of all memory, "
@@ -614,4 +649,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

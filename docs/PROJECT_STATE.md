@@ -1,5 +1,26 @@
 # Project State
 
+## BRANCH ADDENDUM — COUNTERFACTUAL-HISTORY-MECHANISM-RECONCILIATION-00 (2026-07-17)
+
+One frozen-data mechanistic reconciliation of `COUNTERFACTUAL-HISTORY-CORE-00` is complete on the exact accepted
+result parent `ea6e6a0`. No new seed, history, world, prospective namespace, or claim was opened. Deterministic
+diagnostic replays of the same 17 complete worlds matched every frozen final-state hash and feeding value.
+
+The frozen negative `m_minus` EARLY-minus-LATE prediction was a reduced-theory orientation error. With unchanged
+contrast convention, the fast-minus-slow recurrence predicts positive `m_minus` because slow `m2` retains the
+early episode more strongly. The observed positive contrast is small and persists under coupled and isolated
+probes, but feeding order remains unestablished. This is a theory/sign correction, not an order-memory discovery.
+
+Ordinary physical carryover is the leading explanation for dose feeding: mass, area, core/world `rho`, physical
+fields, and baseline uptake move with dose, and exploratory mass/area-normalized feeding reverses sign. However,
+the frozen body/geometry LOWO model does not generalize in both arms, so `PHYSICAL-CARRYOVER-ONLY` is not
+established. Targeted memory variables add no reproducible LOWO information. Final decision: **`UNRESOLVED`**;
+causal-landscape pilot **NO-GO**.
+
+Exact next authorized action: human review. Either accept `UNRESOLVED` and close the line, or explicitly authorize
+preparation only of a new body-equalization preregistration. No execution, new seed, landscape search, main merge,
+03G/V5 modification, ownership claim, or active reconstruction is authorized.
+
 ## BRANCH ADDENDUM — COUNTERFACTUAL-HISTORY-CORE-00 DEV (2026-07-17)
 
 The exact-clone 2 x 2 dose-by-order design was frozen and pushed at commit `e504288` before seed 57001, then ran

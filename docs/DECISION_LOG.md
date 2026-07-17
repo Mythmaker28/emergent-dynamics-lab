@@ -2601,3 +2601,29 @@ established. This rules out the frozen targeted-memory interpretation, not all h
 **Disposition:** STOP this preregistration candidate. Do not claim `DOSE_ONLY` or `DOSE_AND_ORDER`, open a
 prospective namespace, seal the draft, modify 03G/V5, or begin reconstruction. A fresh pre-data design separating
 the target memory coordinate from body/physical dose pathways requires human review.
+
+## D-093 — Mechanism reconciliation corrects the mminus sign but leaves dose attribution unresolved
+
+**Date:** 2026-07-17
+
+**Theory decision:** Keep the frozen EARLY-minus-LATE contrast unchanged and correct the reduced-theory orientation.
+For the exact write/decay rates, two 60-step episodes and 120-step settle, the slow `m2` component has a larger
+negative EARLY-minus-LATE response than fast `m1`; therefore `m1-m2` and `m_minus` are positive. The frozen negative
+orientation was not justified by the intended scalar recurrence. The exact spatial engine still has endogenous
+`Psi`, transport and body dynamics, so magnitude requires the trajectory. This is a theory/sign correction, not a
+discovery or post-outcome contrast redefinition.
+
+**Evidence decision:** Accept deterministic same-manifest diagnostics only after all 17 complete worlds reproduce
+their frozen final-state hashes and feeding values exactly. The positive `m_minus` order state is small and persists
+under coupled and isolated probes, but feeding order remains unestablished. Targeted `mplus/mminus` predictors add
+no reproducible original-world LOWO information.
+
+**Attribution decision:** Physical carryover is the leading candidate because body mass/area, core and world `rho`,
+physical fields and baseline uptake change with dose, while predeclared exploratory mass/area normalizations remove
+and reverse the total-feeding contrast. Do not call it the only explanation: the fixed body/geometry model fails the
+strict two-arm out-of-world explanation gate.
+
+**Disposition:** `UNRESOLVED`; causal-landscape pilot `NO-GO`. Preserve `NO_MEMORY_FIRST_STAGE — STOP`, all parent
+raw results, 03G and V5. No new seed, prospective run, landscape search, ownership, order-memory, identity, heredity,
+or active-reconstruction claim is authorized. Human review may close the line or authorize preparation only of a
+new body-equalization preregistration.
