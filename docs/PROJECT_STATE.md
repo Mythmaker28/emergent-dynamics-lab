@@ -1,5 +1,28 @@
 # Project State
 
+## BRANCH ADDENDUM — ACCESS-STRUCTURE-00 PHASE 0.6A (2026-07-17)
+
+The explicitly authorized boundary-safe repair ran only the complete already-open DEV namespace `50001-50010`.
+The exact Phase 0.5 maximum seam (`22.872170460755093x`) and individual-arm imbalance reproduced. Two predeclared
+families/four total configurations then qualified 24 technical arms each on the four existing deep-feasible worlds;
+no active crossed feeding was computed.
+
+All four candidates match each arm's `rho,U,V,c,N` totals inside the frozen float64 criterion and retain exact
+same-source active-operation shams. No candidate meets the joint gate. `RIP_HARD_R8` is best but still fails: it is
+24/24 viable and retains payload (`L` projection minimum 0.679; donor-body full-weight coverage minimum 0.949), yet
+its preserved outer seam merely relocates an off-manifold internal discontinuity. Independent `rho/U/V` balance
+creates near-empty cells with positive extensive internal fields; the worst derived interface ratio is `1.76e11`,
+and raw `rho/c/N/m_plus` ratios remain `208.8/9.56/9.96/7.63`. The other three configurations lose tracks and/or
+payload coverage and also fail seams.
+
+Decision: **STOP-TRANSPLANT — HUMAN REVIEW REQUIRED — NO PROSPECTIVE SEED AUTHORIZED**. This stops the tested
+spatial-graft route, not the scientific access question. Local, environmental, redundant, and synergistic access
+remain unresolved. Certified 03G Outcome B and V5 are unchanged.
+
+Exact next authorized action: human review of the Phase 0.6A report. Any future causal-access experiment requires a
+fresh, conceptually different, explicitly authorized design review; do not scan more graft radii/tapers, seal the
+existing draft, open prospective seeds, merge, or start active reconstruction.
+
 ## BRANCH ADDENDUM — ACCESS-STRUCTURE-00 PHASE 0.5 (2026-07-17)
 
 The explicitly authorized DEV-only operator qualification ran only the already-open family `50001-50010`.

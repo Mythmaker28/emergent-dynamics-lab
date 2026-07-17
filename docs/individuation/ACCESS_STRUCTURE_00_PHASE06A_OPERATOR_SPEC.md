@@ -113,4 +113,3 @@ not scientific effect thresholds.
 If no configuration satisfies disturbance control and payload retention together after these two predeclared
 families, the transplant strategy receives `STOP-TRANSPLANT`. `REVISE` is reserved for one specific bounded
 correction justified by the complete grid rather than an invitation to scan more variants.
-

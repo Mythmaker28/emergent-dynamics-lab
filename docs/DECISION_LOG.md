@@ -2557,3 +2557,28 @@ phase, halo, balance, or global-channel artefact. Active crossed feeding was del
 reconstruction is authorized. Human review is required. Any boundary-aware/balance correction is a separately
 approved DEV-only revision; if `C/H/E` cannot be separated without destroying the state under test, the next
 decision must be STOP rather than threshold relaxation.
+
+## D-091 — ACCESS-STRUCTURE-00 Phase 0.6A stops the spatial-transplant route
+
+**Date:** 2026-07-17
+
+**Decision:** Record **STOP-TRANSPLANT** after the complete predeclared Phase 0.6A DEV-only grid. Preserve the causal
+access question as unresolved; do not convert this operator failure into absence of local, environmental,
+redundant, or synergistic access.
+
+**Evidence:** The exact Phase 0.5 `22.872170460755093x` seam and individual-arm imbalance reproduced. Both named
+repair families and all four frozen configurations then matched every arm's `rho,U,V,c,N` totals, retained exact
+same-source active-operation shams, and preserved scheduler phase. None passed the joint gate. The only 24/24
+viable configuration (`RIP_HARD_R8`) retained the donor memory payload but moved the discontinuity inward; separate
+non-negative balance of `rho/U/V` created off-manifold intensive concentrations and an all-interface ratio of
+`1.76e11`. Raw `rho,c,N,m_plus` interfaces also remained far above the unchanged envelope. Wider quintic variants
+lost tracks and/or body coverage while still failing seams.
+
+**Interpretation:** Scalar arm-level conservation is not sufficient for an on-manifold body/environment
+counterfactual. The conflict involves body geometry, concentrations, gradients/flux, and payload. More radius,
+taper, or correction-basis scans would be a repair zoo and are not authorized.
+
+**Execution boundary:** no active crossed feeding, prospective seed, family reservation, seal, ownership claim,
+03G/V4.1/V5/certified-result change, merge, or active reconstruction occurred. Any later causal-access attempt must
+be a fresh, conceptually different, explicitly authorized design rather than an amendment that reuses these
+transplants.
