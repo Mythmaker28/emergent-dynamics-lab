@@ -2628,3 +2628,31 @@ It does not establish downstream movement or feeding, ownership, individual memo
 prospective confirmation or active reconstruction. Preserve D-092 and the parent STOP unchanged. Human review must
 decide whether direct source production is a prospectively defensible reader; no seed opening, protocol seal,
 ownership pair, 03G/V5 modification or generic reader battery is authorized automatically.
+
+## D-094 — DOWNSTREAM-ORDER-READER-01 selects one flux endpoint but requires code-only qualification
+
+**Date:** 2026-07-17
+
+**Causal decision:** Treat the D-093 result as a constitutive source calibration only. In the frozen engine,
+`m_minus` changes `q_c` at the end of an update; that source can first affect movement through `_face_flux` on the
+next update. The face response is not determined by integrated source susceptibility because it also depends on
+spatial gradients, `c`-dependent saturation, density, free capacity and upwind selection.
+
+**Reader decision:** Select exactly one downstream observable: mass-specific positive-x material transport logged
+from the exact face flux used by the first response update. After a 40-step standardized isolation settle and one
+unperturbed source-expression update, apply one matched nonnegative radius-10 `c` ramp with
+`epsilon_c=0.01`, equal total attractant in `-1/0/+1` arms and no second direction or amplitude. Define
+`D=[v(+)-v(-)]/2` and the `lam_minus`-dependent attenuation `A=D^0-D^0.15`. Direct source susceptibility remains a
+positive calibration control only.
+
+**Sign/statistical decision:** Freeze positive EARLY-minus-LATE attenuation, a practical margin of `0.0001` lattice
+cells per response update, and a `lam_minus=0` order-equivalence margin of `0.00005`. The original world is the
+unit. A complete world requires all four histories, two `lam_minus` conditions and three ramp arms; no partial
+block, post-history body adjustment or pseudoreplication is allowed. A future design would require at least 18
+complete worlds, but this decision assigns no seed namespace.
+
+**Disposition:** `REVISE`. The design is scientifically coherent, but the passive flux logger, ramp construction,
+clamp schedule and synthetic controls are not yet code-qualified, and the margins require human approval. No new
+seed, scientific outcome, feeding endpoint, generic reader battery, `BODY-EQUALIZATION`, 03G/V5 change or active
+reconstruction is authorized. Exact next action: human review; if approved, authorize code-only implementation and
+synthetic qualification in a separate bounded run.

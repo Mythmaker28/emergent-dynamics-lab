@@ -1,5 +1,27 @@
 # Project State
 
+## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 DESIGN (2026-07-17)
+
+`M_MINUS-ORDER-READER-00` is accepted only as a validated constitutive source calibration. A new code-only audit
+traced the exact update order from history through `m_minus`, end-of-step attractant production, next-step
+chemotactic face flux, material movement, morphology and later feeding. The first non-constitutive downstream
+operator is the actual material face flux used by the engine; its response depends on local gradients, attractant
+saturation, density, free capacity and upwind selection and is not fixed by integrated source susceptibility.
+
+The design selects exactly one endpoint: mass-specific +x material transport under one matched radius-10 local
+attractant ramp (`epsilon_c=0.01`) on the first response update after one unperturbed source-expression update.
+`lam_minus=0` retains ordinary ramp responsiveness and is used causally, through
+`A_h=D_h^0-D_h^0.15`, rather than producing a vacuous zero probe. The frozen expected EARLY-minus-LATE attenuation
+is positive; the practical margin is `0.0001` lattice cells per response update and the ablation equivalence margin
+is `0.00005`. Original world is the unit; all four histories, both ablation conditions and all three ramp arms must
+survive as one complete block; minimum valid `n=18` is proposed.
+
+Recommendation: **`REVISE` — DESIGN COMPLETE, CODE-ONLY QUALIFICATION REQUIRED, NO SEEDS AUTHORIZED**. No engine
+outcome, 570xx continuation, prospective namespace, feeding endpoint, body equalization, additional direction,
+longer horizon or decoder was run. Exact next action: human review of the single flux reader, sign and margins.
+Only if approved may a later run implement and validate the passive logger and synthetic fixtures without a
+scientific seed.
+
 ## BRANCH ADDENDUM — M_MINUS-ORDER-READER-00 DEV (2026-07-17)
 
 The exact parent `ea6e6a0ab2ccc3e94eba364ddb459088c96d6033` and its
