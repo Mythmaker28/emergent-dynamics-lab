@@ -1,0 +1,53 @@
+{
+  "schema": "DOWNSTREAM-ORDER-READER-01-PROSPECTIVE-PREFLIGHT-v1",
+  "status": "SEAL_OR_PREFLIGHT_FAILURE",
+  "date": "2026-07-18",
+  "authorization_source_sha256": "289872888ba19d149617a70256f62f7c21b97efcea7fd222cc5d9f71ef54557d",
+  "authorized_manifest_sha256": "0d40765937ca203269bd7fa935f3db4c999576dabf2d6ca0f96223f777ba03e4",
+  "observed_manifest_sha256": "0d40765937ca203269bd7fa935f3db4c999576dabf2d6ca0f96223f777ba03e4",
+  "sealed_parent": "0949ff7167082a894c12480e0b2c75b4cae1c7c6",
+  "execution_branch": "codex/downstream-order-reader-prospective-run-00",
+  "manifest_required_branch": "codex/downstream-order-reader-prospective-seal-00",
+  "seal_verifier": {
+    "passed": 24,
+    "total": 25,
+    "status": "FAIL",
+    "verdict": "REVISE_SEAL",
+    "failures": ["required_branch"],
+    "engine_imported": false,
+    "worlds_initialized": 0
+  },
+  "preflight_checks": {
+    "manifest_hash_exact": true,
+    "head_exactly_sealed_parent": true,
+    "worktree_clean_before_preflight": true,
+    "prospective_output_absent": true,
+    "independent_reproduction_output_absent": true,
+    "exact_48_unique_seeds_58001_through_58048": true,
+    "all_15_bound_hashes_match": true,
+    "environment_matches_manifest": true,
+    "all_25_seal_checks_pass": false,
+    "branch_binding_matches_execution_branch": false,
+    "mission_named_command_is_executable_sealed_command": false
+  },
+  "command_binding_conflict": {
+    "mission_named_path": "docs/individuation/DOWNSTREAM_ORDER_READER_01_FUTURE_COMMANDS.md",
+    "mission_named_path_sha256": "55fc3b1a84cb6798e2f01df85f755a529e4477712c28dbccdcc3c5e3ee255743",
+    "problem": "unsealed placeholder template; execution command lacks the required --authorization argument",
+    "bound_sealed_path": "docs/individuation/DOWNSTREAM_ORDER_READER_01_SEALED_COMMANDS.md",
+    "bound_sealed_path_sha256": "ebb738708f0a3b8e8158e0d5c6b5e8b29791a875969e50c1b66cf66ccc946048"
+  },
+  "environment": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.10",
+    "numpy": "2.5.1",
+    "scipy": "1.18.0",
+    "pytest": "8.4.2"
+  },
+  "scientific_runner_invoked": false,
+  "scientific_engine_initialized": false,
+  "scientific_worlds_initialized": 0,
+  "prospective_output_created": false,
+  "external_authorization_json_created": false,
+  "required_next_action": "repair and reseal the execution-branch and exact-command bindings, then obtain a new exact-hash human execution authorization"
+}

@@ -2736,3 +2736,25 @@ manifest and must be supplied later as one external exact-hash authorization obj
 25/25 gates from a clean committed tree, the prospective output path is absent, and zero engines/worlds were
 initialized. Exact next action: request one final explicit human authorization bound to the immutable manifest
 hash; otherwise stop.
+
+## D-098 — DOWNSTREAM-ORDER-READER-01 execution authorization fails immutable preflight
+
+**Date:** 2026-07-18
+
+**Authorization received:** One prospective execution was explicitly authorized for manifest SHA-256
+`0d40765937ca203269bd7fa935f3db4c999576dabf2d6ca0f96223f777ba03e4`, sealed parent `0949ff7` and seeds
+`58001-58048`, on new branch `codex/downstream-order-reader-prospective-run-00`.
+
+**Preflight observation:** Hash, exact parent, clean tree, outputs absent, 48 unique ordered seeds, all 15 bound
+hashes and environment pass. The engine-free verifier returns 24/25 and fails `required_branch`: the immutable
+manifest/verifier/runner require `codex/downstream-order-reader-prospective-seal-00`, not the authorized run branch.
+The exact command path named by the authorization is independently stale: it is the old placeholder template and
+lacks the required `--authorization` argument.
+
+**Decision:** Apply the mandatory fail-closed rule. Do not synthesize an authorization JSON, invoke the runner,
+patch code/manifest, initialize a world or create an output. The current authorization cannot survive the required
+reseal because the manifest hash will change.
+
+**Disposition:** **SEAL_OR_PREFLIGHT_FAILURE; ZERO WORLDS.** Exact next action: a separately authorized binding-only
+repair aligning manifest, verifier, runner, execution branch and named command file; reseal; then obtain a new
+exact-hash human execution authorization. No scientific definition or result changed.

@@ -1,5 +1,18 @@
 # Project State
 
+## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 PROSPECTIVE PREFLIGHT FAILURE (2026-07-18)
+
+The exact-hash execution authorization was received, but the mandatory engine-free preflight failed closed before
+the scientific runner was invoked. The requested execution branch starts exactly at sealed parent `0949ff7`, the
+manifest hash, 48 seeds, all 15 bound hashes, environment and empty output paths pass, but the verifier returns
+24/25 because the immutable manifest requires the seal branch rather than the newly authorized execution branch.
+
+The mission-named `DOWNSTREAM_ORDER_READER_01_FUTURE_COMMANDS.md` is also the old placeholder template without the
+required authorization argument; the executable bound command resides in a differently named sealed file. No
+substitution or patch was made. Disposition: **SEAL_OR_PREFLIGHT_FAILURE**. Runner/engine/world initializations and
+prospective outputs are all zero. Exact next action: binding-only repair and reseal, then new exact-hash human
+authorization; no scientific content may change.
+
 ## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 PROSPECTIVE SEAL (2026-07-18)
 
 Human review approved sealing but not execution. The immutable manifest now contains exactly 48 unique audited
