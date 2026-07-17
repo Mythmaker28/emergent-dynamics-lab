@@ -1,0 +1,365 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs,longtable,array}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{authblk}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{seqsplit}
+\captionsetup{font=small}
+\setlist{nosep}
+\renewcommand{\arraystretch}{1.15}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\hash}[1]{\texttt{\seqsplit{#1}}}
+\setlength{\emergencystretch}{3em}
+\newcommand{\established}{\textsc{Established}}
+\newcommand{\qualified}{\textsc{Supported with qualification}}
+\newcommand{\notestablished}{\textsc{Not established}}
+\newcommand{\falsified}{\textsc{Falsified within the tested criteria}}
+
+\title{\textbf{Causal Persistence Without Ownership: Deep Material Turnover Dissociates an Engineered State from Individual Memory in Simulated Droplets}}
+\author[1]{[AUTHOR NAME TO BE CONFIRMED]}
+\affil[1]{[AFFILIATION AND ORCID TO BE CONFIRMED]}
+\date{July 2026 -- V5 synthesis candidate}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\small\textbf{Alternative titles.} (i) \emph{Persistence Is Not Possession: A Prospective Test of Memory Ownership Under Material Turnover};
+(ii) \emph{A Causal Remnant Is Not an Individual Memory: Falsifying Ownership in a Simulated Droplet};
+(iii) \emph{When a State Survives but the Individual Does Not Own It: A Falsification Ladder for Organizational Memory}.
+\end{center}
+
+\begin{abstract}
+\noindent\textbf{Background.}
+Biological individuals persist while their material constituents turn over, inviting the proposal that organization rather than matter carries memory and identity. Yet persistence of a causally active state does not show that the state is owned by a particular individual: the same information may remain readable from the environment, the body, or other distributed variables. We test this distinction in a frozen simulated reaction--transport droplet with an engineered two-component experience-dependent field.
+
+\noindent\textbf{Methods.}
+We organized the evidence as a preregistered falsification ladder. Earlier corrected analyses established that a low-dimensional cumulative-history coordinate was readable after turnover but, after original-world grouping, the historical deep estimate was $R^2=0.6947$ across only three worlds and no longer supported its former certification. A separate prospective non-fusing experiment established local causal feeding effects in coexisting droplets at rest. The primary study then executed a sealed turnover family exactly once: seeds 54001--54050, 50 worlds, a minimum of 18 valid worlds, and a feasibility-only reserve that was not activated. Original world was the inferential unit. We compared target-local memory (L) against nearest-neighbour (N), target-memory-excluded environment (E), target-removed global summary (G-minus-target), and body/environment baseline (B), while separately testing causal expression. All statistics were independently recomputed from committed raw bytes.
+
+\noindent\textbf{Results.}
+Twenty-one worlds met all frozen feasibility, tracking, assay, and deep-turnover criteria. Own-history information exceeded the within-world permutation null (\code{G\_OWN\_PERM=true}; mean skill 0.3954, 95\% Student $t$ interval [0.1753, 0.6156], permutation $p=0.000999$). The retained state causally affected feeding after turnover (\code{G\_CAUSAL=true}; own contrast 0.1648 [0.1443, 0.1854]), with sham, neighbour, fixed-mask, and channel-ablation checks in the preregistered direction. However, target-local information failed the ownership gate (\code{G\_LOCAL\_EXCLUSION=false}): L did not reliably outperform E (mean paired advantage 0.2072, interval [-0.0221, 0.4364]) or B (0.1446 [-0.0226, 0.3118]). Detectable environmental ownership was also not positively established (\code{DISTRIBUTED\_ENV=false}). The frozen decision tree therefore selected Outcome B, a causal feeding effect without ownership. An independent raw-only implementation agreed with the canonical analysis across 9,357 material leaves, including 9,283 numeric leaves, with maximum absolute difference 0.
+
+\noindent\textbf{Interpretation.}
+An engineered experience-dependent state can remain causally active through deep material replacement without satisfying a preregistered criterion for exclusive target-local ownership. Within the tested C1c architecture, causal persistence is therefore insufficient for individual memory. The result does not show that all distributed encodings or all architectures fail, nor does it establish identity, active reconstruction, reproduction, heredity, evolution, or life.
+\end{abstract}
+
+\section{Introduction}
+
+Material replacement and functional continuity are often presented as evidence that biological identity must reside in organization rather than in particular molecules. That intuition motivates autopoietic accounts of living organization, dynamical accounts of persistence, and artificial-life attempts to construct individuals whose organization outlives their matter \citep{varela1974,maturana1980,godfreysmith2009,bedau2000}. It is also easy to over-read. A state may survive replacement because it is copied passively into new material, continually imposed by a shared environment, or recoverable from body and field variables that are not exclusive to the apparent entity. Even if erasing the state changes behavior, the experiment has established causal relevance, not necessarily ownership. The central question of this paper is therefore narrower than ``can a state persist?'' and sharper than ``can a decoder read history?'': when an engineered history-dependent state remains causally active after deep turnover, is its graded information demonstrably owned by the target-local representation?
+
+The distinction matters because three propositions that sound similar are logically independent. First, a variable can contain information about past experience. Second, that variable can causally affect future dynamics. Third, the information can belong preferentially to one persistent entity rather than to its surroundings or body. Decodability addresses the first proposition. Interventions address the second. Only matched access-scope comparisons address the third. Conflating these propositions turns shared history into individual memory and local causal coupling into identity. Our study was designed to make that conflation fail visibly.
+
+The experimental platform is a periodic two-dimensional reaction--transport medium containing localized droplets. Density, nutrient, attractant, and excitable internal fields define a frozen scaffold. We added an engineered bounded memory field $m=(m_1,m_2)$, written by local experience and read through nutrient uptake and attractant production. Earlier work on this platform built a sequential evidential record. A historical manuscript argued that a cumulative-history coordinate remained decodable after material turnover. A later reconciliation discovered that the uncertainty procedure mixed duplicate original histories across bootstrap folds; after original-world grouping, the positive deep point estimate remained but the old ``certified above 0.50'' wording had to be withdrawn. A prospective non-fusing confirmation then showed that erasing one droplet's local state changed that droplet's feeding while erasing a neighbour did not. Those results established a useful premise: local causal effects can exist in coexisting, physically distinct droplets. They did not answer whether target-specific graded information remains locally owned after deep turnover.
+
+The primary experiment answered that missing question prospectively. Before any 54xxx seed was executed, it froze the family, code, environment, raw schema, tracking events, access scopes, statistics, causal gates, and an executable A--F decision tree. A final seal bound those artifacts, a human phrase authorized exactly one prospective execution, and an append-only ledger recorded the family. The 50 primary worlds were executed once in ascending seed order. Twenty-one valid worlds exceeded the preregistered minimum of 18, so no reserve seed was run. The resulting gate vector contained a deliberately uncomfortable combination: own-history decodability passed; causal feeding passed; local exclusion failed; and the detectable environmental-ownership diagnostic also failed. The unique frozen outcome was B: a causal feeding effect without ownership.
+
+That combination is scientifically informative. The failure is not that the state vanished, became unreadable, or lost causal efficacy. It survived all three. The failure is that the target-local representation did not beat two preregistered alternative access scopes, E and B, with a positive lower paired interval. This separates causal persistence from individual memory using a direct empirical contrast rather than a philosophical stipulation. It also avoids the opposite overstatement. Because E and G-minus-target are finite, low-dimensional summaries, their failure to establish environmental ownership does not prove that the environment contains no relevant information. The correct residual interpretation is a passively compatible local causal remnant whose exclusive ownership remains unresolved.
+
+Our contribution is therefore both substantive and methodological. Substantively, we show that causal persistence and ownership are empirically dissociable in a frozen simulated architecture. Methodologically, we present a falsification ladder that treats corrections, nulls, and failed gates as central outputs. The ladder moves from storage, to readability, to causal expression, to turnover survival, to non-fusing locality, and finally to ownership. It includes a public correction chain: row/world leakage, largest-component teleportation, a fusion incident, a grouped-inference downgrade, an authorization-template defect caught before execution, a sealed one-shot family, and an exact raw-only reproduction. The paper's claim is not that the architecture nearly achieved individuality. It is that the strongest-looking positive ingredients still failed a predeclared ownership test.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/fig1_falsification_ladder.png}
+\caption{\textbf{Falsification ladder.} Sample unit: protocol rung, with measured gates evaluated at the original-world level where applicable. $n$ worlds: not applicable to rungs 1 and 6 as conceptual statements; the non-fusing causal rung used 23 valid prospective worlds and the turnover rungs used 21 valid worlds from 50 one-shot prospective worlds. Status: V4.1 historical evidence is corrected; CONFIRM-02 and 03G are prospective; no DEV value selects the final outcome. Uncertainty: shown in the result-specific figures, not in this schematic. Generating script: \code{scripts/recompute\_and\_figures\_05.py}. Source artifacts: V4.1 reconciliation at \code{847d51ef}, CONFIRM-02 certificate at \code{830c2d00}, and 03G certificate at \code{9cb996bb}.}
+\label{fig:ladder}
+\end{figure}
+
+\section{Operational definitions}
+
+We use operational definitions because terms such as memory, ownership, and individuality otherwise absorb the conclusion they are meant to test.
+
+\paragraph{Experience-dependent state.}
+A measurable internal field whose value changes as a function of the imposed nutrient history. This is a descriptive category. It does not imply emergence, biological memory, agency, or private experience.
+
+\paragraph{Decodability.}
+Out-of-world predictive information about a frozen history label under training-fold-only preprocessing and a predeclared decoder. A positive decode establishes accessible statistical information. It does not locate the information or establish that the entity uses it.
+
+\paragraph{Causal expression.}
+A paired downstream change under an intervention on the state or its readout, with sham, neighbour, fixed-mask, and channel-ablation controls in their frozen directions. The readout is directly coupled to the memory by construction, so the result is interventionally causal but should not be described as an emergent distal behavior.
+
+\paragraph{Material persistence.}
+Retention of a state or effect when the passive old-material fraction $M_i$ of the tracked target falls below the frozen deep-turnover bound. Material persistence excludes simple carriage by the original cohort but does not distinguish passive copying from active reconstruction.
+
+\paragraph{Locality.}
+A causal effect specific to erasing the target rather than a neighbour, in worlds where three components remain distinct and tracking admits no merge, split, loss, or ambiguity. Locality concerns the intervention. It is weaker than ownership of graded information.
+
+\paragraph{Ownership.}
+Preferential predictive performance of the exact target-local memory scope L over each frozen exclusion scope N, E, G-minus-target, and B, with a positive lower paired original-world interval, together with own-history permutation significance and causal expression. Ownership is therefore a conjunction, not a synonym for local decodability.
+
+\paragraph{Individual memory.}
+For this paper, a causal, turnover-surviving, locally owned record of a target's own graded history. This is a stringent operational criterion, not a universal metaphysical definition. Failing it in C1c does not prove that no other representation or architecture could instantiate individuality.
+
+\paragraph{Active reconstruction.}
+Recovery toward a target state by a state-dependent process that does more than passively copy local intensive values during growth. Active reconstruction was not implemented or observed. New material inherits local memory by construction; that inheritance must not be relabelled as reconstruction.
+
+Figure~\ref{fig:ladder} summarizes the resulting logic. A positive result at a lower rung is retained even when a higher rung fails. This prevents the negative ownership result from erasing the genuine causal effect, and prevents the causal effect from licensing the stronger ownership claim.
+
+\section{Related work}
+
+The physical substrate belongs to the broad lineage of reaction--diffusion and nonequilibrium pattern formation. Turing's chemical theory of morphogenesis made spatial pattern a dynamical consequence of coupled diffusion and reaction \citep{turing1952}; activator--inhibitor models, positional information, and nonequilibrium pattern theory developed that foundation \citep{gierer1972,wolpert1969,cross1993}. The internal excitable chemistry is FitzHugh--Nagumo-like \citep{fitzhugh1961,nagumo1962}. These references motivate the scaffold but do not imply that its droplets are cells. The model is a controllable dynamical system in which targeted interventions and exact replay are possible.
+
+Active droplets and protocells provide a closer physical analogy. Chemically driven droplets can grow and divide in theoretical models \citep{zwicker2017}; biomolecular condensates organize chemistry through phase separation \citep{brangwynne2009,hyman2014,banani2017}; active coacervates can turn over components, grow, resist ripening, fragment, or proliferate \citep{donau2020,nakashima2021,matsuo2021}; and fatty-acid vesicle systems can encapsulate, grow, and divide \citep{hanczyc2003}. These systems demonstrate that material flux, compartmentalization, and history-sensitive chemistry are physically meaningful targets. Our result is not a quantitative model of any of them. It addresses a measurement problem: what evidence would distinguish a causal state in a compartment from a state owned by that compartment?
+
+Engineered biological memory supplies a demanding comparison. Synthetic toggle switches and positive-feedback modules store state through multistability and hysteresis \citep{gardner2000,xiong2003}; oscillatory synthetic circuits demonstrate designed dynamical readout \citep{elowitz2000}; attractor networks formalize distributed memory in another domain \citep{hopfield1982}. Our C1c field has no equivalent bistable protection. It consists of leaky integrators, local templating, diffusion, and passive inheritance. Persistence in such an architecture can be real while remaining weak evidence for individuality. This contrast is useful because it separates ``a state survives'' from ``a state is actively maintained as one of multiple protected identities.''
+
+The ownership test also draws on observability and causal inference. Observability asks whether internal state can be inferred from outputs \citep{hermann1977}; causal diagrams and potential-outcome reasoning ask how interventions change outcomes \citep{rubin1974,pearl1995}. Neither framework by itself assigns information to an individual. Our access-scope matrix adds that missing comparison by asking whether the target-local representation predicts its own history better than predeclared alternatives.
+
+Finally, the study belongs to a methodological literature on leakage, preregistration, resampling, and tracking. Duplicate or related samples across training and test sets can create apparently strong generalization \citep{kaufman2012}. Bootstrap uncertainty is meaningful only when the resampled unit matches the inferential unit \citep{efron1979}. Preregistration can separate planned tests from adaptive exploration \citep{nosek2018}. Connected-component labelling and particle tracking must explicitly handle merges, splits, disappearance, and ambiguity \citep{rosenfeld1966,jaqaman2008}. Every one of these issues altered the evidential record here. Rather than treating them as ancillary implementation details, we treat them as part of the scientific result.
+
+\section{Model and memory architecture}
+
+The frozen scaffold is a periodic $64\times64$ lattice with timestep $\mathrm{d}t=0.1$. It contains density $\rho(x,t)$, excitable internal fields $(U,V)$, diffusing nutrient $N$, and self-produced attractant $c$. Density moves up attractant gradients, grows when nutrient is available and crowding is low, and decays. Periodic boundaries require wrap-aware component detection. The complete update law and constants are bound in the committed source; the paper focuses on the engineered memory terms that define the claims.
+
+The bounded intensive memory is $m=(m_1,m_2)$ and is transported extensively as $M_f=\rho m$. A local experience signal combines nutrient--attractant balance and uptake relative to the world mean:
+\begin{equation}
+\Psi(x,t)=\tanh\!\left[k_{\mathrm{exp}}(N-c)+k_{\mathrm{up}}(u-\bar u)\right].
+\label{eq:psi}
+\end{equation}
+Each component integrates this signal with a distinct forgetting rate:
+\begin{equation}
+\dot m_k=\eta_w\Psi-\eta_{d,k}m_k+\eta_t\left(\langle m_k\rangle_{\mathrm{nbr}}-m_k\right)+D_m\nabla^2m_k,
+\qquad m_k\in[-1,1].
+\label{eq:write}
+\end{equation}
+The frozen C1c values are $\eta_w=0.015$, $(\eta_{d,1},\eta_{d,2})=(0.35,0.006)$, $\eta_t=0.010$, and $D_m=0.010$. Newly grown density receives the local intensive value, so growth passively transfers the state into new material. Death scales density and extensive memory together. This construction can preserve an intensive coordinate during turnover without reconstructing it toward a target.
+
+Two orthogonal combinations affect the physics:
+\begin{align}
+m_+ &= m_1+m_2, & u &\mapsto u\left(1+\lambda_+\tanh m_+\right),\\
+m_- &= m_1-m_2, & \text{attractant production} &\mapsto \text{production}\left(1+\lambda_-\tanh m_-\right),
+\end{align}
+with $(\lambda_+,\lambda_-)=(0.25,0.15)$. These are the only memory-to-physics channels. Channel ablation is therefore an exact manipulation check. Because uptake is directly coupled to $m_+$, a feeding contrast after erasure establishes causal expression of the engineered state, not a novel autonomous behavior.
+
+In the historical experiments, global two-phase nutrient amplitudes defined cumulative dose $h_1=a_{\mathrm{early}}+a_{\mathrm{late}}$ and order contrast $h_2=a_{\mathrm{late}}-a_{\mathrm{early}}$. In the turnover ownership experiment, three target droplets within each world carried target-specific graded histories under the frozen C1c protocol. The primary coordinate was own cumulative dose through $m_+$. Entity IDs, seed labels, target labels, and tracer cohort IDs never entered the physics, detection, or association score.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/fig2_model_memory_channels.png}
+\caption{\textbf{Frozen scaffold and engineered memory channels.} Sample unit: protocol component. $n$ worlds: not applicable because this is a model schematic. Status: the scaffold and C1c parameters were frozen before the reported prospective families; no DEV outcome is plotted. Uncertainty: none, because arrows denote implemented equations rather than estimates. Generating script: \code{scripts/recompute\_and\_figures\_05.py}. Source artifacts: V4.0 manuscript source at commit \code{23b53aee} and authoritative turnover protocol \code{TURNOVER\_PROTOCOL\_03G.md} at commit \code{9cb996bb}.}
+\label{fig:model}
+\end{figure}
+
+\section{Evidence sequence and preregistered protocol}
+
+\subsection{Protected source histories}
+
+The manuscript synthesizes three protected histories without merging or rewriting them. V4.1 is commit \hash{847d51ef78d0d55d30f05df275d97aa4af0c558f}, descending from preserved V4.0 commit \hash{23b53aee4169deeda30aad2a9dba8587024f8d3d}. CONFIRM-02 was frozen at \hash{9b7580bc3a09293a4b0b19b70cff8c39c5cb1378}, executed prospectively at \hash{830c2d006f5278295e965887f8ccedee34d47e67}, and followed only by a post-hoc geometric addendum at \hash{9c8a62cd3f6794eb9ac435f638671e5561086cd0}. The turnover result is commit \hash{9cb996bb891f9a618e593f2f5c302f30210458de}, whose exact parent is authorization commit \hash{c158bc0b848710edeafd425f31dfcbd5aefc0934}. The independent raw-only reproduction is commit \hash{a8d6446fade6dbeb984e269fab27ddd5ebf75286}. A machine registry records the Git blob and SHA-256 of every imported source.
+
+\subsection{V4.1 correction as historical premise}
+
+V4.1 did not run a new simulation. It re-analysed committed feature vectors with original world as the outer group. The historical bootstrap had sampled 12 histories with replacement and assigned duplicate draws fresh fold identifiers. Under its fixed 3,000 replicates, all 3,000 contained at least one duplicate and none was leakage-free. Original rows could therefore occur in both training and test sets. V4.1 replaced that uncertainty with leave-one-original-world-out predictions and reported the three world scores directly. At deep turnover, $h_1$ had world scores 0.7454, 0.4141, and 0.9246, yielding pooled $R^2=0.6947$. Only three original worlds existed. The historical confidence interval and ``certified above 0.50'' wording were withdrawn. Deep $h_2$ remained not established. The committed summary still recorded 36/36 surviving trajectories, zero switches, mean deep $M=0.1902$, and 34/36 records at $M\le0.25$, but lacked event-level masks and association alternatives needed to reconstruct fusion handling. These observations motivated, but did not satisfy, a prospective ownership test.
+
+\subsection{CONFIRM-02 non-fusing local intervention}
+
+CONFIRM-02 asked whether local memory erasure changes feeding in three coexisting droplets that remain physically distinct throughout the assay. The frozen family was seeds 53001--53032. Twenty-three of 32 worlds were eligible and G0-valid. Each valid world had three targets, no merge, split, loss, or ambiguity, and maximum grid coverage below 15\%. The primary readout was uptake integrated for 40 steps under a bijective one-to-one tracker. Branches were intact, erase each target, sham erase, channel ablation, and erase under ablation. The target contrast was intact minus erase-target; the neighbour contrast erased a different droplet; the fixed mask was a convergent tracker-free readout.
+
+The certificate reported mean own effect 0.2236, a preregistered world-bootstrap interval [0.1926, 0.2583], neighbour and sham effects near zero, an ablation effect of zero, and a fixed-mask effect 0.2066 [0.1799, 0.2344]. This established a non-fusing, target-specific causal effect at rest. It did not retest turnover, and its graded dose-to-behavior correlation was secondary. We use it only for rung 4 of the ladder: coexisting droplets can exhibit local causal effects without fusion.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_nonfusing_local_intervention.png}
+\caption{\textbf{Non-fusing local intervention.} Sample unit: original world; each valid world contributes three target interventions summarized to one world value. $n$ worlds: 23 valid prospective worlds from 32 sealed seeds. Status: prospective CONFIRM-02; no DEV effect estimate is included. Uncertainty: preregistered 95\% world-bootstrap intervals from the committed certificate. Generating script: \code{scripts/recompute\_and\_figures\_05.py}; raw means were independently recomputed before plotting the certified intervals. Source artifacts: \code{nonmerging\_confirm\_raw.json} and \code{NONMERGING\_CONFIRM\_CERTIFICATE\_02.json} at commit \code{830c2d00}.}
+\label{fig:confirm}
+\end{figure}
+
+\subsection{Sealed turnover family and one-shot execution}
+
+The turnover family froze one executable chain: final seal, human authorization, runner, append-only ledger, atomic raw records, raw manifest, analyzer, gates, decision tree, and certificate. The final seal SHA-256 was \hash{cdf7277a00e3017a1389e9334d983364b9aa0af88c646cdec2999e6ad88757fd}. The primary family was seeds 54001--54050. Seeds 54051--54096 were a feasibility-only reserve, inaccessible to outcome fields and activated only if the primary family failed to reach 18 valid worlds. The human authorization bound the exact seal and allowed one prospective execution. The ledger shows each primary seed start and completion once in ascending order, no resume, 50 raw records, family close, analysis, and certification. Twenty-one primary worlds were valid, so no reserve seed ran.
+
+Validity was a conjunction of eligibility, deep-turnover reach, valid rest assay, valid deep assay, and uncensored event evidence. Fission, transient fragmentation, merge, loss, death, and ambiguity were distinct persisted event classes. A censored world could not re-enter the family. The outcome was not available to reserve logic. This separation prevented selective extension based on effect size or gate direction.
+
+\subsection{Material tracer and deep turnover}
+
+At the start of turnover, extant target material was labelled old by a passive base-12 cohort tracer. Newly grown material received new cohort labels. The tracer never entered density, chemistry, nutrient, attractant, memory writing, detection, tracking, intervention, or statistics. For target $i$ at time $t$,
+\begin{equation}
+M_i(t)=\frac{\text{old-cohort mass in target }i}{\text{total mass in target }i}.
+\end{equation}
+Deep turnover required every target to reach the frozen material criterion together with a valid deep assay. The 21 valid worlds contributed 63 target-level $M_i$ values. The plot of target values and world means is descriptive; world, not target, remained the inferential unit.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/fig4_material_turnover_validity.png}
+\caption{\textbf{Material replacement and feasibility.} Sample unit: original world for validity (left and right) and target for the descriptive $M_i$ histogram (middle); inferential tests use worlds only. $n$ worlds: all 50 primary prospective worlds were executed once; 21 were valid, exceeding the minimum 18; 63 targets belong to those 21 worlds. Status: prospective 03G, no reserve and no DEV data. Uncertainty: none in the count and distribution panels; inferential intervals appear in Figs.~\ref{fig:causal} and \ref{fig:ownership}. Generating script: \code{scripts/recompute\_and\_figures\_05.py}. Source artifact: 50 hash-bound raw records in \code{results/LCI-TURNOVER-PROSPECTIVE-03G/raw/} at commit \code{9cb996bb}, loaded through the independent 03M schema validator.}
+\label{fig:turnover}
+\end{figure}
+
+\subsection{Frozen access scopes}
+
+The ownership analysis compared seven predeclared representations. L was the exact 11-dimensional target memory and was primary. N was the 11-dimensional geometrically nearest-neighbour memory. P concatenated L with deterministically ordered neighbours and was diagnostic. E summarized eight target-memory-masked fields over three annuli (24 dimensions). G-minus-target was an 18-dimensional global summary with target memory removed. G-full concatenated L and G-minus-target and was diagnostic only; because its first 11 entries equal L byte-for-byte, it could not serve as a comparator that L must beat. B was an eight-dimensional target body/environment baseline without the memory label.
+
+The scope design tests specific alternatives, not every imaginable encoding. E is annular and low-dimensional. G-minus-target is global but compressed. Fine non-radial, high-frequency, topological, or otherwise unmeasured distributed representations may remain. Consequently \code{DISTRIBUTED\_ENV=false} means detectable environmental ownership was not established in the frozen E/G-minus-target classes. It does not mean the environment contains no information.
+
+\subsection{Grouped statistics and gates}
+
+Original world was the inferential unit. For each scope, ridge regression used $\lambda=1$, training-fold centering and scaling, and leave-one-original-world-out predictions. Duplicate-world content was rejected. Let $\ell_{s,w}$ denote normalized held-out loss for scope $s$ in world $w$ and $\ell_{0,w}$ the intercept loss. Scope skill was $q_{s,w}=\ell_{0,w}-\ell_{s,w}$, so positive values indicate improvement over the no-information baseline.
+
+\code{G\_OWN\_PERM} required positive own-scope skill relative to 1,000 within-world label permutations with seed 20260715 and $p<0.05$. \code{G\_LOCAL\_EXCLUSION} required L to have a positive lower skill bound and a lower held-out loss than N, E, G-minus-target, and B, with each paired world-level 95\% Student $t$ lower bound above zero. The bootstrap of fixed fold scores was reported as a sensitivity and never refit models. \code{G\_CAUSAL} required a positive own contrast, own exceeding sham and neighbour, collapse under $\lambda_+$ ablation while $\lambda_-=0.15$ remained fixed, directional consistency under a fixed mask, and at least 18 valid worlds.
+
+Primary support required all three gates:
+\begin{equation}
+G_{\mathrm{OWN\_PERM}}\ \land\ G_{\mathrm{LOCAL\_EXCLUSION}}\ \land\ G_{\mathrm{CAUSAL}}.
+\end{equation}
+The executable decision tree selected exactly one outcome A--F. A required target-local own information and causal expression; B represented a causal effect without ownership; C a local stored trace without causal expression; D failure of both; E infeasibility; and F history explained by the frozen target-memory-excluded access classes. A feeding effect alone could never select A.
+
+\section{Results}
+
+\subsection{Own-history information survives deep turnover}
+
+The 21 valid worlds passed feasibility. L carried positive own cumulative-dose information after deep turnover. Mean LOWO scope skill was 0.3954457 with 95\% Student $t$ interval [0.1753227, 0.6155688]. The 95th percentile of the within-world permutation null was 0.1483314, and the fixed 1,000-permutation test gave $p=0.0009990$. Thus \code{G\_OWN\_PERM=true}. This is a genuine positive result: the target-local memory representation remains informative about its own assigned history after substantial material replacement.
+
+That positive does not settle ownership. A local decoder can exploit a signal correlated with a target's history even when a body or environmental representation carries comparable information. The permutation gate asks whether the own relationship is non-random; it does not ask whether L is exclusive.
+
+\subsection{The retained state remains causally active}
+
+The deep intervention battery also passed. The mean own feeding contrast was 0.1648450 with interval [0.1443216, 0.1853683]. Own minus sham was 0.1648450 [0.1443216, 0.1853683], and own minus neighbour was 0.1648450 [0.1443217, 0.1853684]. The fixed-mask estimate was 0.1421575 [0.1246095, 0.1597055]. Under $\lambda_+$ ablation with $\lambda_-=0.15$ preserved, the residual estimate was 0.0181412 [0.0132184, 0.0230641]; its upper bound divided by the own mean was 0.1399, below the frozen collapse fraction 0.5. Every directional condition passed, giving \code{G\_CAUSAL=true}.
+
+This establishes that the retained engineered state remains causally relevant to feeding after deep turnover. The appropriate wording is deliberately narrow. The channel is directly implemented; the assay does not show agency or an unprogrammed behavioral competence. It shows that intervening on the retained state changes a coupled physical output under matched branches.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig5_causal_contrast_after_turnover.png}
+\caption{\textbf{Causal feeding contrasts after turnover.} Sample unit: original world, with three targets summarized within each valid world. $n$ worlds: 21 valid prospective worlds from 50 executed primary worlds. Status: prospective 03G; no DEV data and no reserve. Uncertainty: two-sided 95\% Student $t$ intervals over fixed original-world contrast scores. Generating script: \code{scripts/recompute\_and\_figures\_05.py}. Source artifact: exact committed 03G raw records at \code{9cb996bb}, independently recomputed by the 03M implementation at \code{a8d6446f}.}
+\label{fig:causal}
+\end{figure}
+
+\subsection{Target-local information fails the ownership exclusions}
+
+The decisive result was the comparison of L with the four frozen exclusion controls. L beat N: mean paired loss advantage 0.5304159, interval [0.2363236, 0.8245082]. L also beat G-minus-target: 0.4894835 [0.0796802, 0.8992869]. But L did not reliably beat E: 0.2071677 [-0.0220631, 0.4363986]. Nor did it beat B: 0.1446099 [-0.0226051, 0.3118248]. Because every comparison was required, the exact failed components were \code{L\_over\_E} and \code{L\_over\_B}; therefore \code{G\_LOCAL\_EXCLUSION=false}.
+
+The failure should not be translated into a positive claim for E or B. Their intervals show that L's advantage is unresolved, not that E or B definitively outperforms L. Consistently, E and G-minus-target did not themselves satisfy the frozen distributed-environment diagnostic, so \code{DISTRIBUTED\_ENV=false}. The result occupies the intended middle ground: local ownership is not demonstrated, and environmental ownership is not positively demonstrated either. What remains is a state compatible with passive local persistence whose graded information cannot be assigned exclusively to L under the tested access classes.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.92\textwidth]{figures/fig6_ownership_scope_exclusion.png}
+\caption{\textbf{Ownership-scope exclusions.} Sample unit: original world. $n$ worlds: 21 valid prospective worlds. Status: prospective 03G; the four comparisons and all thresholds were frozen before execution. Uncertainty: two-sided 95\% Student $t$ intervals over paired fixed original-world loss differences; positive means L has lower loss. Generating script: \code{scripts/recompute\_and\_figures\_05.py}. Source artifact: exact 03G raw records and the frozen L/N/E/G-minus-target/B definitions at commit \code{9cb996bb}, independently recomputed at \code{a8d6446f}.}
+\label{fig:ownership}
+\end{figure}
+
+\subsection{Outcome B and exact raw-only reproduction}
+
+The frozen gate vector was
+\begin{center}
+\code{FEASIBILITY=true}, \code{G\_OWN\_PERM=true}, \code{G\_LOCAL\_EXCLUSION=false},
+\code{G\_CAUSAL=true}, \code{DISTRIBUTED\_ENV=false}.
+\end{center}
+The executable A--F tree matched exactly one leaf: Outcome B, ``causal feeding effect without ownership.'' The authorized sentence is: \emph{A specific local causal feeding effect survives deep turnover, but the target's own graded history is not established as locally owned. This is a passive local causal remnant and not individual memory.}
+
+An independent raw-only reproduction reimplemented LOWO ridge fitting, within-world permutation, fixed-fold bootstrap, paired scope comparisons, the causal gate, and the decision tree without importing the canonical analyzer, statistics module, scope implementation, ledger, runner, or engine. It verified all 50 raw record hashes and schemas, the one-shot seed record, the 108-entry terminal ledger, the final seal, and the committed code bindings. Canonical and independent results agreed across 9,357 material leaves, including 9,283 numeric leaves, with no disagreement and maximum absolute numeric difference 0. No engine module was imported and no seed command ran during reproduction.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/fig7_decision_tree_outcome_b.png}
+\caption{\textbf{Frozen decision tree and Outcome B.} Sample unit: gate vector derived from original-world analyses. $n$ worlds: 21 valid prospective worlds from 50 primary worlds. Status: prospective 03G outcome, independently reproduced from raw; no DEV result enters the tree. Uncertainty: inherited from the gate-specific intervals in Figs.~\ref{fig:causal} and \ref{fig:ownership}; the tree itself is deterministic. Generating script: \code{scripts/recompute\_and\_figures\_05.py}. Source artifacts: \code{TURNOVER\_DECISION\_TREE\_03G.json}, raw records, and certificate at \code{9cb996bb}; independent result at \code{a8d6446f}.}
+\label{fig:tree}
+\end{figure}
+
+\section{Positive and negative interpretations}
+
+The positive result should be retained in full. A target-local representation contains non-random information about the target's own cumulative history after deep material replacement. Intervening on the retained state changes feeding, whereas sham and neighbour interventions do not, and channel ablation produces the frozen collapse. This is stronger than static decodability and stronger than material residue. It is a causal, turnover-surviving effect of an internal engineered state.
+
+The negative result should also be retained in full. The target-local scope failed to exclude the target-memory-masked environmental summary E and the body/environment baseline B. That failure blocks the preregistered ownership conjunction. Own-history decodability alone is insufficient because the relationship may be shared with correlated representations. Causal feeding alone is insufficient because causal relevance does not identify the unique informational owner. The non-fusing local intervention alone is insufficient because local intervention specificity does not prove that graded history is exclusively encoded locally after turnover.
+
+Outcome B is not a compromise label chosen after seeing the data. It was one of six frozen outcomes. Its interpretation is a passively compatible causal remnant: local intensive memory is copied into new material by construction, remains connected to uptake, and can therefore retain causal efficacy. Yet the tested evidence does not distinguish exclusive target ownership from information jointly available through body or environmental correlates. The word ``passive'' refers to the inheritance architecture, not to an assertion that nothing dynamic occurs.
+
+The environmental result requires equal restraint. \code{DISTRIBUTED\_ENV=false} does not rescue local ownership. It means E and G-minus-target did not meet the frozen criterion for a positive environmental owner. Because these access scopes are deliberately low-dimensional and omit many possible distributed codes, the analysis cannot assert that no distributed encoding exists. Thus neither ``the target owns the history'' nor ``the environment owns the history'' is established.
+
+Within the tested operational criteria, two claims are falsified. First, causal persistence alone is sufficient for individual memory. The conjunction provides a direct counterexample: persistence and causality pass while ownership fails. Second, turnover-surviving local ownership is supported by the frozen C1c architecture. The second falsification is architecture-specific. A different writing law, protected bistability, distinct physical channels, active error correction, or richer measurement could produce a different result.
+
+\section{Correction and methodological history}
+
+The correction history is part of the paper because each correction removed a route to an inflated claim.
+
+\paragraph{Row/world leakage.}
+Early decoding analyses treated rows descended from the same original world or history as independent. Related content could therefore appear in training and test sets. V4.0 later used a bootstrap that duplicated histories and assigned each duplicate a new fold identity. All 3,000 realized bootstrap replicates contained duplicates. V4.1 corrected the inferential unit to original world, nested preprocessing in each outer fold, reported the three world scores, and withdrew the historical confidence interval and certification. The corrected deep $h_1$ point, 0.6947, remains scientifically useful but is not a high-confidence threshold certification.
+
+\paragraph{Largest-component teleport.}
+A per-frame largest-component rule had been described as continuity tracking. It could jump between components when the largest object changed, creating apparent persistence without following one entity. A label-free overlap tracker replaced silent reselection, and the record distinguished observed survival fields from event-level evidence. V4.1 preserved the recorded 36/36 survival and zero switches but explicitly withdrew independent fusion-free reconstruction because masks, candidate edges, and alternatives were not present in the summary artifact.
+
+\paragraph{Fusion incident.}
+An earlier causal confirmation allowed physical percolation and non-bijective tracker collisions, inflating an apparent individual effect. The incident was not hidden. CONFIRM-02 froze a geometry-selected short probe, a bijective tracker, whole-world censoring, and explicit merge/split/loss/ambiguity events. The effect remained under 23 valid non-fusing worlds and converged between tracked and fixed-mask readouts. This falsified the explanation that the entire causal signal was a fusion artefact, while narrowing the claim to a directly coupled local intervention.
+
+\paragraph{V4 grouped-inference downgrade.}
+The V4.1 correction changed the paper's headline. The deep $h_1$ estimate fell from the historical 0.8878 to 0.6947 under original-world grouping. Only three worlds supported it, and the old lower-bound wording was withdrawn. Deep $h_2$ remained not established. Tracking survival and material replacement remained observations. The downgrade prevented historical positive language from contaminating the new prospective result.
+
+\paragraph{Authorization-template defect.}
+Before any 54xxx execution, a narrow audit found that the literal final-seal placeholder occurred twice in the authoritative execution manifest and that canonical bindings were incomplete. Commit \code{0aaf80aa165b76d91b633105e83d03da5208f643} removed the explanatory duplicate and bound the exact execution manifest and reproduction guide. Commit \code{b5c0f02c02fde0bd15a288b961ffc24606199376} issued the final seal and unfilled permission template. The defect was caught while no 54xxx seed, engine, ledger, or prospective directory existed. This is evidence that preflight gates worked, not evidence about the scientific outcome.
+
+\paragraph{Exact seal and one-shot execution.}
+The final seal SHA-256, execution manifest, protected code map, environment lock, seed family, canonical directory, and authorization phrase were bound before execution. The human authorization was a discrete event, not inferred from conversational context. The append-only ledger ended with 108 entries and terminal certification. Seeds 54001--54050 started and completed once in ascending order; no resume, reserve, overwrite, or second execution occurred.
+
+\paragraph{Raw-only independent reproduction.}
+The 03M reproduction bypassed working-tree line-ending conversion by reading exact Git blob bytes, revalidated all raw hashes, and independently recomputed the full result. Its exact agreement is a computational reproducibility result. It does not substitute for independent data generation or external replication. By distinguishing reproducibility from validity, the project avoids repeating the V4 error in a new form.
+
+Taken together, these corrections demonstrate methodological discipline: claims became narrower as the evidence demanded; negative results and incidents remained committed; and prospective interpretation was delayed until sealing, authorization, execution, and certification were complete.
+
+\section{Discussion}
+
+The main empirical conclusion is simple: causal persistence and ownership are dissociable. The engineered state survived substantial replacement and remained connected to feeding, yet failed the test that would assign its graded information preferentially to the target-local representation. This is more informative than a generic null because the lower rungs of the ladder passed. Had the state vanished, ownership would be untestable. Had the causal gate failed, the result could be dismissed as inert storage. Instead the experiment produced the exact pattern needed to falsify sufficiency: persistence plus causality without ownership.
+
+This result clarifies the role of passive inheritance. In C1c, newly grown material receives the local intensive state. If a target remains geometrically coherent, a state can propagate across cohorts while old material falls below 0.5. Such propagation is organizational in the weak sense that the same intensive variable exists in a changing material population. It is not active reconstruction. There is no target state against which an error is computed, no protected attractor selected after perturbation, and no repair process that restores an erased pattern. Calling this inheritance ``memory'' is reasonable only when the qualifier engineered and the ownership failure remain visible.
+
+The result also sharpens what non-fusing locality does and does not buy. CONFIRM-02 established that local erasure matters for one target while neighbour erasure does not, in worlds with three distinct components. That was essential after the fusion incident. But an intervention can be local even when the information determining its magnitude is shared or redundantly encoded. A local valve can control a flow whose setting is also written on the surrounding apparatus. Ownership therefore requires the access-scope comparison in addition to intervention specificity.
+
+The failure against B is especially important. Body and environment can carry history-related information through size, mass, nutrient distribution, attractant, geometry, or other covariates. Even when memory itself is necessary for the feeding contrast, a decoder's ability to read graded history from L may not be unique. The failed L-over-B interval forces the manuscript to separate causal mediation from informational exclusivity. Similarly, the failed L-over-E comparison shows that masking target $m_1,m_2$ does not leave L with a reliable advantage over the frozen annular environmental summary.
+
+At the same time, the distributed-environment diagnostic prevents a reflexive reversal. The data did not positively identify E or G-minus-target as the owner. That distinction matters because a failed superiority test is not evidence for the comparator. With 21 worlds, the L-over-E and L-over-B intervals cross zero narrowly on the lower side but have positive means. The scientifically correct statement is unresolved exclusive ownership under the frozen comparisons, not ``the environment stores the memory.''
+
+How far does the result generalize? It generalizes directly to the frozen C1c architecture, measurement set, history family, and operational definitions. It plausibly warns any system in which an intensive state is copied locally and read through a direct channel: material persistence may be an architectural consequence rather than evidence of an individuated memory. It does not generalize to architectures with bistable maintenance, active error correction, compartment-specific histories, or distributed codes outside the measured scopes. Synthetic toggle and positive-feedback systems show that protected state maintenance is physically possible \citep{gardner2000,xiong2003}; testing ownership there would still require matched local and environmental access scopes.
+
+The philosophical implication is deflationary rather than eliminative. Organizational accounts are not refuted by one simulated architecture. Instead, the experiment identifies an evidential burden. If individuality is attributed to organization rather than matter, the proposed organization must be distinguished from shared environmental structure and body correlates. It should remain causal under intervention, persist under turnover, and predict its own history better than matched alternatives. This operational burden makes organizational claims testable.
+
+The work also illustrates why transparent negative outcomes are productive. Outcome B points to specific missing ingredients without authorizing their implementation as retroactive rescue. Distinct per-droplet histories would make individuation meaningful. A nonlinear protected maintenance law could distinguish persistence from passive averaging. Active reconstruction would require an independent preregistered assay. Richer environmental scopes could test whether the unresolved information is distributed. Each is a future hypothesis, not an explanation smuggled into the present result.
+
+Finally, the exact independent reproduction strengthens confidence in the numerical disposition but not in all external-validity dimensions. Agreement between canonical and independent code eliminates a large class of implementation and transcription errors. It cannot show that the simulator corresponds to chemistry, that the chosen scopes exhaust representation, or that a second independently generated family would reproduce Outcome B. The appropriate next scientific step is external review and, if justified, a separately sealed replication designed by investigators who did not build the current architecture.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/fig8_claim_boundary.png}
+\caption{\textbf{Full claim boundary.} Sample unit: claim, each linked to original-world evidence where empirical. $n$ worlds: 3 in the corrected historical V4.1 headline, 23 in prospective CONFIRM-02, and 21 valid of 50 one-shot prospective worlds in 03G. Status: categories combine corrected historical, prospective, and independently reproduced evidence; no DEV claim is promoted. Uncertainty: claim-specific and reported in the source tables and result figures; no new interval is introduced here. Generating script: \code{scripts/recompute\_and\_figures\_05.py}. Source artifacts: V4.1 claim ledger at \code{847d51ef}, CONFIRM-02 certificate at \code{830c2d00}, 03G certificate at \code{9cb996bb}, and independent 03M result at \code{a8d6446f}.}
+\label{fig:claims}
+\end{figure}
+
+\section{Limitations}
+
+First, the state is engineered. The study tests the evidential status of a designed mechanism, not spontaneous emergence of memory. Second, the scaffold is simulator-specific and no quantitative mapping to a physical coacervate or protocell is claimed. Third, uptake is directly coupled to $m_+$; the causal result is clean but mechanistically close to the intervention and should not be described as distal behavior.
+
+Fourth, validity selected 21 of 50 primary worlds. The selection rule was frozen, feasibility-only, and outcome-blind, but the result applies to worlds capable of sustaining the complete deep assay. Fifth, each valid world contributed three targets, but targets were never treated as independent worlds. Sixth, Student $t$ intervals over 21 fixed world scores are finite-sample summaries and do not make the model distribution-free. The paired fixed-fold bootstrap is a sensitivity, not a model-refitting bootstrap.
+
+Seventh, ownership is representation-relative. L, N, E, G-minus-target, and B are explicit, auditable summaries, but E and G-minus-target do not span every possible distributed code. Eighth, a failed exclusion does not establish the comparator as owner. Ninth, the passive cohort tracer measures material replacement in the simulator; it is not molecular exchange in a wet system.
+
+Tenth, CONFIRM-02 and 03G are related but not identical assays. CONFIRM-02 establishes non-fusing local causal expression at rest; 03G retests tracking, turnover, access scopes, and causal expression in its own family. The paper does not pool their effect sizes. Eleventh, V4.1 is historical context with only three original worlds. Its deep $h_1$ point remains positive, but its former certification is withdrawn and it cannot substitute for 03G.
+
+Twelfth, independent reproduction used the same committed raw data. It is an exact computational cross-check, not an independent experimental replication. Thirteenth, no reproduction, lineage, heredity, evolution, agency, or life process was implemented. Fourteenth, active reconstruction remains a future hypothesis. Finally, authorship, affiliation, funding, conflicts, and repository release details require human confirmation before submission.
+
+\section{Conclusion}
+
+The sealed turnover family produced a stringent mixed result. Own-history information survived deep material replacement and exceeded its permutation null. The retained state causally changed feeding under target, sham, neighbour, fixed-mask, and channel-ablation checks. Yet the target-local representation failed to outperform the frozen environmental and body baselines required for ownership. The unique preregistered outcome was therefore B: a causal feeding effect without ownership.
+
+Within the tested C1c architecture, causal persistence is insufficient for individual memory. The residual interpretation is a passively compatible local causal remnant whose exclusive ownership is unresolved. This conclusion coexists with the positive causal evidence, preserves the corrected V4.1 history, and sets a clear standard for future work: any claim of individuality must survive not only turnover and intervention, but explicit competition with alternative informational owners.
+
+\section*{Data and code availability}
+
+All reported code, protocols, raw data, ledgers, certificates, and reproduction artifacts are committed in Git. The authoritative source commits are listed in the Supplement and bound in \code{SOURCE\_BINDINGS\_05.json}. The prospective result commit is \hash{9cb996bb891f9a618e593f2f5c302f30210458de}; the raw-only reproduction is \hash{a8d6446fade6dbeb984e269fab27ddd5ebf75286}. No public archive DOI is asserted. External release should occur only after author identity, licensing, repository visibility, and venue policy are confirmed.
+
+\section*{AI-assistance disclosure}
+
+An AI coding and analysis system assisted with source reconciliation, raw-data recomputation, figure generation, reference verification, LaTeX drafting, and PDF quality assurance under human direction. The system did not authorize or execute the prospective family. All scientific numbers trace to committed artifacts, and all citations were resolved against DOI metadata. The human author must verify the manuscript, disclose assistance according to the target journal's policy, and accept responsibility for submission.
+
+\section*{Author contributions}
+
+[TO BE COMPLETED BY THE HUMAN AUTHOR. The current draft must not assign conception, execution, analysis, or writing credit without confirmation.]
+
+\section*{Competing interests and funding}
+
+[TO BE CONFIRMED. No competing-interest or funding statement is inferred from repository artifacts.]
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+\end{document}
