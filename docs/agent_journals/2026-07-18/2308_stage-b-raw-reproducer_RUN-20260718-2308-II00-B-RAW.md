@@ -172,3 +172,7 @@ Disposition for this implementation turn: **hold / not statically qualified**. T
 2. a fail-closed instrumentation/protocol revision.
 
 Patching from production source, tests, generated output, reviewer-reported field fragments, or trial-and-error fixture failures remains forbidden. No manifest or DEV output was opened.
+
+## Normative v2 amendment authorization
+
+Parent authorization admits exactly one new outcome-free design source: `docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_REPRODUCTION_SPEC.json` at commit `22ee3f7`. Its exact committed bytes and SHA-256 may be reread and used to repair the held reproducer. The raw schema remains the previously authorized version at commit `1e11a1b` with SHA-256 `ffa9be82bd4c3285e75e1ac46b63a0a794598e2169afcb6a2890c3834749fe01` and will not be reread. Production source, tests, manifests, results, reports, online classifications, atlases, and selected-world information remain forbidden.

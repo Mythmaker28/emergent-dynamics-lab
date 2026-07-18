@@ -341,6 +341,17 @@ def test_partial_root_verifier_binds_exact_terminal_shard_inventory(tmp_path):
     }
     _write_json(shard / "shard_manifest.json", record)
     assert _verify_partial_root(tmp_path, manifest)[0]["status"] == "COMPLETE"
+    physics["vector_reference_max_error"][:] = 1.0
+    np.savez_compressed(shard / "physics.npz", **physics)
+    record["files"]["physics.npz"] = {
+        "sha256": sha256_file(shard / "physics.npz"),
+        "bytes": (shard / "physics.npz").stat().st_size,
+    }
+    record["physics_inventory"] = _npz_inventory(shard / "physics.npz")
+    _write_json(shard / "shard_manifest.json", record)
+    with pytest.raises(InstrumentationInvalid, match="reference error"):
+        _verify_partial_root(tmp_path, manifest)
+    physics["vector_reference_max_error"][:] = 0.0
     (shard / "physics.npz").write_bytes(b"not-an-npz")
     record["files"]["physics.npz"] = {
         "sha256": sha256_file(shard / "physics.npz"),

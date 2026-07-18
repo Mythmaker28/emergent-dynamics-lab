@@ -1,5 +1,5 @@
 {
-  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B1-REPRODUCTION-SPEC-v2",
+  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B1-REPRODUCTION-SPEC-v3",
   "purpose": "complete engine-free algorithm contract for an independently implemented raw-only reproducer",
   "allowed_runtime_inputs": [
     "committed Stage-B1 manifest",
@@ -42,7 +42,8 @@
     "world_identity": {
       "world_id": "{law_id}__{ic_id}__r{replicate:02d}",
       "object": ["world_id", "law_id", "ic_id", "replicate"]
-    }
+    },
+    "law_physical_fields": "for each world use law_family.laws[law_id].spec.dt for cohort/activity/energy updates, spec.m_max as the closed matter upper bound, spec.n_max as the closed resource upper bound, and the universal closed bond bound [0,1]"
   },
   "shard_manifest_layout": {
     "path": "result_root/{world_id}/shard_manifest.json",
@@ -72,7 +73,15 @@
       "track_observation_rows",
       "tracer_rows"
     ],
-    "failed_shard": "require exact world identity, terminal failure status and a failure.json file entry; do not open failure.json and emit the frozen TRACKING_UNRESOLVED failure row",
+    "failed_shard": {
+      "exact_top_level": ["schema", "world", "status", "files"],
+      "required_file": "failure.json",
+      "failure_json_exact_keys": ["world", "status", "error_type", "message"],
+      "failure_json_semantics": "producer root audit requires exact identity/status, but independent reproducer must not open it; require its exact files entry and stat size only",
+      "optional_preserved_files": "physics.npz and/or online.json may remain when failure occurred during shard verification; every immediate file except shard_manifest.json must appear exactly once in files and no unlisted file is permitted",
+      "file_entry_exact_keys": ["sha256", "bytes"],
+      "independent_integrity": "verify SHA-256 and bytes for any allowed physics.npz; for forbidden online.json and failure.json verify name and stat bytes without opening or hashing; emit the frozen TRACKING_UNRESOLVED failure row"
+    },
     "directory_set": "the immediate result-root directories equal execution.world_ids exactly; no missing, duplicate or extra shard directory"
   },
   "physics_layout": {
@@ -87,7 +96,9 @@
       "ledger scalars": "[H]"
     },
     "dtypes": "state_step int64, deterministic_replay_equal uint8, all other arrays float64",
-    "sampling_frames": "detect and track state_m frames 0 through H-1; H+1 state row is required for the final transport update but is not a detector frame"
+    "sampling_frames": "detect and track state_m frames 0 through H-1; H+1 state row is required for the final transport update but is not a detector frame",
+    "reference_runtime_criterion": "producer compares every vectorized state element in m,n,b and every StepLedger field in dataclass order to the scalar reference using abs(error)<=1e-12+1e-10*abs(reference), and stores the maximum absolute error encountered",
+    "reference_raw_gate": "initialize maximum_scale=1.0; in exact layout order consider state_m,state_n,state_b and every ledger__ array/scalar named by the raw schema, excluding state_step, vector_reference_max_error and deterministic_replay_equal; reject nonfinite first; update maximum_scale=max(maximum_scale,float(np.max(np.abs(array)))); require every stored vector_reference_max_error finite, nonnegative and <=1e-12+1e-10*maximum_scale"
   },
   "numerical_order": {
     "component_cells": "ascending row-major cells throughout",
@@ -104,6 +115,7 @@
   "detector": {
     "occupancy": "state_m[frame,y,x] >= manifest.detector.matter_threshold",
     "components": "periodic four-neighbour connected components; discard components with cell count below min_cells",
+    "exact_traversal": "unseen starts as the set of occupied row-major linear indices; choose min(unseen) as root; use a Python list as a LIFO stack; pop from the end; if popped cell is already in cells continue; otherwise add it, then visit neighbours exactly in order (-1,0),(+1,0),(0,-1),(0,+1); proposed lift is current lift plus that signed step; if occupied neighbour already has a lift compare it for winding, otherwise assign the proposed lift immediately at push time and append neighbour; after a component, subtract cells from unseen",
     "ordering": "sort components by ascending minimum row-major linear cell index; component index is position after sorting",
     "winding": "start the minimum-index root at its ordinary integer coordinate, propagate lifted coordinates using each von Neumann step, and mark an axis wrapped if an already lifted neighbour receives a different proposed lift on that axis",
     "mass": "math.fsum matter values in sorted row-major component cells",
@@ -136,7 +148,7 @@
   "tracker": {
     "input_frames": "state frames 0 through horizon_steps-1 inclusive",
     "initial_tracks": "one track per frame-0 component in detector order; monotonically increasing integer IDs beginning at zero",
-    "transition_graph": "selected edges union ambiguity-bearing edges; process connected bipartite groups in source detector order and sorted target-key order",
+    "transition_graph": "selected edges union ambiguity-bearing edges; process connected bipartite groups in source detector order and sorted target-key order; derive source_track_ids by mapping every source key through the current assignment and sorting the resulting integer track IDs independently of component-source iteration order",
     "detector_collapse": "a middle node with at least two selected incoming sources and two selected outgoing targets marks both adjacent groups ambiguity-bearing",
     "resolved_cases": {
       "one_to_one": "append target point to source track",
@@ -152,7 +164,7 @@
     "enrollment": "for each track independently at its first point, q=m on that detected support and q=0 elsewhere",
     "source_fraction": "q/m where m>0, else zero",
     "face_flux_axis": "matter_forward_axis * fraction_here - matter_reverse_axis * roll(fraction,-1,axis)",
-    "divergence": "J0-roll(J0,1,axis0) + J1-roll(J1,1,axis1)",
+    "divergence": "evaluate term0=(J0-roll(J0,1,axis0)) and term1=(J1-roll(J1,1,axis1)) as separate float64 arrays, then divergence=term0+term1; use the identical parenthesized order for matter_net pre/post consistency",
     "update": "q_next=q-dt*divergence",
     "required_checks": "finite float64 common shapes, finite nonnegative gross flows, pre/post matter equals pre-dt*div(matter_forward-matter_reverse), q in [0,m], and global q conservation at 1e-12+1e-10 scale",
     "turnover_at_track_point": "1 - math.fsum(q on current detected support)/initial_cohort_mass; only operation-tolerance excursions may be clipped to [0,1]"
@@ -191,7 +203,7 @@
   ],
   "family_aggregation": {
     "world_order": "lexicographic world_id",
-    "atlas": "for each law in manifest order and each IC in manifest order, count every one of the nine regimes among COMPLETE worlds and preserve the enrolled denominator",
+    "atlas": "for each law in manifest order and each IC in manifest order, count every one of the nine regimes among COMPLETE worlds and preserve the enrolled denominator; per_ic.complete is the JSON boolean result of len(rows)==replicates_per_law_ic AND every row status==COMPLETE, never an integer",
     "candidate_region": "an exact law_id is reproducible only when every enrolled world is COMPLETE and candidate count is at least manifest.region_rule.minimum_candidate_worlds_per_ic separately in both IC classes",
     "disposition_precedence": [
       "MANIPULATION_OR_NUMERICAL_INVALID if any NUMERICAL_INVALID shard",
@@ -211,7 +223,7 @@
     ],
     "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-CLASSIFICATION-v1",
     "manifest_sha256": "SHA-256 of the complete manifest file",
-    "worlds": "lexicographic world_id list; each object has exactly world_id, law_id, ic_id, replicate, status, regime, candidate_track_ids",
+    "worlds": "lexicographic world_id list; each object has exactly world_id, law_id, ic_id, replicate, status, regime, candidate_track_ids; candidate_track_ids is sorted and is forcibly [] unless the final world regime is BOUNDED_ACTIVE_TURNOVER_CANDIDATE",
     "atlas": "manifest law order; each object exactly {region_id:law_id,law_id,per_ic,reproducible_candidate}; per_ic follows manifest IC order and each object exactly {ic_id,denominator,complete,counts}; counts has every nine-class key and integer count",
     "candidate_regions": "manifest law order",
     "disposition": "the frozen disposition precedence",
