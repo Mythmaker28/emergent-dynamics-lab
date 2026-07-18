@@ -7,7 +7,8 @@
 - **Starting branch:** `codex/deep-checkpoint-causal-cut-00-phase0`
 - **Starting Git state:** clean at `cce7a27955f5cfb1fc3d95388bba9378bc8d85eb`
 - **Ending Git state:** scientific package committed at
-  `84ee12a35cd159a83c41748f6360c1c79fd687eb`; this exact journal-state update is the closure-only follow-up commit
+  `84ee12af1a367bc100cd32f6e309fb2de7e9b735`; first journal closure at
+  `46d7d3ea9b0129cca7608a032e572822f1fd9120`; this provenance correction is journal-only
 
 ## Assigned scope
 
@@ -159,4 +160,4 @@ Any checkpoint serialization or local equation-edge operator development is a ne
 Do not execute this factorial, create a prospective namespace, open `58xxx`, change V5/03G, or reinterpret either
 `STOP_PAIR_MECHANICS` or `STOP-TRANSPLANT`.
 
-Scientific package commit: `84ee12a35cd159a83c41748f6360c1c79fd687eb`.
+Scientific package commit: `84ee12af1a367bc100cd32f6e309fb2de7e9b735`.
