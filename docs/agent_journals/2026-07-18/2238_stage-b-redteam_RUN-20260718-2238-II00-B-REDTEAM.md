@@ -470,3 +470,45 @@ The repaired source:
 Static verdict: **PASS_INDEPENDENT_SOURCE_FOR_DURABLE_TESTS**.
 
 One qualification gap remains before manifest freeze: the committed 70-test suite still does not import the new 80KB independent source. The parity checks above are strong but currently journal/command evidence rather than durable regression tests. Focused tests for nested manifest parsing, weighted winding, exact divergence/cohort update, classifier/atlas byte shape, candidate-ID clearing, canonical/hash/inventory rejection and failure-shard leftovers should be committed and source-hashed before KS-B1 acceptance.
+
+## Independent raw-reproducer v4 and durable-test closure
+
+At the stable, pushed pre-manifest checkpoint `e63f8556b691f1fe20caf4d1e417bc6e94daecf3`, I audited the final independent source, the v4 normative contract, and the newly committed synthetic regression fixtures. I did not open or reconstruct a Stage-B manifest, result root, shard, source world, scientific checkpoint, or outcome-bearing file.
+
+Exact bindings at the checkpoint:
+
+- `docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_REPRODUCTION_SPEC.json`: `9031a954881aba12dddf081e57850af9c1df92eded5a177b731b245246c6c7c2`;
+- `edlab/substrates/lattice_bond/stage_b_reproduce.py`: `c058e96697347f8af613159cdcb58de5ee3e254d201c237961f366cc1fd08b58`;
+- `tests/test_lattice_bond_stage_b.py`: `1c498f75f011cb9dd863cfa92bb044a5b2ffd1c3cc96bb24db685ff76161e86c`;
+- local `HEAD` and remote branch tip both: `e63f8556b691f1fe20caf4d1e417bc6e94daecf3` before this journal append.
+
+The final v4 source embeds the exact normative-contract hash and schema ID. Before any shard access, `load_manifest` now requires both the exact SHA-256 of its own resolved `__file__` bytes at `source_sha256["edlab/substrates/lattice_bond/stage_b_reproduce.py"]` and exact equality of the four-key runtime environment object `{python_version,numpy_version,platform,byteorder}` to `sys.version`, `np.__version__`, `platform.platform()`, and `sys.byteorder`. Missing, extra, altered, or stale values fail closed.
+
+The durable tests now directly import the independent source and cover weighted periodic/winding geometry, split, merge, exact-tie and detector-collapse tracking, operation-exact passive-cohort advance, all nine classifier precedence paths, canonical family-object equality and candidate-ID clearing, nested manifest parsing with internal/full seal, executable-source and runtime-environment mismatch rejection, and failed-shard identity/inventory closure. These focused fixtures complement, rather than replace, the previously recorded exhaustive synthetic parity counts.
+
+Independent re-run on the committed checkpoint:
+
+```text
+py_compile stage_b_reproduce.py and test_lattice_bond_stage_b.py: PASS
+accepted-parent engine + instrumentation + Stage-B targeted suite: 88 passed in 0.69s
+standalone import set: Python standard library plus NumPy only
+embedded v4 contract hash equals file SHA-256: PASS
+git diff --check: PASS
+checkpoint worktree clean before journal append: PASS
+remote branch equals checkpoint HEAD: PASS
+```
+
+### Adversarial scientific-claim boundary
+
+- This qualification demonstrates an independent, engine-free raw-mechanical reproduction path and fail-closed source/environment bindings. It establishes no persistence, turnover, boundedness, individuality, autonomy, memory, causal addressability, reproduction, or life result.
+- The reproducer may later read only the committed manifest, enrolled shard identity/integrity metadata, and permitted `physics.npz` arrays. It must not read `online.json`, `classification.json`, `root_manifest.json`, a selected-world list, report, or atlas as an input.
+- A later byte-identical classification reproduction can validate derivation consistency; it cannot convert DEV screening into confirmation or authorize Stage C.
+- No final manifest or DEV initialization is authorized by the source qualification alone. The exact final manifest must still pass KS-B1-01 through KS-B1-06, including exact grid/rationale, fresh namespace, source/environment/hash seals, IC admissibility, budget/feasibility, no-existing namespace, clean/pushed checkpoint, and explicit red-team acceptance.
+
+### Static disposition
+
+No blocking source or parity defect remains at `e63f8556b691f1fe20caf4d1e417bc6e94daecf3`.
+
+**AUTHORIZED: CONSTRUCT ONE FINAL HASH-BOUND B1 MANIFEST FOR INDEPENDENT REVIEW.**
+
+This authorization is limited to manifest construction. It does not authorize opening the result namespace or initializing a DEV world. I must inspect the exact committed manifest and its no-existing-namespace preflight before any such execution.
