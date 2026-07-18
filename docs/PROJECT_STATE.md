@@ -1,5 +1,24 @@
 # Project State
 
+## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 NULL-MECHANISM AUDIT (2026-07-18)
+
+A bounded raw-only autopsy verified the accepted prospective result commit `d71c7eb`, all 48 ordered raw records,
+all 35 complete-world stored contrasts, all parent bindings, the frozen `NO_ACCESS_ESTABLISHED` classification,
+and the committed raw-only reproduction. The raw collection remains
+`8d4baaac198cf5e5526359ad723d4cebd0c0614ffa2441fead41144ef573adf1`; the reproduction remains
+`35616172409424d28d765acecb2c29ac1f2527fb7acd48196a9113e85081b679`.
+
+The exact equation-based decomposition and fail-closed sufficiency gate were frozen before output inspection.
+The persisted raw contains aggregate internal signed/absolute flux, counts and hashes, but not source-conditioned
+core `c`, numerical internal face state/flux, or numerical boundary flux. Hashes cannot reconstruct the nonlinear
+face terms. The requested buffering, cancellation, saturation, gradient/upwind and boundary-partition
+decompositions therefore cannot be evaluated without a prohibited world reconstruction.
+
+Post hoc diagnosis: **`RAW_INSUFFICIENT`**. Roadmap: **`UNRESOLVED_RAW_INSUFFICIENT`**. The prospective
+classification remains **`NO_ACCESS_ESTABLISHED`** and is not absence or equivalence. No unique mechanism, new
+probe or closure claim follows. Zero engines/runners were imported and zero worlds were initialized or
+reconstructed. Disposition: **COMPLETE; STOP FOR HUMAN REVIEW.**
+
 ## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 PROSPECTIVE RESULT (2026-07-18)
 
 The exact manifest-bound human authorization was consumed once on the immutable seal branch. All fixed source
