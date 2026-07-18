@@ -1,5 +1,28 @@
 # Project State
 
+## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 PROSPECTIVE RESULT (2026-07-18)
+
+The exact manifest-bound human authorization was consumed once on the immutable seal branch. All fixed source
+worlds `58001-58048` were attempted in manifest order with no reserve, replacement, extension, retry or resume.
+Thirty-five original worlds were complete, exceeding the frozen minimum of 18; 11 were incomplete for history
+survival and 2 for deep turnover. All clone and mechanical gates passed; there were zero manipulation and numerical
+failures.
+
+The sole primary `delta_A_O` has mean `5.0871520880175235e-08`, median `8.55489855591438e-11`, two-sided 95%
+Student-t interval `[-3.874958897076355e-09, 1.0561800065742683e-07]`, 21 positive and 14 negative signs, with 27
+required for directional convergence and `delta_num=8.97597327013001e-12`. The frozen classification is
+**`NO_ACCESS_ESTABLISHED`**. Direct source calibration is positive (34/35 positive; CI wholly above zero); the
+secondary `lam_minus=0` diagnostic interval includes zero. Neither secondary changes the primary classification.
+
+The sealed independent raw-only reproducer matched every complete-world contrast and the classification exactly.
+Two generated reproduction files were byte-identical at SHA-256 `35616172409424d28d765acecb2c29ac1f2527fb7acd48196a9113e85081b679`.
+No code, protocol, seed, endpoint, threshold, classification, V5 or 03G artefact changed.
+
+Maximum claim: this preregistered one-update internal face-flux probe did not establish downstream
+`lam_minus`-dependent history-order access. This is not absence, equivalence, ownership, identity, memory or active
+reconstruction. Disposition: **COMPLETE; AUTHORIZATION CONSUMED; STOP FOR HUMAN REVIEW.** No follow-up experiment is
+automatically authorized.
+
 ## BRANCH ADDENDUM — DOWNSTREAM-ORDER-READER-01 PROSPECTIVE SEAL (2026-07-18)
 
 Human review approved sealing but not execution. The immutable manifest now contains exactly 48 unique audited

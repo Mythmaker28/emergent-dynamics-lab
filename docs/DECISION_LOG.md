@@ -2736,3 +2736,32 @@ manifest and must be supplied later as one external exact-hash authorization obj
 25/25 gates from a clean committed tree, the prospective output path is absent, and zero engines/worlds were
 initialized. Exact next action: request one final explicit human authorization bound to the immutable manifest
 hash; otherwise stop.
+
+## D-098 — DOWNSTREAM-ORDER-READER-01 completes as NO_ACCESS_ESTABLISHED
+
+**Date:** 2026-07-18
+
+**Human execution decision:** Authorize exactly one prospective execution of manifest
+`0d40765937ca203269bd7fa935f3db4c999576dabf2d6ca0f96223f777ba03e4` at sealed commit
+`0949ff7167082a894c12480e0b2c75b4cae1c7c6`, seeds `58001-58048`, with no scientific or engineering change,
+replacement, extension, merge, PR, V5/03G modification or active reconstruction.
+
+**Execution decision:** Consume the authorization once on the immutable manifest-required seal branch. Attempt all
+48 worlds in order without resume. Accept 35 complete original-world blocks; retain 11 incomplete history-survival
+and 2 incomplete deep-turnover records without zero coding. All 48 clone gates and all 140 complete-history
+mechanical gates pass; zero manipulation and numerical failures occur.
+
+**Scientific decision:** The primary interval
+`[-3.874958897076355e-09, 1.0561800065742683e-07]` intersects the numerical null around
+`delta_num=8.97597327013001e-12`, while 21/35 positive signs do not reach the required 27. Freeze
+`NO_ACCESS_ESTABLISHED`. The positive direct source calibration is secondary constitutive validation; the
+`lam_minus=0` order response is a secondary pathway diagnostic. Neither overrides the primary result.
+
+**Reproducibility decision:** Accept the independent raw-only reproduction after exact recomputation of all
+complete-world contrasts and classification and a second byte-identical generation, SHA-256
+`35616172409424d28d765acecb2c29ac1f2527fb7acd48196a9113e85081b679`.
+
+**Disposition:** **COMPLETE; NO_ACCESS_ESTABLISHED; AUTHORIZATION CONSUMED; STOP FOR HUMAN REVIEW.** The maximum
+claim is failure to establish the preregistered one-update downstream interaction under this probe. Never convert
+this into absence, equivalence, ownership, identity, memory or active reconstruction. No follow-up experiment is
+automatically authorized.
