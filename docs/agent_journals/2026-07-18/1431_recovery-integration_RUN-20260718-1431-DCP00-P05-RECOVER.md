@@ -3,11 +3,12 @@
 - **Role:** primary recovery integrator
 - **Run ID:** `RUN-20260718-1431-DCP00-P05-RECOVER`
 - **Start time:** 2026-07-18 14:31:01 +02:00
-- **End time:** 2026-07-18 16:00 +02:00
+- **End time:** 2026-07-18 16:04 +02:00
 - **Starting branch:** `codex/directed-causal-pair-00-phase05`
 - **Starting Git state:** `898b4595dec15e7d5277058d41697a618405bb99` (clean after recovery checkpoint)
-- **Ending Git state:** coherent final Phase-0.5 deliverable tree on `codex/directed-causal-pair-00-phase05`; exact
-  final commit and remote status are reported in the terminal handoff because a commit cannot contain its own hash
+- **Ending Git state:** clean Phase-0.5 deliverable commit
+  `64b690edeab77b5bb91545e7cb4413cd08516593` pushed to `origin/codex/directed-causal-pair-00-phase05`; the subsequent
+  journal-only closeout commit is the final branch tip reported in the terminal handoff
 
 ## Assigned scope
 
@@ -218,8 +219,8 @@ all pass.
 - Human review may challenge the stop record, but no further execution is authorized by this run.
 - Any changed gate, target definition, writer interval, pair, or DEV plan is a new design requiring separate explicit
   authorization.
-- The final commit and remote push are the remaining repository handoff operations and are reported outside this
-  self-referential journal entry.
+- Remote push of deliverable commit `64b690edeab77b5bb91545e7cb4413cd08516593` was verified by equal local and
+  remote-tracking refs. Only this journal-closeout metadata change follows it and must be pushed before handoff.
 
 ## Handoff
 
