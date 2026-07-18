@@ -1,0 +1,77 @@
+{
+  "schema": "DOWNSTREAM-ORDER-READER-01-NAMESPACE-AUDIT-v1",
+  "status": "PASS",
+  "audit_scope": {
+    "all_git_object_database_objects": true,
+    "all_valid_local_remote_and_tag_refs": true,
+    "recovered_malformed_ref_tip_included": "c8a8b354f10e0988adff4264bf0b1fdffcdf19c9",
+    "reachable_commit_count": 207,
+    "valid_unique_tip_count": 39,
+    "all_registered_worktrees": 10,
+    "accepted_parent_worktree": "5ae98861b00f62cde78858234dd03ef4a47f549c"
+  },
+  "semantic_rule": "A seed assignment requires a bounded decimal integer used by a manifest, seed family, execution command, world record, or scientific runner. Hash substrings, floats with an adjacent decimal point, byte counts, timestamps, line numbers, and explicit invalid-seed guard tests are not assignments.",
+  "excluded_candidate_namespaces": [
+    {
+      "candidate": "50001-50048",
+      "reason": "50001-50010 are the already-open DEV family; the candidate block is contaminated."
+    },
+    {
+      "candidate": "51001-51048",
+      "reason": "51001-51012 were executed prospectively; durable protocols additionally exclude the 51000-54120 historical namespace."
+    },
+    {
+      "candidate": "52001-52048",
+      "reason": "52001-52024 were assigned and executed for causal confirmation; the candidate block is contaminated."
+    },
+    {
+      "candidate": "53001-53048",
+      "reason": "53001-53032 were assigned and executed; 53033-53040 were historically proposed/superseded, so the candidate block is unavailable."
+    },
+    {
+      "candidate": "54001-54048",
+      "reason": "All 48 candidates lie in the executed 54001-54050 certified 03G primary family."
+    },
+    {
+      "candidate": "55001-55048",
+      "reason": "55001-55024 were assigned and opened for BALANCED-HISTORY-ISOLATION-00; the candidate block is contaminated."
+    },
+    {
+      "candidate": "56001-56048",
+      "reason": "The prior semantic audit rejected this namespace because bounded historical integer 56023 already existed; it is not recycled."
+    },
+    {
+      "candidate": "57001-57048",
+      "reason": "57001-57024 were assigned and opened for COUNTERFACTUAL-HISTORY-CORE-00; the candidate block is contaminated."
+    }
+  ],
+  "selected_namespace": "58001-58048",
+  "selected_seeds": [
+    58001, 58002, 58003, 58004, 58005, 58006, 58007, 58008,
+    58009, 58010, 58011, 58012, 58013, 58014, 58015, 58016,
+    58017, 58018, 58019, 58020, 58021, 58022, 58023, 58024,
+    58025, 58026, 58027, 58028, 58029, 58030, 58031, 58032,
+    58033, 58034, 58035, 58036, 58037, 58038, 58039, 58040,
+    58041, 58042, 58043, 58044, 58045, 58046, 58047, 58048
+  ],
+  "selected_seed_checks": {
+    "count": 48,
+    "unique_count": 48,
+    "semantic_assignments_before_seal": 0,
+    "world_records_before_seal": 0,
+    "engine_initializations_during_audit": 0,
+    "incidental_occurrences": [
+      {
+        "seed": 58001,
+        "commits": [
+          "8349c5592c750bf077943480bd48b0aba67925e5",
+          "f831800c5e4f3e61fc5fe8b4ce224769765d407f"
+        ],
+        "classification": "explicit invalid-seed guard tests only; neither call can enter an authorized family"
+      }
+    ],
+    "all_other_selected_seed_occurrences": 0
+  },
+  "prospective_engine_initialized": false,
+  "prospective_world_initialized": false
+}

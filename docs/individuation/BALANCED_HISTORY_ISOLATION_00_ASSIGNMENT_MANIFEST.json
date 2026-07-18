@@ -1,0 +1,83 @@
+{
+  "schema": "BALANCED-HISTORY-ISOLATION-00-ASSIGNMENT-v1",
+  "mode": "DEV_ONLY_NO_PROSPECTIVE_AUTHORIZATION",
+  "status": "FROZEN_BEFORE_FIRST_WORLD",
+  "canonical_parent": "6d1a5f718b965d2896f2a3e4d6cbcf5c8c83542f",
+  "statistical_unit": "original world",
+  "targets_are_replicates": false,
+  "seeds": [
+    55001, 55002, 55003, 55004, 55005, 55006, 55007, 55008,
+    55009, 55010, 55011, 55012, 55013, 55014, 55015, 55016,
+    55017, 55018, 55019, 55020, 55021, 55022, 55023, 55024
+  ],
+  "histories": {
+    "H_L_EARLY": {"a1": 0.0175, "a2": 0.0075, "dose": 0.025, "order_coordinate_a1_minus_a2": 0.01},
+    "H_L_LATE":  {"a1": 0.0075, "a2": 0.0175, "dose": 0.025, "order_coordinate_a1_minus_a2": -0.01},
+    "H_H_EARLY": {"a1": 0.0325, "a2": 0.0225, "dose": 0.055, "order_coordinate_a1_minus_a2": 0.01},
+    "H_H_LATE":  {"a1": 0.0225, "a2": 0.0325, "dose": 0.055, "order_coordinate_a1_minus_a2": -0.01}
+  },
+  "historical_support_half_open": [0.005, 0.035],
+  "episode_duration_steps": 60,
+  "inter_episode_gap_steps": 0,
+  "assignment_rule": {
+    "name": "cyclic Latin square",
+    "rotation": "(world_seed - 55001) mod 4",
+    "inputs": ["world_seed"],
+    "outcome_inputs": [],
+    "applied_only_after_four_target_eligibility": true
+  },
+  "assignments": {
+    "55001": {"0": "H_L_EARLY", "1": "H_L_LATE",  "2": "H_H_EARLY", "3": "H_H_LATE"},
+    "55002": {"0": "H_L_LATE",  "1": "H_H_EARLY", "2": "H_H_LATE",  "3": "H_L_EARLY"},
+    "55003": {"0": "H_H_EARLY", "1": "H_H_LATE",  "2": "H_L_EARLY", "3": "H_L_LATE"},
+    "55004": {"0": "H_H_LATE",  "1": "H_L_EARLY", "2": "H_L_LATE",  "3": "H_H_EARLY"},
+    "55005": {"0": "H_L_EARLY", "1": "H_L_LATE",  "2": "H_H_EARLY", "3": "H_H_LATE"},
+    "55006": {"0": "H_L_LATE",  "1": "H_H_EARLY", "2": "H_H_LATE",  "3": "H_L_EARLY"},
+    "55007": {"0": "H_H_EARLY", "1": "H_H_LATE",  "2": "H_L_EARLY", "3": "H_L_LATE"},
+    "55008": {"0": "H_H_LATE",  "1": "H_L_EARLY", "2": "H_L_LATE",  "3": "H_H_EARLY"},
+    "55009": {"0": "H_L_EARLY", "1": "H_L_LATE",  "2": "H_H_EARLY", "3": "H_H_LATE"},
+    "55010": {"0": "H_L_LATE",  "1": "H_H_EARLY", "2": "H_H_LATE",  "3": "H_L_EARLY"},
+    "55011": {"0": "H_H_EARLY", "1": "H_H_LATE",  "2": "H_L_EARLY", "3": "H_L_LATE"},
+    "55012": {"0": "H_H_LATE",  "1": "H_L_EARLY", "2": "H_L_LATE",  "3": "H_H_EARLY"},
+    "55013": {"0": "H_L_EARLY", "1": "H_L_LATE",  "2": "H_H_EARLY", "3": "H_H_LATE"},
+    "55014": {"0": "H_L_LATE",  "1": "H_H_EARLY", "2": "H_H_LATE",  "3": "H_L_EARLY"},
+    "55015": {"0": "H_H_EARLY", "1": "H_H_LATE",  "2": "H_L_EARLY", "3": "H_L_LATE"},
+    "55016": {"0": "H_H_LATE",  "1": "H_L_EARLY", "2": "H_L_LATE",  "3": "H_H_EARLY"},
+    "55017": {"0": "H_L_EARLY", "1": "H_L_LATE",  "2": "H_H_EARLY", "3": "H_H_LATE"},
+    "55018": {"0": "H_L_LATE",  "1": "H_H_EARLY", "2": "H_H_LATE",  "3": "H_L_EARLY"},
+    "55019": {"0": "H_H_EARLY", "1": "H_H_LATE",  "2": "H_L_EARLY", "3": "H_L_LATE"},
+    "55020": {"0": "H_H_LATE",  "1": "H_L_EARLY", "2": "H_L_LATE",  "3": "H_H_EARLY"},
+    "55021": {"0": "H_L_EARLY", "1": "H_L_LATE",  "2": "H_H_EARLY", "3": "H_H_LATE"},
+    "55022": {"0": "H_L_LATE",  "1": "H_H_EARLY", "2": "H_H_LATE",  "3": "H_L_EARLY"},
+    "55023": {"0": "H_H_EARLY", "1": "H_H_LATE",  "2": "H_L_EARLY", "3": "H_L_LATE"},
+    "55024": {"0": "H_H_LATE",  "1": "H_L_EARLY", "2": "H_L_LATE",  "3": "H_H_EARLY"}
+  },
+  "balance": {
+    "worlds_per_rotation": 6,
+    "assignments_per_history_per_slot": 6,
+    "histories_per_eligible_world": 4
+  },
+  "primary_global_rule": {
+    "up_ref": 0,
+    "history_independent": true,
+    "ordinary_coupled_control_retained": true,
+    "global_matched_coupled_control_retained": true
+  },
+  "namespace_audit": {
+    "fresh_semantic_integer_audit_pass": true,
+    "audited_at_utc": "2026-07-17T12:19:00Z",
+    "audited_scope": [
+      "working tree at canonical parent",
+      "all reachable local history",
+      "all valid local and origin-tracking branch heads",
+      "recovered malformed probe/tmp01 commit tree",
+      "remote origin/main commit a73ed40db96bc4b59f7562ae8f587c9918070f20a"
+    ],
+    "semantic_integer_rule": "negative digit/dot boundary search for each integer 55001 through 55024",
+    "prior_dev_namespaces_not_reused": ["50001-50010", "51000-54120"],
+    "malformed_ref_preserved": "refs/heads/probe/tmp01",
+    "malformed_ref_recovered_commit": "c8a8b354f10e0988adff4264bf0b1fdffcdf19c9",
+    "malformed_ref_provenance": "empty commit named probe with the same tree as parent e17f431; no seed occurrence",
+    "prospective_namespace_inspected_or_reserved": false
+  }
+}
