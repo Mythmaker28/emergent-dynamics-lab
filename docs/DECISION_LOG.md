@@ -2609,3 +2609,33 @@ scientific null or alternative is accepted from these DEV mechanics.
 margin, alpha, or authorization is created. V5, 03G, and all `58xxx` artefacts remain untouched. Human review of the
 stop record is the only next authorized action; any changed gate, target definition, writer interval, pair, or DEV
 plan requires a separately authorized new design.
+
+## D-093 — DEEP-CHECKPOINT-CAUSAL-CUT-00 Phase 0 stops because no local cut or exact checkpoint exists
+
+**Date:** 2026-07-18
+
+**Decision:** Accept `STOP_PAIR_MECHANICS` exactly and issue **STOP-LOCAL-CUT** for the distinct no-writer question.
+Four already-open worlds `{50002,50004,50005,50007}` are observation-level deep-pair candidates, but no complete
+serialized checkpoint payload is persisted. Accepted `ACCESS-STRUCTURE-00` Phase-0.5 and Phase-0.6B state digests
+conflict for 50002 and 50004, while 50005/50007 have agreeing digests but still no executable payload. Continuous
+precheckpoint pair geometry, complete tracker-edge/gate evidence, and a self-contained joint scalar P/M checkpoint
+binding are absent.
+
+**Operator decision:** no existing mechanism is both local and causally interpretable. Local `Mf` erasure changes
+the stored causal state; scalar `lam_plus=0` and `up_ref=0` are world-global; own collar replay is the exact uncut
+continuation only in its qualified unprobed branch and would clamp probe response if reused under a probe; reference
+collar replay overwrites all eight state fields and has active boundary/core disturbance
+`1.8145423147669801/1.8655212794863028` against a zero/zero own-replay sham. Dual A+B composition, continuous
+confinement, and manipulation equivalence are unqualified. The off-branch Phase-0.6A `STOP-TRANSPLANT` report was
+audited read-only at `bf5901a962bde2004dcd526a1eb083337d6e1410`; its transplant failures remain closed.
+
+**Design boundary:** retain `C00/C10/C01/C11`, separate `Y_A/Y_B`, the full non-symmetrized row-recipient/column-cut
+matrix, recipient-specific interactions, competing diagonal/crossed/common-mode/relational/artifact hypotheses, and
+the raw schema only as a non-executable identification target. Freeze `eta_w=0` from checkpoint through endpoint,
+zero external writer calls and zero exposure-dependent history increment; allow only hash-bound unchanged passive
+copy plus common decay/transport of pre-existing `Mf`. Do not invent a spatial coefficient mask and call it qualified.
+
+**Execution boundary:** no clone arm, probe, pair outcome, history writer, prospective namespace/seed, `58xxx`
+artefact, or V5/03G change is authorized. The question is unanswered, not negative. Human review of the Phase-0
+stop package is the exact next action; checkpoint serialization or local equation-edge operator development is a
+separate future mission.

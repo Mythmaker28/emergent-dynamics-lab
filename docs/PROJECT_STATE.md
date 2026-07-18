@@ -1,5 +1,30 @@
 # Project State
 
+## BRANCH ADDENDUM — DEEP-CHECKPOINT-CAUSAL-CUT-00 PHASE 0 (2026-07-18)
+
+Phase 0 accepts `STOP_PAIR_MECHANICS` without threshold, writer, pair, world, or interpretation changes and audits a
+distinct no-new-history question: whether one member of an already-formed deep-turnover pair admits a local access-edge
+cut. Only already-open 500xx DEV derivative artefacts and existing operator code were used. No factorial, future
+feeding probe, prospective namespace/seed, `58xxx` artefact, V5/03G modification, or merge was performed.
+
+Four worlds (50002@847, 50004@793, 50005@831, 50007@890) remain observational deep-pair candidates, but none has a
+persisted exact serialized checkpoint payload. Accepted deep-state digests also disagree for 50002 and 50004 across
+the `ACCESS-STRUCTURE-00` Phase-0.5 exchange and Phase-0.6B no-swap records; continuous pair geometry, complete
+tracker-edge evidence, and self-contained joint scalar P/M checkpoint evidence are absent. Exact checkpoint
+admissions are therefore 0/10.
+
+No existing operator is a mechanically interpretable local cut. `lam_plus=0`/`up_ref=0` are global, local `Mf`
+erasure destroys the candidate state, own replay is a no-op only in its qualified unprobed continuation, and
+reference collar replay overwrites all eight state arrays with an unmatched 1.8145 boundary jump and 1.8655 core
+disturbance. Simultaneous order-independent A+B composition is unqualified. Hard/boundary-repaired transplantation
+retains `STOP-TRANSPLANT`.
+
+Disposition: **STOP-LOCAL-CUT — QUESTION UNANSWERED — NO PROSPECTIVE AUTHORIZATION**. The report preserves a
+non-executable exact-clone `C00/C10/C01/C11` identification target, separate `Y_A/Y_B`, full non-symmetrized matrix,
+hypotheses, strict future `eta_w=0`/zero-writer contract, DEV-only raw schema, and fail-closed gates. Exact next authorized action: human review of the
+Phase-0 stop package only. Developing a new equation-edge operator or creating exact checkpoint payloads requires a
+separately authorized mission.
+
 ## BRANCH ADDENDUM — DIRECTED-CAUSAL-PAIR-00 PHASE 0.5 (2026-07-18)
 
 The recovered Phase-0.5 implementation was checkpointed before edits, independently hardened, bound to exact code
