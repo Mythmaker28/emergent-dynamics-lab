@@ -1,5 +1,5 @@
 {
-  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B1-REPRODUCTION-SPEC-v1",
+  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B1-REPRODUCTION-SPEC-v2",
   "purpose": "complete engine-free algorithm contract for an independently implemented raw-only reproducer",
   "allowed_runtime_inputs": [
     "committed Stage-B1 manifest",
@@ -17,6 +17,90 @@
     "Stage-B report",
     "selected-world list"
   ],
+  "manifest_layout": {
+    "canonical_file": "the file bytes equal UTF-8 canonical JSON with sort_keys=true, comma/colon separators, allow_nan=false and one terminal LF",
+    "seal": "manifest_sha256_excluding_field is exactly lowercase 64-hex SHA-256 of canonical JSON after removing only that field",
+    "runtime_manifest_sha256": "SHA-256 of the complete canonical manifest file including its seal field",
+    "required_paths": {
+      "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B1-MANIFEST-v1",
+      "namespace": "results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-DEV",
+      "law_family.laws": "ordered list of objects with law_id and complete spec; use the spec of the current world's law_id, including its dt",
+      "initial_conditions": "ordered list with ic_id; order is atlas order",
+      "execution.shape": "[Y,X]",
+      "execution.horizon_steps": "H",
+      "execution.replicates_per_law_ic": "R",
+      "execution.world_count": "len(laws)*len(initial_conditions)*R",
+      "execution.world_ids": "exact enrollment order: law order, IC order, replicate 0..R-1",
+      "detector": "matter_threshold and min_cells",
+      "tracker": "max_centroid_displacement, max_area_ratio, dilation_radius and unique_score_margin",
+      "classifier.classes": "exact nine-class order",
+      "classifier.thresholds": "all seven RegimeThresholds values",
+      "region_rule.minimum_candidate_worlds_per_ic": "candidate replication minimum",
+      "source_sha256.docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_RAW_SCHEMA.json": "frozen raw-schema hash",
+      "source_sha256.docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_REPRODUCTION_SPEC.json": "this frozen contract hash"
+    },
+    "world_identity": {
+      "world_id": "{law_id}__{ic_id}__r{replicate:02d}",
+      "object": ["world_id", "law_id", "ic_id", "replicate"]
+    }
+  },
+  "shard_manifest_layout": {
+    "path": "result_root/{world_id}/shard_manifest.json",
+    "canonical_file": "strict finite canonical JSON under the same rule",
+    "exact_top_level_for_complete": [
+      "schema",
+      "world",
+      "status",
+      "files",
+      "physics_inventory",
+      "row_counts"
+    ],
+    "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B1-SHARD-v1",
+    "world": "the exact four-field world identity object from enrollment",
+    "status": ["COMPLETE", "NUMERICAL_INVALID", "INSTRUMENTATION_INVALID"],
+    "complete_files": {
+      "physics.npz": "object with sha256 and bytes; reproducer must verify both before opening",
+      "online.json": "object with sha256 and bytes; reproducer must require the entry but must not open or hash the forbidden file"
+    },
+    "complete_physics_inventory": "mapping from every NPZ array name to object {shape:[...],dtype:string}; recompute and require exact equality",
+    "complete_row_counts": [
+      "state_rows",
+      "ledger_rows",
+      "component_rows",
+      "association_edge_rows",
+      "event_rows",
+      "track_observation_rows",
+      "tracer_rows"
+    ],
+    "failed_shard": "require exact world identity, terminal failure status and a failure.json file entry; do not open failure.json and emit the frozen TRACKING_UNRESOLVED failure row",
+    "directory_set": "the immediate result-root directories equal execution.world_ids exactly; no missing, duplicate or extra shard directory"
+  },
+  "physics_layout": {
+    "exact_keyset": "state_step, state_m, state_n, state_b, vector_reference_max_error, deterministic_replay_equal, plus ledger__ for every array/scalar named by the raw schema",
+    "shapes": {
+      "state_step": "[H+1]",
+      "state_m,state_n": "[H+1,Y,X]",
+      "state_b": "[H+1,2,Y,X]",
+      "vector_reference_max_error,deterministic_replay_equal": "[H]",
+      "ledger__affinity": "[H,Y,X]",
+      "other ledger arrays": "[H,2,Y,X]",
+      "ledger scalars": "[H]"
+    },
+    "dtypes": "state_step int64, deterministic_replay_equal uint8, all other arrays float64",
+    "sampling_frames": "detect and track state_m frames 0 through H-1; H+1 state row is required for the final transport update but is not a detector frame"
+  },
+  "numerical_order": {
+    "component_cells": "ascending row-major cells throughout",
+    "component_mass": "math.fsum of Python float matter values in that order",
+    "weighted_centroid": "NumPy float64 sum(lift_values*weights[:,None],axis=0) divided by component mass",
+    "radius": "NumPy float64 row sum of squared lifted deviations, then NumPy sum(weights*squared), divide by mass, Python math.sqrt",
+    "periodic_distance_and_score": "Python float arithmetic and math.hypot/math.exp in the written formula order",
+    "internal_activity": "construct axis-major boolean internal-face mask; NumPy boolean-index the sum matter_forward+matter_reverse; math.fsum Python floats in resulting C order; multiply by dt then divide by dt*mass",
+    "internal_energy": "NumPy boolean-index gross_formation_work+gross_rupture_release with the same mask; math.fsum Python floats in resulting C order; divide by dt then mass",
+    "cohort": "NumPy float64 divide/roll/multiply/subtract operations in formula order; support/global totals use math.fsum over C-order flattened selected values",
+    "means": "math.fsum values in ascending track-point frame order divided by valid observation count",
+    "comparisons": "use the strict/inclusive operators written in this contract without rounding or output-derived tolerance"
+  },
   "detector": {
     "occupancy": "state_m[frame,y,x] >= manifest.detector.matter_threshold",
     "components": "periodic four-neighbour connected components; discard components with cell count below min_cells",
@@ -116,5 +200,22 @@
       "DEV_FEASIBILITY_FAIL otherwise"
     ]
   },
-  "output": "serialize the exact classification schema with canonical JSON twice in clean processes; bytes and SHA-256 must match each other and production classification"
+  "classification_output_schema": {
+    "exact_top_level_order_is_irrelevant_because_keys_are_canonically_sorted": [
+      "schema",
+      "manifest_sha256",
+      "worlds",
+      "atlas",
+      "candidate_regions",
+      "disposition"
+    ],
+    "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-CLASSIFICATION-v1",
+    "manifest_sha256": "SHA-256 of the complete manifest file",
+    "worlds": "lexicographic world_id list; each object has exactly world_id, law_id, ic_id, replicate, status, regime, candidate_track_ids",
+    "atlas": "manifest law order; each object exactly {region_id:law_id,law_id,per_ic,reproducible_candidate}; per_ic follows manifest IC order and each object exactly {ic_id,denominator,complete,counts}; counts has every nine-class key and integer count",
+    "candidate_regions": "manifest law order",
+    "disposition": "the frozen disposition precedence",
+    "no_extra_metadata": true
+  },
+  "output": "serialize only the exact classification_output_schema with canonical JSON twice in clean processes; bytes and SHA-256 must match each other and production classification"
 }

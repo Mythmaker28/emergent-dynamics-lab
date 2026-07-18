@@ -396,3 +396,32 @@ wrong_reference_step_error=0.0
 **REVISE STATIC RUNNER — NO MANIFEST SEAL — NO DEV INITIALIZATION.**
 
 The three defects are repairable. After repair, the exact final source hashes, source allowlist, raw reproducer and manifest must be re-audited before the first DEV world. The passing 70-test suite does not supersede the explicit counterexamples.
+
+## B1 repaired-runner closure
+
+The primary agent repaired all three second-audit defects without executing an initializer or DEV world. My exact re-audit found:
+
+- shard and online schema/identity are exact-checked with strict finite canonical JSON;
+- complete physics NPZ archives are reopened with `allow_pickle=False` and checked for the exact field set, frozen `H`/lattice shapes, dtypes, finiteness, state clock, replay flags, physical bounds, neutral intervention scales, zero missing-flux fields, conservation residuals, reference-error evidence, and an inventory recomputed from the archive;
+- online measurement row counts are recomputed, and failed-shard records bind enrolled identity and matching status;
+- complete-shard raw verification now occurs before the shard rename, and the family verifier repeats it before the root rename;
+- the fresh initializer algorithm and namespace are exact constants;
+- the LawSpec family is an ordered, saturated Cartesian product over explicit finite factor levels with exact closed ranges and an exact fixed-field complement; every enumerated law must reproduce that product in `L000...` order;
+- both IC envelopes must be admissible under every enrolled law's `m_max/n_max`, and any residual initial-state admissibility failure escalates to `NumericalInvalid`;
+- scalar/vector state clocks must match exactly.
+
+Re-run evidence on the exact repaired files:
+
+```text
+py_compile: PASS
+targeted tests: 70 passed in 0.45s
+raw-schema JSON parse: PASS
+reproduction-spec JSON parse: PASS
+git diff --check: PASS
+```
+
+An additional actual-engine, hand-built 3x4 synthetic one-step check found exact equality between `_physics_payload` names/shapes/dtypes and `_expected_physics_layout`; it did not use the Stage-B initializer or any DEV world.
+
+The original three counterexamples now fail closed. Static runner verdict: **PASS_STATIC_RUNNER_FOR_MANIFEST_DRAFT**.
+
+This is deliberately narrower than B1 authorization. KS-B1-01 through KS-B1-06 remain unaccepted until I inspect the final committed manifest, its exact source/environment/content seals, the independent raw reproducer, all checkpoint diffs, and the no-existing-namespace preflight. No DEV initialization is yet authorized by this journal.

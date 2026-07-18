@@ -106,3 +106,69 @@ Await the exact committed B1 manifest/schema seal and a finite source allowlist.
 
 - Ending Git branch: `codex/interventional-individuality-00-stage-b`
 - Ending Git state for assigned scope: this journal is the sole new file created by this role; parent-owned concurrent changes were not inspected.
+
+## Protocol clarification before implementation
+
+At parent instruction after pre-output contract commit `1e11a1b`, exactly two additional pre-output design sources are admitted:
+
+1. `docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_RAW_SCHEMA.json`
+2. `docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_REPRODUCTION_SPEC.json`
+
+Only the bytes of those two paths at commit `1e11a1b` may be read during independent implementation. This is a protocol clarification, not outcome access. The B1 manifest remains forbidden until the parent separately authorizes post-seal execution. Production `engine.py`, `instrumentation.py`, `stage_b.py`, tests, reports, results, classification, atlas, and picked-world information remain forbidden. Implementation before that later authorization is limited to this journal and `edlab/substrates/lattice_bond/stage_b_reproduce.py`; no DEV world may be initialized or read.
+
+## Independent implementation turn
+
+- Time: `2026-07-18 23:08:58 +02:00` to `2026-07-18 23:43:38 +02:00`
+- Contract commit: `1e11a1b`
+- Raw-schema SHA-256: `ffa9be82bd4c3285e75e1ac46b63a0a794598e2169afcb6a2890c3834749fe01`
+- Reproduction-spec SHA-256: `a0c52688e7a2e1a07b8138b1c51507199145d212940b49af5a8655969c23de70`
+- New independent source: `edlab/substrates/lattice_bond/stage_b_reproduce.py`
+- Independent source SHA-256 before external static review: `504b0046defe75271d45b186fe6d725b5dea789ee6ee4e19dd5600067354f2fd`
+
+### Implemented obligations
+
+- Standalone imports restricted to Python standard library plus NumPy; no project import exists.
+- Externally supplied sealed-manifest SHA-256 is mandatory.
+- Raw-contract hashes are embedded and must match manifest bindings.
+- Result paths are containment-checked; symlink and traversal inputs fail closed.
+- Runtime forbidden basenames and selected-world/report/atlas paths fail closed.
+- Enrolled worlds are enumerated only from the sealed manifest and sorted by `world_id` for world output.
+- Shard identity/status, physics file hash/bytes, ZIP membership, exact declared array inventory, shapes/dtypes, required arrays, replay/vector-reference indicators, matter balance, residuals, and cohort conservation are validated.
+- Periodic matter-only detector, lift-based winding, geometry-only association, collapse-aware tracker, split/merge/unresolved/contact handling, passive cohort propagation, observations, metrics, frozen nine-class precedence, law/IC atlas, candidate-region rule, and final disposition precedence are independently implemented.
+- Output uses canonical UTF-8 JSON with sorted keys, compact separators, no NaN, terminal LF, exclusive creation, file flush and fsync.
+- Two-run execution remains deliberately unperformed until sealed manifest/raw inputs are separately authorized.
+
+### Static and synthetic evidence
+
+```text
+AST imports: __future__, argparse, collections, dataclasses, hashlib, json,
+math, numpy, os, pathlib, sys, typing, zipfile
+compile: OK
+CLI --help: OK
+synthetic matter-only detector: OK
+synthetic one-to-one periodic tracker: OK
+empty-world classifier precedence: OK
+canonical serialization repeat identity: OK
+git diff --check on assigned files: OK
+```
+
+The synthetic checks used only hand-built in-memory arrays. No manifest, shard manifest, physics file, result, scientific state, or world was opened or initialized.
+
+### Current observations and risks
+
+- OBSERVED: the implementation was derived only from the two admitted pre-output contracts.
+- OBSERVED: static parsing confirms the source imports no `edlab` or other project module.
+- INFERRED: exact byte equality with production classification may still depend on an output object schema supplied by the sealed B1 manifest; the reproduction contract defines canonical encoding and content obligations but does not enumerate every production output key.
+- WHAT WOULD FALSIFY THIS?: the sealed manifest lacks an exact classification-output schema or uses raw-array/shard-manifest structures not completely specified by the two admitted contracts. Either condition must fail closed rather than be repaired using production output.
+- UNRESOLVED: independent pre-output static audit requested from the Stage-B adversarial reviewer; findings pending.
+
+### Binding adversarial finding before qualification
+
+The Stage-B adversarial reviewer reported that the current standalone source cannot consume the actual producer-side contract: the two admitted reproduction documents do not specify the producer's nested manifest and shard structures, law-specific `dt` selection, or the exact production classification object schema. The reviewer transmitted examples of producer field names, but those arose from production knowledge outside this role's two-file pre-output source allowlist. They are recorded only as evidence of a schema mismatch and are not used to patch the implementation.
+
+Disposition for this implementation turn: **hold / not statically qualified**. The source is preliminary despite compiling and passing hand-built smoke checks. Resolution requires either:
+
+1. a newly committed, outcome-free reproduction contract that completely and normatively specifies the manifest structure, shard identity/inventory structure, per-law time-step selection, and exact classification output schema, followed by explicit authorization to read that contract; or
+2. a fail-closed instrumentation/protocol revision.
+
+Patching from production source, tests, generated output, reviewer-reported field fragments, or trial-and-error fixture failures remains forbidden. No manifest or DEV output was opened.
