@@ -1,5 +1,5 @@
 {
-  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B1-REPRODUCTION-SPEC-v3",
+  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B1-REPRODUCTION-SPEC-v4",
   "purpose": "complete engine-free algorithm contract for an independently implemented raw-only reproducer",
   "allowed_runtime_inputs": [
     "committed Stage-B1 manifest",
@@ -31,13 +31,15 @@
       "execution.replicates_per_law_ic": "R",
       "execution.world_count": "len(laws)*len(initial_conditions)*R",
       "execution.world_ids": "exact enrollment order: law order, IC order, replicate 0..R-1",
+      "environment": "exact object with only python_version, numpy_version, platform and byteorder; require equality to sys.version, numpy.__version__, platform.platform() and sys.byteorder before any shard access",
       "detector": "matter_threshold and min_cells",
       "tracker": "max_centroid_displacement, max_area_ratio, dilation_radius and unique_score_margin",
       "classifier.classes": "exact nine-class order",
       "classifier.thresholds": "all seven RegimeThresholds values",
       "region_rule.minimum_candidate_worlds_per_ic": "candidate replication minimum",
       "source_sha256.docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_RAW_SCHEMA.json": "frozen raw-schema hash",
-      "source_sha256.docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_REPRODUCTION_SPEC.json": "this frozen contract hash"
+      "source_sha256.docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_REPRODUCTION_SPEC.json": "this frozen contract hash",
+      "source_sha256.edlab/substrates/lattice_bond/stage_b_reproduce.py": "SHA-256 of the exact executing independent reproducer source; compare to __file__ before any shard access"
     },
     "world_identity": {
       "world_id": "{law_id}__{ic_id}__r{replicate:02d}",
