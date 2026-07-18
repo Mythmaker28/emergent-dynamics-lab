@@ -1,0 +1,93 @@
+{
+  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-A-FIELD-EQUATION-REGISTRY-v1",
+  "mission": "INTERVENTIONAL-INDIVIDUALITY-00",
+  "stage": "A",
+  "accepted_design_commit": "44d91f0f66473b9f907618556020929656ca862f",
+  "scope": "deterministic code-only mechanical qualification",
+  "scientific_endpoint_selected": false,
+  "state": {
+    "m": "float64 cell field in [0,m_max], transported mobile matter",
+    "n": "float64 cell field in [0,n_max], transported resource and bond fuel",
+    "b": "float64 face field with shape (2,H,W) in [0,1]; index 0 is the positive-y face and index 1 the positive-x face",
+    "step": "nonnegative integer scheduler clock"
+  },
+  "explicitly_absent": [
+    "organism class",
+    "membrane class or mask",
+    "inside/outside bit",
+    "component or preferred-size target",
+    "tracker or permanent entity ID",
+    "history or memory field",
+    "genome, fitness, reproduction or ownership variable",
+    "scientific response"
+  ],
+  "structural_semantics": "b is implemented only as a physical structural order parameter; Stage A assigns no memory semantics and makes no claim excluding what separately revalidated later evidence could establish",
+  "default_parameters": {
+    "dt": 0.05,
+    "m_max": 1.0,
+    "n_max": 1.0,
+    "kappa_m": 0.05,
+    "theta_m": 0.5,
+    "theta_n": 0.5,
+    "resource_diffusivity": 0.1,
+    "resource_leak_floor": 0.05,
+    "epsilon_b": 0.25,
+    "k_on": 0.3,
+    "k_off": 0.05,
+    "k_tension": 0.15
+  },
+  "face_convention": {
+    "canonical_value": "J[q,y,x] is positive from cell (y,x) to its periodic +1 neighbour along q",
+    "antisymmetry": "the reverse directed value is -J[q,y,x] and the two endpoint updates use the same stored float with opposite signs",
+    "divergence": "div(J)_x=sum_q(J[q,x]-J[q,x-e_q])",
+    "update": "q_next=q-dt*div(J_active) before local bond fuel/work debits"
+  },
+  "equations": {
+    "affinity": "A_x=theta_m*(1/4)*sum_{y~x}m_y+theta_n*n_x",
+    "matter_forward": "F_m[x->y]=kappa_m*(1-b_xy)*m_x*(1-m_y/m_max)*exp((A_y-A_x)/2)",
+    "matter_net": "J_m[xy]=F_m[x->y]-F_m[y->x]=-J_m[yx]",
+    "resource_permeability": "p_n(b)=resource_leak_floor+(1-resource_leak_floor)*(1-b)",
+    "resource_net": "J_n[xy]=resource_diffusivity*p_n(b_xy)*(n_x-n_y)=-J_n[yx]",
+    "bond_cue": "Psi_xy=(m_x/m_max)*(m_y/m_max)*(min(n_x,n_y)/n_max)",
+    "bond_tension": "T_xy=abs(m_x-m_y)/m_max",
+    "rates": "r_on=k_on*Psi_xy; r_off=k_off+k_tension*T_xy",
+    "bond_update": "b_eq=r_on/(r_on+r_off); b_next=b_eq+(b-b_eq)*exp(-(r_on+r_off)*dt), with b unchanged when both rates are zero",
+    "gross_formation": "g_form=(1-b)*r_on/(r_on+r_off)*(1-exp(-(r_on+r_off)*dt))",
+    "gross_rupture": "g_rupture=b*r_off/(r_on+r_off)*(1-exp(-(r_on+r_off)*dt)); b_next-b=g_form-g_rupture",
+    "maintenance_recycling": "W_recycled=epsilon_b*min(g_form,g_rupture) exposes simultaneous on/off turnover maintaining structural b without adding a new external sink",
+    "formation_fuel": "W_form_external=epsilon_b*g_form-W_recycled=epsilon_b*positive(b_next-b), debited equally from endpoint n",
+    "weakening_and_dissolution": "gross rupture release is partitioned exactly in the ratio (k_tension*T):k_off before maintenance recycling; external Q_rupture is partitioned by the same ratio into weakening and dissolution heat",
+    "rupture_heat": "Q_rupture=epsilon_b*g_rupture-W_recycled=epsilon_b*positive(b-b_next)",
+    "resource_update": "n_next=n-dt*div(J_n_active)-(1/2)*sum_incident(W_form_external)",
+    "matter_update": "m_next=m-dt*div(J_m_active)"
+  },
+  "operator_order": [
+    "validate the complete pre-step state and intervention plan",
+    "compute all affinities, natural face fluxes, bond rates and gross bond events from the common pre-step state",
+    "apply immutable face coefficients once to natural transported fluxes",
+    "apply paired transported contributions and precomputed endpoint net-formation fuel debits; maintenance recycling is internal and changes no state",
+    "return the new state and complete natural/active/missing flux and work ledger"
+  ],
+  "admissible_timestep": {
+    "matter_bound": "dt <= 1/[4*kappa_m*exp((theta_m*m_max+theta_n*n_max)/2)]",
+    "resource_bond_bound": "dt <= 1/[4*resource_diffusivity+2*epsilon_b*k_on/n_max]",
+    "frozen_rule": "LatticeBondSpec rejects dt above the smaller finite bound; no state output is clipped and no arm-specific substep is permitted"
+  },
+  "energy_identity": "sum(n_next)+epsilon_b*sum(b_next)+sum(Q_rupture)=sum(n)+epsilon_b*sum(b); gross formation work=external formation fuel+recycled maintenance work; gross rupture release=rupture heat+the same recycled maintenance work",
+  "intervention": {
+    "plan": "immutable per-face matter_scale and resource_scale arrays in [0,1]",
+    "open": "all coefficients equal one and must be byte-identical to no-plan execution",
+    "closed": "zero only the declared pre-existing transported face term; bond rates/state are not directly gated",
+    "composition": "elementwise multiplication; commutative, associative and idempotent for binary open/closed masks",
+    "missing_ledger": "J_natural-J_active and the exact opposite endpoint contributions are retained per channel; onset state-energy jump is zero"
+  },
+  "numerical_criterion": "abs(error)<=1e-12+1e-10*abs(reference)",
+  "candidate_future_endpoint_families_only": [
+    "maintenance",
+    "recovery",
+    "internal activity",
+    "turnover",
+    "downstream response"
+  ],
+  "endpoint_firewall": "no family is selected or implemented as a scientific primary response; directly gated fluxes and bond terms remain compliance diagnostics"
+}

@@ -1,5 +1,35 @@
 # Project State
 
+## BRANCH ADDENDUM — INTERVENTIONAL-INDIVIDUALITY-00 STAGE A (2026-07-18)
+
+Stage A implements only a minimal, isolated lattice-bond substrate on the accepted Candidate-C architecture at
+`44d91f0f66473b9f907618556020929656ca862f`. Physical state is bounded cell matter `m`, ordinary resource/bond fuel
+`n`, a uniform structural fraction `b` on every fixed positive-axis face, and a clock. The engine contains no
+component, inside bit, membrane/organism class, tracker, entity ID, preferred size, genome, fitness, reproduction,
+history field, ownership variable, global normalization, scientific response, or endpoint.
+
+The frozen local update has antisymmetric matter/resource transport, exact exponential bond relaxation, explicit
+gross formation/rupture events, net external formation fuel, external rupture heat, internally recycled maintenance
+work, and weakening/baseline-dissolution partitions. No output clipping or arm-specific repair exists. The analytic
+matter and resource/bond timestep bounds yield a representable default admissible limit of
+`1.818181818181818`; 21 hand-built deterministic tests pass, including exhaustive 2×2 binary corners at limiting
+regimes, scalar/vector agreement, symmetry covariance, work closure, and anti-manufacture counterexamples.
+
+Generic immutable face coefficients compose only by multiplying pre-existing matter/resource transport terms.
+Neutral and all-one execution are byte-identical. A zero coefficient manufactures an artificial barrier; exact
+localization, paired missing-flux accounting, and zero onset-energy jump do not establish natural autonomy,
+individuality, a boundary, or an admissible future scientific instrument. `b` has structural semantics only in
+Stage A: no memory claim is made, and later separately revalidated evidence is not prohibited by architecture.
+
+An evidence-firewall deviation is preserved explicitly: a repository-wide regression run and an isolated parent
+test reproduction traversed pre-existing seeded/scientific unit fixtures outside the synthetic-only allowlist. A
+second full-suite attempt was terminated when detected. Those commands support no Stage-A gate or scientific
+inference; admissible evidence is restricted to the focused lattice suite and independent hand-built lattice stress.
+
+Disposition: **STAGE_A_QUALIFIED — MECHANICAL CODE-ONLY QUALIFICATION FOR HUMAN REVIEW**. This authorizes no Stage B,
+scientific world, regime discovery, seed family, search, endpoint, memory, reproduction, V5/03G modification, merge,
+or PR. Exact next action: human review of the Stage-A package only.
+
 ## BRANCH ADDENDUM — INTERVENTIONAL-INDIVIDUALITY-00 PHASE 0 (2026-07-18)
 
 The human decision accepts `STOP_ARCHITECTURE` exactly and closes `CAUSAL-ADDRESSABILITY-ARCHITECTURE-01` on the

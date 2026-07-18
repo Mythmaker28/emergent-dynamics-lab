@@ -2777,3 +2777,33 @@ inheritance. Every transition requires new human authorization. No old 03G value
 valid-world set, or confirmation status is grandfathered. Phase 0 runs no engine, scientific world, checkpoint,
 seed, analyzer, or prospective family; modifies no V5/03G code; and creates no merge or PR. Exact next action:
 human review of the Phase-0 reference architecture only.
+
+## D-098 — INTERVENTIONAL-INDIVIDUALITY-00 Stage A qualifies minimal lattice-bond mechanics only
+
+**Date:** 2026-07-18
+
+**Decision:** Implement Candidate C only in a new isolated `edlab.substrates.lattice_bond` module and issue
+**STAGE_A_QUALIFIED — MECHANICAL CODE-ONLY QUALIFICATION FOR HUMAN REVIEW**. The compact physical state is `m`, `n`,
+uniform fixed-face structural `b`, and a clock. Uniform local equations contain no entity, closure, inside,
+component, tracker, ID, preferred size, history field, genome, ownership, or scientific response.
+
+**Mechanical decision:** store each canonical matter/resource face value once and apply equal/opposite endpoint
+updates. Use exact exponential bond relaxation; debit resource only for net positive stored bond-energy change,
+release net negative change as heat, and expose simultaneous gross formation/rupture as internally recycled
+maintenance work. The frozen analytic timestep bound is enforced before update with no clipping. Twenty-one
+deterministic hand-built fixtures plus independent 26,244-state hand-built stress establish the declared compact
+domain, conservation/work identities, scalar/vector agreement, and symmetry obligations.
+
+**Intervention and claim boundary:** immutable fixed-face coefficients multiply only pre-existing transported matter
+or resource terms and compose by multiplication. Open/no-plan identity is byte exact, and a cut has paired raw
+missing-flux accounting and zero state-energy jump at onset. The cut nevertheless manufactures a barrier. It
+establishes no natural boundary, autonomy, entity, individuality, memory, causal-access structure, or scientific
+instrument. `b` is structural and unassayed in Stage A; no future memory result is granted or prohibited by
+declaration.
+
+**Evidence and execution boundary:** a repository-wide regression command and isolated parent test reproduction
+traversed pre-existing seeded/scientific unit fixtures outside the synthetic-only allowlist; the attempted repeat was
+terminated. This is a recorded evidence-firewall deviation and contributes no qualification evidence or scientific
+inference. Stage A relies only on the focused hand-built lattice suite and independent hand-built stress scan. No
+Stage B, new scientific world, regime discovery, prospective family, endpoint, search, memory, reproduction,
+V5/03G modification, merge, or PR is authorized. Human review of the Stage-A package is the exact next action.
