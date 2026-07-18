@@ -1,0 +1,87 @@
+{
+  "schema": "KOVACS-HIDDEN-STATE-00-NULL-DIAGNOSTIC-SCHEMA-v1",
+  "status": "PHASE-0 DESIGN DRAFT; no data; no prospective execution",
+  "purpose": "Define the raw per-world fields sufficient to distinguish an INVALID match (Z/timing/common-release/viability/manipulation gate failure) from a GENUINE null (Z matched within tolerance, shams identical, common release verified, yet no between-history divergence). Every gate is recorded so a null cannot be manufactured by a broken match and a spurious divergence cannot be read as hidden state.",
+  "statistical_unit": "original source world",
+  "aggregation_note": "Branches, crossings, clones, reference/sham arms and time points are recorded per world but never increase n.",
+  "per_world_record": {
+    "identity_provenance": {
+      "seed": "int — source world seed (already-open DEV family for DEV reads; a fresh disjoint namespace for any future prospective phase)",
+      "prehistory_eligible": "bool — focal target existed under the frozen eligibility rule",
+      "focal_tracker_id": "int — canonical focal ID (selection uses no outcome)",
+      "checkpoint_bundle_sha256": "str — hash binding the exact pre-history snapshot",
+      "clone_validation": {"byte_identical": "bool", "focal_ids_equal": "bool", "max_abs_field_error": "float — must be 0"}
+    },
+    "match_block": {
+      "m_star": "float — per-world target = Z of the direct-relaxation reference on the frozen core mask at fixed t_ref",
+      "m_star_source": "str — must be 'direct_relaxation_reference@t_ref'; NEVER any Kovacs excursion or matched branch",
+      "m0_checkpoint_mass": "float — per-world pre-history focal mass (sets tol scale)",
+      "tol": "float — frozen match tolerance = 0.02 * m0",
+      "A_min": "int — frozen minimum release age (common to both branches)",
+      "branch": {
+        "OVER": {"t_R": "int — first step >= A_min at which Z crosses m*", "Z_at_release": "float", "abs_gap_to_mstar": "float", "cross_direction": "str: 'above'|'below'|'none'", "matched": "bool = abs_gap_to_mstar <= tol", "release_age": "int"},
+        "APPR": {"t_R": "int", "Z_at_release": "float", "abs_gap_to_mstar": "float", "cross_direction": "str", "matched": "bool", "release_age": "int"}
+      },
+      "both_matched": "bool — OVER.matched AND APPR.matched",
+      "opposite_direction": "bool — OVER.cross_direction != APPR.cross_direction (primary configuration)",
+      "branch_age_gap": "int — |OVER.release_age - APPR.release_age| (covariate; also drives equal-age variant)"
+    },
+    "common_release_block": {
+      "boundary_source_sha256": "str — must be identical for both branches (one common history-independent no-drive source)",
+      "up_ref_value": "float — must be the common clamp (0 for primary isolated arm)",
+      "up_ref_common": "bool — OVER and APPR share up_ref condition exactly",
+      "dynamics_params_sha256": "str — engine parameter hash; must be identical across branches",
+      "probe_free": "bool — no N reset, no stimulus, no feeding readout applied",
+      "no_manipulation_at_release": "bool — no erase/standardize/graft/replace of core Mf; release is pure continuation"
+    },
+    "sham_block": {
+      "own_replay_bit_exact": "bool — re-run of a branch from its release state reproduces Z_b(t) exactly",
+      "identical_history_clone_D": "float — between-branch D for two SAME-history clones matched to m*; must be 0 (numeric atol)",
+      "one_step_discontinuity": {"OVER": "float |Z(t_R+1)-Z(t_R)|", "APPR": "float", "free_running_increment_bound": "float", "within_bound": "bool"}
+    },
+    "viability_block": {
+      "deep_valid": {"OVER": "bool (M<=0.25, tracked, coverage<15%)", "APPR": "bool"},
+      "focal_tracked_through_horizon": {"OVER": "bool", "APPR": "bool"},
+      "max_coverage": {"OVER": "float", "APPR": "float"},
+      "censored": "bool — any viability failure censors the world; NEVER imputed as zero"
+    },
+    "excursion_block": {
+      "note": "Recorded ONLY in a future prospective/DEV-read phase AFTER the design is frozen; absent in Phase 0.",
+      "Z_ref_traj": "list[float] — direct-relaxation reference Z(t_ref+s), s=0..T_hor (frozen core mask)",
+      "Z_OVER_traj": "list[float] — Z_OVER(t_R+s)",
+      "Z_APPR_traj": "list[float] — Z_APPR(t_R+s)",
+      "K_OVER": "float — signed hump area (Z_OVER - Z_ref)",
+      "K_APPR": "float — signed hump area (Z_APPR - Z_ref)",
+      "D_w": "float — primary estimand K_OVER - K_APPR",
+      "D_w_tracked_robustness": "float — same on tracked body mass (sign-concordance check)",
+      "D_w_equal_age_variant": "float — same under equal-age release (age control)"
+    },
+    "world_classification_inputs": {
+      "complete": "bool — clone_validation AND both_matched AND common_release_block AND sham_block AND viability_block all pass",
+      "reason_if_incomplete": "str|null — the first failing gate (e.g. 'APPR_not_matched', 'up_ref_not_common', 'identical_history_clone_D_nonzero', 'deep_invalid_OVER')"
+    }
+  },
+  "family_level_gates": {
+    "N_complete": "int — number of complete worlds",
+    "N_min": "int — frozen minimum complete worlds (proposed >=12 of 24 DEV; confirmatory value set by power analysis at seal)",
+    "primary_unoriented_gate": "bool — {D_w} has >=75% common sign AND 95% Student-t interval excludes zero",
+    "robustness_sign_concordant": "bool — sign(mean D_w) == sign(mean D_w_tracked_robustness)",
+    "age_variant_sign_concordant": "bool — sign(mean D_w) == sign(mean D_w_equal_age_variant)"
+  },
+  "genuine_null_vs_invalid_match": {
+    "GENUINE_NULL (Z_SUFFICIENT_NOT_ESTABLISHED)": "N_complete >= N_min AND sham_block clean for all complete worlds AND primary_unoriented_gate == false. The match and common release are demonstrably valid; the absence of divergence is a bounded null, never a sufficiency proof.",
+    "INVALID_MATCH (MATCH_INVALID)": "both_matched fails for more than (24 - N_min) worlds, OR common_release_block/up_ref/viability/one_step_discontinuity fails where estimable, OR identical_history_clone_D != 0. The match or release is not established; neither null nor divergence is interpretable.",
+    "HIDDEN_STATE_SUPPORTED": "N_complete >= N_min AND sham_block clean AND primary_unoriented_gate AND robustness_sign_concordant AND age_variant_sign_concordant.",
+    "UNRESOLVED": "validity passes but robustness_sign_concordant or age_variant_sign_concordant is false, or sham anomalies remain, or N_complete < N_min with no clean feasibility failure."
+  },
+  "integrity": {
+    "no_outcome_selected_Z": true,
+    "no_tuning_of_target_or_horizon_from_response": true,
+    "no_body_equalization_surgery": true,
+    "no_decoder_or_reader_battery": true,
+    "no_residualization_presented_as_causal": true,
+    "no_new_seed_namespace_in_phase0": true,
+    "no_prospective_execution_in_phase0": true,
+    "statistical_unit": "original source world only"
+  }
+}

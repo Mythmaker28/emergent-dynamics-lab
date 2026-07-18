@@ -1,0 +1,423 @@
+{
+  "schema": "KOVACS-HIDDEN-STATE-00-DEV-CROSSING-PROBE-v1",
+  "scope": "already-open DEV worlds only; matching-variable trajectories only; no outcome estimand",
+  "grid_N": 64,
+  "schedules": {
+    "OVERSHOOT": [
+      [
+        0.06,
+        60
+      ],
+      [
+        0.0,
+        60
+      ],
+      [
+        0.0,
+        360
+      ]
+    ],
+    "APPROACH": [
+      [
+        0.01,
+        120
+      ],
+      [
+        0.0,
+        360
+      ]
+    ],
+    "NODRIVE": [
+      [
+        0.0,
+        480
+      ]
+    ]
+  },
+  "worlds": [
+    {
+      "seed": 57001,
+      "OVERSHOOT": {
+        "label": "OVERSHOOT",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 40.5549,
+        "tracked_last": 59.7607,
+        "tracked_min": 40.2058,
+        "tracked_max": 64.8397,
+        "tracked_peak_elapsed": 298,
+        "decline_after_peak": 5.3248,
+        "monotone_nondecreasing": false,
+        "core_first": 69.9528,
+        "core_last": 79.1996,
+        "core_min": 69.6299,
+        "core_max": 85.6289
+      },
+      "APPROACH": {
+        "label": "APPROACH",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 40.553,
+        "tracked_last": 36.6521,
+        "tracked_min": 36.6521,
+        "tracked_max": 41.0721,
+        "tracked_peak_elapsed": 189,
+        "decline_after_peak": 4.4201,
+        "monotone_nondecreasing": false,
+        "core_first": 69.9494,
+        "core_last": 59.0117,
+        "core_min": 59.0117,
+        "core_max": 69.9494
+      },
+      "NODRIVE": {
+        "label": "NODRIVE",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 40.5526,
+        "tracked_last": 28.5843,
+        "tracked_min": 28.2965,
+        "tracked_max": 40.5526,
+        "tracked_peak_elapsed": 1,
+        "decline_after_peak": 12.2562,
+        "monotone_nondecreasing": false,
+        "core_first": 69.9488,
+        "core_last": 49.4406,
+        "core_min": 49.4406,
+        "core_max": 69.9488
+      },
+      "placeholder_crossing": {
+        "m_star_placeholder": 35.4133,
+        "overshoot_cross": null,
+        "approach_cross": null,
+        "note": "placeholder m* is midpoint(no-drive@240, approach@400); geometry check only, NOT the prereg rule"
+      }
+    },
+    {
+      "seed": 57003,
+      "OVERSHOOT": {
+        "label": "OVERSHOOT",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 50.7544,
+        "tracked_last": 51.9592,
+        "tracked_min": 50.716,
+        "tracked_max": 63.1775,
+        "tracked_peak_elapsed": 171,
+        "decline_after_peak": 11.2183,
+        "monotone_nondecreasing": false,
+        "core_first": 66.5556,
+        "core_last": 57.6585,
+        "core_min": 57.6585,
+        "core_max": 69.1483
+      },
+      "APPROACH": {
+        "label": "APPROACH",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 50.7526,
+        "tracked_last": 41.0958,
+        "tracked_min": 41.0958,
+        "tracked_max": 51.9658,
+        "tracked_peak_elapsed": 202,
+        "decline_after_peak": 10.87,
+        "monotone_nondecreasing": false,
+        "core_first": 66.5532,
+        "core_last": 46.4134,
+        "core_min": 46.4134,
+        "core_max": 66.5532
+      },
+      "NODRIVE": {
+        "label": "NODRIVE",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 50.7523,
+        "tracked_last": 29.0423,
+        "tracked_min": 29.0423,
+        "tracked_max": 50.7523,
+        "tracked_peak_elapsed": 1,
+        "decline_after_peak": 21.7099,
+        "monotone_nondecreasing": false,
+        "core_first": 66.5527,
+        "core_last": 40.8023,
+        "core_min": 40.8023,
+        "core_max": 66.5527
+      },
+      "placeholder_crossing": {
+        "m_star_placeholder": 43.7278,
+        "overshoot_cross": null,
+        "approach_cross": {
+          "elapsed": 443,
+          "from": "down",
+          "mass": 43.711
+        },
+        "note": "placeholder m* is midpoint(no-drive@240, approach@400); geometry check only, NOT the prereg rule"
+      }
+    },
+    {
+      "seed": 57006,
+      "OVERSHOOT": {
+        "label": "OVERSHOOT",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 36.5642,
+        "tracked_last": 32.1555,
+        "tracked_min": 32.1555,
+        "tracked_max": 39.5938,
+        "tracked_peak_elapsed": 133,
+        "decline_after_peak": 7.4383,
+        "monotone_nondecreasing": false,
+        "core_first": 58.7911,
+        "core_last": 43.8289,
+        "core_min": 43.8289,
+        "core_max": 58.7911
+      },
+      "APPROACH": {
+        "label": "APPROACH",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 36.5628,
+        "tracked_last": 25.5364,
+        "tracked_min": 25.5364,
+        "tracked_max": 36.8516,
+        "tracked_peak_elapsed": 2,
+        "decline_after_peak": 11.3152,
+        "monotone_nondecreasing": false,
+        "core_first": 58.7892,
+        "core_last": 35.5206,
+        "core_min": 35.5206,
+        "core_max": 58.7892
+      },
+      "NODRIVE": {
+        "label": "NODRIVE",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 36.5625,
+        "tracked_last": 22.2037,
+        "tracked_min": 22.2037,
+        "tracked_max": 36.8507,
+        "tracked_peak_elapsed": 2,
+        "decline_after_peak": 14.647,
+        "monotone_nondecreasing": false,
+        "core_first": 58.7888,
+        "core_last": 31.6943,
+        "core_min": 31.6943,
+        "core_max": 58.7888
+      },
+      "placeholder_crossing": {
+        "m_star_placeholder": 28.3609,
+        "overshoot_cross": null,
+        "approach_cross": {
+          "elapsed": 387,
+          "from": "down",
+          "mass": 28.3549
+        },
+        "note": "placeholder m* is midpoint(no-drive@240, approach@400); geometry check only, NOT the prereg rule"
+      }
+    },
+    {
+      "seed": 57008,
+      "OVERSHOOT": {
+        "label": "OVERSHOOT",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 35.7765,
+        "tracked_last": 67.3808,
+        "tracked_min": 35.7707,
+        "tracked_max": 80.6065,
+        "tracked_peak_elapsed": 242,
+        "decline_after_peak": 13.2257,
+        "monotone_nondecreasing": false,
+        "core_first": 84.8962,
+        "core_last": 83.0413,
+        "core_min": 83.0413,
+        "core_max": 98.9035
+      },
+      "APPROACH": {
+        "label": "APPROACH",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 35.7748,
+        "tracked_last": 52.438,
+        "tracked_min": 27.9024,
+        "tracked_max": 61.2968,
+        "tracked_peak_elapsed": 236,
+        "decline_after_peak": 8.8588,
+        "monotone_nondecreasing": false,
+        "core_first": 84.8929,
+        "core_last": 66.2078,
+        "core_min": 66.2078,
+        "core_max": 84.8929
+      },
+      "NODRIVE": {
+        "label": "NODRIVE",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 35.7744,
+        "tracked_last": 44.3213,
+        "tracked_min": 27.1111,
+        "tracked_max": 52.316,
+        "tracked_peak_elapsed": 255,
+        "decline_after_peak": 8.2518,
+        "monotone_nondecreasing": false,
+        "core_first": 84.8922,
+        "core_last": 57.6683,
+        "core_min": 57.6683,
+        "core_max": 84.8922
+      },
+      "placeholder_crossing": {
+        "m_star_placeholder": 44.9431,
+        "overshoot_cross": {
+          "elapsed": 72,
+          "from": "up",
+          "mass": 50.1417
+        },
+        "approach_cross": {
+          "elapsed": 157,
+          "from": "up",
+          "mass": 45.0018
+        },
+        "note": "placeholder m* is midpoint(no-drive@240, approach@400); geometry check only, NOT the prereg rule"
+      }
+    },
+    {
+      "seed": 57009,
+      "OVERSHOOT": {
+        "label": "OVERSHOOT",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 30.9485,
+        "tracked_last": 28.3416,
+        "tracked_min": 28.3416,
+        "tracked_max": 34.8191,
+        "tracked_peak_elapsed": 151,
+        "decline_after_peak": 6.4776,
+        "monotone_nondecreasing": false,
+        "core_first": 56.9645,
+        "core_last": 47.3681,
+        "core_min": 47.3681,
+        "core_max": 56.9645
+      },
+      "APPROACH": {
+        "label": "APPROACH",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 30.9472,
+        "tracked_last": 23.0618,
+        "tracked_min": 23.0618,
+        "tracked_max": 30.9472,
+        "tracked_peak_elapsed": 1,
+        "decline_after_peak": 7.8854,
+        "monotone_nondecreasing": false,
+        "core_first": 56.9628,
+        "core_last": 38.3892,
+        "core_min": 38.3892,
+        "core_max": 56.9628
+      },
+      "NODRIVE": {
+        "label": "NODRIVE",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 30.947,
+        "tracked_last": 19.6604,
+        "tracked_min": 19.4044,
+        "tracked_max": 30.947,
+        "tracked_peak_elapsed": 1,
+        "decline_after_peak": 11.5426,
+        "monotone_nondecreasing": false,
+        "core_first": 56.9625,
+        "core_last": 34.2875,
+        "core_min": 34.2875,
+        "core_max": 56.9625
+      },
+      "placeholder_crossing": {
+        "m_star_placeholder": 24.0648,
+        "overshoot_cross": null,
+        "approach_cross": {
+          "elapsed": 422,
+          "from": "down",
+          "mass": 24.0559
+        },
+        "note": "placeholder m* is midpoint(no-drive@240, approach@400); geometry check only, NOT the prereg rule"
+      }
+    },
+    {
+      "seed": 57010,
+      "OVERSHOOT": {
+        "label": "OVERSHOOT",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 37.9996,
+        "tracked_last": 38.8392,
+        "tracked_min": 37.9996,
+        "tracked_max": 47.2618,
+        "tracked_peak_elapsed": 212,
+        "decline_after_peak": 8.4226,
+        "monotone_nondecreasing": false,
+        "core_first": 59.9945,
+        "core_last": 49.721,
+        "core_min": 49.721,
+        "core_max": 60.6084
+      },
+      "APPROACH": {
+        "label": "APPROACH",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 37.9979,
+        "tracked_last": 30.5238,
+        "tracked_min": 30.5238,
+        "tracked_max": 38.397,
+        "tracked_peak_elapsed": 18,
+        "decline_after_peak": 7.8732,
+        "monotone_nondecreasing": false,
+        "core_first": 59.9921,
+        "core_last": 39.2371,
+        "core_min": 39.2371,
+        "core_max": 59.9921
+      },
+      "NODRIVE": {
+        "label": "NODRIVE",
+        "alive": true,
+        "reason": null,
+        "elapsed_end": 480,
+        "tracked_first": 37.9975,
+        "tracked_last": 26.0584,
+        "tracked_min": 26.0584,
+        "tracked_max": 38.0545,
+        "tracked_peak_elapsed": 25,
+        "decline_after_peak": 11.9962,
+        "monotone_nondecreasing": false,
+        "core_first": 59.9916,
+        "core_last": 34.3866,
+        "core_min": 34.3866,
+        "core_max": 59.9916
+      },
+      "placeholder_crossing": {
+        "m_star_placeholder": 32.252,
+        "overshoot_cross": null,
+        "approach_cross": {
+          "elapsed": 429,
+          "from": "down",
+          "mass": 32.1562
+        },
+        "note": "placeholder m* is midpoint(no-drive@240, approach@400); geometry check only, NOT the prereg rule"
+      }
+    }
+  ]
+}
