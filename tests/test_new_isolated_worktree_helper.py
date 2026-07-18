@@ -132,3 +132,16 @@ def test_helper_refuses_undocumented_invalid_path(tmp_path: Path) -> None:
     assert completed.returncode != 0
     assert "undocumented Windows-invalid paths outside results/_tomo_cache" in completed.stderr
     assert not target.exists()
+
+
+def test_helper_escapes_sparse_pattern_metacharacters(tmp_path: Path) -> None:
+    invalid_path = "results/_tomo_cache/odd*fixture?.pkl"
+    repo, commit = make_fixture(tmp_path, invalid_path)
+    target = tmp_path / "metacharacter-worktree"
+
+    completed = invoke_helper(repo, target, commit)
+
+    assert completed.returncode == 0, completed.stdout + completed.stderr
+    skipped = [line[2:] for line in git(target, "-c", "core.quotepath=false", "ls-files", "-v").splitlines() if line.startswith("S ")]
+    assert skipped == [invalid_path]
+    assert git(target, "write-tree") == git(repo, "rev-parse", f"{commit}^{{tree}}")

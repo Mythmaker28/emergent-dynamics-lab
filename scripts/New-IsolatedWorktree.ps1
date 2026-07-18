@@ -65,10 +65,11 @@ function Test-WindowsInvalidGitPath {
 function ConvertTo-SparseLiteral {
     param([Parameter(Mandatory = $true)][string]$GitPath)
 
-    $escaped = $GitPath.Replace('\\', '\\\\')
-    $escaped = $escaped.Replace('*', '\\*')
-    $escaped = $escaped.Replace('?', '\\?')
-    $escaped = $escaped.Replace('[', '\\[')
+    $escaped = $GitPath.Replace('\', '\\')
+    $escaped = $escaped.Replace('*', '\*')
+    $escaped = $escaped.Replace('?', '\?')
+    $escaped = $escaped.Replace('[', '\[')
+    $escaped = $escaped.Replace(' ', '\ ')
     return $escaped
 }
 
@@ -98,7 +99,10 @@ if ($outsideDocumentedCache.Count -gt 0) {
     throw "Refusing commit with undocumented Windows-invalid paths outside results/_tomo_cache/: $($outsideDocumentedCache -join ', ')"
 }
 
-if ($PSCmdlet.ParameterSetName -eq 'Branch') {
+$worktreeCreationAttempted = $false
+$branchCreationRequested = $PSCmdlet.ParameterSetName -eq 'Branch'
+
+if ($branchCreationRequested) {
     [void](Invoke-Git -WorkingDirectory $repositoryPath -Arguments @('check-ref-format', '--branch', $Branch))
     $branchProbe = @(& git -C $repositoryPath show-ref --verify --quiet "refs/heads/$Branch" 2>&1)
     if ($LASTEXITCODE -eq 0) {
@@ -107,8 +111,10 @@ if ($PSCmdlet.ParameterSetName -eq 'Branch') {
     if ($LASTEXITCODE -ne 1) {
         throw "Unable to verify whether branch already exists: $Branch. $($branchProbe -join ' ')"
     }
+    $worktreeCreationAttempted = $true
     [void](Invoke-Git -WorkingDirectory $repositoryPath -Arguments @('worktree', 'add', '--no-checkout', '-b', $Branch, $targetPath, $resolvedCommit))
 } else {
+    $worktreeCreationAttempted = $true
     [void](Invoke-Git -WorkingDirectory $repositoryPath -Arguments @('worktree', 'add', '--no-checkout', '--detach', $targetPath, $resolvedCommit))
 }
 
@@ -147,8 +153,45 @@ try {
         throw "New worktree is not clean: $($status -join '; ')"
     }
 } catch {
-    Write-Error "Worktree construction failed after registration. It was left in place for diagnosis: $targetPath. $($_.Exception.Message)"
-    throw
+    $originalFailure = $_.Exception.Message
+    $cleanupNotes = [Collections.Generic.List[string]]::new()
+    $targetStillRegistered = $false
+
+    if ($worktreeCreationAttempted) {
+        try {
+            $registeredAfterFailure = @(
+                Invoke-Git -WorkingDirectory $repositoryPath -Arguments @('worktree', 'list', '--porcelain') |
+                    Where-Object { $_.StartsWith('worktree ') } |
+                    ForEach-Object { [IO.Path]::GetFullPath($_.Substring(9)) }
+            )
+            $targetStillRegistered = $registeredAfterFailure.Where({ $_.Equals($targetPath, [StringComparison]::OrdinalIgnoreCase) }).Count -gt 0
+            if ($targetStillRegistered) {
+                [void](Invoke-Git -WorkingDirectory $repositoryPath -Arguments @('worktree', 'remove', '--', $targetPath))
+                $targetStillRegistered = $false
+                $cleanupNotes.Add('Removed the clean helper-created worktree registration and directory.')
+            }
+        } catch {
+            $cleanupNotes.Add("Automatic non-force worktree removal failed; preserved for diagnosis: $($_.Exception.Message)")
+            $targetStillRegistered = $true
+        }
+    }
+
+    if ($branchCreationRequested -and -not $targetStillRegistered) {
+        try {
+            $createdBranchTip = (@(Invoke-Git -WorkingDirectory $repositoryPath -Arguments @('rev-parse', '--verify', "refs/heads/$Branch^{commit}")))[-1].Trim()
+            if ($createdBranchTip -eq $resolvedCommit) {
+                [void](Invoke-Git -WorkingDirectory $repositoryPath -Arguments @('update-ref', '-d', "refs/heads/$Branch", $resolvedCommit))
+                $cleanupNotes.Add('Removed the unchanged helper-created branch with an exact expected-value update.')
+            } else {
+                $cleanupNotes.Add("Preserved helper-created branch because its tip changed: $createdBranchTip")
+            }
+        } catch {
+            $cleanupNotes.Add("Branch rollback was not completed; preserved for diagnosis: $($_.Exception.Message)")
+        }
+    }
+
+    $cleanupSummary = if ($cleanupNotes.Count -gt 0) { $cleanupNotes -join ' ' } else { 'No worktree registration was created.' }
+    throw "Worktree construction failed for $targetPath. $originalFailure Cleanup: $cleanupSummary"
 }
 
 Write-Output "CREATED_WINDOWS_SAFE_WORKTREE"
