@@ -3,7 +3,7 @@
 - Role: independent adversarial reviewer
 - Run ID: `RUN-20260718-2238-II00-B-REDTEAM`
 - Start: 2026-07-18 22:38:27 +02:00
-- End: in progress
+- End: 2026-07-19 00:40:37 +02:00
 - Starting branch: `codex/interventional-individuality-00-stage-b`
 - Starting HEAD: `b0dbab7674816ebdf3f3f911694b2744ca4bfc76`
 - Starting Git state: clean
@@ -580,3 +580,75 @@ No pre-execution blocker remains.
 **AUTHORIZED: ONE AND ONLY ONE INVOCATION OF THE HASH-BOUND STAGE-B DEV RUNNER AGAINST THE SUPERSEDING MANIFEST.**
 
 The invocation is authorized only after this journal append is committed/pushed and the worktree is clean. It must use the exact allowlisted runner command, must not replace or retry any world, and must stop with the runner's one terminal package. Afterward, the package and two independent raw reproductions require separate audit before any scientific disposition is accepted.
+
+## Post-run package and outcome audit
+
+The primary agent committed/pushed the final preflight authorization at `ecf3347ff5e3ceac1970ee4ca8ce186a70fdb337`, returned to a clean worktree, and made exactly one allowlisted runner invocation. It reported no retry or replacement. Only after the final root atomically replaced its `.partial` sibling did the primary agent authorize outcome inspection.
+
+### Raw-package integrity
+
+- The final root contains exactly 64 enrolled shard directories and the three required root files: **195 files, 549,527,367 bytes**. The family `.partial` root is absent.
+- The canonical root manifest SHA-256 is `07428729da7b7d60a3493d9ee1fb8ec31ab0d7b870b5d9fdb54095ededff63cf` and binds the exact superseding manifest, raw schema, enrollment, classification and all 64 shard manifests.
+- Enrollment SHA-256 is `7a93fbf59b44983c4c2c3eba5b4e6de52055473acc21f0f33c9138de55fb6217`.
+- All 64 shard-manifest hashes, byte counts, identities and statuses match the root inventory; all statuses are `COMPLETE`.
+- A fresh full production verifier pass accepted all 64 shards, reopening every NPZ with `allow_pickle=False`, recomputing its inventory, and exact-checking every online row count and identity.
+
+Independent aggregate raw diagnostics across every shard:
+
+```text
+state m range: 0.08131865751024783 .. 0.7177831441798563
+state n range: 0.5416721152943683 .. 0.9499817047156738
+state b range: 0.0 .. 0.5491712608817768
+all arrays finite: true
+all clocks 0..160 exact: true
+all deterministic replay flags one: true
+all matter/resource intervention scales one: true
+all missing-flux/controller fields zero: true
+maximum vector/reference error: 2.842170943040401e-14
+worst reference-error fraction of its frozen tolerance: 2.465533122485006e-06
+maximum absolute matter residual: 1.4210854715202004e-14
+maximum absolute energy residual: 2.842170943040401e-14
+maximum controller-onset jump: 0.0
+worst matter/energy residual fractions of tolerance: 2.2151700316462283e-06 / 2.4312064213049814e-06
+```
+
+No Stage-A positivity, bound, conservation, energy/work, deterministic-replay, reference-backend or neutral/open-mechanics kill switch fired. `MANIPULATION_OR_NUMERICAL_INVALID` is therefore not the disposition.
+
+### Measurement, tracking and atlas audit
+
+Every online record is canonical, identity-bound and row-count-bound. No world or lifecycle event is tracking-unresolved. The complete world counts are:
+
+- 30 `PERSISTENT_NO_TURNOVER`;
+- 11 `STATIC_CRYSTAL_OR_SHELL`;
+- 10 `DISSOLVED`;
+- 2 `EMPTY_OR_GAS`;
+- 11 `BOUNDED_ACTIVE_TURNOVER_CANDIDATE`;
+- zero in the other four classes.
+
+All 64 denominators remain present. Candidate counts by law for `soup / compact` are `L000 1/0`, `L001 1/0`, `L002 0/0`, `L003 0/0`, `L004 1/0`, `L005 2/1`, `L006 2/1`, and `L007 2/0`. The frozen rule requires at least 2/4 independently in **each** IC class, so every law fails. Selecting the 11 candidate worlds, only the soup support, or the best laws would be a prohibited surviving-subset rescue.
+
+### Independent raw-only reproduction
+
+The two authorized independent outputs, the production classification and the durable classification copy are byte-identical, each 15,436 bytes with SHA-256 `7b7cf200fd6cc7ccfbd77b19de0ca1231df22c1d2d9ab5d7548828df7c3ed14e`.
+
+The separately firewalled raw-only reviewer then reread only the sealed manifest/digest, shard identity/integrity metadata, physics arrays and RUN1/RUN2. Its fresh in-memory recomputation produced the same bytes and hash without writing a third output or reading `online.json`, production classification, root manifest, report, atlas, engine, instrumentation or runner. It independently found 64 `COMPLETE` shards, 64 unique physics hashes, shard-binding aggregate `298f86ee06182ad180e3110bc09bbe34d5c95e31bc9b0aa7a7e0a3e7a9e71927`, the same regime counts, no candidate region and `DEV_FEASIBILITY_FAIL`.
+
+### Report and claim-boundary review
+
+The Stage-B report SHA-256 at review was `9650a16fd722784ce9f228b0d90220d2a7984d41ef6c033de28887485b26a859`. Its execution identifiers, family dimensions, complete atlas table, raw/package hashes, failure-mode precedence and next-action boundary match the audited evidence. It explicitly states that this four-replicate family is a feasibility screen rather than a probability estimate; that the negative region gate cannot be rescued by selection, extension, threshold change or intervention; and that it establishes nothing for or against individuality, autonomy, memory, ownership, reproduction or life.
+
+## Final independent disposition
+
+No package, numerical, instrumentation, tracking, reproduction, aggregation or claim-boundary blocker remains.
+
+**`DEV_FEASIBILITY_FAIL`**
+
+This means only that none of the eight exact frozen LawSpec regions met the preregistered two-of-four criterion in both neutral IC classes over the fixed 160-step horizon. It is not absence of individual candidate worlds, not a substrate impossibility theorem, and not evidence against individuality. Stage C remains closed. The exact next action is human review of the completed Stage-B package; no rerun, extension, selected-world carry-forward, causal intervention or automatic downstream phase is authorized.
+
+## Post-verdict report-hash correction
+
+After the verdict above, the primary agent appended one already-audited provenance value to the Stage-B report: the raw-only reviewer's ordered shard-binding aggregate `298f86ee06182ad180e3110bc09bbe34d5c95e31bc9b0aa7a7e0a3e7a9e71927`. The earlier report SHA-256 `9650a16fd722784ce9f228b0d90220d2a7984d41ef6c033de28887485b26a859` therefore remains the exact hash I reviewed at the time of the original verdict but is superseded for final-package provenance.
+
+I inspected the exact current report. Its SHA-256 is `46d3ad194418516e2d4e5c4e1027d302ef168892efb811ccc2844232af7c5aa0`. The added aggregate matches the independent raw-only journal and does not alter any world, shard, classification, atlas count, threshold, claim, recommendation or scientific disposition.
+
+Verdict unchanged: **`DEV_FEASIBILITY_FAIL` — HUMAN REVIEW ONLY — STAGE C CLOSED.**

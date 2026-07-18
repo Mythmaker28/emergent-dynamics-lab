@@ -1,5 +1,24 @@
 # Project State
 
+## BRANCH ADDENDUM — INTERVENTIONAL-INDIVIDUALITY-00 STAGE B (2026-07-19)
+
+Stage B qualified a dynamically passive matter-only detector, geometry-only split/merge-aware tracker, exact
+flux-advected cohort tracer, ordinary activity/energy diagnostics and deterministic nine-class classifier. The
+standalone raw reproducer was independently implemented from a v4 operation contract, imports no project module,
+and has durable exact-parity tests. The focused Stage-A/B suite passes 88 tests.
+
+After an independent fail-before-DEV preflight, exactly one invocation executed the sealed 64-world DEV family:
+eight Cartesian LawSpecs, two neutral IC classes, four original-world replicates, `12×12`, 160 steps. All 64 shards
+are complete; every-step deterministic replay, scalar-reference comparison and Stage-A identities pass. Production
+classification and two clean-process raw-only reproductions are byte-identical at SHA-256
+`7b7cf200fd6cc7ccfbd77b19de0ca1231df22c1d2d9ab5d7548828df7c3ed14e`.
+
+Eleven individual worlds met the bounded-active-turnover world classifier, but zero LawSpec regions met the frozen
+replication rule of at least two of four candidates separately in both IC classes. Individual survivors cannot be
+selected or promoted. Disposition: **DEV_FEASIBILITY_FAIL**. This is a fixed-family feasibility result, not absence
+of individuality and not permission to relax thresholds, extend the family or open Stage C. Exact next action:
+human review of the completed Stage-B package only.
+
 ## BRANCH ADDENDUM — INTERVENTIONAL-INDIVIDUALITY-00 STAGE A (2026-07-18)
 
 Stage A implements only a minimal, isolated lattice-bond substrate on the accepted Candidate-C architecture at

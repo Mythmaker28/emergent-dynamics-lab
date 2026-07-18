@@ -2807,3 +2807,22 @@ terminated. This is a recorded evidence-firewall deviation and contributes no qu
 inference. Stage A relies only on the focused hand-built lattice suite and independent hand-built stress scan. No
 Stage B, new scientific world, regime discovery, prospective family, endpoint, search, memory, reproduction,
 V5/03G modification, merge, or PR is authorized. Human review of the Stage-A package is the exact next action.
+
+## D-099 — INTERVENTIONAL-INDIVIDUALITY-00 Stage B fixed family is DEV-infeasible
+
+**Date:** 2026-07-19
+
+**Decision:** Issue **DEV_FEASIBILITY_FAIL** for the exact sealed Stage-B family. The passive instrumentation,
+standalone raw reproducer and v4 provenance gates qualified before execution. Exactly one invocation enrolled all 64
+fixed original worlds; all shards completed and retained the Stage-A numerical/conservation identities. Production
+classification and two independent raw-only reproductions are byte-identical.
+
+**Regime decision:** 11 individual worlds satisfy the frozen bounded-active-turnover world rule, but no LawSpec
+region satisfies the predeclared replication requirement of at least two of four candidates separately in both the
+soup and compact IC classes. Candidate worlds are not a surviving subset and cannot be promoted or rerun. No
+threshold, IC, law, horizon or world was changed after outcome access.
+
+**Claim and program boundary:** this result says only that the fixed DEV family failed its regional feasibility
+gate. It does not show absence of individuality, autonomy, memory, ownership, reproduction or life. It does not
+authorize causal-conductance selection, cuts, a memory writer, adaptive extension, replacement worlds or Stage C.
+The exact next action is human review of the completed Stage-B package.
