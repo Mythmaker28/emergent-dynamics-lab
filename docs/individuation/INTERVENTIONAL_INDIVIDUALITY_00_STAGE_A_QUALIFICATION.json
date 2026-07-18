@@ -1,0 +1,120 @@
+{
+  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-A-QUALIFICATION-v1",
+  "mission": "INTERVENTIONAL-INDIVIDUALITY-00",
+  "stage": "A",
+  "accepted_design_commit": "44d91f0f66473b9f907618556020929656ca862f",
+  "repository": {
+    "boundary_disposition": "QUALIFIED_GENERIC_REPOSITORY",
+    "remote": "https://github.com/Mythmaker28/emergent-dynamics-lab.git",
+    "package_name": "emergent-dynamics-lab",
+    "implementation_branch": "codex/interventional-individuality-00-stage-a",
+    "historical_primary_checkout_modified": false
+  },
+  "disposition": "STAGE_A_QUALIFIED",
+  "disposition_scope": "mechanical code-only qualification for human review",
+  "implementation_authorizes_stage_b": false,
+  "scientific_execution_authorized": false,
+  "regime_discovery_authorized": false,
+  "scientific_endpoint_selected": false,
+  "engine": {
+    "module": "edlab.substrates.lattice_bond.engine",
+    "state_fields": ["m", "n", "b", "step"],
+    "face_orientations": ["positive_y", "positive_x"],
+    "default_dt": 0.05,
+    "analytic_matter_dt_bound": 3.032653298563167,
+    "analytic_resource_bond_dt_bound": 1.8181818181818181,
+    "representable_admissible_dt_limit": 1.818181818181818,
+    "positivity_repair_clipping": false,
+    "history_or_memory_field": false,
+    "detector_tracker_or_entity_id_in_physics": false,
+    "global_normalization_or_nonlocal_repair": false
+  },
+  "mechanical_gates": {
+    "uniform_face_law": "PASS",
+    "matter_face_antisymmetry": "PASS",
+    "resource_face_antisymmetry": "PASS",
+    "periodic_global_matter_conservation": "PASS",
+    "resource_bond_fuel_heat_identity": "PASS",
+    "gross_formation_rupture_and_maintenance_recycling_identity": "PASS",
+    "weakening_and_dissolution_partition": "PASS",
+    "positivity_and_capacity_at_frozen_dt_limit": "PASS",
+    "exhaustive_2x2_extreme_state_admissibility": "PASS",
+    "independent_scalar_vector_agreement": "PASS",
+    "translation_covariance": "PASS_EXACT",
+    "rotation_reflection_covariance": "PASS_OPERATION_DERIVED_TOLERANCE",
+    "open_gate_byte_identity": "PASS",
+    "closed_gate_first_operation_confinement": "PASS",
+    "closed_gate_missing_pair_ledger": "PASS",
+    "binary_gate_composition_order_identity": "PASS",
+    "state_preserving_gate_onset": "PASS",
+    "direct_flux_as_scientific_response": "FORBIDDEN"
+  },
+  "deterministic_fixture_suite": {
+    "command": "python -m pytest -q tests/test_lattice_bond.py",
+    "result": "21 passed",
+    "duration_seconds_latest": 0.34,
+    "fixtures": {
+      "uniform_state_invariance": "PASS",
+      "isolated_two_cell_exchange": "PASS",
+      "periodic_global_conservation": "PASS",
+      "heterogeneous_multiface_conservation": "PASS",
+      "positivity_at_frozen_limit": "PASS",
+      "bond_creation_energy_debit": "PASS",
+      "bond_rupture_release": "PASS",
+      "zero_full_intermediate_conductance": "PASS",
+      "translation_rotation_reflection": "PASS",
+      "open_gate_identity": "PASS",
+      "symmetric_face_cut": "PASS",
+      "dissolution_leakage_percolation_split_merge": "PASS",
+      "inert_static_shell_must_not_imply_individuality": "PASS",
+      "active_unbounded_pattern_must_not_imply_individuality": "PASS"
+    }
+  },
+  "independent_stress_evidence": {
+    "reviewer_role": "independent anti-manufacture and mechanical red-team",
+    "states_checked": 26244,
+    "construction": "two-cell-torus ternary m/n values and four b patterns under combined analytic dt limit",
+    "minimum_observed_field_value": 0.0,
+    "maximum_observed_m_or_n": 1.0,
+    "maximum_observed_b": 0.9673,
+    "worst_absolute_energy_residual": 1.78e-15,
+    "binding_defect_found": false
+  },
+  "evidence_firewall": {
+    "status": "DEVIATION_RECORDED",
+    "authorized_qualification_evidence": "focused hand-built lattice-bond fixtures and independent hand-built lattice stress only",
+    "deviation": "a completed repository-wide pytest run and an isolated parent reproduction traversed pre-existing scientific/seeded unit fixtures outside the synthetic-only allowlist",
+    "completed_run_observation_for_provenance_only": "240 passed, 1 failed",
+    "attempted_repeat": "terminated when the scope problem was identified",
+    "scientific_contrast_or_inference_computed": false,
+    "qualification_depends_on_deviation": false,
+    "pre_existing_sources_or_tests_modified": false
+  },
+  "anti_manufacture": {
+    "preferred_object_size_in_law": false,
+    "component_closure_inside_or_membrane_mask_in_law": false,
+    "tracker_or_id_influence": false,
+    "bond_threshold_feeds_physics": false,
+    "static_shell_counts_as_individuality": false,
+    "conductance_selected_then_reused_as_scientific_response": false,
+    "face_cut_counts_as_autonomy": false,
+    "face_cut_warning": "a cut mechanically manufactures a barrier and is qualified only for exact accounting; it proves no autonomy or individuality",
+    "candidate_endpoint_families_only": [
+      "maintenance",
+      "recovery",
+      "internal activity",
+      "turnover",
+      "downstream response"
+    ]
+  },
+  "artifact_sha256": {
+    "edlab/substrates/lattice_bond/__init__.py": "d5575173fde77db4fff9e2b37d71819ee0b288c05a889bb556e9bd1ae990e13e",
+    "edlab/substrates/lattice_bond/engine.py": "e027a9c56b773ed077cdfe725951d215b631c54b7080da73e5321ccedb6d9ff6",
+    "tests/test_lattice_bond.py": "75ef218d24a6d7b79df0cd50fba131dc64f741ca4124b5fccdd30324fb366e20",
+    "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_A_FIELD_EQUATION_REGISTRY.json": "9b071d0b197732bc7a0f2a418e391ebd2d467ead45e8682987330a1390ded3c6",
+    "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_A_SOURCE_ALLOWLIST.json": "7b884af05b8468b69e9813520e4a8478b079f22a8024103bddbf808ff08e79b5",
+    "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_A_REPORT.md": "adabd621438acdf4e0913ccfa0a22839049e022d288019768c88bd15f0241864",
+    "docs/agent_journals/2026-07-18/2154_lattice-bond-redteam_RUN-20260718-2154-II00-A-REDTEAM.md": "d3682718350016510f1a1b70ab883436b6ca20c5873f56097524f05ade3ef317"
+  },
+  "exact_next_action": "human review of Stage A only"
+}

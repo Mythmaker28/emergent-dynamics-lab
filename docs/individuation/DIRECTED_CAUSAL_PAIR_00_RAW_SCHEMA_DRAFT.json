@@ -1,0 +1,657 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "DIRECTED-CAUSAL-PAIR-00-RAW-v0-draft",
+  "title": "Minimum raw record for a directed causal pair world",
+  "description": "DRAFT ONLY. One record is one original world. Clone arms and targets are nested measurements, never independent observations.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "mission",
+    "mode",
+    "code_commit",
+    "contract_hashes",
+    "original_worlds"
+  ],
+  "properties": {
+    "schema": {
+      "const": "DIRECTED-CAUSAL-PAIR-00-RAW-v0-draft"
+    },
+    "mission": {
+      "const": "DIRECTED-CAUSAL-PAIR-00"
+    },
+    "mode": {
+      "enum": [
+        "DEV",
+        "PROSPECTIVE"
+      ]
+    },
+    "code_commit": {
+      "$ref": "#/$defs/sha256_or_git"
+    },
+    "contract_hashes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "writer",
+        "probe",
+        "tracker",
+        "noswap_operator",
+        "preregistration"
+      ],
+      "properties": {
+        "writer": {
+          "$ref": "#/$defs/sha256"
+        },
+        "probe": {
+          "$ref": "#/$defs/sha256"
+        },
+        "tracker": {
+          "$ref": "#/$defs/sha256"
+        },
+        "noswap_operator": {
+          "$ref": "#/$defs/sha256"
+        },
+        "preregistration": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "original_worlds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/world"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "sha256_or_git": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40,64}$"
+    },
+    "finite_number": {
+      "type": "number"
+    },
+    "target_label": {
+      "enum": [
+        "A",
+        "B",
+        "SENTINEL"
+      ]
+    },
+    "history_arm": {
+      "enum": [
+        "H00",
+        "H10",
+        "H01",
+        "H11"
+      ]
+    },
+    "access_regime": {
+      "enum": [
+        "ORDINARY",
+        "OWN_REPLAY_SHAM_A",
+        "OWN_REPLAY_SHAM_B",
+        "REFERENCE_NOSWAP_A",
+        "REFERENCE_NOSWAP_B",
+        "UP_REF_ZERO",
+        "REFERENCE_NOSWAP_A_UP_REF_ZERO",
+        "REFERENCE_NOSWAP_B_UP_REF_ZERO"
+      ]
+    },
+    "centroid": {
+      "type": "array",
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/finite_number"
+        },
+        {
+          "$ref": "#/$defs/finite_number"
+        }
+      ],
+      "items": false
+    },
+    "target_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target",
+        "tracker_id",
+        "status",
+        "centroid",
+        "component_size",
+        "rho_mass",
+        "P",
+        "M",
+        "raw_descriptor",
+        "body_mask_sha256",
+        "core_mask_sha256",
+        "halo_mask_sha256"
+      ],
+      "properties": {
+        "target": {
+          "$ref": "#/$defs/target_label"
+        },
+        "tracker_id": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Diagnostic only; forbidden from physics, detection, and association gates."
+        },
+        "status": {
+          "enum": [
+            "ALIVE",
+            "SPLIT",
+            "MERGED",
+            "LOST",
+            "AMBIGUOUS"
+          ]
+        },
+        "centroid": {
+          "$ref": "#/$defs/centroid"
+        },
+        "component_size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rho_mass": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "P": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "M": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "raw_descriptor": {
+          "type": "object",
+          "description": "Frozen descriptor fields needed to reproduce P and M; no generic feature battery."
+        },
+        "body_mask_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "core_mask_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "halo_mask_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "association_edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tracker_id",
+        "component_id",
+        "overlap",
+        "centroid_distance",
+        "size_ratio",
+        "overlap_gate_pass",
+        "distance_gate_pass",
+        "size_gate_pass",
+        "compatible",
+        "assignment_cost",
+        "selected"
+      ],
+      "properties": {
+        "tracker_id": {
+          "type": "integer"
+        },
+        "component_id": {
+          "type": "integer"
+        },
+        "overlap": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "centroid_distance": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "size_ratio": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "overlap_gate_pass": {
+          "type": "boolean"
+        },
+        "distance_gate_pass": {
+          "type": "boolean"
+        },
+        "size_gate_pass": {
+          "type": "boolean"
+        },
+        "compatible": {
+          "type": "boolean"
+        },
+        "assignment_cost": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "selected": {
+          "type": "boolean"
+        }
+      }
+    },
+    "step_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step",
+        "targets",
+        "pair_distance",
+        "halo_overlap_cells",
+        "association_edges",
+        "up_ref",
+        "local_N_residual_A",
+        "local_N_residual_B"
+      ],
+      "properties": {
+        "step": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "targets": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/target_snapshot"
+          }
+        },
+        "pair_distance": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "halo_overlap_cells": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "association_edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/association_edge"
+          }
+        },
+        "up_ref": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "local_N_residual_A": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "local_N_residual_B": {
+          "$ref": "#/$defs/finite_number"
+        }
+      }
+    },
+    "probe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "N_standardized_to",
+        "settle_steps",
+        "uniform_amplitude",
+        "stimulus_steps",
+        "horizon_steps",
+        "integrated_tracked_uptake",
+        "integrated_fixed_mask_uptake",
+        "endpoint_mass",
+        "endpoint_size",
+        "endpoint_centroid",
+        "valid"
+      ],
+      "properties": {
+        "N_standardized_to": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "settle_steps": {
+          "const": 40
+        },
+        "uniform_amplitude": {
+          "const": 0.25
+        },
+        "stimulus_steps": {
+          "const": 5
+        },
+        "horizon_steps": {
+          "const": 40
+        },
+        "integrated_tracked_uptake": {
+          "type": "object",
+          "required": [
+            "A",
+            "B",
+            "SENTINEL"
+          ]
+        },
+        "integrated_fixed_mask_uptake": {
+          "type": "object",
+          "required": [
+            "A",
+            "B",
+            "SENTINEL"
+          ]
+        },
+        "endpoint_mass": {
+          "type": "object",
+          "required": [
+            "A",
+            "B",
+            "SENTINEL"
+          ]
+        },
+        "endpoint_size": {
+          "type": "object",
+          "required": [
+            "A",
+            "B",
+            "SENTINEL"
+          ]
+        },
+        "endpoint_centroid": {
+          "type": "object",
+          "required": [
+            "A",
+            "B",
+            "SENTINEL"
+          ]
+        },
+        "valid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "arm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "history_arm",
+        "access_regime",
+        "prewriter_clone_sha256",
+        "state_hashes",
+        "writer_execution",
+        "deep_gate",
+        "trajectory",
+        "probe",
+        "clamp_diagnostics"
+      ],
+      "properties": {
+        "history_arm": {
+          "$ref": "#/$defs/history_arm"
+        },
+        "access_regime": {
+          "$ref": "#/$defs/access_regime"
+        },
+        "prewriter_clone_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "state_hashes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "postwriter",
+            "deep",
+            "preprobe"
+          ],
+          "properties": {
+            "postwriter": {
+              "$ref": "#/$defs/sha256"
+            },
+            "deep": {
+              "$ref": "#/$defs/sha256"
+            },
+            "preprobe": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        },
+        "writer_execution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "write_A",
+            "write_B",
+            "phase_amplitudes",
+            "phase_steps",
+            "target_dose_A",
+            "target_dose_B",
+            "array_operations_equal_across_arms"
+          ],
+          "properties": {
+            "write_A": {
+              "type": "boolean"
+            },
+            "write_B": {
+              "type": "boolean"
+            },
+            "phase_amplitudes": {
+              "type": "array",
+              "prefixItems": [
+                {
+                  "type": "number",
+                  "minimum": 0.005,
+                  "maximum": 0.035
+                },
+                {
+                  "type": "number",
+                  "minimum": 0.005,
+                  "maximum": 0.035
+                }
+              ],
+              "items": false
+            },
+            "phase_steps": {
+              "const": 60
+            },
+            "target_dose_A": {
+              "$ref": "#/$defs/finite_number"
+            },
+            "target_dose_B": {
+              "$ref": "#/$defs/finite_number"
+            },
+            "array_operations_equal_across_arms": {
+              "type": "boolean"
+            }
+          }
+        },
+        "deep_gate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "reference_H00_step",
+            "all_targets_P_M_joint",
+            "all_targets_deep_turnover",
+            "all_targets_distinct",
+            "pair_separation_pass",
+            "halo_overlap_cells",
+            "whole_world_valid"
+          ],
+          "properties": {
+            "reference_H00_step": {
+              "type": "integer"
+            },
+            "all_targets_P_M_joint": {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": {
+                "type": "object",
+                "required": [
+                  "target",
+                  "P",
+                  "M"
+                ]
+              }
+            },
+            "all_targets_deep_turnover": {
+              "type": "boolean"
+            },
+            "all_targets_distinct": {
+              "type": "boolean"
+            },
+            "pair_separation_pass": {
+              "type": "boolean"
+            },
+            "halo_overlap_cells": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "whole_world_valid": {
+              "type": "boolean"
+            }
+          }
+        },
+        "trajectory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/step_record"
+          }
+        },
+        "probe": {
+          "$ref": "#/$defs/probe"
+        },
+        "clamp_diagnostics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recipient",
+            "core_radius",
+            "barrier_width",
+            "barrier_jump_max_abs",
+            "immediate_core_change_max_abs",
+            "outside_target_change_max_abs",
+            "up_ref_zero",
+            "own_replay_bit_exact"
+          ],
+          "properties": {
+            "recipient": {
+              "enum": [
+                "NONE",
+                "A",
+                "B"
+              ]
+            },
+            "core_radius": {
+              "const": 10
+            },
+            "barrier_width": {
+              "const": 2
+            },
+            "barrier_jump_max_abs": {
+              "$ref": "#/$defs/finite_number"
+            },
+            "immediate_core_change_max_abs": {
+              "$ref": "#/$defs/finite_number"
+            },
+            "outside_target_change_max_abs": {
+              "$ref": "#/$defs/finite_number"
+            },
+            "up_ref_zero": {
+              "type": "boolean"
+            },
+            "own_replay_bit_exact": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "world": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "original_world_id",
+        "eligibility_decided_before_writer",
+        "pair_selection",
+        "writer_schedule",
+        "reference_H00_deep_step",
+        "arms",
+        "world_valid",
+        "world_censor_reason"
+      ],
+      "properties": {
+        "original_world_id": {
+          "type": "integer"
+        },
+        "eligibility_decided_before_writer": {
+          "type": "boolean"
+        },
+        "pair_selection": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "all_candidate_initial_distances",
+            "target_A_index",
+            "target_B_index",
+            "sentinel_index",
+            "orientation_rule",
+            "feeding_outcome_used"
+          ],
+          "properties": {
+            "all_candidate_initial_distances": {
+              "type": "array"
+            },
+            "target_A_index": {
+              "type": "integer"
+            },
+            "target_B_index": {
+              "type": "integer"
+            },
+            "sentinel_index": {
+              "type": "integer"
+            },
+            "orientation_rule": {
+              "type": "string"
+            },
+            "feeding_outcome_used": {
+              "const": false
+            }
+          }
+        },
+        "writer_schedule": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "selection_stream_id",
+            "phase_amplitudes",
+            "same_schedule_for_A_and_B",
+            "selected_without_pair_outcomes"
+          ],
+          "properties": {
+            "selection_stream_id": {
+              "type": "string"
+            },
+            "phase_amplitudes": {
+              "type": "array",
+              "minItems": 2,
+              "maxItems": 2
+            },
+            "same_schedule_for_A_and_B": {
+              "const": true
+            },
+            "selected_without_pair_outcomes": {
+              "const": true
+            }
+          }
+        },
+        "reference_H00_deep_step": {
+          "type": "integer"
+        },
+        "arms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/arm"
+          }
+        },
+        "world_valid": {
+          "type": "boolean"
+        },
+        "world_censor_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  }
+}

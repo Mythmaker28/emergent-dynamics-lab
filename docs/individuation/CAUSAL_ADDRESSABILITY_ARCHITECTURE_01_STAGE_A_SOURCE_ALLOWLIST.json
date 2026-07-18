@@ -1,0 +1,63 @@
+{
+  "schema": "CAUSAL-ADDRESSABILITY-ARCHITECTURE-01-STAGE-A-SOURCE-ALLOWLIST-v1",
+  "accepted_parent": "9ec894fbeba7ec2974a917a182d152e9d8074431",
+  "allowed_durable_input_sha256": {
+    "AGENTS.md": "07a19076644593891d2d02e83dc618e8accefd1d539a312585a20a65d0edbf72",
+    "docs/RESEARCH_CHARTER.md": "6ebc35f4433c0395eebb7cb62eec6eb943af889e395f25c4c06c30a178ad6a3c",
+    "docs/PROJECT_STATE.md": "fb0e9dba4795d8a341ce8277a9d80de0c7ab50d0dd6427d86cb9814d1cc24309",
+    "docs/DECISION_LOG.md": "7bbacef7fd2c001e61e538e8b9b69c575cfeb1849806c31344361eef71c05748",
+    "docs/EXPERIMENT_INDEX.md": "59f8d4f516bad2ece5f0e8d395112ab5c66aef57ad7fae5452266bef413c2431",
+    "docs/RUN_INDEX.md": "bac0b0fe5064f20353ddd8414c0a67fd0ab15157d126e8482d6bd87c7cef9e1b",
+    "docs/individuation/CAUSAL_ADDRESSABILITY_ARCHITECTURE_01_PHASE0_REPORT.md": "b6f87ce3df29f061b8beec47b3f3ea978cdb0da99da2f38f07bb5cc8e883a4cb",
+    "docs/individuation/CAUSAL_ADDRESSABILITY_ARCHITECTURE_01_SPEC.json": "0dfe00091a99a0fce844fddbe546b5b0b98bdeffd8b5e82f817317b9fa58590f",
+    "docs/individuation/CAUSAL_ADDRESSABILITY_ARCHITECTURE_01_SOURCE_ALLOWLIST.json": "fae74ec5253793e4f10fab73dbb4cfb4b108d747740f11a2967c62e07a43b252",
+    "docs/agent_journals/2026-07-18/1929_architecture-design_RUN-20260718-1929-CAA01-P0.md": "673b407542f5e39bb384dbadab3822a05d1c59ac8cff6fffded24a545f479bb0",
+    "docs/agent_journals/2026-07-18/1934_architecture-redteam_RUN-20260718-CAA01-REDTEAM.md": "ea348351f6663329d2207c9bc0e24f06d62aea47bb00b63af6c66be5d99e20df"
+  },
+  "allowed_frozen_code_sha256": {
+    "edlab/substrates/reaction_diffusion/engine.py": "e94d831a40eb2dd366fda984059cbaf5a7458a665a6704290cb653276a0e6120",
+    "edlab/substrates/scaffold/engine.py": "dee42f1879c9a42ec52833406cc3d89e859c154157eab34c1f570919b93b1df5",
+    "edlab/experiments/sc_iom/engine.py": "fa07b5e2a1c111cde41ddc8d1254f63a3097751e2d432013ae24ab38b1ceb54f",
+    "edlab/experiments/sc_mcm/engine.py": "d51a5db1848e717a44f9e00aa4ad4b9c86465ec245184b78b2516dad9842ef2d",
+    "edlab/__init__.py": "d3a973865ddaf07eebff73155b114ec8c1d441d99f7ed740a173bf6f5e58b5c5",
+    "edlab/experiments/__init__.py": "05566b81f31828bfdfb01b8eb95e70faee237f972403a485efd3725aa0550b6e",
+    "edlab/experiments/sc_iom/__init__.py": "07185b99ecc13d74bb473a2e9ea165ec4c2e5700381145021f2c0aa7dd330130",
+    "edlab/experiments/sc_mcm/__init__.py": "73467774968e5571c4d2cdb132c7c20020ad8eb5dad764ab21a9f6bfd8632cb0",
+    "edlab/substrates/__init__.py": "e6d73027f8343100cd9cbdd79d502b640dd753639aeb53831e2bdd748d7260ba",
+    "edlab/substrates/scaffold/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "edlab/substrates/reaction_diffusion/__init__.py": "d2cda8b515443ccf854597bd5ca4395ecdc7a298a14a0998701def2c71cd0a05"
+  },
+  "allowed_synthetic_style_reference_sha256": {
+    "experiments/individuation/access_structure_operators.py": "ca7a68fcf0d35dfcf4b766f64a1ff5b007678191befe28360b54c341fb537d8f",
+    "experiments/individuation/test_access_structure_operators.py": "03b68d26cc8778e7d20515215c9d0493400d5a7abe459f53d7e0486eff9662b7"
+  },
+  "authorized_new_or_updated_paths": [
+    "experiments/individuation/causal_addressability_stage_a.py",
+    "experiments/individuation/test_causal_addressability_stage_a.py",
+    "docs/individuation/CAUSAL_ADDRESSABILITY_ARCHITECTURE_01_STAGE_A_STATIC_OBLIGATIONS.md",
+    "docs/individuation/CAUSAL_ADDRESSABILITY_ARCHITECTURE_01_STAGE_A_EDGE_INVENTORY.json",
+    "docs/individuation/CAUSAL_ADDRESSABILITY_ARCHITECTURE_01_STAGE_A_QUALIFICATION.json",
+    "docs/individuation/CAUSAL_ADDRESSABILITY_ARCHITECTURE_01_STAGE_A_REPORT.md",
+    "docs/individuation/CAUSAL_ADDRESSABILITY_ARCHITECTURE_01_STAGE_A_SOURCE_ALLOWLIST.json",
+    "docs/agent_journals/2026-07-18/2020_stage-a-qualification_RUN-20260718-2020-CAA01-A.md",
+    "docs/agent_journals/2026-07-18/2022_stage-a-redteam_RUN-20260718-2022-CAA01-A-REDTEAM.md",
+    "docs/PROJECT_STATE.md",
+    "docs/DECISION_LOG.md",
+    "docs/EXPERIMENT_INDEX.md",
+    "docs/RUN_INDEX.md"
+  ],
+  "forbidden": [
+    "results/",
+    "raw_or_scientific_worlds",
+    "DEV_outcomes",
+    "checkpoint_payloads",
+    "source_world_initialization",
+    "scientific_analyzers",
+    "seed_initialization",
+    "500xx_570xx_580xx_access",
+    "prospective_namespace",
+    "V5_or_03G_modification",
+    "merge",
+    "pull_request"
+  ]
+}

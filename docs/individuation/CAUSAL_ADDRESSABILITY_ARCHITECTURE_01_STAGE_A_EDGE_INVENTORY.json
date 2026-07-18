@@ -1,0 +1,123 @@
+{
+  "schema": "CAUSAL-ADDRESSABILITY-ARCHITECTURE-01-STAGE-A-EDGE-INVENTORY-v1",
+  "accepted_parent": "9ec894fbeba7ec2974a917a182d152e9d8074431",
+  "frozen_engine": "edlab/experiments/sc_mcm/engine.py",
+  "frozen_engine_sha256": "d51a5db1848e717a44f9e00aa4ad4b9c86465ec245184b78b2516dad9842ef2d",
+  "frozen_before_fixture_execution": true,
+  "target_response": "target uptake field stored by each completed frozen step",
+  "H_star": 2,
+  "H_star_basis": "E-held values equal t0 values at transport before uptake on update 1; post-uptake E parents can alter the returned state on update 1 and therefore target transport/readout on update 2",
+  "first_update": {
+    "target_uptake_E_invariant": true,
+    "returned_state_E_invariant": false,
+    "binding_static_conflict": "The mission requires unqualified first-update E invariance, but the exact preprobe-reference candidate reaches U/V, Mf, c, and N after the first uptake within the same returned update. Full returned-state invariance is structurally impossible without changing the committed reference convention or activation window."
+  },
+  "update_order": [
+    {
+      "order": 1,
+      "stage": "material_interface_transport",
+      "target_destination_external_parents": [
+        "rho and c at every outside endpoint of a target boundary face",
+        "conditional donor U/rho and V/rho",
+        "conditional donor C/rho for every cohort",
+        "conditional donor Mf/rho for every memory component"
+      ],
+      "affected_target_fields": ["rho", "U", "V", "C", "Mf"],
+      "first_update_E_effect": false,
+      "reason": "all reads are from the exact t0 arrays and references equal those arrays"
+    },
+    {
+      "order": 2,
+      "stage": "uptake_and_local_readout",
+      "target_destination_external_parents": [],
+      "local_parents": ["transported rho", "transported U", "transported V", "transported Mf", "target N", "q_L on m_plus only"],
+      "affected_target_fields": ["uptake", "N", "rho", "U", "V", "Mf", "C"],
+      "first_update_E_effect": false,
+      "local_gate_window": "update 1 only",
+      "Y_L_direct": "target uptake after this stage",
+      "Y_L_direct_E_invariant": true
+    },
+    {
+      "order": 3,
+      "stage": "death_and_passive_inheritance",
+      "target_destination_external_parents": [],
+      "affected_target_fields": ["rho", "U", "V", "C", "Mf"],
+      "first_update_E_effect": false
+    },
+    {
+      "order": 4,
+      "stage": "toggle_reaction_and_u_v_diffusion",
+      "target_destination_external_parents": ["post-growth outside u=U/rho at four neighbours", "post-growth outside v=V/rho at four neighbours"],
+      "affected_target_fields": ["U", "V"],
+      "first_update_E_effect": true,
+      "reason": "outside u/v are recomputed after transport, uptake, and death and need not equal preprobe references"
+    },
+    {
+      "order": 5,
+      "stage": "memory_writer",
+      "target_destination_external_parents": [
+        "outside alive indicators in global up_ref denominator",
+        "outside current uptake in global up_ref numerator",
+        "outside post-growth m_k in four-neighbour _tmean",
+        "outside post-growth m_k in four-neighbour lap"
+      ],
+      "local_parents": ["target N", "target c", "target uptake", "ordinary eta_w", "decay coefficients"],
+      "affected_target_fields": ["Mf"],
+      "first_update_E_effect": true,
+      "up_ref_identity": "up_ref_E=(S_A(t)+S_B0+e*(S_B(t)-S_B0))/(n_A(t)+n_B0+e*(n_B(t)-n_B0)); use frozen empty-set result 0.0"
+    },
+    {
+      "order": 6,
+      "stage": "attractant_update",
+      "target_destination_external_parents": ["pre-step outside c at four neighbours"],
+      "local_parents": ["target rho0", "target newly written m_minus", "target c"],
+      "affected_target_fields": ["c"],
+      "first_update_direct_boundary_effect": false,
+      "first_update_indirect_E_effect": true,
+      "reason": "m_minus can already differ through the E-gated writer"
+    },
+    {
+      "order": 7,
+      "stage": "nutrient_update",
+      "target_destination_external_parents": ["post-uptake outside N at four neighbours decomposed as r_N+P(t)+dynamic innovation"],
+      "local_parents": ["target post-uptake N", "constant F", "constant N0"],
+      "affected_target_fields": ["N"],
+      "first_update_E_effect": true,
+      "probe_identity": "N_external_E=r_N+P(t)+e*(N_external-r_N-P(t))",
+      "reservoir_identity": "target reservoir remains F*(N0-target_N); it is logged, not independently gated"
+    },
+    {
+      "order": 8,
+      "stage": "return_state",
+      "returned_fields": ["rho", "U", "V", "c", "N", "C", "uptake", "Mf", "step"],
+      "first_update_E_effect": true,
+      "next_response_path": "changed returned U/V/Mf/c/N plus held/open update-2 boundary parents reach update-2 transport and uptake"
+    }
+  ],
+  "H_star_paths": [
+    "E outside u/v at update-1 toggle -> target U/V returned -> update-2 sig -> update-2 uptake",
+    "E external up_ref or m stencil at update-1 writer -> target Mf returned -> update-2 m_plus -> update-2 uptake",
+    "E outside N at update-1 nutrient update -> target N returned -> update-2 uptake",
+    "E boundary c/N/rho/donor innovations at update-2 transport -> target transported state -> update-2 uptake"
+  ],
+  "arm_contract": {
+    "clone_order": "compile immutable plan from common t0, hash references, clone common state independently for each arm, apply common P(t), execute no arm from another arm",
+    "L0E0": {"l_available": 0, "e_available": 0},
+    "L1E0": {"l_available": 1, "e_available": 0},
+    "L0E1": {"l_available": 0, "e_available": 1},
+    "L1E1": {"l_available": 1, "e_available": 1},
+    "polarity": "1 means available/open in Y^a(l,e); K labels and Y_i^k are forbidden from the Stage-A implementation",
+    "composition": "local and E plans change disjoint parent slots; canonical compilation must be order-independent"
+  },
+  "accounting_identities": {
+    "input_state_preservation": "hash(input after step call)=hash(input before step call)",
+    "open_identity": "bytes(active_or_delegated L1E1 output)=bytes(frozen output)",
+    "boundary_face_ledger": "for each target boundary destination, field, axis and orientation record active_target_contribution-open_target_contribution",
+    "global_extensive_residual": "sum(active_field)-sum(open_field)-sum(boundary_and_global_intervention_ledger)=0 within operation-derived roundoff",
+    "up_ref": "record S_A,n_A,S_B,n_B,S_B0,n_B0,selected numerator,selected denominator and selected scalar",
+    "probe": "record r_N,P(t),dynamic residual and recomposed external N separately",
+    "persistent_overwrite": "zero assignments to input arrays; output state schema equals frozen IOMState schema",
+    "numerical_tolerance": "gamma_n=sum_abs_terms*n*eps/(1-n*eps) for the exact number n of floating additions in the checked ledger; byte equality where no reduction is required"
+  },
+  "static_disposition_before_fixtures": "STOP_ARCHITECTURE_PREDICTED_IF_FIRST_UPDATE_E_INVARIANCE_MEANS_THE_COMPLETE_RETURNED_STATE"
+}

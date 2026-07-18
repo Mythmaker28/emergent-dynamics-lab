@@ -1,0 +1,1074 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "DIRECTED-CAUSAL-PAIR-00-PHASE05-FINAL-RAW-SCHEMA-v1",
+  "title": "DIRECTED-CAUSAL-PAIR-00 Phase 0.5 mechanical world shard",
+  "description": "Strict mechanical-only DEV raw. One shard is one original world. Scientific response, feeding, directed contrasts, interactions, estimands, readers, decoders, and analyzers are structurally absent.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "mission",
+    "mode",
+    "phase0_commit",
+    "world_id",
+    "sequence_index",
+    "manifest_sha256",
+    "plan_sha256",
+    "previous_record_sha256",
+    "contract_bindings",
+    "assignment",
+    "prewriter_state_sha256",
+    "prewriter_clone_sha256",
+    "writer",
+    "common_deep_step",
+    "history_arms",
+    "world_complete",
+    "first_failure"
+  ],
+  "properties": {
+    "schema": {
+      "const": "DIRECTED-CAUSAL-PAIR-00-PHASE05-MECHANICAL-SHARD-v1"
+    },
+    "mission": {
+      "const": "DIRECTED-CAUSAL-PAIR-00"
+    },
+    "mode": {
+      "const": "DEV_ONLY_MECHANICAL"
+    },
+    "phase0_commit": {
+      "const": "4bcb551092291b7383c4168f653818d4bade14f6"
+    },
+    "world_id": {
+      "enum": [50002, 50004, 50005, 50007]
+    },
+    "sequence_index": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3
+    },
+    "manifest_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "plan_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "previous_record_sha256": {
+      "oneOf": [
+        {"$ref": "#/$defs/sha256"},
+        {"type": "null"}
+      ]
+    },
+    "contract_bindings": {
+      "type": "array",
+      "minItems": 58,
+      "maxItems": 58,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/contract_binding"}
+    },
+    "assignment": {
+      "$ref": "#/$defs/root_assignment"
+    },
+    "prewriter_state_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "prewriter_clone_sha256": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {"$ref": "#/$defs/sha256"}
+    },
+    "writer": {
+      "$ref": "#/$defs/root_writer"
+    },
+    "common_deep_step": {
+      "oneOf": [
+        {"type": "integer", "minimum": 1},
+        {"type": "null"}
+      ]
+    },
+    "history_arms": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/history_arm"
+      }
+    },
+    "world_complete": {
+      "type": "boolean"
+    },
+    "first_failure": {
+      "$ref": "#/$defs/nullable_failure"
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"world_complete": {"const": true}}},
+      "then": {
+        "properties": {
+          "common_deep_step": {"type": "integer", "minimum": 1},
+          "first_failure": {"type": "null"}
+        }
+      },
+      "else": {
+        "properties": {
+          "first_failure": {"$ref": "#/$defs/failure"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "git_blob": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "finite_number": {
+      "type": "number"
+    },
+    "unit_interval": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "centroid": {
+      "type": "array",
+      "prefixItems": [
+        {"type": "number", "minimum": 0.0, "exclusiveMaximum": 64.0},
+        {"type": "number", "minimum": 0.0, "exclusiveMaximum": 64.0}
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "shape": {
+      "type": "array",
+      "prefixItems": [
+        {"const": 64},
+        {"const": 64}
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "assignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "A_target_index",
+        "B_target_index",
+        "sentinel_target_index",
+        "pair_order"
+      ],
+      "properties": {
+        "A_target_index": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "B_target_index": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "sentinel_target_index": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "pair_order": {
+          "const": ["A", "B"]
+        }
+      }
+    },
+    "root_assignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target_A", "target_B", "sentinel"],
+      "properties": {
+        "target_A": {"type": "integer", "minimum": 0, "maximum": 2},
+        "target_B": {"type": "integer", "minimum": 0, "maximum": 2},
+        "sentinel": {"type": "integer", "minimum": 0, "maximum": 2}
+      }
+    },
+    "contract_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "path", "sha256", "git_blob"],
+      "properties": {
+        "kind": {"enum": ["INPUT", "CODE"]},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "git_blob": {"$ref": "#/$defs/git_blob"}
+      }
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "stage_step",
+        "engine_step",
+        "reasons"
+      ],
+      "properties": {
+        "stage": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "stage_step": {"type": "integer", "minimum": 0},
+        "engine_step": {"type": "integer", "minimum": 0},
+        "reasons": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"}
+        }
+      }
+    },
+    "nullable_failure": {
+      "oneOf": [
+        {"$ref": "#/$defs/failure"},
+        {"type": "null"}
+      ]
+    },
+    "packed_mask": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["encoding", "shape", "bitorder", "data_base64", "sha256"],
+      "properties": {
+        "encoding": {
+          "const": "PACKED_BITS_BASE64_V1"
+        },
+        "shape": {
+          "$ref": "#/$defs/shape"
+        },
+        "bitorder": {
+          "const": "little"
+        },
+        "data_base64": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "rle_run": {
+      "type": "array",
+      "prefixItems": [
+        {"type": "integer", "minimum": 0},
+        {"type": "integer", "minimum": 1}
+      ],
+      "items": false,
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "rle_mask": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["encoding", "shape", "runs", "sha256"],
+      "properties": {
+        "encoding": {
+          "const": "RLE_ONES_V1"
+        },
+        "shape": {
+          "$ref": "#/$defs/shape"
+        },
+        "runs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/rle_run"
+          }
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "mask": {
+      "oneOf": [
+        {"$ref": "#/$defs/packed_mask"},
+        {"$ref": "#/$defs/rle_mask"}
+      ]
+    },
+    "named_masks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "A",
+        "B",
+        "SENTINEL",
+        "core_A",
+        "core_B",
+        "halo_A",
+        "halo_B",
+        "collar"
+      ],
+      "properties": {
+        "A": {"$ref": "#/$defs/mask"},
+        "B": {"$ref": "#/$defs/mask"},
+        "SENTINEL": {"$ref": "#/$defs/mask"},
+        "core_A": {"$ref": "#/$defs/mask"},
+        "core_B": {"$ref": "#/$defs/mask"},
+        "halo_A": {"$ref": "#/$defs/mask"},
+        "halo_B": {"$ref": "#/$defs/mask"},
+        "collar": {"$ref": "#/$defs/mask"}
+      }
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["component_id", "size", "centroid", "mask"],
+      "properties": {
+        "component_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "centroid": {
+          "$ref": "#/$defs/centroid"
+        },
+        "mask": {
+          "$ref": "#/$defs/mask"
+        }
+      }
+    },
+    "association_edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tracker_id",
+        "component_id",
+        "overlap",
+        "centroid_distance",
+        "size_ratio",
+        "theta_gate",
+        "split_gate",
+        "compatible",
+        "assignment_cost",
+        "rank",
+        "selected"
+      ],
+      "properties": {
+        "tracker_id": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "component_id": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "overlap": {
+          "$ref": "#/$defs/unit_interval"
+        },
+        "centroid_distance": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "size_ratio": {
+          "type": "number",
+          "minimum": 0.0
+        },
+        "theta_gate": {
+          "type": "boolean"
+        },
+        "split_gate": {
+          "type": "boolean"
+        },
+        "compatible": {
+          "type": "boolean"
+        },
+        "assignment_cost": {
+          "$ref": "#/$defs/finite_number"
+        },
+        "rank": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "selected": {
+          "type": "boolean"
+        }
+      }
+    },
+    "track": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tracker_id",
+        "status",
+        "component_id",
+        "component_size",
+        "centroid",
+        "body_core_coverage",
+        "body_mask",
+        "core_mask",
+        "halo_mask"
+      ],
+      "properties": {
+        "tracker_id": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "status": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "component_id": {
+          "oneOf": [
+            {"type": "integer", "minimum": 0},
+            {"type": "null"}
+          ]
+        },
+        "component_size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "centroid": {
+          "oneOf": [
+            {"$ref": "#/$defs/centroid"},
+            {"type": "null"}
+          ]
+        },
+        "body_core_coverage": {
+          "$ref": "#/$defs/unit_interval"
+        },
+        "body_mask": {"$ref": "#/$defs/mask"},
+        "core_mask": {"$ref": "#/$defs/mask"},
+        "halo_mask": {"$ref": "#/$defs/mask"}
+      }
+    },
+    "events": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "0": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "1": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"},
+        "2": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"}
+      }
+    },
+    "pair_geometry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "centroid_A",
+        "centroid_B",
+        "distance",
+        "core_overlap_cells",
+        "halo_overlap_cells",
+        "minimum_core_gap",
+        "minimum_halo_gap",
+        "body_contact",
+        "body_overlap_cells"
+      ],
+      "properties": {
+        "centroid_A": {"$ref": "#/$defs/centroid"},
+        "centroid_B": {"$ref": "#/$defs/centroid"},
+        "distance": {"$ref": "#/$defs/finite_number"},
+        "core_overlap_cells": {"type": "integer", "minimum": 0},
+        "halo_overlap_cells": {"type": "integer", "minimum": 0},
+        "minimum_core_gap": {"$ref": "#/$defs/finite_number"},
+        "minimum_halo_gap": {"$ref": "#/$defs/finite_number"},
+        "body_contact": {"type": "boolean"},
+        "body_overlap_cells": {"type": "integer", "minimum": 0}
+      }
+    },
+    "collar": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recipient",
+        "recipient_body_intersection_cells",
+        "partner_body_intersection_cells",
+        "recipient_core_intersection_cells",
+        "wrong_core_intersection_cells"
+      ],
+      "properties": {
+        "recipient": {"enum": ["A", "B"]},
+        "recipient_body_intersection_cells": {"type": "integer", "minimum": 0},
+        "partner_body_intersection_cells": {"type": "integer", "minimum": 0},
+        "recipient_core_intersection_cells": {"type": "integer", "minimum": 0},
+        "wrong_core_intersection_cells": {"type": "integer", "minimum": 0}
+      }
+    },
+    "nullable_collar": {
+      "oneOf": [
+        {"$ref": "#/$defs/collar"},
+        {"type": "null"}
+      ]
+    },
+    "nullable_material_retention": {
+      "oneOf": [
+        {
+          "type": "array",
+          "prefixItems": [
+            {"oneOf": [{"$ref": "#/$defs/unit_interval"}, {"type": "null"}]},
+            {"oneOf": [{"$ref": "#/$defs/unit_interval"}, {"type": "null"}]},
+            {"oneOf": [{"$ref": "#/$defs/unit_interval"}, {"type": "null"}]}
+          ],
+          "items": false,
+          "minItems": 3,
+          "maxItems": 3
+        },
+        {"type": "null"}
+      ]
+    },
+    "nullable_boolean": {
+      "oneOf": [
+        {"type": "boolean"},
+        {"type": "null"}
+      ]
+    },
+    "step_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "stage_step",
+        "engine_step",
+        "state_sha256",
+        "assignment",
+        "components",
+        "association_edges",
+        "tracks",
+        "events",
+        "pair_geometry",
+        "component_switch",
+        "largest_component_coverage",
+        "collar",
+        "sentinel_valid",
+        "state_finite",
+        "logger_state_unchanged",
+        "kill_reasons",
+        "masks",
+        "material_retention",
+        "deep_material_gate"
+      ],
+      "properties": {
+        "stage": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]*$"
+        },
+        "stage_step": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "engine_step": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "state_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "assignment": {
+          "$ref": "#/$defs/assignment"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/component"
+          }
+        },
+        "association_edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/association_edge"
+          }
+        },
+        "tracks": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/track"
+          }
+        },
+        "events": {
+          "$ref": "#/$defs/events"
+        },
+        "pair_geometry": {
+          "oneOf": [
+            {"$ref": "#/$defs/pair_geometry"},
+            {"type": "null"}
+          ]
+        },
+        "component_switch": {
+          "type": "boolean"
+        },
+        "largest_component_coverage": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "collar": {
+          "$ref": "#/$defs/nullable_collar"
+        },
+        "sentinel_valid": {
+          "type": "boolean"
+        },
+        "state_finite": {
+          "type": "boolean"
+        },
+        "logger_state_unchanged": {
+          "type": "boolean"
+        },
+        "kill_reasons": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9_]*$"
+          }
+        },
+        "masks": {
+          "$ref": "#/$defs/named_masks"
+        },
+        "material_retention": {
+          "$ref": "#/$defs/nullable_material_retention"
+        },
+        "deep_material_gate": {
+          "$ref": "#/$defs/nullable_boolean"
+        }
+      }
+    },
+    "root_writer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "writer_id",
+        "stream_rule",
+        "phase_steps",
+        "phase_amplitudes",
+        "amplitude_range",
+        "target_patch_sha256",
+        "operation_order",
+        "operations_per_writer_step",
+        "common_schedule_sha256"
+      ],
+      "properties": {
+        "writer_id": {"const": "FROZEN_03G_LOCAL_GAUSSIAN_WRITER"},
+        "stream_rule": {"const": "first amplitude pair from numpy default_rng(original_world_id)"},
+        "phase_steps": {"const": 60},
+        "phase_amplitudes": {
+          "type": "array",
+          "prefixItems": [
+            {"type": "number", "minimum": 0.005, "maximum": 0.035},
+            {"type": "number", "minimum": 0.005, "maximum": 0.035}
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "amplitude_range": {
+          "const": [0.005, 0.035]
+        },
+        "target_patch_sha256": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["A", "B"],
+          "properties": {
+            "A": {"$ref": "#/$defs/sha256"},
+            "B": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "operation_order": {
+          "const": ["A", "B"]
+        },
+        "operations_per_writer_step": {
+          "const": 2
+        },
+        "common_schedule_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "arm_writer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "operation_count",
+        "expected_operation_count",
+        "total_writer_engine_steps",
+        "active_writer_steps",
+        "settle_steps",
+        "operation_digest",
+        "postwriter_state_sha256",
+        "sham_reference_exact"
+      ],
+      "properties": {
+        "operation_count": {"type": "integer", "minimum": 0, "maximum": 240},
+        "expected_operation_count": {"const": 240},
+        "total_writer_engine_steps": {"type": "integer", "minimum": 0, "maximum": 240},
+        "active_writer_steps": {"type": "integer", "minimum": 0, "maximum": 120},
+        "settle_steps": {"type": "integer", "minimum": 0, "maximum": 120},
+        "operation_digest": {"$ref": "#/$defs/sha256"},
+        "postwriter_state_sha256": {"$ref": "#/$defs/sha256"},
+        "sham_reference_exact": {"$ref": "#/$defs/nullable_boolean"}
+      }
+    },
+    "phenotype_descriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["component_size", "centroid", "body_core_coverage"],
+      "properties": {
+        "component_size": {"type": "integer", "minimum": 0},
+        "centroid": {"$ref": "#/$defs/centroid"},
+        "body_core_coverage": {"$ref": "#/$defs/unit_interval"}
+      }
+    },
+    "deep_joint_row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "material_retention", "phenotype_descriptor"],
+      "properties": {
+        "target": {"enum": ["A", "B", "SENTINEL"]},
+        "material_retention": {
+          "oneOf": [
+            {"$ref": "#/$defs/unit_interval"},
+            {"type": "null"}
+          ]
+        },
+        "phenotype_descriptor": {"$ref": "#/$defs/phenotype_descriptor"}
+      }
+    },
+    "probe_schedule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schedule_id",
+        "N_standardized_to",
+        "settle_steps",
+        "stimulus_amplitude",
+        "stimulus_steps",
+        "horizon_steps",
+        "total_engine_steps",
+        "schedule_digest"
+      ],
+      "properties": {
+        "schedule_id": {"const": "CORRECTED_NONFUSING_PROBE_V1"},
+        "N_standardized_to": {"const": 1.0},
+        "settle_steps": {"const": 40},
+        "stimulus_amplitude": {"const": 0.25},
+        "stimulus_steps": {"const": 5},
+        "horizon_steps": {"const": 40},
+        "total_engine_steps": {"const": 80},
+        "schedule_digest": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "operation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clamp_active",
+        "up_ref_zero",
+        "recipient",
+        "boundary_frames_sha256",
+        "own_replay_exact",
+        "unintended_write_cells",
+        "isolation_exact",
+        "schedule_digest"
+      ],
+      "properties": {
+        "clamp_active": {"type": "boolean"},
+        "up_ref_zero": {"type": "boolean"},
+        "recipient": {
+          "oneOf": [
+            {"enum": ["A", "B"]},
+            {"type": "null"}
+          ]
+        },
+        "boundary_frames_sha256": {
+          "oneOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        },
+        "own_replay_exact": {"$ref": "#/$defs/nullable_boolean"},
+        "unintended_write_cells": {"type": "integer", "minimum": 0},
+        "isolation_exact": {"$ref": "#/$defs/nullable_boolean"},
+        "schedule_digest": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "isolation_failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schedule_step", "reasons"],
+      "properties": {
+        "schedule_step": {"type": "integer", "minimum": 0, "maximum": 80},
+        "reasons": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "pattern": "^[A-Z][A-Z0-9_]*$"}
+        }
+      }
+    },
+    "nullable_isolation_failure": {
+      "oneOf": [
+        {"$ref": "#/$defs/isolation_failure"},
+        {"type": "null"}
+      ]
+    },
+    "isolation_step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schedule_step",
+        "max_core_abs",
+        "left_core_sha256",
+        "right_core_sha256",
+        "left_state_sha256",
+        "free_up_ref_state_sha256"
+      ],
+      "properties": {
+        "schedule_step": {"type": "integer", "minimum": 1, "maximum": 80},
+        "max_core_abs": {"type": "number", "minimum": 0.0},
+        "left_core_sha256": {"$ref": "#/$defs/sha256"},
+        "right_core_sha256": {"$ref": "#/$defs/sha256"},
+        "left_state_sha256": {"$ref": "#/$defs/sha256"},
+        "free_up_ref_state_sha256": {
+          "oneOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "environment_perturbation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fields", "amplitude"],
+      "properties": {
+        "fields": {"const": ["c", "N"]},
+        "amplitude": {"const": 0.05}
+      }
+    },
+    "isolation_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recipient",
+        "barrier_width",
+        "up_ref_zero",
+        "environment_perturbation",
+        "per_step",
+        "maximum_core_abs_difference",
+        "environment_c_max_difference_at_end",
+        "outside_difference_nonzero",
+        "own_replay_up_ref_zero_exact",
+        "left_first_failure",
+        "right_first_failure",
+        "bit_exact_isolation"
+      ],
+      "properties": {
+        "recipient": {"enum": ["A", "B"]},
+        "barrier_width": {"const": 2},
+        "up_ref_zero": {"const": true},
+        "environment_perturbation": {"$ref": "#/$defs/environment_perturbation"},
+        "per_step": {
+          "type": "array",
+          "minItems": 80,
+          "maxItems": 80,
+          "items": {"$ref": "#/$defs/isolation_step"}
+        },
+        "maximum_core_abs_difference": {"type": "number", "minimum": 0.0},
+        "environment_c_max_difference_at_end": {"type": "number", "minimum": 0.0},
+        "outside_difference_nonzero": {"type": "boolean"},
+        "own_replay_up_ref_zero_exact": {"type": "boolean"},
+        "left_first_failure": {"$ref": "#/$defs/nullable_isolation_failure"},
+        "right_first_failure": {"$ref": "#/$defs/nullable_isolation_failure"},
+        "bit_exact_isolation": {"type": "boolean"}
+      }
+    },
+    "access_regime": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "regime",
+        "recipient",
+        "schedule",
+        "operation",
+        "records",
+        "complete",
+        "probe_schedule_viable",
+        "first_failure",
+        "isolation_evidence"
+      ],
+      "properties": {
+        "regime": {
+          "enum": [
+            "ORDINARY",
+            "OWN_REPLAY_SHAM_A",
+            "OWN_REPLAY_SHAM_B",
+            "REFERENCE_NOSWAP_A",
+            "REFERENCE_NOSWAP_B",
+            "UP_REF_ZERO",
+            "REFERENCE_NOSWAP_A_UP_REF_ZERO",
+            "REFERENCE_NOSWAP_B_UP_REF_ZERO"
+          ]
+        },
+        "recipient": {
+          "oneOf": [
+            {"enum": ["A", "B"]},
+            {"type": "null"}
+          ]
+        },
+        "schedule": {"$ref": "#/$defs/probe_schedule"},
+        "operation": {"$ref": "#/$defs/operation"},
+        "records": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 81,
+          "items": {"$ref": "#/$defs/step_record"}
+        },
+        "complete": {"type": "boolean"},
+        "probe_schedule_viable": {"type": "boolean"},
+        "first_failure": {"$ref": "#/$defs/nullable_failure"},
+        "isolation_evidence": {
+          "oneOf": [
+            {"$ref": "#/$defs/isolation_evidence"},
+            {"type": "null"}
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"complete": {"const": true}}},
+          "then": {
+            "properties": {
+              "records": {"type": "array", "minItems": 81, "maxItems": 81},
+              "probe_schedule_viable": {"const": true},
+              "first_failure": {"type": "null"}
+            }
+          },
+          "else": {
+            "properties": {
+              "probe_schedule_viable": {"const": false},
+              "first_failure": {"$ref": "#/$defs/failure"}
+            }
+          }
+        }
+      ]
+    },
+    "history_arm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "arm",
+        "bits",
+        "clone_sha256",
+        "writer",
+        "writer_records",
+        "common_deep_step",
+        "deep_complete",
+        "deep_joint",
+        "turnover_records",
+        "access_regimes",
+        "arm_complete",
+        "first_failure"
+      ],
+      "properties": {
+        "arm": {"enum": ["H00", "H10", "H01", "H11"]},
+        "bits": {
+          "type": "array",
+          "prefixItems": [
+            {"type": "integer", "enum": [0, 1]},
+            {"type": "integer", "enum": [0, 1]}
+          ],
+          "items": false,
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "clone_sha256": {"$ref": "#/$defs/sha256"},
+        "writer": {"$ref": "#/$defs/arm_writer"},
+        "writer_records": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 241,
+          "items": {"$ref": "#/$defs/step_record"}
+        },
+        "common_deep_step": {
+          "oneOf": [
+            {"type": "integer", "minimum": 1},
+            {"type": "null"}
+          ]
+        },
+        "deep_complete": {"type": "boolean"},
+        "deep_joint": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 3,
+              "maxItems": 3,
+              "items": {"$ref": "#/$defs/deep_joint_row"}
+            },
+            {"type": "null"}
+          ]
+        },
+        "turnover_records": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/step_record"}
+        },
+        "access_regimes": {
+          "oneOf": [
+            {"type": "array", "maxItems": 0},
+            {
+              "type": "array",
+              "minItems": 8,
+              "maxItems": 8,
+              "items": {"$ref": "#/$defs/access_regime"}
+            }
+          ]
+        },
+        "arm_complete": {"type": "boolean"},
+        "first_failure": {"$ref": "#/$defs/nullable_failure"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"arm_complete": {"const": true}}},
+          "then": {
+            "properties": {
+              "common_deep_step": {"type": "integer", "minimum": 1},
+              "deep_complete": {"const": true},
+              "access_regimes": {
+                "type": "array",
+                "minItems": 8,
+                "maxItems": 8,
+                "items": {"$ref": "#/$defs/access_regime"}
+              },
+              "first_failure": {"type": "null"}
+            }
+          },
+          "else": {
+            "properties": {
+              "first_failure": {"$ref": "#/$defs/failure"}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"deep_complete": {"const": true}}},
+          "then": {
+            "properties": {
+              "common_deep_step": {"type": "integer", "minimum": 1},
+              "turnover_records": {"type": "array", "minItems": 1},
+              "deep_joint": {
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {"$ref": "#/$defs/deep_joint_row"}
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

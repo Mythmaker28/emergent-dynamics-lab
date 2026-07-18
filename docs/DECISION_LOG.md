@@ -2558,233 +2558,252 @@ reconstruction is authorized. Human review is required. Any boundary-aware/balan
 approved DEV-only revision; if `C/H/E` cannot be separated without destroying the state under test, the next
 decision must be STOP rather than threshold relaxation.
 
-## D-091 — BALANCED-HISTORY-ISOLATION-00 passes semantics/allocation but fails four-target DEV feasibility
-
-**Date:** 2026-07-17
-
-**Design decision:** Accept the fresh categorical 2 x 2 history design as semantically valid. `a1/a2` are two
-consecutive 60-step local nutrient episodes, and the four fixed histories orthogonalize cumulative dose from
-EARLY-versus-LATE order within the historical support. Freeze DEV seeds `55001-55024`, a seed-only cyclic Latin
-square, complete-block original-world inference, the qualified two-cell no-swap clamp, history-independent
-`up_ref=0`, step-40 integrated tracked uptake, fixed first-stage quantities and `lam_plus=0` mediation control.
-
-**Feasibility decision:** The single bounded family produces zero four-target pre-history eligible worlds. Seventeen
-worlds have three selected targets and seven have two. Consequently no assignment is applied and no first-stage,
-feeding, isolation, transport or mediation endpoint exists. The downstream gates are not evaluable; they are not
-negative scientific results.
-
-**Disposition:** Return `DEV-FEASIBILITY-FAIL — REVISE-MECHANICS`. The four-target design is not a prospective
-candidate. Do not extend the family, weaken eligibility post hoc, analyze survivor targets, seal the draft or inspect
-a prospective namespace. A new pre-data assignment-unit or world-generation design requires human review. Earlier
-STOP results, 03G Outcome B, V5 and prior raw results remain unchanged.
-
-## D-092 — COUNTERFACTUAL-HISTORY-CORE-00 exact clones are feasible but targeted memory first stages fail
-
-**Date:** 2026-07-17
-
-**Design decision:** Accept the exact-clone repair as a valid DEV counterfactual factorial. Freeze one focal target
-per independent source world, four deterministic low/high dose by EARLY/LATE histories, fixed 1000-step turnover,
-complete-block inference, ordinary and qualified isolated probes, body/physical controls, and `lam_plus=0`
-mediation. Branches are potential outcomes and never independent replicates.
-
-**Execution decision:** The pushed before-data freeze at `e504288` governed exactly seeds `57001-57024`. All 24
-worlds were eligible and 17 supplied complete blocks. Cloning, common-boundary, isolation, global-channel, sham and
-core-preservation gates pass. A raw-only analyzer that neither imports the runner nor initializes the engine
-independently reproduces the counts, contrasts, gates and classification.
-
-**Scientific decision:** Accept `NO_MEMORY_FIRST_STAGE`. The protocol-targeted positive core `m_plus` dose first
-stage crosses zero. The protocol-targeted negative core `m_minus` EARLY-minus-LATE first stage is uniformly positive
-and its sign is not flipped after inspection. Dose feeding is positive under coupling and isolation, but strong body
-and physical-state differences remain and `lam_plus=0` does not support selective mediation; order feeding is not
-established. This rules out the frozen targeted-memory interpretation, not all history-dependent state.
-
-**Disposition:** STOP this preregistration candidate. Do not claim `DOSE_ONLY` or `DOSE_AND_ORDER`, open a
-prospective namespace, seal the draft, modify 03G/V5, or begin reconstruction. A fresh pre-data design separating
-the target memory coordinate from body/physical dose pathways requires human review.
-
-## D-093 — M_MINUS-ORDER-READER-00 identifies a direct DEV reader but does not reopen the parent STOP
-
-**Date:** 2026-07-17
-
-**Theory decision:** Correct the reduced two-timescale sign transparently. Under the unchanged
-EARLY-minus-LATE convention, both memory components are lower for EARLY, but the slowly decaying second component
-has the larger negative difference; therefore `Delta(m1-m2)` is positive. Record `SIGN_THEORY_CORRECTED`. This is
-an algebraic correction, not a reinterpretation of D-092 or a pass of its frozen first-stage prediction.
-
-**Reader decision:** Accept local one-step attractant production as the only direct, sign-identifiable output of
-the existing `m_minus/lam_minus` path. The protocol, `epsilon=2/3` gain perturbation (effective local coefficients
-`0.05/0.15/0.25`), fixed radius-10 support, 40-step standardized isolation, one-step horizon, mass normalization,
-mechanism ablation and original-world gates were pushed at `8349c55` before any new reader output.
-
-**DEV result:** On the 17 already-open parent-complete worlds, raw isolated order susceptibility is positive 17/17
-with a 95% t interval above zero; low and high dose are each 17/17 positive; the mass-normalized contrast is also
-17/17 positive with an interval above zero. `lam_minus=0` produces exact zero and 100% attenuation. All
-manipulation gates pass, and an independent raw-only analyzer reproduces the contrasts and frozen classification.
-Accept `ORDER_READER_CANDIDATE` with the maximum claim that temporal order changes a local `m_minus`-linked
-attractant-production response operator under standardized DEV inputs.
-
-**Boundary and disposition:** The ablation collapse is partly a constitutive identity of this direct source assay.
-It does not establish downstream movement or feeding, ownership, individual memory, identity, heredity,
-prospective confirmation or active reconstruction. Preserve D-092 and the parent STOP unchanged. Human review must
-decide whether direct source production is a prospectively defensible reader; no seed opening, protocol seal,
-ownership pair, 03G/V5 modification or generic reader battery is authorized automatically.
-
-## D-094 — DOWNSTREAM-ORDER-READER-01 selects one flux endpoint but requires code-only qualification
-
-**Date:** 2026-07-17
-
-**Causal decision:** Treat the D-093 result as a constitutive source calibration only. In the frozen engine,
-`m_minus` changes `q_c` at the end of an update; that source can first affect movement through `_face_flux` on the
-next update. The face response is not determined by integrated source susceptibility because it also depends on
-spatial gradients, `c`-dependent saturation, density, free capacity and upwind selection.
-
-**Reader decision:** Select exactly one downstream observable: mass-specific positive-x material transport logged
-from the exact face flux used by the first response update. After a 40-step standardized isolation settle and one
-unperturbed source-expression update, apply one matched nonnegative radius-10 `c` ramp with
-`epsilon_c=0.01`, equal total attractant in `-1/0/+1` arms and no second direction or amplitude. Define
-`D=[v(+)-v(-)]/2` and the `lam_minus`-dependent attenuation `A=D^0-D^0.15`. Direct source susceptibility remains a
-positive calibration control only.
-
-**Sign/statistical decision:** Freeze positive EARLY-minus-LATE attenuation, a practical margin of `0.0001` lattice
-cells per response update, and a `lam_minus=0` order-equivalence margin of `0.00005`. The original world is the
-unit. A complete world requires all four histories, two `lam_minus` conditions and three ramp arms; no partial
-block, post-history body adjustment or pseudoreplication is allowed. A future design would require at least 18
-complete worlds, but this decision assigns no seed namespace.
-
-**Disposition:** `REVISE`. The design is scientifically coherent, but the passive flux logger, ramp construction,
-clamp schedule and synthetic controls are not yet code-qualified, and the margins require human approval. No new
-seed, scientific outcome, feeding endpoint, generic reader battery, `BODY-EQUALIZATION`, 03G/V5 change or active
-reconstruction is authorized. Exact next action: human review; if approved, authorize code-only implementation and
-synthetic qualification in a separate bounded run.
-
-## D-095 — DOWNSTREAM-ORDER-READER-01 qualifies the instrument and revises causal isolation
-
-**Date:** 2026-07-17
-
-**Human-review decision:** Authorize only passive instrumentation and synthetic qualification. Use one common
-40-step settle at `lam_minus=0.15`; clone the exact settled state; vary `lam_minus` only during one source-expression
-update; apply matched ramps afterward; and use one common `lam_minus=0.15` response update. This supersedes D-094's
-separate-settle construction without opening a scientific outcome.
-
-**Instrumentation decision:** Accept the passive logger after exact state-hash identity for the base diagnostic and
-qualified no-swap engines. Accept matched-ramp geometry, exact source-only branch isolation, a closed first-moment
-identity, explicit boundary-flux separation and a synthetic saturation sign reversal. Rename the endpoint
-**mass-specific internal +x face-flux sum** because the radius-10 core is not a closed material boundary.
-
-**Scientific decision:** Retain positive EARLY-minus-LATE attenuation only as a preregistered directional
-hypothesis. The primary source-condition-by-order interaction remains interpretable if the secondary
-`lam_minus=0` order contrast is nonzero; such a residual narrows specificity rather than invalidating the primary by
-precedence. Withdraw the tentative `m_A=0.0001` and `m_0=0.00005` values as sealed thresholds. Both margins remain
-unsealed and cannot be learned from scientific outcomes.
-
-**Disposition:** Instrument `QUALIFIED`; scientific preregistration `REVISE`. No 570xx downstream reconstruction,
-new seed, prospective family, feeding endpoint, reader battery, `BODY-EQUALIZATION`, 03G/V5 change or active
-reconstruction is authorized. Exact next action: human review of the revised audit and margin rationale.
-
-## D-096 — DOWNSTREAM-ORDER-READER-01 freezes a no-margin prospective package
+## D-091 — DIRECTED-CAUSAL-PAIR-00 Phase 0 requires pair-context mechanical qualification
 
 **Date:** 2026-07-18
 
-**Scientific-threshold decision:** Do not invent `m_A`, `m_0` or a dimensionless relevance threshold. The engine and
-frozen probe provide no outcome-independent mapping from a one-step internal face-flux interaction to behavioural or
-macroscopic importance. Freeze a bounded causal-detection claim only. `delta_num` is derived exclusively from
-per-face float64 tolerance, summation/scaling propagation, logger/replay identity and the closed-domain fixture; it
-is instrument resolution, not practical relevance.
+**Decision:** Adopt **REVISE**, not GO or STOP, for the question whether two natural non-fusing droplets are distinct
+directed causal individuals. Use the exact accepted parent
+`7deeb8e0bd4ac972e1dd133fc8992fcfc4f2fb2b`, reuse the unchanged 03G local writer, corrected common probe,
+bijective tracker, `up_ref=0` ablation, and qualified single-recipient no-swap mechanics, and keep 03G/V5 plus every
+`58xxx` artefact read-only.
 
-**Classification decision:** Preserve exactly six scientific outcomes. A positive two-sided interval beyond
-`delta_num` plus 75% positive world signs is `PREDICTED_ATTENUATION`; the symmetric negative rule is
-`OPPOSITE_SIGN_FUNCTIONAL_ACCESS`, never absence or invalidity. Numerical-null uncertainty without sign convergence
-is `NO_ACCESS_ESTABLISHED`, not absence. Equivalence remains logically defined but is unavailable while the
-scientific margin is null. Conflicting evidence is `UNRESOLVED`; mechanical failures are `MANIPULATION_INVALID`.
+**Design decision:** the statistical unit is the original world. Select one unordered pair before treatment by
+maximum initial separation, orient A/B without outcomes, retain the third target as a sentinel, and use exact clones
+`H00/H10/H01/H11`. Define a non-symmetrized matrix with row=recipient and column=writer source, so `C_AB` (B→A)
+and `C_BA` (A→B) remain distinct. Report ordinary total effects without adjusting away body/mass/geometry
+mediators; use recipient no-swap, `up_ref=0`, combined cuts, own-replay shams, and sentinel response only as
+channel/contamination diagnostics.
 
-**Family decision:** Use the historical 17/24 complete-world rate only for logistics. Freeze exactly 48 source-world
-slots and a minimum of 18 complete original worlds; run all 48 in manifest order, with no adaptive reserve,
-replacement or extension. Fewer than 18 is administrative `FEASIBILITY_FAIL` and scientific `UNRESOLVED`. This is
-capacity analysis, not effect power.
+**Feasibility decision:** the outcome-blind static audit finds four eligible original worlds
+`{50002,50004,50005,50007}`. Their selected pairs pass the 24-cell gate at initial and deep snapshots and have no
+turnover tracker censor; the minimum available radius-12 endpoint halo gap is 5.242 cells. This is insufficient for
+GO because continuous pair geometry is absent, the pair-context history-bearing recipient clamp is unqualified,
+and the four exact history arms have not been executed even mechanically.
 
-**Engineering decision:** Accept the seedless manifest/schema, deferred-import runner, exact 4 x 2 x 3 gates,
-atomic ordered-prefix resume, duplicate prevention, world-level raw contrasts and independent raw-only reproducer
-after synthetic classification and interruption/restart tests. The package contains no real seed value and its
-template refuses execution before output creation.
+**Execution boundary:** Phase 0 opens, inspects, reserves, and executes no prospective seed namespace and computes no
+pair feeding contrast. The exact next authorized action, only after human review, is one DEV-only outcome-blind
+mechanical qualification on already-open 500xx worlds. Fewer than 18 whole valid original worlds at a future
+separately frozen hard cap is feasibility failure/question unanswered, not a negative scientific result.
 
-**Disposition:** **GO FOR HUMAN SEAL REVIEW; STOP FOR EXECUTION.** No seed namespace audit/selection, manifest seal,
-scientific initialization, 570xx reconstruction, outcome, feeding/morphology endpoint, BODY-EQUALIZATION, 03G/V5
-change or active reconstruction is authorized. Exact next action: human review of the unsealed package.
-
-## D-097 — DOWNSTREAM-ORDER-READER-01 seals 58001-58048 without authorizing execution
+## D-092 — DIRECTED-CAUSAL-PAIR-00 Phase 0.5 stops on frozen viability/tracker gates
 
 **Date:** 2026-07-18
 
-**Human decision:** Approve sealing of the accepted package commit
-`5ae98861b00f62cde78858234dd03ef4a47f549c`; do not approve execution. Preserve D-096's scientific definitions,
-thresholds, eligibility, classification, secondary endpoints, fixed family and claim boundaries without
-substantive modification.
+**Decision:** Accept **STOP_PAIR_MECHANICS**, not GO or REVISE, after executing the exact outcome-blind DEV plan
+`{50002,50004,50005,50007}` against code commit `3a86ebb15f857f0e9340aeaaba8a8d8cd7776bfb`. The ordered raw prefix,
+manifest/plan bindings, closed schema, and outcome firewall reproduce engine-free, but zero of four original worlds
+reaches the common deep-turnover step or any access-regime branch.
 
-**Namespace decision:** Select exactly `58001-58048`. Reject the candidate 48-slot blocks from 50xxx through 57xxx
-because they contain assigned/opened ranges or a previously rejected bounded integer. The only pre-seal `58001`
-occurrences are explicit invalid-seed rejection tests, not assignments. The audit includes all valid refs, 207
-reachable commits, all Git objects, all registered worktrees and the recovered valid OID from one pre-existing
-malformed ref. No seed was passed to an engine.
+**Failure decision:** the frozen `TARGET_OR_SENTINEL_BELOW_MIN_SIZE` gate fires during the writer interval in all
+four worlds. World 50005 additionally records unavailable pair geometry, a non-live target/sentinel, and
+`TRACKER_SPLIT_T1`. The recorded pair portions retain distance at least 24 and zero radius-12 halo overlap, but these
+passes cannot override conjunctive target/tracker viability. No threshold is lowered and no alternate pair or world
+is substituted.
 
-**Binding decision:** Seal manifest SHA-256
-`0d40765937ca203269bd7fa935f3db4c999576dabf2d6ca0f96223f777ba03e4` with exact hashes for the accepted frozen
-preregistration, claim table, namespace evidence, runner, qualified instrumentation, raw-only reproducer,
-engine-free verifier, environment and dependency lock. Execution authorization is deliberately absent from the
-manifest and must be supplied later as one external exact-hash authorization object.
+**Scientific boundary:** this is a mechanical feasibility stop and leaves the directed-individuality question
+unanswered. Pair feeding Y, directed effects C, and interactions I were neither computed nor inspected. No
+scientific null or alternative is accepted from these DEV mechanics.
 
-**Disposition:** **SEALED_READY_FOR_EXECUTION_REVIEW; NOT AUTHORIZED FOR EXECUTION.** The independent verifier passes
-25/25 gates from a clean committed tree, the prospective output path is absent, and zero engines/worlds were
-initialized. Exact next action: request one final explicit human authorization bound to the immutable manifest
-hash; otherwise stop.
+**Execution boundary:** no unsealed human-seal package, prospective namespace/family/seed, platform, hard cap,
+margin, alpha, or authorization is created. V5, 03G, and all `58xxx` artefacts remain untouched. Human review of the
+stop record is the only next authorized action; any changed gate, target definition, writer interval, pair, or DEV
+plan requires a separately authorized new design.
 
-## D-098 — DOWNSTREAM-ORDER-READER-01 completes as NO_ACCESS_ESTABLISHED
+## D-093 — DEEP-CHECKPOINT-CAUSAL-CUT-00 Phase 0 stops because no local cut or exact checkpoint exists
 
 **Date:** 2026-07-18
 
-**Human execution decision:** Authorize exactly one prospective execution of manifest
-`0d40765937ca203269bd7fa935f3db4c999576dabf2d6ca0f96223f777ba03e4` at sealed commit
-`0949ff7167082a894c12480e0b2c75b4cae1c7c6`, seeds `58001-58048`, with no scientific or engineering change,
-replacement, extension, merge, PR, V5/03G modification or active reconstruction.
+**Decision:** Accept `STOP_PAIR_MECHANICS` exactly and issue **STOP-LOCAL-CUT** for the distinct no-writer question.
+Four already-open worlds `{50002,50004,50005,50007}` are observation-level deep-pair candidates, but no complete
+serialized checkpoint payload is persisted. Accepted `ACCESS-STRUCTURE-00` Phase-0.5 and Phase-0.6B state digests
+conflict for 50002 and 50004, while 50005/50007 have agreeing digests but still no executable payload. Continuous
+precheckpoint pair geometry, complete tracker-edge/gate evidence, and a self-contained joint scalar P/M checkpoint
+binding are absent.
 
-**Execution decision:** Consume the authorization once on the immutable manifest-required seal branch. Attempt all
-48 worlds in order without resume. Accept 35 complete original-world blocks; retain 11 incomplete history-survival
-and 2 incomplete deep-turnover records without zero coding. All 48 clone gates and all 140 complete-history
-mechanical gates pass; zero manipulation and numerical failures occur.
+**Operator decision:** no existing mechanism is both local and causally interpretable. Local `Mf` erasure changes
+the stored causal state; scalar `lam_plus=0` and `up_ref=0` are world-global; own collar replay is the exact uncut
+continuation only in its qualified unprobed branch and would clamp probe response if reused under a probe; reference
+collar replay overwrites all eight state fields and has active boundary/core disturbance
+`1.8145423147669801/1.8655212794863028` against a zero/zero own-replay sham. Dual A+B composition, continuous
+confinement, and manipulation equivalence are unqualified. The off-branch Phase-0.6A `STOP-TRANSPLANT` report was
+audited read-only at `bf5901a962bde2004dcd526a1eb083337d6e1410`; its transplant failures remain closed.
 
-**Scientific decision:** The primary interval
-`[-3.874958897076355e-09, 1.0561800065742683e-07]` intersects the numerical null around
-`delta_num=8.97597327013001e-12`, while 21/35 positive signs do not reach the required 27. Freeze
-`NO_ACCESS_ESTABLISHED`. The positive direct source calibration is secondary constitutive validation; the
-`lam_minus=0` order response is a secondary pathway diagnostic. Neither overrides the primary result.
+**Design boundary:** retain `C00/C10/C01/C11`, separate `Y_A/Y_B`, the full non-symmetrized row-recipient/column-cut
+matrix, recipient-specific interactions, competing diagonal/crossed/common-mode/relational/artifact hypotheses, and
+the raw schema only as a non-executable identification target. Freeze `eta_w=0` from checkpoint through endpoint,
+zero external writer calls and zero exposure-dependent history increment; allow only hash-bound unchanged passive
+copy plus common decay/transport of pre-existing `Mf`. Do not invent a spatial coefficient mask and call it qualified.
 
-**Reproducibility decision:** Accept the independent raw-only reproduction after exact recomputation of all
-complete-world contrasts and classification and a second byte-identical generation, SHA-256
-`35616172409424d28d765acecb2c29ac1f2527fb7acd48196a9113e85081b679`.
+**Execution boundary:** no clone arm, probe, pair outcome, history writer, prospective namespace/seed, `58xxx`
+artefact, or V5/03G change is authorized. The question is unanswered, not negative. Human review of the Phase-0
+stop package is the exact next action; checkpoint serialization or local equation-edge operator development is a
+separate future mission.
 
-**Disposition:** **COMPLETE; NO_ACCESS_ESTABLISHED; AUTHORIZATION CONSUMED; STOP FOR HUMAN REVIEW.** The maximum
-claim is failure to establish the preregistered one-update downstream interaction under this probe. Never convert
-this into absence, equivalence, ownership, identity, memory or active reconstruction. No follow-up experiment is
-automatically authorized.
-
-## D-099 — DOWNSTREAM-ORDER-READER-01 null-mechanism audit fails closed on raw sufficiency
+## D-094 — OWNERSHIP-IDENTIFIABILITY-00 stops because the frozen intervention algebra is non-identifying
 
 **Date:** 2026-07-18
 
-**Immutability decision:** Accept the raw collection, reproduction, all 48 ordered world records, all 35 stored
-complete-world contrasts, frozen classification object and 15 manifest-bound parent files as exact at accepted
-commit `d71c7ebb14cb74d47bbaac7858f4ec0286240bdb`. Preserve `NO_ACCESS_ESTABLISHED` without reclassification.
+**Decision:** Accept 03G Outcome B, `STOP-TRANSPLANT`, `STOP-CORE-SUFFICIENCY`, `STOP_PAIR_MECHANICS`,
+`STOP-LOCAL-CUT`, and `NO_ACCESS_ESTABLISHED` exactly and issue **STOP-OWNERSHIP-IDENTIFIABILITY — CURRENT ALGEBRA
+INSUFFICIENT**. This is a theoretical identifiability stop, not a negative ownership result and not a permanent
+research stop.
 
-**Decomposition decision:** Freeze the exact equation-based face decomposition, zero-denominator rule,
-original-world statistical unit and descriptive mechanism logic before inspecting data sufficiency. Apply the
-predeclared fail-closed gate because the immutable raw stores aggregate signed/absolute internal flux and hashes,
-but not numerical source-conditioned core `c`, internal face state/flux or boundary flux. A hash is not a
-numerical face array; no decomposition estimate is computed.
+**Algebra decision:** exact clone/common probe/qualified own replay provide no access-factor variation; global
+`lam_plus=0`, `up_ref=0`, passive-copy disable, and `eta_w=0` are not member-specific cuts; local `Mf` erasure and
+reference-`Mf` substitution destroy or replace the carrier; reference replay overwrites all eight collar fields;
+transplant replaces complete core/body state; and the target-centered Gaussian writer is non-compact and creates
+new history. None supplies a clean singleton local/environment access cell. Even
+granting a global ablation as a clean joint-off cell gives a rank-2 design for four saturated coefficients; the
+actual clean ownership rank is at most 1.
 
-**Diagnostic decision:** Return exactly **`RAW_INSUFFICIENT`**. Do not label local buffering, signed cancellation,
-regime heterogeneity, gradient/upwind gating or boundary partition compatible, supported, confirmed or absent.
+**Identifiability decision:** on the reachable natural manifold let `L=E=Z`. The local surface `L`, environmental
+surface `E`, redundant surface `max(L,E)`, and relational surface `L*E` agree on the only clean diagonal cells. The
+model-to-interventional-law map is therefore non-injective. A valid A/B local cut requires localization,
+transience, non-destruction, exact pre-probe state preservation, matched sham, independent order-independent
+composition, and raw observability. Those properties identify directional member-edge dependence only. Full
+local/environment/redundant/relational identification also requires an orthogonal environment/common access factor
+or an explicit, validated modularity/exclusion theorem.
 
-**Roadmap decision:** Return exactly **`UNRESOLVED_RAW_INSUFFICIENT`**. No unique equation-derived mechanism was
-available, so this audit recommends neither a new probe nor mechanistic closure. Any future design requires a new
-human decision; none is authorized.
+**Architecture boundary:** spatial `lambda_plus(x)` could test necessity of the existing pointwise uptake edge but
+not whole-state ownership; localized probes/readouts map susceptibility or decodability; a passive shadow reader is
+observational; an active ghost or dedicated response port creates a new path; and the existing all-field boundary
+clamp is not a surgical flux cut. Any extension is a new architecture. No 03G result is grandfathered: formation,
+persistence, deep turnover survival, and causal response must be re-established prospectively in the modified
+substrate before ownership is tested.
 
-**Disposition:** **COMPLETE RAW-ONLY AUDIT; ZERO WORLDS; STOP FOR HUMAN REVIEW.**
+**Execution boundary:** no engine, seed, state reconstruction, retrospective outcome contrast, prospective
+namespace/family, genome, V5/03G modification, or merge is authorized. Human review of the Phase-0 theorem/audit
+package is the exact next action.
+
+## D-096 — CAUSAL-ADDRESSABILITY-ARCHITECTURE-01 stops at Stage A
+
+**Date:** 2026-07-18
+
+**Decision:** Accept the Phase-0 `REVISE` verdict exactly, implement only its frozen two-port candidate in an isolated
+diagnostic wrapper, and issue **STOP_ARCHITECTURE — STAGE A NOT QUALIFIED**. Natural/open calls delegate to the
+unchanged frozen parent. Fifteen deterministic synthetic tests establish byte-identical open and forced-neutral
+updates, exact clone/composition polarity, input/state-schema preservation, and confinement of the local gate to the
+first-update target `m_plus -> uptake` edge. These code-level passes do not admit the environmental instrument.
+
+**Environmental decision:** exact source order gives target-uptake `H*=2`, while post-growth toggle, writer,
+`up_ref`, `c`, and N parents make the complete returned state E-sensitive on update 1. The committed preprobe
+`S_B0` hold suppresses a common external-P-induced outside-uptake effect from the target global `up_ref`. The
+target-destination-only boundary substitution also produces nonzero unpaired extensive transport-rate contributions
+and `dt`-scaled per-step work while non-target destinations remain natural. Exact per-face and aggregate active-E0
+transport contribution accounting exposes rather than excludes this artificial directed boundary. The complete
+ordered full-step source/sink/global identity remains unqualified.
+
+**No-repair boundary:** lazy reference capture, delayed E activation, probe-aware external sufficient statistics,
+or paired/symmetric gating would define a different environmental port and were not introduced after fixture
+failure. The local code-level edge deletion supports only a narrow mechanical statement; it establishes neither a
+valid rank-4 access factorial nor locality, autonomy, redundancy, synergy, relationality, individuality, storage,
+or ownership.
+
+**Execution boundary:** zero scientific worlds, checkpoints, seeds, results, DEV outcomes, or scientific analyzers
+were opened. No prospective namespace, V5/03G modification, merge, or PR occurred. Stage B is not authorized. Human
+review of the Stage-A `STOP_ARCHITECTURE` package is the only next action.
+
+## D-095 — CAUSAL-ADDRESSABILITY-ARCHITECTURE-01 retains an unadmitted conditional two-port candidate
+
+**Date:** 2026-07-18
+
+**Decision:** Independently reproduce the accepted rank-2 intervention algebra and issue **REVISE — CONSERVATIVE
+CANDIDATE SPECIFIED, ENVIRONMENTAL PORT NOT ADMITTED**. Keep the single-target availability response
+`Y^a(l,e)` (`1=open`, `L0E0/L1E0/L0E1/L1E1`) strictly separate from the later member-directed cut response
+`Y_i^k(k_A,k_B)` (`1=cut`, `K00/K10/K01/K11`). The latter remains a later Phase D and cannot add the missing E
+coordinate to Phase C.
+
+**Local-port decision:** the minimal candidate is a transient fixed-support `lambda_plus(x,t)` mask that deletes
+only the existing `m_plus -> uptake` edge during the first frozen update, preserves `Mf` and all persistent arrays,
+then reopens before newly written `Mf` can be read. Its later simple effects are total consequences of that `t0`
+edge deletion. It can establish only conditional local-edge necessity/sufficiency, not storage locality, complete
+local access, or ownership. A complete `m_plus/m_minus` readout gate is a separately named future extension with a
+new horizon/cone burden.
+
+**Environmental-port decision:** retain existing-parent sample-and-hold only as an unadmitted candidate. It holds
+post-`t0` dynamic outside-parent innovations while preserving the exact reference environment, separately composes
+the exogenous `N` probe, and includes the external `up_ref` numerator and alive-count denominator. Thus `E0` is not
+total environmental absence. The first update is structurally E-invariant; a factorial response must use the first
+E-reachable horizon fixed from the static graph. Destination-specific boundary reads can still create
+nonconservation or quasi-autonomy. If exhaustive existing-edge coverage, source/sink/boundary-work exclusion,
+boundary-only controls, and no-new-path identities cannot qualify, the binding disposition is
+`STOP-ARCHITECTURE`.
+
+**Architecture and evidence boundary:** open `L1E1` must delegate directly to the frozen engine and be bit-identical
+for arbitrary synthetic states; forced-neutral active local/E kernels must also be byte-identical. Passive shadows
+have rank 0; localized N probes may use only the existing N response path. Even a qualified rank-4 result classifies
+only the declared local edge and dynamic-E-deviation bundle, not the unrestricted ownership taxonomy. No 03G result
+is grandfathered. Stages A code-only qualification, B fresh open-port persistence/turnover, C single-target
+factorial, and D member-directionality each require separate human authorization and sealing. This Phase 0 authorizes
+none of them; human review of the architecture package is the exact next action.
+
+## D-097 — INTERVENTIONAL-INDIVIDUALITY-00 selects a falsifiable second-substrate reference
+
+**Date:** 2026-07-18
+
+**Decision:** Accept the human `STOP_ARCHITECTURE` decision exactly and close
+`CAUSAL-ADDRESSABILITY-ARCHITECTURE-01` on the current substrate. For Phase-0 human review only, select **Candidate
+C: lattice matter with a uniformly dynamical structural bond/permeability state on every fixed physical face**.
+This is a conditional architecture choice, not implementation authorization and not evidence that an entity,
+memory, causal-access structure, individual, or lineage exists.
+
+**Selection decision:** phase-field droplets leave a diffuse contour and wider-stencil environmental-parent
+problem. Conservative contact-edge particle aggregates expose clean pairwise fluxes but leave the boundary largely
+a detector graph cut and risk diagnostic-ID/occupancy alias when targeting moving supports. Candidate C provides a
+fixed physical carrier for paired antisymmetric flux surgery while leaving closure, component, inside, persistence,
+and individuality to emerge or fail. It is selected for stronger falsifiers—not expected positivity—including
+no-boundary, open-sheet, percolation, dissolution, leakage, impermeable static shell, frozen-turnover, split, and
+merge regimes.
+
+**Minimal substrate decision:** before history, physical state is mobile matter `m`, ordinary environmental
+resource `n`, structural face state `b`, and the clock. `b` is not history, cannot serve as the local `L` factor,
+and contains no owner, entity, component, closure, inside, genome, or tracker term. Matter/resource crossing is
+recorded as named antisymmetric face fluxes. Bond formation withdraws finite endpoint resource; dissociation enters
+an explicit heat sink, yielding an exact resource-bond-fuel-work identity. A future code-only Stage A would have to
+prove positivity/CFL admissibility, scalar/vector identity, paired conservation, open identity, and all raw ledgers.
+
+**Anti-manufacture and rank decision:** a later Stage-C history field may modulate only a substrate-native physical
+rate whose purpose, ungated equation, and downstream behavioral response were frozen before that field. No
+dedicated reporter or response path may be added to reveal `h` or `b`. The directly gated `h` transduction term and
+the environment-gated crossing flux are manipulation/compliance diagnostics, never the primary response; otherwise
+the factorial manufactures its own effect. Only mechanically valid `L0E0/L1E0/L0E1/L1E1` rows receive rank 4.
+The later member-directed `Y_i^k(k_A,k_B)` design remains a separate phase and namespace.
+
+**Program and evidence boundary:** future stages are A boundary/conservation qualification; B fresh no-memory
+formation, persistence, turnover, and split/merge; C fresh history dependence and causal persistence; D separately
+sealed single-target rank-4 access; E separately sealed A/B directionality; and F only then reproduction and
+inheritance. Every transition requires new human authorization. No old 03G value, threshold, horizon, seed, effect,
+valid-world set, or confirmation status is grandfathered. Phase 0 runs no engine, scientific world, checkpoint,
+seed, analyzer, or prospective family; modifies no V5/03G code; and creates no merge or PR. Exact next action:
+human review of the Phase-0 reference architecture only.
+
+## D-098 — INTERVENTIONAL-INDIVIDUALITY-00 Stage A qualifies minimal lattice-bond mechanics only
+
+**Date:** 2026-07-18
+
+**Decision:** Implement Candidate C only in a new isolated `edlab.substrates.lattice_bond` module and issue
+**STAGE_A_QUALIFIED — MECHANICAL CODE-ONLY QUALIFICATION FOR HUMAN REVIEW**. The compact physical state is `m`, `n`,
+uniform fixed-face structural `b`, and a clock. Uniform local equations contain no entity, closure, inside,
+component, tracker, ID, preferred size, history field, genome, ownership, or scientific response.
+
+**Mechanical decision:** store each canonical matter/resource face value once and apply equal/opposite endpoint
+updates. Use exact exponential bond relaxation; debit resource only for net positive stored bond-energy change,
+release net negative change as heat, and expose simultaneous gross formation/rupture as internally recycled
+maintenance work. The frozen analytic timestep bound is enforced before update with no clipping. Twenty-one
+deterministic hand-built fixtures plus independent 26,244-state hand-built stress establish the declared compact
+domain, conservation/work identities, scalar/vector agreement, and symmetry obligations.
+
+**Intervention and claim boundary:** immutable fixed-face coefficients multiply only pre-existing transported matter
+or resource terms and compose by multiplication. Open/no-plan identity is byte exact, and a cut has paired raw
+missing-flux accounting and zero state-energy jump at onset. The cut nevertheless manufactures a barrier. It
+establishes no natural boundary, autonomy, entity, individuality, memory, causal-access structure, or scientific
+instrument. `b` is structural and unassayed in Stage A; no future memory result is granted or prohibited by
+declaration.
+
+**Evidence and execution boundary:** a repository-wide regression command and isolated parent test reproduction
+traversed pre-existing seeded/scientific unit fixtures outside the synthetic-only allowlist; the attempted repeat was
+terminated. This is a recorded evidence-firewall deviation and contributes no qualification evidence or scientific
+inference. Stage A relies only on the focused hand-built lattice suite and independent hand-built stress scan. No
+Stage B, new scientific world, regime discovery, prospective family, endpoint, search, memory, reproduction,
+V5/03G modification, merge, or PR is authorized. Human review of the Stage-A package is the exact next action.
