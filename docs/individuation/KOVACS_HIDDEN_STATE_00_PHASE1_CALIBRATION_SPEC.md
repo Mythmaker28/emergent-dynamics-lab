@@ -23,19 +23,22 @@ Implementation: `experiments/individuation/kovacs_hidden_state_phase1.py`
 ## 2. Determinism and exact schedule binding (proven)
 
 For a world processed with `prove_determinism`, the runner re-clones the snapshot and re-applies each
-history a second time, then compares the post-relaxation state SHA-256. Proven bit-identical in the DEV
-run (`determinism_bitmatch = True`; e.g. seeds 57001, 57020) and unit-tested
-(`test_kovacs_hidden_state_phase1.py::test_exact_clone_determinism_and_panel_tracker_free`). The panel is
-a **pure function of `(state, frozen core mask)`** — no per-step tracking — so the matching readout cannot
-drift with a tracker.
+history a second time, then compares the post-relaxation state SHA-256. Proven bit-identical on **2 of the
+17 worlds** (seeds 57001, 57020; `prove_determinism` was run once per invocation to bound cost) and
+structurally unit-tested
+(`test_kovacs_hidden_state_phase1.py::test_exact_clone_determinism_and_panel_tracker_free`); the engine is
+deterministic by construction (no RNG retained after init). The panel is a **pure function of
+`(state, frozen core mask)`** — no per-step tracking — so the matching readout cannot drift with a tracker.
 
 ## 3. Common-clock preference (T2)
 
-The Phase-1 design **satisfies the common-clock preference by construction**: because the two histories
-deliver the **same total dose**, the clones reach equal core mass at the **same absolute relaxation
-step**, so the coincidence is read at a single frozen common-clock step `k = 90` (robustness `k ∈
-{60,90,120}`) — identical elapsed time and identical branch age for both branches. There is therefore
-**no variable release time**, and history is **not** confounded with total age or relaxation duration.
+The Phase-1 design **satisfies the common-clock preference by construction**: the two histories deliver
+the **same total dose** and are read at the **same absolute relaxation step**, so elapsed time and branch
+age are identical for both branches and there is **no variable release time**. Equal dose and common clock
+are exact; the resulting **core mass is only *approximately* equal there** (~1 % residual, not exact —
+delivery efficiency differs, so this is a near-coincidence, §Report). The coincidence is read at a single
+frozen common-clock step `k = 90` (robustness `k ∈ {60,90,120}`). History is **not** confounded with total
+age or relaxation duration.
 
 Consequently the option-(b) machinery (an outcome-independent crossing algorithm with branch-age,
 elapsed-time, direct-relaxation and matched-waiting-time controls) is **not required** for the primary

@@ -34,13 +34,21 @@ without a pre-outcome scientific margin.
   3σ-repeatability tolerance (`KOVACS_HIDDEN_STATE_00_PHASE1_COINCIDENCE_ANALYSIS.json`).
 - Matching used no future information, no surgery, no regression; clock time is common by construction;
   determinism proven → **not** `MATCHING_INVALID`.
-- The protocol reaches a *close* (~1–2 % relative) coincidence, so it is not a "cannot approach"
-  `FEASIBILITY_FAIL`; but the residuals are **systematic** (spike consistently lighter/smaller/less
-  energetic than sustained at matched dose) and above mechanical tolerance.
-- The consistent slow-memory residual does **not** upgrade the class (guardrail), and the overt residual
-  is itself standardized-consistent (core_N |mean|/SD 3.85, collar_N 3.71) — a coherent overt difference.
+- **Even the scalar leg is sub-tolerance:** `core_mass` passes for `4/17` worlds at 3σ and `0/17` at
+  sham(0), and in relative terms is the worst-matched variable (median 1.21 %). So this is not a clean
+  "scalar matches, major overt differences remain" — it is a whole-panel **near**-coincidence (~0.1–2 %)
+  where nothing is certified.
+- The consistent slow-memory residual does **not** upgrade the class (guardrail). The overt residual is
+  real (the mass residual is directional, spike < sustained in **16/17**; every variable exceeds its
+  sham/repeatability tolerance) — but the per-variable "standardized" values reported for the overt panel
+  are direction-blind **absolute**-residual magnitudes, not signed effect sizes, so they are not compared
+  to the memory's signed values.
 
-**→ `SCALAR_ONLY_FEASIBLE` → `STOP_PROSPECTIVE`.**
+**Co-defensible classes, all → `STOP_PROSPECTIVE`:** `SCALAR_ONLY_FEASIBLE` (approximate scalar match is
+the most that is reached), `UNRESOLVED` (even the scalar leg is uncertified), and — by the literal "0
+coincidence-qualified worlds" reading — `FEASIBILITY_FAIL`. Primary class reported:
+**`SCALAR_ONLY_FEASIBLE` → `STOP_PROSPECTIVE`** (with the scalar-leg caveat above); the decision does not
+change under any of the three.
 
 No independent scientific argument was found that would make "core-region mass is not a sufficient
 macrostate" — already strongly indicated by the accepted physical-carryover result — worth a prospective

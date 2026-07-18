@@ -92,6 +92,11 @@ def main():
 
     determinism = [w.get("determinism_bitmatch") for w in worlds if w.get("determinism_bitmatch") is not None]
     opp = [w["coincidence_primary"]["opposite_direction"] for w in worlds]
+    # signed direction is available ONLY for core_mass (mass_OVER=SPIKE, mass_APPR=SUSTAINED);
+    # other overt-panel signed residuals were not persisted (panel_abs only).
+    mass_dir = {"spike_lt_sustained": sum(1 for w in worlds
+                                          if w["coincidence_primary"]["mass_OVER"] < w["coincidence_primary"]["mass_APPR"]),
+                "n": len(worlds)}
 
     report = {
         "schema": "KOVACS-HIDDEN-STATE-00-PHASE1-COINCIDENCE-ANALYSIS-v1",
@@ -103,7 +108,9 @@ def main():
             "sources": "identical-history sham (=0 numerical) AND natural DEV temporal repeatability",
             "rule": f"per-variable tol = max({NUMERICAL_FLOOR}, {K_SIGMA} * median step-window std); NOT from any excursion",
         },
-        "determinism_bitmatch_all_true": bool(determinism) and all(determinism),
+        "determinism_proven_n_worlds": len(determinism),
+        "determinism_all_true_over_proven": bool(determinism) and all(determinism),
+        "determinism_note": "bit-identical replay proven on the worlds carrying prove_determinism (see determinism_proven_n_worlds); also structurally unit-tested. Not run for every world (cost).",
         "opposite_direction_any": any(opp),
         "opposite_direction_note": "matched-dose common-clock design: both branches relax same-direction; no crossing (post-turnover overshoot transient is gone)",
         "per_variable": var_summary,
@@ -116,16 +123,23 @@ def main():
             "mismatch_detail": macro_mismatch,
         },
         "hidden_memory_residual": mem_summary,
-        "standardized_overt": standardized(resid, PANEL),
-        "standardized_hidden": standardized(memresid, MEM),
+        "mass_direction_spike_lt_sustained": mass_dir,
+        "overt_abs_magnitude_consistency_DIRECTION_BLIND": standardized(resid, PANEL),
+        "hidden_signed_effect_size": standardized(memresid, MEM),
+        "note_standardization": ("overt values use ABSOLUTE residuals |SPIKE-SUSTAINED| (direction-blind magnitude "
+                                 "consistency); hidden values use SIGNED residuals (true effect size). They are NOT "
+                                 "directly comparable. Signed panel residuals other than core_mass were not persisted, "
+                                 "so a directional claim is made ONLY for mass (see mass_direction_spike_lt_sustained)."),
         "interpretation": {
-            "overt_coincidence": "close (~1-2% relative) but SYSTEMATIC: residuals are ~10x the natural repeatability and 17/17-consistent in sign for the memory channels; they are NOT at sham/numerical (0) tolerance.",
-            "hidden_residual": "slow memory m2 / m_minus differ consistently (17/17 same sign); fast memory m1 matched. This is a residual hidden DOF, but per mission it is the LIMITATION, not positive evidence for coincidence.",
-            "value_gate_input": "the full overt panel is NOT coincidence-qualified at a mechanically-defensible tolerance (systematic residual > sham/numerical; and fails 3-sigma-repeatability for the leading variables), so a STRONG macrostate coincidence is not established.",
+            "overt_coincidence": "close (~0.1-2% relative) but uncertified: NO panel variable (mass included) passes the sham/numerical (0) tolerance, and the leading variables fail 3-sigma repeatability; residuals are systematic in the sense that mass is directional (SPIKE<SUSTAINED) in most worlds, but directions of the other overt variables were not persisted.",
+            "hidden_residual": "slow memory m2 / m_minus differ consistently (17/17 same sign); fast memory m1 matched. A residual hidden DOF, but m-fields are rho-weighted so this is NOT a geometry-independent claim; per mission it is the LIMITATION, not positive evidence.",
+            "value_gate_input": "the full overt panel is NOT coincidence-qualified at a mechanically-defensible tolerance; even the scalar mass leg is sub-tolerance (0/17 sham, 4/17 3-sigma). A STRONG macrostate coincidence is not established.",
         },
     }
     OUT.write_text(json.dumps(report, indent=2))
-    print("n_worlds:", len(worlds), "determinism_all_true:", report["determinism_bitmatch_all_true"])
+    print("n_worlds:", len(worlds), "determinism proven on", report["determinism_proven_n_worlds"],
+          "worlds; all_true_over_proven:", report["determinism_all_true_over_proven"])
+    print("mass direction SPIKE<SUSTAINED:", mass_dir)
     print("full-panel qualified (3sigma-repeat):", len(qualified), "/", len(worlds),
           "| sham-tolerance qualified:", 0, "/", len(worlds))
     print("per-variable frac_pass (3sigma-repeat tol):")
@@ -137,8 +151,8 @@ def main():
     for v in MEM:
         m = mem_summary[v]; print(f"  {v:12s} mean={m['mean']:.5f} pos/neg={m['n_pos']}/{m['n_neg']} "
                                   f"|mean|/sd={m['abs_mean_over_crossworld_sd']}")
-    print("standardized overt:", report["standardized_overt"])
-    print("standardized hidden:", report["standardized_hidden"])
+    print("overt abs-magnitude consistency (direction-blind):", report["overt_abs_magnitude_consistency_DIRECTION_BLIND"])
+    print("hidden signed effect size:", report["hidden_signed_effect_size"])
     print("WROTE", OUT.relative_to(REPO))
 
 if __name__ == "__main__":

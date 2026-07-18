@@ -28,7 +28,9 @@
     "sources": "identical-history sham (=0 numerical) AND natural DEV temporal repeatability",
     "rule": "per-variable tol = max(1e-09, 3.0 * median step-window std); NOT from any excursion"
   },
-  "determinism_bitmatch_all_true": true,
+  "determinism_proven_n_worlds": 2,
+  "determinism_all_true_over_proven": true,
+  "determinism_note": "bit-identical replay proven on the worlds carrying prove_determinism (see determinism_proven_n_worlds); also structurally unit-tested. Not run for every world (cost).",
   "opposite_direction_any": false,
   "opposite_direction_note": "matched-dose common-clock design: both branches relax same-direction; no crossing (post-turnover overshoot transient is gone)",
   "per_variable": {
@@ -392,7 +394,11 @@
       "abs_mean_over_crossworld_sd": 4.71
     }
   },
-  "standardized_overt": {
+  "mass_direction_spike_lt_sustained": {
+    "spike_lt_sustained": 16,
+    "n": 17
+  },
+  "overt_abs_magnitude_consistency_DIRECTION_BLIND": {
     "core_mass": 1.59,
     "core_support": 0.92,
     "core_rg2": 1.09,
@@ -403,15 +409,16 @@
     "collar_mass": 1.12,
     "collar_N": 3.71
   },
-  "standardized_hidden": {
+  "hidden_signed_effect_size": {
     "m1_mean": 0.34,
     "m2_mean": 4.96,
     "mplus_mean": 4.62,
     "mminus_mean": 4.71
   },
+  "note_standardization": "overt values use ABSOLUTE residuals |SPIKE-SUSTAINED| (direction-blind magnitude consistency); hidden values use SIGNED residuals (true effect size). They are NOT directly comparable. Signed panel residuals other than core_mass were not persisted, so a directional claim is made ONLY for mass (see mass_direction_spike_lt_sustained).",
   "interpretation": {
-    "overt_coincidence": "close (~1-2% relative) but SYSTEMATIC: residuals are ~10x the natural repeatability and 17/17-consistent in sign for the memory channels; they are NOT at sham/numerical (0) tolerance.",
-    "hidden_residual": "slow memory m2 / m_minus differ consistently (17/17 same sign); fast memory m1 matched. This is a residual hidden DOF, but per mission it is the LIMITATION, not positive evidence for coincidence.",
-    "value_gate_input": "the full overt panel is NOT coincidence-qualified at a mechanically-defensible tolerance (systematic residual > sham/numerical; and fails 3-sigma-repeatability for the leading variables), so a STRONG macrostate coincidence is not established."
+    "overt_coincidence": "close (~0.1-2% relative) but uncertified: NO panel variable (mass included) passes the sham/numerical (0) tolerance, and the leading variables fail 3-sigma repeatability; residuals are systematic in the sense that mass is directional (SPIKE<SUSTAINED) in most worlds, but directions of the other overt variables were not persisted.",
+    "hidden_residual": "slow memory m2 / m_minus differ consistently (17/17 same sign); fast memory m1 matched. A residual hidden DOF, but m-fields are rho-weighted so this is NOT a geometry-independent claim; per mission it is the LIMITATION, not positive evidence.",
+    "value_gate_input": "the full overt panel is NOT coincidence-qualified at a mechanically-defensible tolerance; even the scalar mass leg is sub-tolerance (0/17 sham, 4/17 3-sigma). A STRONG macrostate coincidence is not established."
   }
 }

@@ -18,13 +18,16 @@ Branch `claude/kovacs-hidden-state-00-phase1` off Phase-0 `e76a94f`. Frozen sche
 The Phase-1 pilot established a decisive mechanical fact: **after the frozen 1000-step deep turnover the
 feed–starve overshoot transient is gone** (turnover ≫ the fast-memory timescale ~28 steps), leaving only
 a near-constant dose-carryover mass offset. A post-turnover *opposite-direction* mass crossing — the
-Phase-0 mechanism — is therefore **not naturally achievable** (pilot 57001: the strong-feed branch stayed
-~5.4 mass units above the gentle branch throughout relaxation; no crossing).
+Phase-0 mechanism — is therefore **not naturally achievable** (pilot: the strong-feed branch stayed above
+the gentle branch throughout relaxation; confirmed in the full run by `opposite_direction = false` in
+17/17 worlds). The Phase-0 crossings in `KOVACS_HIDDEN_STATE_00_DEV_FEASIBILITY.md` were **pre-turnover**
+and do not survive the 1000-step turnover.
 
 The design therefore matches **total dose** between two histories that differ only in **delivery
-pattern**, so the clones reach a **common-clock coincidence** (equal core mass at the same absolute time)
-by construction, and the scientific question becomes whether the *overt panel* also coincides while the
-*hidden memory* differs:
+pattern**. Equal total dose and a common clock are *exact by construction*; the clones then reach a
+common-clock **near-coincidence in core mass** (~1 % residual, **not** exact — delivery efficiency
+differs), and the scientific question becomes whether the *overt panel* also coincides while the *hidden
+memory* differs:
 
 - `H_SPIKE = [(0.060, 40), (0.0, 120)]` — brief strong spike then rest (dose 2.40);
 - `H_SUSTAINED = [(0.015, 160)]` — gentle sustained feed (dose 2.40);
@@ -90,34 +93,47 @@ while the *fast* memory is matched:
 
 This is the timescale-separation signature: at the common-clock coincidence the fast field has washed out
 (matched) while the slow field retains the delivery-pattern history (~4× the order-axis effect of the
-parent line). It is a **real residual hidden DOF** — but see §6.
+parent line). It is a residual hidden DOF — but the memory fields are ρ-weighted, ρ-normalized averages,
+so this is **not** a geometry-independent claim (residualizing memory against the overt density is
+forbidden this phase), and per the value gate it is the *limitation*, not positive evidence (see §6).
 
 ## 5. Frozen value gate → verdict
 
 The frozen decision logic (`KOVACS_HIDDEN_STATE_00_PHASE1_VALUE_GATE.md`) requires, for
 `STRONG_KOVACS_FEASIBLE`, that a sufficient fraction of worlds pass the **full** overt physical
 coincidence panel under a common/frozen protocol. Here `0/17` pass at a mechanically-defensible
-tolerance. Core mass approximately matches (~1–2 %) but the overt area/shape/energy/nutrient panel does
-not coincide to tolerance. Therefore:
+tolerance. Therefore:
 
-- not `STRONG_KOVACS_FEASIBLE` (full panel fails);
+- not `STRONG_KOVACS_FEASIBLE` (full panel fails, 0/17);
 - not `MATCHING_INVALID` (matching used no future info, no surgery, no regression; clock time is common
-  by construction; determinism proven);
-- not `FEASIBILITY_FAIL` in the "cannot approach coincidence" sense — the protocol reaches a *close*
-  (~1–2 %) coincidence, just not to tolerance;
-- the honest class is **`SCALAR_ONLY_FEASIBLE`**: scalar mass matches, but overt panel residuals remain
-  above mechanical tolerance and are the limitation → **`STOP_PROSPECTIVE`**.
+  by construction; determinism proven).
+
+**Class caveat (important).** Even the *scalar mass* leg is sub-tolerance: `core_mass` passes for only
+`4/17` worlds at 3σ-repeatability and `0/17` at the sham(0) tolerance, and in *relative* terms mass is
+actually the **worst-matched** panel variable (median 1.21 %) — its variables "pass" or "fail" are set by
+each variable's noise floor, not by mass being specially matched. So the situation is *not* a clean
+"scalar matches, major overt differences remain": it is a whole-panel **near**-coincidence (~0.1–2 %) in
+which **nothing, mass included, is certified**. Three of the five classes are therefore co-defensible and
+**all converge on `STOP_PROSPECTIVE`**: `SCALAR_ONLY_FEASIBLE` (scalar is the *most* that even
+approximately matches, but uncertified), `UNRESOLVED` (evidence cannot certify even the scalar leg at a
+defensible tolerance), and, by the literal "0 coincidence-qualified worlds" reading, `FEASIBILITY_FAIL`.
+We report the primary class as **`SCALAR_ONLY_FEASIBLE` → `STOP_PROSPECTIVE`** because it best conveys
+"the strongest thing reachable is (approximate) scalar matching, not a full macrostate coincidence," with
+the explicit caveat above; the decision is unchanged under any of the three.
 
 ## 6. Why the memory residual does not upgrade the verdict
 
 Per the mission's explicit guardrail — *do not upgrade `SCALAR_ONLY_FEASIBLE` merely because non-mass
 variables differ; their difference is the limitation, not positive evidence* — the consistent slow-memory
-residual cannot rescue the claim. More decisively, the overt residual is itself **systematic and
-standardized-consistent** (core_N |mean|/SD = 3.85, collar_N = 3.71, comparable to the memory channels'
-~4.6–5.0): the delivery pattern leaves a coherent overt physical difference, not just a hidden one.
-Because the overt macrostate is not matched to mechanical tolerance, a future divergence could not be
-attributed to hidden state rather than to the ~1–2 % overt residual **without a pre-outcome margin we
-cannot establish** (establishing it would require excursion sizes, which are forbidden). Claiming
+residual cannot rescue the claim. The overt residual is itself real, not noise: the **mass** residual is
+directional (spike lighter than sustained in **16/17** worlds), and every overt variable's residual
+exceeds its sham/repeatability tolerance. (Directions of the *other* overt variables were not persisted,
+and the standardized "consistency" values reported for the overt panel are computed on **absolute**
+residuals — a direction-blind magnitude, **not** the signed effect size used for the memory channels — so
+they are not directly comparable to the memory's signed 4.6–5.0; the comparison is intentionally not
+drawn.) Because the overt macrostate is not matched to mechanical tolerance, a future divergence could not
+be attributed to hidden state rather than to the residual overt difference **without a pre-outcome margin
+we cannot establish** (establishing it would require excursion sizes, which are forbidden). Claiming
 equivalence here would violate "never claim equivalence without a pre-outcome scientific margin."
 
 ## 7. Claim-classification table (frozen, Phase-1)

@@ -11,9 +11,10 @@ Design (revised after the Phase-1 pilot):
   gone (>> memory timescales), leaving a near-constant dose-carryover mass offset, so
   a post-turnover opposite-direction mass *crossing* is not naturally achievable.
   We therefore match TOTAL DOSE (Σ amp·steps) between two histories that differ only
-  in DELIVERY PATTERN (a brief spike vs gentle sustained feeding). Equal dose ⇒ the
-  clones reach a COMMON-CLOCK coincidence (equal core mass at the same absolute time)
-  by construction, and the scientific question is whether the OVERT physical panel
+  in DELIVERY PATTERN (a brief spike vs gentle sustained feeding). Equal dose and a
+  common clock are exact by construction; the clones then reach a COMMON-CLOCK NEAR-
+  coincidence in core mass (~1% residual, NOT exact), and the scientific question is
+  whether the OVERT physical panel
   also coincides there while the HIDDEN memory fields differ (STRONG) or whether overt
   area/shape/energy remain apart (SCALAR_ONLY).
 

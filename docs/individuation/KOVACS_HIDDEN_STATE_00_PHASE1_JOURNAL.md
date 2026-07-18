@@ -12,15 +12,17 @@ too weak given known physical carryover. The task: determine whether a **natural
 
 ## 2. Pilot pivot (the decisive engineering finding)
 
-The first engine build reused the Phase-0 feed–starve overshoot crossing. Pilot (57001): **no post-turnover
-mass crossing** — after the 1000-step deep turnover the overshoot transient is gone (≫ fast-memory τ≈28),
-leaving a near-constant dose-carryover offset (strong branch stayed ~5.4 above the gentle branch). So an
-opposite-direction crossing is not naturally reachable post-turnover (this also answers Task 4).
+The first engine build reused the Phase-0 feed–starve overshoot crossing. Pilot: **no post-turnover mass
+crossing** — after the 1000-step deep turnover the overshoot transient is gone (≫ fast-memory τ≈28),
+leaving a near-constant dose-carryover offset (strong branch stayed above the gentle branch throughout;
+confirmed by `opposite_direction=false` 17/17 in the full run). So an opposite-direction crossing is not
+naturally reachable post-turnover (this also answers Task 4).
 
-I pivoted to **matched total dose, different delivery pattern** (spike vs sustained): equal dose ⇒ equal
-core mass at the same absolute time ⇒ a **common-clock coincidence by construction** (satisfying the Task-2
-common-clock preference without variable release or age confounds). The scientific question becomes:
-does the overt panel also coincide while hidden memory differs?
+I pivoted to **matched total dose, different delivery pattern** (spike vs sustained): equal dose and a
+common clock are exact by construction, giving a **common-clock coincidence** at which core mass is only
+*approximately* equal (~1 % residual, not exact) — satisfying the Task-2 common-clock preference without
+variable release or age confounds. The scientific question becomes: does the overt panel also coincide
+while hidden memory differs?
 
 ## 3. Architecture, panel, tolerances
 
@@ -32,12 +34,15 @@ repeatability (3σ) — never from any excursion.
 
 ## 4. Result (17 complete DEV worlds)
 
-- Overt panel matches ~1–2 % relative but **systematically** (spike consistently lighter/smaller/less
-  energetic than sustained at matched dose). **0/17** pass the full panel at sham(0) or 3σ-repeatability.
-- Hidden slow memory residual is 17/17-consistent (m2 −0.016, m_plus −0.015, m_minus +0.015; standardized
-  |mean|/SD ≈ 4.6–5.0); fast memory m1 matched (noise). Timescale separation is real — but the overt
-  residual is itself standardized-consistent (core_N 3.85, collar_N 3.71), i.e. a coherent overt
-  difference, not just a hidden one.
+- Overt panel matches ~0.1–2 % relative but **uncertified**: **0/17** pass the full panel at sham(0) or
+  3σ-repeatability, and even core mass passes only 4/17 (3σ) / 0/17 (sham) — in relative terms mass is the
+  *worst*-matched variable. The mass residual is directional (spike < sustained in **16/17**); directions
+  of the other overt variables were not persisted, so no directional claim is made for them.
+- Hidden slow memory residual is 17/17-consistent (m2 −0.016, m_plus −0.015, m_minus +0.015; signed effect
+  size |mean|/SD ≈ 4.6–5.0); fast memory m1 matched (noise). Timescale separation is real, but memory is
+  ρ-weighted (not geometry-independent) and, per the guardrail, is the *limitation*, not evidence. (The
+  overt "consistency" figures are direction-blind absolute magnitudes, not comparable to the memory's
+  signed values.)
 - No opposite-direction crossing (dose-matched, same-direction relaxation).
 - Determinism bit-identical; engine-free raw reproduction + focused tests + tracker/serialization
   self-tests all pass.
@@ -45,11 +50,13 @@ repeatability (3σ) — never from any excursion.
 ## 5. Verdict and reasoning
 
 Frozen value gate: STRONG requires the full overt panel to coincide at tolerance; `0/17` do → not STRONG.
-Matching used no future info/surgery/regression, clock time common → not MATCHING_INVALID. The protocol
-reaches a close (~1–2 %) coincidence → not a "cannot approach" FEASIBILITY_FAIL. The systematic overt
-residual is the limitation; the consistent memory residual does not upgrade the class (guardrail).
-**→ `SCALAR_ONLY_FEASIBLE` → `STOP_PROSPECTIVE`.** Power confirms: coincidence-qualification rate 0 ⇒
-STRONG prospective infeasible on attrition alone; the ≥75 % sign gate is unreachable unless `d ≳ 0.8`.
+Matching used no future info/surgery/regression, clock time common → not MATCHING_INVALID. Even the scalar
+mass leg is sub-tolerance (0/17 sham, 4/17 3σ), so the situation is a whole-panel *near*-coincidence where
+nothing is certified. Three classes are co-defensible and **all → `STOP_PROSPECTIVE`**:
+`SCALAR_ONLY_FEASIBLE` (approximate scalar match is the most reached), `UNRESOLVED` (even the scalar leg
+uncertified), and — by the literal 0-coincidence-qualified reading — `FEASIBILITY_FAIL`. Primary reported:
+**`SCALAR_ONLY_FEASIBLE` → `STOP_PROSPECTIVE`**. Power confirms: coincidence-qualification rate 0 ⇒ STRONG
+prospective infeasible on attrition alone; the ≥75 % sign gate is unreachable unless `d ≳ 0.8`.
 
 Deeper reason: with natural, surgery-free dynamics there is no free lunch — the same history difference
 that writes a hidden residual also writes a coherent overt residual, so a clean "overt matched / hidden
