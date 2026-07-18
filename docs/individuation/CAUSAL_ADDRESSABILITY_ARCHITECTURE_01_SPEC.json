@@ -1,0 +1,136 @@
+{
+  "schema": "CAUSAL-ADDRESSABILITY-ARCHITECTURE-01-PHASE0-v1",
+  "base_commit": "a7d6adbb83dbd0f0219d21c0ba5af4fb57f2ef4c",
+  "phase": "0_DESIGN_STATIC_AUDIT_ONLY",
+  "recommendation": "REVISE_TWO_PORT_CANDIDATE_ENVIRONMENTAL_PORT_NOT_ADMITTED",
+  "fallback": "STOP_ARCHITECTURE",
+  "implementation_authorized": false,
+  "engine_execution": false,
+  "scientific_world_access": false,
+  "rank_derivation": {
+    "coefficient_order": ["beta_0", "beta_L", "beta_E", "beta_LE"],
+    "required_rows": {
+      "L0E0": [1, 0, 0, 0],
+      "L1E0": [1, 1, 0, 0],
+      "L0E1": [1, 0, 1, 0],
+      "L1E1": [1, 1, 1, 1]
+    },
+    "required_rank": 4,
+    "accepted_current_rows": [[1, 0, 0, 0], [1, 1, 1, 1]],
+    "accepted_current_rank": 2,
+    "current_null_vectors": [[0, 1, -1, 0], [0, 1, 0, -1]]
+  },
+  "namespaces": {
+    "single_target_availability": {
+      "response": "Y_a(l,e)",
+      "bit_1": "available_open",
+      "cells": ["L0E0", "L1E0", "L0E1", "L1E1"],
+      "stage": "C",
+      "E0_semantics": "post_t0_dynamic_E_innovations_held_at_reference_not_total_environmental_unavailability"
+    },
+    "member_directed_cut": {
+      "response": "Y_i_k(k_A,k_B)",
+      "bit_1": "cut",
+      "cells": ["K00", "K10", "K01", "K11"],
+      "stage": "D"
+    }
+  },
+  "local_port": {
+    "status": "CANDIDATE_SURGICAL_EXISTING_EDGE_DELETION",
+    "support": "fixed_preprobe_target_mask",
+    "window": "q_L active for first frozen update only and reopens before newly written Mf can be read",
+    "state_writes": [],
+    "equations": [
+      "g=base*(1+lambda_plus*q_L*m_plus)"
+    ],
+    "excluded_from_primary": "m_minus_to_c_remains_open; any complete readout bundle is a separate longer_horizon extension",
+    "open_value": 1,
+    "closed_value": 0,
+    "first_update_diagnostic": "Y_L_direct(l)=sum_Omega uptake; E arms are structurally identical at t0 and this diagnostic cannot estimate E",
+    "factorial_estimand": "Y_H_star_a(l,e) at the first E-reachable horizon H_star derived from the static update graph; local simple effects are later total effects of the transient t0 edge deletion",
+    "local_cone_obligation": "fixed Omega deletes only the spatial m_plus_to_uptake edge; escaped outside readout remains residual or dynamic-E and forbids a complete-local claim",
+    "longer_horizon_policy": "Y_total_H_a is secondary; complete local-state access is unclassified absent a fixed complete stencil causal cone; tracker-following support forbidden",
+    "claim_limit": "conditional necessity or sufficiency of declared existing m_plus_to_uptake edge; not storage locality, complete local access, or ownership"
+  },
+  "environmental_port": {
+    "status": "CANDIDATE_NOT_ADMITTED_PENDING_SYNTHETIC_EXCLUSION",
+    "operation": "existing_external_parent_read_sample_and_hold",
+    "window": "active from t0 through statically fixed H_star",
+    "formula": "z_parent_E(t)=r_parent+e*(z_parent(t)-r_parent)",
+    "global_up_ref_formula": "S_B_E=S_B0+e*(S_B(t)-S_B0); n_B_E=n_B0+e*(n_B(t)-n_B0); up_ref_E=(S_A(t)+S_B_E)/(n_A(t)+n_B_E), exact frozen empty-set rule",
+    "common_probe_decomposition": "N_external_E=r_N+P(t)+e*(N_external-r_N-P(t)); P(t) identical in every cell",
+    "reservoir_formula": "R_N_E=F*(N0-N_E); reservoir is not independently held",
+    "reference": "hash_bound_preprobe_parent_value",
+    "state_writes": [],
+    "new_reporter_path": false,
+    "incoming_semantics": "all outside_neighbor_to_target_destination dependencies regardless of realized flux sign",
+    "outgoing_policy": "target_to_environment destination updates remain frozen and unmodified",
+    "conservation_policy": "directed intervention imbalance is logged and may compel STOP; symmetric face gating is not silently substituted",
+    "required_parent_families": [
+      "cross_boundary_face_flux_rho_c",
+      "cross_boundary_donor_U_V_C_Mf",
+      "cross_boundary_lap_u_v",
+      "cross_boundary_tmean_and_lap_Mf",
+      "cross_boundary_lap_c_N",
+      "world_global_up_ref",
+      "common_reservoir_explicit_treatment"
+    ],
+    "common_probe_policy": "algebraically separated, held identical, and excluded from E factor; failure to decompose exactly makes E inadmissible",
+    "claim_limit": "access from declared post_t0 dynamic incoming environmental/common innovations relative to retained reference; not total E0, erasure of embodied environmental information, autonomy, or unrestricted ownership taxonomy",
+    "stop_conditions": [
+      "persistent_state_overwrite",
+      "new_Mf_specific_reporter_or_response_path",
+      "incomplete_existing_parent_bundle",
+      "artificial_autonomy",
+      "unacceptable_face_or_body_manipulation",
+      "failure_of_exclusion_controls"
+    ]
+  },
+  "conditional_factorial_semantics": {
+    "L0E0": "declared m_plus_to_uptake edge off and post_t0 dynamic E innovations held; baseline E information and other Mf edges remain",
+    "permitted_patterns": [
+      "declared_local_readout_only",
+      "declared_dynamic_E_deviation_only",
+      "conditional_redundant_OR",
+      "conditional_synergistic_AND",
+      "assay_null"
+    ],
+    "unidentified": "unrestricted local_environmental_redundant_relational ownership taxonomy"
+  },
+  "open_conservative_extension": {
+    "required_branch": "if plan is None or fully_open then delegate directly to frozen_engine.step",
+    "identity": "Extended(S,L1E1) byte_equals Frozen(S) for arbitrary registered finite synthetic states",
+    "forced_neutral_identity": "qualification-only active q_L=1, active e=1, and joint active kernels in both orders byte_equal Frozen(S)",
+    "state_schema_unchanged": true,
+    "scientific_grandfathering": false,
+    "parameter_policy": "ordinary frozen parameters including eta_w are identical in Stages B and C"
+  },
+  "composition": {
+    "same_source_exact_clones": true,
+    "local_idempotent": "P_L(l1) o P_L(l2)=P_L(min(l1,l2))",
+    "environment_idempotent": "P_E(e1) o P_E(e2)=P_E(min(e1,e2))",
+    "orthogonal_compiler": "P_L(l) o P_E(e)=P_E(e) o P_L(l)",
+    "controller_feedback": false,
+    "tracker_feedback": false
+  },
+  "alternatives": {
+    "lambda_plus_only": "primary transient Phase-C local port; narrow existing-edge necessity and later total consequences only",
+    "complete_Mf_readout_bundle": "future separately named longer-horizon and full-cone-qualified extension only",
+    "incoming_parent_sample_hold": "unadmitted REVISE environmental candidate only",
+    "outside_contribution_multiplier": "reject: nonlinear face has no unique outside summand and zeroed Laplacian parent creates sink",
+    "symmetric_face_permeability": "reject as primary because it creates a compartment and blocks outgoing paths",
+    "local_N_sigma_standardization": "too narrow; incomplete E bundle",
+    "passive_shadow": "observational rank zero",
+    "localized_N_probe": "probe factor only; no new Mf coupling allowed",
+    "all_field_boundary_replay": "reject state overwrite",
+    "active_ghost_reporter": "reject manufactured path"
+  },
+  "roadmap": [
+    "A_CODE_ONLY_SYNTHETIC_QUALIFICATION",
+    "B_FRESH_OPEN_PORT_PERSISTENCE_AND_DEEP_TURNOVER_REPLICATION",
+    "C_SEPARATELY_SEALED_SINGLE_TARGET_LxE_FACTORIAL",
+    "D_SEPARATE_MEMBER_DIRECTED_AxB_FACTORIAL_ONLY_AFTER_C"
+  ],
+  "stage_C_primary": "q_L cuts only the t0 update then reopens; E hold runs through statically fixed first E-reachable Y_H_star_a; first-update Y_L_direct is a local-edge diagnostic and local H_star effects are later total effects of the transient cut; longer Y_total_H_a is secondary",
+  "next_action": "HUMAN_ARCHITECTURAL_REVIEW_ONLY"
+}

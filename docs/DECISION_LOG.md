@@ -2675,3 +2675,37 @@ substrate before ownership is tested.
 **Execution boundary:** no engine, seed, state reconstruction, retrospective outcome contrast, prospective
 namespace/family, genome, V5/03G modification, or merge is authorized. Human review of the Phase-0 theorem/audit
 package is the exact next action.
+
+## D-095 — CAUSAL-ADDRESSABILITY-ARCHITECTURE-01 retains an unadmitted conditional two-port candidate
+
+**Date:** 2026-07-18
+
+**Decision:** Independently reproduce the accepted rank-2 intervention algebra and issue **REVISE — CONSERVATIVE
+CANDIDATE SPECIFIED, ENVIRONMENTAL PORT NOT ADMITTED**. Keep the single-target availability response
+`Y^a(l,e)` (`1=open`, `L0E0/L1E0/L0E1/L1E1`) strictly separate from the later member-directed cut response
+`Y_i^k(k_A,k_B)` (`1=cut`, `K00/K10/K01/K11`). The latter remains a later Phase D and cannot add the missing E
+coordinate to Phase C.
+
+**Local-port decision:** the minimal candidate is a transient fixed-support `lambda_plus(x,t)` mask that deletes
+only the existing `m_plus -> uptake` edge during the first frozen update, preserves `Mf` and all persistent arrays,
+then reopens before newly written `Mf` can be read. Its later simple effects are total consequences of that `t0`
+edge deletion. It can establish only conditional local-edge necessity/sufficiency, not storage locality, complete
+local access, or ownership. A complete `m_plus/m_minus` readout gate is a separately named future extension with a
+new horizon/cone burden.
+
+**Environmental-port decision:** retain existing-parent sample-and-hold only as an unadmitted candidate. It holds
+post-`t0` dynamic outside-parent innovations while preserving the exact reference environment, separately composes
+the exogenous `N` probe, and includes the external `up_ref` numerator and alive-count denominator. Thus `E0` is not
+total environmental absence. The first update is structurally E-invariant; a factorial response must use the first
+E-reachable horizon fixed from the static graph. Destination-specific boundary reads can still create
+nonconservation or quasi-autonomy. If exhaustive existing-edge coverage, source/sink/boundary-work exclusion,
+boundary-only controls, and no-new-path identities cannot qualify, the binding disposition is
+`STOP-ARCHITECTURE`.
+
+**Architecture and evidence boundary:** open `L1E1` must delegate directly to the frozen engine and be bit-identical
+for arbitrary synthetic states; forced-neutral active local/E kernels must also be byte-identical. Passive shadows
+have rank 0; localized N probes may use only the existing N response path. Even a qualified rank-4 result classifies
+only the declared local edge and dynamic-E-deviation bundle, not the unrestricted ownership taxonomy. No 03G result
+is grandfathered. Stages A code-only qualification, B fresh open-port persistence/turnover, C single-target
+factorial, and D member-directionality each require separate human authorization and sealing. This Phase 0 authorizes
+none of them; human review of the architecture package is the exact next action.

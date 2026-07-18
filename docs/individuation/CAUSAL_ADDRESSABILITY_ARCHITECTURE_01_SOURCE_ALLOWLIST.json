@@ -1,0 +1,38 @@
+{
+  "schema": "CAUSAL-ADDRESSABILITY-ARCHITECTURE-01-SOURCE-ALLOWLIST-v1",
+  "base_commit": "a7d6adbb83dbd0f0219d21c0ba5af4fb57f2ef4c",
+  "allowed_durable_sources": [
+    "AGENTS.md",
+    "docs/RESEARCH_CHARTER.md",
+    "docs/PROJECT_STATE.md",
+    "docs/DECISION_LOG.md",
+    "docs/EXPERIMENT_INDEX.md",
+    "docs/RUN_INDEX.md",
+    "docs/agent_journals/2026-07-18/1847_theory-audit_RUN-20260718-1847-OI00-P0.md",
+    "docs/agent_journals/2026-07-18/1849_adversarial-identifiability-review_RUN-20260718-1849-OI00-REDTEAM.md",
+    "docs/individuation/OWNERSHIP_IDENTIFIABILITY_00_PHASE0_REPORT.md",
+    "docs/individuation/OWNERSHIP_IDENTIFIABILITY_00_INTERVENTION_ALGEBRA.json"
+  ],
+  "allowed_code_sha256": {
+    "edlab/substrates/scaffold/engine.py": "dee42f1879c9a42ec52833406cc3d89e859c154157eab34c1f570919b93b1df5",
+    "edlab/experiments/sc_iom/engine.py": "fa07b5e2a1c111cde41ddc8d1254f63a3097751e2d432013ae24ab38b1ceb54f",
+    "edlab/experiments/sc_mcm/engine.py": "d51a5db1848e717a44f9e00aa4ad4b9c86465ec245184b78b2516dad9842ef2d",
+    "experiments/individuation/turnover_diag_engine.py": "8ba3ac5650cb460d68642d8f4077f3334067ff264c6e976b34364b5bc294480a",
+    "experiments/individuation/access_structure_operators.py": "ca7a68fcf0d35dfcf4b766f64a1ff5b007678191befe28360b54c341fb537d8f",
+    "experiments/individuation/access_structure_noswap_operators.py": "08ae4c43967bbef4fff28de5eb3cf9d7bdf12b2250d92e7da0ce4bfe75274401",
+    "experiments/individuation/directed_causal_pair_phase05_executor.py": "66b54dbc53168e4d85e6b4ba99335226becb71e3d3954aca91b1a8d4361d8dac"
+  },
+  "forbidden": [
+    "results/",
+    "exposed_DEV_paths",
+    "raw_or_world_shards",
+    "checkpoint_payloads",
+    "scientific_analyzers",
+    "seed_initialization",
+    "active_reconstruction",
+    "genome",
+    "V5_or_03G_modification",
+    "prospective_namespace",
+    "merge"
+  ]
+}

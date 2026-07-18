@@ -1,5 +1,33 @@
 # Project State
 
+## BRANCH ADDENDUM — CAUSAL-ADDRESSABILITY-ARCHITECTURE-01 PHASE 0 (2026-07-18)
+
+Phase 0 accepts `STOP-OWNERSHIP-IDENTIFIABILITY` exactly and independently reproduces the committed intervention
+algebra's rank 2 against the rank 4 required for a saturated single-target `Y^a(l,e)` factorial. The later
+member-directed `Y_i^k(k_A,k_B)` cut factorial remains a distinct Phase-D question with opposite bit polarity,
+separate arm names, estimands, gates, schema, and prospective namespace.
+
+The smallest local candidate is a transient fixed-support `lambda_plus(x,t)` mask deleting only the existing
+`m_plus -> uptake` edge. It preserves `Mf` and persistent state, but can establish only conditional local-edge
+necessity/sufficiency, not storage locality or ownership. A passive shadow reader adds rank 0, and a localized `N`
+probe remains admissible only through the existing N path with no new `Mf`-specific reporter.
+
+The least-destructive E candidate is an existing-parent sample-and-hold read gate with explicit cross-boundary,
+global `up_ref` numerator/denominator, reservoir, and exogenous-probe decomposition. It is **not admitted**: `E0`
+retains the exact `t0` environment and removes only later dynamic E innovations, while destination-specific parent
+substitution may create imbalance or quasi-autonomy. The first update is structurally E-invariant, so it is only a
+local-edge diagnostic; any factorial response must use the first E-reachable horizon fixed from the static graph.
+Even then, the result classifies only the declared local edge and dynamic-E-deviation bundle, not the unrestricted
+local/environmental/redundant/relational taxonomy.
+
+Disposition: **REVISE — CONSERVATIVE CANDIDATE SPECIFIED, ENVIRONMENTAL PORT NOT ADMITTED — NO IMPLEMENTATION OR
+PROSPECTIVE AUTHORIZATION**. Stage A would require separate authorization and code-only synthetic qualification,
+including direct open delegation, forced-neutral active-kernel byte identities, exhaustive dependency/sentinel
+tests, probe separation, source/sink/boundary-work accounting, and artificial-autonomy fixtures. Failure returns
+`STOP-ARCHITECTURE`. Only after A could fresh open-port persistence/deep-turnover replication B be preregistered;
+single-target C and member-directed D remain separately sealed later stages. Exact next action: human architectural
+review of the Phase-0 package only.
+
 ## BRANCH ADDENDUM — OWNERSHIP-IDENTIFIABILITY-00 PHASE 0 (2026-07-18)
 
 Phase 0 accepts 03G Outcome B, `STOP-TRANSPLANT`, `STOP-CORE-SUFFICIENCY`, `STOP_PAIR_MECHANICS`,
