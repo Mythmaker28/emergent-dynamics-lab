@@ -1,0 +1,417 @@
+{
+  "schema": "KOVACS-HIDDEN-STATE-00-PHASE1-COINCIDENCE-ANALYSIS-v1",
+  "source": "docs/individuation/KOVACS_HIDDEN_STATE_00_PHASE1_DEV_RESULTS.json",
+  "config": "PATTERN",
+  "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+  "n_complete_worlds": 17,
+  "seeds": [
+    57001,
+    57003,
+    57006,
+    57008,
+    57009,
+    57010,
+    57013,
+    57015,
+    57016,
+    57017,
+    57018,
+    57019,
+    57020,
+    57021,
+    57022,
+    57023,
+    57024
+  ],
+  "primary_common_clock_step": 90,
+  "tolerance_policy": {
+    "sources": "identical-history sham (=0 numerical) AND natural DEV temporal repeatability",
+    "rule": "per-variable tol = max(1e-09, 3.0 * median step-window std); NOT from any excursion"
+  },
+  "determinism_bitmatch_all_true": true,
+  "opposite_direction_any": false,
+  "opposite_direction_note": "matched-dose common-clock design: both branches relax same-direction; no crossing (post-turnover overshoot transient is gone)",
+  "per_variable": {
+    "core_mass": {
+      "resid_mean": 0.33372,
+      "resid_median": 0.3039,
+      "resid_max": 0.8049,
+      "repeatability_median": 0.046694,
+      "tolerance_3sigma_repeat": 0.140082,
+      "n_pass_tolerance": 4,
+      "n_worlds": 17,
+      "frac_pass": 0.235,
+      "sham_tolerance": 0.0,
+      "n_pass_sham": 0
+    },
+    "core_support": {
+      "resid_mean": 1.29412,
+      "resid_median": 1,
+      "resid_max": 5,
+      "repeatability_median": 0.451754,
+      "tolerance_3sigma_repeat": 1.355262,
+      "n_pass_tolerance": 12,
+      "n_worlds": 17,
+      "frac_pass": 0.706,
+      "sham_tolerance": 0.0,
+      "n_pass_sham": 0
+    },
+    "core_rg2": {
+      "resid_mean": 0.28931,
+      "resid_median": 0.21706,
+      "resid_max": 1.09661,
+      "repeatability_median": 0.009975,
+      "tolerance_3sigma_repeat": 0.029925,
+      "n_pass_tolerance": 2,
+      "n_worlds": 17,
+      "frac_pass": 0.118,
+      "sham_tolerance": 0.0,
+      "n_pass_sham": 0
+    },
+    "core_centroid_off": {
+      "resid_mean": 0.03048,
+      "resid_median": 0.02451,
+      "resid_max": 0.09921,
+      "repeatability_median": 0.000582,
+      "tolerance_3sigma_repeat": 0.001747,
+      "n_pass_tolerance": 0,
+      "n_worlds": 17,
+      "frac_pass": 0.0,
+      "sham_tolerance": 0.0,
+      "n_pass_sham": 0
+    },
+    "core_N": {
+      "resid_mean": 0.43411,
+      "resid_median": 0.43314,
+      "resid_max": 0.61904,
+      "repeatability_median": 0.021067,
+      "tolerance_3sigma_repeat": 0.063202,
+      "n_pass_tolerance": 0,
+      "n_worlds": 17,
+      "frac_pass": 0.0,
+      "sham_tolerance": 0.0,
+      "n_pass_sham": 0
+    },
+    "core_c": {
+      "resid_mean": 0.63189,
+      "resid_median": 0.49242,
+      "resid_max": 1.76003,
+      "repeatability_median": 0.156497,
+      "tolerance_3sigma_repeat": 0.469491,
+      "n_pass_tolerance": 8,
+      "n_worlds": 17,
+      "frac_pass": 0.471,
+      "sham_tolerance": 0.0,
+      "n_pass_sham": 0
+    },
+    "core_uptake": {
+      "resid_mean": 0.00056,
+      "resid_median": 0.0004,
+      "resid_max": 0.00148,
+      "repeatability_median": 5.2e-05,
+      "tolerance_3sigma_repeat": 0.000157,
+      "n_pass_tolerance": 2,
+      "n_worlds": 17,
+      "frac_pass": 0.118,
+      "sham_tolerance": 0.0,
+      "n_pass_sham": 0
+    },
+    "collar_mass": {
+      "resid_mean": 0.12051,
+      "resid_median": 0.07988,
+      "resid_max": 0.4197,
+      "repeatability_median": 0.009841,
+      "tolerance_3sigma_repeat": 0.029523,
+      "n_pass_tolerance": 2,
+      "n_worlds": 17,
+      "frac_pass": 0.118,
+      "sham_tolerance": 0.0,
+      "n_pass_sham": 0
+    },
+    "collar_N": {
+      "resid_mean": 0.14522,
+      "resid_median": 0.14705,
+      "resid_max": 0.21073,
+      "repeatability_median": 0.007676,
+      "tolerance_3sigma_repeat": 0.023028,
+      "n_pass_tolerance": 0,
+      "n_worlds": 17,
+      "frac_pass": 0.0,
+      "sham_tolerance": 0.0,
+      "n_pass_sham": 0
+    }
+  },
+  "full_overt_panel_qualification": {
+    "n_qualified_3sigma_repeat": 0,
+    "n_macrostate_mismatch": 17,
+    "frac_qualified": 0.0,
+    "n_qualified_sham_tolerance": 0,
+    "qualified_seeds": [],
+    "mismatch_detail": [
+      {
+        "seed": 57001,
+        "fails": [
+          "core_mass",
+          "core_support",
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_c",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57003,
+        "fails": [
+          "core_mass",
+          "core_support",
+          "core_centroid_off",
+          "core_N",
+          "core_c",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57006,
+        "fails": [
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57008,
+        "fails": [
+          "core_mass",
+          "core_centroid_off",
+          "core_N",
+          "core_c",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57009,
+        "fails": [
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57010,
+        "fails": [
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57013,
+        "fails": [
+          "core_mass",
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57015,
+        "fails": [
+          "core_mass",
+          "core_support",
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57016,
+        "fails": [
+          "core_mass",
+          "core_support",
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_c",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57017,
+        "fails": [
+          "core_mass",
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_uptake",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57018,
+        "fails": [
+          "core_mass",
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_c",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57019,
+        "fails": [
+          "core_mass",
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_c",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57020,
+        "fails": [
+          "core_mass",
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_c",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57021,
+        "fails": [
+          "core_mass",
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_c",
+          "core_uptake",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57022,
+        "fails": [
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57023,
+        "fails": [
+          "core_mass",
+          "core_support",
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_c",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      },
+      {
+        "seed": 57024,
+        "fails": [
+          "core_mass",
+          "core_rg2",
+          "core_centroid_off",
+          "core_N",
+          "core_uptake",
+          "collar_mass",
+          "collar_N"
+        ]
+      }
+    ]
+  },
+  "hidden_memory_residual": {
+    "m1_mean": {
+      "mean": 5.6e-05,
+      "median": 8.8e-05,
+      "n_pos": 13,
+      "n_neg": 4,
+      "cross_world_sd": 0.000163,
+      "abs_mean_over_crossworld_sd": 0.34
+    },
+    "m2_mean": {
+      "mean": -0.015952,
+      "median": -0.01603,
+      "n_pos": 0,
+      "n_neg": 17,
+      "cross_world_sd": 0.003214,
+      "abs_mean_over_crossworld_sd": 4.96
+    },
+    "mplus_mean": {
+      "mean": -0.014706,
+      "median": -0.014859,
+      "n_pos": 0,
+      "n_neg": 17,
+      "cross_world_sd": 0.003185,
+      "abs_mean_over_crossworld_sd": 4.62
+    },
+    "mminus_mean": {
+      "mean": 0.01492,
+      "median": 0.014939,
+      "n_pos": 17,
+      "n_neg": 0,
+      "cross_world_sd": 0.003169,
+      "abs_mean_over_crossworld_sd": 4.71
+    }
+  },
+  "standardized_overt": {
+    "core_mass": 1.59,
+    "core_support": 0.92,
+    "core_rg2": 1.09,
+    "core_centroid_off": 1.31,
+    "core_N": 3.85,
+    "core_c": 1.26,
+    "core_uptake": 1.27,
+    "collar_mass": 1.12,
+    "collar_N": 3.71
+  },
+  "standardized_hidden": {
+    "m1_mean": 0.34,
+    "m2_mean": 4.96,
+    "mplus_mean": 4.62,
+    "mminus_mean": 4.71
+  },
+  "interpretation": {
+    "overt_coincidence": "close (~1-2% relative) but SYSTEMATIC: residuals are ~10x the natural repeatability and 17/17-consistent in sign for the memory channels; they are NOT at sham/numerical (0) tolerance.",
+    "hidden_residual": "slow memory m2 / m_minus differ consistently (17/17 same sign); fast memory m1 matched. This is a residual hidden DOF, but per mission it is the LIMITATION, not positive evidence for coincidence.",
+    "value_gate_input": "the full overt panel is NOT coincidence-qualified at a mechanically-defensible tolerance (systematic residual > sham/numerical; and fails 3-sigma-repeatability for the leading variables), so a STRONG macrostate coincidence is not established."
+  }
+}

@@ -1,0 +1,4055 @@
+{
+  "schema": "KOVACS-HIDDEN-STATE-00-PHASE1-DEV-RESULTS-v2",
+  "firewall": "no post-release excursion computed; matched-dose common-clock coincidence + hidden-residual diagnostic only",
+  "config": "PATTERN",
+  "schedule": {
+    "schema": "KOVACS-HIDDEN-STATE-00-PHASE1-SCHEDULE-v2",
+    "matched_total_dose": 2.4,
+    "H_SPIKE": [
+      [
+        0.06,
+        40
+      ],
+      [
+        0.0,
+        120
+      ]
+    ],
+    "H_SUSTAINED": [
+      [
+        0.015,
+        160
+      ]
+    ],
+    "deep_turnover_steps": 1000,
+    "relaxation_steps": 180,
+    "coincidence_rule": {
+      "match_variable": "core_mass",
+      "type": "common_clock",
+      "primary_step": 90,
+      "robustness_steps": [
+        60,
+        90,
+        120
+      ],
+      "rationale": "fast-memory tau~28 steps: >=60 washes fast transient; slow m2 tau~1700 intact"
+    },
+    "stability_steps": 3
+  },
+  "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+  "grid_N": 64,
+  "worlds": [
+    {
+      "seed": 57001,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 70.00506379951547,
+      "determinism_bitmatch": true,
+      "state_sha_SPIKE": "943c616f15811a1791af1cc44ac24c75fb4bac032e95757c4946f634c26f4c1d",
+      "state_sha_SUSTAINED": "94f18561182bbe24a785f497179de0698128659c55de4f7bcaf0d8e8b05517ab",
+      "deep_material_M": {
+        "SPIKE": 0.12459050412507469,
+        "SUSTAINED": 0.11333224628585511
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 37.00168832871404,
+        "mass_APPR": 37.63812977462645,
+        "mass_abs_diff": 0.6364414459124106,
+        "panel_abs": {
+          "core_mass": 0.6364414459124106,
+          "core_support": 3,
+          "core_rg2": 0.4091624499069155,
+          "core_centroid_off": 0.09921292207731724,
+          "core_N": 0.49692756597539756,
+          "core_c": 1.496318586649636,
+          "core_uptake": 0.0012763352339127051,
+          "collar_mass": 0.1947577527010509,
+          "collar_N": 0.20231178713710563
+        },
+        "panel_rel": {
+          "core_mass": 0.017053670871256497,
+          "core_support": 0.011131725417439703,
+          "core_rg2": 0.013294581811665877,
+          "core_centroid_off": 0.07221098604668924,
+          "core_N": 0.0017237445865501246,
+          "core_c": 0.013508115081007042,
+          "core_uptake": 0.02182000745383457,
+          "collar_mass": 0.0263415167644022,
+          "collar_N": 0.0017679521078085474
+        },
+        "memory_diff": {
+          "m1_mean": 0.00015299767597981052,
+          "m2_mean": -0.015171941611203998,
+          "mplus_mean": -0.013490280854793035,
+          "mminus_mean": 0.013857863088812983
+        },
+        "deriv_SPIKE_pre": -0.029984376543779945,
+        "deriv_SUSTAINED_pre": -0.03044446963814096,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.63599281682162,
+          0.6355548661893096,
+          0.635126634040752
+        ],
+        "repeatability": {
+          "core_mass": 0.060930327091120444,
+          "core_support": 0.4948716593053935,
+          "core_rg2": 0.023142982137489398,
+          "core_centroid_off": 0.003909195754132803,
+          "core_N": 0.027561229152744803,
+          "core_c": 0.189834231267068,
+          "core_uptake": 0.000141915878558075,
+          "collar_mass": 0.009840889098164532,
+          "collar_N": 0.009017776417995605
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 37.88405921050236,
+          "mass_APPR": 38.54329604147391,
+          "mass_abs_diff": 0.6592368309715511,
+          "panel_abs": {
+            "core_mass": 0.6592368309715511,
+            "core_support": 2,
+            "core_rg2": 0.36913153620764305,
+            "core_centroid_off": 0.09479858384952777,
+            "core_N": 0.5838776525376375,
+            "core_c": 1.5013511592777888,
+            "core_uptake": 0.00141983460752923,
+            "collar_mass": 0.1810325480527748,
+            "collar_N": 0.22805225868545165
+          },
+          "panel_rel": {
+            "core_mass": 0.017251331772454716,
+            "core_support": 0.007220216606498195,
+            "core_rg2": 0.012145921317118714,
+            "core_centroid_off": 0.07225775165731495,
+            "core_N": 0.002027851053025922,
+            "core_c": 0.013211934914802678,
+            "core_uptake": 0.02339651158132395,
+            "collar_mass": 0.02399134253821247,
+            "collar_N": 0.0019949478323832495
+          },
+          "memory_diff": {
+            "m1_mean": 0.00012116572364782429,
+            "m2_mean": -0.01588801039699489,
+            "mplus_mean": -0.014212004770701503,
+            "mminus_mean": 0.014521658505490032
+          },
+          "deriv_SPIKE_pre": -0.02914925049388728,
+          "deriv_SUSTAINED_pre": -0.030366818362765002,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.658054448230537,
+            0.6569073311106948,
+            0.6557954657966718
+          ],
+          "repeatability": {
+            "core_mass": 0.06069245107064583,
+            "core_support": 0.4517539514526256,
+            "core_rg2": 0.02951763128723665,
+            "core_centroid_off": 0.004512672252813024,
+            "core_N": 0.025406320020845842,
+            "core_c": 0.19250643567711226,
+            "core_uptake": 0.00016056049229171309,
+            "collar_mass": 0.01058260878704845,
+            "collar_N": 0.008375887814326301
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 37.00168832871404,
+          "mass_APPR": 37.63812977462645,
+          "mass_abs_diff": 0.6364414459124106,
+          "panel_abs": {
+            "core_mass": 0.6364414459124106,
+            "core_support": 3,
+            "core_rg2": 0.4091624499069155,
+            "core_centroid_off": 0.09921292207731724,
+            "core_N": 0.49692756597539756,
+            "core_c": 1.496318586649636,
+            "core_uptake": 0.0012763352339127051,
+            "collar_mass": 0.1947577527010509,
+            "collar_N": 0.20231178713710563
+          },
+          "panel_rel": {
+            "core_mass": 0.017053670871256497,
+            "core_support": 0.011131725417439703,
+            "core_rg2": 0.013294581811665877,
+            "core_centroid_off": 0.07221098604668924,
+            "core_N": 0.0017237445865501246,
+            "core_c": 0.013508115081007042,
+            "core_uptake": 0.02182000745383457,
+            "collar_mass": 0.0263415167644022,
+            "collar_N": 0.0017679521078085474
+          },
+          "memory_diff": {
+            "m1_mean": 0.00015299767597981052,
+            "m2_mean": -0.015171941611203998,
+            "mplus_mean": -0.013490280854793035,
+            "mminus_mean": 0.013857863088812983
+          },
+          "deriv_SPIKE_pre": -0.029984376543779945,
+          "deriv_SUSTAINED_pre": -0.03044446963814096,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.63599281682162,
+            0.6355548661893096,
+            0.635126634040752
+          ],
+          "repeatability": {
+            "core_mass": 0.060930327091120444,
+            "core_support": 0.4948716593053935,
+            "core_rg2": 0.023142982137489398,
+            "core_centroid_off": 0.003909195754132803,
+            "core_N": 0.027561229152744803,
+            "core_c": 0.189834231267068,
+            "core_uptake": 0.000141915878558075,
+            "collar_mass": 0.009840889098164532,
+            "collar_N": 0.009017776417995605
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 36.08093529325231,
+          "mass_APPR": 36.70558084380735,
+          "mass_abs_diff": 0.6246455505550372,
+          "panel_abs": {
+            "core_mass": 0.6246455505550372,
+            "core_support": 3,
+            "core_rg2": 0.41832275717836254,
+            "core_centroid_off": 0.10066738342811687,
+            "core_N": 0.4218797050380658,
+            "core_c": 1.4911669315439724,
+            "core_uptake": 0.0011378550503430632,
+            "collar_mass": 0.19269125820185184,
+            "collar_N": 0.17920822788269675
+          },
+          "panel_rel": {
+            "core_mass": 0.017163771085809545,
+            "core_support": 0.011695906432748537,
+            "core_rg2": 0.013470986543485736,
+            "core_centroid_off": 0.07061910226563363,
+            "core_N": 0.0014614496741170598,
+            "core_c": 0.013814401864306566,
+            "core_uptake": 0.0201203412289432,
+            "collar_mass": 0.026531536488864006,
+            "collar_N": 0.0015643299392466097
+          },
+          "memory_diff": {
+            "m1_mean": 0.00018086555518826482,
+            "m2_mean": -0.014511382361981295,
+            "mplus_mean": -0.012824203270211443,
+            "mminus_mean": 0.013242185776596083
+          },
+          "deriv_SPIKE_pre": -0.031225568585966812,
+          "deriv_SUSTAINED_pre": -0.031639033057352606,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.6242267033896951,
+            0.6238022378176851,
+            0.6233719325922493
+          ],
+          "repeatability": {
+            "core_mass": 0.06330731815624102,
+            "core_support": 0.6998542122237651,
+            "core_rg2": 0.014832051843250706,
+            "core_centroid_off": 0.0031067782662065374,
+            "core_N": 0.029104816940165656,
+            "core_c": 0.18775689213279076,
+            "core_uptake": 0.00012612714076108784,
+            "collar_mass": 0.007854835642403059,
+            "collar_N": 0.009296625233097534
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        39.744333983835304,
+        34.19653338967307
+      ],
+      "relax_mass_SUSTAINED": [
+        40.48194008959253,
+        34.78241173464029
+      ]
+    },
+    {
+      "seed": 57003,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 66.62854901335903,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "737b461af05b7f827192e210c3bee72f973f5b3434be7f90707965a282c58ba0",
+      "state_sha_SUSTAINED": "03223c41ce0e1cc84994c1d4c0cd1a843da49eced793ade1bc2b8136fd564b78",
+      "deep_material_M": {
+        "SPIKE": 0.1987485272330643,
+        "SUSTAINED": 0.18667932589009978
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 21.8587359175543,
+        "mass_APPR": 22.270927188725985,
+        "mass_abs_diff": 0.41219127117168597,
+        "panel_abs": {
+          "core_mass": 0.41219127117168597,
+          "core_support": 2,
+          "core_rg2": 0.0011642478390649913,
+          "core_centroid_off": 0.024507911961185513,
+          "core_N": 0.4123881562147176,
+          "core_c": 0.8700034304266495,
+          "core_uptake": 0.000522018160891348,
+          "collar_mass": 0.04881908329887574,
+          "collar_N": 0.16040899043844092
+        },
+        "panel_rel": {
+          "core_mass": 0.018680916288845415,
+          "core_support": 0.01282051282051282,
+          "core_rg2": 0.00017580405815747666,
+          "core_centroid_off": 0.01744361728619089,
+          "core_N": 0.001405583162166578,
+          "core_c": 0.010223992554629375,
+          "core_uptake": 0.015176136317452809,
+          "collar_mass": 0.01723626299906355,
+          "collar_N": 0.001393177172899257
+        },
+        "memory_diff": {
+          "m1_mean": 0.0001728604659634739,
+          "m2_mean": -0.015210807503546697,
+          "mplus_mean": -0.01445712458940443,
+          "mminus_mean": 0.014851829978488718
+        },
+        "deriv_SPIKE_pre": -0.02282666726953053,
+        "deriv_SUSTAINED_pre": -0.023368317221883927,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.41165027077537175,
+          0.41110987687910594,
+          0.4105701526877965
+        ],
+        "repeatability": {
+          "core_mass": 0.04669400841757727,
+          "core_support": 0.4948716593053935,
+          "core_rg2": 0.008025011356096096,
+          "core_centroid_off": 0.00039472598760937916,
+          "core_N": 0.022327578545320796,
+          "core_c": 0.17834092475682273,
+          "core_uptake": 3.649866755097823e-05,
+          "collar_mass": 0.010137656735815403,
+          "collar_N": 0.0073499165939597
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 22.562197592902887,
+          "mass_APPR": 22.990868681343656,
+          "mass_abs_diff": 0.42867108844076895,
+          "panel_abs": {
+            "core_mass": 0.42867108844076895,
+            "core_support": 1,
+            "core_rg2": 0.0020948514121093,
+            "core_centroid_off": 0.024953219548798478,
+            "core_N": 0.46618448083421526,
+            "core_c": 0.8840689183534494,
+            "core_uptake": 0.0005496829508617809,
+            "collar_mass": 0.052359106445772685,
+            "collar_N": 0.17637567987017633
+          },
+          "panel_rel": {
+            "core_mass": 0.018820734738689518,
+            "core_support": 0.006269592476489028,
+            "core_rg2": 0.00031051205728697907,
+            "core_centroid_off": 0.017834577651046027,
+            "core_N": 0.0015906315955620581,
+            "core_c": 0.010066903260992478,
+            "core_uptake": 0.015724229159628993,
+            "collar_mass": 0.01753571939002351,
+            "collar_N": 0.0015332232479748694
+          },
+          "memory_diff": {
+            "m1_mean": 0.00015749233729903112,
+            "m2_mean": -0.015839472124930143,
+            "mplus_mean": -0.015118387857171428,
+            "mminus_mean": 0.015479310643891936
+          },
+          "deriv_SPIKE_pre": -0.024123852804731172,
+          "deriv_SUSTAINED_pre": -0.02467917234841721,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.4281160098336336,
+            0.4275611876802792,
+            0.4270066374167918
+          ],
+          "repeatability": {
+            "core_mass": 0.04931409813688941,
+            "core_support": 0.0,
+            "core_rg2": 0.00874393946482787,
+            "core_centroid_off": 0.0004124906672330766,
+            "core_N": 0.022787776163388007,
+            "core_c": 0.18593060751349136,
+            "core_uptake": 4.0335396316230185e-05,
+            "collar_mass": 0.010588817035102307,
+            "collar_N": 0.007461491616575741
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 21.8587359175543,
+          "mass_APPR": 22.270927188725985,
+          "mass_abs_diff": 0.41219127117168597,
+          "panel_abs": {
+            "core_mass": 0.41219127117168597,
+            "core_support": 2,
+            "core_rg2": 0.0011642478390649913,
+            "core_centroid_off": 0.024507911961185513,
+            "core_N": 0.4123881562147176,
+            "core_c": 0.8700034304266495,
+            "core_uptake": 0.000522018160891348,
+            "collar_mass": 0.04881908329887574,
+            "collar_N": 0.16040899043844092
+          },
+          "panel_rel": {
+            "core_mass": 0.018680916288845415,
+            "core_support": 0.01282051282051282,
+            "core_rg2": 0.00017580405815747666,
+            "core_centroid_off": 0.01744361728619089,
+            "core_N": 0.001405583162166578,
+            "core_c": 0.010223992554629375,
+            "core_uptake": 0.015176136317452809,
+            "collar_mass": 0.01723626299906355,
+            "collar_N": 0.001393177172899257
+          },
+          "memory_diff": {
+            "m1_mean": 0.0001728604659634739,
+            "m2_mean": -0.015210807503546697,
+            "mplus_mean": -0.01445712458940443,
+            "mminus_mean": 0.014851829978488718
+          },
+          "deriv_SPIKE_pre": -0.02282666726953053,
+          "deriv_SUSTAINED_pre": -0.023368317221883927,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.41165027077537175,
+            0.41110987687910594,
+            0.4105701526877965
+          ],
+          "repeatability": {
+            "core_mass": 0.04669400841757727,
+            "core_support": 0.4948716593053935,
+            "core_rg2": 0.008025011356096096,
+            "core_centroid_off": 0.00039472598760937916,
+            "core_N": 0.022327578545320796,
+            "core_c": 0.17834092475682273,
+            "core_uptake": 3.649866755097823e-05,
+            "collar_mass": 0.010137656735815403,
+            "collar_N": 0.0073499165939597
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 21.193224949789233,
+          "mass_APPR": 21.58949439338681,
+          "mass_abs_diff": 0.39626944359757843,
+          "panel_abs": {
+            "core_mass": 0.39626944359757843,
+            "core_support": 1,
+            "core_rg2": 0.004337500719196363,
+            "core_centroid_off": 0.02411446312284049,
+            "core_N": 0.36415334419257306,
+            "core_c": 0.8534109920758084,
+            "core_uptake": 0.0005052786655438263,
+            "collar_mass": 0.04589166159164293,
+            "collar_N": 0.14599936206820985
+          },
+          "panel_rel": {
+            "core_mass": 0.018524743152437528,
+            "core_support": 0.006472491909385114,
+            "core_rg2": 0.000666440653220253,
+            "core_centroid_off": 0.017095557027710977,
+            "core_N": 0.0012398821638876045,
+            "core_c": 0.01034635775293887,
+            "core_uptake": 0.014914643582058126,
+            "collar_mass": 0.017097927352100764,
+            "collar_N": 0.0012669013148043926
+          },
+          "memory_diff": {
+            "m1_mean": 0.00018596251889250234,
+            "m2_mean": -0.014574831704426416,
+            "mplus_mean": -0.013789711912549851,
+            "mminus_mean": 0.014213500208572316
+          },
+          "deriv_SPIKE_pre": -0.021593160620568597,
+          "deriv_SUSTAINED_pre": -0.022112885424892426,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.3957505493050064,
+            0.39523249147758577,
+            0.3947153506009933
+          ],
+          "repeatability": {
+            "core_mass": 0.044185221742919556,
+            "core_support": 0.4517539514526256,
+            "core_rg2": 0.00739563830565723,
+            "core_centroid_off": 0.0003767446394260793,
+            "core_N": 0.02182395324508157,
+            "core_c": 0.1708000559383656,
+            "core_uptake": 3.4083992388714694e-05,
+            "collar_mass": 0.009840344357862138,
+            "collar_N": 0.007261669023252121
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        24.089430915512395,
+        19.967672914463538
+      ],
+      "relax_mass_SUSTAINED": [
+        24.551288320035958,
+        20.33444591730386
+      ]
+    },
+    {
+      "seed": 57006,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 58.862493776038406,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "d96c93e850c87fe353e1e0200bd2f055d6b61b226f7d36182bda541be3b092fb",
+      "state_sha_SUSTAINED": "b8c7d2e675629aba41688397053090bd8c763db9c9fee4b6cd978a560f2f5523",
+      "deep_material_M": {
+        "SPIKE": 0.1927076691025234,
+        "SUSTAINED": 0.18088240938766323
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 19.187249791300516,
+        "mass_APPR": 19.310172282334204,
+        "mass_abs_diff": 0.12292249103368746,
+        "panel_abs": {
+          "core_mass": 0.12292249103368746,
+          "core_support": 1,
+          "core_rg2": 0.3170976499652767,
+          "core_centroid_off": 0.016766823363078553,
+          "core_N": 0.3426883003695025,
+          "core_c": 0.23400141069558344,
+          "core_uptake": 0.00022573414958922122,
+          "collar_mass": 0.05730952142783252,
+          "collar_N": 0.11460020619010436
+        },
+        "panel_rel": {
+          "core_mass": 0.006386011551556432,
+          "core_support": 0.004415011037527594,
+          "core_rg2": 0.014490768692807068,
+          "core_centroid_off": 0.03373364146635217,
+          "core_N": 0.0011822640621346019,
+          "core_c": 0.002775121507267591,
+          "core_uptake": 0.005378972637160939,
+          "collar_mass": 0.003337650622663353,
+          "collar_N": 0.0010170305091148975
+        },
+        "memory_diff": {
+          "m1_mean": 4.045438419161135e-05,
+          "m2_mean": -0.01187582724578845,
+          "mplus_mean": -0.010572946676352835,
+          "mminus_mean": 0.010785095659227362
+        },
+        "deriv_SPIKE_pre": -0.014887822340526213,
+        "deriv_SUSTAINED_pre": -0.014985042405644577,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.12283036373553813,
+          0.12274323870554227,
+          0.1226611386618579
+        ],
+        "repeatability": {
+          "core_mass": 0.029940970825615035,
+          "core_support": 0.9035079029052512,
+          "core_rg2": 0.0009439633832061693,
+          "core_centroid_off": 0.0018131292901305376,
+          "core_N": 0.02126442383124317,
+          "core_c": 0.13041407323116289,
+          "core_uptake": 4.540618008901251e-05,
+          "collar_mass": 0.02945870716372961,
+          "collar_N": 0.009316184554524293
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 19.646026041011147,
+          "mass_APPR": 19.77402570035924,
+          "mass_abs_diff": 0.12799965934809165,
+          "panel_abs": {
+            "core_mass": 0.12799965934809165,
+            "core_support": 1,
+            "core_rg2": 0.3132933504553641,
+            "core_centroid_off": 0.014876832691371855,
+            "core_N": 0.38411923455964825,
+            "core_c": 0.23104012897840676,
+            "core_uptake": 0.00024288408339311757,
+            "collar_mass": 0.07060393594310099,
+            "collar_N": 0.12568677664901884
+          },
+          "panel_rel": {
+            "core_mass": 0.006494139591083242,
+            "core_support": 0.004301075268817204,
+            "core_rg2": 0.014301484025196556,
+            "core_centroid_off": 0.031756323571271304,
+            "core_N": 0.0013265682144874395,
+            "core_c": 0.002676850347556253,
+            "core_uptake": 0.005691413090907625,
+            "collar_mass": 0.0040051505027840755,
+            "collar_N": 0.0011167579967969977
+          },
+          "memory_diff": {
+            "m1_mean": 3.192832200410618e-05,
+            "m2_mean": -0.012265455714220108,
+            "mplus_mean": -0.011013938360137088,
+            "mminus_mean": 0.011206215431012245
+          },
+          "deriv_SPIKE_pre": -0.01576683201132667,
+          "deriv_SUSTAINED_pre": -0.016003784938632748,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.12776617337564744,
+            0.12753619285794215,
+            0.1273098711283822
+          ],
+          "repeatability": {
+            "core_mass": 0.03197151312841478,
+            "core_support": 0.880630571852711,
+            "core_rg2": 0.002804300885401936,
+            "core_centroid_off": 0.002140068615928953,
+            "core_N": 0.021356580462164133,
+            "core_c": 0.13508071434195465,
+            "core_uptake": 4.9423522803028887e-05,
+            "collar_mass": 0.03202921538681897,
+            "collar_N": 0.009405021386700347
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 19.187249791300516,
+          "mass_APPR": 19.310172282334204,
+          "mass_abs_diff": 0.12292249103368746,
+          "panel_abs": {
+            "core_mass": 0.12292249103368746,
+            "core_support": 1,
+            "core_rg2": 0.3170976499652767,
+            "core_centroid_off": 0.016766823363078553,
+            "core_N": 0.3426883003695025,
+            "core_c": 0.23400141069558344,
+            "core_uptake": 0.00022573414958922122,
+            "collar_mass": 0.05730952142783252,
+            "collar_N": 0.11460020619010436
+          },
+          "panel_rel": {
+            "core_mass": 0.006386011551556432,
+            "core_support": 0.004415011037527594,
+            "core_rg2": 0.014490768692807068,
+            "core_centroid_off": 0.03373364146635217,
+            "core_N": 0.0011822640621346019,
+            "core_c": 0.002775121507267591,
+            "core_uptake": 0.005378972637160939,
+            "collar_mass": 0.003337650622663353,
+            "collar_N": 0.0010170305091148975
+          },
+          "memory_diff": {
+            "m1_mean": 4.045438419161135e-05,
+            "m2_mean": -0.01187582724578845,
+            "mplus_mean": -0.010572946676352835,
+            "mminus_mean": 0.010785095659227362
+          },
+          "deriv_SPIKE_pre": -0.014887822340526213,
+          "deriv_SUSTAINED_pre": -0.014985042405644577,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.12283036373553813,
+            0.12274323870554227,
+            0.1226611386618579
+          ],
+          "repeatability": {
+            "core_mass": 0.029940970825615035,
+            "core_support": 0.9035079029052512,
+            "core_rg2": 0.0009439633832061693,
+            "core_centroid_off": 0.0018131292901305376,
+            "core_N": 0.02126442383124317,
+            "core_c": 0.13041407323116289,
+            "core_uptake": 4.540618008901251e-05,
+            "collar_mass": 0.02945870716372961,
+            "collar_N": 0.009316184554524293
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 18.750786767548107,
+          "mass_APPR": 18.872895259494157,
+          "mass_abs_diff": 0.12210849194605089,
+          "panel_abs": {
+            "core_mass": 0.12210849194605089,
+            "core_support": 0,
+            "core_rg2": 0.3082211218810542,
+            "core_centroid_off": 0.016527342301439707,
+            "core_N": 0.3055501378308918,
+            "core_c": 0.23553073003516545,
+            "core_uptake": 0.00020636332911905253,
+            "collar_mass": 0.05142639014953332,
+            "collar_N": 0.1044501588014839
+          },
+          "panel_rel": {
+            "core_mass": 0.0064910442235975,
+            "core_support": 0.0,
+            "core_rg2": 0.014091581916622076,
+            "core_centroid_off": 0.0315856234739576,
+            "core_N": 0.0010530526833215763,
+            "core_c": 0.002858413619294803,
+            "core_uptake": 0.004990780712444614,
+            "collar_mass": 0.003068329574735193,
+            "collar_N": 0.0009258608224074381
+          },
+          "memory_diff": {
+            "m1_mean": 4.841362250247727e-05,
+            "m2_mean": -0.011490995767138412,
+            "mplus_mean": -0.010139446030547727,
+            "mminus_mean": 0.010369631791153244
+          },
+          "deriv_SPIKE_pre": -0.014271438503502765,
+          "deriv_SUSTAINED_pre": -0.014244325927293744,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.12213841072386344,
+            0.12217104165500459,
+            0.12220629111299175
+          ],
+          "repeatability": {
+            "core_mass": 0.02852653966952856,
+            "core_support": 0.0,
+            "core_rg2": 0.0012450619006132964,
+            "core_centroid_off": 0.0017938486262825723,
+            "core_N": 0.02103823946837261,
+            "core_c": 0.12599223005629367,
+            "core_uptake": 3.8076200940558917e-05,
+            "collar_mass": 0.025636412750466325,
+            "collar_N": 0.009064745312773348
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        20.64936526803651,
+        17.92219193426778
+      ],
+      "relax_mass_SUSTAINED": [
+        20.792496119750492,
+        18.04826741888739
+      ]
+    },
+    {
+      "seed": 57008,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 84.94575355563157,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "5227b894dc624817caf3dabba394157a640ad28441748a6e677c101f8f576954",
+      "state_sha_SUSTAINED": "8dbc091175724a3e55fb6688bc14eeb89bcef91ff85444bcc412dacde9061160",
+      "deep_material_M": {
+        "SPIKE": 0.15304845990646337,
+        "SUSTAINED": 0.1383178401894185
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 31.372694512253574,
+        "mass_APPR": 31.79704251566066,
+        "mass_abs_diff": 0.42434800340708634,
+        "panel_abs": {
+          "core_mass": 0.42434800340708634,
+          "core_support": 0,
+          "core_rg2": 0.01632917916941068,
+          "core_centroid_off": 0.05970850976621378,
+          "core_N": 0.3777998816149193,
+          "core_c": 1.1210241301767923,
+          "core_uptake": 0.00023640745053678247,
+          "collar_mass": 0.25862641819111865,
+          "collar_N": 0.1259482679108146
+        },
+        "panel_rel": {
+          "core_mass": 0.013435167641099095,
+          "core_support": 0.0,
+          "core_rg2": 0.0007553647119952962,
+          "core_centroid_off": 0.0435393518163591,
+          "core_N": 0.001297246977655903,
+          "core_c": 0.010879154972540054,
+          "core_uptake": 0.004893926505572062,
+          "collar_mass": 0.1018321198447114,
+          "collar_N": 0.001094324866883402
+        },
+        "memory_diff": {
+          "m1_mean": 0.00021849541364672015,
+          "m2_mean": -0.017541828263214126,
+          "mplus_mean": -0.01692644103565874,
+          "mminus_mean": 0.017388605877798474
+        },
+        "deriv_SPIKE_pre": -0.032628940295452935,
+        "deriv_SUSTAINED_pre": -0.034265668093429014,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.42271456525519824,
+          0.4210844982953894,
+          0.41945788058990274
+        ],
+        "repeatability": {
+          "core_mass": 0.06847832668969835,
+          "core_support": 0.0,
+          "core_rg2": 0.013630831799765418,
+          "core_centroid_off": 0.0025976382954115067,
+          "core_N": 0.027002323012541345,
+          "core_c": 0.2283197505317577,
+          "core_uptake": 5.754036875644791e-05,
+          "collar_mass": 0.0022714280591054803,
+          "collar_N": 0.008607836626772626
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 32.37361142550578,
+          "mass_APPR": 32.848100434767005,
+          "mass_abs_diff": 0.4744890092612266,
+          "panel_abs": {
+            "core_mass": 0.4744890092612266,
+            "core_support": 0,
+            "core_rg2": 0.01514058918411365,
+            "core_centroid_off": 0.05460862172770797,
+            "core_N": 0.42647903815856125,
+            "core_c": 1.1614468604993817,
+            "core_uptake": 0.00037192766335118754,
+            "collar_mass": 0.23628714632529002,
+            "collar_N": 0.14401117447575018
+          },
+          "panel_rel": {
+            "core_mass": 0.014550032365839901,
+            "core_support": 0.0,
+            "core_rg2": 0.000706365761885712,
+            "core_centroid_off": 0.040899012172783494,
+            "core_N": 0.001466330585838337,
+            "core_c": 0.010904339386348948,
+            "core_uptake": 0.007567830484412177,
+            "collar_mass": 0.09193620808436366,
+            "collar_N": 0.001252589226688863
+          },
+          "memory_diff": {
+            "m1_mean": 0.00018919844708850447,
+            "m2_mean": -0.018670945715264897,
+            "mplus_mean": -0.018067550795364873,
+            "mminus_mean": 0.01847546183311316
+          },
+          "deriv_SPIKE_pre": -0.034164159154236984,
+          "deriv_SUSTAINED_pre": -0.03585788008519586,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.4727956872172072,
+            0.4711029334340324,
+            0.4694108379220978
+          ],
+          "repeatability": {
+            "core_mass": 0.07166274485863995,
+            "core_support": 0.6998542122237652,
+            "core_rg2": 0.012829290151265129,
+            "core_centroid_off": 0.0025612596724068153,
+            "core_N": 0.02744860361442898,
+            "core_c": 0.23689585578310332,
+            "core_uptake": 6.342474920593787e-05,
+            "collar_mass": 0.0032724114815023617,
+            "collar_N": 0.00877991865118669
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 31.372694512253574,
+          "mass_APPR": 31.79704251566066,
+          "mass_abs_diff": 0.42434800340708634,
+          "panel_abs": {
+            "core_mass": 0.42434800340708634,
+            "core_support": 0,
+            "core_rg2": 0.01632917916941068,
+            "core_centroid_off": 0.05970850976621378,
+            "core_N": 0.3777998816149193,
+            "core_c": 1.1210241301767923,
+            "core_uptake": 0.00023640745053678247,
+            "collar_mass": 0.25862641819111865,
+            "collar_N": 0.1259482679108146
+          },
+          "panel_rel": {
+            "core_mass": 0.013435167641099095,
+            "core_support": 0.0,
+            "core_rg2": 0.0007553647119952962,
+            "core_centroid_off": 0.0435393518163591,
+            "core_N": 0.001297246977655903,
+            "core_c": 0.010879154972540054,
+            "core_uptake": 0.004893926505572062,
+            "collar_mass": 0.1018321198447114,
+            "collar_N": 0.001094324866883402
+          },
+          "memory_diff": {
+            "m1_mean": 0.00021849541364672015,
+            "m2_mean": -0.017541828263214126,
+            "mplus_mean": -0.01692644103565874,
+            "mminus_mean": 0.017388605877798474
+          },
+          "deriv_SPIKE_pre": -0.032628940295452935,
+          "deriv_SUSTAINED_pre": -0.034265668093429014,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.42271456525519824,
+            0.4210844982953894,
+            0.41945788058990274
+          ],
+          "repeatability": {
+            "core_mass": 0.06847832668969835,
+            "core_support": 0.0,
+            "core_rg2": 0.013630831799765418,
+            "core_centroid_off": 0.0025976382954115067,
+            "core_N": 0.027002323012541345,
+            "core_c": 0.2283197505317577,
+            "core_uptake": 5.754036875644791e-05,
+            "collar_mass": 0.0022714280591054803,
+            "collar_N": 0.008607836626772626
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 30.41662544068515,
+          "mass_APPR": 30.793725973198598,
+          "mass_abs_diff": 0.3771005325134489,
+          "panel_abs": {
+            "core_mass": 0.3771005325134489,
+            "core_support": 0,
+            "core_rg2": 0.04772278030823429,
+            "core_centroid_off": 0.06494617008673664,
+            "core_N": 0.3363975137802413,
+            "core_c": 1.075955201921147,
+            "core_uptake": 0.0001277915308547234,
+            "collar_mass": 0.27629347645235036,
+            "collar_N": 0.10956280106215388
+          },
+          "panel_rel": {
+            "core_mass": 0.012321462752717177,
+            "core_support": 0.0,
+            "core_rg2": 0.002188081402203977,
+            "core_centroid_off": 0.04612924918116595,
+            "core_N": 0.0011535781844242744,
+            "core_c": 0.01079127997950997,
+            "core_uptake": 0.0026880947023413013,
+            "collar_mass": 0.10956433000238668,
+            "collar_N": 0.0009509697382627575
+          },
+          "memory_diff": {
+            "m1_mean": 0.00024077782005566678,
+            "m2_mean": -0.01644426375532848,
+            "mplus_mean": -0.015822413475271635,
+            "mminus_mean": 0.016325450393421315
+          },
+          "deriv_SPIKE_pre": -0.03116901777469394,
+          "deriv_SUSTAINED_pre": -0.0326765509023339,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.3755982400980358,
+            0.37410123859874744,
+            0.37260957721281684
+          ],
+          "repeatability": {
+            "core_mass": 0.06530043964641404,
+            "core_support": 0.0,
+            "core_rg2": 0.014101741759786431,
+            "core_centroid_off": 0.002623942596930148,
+            "core_N": 0.026435361518863176,
+            "core_c": 0.21964833989117666,
+            "core_uptake": 5.2021989354613644e-05,
+            "collar_mass": 0.0013180449767423192,
+            "collar_N": 0.008406531114080325
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        34.520368531879896,
+        28.63084086037968
+      ],
+      "relax_mass_SUSTAINED": [
+        35.09381252149493,
+        28.928479301172835
+      ]
+    },
+    {
+      "seed": 57009,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 57.02905414194,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "874e051caebf53bf2c7369101abec5b3a682cf778139621f786328084ea1ab01",
+      "state_sha_SUSTAINED": "15cbcc5e4c1f62be5258095d5292bc0c025e6b2f48513467d5990dadd138e3e7",
+      "deep_material_M": {
+        "SPIKE": 0.1507412754095302,
+        "SUSTAINED": 0.13840786164576893
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 23.445341045253635,
+        "mass_APPR": 23.454508734117564,
+        "mass_abs_diff": 0.009167688863929158,
+        "panel_abs": {
+          "core_mass": 0.009167688863929158,
+          "core_support": 1,
+          "core_rg2": 0.23918696577601395,
+          "core_centroid_off": 0.038518940548227576,
+          "core_N": 0.43314426617848767,
+          "core_c": 0.07878957786132901,
+          "core_uptake": 9.538088882948131e-05,
+          "collar_mass": 0.10411853394357617,
+          "collar_N": 0.13466558754244318
+        },
+        "panel_rel": {
+          "core_mass": 0.0003909474724143593,
+          "core_support": 0.004618937644341801,
+          "core_rg2": 0.008285598763219939,
+          "core_centroid_off": 0.011865538641629909,
+          "core_N": 0.0015010061903059284,
+          "core_c": 0.0009329991923587132,
+          "core_uptake": 0.0020726663720384304,
+          "collar_mass": 0.017827383556648178,
+          "collar_N": 0.0011952730613011544
+        },
+        "memory_diff": {
+          "m1_mean": 3.5960276004772668e-06,
+          "m2_mean": -0.011255171316565893,
+          "mplus_mean": -0.00998172952794113,
+          "mminus_mean": 0.010122092900076207
+        },
+        "deriv_SPIKE_pre": -0.013451579616177156,
+        "deriv_SUSTAINED_pre": -0.013255345781324479,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.009363039029729237,
+          0.009557477886428245,
+          0.00975109765812121
+        ],
+        "repeatability": {
+          "core_mass": 0.0268828674575616,
+          "core_support": 0.45175395145262565,
+          "core_rg2": 0.010212521648807184,
+          "core_centroid_off": 0.002717110681388034,
+          "core_N": 0.024482633685958734,
+          "core_c": 0.13297096541717615,
+          "core_uptake": 3.021493054947842e-05,
+          "collar_mass": 0.009614000644135513,
+          "collar_N": 0.011463573755754118
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 23.85812504838286,
+          "mass_APPR": 23.86094950280533,
+          "mass_abs_diff": 0.002824454422469813,
+          "panel_abs": {
+            "core_mass": 0.002824454422469813,
+            "core_support": 0,
+            "core_rg2": 0.2529744317572131,
+            "core_centroid_off": 0.0395131261221624,
+            "core_N": 0.47643040873543896,
+            "core_c": 0.10444095258608854,
+            "core_uptake": 0.00010417329416196469,
+            "collar_mass": 0.10566666053643292,
+            "collar_N": 0.14809309239257118
+          },
+          "panel_rel": {
+            "core_mass": 0.00011837842410124801,
+            "core_support": 0.0,
+            "core_rg2": 0.0088060552191344,
+            "core_centroid_off": 0.01232690674314151,
+            "core_N": 0.00165299313707889,
+            "core_c": 0.001207665342728231,
+            "core_uptake": 0.002240860423634819,
+            "collar_mass": 0.01763021694114035,
+            "collar_N": 0.0013164370788759235
+          },
+          "memory_diff": {
+            "m1_mean": -2.097266696848149e-06,
+            "m2_mean": -0.011542300667290673,
+            "mplus_mean": -0.010315325244344753,
+            "mminus_mean": 0.010440932262273828
+          },
+          "deriv_SPIKE_pre": -0.014103131960471416,
+          "deriv_SUSTAINED_pre": -0.01387228428072973,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.0030538355221487734,
+            0.0032817751513469773,
+            0.0035082980210923154
+          ],
+          "repeatability": {
+            "core_mass": 0.028183342348957727,
+            "core_support": 0.0,
+            "core_rg2": 0.009369152928554779,
+            "core_centroid_off": 0.002798145199221597,
+            "core_N": 0.024548943474055313,
+            "core_c": 0.14000702204262386,
+            "core_uptake": 3.310055664279747e-05,
+            "collar_mass": 0.011159126759932497,
+            "collar_N": 0.012060951234330042
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 23.445341045253635,
+          "mass_APPR": 23.454508734117564,
+          "mass_abs_diff": 0.009167688863929158,
+          "panel_abs": {
+            "core_mass": 0.009167688863929158,
+            "core_support": 1,
+            "core_rg2": 0.23918696577601395,
+            "core_centroid_off": 0.038518940548227576,
+            "core_N": 0.43314426617848767,
+            "core_c": 0.07878957786132901,
+            "core_uptake": 9.538088882948131e-05,
+            "collar_mass": 0.10411853394357617,
+            "collar_N": 0.13466558754244318
+          },
+          "panel_rel": {
+            "core_mass": 0.0003909474724143593,
+            "core_support": 0.004618937644341801,
+            "core_rg2": 0.008285598763219939,
+            "core_centroid_off": 0.011865538641629909,
+            "core_N": 0.0015010061903059284,
+            "core_c": 0.0009329991923587132,
+            "core_uptake": 0.0020726663720384304,
+            "collar_mass": 0.017827383556648178,
+            "collar_N": 0.0011952730613011544
+          },
+          "memory_diff": {
+            "m1_mean": 3.5960276004772668e-06,
+            "m2_mean": -0.011255171316565893,
+            "mplus_mean": -0.00998172952794113,
+            "mminus_mean": 0.010122092900076207
+          },
+          "deriv_SPIKE_pre": -0.013451579616177156,
+          "deriv_SUSTAINED_pre": -0.013255345781324479,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.009363039029729237,
+            0.009557477886428245,
+            0.00975109765812121
+          ],
+          "repeatability": {
+            "core_mass": 0.0268828674575616,
+            "core_support": 0.45175395145262565,
+            "core_rg2": 0.010212521648807184,
+            "core_centroid_off": 0.002717110681388034,
+            "core_N": 0.024482633685958734,
+            "core_c": 0.13297096541717615,
+            "core_uptake": 3.021493054947842e-05,
+            "collar_mass": 0.009614000644135513,
+            "collar_N": 0.011463573755754118
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 23.05099575041365,
+          "mass_APPR": 23.065687745500284,
+          "mass_abs_diff": 0.014691995086632659,
+          "panel_abs": {
+            "core_mass": 0.014691995086632659,
+            "core_support": 2,
+            "core_rg2": 0.22738137949761494,
+            "core_centroid_off": 0.03743081546381166,
+            "core_N": 0.39326975049357316,
+            "core_c": 0.05667793438725255,
+            "core_uptake": 8.897785275210207e-05,
+            "collar_mass": 0.09913191502516572,
+            "collar_N": 0.12236845275707253
+          },
+          "panel_rel": {
+            "core_mass": 0.0006371661608291677,
+            "core_support": 0.009302325581395349,
+            "core_rg2": 0.007835624913441308,
+            "core_centroid_off": 0.011391310293340324,
+            "core_N": 0.0013611967681618185,
+            "core_c": 0.0006868855860655249,
+            "core_uptake": 0.0019517685836987408,
+            "collar_mass": 0.017372199106561435,
+            "collar_N": 0.0010845727270319713
+          },
+          "memory_diff": {
+            "m1_mean": 8.960897555783734e-06,
+            "m2_mean": -0.010967652742789935,
+            "mplus_mean": -0.009649013558281794,
+            "mminus_mean": 0.009803070117646528
+          },
+          "deriv_SPIKE_pre": -0.012866044043498448,
+          "deriv_SUSTAINED_pre": -0.012692338641858925,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.014865013762026535,
+            0.015037387021610726,
+            0.015209079581584461
+          ],
+          "repeatability": {
+            "core_mass": 0.025713514566325927,
+            "core_support": 0.0,
+            "core_rg2": 0.010672857522707399,
+            "core_centroid_off": 0.002638668586797591,
+            "core_N": 0.024200866377642283,
+            "core_c": 0.12634713308207976,
+            "core_uptake": 2.7660583639266673e-05,
+            "collar_mass": 0.00863642895578962,
+            "collar_N": 0.010863050195839042
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        24.7508305072575,
+        22.312034556200075
+      ],
+      "relax_mass_SUSTAINED": [
+        24.73642023693473,
+        22.336006617460967
+      ]
+    },
+    {
+      "seed": 57010,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 60.073656283088745,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "e34760d7516e26d905ec979044c2c7de7e08842101f88b9fbc4eb69013846240",
+      "state_sha_SUSTAINED": "d705144d251c8cda96d7cc337db8d14d058c69655a8f0216ee366d7f69d58994",
+      "deep_material_M": {
+        "SPIKE": 0.19487203353521923,
+        "SUSTAINED": 0.17823839533929783
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 20.893936762208824,
+        "mass_APPR": 21.022849582245154,
+        "mass_abs_diff": 0.1289128200363301,
+        "panel_abs": {
+          "core_mass": 0.1289128200363301,
+          "core_support": 0,
+          "core_rg2": 0.19406675559140396,
+          "core_centroid_off": 0.035884672956651986,
+          "core_N": 0.42115032700496613,
+          "core_c": 0.24150945752325015,
+          "core_uptake": 0.00021302085808917737,
+          "collar_mass": 0.03418794046455442,
+          "collar_N": 0.13807167787780372
+        },
+        "panel_rel": {
+          "core_mass": 0.0061508923406952245,
+          "core_support": 0.0,
+          "core_rg2": 0.010911677013141654,
+          "core_centroid_off": 0.01627779158952715,
+          "core_N": 0.0014489723894641976,
+          "core_c": 0.0029160831391985783,
+          "core_uptake": 0.005458506738389342,
+          "collar_mass": 0.005373009195238817,
+          "collar_N": 0.001223525339268159
+        },
+        "memory_diff": {
+          "m1_mean": 2.9175670302833412e-05,
+          "m2_mean": -0.01450829543744625,
+          "mplus_mean": -0.013347144171170666,
+          "mminus_mean": 0.013519312114167625
+        },
+        "deriv_SPIKE_pre": -0.01814839857113526,
+        "deriv_SUSTAINED_pre": -0.018610778260953253,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.12845451145196307,
+          0.12799489191277047,
+          0.12753194829035763
+        ],
+        "repeatability": {
+          "core_mass": 0.037227037793434684,
+          "core_support": 0.0,
+          "core_rg2": 0.004246828302700812,
+          "core_centroid_off": 0.0014434982877320208,
+          "core_N": 0.01639121754622146,
+          "core_c": 0.13879929368425026,
+          "core_uptake": 3.665656448260729e-05,
+          "collar_mass": 0.017789989906861745,
+          "collar_N": 0.0061223785916030065
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 21.43771064581324,
+          "mass_APPR": 21.58171555815319,
+          "mass_abs_diff": 0.14400491233994828,
+          "panel_abs": {
+            "core_mass": 0.14400491233994828,
+            "core_support": 0,
+            "core_rg2": 0.16542586064182885,
+            "core_centroid_off": 0.033154198900333665,
+            "core_N": 0.4709688612420564,
+            "core_c": 0.24231235574576715,
+            "core_uptake": 0.00025396584890583634,
+            "collar_mass": 0.02403688323765074,
+            "collar_N": 0.1516772359863694
+          },
+          "panel_rel": {
+            "core_mass": 0.006694878339714856,
+            "core_support": 0.0,
+            "core_rg2": 0.009293087738445647,
+            "core_centroid_off": 0.015209357297968757,
+            "core_N": 0.001621603068685439,
+            "core_c": 0.002852758480600915,
+            "core_uptake": 0.006419807430505442,
+            "collar_mass": 0.003625639315986592,
+            "collar_N": 0.0013450999380183206
+          },
+          "memory_diff": {
+            "m1_mean": 1.4674257096758056e-05,
+            "m2_mean": -0.01508833133493448,
+            "mplus_mean": -0.013968434614776537,
+            "mminus_mean": 0.014109620611897744
+          },
+          "deriv_SPIKE_pre": -0.0181919145366507,
+          "deriv_SUSTAINED_pre": -0.018677585672925545,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.14351075496518817,
+            0.14300813034532567,
+            0.14249706097201198
+          ],
+          "repeatability": {
+            "core_mass": 0.037350452295969595,
+            "core_support": 0.0,
+            "core_rg2": 0.0019045353272074685,
+            "core_centroid_off": 0.0019746148351174483,
+            "core_N": 0.01631473036984484,
+            "core_c": 0.1440780265114755,
+            "core_uptake": 3.7393999071662374e-05,
+            "collar_mass": 0.017947207779298598,
+            "collar_N": 0.006072047901113648
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 20.893936762208824,
+          "mass_APPR": 21.022849582245154,
+          "mass_abs_diff": 0.1289128200363301,
+          "panel_abs": {
+            "core_mass": 0.1289128200363301,
+            "core_support": 0,
+            "core_rg2": 0.19406675559140396,
+            "core_centroid_off": 0.035884672956651986,
+            "core_N": 0.42115032700496613,
+            "core_c": 0.24150945752325015,
+            "core_uptake": 0.00021302085808917737,
+            "collar_mass": 0.03418794046455442,
+            "collar_N": 0.13807167787780372
+          },
+          "panel_rel": {
+            "core_mass": 0.0061508923406952245,
+            "core_support": 0.0,
+            "core_rg2": 0.010911677013141654,
+            "core_centroid_off": 0.01627779158952715,
+            "core_N": 0.0014489723894641976,
+            "core_c": 0.0029160831391985783,
+            "core_uptake": 0.005458506738389342,
+            "collar_mass": 0.005373009195238817,
+            "collar_N": 0.001223525339268159
+          },
+          "memory_diff": {
+            "m1_mean": 2.9175670302833412e-05,
+            "m2_mean": -0.01450829543744625,
+            "mplus_mean": -0.013347144171170666,
+            "mminus_mean": 0.013519312114167625
+          },
+          "deriv_SPIKE_pre": -0.01814839857113526,
+          "deriv_SUSTAINED_pre": -0.018610778260953253,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.12845451145196307,
+            0.12799489191277047,
+            0.12753194829035763
+          ],
+          "repeatability": {
+            "core_mass": 0.037227037793434684,
+            "core_support": 0.0,
+            "core_rg2": 0.004246828302700812,
+            "core_centroid_off": 0.0014434982877320208,
+            "core_N": 0.01639121754622146,
+            "core_c": 0.13879929368425026,
+            "core_uptake": 3.665656448260729e-05,
+            "collar_mass": 0.017789989906861745,
+            "collar_N": 0.0061223785916030065
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 20.345742226060636,
+          "mass_APPR": 20.461079325474678,
+          "mass_abs_diff": 0.11533709941404169,
+          "panel_abs": {
+            "core_mass": 0.11533709941404169,
+            "core_support": 1,
+            "core_rg2": 0.21921164606847654,
+            "core_centroid_off": 0.038451910976901704,
+            "core_N": 0.37690257939846106,
+            "core_c": 0.23766077294695265,
+            "core_uptake": 0.00018318060615041265,
+            "collar_mass": 0.04843157056196379,
+            "collar_N": 0.1261527574719281
+          },
+          "panel_rel": {
+            "core_mass": 0.005652834258036068,
+            "core_support": 0.004728132387706856,
+            "core_rg2": 0.012392010865134634,
+            "core_centroid_off": 0.01732535575634971,
+            "core_N": 0.0012957369536384176,
+            "core_c": 0.0029422395680791086,
+            "core_uptake": 0.004758084860584079,
+            "collar_mass": 0.0079128715516776,
+            "collar_N": 0.0011170506124400486
+          },
+          "memory_diff": {
+            "m1_mean": 4.035091480663125e-05,
+            "m2_mean": -0.013970148083216116,
+            "mplus_mean": -0.01276788438664661,
+            "mminus_mean": 0.012964871144633294
+          },
+          "deriv_SPIKE_pre": -0.01846346149439526,
+          "deriv_SUSTAINED_pre": -0.018839593706566404,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.11496897698960495,
+            0.11460888629781962,
+            0.11425684634039257
+          ],
+          "repeatability": {
+            "core_mass": 0.037686763265346805,
+            "core_support": 0.0,
+            "core_rg2": 0.010182261420255485,
+            "core_centroid_off": 0.0006552268256410619,
+            "core_N": 0.01648677507130101,
+            "core_c": 0.13410867140808466,
+            "core_uptake": 3.599725702931361e-05,
+            "collar_mass": 0.015070633687039795,
+            "collar_N": 0.006186891428419873
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        22.56167110062567,
+        19.20696749863216
+      ],
+      "relax_mass_SUSTAINED": [
+        22.726809009318487,
+        19.30992031838673
+      ]
+    },
+    {
+      "seed": 57013,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 55.78342303242974,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "3ab3d392433fd0a36fcfaf49a666a3f2b2f5cca473c2ffb2e2fea62474d703d1",
+      "state_sha_SUSTAINED": "6db0f51a152e0fe219b8a2c821b6d1cab235afe5255a02c09e29a6a955cd9c6d",
+      "deep_material_M": {
+        "SPIKE": 0.17211302737010084,
+        "SUSTAINED": 0.15757908173705654
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 16.68362261286132,
+        "mass_APPR": 16.87527797459892,
+        "mass_abs_diff": 0.1916553617375989,
+        "panel_abs": {
+          "core_mass": 0.1916553617375989,
+          "core_support": 0,
+          "core_rg2": 0.05259421054833435,
+          "core_centroid_off": 0.017214596660242165,
+          "core_N": 0.3314246952376152,
+          "core_c": 0.30445894851330024,
+          "core_uptake": 0.00026329781892025367,
+          "collar_mass": 0.07017584408580468,
+          "collar_N": 0.11296381203224826
+        },
+        "panel_rel": {
+          "core_mass": 0.011422028635182026,
+          "core_support": 0.0,
+          "core_rg2": 0.006953893919996925,
+          "core_centroid_off": 0.019977392264081174,
+          "core_N": 0.0011420041274968966,
+          "core_c": 0.0037514853988882377,
+          "core_uptake": 0.00814948212249014,
+          "collar_mass": 0.0066993739084189995,
+          "collar_N": 0.0010048287955092313
+        },
+        "memory_diff": {
+          "m1_mean": 7.735358366800504e-05,
+          "m2_mean": -0.01582191883500328,
+          "mplus_mean": -0.014654546103328836,
+          "mminus_mean": 0.014938660650387625
+        },
+        "deriv_SPIKE_pre": -0.014188671620402715,
+        "deriv_SUSTAINED_pre": -0.014336788560726177,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.19150922095253975,
+          0.19136482198254612,
+          0.19122196576005734
+        ],
+        "repeatability": {
+          "core_mass": 0.028643402754370512,
+          "core_support": 0.0,
+          "core_rg2": 0.009974957949019148,
+          "core_centroid_off": 0.00016651470849124837,
+          "core_N": 0.02106749716101146,
+          "core_c": 0.14067988908235005,
+          "core_uptake": 2.9710158852500434e-05,
+          "collar_mass": 0.01935874446201062,
+          "collar_N": 0.009852331395515883
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 17.1221395311847,
+          "mass_APPR": 17.317800313945213,
+          "mass_abs_diff": 0.19566078276051257,
+          "panel_abs": {
+            "core_mass": 0.19566078276051257,
+            "core_support": 1,
+            "core_rg2": 0.062481962348387654,
+            "core_centroid_off": 0.01711560104689802,
+            "core_N": 0.37368846966842284,
+            "core_c": 0.29973873887607283,
+            "core_uptake": 0.00026225076265123937,
+            "collar_mass": 0.07546166461067294,
+            "collar_N": 0.12443360262864189
+          },
+          "panel_rel": {
+            "core_mass": 0.011362434640731847,
+            "core_support": 0.004301075268817204,
+            "core_rg2": 0.008096182991461032,
+            "core_centroid_off": 0.019903107597331937,
+            "core_N": 0.0012889466685464942,
+            "core_c": 0.0035979421871325233,
+            "core_uptake": 0.00800245858693524,
+            "collar_mass": 0.007003331626802934,
+            "collar_N": 0.0011082583984819937
+          },
+          "memory_diff": {
+            "m1_mean": 7.018911781763414e-05,
+            "m2_mean": -0.0163229826729947,
+            "mplus_mean": -0.015224534632772319,
+            "mminus_mean": 0.015487780527744133
+          },
+          "deriv_SPIKE_pre": -0.01504337809885925,
+          "deriv_SUSTAINED_pre": -0.015169102656571454,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.19553486920570506,
+            0.1954087768481756,
+            0.19528251487002635
+          ],
+          "repeatability": {
+            "core_mass": 0.030311034568949558,
+            "core_support": 0.34992710611188255,
+            "core_rg2": 0.01081728428321171,
+            "core_centroid_off": 0.00010568598198202281,
+            "core_N": 0.0211433063337901,
+            "core_c": 0.1465591979759609,
+            "core_uptake": 3.1757734462161155e-05,
+            "collar_mass": 0.02022520606797835,
+            "collar_N": 0.009896705104494015
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 16.68362261286132,
+          "mass_APPR": 16.87527797459892,
+          "mass_abs_diff": 0.1916553617375989,
+          "panel_abs": {
+            "core_mass": 0.1916553617375989,
+            "core_support": 0,
+            "core_rg2": 0.05259421054833435,
+            "core_centroid_off": 0.017214596660242165,
+            "core_N": 0.3314246952376152,
+            "core_c": 0.30445894851330024,
+            "core_uptake": 0.00026329781892025367,
+            "collar_mass": 0.07017584408580468,
+            "collar_N": 0.11296381203224826
+          },
+          "panel_rel": {
+            "core_mass": 0.011422028635182026,
+            "core_support": 0.0,
+            "core_rg2": 0.006953893919996925,
+            "core_centroid_off": 0.019977392264081174,
+            "core_N": 0.0011420041274968966,
+            "core_c": 0.0037514853988882377,
+            "core_uptake": 0.00814948212249014,
+            "collar_mass": 0.0066993739084189995,
+            "collar_N": 0.0010048287955092313
+          },
+          "memory_diff": {
+            "m1_mean": 7.735358366800504e-05,
+            "m2_mean": -0.01582191883500328,
+            "mplus_mean": -0.014654546103328836,
+            "mminus_mean": 0.014938660650387625
+          },
+          "deriv_SPIKE_pre": -0.014188671620402715,
+          "deriv_SUSTAINED_pre": -0.014336788560726177,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.19150922095253975,
+            0.19136482198254612,
+            0.19122196576005734
+          ],
+          "repeatability": {
+            "core_mass": 0.028643402754370512,
+            "core_support": 0.0,
+            "core_rg2": 0.009974957949019148,
+            "core_centroid_off": 0.00016651470849124837,
+            "core_N": 0.02106749716101146,
+            "core_c": 0.14067988908235005,
+            "core_uptake": 2.9710158852500434e-05,
+            "collar_mass": 0.01935874446201062,
+            "collar_N": 0.009852331395515883
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 16.270426678341643,
+          "mass_APPR": 16.45805043414423,
+          "mass_abs_diff": 0.18762375580258706,
+          "panel_abs": {
+            "core_mass": 0.18762375580258706,
+            "core_support": 0,
+            "core_rg2": 0.04318594402375542,
+            "core_centroid_off": 0.017575393716443233,
+            "core_N": 0.29324093920695304,
+            "core_c": 0.30819788827807315,
+            "core_uptake": 0.0002654714077946693,
+            "collar_mass": 0.06322425707987733,
+            "collar_N": 0.102230197820802
+          },
+          "panel_rel": {
+            "core_mass": 0.011465474250924361,
+            "core_support": 0.0,
+            "core_rg2": 0.005817872656202858,
+            "core_centroid_off": 0.020328114800782934,
+            "core_N": 0.0010094030067647163,
+            "core_c": 0.0038967614568474135,
+            "core_uptake": 0.008328112707374043,
+            "collar_mass": 0.006196209358063367,
+            "collar_N": 0.0009082031543581544
+          },
+          "memory_diff": {
+            "m1_mean": 8.34575436742379e-05,
+            "m2_mean": -0.01532450718802042,
+            "mplus_mean": -0.01408826722798312,
+            "mminus_mean": 0.014390798242801373
+          },
+          "deriv_SPIKE_pre": -0.013408240909960512,
+          "deriv_SUSTAINED_pre": -0.013541928983425322,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.18748688432817318,
+            0.1873468895266548,
+            0.18720437658289413
+          ],
+          "repeatability": {
+            "core_mass": 0.027059400415608566,
+            "core_support": 0.4948716593053935,
+            "core_rg2": 0.009528182182296932,
+            "core_centroid_off": 0.0002060208243308684,
+            "core_N": 0.020951315259233962,
+            "core_c": 0.13510609924315825,
+            "core_uptake": 2.8265225953291286e-05,
+            "collar_mass": 0.01961380499127675,
+            "collar_N": 0.009927396064805485
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        18.073760410125576,
+        15.516096594315725
+      ],
+      "relax_mass_SUSTAINED": [
+        18.276411229478455,
+        15.695446073100754
+      ]
+    },
+    {
+      "seed": 57015,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 80.02682365118316,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "cd849027905a9641dc0703a65aab504c9c30a779a95433c5c11f243bb2e82a04",
+      "state_sha_SUSTAINED": "842661ac020f34e903558c6da960763c878217e859d9df66530ef5c2b2a9bfce",
+      "deep_material_M": {
+        "SPIKE": 0.12336914039627646,
+        "SUSTAINED": 0.11132531387647816
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 47.01595173853026,
+        "mass_APPR": 47.59812594790007,
+        "mass_abs_diff": 0.5821742093698106,
+        "panel_abs": {
+          "core_mass": 0.5821742093698106,
+          "core_support": 5,
+          "core_rg2": 1.096608567126566,
+          "core_centroid_off": 0.03523617175139604,
+          "core_N": 0.50495666660305,
+          "core_c": 0.09860387025884165,
+          "core_uptake": 0.0014830129067386066,
+          "collar_mass": 0.4197023503901418,
+          "collar_N": 0.06453819285790985
+        },
+        "panel_rel": {
+          "core_mass": 0.012306291486542846,
+          "core_support": 0.018975332068311195,
+          "core_rg2": 0.03303696658554298,
+          "core_centroid_off": 0.021283718098888654,
+          "core_N": 0.0017666713383676469,
+          "core_c": 0.0008134793056857155,
+          "core_uptake": 0.0179396566131236,
+          "collar_mass": 0.15312730883986528,
+          "collar_N": 0.0005615391440240831
+        },
+        "memory_diff": {
+          "m1_mean": -0.0004264910269785125,
+          "m2_mean": -0.021591413793048575,
+          "mplus_mean": -0.01922901351984846,
+          "mminus_mean": 0.018644219362823733
+        },
+        "deriv_SPIKE_pre": -0.03440006538929197,
+        "deriv_SUSTAINED_pre": -0.03498035207598349,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.5815826992034232,
+          0.5809804931220981,
+          0.5803680943249248
+        ],
+        "repeatability": {
+          "core_mass": 0.06993814220215053,
+          "core_support": 0.4517539514526256,
+          "core_rg2": 0.029218564362547345,
+          "core_centroid_off": 0.0005824170482416392,
+          "core_N": 0.01785505288521322,
+          "core_c": 0.15916835697923665,
+          "core_uptake": 0.00011476142293060949,
+          "collar_mass": 0.006698910663850399,
+          "collar_N": 0.007675990193137118
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 48.06121228315291,
+          "mass_APPR": 48.653188729145796,
+          "mass_abs_diff": 0.5919764459928842,
+          "panel_abs": {
+            "core_mass": 0.5919764459928842,
+            "core_support": 5,
+            "core_rg2": 1.1785866528379216,
+            "core_centroid_off": 0.042393640582063075,
+            "core_N": 0.5988595860160899,
+            "core_c": 0.09424203106465256,
+            "core_uptake": 0.001858174582210978,
+            "collar_mass": 0.4078756697623698,
+            "collar_N": 0.0817595696232587
+          },
+          "panel_rel": {
+            "core_mass": 0.01224174352106271,
+            "core_support": 0.018832391713747645,
+            "core_rg2": 0.03504974085986993,
+            "core_centroid_off": 0.02551505897966363,
+            "core_N": 0.0020967412439102462,
+            "core_c": 0.0007630980987020872,
+            "core_uptake": 0.02201998551096085,
+            "collar_mass": 0.14373590541792797,
+            "collar_N": 0.0007120406069441131
+          },
+          "memory_diff": {
+            "m1_mean": -0.0005200277399292188,
+            "m2_mean": -0.021796970102430646,
+            "mplus_mean": -0.01958052748507627,
+            "mminus_mean": 0.018825656406390667
+          },
+          "deriv_SPIKE_pre": -0.03527832880476467,
+          "deriv_SUSTAINED_pre": -0.035228386659625244,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.5919948262089747,
+            0.5919824814334476,
+            0.5919402325287919
+          ],
+          "repeatability": {
+            "core_mass": 0.0705305102648302,
+            "core_support": 0.3499271061118825,
+            "core_rg2": 0.03405011979149922,
+            "core_centroid_off": 0.00069716849933747,
+            "core_N": 0.016220601309668202,
+            "core_c": 0.15840010568948584,
+            "core_uptake": 0.00013826889600043364,
+            "collar_mass": 0.0070073352838348965,
+            "collar_N": 0.00767762845784103
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 47.01595173853026,
+          "mass_APPR": 47.59812594790007,
+          "mass_abs_diff": 0.5821742093698106,
+          "panel_abs": {
+            "core_mass": 0.5821742093698106,
+            "core_support": 5,
+            "core_rg2": 1.096608567126566,
+            "core_centroid_off": 0.03523617175139604,
+            "core_N": 0.50495666660305,
+            "core_c": 0.09860387025884165,
+            "core_uptake": 0.0014830129067386066,
+            "collar_mass": 0.4197023503901418,
+            "collar_N": 0.06453819285790985
+          },
+          "panel_rel": {
+            "core_mass": 0.012306291486542846,
+            "core_support": 0.018975332068311195,
+            "core_rg2": 0.03303696658554298,
+            "core_centroid_off": 0.021283718098888654,
+            "core_N": 0.0017666713383676469,
+            "core_c": 0.0008134793056857155,
+            "core_uptake": 0.0179396566131236,
+            "collar_mass": 0.15312730883986528,
+            "collar_N": 0.0005615391440240831
+          },
+          "memory_diff": {
+            "m1_mean": -0.0004264910269785125,
+            "m2_mean": -0.021591413793048575,
+            "mplus_mean": -0.01922901351984846,
+            "mminus_mean": 0.018644219362823733
+          },
+          "deriv_SPIKE_pre": -0.03440006538929197,
+          "deriv_SUSTAINED_pre": -0.03498035207598349,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.5815826992034232,
+            0.5809804931220981,
+            0.5803680943249248
+          ],
+          "repeatability": {
+            "core_mass": 0.06993814220215053,
+            "core_support": 0.4517539514526256,
+            "core_rg2": 0.029218564362547345,
+            "core_centroid_off": 0.0005824170482416392,
+            "core_N": 0.01785505288521322,
+            "core_c": 0.15916835697923665,
+            "core_uptake": 0.00011476142293060949,
+            "collar_mass": 0.006698910663850399,
+            "collar_N": 0.007675990193137118
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 45.99961750986351,
+          "mass_APPR": 46.561088469242534,
+          "mass_abs_diff": 0.5614709593790224,
+          "panel_abs": {
+            "core_mass": 0.5614709593790224,
+            "core_support": 7,
+            "core_rg2": 1.0422058549878273,
+            "core_centroid_off": 0.028644276880453567,
+            "core_N": 0.42556629255045664,
+            "core_c": 0.25130268816391776,
+            "core_uptake": 0.0012749550860782083,
+            "collar_mass": 0.4381249434275456,
+            "collar_N": 0.04841302151776006
+          },
+          "panel_rel": {
+            "core_mass": 0.012131950668262288,
+            "core_support": 0.02697495183044316,
+            "core_rg2": 0.031762204895964555,
+            "core_centroid_off": 0.017351807436948263,
+            "core_N": 0.0014876762254355668,
+            "core_c": 0.0021135247959026097,
+            "core_uptake": 0.015700580157593104,
+            "collar_mass": 0.1652236589444728,
+            "collar_N": 0.00042084433606334834
+          },
+          "memory_diff": {
+            "m1_mean": -0.0003507780256550323,
+            "m2_mean": -0.02130799722519161,
+            "mplus_mean": -0.0188258650826435,
+            "mminus_mean": 0.018380066007492757
+          },
+          "deriv_SPIKE_pre": -0.03337500397385895,
+          "deriv_SUSTAINED_pre": -0.03411739499811972,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.5607276090902715,
+            0.5599834771752086,
+            0.5592387277079354
+          ],
+          "repeatability": {
+            "core_mass": 0.06819989877470313,
+            "core_support": 0.3499271061118825,
+            "core_rg2": 0.025358528974036763,
+            "core_centroid_off": 0.0004921071454701588,
+            "core_N": 0.01901640371120186,
+            "core_c": 0.15888965258910118,
+            "core_uptake": 9.648396628518542e-05,
+            "collar_mass": 0.006418232648602887,
+            "collar_N": 0.007657388661998961
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        50.21138668934114,
+        44.062948860542114
+      ],
+      "relax_mass_SUSTAINED": [
+        50.693606337175126,
+        44.580840857850575
+      ]
+    },
+    {
+      "seed": 57016,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 65.96914068534112,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "dd485518a2ebd448715c1e147469e026c37c4e5b9f7e3a8c6423c3dd0e7176b7",
+      "state_sha_SUSTAINED": "d8d11521dc455327a6ea66a15d108301cbbc00af8a1932e4fd90e9cba5ddc5ea",
+      "deep_material_M": {
+        "SPIKE": 0.15025620558583877,
+        "SUSTAINED": 0.13477706539236442
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 34.894503324282475,
+        "mass_APPR": 35.31953458406039,
+        "mass_abs_diff": 0.4250312597779171,
+        "panel_abs": {
+          "core_mass": 0.4250312597779171,
+          "core_support": 3,
+          "core_rg2": 0.1839291901763005,
+          "core_centroid_off": 0.010081301786634633,
+          "core_N": 0.567217116989525,
+          "core_c": 0.9149289571547001,
+          "core_uptake": 0.0007807081086416839,
+          "collar_mass": 0.09174786687121639,
+          "collar_N": 0.19247820861541243
+        },
+        "panel_rel": {
+          "core_mass": 0.012106731714611008,
+          "core_support": 0.010398613518197574,
+          "core_rg2": 0.0055564643249891585,
+          "core_centroid_off": 0.03253835941501217,
+          "core_N": 0.001973199544415532,
+          "core_c": 0.00891753576996574,
+          "core_uptake": 0.011847496596830194,
+          "collar_mass": 0.011259065353251907,
+          "collar_N": 0.0016928345965934477
+        },
+        "memory_diff": {
+          "m1_mean": 8.769868864345366e-05,
+          "m2_mean": -0.011611295882319073,
+          "mplus_mean": -0.009898239096008565,
+          "mminus_mean": 0.010185880899142019
+        },
+        "deriv_SPIKE_pre": -0.018433047943446468,
+        "deriv_SUSTAINED_pre": -0.018789113312955408,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.42467674878936634,
+          0.42432379624317207,
+          0.42397224766487795
+        ],
+        "repeatability": {
+          "core_mass": 0.03756010763300282,
+          "core_support": 0.4948716593053935,
+          "core_rg2": 0.0008981854357706156,
+          "core_centroid_off": 0.0005809103719805161,
+          "core_N": 0.01134844693441909,
+          "core_c": 0.13173682437413603,
+          "core_uptake": 6.464842688953424e-05,
+          "collar_mass": 0.013358471496886041,
+          "collar_N": 0.005259411305880921
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 35.45594554912099,
+          "mass_APPR": 35.89211230505986,
+          "mass_abs_diff": 0.43616675593887066,
+          "panel_abs": {
+            "core_mass": 0.43616675593887066,
+            "core_support": 0,
+            "core_rg2": 0.18663084618411574,
+            "core_centroid_off": 0.010103692323590263,
+            "core_N": 0.643873665377896,
+            "core_c": 0.917672997101505,
+            "core_uptake": 0.0007748676329674131,
+            "collar_mass": 0.09090290631340459,
+            "collar_N": 0.21394648044447706
+          },
+          "panel_rel": {
+            "core_mass": 0.012226450699759648,
+            "core_support": 0.0,
+            "core_rg2": 0.0056350243988749415,
+            "core_centroid_off": 0.03172084463257229,
+            "core_N": 0.0022408154427597596,
+            "core_c": 0.008772895459670511,
+            "core_uptake": 0.011603403170636033,
+            "collar_mass": 0.01088373212218235,
+            "collar_N": 0.0018827573028360198
+          },
+          "memory_diff": {
+            "m1_mean": 7.992919945363532e-05,
+            "m2_mean": -0.01213319716571759,
+            "mplus_mean": -0.010418805540899467,
+            "mminus_mean": 0.010694817934171819
+          },
+          "deriv_SPIKE_pre": -0.019048837820278663,
+          "deriv_SUSTAINED_pre": -0.019420744473016782,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.43579341315705733,
+            0.4354188547677609,
+            0.43504329282768595
+          ],
+          "repeatability": {
+            "core_mass": 0.03881961721281964,
+            "core_support": 0.0,
+            "core_rg2": 0.0015033012001178416,
+            "core_centroid_off": 0.000579230829068531,
+            "core_N": 0.010003552870028878,
+            "core_c": 0.13569856704069638,
+            "core_uptake": 5.777500132154033e-05,
+            "collar_mass": 0.013822680457638346,
+            "collar_N": 0.0051061613676687
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 34.894503324282475,
+          "mass_APPR": 35.31953458406039,
+          "mass_abs_diff": 0.4250312597779171,
+          "panel_abs": {
+            "core_mass": 0.4250312597779171,
+            "core_support": 3,
+            "core_rg2": 0.1839291901763005,
+            "core_centroid_off": 0.010081301786634633,
+            "core_N": 0.567217116989525,
+            "core_c": 0.9149289571547001,
+            "core_uptake": 0.0007807081086416839,
+            "collar_mass": 0.09174786687121639,
+            "collar_N": 0.19247820861541243
+          },
+          "panel_rel": {
+            "core_mass": 0.012106731714611008,
+            "core_support": 0.010398613518197574,
+            "core_rg2": 0.0055564643249891585,
+            "core_centroid_off": 0.03253835941501217,
+            "core_N": 0.001973199544415532,
+            "core_c": 0.00891753576996574,
+            "core_uptake": 0.011847496596830194,
+            "collar_mass": 0.011259065353251907,
+            "collar_N": 0.0016928345965934477
+          },
+          "memory_diff": {
+            "m1_mean": 8.769868864345366e-05,
+            "m2_mean": -0.011611295882319073,
+            "mplus_mean": -0.009898239096008565,
+            "mminus_mean": 0.010185880899142019
+          },
+          "deriv_SPIKE_pre": -0.018433047943446468,
+          "deriv_SUSTAINED_pre": -0.018789113312955408,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.42467674878936634,
+            0.42432379624317207,
+            0.42397224766487795
+          ],
+          "repeatability": {
+            "core_mass": 0.03756010763300282,
+            "core_support": 0.4948716593053935,
+            "core_rg2": 0.0008981854357706156,
+            "core_centroid_off": 0.0005809103719805161,
+            "core_N": 0.01134844693441909,
+            "core_c": 0.13173682437413603,
+            "core_uptake": 6.464842688953424e-05,
+            "collar_mass": 0.013358471496886041,
+            "collar_N": 0.005259411305880921
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 34.34875135624304,
+          "mass_APPR": 34.763678253735556,
+          "mass_abs_diff": 0.41492689749251355,
+          "panel_abs": {
+            "core_mass": 0.41492689749251355,
+            "core_support": 0,
+            "core_rg2": 0.18277385265573542,
+            "core_centroid_off": 0.010794572819034842,
+            "core_N": 0.49688662565540653,
+            "core_c": 0.9097521851442139,
+            "core_uptake": 0.0008037271520752592,
+            "collar_mass": 0.09269131074993187,
+            "collar_N": 0.1729664348363542
+          },
+          "panel_rel": {
+            "core_mass": 0.012007301720806688,
+            "core_support": 0.0,
+            "core_rg2": 0.005522281793857123,
+            "core_centroid_off": 0.035753749754834585,
+            "core_N": 0.0017276605702187843,
+            "core_c": 0.00903837322121142,
+            "core_uptake": 0.012387207549707117,
+            "collar_mass": 0.011656155285669963,
+            "collar_N": 0.0015202935854930185
+          },
+          "memory_diff": {
+            "m1_mean": 9.274549961682012e-05,
+            "m2_mean": -0.011100103037082809,
+            "mplus_mean": -0.009393079699739015,
+            "mminus_mean": 0.009687001289441666
+          },
+          "deriv_SPIKE_pre": -0.01798887614186384,
+          "deriv_SUSTAINED_pre": -0.01830276772287931,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.4146152221365469,
+            0.41430575696960403,
+            0.41399848380090987
+          ],
+          "repeatability": {
+            "core_mass": 0.03659093515173732,
+            "core_support": 0.0,
+            "core_rg2": 0.0004886057172972482,
+            "core_centroid_off": 0.000498329516116732,
+            "core_N": 0.012825235589269684,
+            "core_c": 0.12790250943191078,
+            "core_uptake": 7.181604135048629e-05,
+            "collar_mass": 0.012932360869940334,
+            "collar_N": 0.005369132898375977
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        36.63890275947084,
+        33.2931982409629
+      ],
+      "relax_mass_SUSTAINED": [
+        37.09393162394496,
+        33.69059335514815
+      ]
+    },
+    {
+      "seed": 57017,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 64.88278620023996,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "8668cd30b0999d3f79c6f64ffbe9c64a6f9a344f7a966741d3e33807d4ad119c",
+      "state_sha_SUSTAINED": "73de476e2f3e46c33e58e561b32a342f8c19b17cad81161b33bb547c8503836d",
+      "deep_material_M": {
+        "SPIKE": 0.14094362297730562,
+        "SUSTAINED": 0.1289720643325181
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 35.20848466753351,
+        "mass_APPR": 35.47850176939,
+        "mass_abs_diff": 0.27001710185648875,
+        "panel_abs": {
+          "core_mass": 0.27001710185648875,
+          "core_support": 0,
+          "core_rg2": 0.21705967536777493,
+          "core_centroid_off": 0.036646949409016694,
+          "core_N": 0.6190385414789148,
+          "core_c": 0.2790922885426994,
+          "core_uptake": 0.0009622445792289019,
+          "collar_mass": 0.00320221691230671,
+          "collar_N": 0.17094083717877595
+        },
+        "panel_rel": {
+          "core_mass": 0.0076397966716952774,
+          "core_support": 0.0,
+          "core_rg2": 0.008793542638388262,
+          "core_centroid_off": 0.018686376558828936,
+          "core_N": 0.0021708235432792234,
+          "core_c": 0.00250304101872305,
+          "core_uptake": 0.013693350184121674,
+          "collar_mass": 0.0002115638864505925,
+          "collar_N": 0.0015168812738631063
+        },
+        "memory_diff": {
+          "m1_mean": -0.00018950594393557334,
+          "m2_mean": -0.01663567558260476,
+          "mplus_mean": -0.01485944936946243,
+          "mminus_mean": 0.014643330015097766
+        },
+        "deriv_SPIKE_pre": -0.02486501629319804,
+        "deriv_SUSTAINED_pre": -0.023978851065109552,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.2709031273943481,
+          0.27178902652080694,
+          0.272674812264583
+        ],
+        "repeatability": {
+          "core_mass": 0.04972868236802533,
+          "core_support": 0.45175395145262565,
+          "core_rg2": 0.05114374214369186,
+          "core_centroid_off": 0.0035023996191421236,
+          "core_N": 0.017309531315807505,
+          "core_c": 0.13808497119315055,
+          "core_uptake": 0.0001105442769273768,
+          "collar_mass": 0.015392707397248762,
+          "collar_N": 0.007425316538371567
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 35.955669812469644,
+          "mass_APPR": 36.199408343989475,
+          "mass_abs_diff": 0.24373853151983127,
+          "panel_abs": {
+            "core_mass": 0.24373853151983127,
+            "core_support": 0,
+            "core_rg2": 0.14117072772165784,
+            "core_centroid_off": 0.032352313013064515,
+            "core_N": 0.711012380546947,
+            "core_c": 0.25354863879294953,
+            "core_uptake": 0.0008574583519067869,
+            "collar_mass": 0.024972453680362605,
+            "collar_N": 0.19634736335129332
+          },
+          "panel_rel": {
+            "core_mass": 0.006755963343046077,
+            "core_support": 0.0,
+            "core_rg2": 0.005560343329295871,
+            "core_centroid_off": 0.016951238212541297,
+            "core_N": 0.002495109127643979,
+            "core_c": 0.0022321181192696527,
+            "core_uptake": 0.01194601679071446,
+            "collar_mass": 0.0016257876379698138,
+            "collar_N": 0.0017438224363196804
+          },
+          "memory_diff": {
+            "m1_mean": -0.00017103220897806293,
+            "m2_mean": -0.01683617145961991,
+            "mplus_mean": -0.015074898530681724,
+            "mminus_mean": 0.01488897750002649
+          },
+          "deriv_SPIKE_pre": -0.024969957163534673,
+          "deriv_SUSTAINED_pre": -0.02412884150972161,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.24458342187181614,
+            0.2454318327722902,
+            0.24628366777711364
+          ],
+          "repeatability": {
+            "core_mass": 0.04993495937550433,
+            "core_support": 0.4948716593053935,
+            "core_rg2": 0.04775506678766412,
+            "core_centroid_off": 0.003778351990338195,
+            "core_N": 0.015574104831180439,
+            "core_c": 0.14234853349259086,
+            "core_uptake": 9.807879593225438e-05,
+            "collar_mass": 0.01599340865682507,
+            "collar_N": 0.007101678276872292
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 35.20848466753351,
+          "mass_APPR": 35.47850176939,
+          "mass_abs_diff": 0.27001710185648875,
+          "panel_abs": {
+            "core_mass": 0.27001710185648875,
+            "core_support": 0,
+            "core_rg2": 0.21705967536777493,
+            "core_centroid_off": 0.036646949409016694,
+            "core_N": 0.6190385414789148,
+            "core_c": 0.2790922885426994,
+            "core_uptake": 0.0009622445792289019,
+            "collar_mass": 0.00320221691230671,
+            "collar_N": 0.17094083717877595
+          },
+          "panel_rel": {
+            "core_mass": 0.0076397966716952774,
+            "core_support": 0.0,
+            "core_rg2": 0.008793542638388262,
+            "core_centroid_off": 0.018686376558828936,
+            "core_N": 0.0021708235432792234,
+            "core_c": 0.00250304101872305,
+            "core_uptake": 0.013693350184121674,
+            "collar_mass": 0.0002115638864505925,
+            "collar_N": 0.0015168812738631063
+          },
+          "memory_diff": {
+            "m1_mean": -0.00018950594393557334,
+            "m2_mean": -0.01663567558260476,
+            "mplus_mean": -0.01485944936946243,
+            "mminus_mean": 0.014643330015097766
+          },
+          "deriv_SPIKE_pre": -0.02486501629319804,
+          "deriv_SUSTAINED_pre": -0.023978851065109552,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.2709031273943481,
+            0.27178902652080694,
+            0.272674812264583
+          ],
+          "repeatability": {
+            "core_mass": 0.04972868236802533,
+            "core_support": 0.45175395145262565,
+            "core_rg2": 0.05114374214369186,
+            "core_centroid_off": 0.0035023996191421236,
+            "core_N": 0.017309531315807505,
+            "core_c": 0.13808497119315055,
+            "core_uptake": 0.0001105442769273768,
+            "collar_mass": 0.015392707397248762,
+            "collar_N": 0.007425316538371567
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 34.46289105569843,
+          "mass_APPR": 34.759493966610854,
+          "mass_abs_diff": 0.2966029109124264,
+          "panel_abs": {
+            "core_mass": 0.2966029109124264,
+            "core_support": 1,
+            "core_rg2": 0.2926528053686219,
+            "core_centroid_off": 0.0421843996771365,
+            "core_N": 0.5344372026802944,
+            "core_c": 0.30728142786122703,
+            "core_uptake": 0.001089092667438174,
+            "collar_mass": 0.018776539104644385,
+            "collar_N": 0.1477155185396839
+          },
+          "panel_rel": {
+            "core_mass": 0.008569566356803105,
+            "core_support": 0.0038535645472061657,
+            "core_rg2": 0.012226993057670221,
+            "core_centroid_off": 0.021007172327533206,
+            "core_N": 0.001872630437940132,
+            "core_c": 0.002806923941026963,
+            "core_uptake": 0.015879663384146914,
+            "collar_mass": 0.001258528479972344,
+            "collar_N": 0.0013096042552645036
+          },
+          "memory_diff": {
+            "m1_mean": -0.0002149211863706462,
+            "m2_mean": -0.01647397220965413,
+            "mplus_mean": -0.014684126658804586,
+            "mminus_mean": 0.014426200967239788
+          },
+          "deriv_SPIKE_pre": -0.024850987251298307,
+          "deriv_SUSTAINED_pre": -0.023961880983030426,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.2974925134721076,
+            0.2983826584824243,
+            0.2992733594134265
+          ],
+          "repeatability": {
+            "core_mass": 0.049702358702210334,
+            "core_support": 0.4948716593053935,
+            "core_rg2": 0.053592768060651406,
+            "core_centroid_off": 0.0031148893086089496,
+            "core_N": 0.01911879033765818,
+            "core_c": 0.1343714791291529,
+            "core_uptake": 0.00012213111222878317,
+            "collar_mass": 0.014965726401532996,
+            "collar_N": 0.007671415747053761
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        37.465689846348425,
+        32.97005575672378
+      ],
+      "relax_mass_SUSTAINED": [
+        37.66246649963563,
+        33.32035321363004
+      ]
+    },
+    {
+      "seed": 57018,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 70.1532672425054,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "7b8e9820d3afbc63b53f22fda3edd417f648eed502e14a90b945a5eb168e0916",
+      "state_sha_SUSTAINED": "2f3af5111bed03118a7e1af7f7d980710c5cb37f92e237458d9a043d397c5c37",
+      "deep_material_M": {
+        "SPIKE": 0.14258511497227735,
+        "SUSTAINED": 0.1271633733968279
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 24.438483417094176,
+        "mass_APPR": 25.24338371091384,
+        "mass_abs_diff": 0.8049002938196637,
+        "panel_abs": {
+          "core_mass": 0.8049002938196637,
+          "core_support": 0,
+          "core_rg2": 0.31505847187994185,
+          "core_centroid_off": 0.007703878767540473,
+          "core_N": 0.2770892817610502,
+          "core_c": 1.7600313557351086,
+          "core_uptake": 0.0013522823451127403,
+          "collar_mass": 0.03085932380566092,
+          "collar_N": 0.1497730087252762
+        },
+        "panel_rel": {
+          "core_mass": 0.032402175697052386,
+          "core_support": 0.0,
+          "core_rg2": 0.047776661048217005,
+          "core_centroid_off": 0.021302907724322525,
+          "core_N": 0.0009484185271273318,
+          "core_c": 0.01902557658245852,
+          "core_uptake": 0.03674291027853515,
+          "collar_mass": 0.009912755202779936,
+          "collar_N": 0.001307493191348291
+        },
+        "memory_diff": {
+          "m1_mean": 0.00019455482153963536,
+          "m2_mean": -0.022364410218408154,
+          "mplus_mean": -0.021398453259389244,
+          "mminus_mean": 0.021849102291120165
+        },
+        "deriv_SPIKE_pre": -0.027642292263390544,
+        "deriv_SUSTAINED_pre": -0.028373373714224215,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.804168988389037,
+          0.8034373401708308,
+          0.802705325742231
+        ],
+        "repeatability": {
+          "core_mass": 0.05670721385684245,
+          "core_support": 0.45175395145262565,
+          "core_rg2": 0.01881716205068523,
+          "core_centroid_off": 0.00040508824922156055,
+          "core_N": 0.02023882803581524,
+          "core_c": 0.18990940207327342,
+          "core_uptake": 6.715457653312095e-05,
+          "collar_mass": 0.0011712997588106283,
+          "collar_N": 0.005921417820511381
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 25.285214408259755,
+          "mass_APPR": 26.11233086851771,
+          "mass_abs_diff": 0.8271164602579546,
+          "panel_abs": {
+            "core_mass": 0.8271164602579546,
+            "core_support": 4,
+            "core_rg2": 0.3261247526558835,
+            "core_centroid_off": 0.010192846301761704,
+            "core_N": 0.34077277530428773,
+            "core_c": 1.783251930430879,
+            "core_uptake": 0.001376366715734531,
+            "collar_mass": 0.03047040119891875,
+            "collar_N": 0.16714651030045502
+          },
+          "panel_rel": {
+            "core_mass": 0.032185056924563436,
+            "core_support": 0.01951219512195122,
+            "core_rg2": 0.047445216108521586,
+            "core_centroid_off": 0.02775166447277982,
+            "core_N": 0.0011674662005671922,
+            "core_c": 0.018691297301329884,
+            "core_uptake": 0.03641398855679899,
+            "collar_mass": 0.00972867995290227,
+            "collar_N": 0.0014601897289115051
+          },
+          "memory_diff": {
+            "m1_mean": 0.0001788236987858953,
+            "m2_mean": -0.023323000955013967,
+            "mplus_mean": -0.022396802848115405,
+            "mminus_mean": 0.022810883560001022
+          },
+          "deriv_SPIKE_pre": -0.028853413559176033,
+          "deriv_SUSTAINED_pre": -0.029614672397283215,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.8263570229300612,
+            0.8255992644254206,
+            0.8248432878565168
+          ],
+          "repeatability": {
+            "core_mass": 0.05918660815230413,
+            "core_support": 0.4948716593053935,
+            "core_rg2": 0.019148223105667397,
+            "core_centroid_off": 0.0004985613313846694,
+            "core_N": 0.01975902127019445,
+            "core_c": 0.19792765880542892,
+            "core_uptake": 6.682681125501153e-05,
+            "collar_mass": 0.0013959818888339575,
+            "collar_N": 0.0059950207835706044
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 24.438483417094176,
+          "mass_APPR": 25.24338371091384,
+          "mass_abs_diff": 0.8049002938196637,
+          "panel_abs": {
+            "core_mass": 0.8049002938196637,
+            "core_support": 0,
+            "core_rg2": 0.31505847187994185,
+            "core_centroid_off": 0.007703878767540473,
+            "core_N": 0.2770892817610502,
+            "core_c": 1.7600313557351086,
+            "core_uptake": 0.0013522823451127403,
+            "collar_mass": 0.03085932380566092,
+            "collar_N": 0.1497730087252762
+          },
+          "panel_rel": {
+            "core_mass": 0.032402175697052386,
+            "core_support": 0.0,
+            "core_rg2": 0.047776661048217005,
+            "core_centroid_off": 0.021302907724322525,
+            "core_N": 0.0009484185271273318,
+            "core_c": 0.01902557658245852,
+            "core_uptake": 0.03674291027853515,
+            "collar_mass": 0.009912755202779936,
+            "collar_N": 0.001307493191348291
+          },
+          "memory_diff": {
+            "m1_mean": 0.00019455482153963536,
+            "m2_mean": -0.022364410218408154,
+            "mplus_mean": -0.021398453259389244,
+            "mminus_mean": 0.021849102291120165
+          },
+          "deriv_SPIKE_pre": -0.027642292263390544,
+          "deriv_SUSTAINED_pre": -0.028373373714224215,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.804168988389037,
+            0.8034373401708308,
+            0.802705325742231
+          ],
+          "repeatability": {
+            "core_mass": 0.05670721385684245,
+            "core_support": 0.45175395145262565,
+            "core_rg2": 0.01881716205068523,
+            "core_centroid_off": 0.00040508824922156055,
+            "core_N": 0.02023882803581524,
+            "core_c": 0.18990940207327342,
+            "core_uptake": 6.715457653312095e-05,
+            "collar_mass": 0.0011712997588106283,
+            "collar_N": 0.005921417820511381
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 23.627914663075483,
+          "mass_APPR": 24.410335392622624,
+          "mass_abs_diff": 0.782420729547141,
+          "panel_abs": {
+            "core_mass": 0.782420729547141,
+            "core_support": 1,
+            "core_rg2": 0.29557852034637655,
+            "core_centroid_off": 0.005447246054738286,
+            "core_N": 0.22084662182089687,
+            "core_c": 1.7352334886062977,
+            "core_uptake": 0.0012495268486461195,
+            "collar_mass": 0.034987361495700586,
+            "collar_N": 0.13394646339114047
+          },
+          "panel_rel": {
+            "core_mass": 0.03257490556545922,
+            "core_support": 0.0049382716049382715,
+            "core_rg2": 0.04672087304404478,
+            "core_centroid_off": 0.015228437959767412,
+            "core_N": 0.0007551942637682583,
+            "core_c": 0.019338260705458948,
+            "core_uptake": 0.034842518826325435,
+            "collar_mass": 0.011287930257103578,
+            "collar_N": 0.0011685114355670491
+          },
+          "memory_diff": {
+            "m1_mean": 0.00021155634412294618,
+            "m2_mean": -0.02140981486597704,
+            "mplus_mean": -0.020403497304962437,
+            "mminus_mean": 0.020892136132411004
+          },
+          "deriv_SPIKE_pre": -0.026430832170063923,
+          "deriv_SUSTAINED_pre": -0.027209949022939384,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.7816388387596902,
+            0.7808541810298912,
+            0.7800667477988377
+          ],
+          "repeatability": {
+            "core_mass": 0.054381773030849734,
+            "core_support": 0.3499271061118826,
+            "core_rg2": 0.01809738035170195,
+            "core_centroid_off": 0.0002708594811999965,
+            "core_N": 0.02046599704720172,
+            "core_c": 0.1822134446116798,
+            "core_uptake": 6.439125703156753e-05,
+            "collar_mass": 0.0008970798849617186,
+            "collar_N": 0.0058325036401186015
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        27.093656237594093,
+        22.11719707843401
+      ],
+      "relax_mass_SUSTAINED": [
+        27.970990817105726,
+        22.84838475563076
+      ]
+    },
+    {
+      "seed": 57019,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 64.35267575127057,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "75c857410086085111ff153149a598b6b90f3f88dded6574de0c501330943a19",
+      "state_sha_SUSTAINED": "8528aef4a3adca37670ac20eee67b1d865d66d17302c42faef9e11a20afa8b18",
+      "deep_material_M": {
+        "SPIKE": 0.19760152623618593,
+        "SUSTAINED": 0.17473695415281323
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 21.472713954109498,
+        "mass_APPR": 21.733159423062506,
+        "mass_abs_diff": 0.2604454689530087,
+        "panel_abs": {
+          "core_mass": 0.2604454689530087,
+          "core_support": 1,
+          "core_rg2": 0.3291530642953102,
+          "core_centroid_off": 0.030656982740699723,
+          "core_N": 0.4683992690499963,
+          "core_c": 0.4924246094366964,
+          "core_uptake": 0.00040360368270980773,
+          "collar_mass": 0.0767765282854942,
+          "collar_N": 0.16427508159696913
+        },
+        "panel_rel": {
+          "core_mass": 0.012056021489458703,
+          "core_support": 0.004842615012106538,
+          "core_rg2": 0.022121007912172155,
+          "core_centroid_off": 0.04127933954112431,
+          "core_N": 0.0016066339211004978,
+          "core_c": 0.005680813761732424,
+          "core_uptake": 0.010012956389194895,
+          "collar_mass": 0.008203863575433276,
+          "collar_N": 0.0014422862195085314
+        },
+        "memory_diff": {
+          "m1_mean": 0.00012132362407578715,
+          "m2_mean": -0.0181389472610875,
+          "mplus_mean": -0.0169998323809524,
+          "mminus_mean": 0.017344177009269157
+        },
+        "deriv_SPIKE_pre": -0.02043904683599962,
+        "deriv_SUSTAINED_pre": -0.020709253801339145,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.2601762387429183,
+          0.2599079839967686,
+          0.25964070327293953
+        ],
+        "repeatability": {
+          "core_mass": 0.04138117777407322,
+          "core_support": 0.0,
+          "core_rg2": 0.006787564057753779,
+          "core_centroid_off": 0.00046314520083105484,
+          "core_N": 0.01788603255077672,
+          "core_c": 0.15649686199606785,
+          "core_uptake": 3.987916312680391e-05,
+          "collar_mass": 0.0057277584050705295,
+          "collar_N": 0.006133841820882237
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 22.101905460520243,
+          "mass_APPR": 22.370882074376148,
+          "mass_abs_diff": 0.2689766138559051,
+          "panel_abs": {
+            "core_mass": 0.2689766138559051,
+            "core_support": 1,
+            "core_rg2": 0.32485824696656884,
+            "core_centroid_off": 0.03035375350186631,
+            "core_N": 0.5274469969234588,
+            "core_c": 0.4930176102896411,
+            "core_uptake": 0.00041714455826959845,
+            "collar_mass": 0.08384527956055976,
+            "collar_N": 0.18067257121340674
+          },
+          "panel_rel": {
+            "core_mass": 0.012096233619034906,
+            "core_support": 0.004842615012106538,
+            "core_rg2": 0.02167851693177308,
+            "core_centroid_off": 0.0404856298621289,
+            "core_N": 0.0018106521002401062,
+            "core_c": 0.005534288372023831,
+            "core_uptake": 0.010194756365531096,
+            "collar_mass": 0.008881666626660251,
+            "collar_N": 0.0015874304436144166
+          },
+          "memory_diff": {
+            "m1_mean": 0.00010985050383484959,
+            "m2_mean": -0.018795610466474988,
+            "mplus_mean": -0.01771033063979971,
+            "mminus_mean": 0.018026532905465742
+          },
+          "deriv_SPIKE_pre": -0.021547827777570916,
+          "deriv_SUSTAINED_pre": -0.0218471319941429,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.2686782477508842,
+            0.26838082405266306,
+            0.2680843463883811
+          ],
+          "repeatability": {
+            "core_mass": 0.04365612992579356,
+            "core_support": 0.0,
+            "core_rg2": 0.0075366759982736994,
+            "core_centroid_off": 0.0004936982128445407,
+            "core_N": 0.01783446898625757,
+            "core_c": 0.1638668814619237,
+            "core_uptake": 4.2163283989288977e-05,
+            "collar_mass": 0.0056484731901186025,
+            "collar_N": 0.006238930881821865
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 21.472713954109498,
+          "mass_APPR": 21.733159423062506,
+          "mass_abs_diff": 0.2604454689530087,
+          "panel_abs": {
+            "core_mass": 0.2604454689530087,
+            "core_support": 1,
+            "core_rg2": 0.3291530642953102,
+            "core_centroid_off": 0.030656982740699723,
+            "core_N": 0.4683992690499963,
+            "core_c": 0.4924246094366964,
+            "core_uptake": 0.00040360368270980773,
+            "collar_mass": 0.0767765282854942,
+            "collar_N": 0.16427508159696913
+          },
+          "panel_rel": {
+            "core_mass": 0.012056021489458703,
+            "core_support": 0.004842615012106538,
+            "core_rg2": 0.022121007912172155,
+            "core_centroid_off": 0.04127933954112431,
+            "core_N": 0.0016066339211004978,
+            "core_c": 0.005680813761732424,
+            "core_uptake": 0.010012956389194895,
+            "collar_mass": 0.008203863575433276,
+            "collar_N": 0.0014422862195085314
+          },
+          "memory_diff": {
+            "m1_mean": 0.00012132362407578715,
+            "m2_mean": -0.0181389472610875,
+            "mplus_mean": -0.0169998323809524,
+            "mminus_mean": 0.017344177009269157
+          },
+          "deriv_SPIKE_pre": -0.02043904683599962,
+          "deriv_SUSTAINED_pre": -0.020709253801339145,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.2601762387429183,
+            0.2599079839967686,
+            0.25964070327293953
+          ],
+          "repeatability": {
+            "core_mass": 0.04138117777407322,
+            "core_support": 0.0,
+            "core_rg2": 0.006787564057753779,
+            "core_centroid_off": 0.00046314520083105484,
+            "core_N": 0.01788603255077672,
+            "core_c": 0.15649686199606785,
+            "core_uptake": 3.987916312680391e-05,
+            "collar_mass": 0.0057277584050705295,
+            "collar_N": 0.006133841820882237
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 20.87630883465613,
+          "mass_APPR": 21.129091396827526,
+          "mass_abs_diff": 0.2527825621713973,
+          "panel_abs": {
+            "core_mass": 0.2527825621713973,
+            "core_support": 2,
+            "core_rg2": 0.33057823062290126,
+            "core_centroid_off": 0.03064070896833815,
+            "core_N": 0.4151849626368289,
+            "core_c": 0.49111236187773954,
+            "core_uptake": 0.00038972070280039045,
+            "collar_mass": 0.0692365354247837,
+            "collar_N": 0.14928673690334904
+          },
+          "panel_rel": {
+            "core_mass": 0.012035717349596069,
+            "core_support": 0.00966183574879227,
+            "core_rg2": 0.022358791575802558,
+            "core_centroid_off": 0.04162565495065834,
+            "core_N": 0.001422928069422836,
+            "core_c": 0.005819626915696389,
+            "core_uptake": 0.00980742683175904,
+            "collar_mass": 0.007464361242795457,
+            "collar_N": 0.0013097307681671736
+          },
+          "memory_diff": {
+            "m1_mean": 0.00013107320507745306,
+            "m2_mean": -0.01749340462943641,
+            "mplus_mean": -0.016300517760943573,
+            "mminus_mean": 0.016669381063099342
+          },
+          "deriv_SPIKE_pre": -0.019364440035026576,
+          "deriv_SUSTAINED_pre": -0.019606495834324278,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.2525414375271886,
+            0.2523011892267135,
+            0.252061812582955
+          ],
+          "repeatability": {
+            "core_mass": 0.03917722958248632,
+            "core_support": 0.0,
+            "core_rg2": 0.005907344251052597,
+            "core_centroid_off": 0.00042155431868499857,
+            "core_N": 0.01782406627881231,
+            "core_c": 0.14938019935046357,
+            "core_uptake": 3.710821923940057e-05,
+            "collar_mass": 0.005833353641053652,
+            "collar_N": 0.006021615779031955
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        23.46039062623175,
+        19.776412085206417
+      ],
+      "relax_mass_SUSTAINED": [
+        23.748771658270034,
+        20.01609236225626
+      ]
+    },
+    {
+      "seed": 57020,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 60.669624746095,
+      "determinism_bitmatch": true,
+      "state_sha_SPIKE": "bbcf4e276e6ff831ef81514a22588b3e354a5f62dfc27110c68559c22edf1e2e",
+      "state_sha_SUSTAINED": "48c0a7ef70e3ab8a42c212e0b73c3400023012baff754199b4edeff9de1a06d4",
+      "deep_material_M": {
+        "SPIKE": 0.20748500463671846,
+        "SUSTAINED": 0.19189100286303465
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 15.739008272568368,
+        "mass_APPR": 16.042908976083478,
+        "mass_abs_diff": 0.3039007035151098,
+        "panel_abs": {
+          "core_mass": 0.3039007035151098,
+          "core_support": 1,
+          "core_rg2": 0.0908279929057505,
+          "core_centroid_off": 0.05652219147236398,
+          "core_N": 0.40462005936512924,
+          "core_c": 0.5875316783059219,
+          "core_uptake": 0.00026857133634907576,
+          "collar_mass": 0.15371256125605903,
+          "collar_N": 0.14705363760891998
+        },
+        "panel_rel": {
+          "core_mass": 0.019124126536324736,
+          "core_support": 0.005305039787798408,
+          "core_rg2": 0.018306871500590877,
+          "core_centroid_off": 0.1558643133615251,
+          "core_N": 0.0013728379340116046,
+          "core_c": 0.008042345512833747,
+          "core_uptake": 0.009566305871368547,
+          "collar_mass": 0.022232191487107457,
+          "collar_N": 0.001281412367411102
+        },
+        "memory_diff": {
+          "m1_mean": 0.0001772227601108886,
+          "m2_mean": -0.017861367324886634,
+          "mplus_mean": -0.015922063097346117,
+          "mminus_mean": 0.016445933509843025
+        },
+        "deriv_SPIKE_pre": -0.014485132340819717,
+        "deriv_SUSTAINED_pre": -0.014897013026143213,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.3034883334039442,
+          0.30307547451292294,
+          0.30266212741508625
+        ],
+        "repeatability": {
+          "core_mass": 0.029766067097048376,
+          "core_support": 0.45175395145262565,
+          "core_rg2": 0.008471693111602936,
+          "core_centroid_off": 0.0005146800782294704,
+          "core_N": 0.018531541205054847,
+          "core_c": 0.14398138595266682,
+          "core_uptake": 2.684057674700654e-05,
+          "collar_mass": 0.022636990804769667,
+          "collar_N": 0.008125318440868496
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 16.18610297232114,
+          "mass_APPR": 16.502120016007616,
+          "mass_abs_diff": 0.3160170436864753,
+          "panel_abs": {
+            "core_mass": 0.3160170436864753,
+            "core_support": 3,
+            "core_rg2": 0.09787601862374462,
+            "core_centroid_off": 0.05393539450270468,
+            "core_N": 0.4520723375802618,
+            "core_c": 0.5965130758744692,
+            "core_uptake": 0.00030125211202258403,
+            "collar_mass": 0.1645510297738122,
+            "collar_N": 0.16116702227644453
+          },
+          "panel_rel": {
+            "core_mass": 0.019335223196397574,
+            "core_support": 0.015665796344647518,
+            "core_rg2": 0.019236638917648725,
+            "core_centroid_off": 0.1462005911635315,
+            "core_N": 0.001535170177231268,
+            "core_c": 0.007926051305270876,
+            "core_uptake": 0.01057779233814863,
+            "collar_mass": 0.022691490473363437,
+            "collar_N": 0.0014058142233108208
+          },
+          "memory_diff": {
+            "m1_mean": 0.00017054233043657316,
+            "m2_mean": -0.0185751644670476,
+            "mplus_mean": -0.01669617324431888,
+            "mminus_mean": 0.017201244455970044
+          },
+          "deriv_SPIKE_pre": -0.015357168122520193,
+          "deriv_SUSTAINED_pre": -0.015750249014917728,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.31562304070163094,
+            0.31522816207536053,
+            0.31483244780621433
+          ],
+          "repeatability": {
+            "core_mass": 0.0314716463055552,
+            "core_support": 0.0,
+            "core_rg2": 0.008875012899163377,
+            "core_centroid_off": 0.0004919527939400564,
+            "core_N": 0.018691937879382666,
+            "core_c": 0.15066912943206856,
+            "core_uptake": 2.9310123628997043e-05,
+            "collar_mass": 0.022786513833797803,
+            "collar_N": 0.008265546026114682
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 15.739008272568368,
+          "mass_APPR": 16.042908976083478,
+          "mass_abs_diff": 0.3039007035151098,
+          "panel_abs": {
+            "core_mass": 0.3039007035151098,
+            "core_support": 1,
+            "core_rg2": 0.0908279929057505,
+            "core_centroid_off": 0.05652219147236398,
+            "core_N": 0.40462005936512924,
+            "core_c": 0.5875316783059219,
+            "core_uptake": 0.00026857133634907576,
+            "collar_mass": 0.15371256125605903,
+            "collar_N": 0.14705363760891998
+          },
+          "panel_rel": {
+            "core_mass": 0.019124126536324736,
+            "core_support": 0.005305039787798408,
+            "core_rg2": 0.018306871500590877,
+            "core_centroid_off": 0.1558643133615251,
+            "core_N": 0.0013728379340116046,
+            "core_c": 0.008042345512833747,
+            "core_uptake": 0.009566305871368547,
+            "collar_mass": 0.022232191487107457,
+            "collar_N": 0.001281412367411102
+          },
+          "memory_diff": {
+            "m1_mean": 0.0001772227601108886,
+            "m2_mean": -0.017861367324886634,
+            "mplus_mean": -0.015922063097346117,
+            "mminus_mean": 0.016445933509843025
+          },
+          "deriv_SPIKE_pre": -0.014485132340819717,
+          "deriv_SUSTAINED_pre": -0.014897013026143213,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.3034883334039442,
+            0.30307547451292294,
+            0.30266212741508625
+          ],
+          "repeatability": {
+            "core_mass": 0.029766067097048376,
+            "core_support": 0.45175395145262565,
+            "core_rg2": 0.008471693111602936,
+            "core_centroid_off": 0.0005146800782294704,
+            "core_N": 0.018531541205054847,
+            "core_c": 0.14398138595266682,
+            "core_uptake": 2.684057674700654e-05,
+            "collar_mass": 0.022636990804769667,
+            "collar_N": 0.008125318440868496
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 15.317635352999421,
+          "mass_APPR": 15.608959630149759,
+          "mass_abs_diff": 0.2913242771503377,
+          "panel_abs": {
+            "core_mass": 0.2913242771503377,
+            "core_support": 0,
+            "core_rg2": 0.08504930887391371,
+            "core_centroid_off": 0.05933620881618995,
+            "core_N": 0.36255352508095484,
+            "core_c": 0.5767439038916109,
+            "core_uptake": 0.00023925104144470813,
+            "collar_mass": 0.13911788884778087,
+            "collar_N": 0.13413718638418004
+          },
+          "panel_rel": {
+            "core_mass": 0.018839725311439563,
+            "core_support": 0.0,
+            "core_rg2": 0.01756716071402736,
+            "core_centroid_off": 0.16656219150755483,
+            "core_N": 0.001229045752552917,
+            "core_c": 0.00812895921162326,
+            "core_uptake": 0.008635726196054232,
+            "collar_mass": 0.021094651098632126,
+            "collar_N": 0.0011676946145188446
+          },
+          "memory_diff": {
+            "m1_mean": 0.00018197303993558456,
+            "m2_mean": -0.017159035387536103,
+            "mplus_mean": -0.015163136643322916,
+            "mminus_mean": 0.0157010516289936
+          },
+          "deriv_SPIKE_pre": -0.013638786117981638,
+          "deriv_SUSTAINED_pre": -0.014064397778179583,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.2908982657159527,
+            0.2904718601191316,
+            0.2900450563982986
+          ],
+          "repeatability": {
+            "core_mass": 0.02810158465040763,
+            "core_support": 0.6388765649999399,
+            "core_rg2": 0.007886949908826116,
+            "core_centroid_off": 0.0005256361764550696,
+            "core_N": 0.018293099698451346,
+            "core_c": 0.13749081578401673,
+            "core_uptake": 2.4411107853465905e-05,
+            "collar_mass": 0.020624247537754024,
+            "collar_N": 0.008000533306135182
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        17.1635439344213,
+        14.548416790588533
+      ],
+      "relax_mass_SUSTAINED": [
+        17.50126101082148,
+        14.813743245598317
+      ]
+    },
+    {
+      "seed": 57021,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 59.18188108553494,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "c4a30ba005803acfec9674894c8a940224b8c60128300898d1fa887eb167c819",
+      "state_sha_SUSTAINED": "2675a34951844fca7d5f274a6580120e2894634d5569dbe75736b0bfc6d39782",
+      "deep_material_M": {
+        "SPIKE": 0.11347808713617259,
+        "SUSTAINED": 0.10081075813395002
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 22.862020624627938,
+        "mass_APPR": 23.32934791545168,
+        "mass_abs_diff": 0.4673272908237429,
+        "panel_abs": {
+          "core_mass": 0.4673272908237429,
+          "core_support": 1,
+          "core_rg2": 0.15469442501465025,
+          "core_centroid_off": 0.002982714957305177,
+          "core_N": 0.16232177039779572,
+          "core_c": 0.9822070026768586,
+          "core_uptake": 0.0007217722694844025,
+          "collar_mass": 0.004674478794110648,
+          "collar_N": 0.07442269669479629
+        },
+        "panel_rel": {
+          "core_mass": 0.02023439900544403,
+          "core_support": 0.006389776357827476,
+          "core_rg2": 0.009360732484812248,
+          "core_centroid_off": 0.0009074258683736627,
+          "core_N": 0.0005556825621389033,
+          "core_c": 0.011453252861548288,
+          "core_uptake": 0.020203691255954455,
+          "collar_mass": 0.0010129749015107819,
+          "collar_N": 0.0006490649431216834
+        },
+        "memory_diff": {
+          "m1_mean": 0.0001463967574060832,
+          "m2_mean": -0.010826420051653324,
+          "mplus_mean": -0.01000794513375039,
+          "mminus_mean": 0.010332629515890673
+        },
+        "deriv_SPIKE_pre": -0.024960633540359822,
+        "deriv_SUSTAINED_pre": -0.0254328473036729,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.4668559936283856,
+          0.4663854988598537,
+          0.465915821108954
+        ],
+        "repeatability": {
+          "core_mass": 0.05082475638068206,
+          "core_support": 0.4948716593053935,
+          "core_rg2": 0.01144851351965554,
+          "core_centroid_off": 0.00034648011469476966,
+          "core_N": 0.031596353308382494,
+          "core_c": 0.17345381710362473,
+          "core_uptake": 5.227344134381426e-05,
+          "collar_mass": 0.0086475391492776,
+          "collar_N": 0.011193539394732225
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 23.62878679169559,
+          "mass_APPR": 24.11090277374015,
+          "mass_abs_diff": 0.4821159820445615,
+          "panel_abs": {
+            "core_mass": 0.4821159820445615,
+            "core_support": 2,
+            "core_rg2": 0.15303957293653525,
+            "core_centroid_off": 0.001747378868607985,
+            "core_N": 0.1975817980292618,
+            "core_c": 0.977225048635546,
+            "core_uptake": 0.0007062825135234554,
+            "collar_mass": 0.005791239091862188,
+            "collar_N": 0.08303411834110364
+          },
+          "panel_rel": {
+            "core_mass": 0.020197700757301144,
+            "core_support": 0.012738853503184714,
+            "core_rg2": 0.009165386544183182,
+            "core_centroid_off": 0.000532456928003551,
+            "core_N": 0.0006774624876073963,
+            "core_c": 0.011055191423406158,
+            "core_uptake": 0.019348180387093874,
+            "collar_mass": 0.0012203675511957104,
+            "collar_N": 0.0007252265998366182
+          },
+          "memory_diff": {
+            "m1_mean": 0.0001232660943843453,
+            "m2_mean": -0.011365368343739829,
+            "mplus_mean": -0.010574184199539732,
+            "mminus_mean": 0.010852086092585117
+          },
+          "deriv_SPIKE_pre": -0.02621359311491389,
+          "deriv_SUSTAINED_pre": -0.02673596686707924,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.48159593141024004,
+            0.4810781667229733,
+            0.48056264949655514
+          ],
+          "repeatability": {
+            "core_mass": 0.053426704317217216,
+            "core_support": 0.45175395145262565,
+            "core_rg2": 0.011569553226635498,
+            "core_centroid_off": 0.00043993229596618285,
+            "core_N": 0.03243886906895759,
+            "core_c": 0.1784158421023445,
+            "core_uptake": 5.270772572371553e-05,
+            "collar_mass": 0.00886532623348921,
+            "collar_N": 0.011697035340994392
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 22.862020624627938,
+          "mass_APPR": 23.32934791545168,
+          "mass_abs_diff": 0.4673272908237429,
+          "panel_abs": {
+            "core_mass": 0.4673272908237429,
+            "core_support": 1,
+            "core_rg2": 0.15469442501465025,
+            "core_centroid_off": 0.002982714957305177,
+            "core_N": 0.16232177039779572,
+            "core_c": 0.9822070026768586,
+            "core_uptake": 0.0007217722694844025,
+            "collar_mass": 0.004674478794110648,
+            "collar_N": 0.07442269669479629
+          },
+          "panel_rel": {
+            "core_mass": 0.02023439900544403,
+            "core_support": 0.006389776357827476,
+            "core_rg2": 0.009360732484812248,
+            "core_centroid_off": 0.0009074258683736627,
+            "core_N": 0.0005556825621389033,
+            "core_c": 0.011453252861548288,
+            "core_uptake": 0.020203691255954455,
+            "collar_mass": 0.0010129749015107819,
+            "collar_N": 0.0006490649431216834
+          },
+          "memory_diff": {
+            "m1_mean": 0.0001463967574060832,
+            "m2_mean": -0.010826420051653324,
+            "mplus_mean": -0.01000794513375039,
+            "mminus_mean": 0.010332629515890673
+          },
+          "deriv_SPIKE_pre": -0.024960633540359822,
+          "deriv_SUSTAINED_pre": -0.0254328473036729,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.4668559936283856,
+            0.4663854988598537,
+            0.465915821108954
+          ],
+          "repeatability": {
+            "core_mass": 0.05082475638068206,
+            "core_support": 0.4948716593053935,
+            "core_rg2": 0.01144851351965554,
+            "core_centroid_off": 0.00034648011469476966,
+            "core_N": 0.031596353308382494,
+            "core_c": 0.17345381710362473,
+            "core_uptake": 5.227344134381426e-05,
+            "collar_mass": 0.0086475391492776,
+            "collar_N": 0.011193539394732225
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 22.131688504359346,
+          "mass_APPR": 22.58504153331178,
+          "mass_abs_diff": 0.453353028952435,
+          "panel_abs": {
+            "core_mass": 0.453353028952435,
+            "core_support": 0,
+            "core_rg2": 0.1580085764838941,
+            "core_centroid_off": 0.0045302547992158715,
+            "core_N": 0.13043437834136284,
+            "core_c": 0.9802975323324858,
+            "core_uptake": 0.0006945086095327749,
+            "collar_mass": 0.003787304476826847,
+            "collar_N": 0.06653173610330043
+          },
+          "panel_rel": {
+            "core_mass": 0.020276662831585076,
+            "core_support": 0.0,
+            "core_rg2": 0.009661584254959627,
+            "core_centroid_off": 0.00137667400163539,
+            "core_N": 0.0004458319067082162,
+            "core_c": 0.011783099345937461,
+            "core_uptake": 0.019870427226116788,
+            "collar_mass": 0.0008439855377193766,
+            "collar_N": 0.0005794355591329327
+          },
+          "memory_diff": {
+            "m1_mean": 0.00016452494095839116,
+            "m2_mean": -0.010293089133459832,
+            "mplus_mean": -0.009451365216066515,
+            "mminus_mean": 0.009813072324162841
+          },
+          "deriv_SPIKE_pre": -0.023776073781998974,
+          "deriv_SUSTAINED_pre": -0.024242597052001713,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.45288609578674865,
+            0.45241872924106374,
+            0.4519509073544228
+          ],
+          "repeatability": {
+            "core_mass": 0.04844715571262699,
+            "core_support": 0.45175395145262565,
+            "core_rg2": 0.011761973576988577,
+            "core_centroid_off": 0.00025126968284218713,
+            "core_N": 0.030737510819898412,
+            "core_c": 0.16836607259457703,
+            "core_uptake": 5.216326447655697e-05,
+            "collar_mass": 0.008361494778216225,
+            "collar_N": 0.010698774326922232
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        25.2827755332436,
+        20.774424663204286
+      ],
+      "relax_mass_SUSTAINED": [
+        25.80041224878033,
+        21.1985715872042
+      ]
+    },
+    {
+      "seed": 57022,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 65.85337752983061,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "dbc7b402a781a48f71c845a6a333fad66f3b934c9e19a0f03cebc53c8fd125c6",
+      "state_sha_SUSTAINED": "2f21c49e58373d683adcfa5530206ca4baeff21fb7014500435460a1fcce1567",
+      "deep_material_M": {
+        "SPIKE": 0.18593661359649724,
+        "SUSTAINED": 0.17360203330809298
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 25.3624678023808,
+        "mass_APPR": 25.310583293946216,
+        "mass_abs_diff": 0.0518845084345827,
+        "panel_abs": {
+          "core_mass": 0.0518845084345827,
+          "core_support": 0,
+          "core_rg2": 0.5570049988048353,
+          "core_centroid_off": 0.02125800343175066,
+          "core_N": 0.4468720253191236,
+          "core_c": 0.0443639855702429,
+          "core_uptake": 4.765900237206633e-05,
+          "collar_mass": 0.15344114216999927,
+          "collar_N": 0.13295737082023606
+        },
+        "panel_rel": {
+          "core_mass": 0.002047814659352276,
+          "core_support": 0.0,
+          "core_rg2": 0.020166602174801207,
+          "core_centroid_off": 0.015408840343454884,
+          "core_N": 0.0015402792472047162,
+          "core_c": 0.0004872144810289524,
+          "core_uptake": 0.0009695900060462856,
+          "collar_mass": 0.009350401568760441,
+          "collar_N": 0.0011693867744711232
+        },
+        "memory_diff": {
+          "m1_mean": -4.564243137942375e-06,
+          "m2_mean": -0.016030248896829025,
+          "mplus_mean": -0.015041402330214004,
+          "mminus_mean": 0.015147657292627764
+        },
+        "deriv_SPIKE_pre": -0.022357179863043086,
+        "deriv_SUSTAINED_pre": -0.021875433361785213,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.051398424729931946,
+          0.050908238970102104,
+          0.05041406913019486
+        ],
+        "repeatability": {
+          "core_mass": 0.044677986461150856,
+          "core_support": 0.0,
+          "core_rg2": 0.0021466475051207003,
+          "core_centroid_off": 0.004808115602522817,
+          "core_N": 0.020100968539210326,
+          "core_c": 0.15569603979241842,
+          "core_uptake": 4.656034920790217e-05,
+          "collar_mass": 0.010730458915961217,
+          "collar_N": 0.006688822242049654
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 26.048070594559555,
+          "mass_APPR": 25.984513723804618,
+          "mass_abs_diff": 0.06355687075493677,
+          "panel_abs": {
+            "core_mass": 0.06355687075493677,
+            "core_support": 0,
+            "core_rg2": 0.5675397437980152,
+            "core_centroid_off": 0.0185978504583173,
+            "core_N": 0.4983269655661502,
+            "core_c": 0.032180320480875935,
+            "core_uptake": 3.919570315674692e-05,
+            "collar_mass": 0.17010607322572824,
+            "collar_N": 0.14647033418034994
+          },
+          "panel_rel": {
+            "core_mass": 0.002442964215117997,
+            "core_support": 0.0,
+            "core_rg2": 0.020563233612325208,
+            "core_centroid_off": 0.014195373911827675,
+            "core_N": 0.0017192780533516684,
+            "core_c": 0.0003444168064936279,
+            "core_uptake": 0.0007861352200718362,
+            "collar_mass": 0.010272321684852124,
+            "collar_N": 0.0012893098173865605
+          },
+          "memory_diff": {
+            "m1_mean": -1.7026588807126167e-05,
+            "m2_mean": -0.016474314445218297,
+            "mplus_mean": -0.015542655513614001,
+            "mminus_mean": 0.015619186645118577
+          },
+          "deriv_SPIKE_pre": -0.023348660436315782,
+          "deriv_SUSTAINED_pre": -0.02309259697189958,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.06329002218222257,
+            0.06301256490598561,
+            0.06272479303676448
+          ],
+          "repeatability": {
+            "core_mass": 0.04666732022582814,
+            "core_support": 0.4517539514526256,
+            "core_rg2": 0.0013146492185652935,
+            "core_centroid_off": 0.004610656049972263,
+            "core_N": 0.02030604866129912,
+            "core_c": 0.1621842013035866,
+            "core_uptake": 4.797352922083489e-05,
+            "collar_mass": 0.010316668695812388,
+            "collar_N": 0.00683840002055232
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 25.3624678023808,
+          "mass_APPR": 25.310583293946216,
+          "mass_abs_diff": 0.0518845084345827,
+          "panel_abs": {
+            "core_mass": 0.0518845084345827,
+            "core_support": 0,
+            "core_rg2": 0.5570049988048353,
+            "core_centroid_off": 0.02125800343175066,
+            "core_N": 0.4468720253191236,
+            "core_c": 0.0443639855702429,
+            "core_uptake": 4.765900237206633e-05,
+            "collar_mass": 0.15344114216999927,
+            "collar_N": 0.13295737082023606
+          },
+          "panel_rel": {
+            "core_mass": 0.002047814659352276,
+            "core_support": 0.0,
+            "core_rg2": 0.020166602174801207,
+            "core_centroid_off": 0.015408840343454884,
+            "core_N": 0.0015402792472047162,
+            "core_c": 0.0004872144810289524,
+            "core_uptake": 0.0009695900060462856,
+            "collar_mass": 0.009350401568760441,
+            "collar_N": 0.0011693867744711232
+          },
+          "memory_diff": {
+            "m1_mean": -4.564243137942375e-06,
+            "m2_mean": -0.016030248896829025,
+            "mplus_mean": -0.015041402330214004,
+            "mminus_mean": 0.015147657292627764
+          },
+          "deriv_SPIKE_pre": -0.022357179863043086,
+          "deriv_SUSTAINED_pre": -0.021875433361785213,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.051398424729931946,
+            0.050908238970102104,
+            0.05041406913019486
+          ],
+          "repeatability": {
+            "core_mass": 0.044677986461150856,
+            "core_support": 0.0,
+            "core_rg2": 0.0021466475051207003,
+            "core_centroid_off": 0.004808115602522817,
+            "core_N": 0.020100968539210326,
+            "core_c": 0.15569603979241842,
+            "core_uptake": 4.656034920790217e-05,
+            "collar_mass": 0.010730458915961217,
+            "collar_N": 0.006688822242049654
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 24.70907618449941,
+          "mass_APPR": 24.67294164273547,
+          "mass_abs_diff": 0.036134541763939154,
+          "panel_abs": {
+            "core_mass": 0.036134541763939154,
+            "core_support": 3,
+            "core_rg2": 0.5361560655470932,
+            "core_centroid_off": 0.022258418736801122,
+            "core_N": 0.39996158721930897,
+            "core_c": 0.057960424643226816,
+            "core_uptake": 6.359161276799086e-05,
+            "collar_mass": 0.13427806443990065,
+            "collar_N": 0.1206551293183935
+          },
+          "panel_rel": {
+            "core_mass": 0.0014634696334344785,
+            "core_support": 0.013605442176870748,
+            "core_rg2": 0.019391606951392863,
+            "core_centroid_off": 0.015328810874068894,
+            "core_N": 0.0013772773381211145,
+            "core_c": 0.0006528855009310659,
+            "core_uptake": 0.001311701387172257,
+            "collar_mass": 0.008260189046061805,
+            "collar_N": 0.0010603185664453927
+          },
+          "memory_diff": {
+            "m1_mean": 5.5176195702250075e-06,
+            "m2_mean": -0.015612342929419043,
+            "mplus_mean": -0.014564562521761526,
+            "mminus_mean": 0.01469633819723598
+          },
+          "deriv_SPIKE_pre": -0.02122723043547836,
+          "deriv_SUSTAINED_pre": -0.020681595306633938,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.03558861814487102,
+            0.03504255081866248,
+            0.03449643214243281
+          ],
+          "repeatability": {
+            "core_mass": 0.04241581767911176,
+            "core_support": 0.4517539514526256,
+            "core_rg2": 0.0030733376708181634,
+            "core_centroid_off": 0.0049072695472292555,
+            "core_N": 0.01983444054039195,
+            "core_c": 0.14930277450549984,
+            "core_uptake": 4.413501412270803e-05,
+            "collar_mass": 0.011067951523319616,
+            "collar_N": 0.006532286481363862
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        27.49038548719377,
+        23.50605543880726
+      ],
+      "relax_mass_SUSTAINED": [
+        27.4370087375243,
+        23.500818007309594
+      ]
+    },
+    {
+      "seed": 57023,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 67.75029001720772,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "83af4c3b56313f65e684ab78c0655baf7ab9033c526a9f5f886b8233fbab0eef",
+      "state_sha_SUSTAINED": "df045fc773f50f3fcb3b18cc6419c913b30ed6b8bd02acc49681e0d89c759212",
+      "deep_material_M": {
+        "SPIKE": 0.16597301716799176,
+        "SUSTAINED": 0.14668858708418994
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 32.58714629679729,
+        "mass_APPR": 32.98932874263393,
+        "mass_abs_diff": 0.40218244583663676,
+        "panel_abs": {
+          "core_mass": 0.40218244583663676,
+          "core_support": 3,
+          "core_rg2": 0.6361043973688929,
+          "core_centroid_off": 0.010360956123242449,
+          "core_N": 0.527563555570282,
+          "core_c": 0.9975237987753474,
+          "core_uptake": 0.00042051100098423194,
+          "collar_mass": 0.2666838155877702,
+          "collar_N": 0.21073406885052748
+        },
+        "panel_rel": {
+          "core_mass": 0.012266058692383326,
+          "core_support": 0.012474012474012475,
+          "core_rg2": 0.03206297927983997,
+          "core_centroid_off": 0.035391549276258094,
+          "core_N": 0.0018451480149580426,
+          "core_c": 0.008429364507352263,
+          "core_uptake": 0.007862556986188785,
+          "collar_mass": 0.020103783989222693,
+          "collar_N": 0.0018794697472537187
+        },
+        "memory_diff": {
+          "m1_mean": 0.0002388317112820034,
+          "m2_mean": -0.017621248082591356,
+          "mplus_mean": -0.016911691752986013,
+          "mminus_mean": 0.01740883421842032
+        },
+        "deriv_SPIKE_pre": -0.03401327932083831,
+        "deriv_SUSTAINED_pre": -0.034939707645676776,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.40125452108333803,
+          0.40032511079010646,
+          0.3993942194423923
+        ],
+        "repeatability": {
+          "core_mass": 0.06982560638415325,
+          "core_support": 0.7284313590846835,
+          "core_rg2": 0.00874248105963661,
+          "core_centroid_off": 0.0008835211321701917,
+          "core_N": 0.0272283169141718,
+          "core_c": 0.22953117989468888,
+          "core_uptake": 6.581167191255375e-05,
+          "collar_mass": 0.004664615726085137,
+          "collar_N": 0.007486146627119928
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 33.632209869057235,
+          "mass_APPR": 34.0614952666528,
+          "mass_abs_diff": 0.4292853975955637,
+          "panel_abs": {
+            "core_mass": 0.4292853975955637,
+            "core_support": 1,
+            "core_rg2": 0.6052200812396649,
+            "core_centroid_off": 0.0053357754574533955,
+            "core_N": 0.5937135576140804,
+            "core_c": 1.0203546741792735,
+            "core_uptake": 0.00047879324113692806,
+            "collar_mass": 0.2593225099589631,
+            "collar_N": 0.22965796278711537
+          },
+          "panel_rel": {
+            "core_mass": 0.01268317036968052,
+            "core_support": 0.004123711340206186,
+            "core_rg2": 0.030674164859061052,
+            "core_centroid_off": 0.018920816057645083,
+            "core_N": 0.0020792538308678538,
+            "core_c": 0.008375325876303444,
+            "core_uptake": 0.00878991299774254,
+            "collar_mass": 0.019449225853835357,
+            "collar_N": 0.0020501069601356592
+          },
+          "memory_diff": {
+            "m1_mean": 0.0002184388372335092,
+            "m2_mean": -0.018515019913460246,
+            "mplus_mean": -0.017817917517261694,
+            "mminus_mean": 0.01827348899675804
+          },
+          "deriv_SPIKE_pre": -0.035731325098531386,
+          "deriv_SUSTAINED_pre": -0.036607853559395664,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.42840695429819675,
+            0.4275266183982538,
+            0.42664441168075484
+          ],
+          "repeatability": {
+            "core_mass": 0.07315902170429335,
+            "core_support": 0.0,
+            "core_rg2": 0.007772755479980165,
+            "core_centroid_off": 0.0008805264372601377,
+            "core_N": 0.027537655341358356,
+            "core_c": 0.2372591954168669,
+            "core_uptake": 7.000294509166945e-05,
+            "collar_mass": 0.004903457711150012,
+            "collar_N": 0.007344119984649474
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 32.58714629679729,
+          "mass_APPR": 32.98932874263393,
+          "mass_abs_diff": 0.40218244583663676,
+          "panel_abs": {
+            "core_mass": 0.40218244583663676,
+            "core_support": 3,
+            "core_rg2": 0.6361043973688929,
+            "core_centroid_off": 0.010360956123242449,
+            "core_N": 0.527563555570282,
+            "core_c": 0.9975237987753474,
+            "core_uptake": 0.00042051100098423194,
+            "collar_mass": 0.2666838155877702,
+            "collar_N": 0.21073406885052748
+          },
+          "panel_rel": {
+            "core_mass": 0.012266058692383326,
+            "core_support": 0.012474012474012475,
+            "core_rg2": 0.03206297927983997,
+            "core_centroid_off": 0.035391549276258094,
+            "core_N": 0.0018451480149580426,
+            "core_c": 0.008429364507352263,
+            "core_uptake": 0.007862556986188785,
+            "collar_mass": 0.020103783989222693,
+            "collar_N": 0.0018794697472537187
+          },
+          "memory_diff": {
+            "m1_mean": 0.0002388317112820034,
+            "m2_mean": -0.017621248082591356,
+            "mplus_mean": -0.016911691752986013,
+            "mminus_mean": 0.01740883421842032
+          },
+          "deriv_SPIKE_pre": -0.03401327932083831,
+          "deriv_SUSTAINED_pre": -0.034939707645676776,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.40125452108333803,
+            0.40032511079010646,
+            0.3993942194423923
+          ],
+          "repeatability": {
+            "core_mass": 0.06982560638415325,
+            "core_support": 0.7284313590846835,
+            "core_rg2": 0.00874248105963661,
+            "core_centroid_off": 0.0008835211321701917,
+            "core_N": 0.0272283169141718,
+            "core_c": 0.22953117989468888,
+            "core_uptake": 6.581167191255375e-05,
+            "collar_mass": 0.004664615726085137,
+            "collar_N": 0.007486146627119928
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 31.592071226514115,
+          "mass_APPR": 31.965759970910995,
+          "mass_abs_diff": 0.3736887443968797,
+          "panel_abs": {
+            "core_mass": 0.3736887443968797,
+            "core_support": 3,
+            "core_rg2": 0.6714552550601276,
+            "core_centroid_off": 0.015724170326632425,
+            "core_N": 0.4689194690008094,
+            "core_c": 0.9687361438516007,
+            "core_uptake": 0.00037688384692260296,
+            "collar_mass": 0.2753082248702192,
+            "collar_N": 0.19426782119496977
+          },
+          "panel_rel": {
+            "core_mass": 0.011759014974444842,
+            "core_support": 0.01263157894736842,
+            "core_rg2": 0.033641551953705426,
+            "core_centroid_off": 0.05185916274783989,
+            "core_N": 0.0016378836202441977,
+            "core_c": 0.008426108972248754,
+            "core_uptake": 0.007172976209197597,
+            "collar_mass": 0.020854794364104135,
+            "collar_N": 0.0017309909512378042
+          },
+          "memory_diff": {
+            "m1_mean": 0.0002567848550739274,
+            "m2_mean": -0.016710740297978477,
+            "mplus_mean": -0.015992996499650025,
+            "mminus_mean": 0.016525998271938014
+          },
+          "deriv_SPIKE_pre": -0.032395635818915025,
+          "deriv_SUSTAINED_pre": -0.03336849651895335,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.3727141341201232,
+            0.3717377463092788,
+            0.3707595745629426
+          ],
+          "repeatability": {
+            "core_mass": 0.06668685231947288,
+            "core_support": 0.4517539514526256,
+            "core_rg2": 0.009576411385389708,
+            "core_centroid_off": 0.0008641421558111829,
+            "core_N": 0.02689148105443336,
+            "core_c": 0.22182734978042584,
+            "core_uptake": 6.265944864381043e-05,
+            "collar_mass": 0.004465430850863586,
+            "collar_N": 0.0076129913025707475
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        35.88400283139622,
+        29.739225788559757
+      ],
+      "relax_mass_SUSTAINED": [
+        36.36166076530534,
+        30.05076766640849
+      ]
+    },
+    {
+      "seed": 57024,
+      "config": "PATTERN",
+      "schedule_sha256": "f41c94ffe2b513a773aaebae2854434764f6be48d210e344222b2a3b9f798460",
+      "eligible": true,
+      "checkpoint_core_mass": 73.68672911919462,
+      "determinism_bitmatch": null,
+      "state_sha_SPIKE": "4307df9d7363869041b981dc594b6b8a5ca33bd3b11367de6703ab2fc8e1f459",
+      "state_sha_SUSTAINED": "d236be2ae85f48af53c26bf1c01122482c71e627e134bf77c3229f978c893e5b",
+      "deep_material_M": {
+        "SPIKE": 0.10758541899247634,
+        "SUSTAINED": 0.09732742858392476
+      },
+      "coincidence_primary": {
+        "k": 90,
+        "mass_OVER": 41.70932640704778,
+        "mass_APPR": 41.88912021856901,
+        "mass_abs_diff": 0.17979381152122897,
+        "panel_abs": {
+          "core_mass": 0.17979381152122897,
+          "core_support": 1,
+          "core_rg2": 0.1082920088284034,
+          "core_centroid_off": 0.014953538817460199,
+          "core_N": 0.5862040044638093,
+          "core_c": 0.2393591169505953,
+          "core_uptake": 0.0002717756658191378,
+          "collar_mass": 0.07987516475358802,
+          "collar_N": 0.17267602537772575
+        },
+        "panel_rel": {
+          "core_mass": 0.004301367280815847,
+          "core_support": 0.004024144869215292,
+          "core_rg2": 0.0035866056339039472,
+          "core_centroid_off": 0.0052192380529517066,
+          "core_N": 0.002071872873462494,
+          "core_c": 0.001879685402963952,
+          "core_uptake": 0.003599443292460879,
+          "collar_mass": 0.006174303144036896,
+          "collar_N": 0.0015283119495839194
+        },
+        "memory_diff": {
+          "m1_mean": -9.195420635944689e-05,
+          "m2_mean": -0.017123500565622868,
+          "mplus_mean": -0.01630193574899777,
+          "mminus_mean": 0.01617943370031666
+        },
+        "deriv_SPIKE_pre": -0.03399062447451939,
+        "deriv_SUSTAINED_pre": -0.034489277176369626,
+        "opposite_direction": false,
+        "stability_mass_absdiff_next": [
+          0.17930134233681372,
+          0.17881485391474428,
+          0.17833420104319941
+        ],
+        "repeatability": {
+          "core_mass": 0.06894157695791324,
+          "core_support": 0.4948716593053935,
+          "core_rg2": 0.02982553578971801,
+          "core_centroid_off": 0.0004902027156918581,
+          "core_N": 0.0248034409508584,
+          "core_c": 0.18053247816371212,
+          "core_uptake": 0.00013618384582743352,
+          "collar_mass": 0.0037462058040616296,
+          "collar_N": 0.007863686101084216
+        }
+      },
+      "coincidence_robustness": {
+        "60": {
+          "k": 60,
+          "mass_OVER": 42.74371652777782,
+          "mass_APPR": 42.94163067129753,
+          "mass_abs_diff": 0.1979141435197107,
+          "panel_abs": {
+            "core_mass": 0.1979141435197107,
+            "core_support": 1,
+            "core_rg2": 0.11349493220142293,
+            "core_centroid_off": 0.015429711535524415,
+            "core_N": 0.6512119360225483,
+            "core_c": 0.25540276033794385,
+            "core_uptake": 0.00013250495695193987,
+            "collar_mass": 0.07514367779574194,
+            "collar_N": 0.18923455765452957
+          },
+          "panel_rel": {
+            "core_mass": 0.004619556318302377,
+            "core_support": 0.004008016032064128,
+            "core_rg2": 0.0037037810063095017,
+            "core_centroid_off": 0.005376399792745101,
+            "core_N": 0.0023043071179446773,
+            "core_c": 0.0019636210457979393,
+            "core_uptake": 0.0017118950301977394,
+            "collar_mass": 0.005783728267734329,
+            "collar_N": 0.0016764873906989974
+          },
+          "memory_diff": {
+            "m1_mean": -8.63200056025258e-05,
+            "m2_mean": -0.0174525769236529,
+            "mplus_mean": -0.016639736808321204,
+            "mminus_mean": 0.016525181347748497
+          },
+          "deriv_SPIKE_pre": -0.03504746563629624,
+          "deriv_SUSTAINED_pre": -0.03576221068597363,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.19720496500502094,
+            0.19650175174074036,
+            0.19580480348960094
+          ],
+          "repeatability": {
+            "core_mass": 0.07147906063851801,
+            "core_support": 0.0,
+            "core_rg2": 0.03037707532202992,
+            "core_centroid_off": 0.00018205051968485435,
+            "core_N": 0.02330417844021794,
+            "core_c": 0.18414845037653335,
+            "core_uptake": 0.0001237652852982281,
+            "collar_mass": 0.003994390526391951,
+            "collar_N": 0.0077936358054514375
+          }
+        },
+        "90": {
+          "k": 90,
+          "mass_OVER": 41.70932640704778,
+          "mass_APPR": 41.88912021856901,
+          "mass_abs_diff": 0.17979381152122897,
+          "panel_abs": {
+            "core_mass": 0.17979381152122897,
+            "core_support": 1,
+            "core_rg2": 0.1082920088284034,
+            "core_centroid_off": 0.014953538817460199,
+            "core_N": 0.5862040044638093,
+            "core_c": 0.2393591169505953,
+            "core_uptake": 0.0002717756658191378,
+            "collar_mass": 0.07987516475358802,
+            "collar_N": 0.17267602537772575
+          },
+          "panel_rel": {
+            "core_mass": 0.004301367280815847,
+            "core_support": 0.004024144869215292,
+            "core_rg2": 0.0035866056339039472,
+            "core_centroid_off": 0.0052192380529517066,
+            "core_N": 0.002071872873462494,
+            "core_c": 0.001879685402963952,
+            "core_uptake": 0.003599443292460879,
+            "collar_mass": 0.006174303144036896,
+            "collar_N": 0.0015283119495839194
+          },
+          "memory_diff": {
+            "m1_mean": -9.195420635944689e-05,
+            "m2_mean": -0.017123500565622868,
+            "mplus_mean": -0.01630193574899777,
+            "mminus_mean": 0.01617943370031666
+          },
+          "deriv_SPIKE_pre": -0.03399062447451939,
+          "deriv_SUSTAINED_pre": -0.034489277176369626,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.17930134233681372,
+            0.17881485391474428,
+            0.17833420104319941
+          ],
+          "repeatability": {
+            "core_mass": 0.06894157695791324,
+            "core_support": 0.4948716593053935,
+            "core_rg2": 0.02982553578971801,
+            "core_centroid_off": 0.0004902027156918581,
+            "core_N": 0.0248034409508584,
+            "core_c": 0.18053247816371212,
+            "core_uptake": 0.00013618384582743352,
+            "collar_mass": 0.0037462058040616296,
+            "collar_N": 0.007863686101084216
+          }
+        },
+        "120": {
+          "k": 120,
+          "mass_OVER": 40.703705614739086,
+          "mass_APPR": 40.870963513161605,
+          "mass_abs_diff": 0.1672578984225197,
+          "panel_abs": {
+            "core_mass": 0.1672578984225197,
+            "core_support": 2,
+            "core_rg2": 0.08743086256827581,
+            "core_centroid_off": 0.012589281011453402,
+            "core_N": 0.5244875335282018,
+            "core_c": 0.22358179826628088,
+            "core_uptake": 0.00036078017070616253,
+            "collar_mass": 0.08673260849892195,
+            "collar_N": 0.1576569570194124
+          },
+          "panel_rel": {
+            "core_mass": 0.004100731273829049,
+            "core_support": 0.008097165991902834,
+            "core_rg2": 0.0029364914842709873,
+            "core_centroid_off": 0.004404652169578798,
+            "core_N": 0.0018514342602884363,
+            "core_c": 0.0017934217848786709,
+            "core_uptake": 0.004908514025426712,
+            "collar_mass": 0.006730753513460204,
+            "collar_N": 0.0013940137262072499
+          },
+          "memory_diff": {
+            "m1_mean": -0.00010246007707750493,
+            "m2_mean": -0.016814845476071566,
+            "mplus_mean": -0.015987129961575697,
+            "mminus_mean": 0.015847529194881776
+          },
+          "deriv_SPIKE_pre": -0.033097805595687646,
+          "deriv_SUSTAINED_pre": -0.033445011232437594,
+          "opposite_direction": false,
+          "stability_mass_absdiff_next": [
+            0.16691588188663076,
+            0.16657909859132758,
+            0.16624766579969474
+          ],
+          "repeatability": {
+            "core_mass": 0.06685699391155196,
+            "core_support": 0.7284313590846836,
+            "core_rg2": 0.027333589534881214,
+            "core_centroid_off": 0.0005511672026706862,
+            "core_N": 0.02632778526620646,
+            "core_c": 0.17681401887595463,
+            "core_uptake": 0.0001366634631100849,
+            "collar_mass": 0.0033954408903486876,
+            "collar_N": 0.00792338101186049
+          }
+        }
+      },
+      "relax_mass_SPIKE": [
+        44.914502307258175,
+        38.7710846864657
+      ],
+      "relax_mass_SUSTAINED": [
+        45.15090967076122,
+        38.923755499188374
+      ]
+    }
+  ]
+}
