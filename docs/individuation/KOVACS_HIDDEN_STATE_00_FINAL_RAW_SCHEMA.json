@@ -1,0 +1,77 @@
+{
+  "schema": "KOVACS-HIDDEN-STATE-00-FINAL-RAW-SCHEMA-v1",
+  "status": "DESIGN ARTIFACT; Phase-1 verdict is SCALAR_ONLY_FEASIBLE -> STOP_PROSPECTIVE, so no prospective run uses this schema. It is the required predeclared raw schema that ANY future (human-authorised) prospective phase would populate, designed to avoid the DOWNSTREAM-ORDER raw-insufficiency problem.",
+  "statistical_unit": "original source world",
+  "firewall": "the excursion_block is populated ONLY in a future human-authorised prospective phase; it is empty in all DEV/Phase-1 records",
+  "per_world_record": {
+    "identity_provenance": {
+      "seed": "int (fresh disjoint namespace for any prospective phase; open DEV 57xxx for feasibility only)",
+      "eligible": "bool", "focal_tracker_id": "int",
+      "checkpoint_bundle_sha256": "str", "schedule_sha256": "str (frozen dose-matched schedule)",
+      "clone_validation": {"byte_identical": "bool", "focal_ids_equal": "bool", "max_abs_field_error": "float (=0)"},
+      "determinism_bitmatch": "bool (independent replay reproduces post-relaxation state hash)"
+    },
+    "scalar_match_block": {
+      "match_variable": "core_mass (frozen core mask)",
+      "matched_total_dose": "float", "common_clock_step": "int",
+      "core_mass_SPIKE": "float", "core_mass_SUSTAINED": "float", "core_mass_abs_diff": "float",
+      "core_mass_tolerance": "float (mechanical: sham/numerical or k*repeatability)",
+      "scalar_matched": "bool = core_mass_abs_diff <= core_mass_tolerance"
+    },
+    "overt_macrostate_panel_block": {
+      "note": "per-variable |SPIKE-SUSTAINED| at the common-clock coincidence, each vs its mechanical tolerance",
+      "core_support": {"abs_diff": "float", "tol": "float", "pass": "bool"},
+      "core_rg2": {"abs_diff": "float", "tol": "float", "pass": "bool"},
+      "core_centroid_off": {"abs_diff": "float", "tol": "float", "pass": "bool"},
+      "core_N": {"abs_diff": "float", "tol": "float", "pass": "bool"},
+      "core_c": {"abs_diff": "float", "tol": "float", "pass": "bool"},
+      "core_uptake": {"abs_diff": "float", "tol": "float", "pass": "bool"},
+      "collar_mass": {"abs_diff": "float", "tol": "float", "pass": "bool"},
+      "collar_N": {"abs_diff": "float", "tol": "float", "pass": "bool"},
+      "full_panel_coincidence": "bool = ALL panel vars pass (else MACROSTATE_MISMATCH)"
+    },
+    "clock_time_block": {
+      "release_step_SPIKE": "int", "release_step_SUSTAINED": "int",
+      "branch_age_SPIKE": "int", "branch_age_SUSTAINED": "int",
+      "clock_time_common": "bool (true by dose-matched common-clock construction)",
+      "relaxation_duration_common": "bool"
+    },
+    "boundary_block": {
+      "boundary_source_sha256": "str (must be identical for both branches)",
+      "up_ref_value": "float", "up_ref_common": "bool",
+      "collar_state_sha256": "str", "boundary_matched": "bool"
+    },
+    "viability_tracker_block": {
+      "deep_material_M": {"SPIKE": "float (<=0.25)", "SUSTAINED": "float"},
+      "focal_bijectively_tracked": {"SPIKE": "bool", "SUSTAINED": "bool"},
+      "max_coverage": {"SPIKE": "float", "SUSTAINED": "float"},
+      "censored": "bool (any viability failure censors the world; never imputed)"
+    },
+    "hidden_residual_diagnostic": {
+      "note": "state-difference at the coincidence (NOT an excursion); characterisation only",
+      "m1_mean_diff": "float", "m2_mean_diff": "float",
+      "mplus_mean_diff": "float", "mminus_mean_diff": "float"
+    },
+    "excursion_block_FUTURE_ONLY": {
+      "note": "EMPTY in Phase-1; populated only by a human-authorised prospective run. Predeclared here so a genuine subsequent divergence is distinguishable from a numerical null.",
+      "Z_ref_traj": "list[float] (direct-relaxation reference, matched coordinate)",
+      "Z_SPIKE_traj": "list[float]", "Z_SUSTAINED_traj": "list[float]",
+      "excursion_area_signed": "float (matched coordinate; one frozen horizon)",
+      "identical_history_sham_area": "float (must be ~0)",
+      "matched_waiting_time_sham_area": "float"
+    },
+    "world_disposition": {
+      "class": "one of {SCALAR_MATCH_FAILED, MACROSTATE_MISMATCH, CLOCK_TIME_MISMATCH, BOUNDARY_MISMATCH, TRACKER_VIABILITY_FAIL, NUMERICAL_NULL, GENUINE_DIVERGENCE(future-only), COINCIDENCE_QUALIFIED}",
+      "reason": "str|null (first failing gate)"
+    }
+  },
+  "distinguishability_guarantee": {
+    "failed_scalar_matching": "scalar_match_block.scalar_matched == false",
+    "overt_macrostate_mismatch": "overt_macrostate_panel_block.full_panel_coincidence == false while scalar_matched == true",
+    "clock_time_mismatch": "clock_time_block.clock_time_common == false",
+    "boundary_mismatch": "boundary_block.boundary_matched == false",
+    "tracker_viability_failure": "viability_tracker_block.censored == true",
+    "numerical_null": "excursion_block.excursion_area_signed ~ 0 AND identical_history_sham_area ~ 0 (future-only)",
+    "genuine_subsequent_divergence": "excursion_area_signed nonzero beyond both shams under a passed full-panel coincidence (future-only)"
+  }
+}
