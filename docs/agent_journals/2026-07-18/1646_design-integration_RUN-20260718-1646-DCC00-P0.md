@@ -6,8 +6,8 @@
 - **End time:** 2026-07-18 18:24:00 +02:00
 - **Starting branch:** `codex/deep-checkpoint-causal-cut-00-phase0`
 - **Starting Git state:** clean at `cce7a27955f5cfb1fc3d95388bba9378bc8d85eb`
-- **Ending Git state:** coherent Phase-0 stop package validated from start HEAD; exact package and journal-closure
-  commits are recorded in the final handoff and branch log
+- **Ending Git state:** scientific package committed at
+  `84ee12a35cd159a83c41748f6360c1c79fd687eb`; this exact journal-state update is the closure-only follow-up commit
 
 ## Assigned scope
 
@@ -158,3 +158,5 @@ the separated pair viable and independently tracked. No such record was found.
 Any checkpoint serialization or local equation-edge operator development is a new separately authorized mission.
 Do not execute this factorial, create a prospective namespace, open `58xxx`, change V5/03G, or reinterpret either
 `STOP_PAIR_MECHANICS` or `STOP-TRANSPLANT`.
+
+Scientific package commit: `84ee12a35cd159a83c41748f6360c1c79fd687eb`.
