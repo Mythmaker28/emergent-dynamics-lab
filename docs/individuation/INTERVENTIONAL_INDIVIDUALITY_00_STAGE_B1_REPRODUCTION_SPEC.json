@@ -1,0 +1,120 @@
+{
+  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B1-REPRODUCTION-SPEC-v1",
+  "purpose": "complete engine-free algorithm contract for an independently implemented raw-only reproducer",
+  "allowed_runtime_inputs": [
+    "committed Stage-B1 manifest",
+    "raw schema",
+    "shard_manifest.json identity, status and physics.npz integrity fields",
+    "physics.npz"
+  ],
+  "forbidden_runtime_inputs": [
+    "engine.py",
+    "instrumentation.py",
+    "stage_b.py",
+    "online.json",
+    "classification.json",
+    "root_manifest.json",
+    "Stage-B report",
+    "selected-world list"
+  ],
+  "detector": {
+    "occupancy": "state_m[frame,y,x] >= manifest.detector.matter_threshold",
+    "components": "periodic four-neighbour connected components; discard components with cell count below min_cells",
+    "ordering": "sort components by ascending minimum row-major linear cell index; component index is position after sorting",
+    "winding": "start the minimum-index root at its ordinary integer coordinate, propagate lifted coordinates using each von Neumann step, and mark an axis wrapped if an already lifted neighbour receives a different proposed lift on that axis",
+    "mass": "math.fsum matter values in sorted row-major component cells",
+    "centroid": "matter-weighted mean of lifted cell coordinates modulo shape; fallback unweighted mean only if mass is zero",
+    "radius_gyration": "sqrt(sum(m_i*||lift_i-centroid_lift||^2)/mass)",
+    "percolates": "wraps_y OR wraps_x"
+  },
+  "association": {
+    "raw_iou": "count(A intersect B)/count(A union B)",
+    "dilation": "repeat radius times: frontier=roll(frontier,+1/-1 on each axis) ORed together; result accumulates every frontier",
+    "dilated_iou": "IoU of the two dilated masks",
+    "centroid_distance": "Euclidean distance using independently minimum periodic displacement on y and x",
+    "area_ratio": "max(area_A,area_B)/min(area_A,area_B)",
+    "score": "4*raw_iou + 2*dilated_iou + exp(-centroid_distance/max_centroid_displacement) + min(area_A,area_B)/max(area_A,area_B)",
+    "qualification_priority": [
+      "reject if area_ratio > max_area_ratio",
+      "else reject if centroid_distance > max_centroid_displacement",
+      "else reject if raw overlap is zero and dilated_iou is zero",
+      "else qualify"
+    ],
+    "selection": [
+      "select every qualified raw-overlap edge",
+      "remove every candidate whose source or target is incident to a selected raw-overlap edge",
+      "sort remaining candidates per source by descending score then target key, and per target by descending score then source key",
+      "a top score is unique only when it is the sole candidate or exceeds the second score by strictly more than unique_score_margin",
+      "select an edge only when it is the unique top choice of both endpoints",
+      "a remaining qualified edge is ambiguity-bearing only when neither endpoint is incident to any finally selected edge"
+    ]
+  },
+  "tracker": {
+    "input_frames": "state frames 0 through horizon_steps-1 inclusive",
+    "initial_tracks": "one track per frame-0 component in detector order; monotonically increasing integer IDs beginning at zero",
+    "transition_graph": "selected edges union ambiguity-bearing edges; process connected bipartite groups in source detector order and sorted target-key order",
+    "detector_collapse": "a middle node with at least two selected incoming sources and two selected outgoing targets marks both adjacent groups ambiguity-bearing",
+    "resolved_cases": {
+      "one_to_one": "append target point to source track",
+      "one_to_many": "end parent and create one new child track per sorted target",
+      "many_to_one": "end parents and create one new merged track",
+      "other_or_ambiguous": "create one unresolved track per sorted target, mark every source track unresolved and emit TRACKING_UNRESOLVED"
+    },
+    "unsupported_nodes": "a source with no selected/ambiguous edge dissolves; a target with no selected/ambiguous edge appears as a new track",
+    "temporary_contact": "after a transition, each pair of still-distinct resolved target components whose minimum periodic cell-to-cell Manhattan distance is exactly two emits an annotation only; ancestry is unchanged",
+    "world_unresolved": "any unresolved track or unresolved event"
+  },
+  "passive_cohort": {
+    "enrollment": "for each track independently at its first point, q=m on that detected support and q=0 elsewhere",
+    "source_fraction": "q/m where m>0, else zero",
+    "face_flux_axis": "matter_forward_axis * fraction_here - matter_reverse_axis * roll(fraction,-1,axis)",
+    "divergence": "J0-roll(J0,1,axis0) + J1-roll(J1,1,axis1)",
+    "update": "q_next=q-dt*divergence",
+    "required_checks": "finite float64 common shapes, finite nonnegative gross flows, pre/post matter equals pre-dt*div(matter_forward-matter_reverse), q in [0,m], and global q conservation at 1e-12+1e-10 scale",
+    "turnover_at_track_point": "1 - math.fsum(q on current detected support)/initial_cohort_mass; only operation-tolerance excursions may be clipped to [0,1]"
+  },
+  "track_observation": {
+    "area_fraction": "component area/(Y*X)",
+    "percolated": "detector percolates",
+    "activity_per_mass": "math.fsum(dt*(matter_forward+matter_reverse) on faces with both endpoints in the support)/(dt*component_mass)",
+    "energy_throughput_per_mass": "math.fsum(gross_formation_work+gross_rupture_release on faces with both endpoints in the support)/(dt*component_mass)",
+    "turnover_fraction": "passive-cohort turnover",
+    "boundary crossing and support relabelling": "logged diagnostics only; never internal activity or candidate input"
+  },
+  "track_metrics": {
+    "integrity": "one observation for every track point and no duplicate/orphan; finite ranges; area/percolation exact detector match; any integrity failure makes track and world unresolved",
+    "observed_frames": "valid observation count",
+    "span_frames": "maximum point frame minus minimum point frame plus one",
+    "maximum_area_fraction": "maximum across valid observations",
+    "bounded_fraction": "fraction nonpercolated with area_fraction <= max_area_fraction",
+    "percolated_fraction": "fraction percolated",
+    "mean_activity_per_mass": "math.fsum activity divided by observed count",
+    "mean_energy_throughput_per_mass": "math.fsum energy divided by observed count",
+    "maximum_turnover_fraction": "maximum turnover",
+    "post_turnover_frames": "count of valid observations whose frame is strictly greater than the first frame with turnover >= min_turnover_fraction"
+  },
+  "classifier_precedence": [
+    "TRACKING_UNRESOLVED if any world/track unresolved",
+    "ACTIVE_UNBOUNDED if a percolated track meets both activity and energy minima",
+    "PERCOLATED if any track ever percolates",
+    "EMPTY_OR_GAS if no component was ever detected",
+    "DISSOLVED if the final sampled frame has zero components",
+    "BOUNDED_ACTIVE_TURNOVER_CANDIDATE if any persistent track passes every area, boundedness, nonpercolation, activity, energy, turnover, post-turnover and resolution gate",
+    "PERSISTENT_NO_TURNOVER if a persistent track meets activity and energy minima but no persistent track reaches turnover minimum",
+    "STATIC_CRYSTAL_OR_SHELL if any persistent track remains",
+    "TURNOVER_WITHOUT_PERSISTENCE if a nonpersistent track reaches turnover minimum",
+    "DISSOLVED fallback"
+  ],
+  "family_aggregation": {
+    "world_order": "lexicographic world_id",
+    "atlas": "for each law in manifest order and each IC in manifest order, count every one of the nine regimes among COMPLETE worlds and preserve the enrolled denominator",
+    "candidate_region": "an exact law_id is reproducible only when every enrolled world is COMPLETE and candidate count is at least manifest.region_rule.minimum_candidate_worlds_per_ic separately in both IC classes",
+    "disposition_precedence": [
+      "MANIPULATION_OR_NUMERICAL_INVALID if any NUMERICAL_INVALID shard",
+      "REVISE_INSTRUMENTATION if any other non-COMPLETE shard",
+      "DEV_REGIME_CANDIDATE if any candidate region",
+      "DEV_FEASIBILITY_FAIL otherwise"
+    ]
+  },
+  "output": "serialize the exact classification schema with canonical JSON twice in clean processes; bytes and SHA-256 must match each other and production classification"
+}

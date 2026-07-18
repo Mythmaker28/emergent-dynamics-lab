@@ -323,3 +323,76 @@ The earlier interim `REVISE_INSTRUMENTATION` is superseded by the reviewed repai
 **`PASS_B0_FOR_MANIFEST_FREEZE`**
 
 This is not a Stage-B scientific disposition and does not by itself authorize DEV initialization. It authorizes only completion and independent review of one exact B1 manifest. No world may start until that manifest is committed, hash-bound, extension-free, and explicitly accepted against KS-B1-01 through KS-B1-06.
+
+## B1 pre-manifest runner audit
+
+After the B0 checkpoint `93f4a42d8972d2d4b9f8da6f1dc3c8161dc3c045` was committed and pushed, the primary agent requested a static audit of the draft runner, runner tests, raw schema and exact source-allowlist change. I inspected only those named files. I did not call `build_initial_state`, `run_world`, `run_family`, or any DEV initializer.
+
+### Positive static observations
+
+- World enumeration is deterministic, explicit and Cartesian over laws, both IC classes and fixed replicate indices; world IDs include all three coordinates.
+- The initializer uses a stateless SHA-256 coordinate map rather than mutable RNG state and contains no organism template, genome, fitness, adaptive search, cut, intervention, memory writer or visual input.
+- Each physical step is replayed from the same state, compared byte-for-byte, and compared to the scalar reference backend. Neutral intervention scales and all missing-flux/controller-onset fields are checked.
+- Physics raw includes all `H+1` states, all `H` complete `StepLedger` records, reference errors and replay flags. That is sufficient in principle for an engine-free detector/tracker/tracer/classifier reproduction.
+- Track observations derive activity from internal matter transport and energy throughput from internal bond formation/rupture work; boundary crossing is not used as internal activity.
+- The online classifier operates on original-world rows, and a law region needs the frozen minimum in each of the two IC classes.
+- A pre-existing final or partial family root is refused and no enrolled failure is replaced.
+
+### Binding defects reported before checkpoint
+
+1. **Optional/incomplete manifest seal.** `manifest_sha256_excluding_field` was accepted when missing or empty. The validator did not require a closed required source-hash set, canonical file bytes, repository path confinement, exact environment binding, positive integer horizon/shape/replicates, valid IC ranges, region minimum, finite LawSpecs or complete detector/tracker/classifier validation.
+2. **Physical invalidity could be reclassified as instrumentation.** `result.state.validate(spec)` could raise outside the `NumericalInvalid` type and be caught by the broad world exception as `INSTRUMENTATION_INVALID`. Nonfinite ledger/reference fields could also evade `>` comparisons because NaN comparisons are false.
+3. **Atomicity claim exceeded implementation.** The schema promised fsync/close/verification before rename, but JSON/NPZ writers closed and hashed without an explicit file fsync or a documented Windows directory-durability boundary.
+4. **Root/raw completion underbound.** A complete shard manifest lacked the promised row counts. The root manifest bound only the classification file, not enrollment nor the exact list/hash/size/status of every enrolled shard manifest, raw schema and runtime manifest.
+5. **Failure-family schema contradiction.** The raw schema defined completion as every shard status `COMPLETE`, while the runner intentionally publishes terminal `NUMERICAL_INVALID` or `INSTRUMENTATION_INVALID` shards to support the two fail dispositions.
+6. **Family row validation absent.** `classify_family` assumed exact unique enrolled rows and known statuses/regimes. A duplicate, extra, missing or inconsistent candidate/status row could affect denominators or hide a failure if supplied by reconstruction.
+7. **Qualification gaps.** The eight draft runner utility tests did not exercise fail-closed manifest validation, nonfinite/reference escalation, exact row identity, duplicate/extra rejection, root/shard binding or atomic/no-retry helpers.
+
+Interim B1 runner disposition: **REVISE STATIC RUNNER — NO MANIFEST SEAL — NO DEV INITIALIZATION**.
+
+## B1 repaired-runner re-audit
+
+The primary agent repaired the first seven static-runner defects. I re-read the repaired `stage_b.py`, runner tests, raw schema, and source allowlist. I still did not call `build_initial_state`, `run_world`, `run_family`, or initialize a DEV world.
+
+Focused static qualification on the repaired draft used the accepted parent environment:
+
+```text
+C:\Users\tommy\Documents\ising v3\.venv\Scripts\python.exe -m py_compile edlab/substrates/lattice_bond/stage_b.py tests/test_lattice_bond_stage_b.py
+C:\Users\tommy\Documents\ising v3\.venv\Scripts\python.exe -m pytest -q tests/test_lattice_bond.py tests/test_lattice_bond_instrumentation.py tests/test_lattice_bond_stage_b.py
+```
+
+Result: `py_compile` passed and **70 passed in 0.41s**.
+
+### Repaired obligations now closed
+
+- The canonical manifest seal is mandatory and validated before source access.
+- The source-hash keyset is exact and repository-confined; environment binding is exact.
+- Structural values now receive substantially stronger finite/range/type validation.
+- Nonfinite runtime states, ledgers, and scalar/vector comparisons fail closed.
+- Physical invariant failures inside an update escalate as `NumericalInvalid`.
+- JSON and NPZ files are flushed before rename; the Windows directory-fsync limitation is stated precisely.
+- Terminal publication completion is distinct from scientific eligibility.
+- Enrollment, classification, raw-schema hash, and every shard-manifest hash/size/status are bound by the root manifest.
+- Family row validation rejects duplicates, omissions, extras, coordinate relabelling, unknown statuses/classes, malformed candidate IDs, and failed-world reclassification.
+
+### Three remaining binding counterexamples
+
+1. **The root verifier can bless a malformed complete shard.** I constructed all 12 expected synthetic shard directories with canonical shard manifests but deliberately used schema `WRONG`, a `physics.npz` containing the literal bytes `not-an-npz`, an invented object-typed `physics_inventory`, and `row_counts={"state_rows":-1}`. `_verify_partial_root` accepted all 12. It checks file hashes and the presence of a row-count object, but it does not validate the exact shard schema, reopen the NPZ with `allow_pickle=False`, recompute/compare the promised inventory, enforce the frozen array names/shapes/dtypes/horizon/lattice shape/finiteness, parse and exact-check `online.json`, or recompute the measurement counts. A bad writer implementation could therefore produce a root package that claims the raw-schema obligations while binding internally consistent hashes to structurally invalid evidence. The verifier must perform these checks before the family-root rename. Failed shards should likewise exact-check their schema and failure record status/identity.
+
+2. **Initializer and law/IC admissibility are not frozen strongly enough.** `validate_manifest_structure` accepted the structural test manifest with the entire `initializer` object absent. It also accepted a law with `m_max=0.3`, `n_max=0.5` while the enrolled soup/compact IC ranges reach `m=0.6/0.9` and `n=0.9`. Thus an enrolled initial state can violate the exact law's admissible domain. `build_initial_state` validates the state before `run_world` enters its numerical-error `try`; the resulting `AdmissibilityError` is caught by the family-wide broad exception and mislabeled `INSTRUMENTATION_INVALID` rather than `MANIPULATION_OR_NUMERICAL_INVALID`. Require and freeze the exact fresh initializer namespace; validate every IC envelope against every enrolled law's `m_max/n_max`; bind the exact law-family sampling rule and ranges in the eventual manifest; and convert any residual initializer admissibility failure to `NumericalInvalid`.
+
+3. **The scalar-reference audit ignores the physical clock.** I took one hand-built 2x2 synthetic step result, changed only the reference result state's `step` by `+7`, and `_reference_error` returned `0.0`. Arrays and the complete ledger are checked, but `state.step` is not. The frozen update includes the clock, and raw `state_step` is a required field, so the reference comparison must require exact step equality.
+
+These are source-structural defects, not preferred-sign or scientific-result findings. The exact counterexample outputs were:
+
+```text
+malformed_shards_accepted=12
+incompatible_ic_manifest_accepted=True initializer_present=False
+wrong_reference_step_error=0.0
+```
+
+### Re-audit disposition
+
+**REVISE STATIC RUNNER — NO MANIFEST SEAL — NO DEV INITIALIZATION.**
+
+The three defects are repairable. After repair, the exact final source hashes, source allowlist, raw reproducer and manifest must be re-audited before the first DEV world. The passing 70-test suite does not supersede the explicit counterexamples.
