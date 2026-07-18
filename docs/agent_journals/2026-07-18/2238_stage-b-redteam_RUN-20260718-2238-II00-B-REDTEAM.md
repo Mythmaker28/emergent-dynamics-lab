@@ -512,3 +512,35 @@ No blocking source or parity defect remains at `e63f8556b691f1fe20caf4d1e417bc6e
 **AUTHORIZED: CONSTRUCT ONE FINAL HASH-BOUND B1 MANIFEST FOR INDEPENDENT REVIEW.**
 
 This authorization is limited to manifest construction. It does not authorize opening the result namespace or initializing a DEV world. I must inspect the exact committed manifest and its no-existing-namespace preflight before any such execution.
+
+## First exact B1 manifest audit
+
+The primary agent committed and pushed one canonical manifest at `6734910e7af43164116b18b6fde2121910254fd9` and explicitly authorized my inspection. I opened only that manifest and its exact allowed contracts/sources. I did not initialize a world, execute the runner, open a result shard, or inspect an outcome.
+
+The first sealed manifest passed the following checks:
+
+- complete file SHA-256 `55ff34ba4de1415c98c9b63d59b201cb566486df2f91a4f098527804eb31ee30`, strict finite canonical JSON, and excluding-field seal `6d65fd1d1b5ea2838081add7df163554ec72b99a3cee961e896dfc6f301de579` all matched;
+- all eleven closed source-hash entries matched the exact committed bytes, including the B0 qualification, source allowlist, raw/reproduction contracts, frozen engine, runner, independent reproducer, and three focused test files;
+- both producer and independent manifest loaders accepted exactly 64 worlds, from `L000__soup__r00` through `L007__compact__r03`;
+- the law family is the exact eight-point Cartesian product of the declared two-level `kappa_m`, resource-diffusivity and `k_on` factors, with the full fixed LawSpec complement and deterministic ordering;
+- the soup and generic compact IC parameter envelopes are fully specified, neutral, and bounded by every law's `m_max=n_max=1`; the fresh SHA-256 coordinate initializer and namespace are exact;
+- horizon 160, cadence 1, 12x12 shape, four original worlds per law/IC, detector/tracker/classifier thresholds, two-per-IC law-local candidate rule, and `NO_EXTENSION_NO_REPLACEMENT_NO_RETRY` are frozen;
+- the exact runtime environment matched the executing Python, NumPy, platform and byte order;
+- no law, IC, detector, tracker or classifier extension appeared after static checkpoint `e63f8556b691f1fe20caf4d1e417bc6e94daecf3`;
+- both `results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-DEV` and its `.partial` sibling were absent;
+- the focused source-only suite remained **88 passed in 0.59s**;
+- the family requires 10,240 logical updates and 30,720 audited engine updates at 12x12. The physics NPZ arrays have an uncompressed upper accounting size of 767,977,984 bytes for all 64 worlds before ZIP compression; 124,948,013,056 bytes were free on the target volume. Static cost and storage are therefore feasible.
+
+### KS-B1-01 blocker in the hash-bound invocation contract
+
+The first manifest is **not executable-authorized** because its hash-bound source allowlist freezes only this independent-reproduction command:
+
+```text
+python -m edlab.substrates.lattice_bond.stage_b_reproduce --result-root results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-DEV
+```
+
+That command cannot run: the committed parser also requires `--manifest`, `--manifest-sha256`, and `--output`. No authorized durable independent-output path is declared. KS-B1-01 explicitly requires the complete raw-only reproduction command before execution, so the otherwise valid first manifest remains held.
+
+I recommended a non-self-referential, outcome-free repair with no scientific-code change: predeclare a sibling external manifest-digest file, two distinct durable reproduction-output paths, and two complete commands in the source allowlist; update the manifest's allowlist hash and seal; only after those manifest bytes are final, commit the lowercase full digest in the predeclared external file. The external digest is necessary because embedding the full manifest hash inside an artifact hashed by that same manifest would be circular. A final pushed Git checkpoint plus independent equality check can bind that second-order seal.
+
+Interim disposition: **BLOCK KS-B1-01 — NO DEV INVOCATION.**
