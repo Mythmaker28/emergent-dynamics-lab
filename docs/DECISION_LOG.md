@@ -2585,3 +2585,27 @@ and the four exact history arms have not been executed even mechanically.
 pair feeding contrast. The exact next authorized action, only after human review, is one DEV-only outcome-blind
 mechanical qualification on already-open 500xx worlds. Fewer than 18 whole valid original worlds at a future
 separately frozen hard cap is feasibility failure/question unanswered, not a negative scientific result.
+
+## D-092 — DIRECTED-CAUSAL-PAIR-00 Phase 0.5 stops on frozen viability/tracker gates
+
+**Date:** 2026-07-18
+
+**Decision:** Accept **STOP_PAIR_MECHANICS**, not GO or REVISE, after executing the exact outcome-blind DEV plan
+`{50002,50004,50005,50007}` against code commit `3a86ebb15f857f0e9340aeaaba8a8d8cd7776bfb`. The ordered raw prefix,
+manifest/plan bindings, closed schema, and outcome firewall reproduce engine-free, but zero of four original worlds
+reaches the common deep-turnover step or any access-regime branch.
+
+**Failure decision:** the frozen `TARGET_OR_SENTINEL_BELOW_MIN_SIZE` gate fires during the writer interval in all
+four worlds. World 50005 additionally records unavailable pair geometry, a non-live target/sentinel, and
+`TRACKER_SPLIT_T1`. The recorded pair portions retain distance at least 24 and zero radius-12 halo overlap, but these
+passes cannot override conjunctive target/tracker viability. No threshold is lowered and no alternate pair or world
+is substituted.
+
+**Scientific boundary:** this is a mechanical feasibility stop and leaves the directed-individuality question
+unanswered. Pair feeding Y, directed effects C, and interactions I were neither computed nor inspected. No
+scientific null or alternative is accepted from these DEV mechanics.
+
+**Execution boundary:** no unsealed human-seal package, prospective namespace/family/seed, platform, hard cap,
+margin, alpha, or authorization is created. V5, 03G, and all `58xxx` artefacts remain untouched. Human review of the
+stop record is the only next authorized action; any changed gate, target definition, writer interval, pair, or DEV
+plan requires a separately authorized new design.

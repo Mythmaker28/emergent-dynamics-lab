@@ -1,5 +1,23 @@
 # Project State
 
+## BRANCH ADDENDUM — DIRECTED-CAUSAL-PAIR-00 PHASE 0.5 (2026-07-18)
+
+The recovered Phase-0.5 implementation was checkpointed before edits, independently hardened, bound to exact code
+commit `3a86ebb15f857f0e9340aeaaba8a8d8cd7776bfb`, and executed outcome-blindly in the frozen order
+`50002,50004,50005,50007`. The raw ordered prefix is complete and the engine-free reproducer is byte-deterministic,
+but all four original worlds fail the predeclared mechanical gates before a common deep-turnover step. Every world
+crosses `TARGET_OR_SENTINEL_BELOW_MIN_SIZE` during the writer interval; world 50005 additionally loses pair geometry
+with `TRACKER_SPLIT_T1`. No access regime is reached.
+
+Disposition: **STOP_PAIR_MECHANICS — NO PROSPECTIVE AUTHORIZATION**. This is a mechanical feasibility stop, not a
+negative result about directed causal individuality. Pair feeding Y/C/I was neither computed nor inspected, no gate
+or threshold was changed, no pair was substituted, and no human-seal package was created. V5, 03G, every `58xxx`
+artefact, and every prospective namespace remain untouched.
+
+Exact next authorized action: human review of
+`docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE05_REPORT.md` only. Any altered gate, target definition, writer
+interval, pair, or DEV plan is a separately authorized new design, not a continuation of frozen Phase 0.5.
+
 ## BRANCH ADDENDUM — DIRECTED-CAUSAL-PAIR-00 PHASE 0 (2026-07-18)
 
 On isolated branch `codex/directed-causal-pair-00-phase0` from exact accepted parent

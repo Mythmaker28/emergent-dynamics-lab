@@ -3,10 +3,11 @@
 - **Role:** primary recovery integrator
 - **Run ID:** `RUN-20260718-1431-DCP00-P05-RECOVER`
 - **Start time:** 2026-07-18 14:31:01 +02:00
-- **End time:** IN PROGRESS
+- **End time:** 2026-07-18 16:00 +02:00
 - **Starting branch:** `codex/directed-causal-pair-00-phase05`
 - **Starting Git state:** `898b4595dec15e7d5277058d41697a618405bb99` (clean after recovery checkpoint)
-- **Ending Git state:** IN PROGRESS
+- **Ending Git state:** coherent final Phase-0.5 deliverable tree on `codex/directed-causal-pair-00-phase05`; exact
+  final commit and remote status are reported in the terminal handoff because a commit cannot contain its own hash
 
 ## Assigned scope
 
@@ -21,8 +22,12 @@ The inherited worktree was inspected before edits. It was on the expected branch
 - Read the repository operating contract and all mandated state, decision, experiment, run, journal, manifest, summary, Phase-0 report, preregistration draft, feasibility, and raw-schema sources.
 - Inspected branch, HEAD, status, diffs, hashes, and recent commits without reset, clean, stash, restore, checkout-over, or discard operations.
 - Ran read-only syntax/diff checks and the inherited 36-test synthetic suite before checkpointing.
-- Created three bounded audit tracks for executor/mechanics, preflight/package, and engine-free reproduction; each audit is required to leave its own journal.
-- No DEV world, prospective namespace, or prospective seed has been opened at this point.
+- Created three bounded audit tracks for executor/mechanics, preflight/package, and engine-free reproduction; each
+  audit left its own journal.
+- Created two independent post-run audit tracks and one isolated engine-free reproduction track; all left unique
+  journals and independently converged on `STOP_PAIR_MECHANICS`.
+- Executed only the fixed already-open DEV worlds `50002`, `50004`, `50005`, and `50007`, in that order, from an
+  exact clean code binding. No prospective namespace or seed was opened.
 
 ## Pre-execution integration addendum — 2026-07-18 15:24 CEST
 
@@ -83,17 +88,80 @@ world was initialized and the raw directory remained absent. The exact rejected 
 already-verified repository root to `sys.path` only inside the isolated executor-import context and restores the
 previous path afterward; another code commit and manifest rebind are required.
 
+## Post-execution closeout addendum — 2026-07-18 16:00 CEST
+
+The canonical manifest bound exact code commit `3a86ebb15f857f0e9340aeaaba8a8d8cd7776bfb`, passed preflight with
+SHA-256 `ed29675de3b90ca7570bf09a2b9f75fe2ccf070f23f09728408b8aeb2eb5367f`, and wrote only the fixed raw directory.
+The runner attempted the four worlds exactly once in the frozen order and atomically published `COMPLETE.json` last.
+
+All four worlds failed frozen mechanics before the common deep step:
+
+- 50002: writer step 61, `TARGET_OR_SENTINEL_BELOW_MIN_SIZE`;
+- 50004: writer step 58, `TARGET_OR_SENTINEL_BELOW_MIN_SIZE`;
+- 50005: writer step 110, `PAIR_GEOMETRY_UNAVAILABLE`, `TARGET_OR_SENTINEL_BELOW_MIN_SIZE`,
+  `TARGET_OR_SENTINEL_NOT_ALIVE`, and `TRACKER_SPLIT_T1`;
+- 50007: writer step 40, `TARGET_OR_SENTINEL_BELOW_MIN_SIZE`.
+
+The observed prefixes retain distance above 24 and zero radius-12 halo overlap, but target/tracker viability is
+conjunctive. Each world has all four history-arm records and zero access regimes; no arm reached a common H00 deep
+step. The index is a complete 4/4 execution prefix while `COMPLETE.json` correctly declares
+`all_worlds_mechanically_complete=false`.
+
+The engine-free reproducer was run twice under isolated Python against exactly the four shards and final schema.
+Both runs exited zero and wrote byte-identical 4,524-byte results with SHA-256
+`8547706b86002dbaef0b02ecbd734a6a2f89777453f409988e0cd2fed2fda17a`. Both derive
+`ordered_prefix_complete=true`, `mechanical_firewall_pass=true`, `all_worlds_mechanically_complete=false`, and
+`reproduction_status=INCOMPLETE_OR_FAILED`. Independent post-run audits verified compressed and canonical hashes,
+predecessor chain, schema, assignments, earliest failures, and absence of engine imports during reproduction.
+
+Final disposition: **STOP_PAIR_MECHANICS — 0/4 MECHANICALLY COMPLETE — NO PROSPECTIVE AUTHORIZATION**. This is a
+mechanical feasibility failure and leaves the scientific question unanswered. No unsealed seal-review package was
+created because mechanical qualification is a prerequisite.
+
 ## Important files read or changed
 
 - `docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE0_REPORT.md`
 - `docs/individuation/DIRECTED_CAUSAL_PAIR_00_PREREGISTRATION_DRAFT.md`
 - `docs/individuation/DIRECTED_CAUSAL_PAIR_00_FINAL_RAW_SCHEMA.json`
+- `docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE05_DEV_MANIFEST.json`
+- `docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE05_RAW/`
+- `docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE05_REPRODUCTION.json`
+- `docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE05_REPRODUCTION_REPEAT.json`
+- `docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE05_REPORT.md`
 - `experiments/individuation/directed_causal_pair_phase05_{runner,executor,mechanics,reproduce}.py`
 - `experiments/individuation/test_directed_causal_pair_phase05_mechanics.py`
 
 ## Reproducible commands and experiments
 
-Commands, final hashes, exact test results, and any DEV execution will be recorded before close. The recovery checkpoint is independently reproducible as Git commit `898b4595dec15e7d5277058d41697a618405bb99`.
+The recovery checkpoint is independently reproducible as Git commit
+`898b4595dec15e7d5277058d41697a618405bb99`. Implementation checkpoints are
+`944eb9c75d905c686a31384825fe515de3269e57`, `66a7283dac932525d14f86054647c562adf9649a`, and exact executed code
+`3a86ebb15f857f0e9340aeaaba8a8d8cd7776bfb`.
+
+```powershell
+$env:PYTHONDONTWRITEBYTECODE='1'
+& 'C:\Users\tommy\Documents\ising v3\.venv\Scripts\python.exe' `
+  experiments/individuation/directed_causal_pair_phase05_runner.py `
+  --manifest docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE05_DEV_MANIFEST.json
+# Four fixed worlds attempted; COMPLETE record published last.
+
+& 'C:\Users\tommy\Documents\ising v3\.venv\Scripts\python.exe' -m pytest -q -p no:cacheprovider `
+  experiments/individuation/test_directed_causal_pair_phase05_mechanics.py `
+  experiments/individuation/test_directed_causal_pair_phase05_reproduce.py `
+  experiments/individuation/test_directed_causal_pair_phase0.py `
+  experiments/individuation/test_access_structure_operators.py `
+  experiments/individuation/test_access_structure_noswap_operators.py `
+  experiments/individuation/test_turnover_tracer.py
+# 102 passed in 103.03s
+
+& 'C:\Users\tommy\Documents\ising v3\.venv\Scripts\python.exe' `
+  experiments/individuation/test_bijective_tracker.py
+# 10/10 checks PASS
+```
+
+The exact isolated reproducer commands and their zero exits are recorded in
+`1543_raw-reproduction_RUN-20260718-1543-DCP05-RAW-REPRO.md`. Final `git diff --check`, Python AST parsing, JSON
+loads, manifest/raw hash reconciliation, byte comparison, and forbidden namespace/path audit passed.
 
 ## OBSERVED
 
@@ -101,34 +169,60 @@ Commands, final hashes, exact test results, and any DEV execution will be record
 - The inherited executor called the scaffold detector, which computes specific uptake, despite the Phase-0.5 prohibition on computing or inspecting pair-feeding outcomes.
 - H00 no-swap reference selection was not role-matched, component-switch coverage omitted sentinel transitions, and the engine-free reproducer used joint-row order where assignment order was persisted.
 - The preflight did not bind the complete local import closure or require an exact clean code checkout.
+- The exact four-world raw prefix is complete and cryptographically consistent, but 0/4 worlds pass the mechanical
+  viability/tracker union.
+- All H00 reference arms fail before a common deep step; no access regime or pair feeding endpoint is reached.
+- Two isolated engine-free reproductions are byte-identical and independently derive the same failure disposition.
 
 ## INFERRED
 
-These are mechanical implementation defects that can be repaired and tested without inspecting Y/C/I outcomes or advancing any world. They do not justify relaxing thresholds, changing the frozen world plan, or opening a prospective namespace.
+The pre-execution defects were narrow implementation issues that were repaired without advancing a world. The final
+DEV failures are different: exact raw and independent reproduction show that the fixed natural targets do not
+satisfy the frozen writer-stage viability/tracker gates. This does not establish a scientific null; it closes only
+the current mechanical path.
 
 ## HYPOTHESIS
 
-After narrow repairs, all four already-open DEV worlds can be executed outcome-blindly and their mechanical qualification can be reproduced from raw shards with a standard-library-only program.
+After narrow repairs, all four already-open DEV worlds can be executed outcome-blindly and their mechanical
+qualification can be reproduced from raw shards with a standard-library-only program. The execution and
+reproduction parts passed; the hypothesis that they would mechanically qualify was falsified in all four worlds.
 
 ## WHAT WOULD FALSIFY THIS?
 
-Any preflight binding failure, clone/sham/tracker/fusion/separation/viability failure, non-deterministic raw reproduction, forbidden outcome field or analyzer import, incomplete world prefix, or inability to reproduce the declared mechanical result from the exact shards falsifies mechanical qualification.
+The frozen minimum-size gate fired in every world and a tracker split fired in 50005. Those observations satisfy the
+predeclared falsifier even though the raw prefix, firewall, geometry-before-failure, and deterministic reproduction
+all pass.
 
 ## Failures and dead ends
 
-None final yet. All discovered implementation defects are being repaired before any DEV execution.
+- Rejected manifest `944eb9c`: conservative namespace false positive inside an opaque hash; stopped before engine
+  import and preserved exactly.
+- Rejected manifest `66a7283`: file-style package import path failure; stopped before engine module import/world
+  initialization and preserved exactly.
+- Final DEV execution: 0/4 mechanically complete under frozen gates. This is not repaired or retuned.
+- Earlier incorrect test filenames and pytest collection of the standalone tracker are preserved in the
+  pre-execution addendum; corrected commands passed.
 
 ## Decisions
 
 - Preserve the inherited implementation in a standalone checkpoint and continue it rather than recreate it.
 - Fail closed: no prospective identifiers, seeds, or scientific Y/C/I computation will be introduced during Phase 0.5.
+- Accept `STOP_PAIR_MECHANICS`, not `REVISE` or `GO_FOR_HUMAN_SEAL_REVIEW`, because independent raw validation shows
+  a frozen mechanical failure rather than a packaging/reproducer defect.
+- Do not create the conditional unsealed human-seal package; mechanical qualification was not achieved.
+- Do not lower the minimum-size threshold, replace the pair/world, or reinterpret the complete execution prefix as a
+  mechanical pass.
 
 ## Unresolved risks
 
-- Audit repairs and complete synthetic validation remain pending.
-- The four DEV mechanical runs and engine-free raw reproduction have not yet occurred.
-- Final disposition, documentation indices, commit set, and remote push remain pending.
+- Human review may challenge the stop record, but no further execution is authorized by this run.
+- Any changed gate, target definition, writer interval, pair, or DEV plan is a new design requiring separate explicit
+  authorization.
+- The final commit and remote push are the remaining repository handoff operations and are reported outside this
+  self-referential journal entry.
 
 ## Handoff
 
-IN PROGRESS. Exact next authorized action: complete and validate the narrow mechanical/firewall repairs, commit the exact clean code binding, then create and preflight the fixed DEV manifest before advancing any frozen world.
+**STOP_PAIR_MECHANICS.** Exact next authorized action: human review of
+`docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE05_REPORT.md` only. No prospective execution, human seal, threshold
+change, pair substitution, or continuation of this frozen Phase 0.5 plan is authorized.
