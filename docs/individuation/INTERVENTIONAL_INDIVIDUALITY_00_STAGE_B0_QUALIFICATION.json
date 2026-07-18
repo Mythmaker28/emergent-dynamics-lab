@@ -1,0 +1,45 @@
+{
+  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B0-QUALIFICATION-v1",
+  "mission": "INTERVENTIONAL-INDIVIDUALITY-00",
+  "stage": "B0",
+  "accepted_parent": "b0dbab7674816ebdf3f3f911694b2744ca4bfc76",
+  "disposition": "PASS_B0_FOR_MANIFEST_FREEZE",
+  "scientific_worlds_initialized": 0,
+  "authorizes": [
+    "completion and commit of one exact extension-free Stage-B1 manifest"
+  ],
+  "does_not_authorize": [
+    "DEV initialization before the committed B1 manifest",
+    "a scientific regime outcome",
+    "individuality, autonomy, memory, ownership, reproduction or life claims",
+    "Stage C preparation or execution"
+  ],
+  "reviewed_sha256": {
+    "edlab/substrates/lattice_bond/engine.py": "e027a9c56b773ed077cdfe725951d215b631c54b7080da73e5321ccedb6d9ff6",
+    "tests/test_lattice_bond.py": "75ef218d24a6d7b79df0cd50fba131dc64f741ca4124b5fccdd30324fb366e20",
+    "edlab/substrates/lattice_bond/__init__.py": "245ccce882e669c37782cf930bcfc076ff53daf8575db27246885b5ace0a3e95",
+    "edlab/substrates/lattice_bond/instrumentation.py": "f40c0817acaad99c881e47ca16a7059164735a37ab15f134f11d1d69c6fd6c88",
+    "tests/test_lattice_bond_instrumentation.py": "d0d49e6f88d9b7faa5e4af3da33dd1f4a59d5575dfc97ddaf2e69a7af233c22b",
+    "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B0_MEASUREMENT_SPEC.json": "f6e64cb4f3c3db391f86f465e0b26cfef1d995a9eaf1e1a526f24a70ad9a2591",
+    "docs/agent_journals/2026-07-18/2238_stage-b-redteam_RUN-20260718-2238-II00-B-REDTEAM.md_at_b0_gate": "31b043ea3f1592309437a79b579a2de583d5bfdf8a24f17cb74f05e2a66d019e"
+  },
+  "targeted_validation": {
+    "command": "python -m pytest -q tests/test_lattice_bond.py tests/test_lattice_bond_instrumentation.py",
+    "passed": 56,
+    "failed": 0,
+    "py_compile": "PASS",
+    "diff_check": "PASS",
+    "engine_imports_instrumentation": false,
+    "logged_unlogged_byte_identity": "PASS"
+  },
+  "independent_adversarial_checks": {
+    "periodic_binary_supports": 4096,
+    "topology_covariance": "PASS",
+    "actual_engine_tracer_cases": 3072,
+    "maximum_tracer_domain_or_conservation_residual": 2.220446049250313e-16,
+    "association_order_covariance": "PASS",
+    "all_reported_counterexamples_closed": true
+  },
+  "claim_limit": "Turnover is exact only for the declared well-mixed passive continuum cohort; B0 qualifies passive measurement, not a causally addressable individual.",
+  "next_gate": "Commit and independently audit the complete B1 manifest before the first DEV initializer call."
+}

@@ -1,0 +1,109 @@
+{
+  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B0-MEASUREMENT-SPEC-v1",
+  "accepted_parent": "b0dbab7674816ebdf3f3f911694b2744ca4bfc76",
+  "purpose": "passive measurement qualification before any Stage-B DEV world",
+  "detector": {
+    "input": "instantaneous m only",
+    "occupancy_rule": "m >= matter_threshold",
+    "connectivity": "periodic von Neumann four-neighbour",
+    "component_order": "ascending minimum row-major cell index",
+    "periodic_winding": "lifted-coordinate inconsistency on a closed component path",
+    "explicitly_excluded_inputs": [
+      "b",
+      "n",
+      "passive tracer",
+      "tracker history",
+      "activity",
+      "energy throughput",
+      "regime outcome",
+      "intervention response"
+    ]
+  },
+  "tracker": {
+    "inputs": ["component cell support", "area", "mass", "periodic centroid"],
+    "candidate_terms": ["raw IoU", "one-cell dilated IoU", "periodic centroid distance", "area similarity"],
+    "raw_overlap_edges_are_preserved": true,
+    "nonoverlap_edge_rule": "unique mutual best among qualified geometry edges",
+    "qualified_tie_rule": "any qualified unselected ambiguity component is TRACKING_UNRESOLVED, never resolved dissolution plus appearance",
+    "lifecycle_events": [
+      "APPEARANCE",
+      "CONTINUATION",
+      "SPLIT",
+      "MERGE",
+      "TEMPORARY_CONTACT",
+      "DISSOLUTION",
+      "TRACKING_UNRESOLVED"
+    ],
+    "many_to_many_rule": "never force a match; mark unresolved",
+    "temporary_contact_rule": "a same-frame pair of still-distinct components at periodic Manhattan support distance two is logged as contact without merging identities; any detector-level many-to-one-to-many collapse is TRACKING_UNRESOLVED and is never bridged retrospectively",
+    "explicitly_excluded_inputs": [
+      "passive tracer",
+      "bond state or conductance",
+      "activity or energy diagnostics",
+      "future regime class",
+      "candidate yield",
+      "permanent physical ID"
+    ]
+  },
+  "turnover": {
+    "method": "passive cohort field",
+    "initialization": "q=m on the enrolled component support and q=0 elsewhere",
+    "directed_face_rule": "Jq_xy=F_m[x->y]*(q_x/m_x)-F_m[y->x]*(q_y/m_y), with zero fraction where m=0",
+    "update": "q_next=q-dt*div(Jq)",
+    "identities": ["sum(q) conserved", "0 <= q <= m", "no feedback to m,n,b or tracker"],
+    "retention": "sum(q on current tracked support)/initial cohort mass",
+    "turnover": "1-retention",
+    "recirculation": "current retention is authoritative; cumulative gross crossings are not a replacement estimator"
+  },
+  "ordinary_diagnostics": {
+    "activity": "gross native matter transport on internal and boundary faces",
+    "energy_throughput": "gross native bond formation work plus gross rupture release, with half weight on boundary faces",
+    "geometry": ["area", "mass", "periodic centroid", "radius of gyration", "winding/percolation"],
+    "leakage": ["gross matter ingress", "gross matter egress", "absolute resource boundary exchange"],
+    "bond": "mean ordinary internal b is diagnostic only and cannot detect, track or classify a candidate"
+  },
+  "classifier": {
+    "classes": [
+      "EMPTY_OR_GAS",
+      "STATIC_CRYSTAL_OR_SHELL",
+      "PERCOLATED",
+      "DISSOLVED",
+      "ACTIVE_UNBOUNDED",
+      "PERSISTENT_NO_TURNOVER",
+      "TURNOVER_WITHOUT_PERSISTENCE",
+      "TRACKING_UNRESOLVED",
+      "BOUNDED_ACTIVE_TURNOVER_CANDIDATE"
+    ],
+    "precedence": [
+      "TRACKING_UNRESOLVED",
+      "ACTIVE_UNBOUNDED",
+      "PERCOLATED",
+      "EMPTY_OR_GAS",
+      "DISSOLVED",
+      "BOUNDED_ACTIVE_TURNOVER_CANDIDATE",
+      "PERSISTENT_NO_TURNOVER",
+      "STATIC_CRYSTAL_OR_SHELL",
+      "TURNOVER_WITHOUT_PERSISTENCE",
+      "DISSOLVED_FALLBACK"
+    ],
+    "candidate_inputs": [
+      "longitudinal span",
+      "bounded nonpercolating fraction",
+      "native activity",
+      "native energy throughput",
+      "passive-cohort turnover",
+      "post-turnover survival",
+      "resolved tracking"
+    ],
+    "forbidden_candidate_inputs": [
+      "b threshold",
+      "conductance",
+      "face cut",
+      "intervention response",
+      "visual appeal",
+      "memory interpretation"
+    ],
+    "raw_assembly_integrity": "every observation is keyed to a tracker point; area and percolation must exactly match the detected component; duplicate, orphan, missing, nonfinite or invalid observations fail closed as TRACKING_UNRESOLVED"
+  },
+  "passivity_identity": "the complete sequence of physical state bytes and StepLedger bytes must be identical with instrumentation enabled or absent"
+}

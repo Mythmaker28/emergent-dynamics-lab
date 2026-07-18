@@ -1,0 +1,102 @@
+{
+  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B1-RAW-v1",
+  "namespace": "results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-DEV",
+  "atomicity": {
+    "root": "write the complete family to a sibling .partial directory, fsync every file, verify the closed inventory, then perform one same-volume rename",
+    "world": "write each world to a sibling .partial directory, fsync/close every file, verify hashes and sizes, then rename",
+    "directory_durability": "parent-directory fsync follows each rename where the OS exposes directory descriptors; Windows uses flushed files plus same-volume atomic rename because directory fsync is unavailable",
+    "existing_path_policy": "refuse if either final or partial root already exists; no retry or replacement"
+  },
+  "world_files": {
+    "physics.npz": {
+      "purpose": "engine-complete raw state and StepLedger sequence; independent reproducer input",
+      "format": "NumPy NPZ with allow_pickle=false",
+      "required_state_arrays": {
+        "state_step": "int64 [H+1]",
+        "state_m": "float64 [H+1,Y,X]",
+        "state_n": "float64 [H+1,Y,X]",
+        "state_b": "float64 [H+1,2,Y,X]"
+      },
+      "required_ledger_array_prefix": "ledger__",
+      "required_ledger_array_fields": [
+        "affinity",
+        "matter_forward",
+        "matter_reverse",
+        "matter_natural",
+        "matter_active",
+        "matter_missing",
+        "resource_permeability",
+        "resource_natural",
+        "resource_active",
+        "resource_missing",
+        "bond_cue",
+        "bond_tension",
+        "r_on",
+        "r_off",
+        "gross_formation",
+        "gross_rupture",
+        "gross_formation_work",
+        "gross_rupture_release",
+        "gross_weakening_release",
+        "gross_dissolution_release",
+        "maintenance_recycled_work",
+        "formation_fuel",
+        "rupture_heat",
+        "weakening_heat",
+        "dissolution_heat",
+        "matter_missing_from_delta",
+        "matter_missing_to_delta",
+        "resource_missing_from_delta",
+        "resource_missing_to_delta",
+        "matter_scale",
+        "resource_scale"
+      ],
+      "required_ledger_scalar_fields": [
+        "initial_matter",
+        "final_matter",
+        "matter_residual",
+        "initial_stored_energy",
+        "final_stored_energy",
+        "total_rupture_heat",
+        "total_maintenance_recycled_work",
+        "energy_residual",
+        "controller_onset_energy_jump"
+      ],
+      "additional_validation_arrays": {
+        "vector_reference_max_error": "float64 [H]",
+        "deterministic_replay_equal": "uint8 [H]"
+      }
+    },
+    "online.json": {
+      "purpose": "production detector/tracker/tracer diagnostics, raw edges/events/gates and online class",
+      "independent_reproducer_access": "FORBIDDEN"
+    },
+    "shard_manifest.json": {
+      "purpose": "world identity, enrolled coordinates, terminal status, exact file SHA-256/bytes, array names/shapes/dtypes and measurement row counts",
+      "independent_reproducer_access": "only identity/status and physics.npz integrity fields"
+    }
+  },
+  "root_files": {
+    "enrollment.json": "exact deterministic enrolled-world list",
+    "classification.json": "online world classes, complete nine-class atlas, candidate regions and disposition; forbidden to the independent reproducer",
+    "root_manifest.json": "binds Stage-B manifest hash, raw-schema hash, enrollment hash/bytes, classification hash/bytes, and every enrolled shard-manifest hash/bytes/status"
+  },
+  "independent_reproduction_inputs": [
+    "the committed B1 manifest",
+    "each shard_manifest.json identity/status and physics.npz integrity fields",
+    "each physics.npz"
+  ],
+  "independent_reproduction_forbidden_inputs": [
+    "online.json",
+    "the production classification",
+    "the atlas",
+    "the Stage-B report",
+    "engine.py",
+    "instrumentation.py",
+    "stage_b.py",
+    "any selected-world list"
+  ],
+  "canonical_json": "UTF-8, sort_keys=true, separators comma/colon, allow_nan=false, terminal LF",
+  "publication_completion": "exactly every enrolled world has one unique terminal shard with status COMPLETE, NUMERICAL_INVALID or INSTRUMENTATION_INVALID; root inventory binds every shard manifest",
+  "scientific_eligibility": "DEV_REGIME_CANDIDATE or DEV_FEASIBILITY_FAIL requires every enrolled shard status COMPLETE and all hashes, shapes, dtypes, steps and Stage-A invariants valid"
+}
