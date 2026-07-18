@@ -672,6 +672,15 @@ def test_forbidden_namespace_decoy_path_is_rejected_before_read(tmp_path: Path) 
     assert not decoy.exists()
 
 
+def test_namespace_guard_does_not_parse_opaque_crypto_identities() -> None:
+    digest = "a58001" + "b" * 58
+    assert len(digest) == 64
+    assert not runner._contains_58(digest)
+    assert not mech._contains_58_namespace(digest)
+    assert runner._contains_58("seed-58001.json")
+    assert mech._contains_58_namespace("seed-58001.json")
+
+
 def test_ordered_prefix_accepts_valid_prefix_and_rejects_hole(tmp_path: Path) -> None:
     index = mech.new_ordered_prefix_index("a" * 64)
     index["completed"] = [

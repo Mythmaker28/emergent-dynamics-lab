@@ -173,6 +173,10 @@ def _contains_58(value: Any) -> bool:
     if isinstance(value, int):
         return 58000 <= value <= 58999
     if isinstance(value, str):
+        # Cryptographic identities are opaque. A coincidental five-digit run
+        # inside a bound 40/64-character hexadecimal digest is not a namespace.
+        if GIT_RE.fullmatch(value) or SHA256_RE.fullmatch(value):
+            return False
         return bool(SEED_58_RE.search(value))
     if isinstance(value, dict):
         return any(_contains_58(key) or _contains_58(child) for key, child in value.items())

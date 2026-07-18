@@ -167,6 +167,10 @@ def _contains_58_namespace(value: Any) -> bool:
     if isinstance(value, int):
         return 58000 <= value <= 58999
     if isinstance(value, str):
+        # SHA-1/Git and SHA-256 bindings are opaque; digit runs inside them do
+        # not name a seed namespace.
+        if re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", value):
+            return False
         return bool(SEED_58_RE.search(value))
     if isinstance(value, dict):
         return any(_contains_58_namespace(key) or _contains_58_namespace(child) for key, child in value.items())

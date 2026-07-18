@@ -67,6 +67,14 @@ Corrected test-command dead ends were preserved rather than hidden: an initial c
 correctly rerun directly. The optional third-party `jsonschema` package is absent; the committed standard-library
 schema validator and raw reproducer tests passed instead.
 
+The first exact manifest bound to code checkpoint `944eb9c75d905c686a31384825fe515de3269e57` failed before
+engine import because the namespace guard interpreted a coincidental `58xxx` digit run inside an opaque
+cryptographic binding as a seed namespace. Its exact 10,790 bytes are preserved at
+`DIRECTED_CAUSAL_PAIR_00_PHASE05_DEV_MANIFEST_REJECTED_944eb9c.json` with SHA-256
+`2b3c26638a4d9eca30d9482c115842114c48d841cbfca019dabb1969aaeea967`. The narrow repair excludes only complete
+40- or 64-character lowercase hexadecimal identities from namespace parsing; semantic paths/strings and integer
+IDs remain fail-closed. A fresh code commit and canonical manifest binding are required before execution.
+
 ## Important files read or changed
 
 - `docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE0_REPORT.md`
