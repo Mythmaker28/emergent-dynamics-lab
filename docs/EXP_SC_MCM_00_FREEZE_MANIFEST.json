@@ -1,0 +1,30 @@
+{
+  "experiment": "EXP-SC-MULTI-CHANNEL-ORGANIZATIONAL-MEMORY-00",
+  "branch": "exp/sc-multi-channel-organizational-memory-00",
+  "starting_commit": "0ea125035625dc34ad10cefee0b1f6896232e701",
+  "physics": "frozen scaffold 7c91b91 + frozen IOM-00 writing + new read-out channel (lam_minus). lam_minus=0 == IOM-00 bit-identical.",
+  "readout_params": {"lam_plus": 0.25, "lam_minus": 0.15},
+  "families": {"dev": "32000-32015 / 32100-32103", "prospective": "33000-33011 / 33100-33103", "IOM_HSI_HMC_heldouts": "not reused"},
+  "environment": {"python": "3.10.12", "numpy": "2.2.6", "scipy": "1.15.3"},
+  "source_blobs": {
+    "engine.py": "2a2aaf47b65eb1dd0ecb6b1189c64fcda7eff0e2",
+    "config.py": "573a2d9f7202a0ab1e3a3c7984e8645142f20956",
+    "harness.py": "2e26898eefde20099ce62fb7305243d59141a18c",
+    "experiment.py": "e9aea7d3b4c5aa805d64724c571d9a2ab67b5d50",
+    "continuous.py": "f18d948a72a572e2e02aff1c7ade62570678da78",
+    "certify.py": "7fd0483b9747248b5da7d708c7585376b6ca5d64"
+  },
+  "frozen_upstream_blobs_UNCHANGED": {
+    "scaffold/engine.py": "7c91b9112ab3dde57621251a159d3c1368ad2311",
+    "sc_iom/engine.py": "497e233345d03312c740a57d10d4aaa89e603fd2"
+  },
+  "data_blobs": {
+    "central_dev.pkl": "f8621058f036dbca9ef0c3086f584fdff120e784",
+    "central_prospective.pkl": "28fe89c3dc39a80c435e9b3cc8493bf13f31013e",
+    "cont_dev.pkl": "f1469e73c13d83bc53e6378fa919da1f4916836e",
+    "cont_prospective.pkl": "7de2ea29f67c57896417d1e1bed70b74812f691b",
+    "certificate.json": "9be2864a3d0b1b96f08d1f88472eb6a05be5337a"
+  },
+  "verdict": "PASS — ORDER-SENSITIVE MEMORY ONLY",
+  "next_project": "revise WRITING (non-saturating storage) or add recurrent internal plasticity"
+}

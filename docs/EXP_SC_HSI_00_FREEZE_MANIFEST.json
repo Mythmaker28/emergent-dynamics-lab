@@ -1,0 +1,34 @@
+{
+  "experiment": "EXP-SC-HIDDEN-STATE-CAUSAL-INDIVIDUATION-00",
+  "branch": "exp/sc-hidden-state-causal-individuation-00",
+  "starting_commit": "25c419a4bab54ae185ce4c8aceddafe52e86bdfd",
+  "beta": 0.10, "D_int": 0.008,
+  "environment": {"python": "3.10.12", "numpy": "2.2.6", "scipy": "1.15.3"},
+  "families": {"dev_trajectories": "20000-20099", "prospective_trajectories": "21000-21031",
+               "HMC_prospective_SEALED": "9501-9516 (untouched)"},
+  "frozen_probe": "N+0.5x15 (selected on dev by flip/clone informativeness = 5.67)",
+  "frozen_attractors_k": 4,
+  "matching": {"snap_match_quantile": 0.10, "hidden_diff_quantile": 0.60, "n_pairs_dev": 60, "n_pairs_prosp": 13},
+  "gate_thresholds": {"individuation_auc": 0.70, "causal_ratio": 1.5, "access_ratio": 1.5},
+  "instrument_source_blobs": {
+    "config.py": "84e7a7bfc38fdc0fa9e55b462729e2683127e3ac",
+    "core.py": "4c44b040a6ebe6d6ec2c18f68dfd1fddacb16cd6",
+    "library.py": "27d51a9f3a3d313717da68ee80789e9254dbbfa3",
+    "analyze.py": "7df738a9d5b9805b6e0ad643a595bf43ba365d15",
+    "divergence.py": "3cd9df4747174201788eb7aa17dc59775c5960ed",
+    "causal.py": "45281ea469e22a2ef51867d5fda9b7e16fc106ec",
+    "probes.py": "7e40dcc219eecb28eb8e3348e096a3c0eea17787",
+    "certify.py": "dcd28c195ea59555754a155d28e445b8cb7c7e09"
+  },
+  "frozen_physics_blobs_UNCHANGED": {
+    "scaffold/engine.py": "7c91b9112ab3dde57621251a159d3c1368ad2311",
+    "scaffold/observables.py": "196539e07b9b62d11b47a6310c3fdaa1a0308223"
+  },
+  "data_blobs": {
+    "lib_dev.pkl": "45d01e048f48b2cc3ad3935c45fc1a8510a628d5",
+    "lib_prospective.pkl": "33a8cdc4242f509be754ae27188d3dfe56cf1ffd",
+    "certificate.json": "0ceffd3a33dacd9e31ef44bc8db96ed3df4324eb"
+  },
+  "verdict": "PASS — GENERIC CAUSAL ATTRACTOR MEMORY",
+  "next_physics_decision": "B"
+}

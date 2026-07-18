@@ -1,0 +1,77 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,booktabs,longtable}
+\usepackage[hidelinks]{hyperref}
+\title{\textbf{Supplementary Materials}\\ \large From Material Turnover to Causal Memory: Organizational Continuity in a Simulated Droplet}
+\author{[AUTHOR NAME REQUIRED]}
+\date{July 2026}
+\begin{document}\maketitle
+
+\section{S1. Protocol history (the nine-experiment ladder)}
+Each experiment was preregistered with a sealed prospective family, executed once, and committed to an isolated
+version-control branch. HMC (material continuity): snapshot nearly sufficient, no strong history-specific hidden
+persistence. HSI (hidden state): generic causal attractor, not individuating (AUC $0.3$--$0.4$). IOM-00: designed
+two-component memory; causal, erasable, transplantable; readout $\approx$1-D. MCM-00: $m_-\!\to$attractant makes
+order readable ($\sim$70/73$\times$ ablation collapse). WD-01 Phase B: grouped-evaluation correction
+($0.57\to0.19$); rank $\approx$1. Phase C: de-saturated writing (C1c); two coordinates at rest, causal $\approx$1-D.
+SMC-01: $h_2$ frame-free dispersion; first (later-corrected) turnover collapse. DMM-01: correction --- family
+variance, not smoothing/dilution; underpowered. H2-CERT-01: sealed kill-switch, $h_2\approx0$ at $M\approx0.21$.
+TCA-01: tracker-continuity audit; longitudinal re-certification of $h_1$.
+
+\section{S2. Branch / commit registry}
+\begin{longtable}{@{}ll@{}}\toprule experiment & result commit\\\midrule
+HMC & 25c419a\\ HSI & 709f963\\ IOM-00 & 0ea1250\\ MCM-00 & 5841b9b\\ WD-01 Phase B & 9a39f8c\\
+WD-01 Phase C (seal / result) & be08738 / a07b95b\\ SMC-01 (seal / result) & d0f47b6 / 3dc8c35\\
+DMM-01 (seal / result) & 5bd46e7 / 49e96ad\\ H2-CERT-01 (seal / result) & 5e1196f / 1f8f789\\
+consolidation / observer & 112aace / 6891ef8\\ tracker audit / post-incident & 568af39 / 7afd6e4\\
+short-paper V0 / full manuscript & a97909a / (this commit)\\\bottomrule\end{longtable}
+Main branch never modified (HEAD f3921a4); nothing pushed (origin/main e17f431).
+
+\section{S3. Sealed prospective family hashes (SHA-256, generated before selection, executed once)}
+\begin{longtable}{@{}lll@{}}\toprule experiment & seeds (dev / prospective) & SHA-256\\\midrule
+Phase C & 34001--3 / 35001--3 & c6d0cd3c5b82aa122ac7e5649888fbc53ca6faa8db68e2c1b48863e87fb9e202\\
+SMC-01 & 36001--3 / 36501--3 & 2d6986fe2499cb52fdc309f5b1867cff56cb04b4bd7884633c4c2a148d5792ef\\
+DMM-01 & 37001--3 / 37501--3 & 923d8890ea25ab5a136078486f282ad8e07f4cdbaa125da40ef930f5bb8a00b6\\
+H2-CERT & --- / 38501--4 & 4265b98cacb705a7bea56a2e0a5bbe36e10fec3d977e7da6e655037189193fee\\\bottomrule\end{longtable}
+Seed families disjoint across experiments (32xxx--38xxx).
+
+\section{S4. Parameter grids and negative candidates}
+Writing-redesign candidates compared at development (Phase C): C0 (frozen baseline), C1a/C1b/C1c (dynamic-range
+corrections varying $\eta_w,\eta_{d,1},\eta_{d,2},k_{\exp}$), C2a (distinct write signals). Selected: C1c, on
+min$(R^2(h_1),R^2(h_2))$ subject to viability. Maintenance candidates (DMM Phase A, diagnostic only): templating and
+diffusion ablations, static memory relaxation; all left the $h_2$ decode essentially unchanged. Negative variants
+were retained, not discarded.
+
+\section{S5. Gate certificates (machine-readable)}
+JSON gate certificates are committed per experiment: \texttt{results/wd01/wd01\_gate\_certificate.json},
+\texttt{results/wd01\_phasec/wd01\_phasec\_gate\_certificate.json},
+\texttt{results/smc01/smc01\_gate\_certificate.json},
+\texttt{results/dmm01/dmm01\_gate\_certificate.json},
+\texttt{results/h2cert/h2cert\_gate\_certificate.json}.
+
+\section{S6. Tracker unit tests (TCA-01)}
+(i) Selection audit: the historical rule is $\arg\max$ size, reselected per frame; five hard switches on seed
+38501. (ii) Periodic translation invariance: whole-world shifts (including boundary-straddling) leave size and
+memory statistics bit-invariant. (iii) Sensitivity: $h_1$ decodes $0.96/0.98/0.99$ from largest / second-largest /
+longitudinal. (iv) Hold-out: untouched seeds 38502--38504, $36/36$ survival, $h_1$ deep $R^2=0.98$ CI $[0.97,1.00]$,
+$h_2=0.34$. Specification: \texttt{docs/audit/TCA\_01\_TRACKER\_SPEC.md}.
+
+\section{S7. Seed-family results (h1 turnover)}
+DMM pool (4 seeds): $h_1$ $0.98\to0.99\to0.99$ over $M=1.00\to0.58\to0.36$. H2-CERT sealed (4 seeds):
+$0.94\to0.93\to0.93$ over $M=1.00\to0.44\to0.21$. Longitudinal hold-out (untouched seeds): deep $0.98$ CI $[0.97,1.00]$.
+
+\section{S8. Reproduction commands}
+Environment: python3, numpy, scipy, matplotlib; \texttt{PYTHONPATH=\$REPO:\$REPO/results/wd01\_phasec}.
+Per experiment, resumable runners are committed beside their data:
+\texttt{results/wd01/run\_diag.py}; \texttt{results/wd01\_phasec/\{dev\_runner,prosp\_runner,causal\_runner,causal\_inplace\}.py};
+\texttt{results/smc01/\{fields\_runner,turnover\_runner,prosp\_storage\}.py};
+\texttt{results/dmm01/\{phaseA,pooled,prosp\}.py}; \texttt{results/h2cert/\{pilot,cert\}.py};
+tracker hold-out reruns deterministically from the H2-CERT manifest seeds 38502--38504. Viewer:
+\texttt{scripts/observe\_droplet.py --preset story}.
+
+\section{S9. Raw-data and figure registry}
+Raw: \texttt{results/\{sc\_mcm,wd01,wd01\_phasec,smc01,dmm01,h2cert,observer\}/*.pkl,*.json}. Figures (paper):
+Fig.~1 fig1\_model\_ladder; Fig.~2 fig2\_h1\_causal; Fig.~3 tracked\_3panel; Fig.~3b fig3b\_longitudinal\_certification;
+Fig.~4 fig4\_order\_m\_minus; Fig.~5 phasec\_figure; Fig.~6 h2cert\_figure; Fig.~7 paper\_claim\_ladder. Each traces
+to a committed generator script.
+\end{document}

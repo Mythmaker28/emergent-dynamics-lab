@@ -1,0 +1,137 @@
+{
+  "mission": "LCI-CAUSAL-CONFIRMATION-01",
+  "purpose": "PRESEAL \u2014 non-confounded behavioural causal test of local memory individuation. Frozen before any prospective (52xxx) data.",
+  "branch": "exp/lci-causal-confirmation-01",
+  "parent_audit_tip": "53fd2b6",
+  "phase0_commit": "c3dc94e",
+  "intact": {
+    "main": "f3921a4",
+    "V4": "23b53ae",
+    "release": "release/organizational-memory-v1"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.9",
+    "platform_note": "chaotic RD-PDE: byte-identical determinism on THIS fixed platform (verified 420 floats max|d|=0), NOT cross-platform"
+  },
+  "determinism_seed": 20260715,
+  "frozen_constants": {
+    "WARM": 800,
+    "K": 3,
+    "SEP": 24.0,
+    "MINSIZE": 45,
+    "PHASE": 60,
+    "AMP_LO": 0.005,
+    "AMP_HI": 0.035,
+    "C1c": {
+      "eta_w": 0.015,
+      "eta_d1": 0.35,
+      "eta_d2": 0.006,
+      "k_exp": 1.0
+    },
+    "LAM_PLUS": 0.25,
+    "LAM_MINUS": 0.15,
+    "SETTLE": 120,
+    "WASHOUT_B": 40,
+    "WASHOUT_LONG": 200,
+    "STIM_AMP": 0.5,
+    "STIM_DUR": 15,
+    "HORIZON": 120,
+    "TRACK_THETA": 0.1
+  },
+  "coordinate_classification": {
+    "primary": "dose (m_plus, slow m2, survives washout)",
+    "secondary": "order (m_minus, fast m1 e-fold~28 steps, not expected to survive washout)",
+    "justification": "forgetting timescales eta_d1=0.35 vs eta_d2=0.006; frozen pre-observation"
+  },
+  "seeds": {
+    "DEV": "50001-50010 (calibration, OBSERVED)",
+    "CONFIRMATION_SEALED": [
+      52001,
+      52002,
+      52003,
+      52004,
+      52005,
+      52006,
+      52007,
+      52008,
+      52009,
+      52010,
+      52011,
+      52012,
+      52013,
+      52014,
+      52015,
+      52016,
+      52017,
+      52018,
+      52019,
+      52020,
+      52021,
+      52022,
+      52023,
+      52024
+    ],
+    "extension_note": "52001-52012 from FREEZE_SEAL; 52013-52024 pre-declared power-justified extension sealed HERE before any run (decode secondary needs ~18 worlds). No post-observation extension."
+  },
+  "gates": {
+    "G1_C-K1_storage": "DD_mem>=10 & median|off dm|<0.05 & |diag dm|>3x baseline",
+    "G2_C-K2a_storage_readout": "max(dose,order) storage-decode lowerCI > within-null95 & own-neigh CI>0",
+    "G3_C-K2b_behavioural_causal_PRIMARY": {
+      "all_required": [
+        "(a) per-world eff_own worldboot 2.5pct > 0",
+        "(b) |eff_own_abl|/|eff_own| < 0.15",
+        "(c) |eff_neigh|/|eff_own| < 0.35",
+        "(d) |eff_sham|/|eff_own| < 0.15",
+        "(e) double-diss: eff_res>0 & same sign & 0.5<eff_res/eff_own<2.0",
+        "(f) survives washout: eff_long>0"
+      ],
+      "DEV_observed": {
+        "a": "8/8>0 SNR5.31",
+        "b": 0.0,
+        "c": 0.092,
+        "d": 0.007,
+        "e": 1.047,
+        "f": ">0"
+      }
+    },
+    "G3_decode_SECONDARY_nongating": "behavioural own-dose LOGO R2 lowerCI > within-null95 (underpowered n~9, p_power=0.10; reported OBSERVED/INDETERMINATE)",
+    "G4_C-K4_nontriviality": "eff_own not explained by size/mass/position/edge/env baselines (paired contrast cancels them common-mode)",
+    "G5_C-K5_tracker_independence": "G1-G4 verdicts hold under fixed-mask (tracker-free) readout",
+    "C-K3_deep_turnover_dose": "deep own-dose lowerCI>0.50 -> CERTIFIED else INDETERMINATE (inherited 0.368[0.14,0.72])",
+    "G6_causal_individuation": "passes ONLY if (G1&G2 specific storage) AND G3 (behavioural causal)"
+  },
+  "power_worldlevel": {
+    "method": "resample DEV eligible worlds (n=8, elig 0.80)",
+    "existence_G3": {
+      "n6": 1.0,
+      "n9": 1.0,
+      "n18": 1.0
+    },
+    "decode_G3sec": {
+      "n6": 0.01,
+      "n9": 0.1,
+      "n18": 0.75
+    }
+  },
+  "exclusion_policy": "seed retained iff >=K=3 geometrically eligible targets (size>=45, pairwise>=24); reason recorded per seed; outcome-independent",
+  "provenance": {
+    "pushed": false,
+    "tagged": false,
+    "published": false,
+    "V4_modified": false,
+    "active_reconstruction": "forbidden this mission"
+  },
+  "no_preexisting_confirmation_data": "verified (grep: no seed field 52001-52024 in any data file; no conf output file)",
+  "sealed_file_sha256": {
+    "experiments/individuation/causal_confirm.py": "ba695bbbfb9b012875baec8a9dd3bbbd553768f290844ffc01649c9236093e2f",
+    "experiments/individuation/causal_analyze.py": "17c7271f5dfa78d5da05344cbeff0c4e6451cd71fd295f2137faab308276cba6",
+    "experiments/individuation/power_analysis.py": "f8266832eb8bd475875bc6c9de68980b90e8189f717a928b6a82ba3b3879f68c",
+    "experiments/individuation/probe_confound_dev.py": "7d88034d9659f29d1059a767649612e67e9645fb7f5baa3eada9f67d878d8f5e",
+    "experiments/individuation/CAUSAL_CONFIRMATION_ENV_01.txt": "c6f25b3dfae0355b7085ee6e3bd65c9cbfa2ba71696837eab7d9c510eb3dfa64",
+    "docs/individuation/CAUSAL_CONFIRMATION_INDEPENDENT_VIEW.md": "a74bf6e92742dc6bb76f84ae8950f00a87600881dd6cf48865c2cf7ee5acbe93",
+    "docs/individuation/CAUSAL_CONFIRMATION_PROTOCOL_01.md": "5f009bc27c0c1e42ea1f31d561964bb59e998c628af5837f1dd890388f02004d"
+  }
+}

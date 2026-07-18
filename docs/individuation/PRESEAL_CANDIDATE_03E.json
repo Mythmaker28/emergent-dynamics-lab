@@ -1,0 +1,76 @@
+{
+  "schema": "LCI-TURNOVER-PRESEAL-CANDIDATE-03E-v1",
+  "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03E",
+  "status": "REPAIRED CANDIDATE \u2014 NOT AUTHORIZED, NOT EXECUTED, NOT SEALED",
+  "audited_parent": "a5e0a552b3f34a8cf9912292cd74bce3c6aee2d3",
+  "audit_commit": "9038ff08f7487e10f3615c269ed2a3af7197e2cb",
+  "audit_verdict_addressed": "FINAL_PRESEAL_AUDIT_03D NOT READY - REPAIR REQUIRED",
+  "repair_branch_parent": "a5e0a552b3f34a8cf9912292cd74bce3c6aee2d3",
+  "material_blockers_resolved": {
+    "B1_AUTHORIZATION_AND_LEDGER": "turnover_execution_ledger.py (final-seal binding + O_EXCL one-shot + hash-chain + consumption + raw SHA-256); synthetic tests PASS",
+    "B2_PRIMARY_CAUSAL_OWNERSHIP_GATE": "turnover_statistics_03e.py (within-world permutation null + L>{N,E,Gm,B} exclusion + causal-expression gate + duplicate-world rejection); primary = perm AND exclusion AND causal; synthetic tests PASS",
+    "B3_HIGH_DIMENSIONAL_E_G": "turnover_scope_features_03e.py (E=24, Gm=18, Gf=18; was 32768); raw kept future-only",
+    "B4_MISSING_A_F_DECISION_TREE": "TURNOVER_DECISION_TREE_03E.json (Boolean gates, wording, forbidden claims, AR flag)",
+    "B5_ENVIRONMENT_CONTRADICTION": "TURNOVER_ENVIRONMENT_03E.md + lock (3.11.15/2.2.6/1.15.3/3.10.9) + turnover_power_regen.py (0.924519); clean-room PASS",
+    "B6_PROTECTED_MAIN_PROVENANCE": "local main f3921a4 verified + archive/main-f3921a4; remote 6d0bed6 reconciliation flagged out-of-scope pre-push"
+  },
+  "family": {
+    "primary": "54001-54050",
+    "reserve": "54051-54096",
+    "hard_cap": 96,
+    "minimum_valid_worlds": 18,
+    "P_N_valid_ge_18_at_96": 0.924519023326,
+    "regenerator": "turnover_power_regen.py"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.9",
+    "lock_sha256": "a0bdccc0c2d91d7df9b1781df9198fa6d9131bd45a1e46e4c18b72a8f86aea0e"
+  },
+  "canonical_files": {
+    "protocol": "docs/individuation/TURNOVER_PROTOCOL_03E.md",
+    "manifest": "docs/individuation/TURNOVER_EXECUTION_MANIFEST_03E.json",
+    "decision_tree": "docs/individuation/TURNOVER_DECISION_TREE_03E.json",
+    "runner": "experiments/individuation/turnover_prospective_runner_03e.py",
+    "analysis": "experiments/individuation/turnover_statistics_03e.py",
+    "scopes": "experiments/individuation/turnover_scope_features_03e.py",
+    "ledger": "experiments/individuation/turnover_execution_ledger.py",
+    "tests": "experiments/individuation/test_turnover_preseal_03e.py",
+    "approval_template": "docs/individuation/TURNOVER_EXECUTION_APPROVAL_TEMPLATE_03E.json"
+  },
+  "superseded": [
+    "docs/individuation/PRESEAL_CANDIDATE_PROTOCOL.md",
+    "docs/individuation/PRESEAL_CANDIDATE.json",
+    "docs/individuation/TURNOVER_EXECUTION_MANIFEST_03C.json",
+    "experiments/individuation/turnover_statistics.py (E/G decoder path)",
+    "experiments/individuation/turnover_scope_features.py (32768 E/G)"
+  ],
+  "protected_blob_hashes": {
+    "experiments/individuation/turnover_prospective_runner_03e.py": "e4ab213df9ddf9c100cadabcfa742154ab0d1ba4",
+    "experiments/individuation/turnover_statistics_03e.py": "6dd7efa947a33e4d27c41a97c98a64d67ea92c05",
+    "experiments/individuation/turnover_scope_features_03e.py": "34f1cc4d48804876aecee0a1f13ddeee01118df2",
+    "experiments/individuation/turnover_execution_ledger.py": "5ee5aca024be05f9195541c73e28b5a2f90965d5",
+    "experiments/individuation/turnover_power_regen.py": "703550fa78ba78225418a9ab7ec2be50648f13c8",
+    "experiments/individuation/test_turnover_preseal_03e.py": "6be511302df931600456bdb03fa83032e8bad036",
+    "experiments/individuation/turnover_dev_runner.py": "40169bf8d7075acfdd821457a77eba5b38893fa8",
+    "experiments/individuation/causal_confirm.py": "aeb80a235844452948a08a6db3cfa04046dd1fa2",
+    "experiments/individuation/nonmerging_confirm.py": "b3af9dbfdaf1b0150006c4822976f9f0b1a51d97",
+    "experiments/individuation/bijective_tracker.py": "089d00bd62866e49756e6d5fc117f06eeec7d3c7",
+    "experiments/individuation/material_tracer.py": "cf72a13efd78ceb7e6d1d61291b2d3b930b4e0dd",
+    "experiments/individuation/turnover_scope_features.py": "d36ac3622a6939bc321ac3d3bb3a63b71a9e513b",
+    "edlab/experiments/sc_mcm/engine.py": "2a2aaf47b65eb1dd0ecb6b1189c64fcda7eff0e2",
+    "edlab/experiments/sc_mcm/config.py": "573a2d9f7202a0ab1e3a3c7984e8645142f20956",
+    "edlab/experiments/sc_iom/engine.py": "497e233345d03312c740a57d10d4aaa89e603fd2",
+    "edlab/substrates/scaffold/engine.py": "7c91b9112ab3dde57621251a159d3c1368ad2311",
+    "edlab/substrates/scaffold/observables.py": "196539e07b9b62d11b47a6310c3fdaa1a0308223",
+    "docs/individuation/TURNOVER_PROTOCOL_03E.md": "b9ff03926a04fc42e273f8c44064f9fdcd1b1765",
+    "docs/individuation/TURNOVER_DECISION_TREE_03E.json": "4adb0e01137509fba39f3a462b98be510043f435",
+    "docs/individuation/TURNOVER_ENVIRONMENT_03E.md": "db626c0716168a11c6f2bda712447e3b7a961a92",
+    "docs/individuation/TURNOVER_ENVIRONMENT_LOCK_03E.txt": "536e84e24b2b7e049a25e6d55f6a8be4053c9578",
+    "docs/individuation/TURNOVER_SEED_MANIFEST.md": "1d6f969ff617d0a194a9713ef30b0c6a665ca4d4"
+  },
+  "recommendation": "READY FOR FRESH RE-AUDIT \u2014 do NOT seal or run; a fresh agent creates FINAL_SEAL_MANIFEST_03E and a human authorizes one execution",
+  "claims": "NONE prospective; no identity/life/reproduction/heredity/evolution/active-reconstruction; DEV exploratory only"
+}

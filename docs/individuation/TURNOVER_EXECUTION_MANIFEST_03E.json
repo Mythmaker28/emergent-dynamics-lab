@@ -1,0 +1,94 @@
+{
+  "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-03E",
+  "authorization_status": "AWAITING_EXPLICIT_HUMAN_APPROVAL",
+  "operator_authorization": false,
+  "required_human_approval_phrase": "I AUTHORIZE ONE PROSPECTIVE EXECUTION OF LCI-CAUSAL-TURNOVER-PRESEAL-03E",
+  "supersedes": "TURNOVER_EXECUTION_MANIFEST_03C.json (audited a5e0a552; NOT READY per FINAL_PRESEAL_AUDIT_03D)",
+  "seed_plan": {
+    "primary": {
+      "first": 54001,
+      "last": 54050,
+      "count": 50
+    },
+    "reserve": {
+      "first": 54051,
+      "last": 54096,
+      "count": 46
+    },
+    "total_hard_cap": 96,
+    "minimum_valid_worlds": 18
+  },
+  "reserve_activation": {
+    "all_primary_complete": true,
+    "trigger": "valid_worlds < 18",
+    "inputs": [
+      "seed",
+      "eligible",
+      "deep_reached",
+      "rest_assay_valid",
+      "deep_assay_valid",
+      "valid",
+      "reason"
+    ],
+    "endpoint_fields": [],
+    "order": "ascending",
+    "stop": "18 valid worlds or seed 54096"
+  },
+  "analysis": {
+    "module": "turnover_statistics_03e.py",
+    "primary_gate": "G_OWN_PERM AND G_LOCAL_EXCLUSION AND G_CAUSAL",
+    "scopes": "turnover_scope_features_03e.py (E<=24,Gm=18,Gf diagnostic)",
+    "decision_tree": "TURNOVER_DECISION_TREE_03E.json"
+  },
+  "authorization_and_ledger": {
+    "module": "turnover_execution_ledger.py",
+    "bind": [
+      "final_seal_sha256",
+      "execution_manifest_git_blob",
+      "approval_phrase",
+      "authorization_id"
+    ],
+    "one_shot": "O_EXCL start + hash-chained JSONL + one-use consumption + per-raw SHA-256 + completion close"
+  },
+  "environment": {
+    "lock": "docs/individuation/TURNOVER_ENVIRONMENT_LOCK_03E.txt",
+    "lock_sha256": "a0bdccc0c2d91d7df9b1781df9198fa6d9131bd45a1e46e4c18b72a8f86aea0e",
+    "python": "3.11.15",
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "matplotlib": "3.10.9",
+    "power_regenerator": "experiments/individuation/turnover_power_regen.py",
+    "P_ge18_at_96": 0.924519023326
+  },
+  "final_seal": {
+    "final_seal_manifest": "docs/individuation/FINAL_SEAL_MANIFEST_03E.json (NOT created by this repair)",
+    "final_seal_sha256": null,
+    "created_by": "a fresh independent sealing+audit agent"
+  },
+  "protected_git_blobs": {
+    "experiments/individuation/turnover_prospective_runner_03e.py": "e4ab213df9ddf9c100cadabcfa742154ab0d1ba4",
+    "experiments/individuation/turnover_statistics_03e.py": "6dd7efa947a33e4d27c41a97c98a64d67ea92c05",
+    "experiments/individuation/turnover_scope_features_03e.py": "34f1cc4d48804876aecee0a1f13ddeee01118df2",
+    "experiments/individuation/turnover_execution_ledger.py": "5ee5aca024be05f9195541c73e28b5a2f90965d5",
+    "experiments/individuation/turnover_power_regen.py": "703550fa78ba78225418a9ab7ec2be50648f13c8",
+    "experiments/individuation/test_turnover_preseal_03e.py": "6be511302df931600456bdb03fa83032e8bad036",
+    "experiments/individuation/turnover_dev_runner.py": "40169bf8d7075acfdd821457a77eba5b38893fa8",
+    "experiments/individuation/causal_confirm.py": "aeb80a235844452948a08a6db3cfa04046dd1fa2",
+    "experiments/individuation/nonmerging_confirm.py": "b3af9dbfdaf1b0150006c4822976f9f0b1a51d97",
+    "experiments/individuation/bijective_tracker.py": "089d00bd62866e49756e6d5fc117f06eeec7d3c7",
+    "experiments/individuation/material_tracer.py": "cf72a13efd78ceb7e6d1d61291b2d3b930b4e0dd",
+    "experiments/individuation/turnover_scope_features.py": "d36ac3622a6939bc321ac3d3bb3a63b71a9e513b",
+    "edlab/experiments/sc_mcm/engine.py": "2a2aaf47b65eb1dd0ecb6b1189c64fcda7eff0e2",
+    "edlab/experiments/sc_mcm/config.py": "573a2d9f7202a0ab1e3a3c7984e8645142f20956",
+    "edlab/experiments/sc_iom/engine.py": "497e233345d03312c740a57d10d4aaa89e603fd2",
+    "edlab/substrates/scaffold/engine.py": "7c91b9112ab3dde57621251a159d3c1368ad2311",
+    "edlab/substrates/scaffold/observables.py": "196539e07b9b62d11b47a6310c3fdaa1a0308223",
+    "docs/individuation/TURNOVER_PROTOCOL_03E.md": "b9ff03926a04fc42e273f8c44064f9fdcd1b1765",
+    "docs/individuation/TURNOVER_DECISION_TREE_03E.json": "4adb0e01137509fba39f3a462b98be510043f435",
+    "docs/individuation/TURNOVER_ENVIRONMENT_03E.md": "db626c0716168a11c6f2bda712447e3b7a961a92",
+    "docs/individuation/TURNOVER_ENVIRONMENT_LOCK_03E.txt": "536e84e24b2b7e049a25e6d55f6a8be4053c9578",
+    "docs/individuation/TURNOVER_SEED_MANIFEST.md": "1d6f969ff617d0a194a9713ef30b0c6a665ca4d4"
+  },
+  "prospective_data_opened": false,
+  "seeds_executed": []
+}

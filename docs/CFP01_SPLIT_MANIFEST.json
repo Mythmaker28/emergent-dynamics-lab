@@ -1,0 +1,912 @@
+{
+ "protocol": "EXP-GT-CONTINUOUS-FINGERPRINT-01",
+ "name": "Tail-Aware Continuous Causal Fingerprint",
+ "declared_before_instrument_changes": true,
+ "inherits_no_PASS_from": "EXP-GT-CONTINUOUS-FINGERPRINT-00 (FAIL, RETIRED). Its hold-out is BURNED.",
+ "burned_holdout_policy": "P_cascade appears ONLY as development regression R_cascade_burned (control T1). It is ABSENT from the v01 prospective set.",
+ "declared_tail_contract": {
+  "TAU_MAX": 80.0,
+  "D_MAX": 60,
+  "why_TAU_MAX_is_80_not_40": "With TAU_MAX=40 against a 160-sample window, every admissible system has ALREADY SETTLED by the window's end (measured remainder beyond W: cascade2 0.02%, multi_strong 0.07%, the burned cascade 0.13%). The tail bound would then be trivially negligible for every case, DECIDABLE_SLOW_TAIL would never occur, and the three-way distinction would be VACUOUS -- passing loudly while testing nothing."
+ },
+ "seed_namespaces": {
+  "v01_dev": 200000,
+  "v01_prospective": 800000,
+  "v00_dev": 100000,
+  "v00_prospective": 900000,
+  "all_disjoint": true
+ },
+ "noise_regimes": {
+  "dev": 1e-05,
+  "prospective": [
+   1.3e-05,
+   1.7e-05
+  ],
+  "prospective_unseen": true
+ },
+ "reserved_prospective_topology": "THIRD-ORDER cascade (cascade_n with three sites). Absent from v01 development.",
+ "development": {
+  "n_systems": 32,
+  "n_cases": 27,
+  "systems": {
+   "V_leak": "bd1393eadc979dd4",
+   "V_leak_dead": "7553eda15681d833",
+   "V_leak_units": "4f46bc33613161eb",
+   "V_leak_fine": "379a72e0512d3c42",
+   "V_leak_shift": "9087de3f27079ff6",
+   "V_leak_reloc": "2826a8ce7b240a0c",
+   "V_leak_gain2": "0c6e33fed7f5ecc2",
+   "V_leak_sign": "0571796764d0a00f",
+   "V_supply": "2ff3e954a13c137b",
+   "V_mem_p": "52e04e007879c8bd",
+   "V_mem_m": "64ff72814ffd987f",
+   "V_hidden": "15e942095481faa5",
+   "V_cascade2": "0bd5097bd7a41360",
+   "V_underdamped": "bd27ed87e267e7bf",
+   "V_delayed": "c44c24676a8b4ea6",
+   "V_delayed2": "09916624590a26c4",
+   "V_delayed2_w": "ec68b876a7b7404e",
+   "V_multi_weak": "6dd3472a8ed84bc8",
+   "V_multi_weak_g2": "b95515f6e99fbb80",
+   "V_multi_strong": "29e8553c75acc7ac",
+   "V_multi_strong_g2": "55f9bab6c11fa1ff",
+   "V_multi_tailonly": "29ba5b53e596bfa2",
+   "V_slow_oos": "9649c4a84e673cd8",
+   "V_nonsettle": "ceac71f39afbc9a4",
+   "R_cascade_burned": "d5cf33ec34e365b8",
+   "R_leak_burned": "cb8ee08435b4676a",
+   "V_silent_dead": "2c1bb54902cf1106",
+   "V_silent_sat": "baa7a4079d339bcb",
+   "V_noisy": "b0bf91f3d106f25e",
+   "V_drifty": "d51cf5456c178467",
+   "V_lowcov": "e89b2fea105dd9b3",
+   "V_leak_loud": "cae7ec07627d60ca"
+  },
+  "cases": [
+   {
+    "cid": "W-D-01",
+    "left": "V_leak",
+    "right": "V_leak",
+    "category": "FALSE_DIFFERENCE",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "INDISTINGUISHABLE_UNDER_REPERTOIRE"
+    },
+    "common_channel": true,
+    "tags": [
+     "noise_reseed"
+    ]
+   },
+   {
+    "cid": "W-D-02",
+    "left": "V_leak",
+    "right": "V_leak_dead",
+    "category": "CONTINUITY",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "INDISTINGUISHABLE_UNDER_REPERTOIRE"
+    },
+    "common_channel": true,
+    "tags": [
+     "microimplementation"
+    ]
+   },
+   {
+    "cid": "W-D-03",
+    "left": "V_leak",
+    "right": "V_leak_units",
+    "category": "FALSE_DIFFERENCE",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "INDISTINGUISHABLE_UNDER_REPERTOIRE"
+    },
+    "common_channel": true,
+    "tags": [
+     "units"
+    ]
+   },
+   {
+    "cid": "W-D-04",
+    "left": "V_leak",
+    "right": "V_leak_fine",
+    "category": "FALSE_DIFFERENCE",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "INDISTINGUISHABLE_UNDER_REPERTOIRE"
+    },
+    "common_channel": true,
+    "tags": [
+     "solver"
+    ]
+   },
+   {
+    "cid": "W-D-05",
+    "left": "V_leak",
+    "right": "V_leak_shift",
+    "category": "CONTINUITY",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "INDISTINGUISHABLE_UNDER_REPERTOIRE"
+    },
+    "common_channel": true,
+    "tags": [
+     "phase"
+    ]
+   },
+   {
+    "cid": "W-D-06",
+    "left": "V_leak",
+    "right": "V_leak_reloc",
+    "category": "CONTINUITY",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "microimplementation",
+     "arm"
+    ]
+   },
+   {
+    "cid": "W-D-07",
+    "left": "V_leak",
+    "right": "V_leak_gain2",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "gain"
+    ]
+   },
+   {
+    "cid": "W-D-08",
+    "left": "V_leak",
+    "right": "V_leak_sign",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "sign"
+    ]
+   },
+   {
+    "cid": "W-D-09",
+    "left": "V_leak",
+    "right": "V_supply",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "cause"
+    ]
+   },
+   {
+    "cid": "W-D-10",
+    "left": "V_mem_p",
+    "right": "V_mem_m",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "hidden_state"
+    ]
+   },
+   {
+    "cid": "W-D-11",
+    "left": "V_leak",
+    "right": "V_hidden",
+    "category": "FALSE_SAMENESS",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "collision"
+    ]
+   },
+   {
+    "cid": "W-D-12",
+    "left": "V_leak",
+    "right": "V_cascade2",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "slow_tail",
+     "T3"
+    ]
+   },
+   {
+    "cid": "W-D-13",
+    "left": "V_leak",
+    "right": "V_underdamped",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "slow_tail"
+    ]
+   },
+   {
+    "cid": "W-D-14",
+    "left": "V_multi_weak",
+    "right": "V_multi_weak_g2",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "slow_tail",
+     "T3"
+    ]
+   },
+   {
+    "cid": "W-D-15",
+    "left": "V_multi_strong",
+    "right": "V_multi_strong_g2",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "slow_tail",
+     "T3"
+    ]
+   },
+   {
+    "cid": "W-D-16",
+    "left": "V_multi_strong",
+    "right": "V_multi_tailonly",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "near_boundary",
+     "T4"
+    ]
+   },
+   {
+    "cid": "W-D-17",
+    "left": "V_delayed2",
+    "right": "V_delayed2_w",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "delay_horizon",
+     "T5"
+    ]
+   },
+   {
+    "cid": "W-D-18",
+    "left": "V_leak",
+    "right": "V_delayed",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "latency"
+    ]
+   },
+   {
+    "cid": "W-D-19",
+    "left": "R_leak_burned",
+    "right": "R_cascade_burned",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "burned_regression",
+     "T1"
+    ]
+   },
+   {
+    "cid": "W-D-20",
+    "left": "V_slow_oos",
+    "right": "V_leak",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "out_of_contract",
+     "T2"
+    ]
+   },
+   {
+    "cid": "W-D-21",
+    "left": "V_nonsettle",
+    "right": "V_leak",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "nonsettling",
+     "T2"
+    ]
+   },
+   {
+    "cid": "W-D-22",
+    "left": "V_silent_dead",
+    "right": "V_leak",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "silent"
+    ]
+   },
+   {
+    "cid": "W-D-23",
+    "left": "V_silent_dead",
+    "right": "V_silent_sat",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "silent",
+     "vacuity"
+    ]
+   },
+   {
+    "cid": "W-D-24",
+    "left": "V_noisy",
+    "right": "V_leak",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "noise",
+     "T6"
+    ]
+   },
+   {
+    "cid": "W-D-25",
+    "left": "V_drifty",
+    "right": "V_leak",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "drift",
+     "T6"
+    ]
+   },
+   {
+    "cid": "W-D-26",
+    "left": "V_lowcov",
+    "right": "V_leak",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "coverage"
+    ]
+   },
+   {
+    "cid": "W-D-27",
+    "left": "V_leak",
+    "right": "V_leak_loud",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": false,
+    "tags": [
+     "contract"
+    ]
+   }
+  ]
+ },
+ "prospective_RESERVED": {
+  "n_systems": 31,
+  "n_cases": 27,
+  "systems": {
+   "Q_leak": "c8402c96b440222f",
+   "Q_leak_dead": "646272762b0e0c38",
+   "Q_leak_units": "19350226d1ed6aa6",
+   "Q_leak_fine": "f90803d0eb713d5f",
+   "Q_leak_shift": "f28173da82b75f3c",
+   "Q_leak_reloc": "a07ccab6a5a3641a",
+   "Q_leak_gain28": "57adce3d5dc180fb",
+   "Q_leak_sign": "ffda377ad5656a6b",
+   "Q_supply": "b8b71035d034b57f",
+   "Q_mem_p": "96e790821143acdf",
+   "Q_mem_m": "8434e6ca6c536788",
+   "Q_hidden": "3576be6a2e71e5b1",
+   "Q_cascade3": "c784e34d0b6cb284",
+   "Q_cascade2": "d19b856c8377e089",
+   "Q_underdamped": "bf53f53180502f05",
+   "Q_delayed": "6d183d0d4c612039",
+   "Q_delayed2": "97add0d34df7f09f",
+   "Q_delayed2_w": "53d7784a86cd15fb",
+   "Q_multi_weak": "4080ec5bce6ae67b",
+   "Q_multi_weak_g": "d60d05ad655d050e",
+   "Q_multi_strong": "6884d3bac30a935f",
+   "Q_multi_strong_g": "b6f628999d037815",
+   "Q_multi_tailonly": "6dbc80a6e01e0d30",
+   "Q_slow_oos": "10493414836f39fd",
+   "Q_nonsettle": "62c53b53401367a8",
+   "Q_silent_dead": "551fc3b0222e2cf9",
+   "Q_silent_sat": "a7ca49a6a9db62d0",
+   "Q_noisy": "6580bbe68bb8e3ac",
+   "Q_drifty": "6f8c47d75bec4fe8",
+   "Q_lowcov": "c6d0e715f7ac70c9",
+   "Q_leak_loud": "c032de100182f8a2"
+  },
+  "cases": [
+   {
+    "cid": "W-P-01",
+    "left": "Q_leak",
+    "right": "Q_leak",
+    "category": "FALSE_DIFFERENCE",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "INDISTINGUISHABLE_UNDER_REPERTOIRE"
+    },
+    "common_channel": true,
+    "tags": [
+     "noise_reseed"
+    ]
+   },
+   {
+    "cid": "W-P-02",
+    "left": "Q_leak",
+    "right": "Q_leak_dead",
+    "category": "CONTINUITY",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "INDISTINGUISHABLE_UNDER_REPERTOIRE"
+    },
+    "common_channel": true,
+    "tags": [
+     "microimplementation"
+    ]
+   },
+   {
+    "cid": "W-P-03",
+    "left": "Q_leak",
+    "right": "Q_leak_units",
+    "category": "FALSE_DIFFERENCE",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "INDISTINGUISHABLE_UNDER_REPERTOIRE"
+    },
+    "common_channel": true,
+    "tags": [
+     "units"
+    ]
+   },
+   {
+    "cid": "W-P-04",
+    "left": "Q_leak",
+    "right": "Q_leak_fine",
+    "category": "FALSE_DIFFERENCE",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "INDISTINGUISHABLE_UNDER_REPERTOIRE"
+    },
+    "common_channel": true,
+    "tags": [
+     "solver"
+    ]
+   },
+   {
+    "cid": "W-P-05",
+    "left": "Q_leak",
+    "right": "Q_leak_shift",
+    "category": "CONTINUITY",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "INDISTINGUISHABLE_UNDER_REPERTOIRE"
+    },
+    "common_channel": true,
+    "tags": [
+     "phase"
+    ]
+   },
+   {
+    "cid": "W-P-06",
+    "left": "Q_leak",
+    "right": "Q_leak_reloc",
+    "category": "CONTINUITY",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "microimplementation",
+     "arm"
+    ]
+   },
+   {
+    "cid": "W-P-07",
+    "left": "Q_leak",
+    "right": "Q_leak_gain28",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "gain"
+    ]
+   },
+   {
+    "cid": "W-P-08",
+    "left": "Q_leak",
+    "right": "Q_leak_sign",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "sign"
+    ]
+   },
+   {
+    "cid": "W-P-09",
+    "left": "Q_leak",
+    "right": "Q_supply",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "cause"
+    ]
+   },
+   {
+    "cid": "W-P-10",
+    "left": "Q_mem_p",
+    "right": "Q_mem_m",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "hidden_state"
+    ]
+   },
+   {
+    "cid": "W-P-11",
+    "left": "Q_leak",
+    "right": "Q_hidden",
+    "category": "FALSE_SAMENESS",
+    "expect": {
+     "limited": "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "collision"
+    ]
+   },
+   {
+    "cid": "W-P-12",
+    "left": "Q_leak",
+    "right": "Q_cascade3",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "slow_tail",
+     "unseen_topology"
+    ]
+   },
+   {
+    "cid": "W-P-13",
+    "left": "Q_leak",
+    "right": "Q_cascade2",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "slow_tail"
+    ]
+   },
+   {
+    "cid": "W-P-14",
+    "left": "Q_leak",
+    "right": "Q_underdamped",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "slow_tail"
+    ]
+   },
+   {
+    "cid": "W-P-15",
+    "left": "Q_multi_weak",
+    "right": "Q_multi_weak_g",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "slow_tail"
+    ]
+   },
+   {
+    "cid": "W-P-16",
+    "left": "Q_multi_strong",
+    "right": "Q_multi_strong_g",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "slow_tail",
+     "noise_regime"
+    ]
+   },
+   {
+    "cid": "W-P-17",
+    "left": "Q_multi_strong",
+    "right": "Q_multi_tailonly",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "near_boundary"
+    ]
+   },
+   {
+    "cid": "W-P-18",
+    "left": "Q_delayed2",
+    "right": "Q_delayed2_w",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "delay_horizon"
+    ]
+   },
+   {
+    "cid": "W-P-19",
+    "left": "Q_leak",
+    "right": "Q_delayed",
+    "category": "DIFFERENCE",
+    "expect": {
+     "limited": "DIFFERENT",
+     "rich": "DIFFERENT"
+    },
+    "common_channel": true,
+    "tags": [
+     "latency"
+    ]
+   },
+   {
+    "cid": "W-P-20",
+    "left": "Q_slow_oos",
+    "right": "Q_leak",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "out_of_contract"
+    ]
+   },
+   {
+    "cid": "W-P-21",
+    "left": "Q_nonsettle",
+    "right": "Q_leak",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "nonsettling"
+    ]
+   },
+   {
+    "cid": "W-P-22",
+    "left": "Q_silent_dead",
+    "right": "Q_leak",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "silent"
+    ]
+   },
+   {
+    "cid": "W-P-23",
+    "left": "Q_silent_dead",
+    "right": "Q_silent_sat",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "silent",
+     "vacuity"
+    ]
+   },
+   {
+    "cid": "W-P-24",
+    "left": "Q_noisy",
+    "right": "Q_leak",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "noise"
+    ]
+   },
+   {
+    "cid": "W-P-25",
+    "left": "Q_drifty",
+    "right": "Q_leak",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "drift"
+    ]
+   },
+   {
+    "cid": "W-P-26",
+    "left": "Q_lowcov",
+    "right": "Q_leak",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": true,
+    "tags": [
+     "coverage"
+    ]
+   },
+   {
+    "cid": "W-P-27",
+    "left": "Q_leak",
+    "right": "Q_leak_loud",
+    "category": "ABSTAIN",
+    "expect": {
+     "limited": "INDETERMINATE",
+     "rich": "INDETERMINATE"
+    },
+    "common_channel": false,
+    "tags": [
+     "contract"
+    ]
+   }
+  ]
+ },
+ "split_integrity": {
+  "dev_prosp_name_overlap": [],
+  "dev_prosp_spec_overlap": [],
+  "spec_overlap_with_v00": [
+   "0571796764d0a00f",
+   "0c6e33fed7f5ecc2",
+   "15e942095481faa5",
+   "2826a8ce7b240a0c",
+   "2c1bb54902cf1106",
+   "2ff3e954a13c137b",
+   "379a72e0512d3c42",
+   "52e04e007879c8bd",
+   "64ff72814ffd987f",
+   "9087de3f27079ff6",
+   "b0bf91f3d106f25e",
+   "baa7a4079d339bcb",
+   "bd1393eadc979dd4",
+   "cae7ec07627d60ca",
+   "cb8ee08435b4676a",
+   "d51cf5456c178467",
+   "d5cf33ec34e365b8",
+   "e89b2fea105dd9b3"
+  ],
+  "DISJOINT": true
+ },
+ "substrate_hashes": {
+  "edlab/substrates/ctrans/tails.py": "5e7a857620bfb2fa4273db17655db18f8ed333f48f0e6ce7a3bd474b1f3139af",
+  "edlab/substrates/ctrans/manifests01.py": "6e179ad3ec8321f78346f5938bcb5fa4df204abc4d72ed60a014ad71fe45a6e6",
+  "edlab/substrates/ctrans/engine.py": "30dee1db71176e00feecd162e017723c63fdc9a2e61e3cd5ae6e7be023dff35c",
+  "edlab/substrates/ctrans/systems.py": "ecc36c796fccd9a0cd19c780e49fc62c4b295a94c31d17e7421667a3e5807f88",
+  "edlab/substrates/ctrans/evaluator.py": "25f4e1ad0dc90fcfdcf487d0e2c03abbbe88a0ca5215957991254d2ced1a8913"
+ },
+ "v00_frozen_files_untouched": "engine/systems/manifests/evaluator/cfingerprint/exp_gt_cfp all still match the v00 freeze manifest sha256. v01 is ADDITIVE."
+}

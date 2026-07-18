@@ -1,0 +1,46 @@
+{
+ "experiment": "EXP-GT-NOISE-AWARE-SET-IDENTIFICATION-00",
+ "name": "Noise-Aware Causal Response Set Identification",
+ "frozen_utc": "2026-07-14T20:31:16.774100Z",
+ "supersedes": "consolidation/signsafe.py (frozen 09016d7) which FAILED the large hold-out via a null-gate {0}",
+ "claim": "Under a DECLARED sign/anchor/sparsity contract and a declared bounded noise family, the instrument emits a (1-alpha) simultaneous confidence SET for |q| by propagating simultaneous channel confidence intervals through the exact T6 identifiability inequalities. It NEVER emits {0} from non-detection.",
+ "OUTSIDE_the_claim": [
+  "exact zero from data",
+  "identity",
+  "life",
+  "material turnover",
+  "substrate-independent point accuracy",
+  "droplet transfer",
+  "universal point recovery"
+ ],
+ "frozen_constants": {
+  "DIVERSITY_FLOOR": 0.15,
+  "POINT_HALFWIDTH": 0.15,
+  "BOOT_B": 399,
+  "BLOCK_FRAC": 0.2,
+  "DRIFT_ORDER": 1,
+  "SIMUL_INFLATE": 1.12,
+  "ALPHA_primary": 0.05
+ },
+ "frozen_files": {
+  "noise_aware/nasi.py": "3027044479451f54c03c6265f1497b6f93d61eb56254b3e7bb16571e57ff1437",
+  "noise_aware/devgen.py": "32fc1969516e569b4d8745032a3951e2b45780c4502ade78d2560c50f2ed6a4b",
+  "noise_aware/regressions.py": "92eef9964509f1e892d6a1979cca86c087aeef3250a7fd417cf75fb561c90901",
+  "noise_aware/run_dev.py": "36d717e2721fd2fd97f29ad5ec4b8e5c2d531bb6a0b06c3da3cd0a924db31b7c"
+ },
+ "development_certificate": {
+  "N": 800,
+  "gates": "12/12 PASS",
+  "armO_coverage": 0.985,
+  "armO_families_min": 0.961,
+  "armO_weak_snr<=5": 0.981,
+  "armO_false_exact_zero": 0,
+  "armO_points": 27,
+  "armB_coverage": 0.949,
+  "armB_false_exact_zero": 0,
+  "armB_blind_used_truth": 0,
+  "historical_regressions": "47/48 covered, 0 false exact-zeros"
+ },
+ "rule": "No file or constant above changes before the prospective run. The fresh prospective generator (noise_aware/prospgen.py) and its seeds are committed BEFORE execution; the runner is hash-gated on this manifest. If the fresh N=5000 hold-out contains ONE invalid confident point (or ANY false {0} on a nonzero case): STOP, burn the hold-out, preserve the failure, do NOT patch on it.",
+ "authorized_on_pass": "Nothing beyond reporting. DROPLET CAUSAL-CONTINUITY PILOT and EXP-SC-01 remain BLOCKED."
+}

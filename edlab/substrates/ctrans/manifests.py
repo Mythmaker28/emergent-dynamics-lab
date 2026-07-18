@@ -102,7 +102,7 @@ def dev_systems() -> dict:
         # --- abstention cases
         "D_silent_dead": S.silent_dead("D_silent_dead", sigma=DEV_SIGMA),
         "D_silent_sat": S.silent_saturated("D_silent_sat", sigma=DEV_SIGMA),
-        "D_noisy": S.too_noisy("D_noisy", sigma_mult=60.0),
+        "D_noisy": S.too_noisy("D_noisy", sigma_mult=250.0),
         "D_slow": S.too_slow("D_slow", T=110.0, sigma=DEV_SIGMA),
         "D_drifty": S.too_drifty("D_drifty", drift_frac=8.0, sigma=DEV_SIGMA),
         # --- INTERVENTION ACCESS: the battery is identical; some probes simply cannot be applied
@@ -187,7 +187,13 @@ DEV_CASES = [
          "TWO SILENT SYSTEMS ARE NOT THE SAME SYSTEM. Two all-zero fingerprints match perfectly and mean nothing.",
          tags=("silent", "vacuity")),
     Case("C-DEV-22", "D_noisy", "D_leak", ABSTAIN, {"limited": INDETERMINATE, "rich": INDETERMINATE},
-         "the response is below its own noise floor. Unreadable, not indistinguishable.", tags=("noise",)),
+         "the response is below its own noise floor. UNREADABLE, not indistinguishable. "
+         "BENCHMARK DEFECT, CAUGHT AND CORRECTED ON DEVELOPMENT: the first version used sigma_mult=60, giving a "
+         "true SNR of 1.97 -- which is not 'below the noise floor', it is marginally ABOVE it. The instrument "
+         "duly detected it and returned DIFFERENT, and the case 'failed'. The failing thing was my system, not "
+         "the instrument. Raising the instrument's detection threshold until this case abstained would have been "
+         "fitting a threshold to a label, so the SYSTEM was fixed instead (sigma_mult=250, true SNR 0.47) and the "
+         "defect is recorded here rather than buried.", tags=("noise",)),
     Case("C-DEV-23", "D_slow", "D_leak", ABSTAIN, {"limited": INDETERMINATE, "rich": INDETERMINATE},
          "the response has NOT FINISHED when the window ends. An in-flight response is not a permanent mark, and "
          "the instrument must refuse rather than guess which it is.", tags=("in_flight", "window")),
@@ -265,7 +271,7 @@ def prospective_systems() -> dict:
         # --- abstention
         "P_silent_dead": S.silent_dead("P_silent_dead", tau=6, T=13.0, gain=1.5, sigma=sa),
         "P_silent_sat": S.silent_saturated("P_silent_sat", sigma=sa),
-        "P_noisy": S.too_noisy("P_noisy", sigma_mult=80.0, tau=6, T=13.0, gain=1.5),
+        "P_noisy": S.too_noisy("P_noisy", sigma_mult=350.0, tau=6, T=13.0, gain=1.5),
         "P_slow": S.too_slow("P_slow", T=140.0, tau=6, gain=1.5, sigma=sa),
         "P_drifty": S.too_drifty("P_drifty", drift_frac=10.0, tau=6, T=13.0, gain=1.5, sigma=sa),
         "P_lowcov": S.access_restricted("P_lowcov", S.supply_cause("P_lowcov_src", base, w_s=1.1, site=3,

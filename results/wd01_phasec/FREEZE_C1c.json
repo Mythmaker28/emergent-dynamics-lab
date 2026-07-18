@@ -1,0 +1,11 @@
+{
+  "experiment": "WD-01-PHASE-C",
+  "selected_candidate": "C1c",
+  "class": "C1 — dynamic-range correction (SAME physical write signal Psi; two existing components)",
+  "frozen_params": {"eta_w":0.015,"eta_d1":0.35,"eta_d2":0.006,"eta_t":0.010,"D_m":0.010,"lam_plus":0.25,"lam_minus":0.15,"k_exp":1.0,"k_up":1.0,"n_comp":2},
+  "selection_rule": "highest min(R2 h1, R2 h2) on DEV F_mid subject to viability; minimality tiebreak prefer C1 over C2; secondary tiebreak higher sigma2/sigma1 and F_low robustness",
+  "dev_scores_min_h1h2_Fmid": {"C0":0.19,"C1a":0.84,"C1b":0.61,"C1c":0.84,"C2a":0.79},
+  "why_C1c": "ties C1a at 0.84 on F_mid but has the highest sigma2/sigma1 (0.229), best F_low (0.94), strong timescale separation; a C1 (same-signal) so C2 (distinct signals) not needed by minimality. Order coord h2 stored in SPATIAL memory structure (10-D decode).",
+  "dev_controls": {"real_h1":0.84,"real_h2":0.90,"shuffled_history_mean_h1":-0.46,"shuffled_history_mean_h2":-0.42,"shuffled_95th":0.11,"design_corr_h1h2":-0.084},
+  "interpretation": "Supports H1 (dynamic-range), not H2 (distinct signals). De-saturating Psi (k_exp 2->1) and speeding fast forgetting (eta_d1 0.03->0.35) + lower gain (eta_w 0.05->0.015) lets m_fast track recent drive and m_slow track cumulative -> two temporal coordinates."
+}

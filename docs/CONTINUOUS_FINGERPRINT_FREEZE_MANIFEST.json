@@ -1,0 +1,128 @@
+{
+ "protocol": "EXP-GT-CONTINUOUS-FINGERPRINT-00",
+ "name": "Continuous-Observable Causal Response Fingerprint",
+ "frozen_at": "2026-07-14",
+ "INHERITS_NOTHING_FROM": "EXP-GT-FINGERPRINT-00. The Boolean prospective PASS is not transferable and is not transferred.",
+ "claim": "A fixed continuous-response fingerprint can remain stable across repeated observations and across behaviourally equivalent continuous systems, while separating genuinely different accessible dynamics or hidden state, under a declared noise model and a fixed intervention repertoire.",
+ "OUTSIDE_the_claim": [
+  "identity",
+  "individuality",
+  "lineage",
+  "life",
+  "agency",
+  "selfhood",
+  "consciousness",
+  "minimal architecture",
+  "universal causality",
+  "DROPLET TRANSFER",
+  "substrate-independent equivalence",
+  "successful material-turnover detection",
+  "partition robustness"
+ ],
+ "hashes": {
+  "edlab/identity/cfingerprint.py": "e57836c541484b2675cd2423067ee4781a689ff440f51b065ee488e5ebdfc5fb",
+  "edlab/substrates/ctrans/engine.py": "30dee1db71176e00feecd162e017723c63fdc9a2e61e3cd5ae6e7be023dff35c",
+  "edlab/substrates/ctrans/systems.py": "ecc36c796fccd9a0cd19c780e49fc62c4b295a94c31d17e7421667a3e5807f88",
+  "edlab/substrates/ctrans/manifests.py": "f8a5c09b32154b148355a3d639de3644c3288d931db6e983d519264769661573",
+  "edlab/substrates/ctrans/evaluator.py": "25f4e1ad0dc90fcfdcf487d0e2c03abbbe88a0ca5215957991254d2ced1a8913",
+  "edlab/experiments/exp_gt_cfp.py": "6efdf6a9dba89f100c09942e710ea039362d30d86046df774dcb45f3fa62aaba"
+ },
+ "FROZEN_battery": {
+  "coordinate_system": "FIXED. No adaptive probe selection.",
+  "limited_arm": [
+   "drive_step +-0.35 hold24",
+   "drive_step +-1.80 hold24",
+   "drive_pulse +-1.80",
+   "supply_step +1.20 hold24",
+   "supply_pulse +1.80"
+  ],
+  "rich_arm": "the limited battery PLUS sustained clamps (+1/-1, hold 24) on all four internal addresses.",
+  "amplitude_ladder": "two amplitudes. A single-amplitude battery is provably blind to saturation.",
+  "phases": "all 4 carrier phases (0,3,6,9); P_CLK=12",
+  "repeats": 16,
+  "baseline": "ONE INDEPENDENT BASELINE EPISODE PER PROBE EPISODE",
+  "refused_probe": "MISSING, charged to COVERAGE. Never substituted, never scored as zero.",
+  "constants": {
+   "T_OBS": 304,
+   "T_PROBE": 128,
+   "W_PRE": 96,
+   "W_RESP": 160,
+   "TAIL": 40,
+   "N_REPEAT": 16,
+   "PHASES": [
+    0,
+    3,
+    6,
+    9
+   ]
+  }
+ },
+ "FROZEN_representation": {
+  "name": "NSRC -- Noise-Standardized Response Curve",
+  "DETREND": "offset",
+  "alignment": "to the EXOGENOUS PROBE ONSET, not the response onset. Latency is part of the accessible function.",
+  "sigma_hat": "std of first differences of the pooled pre-probe segments / sqrt(2)",
+  "why_the_noise_and_not_the_signal": "units rescale response AND noise; gain rescales the response and leaves the noise alone. Standardizing by the noise is exactly unit-invariant and exactly gain-sensitive. L7 proves it.",
+  "signed": "the deviation is a SIGNED real -- not blind to inversion, unlike the Boolean XOR-deviation.",
+  "excluded_completely": [
+   "topology labels",
+   "hidden state",
+   "implementation identity",
+   "parameter values",
+   "system class",
+   "solver settings",
+   "tracker ids"
+  ]
+ },
+ "FROZEN_metric": {
+  "block": "per (probe,phase) RMS of the standardized difference",
+  "aggregate": "max",
+  "aggregate_why": "'indistinguishable under the repertoire' is a FOR-ALL, certified by its WORST case. A MEAN diluted the supply pair's real separation of 21.8 to 8.6 with 24 blocks of pure noise.",
+  "phase_quotient": "cyclic (minimization over the group, ONE shift for the whole fingerprint)",
+  "scale_band": 0.042,
+  "scale_band_why": "sigma_hat carries ~1.39% relative error which MULTIPLIES the signal, injecting eps*z_signal into a system's comparison WITH ITSELF. The metric minimizes over one common lambda clipped to the estimator's own +-3sigma band. DECLARED PRICE: gain differences below ~4% are NOT resolvable.",
+  "verdicts": [
+   "INDISTINGUISHABLE_UNDER_REPERTOIRE",
+   "DIFFERENT",
+   "INDETERMINATE"
+  ],
+  "there_is_no_SAME": "Two systems no admissible probe can separate are an EQUIVALENCE CLASS, not one individual.",
+  "radii": {
+   "limited": {
+    "n": 20,
+    "mean": 2.85872279231239,
+    "max": 3.894890780701731,
+    "q999": 3.8928202220378716,
+    "r_continuity": 7.785640444075743,
+    "r_separation": 23.35692133222723
+   },
+   "rich": {
+    "n": 20,
+    "mean": 3.3544850172809637,
+    "max": 4.10987629210312,
+    "q999": 4.10363134371032,
+    "r_continuity": 8.20726268742064,
+    "r_separation": 24.62178806226192
+   }
+  }
+ },
+ "FROZEN_admission": {
+  "identical_missing_pattern": "REQUIRED",
+  "common_noise_channel": "REQUIRED (declared, not inferred)",
+  "COVERAGE_FLOOR": 0.5,
+  "Z_DET": 8.0,
+  "BASELINE_MAX": 3.0,
+  "IN_FLIGHT_MAX": 0.25,
+  "IN_FLIGHT_Z": 3.0,
+  "IN_FLIGHT_FRAC": 0.05,
+  "Z_DET_calibration": "NOISE-ONLY: max|z| on rows that CANNOT respond has mean 3.67, max 5.25. Z_DET=8 is 1.5x the largest excursion ever seen on noise. No label was consulted."
+ },
+ "development_certificate": {
+  "challenge_matrix": "52/52",
+  "must_fail_controls_fired": "7/8",
+  "two_path_validation": "52/52, 0 disagreements",
+  "L6_DID_NOT_FIRE": "REPORTED, NOT HIDDEN. The lexicographic phase quotient is stable in this benchmark because the phase rows are well separated. The cyclic-shift quotient is therefore a PRINCIPLED choice but is NOT demonstrated load-bearing here. A control that does not fire is not a control."
+ },
+ "prospective_split": "docs/CONTINUOUS_SPLIT_MANIFEST.json, committed at de97ee0 BEFORE this instrument existed. NOT ONE PROSPECTIVE SYSTEM HAS BEEN SIMULATED AT THE TIME OF THIS FREEZE.",
+ "failure_rule": "If either arm fails prospectively: RETIRE the version, preserve artifacts, and no repaired version inherits this split. PASS authorizes ONLY SC-PILOT-CONTINUOUS-FINGERPRINT-PREFLIGHT. It does NOT authorize the droplet pilot. SC-PILOT-CAUSAL-FINGERPRINT and EXP-SC-01 remain BLOCKED regardless of outcome."
+}

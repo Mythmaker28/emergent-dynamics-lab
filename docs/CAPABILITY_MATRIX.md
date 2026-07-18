@@ -86,3 +86,190 @@ worlds.
 
 It is **not fully qualified**, and it is **not a failure of comprehension**. It is a failure of *description
 minimality*, and that distinction is the entire content of the strategic question that follows.
+
+
+---
+
+# EXP-GT-CONTINUOUS-FINGERPRINT-00 — Continuous-Observable Causal Response Fingerprint
+
+**RESULT: FAIL (prospective). RETIRED.** Development 52/52; prospective 52/54; **gate G2 failed**.
+
+| capability | status |
+|---|---|
+| continuous response representation on a float observable of order 1e-3 | **DEFINED** (NSRC — noise-standardized response curve) |
+| exact invariance to an affine change of readout units | **DEMONSTRATED** — prospective deviation **0.0** |
+| sensitivity to internal gain, preserved alongside that invariance | **DEMONSTRATED** — gain x2 -> d = 170.6 |
+| separation of sign, latency, latency structure, saturation, feedback-vs-FIR, extra causes | **DEMONSTRATED** |
+| genuine hidden-state detection (bistable memory) | **DEMONSTRATED** — d = 204.2 |
+| repertoire-relative equivalence (false sameness reported, never SAME) | **DEMONSTRATED** — limited d = 2.51 / rich d = 88.9 |
+| abstention on silent / unreadable / nonstationary / in-flight / access-restricted / off-contract systems | **DEMONSTRATED** |
+| **DIFFERENCE pairs all separate under the frozen instrument** | ### **FAILED** — `P_cascade` refused by a falsely-firing in-flight guard |
+| droplet transfer | **NOT CLAIMED. NOT ADMISSIBLE.** |
+| partition robustness | **NOT EXERCISED. UNRESOLVED.** |
+
+**4. (D-074) THE SETTLING CRITERION DOES NOT TRANSFER ACROSS RESPONSE ORDER.** The in-flight guard's threshold
+(a row is still moving if its tail changes by >5% of its own peak) was calibrated, implicitly, on **first-order**
+development systems whose transients collapse fast (`P_leak`: 0.66%). A **second-order** prospective cascade with
+`T3 = 21` has a slower tail (**5.3%**) and trips it. The instrument then **abstained on a case it could have
+decided** — the privileged path puts the true settling time at 108, well inside the 160-sample window.
+
+**A fabricated abstention is exactly as dishonest as a fabricated certainty, and harder to notice, because it
+looks like caution.** This is the failure mode the programme had not previously catalogued, and it is now on the
+record.
+
+**5. THE MEASUREMENT-CONTRACT THEOREM.** Absolute gain is **not identifiable** when both the output scale and the
+noise scale are free: a halved noise floor and a doubled gain are the same observation. The noise scale is
+therefore **declared, not inferred**, and the admission layer **refuses** cross-channel comparisons. This is a debt
+any droplet mapping must pay **physically** — "field noise" is on the unresolved list for exactly this reason.
+
+
+---
+
+# EXP-GT-CONTINUOUS-FINGERPRINT-01 — Tail-Aware Continuous Causal Fingerprint
+
+**RESULT: FAIL (development). NOT FROZEN. PROSPECTIVE NOT RUN — the hold-out is PRESERVED, not burned.**
+
+| capability | status |
+|---|---|
+| bound the EVENTUAL distance under window extension, without modelling the tail | **DEFINED** (contract-checked worst-case envelope; bracket, not point estimate) |
+| **v00's fatal case (`P_cascade`) classified BY BOUND, not by exception** | **DEMONSTRATED** — `D_lo = 41.9` vs `r_sep = 22.1`. No hard-coded exception exists in the guard. |
+| genuinely non-settling response abstains | **DEMONSTRATED** |
+| slow-but-harmless tail classifies (`DECIDABLE_SLOW_TAIL`) | **DEMONSTRATED** |
+| noise/drift not read as unresolved response | **DEMONSTRATED** |
+| guard is load-bearing (removing it produces a premature verdict) | **DEMONSTRATED** |
+| v00's guard, restored, reproduces its unnecessary abstention | **DEMONSTRATED** |
+| **slow tail NEAR the decision boundary abstains (T4)** | ### **FAILED — the resolution floor** |
+| out-of-contract detection in the band (TAU_MAX, 2.5x TAU_MAX) | **UNVERIFIED SCOPE — the bound is unsound there and cannot tell** |
+
+**6. (D-075) THE TAIL-UNCERTAINTY BOUND HAS A RESOLUTION FLOOR, AND IT IS THE SAME ORDER AS THE REMAINDERS THAT
+MATTER.** Measured on 288 noise-only blocks, the bound's remaining-envelope statistic reaches **7.40** on pure
+noise, forcing `TAIL_NOISE = 9.0`. The decisive near-boundary control carries a **real** remainder whose envelope
+measures **8.25** — *inside the floor*. The instrument calls it SETTLED and returns a confident DIFFERENT on a pair
+whose answer is still outside the window.
+
+**This is version 00's error in the opposite direction: v00 abstained when it should have spoken; v01 speaks when
+it should abstain.** The floor is set by the tail region's length (76 samples) against the noise on a sub-block
+mean. The fix — a longer observation window — is a BATTERY CHANGE and therefore a new instrument.
+
+**7. A CHECK AND A BOUND WANT DIFFERENT CONFIDENCE LEVELS.** Using one constant for both inflates the remainder
+estimate to ~15 noise units on *pure noise*, drowning the ~20-unit remainders it exists to find. Conservatism
+applied to the wrong quantity is not caution; it is noise.
+
+
+---
+
+# EXP-GT-CONTINUOUS-FINGERPRINT-02 — Resolution-Certified Tail-Aware Continuous Fingerprint
+
+**RESULT: FAIL AT DEVELOPMENT. Not frozen. Prospective NOT run — the sealed split remains untouched.**
+
+**8. (D-076) THE TAIL-BOUND METHOD HAS A RESOLUTION CEILING THAT NO OBSERVATION HORIZON CAN RAISE.**
+
+Preregistered gate: `B_critical(W) >= 3 * B_noise(W)`. Measured across the preregistered grid
+{160, 240, 320, 480, 640}, the ratio is **0.89 / 2.55 / 2.56 / 1.18 / 0.29** — it **PEAKS AT 2.56 AND COLLAPSES**,
+and never reaches 3.0.
+
+```
+B_noise  improves as exp(-(W-84)/(3*TAU_MAX))      B_signal decays as exp(-W/tau)
+```
+
+**The signal decays faster than the noise floor improves whenever tau < 3*TAU_MAX -- true for essentially every
+in-contract system, because TAU_MAX is by definition the slowest one admitted. A LONGER WINDOW DESTROYS THE VERY
+EVIDENCE IT WAS SUPPOSED TO REVEAL.**
+
+At the end of v01 the agent proposed a longer window as the fix. **That hypothesis is falsified by measurement.**
+The failure is structural: a successor must change the METHOD, not the budget.
+
+**9. THE NOISE FLOOR IS DRIFT-LIMITED, NOT WHITE-NOISE-LIMITED.** The white-noise model predicts B_noise -> 0.58 by
+W=320; measured **3.49**, and it stops improving. Sub-block MEANS wander with the slow baseline while `sd`, derived
+by differencing, is BLIND TO DRIFT BY CONSTRUCTION. The longer you look, the more the baseline has wandered.
+Consequence: the out-of-contract bars are NOT constants across horizons (carrying v01's values across the grid made
+the NULL itself come back out of contract).
+
+**10. A PREFIX OF A LONG EPISODE IS NOT A SHORT EPISODE WITH THE SAME SEED.** The engine draws measurement noise
+(T samples) then drift from the same RNG stream, so the drift sequence depends on episode length. Measured
+`max|Z_long[:320] - Z_short(320)| = 6.48` **on a system compared with itself**. v01's T7/T8 varied the window by
+re-simulating and were therefore measuring the RNG. Window-invariance controls MUST use nested prefixes of one
+acquisition.
+
+**What v02 does achieve (13/15 dev gates at W=320):** the v00 burned cascade is fixed BY BOUND
+(`D_lo = 45.52` vs `r_sep = 22.89`, DECIDABLE_SETTLED); harmless slow tails classify; non-settling, out-of-contract,
+drifting and silent systems abstain; gain, hidden state and extra causes separate; continuity and
+EQUIVALENCE_CLASS_ONLY hold. **None of it matters: the battery cannot SEE the remainders it must act on.**
+
+
+---
+
+# EXP-GT-CONTINUOUS-FINGERPRINT-03 — Drift-Aware Risk-Calibrated Fingerprint
+
+**RESULT: BENCHMARK_INVALID.** The target quantity is ill-posed. Detected BEFORE any predictor was fitted. The
+calibration set was never touched; the sealed prospective split was never touched. **BRANCH CLOSED — NO V04.**
+
+**11. (D-077) THE FINGERPRINT DISTANCE IS NOT A PROPERTY OF A PAIR OF SYSTEMS. IT IS A PROPERTY OF THE PAIR AND
+THE OBSERVATION WINDOW.**
+
+An RMS-over-window metric DILUTES any TRANSIENT difference at exactly the normalization rate and tends to ZERO as
+the window grows. Measured on noise-free traces, same metric, only the window changed:
+
+| pair | W=320 | W=1400 | ratio |
+|---|---|---|---|
+| v00 burned cascade | 47.35 | 22.64 | **0.478** |
+| v01 T4 | 30.18 | 14.45 | **0.479** |
+| gain x2 | 115.32 | 55.13 | **0.478** |
+| sign inversion | 230.64 | 110.27 | **0.478** |
+| **hidden state (PERSISTENT)** | 346.43 | 348.01 | **1.005** |
+
+`sqrt(320/1400) = 0.478`. **The persistent difference does not dilute. That control proves the effect is the
+METRIC, not the systems.**
+
+**CONSEQUENCE, and it retrospectively explains the whole branch: for a FIXED window the instrument already sees
+everything it will ever see. There is no "unseen remainder" affecting D_W -- the only uncertainty is measurement
+noise. v00's in-flight guard, v01's tail bound and v02's resolution certificate were each defeated by a quantity
+THAT DOES NOT EXIST.** The one legitimate truncation concern is PERSISTENCE, which does not dilute and is fully
+captured by any window exceeding the settling time plus the declared delay horizon.
+
+**12. A RISK-CALIBRATED INSTRUMENT IS ONLY AS MEANINGFUL AS THE QUANTITY WHOSE RISK IT CALIBRATES.** v03's retreat
+from proof to conformal risk was sound in principle, but it inherited the ill-posed target. The two-path truth
+check caught it before a single parameter was fitted.
+
+**13. A WELL-POSED CONTINUOUS FINGERPRINT NEEDS A WINDOW-INVARIANT DISCREPANCY FUNCTIONAL** -- an integral rather
+than a mean, or normalization by response energy rather than window length. That is a change to the METRIC, the one
+component unchanged since v00, and therefore a NEW PROGRAMME, not a new version.
+
+
+---
+
+# EXP-GT-CAUSAL-RESPONSE-DECOMPOSITION-00 — Factorized Causal Response Decomposition (NEW PROGRAMME)
+
+**RESULT: FAIL AT DEVELOPMENT (19/20).** Not frozen. The new prospective split was NOT touched.
+
+**14. (D-078) THE FACTORIZATION WORKS. THE DILUTION IS CURED.** On nested prefixes of ONE acquisition, the old
+window-normalized scalar falls 144.04 -> 83.17 (ratio 0.577 = sqrt(160/480), exactly as predicted) while the new
+`E_trans` -- AN INTEGRAL, NOT A MEAN -- converges upward (3.220e6 -> 3.365e6) and `P_inf` correctly stays at ZERO
+for a transient with an identical asymptote. The two quantities the old scalar conflated now live on separate axes.
+
+**15. PEAK AND ENERGY ONLY COME APART WHEN THE SHAPE COMES APART.** A single leaky path CANNOT dissociate them:
+measured, its shape factor E/A^2 stays in 18-41 across Tx from 1 to 64, and the best equal-energy peak ratio
+achievable is 1.36 -- a rounding error, not a control. With a high-pass SPIKE (E/A^2 = 6.9) against a cascade BROAD
+path (E/A^2 = 56.1): EQUAL ENERGY -> peak ratio **3.09x**; EQUAL PEAK -> energy ratio **7.04x**. Both axes separate
+on their own.
+
+**16. (THE FAILURE) A SHAM CAN CALIBRATE A BAND. IT CANNOT SUBTRACT A REALIZATION IT NEVER SAW.** The matched sham
+has the same VARIANCE as the causal trace's drift but is an INDEPENDENT REALIZATION, so debiting its ENERGY is
+unbiased in expectation and useless per pair. Drift-only controls pass perfectly (a band is all they need); a slow
+causal response UNDER HEAVY DRIFT is overstated 7.1x and its drift excursion is quoted as a causal peak. **The
+instrument calls the drift a response instead of abstaining.** A successor must change the ACQUISITION -- a sham
+that SHARES the drift realization (interleaved / common-mode), not merely its distribution -- not the estimator.
+
+**17. TWO INHERITED ASSUMPTIONS, BOTH NAMED.** (a) The old `BASELINE_MAX` refusal, imported with admission,
+re-imposed "refuse anything that drifts" and threw away the sham machinery this programme exists to test -- THE
+SAME MISTAKE v01 MADE with v00's dead in-flight guard. (b) `max`-over-blocks is a VERDICT rule, not an ESTIMATOR:
+over 32 blocks it selects the block where independent drift realizations conspire. Phases are REPLICATES (median);
+probes are DISTINCT INTERVENTIONS (max).
+
+| CRD-01 common-mode causal decomposition | continuous | DEMONSTRATED (ground truth) / TRANSFER NOT ESTABLISHED (physics) | E/E*=1.01x on the pair CRD-00 got 7.1x wrong; refuses outside its admission region; but needs a simultaneous unprobed copy of the same system, which no droplet can supply |
+| CRD-02 referenced paired-episode decomposition | continuous | FAIL (development, gate G5) / architecture PHYSICALLY PLAUSIBLE (G14 pass) | drift half solved without an oracle twin: Z-17 E/E*=1.00 A/A*=1.02, admission tracks validity on 8 axes; fails on contamination -- kappa~0.15 identifiability floor leaves a 12% leak as a silent 21% attenuation. Prospective split SEALED. |
+| CRD-03 redundant-reference + signed decomposition | continuous | PASS (ground truth) / TRANSFER: passive observables required | fixes CRD-02: kappa=0.12 contamination CORRECTED E/E*=1.00 (prospectively, unseen systems), corrected to kappa~0.35; common-mode provably unidentifiable -> lower bound; 21/21 dev, 15/15 gates, 12/12 prospective. Needs >=3 passive refs of distinct drift coupling. |
+| Passive observable design (droplet transfer) | scaffold droplet | FAIL — CONTAMINATION DOMINATES | N-based references are common-mode contaminated (contam/drift ~0.85, kappa/a spread 0.056) because the response IS nutrient consumption and shares field N with the drift; low-contam derivatives don't observe the drift; no far-field. Oracle U/V read forbidden. CRD-03 methods result unaffected. |
+| CRD-03 independent replication + audit | ctrans + FHN | INDETERMINATE (core reproduces; lower-bound theorem falsified) | differential identifiability reproduces from clean-room code; lower-bound argmax rule falsified under amplification (0/40 coverage, 10.5% overstatement) -> replaced by sign-agnostic bracket (40/40); quantitative accuracy ctrans-specific (FHN 0.86) |
+| Sign-safe set-identification (consolidation) | synthetic + ctrans + FHN | THEOREM PASS / PROSPECTIVE PASS / methods-paper solid | T6 repaired to set-identification (T6-A..E); sign-safe instrument fresh-prospective 10/10, 0 invalid, safety metric 0 across 1600+ trials; independent impl 20/20; FHN structural transfer only; one-command reproduction passes |
+| Sign-safe instrument — large hold-out | synthetic N=2000 stratified | FAIL (safety endpoint) | 541/1333 sets exclude truth at SNR=5 via null-response-gate misfire; theorems unaffected (0/4000 violations); point-ID shown oracle-contract-dependent; publication BLOCKED pending noise-aware detector + fresh hold-out |

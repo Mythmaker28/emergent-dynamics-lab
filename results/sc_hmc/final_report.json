@@ -1,0 +1,153 @@
+{
+  "experiment": "EXP-SC-HISTORY-MATERIAL-CONTINUITY-00",
+  "stage": "DEVELOPMENT (prospective hold-out PRESERVED, not burned)",
+  "turnover": {
+    "M_early_mean": 0.5604527383527013,
+    "M_tc_mean": 0.2652224417602774,
+    "M_tc_min": 0.22814333426656125,
+    "M_tc_max": 0.3264421886171907,
+    "frac_below_M_low": 1.0,
+    "M_low": 0.35
+  },
+  "gates_G": {
+    "G1_entity_existence": true,
+    "G2_actual_turnover": true,
+    "G3_tracer_passivity": true,
+    "G4_intervention_responsiveness": true,
+    "G5_full_state_clone_validity": true,
+    "G6_phenotype_reset_validity": true,
+    "G7_material_reset_validity": true,
+    "G8_axis_independence": true,
+    "G9_partition_robustness": true,
+    "G10_history_signal": false,
+    "G11_non_vacuity": true,
+    "G12_truth_independence": true
+  },
+  "gates_pass": 11,
+  "gates_total": 12,
+  "failed_gates": [
+    "G10_history_signal"
+  ],
+  "controls_K": {
+    "K1_tracer_passivity": "PASS (bit-identical rho/U/V; capability max_dev=0.0)",
+    "K2_tracker_removal": "PASS (detect() is ID-free: rho-threshold + periodic components; no tracker IDs enter axes)",
+    "K3_endpoint_similarity_trap": "PASS (between-entity endpoints do NOT diverge history-specifically under intervention; R individuation AUC=0.523 ~ chance)",
+    "K4_full_state_clone": "PASS (clones reproduce within stochastic ceiling; ceiling<drift in 12/12)",
+    "K5_material_only_trap": "CONFIRMED-TRAP (arm M: material intact, org scrambled, reproduces H response; d_M~=d_H) -> material overlap NOT counted as continuity; win_rate H vs M on R=0.58",
+    "K6_shape_only_trap": "CONFIRMED-TRAP (arm P: same shape, reset internal; geometry tie win_rate=0.00) -> shape match NOT counted as continuity",
+    "K7_temporal_shuffling": "N/A-VACUOUS (history has no predictive value to reduce; nothing to destroy)",
+    "K8_unrelated_matched": "PASS (arm U kept separate; between-entity similarity != same-history; P2 win_rate vs U=0.50 ~ chance)",
+    "K9_partition_alternatives": "PASS (M partition-robust; negative result stable across detector thresholds)",
+    "K10_intervention_null": "PASS (perturbed-minus-control cancels for identical clones)"
+  },
+  "axis_discrimination": {
+    "P1": {
+      "P": {
+        "n": 12,
+        "win_rate": 0.0,
+        "median_dH": 2.7677075206428086,
+        "median_dC": 2.7677075206428086
+      },
+      "M": {
+        "n": 12,
+        "win_rate": 0.0,
+        "median_dH": 2.7677075206428086,
+        "median_dC": 2.7677075206428086
+      },
+      "U": {
+        "n": 12,
+        "win_rate": 0.08333333333333333,
+        "median_dH": 2.7677075206428086,
+        "median_dC": 2.515121020522871
+      }
+    },
+    "P2": {
+      "P": {
+        "n": 12,
+        "win_rate": 1.0,
+        "median_dH": 2.872462646783799,
+        "median_dC": 6.019443806851637
+      },
+      "M": {
+        "n": 12,
+        "win_rate": 1.0,
+        "median_dH": 2.872462646783799,
+        "median_dC": 4.769416759316037
+      },
+      "U": {
+        "n": 12,
+        "win_rate": 0.5,
+        "median_dH": 2.872462646783799,
+        "median_dC": 2.645948272909399
+      }
+    },
+    "P3": {
+      "P": {
+        "n": 12,
+        "win_rate": 0.5833333333333334,
+        "median_dH": 2.023297402551155,
+        "median_dC": 2.0562721323412796
+      },
+      "M": {
+        "n": 12,
+        "win_rate": 0.6666666666666666,
+        "median_dH": 2.023297402551155,
+        "median_dC": 2.0169458531761966
+      },
+      "U": {
+        "n": 12,
+        "win_rate": 0.5,
+        "median_dH": 2.023297402551155,
+        "median_dC": 1.8590446326563745
+      }
+    },
+    "R": {
+      "P": {
+        "n": 12,
+        "win_rate": 0.5,
+        "median_dH": 2.595538063494309,
+        "median_dC": 2.793776839195065
+      },
+      "M": {
+        "n": 12,
+        "win_rate": 0.5833333333333334,
+        "median_dH": 2.595538063494309,
+        "median_dC": 2.598773786922859
+      },
+      "U": {
+        "n": 12,
+        "win_rate": 0.5833333333333334,
+        "median_dH": 2.595538063494309,
+        "median_dC": 2.3717823101575983
+      }
+    }
+  },
+  "individuation": {
+    "P2": {
+      "mean_within": 2.710192783892937,
+      "mean_between": 3.3618661689900846,
+      "ratio": 0.8061572492342639,
+      "auc": 0.6515151515151515
+    },
+    "R": {
+      "mean_within": 3.510588363441322,
+      "mean_between": 3.6128374260248934,
+      "ratio": 0.9716984044677118,
+      "auc": 0.5227272727272727
+    }
+  },
+  "predictive_models": {
+    "A": 1.0743409339160759,
+    "B": 1.1477002362580504,
+    "C": 1.0688938979885831,
+    "D": 1.1686325289286938,
+    "baseline_mean": 1.0,
+    "any_beats_baseline": false,
+    "history_beats_snapshot": true,
+    "history_beats_material": true
+  },
+  "n_axes_history_specific": 0,
+  "verdict": "FAIL \u2014 SNAPSHOT SUFFICIENT",
+  "prospective_executed": false,
+  "reason_no_prospective": "Development gate G10 (history signal) FAILED; per protocol the prospective hold-out is preserved."
+}

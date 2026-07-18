@@ -2043,3 +2043,400 @@ a **continuous ground-truth substrate with known causal structure**, its own dev
 prospective run. That is a well-posed piece of work and it is **not** authorized here.
 
 **EXP-SC-01 remains BLOCKED.**
+
+
+---
+
+## D-074 — EXP-GT-CONTINUOUS-FINGERPRINT-00: FAIL. Instrument RETIRED. Droplet pilot remains BLOCKED.
+
+**Context.** D-073 returned `PREFLIGHT_FAIL`: the frozen Boolean fingerprint is **undefined** on a continuous
+observable. Cast to `uint8` -> universal false sameness. Exact float inequality -> universal false difference,
+including a system against **its own later self**. Both were **reproduced on the new substrate**, confirming the
+problem being solved is the real one (uint8 -> all zeros; float inequality -> 304/304 samples differ).
+
+**What was done.** A new continuous ground-truth substrate (`ctrans`), a privileged evaluator that never imports
+the instrument, a dev/prospective split **committed at `de97ee0` before the instrument existed** (verifiably
+disjoint: no shared names, no shared spec fingerprints, disjoint seeds, disjoint parameter grids, one topology
+reserved to prospective), a preregistered protocol with exact gates G1–G10 and a calibration rule
+(`SAFETY=2.0, SEP_FACTOR=3.0`) fixed **before any distance was seen**, and a new instrument
+(`cfingerprint.py`) frozen and hash-gated.
+
+**Development: 52/52. Two-path validation: 52/52, 0 disagreements. Must-fail controls: 7/8.**
+
+**Prospective: 52/54. G2 FAILED.** `P_cascade` was refused by the in-flight guard, which fired on a genuinely
+slower **second-order** tail (5.3% of peak vs the 5% threshold). The privileged path puts its true settling time at
+**108**, inside the 160-sample window. **The instrument abstained on a case it could have decided.**
+
+**Decision.** Per the freeze manifest's own failure rule, written before the run: the version is **RETIRED**, not
+repaired. The fix is a one-line threshold change; **it is not made**, because a repaired instrument would be one
+tuned on its hold-out, and the hold-out is now **burned**. A future version requires a **new split** and a **new
+authorization**.
+
+**Five defects were found and are preserved, not hidden:**
+
+1. **Metric aggregation (observer failure).** A MEAN over probe blocks diluted the `supply_cause` pair's real
+   separation of 21.8 down to 8.6 with 24 blocks of pure noise. Fixed by the **quantifier**: "indistinguishable
+   under the repertoire" is a FOR-ALL, certified by its WORST case, so the aggregate is a **max**.
+2. **Noise-scale estimator error x signal (normalization failure).** `z = r/sigma_hat`, so a 1.4% error in
+   `sigma_hat` injects `eps * z_signal` into a system's comparison **with itself**. Signature: **more repeats made
+   the instrument worse** (null 5.2 -> 9.4 -> 25.8 at R=4/8/16). Fixed by independent per-probe baselines and by
+   quotienting over one common scale clipped to the estimator's own confidence band. **Declared price: gain
+   differences below ~4% are not resolvable.**
+3. **Thresholds below the noise they threshold (observer failure).** `Z_DET=5` ("five sigma") sat below the drift
+   excursion; a **silent system scored 1/32 "responses"** and was handed a confident DIFFERENT. Recalibrated on
+   **noise-only** rows.
+4. **Benchmark-label failure.** `D_noisy` was built at true SNR **1.97** — marginally *above* its noise floor, not
+   below it. The instrument correctly detected it. **The failing thing was the system, not the instrument.** The
+   system was fixed; the threshold was **not** moved, because moving it would have been fitting a threshold to a
+   label.
+5. **Evaluator / ground-truth failure — caught by the two-path check, which is what it is for.** The privileged
+   evaluator quotiented by a **free affine map**, which absorbs a doubled gain (`a=2`) and an inverted sign
+   (`a=-1`), and it duly certified two flagship DIFFERENCE cases as EQUIVALENT. **A benchmark whose truth path is
+   wrong cannot fail an instrument; it can only slander one.**
+
+**Also recorded: L6 DID NOT FIRE.** The lexicographic phase quotient is stable in this benchmark. The cyclic-shift
+quotient remains the principled choice but is **not demonstrated load-bearing here**. A control that does not fire
+is not a control, and the protection is **unproven**, not proven.
+
+**Infrastructure hazard, recorded.** The repository is mounted on a filesystem with coarse mtimes on which Python's
+bytecode cache is unreliable: a **stale `.pyc` masked a truncated source file**, and an early "differential
+verification" that appeared to reproduce reference numbers exactly was in fact **running old bytecode and verifying
+nothing**. All runs now use a per-run `PYTHONPYCACHEPREFIX` and every source file is `py_compile`d from disk before
+use. Classified: **provenance / implementation failure**.
+
+`SC-PILOT-CONTINUOUS-FINGERPRINT-PREFLIGHT`: **NOT AUTHORIZED.**
+`SC-PILOT-CAUSAL-FINGERPRINT` remains **BLOCKED**. `EXP-SC-01` remains **BLOCKED**.
+No droplet experiment was launched. `beta`, `D_int` and the droplet equations were not touched.
+
+
+---
+
+## D-075 — EXP-GT-CONTINUOUS-FINGERPRINT-01: FAIL at DEVELOPMENT. Not frozen. Prospective NOT run. Hold-out PRESERVED.
+
+**Context.** v00 died conflating "is the signal still moving?" with "can the unobserved remainder change the
+verdict?". It measured `P_cascade` at 64.15 against a radius of 23.36 and abstained anyway.
+
+**Built.** A tail substrate (first/second/third-order, underdamped, multi-timescale, delayed-onset, delayed second
+component, weak/strong long tails, non-settling, out-of-contract), a NEW split committed at `fb449b2` BEFORE the
+instrument changed (v01 prospective reuses ZERO v00 systems; the burned pair appears ONLY as development regression
+T1), and a tail-uncertainty guard that BOUNDS THE EVENTUAL DISTANCE rather than modelling the tail.
+
+**Development 52/54. Controls 6/10.**
+
+**WHAT WORKS, AND IT IS THE THING THAT MATTERED:** T1 — the burned case classifies BY BOUND (`D_lo = 41.9` vs
+`r_sep = 22.1`), with no hard-coded exception anywhere. v00's exact defect is fixed for the right reason. Also T2
+(non-settling abstains), T3 (slow-but-harmless classifies), T6 (noise is not a cause), T9 (guard load-bearing),
+T10 (v00's guard reproduces its own death).
+
+**WHAT KILLS IT: T4, the decisive control.** The bound's remaining-envelope statistic reaches **7.40 on pure
+noise** (288 noise-only blocks), forcing `TAIL_NOISE = 9.0`. T4's REAL remainder — ~10% of the pair's difference
+energy lies beyond the window, confirmed by the privileged path — measures **8.25**. It sits INSIDE the floor. The
+bound cannot see it, calls it SETTLED, and returns a confident DIFFERENT on a pair whose answer is still partly
+outside the window. **That is v00's error in the opposite direction, on the one case that distinguishes a
+principled tail guard from a threshold-raising hack.**
+
+**Also declared: the out-of-contract check cannot separate tau=130 from TAU_MAX=80** (per-sub-block decay 0.825 vs
+0.732, against comparable noise). It reliably detects only tau > ~2.5 x TAU_MAX. In the band (TAU_MAX,
+2.5 x TAU_MAX) the bound is UNSOUND and cannot tell that it is. UNVERIFIED SCOPE, stated rather than left to be
+found later.
+
+**Six defects preserved, each classified before repair:** (1) I called F0.admit() directly and it SILENTLY
+RE-IMPOSED v00'S IN-FLIGHT GUARD -- six of eight initial failures, T1 among them. Inheriting a core means
+inheriting its bugs unless you name the one you are replacing. (2) estimating the decay RATE from a ratio of two
+noisy block means declared the NULL out of contract -- reading the estimator's variance as the world refusing to
+relax. (3) SUBTRACTING the noise from the decrement when bounding the remainder -- the direction that flatters the
+instrument, and precisely what produced the T4 failure. (4) one confidence constant for both the CHECK and the
+BOUND. (5) TAU_MAX=40 against a 160-sample window would have made the three-way distinction VACUOUS -- caught
+before any instrument code existed. (6) a name-keyed acquisition cache silently served a stale re-parameterised
+system.
+
+**DECISION: RETIRED AT DEVELOPMENT. The prospective split was NOT run and is NOT burned.** Freezing an instrument
+whose defect is already measured, and spending the hold-out to confirm it, would destroy an asset for no
+information. The identified fix -- a LONGER OBSERVATION WINDOW, giving the tail region leverage against its noise
+floor -- is a BATTERY change and therefore a NEW instrument, which is not attempted here.
+
+v00's six frozen files were NOT modified and still verify byte-for-byte against its freeze manifest.
+
+`SC-PILOT-CONTINUOUS-FINGERPRINT-PREFLIGHT`: **NOT AUTHORIZED.**
+`SC-PILOT-CAUSAL-FINGERPRINT` remains **BLOCKED**. `EXP-SC-01` remains **BLOCKED**.
+No droplet experiment. beta, D_int and the droplet equations untouched.
+
+
+---
+
+## D-076 — EXP-GT-CONTINUOUS-FINGERPRINT-02: FAIL AT DEVELOPMENT. Sealed split untouched. The longer-window hypothesis is FALSIFIED.
+
+**Preregistered at 44121e9, before any sweep:** horizon grid {160,240,320,480,640}, margin k=3.0, admissibility
+`B_critical(W) >= k*B_noise(W)`, decision-relevance defined privileged and instrument-independent, and the rule
+"select the SMALLEST horizon passing every gate, not the prettiest separation".
+
+**MEASURED RATIO B_signal/B_noise ACROSS THE GRID: 0.89 / 2.55 / 2.56 / 1.18 / 0.29.**
+**IT PEAKS AT 2.56 AND COLLAPSES. IT NEVER REACHES 3.0. THE BAR WAS NOT MOVED.**
+
+**THE STRUCTURAL RESULT.** B_noise improves as exp(-(W-84)/(3*TAU_MAX)); B_signal decays as exp(-W/tau). The signal
+dies faster than the floor improves whenever tau < 3*TAU_MAX -- true for essentially every in-contract system,
+since TAU_MAX is BY DEFINITION the slowest admitted. **A longer window destroys the very evidence it was supposed
+to reveal.** At the end of v01 the previous agent (me) proposed exactly this fix. It is now falsified by
+measurement. The tail-bound FAMILY has a resolution ceiling no horizon can raise; a successor must change the
+METHOD, not the budget.
+
+**SECOND FINDING: the floor is DRIFT-limited.** White-noise theory predicts B_noise -> 0.58 at W=320; measured 3.49,
+and it stops improving. Sub-block means wander with the OU baseline while `sd` (a differenced white-noise estimate)
+is blind to drift by construction. The longer you look, the more the baseline has wandered. Corollary: the
+out-of-contract bars are NOT constants -- carrying v01's W=160 values across the grid made EVERY pair, including
+the NULL, come back OUT OF CONTRACT.
+
+**THIRD FINDING, and it invalidates v01's controls retrospectively:** a PREFIX of a long episode is NOT a short
+episode with the same seed. The engine draws noise (T samples) then drift from the same RNG stream, so drift
+depends on episode length. Measured max|Z_long[:320] - Z_short(320)| = 6.48 ON A SYSTEM COMPARED WITH ITSELF.
+v01's T7/T8 re-simulated to vary the window and were therefore measuring the RNG. v02 supplies prefix().
+
+**WHAT v02 ACHIEVES (13/15 dev gates at the best horizon W=320):** D1 -- the v00 burned cascade classifies BY BOUND
+(D_lo=45.52 vs r_sep=22.89, DECIDABLE_SETTLED), no exception anywhere. Harmless slow tails classify; non-settling,
+out-of-contract, drifting and silent systems abstain; gain, hidden state, extra causes separate; continuity and
+EQUIVALENCE_CLASS_ONLY hold. Failing: sign and delayed-second-component (drift-driven false-unbounded blocks).
+
+**T4 abstains at W=320 -- FOR THE WRONG REASON.** Its bracket straddles because a block went unbounded from DRIFT,
+not because the bound resolved the remainder (B=8.92 < k*B_noise=10.47). A CORRECT-BY-ACCIDENT VERDICT IS NOT A
+QUALIFICATION.
+
+**DECISION: RETIRED AT DEVELOPMENT. The sealed prospective split (31 systems, 27 cases, third-order cascade) was
+NOT touched and is NOT burned.** Audited: no Q_* acquisition has ever existed on disk or in git history. No more
+flexible estimator was invented after seeing the failure, per the preregistered stop rule. No freeze manifest was
+written -- v02 never earned one.
+
+v00 and v01 untouched; v00's six frozen files still verify byte-for-byte; v00 tests 11/11.
+`SC-PILOT-CONTINUOUS-FINGERPRINT-PREFLIGHT`: **NOT AUTHORIZED.**
+`SC-PILOT-CAUSAL-FINGERPRINT` remains **BLOCKED**. `EXP-SC-01` remains **BLOCKED**.
+No droplet experiment. beta, D_int and the droplet equations untouched.
+
+
+---
+
+## D-077 — EXP-GT-CONTINUOUS-FINGERPRINT-03: BENCHMARK_INVALID. The target quantity is ill-posed. BRANCH CLOSED — NO V04.
+
+**Preregistered at cc39c6c, before any fitting:** alpha=0.05 MARGINAL coverage; disjoint FIT(14)/CAL(14)/CHALLENGE(22)
+partition (verified: no system, parameter tuple or seed appears twice; none matches a sealed-prospective system; the
+reserved third-order cascade appears nowhere in development); a MATCHED SHAM channel (baseline episodes only,
+differing solely in the absence of intervention amplitude) to measure the drift scale v02's differenced `sd` was
+blind to; ridge on label-free features, fit-set CV only; split conformal; radii from FIT-SET NULLS only
+(r_cont=7.96, r_sep=23.88).
+
+**The sham channel works** -- it returns a per-system drift scale of 1.264 noise units, exactly the quantity that
+set v02's floor. **Then the pre-fit truth check (G11) failed, and it failed for a reason that invalidates the
+question itself.**
+
+**THE FINDING. The fingerprint distance is an RMS OVER AN OBSERVATION WINDOW. For any TRANSIENT difference it
+dilutes at EXACTLY sqrt(W/W') and TENDS TO ZERO as the window grows.** Measured noise-free, same metric, only the
+window changed: v00 burned cascade 47.35 -> 22.64 (0.478); v01 T4 30.18 -> 14.45 (0.479); gain x2 115.32 -> 55.13
+(0.478); sign 230.64 -> 110.27 (0.478). sqrt(320/1400) = 0.478. **The PERSISTENT hidden-state pair does NOT dilute
+(346.43 -> 348.01, ratio 1.005) -- the control that proves the effect is the METRIC's normalization, not the
+systems.**
+
+**Therefore "the distance at a longer window" is not a fact about the pair. It is a fact about the pair AND the
+window.** The privileged path places the v00 burned cascade at D_inf=22.64, BELOW the preregistered r_sep=23.88 --
+inside the ambiguity gap -- so G5 (must classify) and G2 (no confident wrong verdict) cannot both hold.
+Construction truth and privileged truth DISAGREE. **G11 forbids scoring. BENCHMARK_INVALID.** The radii were
+preregistered and are NOT moved; the target was preregistered and is NOT redefined after seeing that it fails.
+
+**RETROSPECTIVE CONSEQUENCE FOR THE WHOLE BRANCH: for a FIXED window the instrument already sees everything it will
+ever see. There is no "unseen remainder" affecting D_W -- the only uncertainty is MEASUREMENT NOISE. v00's in-flight
+guard, v01's tail-uncertainty bound and v02's resolution certificate were each defeated by A QUANTITY THAT DOES NOT
+EXIST.** The one legitimate truncation concern is PERSISTENCE, which does not dilute and is already captured by any
+window exceeding the settling time plus the declared delay horizon. v00's persistence logic was addressing the real
+problem; its in-flight guard was addressing a phantom.
+
+**A well-posed continuous fingerprint needs a WINDOW-INVARIANT discrepancy functional -- an integral rather than a
+mean, or normalization by response energy rather than window length. That changes the METRIC, the one component
+unchanged since v00, and is therefore a NEW PROGRAMME, not a new version.**
+
+**STATUS.** No freeze manifest -- v03 never earned one. No calibration was performed -- the calibration set is
+untouched. **The sealed prospective split (31 systems, 27 cases) was NEVER SPENT** and remains sealed; audited
+again: no Q_* acquisition has ever existed on disk or in git history.
+
+Methodological synthesis of v00-v03 written to docs/CFP03_SYNTHESIS.md.
+
+`SC-PILOT-CONTINUOUS-FINGERPRINT-PREFLIGHT`: **NOT AUTHORIZED.**
+`SC-PILOT-CAUSAL-FINGERPRINT` remains **BLOCKED**. `EXP-SC-01` remains **BLOCKED**.
+**CONTINUOUS-FINGERPRINT BRANCH CLOSED — NO V04.**
+No droplet experiment was ever executed in this branch. beta, D_int and the droplet equations untouched.
+
+
+---
+
+## D-078 — EXP-GT-CAUSAL-RESPONSE-DECOMPOSITION-00: FAIL AT DEVELOPMENT (19/20). New split untouched.
+
+NEW PROGRAMME, not continuous-fingerprint v04. The v00-v03 branch stays closed and historically intact; the
+historical sealed hold-out has still never been generated.
+
+**THE CENTRAL REPAIR WORKS.** On nested prefixes of ONE acquisition the old window-normalized scalar dilutes
+144.04 -> 83.17 (ratio 0.577 = sqrt(160/480), exactly), while E_trans -- AN INTEGRAL, NOT A MEAN -- converges
+upward and P_inf correctly stays at zero for a transient with an identical asymptote. The two quantities the old
+scalar conflated are now measured on separate axes and each separates on its own:
+  EQUAL-ENERGY control -> PEAK RATIO 3.09x ; EQUAL-PEAK control -> ENERGY RATIO 7.04x.
+Those controls required a real construction: a single leaky path CANNOT dissociate peak from energy (shape factor
+E/A^2 stays in 18-41 across Tx 1..64; best achievable peak ratio 1.36). My first attempt at them failed silently.
+
+**DEVELOPMENT 19/20**, accuracy-checked against privileged truth (estimated energies land within 0.68-1.21x).
+Passing: pure transient, pure persistent, hidden state, latency, both dissociation controls, gain, sign, units,
+solver, equivalent implementations, limited-access collision (exact zeros, EQUIVALENCE_CLASS_ONLY), DRIFT-ONLY
+(zero causal components on every axis), slow response without drift, and all abstention cases.
+
+**THE FAILURE: Z-17, a slow causal response UNDER HEAVY DRIFT.** E_trans overstated 7.1x (3.05e6 vs a privileged
+4.30e5) and the drift excursion quoted as a causal peak (422.7 vs a true ~97). The instrument SILENTLY CALLS THE
+DRIFT A RESPONSE instead of abstaining -- exactly what gate G8 forbids.
+
+**DIAGNOSIS, MEASURED: A SHAM CAN CALIBRATE A BAND. IT CANNOT SUBTRACT A REALIZATION IT NEVER SAW.** The matched
+sham has the same VARIANCE as the causal trace's drift but is an INDEPENDENT REALIZATION, so debiting its ENERGY is
+unbiased in expectation and useless per pair -- E_raw and E_sham fluctuate independently and their difference
+carries an error of the order of the thing being removed. That is why drift-ONLY passes perfectly (a band suffices)
+and Z-17, which needs an actual subtraction, does not.
+
+**TWO INHERITED ASSUMPTIONS, BOTH FOUND AND NAMED.** (a) The old BASELINE_MAX refusal, imported with admission,
+re-imposed "refuse anything that drifts" and pre-empted the sham machinery -- THE SAME MISTAKE v01 MADE inheriting
+v00's dead in-flight guard. (b) max-over-blocks is a VERDICT rule, not an ESTIMATOR: over 32 blocks it selects the
+block where independent drift realizations conspire. Fixed to median-over-PHASES (replicates), max-over-PROBES
+(distinct interventions). Not enough to save Z-17.
+
+**DECISION: FAIL AT DEVELOPMENT. The new prospective split is NOT touched and remains sealed. No freeze manifest --
+this version never earned one.** A successor must change the ACQUISITION CONTRACT, not the estimator: to SUBTRACT
+drift rather than bound it, the sham must SHARE the drift realization (interleaved / common-mode acquisition), not
+merely its distribution. Not attempted here; this stops for strategic review.
+
+SC-PILOT-RESPONSE-DECOMPOSITION-PREFLIGHT: NOT AUTHORIZED.
+SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+No droplet experiment. beta, D_int and the droplet equations untouched.
+
+## D-079 — CRD-01: common-mode acquisition PASSES ground truth; physical transfer NOT established
+The Z-17 failure that killed CRD-00 (E_trans overstated 7.1x, A_peak 422.7 vs true ~97) is fixed by CHANGING WHAT
+IS ACQUIRED, not the estimators: a SHARED drift realization across active/control/sham. E/E* = 1.01x, A/A* = 1.00x.
+Prospective 8/8, all 12 gates pass, all 12 must-fail controls fail as required. CRD-00's independent sham is now
+REFUSED (COMMON_MODE_NOT_ESTABLISHED) rather than corrected. The admission verdict TRACKS the accuracy boundary:
+inside it, E/E* <= 1.32x; outside it, the instrument refuses instead of degrading.
+DECISIVE CAVEAT: the passing contract needs a control that is THE SAME SYSTEM, UNPROBED, RECORDED SIMULTANEOUSLY.
+No droplet can supply that -- you cannot intervene and not intervene on the same droplet at once. Classification:
+MAPPING_REQUIRES_NEW_OBSERVABLE -> TRANSFER_NOT_ESTABLISHED. A co-recorded reference channel would reduce the
+requirement to something buildable, but that variant was NOT tested and is therefore NOT claimed.
+Three of my own bugs were caught and fixed by REPLACEMENT, not re-thresholding: a drift proxy sharing measurement
+noise with the deviation it corrected (g_hat = -1.008 on a drift-FREE system -- the correction was injecting
+noise); a worst-of-64 admission that reproduced CRD-00's own max-over-blocks error and failed the pure null; and a
+contamination detector that fired on every case, kappa=0 included, because it confounded drift accumulation with
+probe dependence.
+SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## D-080 — CRD-02: referenced paired-episode decomposition FAILS AT DEVELOPMENT (contamination gate G5)
+The paired-reference architecture removes CRD-01's unrealizable oracle twin: two SEPARATE episodes (active, sham),
+each with its OWN simultaneous common-mode reference, d_A != d_S, corrected per-episode then differenced
+(difference-in-differences). It WORKS on the drift half of the problem: Z-17 recovered E/E*=1.00 A/A*=1.02 with NO
+oracle twin; different-drift episodes, gain mismatch to x3, lag to 24 samples, bandwidth loss, baseline mismatch,
+persistence, hidden state, and peak/energy factorization all recovered; local unshared drift and no-reference
+rejected; admission tracks validity on every axis EXCEPT one. G14 (physical plausibility) PASSES -- no simultaneous
+twin is required.
+IT FAILS gate G5. Contamination detection has an identifiability floor at kappa ~ 0.15: a 12% reference leak
+(preregistered D4) attenuates the estimate 21% (E/E*=0.79) and is neither detected nor abstained -- clean cases
+reach t-stat 2.8, kappa=0.12 reaches 2.84, so no threshold separates them. A 12% multiplicative reference bias is
+statistically indistinguishable from a 12%-smaller true response without an absolute-scale reference. Five
+detectors tried; none crosses the floor. Per the admission contract ("accepted cases inaccurate before rejection
+-> the admission contract fails"), this is a development-gate failure.
+DECISION: FAIL AT DEVELOPMENT. The prospective split (12xx) is NOT touched and remains sealed. SC-PILOT-RESPONSE-
+DECOMPOSITION-PREFLIGHT: NOT AUTHORIZED. CRD-03, if authorized, must add a SECOND reference of known different
+coupling (b' != b) to make kappa identifiable -- an acquisition change, not an estimator tweak.
+Three of my own bugs were caught and fixed by construction, not tuning: differencing the wrong episodes (fixed by
+proper difference-in-differences); Python salted-hash seeds making runs non-reproducible (fixed by a stable content
+hash); and a degenerate AR(1) noise floor plus a 9s/arm Python OU loop (floor moved to the corrected residual; OU
+blocked-vectorised, matching the literal recurrence to 1e-15, 300x faster).
+CRD-01 stands unaltered. SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## D-081 — CRD-03: redundant references + signed interventions PASS in ground truth; transfer needs passive observables
+The CRD-02 contamination failure is FIXED. Redundant passive references with DISTINCT drift couplings + signed
+interventions correct DIFFERENTIAL reference contamination: the preregistered CRD-02 case (kappa=0.12 single
+reference) -> CORRECTED, E/E*=1.00 A/A*=1.00 (was a silent 21% attenuation, floor kappa~0.15). Corrected out to
+kappa~0.35. 21/21 dev cases, 15/15 dev gates; prospective 12/12 under a verified hash gate, all prospective gates
+pass, opened once. Q2 (kappa=0.12 on an UNSEEN system) CORRECTED 1.00; unseen topologies (third-order, underdamped,
+multiscale, feedback) recovered; collinear references abstain (ill-conditioned).
+IDENTIFIABILITY THEOREM (symbolic + numeric, established BEFORE the instrument): drift-free signals z_i =
+s(1-alpha_i kappa_i) span a 2-D space regardless of reference count; reference disagreement is a linear combination
+of them. => shape always identifiable; DIFFERENTIAL contamination identifiable to kappa~0.002 (contamination
+attenuates, largest-amplitude channel is cleanest, exact if any reference clean); COMMON-MODE contamination
+(kappa_i prop a_i) exactly unidentifiable AND undetectable by any passive scheme -> reported as a LOWER BOUND
+(D4 0.72, Q5 0.81). Absolute scale UNAVAILABLE on ctrans; not fabricated from privileged truth.
+Transfer: MAPPING_REQUIRES_NEW_PASSIVE_OBSERVABLE (>=3 passive references of distinct drift coupling; signed
+schedule plausible; no oracle; G15 physical plausibility PASS). Verdict: GROUND_TRUTH PASS -- PASSIVE OBSERVABLE
+DESIGN REQUIRED. Publication: METHODS PREPRINT READY.
+CRD-01, CRD-02 unaltered. SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED. Prospective 14xx burned.
+
+## D-082 — PASSIVE OBSERVABLE DESIGN: FAIL — CONTAMINATION DOMINATES
+CRD-03 passed in ground truth but requires >=3 passive references with distinct drift couplings and low causal
+contamination. The frozen scaffold droplet substrate does NOT expose them. Read-only calibration (permitted N
+handle + declared internal-state initial conditions u/v/off; no equation, beta, D_int, rho/U/V modified; operational
+references read only N/rho/c) established:
+ - Spatial N sub-samples are COLLINEAR (couplings all ~0.20) -> must-fail #1 confirmed.
+ - Reference TYPES have diversity (N-mean ~+0.20, N-derivative ~-0.004, attractant c ~-0.50; diversity 7.79,
+   cond 1.14) BUT under a clean strong response the drift-observing references (N_global/background/core, c) carry
+   the response at contam/drift ~0.79-0.90, with kappa_i/a_i CONSTANT across N refs (spread 0.056) = COMMON-MODE,
+   the exact direction CRD-03 proved UNIDENTIFIABLE.
+ - The low-contamination references (N_laplacian, N_flux) have drift couplings ~50x below the measurement's ->
+   the CRD-03 correction amplifies their noise ~50x -> unusable.
+ - No far-field clean region exists (the droplet fills the grid).
+ - Reading internal state U/V/sigma directly WOULD separate response from drift and is FORBIDDEN oracle access.
+PHYSICS: the causal response IS nutrient consumption (uptake via beta*sigma), which depletes N; the environmental
+drift also lives in N. Response and drift share one field -> common-mode contamination is forced by geometry.
+DECISION: FAIL — CONTAMINATION DOMINATES. SC-PILOT-RESPONSE-DECOMPOSITION-PREFLIGHT: NOT AUTHORIZED. The pilot was
+NOT executed; no equation/beta/D_int/rho/U/V modified; only passive read-only diagnostics added (logging changes
+no trajectory, verified). Quantum option NOT WARRANTED (the obstacle is observational rank-deficiency, not
+computation). The CRD-03 methods result is UNAFFECTED and is in fact instantiated by this failure (T5): METHODS
+PREPRINT READY FOR INDEPENDENT REPLICATION. SC-PILOT-CAUSAL-FINGERPRINT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## D-083 — Independent replication: core reproduces, lower-bound theorem T6 FALSIFIED, quantitative transfer FAILS
+Clean-room reimplementation (independent_replication/recover.py, imports numpy only) reproduces the CRD-03 core:
+differential contamination identifiable/correctable (kappa=0.12 -> 1.001), common-mode unidentifiable (bound),
+collinear abstains. So the historical PASS is not a code artifact.
+BUT the lower-bound claim is FALSIFIED. argmax-amplitude assumes sign(lam_i*e_i)>=0 (attenuation). Under
+amplification (e_i<0, OR g_i<0 with e_i>0) the FROZEN instrument returns CORRECTED with q_hat/q=1.106 (confident
+10.5% OVERSTATEMENT); point-estimate coverage 0/40 amplifying, 3/40 mixed-sign. Never tested: all historical cases
+used kappa>=0 and positive couplings; the droplet c_global has a=-0.50, so real substrates hit it. FIX (T6-prime):
+report bracket [min|v|,max|v|] (40/40 coverage all regimes, sign-agnostic); emit a point only under an established
+sign contract, else abstain. Verified independently.
+Second substrate (FitzHugh-Nagumo): contamination LOGIC transfers (differential located, common-mode bounded,
+amplifying abstains) but clean-case accuracy biased (q_hat/q~0.86) -> quantitative accuracy is ctrans-specific.
+VERDICTS: CRD-03 INDEPENDENT REPLICATION: INDETERMINATE (core reproduces; a load-bearing operational claim fails
+audit and must be restricted). SECOND SUBSTRATE: PASS (structural identifiability transfers) with quantitative
+caveat. PUBLICATION STATUS: REPLICATION COMPLETE — CONSOLIDATION INCOMPLETE (T6 retraction + FHN gap + no
+one-command rebuild). Historical CRD-03 freeze NOT rewritten; flaw documented. DROPLET CAUSAL-CONTINUITY PILOT
+remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## D-084 — Sign-safe consolidation: T6 repaired, sign-safe instrument PASSES fresh prospective
+Resolved the T6' contradiction: the 40/40 bracket coverage held ONLY because every tested regime had >=1 clean
+reference; with no anchor the bracket is one-sided and its side is set by sign(alpha*kappa). Repaired theory
+(T6-A attenuation lower bound, T6-B amplification UPPER bound, T6-C clean-anchor bracket, T6-D sparsity m>=2s+1,
+T6-E no-anchor-no-sign impossibility with symbolic proof), property-tested >=0.97 over 400 trials each. Built an
+independent sign-safe instrument (9 statuses, never max-amplitude default), committed a fresh split BEFORE fitting
+(8b77031), froze (09016d7), ran prospective once: 10/10, 0 invalid. Safety metric (confident exclusion of truth) =
+0 across 1600+ trials, all sign regimes, all (m,s). Second clean-room implementation agrees 20/20. FHN: structural
+transfer, quantitative substrate-specific (0.86, pre-window calibration bias diagnosed). One-command reproduction
+(make reproduce-paper) PASSES from disk; Dockerfile pinned but not built here.
+VERDICTS: SIGN-SAFE IDENTIFIABILITY THEOREM: PASS. SIGN-SAFE INSTRUMENT PROSPECTIVE: PASS. SECOND SUBSTRATE:
+STRUCTURAL PASS — QUANTITATIVE FAIL. ONE-COMMAND REPRODUCTION: PASS (container unverified). PUBLICATION STATUS:
+METHODS PAPER SOLID (peer-review submission needs external human review + container E2E). Historical CRD-03 sign
+bug documented, not patched. DROPLET PILOT and EXP-SC-01 remain BLOCKED.
+
+## D-085 — FINAL HARDENING: theorems PASS, large hold-out FAILS (low-SNR null-gate), publication BLOCKED
+THEOREMS SOUND: 0 validity violations across 4000 eps-separated trials (T6-A/B/C/E). The earlier 0.995/0.970 were
+INFORMATIVENESS rates, not pass rates; all 14 residual cases were safe refusals (near-equal betas -> channels agree
+-> common-mode not excludable without an anchor), and the theorem conclusions held in every one.
+SIGN-CONTRACT PROVENANCE: all 8 point identifications in the benchmark were ORACLE-derived (anchor/sign read from
+ground truth). Blind rerun -> 0 points, safety preserved. Point-identification claims are now explicitly CONDITIONAL
+on externally established contracts; the benchmark does NOT show such contracts are obtainable from passive data.
+LARGE HOLD-OUT FAILED: preregistered N=2000 stratified generator (a76f8a7), instrument hash-gated at 09016d7, run
+once. 541/1333 emitted sets EXCLUDE the truth (40.6%); blind arm 541/541. Single systematic cause: the
+null-response gate (median(amp) < 2*median(null)) MISFIRES at SNR=5, emitting POINT={0} ("no response") against a
+real response (hand-verified case i=1: true |q|=0.428, instrument said 0). The 10-case prospective had no low-SNR
+stratum and passed; the stratified hold-out failed immediately. STOP RULE INVOKED: failure preserved, instrument NOT
+patched, hold-out BURNED. A harness bug (passing a_i instead of 1/a_i) was found and corrected first; signsafe.py
+was never modified (hash-gated throughout) -- documented as an erratum.
+CLAIM C12 ("never emits a set excluding the truth") WITHDRAWN. Theorems unaffected (the defect is an implementation
+detection gate, not the identifiability theory). FHN: Track A (structural transfer; quantitative ctrans-specific).
+Docker/CI never built -> clean reproduction INCOMPLETE.
+VERDICTS: THEOREM PACKAGE: PASS. LARGE DISTRIBUTIONAL HOLD-OUT: FAIL. CLEAN REPRODUCTION: INCOMPLETE.
+CROSS-SUBSTRATE: STRUCTURAL PASS. PUBLICATION STATUS: NOT READY. EXTERNAL HUMAN REVIEW: PENDING.
+DROPLET CAUSAL-CONTINUITY PILOT remains BLOCKED. EXP-SC-01 remains BLOCKED.

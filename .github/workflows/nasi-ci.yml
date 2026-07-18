@@ -1,0 +1,40 @@
+name: emergent-metrology-ci
+on: [push, pull_request]
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "${{ matrix.python }}" }
+      - run: pip install "numpy>=1.26,<3" "matplotlib>=3.7"
+      - name: Freeze verification (NASI + point layer)
+        run: |
+          cd noise_aware && python verify_freeze.py && cd ..
+          cd point_cert && python verify_pc_freeze.py
+      - name: Historical false-zero regressions (NASI)
+        run: cd noise_aware && PYTHONPYCACHEPREFIX=/tmp/pyc python -B regressions.py
+      - name: Point-layer 57-case regressions (0 catastrophic invalid)
+        run: cd point_cert && PYTHONPYCACHEPREFIX=/tmp/pyc python -B pcregressions.py
+      - name: Low-SNR set-coverage development gates
+        run: cd noise_aware && PYTHONPYCACHEPREFIX=/tmp/pyc python -B run_dev.py 300
+      - name: Deterministic reproduction (NASI + PC)
+        run: make reproduce-nasi && make reproduce-pc
+      - name: Cache-poisoning invariance
+        run: cd noise_aware && python cache_poison_test.py
+      - name: Regenerate figures from raw artifacts
+        run: |
+          cd noise_aware && PYTHONPYCACHEPREFIX=/tmp/pyc python -B make_figures.py && cd ..
+          cd point_cert && PYTHONPYCACHEPREFIX=/tmp/pyc python -B make_pc_figure.py
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build pinned container
+        run: docker build -t emergent-metrology-repro .
+      - name: Reproduce inside container (no host cache)
+        run: docker run --rm emergent-metrology-repro make reproduce-all

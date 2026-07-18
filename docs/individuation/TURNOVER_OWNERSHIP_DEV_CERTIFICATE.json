@@ -1,0 +1,70 @@
+{
+  "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03A",
+  "analysis": "FROZEN ownership/access (geometric neigh + leak-free boot)",
+  "n_worlds": 4,
+  "n_samples": 12,
+  "status": "DEV EXPLORATORY (n small)",
+  "G3_OWNERSHIP": {
+    "own_dose_R2": -0.212,
+    "own_leakfree_CI": [
+      -2.076,
+      -0.212,
+      0.305
+    ],
+    "own_perm_null95": 0.206,
+    "geo_neigh_dose_R2": -0.731,
+    "geo_neigh_CI": [
+      -1.407,
+      -0.731,
+      -0.441
+    ],
+    "global_own_dose_R2": -0.36,
+    "global_perm_null95": -0.36,
+    "own_beats_null": false,
+    "own_beats_geo_neigh": true,
+    "own_beats_global": true,
+    "note": "(i+1)%K label REPLACED by geometric-nearest neighbour; leak-free world bootstrap"
+  },
+  "ACCESS_LPEG": {
+    "L": {
+      "own_dose_R2": -0.212,
+      "leakfree_CI": [
+        -2.076,
+        -0.212,
+        0.305
+      ],
+      "perm_null95": 0.206,
+      "beats_null": false
+    },
+    "P": {
+      "own_dose_R2": -0.403,
+      "leakfree_CI": [
+        -3.075,
+        -0.403,
+        0.293
+      ],
+      "perm_null95": 0.112,
+      "beats_null": false
+    },
+    "E": {
+      "own_dose_R2": -0.357,
+      "leakfree_CI": [
+        -2.764,
+        -0.357,
+        0.614
+      ],
+      "perm_null95": -0.082,
+      "beats_null": false
+    },
+    "G": {
+      "own_dose_R2": -0.36,
+      "leakfree_CI": [
+        -1.714,
+        -0.36,
+        -0.035
+      ],
+      "perm_null95": -0.36,
+      "beats_null": false
+    }
+  }
+}
