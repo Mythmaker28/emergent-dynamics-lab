@@ -2557,3 +2557,31 @@ phase, halo, balance, or global-channel artefact. Active crossed feeding was del
 reconstruction is authorized. Human review is required. Any boundary-aware/balance correction is a separately
 approved DEV-only revision; if `C/H/E` cannot be separated without destroying the state under test, the next
 decision must be STOP rather than threshold relaxation.
+
+## D-091 — DIRECTED-CAUSAL-PAIR-00 Phase 0 requires pair-context mechanical qualification
+
+**Date:** 2026-07-18
+
+**Decision:** Adopt **REVISE**, not GO or STOP, for the question whether two natural non-fusing droplets are distinct
+directed causal individuals. Use the exact accepted parent
+`7deeb8e0bd4ac972e1dd133fc8992fcfc4f2fb2b`, reuse the unchanged 03G local writer, corrected common probe,
+bijective tracker, `up_ref=0` ablation, and qualified single-recipient no-swap mechanics, and keep 03G/V5 plus every
+`58xxx` artefact read-only.
+
+**Design decision:** the statistical unit is the original world. Select one unordered pair before treatment by
+maximum initial separation, orient A/B without outcomes, retain the third target as a sentinel, and use exact clones
+`H00/H10/H01/H11`. Define a non-symmetrized matrix with row=recipient and column=writer source, so `C_AB` (B→A)
+and `C_BA` (A→B) remain distinct. Report ordinary total effects without adjusting away body/mass/geometry
+mediators; use recipient no-swap, `up_ref=0`, combined cuts, own-replay shams, and sentinel response only as
+channel/contamination diagnostics.
+
+**Feasibility decision:** the outcome-blind static audit finds four eligible original worlds
+`{50002,50004,50005,50007}`. Their selected pairs pass the 24-cell gate at initial and deep snapshots and have no
+turnover tracker censor; the minimum available radius-12 endpoint halo gap is 5.242 cells. This is insufficient for
+GO because continuous pair geometry is absent, the pair-context history-bearing recipient clamp is unqualified,
+and the four exact history arms have not been executed even mechanically.
+
+**Execution boundary:** Phase 0 opens, inspects, reserves, and executes no prospective seed namespace and computes no
+pair feeding contrast. The exact next authorized action, only after human review, is one DEV-only outcome-blind
+mechanical qualification on already-open 500xx worlds. Fewer than 18 whole valid original worlds at a future
+separately frozen hard cap is feasibility failure/question unanswered, not a negative scientific result.

@@ -1,0 +1,377 @@
+{
+  "frozen_geometry": {
+    "barrier_width": 2,
+    "core_radius": 10,
+    "grid_size": 64,
+    "halo_outer_radius": 12,
+    "minimum_centroid_separation": 24.0
+  },
+  "inputs": {
+    "docs/individuation/ACCESS_STRUCTURE_00_PHASE05_DEV_QUALIFICATION.json": "15ed040fe61465ce4a389997bbc2e636a62a7dbd1d040116c26acdd88b8d5b87",
+    "docs/individuation/ACCESS_STRUCTURE_00_PHASE06B_NOSWAP_RESULTS.json": "100ecb994718153d3e898b610a9b80b2c5ea74005d41493cd9cc0988fa6edee6",
+    "experiments/individuation/turnover_dev_raw.json": "dd326f0a31b829c8961b660b4a31533c789c19f407d2ccdc22b44fd9d48c8f54"
+  },
+  "limitations": [
+    "turnover_dev_raw.json stores initial and deep centroids but not per-step pair distance or halo overlap",
+    "Phase-0.6B qualified one clamped target at a time in no-history continuations, not a clamped recipient beside a history-bearing partner",
+    "the H00/H10/H01/H11 pair clone set has not been executed even on DEV",
+    "four original worlds establish feasibility only and are below the draft minimum-valid-world rule"
+  ],
+  "mission": "DIRECTED-CAUSAL-PAIR-00-PHASE0",
+  "mode": "DEV_ONLY_OUTCOME_BLIND_STATIC_AUDIT",
+  "new_seed_or_prospective_family_opened": false,
+  "pair_feeding_outcomes_computed": false,
+  "parent_commit": "7deeb8e0bd4ac972e1dd133fc8992fcfc4f2fb2b",
+  "schema": "DIRECTED-CAUSAL-PAIR-00-PHASE0-DEV-AUDIT-v1",
+  "summary": {
+    "all_selected_pairs_pass_available_endpoint_separation": true,
+    "all_turnover_tracks_nonfusing_and_uncensored": true,
+    "continuous_pair_distance_raw_available": false,
+    "exact_clone_H00_H10_H01_H11_executed": false,
+    "mechanical_judgement": "COMPOSITION_PLAUSIBLE_BUT_PAIR_SPECIFIC_QUALIFICATION_REQUIRED",
+    "n_eligible_pair_worlds": 4,
+    "n_open_dev_worlds": 10,
+    "n_selected_pairs": 4,
+    "pair_context_history_bearing_recipient_noswap_qualified": false,
+    "recommendation": "REVISE",
+    "selected_pair_min_endpoint_halo_gap": 5.242058223514039,
+    "simultaneous_dual_clamp_required_by_draft": false,
+    "single_target_noswap_qualified_targets": 12
+  },
+  "worlds": [
+    {
+      "eligible_pair_world": false,
+      "original_world_id": 50001,
+      "reason": "tracker_event:1:SPLIT@153"
+    },
+    {
+      "all_three_deep_g0_valid": true,
+      "deep_joint_M": [
+        0.19399027122102552,
+        0.24979364401673357,
+        0.14509491462257568
+      ],
+      "deep_turnover_step": 847,
+      "eligible_pair_world": true,
+      "noswap_single_target_qualification": {
+        "all_exact_isolation_up_ref_zero": true,
+        "history_bearing_recipient_executed": false,
+        "pair_composition_executed": false,
+        "targets_valid": 3
+      },
+      "original_world_id": 50002,
+      "pair_candidates_outcome_blind": [
+        {
+          "deep_distance": 26.531444906592174,
+          "deep_endpoint_separation_pass": true,
+          "deep_halo_gap": 2.5314449065921742,
+          "initial_distance": 27.725129970356228,
+          "initial_halo_gap": 3.725129970356228,
+          "initial_separation_pass": true,
+          "target_indices": [
+            0,
+            1
+          ]
+        },
+        {
+          "deep_distance": 34.37257070658307,
+          "deep_endpoint_separation_pass": true,
+          "deep_halo_gap": 10.372570706583069,
+          "initial_distance": 35.254603002944535,
+          "initial_halo_gap": 11.254603002944535,
+          "initial_separation_pass": true,
+          "target_indices": [
+            0,
+            2
+          ]
+        },
+        {
+          "deep_distance": 30.54076832318812,
+          "deep_endpoint_separation_pass": true,
+          "deep_halo_gap": 6.5407683231881215,
+          "initial_distance": 30.273089662865868,
+          "initial_halo_gap": 6.273089662865868,
+          "initial_separation_pass": true,
+          "target_indices": [
+            1,
+            2
+          ]
+        }
+      ],
+      "phase05_core_blocks_pairwise_disjoint": true,
+      "selected_pair": {
+        "deep_distance": 34.37257070658307,
+        "deep_endpoint_separation_pass": true,
+        "deep_halo_gap": 10.372570706583069,
+        "initial_distance": 35.254603002944535,
+        "initial_halo_gap": 11.254603002944535,
+        "initial_separation_pass": true,
+        "orientation_rule": "even original_world_id: ascending A/B; odd original_world_id: descending A/B",
+        "selection_rule": "maximum initial toroidal centroid separation; ties by ascending target-index pair",
+        "sentinel_targets": [
+          1
+        ],
+        "target_A": 0,
+        "target_B": 2,
+        "target_indices": [
+          0,
+          2
+        ]
+      },
+      "turnover_first_censor": {}
+    },
+    {
+      "eligible_pair_world": false,
+      "original_world_id": 50003,
+      "reason": "tracker_event:2:LOST@236"
+    },
+    {
+      "all_three_deep_g0_valid": true,
+      "deep_joint_M": [
+        0.2494180137355821,
+        0.24976935420627078,
+        0.21932890413506204
+      ],
+      "deep_turnover_step": 793,
+      "eligible_pair_world": true,
+      "noswap_single_target_qualification": {
+        "all_exact_isolation_up_ref_zero": true,
+        "history_bearing_recipient_executed": false,
+        "pair_composition_executed": false,
+        "targets_valid": 3
+      },
+      "original_world_id": 50004,
+      "pair_candidates_outcome_blind": [
+        {
+          "deep_distance": 29.24205822351404,
+          "deep_endpoint_separation_pass": true,
+          "deep_halo_gap": 5.242058223514039,
+          "initial_distance": 29.30065131169771,
+          "initial_halo_gap": 5.30065131169771,
+          "initial_separation_pass": true,
+          "target_indices": [
+            0,
+            1
+          ]
+        },
+        {
+          "deep_distance": 25.61389882047171,
+          "deep_endpoint_separation_pass": true,
+          "deep_halo_gap": 1.6138988204717108,
+          "initial_distance": 25.090430653449797,
+          "initial_halo_gap": 1.090430653449797,
+          "initial_separation_pass": true,
+          "target_indices": [
+            0,
+            2
+          ]
+        },
+        {
+          "deep_distance": 28.69329700421078,
+          "deep_endpoint_separation_pass": true,
+          "deep_halo_gap": 4.69329700421078,
+          "initial_distance": 28.420735720111747,
+          "initial_halo_gap": 4.420735720111747,
+          "initial_separation_pass": true,
+          "target_indices": [
+            1,
+            2
+          ]
+        }
+      ],
+      "phase05_core_blocks_pairwise_disjoint": true,
+      "selected_pair": {
+        "deep_distance": 29.24205822351404,
+        "deep_endpoint_separation_pass": true,
+        "deep_halo_gap": 5.242058223514039,
+        "initial_distance": 29.30065131169771,
+        "initial_halo_gap": 5.30065131169771,
+        "initial_separation_pass": true,
+        "orientation_rule": "even original_world_id: ascending A/B; odd original_world_id: descending A/B",
+        "selection_rule": "maximum initial toroidal centroid separation; ties by ascending target-index pair",
+        "sentinel_targets": [
+          2
+        ],
+        "target_A": 0,
+        "target_B": 1,
+        "target_indices": [
+          0,
+          1
+        ]
+      },
+      "turnover_first_censor": {}
+    },
+    {
+      "all_three_deep_g0_valid": true,
+      "deep_joint_M": [
+        0.16378143695398298,
+        0.23030102225923835,
+        0.24993830710442896
+      ],
+      "deep_turnover_step": 831,
+      "eligible_pair_world": true,
+      "noswap_single_target_qualification": {
+        "all_exact_isolation_up_ref_zero": true,
+        "history_bearing_recipient_executed": false,
+        "pair_composition_executed": false,
+        "targets_valid": 3
+      },
+      "original_world_id": 50005,
+      "pair_candidates_outcome_blind": [
+        {
+          "deep_distance": 32.971137653282,
+          "deep_endpoint_separation_pass": true,
+          "deep_halo_gap": 8.971137653282,
+          "initial_distance": 33.601989506089254,
+          "initial_halo_gap": 9.601989506089254,
+          "initial_separation_pass": true,
+          "target_indices": [
+            0,
+            1
+          ]
+        },
+        {
+          "deep_distance": 31.545339927770243,
+          "deep_endpoint_separation_pass": true,
+          "deep_halo_gap": 7.545339927770243,
+          "initial_distance": 31.48471899192826,
+          "initial_halo_gap": 7.484718991928261,
+          "initial_separation_pass": true,
+          "target_indices": [
+            0,
+            2
+          ]
+        },
+        {
+          "deep_distance": 31.178660503420783,
+          "deep_endpoint_separation_pass": true,
+          "deep_halo_gap": 7.178660503420783,
+          "initial_distance": 30.68032585824003,
+          "initial_halo_gap": 6.680325858240028,
+          "initial_separation_pass": true,
+          "target_indices": [
+            1,
+            2
+          ]
+        }
+      ],
+      "phase05_core_blocks_pairwise_disjoint": true,
+      "selected_pair": {
+        "deep_distance": 32.971137653282,
+        "deep_endpoint_separation_pass": true,
+        "deep_halo_gap": 8.971137653282,
+        "initial_distance": 33.601989506089254,
+        "initial_halo_gap": 9.601989506089254,
+        "initial_separation_pass": true,
+        "orientation_rule": "even original_world_id: ascending A/B; odd original_world_id: descending A/B",
+        "selection_rule": "maximum initial toroidal centroid separation; ties by ascending target-index pair",
+        "sentinel_targets": [
+          2
+        ],
+        "target_A": 1,
+        "target_B": 0,
+        "target_indices": [
+          0,
+          1
+        ]
+      },
+      "turnover_first_censor": {}
+    },
+    {
+      "eligible_pair_world": false,
+      "original_world_id": 50006,
+      "reason": "tracker_event:0:SPLIT@692"
+    },
+    {
+      "all_three_deep_g0_valid": true,
+      "deep_joint_M": [
+        0.22705715851499184,
+        0.21010424776025538,
+        0.2496506369279655
+      ],
+      "deep_turnover_step": 890,
+      "eligible_pair_world": true,
+      "noswap_single_target_qualification": {
+        "all_exact_isolation_up_ref_zero": true,
+        "history_bearing_recipient_executed": false,
+        "pair_composition_executed": false,
+        "targets_valid": 3
+      },
+      "original_world_id": 50007,
+      "pair_candidates_outcome_blind": [
+        {
+          "deep_distance": 32.22276393881174,
+          "deep_endpoint_separation_pass": true,
+          "deep_halo_gap": 8.222763938811738,
+          "initial_distance": 32.9756673662221,
+          "initial_halo_gap": 8.975667366222098,
+          "initial_separation_pass": true,
+          "target_indices": [
+            0,
+            1
+          ]
+        },
+        {
+          "deep_distance": 31.777366882607293,
+          "deep_endpoint_separation_pass": true,
+          "deep_halo_gap": 7.777366882607293,
+          "initial_distance": 30.23485752881935,
+          "initial_halo_gap": 6.234857528819351,
+          "initial_separation_pass": true,
+          "target_indices": [
+            0,
+            2
+          ]
+        },
+        {
+          "deep_distance": 25.039654037982704,
+          "deep_endpoint_separation_pass": true,
+          "deep_halo_gap": 1.0396540379827037,
+          "initial_distance": 24.796399588754774,
+          "initial_halo_gap": 0.7963995887547739,
+          "initial_separation_pass": true,
+          "target_indices": [
+            1,
+            2
+          ]
+        }
+      ],
+      "phase05_core_blocks_pairwise_disjoint": true,
+      "selected_pair": {
+        "deep_distance": 32.22276393881174,
+        "deep_endpoint_separation_pass": true,
+        "deep_halo_gap": 8.222763938811738,
+        "initial_distance": 32.9756673662221,
+        "initial_halo_gap": 8.975667366222098,
+        "initial_separation_pass": true,
+        "orientation_rule": "even original_world_id: ascending A/B; odd original_world_id: descending A/B",
+        "selection_rule": "maximum initial toroidal centroid separation; ties by ascending target-index pair",
+        "sentinel_targets": [
+          2
+        ],
+        "target_A": 1,
+        "target_B": 0,
+        "target_indices": [
+          0,
+          1
+        ]
+      },
+      "turnover_first_censor": {}
+    },
+    {
+      "eligible_pair_world": false,
+      "original_world_id": 50008,
+      "reason": "fewer_than_K_eligible"
+    },
+    {
+      "eligible_pair_world": false,
+      "original_world_id": 50009,
+      "reason": "tracker_event:0:SPLIT@436"
+    },
+    {
+      "eligible_pair_world": false,
+      "original_world_id": 50010,
+      "reason": "fewer_than_K_eligible"
+    }
+  ]
+}

@@ -1,5 +1,27 @@
 # Project State
 
+## BRANCH ADDENDUM — DIRECTED-CAUSAL-PAIR-00 PHASE 0 (2026-07-18)
+
+On isolated branch `codex/directed-causal-pair-00-phase0` from exact accepted parent
+`7deeb8e0bd4ac972e1dd133fc8992fcfc4f2fb2b`, Phase 0 audited only the already-open DEV family `50001-50010` and
+designed a directed two-target causal factorial. No `58xxx` record was opened, reserved, or executed; no V5/03G
+source or raw artefact was changed.
+
+Four original worlds (50002, 50004, 50005, 50007) have three uncensored deep-turnover targets. The pair selected by
+maximum initial separation remains above 24 cells at the initial and deep snapshots; the smallest available
+radius-12 endpoint halo gap is 5.242 cells. Existing evidence also provides 12/12 single-target no-swap mechanics
+passes. It does not provide per-step pair geometry, a pair-context history-bearing recipient clamp qualification, or
+an executed exact-clone `H00/H10/H01/H11` set.
+
+Recommendation: **REVISE — PHASE 0 COMPLETE — NO PROSPECTIVE AUTHORIZATION**. The draft fixes a non-symmetrized
+directed matrix, ordinary/no-swap/`up_ref=0`/sham regimes, world-level inference, joint P/M evidence, mediator and
+contamination logging, and fail-closed gates. Effect/equivalence margins, multiplicity, platform, hard cap, and any
+prospective namespace remain unsealed.
+
+Exact next authorized action: after human review, one outcome-blind mechanical qualification using only already-open
+500xx DEV worlds. It may test clone equality, writer operation matching, pair-context recipient clamp/sham, per-step
+separation/halo logging, and probe viability, but must not compute or inspect pair Y/C/I contrasts.
+
 ## BRANCH ADDENDUM — ACCESS-STRUCTURE-00 PHASE 0.5 (2026-07-17)
 
 The explicitly authorized DEV-only operator qualification ran only the already-open family `50001-50010`.
