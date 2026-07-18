@@ -214,7 +214,7 @@ def compile_plan(
     if tuple(compile_order) not in (("L", "E"), ("E", "L")):
         raise ValueError("compile_order must contain L and E exactly once")
     if probe_schedule is None:
-        schedule = tuple(np.zeros_like(state.N) for _ in range(H_STAR))
+        schedule = tuple(_readonly_copy(np.zeros_like(state.N)) for _ in range(H_STAR))
     else:
         schedule = tuple(_readonly_copy(np.asarray(item)) for item in probe_schedule)
         if len(schedule) != H_STAR:
@@ -398,7 +398,7 @@ class ConservativeAccessEngine:
         Mf: np.ndarray,
         plan: AccessPortPlan,
         e_available: int,
-    ) -> tuple[dict[str, np.ndarray], dict[str, float]]:
+    ) -> tuple[dict[str, np.ndarray], dict[str, float], list[dict[str, Any]]]:
         spec = self.frozen.spec
         safe = np.maximum(rho, EPS)
         values = {
@@ -421,6 +421,7 @@ class ConservativeAccessEngine:
             "Mf": np.zeros_like(Mf),
         }
         ledger = {field: 0.0 for field in EXTENSIVE_FIELDS}
+        face_records: list[dict[str, Any]] = []
         target = plan.target_mask
         for axis in (-2, -1):
             frozen_flux = self.frozen._face_flux(rho, c, axis)
@@ -428,10 +429,14 @@ class ConservativeAccessEngine:
             frozen = {
                 "rho": -(frozen_flux - np.roll(frozen_flux, 1, axis)),
             }
+            open_out = {"rho": -frozen_flux}
+            open_in = {"rho": np.roll(frozen_flux, 1, axis)}
             for field, intensive in values.items():
                 donor = np.where(donor_left[None, ...], intensive, np.roll(intensive, -1, axis)) if intensive.ndim == 3 else np.where(donor_left, intensive, np.roll(intensive, -1, axis))
                 flux = frozen_flux[None, ...] * donor if intensive.ndim == 3 else frozen_flux * donor
                 frozen[field] = -(flux - np.roll(flux, 1, axis))
+                open_out[field] = -flux
+                open_in[field] = np.roll(flux, 1, axis)
             if e_available == 1:
                 for field in increments:
                     increments[field] = increments[field] + frozen[field]
@@ -446,6 +451,8 @@ class ConservativeAccessEngine:
             c_left = np.where(minus_outside, np.roll(plan.references.c, 1, axis), np.roll(c, 1, axis))
             in_flux = _face_flux_lr(rho_left, c_left, rho, c, spec)
             active = {"rho": -(out_flux - in_flux)}
+            active_out = {"rho": -out_flux}
+            active_in = {"rho": in_flux}
             for field, intensive in values.items():
                 ref = refs[field]
                 right = np.roll(intensive, -1, axis)
@@ -457,20 +464,56 @@ class ConservativeAccessEngine:
                     left = np.where(minus_mask, np.roll(ref, 1, axis), left)
                     out_donor = np.where((out_flux > 0)[None, ...], intensive, right)
                     in_donor = np.where((in_flux > 0)[None, ...], left, intensive)
-                    active[field] = -(out_flux[None, ...] * out_donor - in_flux[None, ...] * in_donor)
+                    active_out[field] = -out_flux[None, ...] * out_donor
+                    active_in[field] = in_flux[None, ...] * in_donor
+                    active[field] = active_out[field] + active_in[field]
                 else:
                     right = np.where(plus_outside, np.roll(ref, -1, axis), right)
                     left = np.where(minus_outside, np.roll(ref, 1, axis), left)
                     out_donor = np.where(out_flux > 0, intensive, right)
                     in_donor = np.where(in_flux > 0, left, intensive)
-                    active[field] = -(out_flux * out_donor - in_flux * in_donor)
+                    active_out[field] = -out_flux * out_donor
+                    active_in[field] = in_flux * in_donor
+                    active[field] = active_out[field] + active_in[field]
             for field in increments:
                 mask = target if active[field].ndim == 2 else target[None, ...]
                 selected = np.where(mask, active[field], frozen[field])
                 delta = np.where(mask, active[field] - frozen[field], 0.0)
                 increments[field] = increments[field] + selected
                 ledger[field] += float(delta.sum(dtype=np.float64))
-        return increments, ledger
+            for orientation, boundary, open_terms, active_terms, shift in (
+                ("outgoing_face_contribution_to_target", plus_outside, open_out, active_out, -1),
+                ("incoming_face_contribution_to_target", minus_outside, open_in, active_in, 1),
+            ):
+                for position in np.argwhere(boundary):
+                    index = tuple(int(value) for value in position)
+                    neighbour = list(index)
+                    spatial_axis = axis % 2
+                    neighbour[spatial_axis] = (neighbour[spatial_axis] - shift) % target.shape[spatial_axis]
+                    fields: dict[str, Any] = {}
+                    for field in EXTENSIVE_FIELDS:
+                        open_value = open_terms[field][(...,) + index] if open_terms[field].ndim == 3 else open_terms[field][index]
+                        active_value = active_terms[field][(...,) + index] if active_terms[field].ndim == 3 else active_terms[field][index]
+                        if np.ndim(open_value) == 0:
+                            fields[field] = {
+                                "open": float(open_value),
+                                "active": float(active_value),
+                                "delta": float(active_value - open_value),
+                            }
+                        else:
+                            fields[field] = {
+                                "open": [float(value) for value in np.asarray(open_value)],
+                                "active": [float(value) for value in np.asarray(active_value)],
+                                "delta": [float(value) for value in np.asarray(active_value - open_value)],
+                            }
+                    face_records.append({
+                        "axis": int(axis),
+                        "orientation": orientation,
+                        "target": list(index),
+                        "outside_neighbour": neighbour,
+                        "fields": fields,
+                    })
+        return increments, ledger, face_records
 
     def _active_step(self, state: Any, plan: AccessPortPlan, offset: int) -> tuple[Any, dict[str, Any]]:
         spec = self.frozen.spec
@@ -482,7 +525,7 @@ class ConservativeAccessEngine:
         rho, U, V, c, nutrient, C, Mf = state.rho, state.U, state.V, state.c, state.N, state.C, state.Mf
         rho0 = rho
 
-        transport, transport_ledger = self._transport(rho, U, V, c, C, Mf, plan, e_available)
+        transport, transport_ledger, face_records = self._transport(rho, U, V, c, C, Mf, plan, e_available)
         rho = rho + dt * transport["rho"]
         U = U + dt * transport["U"]
         V = V + dt * transport["V"]
@@ -516,7 +559,10 @@ class ConservativeAccessEngine:
         C = C * keep
         Mf = Mf * keep
 
-        stage_ledger: dict[str, Any] = {"transport": transport_ledger}
+        stage_ledger: dict[str, Any] = {
+            "transport": transport_ledger,
+            "boundary_faces": face_records,
+        }
         if spec.a > 0.0:
             alive = rho > 1e-4
             u = np.where(alive, U / np.maximum(rho, EPS), 0.0)

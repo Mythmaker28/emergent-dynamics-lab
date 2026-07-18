@@ -1,5 +1,28 @@
 # Project State
 
+## BRANCH ADDENDUM — CAUSAL-ADDRESSABILITY-ARCHITECTURE-01 STAGE A (2026-07-18)
+
+Stage A implemented only the exact two-port candidate frozen at accepted parent
+`9ec894fbeba7ec2974a917a182d152e9d8074431`, inside an isolated diagnostic wrapper. Natural/open execution delegates
+directly to the unchanged frozen engine. Fifteen deterministic synthetic tests pass for direct and forced-neutral
+byte identity, exact cloning and composition, the narrow first-update local `m_plus -> uptake` deletion, persistent
+state preservation, explicit edge coverage, raw transport-face accounting, and operation-derived tolerances. No
+scientific world, result, checkpoint, seed, analyzer, DEV outcome, or prospective namespace was opened.
+
+The exact environmental candidate is not admissible. Source ordering freezes `H*_uptake=2`, but complete returned
+state is E-sensitive on update 1 (`H*_state=1`). Holding preprobe `S_B0` also suppresses an otherwise common external
+`P(t)` effect through the existing global `up_ref` edge. Target-destination-only sample/hold leaves non-target
+destinations natural and creates nonzero unpaired extensive transport-rate contributions and `dt`-scaled per-step
+work. Aggregate and raw per-face active-E0 transport contributions are numerically accounted, but this is an
+artificial directed boundary, and the complete ordered full-step
+source/sink/global identity remains unqualified. Lazy capture, delayed activation, probe-aware `S_B`, or paired
+gating would be replacement ports and were not introduced.
+
+Disposition: **STOP_ARCHITECTURE — STAGE A NOT QUALIFIED — NO STAGE B OR SCIENTIFIC AUTHORIZATION**. The narrow local
+edge has only a code-level mechanical qualification; no environmental instrument, rank-4 causal-access factorial,
+ownership claim, or scientific conclusion is established. Exact next action: human review of the Stage-A stop
+package only.
+
 ## BRANCH ADDENDUM — CAUSAL-ADDRESSABILITY-ARCHITECTURE-01 PHASE 0 (2026-07-18)
 
 Phase 0 accepts `STOP-OWNERSHIP-IDENTIFIABILITY` exactly and independently reproduces the committed intervention

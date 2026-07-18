@@ -2676,6 +2676,34 @@ substrate before ownership is tested.
 namespace/family, genome, V5/03G modification, or merge is authorized. Human review of the Phase-0 theorem/audit
 package is the exact next action.
 
+## D-096 — CAUSAL-ADDRESSABILITY-ARCHITECTURE-01 stops at Stage A
+
+**Date:** 2026-07-18
+
+**Decision:** Accept the Phase-0 `REVISE` verdict exactly, implement only its frozen two-port candidate in an isolated
+diagnostic wrapper, and issue **STOP_ARCHITECTURE — STAGE A NOT QUALIFIED**. Natural/open calls delegate to the
+unchanged frozen parent. Fifteen deterministic synthetic tests establish byte-identical open and forced-neutral
+updates, exact clone/composition polarity, input/state-schema preservation, and confinement of the local gate to the
+first-update target `m_plus -> uptake` edge. These code-level passes do not admit the environmental instrument.
+
+**Environmental decision:** exact source order gives target-uptake `H*=2`, while post-growth toggle, writer,
+`up_ref`, `c`, and N parents make the complete returned state E-sensitive on update 1. The committed preprobe
+`S_B0` hold suppresses a common external-P-induced outside-uptake effect from the target global `up_ref`. The
+target-destination-only boundary substitution also produces nonzero unpaired extensive transport-rate contributions
+and `dt`-scaled per-step work while non-target destinations remain natural. Exact per-face and aggregate active-E0
+transport contribution accounting exposes rather than excludes this artificial directed boundary. The complete
+ordered full-step source/sink/global identity remains unqualified.
+
+**No-repair boundary:** lazy reference capture, delayed E activation, probe-aware external sufficient statistics,
+or paired/symmetric gating would define a different environmental port and were not introduced after fixture
+failure. The local code-level edge deletion supports only a narrow mechanical statement; it establishes neither a
+valid rank-4 access factorial nor locality, autonomy, redundancy, synergy, relationality, individuality, storage,
+or ownership.
+
+**Execution boundary:** zero scientific worlds, checkpoints, seeds, results, DEV outcomes, or scientific analyzers
+were opened. No prospective namespace, V5/03G modification, merge, or PR occurred. Stage B is not authorized. Human
+review of the Stage-A `STOP_ARCHITECTURE` package is the only next action.
+
 ## D-095 — CAUSAL-ADDRESSABILITY-ARCHITECTURE-01 retains an unadmitted conditional two-port candidate
 
 **Date:** 2026-07-18

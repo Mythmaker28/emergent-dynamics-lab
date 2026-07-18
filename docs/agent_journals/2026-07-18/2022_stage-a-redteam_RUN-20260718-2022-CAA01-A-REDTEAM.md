@@ -3,10 +3,14 @@
 - Role: independent adversarial reviewer
 - Run ID: `RUN-20260718-2022-CAA01-A-REDTEAM`
 - Start: 2026-07-18 20:22:03 +02:00
-- End: IN PROGRESS
+- End: 2026-07-18 20:57:59 +02:00
 - Starting branch: `codex/causal-addressability-architecture-01-stage-a`
 - Starting HEAD: `9ec894fbeba7ec2974a917a182d152e9d8074431`
 - Starting Git state: untracked main Stage-A journal only
+- Ending HEAD: `62a3b22dce42d6d858eddc3323fe63685c0b051b`
+- Ending Git state: Stage-A report/qualification/test untracked and coherent integrator-owned implementation,
+  durable records, journals, and allowlist modifications ready for final integration; reviewer changed only this
+  journal
 - Assigned scope: independently derive the first E-accessible horizon and exhaustive existing-edge inventory before fixture-output inspection; then adversarially audit only the isolated Stage-A implementation, deterministic fixtures, qualification evidence, accounting, and claim boundaries.
 
 ## Evidence firewall
@@ -14,6 +18,9 @@
 Forbidden and not opened: `results/`, raw or scientific worlds, DEV outcomes, checkpoints, seeds, 500xx/570xx/580xx paths, V5/03G, scientific analyzers, prospective namespaces.
 
 The reviewer will use only the accepted Phase-0 report/spec/source allowlist, the durable project governance files required by `AGENTS.md`, the exact allowlisted frozen source files necessary to derive equations, and newly created Stage-A code/tests/reports after the static derivation is frozen below.
+
+No forbidden file, path, scientific state, result, checkpoint, seed, DEV outcome, analyzer, or prospective namespace
+was opened. No Stage B artefact was prepared.
 
 ## Static derivation (must precede fixture-output inspection)
 
@@ -132,15 +139,84 @@ required where the paths are required to be exact.
 
 ## Implementation and evidence audit
 
-NOT YET OPENED.
+After freezing the static derivation, reviewed checkpoint `62a3b22` and the later focused synthetic test file.
+
+- Natural `plan=None` and fully open `L1E1` execution delegate to the unchanged frozen parent.
+- Qualification-only forced-active neutral paths execute the duplicated arithmetic and are tested byte-for-byte
+  against the frozen parent for two updates and both interior and periodic-crossing target masks.
+- The local active path implements exactly `1+lam_plus*q_L*m_plus` on the fixed target mask for offset zero and
+  reopens at offset one. It does not change `Mf`, `eta_w`, support, or state schema at intervention assignment.
+- The E path implements the literal preprobe-reference hold, including stale first-update `u/v`, `m`, `S_B0/n_B0`,
+  and `N+P` parents. Its observed update-1 state divergence therefore confirms the static contradiction; it is not
+  a qualification success.
+- Incoming target transport and stencil reads are selected while non-target destination updates remain frozen.
+  The resulting one-sided global extensive imbalance is nonzero on the deterministic boundary fixture. This is an
+  artificial directed boundary, not paired-face conservation.
+- The wrapper logs aggregate transport and stage deltas, but not every required raw per-face open/active value and
+  not a complete ordered source/sink/global residual. Those stronger accounting claims remain unqualified.
+- The N stencil recomposes `reference N + common P` exactly, but the E0 global writer freezes external uptake at
+  `S_B0`. Consequently an external uptake change caused by common `P` is suppressed on the E0 target `up_ref` path.
+  The exogenous probe is not causally preserved through every global channel, despite the literal `S_B0` formula
+  being implemented correctly.
+- A mutable default probe schedule found during review was corrected by the integrator to use immutable copies.
+
+Focused reviewer command initially failed because this sparse worktree has no local `.venv`. Re-running with the
+known repository environment executable succeeded:
+
+`& 'C:\Users\tommy\Documents\ising v3\.venv\Scripts\python.exe' -m pytest -q experiments/individuation/test_causal_addressability_stage_a.py`
+
+Result at the reviewed working tree: `14 passed in 0.22s`. Passing synthetic arithmetic tests do not override the
+binding static invariant and boundary exclusions.
+
+### Final artifact and claims follow-up
+
+The integrator then added a fifteenth probe/global-channel test and raw target-boundary transport-face records. The
+final independent rerun used:
+
+`& 'C:\Users\tommy\Documents\ising v3\.venv\Scripts\python.exe' -m pytest -q -p no:cacheprovider experiments/individuation/test_causal_addressability_stage_a.py`
+
+Final result: `15 passed in 0.22s`. Three Stage-A JSON files parse and `git diff --check` passes.
+
+Current integrity audit:
+
+- frozen allowlisted code: 11/11 hashes match;
+- synthetic style references: 2/2 hashes match;
+- wrapper: `22f78ceab73c48d65cc01cf1b76dfd78a0a4337424f8e178dea657046f8f1d0b`;
+- tests: `ca27b212f83b7857ba5d3feda5453d7c14a2118199fa0ad2df53879a9b0388bd`;
+- edge inventory: `6196e5d47f6033536fcf7e7aedaeabf66d291d2eac7633f312b5a5a5622587bc`;
+- static obligations: `0e662cfa3f5bfe6c3b496e5f9372faedcb3d32a39bf75d04d2e62d386f48a98b`;
+- current allowlist: `0b13d5d069c57545fa66d68c19a54ca734f46eb3f602389a5a53c1a115c53693`.
+
+All five hashes match the qualification JSON. Durable-input hashes matched 11/11 at the accepted preimplementation
+parent; current equality is deliberately 7/11 because `PROJECT_STATE`, `DECISION_LOG`, `EXPERIMENT_INDEX`, and
+`RUN_INDEX` are Stage-A outputs. The qualification JSON now states that distinction exactly.
+
+Accounting is qualified narrowly: active E0 target-boundary **transport** has complete per-face open/active/delta
+records, its face sum matches the aggregate pre-`dt` transport-rate ledger within the operation-derived bound, and
+the physical per-step work is explicitly `dt*rate`. Stencil stages retain aggregate target deltas; matched neutral
+E1 per-face logs, complete raw parent/reference/sham logs, and the complete ordered full-step
+source/sink/global identity remain unqualified. The final report and machine JSON now make this scope explicit.
+
+The final qualification records `FINAL_STOP_ARCHITECTURE_CONFIRMED`, `stage_a_qualified=false`, and
+`stage_b_authorized=false`. No scientific claim or outcome appears in the report.
 
 ## OBSERVED
 
 - The requested isolated branch is at the exact accepted parent commit.
+- All seven Phase-0 frozen-source hashes matched before implementation inspection; the Stage-A allowlist hash-binds
+  the exact additional import closure used by the synthetic harness.
+- All eleven frozen-code hashes in the Stage-A allowlist independently matched at final review.
+- The committed preprobe references conflict with complete first-update E invariance under the frozen within-step
+  ordering.
+- The deterministic wrapper suite passes while explicitly demonstrating both update-1 returned-state divergence
+  and nonzero one-sided boundary work.
 
 ## INFERRED
 
-- None yet.
+- `H*=2` is valid only for target uptake, not for the complete returned state or exhaustive E-to-response graph.
+  A single unqualified `H*` cannot satisfy the mission.
+- Lazy first-use capture, delayed E activation, paired/symmetric gating, or a probe-aware replacement for `S_B0`
+  would each be a different environmental port and cannot be introduced after this failure.
 
 ## HYPOTHESIS
 
@@ -152,16 +228,32 @@ NOT YET OPENED.
 
 ## Failures/dead ends
 
-- None yet.
+- Local worktree `.venv` executable absent; used the existing repository environment without reading any forbidden
+  data.
+- Exact committed E port fails the first-update state-invariance obligation.
+- Exact incoming-only E port introduces a nonzero one-sided target-boundary imbalance.
+- Raw per-face transport accounting is implemented; matched neutral/stencil raw logs and the complete ordered
+  full-step source/sink/global identity remain unqualified.
+- Common `P` is separated in the N parent but its external-uptake effect is not preserved through E0 `up_ref`.
 
 ## Decisions
 
-- No scientific or architectural disposition yet.
+- Binding independent disposition: `STOP_ARCHITECTURE`. No test pass can convert this to Stage-A qualification.
 
 ## Unresolved risks
 
-- H* and the exhaustive E-parent bundle remain to be derived before any Stage-A fixture output is inspected.
+- None within this mission. Replacement-port design is outside scope and requires new authorization.
 
 ## Handoff
 
-IN PROGRESS.
+Independent disposition: **`STOP_ARCHITECTURE`**.
+
+The committed candidate cannot simultaneously use exact preprobe references and satisfy full first-update E
+invariance. It also creates a nonzero one-sided target-boundary imbalance, suppresses the common probe's external
+uptake contribution through the E0 global `up_ref` path, and lacks the complete ordered full-step source/sink/global
+identity. The final 15-test synthetic arithmetic run and narrow raw per-face transport ledger faithfully expose and
+account the candidate's failures; they do not qualify the architecture.
+
+No alternative capture convention, delayed window, symmetric boundary, third port, or scientific stage is
+authorized. Final claim audit: **PASS FOR `STOP_ARCHITECTURE`**. The integrator may commit intentionally and push
+the isolated branch. Human review of the stop package is the only next action.
