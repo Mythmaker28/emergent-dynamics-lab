@@ -3,7 +3,7 @@
 Role: primary repository-maintenance and recovery agent
 Run ID: RUN-20260718-0310-REPOSITORY-HYGIENE-00
 Start: 2026-07-18 approximately 03:10 Europe/Paris
-End: 2026-07-18 approximately 04:11 Europe/Paris
+End: 2026-07-18 approximately 13:53 Europe/Paris
 Starting Git: main at f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77, heavily dirty
 Ending Git: maintenance/repository-hygiene-00 at the commit containing this finalized journal; exact tip recorded in handoff
 Experiment: NONE — repository maintenance only
@@ -54,7 +54,7 @@ scientific conclusion was modified.
    and remote tip.
 4. Archived the valid c8a8b354 history, then moved only malformed loose refs
    and duplicate temporary-object residue to external evidence.
-5. Preserved four stale zero-byte lock files after read-only ownership checks.
+5. Preserved five stale zero-byte lock files after read-only ownership checks.
 6. Created maintenance/repository-hygiene-00 from f3921a4.
 7. Removed all 34 current tomo cache artefacts from that tip, added the precise
    ignore rule, helper, and four synthetic tests.
@@ -69,6 +69,9 @@ scientific conclusion was modified.
     and the downstream frozen raw family through Git objects.
 13. Re-ran show-ref, for-each-ref, all-ref object resolution, full fsck,
     scientific subtree diffs, focused tests, diff-check, and remote read-back.
+14. On resumed closure, found one last zero-byte background maintenance lock
+    with no Git process owner, preserved it externally, and issued verified
+    final recovery inventory v2 covering 947 files.
 
 ## Reproducible commands
 

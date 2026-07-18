@@ -92,14 +92,15 @@ git fsck --full --no-reflogs
 
 ## Recovery evidence
 
-The external directory contains 945 inventoried files totalling 358,776,620
+The external directory contains 947 inventoried files totalling 359,040,786
 bytes, excluding the inventory file itself. Every entry was rehashed with zero
 mismatches.
 
 Final inventory:
 
-- file: final_recovery_sha256.json
-- SHA-256: 9e5abb49febc39b53e44f25e2e0e15d98b7d26a2f4cc6d2d392197b1790d872e
+- file: final_recovery_sha256_v2.json
+- SHA-256: 5e9a20fdb411dc0929356ddf529c589386487fd84be7b3f14de15df3d5073166
+- superseded inventory preserved: final_recovery_sha256.json
 
 Tracked-state evidence:
 
@@ -163,10 +164,11 @@ trees, and blobs were recorded but not deleted. After repair, show-ref,
 for-each-ref, log --all, and fsck enumerate normally. The archive ref makes the
 c8a8b354 history reachable.
 
-Four zero-byte stale locks were preserved externally after verifying that no
+Five zero-byte stale locks were preserved externally after verifying that no
 writer owned them: the original HEAD.lock, index.lock, objects/maintenance.lock,
-and a second index.lock encountered during the controlled primary restoration.
-They must not be restored.
+a second index.lock encountered during the controlled primary restoration, and
+a final background objects/maintenance.lock found during closure. They must
+not be restored.
 
 ## Windows-invalid cache paths
 
@@ -274,7 +276,7 @@ Completed checks:
   bbac5961fb88c38aec06e97a585767b572778dff, zero tracked tomo cache paths,
   clean;
 - all transient test worktrees removed cleanly;
-- final external recovery inventory: 945 files, zero mismatches;
+- final external recovery inventory v2: 947 files, zero mismatches;
 - git diff --check: pass;
 - show-ref exit 0; for-each-ref exit 0; 75 refs and zero unresolved targets;
 - fsck exit 0 with zero errors; 11 dangling commits, 10 dangling trees, and 32
