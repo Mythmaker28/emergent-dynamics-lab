@@ -1,0 +1,415 @@
+{
+  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY-PLAN-v1",
+  "mission": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-RAW-ONLY-DEVELOPMENTAL-AUTOPSY",
+  "accepted_parent": "c31bf27ea80a6a3dcc60d0ec5380f668358671ff",
+  "frozen_before_physics_open": true,
+  "immutable_scientific_disposition": "DEV_FEASIBILITY_FAIL",
+  "scope": "exploratory DEV diagnosis only; cannot reclassify Stage B or authorize Stage C",
+  "input_bindings": {
+    "manifest": {
+      "path": "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_MANIFEST.json",
+      "sha256": "194e082f9d3809f2531912d825480fad5b683dbe9d9fceec8050260fe493dd50"
+    },
+    "root_manifest": {
+      "path": "results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-DEV/root_manifest.json",
+      "sha256": "07428729da7b7d60a3493d9ee1fb8ec31ab0d7b870b5d9fdb54095ededff63cf"
+    },
+    "committed_classification": {
+      "path": "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_CLASSIFICATION.json",
+      "sha256": "7b7cf200fd6cc7ccfbd77b19de0ca1231df22c1d2d9ab5d7548828df7c3ed14e"
+    },
+    "reconstruction_protocol": {
+      "path": "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_AUTOPSY_RECONSTRUCTION_PROTOCOL.json",
+      "sha256": "a63048283aeab44f0e39d997dfe049b6f20ccf44ec9a54efcd59d7d595c9eead"
+    },
+    "source_allowlist": {
+      "path": "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_AUTOPSY_SOURCE_ALLOWLIST.json",
+      "sha256": "3b86f6559620c7130660b0daec84066a1be0c29657fafd266803e5e28ea431a0",
+      "runtime_gate": "hash and authorization closure must validate before any physics read"
+    },
+    "physics_path_rule": "for each exact manifest execution.world_ids entry W, open only results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-DEV/W/physics.npz",
+    "physics_shard_count": 64,
+    "accepted_parent_physics_git_tree": {
+      "commit": "c31bf27ea80a6a3dcc60d0ec5380f668358671ff",
+      "record_encoding": "path<TAB>git_blob_oid, sorted by path, LF separated with terminal LF",
+      "blob_count": 64,
+      "aggregate_sha256": "ad7e00a713d44568e5e64a695266e66b38a8324db12568786d5ccaa4aff13f71",
+      "runtime_gate": "the accepted-parent tree must reproduce this aggregate and every worktree physics file must hash to its corresponding accepted-parent Git blob before NumPy loads any array"
+    },
+    "forbidden_inputs": [
+      "online.json",
+      "shard_manifest.json",
+      "engine.py",
+      "instrumentation.py",
+      "stage_b.py",
+      "stage_b_reproduce.py",
+      "Stage-B report",
+      "any result outside the exact Stage-B DEV root",
+      "any checkpoint, seed, initialized world or selected-world list"
+    ]
+  },
+  "population": {
+    "statistical_unit": "original world",
+    "world_count": 64,
+    "law_count": 8,
+    "ic_classes_in_order": ["soup", "compact"],
+    "replicates_per_law_ic": 4,
+    "paired_descriptive_key": ["law_id", "replicate"],
+    "pairing_use": "nominal index-aligned soup-minus-compact differences only; the manifest does not establish matched random numbers, so these are not statistical pairs and support no paired inferential test or causal IC contrast",
+    "no_exclusions": true,
+    "candidate_subset_not_a_population": true
+  },
+  "frozen_manifest_values": {
+    "horizon_steps": 160,
+    "sampled_detector_frames": {"first": 0, "last": 159, "count": 160, "cadence": 1},
+    "shape": [12, 12],
+    "dt": 0.05,
+    "detector": {"matter_threshold": 0.5, "min_cells": 3},
+    "tracker": {
+      "max_centroid_displacement": 2.5,
+      "max_area_ratio": 3.0,
+      "dilation_radius": 1,
+      "unique_score_margin": 1e-12
+    },
+    "classifier_thresholds": {
+      "min_persistence_frames": 80,
+      "max_area_fraction": 0.25,
+      "min_bounded_fraction": 0.95,
+      "min_activity_per_mass": 0.0001,
+      "min_energy_throughput_per_mass": 0.00001,
+      "min_turnover_fraction": 0.6,
+      "min_post_turnover_frames": 32
+    },
+    "candidate_region_rule": "at least 2 of 4 candidate worlds separately in soup and compact; retained only for exact reproduction and never revised"
+  },
+  "required_physics_arrays": {
+    "state": ["state_step", "state_m", "state_n", "state_b"],
+    "matter_transport": ["ledger__matter_forward", "ledger__matter_reverse"],
+    "resource_transport": ["ledger__resource_natural"],
+    "bond_work": ["ledger__gross_formation_work", "ledger__gross_rupture_release"],
+    "qualification": ["vector_reference_max_error", "deterministic_replay_equal", "ledger__matter_scale", "ledger__resource_scale", "ledger__matter_missing", "ledger__resource_missing", "ledger__controller_onset_energy_jump"],
+    "exact_layout_gate": "the complete key inventory, dtypes, shapes, clock, reference-error scale calculation and exact neutral/zero gates are normative in INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_AUTOPSY_RECONSTRUCTION_PROTOCOL.json; any mismatch is AUDIT_INVALID"
+  },
+  "independent_stage_b_reconstruction": {
+    "component_detection": "m>=0.5, periodic four-neighbour connectivity, minimum 3 cells, deterministic row-major roots and LIFO traversal; retain mass-weighted lifted centroid, radius and winding flags",
+    "association": "exact raw/dilated IoU, periodic centroid distance, area ratio and frozen score; select raw overlaps, then unique mutual best only; retain ambiguity",
+    "tracking": "explicit continuation, split, merge, appearance, dissolution and unresolved many-to-many/collapse; no outcome, tracer, bond or activity term enters association",
+    "cohort": "initialize q=m on each track's first component and advect q with stored gross directional matter flows; require q conservation and 0<=q<=m",
+    "track_summary": "recompute observed/span frames, maximum area, bounded/percolated fractions, mean internal activity and energy throughput, maximum turnover, post-turnover frames and unresolved status",
+    "world_classifier": "apply the exact frozen nine-class precedence and candidate-region aggregation",
+    "audit_gate": "reconstructed canonical 64-world classification must be byte-identical to the committed classification or outcome AUDIT_INVALID"
+  },
+  "lineage_and_world_aggregation": {
+    "no_cross_track_stitching": "bounded activity, persistence, turnover, post-turnover survival and candidate status must be evaluated on one reconstructed track at a time; milestones from different tracks may never be combined into one developmental progression",
+    "ordered_same_track_milestones": {
+      "t_formation": "track onset frame",
+      "t_active": "first instantaneous_bounded_active observation on that track",
+      "t_persistence": "first persistence_qualification prefix on that track; descriptive and not substituted across tracks",
+      "t_turn": "first turnover_fraction>=0.6 observation on that same track at or after t_active",
+      "t_prefix_candidate": "first prefix_candidate observation on that same track at or after t_turn"
+    },
+    "track_pathway_rank": ["ACTIVATION_FAILURE", "TURNOVER_FAILURE", "PERSISTENCE_FAILURE", "TRANSIENT_CANDIDATE_CROSSING", "STABLE_CANDIDATE_EPISODE"],
+    "world_formation_failure": "FORMATION_FAILURE only when no track/component exists",
+    "world_primary_pathway": "otherwise take the maximum track pathway rank achieved using ordered_same_track_milestones; retain the full set of co-primary tracks",
+    "reporting_representative": "for a noncandidate world choose the minimum (onset_frame, ascending row-major onset-support tuple) among co-primary tracks; for a committed candidate world use candidate_world_episode below",
+    "world_first_times": "separate descriptive minima over eligible single-track events; each output also records the originating track fingerprint, and these minima are never presented as one lineage",
+    "candidate_world_episode": "take the longest prefix-candidate episode on any independently reconstructed final-candidate track in the world; break equal-length ties by earlier episode onset then minimum (onset_frame, ascending row-major onset-support tuple); this track is the candidate-world reporting representative; retain every candidate-track episode in track_observations",
+    "candidate_episode_terminal": "episode end frame equals the last observed frame of the same originating track; when no episode exists the flag is false and candidate_status_frames,candidate_episode_count,longest_candidate_episode_frames are integer zero; track end at frame 159 is administrative censoring, not dissolution",
+    "candidate_world_fields": "for every world, candidate_status_frames is the count of prefix_candidate=true observations on its deterministic reporting representative, and candidate_episode_count/longest_candidate_episode_frames are the count/maximum consecutive-run length on that same representative; committed candidate worlds use candidate_world_episode selection, all other worlds use reporting_representative, and values are never summed or unioned across tracks",
+    "world_scope_fields": "last_detected_frame is the maximum detector frame containing any world component; split_count,merge_count,appearance_count,dissolution_count are world totals of those lifecycle event types; coordinate_seam_crossed and ever_wound are world-any flags",
+    "candidate_ids_gate": "after reconstruction, the exact set of candidate track IDs per world must equal the committed candidate_track_ids; the IDs are reporting labels assigned downstream of association and never enter scoring"
+  },
+  "per_observation_metrics": {
+    "mass": "math.fsum m over component support",
+    "area_fraction": "component cell count/144",
+    "activity_per_mass": "math.fsum(matter_forward+matter_reverse over internal faces)/mass",
+    "energy_throughput_per_mass": "math.fsum(gross_formation_work+gross_rupture_release over internal faces)/(dt*mass)",
+    "turnover_fraction": "1-math.fsum(q over current component support)/initial_cohort_mass",
+    "matter_in_out": "dt times gross directional matter crossings on component boundary, split exactly into incoming and outgoing",
+    "matter_exchange_per_mass": "(matter_in+matter_out)/mass",
+    "net_matter_loss_per_mass": "(matter_out-matter_in)/mass",
+    "resource_natural_exchange_per_mass": "dt*math.fsum(abs(resource_natural) over component boundary)/mass; no other resource channel is included or implied",
+    "mean_internal_bond": "mean b over internal component faces; zero when no internal face",
+    "internal_bond_saturation_fraction": "fraction of internal faces with b>=0.9; zero when no internal face",
+    "matter_cv": "population standard deviation of support m divided by support mean; zero only for zero mean",
+    "resource_cv": "population standard deviation of support n divided by support mean; zero only for zero mean",
+    "seam_diagnostics": "record minimum support-cell distance to either coordinate seam and coordinate-seam crossing separately from true winding; both seam measures are coordinate-dependent and never a boundary mechanism",
+    "finite_size_diagnostics": "winding, area fraction and radius_gyration/min(shape)"
+  },
+  "world_transition_fields": [
+    "world_id", "law_id", "ic_id", "replicate", "committed_regime", "reconstructed_regime",
+    "first_component_frame", "first_bounded_active_frame", "first_persistence_qualification_frame", "first_turnover_frame", "first_prefix_candidate_frame",
+    "candidate_status_frames", "candidate_episode_count", "longest_candidate_episode_frames", "candidate_episode_terminal",
+    "last_detected_frame", "terminal_empty_run_start", "terminal_freeze_onset", "terminal_track_alive",
+    "frames_formation_to_bounded_active", "frames_formation_to_persistence", "frames_formation_to_turnover", "frames_formation_to_candidate", "frames_formation_to_terminal_loss",
+    "right_censored", "coordinate_seam_crossed", "ever_wound", "split_count", "merge_count", "appearance_count", "dissolution_count",
+    "primary_developmental_pathway", "terminal_state", "formation_opportunity", "maintenance_opportunity", "persistence_horizon_opportunity", "post_turnover_horizon_opportunity",
+    "milestone_track_fingerprints", "representative_track_fingerprint", "co_primary_track_fingerprints", "trajectory_class"
+  ],
+  "event_definitions": {
+    "formation": "first detector frame with at least one component",
+    "instantaneous_bounded_active": "nonpercolated observation with area_fraction<=0.25, activity_per_mass>=0.0001 and energy_throughput_per_mass>=0.00001",
+    "persistence_qualification": "first prefix observation at which one resolved track has both observed_frames>=80 and span_frames>=80",
+    "turnover_qualification": "first track observation with turnover_fraction>=0.6",
+    "prefix_candidate": "at frame t, the exact frozen candidate gates recomputed on that track's observations from onset through t, including >=80 observed/span frames, maximum area<=0.25, bounded fraction>=0.95, zero percolated fraction, mean activity/energy minima, maximum turnover>=0.6 and >=32 observations strictly after first turnover",
+    "candidate_episode": "maximal consecutive-by-frame run of prefix_candidate=true",
+    "brief_candidate_episode": "longest candidate episode <32 frames",
+    "stable_candidate_episode": "longest candidate episode >=32 frames and includes the track's terminal observation",
+    "terminal_empty_run_start": "first frame of the final all-empty suffix; null if the last detector frame is nonempty",
+    "terminal_freeze_onset": "first frame of a final run of at least 32 observations on a track alive at frame 159 with both activity and energy below their frozen minima",
+    "right_censored": "at least one resolved track/component remains observed at frame 159; this flags finite-horizon truncation but does not imply eventual success",
+    "primary_track_terminal_state": {
+      "EMPTY_OR_DISSOLVED": "the deterministic reporting representative has an explicit DISSOLUTION event before frame 159",
+      "FROZEN": "the representative reaches frame 159 and its maximal consecutive terminal suffix in which every observation has activity<0.0001 AND energy<0.00001 has length>=32",
+      "PERSISTENT_ACTIVE": "the representative reaches frame 159, is not FROZEN, has at least 32 consecutive terminal observations, and both exact last-32 math.fsum means meet their frozen minima",
+      "PERSISTENT_OTHER": "the representative reaches frame 159 but meets neither FROZEN nor PERSISTENT_ACTIVE; a pre-horizon track end without an explicit DISSOLUTION is an audit failure"
+    },
+    "terminal_state_order": ["EMPTY_OR_DISSOLVED", "FROZEN", "PERSISTENT_ACTIVE", "PERSISTENT_OTHER"],
+    "terminal_loss_for_destructive_signature": "a tracked component has an observed DISSOLUTION event before frame 159 after its longest candidate episode; administrative track end at frame 159 is not loss"
+  },
+  "developmental_pathway_order": [
+    {"label": "FORMATION_FAILURE", "condition": "no component ever detected"},
+    {"label": "ACTIVATION_FAILURE", "condition": "tracks formed but no single track has t_active"},
+    {"label": "TURNOVER_FAILURE", "condition": "at least one track has t_active but no single track has t_turn at or after its own t_active"},
+    {"label": "PERSISTENCE_FAILURE", "condition": "at least one single track has ordered t_active then t_turn but no such track has a later t_prefix_candidate"},
+    {"label": "TRANSIENT_CANDIDATE_CROSSING", "condition": "at least one single track has ordered t_active,t_turn,t_prefix_candidate but no such track has stable_candidate_episode"},
+    {"label": "STABLE_CANDIDATE_EPISODE", "condition": "at least one single track has ordered t_active,t_turn,t_prefix_candidate and stable_candidate_episode"}
+  ],
+  "trajectory_outputs": {
+    "track_observation_rows": "one row for every reconstructed resolved/unresolved track observation with all per-observation metrics and prefix gate terms",
+    "event_rows": "one ASSOCIATION_DIAGNOSTICS row per adjacent-frame transition preserving every pair edge, plus all appearance, continuation, split, merge, dissolution, temporary-contact and unresolved lifecycle events",
+    "world_rows": "exactly 64 complete transition rows",
+    "ic_law_atlas": "counts and median/min/max summaries computed from original-world rows; no selected subset",
+    "ic_region_summary": "law-stratified unpaired soup-versus-compact counts and median/min/max original-world summaries; print both numerators and denominators, with no p-values or confidence intervals",
+    "candidate_summary": "all 11 committed candidate worlds retained together; no law/world promotion"
+  },
+  "candidate_coherence_rule": {
+    "trajectory_class": "developmental pathway + representative-track terminal state + early/middle/late frozen bin of the deterministic reporting representative track onset frame + any world split/merge + world right-censoring flag",
+    "formation_time_bins": {"early": "frame<=39", "middle": "40<=frame<=119", "late": "frame>=120", "none": "no formation"},
+    "coherent": "at least 9 of the 11 committed candidate worlds share one exact trajectory_class",
+    "transient_majority": "at least 6 of 11 committed candidate worlds have brief_candidate_episode or candidate_episode_terminal=false",
+    "no_clustering_or_output_tuned_distance": true
+  },
+  "mechanism_signatures": {
+    "semantics": "all entries are observational signatures consistent with a developmental mechanism, never causal identification; they may justify only a fresh pre-data design",
+    "window_contract": {
+      "first_16_post_formation": "the representative track's first 16 observations including its onset observation",
+      "final_8_pre_freeze": "the representative frozen track's eight consecutive observations immediately preceding terminal_freeze_onset, strictly excluding that onset",
+      "strictly_pre_candidate_baseline": "all representative candidate-track observations from track onset through one frame before the selected longest candidate episode begins; require at least one observation and a positive median",
+      "candidate_episode_values": "all observations inside the selected longest candidate episode on the representative candidate track",
+      "candidate_status_touches_159": "the representative candidate track has prefix_candidate=true at detector frame 159; world-any or another candidate track does not substitute",
+      "unavailable": "an incomplete required window, empty baseline or nonpositive required baseline is unavailable rather than false or excluded"
+    },
+    "IC_FORMATION_DEPENDENCE": "aggregate soup-minus-compact formation fraction magnitude>=0.25 and the same nonzero direction with magnitude>=0.25 in at least 6 of 8 laws",
+    "COMPACT_PREMATURE_FREEZE": {
+      "gate": "compact-minus-soup terminal-freeze fraction>=0.25 in the same direction in at least 6 of 8 laws",
+      "candidate_precursors": {
+        "BOND_SATURATION": "on the same representative frozen track in at least ceil(0.75*N) of all N compact frozen worlds, internal_bond_saturation_fraction first reaches >=0.5 at least 8 frames before terminal_freeze_onset",
+        "LOW_INTERNAL_HETEROGENEITY": "on the same representative frozen track in at least ceil(0.75*N) of all N compact frozen worlds, both matter_cv<0.05 and resource_cv<0.05 hold for 8 consecutive observations ending before terminal_freeze_onset",
+        "REDUCED_MATERIAL_EXCHANGE": "on the same representative frozen track in at least ceil(0.75*N) of all N compact frozen worlds, the final 8 pre-freeze observations have median matter_exchange_per_mass <=0.25 times the positive first-16-post-formation baseline median"
+      },
+      "denominator_and_availability": "N is every compact frozen world and N=0 makes every precursor false; insufficient 16/8-frame history or nonpositive baseline makes the predeclared diagnostic unavailable, never an exclusion, and routes the terminal outcome to RAW_INSUFFICIENT unless an earlier outcome branch applies",
+      "qualification": "the gate is true and exactly one candidate precursor is true; low activity/energy during the terminal freeze window is an outcome definition and cannot qualify as a precursor",
+      "raw_limit": "the precursor is a temporal descriptive signature, not proof of dynamical cause"
+    },
+    "DESTRUCTIVE_TRANSITION_PROXIMITY": {
+      "DISSOLUTION_SUBTYPE": "at least 9 of 11 candidate worlds end their selected candidate episode no more than 32 frames before a subsequently observed DISSOLUTION event on that same track before frame 159",
+      "HIGH_EXCHANGE_SUBTYPE": "at least 9 of all 11 committed candidate worlds have a positive strictly pre-candidate same-track exchange median and median candidate-episode matter_exchange_per_mass at least twice that baseline",
+      "qualification": "exactly one subtype qualifies, or both qualify in the same at least 9 candidate worlds; a mixture of different worlds satisfying different clauses does not qualify",
+      "censoring_rule": "frame-159 administrative track termination never satisfies DISSOLUTION_SUBTYPE",
+      "availability": "missing same-track baseline history in any candidate is diagnostic unavailability, not exclusion, and routes to RAW_INSUFFICIENT unless an earlier outcome branch applies"
+    },
+    "FINITE_HORIZON_CENSORING": "at least 9 of 11 candidate worlds are right-censored with candidate status touching frame 159, and the same pattern occurs in candidate worlds across at least 4 distinct laws",
+    "TRANSIENT_THRESHOLD_CROSSING": "transient_majority under the frozen candidate-coherence rule"
+  },
+  "actionability_rule": {
+    "eligible_mechanisms": ["IC_FORMATION_DEPENDENCE", "COMPACT_PREMATURE_FREEZE", "DESTRUCTIVE_TRANSITION_PROXIMITY", "FINITE_HORIZON_CENSORING"],
+    "ACTIONABLE_DEVELOPMENTAL_HYPOTHESIS": "audit valid, candidate coherence true, exactly one eligible mechanism signature true, that signature spans at least 4 laws, and no required diagnostic is missing",
+    "TRANSIENT_OR_HETEROGENEOUS_CANDIDATES": "audit valid, required diagnostics are available, candidates exist, and transient majority is true or candidate coherence is false",
+    "RAW_INSUFFICIENT": "audit valid and all frozen required arrays are present, but the persisted observables leave candidates coherent/nontransient with zero or multiple eligible mechanism signatures, or otherwise leave the named mechanisms observationally equivalent",
+    "AUDIT_INVALID": "any binding/integrity/layout/required-array/numerical/replay/classification reproduction failure",
+    "decision_algorithm": [
+      "AUDIT_INVALID on any audit failure",
+      "RAW_INSUFFICIENT when candidate-duration or candidate-coherence diagnostics required for the transient branch are unavailable despite valid frozen raw",
+      "TRANSIENT_OR_HETEROGENEOUS_CANDIDATES when transient_majority is true or candidate coherence is false",
+      "RAW_INSUFFICIENT when any predeclared mechanism or censoring diagnostic required to evaluate actionability is unavailable",
+      "ACTIONABLE_DEVELOPMENTAL_HYPOTHESIS when exactly one eligible mechanism qualifies and all its remaining gates pass",
+      "RAW_INSUFFICIENT otherwise"
+    ],
+    "immutable_note": "none of these outcomes changes DEV_FEASIBILITY_FAIL"
+  },
+  "formation_maintenance_estimands": {
+    "A_formation": "for each law and IC, descriptive count/fraction of the 4 original worlds forming any component by each frame and by frame 159",
+    "B_conditional_maintenance_world": "among original worlds that formed at least one component, descriptive world-level conditional counts in which at least one single track reached bounded activity, persistence, turnover, prefix candidate, stable episode and terminal persistence; stages are never stitched across tracks",
+    "B_conditional_maintenance_track": "a separately labelled complete track-level funnel with one row per track; it is diagnostic and never substituted for the original-world denominator",
+    "opportunity_flags": {
+      "formation_opportunity": "true for every one of the 64 complete horizon worlds",
+      "maintenance_opportunity": "true when any component formed; this is the denominator flag for B_conditional_maintenance_world",
+      "persistence_horizon_opportunity": "true when at least one track onset is no later than frame 80, permitting 80 observations by frame 159",
+      "post_turnover_horizon_opportunity": "true when at least one single track reaches turnover no later than frame 127, permitting 32 strictly later observations"
+    },
+    "interpretation": "A and B use different denominators; Stage B's unconditional region gate combines both. The decomposition may motivate only a fresh pre-data design and never rescues Stage B.",
+    "precision_warning": "four replicates per law/IC are not a precise probability estimate"
+  },
+  "planned_outputs": {
+    "primary_root": "results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY/primary",
+    "independent_root": "results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY/independent",
+    "comparison_file": "results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY/QUALIFICATION.json",
+    "files": ["integrity.json", "recomputed_classification.json", "world_transitions.json", "track_observations.jsonl", "events.jsonl", "trajectory_atlas.json", "analysis.json", "COMPLETE.json"],
+    "documentation": [
+      "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_AUTOPSY_REPORT.md",
+      "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_AUTOPSY_FORMATION_MAINTENANCE_NOTE.md"
+    ],
+    "write_policy": "exclusive new files, no overwrite, no retry/replacement; canonical finite JSON with terminal LF"
+  },
+  "output_schemas": {
+    "integrity.json": {
+      "schema_literal": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY-INTEGRITY-v1",
+      "top_keys": ["schema", "accepted_parent", "plan_sha256", "protocol_sha256", "allowlist_sha256", "runtime", "input_files", "git_tree_binding", "raw_inventory", "qualification_gates", "audit_valid"],
+      "input_file_row": ["path", "bytes", "sha256", "accepted_parent_git_blob_oid", "git_blob_match"],
+      "counts": "exactly 67 input rows: manifest, root manifest, committed classification and 64 physics shards"
+    },
+    "recomputed_classification.json": "exact canonical INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-CLASSIFICATION-v1 object and bytes",
+    "world_transitions.json": {
+      "schema_literal": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY-WORLD-TRANSITIONS-v1",
+      "top_keys": ["schema", "world_count", "worlds"],
+      "world_row_keys": "exactly world_transition_fields in that declared order before canonical key sorting",
+      "world_row_types": {
+        "required_strings": ["world_id", "law_id", "ic_id", "committed_regime", "reconstructed_regime", "primary_developmental_pathway"],
+        "nullable_strings": ["terminal_state", "representative_track_fingerprint", "trajectory_class"],
+        "required_integers": ["replicate", "candidate_status_frames", "candidate_episode_count", "longest_candidate_episode_frames", "split_count", "merge_count", "appearance_count", "dissolution_count"],
+        "nullable_integers": ["first_component_frame", "first_bounded_active_frame", "first_persistence_qualification_frame", "first_turnover_frame", "first_prefix_candidate_frame", "last_detected_frame", "terminal_empty_run_start", "terminal_freeze_onset", "frames_formation_to_bounded_active", "frames_formation_to_persistence", "frames_formation_to_turnover", "frames_formation_to_candidate", "frames_formation_to_terminal_loss"],
+        "booleans": ["candidate_episode_terminal", "terminal_track_alive", "right_censored", "coordinate_seam_crossed", "ever_wound", "formation_opportunity", "maintenance_opportunity", "persistence_horizon_opportunity", "post_turnover_horizon_opportunity"],
+        "objects": ["milestone_track_fingerprints"],
+        "string_arrays": ["co_primary_track_fingerprints"]
+      },
+      "milestone_track_fingerprint_keys": ["formation", "bounded_active", "persistence", "turnover", "prefix_candidate"],
+      "milestone_track_fingerprint_values": "canonical fingerprint string of the track producing the corresponding world-minimum descriptive milestone, tie-broken by minimum fingerprint; null when the milestone does not occur",
+      "count": 64,
+      "order": "manifest world order"
+    },
+    "track_observations.jsonl": {
+      "row_schema_literal": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY-TRACK-OBSERVATION-v1",
+      "row_keys": ["schema", "world_id", "track_id", "track_fingerprint", "frame", "component_index", "resolved", "mass", "area_fraction", "percolated", "activity_per_mass", "energy_throughput_per_mass", "turnover_fraction", "matter_in", "matter_out", "matter_exchange_per_mass", "net_matter_loss_per_mass", "resource_natural_exchange_per_mass", "mean_internal_bond", "internal_bond_saturation_fraction", "matter_cv", "resource_cv", "coordinate_seam_distance", "coordinate_seam_crossed", "wraps_y", "wraps_x", "radius_gyration_fraction", "instantaneous_bounded_active", "prefix_persistent", "prefix_active", "prefix_turnover", "prefix_post_turnover_frames", "prefix_candidate"],
+      "order": "world order, canonical track order, frame"
+    },
+    "events.jsonl": {
+      "row_schema_literal": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY-EVENT-v1",
+      "row_keys": ["schema", "world_id", "frame", "event_type", "source_track_ids", "target_track_ids", "source_component_keys", "target_component_keys", "resolved", "association_edges"],
+      "event_types": ["ASSOCIATION_DIAGNOSTICS", "APPEARANCE", "CONTINUATION", "DISSOLUTION", "MERGE", "SPLIT", "TEMPORARY_CONTACT", "TRACKING_UNRESOLVED"],
+      "association_edge_keys": ["source_key", "target_key", "raw_iou", "dilated_iou", "centroid_distance", "area_ratio", "score", "qualified", "qualification_reason", "selected", "ambiguity_bearing"],
+      "diagnostic_row": "exactly one ASSOCIATION_DIAGNOSTICS row for every frame 1..159; frame is the target frame, source/target IDs and keys list all transition nodes, association_edges lists every Cartesian source-target pair sorted by source then target",
+      "payload_contracts": {
+        "ASSOCIATION_DIAGNOSTICS": "one row per target frame 1..159; all source and target track IDs/component keys in component-index order; resolved iff the transition has no ambiguity/collapse/unresolved group; association_edges is the full sorted Cartesian pair inventory",
+        "APPEARANCE": "one row for each frame-0 component and each later unsupported target component; empty source arrays, one target ID/key, resolved=true, association_edges=[]",
+        "CONTINUATION": "one row per resolved 1-to-1 group; one source and one target ID/key, resolved=true, association_edges=[]",
+        "DISSOLUTION": "one row per unsupported source component at the target transition frame; one source ID/key, empty target arrays, resolved=true, association_edges=[]",
+        "SPLIT": "one row per resolved 1-to-many group; one source ID/key, target IDs/keys in ascending target component index, resolved=true, association_edges=[]",
+        "MERGE": "one row per resolved many-to-1 group; sources in ascending source component index with corresponding IDs, one target ID/key, resolved=true, association_edges=[]",
+        "TEMPORARY_CONTACT": "one row per unordered resolved target-component pair, pair ordered by ascending component index, empty source arrays, two target IDs/keys, resolved=true, association_edges=[]",
+        "TRACKING_UNRESOLVED": "one row per unresolved connected group; sources and targets in ascending component index with corresponding IDs, resolved=false, association_edges=[]"
+      },
+      "frame_contract": "frame 0 only has initial APPEARANCE rows; every transition lifecycle event is timestamped at its target frame; no administrative DISSOLUTION is emitted after frame 159",
+      "order": "world order, frame, event_types order above, source component keys, target component keys"
+    },
+    "trajectory_atlas.json": {
+      "schema_literal": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY-ATLAS-v1",
+      "top_keys": ["schema", "world_count", "ic_class", "law_ic", "nominal_index_alignment", "candidate_worlds", "formation_funnel", "maintenance_funnel"],
+      "group_row_keys": ["group", "denominator", "regime_counts", "pathway_counts", "terminal_counts", "formed", "bounded_active", "persistent", "turnover", "prefix_candidate", "stable_candidate", "right_censored", "continuous_summaries"],
+      "binary_summary_keys": ["numerator", "denominator", "fraction"],
+      "continuous_summary_keys": ["n", "median", "min", "max"],
+      "continuous_metrics": ["first_component_frame", "first_bounded_active_frame", "first_persistence_qualification_frame", "first_turnover_frame", "first_prefix_candidate_frame", "candidate_status_frames", "longest_candidate_episode_frames"],
+      "ic_class_group": "group is {ic_id}",
+      "law_ic_group": "group is {law_id,ic_id}",
+      "candidate_world_row_keys": ["world_id", "law_id", "ic_id", "candidate_track_count", "primary_developmental_pathway", "terminal_state", "first_prefix_candidate_frame", "candidate_status_frames", "candidate_episode_count", "longest_candidate_episode_frames", "candidate_episode_terminal", "right_censored", "trajectory_class"],
+      "nominal_index_alignment_row_keys": ["law_id", "replicate", "soup_world_id", "compact_world_id", "statistically_matched", "differences"],
+      "nominal_index_difference_keys": ["first_component_frame", "first_bounded_active_frame", "first_persistence_qualification_frame", "first_turnover_frame", "first_prefix_candidate_frame", "candidate_status_frames", "longest_candidate_episode_frames"],
+      "nominal_index_difference_rule": "soup minus compact when both values are nonnull, otherwise null; statistically_matched is always false; rows ordered law then replicate and never enter a decision",
+      "funnel_keys": ["all_worlds", "by_ic", "by_law_ic"],
+      "maintenance_stage_keys": ["formed", "bounded_active", "persistent", "turnover", "prefix_candidate", "stable_candidate", "terminal_persistence"],
+      "summary_rule": "every count prints numerator and denominator; every continuous summary prints n,median,min,max; a zero denominator yields null fraction/summary",
+      "nominal_index_alignment": "law+replicate rows are included only to satisfy descriptive alignment; explicitly not matched pairs and excluded from all decision signatures"
+    },
+    "analysis.json": {
+      "schema_literal": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY-ANALYSIS-v1",
+      "top_keys": ["schema", "immutable_stage_b_disposition", "autopsy_outcome", "audit_gates", "candidate_coherence", "candidate_duration", "censoring", "compact_static_audit", "observational_signatures_consistent_with", "signature_availability", "formation_maintenance_estimands", "outcome_truth_table", "bounded_roadmap"],
+      "audit_gate_keys": ["input_bindings", "git_blob_identity", "raw_layout", "numerical_qualification", "classification_byte_identity", "candidate_set_identity", "world_count", "valid"],
+      "candidate_coherence_keys": ["candidate_world_count", "trajectory_class_counts", "dominant_class", "dominant_count", "coherent", "transient_count", "transient_majority"],
+      "candidate_duration_keys": ["worlds", "status_frames_summary", "episode_count_summary", "longest_episode_summary", "terminal_episode_count"],
+      "censoring_keys": ["right_censored_worlds", "candidate_right_censored", "candidate_status_touches_159", "coordinate_seam_crossers", "winding_worlds"],
+      "compact_static_audit_keys": ["compact_frozen_count", "soup_frozen_count", "bond_saturation_precursor", "low_internal_heterogeneity_precursor", "reduced_material_exchange_precursor", "low_throughput_definition_only", "common_precursor_count"],
+      "signature_row_keys": ["qualified", "available", "world_ids", "law_ids", "numerator", "denominator", "details", "interpretation"],
+      "signature_names": ["IC_FORMATION_DEPENDENCE", "COMPACT_PREMATURE_FREEZE", "DESTRUCTIVE_TRANSITION_PROXIMITY", "FINITE_HORIZON_CENSORING", "TRANSIENT_THRESHOLD_CROSSING"],
+      "signature_details": {
+        "IC_FORMATION_DEPENDENCE": ["soup_formed", "compact_formed", "per_ic_denominator", "aggregate_difference", "direction", "law_rows", "qualifying_law_count"],
+        "IC_FORMATION_LAW_ROW": ["law_id", "soup_formed", "compact_formed", "per_ic_denominator", "difference", "same_direction_qualifies"],
+        "COMPACT_PREMATURE_FREEZE": ["compact_frozen", "soup_frozen", "per_ic_denominator", "law_rows", "qualifying_law_count", "N_compact_frozen", "precursors", "unique_precursor"],
+        "COMPACT_FREEZE_LAW_ROW": ["law_id", "compact_frozen", "soup_frozen", "per_ic_denominator", "difference", "qualifies"],
+        "PRECURSOR_ROW": ["numerator", "denominator", "required", "available", "qualified", "world_ids"],
+        "DESTRUCTIVE_TRANSITION_PROXIMITY": ["dissolution_subtype_world_ids", "high_exchange_subtype_world_ids", "overlap_world_ids", "unavailable_world_ids", "dissolution_subtype_qualified", "high_exchange_subtype_qualified", "same_nine_or_single_subtype"],
+        "FINITE_HORIZON_CENSORING": ["candidate_right_censored", "candidate_status_touches_159", "supporting_law_count", "supporting_world_ids"],
+        "TRANSIENT_THRESHOLD_CROSSING": ["brief_world_ids", "nonterminal_world_ids", "union_world_ids", "transient_count"]
+      },
+      "signature_interpretation": "a fixed string of the form OBSERVATIONAL_SIGNATURE_ONLY:<signature_name>; never causal and never changes DEV_FEASIBILITY_FAIL",
+      "signature_availability": "object with exactly signature_names boolean keys plus unavailable_reasons string array",
+      "formation_maintenance_estimand_keys": ["A_formation", "B_conditional_maintenance_world", "B_conditional_maintenance_track", "gate_conflation_note"],
+      "A_formation_keys": ["all", "by_ic", "by_law_ic", "cumulative_by_frame"],
+      "formation_group_row_keys": ["group", "numerator", "denominator", "fraction"],
+      "formation_cumulative_row_keys": ["frame", "all_formed", "soup_formed", "compact_formed", "all_denominator", "per_ic_denominator"],
+      "B_maintenance_keys": ["all", "by_ic", "by_law_ic", "stages", "unit", "precision_warning"],
+      "maintenance_group_row_keys": ["group", "denominator", "stage_rows"],
+      "maintenance_stage_row_keys": ["stage", "numerator", "denominator", "fraction"],
+      "maintenance_stage_order": ["formed", "bounded_active", "persistent", "turnover", "prefix_candidate", "stable_candidate", "terminal_persistence"],
+      "gate_conflation_note_literal": "Stage B's unconditional region gate combined formation probability from a neutral IC with maintenance and turnover conditional on formation; this decomposition cannot reclassify or rescue Stage B.",
+      "outcome_truth_table_keys": ["AUDIT_INVALID", "TRANSIENT_OR_HETEROGENEOUS_CANDIDATES", "ACTIONABLE_DEVELOPMENTAL_HYPOTHESIS", "RAW_INSUFFICIENT", "selected"],
+      "bounded_roadmap_keys": ["recommendation", "allowed_next_action", "forbidden_actions"],
+      "outcome": "exactly one authorized autopsy outcome; immutable_stage_b_disposition remains DEV_FEASIBILITY_FAIL"
+    },
+    "COMPLETE.json": {
+      "schema_literal": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY-COMPLETE-v1",
+      "top_keys": ["schema", "status", "accepted_parent", "immutable_stage_b_disposition", "autopsy_outcome", "plan_sha256", "protocol_sha256", "allowlist_sha256", "files", "counts"],
+      "file_row": ["path", "bytes", "sha256"],
+      "file_inventory": "the seven preceding output files only, sorted by path; COMPLETE excludes itself",
+      "counts": ["worlds", "tracks", "track_observations", "events", "candidate_worlds"]
+    },
+    "QUALIFICATION.json": {
+      "schema_literal": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY-QUALIFICATION-v1",
+      "top_keys": ["schema", "status", "accepted_parent", "immutable_stage_b_disposition", "autopsy_outcome", "primary_complete_sha256", "independent_complete_sha256", "compared_files", "byte_identical", "review_required"],
+      "compared_file_row": ["path", "primary_bytes", "primary_sha256", "independent_bytes", "independent_sha256", "byte_identical"],
+      "inventory": ["COMPLETE.json", "analysis.json", "events.jsonl", "integrity.json", "recomputed_classification.json", "track_observations.jsonl", "trajectory_atlas.json", "world_transitions.json"],
+      "publication": "created exclusively only after both final roots exist and all eight files are byte-identical; never updates either root"
+    }
+  },
+  "serialization_and_publication": {
+    "json": "UTF-8, sorted object keys, separators comma/colon without spaces, ensure_ascii=false, allow_nan=false, terminal LF; undefined values are JSON null and frames/counts are integers",
+    "jsonl": "one canonical JSON object per line in declared row order, terminal LF, no blank lines",
+    "numeric": "float64 inputs only; coordinate/face/track rows are canonically sorted before math.fsum reductions; nonfinite values fail the audit; negative zero is normalized to positive zero before serialization",
+    "row_order": "worlds in manifest execution.world_ids order; tracks by onset frame then canonical onset-support fingerprint; observations by frame; events by frame/type/canonical support fingerprint",
+    "publication": "require both final root and absent sibling root final+'.partial' absent; create the sibling partial directory exclusively, write the closed file inventory there with COMPLETE.json last, fsync and then atomically rename the whole sibling directory to the absent final root; never retry, repair or replace a partial/final root"
+  },
+  "runtime_environment": {
+    "interpreter": "C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe",
+    "python": "3.12.10",
+    "numpy": "2.5.1",
+    "pytest": "8.4.2",
+    "byteorder": "little",
+    "gate": "the analyzer and independent reproducer refuse any mismatch; no scientific package or engine is imported"
+  },
+  "firewall_enforcement": {
+    "path_normalization": "resolve without following an unauthorized target, reject '..', symlinks and Windows reparse points, convert separators to '/', casefold, and require exact membership in the casefolded allowlist",
+    "read_api": "all scientific file reads pass through one allowlist guard; direct open/numpy.load outside that guard is forbidden",
+    "git_metadata_exception": "read-only accepted-parent tree/blob metadata is allowed only to authenticate the 64 allowlisted physics paths"
+  },
+  "validation": {
+    "synthetic_before_raw": ["detector/tracker/tracer parity fixtures", "prefix-gate duration fixtures", "multi-track anti-stitching fixture", "co-primary representative tie fixture", "no-episode null fixture", "freeze terminal-gap and censoring fixtures", "zero denominator and zero baseline fixtures", "all four outcome truth-table branches plus RAW_INSUFFICIENT default", "taxonomy precedence", "aggregation denominators", "casefold/symlink/reparse/dotdot forbidden path tests", "malicious NPZ duplicate-member, nested-name, traversal-name, extra-key, object-dtype and structured-dtype rejection fixtures"],
+    "post_raw": ["64 unique complete world rows", "world labels byte-identical to committed classification", "track observations equal track points", "IC/law subtotals sum to 64", "candidate set exactly the committed 11 worlds", "all eight files in the primary and independently implemented output roots are pairwise byte-identical and sealed by QUALIFICATION.json"]
+  },
+  "prohibitions": [
+    "no engine or runner import/execution",
+    "no world initialization, seed, LawSpec or checkpoint reconstruction",
+    "no online.json or shard_manifest.json access",
+    "no threshold revision, selected subset, new family or retry",
+    "no causal cut, conductance, memory, ownership or individuality claim",
+    "no Stage C, prospective seal, merge or PR"
+  ]
+}

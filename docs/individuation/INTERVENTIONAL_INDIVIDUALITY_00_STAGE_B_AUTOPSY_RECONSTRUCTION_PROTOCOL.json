@@ -1,0 +1,267 @@
+{
+  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY-RECONSTRUCTION-v1",
+  "mission": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-RAW-ONLY-DEVELOPMENTAL-AUTOPSY",
+  "normative_status": "machine-readable normative supplement to the frozen analysis plan; fixed before any physics array is loaded",
+  "coordinate_and_clock": {
+    "shape": [12, 12],
+    "axes": ["y", "x"],
+    "periodic": true,
+    "dt": 0.05,
+    "transport_steps": 160,
+    "state_frames": 161,
+    "detector_frames": {"first": 0, "last": 159, "count": 160},
+    "final_state_frame_160": "transport closure only; never supplied to detector or tracker",
+    "face_layout": "each face array is axis-major; entry [axis,y,x] is the positive-axis edge from (y,x) to (y,x)+e_axis under periodic wrapping"
+  },
+  "exact_raw_inventory": {
+    "gate": "exactly these 46 keys, with no missing or extra key",
+    "archive_loader": {
+      "zip_gate": "inspect the ZIP central directory before NumPy: reject duplicate member names, duplicate logical keys, directories, slash or backslash path separators, absolute names, dot/dotdot/traversal names and any member not exactly one expected <key>.npy",
+      "numpy_gate": "load only with numpy.load(path,allow_pickle=False); reject object, structured, subarray and nonnative dtypes before any calculation",
+      "membership": "the central-directory member set and NumPy files set must each equal exactly the 46 expected <key>.npy members/keys"
+    },
+    "state_and_validation": {
+      "state_step": {"dtype": "int64", "shape": [161]},
+      "state_m": {"dtype": "float64", "shape": [161, 12, 12]},
+      "state_n": {"dtype": "float64", "shape": [161, 12, 12]},
+      "state_b": {"dtype": "float64", "shape": [161, 2, 12, 12]},
+      "vector_reference_max_error": {"dtype": "float64", "shape": [160]},
+      "deterministic_replay_equal": {"dtype": "uint8", "shape": [160]}
+    },
+    "cell_ledger": {
+      "ledger__affinity": {"dtype": "float64", "shape": [160, 12, 12]}
+    },
+    "face_ledger_float64_shape_160_2_12_12": [
+      "ledger__matter_forward", "ledger__matter_reverse", "ledger__matter_natural", "ledger__matter_active", "ledger__matter_missing",
+      "ledger__resource_permeability", "ledger__resource_natural", "ledger__resource_active", "ledger__resource_missing",
+      "ledger__bond_cue", "ledger__bond_tension", "ledger__r_on", "ledger__r_off",
+      "ledger__gross_formation", "ledger__gross_rupture", "ledger__gross_formation_work", "ledger__gross_rupture_release",
+      "ledger__gross_weakening_release", "ledger__gross_dissolution_release", "ledger__maintenance_recycled_work",
+      "ledger__formation_fuel", "ledger__rupture_heat", "ledger__weakening_heat", "ledger__dissolution_heat",
+      "ledger__matter_missing_from_delta", "ledger__matter_missing_to_delta", "ledger__resource_missing_from_delta", "ledger__resource_missing_to_delta",
+      "ledger__matter_scale", "ledger__resource_scale"
+    ],
+    "scalar_ledger_float64_shape_160": [
+      "ledger__initial_matter", "ledger__final_matter", "ledger__matter_residual",
+      "ledger__initial_stored_energy", "ledger__final_stored_energy", "ledger__total_rupture_heat",
+      "ledger__total_maintenance_recycled_work", "ledger__energy_residual", "ledger__controller_onset_energy_jump"
+    ],
+    "qualification": {
+      "general": "all numerical arrays finite; state_step exactly int64 0..160; vector_reference_max_error finite and nonnegative",
+      "state_bounds": "state_m,state_n,state_b elementwise >=0; state_m and state_n <=1.0+(1e-12+1e-10*max(1,1.0)); state_b<=1.0+1e-12+1e-10",
+      "maximum_scale": "start 1.0, then in exact inventory order update with float(max(abs(array))) over state_m,state_n,state_b and every ledger__ array; exclude state_step, vector_reference_max_error and deterministic_replay_equal",
+      "reference_error_gate": "every vector_reference_max_error step <= 1e-12+1e-10*maximum_scale",
+      "exact_ones": ["deterministic_replay_equal", "ledger__matter_scale", "ledger__resource_scale"],
+      "exact_zeros": ["ledger__matter_missing", "ledger__resource_missing", "ledger__matter_missing_from_delta", "ledger__matter_missing_to_delta", "ledger__resource_missing_from_delta", "ledger__resource_missing_to_delta", "ledger__controller_onset_energy_jump"],
+      "nonnegative_ledgers": ["ledger__matter_forward", "ledger__matter_reverse", "ledger__gross_formation", "ledger__gross_rupture", "ledger__gross_formation_work", "ledger__gross_rupture_release"],
+      "matter_transport_identity": "per step net=forward-reverse; expected_post=pre-0.05*((net[0]-roll(net[0],1,axis=0))+(net[1]-roll(net[1],1,axis=1))); require elementwise abs(post-expected_post)<=1e-12+1e-10*abs(expected_post)",
+      "matter_scalar_identities": "per step expected_initial=math.fsum(state_m[t].flat C order), expected_final=math.fsum(state_m[t+1].flat C order); each stored initial/final scalar must satisfy abs(stored-expected)<=1e-12+1e-10*abs(expected); abs(matter_residual)<=1e-12+1e-10*abs(expected_final)",
+      "energy_residual_gate": "initial_stored_energy and final_stored_energy finite; abs(energy_residual)<=1e-12+1e-10*abs(initial_stored_energy); do not invent a state_b energy recomputation or cross-step stored-energy identity"
+    }
+  },
+  "detector": {
+    "occupied": "state_m[y,x] >= 0.5",
+    "minimum_cells": 3,
+    "component_order": "discard every sub-3-cell connected set first, then assign retained component indices contiguously in ascending minimum row-major linear cell index order",
+    "traversal": [
+      "initialize unseen as occupied row-major linear indices",
+      "take min(unseen) as root and assign its ordinary (y,x) as lifted coordinate",
+      "use a LIFO list stack and pop from the end",
+      "skip a popped cell already accepted",
+      "visit occupied neighbours in exact order (-1,0),(+1,0),(0,-1),(0,+1)",
+      "wrap ordinary coordinates, but propose lifted neighbour coordinate as current lift plus the signed unwrapped step",
+      "assign a neighbour lift when it is first pushed; if already lifted and a proposed axis differs, set that axis winding flag",
+      "remove completed cells from unseen and discard the component when cell count is below 3"
+    ],
+    "geometry": {
+      "cells": "ascending row-major order",
+      "area": "cell count",
+      "mass": "math.fsum of float64 state_m values in cells order",
+      "lifted_centroid": "numpy float64 sum(lift*weights,axis=0)/mass in unmodded lifted coordinates; zero-mass unweighted fallback is unreachable",
+      "centroid": "lifted_centroid modulo shape",
+      "radius_gyration": "sqrt(numpy float64 weighted sum of rowwise squared deviations from the unmodded lifted_centroid divided by mass)",
+      "wraps": "separate y/x flags from inconsistent lifted coordinates",
+      "percolates": "wraps_y or wraps_x",
+      "component_key": "(frame, component index in component_order)"
+    }
+  },
+  "association": {
+    "pair_metrics": {
+      "raw_iou": "cardinality(A intersect B)/cardinality(A union B)",
+      "dilation": "repeat radius times: OR the current frontier rolled by plus/minus one on each axis, then accumulate into result",
+      "dilated_iou": "IoU of radius-1 dilated masks",
+      "periodic_distance": "per axis choose minimum absolute displacement among raw, raw-period and raw+period; combine with math.hypot",
+      "area_ratio": "max(source_area,target_area)/min(source_area,target_area)",
+      "score_operation_order": "4*raw_iou + 2*dilated_iou + exp(-distance/2.5) + min_area/max_area using Python float operations in written order"
+    },
+    "qualification_precedence": [
+      "reject when area_ratio > 3.0 with qualification_reason AREA_RATIO",
+      "else reject when periodic centroid distance > 2.5 with qualification_reason CENTROID_DISTANCE",
+      "else reject when raw_iou == 0 and dilated_iou == 0 with qualification_reason NO_SUPPORT_OVERLAP",
+      "otherwise qualify with qualification_reason QUALIFIED"
+    ],
+    "selection": [
+      "select every qualified positive-raw-overlap edge, including one-to-many and many-to-one sets",
+      "remove remaining candidates whose source or target touches a selected raw-overlap edge",
+      "rank remaining edges per source by descending score then ascending target component key",
+      "rank remaining edges per target by descending score then ascending source component key",
+      "a top is unique when alone or when its score exceeds second place by strictly more than 1e-12",
+      "select only mutual unique tops",
+      "a remaining qualified edge is ambiguity-bearing only when neither endpoint touches any finally selected edge",
+      "an unselected edge touching a selected endpoint is ignored rather than ambiguity-bearing"
+    ],
+    "logged_edge_fields": ["source_key", "target_key", "raw_iou", "dilated_iou", "centroid_distance", "area_ratio", "score", "qualified", "qualification_reason", "selected", "ambiguity_bearing"],
+    "logged_edge_types": "component keys are [frame,index] integer arrays; metrics are finite floats; qualified/selected/ambiguity_bearing are booleans; qualification_reason is one of AREA_RATIO,CENTROID_DISTANCE,NO_SUPPORT_OVERLAP,QUALIFIED"
+  },
+  "tracking": {
+    "precomputation": "build all adjacent-frame association graphs before assigning tracks",
+    "collapse": "a middle detector node with at least two selected incoming and at least two selected outgoing edges makes both adjacent transition groups ambiguity-bearing",
+    "id_assignment": "frame-zero components receive monotonically increasing integer IDs from zero; every new split child, merge child, appearance or unresolved target receives the next ID",
+    "group_order": "connected bipartite groups of selected union ambiguity-bearing edges, ascending source component key and then target component key; source track IDs are independently sorted",
+    "per_transition_id_allocation": [
+      "sort connected groups by (smallest source component index, tuple of ascending target component indices))",
+      "unsupported source dissolutions may be logged first but allocate no IDs",
+      "process every connected group in that order; 1-to-1 reuses ID, split allocates targets in ascending target component index, merge allocates one ID, unresolved allocates targets in ascending target component index",
+      "only after all connected groups, allocate unsupported appearance targets in ascending target component index",
+      "contact annotations occur last and allocate no IDs; targets are never globally interleaved across groups and appearances"
+    ],
+    "resolved_topologies": {
+      "1_TO_1": "append target point to existing track",
+      "1_TO_MANY": "end parent and create one child per sorted target; emit SPLIT",
+      "MANY_TO_1": "end parents and create one merge child with sorted parent IDs; emit MERGE"
+    },
+    "unresolved": "any many-to-many, ambiguity-bearing, collapse-bearing or incomplete-mapping group marks all source tracks unresolved, creates one unresolved target track per sorted target and emits TRACKING_UNRESOLVED",
+    "unsupported": {
+      "source": "emit DISSOLUTION and end its track",
+      "target": "create a new track and emit APPEARANCE"
+    },
+    "temporary_contact": "after each transition, emit annotation-only TEMPORARY_CONTACT for each pair of distinct resolved target components with minimum periodic cell-to-cell Manhattan distance exactly 2; it creates no ancestry edge",
+    "world_unresolved": "true if any track or event is unresolved",
+    "canonical_onset_support_fingerprint": "frame plus comma-separated ascending row-major onset cells; used only for deterministic reporting/tie ordering and never association"
+  },
+  "passive_cohort": {
+    "enrollment": "each track independently starts q=state_m on its own first support and q=0 elsewhere; split children, merge children and appearances never inherit a parent cohort",
+    "initial_mass": "math.fsum(q flattened in C order)",
+    "advance_range": "from track first frame through the step before its last observed frame",
+    "tolerance": "1e-12 + 1e-10*max(1,max(abs(pre_m)),max(abs(post_m)))",
+    "preconditions": ["finite float64 common shapes", "pre/post matter nonnegative", "gross forward/reverse flows finite and nonnegative", "min(q)>=-tol", "max(q-pre_m)<=tol"],
+    "matter_identity": {
+      "matter_net": "matter_forward-matter_reverse",
+      "axis_divergence": "matter_net[axis]-roll(matter_net[axis],1,axis=axis)",
+      "expected_post": "pre_m-dt*(axis0_divergence+axis1_divergence)",
+      "gate": "max(abs(post_m-expected_post))<=tol"
+    },
+    "update": {
+      "fraction": "q/pre_m where pre_m>0 else 0",
+      "directed_cohort_face": "J_axis=forward[axis]*fraction-reverse[axis]*roll(fraction,-1,axis=axis)",
+      "q_next": "q-dt*((J0-roll(J0,1,axis=0))+(J1-roll(J1,1,axis=1)))"
+    },
+    "postconditions": ["abs(math.fsum(q_next)-math.fsum(q))<=tol*q.size", "min(q_next)>=-tol", "max(q_next-post_m)<=tol", "never clip q"],
+    "turnover": {
+      "retained": "math.fsum(q on current support in C order)",
+      "raw": "1-retained/initial_cohort_mass",
+      "range_tolerance": "1e-12+1e-10*initial_cohort_mass",
+      "gate": "raw in [-range_tolerance,1+range_tolerance]",
+      "reported": "clip only the reported scalar to [0,1]"
+    }
+  },
+  "observation_metrics_required_for_frozen_classification": {
+    "area_fraction": "component area/144",
+    "percolated": "component percolates",
+    "internal_face_mask": "support and roll(support,-1,axis=axis), axis-major",
+    "activity_per_mass": "math.fsum((matter_forward+matter_reverse)[internal masks] in axis then C order)/component_mass; algebraically identical dt numerator and denominator cancel",
+    "energy_throughput_per_mass": "math.fsum((gross_formation_work+gross_rupture_release)[internal masks] in axis then C order)/(0.05*component_mass)",
+    "turnover_fraction": "reported passive-cohort turnover",
+    "assembly_gate": "exactly one finite observation per track point; reject duplicates, missing observations and orphan rows"
+  },
+  "developmental_observation_metrics": {
+    "alignment": "for detector observation frame t in 0..159 use state arrays at t and ledger arrays at t; cohort q is the state-t cohort obtained after advancing ledgers through t-1",
+    "canonical_face_iteration": "axis 0 then axis 1; within each axis flatten y,x in C row-major order",
+    "face_endpoints": "for a face value F[axis,y,x], source=(y,x), target=source+e_axis modulo shape; source_inside=S[source], target_inside=S[target]",
+    "matter_boundary": {
+      "outgoing_rate_per_face": "forward when source_inside and not target_inside, plus reverse when target_inside and not source_inside",
+      "incoming_rate_per_face": "reverse when source_inside and not target_inside, plus forward when target_inside and not source_inside",
+      "matter_out": "0.05*math.fsum outgoing rates in canonical_face_iteration",
+      "matter_in": "0.05*math.fsum incoming rates in canonical_face_iteration",
+      "matter_exchange_per_mass": "(matter_in+matter_out)/component_mass",
+      "net_matter_loss_per_mass": "(matter_out-matter_in)/component_mass"
+    },
+    "resource_boundary": {
+      "signed_convention": "ledger__resource_natural is positive source-to-target on the positive-axis face",
+      "resource_natural_exchange": "0.05*math.fsum(abs(resource_natural) on faces where source_inside xor target_inside, canonical order)",
+      "resource_natural_exchange_per_mass": "resource_natural_exchange/component_mass; this names only the natural channel and makes no claim about resource_active or other channels"
+    },
+    "bond": {
+      "internal_values": "state_b[t,axis,y,x] for source_inside and target_inside in canonical face order",
+      "mean_internal_bond": "math.fsum(internal_values)/count; 0.0 when count is zero",
+      "internal_bond_saturation_fraction": "count(value>=0.9)/count; 0.0 when count is zero"
+    },
+    "support_cv": {
+      "order": "ascending row-major support cells",
+      "mean": "math.fsum(values)/count",
+      "population_variance": "math.fsum((value-mean)**2 in support order)/count",
+      "cv": "math.sqrt(population_variance)/mean when mean>0; 0.0 when mean==0 and every value is zero; negative mean or inconsistent zero mean is AUDIT_INVALID",
+      "matter_cv": "cv of state_m support values",
+      "resource_cv": "cv of state_n support values"
+    },
+    "coordinate_seam": {
+      "distance": "minimum over support cells of min(y,11-y,x,11-x); integer cells, null only for an impossible empty detected support",
+      "crossed": "true iff support contains an occupied periodic neighbour pair at coordinates 0 and 11 on either axis",
+      "interpretation": "coordinate-dependent diagnostic only, distinct from winding"
+    },
+    "radius_gyration_fraction": "component radius_gyration/12.0",
+    "median": "sort finite floats ascending; odd n selects middle; even n uses (lower+upper)/2 in written Python-float order; n=0 is null",
+    "runs": "a run is consecutive only when adjacent integer frames differ by exactly one; gaps break candidate/freeze runs",
+    "prefix_reduction": "recompute the complete track summary over observations from track onset through t using the track_summary operation order; no incremental approximation",
+    "output_floats": "normalize -0.0 to +0.0 recursively only after every decision comparison has been made"
+  },
+  "track_summary": {
+    "order": "ascending observed frame",
+    "observed_frames": "observation count",
+    "span_frames": "last-first+1",
+    "maximum_area_fraction": "maximum observation area_fraction",
+    "bounded_fraction": "fraction of observations that are nonpercolated and area_fraction<=0.25",
+    "percolated_fraction": "fraction of percolated observations",
+    "mean_activity_per_mass": "math.fsum values/observed_frames",
+    "mean_energy_throughput_per_mass": "math.fsum values/observed_frames",
+    "maximum_turnover_fraction": "maximum observation turnover_fraction",
+    "first_turnover_frame": "first observation with turnover_fraction>=0.6",
+    "post_turnover_frames": "count observations strictly later than first_turnover_frame",
+    "persistent": "resolved and observed_frames>=80 and span_frames>=80",
+    "active": "mean_activity_per_mass>=1e-4 and mean_energy_throughput_per_mass>=1e-5",
+    "candidate": "persistent and maximum_area_fraction<=0.25 and bounded_fraction>=0.95 and percolated_fraction==0 and active and maximum_turnover_fraction>=0.6 and post_turnover_frames>=32"
+  },
+  "world_classifier_precedence": [
+    {"regime": "TRACKING_UNRESOLVED", "condition": "any world or track unresolved"},
+    {"regime": "ACTIVE_UNBOUNDED", "condition": "any track has positive percolated_fraction and meets both activity and energy minima"},
+    {"regime": "PERCOLATED", "condition": "any detected component ever percolates"},
+    {"regime": "EMPTY_OR_GAS", "condition": "no component ever detected"},
+    {"regime": "DISSOLVED", "condition": "detector frame 159 has no component"},
+    {"regime": "BOUNDED_ACTIVE_TURNOVER_CANDIDATE", "condition": "any track candidate is true"},
+    {"regime": "PERSISTENT_NO_TURNOVER", "condition": "at least one persistent track is active and no persistent track reaches turnover 0.6"},
+    {"regime": "STATIC_CRYSTAL_OR_SHELL", "condition": "any persistent track remains"},
+    {"regime": "TURNOVER_WITHOUT_PERSISTENCE", "condition": "a nonpersistent track reaches turnover 0.6"},
+    {"regime": "DISSOLVED", "condition": "total fallback"}
+  ],
+  "candidate_track_ids": "sorted integer IDs of all candidate tracks, but forcibly [] unless final regime is BOUNDED_ACTIVE_TURNOVER_CANDIDATE",
+  "family_aggregation": {
+    "classification_world_order": "ascending world_id lexicographic order, matching the committed canonical classification; developmental world_transitions remains separately in manifest order",
+    "world_row": ["candidate_track_ids", "ic_id", "law_id", "regime", "replicate", "status", "world_id"],
+    "law_order": "manifest law order",
+    "ic_order": ["soup", "compact"],
+    "per_ic": "denominator 4; complete iff exactly four rows and every status COMPLETE; count every manifest class",
+    "candidate_region": "both IC strata complete and each has at least two candidate worlds",
+    "disposition_precedence": ["any numerical-invalid shard -> MANIPULATION_OR_NUMERICAL_INVALID", "any other non-complete shard -> REVISE_INSTRUMENTATION", "any candidate region -> DEV_REGIME_CANDIDATE", "otherwise -> DEV_FEASIBILITY_FAIL"]
+  },
+  "canonical_classification": {
+    "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-CLASSIFICATION-v1",
+    "top_level_keys": ["atlas", "candidate_regions", "disposition", "manifest_sha256", "schema", "worlds"],
+    "encoding": "json.dumps(object,sort_keys=True,separators=(',',':'),ensure_ascii=False,allow_nan=False)+'\\n'",
+    "gate": "bytes and SHA-256 must exactly equal committed classification"
+  },
+  "honest_limits": [
+    "forbidden online-row serialization, internal exception strings and logging-only production reason strings are not reconstructed",
+    "those fields are not used by detector, association, tracking, cohort, classification, candidate IDs, atlas or disposition",
+    "raw developmental mechanisms remain descriptive and cannot change DEV_FEASIBILITY_FAIL"
+  ]
+}
