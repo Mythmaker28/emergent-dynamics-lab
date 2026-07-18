@@ -10,6 +10,7 @@ feeding response and never constructs a directed scientific matrix.
 from __future__ import annotations
 
 import copy
+from dataclasses import dataclass
 import hashlib
 import json
 from pathlib import Path
@@ -18,7 +19,7 @@ from typing import Any, Iterable
 import numpy as np
 
 from edlab.experiments.sc_mcm import config as MCM_CONFIG
-from edlab.substrates.scaffold.observables import detect
+from edlab.substrates.chemotaxis.diagnostics import _label_periodic, circular_centroid
 from experiments.individuation import access_structure_noswap_operators as ns
 from experiments.individuation import access_structure_operators as ops
 from experiments.individuation import causal_confirm as cc
@@ -71,8 +72,54 @@ def _hash_parts(parts: Iterable[bytes]) -> str:
     return digest.hexdigest()
 
 
+@dataclass(frozen=True)
+class _GeometryEntity:
+    """Detector-compatible geometry with no behavioural uptake read."""
+
+    cells: np.ndarray
+    centroid: np.ndarray
+    size: int
+    rg: float
+
+
+def _geometry_entities(state) -> list[_GeometryEntity]:
+    """Reproduce the frozen rho detector's geometry without reading uptake.
+
+    ``scaffold.observables.detect`` also computes per-entity specific uptake.
+    Phase 0.5 is mechanically outcome-blind, so this adapter deliberately
+    retains only the accepted rho threshold, periodic four-neighbour
+    components, minimum cell count, rho-weighted circular centroid, and Rg.
+    """
+    _labels, groups = _label_periodic(
+        state.rho > float(MCM_CONFIG.DET.threshold)
+    )
+    n = int(state.rho.shape[0])
+    entities: list[_GeometryEntity] = []
+    for component in groups.values():
+        size = int(component.sum())
+        if size < int(MCM_CONFIG.DET.min_cells):
+            continue
+        ys, xs = np.nonzero(component)
+        weights = state.rho[ys, xs]
+        centroid = circular_centroid(state.rho * component)
+        dy = ys.astype(float) - float(centroid[0])
+        dy -= n * np.round(dy / n)
+        dx = xs.astype(float) - float(centroid[1])
+        dx -= n * np.round(dx / n)
+        rg = float(np.sqrt(np.average(dy ** 2 + dx ** 2, weights=weights))) + 1e-9
+        entities.append(
+            _GeometryEntity(
+                cells=np.stack([ys, xs], axis=1),
+                centroid=np.asarray(centroid, dtype=float),
+                size=size,
+                rg=rg,
+            )
+        )
+    return entities
+
+
 def _detect_masks(state) -> list[np.ndarray]:
-    return [cc.mask(entity) for entity in detect(state, MCM_CONFIG.DET)]
+    return [cc.mask(entity) for entity in _geometry_entities(state)]
 
 
 def _selected_masks(observer: mech.PassivePairObserver) -> list[np.ndarray] | None:
@@ -167,7 +214,7 @@ def _build_prewriter(world_id: int, assignment: mech.PairAssignment) -> dict[str
     state = cc.seed_world(world_id)
     for _ in range(cc.WARM):
         state = engine.step(state)
-    targets = cc.pick(sorted(detect(state, MCM_CONFIG.DET), key=lambda entity: -entity.size))
+    targets = cc.pick(sorted(_geometry_entities(state), key=lambda entity: -entity.size))
     if len(targets) != 3:
         raise RuntimeError("frozen pair world no longer has exactly three selected prewriter targets")
     recomputed = _outcome_blind_assignment(targets, world_id)
@@ -214,7 +261,7 @@ def _run_writer_arm(
     state = ops.deserialize_state(payload)
     engine = cc.build(cc.MEM_INTACT)
     observer = mech.PassivePairObserver(seed_masks, assignment)
-    records = [observer.seed_snapshot(state)]
+    records = [observer.seed_snapshot(state, _detect_masks(state))]
     sham_reference = ops.deserialize_state(payload) if arm == "H00" else None
     sham_reference_exact = True if arm == "H00" else None
     operation_rows = []
@@ -543,7 +590,13 @@ def _free_access(
         else ns.NoSwapClampEngine(MCM_CONFIG.SPEC, cc.MEM_INTACT, MCM_CONFIG.TRACER, driver=None)
     )
     observer = mech.PassivePairObserver(masks, assignment)
-    records = [observer.seed_snapshot(current, stage="PROBE_STANDARDIZE")]
+    records = [
+        observer.seed_snapshot(
+            current,
+            _detect_masks(current),
+            stage="PROBE_STANDARDIZE",
+        )
+    ]
     frames = {"A": [], "B": []}
     state_hashes = [ops.state_sha256(current)]
     for schedule_step in range(1, PROBE_SETTLE_STEPS + PROBE_HORIZON_STEPS + 1):
@@ -631,7 +684,13 @@ def _clamped_access(
     driver = ns.BoundaryDriver(collar.copy(), copy.deepcopy(frames), label=regime)
     observer = mech.PassivePairObserver(masks, assignment)
     records = [
-        observer.seed_snapshot(current, stage="PROBE_STANDARDIZE")
+        observer.seed_snapshot(
+            current,
+            _detect_masks(current),
+            stage="PROBE_STANDARDIZE",
+            collar=collar,
+            clamp_recipient=recipient,
+        )
     ]
     state_hashes = [ops.state_sha256(current)]
     unintended_counts = []
@@ -701,6 +760,37 @@ def _clamped_access(
     }
 
 
+def _isolation_supports(
+    *,
+    state,
+    masks: list[np.ndarray],
+    recipient_index: int,
+    collar: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Return the exact rho-weighted recipient core and far perturbation support.
+
+    The isolation proof must certify the core enclosed by the actual fixed
+    collar. Recomputing either support from an unweighted mask centroid can
+    silently certify a different spatial unit when rho is asymmetric.
+    """
+    center = mech.periodic_centroid(masks[recipient_index], state.rho)
+    partition, core, barrier = ns.core_and_collar(state.rho.shape, center)
+    if not np.array_equal(barrier, collar):
+        raise AssertionError("exact-isolation collar differs from its rho-weighted core")
+    outside = partition.distance > (ns.CORE_RADIUS + ns.BARRIER_WIDTH + 1)
+    # Keep the history-bearing partner and sentinel physically unchanged in
+    # both branches, using the same detector-equivalent rho-weighted geometry.
+    for index, mask in enumerate(masks):
+        if index == recipient_index:
+            continue
+        outside &= ~mech.disk_mask(
+            state.rho.shape,
+            mech.periodic_centroid(mask, state.rho),
+            mech.HALO_RADIUS,
+        )
+    return core, outside
+
+
 def _exact_isolation(
     *,
     state,
@@ -712,20 +802,12 @@ def _exact_isolation(
     free_upref_hashes: list[str],
 ) -> dict[str, Any]:
     recipient_index = assignment.target_A if recipient == "A" else assignment.target_B
-    center = mech.periodic_centroid(masks[recipient_index])
-    partition, core, _barrier = ns.core_and_collar(state.rho.shape, center)
-    outside = partition.distance > (ns.CORE_RADIUS + ns.BARRIER_WIDTH + 1)
-    # This is an environment perturbation, not a direct perturbation of the
-    # history-bearing partner or sentinel.  Their radius-12 supports remain
-    # untouched and physically present in both branches.
-    for index, mask in enumerate(masks):
-        if index == recipient_index:
-            continue
-        outside &= ~mech.disk_mask(
-            state.rho.shape,
-            mech.periodic_centroid(mask),
-            mech.HALO_RADIUS,
-        )
+    core, outside = _isolation_supports(
+        state=state,
+        masks=masks,
+        recipient_index=recipient_index,
+        collar=collar,
+    )
     left = _prepare_probe_state(state)
     right = _prepare_probe_state(state)
     right.c[outside] += 0.05
@@ -741,8 +823,30 @@ def _exact_isolation(
     left_observer = mech.PassivePairObserver(masks, assignment)
     right_observer = mech.PassivePairObserver(masks, assignment)
     per_step = []
-    left_failure = None
-    right_failure = None
+    left_seed = left_observer.seed_snapshot(
+        left,
+        _detect_masks(left),
+        stage="ISOLATION_LEFT_STANDARDIZE",
+        collar=collar,
+        clamp_recipient=recipient,
+    )
+    right_seed = right_observer.seed_snapshot(
+        right,
+        _detect_masks(right),
+        stage="ISOLATION_RIGHT_STANDARDIZE",
+        collar=collar,
+        clamp_recipient=recipient,
+    )
+    left_failure = (
+        {"schedule_step": 0, "reasons": list(left_seed["kill_reasons"])}
+        if left_seed["kill_reasons"]
+        else None
+    )
+    right_failure = (
+        {"schedule_step": 0, "reasons": list(right_seed["kill_reasons"])}
+        if right_seed["kill_reasons"]
+        else None
+    )
     own_upref_exact = True
     for schedule_step in range(1, PROBE_SETTLE_STEPS + PROBE_HORIZON_STEPS + 1):
         _apply_probe_pulse(left, schedule_step)
@@ -806,6 +910,7 @@ def _exact_isolation(
     environment_difference = float(np.max(np.abs(left.c[outside] - right.c[outside])))
     exact = bool(
         maximum == 0.0
+        and environment_difference > 0.0
         and own_upref_exact
         and left_failure is None
         and right_failure is None
@@ -826,43 +931,36 @@ def _exact_isolation(
     }
 
 
-def _reference_component(state) -> tuple[tuple[float, float], np.ndarray]:
-    entities = [
-        entity
-        for entity in detect(state, MCM_CONFIG.DET)
-        if 4 <= int(entity.size) < int(mech.COVERAGE_CAP * state.rho.size)
-    ]
-    if not entities:
-        raise RuntimeError("H00 reference state contains no on-manifold reference component")
-    entities.sort(
-        key=lambda entity: (
-            int(entity.size),
-            float(entity.centroid[0]),
-            float(entity.centroid[1]),
-        )
-    )
-    entity = entities[(len(entities) - 1) // 2]
-    return tuple(float(value) for value in entity.centroid), cc.mask(entity)
-
-
 def _run_access_set(
     *,
     arm_state,
     arm_masks: list[np.ndarray],
     assignment: mech.PairAssignment,
     h00_reference_state,
+    h00_reference_masks: list[np.ndarray],
 ) -> tuple[list[dict[str, Any]], dict[str, Any] | None]:
     centers = {
-        "A": mech.periodic_centroid(arm_masks[assignment.target_A]),
-        "B": mech.periodic_centroid(arm_masks[assignment.target_B]),
+        "A": mech.periodic_centroid(arm_masks[assignment.target_A], arm_state.rho),
+        "B": mech.periodic_centroid(arm_masks[assignment.target_B], arm_state.rho),
     }
     collars = {
         recipient: ns.core_and_collar(arm_state.rho.shape, center)[2]
         for recipient, center in centers.items()
     }
-    reference_center, _reference_mask = _reference_component(h00_reference_state)
+    if len(h00_reference_masks) != 3:
+        raise RuntimeError("H00 reference must retain the tracked A, B, and sentinel masks")
+    reference_centers = {
+        "A": mech.periodic_centroid(
+            h00_reference_masks[assignment.target_A],
+            h00_reference_state.rho,
+        ),
+        "B": mech.periodic_centroid(
+            h00_reference_masks[assignment.target_B],
+            h00_reference_state.rho,
+        ),
+    }
     shifts = {
-        recipient: ns._shift(reference_center, centers[recipient])
+        recipient: ns._shift(reference_centers[recipient], centers[recipient])
         for recipient in ("A", "B")
     }
 
@@ -1071,6 +1169,7 @@ def _world_shard(
                 arm_masks=turnover["masks"],
                 assignment=assignment,
                 h00_reference_state=h00_reference_state,
+                h00_reference_masks=h00_turnover["masks"],
             )
         elif turnover["first_failure"] is None:
             access_failure = {

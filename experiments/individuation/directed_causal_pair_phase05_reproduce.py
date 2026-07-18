@@ -37,6 +37,73 @@ WORLD_ASSIGNMENTS = {
     50005: (1, 0, 2),
     50007: (1, 0, 2),
 }
+EXPECTED_PLAN_SHA256 = "0c3c75fe8142373dcf6d1aa765dd4247c11570b993e4ea5d1cf4379f958826c3"
+EXPECTED_INPUT_PATHS = frozenset(
+    {
+        "AGENTS.md",
+        "docs/DECISION_LOG.md",
+        "docs/PROJECT_STATE.md",
+        "docs/RESEARCH_CHARTER.md",
+        "docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE0_DEV_FEASIBILITY.json",
+        "docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE0_REPORT.md",
+        "docs/individuation/DIRECTED_CAUSAL_PAIR_00_PREREGISTRATION_DRAFT.md",
+    }
+)
+EXPECTED_CODE_PATHS = frozenset(
+    {
+        ".gitattributes",
+        "docs/individuation/DIRECTED_CAUSAL_PAIR_00_FINAL_RAW_SCHEMA.json",
+        "edlab/__init__.py",
+        "edlab/entities/__init__.py",
+        "edlab/entities/detection.py",
+        "edlab/entities/tracking.py",
+        "edlab/experiments/__init__.py",
+        "edlab/experiments/analyze_streaming.py",
+        "edlab/experiments/baseline.py",
+        "edlab/experiments/exp_sc_00.py",
+        "edlab/experiments/sc_hmc/__init__.py",
+        "edlab/experiments/sc_hmc/config.py",
+        "edlab/experiments/sc_iom/__init__.py",
+        "edlab/experiments/sc_iom/config.py",
+        "edlab/experiments/sc_iom/engine.py",
+        "edlab/experiments/sc_mcm/__init__.py",
+        "edlab/experiments/sc_mcm/config.py",
+        "edlab/experiments/sc_mcm/engine.py",
+        "edlab/experiments/streaming.py",
+        "edlab/observables/__init__.py",
+        "edlab/observables/continuity.py",
+        "edlab/observables/phenotype.py",
+        "edlab/specs.py",
+        "edlab/state.py",
+        "edlab/substrates/__init__.py",
+        "edlab/substrates/chemotaxis/__init__.py",
+        "edlab/substrates/chemotaxis/diagnostics.py",
+        "edlab/substrates/chemotaxis/engine.py",
+        "edlab/substrates/particle_dynamics/__init__.py",
+        "edlab/substrates/particle_dynamics/engine.py",
+        "edlab/substrates/reaction_diffusion/__init__.py",
+        "edlab/substrates/reaction_diffusion/engine.py",
+        "edlab/substrates/scaffold/__init__.py",
+        "edlab/substrates/scaffold/engine.py",
+        "edlab/substrates/scaffold/observables.py",
+        "edlab/validation/__init__.py",
+        "edlab/validation/forces.py",
+        "edlab/validation/nulls.py",
+        "experiments/individuation/access_structure_noswap_operators.py",
+        "experiments/individuation/access_structure_operators.py",
+        "experiments/individuation/bijective_tracker.py",
+        "experiments/individuation/causal_confirm.py",
+        "experiments/individuation/directed_causal_pair_phase05_executor.py",
+        "experiments/individuation/directed_causal_pair_phase05_mechanics.py",
+        "experiments/individuation/directed_causal_pair_phase05_reproduce.py",
+        "experiments/individuation/directed_causal_pair_phase05_runner.py",
+        "experiments/individuation/material_tracer.py",
+        "experiments/individuation/test_directed_causal_pair_phase05_mechanics.py",
+        "experiments/individuation/test_directed_causal_pair_phase05_reproduce.py",
+        "experiments/individuation/turnover_diag_engine.py",
+        "requirements-lock.txt",
+    }
+)
 ARM_ORDER = ("H00", "H10", "H01", "H11")
 ARM_BITS = {
     "H00": (0, 0),
@@ -437,9 +504,19 @@ def _decode_named_masks(value: Any, context: str) -> dict[str, DecodedMask]:
     return decoded
 
 
-def _validate_centroid(value: Any, expected: tuple[float, float], context: str) -> None:
+def _read_centroid(value: Any, context: str) -> tuple[float, float]:
     row = _expect_list(value, context, length=2)
-    actual = (_expect_finite(row[0], f"{context}[0]"), _expect_finite(row[1], f"{context}[1]"))
+    centroid = (
+        _expect_finite(row[0], f"{context}[0]"),
+        _expect_finite(row[1], f"{context}[1]"),
+    )
+    if any(coordinate < 0.0 or coordinate >= float(size) for coordinate, size in zip(centroid, GRID_SHAPE)):
+        raise RawContractError(f"{context}:CENTROID_OUT_OF_CANONICAL_RANGE")
+    return centroid
+
+
+def _validate_centroid(value: Any, expected: tuple[float, float], context: str) -> None:
+    actual = _read_centroid(value, context)
     if not (_close(actual[0], expected[0]) and _close(actual[1], expected[1])):
         raise RawContractError(f"{context}:CENTROID_MISMATCH")
 
@@ -496,6 +573,14 @@ def _validate_contract_bindings(value: Any, context: str) -> None:
     sorted_identities = sorted(identities, key=lambda item: (kind_order[item[0]], item[1]))
     if [(row["kind"], row["path"]) for row in rows] != sorted_identities:
         raise RawContractError(f"{context}:NOT_SORTED")
+    expected_identities = {
+        *(("INPUT", path) for path in EXPECTED_INPUT_PATHS),
+        *(("CODE", path) for path in EXPECTED_CODE_PATHS),
+    }
+    if identities != expected_identities:
+        missing = sorted(expected_identities - identities)
+        extra = sorted(identities - expected_identities)
+        raise RawContractError(f"{context}:FROZEN_SET_MISMATCH:missing={missing}:extra={extra}")
 
 
 def _validate_failure(value: Any, context: str) -> dict[str, Any] | None:
@@ -553,6 +638,7 @@ class StepSummary:
     collar_intrusion_cells: int
     association_edges_checked: int
     current_track_masks: dict[int, DecodedMask]
+    current_track_centroids: dict[int, tuple[float, float] | None]
     collar_mask: DecodedMask | None
 
 
@@ -562,6 +648,7 @@ def validate_step_record(
     world_id: int,
     context: str,
     prior_track_masks: Mapping[int, DecodedMask] | None = None,
+    prior_track_centroids: Mapping[int, tuple[float, float] | None] | None = None,
     fixed_collar_mask: DecodedMask | None = None,
 ) -> StepSummary:
     keys = {
@@ -609,8 +696,6 @@ def validate_step_record(
     if obj["stage"] == "TURNOVER":
         if material_retention is None or type(deep_material_gate) is not bool:
             raise RawContractError(f"{context}:TURNOVER_REQUIRES_MATERIAL_GATE_PRIMITIVES")
-        if deep_material_gate != all(item is not None and item <= 0.25 for item in material_retention):
-            raise RawContractError(f"{context}.deep_material_gate:DERIVED_MISMATCH")
     elif material_retention is not None or deep_material_gate is not None:
         raise RawContractError(f"{context}:MATERIAL_GATE_ONLY_ALLOWED_ON_TURNOVER")
 
@@ -631,14 +716,18 @@ def validate_step_record(
         size = _expect_int(component["size"], f"{context}.components[{index}].size", minimum=1)
         if size != mask.count:
             raise RawContractError(f"{context}.components[{index}]:SIZE_MISMATCH")
-        centroid = periodic_centroid(mask)
-        _validate_centroid(component["centroid"], centroid, f"{context}.components[{index}].centroid")
+        # The detector's physical centroid is rho-weighted.  Rho is deliberately
+        # absent from mechanical raw, so the persisted finite centroid is the
+        # primitive; masks independently verify size, overlap, contact, and the
+        # integer-centred core/halo construction.
+        centroid = _read_centroid(component["centroid"], f"{context}.components[{index}].centroid")
         component_masks[component_id] = mask
         component_centroids[component_id] = centroid
         component_sizes[component_id] = size
 
     track_values = _expect_list(obj["tracks"], f"{context}.tracks", length=3)
     current_track_masks: dict[int, DecodedMask] = {}
+    current_track_centroids: dict[int, tuple[float, float] | None] = {}
     track_component_ids: dict[int, int | None] = {}
     track_statuses: dict[int, str] = {}
     label_masks = {
@@ -686,8 +775,14 @@ def validate_step_record(
                 raise RawContractError(f"{context}.tracks[{index}]:SELECTED_MASK_MISMATCH")
             if component_size != role_mask.count:
                 raise RawContractError(f"{context}.tracks[{index}]:COMPONENT_SIZE_MISMATCH")
-            centroid = periodic_centroid(role_mask)
-            _validate_centroid(track["centroid"], centroid, f"{context}.tracks[{index}].centroid")
+            centroid = _read_centroid(track["centroid"], f"{context}.tracks[{index}].centroid")
+            expected_component_centroid = component_centroids[component_id]
+            if not (
+                _close(centroid[0], expected_component_centroid[0])
+                and _close(centroid[1], expected_component_centroid[1])
+            ):
+                raise RawContractError(f"{context}.tracks[{index}]:COMPONENT_CENTROID_MISMATCH")
+            current_track_centroids[tracker_id] = centroid
             core = disk_cells(centroid, CORE_RADIUS)
             halo = disk_cells(centroid, HALO_RADIUS)
             if track_core_mask.cells != core or track_halo_mask.cells != halo:
@@ -706,6 +801,7 @@ def validate_step_record(
                 0.0,
             ):
                 raise RawContractError(f"{context}.tracks[{index}].body_core_coverage:NONZERO_FOR_NONALIVE")
+            current_track_centroids[tracker_id] = None
 
     expected_largest = max(component_sizes.values(), default=0) / GRID_CELLS
     largest = _expect_finite(obj["largest_component_coverage"], f"{context}.largest_component_coverage")
@@ -716,8 +812,8 @@ def validate_step_record(
     a_alive = track_statuses[a_tracker] == "ALIVE"
     b_alive = track_statuses[b_tracker] == "ALIVE"
     sentinel_alive = track_statuses[sentinel_tracker] == "ALIVE"
-    centroid_a = periodic_centroid(named_masks["A"]) if a_alive else None
-    centroid_b = periodic_centroid(named_masks["B"]) if b_alive else None
+    centroid_a = current_track_centroids[a_tracker] if a_alive else None
+    centroid_b = current_track_centroids[b_tracker] if b_alive else None
     core_a = disk_cells(centroid_a, CORE_RADIUS) if centroid_a is not None else set()
     core_b = disk_cells(centroid_b, CORE_RADIUS) if centroid_b is not None else set()
     halo_a = disk_cells(centroid_a, HALO_RADIUS) if centroid_a is not None else set()
@@ -787,8 +883,11 @@ def validate_step_record(
 
     edge_values = _expect_list(obj["association_edges"], f"{context}.association_edges")
     prior = dict(prior_track_masks or current_track_masks)
+    prior_centroids = dict(prior_track_centroids or current_track_centroids)
     if set(prior) != {0, 1, 2}:
         raise RawContractError(f"{context}:PRIOR_TRACK_MASKS_INCOMPLETE")
+    if set(prior_centroids) != {0, 1, 2}:
+        raise RawContractError(f"{context}:PRIOR_TRACK_CENTROIDS_INCOMPLETE")
     active_prior_trackers = {tracker_id for tracker_id, mask in prior.items() if mask.count > 0}
     expected_edge_count = len(active_prior_trackers) * len(component_masks)
     if len(edge_values) != expected_edge_count:
@@ -797,7 +896,9 @@ def validate_step_record(
     overlaps_by_track: dict[int, dict[int, float]] = {tracker_id: {} for tracker_id in active_prior_trackers}
     for tracker_id in sorted(active_prior_trackers):
         prior_mask = prior[tracker_id]
-        prior_centroid = periodic_centroid(prior_mask)
+        prior_centroid = prior_centroids[tracker_id]
+        if prior_centroid is None:
+            raise RawContractError(f"{context}:ACTIVE_PRIOR_TRACK_MISSING_CENTROID")
         for component_id, component_mask in component_masks.items():
             overlap = len(prior_mask.cells & component_mask.cells) / max(1, prior_mask.count)
             overlaps_by_track[tracker_id][component_id] = overlap
@@ -838,7 +939,7 @@ def validate_step_record(
         overlap = overlaps_by_track[tracker_id][component_id]
         expected_terms = {
             "overlap": overlap,
-            "centroid_distance": toroidal_distance(periodic_centroid(prior_mask), component_centroids[component_id]),
+            "centroid_distance": toroidal_distance(prior_centroids[tracker_id], component_centroids[component_id]),
             "size_ratio": component_sizes[component_id] / max(1, prior_mask.count),
         }
         for name, expected in expected_terms.items():
@@ -863,13 +964,17 @@ def validate_step_record(
             raise RawContractError(f"{context}.association_edges[{index}].selected:MISMATCH")
 
     derived_component_switch = False
-    if obj["stage"] not in ("PREWRITER", "PROBE_STANDARDIZE") and a_alive and b_alive:
-        cid_a = track_component_ids[a_tracker]
-        cid_b = track_component_ids[b_tracker]
-        if cid_a is not None and a_tracker in overlaps_by_track and b_tracker in overlaps_by_track:
-            derived_component_switch |= overlaps_by_track[b_tracker][cid_a] > overlaps_by_track[a_tracker][cid_a]
-        if cid_b is not None and a_tracker in overlaps_by_track and b_tracker in overlaps_by_track:
-            derived_component_switch |= overlaps_by_track[a_tracker][cid_b] > overlaps_by_track[b_tracker][cid_b]
+    if obj["stage"] not in ("PREWRITER", "PROBE_STANDARDIZE"):
+        for tracker_id, component_id in track_component_ids.items():
+            if component_id is None or tracker_id not in overlaps_by_track:
+                continue
+            own_overlap = overlaps_by_track[tracker_id][component_id]
+            derived_component_switch |= any(
+                other_id != tracker_id
+                and component_id in other_overlaps
+                and other_overlaps[component_id] > own_overlap
+                for other_id, other_overlaps in overlaps_by_track.items()
+            )
 
     collar_intrusion = 0
     collar = obj["collar"]
@@ -895,12 +1000,11 @@ def validate_step_record(
         if fixed_collar_mask is not None:
             expected_collar = set(fixed_collar_mask.cells)
         else:
-            center_source = prior[recipient_tracker]
-            if not center_source.count:
-                center_source = named_masks[recipient]
-            if not center_source.count:
+            collar_center = prior_centroids[recipient_tracker]
+            if collar_center is None:
+                collar_center = current_track_centroids[recipient_tracker]
+            if collar_center is None:
                 raise RawContractError(f"{context}.masks.collar:NO_RECIPIENT_CENTER_FOR_DERIVATION")
-            collar_center = periodic_centroid(center_source)
             expected_collar = disk_cells(collar_center, HALO_RADIUS) - disk_cells(collar_center, CORE_RADIUS)
         if named_masks["collar"].cells != expected_collar:
             raise RawContractError(f"{context}.masks.collar:DERIVED_MASK_MISMATCH")
@@ -908,8 +1012,8 @@ def validate_step_record(
         partner_mask = named_masks["B" if recipient == "A" else "A"]
         sentinel_mask = named_masks["SENTINEL"]
         sentinel_core = (
-            disk_cells(periodic_centroid(sentinel_mask), CORE_RADIUS)
-            if sentinel_alive
+            disk_cells(current_track_centroids[sentinel_tracker], CORE_RADIUS)
+            if sentinel_alive and current_track_centroids[sentinel_tracker] is not None
             else set()
         )
         expected_counts = {
@@ -975,6 +1079,14 @@ def validate_step_record(
             expected_reasons.append("CLAMP_COLLAR_WRONG_CORE_INTERSECTION")
     if kill_reasons != sorted(set(expected_reasons)):
         raise RawContractError(f"{context}.kill_reasons:DERIVED_MISMATCH")
+    if obj["stage"] == "TURNOVER":
+        expected_material_gate = bool(
+            not kill_reasons
+            and material_retention is not None
+            and all(item is not None and item <= 0.25 for item in material_retention)
+        )
+        if deep_material_gate != expected_material_gate:
+            raise RawContractError(f"{context}.deep_material_gate:DERIVED_MISMATCH")
     target_gate = all(
         track_statuses[index] == "ALIVE" and current_track_masks[index].count >= MIN_COMPONENT_SIZE
         for index in range(3)
@@ -1011,6 +1123,7 @@ def validate_step_record(
         collar_intrusion_cells=collar_intrusion,
         association_edges_checked=len(edge_values),
         current_track_masks=current_track_masks,
+        current_track_centroids=current_track_centroids,
         collar_mask=named_masks["collar"] if collar is not None else None,
     )
 
@@ -1103,7 +1216,9 @@ def _validate_isolation_failure(value: Any, context: str) -> dict[str, Any] | No
     if value is None:
         return None
     obj = _expect_object(value, {"schedule_step", "reasons"}, context)
-    _expect_int(obj["schedule_step"], f"{context}.schedule_step", minimum=1)
+    schedule_step = _expect_int(obj["schedule_step"], f"{context}.schedule_step", minimum=0)
+    if schedule_step > 80:
+        raise RawContractError(f"{context}.schedule_step:INTEGER_ABOVE_MAXIMUM")
     reasons = _expect_list(obj["reasons"], f"{context}.reasons")
     if not reasons or reasons != sorted(set(reasons)):
         raise RawContractError(f"{context}.reasons:MUST_BE_NONEMPTY_SORTED_UNIQUE")
@@ -1229,10 +1344,19 @@ def _validate_record_series(
     world_id: int,
     context: str,
     initial_prior: Mapping[int, DecodedMask] | None = None,
-) -> tuple[list[StepSummary], bool, dict[int, DecodedMask] | None]:
+    initial_prior_centroids: Mapping[int, tuple[float, float] | None] | None = None,
+) -> tuple[
+    list[StepSummary],
+    bool,
+    dict[int, DecodedMask] | None,
+    dict[int, tuple[float, float] | None] | None,
+]:
     records = _expect_list(values, context)
     summaries: list[StepSummary] = []
     prior: dict[int, DecodedMask] | None = dict(initial_prior) if initial_prior is not None else None
+    prior_centroids: dict[int, tuple[float, float] | None] | None = (
+        dict(initial_prior_centroids) if initial_prior_centroids is not None else None
+    )
     fixed_collar: DecodedMask | None = None
     previous_engine_step: int | None = None
     for index, record in enumerate(records):
@@ -1242,6 +1366,11 @@ def _validate_record_series(
             world_id=world_id,
             context=f"{context}[{index}]",
             prior_track_masks=record_prior,
+            prior_track_centroids=(
+                None
+                if index == 0 and record.get("stage") in ("PREWRITER", "PROBE_STANDARDIZE")
+                else prior_centroids
+            ),
             fixed_collar_mask=fixed_collar,
         )
         engine_step = record["engine_step"]
@@ -1249,13 +1378,19 @@ def _validate_record_series(
             raise RawContractError(f"{context}[{index}].engine_step:NOT_CONTIGUOUS")
         previous_engine_step = engine_step
         prior = summary.current_track_masks
+        prior_centroids = summary.current_track_centroids
         if summary.collar_mask is not None:
             if fixed_collar is None:
                 fixed_collar = summary.collar_mask
             elif summary.collar_mask.packed != fixed_collar.packed:
                 raise RawContractError(f"{context}[{index}].masks.collar:CHANGED_WITHIN_SERIES")
         summaries.append(summary)
-    return summaries, bool(records) and all(summary.gate_pass for summary in summaries), prior
+    return (
+        summaries,
+        bool(records) and all(summary.gate_pass for summary in summaries),
+        prior,
+        prior_centroids,
+    )
 
 
 def validate_world_shard(value: Any, *, expected_sequence: int) -> WorldSummary:
@@ -1291,7 +1426,9 @@ def validate_world_shard(value: Any, *, expected_sequence: int) -> WorldSummary:
     if _expect_int(obj["sequence_index"], f"shard[{expected_sequence}].sequence_index", minimum=0) != expected_sequence:
         raise RawContractError(f"shard[{expected_sequence}]:SEQUENCE_INDEX_MISMATCH")
     _expect_sha256(obj["manifest_sha256"], f"shard[{expected_sequence}].manifest_sha256")
-    _expect_sha256(obj["plan_sha256"], f"shard[{expected_sequence}].plan_sha256")
+    plan_sha256 = _expect_sha256(obj["plan_sha256"], f"shard[{expected_sequence}].plan_sha256")
+    if plan_sha256 != EXPECTED_PLAN_SHA256:
+        raise RawContractError(f"shard[{expected_sequence}].plan_sha256:FROZEN_PLAN_MISMATCH")
     _expect_sha256(obj["previous_record_sha256"], f"shard[{expected_sequence}].previous_record_sha256", nullable=True)
     _validate_contract_bindings(obj["contract_bindings"], f"shard[{expected_sequence}].contract_bindings")
     _validate_root_assignment(obj["assignment"], world_id, f"shard[{expected_sequence}].assignment")
@@ -1444,7 +1581,7 @@ def validate_world_shard(value: Any, *, expected_sequence: int) -> WorldSummary:
         elif arm_writer["sham_reference_exact"] is not None:
             raise RawContractError(f"{arm_context}.writer.sham_reference_exact:MUST_BE_NULL")
         arm_failure = _validate_failure(arm_obj["first_failure"], f"{arm_context}.first_failure")
-        writer_summaries, writer_gates, writer_final_masks = _validate_record_series(
+        writer_summaries, writer_gates, writer_final_masks, writer_final_centroids = _validate_record_series(
             arm_obj["writer_records"],
             world_id=world_id,
             context=f"{arm_context}.writer_records",
@@ -1498,11 +1635,12 @@ def validate_world_shard(value: Any, *, expected_sequence: int) -> WorldSummary:
         elif deep_step != common_deep_step:
             raise RawContractError(f"{arm_context}.common_deep_step:MISMATCH")
         deep_declared = _expect_bool(arm_obj["deep_complete"], f"{arm_context}.deep_complete")
-        turnover_summaries, turnover_gates, _turnover_final_masks = _validate_record_series(
+        turnover_summaries, turnover_gates, _turnover_final_masks, _turnover_final_centroids = _validate_record_series(
             arm_obj["turnover_records"],
             world_id=world_id,
             context=f"{arm_context}.turnover_records",
             initial_prior=writer_final_masks,
+            initial_prior_centroids=writer_final_centroids,
         )
         all_step_summaries.extend(turnover_summaries)
         turnover_records = arm_obj["turnover_records"]
@@ -1548,9 +1686,10 @@ def validate_world_shard(value: Any, *, expected_sequence: int) -> WorldSummary:
                 f"{joint_context}.phenotype_descriptor",
             )
             _expect_int(descriptor["component_size"], f"{joint_context}.phenotype_descriptor.component_size", minimum=0)
-            centroid_row = _expect_list(descriptor["centroid"], f"{joint_context}.phenotype_descriptor.centroid", length=2)
-            _expect_finite(centroid_row[0], f"{joint_context}.phenotype_descriptor.centroid[0]")
-            _expect_finite(centroid_row[1], f"{joint_context}.phenotype_descriptor.centroid[1]")
+            _read_centroid(
+                descriptor["centroid"],
+                f"{joint_context}.phenotype_descriptor.centroid",
+            )
             coverage = _expect_finite(
                 descriptor["body_core_coverage"],
                 f"{joint_context}.phenotype_descriptor.body_core_coverage",
@@ -1563,14 +1702,14 @@ def validate_world_shard(value: Any, *, expected_sequence: int) -> WorldSummary:
             if last_retention is None:
                 raise RawContractError(f"{arm_context}.deep_joint:NO_TERMINAL_MATERIAL_PRIMITIVE")
             for joint_index, joint in enumerate(deep_joint_values):
+                tracker_id = WORLD_ASSIGNMENTS[world_id][joint_index]
                 joint_retention = joint["material_retention"]
-                record_retention = last_retention[joint_index]
+                record_retention = last_retention[tracker_id]
                 if (joint_retention is None) != (record_retention is None) or (
                     joint_retention is not None
                     and not _close(float(joint_retention), float(record_retention))
                 ):
                     raise RawContractError(f"{arm_context}.deep_joint[{joint_index}]:RETENTION_MISMATCH")
-                tracker_id = WORLD_ASSIGNMENTS[world_id][joint_index]
                 track = last_turnover["tracks"][tracker_id]
                 descriptor = joint["phenotype_descriptor"]
                 if descriptor["component_size"] != track["component_size"]:
@@ -1613,6 +1752,7 @@ def validate_world_shard(value: Any, *, expected_sequence: int) -> WorldSummary:
         arm_access_complete = len(access_values) == 8
         schedule_digests: set[str] = set()
         access_by_name: dict[str, dict[str, Any]] = {}
+        access_seed_signatures: list[tuple[str, dict[str, Any]]] = []
         access_failures: list[dict[str, Any] | None] = []
         for regime_index, regime_value in enumerate(access_values):
             regime_context = f"{arm_context}.access_regimes[{regime_index}]"
@@ -1646,7 +1786,7 @@ def validate_world_shard(value: Any, *, expected_sequence: int) -> WorldSummary:
             )
             max_unintended = max(max_unintended, unintended)
             failure = _validate_failure(regime_obj["first_failure"], f"{regime_context}.first_failure")
-            access_summaries, access_gates, _access_final_masks = _validate_record_series(
+            access_summaries, access_gates, _access_final_masks, _access_final_centroids = _validate_record_series(
                 regime_obj["records"],
                 world_id=world_id,
                 context=f"{regime_context}.records",
@@ -1656,6 +1796,32 @@ def validate_world_shard(value: Any, *, expected_sequence: int) -> WorldSummary:
                 records = regime_obj["records"]
                 if records[0]["stage"] != "PROBE_STANDARDIZE" or records[0]["stage_step"] != 0:
                     raise RawContractError(f"{regime_context}.records[0]:MISSING_STANDARDIZE_SNAPSHOT")
+                seed = records[0]
+                access_seed_signatures.append(
+                    (
+                        regime,
+                        {
+                            "state_sha256": seed["state_sha256"],
+                            "engine_step": seed["engine_step"],
+                            "assignment": seed["assignment"],
+                            "components": seed["components"],
+                            "tracks": seed["tracks"],
+                            "pair_geometry": seed["pair_geometry"],
+                            "masks": {
+                                name: seed["masks"][name]
+                                for name in (
+                                    "A",
+                                    "B",
+                                    "SENTINEL",
+                                    "core_A",
+                                    "core_B",
+                                    "halo_A",
+                                    "halo_B",
+                                )
+                            },
+                        },
+                    )
+                )
                 for local_index, record in enumerate(records[1:], start=1):
                     expected_stage = "PROBE_SETTLE" if local_index <= 40 else "PROBE_HORIZON"
                     expected_stage_step = local_index if local_index <= 40 else local_index - 40
@@ -1734,6 +1900,21 @@ def validate_world_shard(value: Any, *, expected_sequence: int) -> WorldSummary:
         if access_values and len(schedule_digests) != 1:
             raise RawContractError(f"{arm_context}.access_regimes:SCHEDULE_DIGEST_MISMATCH")
         if access_values:
+            if len(access_seed_signatures) != len(ACCESS_ORDER):
+                raise RawContractError(
+                    f"{arm_context}.access_regimes:STANDARDIZED_CLONE_SEED_MISSING"
+                )
+            reference_seed = access_seed_signatures[0][1]
+            mismatched_seeds = [
+                regime
+                for regime, signature in access_seed_signatures[1:]
+                if signature != reference_seed
+            ]
+            if mismatched_seeds:
+                raise RawContractError(
+                    f"{arm_context}.access_regimes:STANDARDIZED_CLONE_SEED_MISMATCH:"
+                    f"{mismatched_seeds}"
+                )
             ordinary_hashes = [record["state_sha256"] for record in access_by_name["ORDINARY"]["records"]]
             for own_name in ("OWN_REPLAY_SHAM_A", "OWN_REPLAY_SHAM_B"):
                 own_hashes = [record["state_sha256"] for record in access_by_name[own_name]["records"]]

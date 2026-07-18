@@ -9,12 +9,16 @@ arguments and cannot execute a prospective template.
 from __future__ import annotations
 
 import argparse
+from contextlib import contextmanager
 import hashlib
 import importlib
+from importlib import machinery
 import json
 from pathlib import Path
 import re
 import subprocess
+import sys
+import tempfile
 from typing import Any
 
 
@@ -33,6 +37,10 @@ SEED_58_RE = re.compile(r"(?<!\d)58\d{3}(?!\d)")
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 GIT_RE = re.compile(r"^[0-9a-f]{40}$")
 EXPECTED_OUTPUT = Path("docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE05_RAW")
+EXPECTED_MANIFEST = Path(
+    "docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE05_DEV_MANIFEST.json"
+)
+NAMESPACE_IMPORT_ROOTS = ("experiments", "experiments/individuation")
 EXPECTED_INPUT_PATHS = frozenset(
     {
         "AGENTS.md",
@@ -48,11 +56,42 @@ EXPECTED_CODE_PATHS = frozenset(
     {
         ".gitattributes",
         "docs/individuation/DIRECTED_CAUSAL_PAIR_00_FINAL_RAW_SCHEMA.json",
+        "edlab/__init__.py",
+        "edlab/entities/__init__.py",
+        "edlab/entities/detection.py",
+        "edlab/entities/tracking.py",
+        "edlab/experiments/__init__.py",
+        "edlab/experiments/analyze_streaming.py",
+        "edlab/experiments/baseline.py",
+        "edlab/experiments/exp_sc_00.py",
+        "edlab/experiments/sc_hmc/__init__.py",
+        "edlab/experiments/sc_hmc/config.py",
+        "edlab/experiments/sc_iom/__init__.py",
+        "edlab/experiments/sc_iom/config.py",
         "edlab/experiments/sc_iom/engine.py",
+        "edlab/experiments/sc_mcm/__init__.py",
         "edlab/experiments/sc_mcm/config.py",
         "edlab/experiments/sc_mcm/engine.py",
+        "edlab/experiments/streaming.py",
+        "edlab/observables/__init__.py",
+        "edlab/observables/continuity.py",
+        "edlab/observables/phenotype.py",
+        "edlab/specs.py",
+        "edlab/state.py",
+        "edlab/substrates/__init__.py",
+        "edlab/substrates/chemotaxis/__init__.py",
+        "edlab/substrates/chemotaxis/diagnostics.py",
+        "edlab/substrates/chemotaxis/engine.py",
+        "edlab/substrates/particle_dynamics/__init__.py",
+        "edlab/substrates/particle_dynamics/engine.py",
+        "edlab/substrates/reaction_diffusion/__init__.py",
+        "edlab/substrates/reaction_diffusion/engine.py",
+        "edlab/substrates/scaffold/__init__.py",
         "edlab/substrates/scaffold/engine.py",
         "edlab/substrates/scaffold/observables.py",
+        "edlab/validation/__init__.py",
+        "edlab/validation/forces.py",
+        "edlab/validation/nulls.py",
         "experiments/individuation/access_structure_noswap_operators.py",
         "experiments/individuation/access_structure_operators.py",
         "experiments/individuation/bijective_tracker.py",
@@ -68,6 +107,42 @@ EXPECTED_CODE_PATHS = frozenset(
         "requirements-lock.txt",
     }
 )
+
+
+def _candidate_import_shadow_paths() -> frozenset[str]:
+    """Enumerate explicit importable siblings that could bypass bound .py files."""
+    source_suffixes = tuple(machinery.SOURCE_SUFFIXES)
+    binary_suffixes = tuple(
+        dict.fromkeys((*machinery.EXTENSION_SUFFIXES, *machinery.BYTECODE_SUFFIXES))
+    )
+    all_suffixes = tuple(dict.fromkeys((*source_suffixes, *binary_suffixes)))
+    candidates: set[str] = set()
+    for relative in EXPECTED_CODE_PATHS:
+        if not relative.endswith(".py"):
+            continue
+        source = Path(relative)
+        if source.name == "__init__.py":
+            package = source.parent
+            for suffix in all_suffixes:
+                candidates.add(f"{package.as_posix()}{suffix}")
+                candidates.add((package / f"__init__{suffix}").as_posix())
+        else:
+            for suffix in binary_suffixes:
+                candidates.add(source.with_suffix(suffix).as_posix())
+            package_shadow = source.with_suffix("")
+            for suffix in all_suffixes:
+                candidates.add(
+                    (package_shadow / f"__init__{suffix}").as_posix()
+                )
+    for namespace in NAMESPACE_IMPORT_ROOTS:
+        root = Path(namespace)
+        for suffix in all_suffixes:
+            candidates.add(f"{root.as_posix()}{suffix}")
+            candidates.add((root / f"__init__{suffix}").as_posix())
+    return frozenset(candidates - EXPECTED_CODE_PATHS)
+
+
+FORBIDDEN_IMPORT_SHADOW_PATHS = _candidate_import_shadow_paths()
 REQUIRED_KEYS = {
     "schema",
     "mission",
@@ -176,6 +251,49 @@ def _require_ancestor(repo: Path, ancestor: str, descendant: str) -> None:
         raise ValueError(f"required Git ancestry is absent: {ancestor} -> {descendant}")
 
 
+def _require_exact_clean_code_checkout(repo: Path, code_commit: str) -> None:
+    """Bind imports to the exact committed tree, not an ancestor plus dirty files."""
+    head_result = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    head = head_result.stdout.strip()
+    if not GIT_RE.fullmatch(head) or head != code_commit:
+        raise ValueError("code_commit must equal the exact checked-out HEAD")
+    status_result = subprocess.run(
+        ["git", "status", "--porcelain=v1", "--untracked-files=no"],
+        cwd=repo,
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    if status_result.stdout:
+        raise ValueError("tracked worktree/index must be clean at code_commit")
+    for relative in sorted(FORBIDDEN_IMPORT_SHADOW_PATHS):
+        if _resolve_repo_file(repo, relative, must_exist=False).exists():
+            raise ValueError(f"unbound import-shadow path refused: {relative}")
+
+
+@contextmanager
+def _isolated_import_cache():
+    """Keep ignored repository bytecode out of the bound executor import path."""
+    previous_prefix = sys.pycache_prefix
+    previous_dont_write = sys.dont_write_bytecode
+    with tempfile.TemporaryDirectory(prefix="dcp05-bound-import-") as directory:
+        sys.pycache_prefix = str(Path(directory).resolve())
+        sys.dont_write_bytecode = True
+        importlib.invalidate_caches()
+        try:
+            yield
+        finally:
+            sys.pycache_prefix = previous_prefix
+            sys.dont_write_bytecode = previous_dont_write
+            importlib.invalidate_caches()
+
+
 def validate_preflight(repo: Path, manifest_path: Path) -> tuple[dict[str, Any], str, Path]:
     """Validate every authorization and binding before importing the executor."""
     repo = repo.resolve(strict=True)
@@ -193,6 +311,8 @@ def validate_preflight(repo: Path, manifest_path: Path) -> tuple[dict[str, Any],
         raise ValueError("manifest must be inside the isolated repository") from exc
     if _path_chain_has_link_or_junction(repo, manifest_relative) or _contains_58(str(manifest_path)):
         raise ValueError("manifest symlink/forbidden namespace refused")
+    if manifest_relative.as_posix() != EXPECTED_MANIFEST.as_posix():
+        raise ValueError("manifest is not at the fixed Phase-0.5 path")
     raw_bytes = manifest_path.read_bytes()
     manifest = json.loads(raw_bytes.decode("utf-8"))
     try:
@@ -223,14 +343,17 @@ def validate_preflight(repo: Path, manifest_path: Path) -> tuple[dict[str, Any],
     if not isinstance(manifest["code_commit"], str) or not GIT_RE.fullmatch(manifest["code_commit"]):
         raise ValueError("code_commit must be one full Git object ID")
     _require_ancestor(repo, PHASE0_COMMIT, manifest["code_commit"])
-    _require_ancestor(repo, manifest["code_commit"], "HEAD")
+    _require_exact_clean_code_checkout(repo, manifest["code_commit"])
     _strict_int_list(manifest["allowed_seed_namespace"], OPEN_DEV_NAMESPACE, "allowed_seed_namespace")
     _strict_int_list(manifest["worlds"], PLAN, "worlds")
     if manifest["pair_assignments"] != ASSIGNMENTS:
         raise ValueError("pair assignments do not match the frozen Phase-0 mapping")
     if manifest["prospective_namespace"] is not None:
         raise ValueError("prospective namespace must remain null")
-    if Path(manifest["output_directory"]).as_posix() != EXPECTED_OUTPUT.as_posix():
+    if (
+        not isinstance(manifest["output_directory"], str)
+        or manifest["output_directory"] != EXPECTED_OUTPUT.as_posix()
+    ):
         raise ValueError("output directory is not the fixed Phase-0.5 raw directory")
     output = _resolve_repo_file(repo, manifest["output_directory"], must_exist=False)
     if output.exists() and (not output.is_dir() or output.is_symlink()):
@@ -267,7 +390,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--manifest",
-        default="docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE05_DEV_MANIFEST.json",
+        default=EXPECTED_MANIFEST.as_posix(),
     )
     parser.add_argument("--resume", action="store_true")
     args = parser.parse_args()
@@ -276,16 +399,19 @@ def main() -> None:
     manifest, manifest_sha256, output = validate_preflight(repo, manifest_path)
 
     # This is intentionally the first import of any mechanical/engine module.
-    executor = importlib.import_module(
-        "experiments.individuation.directed_causal_pair_phase05_executor"
-    )
-    executor.execute(
-        repo=repo,
-        manifest=manifest,
-        manifest_sha256=manifest_sha256,
-        output_dir=output,
-        resume=bool(args.resume),
-    )
+    # A fresh cache prefix prevents ignored repository bytecode from replacing
+    # the exact hash-bound sources after preflight.
+    with _isolated_import_cache():
+        executor = importlib.import_module(
+            "experiments.individuation.directed_causal_pair_phase05_executor"
+        )
+        executor.execute(
+            repo=repo,
+            manifest=manifest,
+            manifest_sha256=manifest_sha256,
+            output_dir=output,
+            resume=bool(args.resume),
+        )
 
 
 if __name__ == "__main__":

@@ -221,16 +221,40 @@ def safe_read_json(path: Path, allowed_paths: Iterable[Path]) -> Any:
     return json.loads(resolved.read_text(encoding="utf-8"))
 
 
-def periodic_centroid(mask: np.ndarray) -> tuple[float, float]:
-    """Centroid of a compact mask on a periodic 2-D grid via circular means."""
+def periodic_centroid(
+    mask: np.ndarray,
+    weights: np.ndarray | None = None,
+) -> tuple[float, float]:
+    """Centroid of a compact mask on a periodic 2-D grid via circular means.
+
+    When ``weights`` is supplied this is the detector-equivalent rho-weighted
+    centroid.  The unweighted form remains useful for synthetic mask-only
+    fixtures and prior tracker masks, for which the preceding rho field is not
+    available.
+    """
     if mask.ndim != 2 or mask.dtype != np.bool_ or not mask.any():
         raise ValueError("periodic_centroid requires a nonempty 2-D boolean mask")
+    if weights is not None:
+        if weights.shape != mask.shape or weights.ndim != 2:
+            raise ValueError("centroid weights must share the two-dimensional mask shape")
+        selected_weights = np.asarray(weights[mask], dtype=float)
+        if not np.isfinite(selected_weights).all() or np.any(selected_weights < 0.0):
+            raise ValueError("centroid weights must be finite and nonnegative")
+        if float(selected_weights.sum()) <= 0.0:
+            raise ValueError("centroid weights must have positive mass on the mask")
+    else:
+        selected_weights = None
     coords = np.where(mask)
     result = []
     for axis, values in enumerate(coords):
         size = mask.shape[axis]
         angles = 2.0 * np.pi * values.astype(float) / float(size)
-        z = np.exp(1j * angles).mean()
+        vectors = np.exp(1j * angles)
+        z = (
+            np.average(vectors, weights=selected_weights)
+            if selected_weights is not None
+            else vectors.mean()
+        )
         if abs(z) <= 1e-12:
             raise ValueError("periodic centroid undefined for a non-compact circular support")
         angle = math.atan2(float(z.imag), float(z.real)) % (2.0 * math.pi)
@@ -260,11 +284,15 @@ def masks_contact_four_neighbour(left: np.ndarray, right: np.ndarray) -> bool:
     return bool((expanded & right).any())
 
 
-def pair_geometry(mask_a: np.ndarray, mask_b: np.ndarray) -> dict[str, Any]:
+def pair_geometry(
+    mask_a: np.ndarray,
+    mask_b: np.ndarray,
+    weights: np.ndarray | None = None,
+) -> dict[str, Any]:
     if mask_a.shape != mask_b.shape:
         raise ValueError("pair masks must share a grid")
-    centroid_a = periodic_centroid(mask_a)
-    centroid_b = periodic_centroid(mask_b)
+    centroid_a = periodic_centroid(mask_a, weights)
+    centroid_b = periodic_centroid(mask_b, weights)
     distance = toroidal_distance(centroid_a, centroid_b, mask_a.shape)
     core_a = disk_mask(mask_a.shape, centroid_a, CORE_RADIUS)
     core_b = disk_mask(mask_b.shape, centroid_b, CORE_RADIUS)
@@ -344,6 +372,9 @@ class PassivePairObserver:
         self.tracker.seed([mask.copy() for mask in seed_masks], 0)
         self.initial_mask_hashes = [sha256_bytes(np.ascontiguousarray(mask).tobytes()) for mask in seed_masks]
         self._last_component_ids = {index: None for index in range(3)}
+        self._last_track_centroids: dict[int, tuple[float, float] | None] = {
+            index: None for index in range(3)
+        }
 
     def _snapshot(self, state, component_masks: list[np.ndarray], *, step: int, stage: str,
                   advance_tracker: bool, collar: np.ndarray | None = None,
@@ -351,15 +382,28 @@ class PassivePairObserver:
         state_before = ops.state_sha256(state)
         prior_masks = [track.mask.copy() for track in self.tracker.tracks]
         prior_statuses = [track.status for track in self.tracker.tracks]
-        component_centroids = [periodic_centroid(mask) for mask in component_masks]
+        component_centroids = [periodic_centroid(mask, state.rho) for mask in component_masks]
         component_sizes = [int(np.count_nonzero(mask)) for mask in component_masks]
+        prior_centroids: dict[int, tuple[float, float] | None] = {}
+        for track_id, (prior, status) in enumerate(zip(prior_masks, prior_statuses)):
+            if status != bt.ALIVE:
+                prior_centroids[track_id] = None
+                continue
+            persisted = self._last_track_centroids[track_id]
+            prior_centroids[track_id] = (
+                persisted
+                if persisted is not None
+                else periodic_centroid(prior, state.rho)
+            )
 
         edges = []
         edge_lookup: dict[tuple[int, int], dict[str, Any]] = {}
         for track_id, (prior, status) in enumerate(zip(prior_masks, prior_statuses)):
             if status != bt.ALIVE:
                 continue
-            prior_centroid = periodic_centroid(prior)
+            prior_centroid = prior_centroids[track_id]
+            if prior_centroid is None:
+                raise AssertionError("alive prior track has no physical centroid")
             prior_size = max(1, int(np.count_nonzero(prior)))
             overlaps = [_mask_overlap(prior, component) for component in component_masks]
             ranked = sorted(range(len(component_masks)), key=lambda index: (-overlaps[index], index))
@@ -382,7 +426,11 @@ class PassivePairObserver:
                 edges.append(row)
                 edge_lookup[(track_id, component_id)] = row
 
-        events = self.tracker.update(component_masks, step) if advance_tracker else {}
+        # The human-readable stage counter may reset between writer, settle,
+        # turnover, and probe stages.  Tracker lifecycle time must not: use the
+        # simulator's monotonic engine step for censor/assignment history while
+        # persisting ``stage_step`` separately below.
+        events = self.tracker.update(component_masks, int(state.step)) if advance_tracker else {}
         assigned_component_ids = []
         for track_id, track in enumerate(self.tracker.tracks):
             component_id = _component_id_for_mask(track.mask, component_masks) if track.status == bt.ALIVE else None
@@ -395,7 +443,7 @@ class PassivePairObserver:
             component_id = assigned_component_ids[track_id]
             mask = track.mask
             if track.status == bt.ALIVE and component_id is not None:
-                centroid = periodic_centroid(mask)
+                centroid = periodic_centroid(mask, state.rho)
                 core = disk_mask(mask.shape, centroid, CORE_RADIUS)
                 halo = disk_mask(mask.shape, centroid, HALO_RADIUS)
                 body_cells = int(np.count_nonzero(mask))
@@ -426,16 +474,25 @@ class PassivePairObserver:
         s = self.assignment.sentinel
         mask_a = self.tracker.tracks[a].mask if self.tracker.tracks[a].status == bt.ALIVE else None
         mask_b = self.tracker.tracks[b].mask if self.tracker.tracks[b].status == bt.ALIVE else None
-        geometry = pair_geometry(mask_a, mask_b) if mask_a is not None and mask_b is not None else None
+        geometry = (
+            pair_geometry(mask_a, mask_b, state.rho)
+            if mask_a is not None and mask_b is not None
+            else None
+        )
 
         component_switch = False
-        if advance_tracker and mask_a is not None and mask_b is not None:
-            cid_a = assigned_component_ids[a]
-            cid_b = assigned_component_ids[b]
-            if cid_a is not None:
-                component_switch |= _mask_overlap(prior_masks[b], component_masks[cid_a]) > _mask_overlap(prior_masks[a], component_masks[cid_a])
-            if cid_b is not None:
-                component_switch |= _mask_overlap(prior_masks[a], component_masks[cid_b]) > _mask_overlap(prior_masks[b], component_masks[cid_b])
+        if advance_tracker:
+            for track_id, component_id in enumerate(assigned_component_ids):
+                if component_id is None or prior_statuses[track_id] != bt.ALIVE:
+                    continue
+                component = component_masks[component_id]
+                own_overlap = _mask_overlap(prior_masks[track_id], component)
+                component_switch |= any(
+                    other_id != track_id
+                    and prior_statuses[other_id] == bt.ALIVE
+                    and _mask_overlap(other_mask, component) > own_overlap
+                    for other_id, other_mask in enumerate(prior_masks)
+                )
 
         collar_diagnostics = None
         if collar is not None:
@@ -452,11 +509,11 @@ class PassivePairObserver:
             ]
             wrong_core_overlap = 0
             for wrong_mask in wrong_masks:
-                wrong_center = periodic_centroid(wrong_mask)
+                wrong_center = periodic_centroid(wrong_mask, state.rho)
                 wrong_core_overlap += int(np.count_nonzero(collar & disk_mask(collar.shape, wrong_center, CORE_RADIUS)))
             recipient_core_overlap = 0
             if recipient_mask is not None:
-                recipient_center = periodic_centroid(recipient_mask)
+                recipient_center = periodic_centroid(recipient_mask, state.rho)
                 recipient_core_overlap = int(
                     np.count_nonzero(collar & disk_mask(collar.shape, recipient_center, CORE_RADIUS))
                 )
@@ -542,30 +599,54 @@ class PassivePairObserver:
                     else np.zeros(state.rho.shape, dtype=bool)
                 ),
                 "core_A": packed_mask(
-                    disk_mask(mask_a.shape, periodic_centroid(mask_a), CORE_RADIUS)
+                    disk_mask(mask_a.shape, periodic_centroid(mask_a, state.rho), CORE_RADIUS)
                     if mask_a is not None else np.zeros(state.rho.shape, dtype=bool)
                 ),
                 "core_B": packed_mask(
-                    disk_mask(mask_b.shape, periodic_centroid(mask_b), CORE_RADIUS)
+                    disk_mask(mask_b.shape, periodic_centroid(mask_b, state.rho), CORE_RADIUS)
                     if mask_b is not None else np.zeros(state.rho.shape, dtype=bool)
                 ),
                 "halo_A": packed_mask(
-                    disk_mask(mask_a.shape, periodic_centroid(mask_a), HALO_RADIUS)
+                    disk_mask(mask_a.shape, periodic_centroid(mask_a, state.rho), HALO_RADIUS)
                     if mask_a is not None else np.zeros(state.rho.shape, dtype=bool)
                 ),
                 "halo_B": packed_mask(
-                    disk_mask(mask_b.shape, periodic_centroid(mask_b), HALO_RADIUS)
+                    disk_mask(mask_b.shape, periodic_centroid(mask_b, state.rho), HALO_RADIUS)
                     if mask_b is not None else np.zeros(state.rho.shape, dtype=bool)
                 ),
                 "collar": packed_mask(collar if collar is not None else np.zeros(state.rho.shape, dtype=bool)),
             },
             "kill_reasons": sorted(set(reasons)),
         }
+        self._last_track_centroids = {
+            int(row["tracker_id"]): (
+                tuple(float(value) for value in row["centroid"])
+                if row["centroid"] is not None
+                else None
+            )
+            for row in track_rows
+        }
         assert_outcome_free(record)
         return record
 
-    def seed_snapshot(self, state, component_masks: list[np.ndarray], *, stage: str = "PREWRITER") -> dict[str, Any]:
-        return self._snapshot(state, component_masks, step=0, stage=stage, advance_tracker=False)
+    def seed_snapshot(
+        self,
+        state,
+        component_masks: list[np.ndarray],
+        *,
+        stage: str = "PREWRITER",
+        collar: np.ndarray | None = None,
+        clamp_recipient: str | None = None,
+    ) -> dict[str, Any]:
+        return self._snapshot(
+            state,
+            component_masks,
+            step=0,
+            stage=stage,
+            advance_tracker=False,
+            collar=collar,
+            clamp_recipient=clamp_recipient,
+        )
 
     def advance(self, state, component_masks: list[np.ndarray], *, step: int, stage: str,
                 collar: np.ndarray | None = None, clamp_recipient: str | None = None) -> dict[str, Any]:
