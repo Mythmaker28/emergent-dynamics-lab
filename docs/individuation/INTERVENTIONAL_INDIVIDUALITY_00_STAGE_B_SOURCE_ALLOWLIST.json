@@ -30,8 +30,11 @@
     "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B0_QUALIFICATION.json",
     "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B0_REPORT.md",
     "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_MANIFEST.json",
+    "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_MANIFEST.sha256",
     "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_RAW_SCHEMA.json",
     "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_REPRODUCTION_SPEC.json",
+    "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_RAW_REPRODUCTION_RUN1.json",
+    "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_RAW_REPRODUCTION_RUN2.json",
     "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_CLASSIFICATION.json",
     "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_REPORT.md",
     "docs/agent_journals/2026-07-18/2233_stage-b_RUN-20260718-2233-II00-B.md",
@@ -47,7 +50,8 @@
     "python -m pytest -q tests/test_lattice_bond.py tests/test_lattice_bond_instrumentation.py",
     "python -m pytest -q tests/test_lattice_bond.py tests/test_lattice_bond_instrumentation.py tests/test_lattice_bond_stage_b.py",
     "python -m edlab.substrates.lattice_bond.stage_b --manifest docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_MANIFEST.json",
-    "python -m edlab.substrates.lattice_bond.stage_b_reproduce --result-root results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-DEV"
+    "$stageBManifest = (Resolve-Path -LiteralPath 'docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_MANIFEST.json').Path; $stageBManifestSha = (Get-Content -LiteralPath 'docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_MANIFEST.sha256' -Raw).Trim(); & 'C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe' -m edlab.substrates.lattice_bond.stage_b_reproduce --manifest $stageBManifest --manifest-sha256 $stageBManifestSha --result-root 'results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-DEV' --output 'docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_RAW_REPRODUCTION_RUN1.json'",
+    "$stageBManifest = (Resolve-Path -LiteralPath 'docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_MANIFEST.json').Path; $stageBManifestSha = (Get-Content -LiteralPath 'docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_MANIFEST.sha256' -Raw).Trim(); & 'C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe' -m edlab.substrates.lattice_bond.stage_b_reproduce --manifest $stageBManifest --manifest-sha256 $stageBManifestSha --result-root 'results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-DEV' --output 'docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_RAW_REPRODUCTION_RUN2.json'"
   ],
   "forbidden": [
     "repository_wide_regression",

@@ -3,13 +3,28 @@
 from __future__ import annotations
 
 from dataclasses import asdict, replace
+import hashlib
 import json
+import platform
 from pathlib import Path
+import sys
 
 import numpy as np
 import pytest
 
 from edlab.substrates.lattice_bond import LatticeBondEngine, LatticeBondSpec, LatticeBondState
+from edlab.substrates.lattice_bond import stage_b_reproduce as raw_reproduce
+from edlab.substrates.lattice_bond.instrumentation import (
+    DetectorSpec,
+    RegimeThresholds,
+    TrackMetrics,
+    TrackerSpec,
+    WorldMetrics,
+    advance_passive_tracer,
+    classify_regime,
+    detect_components,
+    track_components,
+)
 from edlab.substrates.lattice_bond.stage_b import (
     InstrumentationInvalid,
     ManifestError,
@@ -117,6 +132,62 @@ def _structural_manifest():
     }
     manifest["execution"]["world_ids"] = [world["world_id"] for world in enumerate_worlds(manifest)]
     return manifest
+
+
+def _parity_state(mask: np.ndarray, frame: int, *, weights: np.ndarray | None = None) -> LatticeBondState:
+    matter = np.where(mask, 0.8, 0.1).astype(np.float64) if weights is None else weights.astype(np.float64)
+    return LatticeBondState(
+        matter,
+        np.full(mask.shape, 0.7, dtype=np.float64),
+        np.zeros((2, *mask.shape), dtype=np.float64),
+        frame,
+    )
+
+
+def _parity_frames(masks: list[np.ndarray], tracker: TrackerSpec):
+    detector = DetectorSpec(matter_threshold=0.5, min_cells=1)
+    raw_detector = raw_reproduce.DetectorConfig(matter_threshold=0.5, min_cells=1)
+    production = [
+        detect_components(_parity_state(mask, frame), detector, frame=frame)
+        for frame, mask in enumerate(masks)
+    ]
+    independent = [
+        raw_reproduce.detect_components(_parity_state(mask, frame).m, raw_detector)
+        for frame, mask in enumerate(masks)
+    ]
+    raw_tracker = raw_reproduce.TrackerConfig(
+        dilation_radius=tracker.dilation_radius,
+        max_centroid_displacement=tracker.max_centroid_displacement,
+        max_area_ratio=tracker.max_area_ratio,
+        unique_score_margin=tracker.unique_score_margin,
+    )
+    return production, independent, raw_tracker
+
+
+def _raw_manifest_contract(manifest: dict) -> raw_reproduce.ManifestContract:
+    worlds = tuple(
+        raw_reproduce.WorldEnrollment(**world)
+        for world in enumerate_worlds(manifest)
+    )
+    thresholds = raw_reproduce.Thresholds(3, 0.25, 0.9, 0.1, 0.1, 0.6, 1)
+    return raw_reproduce.ManifestContract(
+        source=manifest,
+        sha256=manifest["runtime_manifest_sha256"],
+        laws=tuple(
+            raw_reproduce.LawContract(law["law_id"], {"dt": 0.05}, 0.05)
+            for law in manifest["law_family"]["laws"]
+        ),
+        horizon_steps=4,
+        shape=(4, 4),
+        replicates_per_law_ic=manifest["execution"]["replicates_per_law_ic"],
+        detector=raw_reproduce.DetectorConfig(0.5, 1),
+        tracker=raw_reproduce.TrackerConfig(1, 3.0, 3.0, 1e-12),
+        thresholds=thresholds,
+        regimes=tuple(REGIMES),
+        ic_order=tuple(item["ic_id"] for item in manifest["initial_conditions"]),
+        worlds=worlds,
+        minimum_candidate_worlds_per_ic=manifest["region_rule"]["minimum_candidate_worlds_per_ic"],
+    )
 
 
 def test_hash_uniform_is_stateless_bounded_and_coordinate_sensitive():
@@ -341,6 +412,17 @@ def test_partial_root_verifier_binds_exact_terminal_shard_inventory(tmp_path):
     }
     _write_json(shard / "shard_manifest.json", record)
     assert _verify_partial_root(tmp_path, manifest)[0]["status"] == "COMPLETE"
+    physics["vector_reference_max_error"][:] = 1.0
+    np.savez_compressed(shard / "physics.npz", **physics)
+    record["files"]["physics.npz"] = {
+        "sha256": sha256_file(shard / "physics.npz"),
+        "bytes": (shard / "physics.npz").stat().st_size,
+    }
+    record["physics_inventory"] = _npz_inventory(shard / "physics.npz")
+    _write_json(shard / "shard_manifest.json", record)
+    with pytest.raises(InstrumentationInvalid, match="reference error"):
+        _verify_partial_root(tmp_path, manifest)
+    physics["vector_reference_max_error"][:] = 0.0
     (shard / "physics.npz").write_bytes(b"not-an-npz")
     record["files"]["physics.npz"] = {
         "sha256": sha256_file(shard / "physics.npz"),
@@ -359,3 +441,330 @@ def test_partial_root_verifier_binds_exact_terminal_shard_inventory(tmp_path):
     (shard / "extra.bin").write_bytes(b"unbound")
     with pytest.raises(InstrumentationInvalid, match="inventory"):
         _verify_partial_root(tmp_path, manifest)
+
+
+def test_independent_detector_matches_weighted_periodic_geometry_exactly():
+    shape = (5, 7)
+    weights = np.full(shape, 0.1, dtype=np.float64)
+    occupied = {(2, x) for x in range(shape[1])} | {(4, 6), (4, 0), (4, 1)}
+    for index, (y, x) in enumerate(sorted(occupied)):
+        weights[y, x] = 0.55 + 0.01 * index
+    mask = weights >= 0.5
+    production = detect_components(
+        _parity_state(mask, 7, weights=weights),
+        DetectorSpec(0.5, 1),
+        frame=7,
+    )
+    independent = raw_reproduce.detect_components(
+        weights,
+        raw_reproduce.DetectorConfig(0.5, 1),
+    )
+    assert len(production) == len(independent)
+    for left, right in zip(production, independent, strict=True):
+        assert tuple(divmod(cell, shape[1]) for cell in left.cells) == right.cells
+        assert np.array_equal(left.mask(), right.mask)
+        assert (
+            left.index,
+            left.area,
+            left.mass,
+            left.centroid_y,
+            left.centroid_x,
+            left.radius_gyration,
+            left.wraps_y,
+            left.wraps_x,
+        ) == (
+            right.index,
+            right.area,
+            right.mass,
+            right.centroid[0],
+            right.centroid[1],
+            right.radius_gyration,
+            right.wraps_y,
+            right.wraps_x,
+        )
+
+
+@pytest.mark.parametrize("scenario", ["split", "merge", "tie", "collapse"])
+def test_independent_tracker_matches_split_merge_tie_and_collapse(scenario):
+    shape = (10, 12)
+
+    def mask(cells):
+        value = np.zeros(shape, dtype=bool)
+        for y, x in cells:
+            value[y % shape[0], x % shape[1]] = True
+        return value
+
+    joined = mask({(4, x) for x in range(3, 8)})
+    separated = mask({(4, 3), (4, 4), (4, 6), (4, 7)})
+    tracker = TrackerSpec(3.0, 4.0, 1, 1e-12)
+    if scenario == "split":
+        masks = [joined, separated]
+    elif scenario == "merge":
+        masks = [separated, joined]
+    elif scenario == "tie":
+        masks = [mask({(4, 3), (4, 7)}), mask({(3, 5), (5, 5)})]
+        tracker = TrackerSpec(5.0, 3.0, 3, 1e-12)
+    else:
+        wide_separation = mask(
+            {(4, 2), (4, 3), (5, 2), (5, 3), (4, 7), (4, 8), (5, 7), (5, 8)}
+        )
+        collapsed = wide_separation.copy()
+        collapsed[4, 4:7] = True
+        masks = [wide_separation, collapsed, wide_separation]
+
+    frames, raw_frames, raw_tracker = _parity_frames(masks, tracker)
+    production = track_components(frames, tracker)
+    independent = raw_reproduce.track_components(raw_frames, shape, raw_tracker)
+
+    production_tracks = [
+        (
+            track.track_id,
+            tuple((point.frame, point.component_index) for point in track.points),
+            track.parent_track_ids,
+            track.unresolved,
+        )
+        for track in production.tracks
+    ]
+    independent_tracks = [
+        (
+            track.track_id,
+            tuple((point.frame, point.component_index) for point in track.points),
+            track.parent_ids,
+            track.unresolved,
+        )
+        for track in independent.tracks
+    ]
+    assert independent_tracks == production_tracks
+    production_unresolved = any(
+        track.unresolved for track in production.tracks
+    ) or any(event.kind == "TRACKING_UNRESOLVED" for event in production.events)
+    assert independent.unresolved == production_unresolved
+    event_name = {
+        "split": "SPLIT",
+        "merge": "MERGE",
+        "tie": "TRACKING_UNRESOLVED",
+        "collapse": "TRACKING_UNRESOLVED",
+    }[scenario]
+    assert any(event.kind == event_name for event in production.events)
+    assert any(event["event"] == event_name for event in independent.events)
+
+
+def test_independent_cohort_update_is_operation_exact_with_production():
+    spec = LatticeBondSpec(dt=0.05)
+    matter = np.array(
+        [[0.21, 0.74, 0.43, 0.68], [0.59, 0.32, 0.81, 0.27], [0.48, 0.66, 0.37, 0.72]],
+        dtype=np.float64,
+    )
+    state = LatticeBondState(
+        matter,
+        np.array(
+            [[0.92, 0.61, 0.73, 0.84], [0.67, 0.88, 0.56, 0.79], [0.63, 0.75, 0.91, 0.58]],
+            dtype=np.float64,
+        ),
+        np.linspace(0.05, 0.9, 24, dtype=np.float64).reshape(2, 3, 4),
+    )
+    step = LatticeBondEngine(spec).step(state)
+    cohort = np.where(matter >= 0.4, 0.37 * matter, 0.0).astype(np.float64)
+    production = advance_passive_tracer(
+        cohort,
+        matter,
+        step.ledger.matter_forward,
+        step.ledger.matter_reverse,
+        step.state.m,
+        spec.dt,
+    )
+    independent = raw_reproduce._advance_cohort(
+        cohort,
+        matter,
+        step.state.m,
+        step.ledger.matter_forward,
+        step.ledger.matter_reverse,
+        spec.dt,
+        0,
+    )
+    assert np.array_equal(independent, production)
+
+
+@pytest.mark.parametrize("expected", list(REGIMES))
+def test_independent_classifier_matches_all_nine_precedence_paths(expected):
+    production_thresholds = RegimeThresholds(3, 0.25, 0.9, 0.1, 0.1, 0.6, 1)
+    raw_thresholds = raw_reproduce.Thresholds(3, 0.25, 0.9, 0.1, 0.1, 0.6, 1)
+    bounded_mask = np.zeros((4, 4), dtype=bool)
+    bounded_mask[0, 0] = True
+    bounded = raw_reproduce.Component(0, ((0, 0),), bounded_mask, 1, 0.8, (0.0, 0.0), 0.0, False, False)
+    winding = raw_reproduce.Component(0, ((0, 0),), bounded_mask, 1, 0.8, (0.0, 0.0), 0.0, False, True)
+
+    metric_values = {
+        "track_id": 0,
+        "observed_frames": 3,
+        "span_frames": 3,
+        "maximum_area_fraction": 0.1,
+        "bounded_fraction": 1.0,
+        "percolated_fraction": 0.0,
+        "mean_activity_per_mass": 0.2,
+        "mean_energy_throughput_per_mass": 0.2,
+        "maximum_turnover_fraction": 0.7,
+        "post_turnover_frames": 1,
+        "unresolved": False,
+    }
+    frames = [[bounded]]
+    tracking_unresolved = expected == "TRACKING_UNRESOLVED"
+    any_active_unbounded = expected == "ACTIVE_UNBOUNDED"
+    any_turnover_without_persistence = expected == "TURNOVER_WITHOUT_PERSISTENCE"
+    if expected in {"ACTIVE_UNBOUNDED", "PERCOLATED"}:
+        frames = [[winding]]
+        metric_values["percolated_fraction"] = 1.0
+        metric_values["bounded_fraction"] = 0.0
+        if expected == "PERCOLATED":
+            metric_values["mean_activity_per_mass"] = 0.0
+            metric_values["mean_energy_throughput_per_mass"] = 0.0
+    elif expected == "EMPTY_OR_GAS":
+        frames = [[]]
+        metric_values = None
+    elif expected == "DISSOLVED":
+        frames = [[bounded], []]
+        metric_values["observed_frames"] = 1
+        metric_values["span_frames"] = 1
+        metric_values["maximum_turnover_fraction"] = 0.0
+        metric_values["post_turnover_frames"] = 0
+    elif expected == "PERSISTENT_NO_TURNOVER":
+        metric_values["maximum_turnover_fraction"] = 0.1
+        metric_values["post_turnover_frames"] = 0
+    elif expected == "STATIC_CRYSTAL_OR_SHELL":
+        metric_values["mean_activity_per_mass"] = 0.0
+        metric_values["mean_energy_throughput_per_mass"] = 0.0
+        metric_values["maximum_turnover_fraction"] = 0.1
+        metric_values["post_turnover_frames"] = 0
+    elif expected == "TURNOVER_WITHOUT_PERSISTENCE":
+        metric_values["observed_frames"] = 2
+        metric_values["span_frames"] = 2
+    elif expected == "TRACKING_UNRESOLVED":
+        metric_values["unresolved"] = True
+
+    production_metrics = () if metric_values is None else (TrackMetrics(**metric_values),)
+    raw_metrics = [] if metric_values is None else [raw_reproduce.TrackMetric(**metric_values)]
+    production_world = WorldMetrics(
+        ever_detected=any(bool(frame) for frame in frames),
+        final_component_count=len(frames[-1]),
+        any_percolated=any(component.percolates for frame in frames for component in frame),
+        any_active_unbounded=any_active_unbounded,
+        any_turnover_without_persistence=any_turnover_without_persistence,
+        tracking_unresolved=tracking_unresolved,
+        tracks=production_metrics,
+    )
+    raw_tracking = raw_reproduce.Tracking([], tracking_unresolved, [])
+    assert classify_regime(production_world, production_thresholds) == expected
+    assert raw_reproduce.classify_world(frames, raw_tracking, raw_metrics, raw_thresholds) == expected
+
+
+def test_independent_family_classification_is_canonical_byte_identical():
+    manifest = _manifest()
+    contract = _raw_manifest_contract(manifest)
+    rows = []
+    for world in enumerate_worlds(manifest):
+        candidate = world["law_id"] == "L00" and world["replicate"] < 2
+        rows.append(
+            {
+                **world,
+                "status": "COMPLETE",
+                "regime": "BOUNDED_ACTIVE_TURNOVER_CANDIDATE" if candidate else "DISSOLVED",
+                "candidate_track_ids": [0] if candidate else [],
+            }
+        )
+    rows.sort(key=lambda row: row["world_id"])
+    production = classify_family(rows, manifest)
+    independent = raw_reproduce.build_classification(contract, rows)
+    assert raw_reproduce._canonical_bytes(independent) == canonical_json_bytes(production)
+    assert all(
+        isinstance(row["complete"], bool)
+        for region in independent["atlas"]
+        for row in region["per_ic"]
+    )
+
+    malformed_non_candidate = [dict(row) for row in rows]
+    index = next(index for index, row in enumerate(malformed_non_candidate) if row["regime"] == "DISSOLVED")
+    malformed_non_candidate[index] = {**malformed_non_candidate[index], "candidate_track_ids": [99]}
+    cleared = raw_reproduce.build_classification(contract, malformed_non_candidate)
+    assert cleared["worlds"][index]["candidate_track_ids"] == []
+    with pytest.raises(InstrumentationInvalid, match="candidate IDs"):
+        classify_family(malformed_non_candidate, manifest)
+
+
+def test_independent_manifest_parser_binds_nested_layout_environment_and_self_source(tmp_path):
+    manifest = _structural_manifest()
+    manifest["environment"] = {
+        "python_version": sys.version,
+        "numpy_version": np.__version__,
+        "platform": platform.platform(),
+        "byteorder": sys.byteorder,
+    }
+    manifest["source_sha256"] = {
+        "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_RAW_SCHEMA.json": raw_reproduce.RAW_SCHEMA_SHA256,
+        "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_REPRODUCTION_SPEC.json": raw_reproduce.REPRODUCTION_SPEC_SHA256,
+        "edlab/substrates/lattice_bond/stage_b_reproduce.py": sha256_file(Path(raw_reproduce.__file__)),
+    }
+    manifest["manifest_sha256_excluding_field"] = hashlib.sha256(
+        raw_reproduce._canonical_bytes(manifest)
+    ).hexdigest()
+    payload = raw_reproduce._canonical_bytes(manifest)
+    path = tmp_path / "manifest.json"
+    path.write_bytes(payload)
+    manifest_hash = hashlib.sha256(payload).hexdigest()
+    contract = raw_reproduce.load_manifest(path, manifest_hash)
+    assert contract.shape == (4, 4)
+    assert contract.worlds[0].world_id == "L000__soup__r00"
+
+    with pytest.raises(raw_reproduce.ReproductionError, match="SHA-256 mismatch"):
+        raw_reproduce.load_manifest(path, "0" * 64)
+
+    wrong_source = json.loads(payload)
+    wrong_source["source_sha256"]["edlab/substrates/lattice_bond/stage_b_reproduce.py"] = "0" * 64
+    wrong_source.pop("manifest_sha256_excluding_field")
+    wrong_source["manifest_sha256_excluding_field"] = hashlib.sha256(
+        raw_reproduce._canonical_bytes(wrong_source)
+    ).hexdigest()
+    wrong_source_payload = raw_reproduce._canonical_bytes(wrong_source)
+    wrong_source_path = tmp_path / "manifest-wrong-source.json"
+    wrong_source_path.write_bytes(wrong_source_payload)
+    with pytest.raises(raw_reproduce.ReproductionError, match="executable source"):
+        raw_reproduce.load_manifest(
+            wrong_source_path,
+            hashlib.sha256(wrong_source_payload).hexdigest(),
+        )
+
+    wrong_environment = json.loads(payload)
+    wrong_environment["environment"]["byteorder"] = "invalid"
+    wrong_environment.pop("manifest_sha256_excluding_field")
+    wrong_environment["manifest_sha256_excluding_field"] = hashlib.sha256(
+        raw_reproduce._canonical_bytes(wrong_environment)
+    ).hexdigest()
+    wrong_environment_payload = raw_reproduce._canonical_bytes(wrong_environment)
+    wrong_environment_path = tmp_path / "manifest-wrong-environment.json"
+    wrong_environment_path.write_bytes(wrong_environment_payload)
+    with pytest.raises(raw_reproduce.ReproductionError, match="environment"):
+        raw_reproduce.load_manifest(
+            wrong_environment_path,
+            hashlib.sha256(wrong_environment_payload).hexdigest(),
+        )
+
+
+def test_independent_failed_shard_inventory_and_identity_fail_closed(tmp_path):
+    enrollment = raw_reproduce.WorldEnrollment("L000__soup__r00", "L000", "soup", 0)
+    shard = {
+        "schema": raw_reproduce.SHARD_SCHEMA_ID,
+        "world": asdict(enrollment),
+        "status": "INSTRUMENTATION_INVALID",
+        "files": {"failure.json": {"sha256": "0" * 64, "bytes": 1}},
+    }
+    assert raw_reproduce._verify_shard_identity(shard, enrollment) == "INSTRUMENTATION_INVALID"
+    wrong = json.loads(json.dumps(shard))
+    wrong["world"]["replicate"] = 1
+    with pytest.raises(raw_reproduce.ReproductionError, match="identity mismatch"):
+        raw_reproduce._verify_shard_identity(wrong, enrollment)
+
+    (tmp_path / "shard_manifest.json").write_bytes(b"{}\n")
+    (tmp_path / "failure.json").write_bytes(b"x")
+    raw_reproduce._verify_shard_file_set(tmp_path, {"shard_manifest.json", "failure.json"})
+    (tmp_path / "unbound.bin").write_bytes(b"x")
+    with pytest.raises(raw_reproduce.ReproductionError, match="file set mismatch"):
+        raw_reproduce._verify_shard_file_set(tmp_path, {"shard_manifest.json", "failure.json"})

@@ -396,3 +396,187 @@ wrong_reference_step_error=0.0
 **REVISE STATIC RUNNER — NO MANIFEST SEAL — NO DEV INITIALIZATION.**
 
 The three defects are repairable. After repair, the exact final source hashes, source allowlist, raw reproducer and manifest must be re-audited before the first DEV world. The passing 70-test suite does not supersede the explicit counterexamples.
+
+## B1 repaired-runner closure
+
+The primary agent repaired all three second-audit defects without executing an initializer or DEV world. My exact re-audit found:
+
+- shard and online schema/identity are exact-checked with strict finite canonical JSON;
+- complete physics NPZ archives are reopened with `allow_pickle=False` and checked for the exact field set, frozen `H`/lattice shapes, dtypes, finiteness, state clock, replay flags, physical bounds, neutral intervention scales, zero missing-flux fields, conservation residuals, reference-error evidence, and an inventory recomputed from the archive;
+- online measurement row counts are recomputed, and failed-shard records bind enrolled identity and matching status;
+- complete-shard raw verification now occurs before the shard rename, and the family verifier repeats it before the root rename;
+- the fresh initializer algorithm and namespace are exact constants;
+- the LawSpec family is an ordered, saturated Cartesian product over explicit finite factor levels with exact closed ranges and an exact fixed-field complement; every enumerated law must reproduce that product in `L000...` order;
+- both IC envelopes must be admissible under every enrolled law's `m_max/n_max`, and any residual initial-state admissibility failure escalates to `NumericalInvalid`;
+- scalar/vector state clocks must match exactly.
+
+Re-run evidence on the exact repaired files:
+
+```text
+py_compile: PASS
+targeted tests: 70 passed in 0.45s
+raw-schema JSON parse: PASS
+reproduction-spec JSON parse: PASS
+git diff --check: PASS
+```
+
+An additional actual-engine, hand-built 3x4 synthetic one-step check found exact equality between `_physics_payload` names/shapes/dtypes and `_expected_physics_layout`; it did not use the Stage-B initializer or any DEV world.
+
+The original three counterexamples now fail closed. Static runner verdict: **PASS_STATIC_RUNNER_FOR_MANIFEST_DRAFT**.
+
+This is deliberately narrower than B1 authorization. KS-B1-01 through KS-B1-06 remain unaccepted until I inspect the final committed manifest, its exact source/environment/content seals, the independent raw reproducer, all checkpoint diffs, and the no-existing-namespace preflight. No DEV initialization is yet authorized by this journal.
+
+## Independent raw-reproducer first audit
+
+After checkpoint `22ee3f7` bound the independent reproduction contract, the preregistered raw-only reviewer supplied a stable initial `stage_b_reproduce.py` for static audit. I inspected only that source and the two committed pre-output contracts. I did not inspect a B1 manifest, result root, online file, classification, atlas, or scientific outcome.
+
+The first implementation was not admissible. Binding counterexamples and mismatches reported to both the implementer and primary agent were:
+
+1. **Producer/consumer schema mismatch.** The reproducer required ad hoc top-level manifest fields (`dt`, `horizon_steps`, thresholds, worlds, tolerance and contract hashes), `ic_class`, and top-level shard identity. The committed producer uses `execution`, `classifier.thresholds`, `law_family.laws[*].spec`, `initial_conditions[*].ic_id`, `source_sha256`, `namespace`, and nested `shard["world"]`. The reproducer also looked for array inventory inside the physics file record, whereas the producer writes top-level `physics_inventory`. It could not consume one real producer shard.
+2. **Impossible byte-comparison output.** The reproducer emitted a distinct B1 schema, flat law/IC atlas, debug components/metrics, physics metadata and candidate-region objects. Production emits `INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-CLASSIFICATION-v1`, exact world rows, a nested per-law atlas and law-ID candidate-region strings. Therefore the required production/reproduction byte and SHA equality was impossible.
+3. **Exact detector divergence.** The reproducer used breadth-first lift propagation and different floating reduction operations. On a hand-built 3x4 periodic support occupying row cells 0..3 with masses `0.60,0.61,0.62,0.63`, the producer returned `centroid_x=0.4959349593495936`, `radius=1.125274916651987`; the reproducer returned `centroid_x=3.4878048780487805`, `radius=1.1179674767186185`. Association and tracker results could consequently differ. Exact LIFO traversal and NumPy reduction order are required.
+4. **False physical invalidation.** Signed net ledger fields such as `matter_natural` and `resource_natural` were required to be nonnegative. Valid engine output can contain negative directed net terms.
+5. **Non-equivalent cohort update.** The reproducer used elementwise tolerances, clipped the cohort field, used a total-mass conservation tolerance, and advanced a track's cohort through the end of the world after that track ended. The qualified producer uses one operation-derived field tolerance, returns the unclipped cohort, uses `tolerance * cell_count` for global conservation, and advances only through the track's final point. Turnover tolerance also differed.
+6. **Classifier and aggregation drift.** The reproducer introduced a `max_percolated_fraction` threshold absent from the producer instead of requiring zero percolation, used a global all-world completion gate for every candidate region instead of per-law completion, represented failed-world regime as null rather than `TRACKING_UNRESOLVED`, and omitted exact candidate-track IDs.
+7. **Fail-closed gaps.** Canonical/nonfinite JSON and internal manifest seal were not checked; extra root/shard entries were ignored; failure shards incorrectly required `physics.npz`; several exact raw array layouts, neutral intervention scales and missing-field identities were not enforced; and the committed reproduction-spec hash constant was wrong.
+8. **No qualification tests.** The 70 targeted tests did not import or exercise the new independent source. I required synthetic producer/reproducer parity fixtures before any manifest freeze.
+
+Interim independent-reproducer verdict: **REVISE INDEPENDENT REPRODUCER — NO MANIFEST SEAL — NO DEV INITIALIZATION**.
+
+## Independent raw-reproducer v3 closure
+
+The implementer repaired the producer-schema, operation-order, classifier, aggregation and failure-inventory defects under the expanded v3 reproduction contract at checkpoint `7a95934`. I re-audited source SHA-256 `0fc99f9c1dc9b4356db65652ad9581140dd63deaf8b1ed98b6d0a6640ff0e3a5` without opening a manifest or result.
+
+Direct independent parity evidence:
+
+- **69,630 detector cases:** every nonempty binary support on 3x4 and 4x4 lattices, with heterogeneous occupied-cell masses, matched producer cells, winding flags, mass, centroid and radius exactly.
+- **8,192 tracker cases:** deterministic three-frame 3x4 trajectories matched exact track IDs, points, sorted parent IDs and unresolved state, including naturally occurring overlaps, splits, merges, ambiguity and detector collapse.
+- **2,304 passive-cohort cases:** actual one-step engine gross-flow records over every binary 2x2 matter/resource corner pattern, three bond levels and three cohort fractions produced array-exact equality with the qualified passive tracer.
+- **32 full measurement trajectories:** hand-built 3x4 states evolved for seven updates under two distinct law `dt` values matched every production track observation, final regime and candidate-track list exactly.
+- **128 family-classification cases:** mixed regimes and terminal statuses across two laws, two ICs and three replicates matched the production classification object, nested atlas, candidate regions and disposition exactly.
+- `py_compile`, `git diff --check`, and the frozen targeted suite passed; the suite result after the v3 contract checkpoint was **70 passed in 0.48s**.
+
+The repaired source:
+
+- imports no project module;
+- rejects forbidden runtime outcome/source basenames;
+- consumes the exact nested producer manifest and shard schema;
+- binds both full/internal manifest seals and the committed raw/reproduction contract hashes;
+- enforces closed root/shard inventory without reading online/classification/root-manifest content;
+- reads only complete-shard `physics.npz`, while preserving terminal failure rows and admitting only declared failure-shard leftovers;
+- applies law-specific `dt`, state bounds, exact raw layouts, neutral scales, zero missing fields and Stage-A raw gates;
+- emits only the exact production classification schema for byte/SHA comparison.
+
+Static verdict: **PASS_INDEPENDENT_SOURCE_FOR_DURABLE_TESTS**.
+
+One qualification gap remains before manifest freeze: the committed 70-test suite still does not import the new 80KB independent source. The parity checks above are strong but currently journal/command evidence rather than durable regression tests. Focused tests for nested manifest parsing, weighted winding, exact divergence/cohort update, classifier/atlas byte shape, candidate-ID clearing, canonical/hash/inventory rejection and failure-shard leftovers should be committed and source-hashed before KS-B1 acceptance.
+
+## Independent raw-reproducer v4 and durable-test closure
+
+At the stable, pushed pre-manifest checkpoint `e63f8556b691f1fe20caf4d1e417bc6e94daecf3`, I audited the final independent source, the v4 normative contract, and the newly committed synthetic regression fixtures. I did not open or reconstruct a Stage-B manifest, result root, shard, source world, scientific checkpoint, or outcome-bearing file.
+
+Exact bindings at the checkpoint:
+
+- `docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_REPRODUCTION_SPEC.json`: `9031a954881aba12dddf081e57850af9c1df92eded5a177b731b245246c6c7c2`;
+- `edlab/substrates/lattice_bond/stage_b_reproduce.py`: `c058e96697347f8af613159cdcb58de5ee3e254d201c237961f366cc1fd08b58`;
+- `tests/test_lattice_bond_stage_b.py`: `1c498f75f011cb9dd863cfa92bb044a5b2ffd1c3cc96bb24db685ff76161e86c`;
+- local `HEAD` and remote branch tip both: `e63f8556b691f1fe20caf4d1e417bc6e94daecf3` before this journal append.
+
+The final v4 source embeds the exact normative-contract hash and schema ID. Before any shard access, `load_manifest` now requires both the exact SHA-256 of its own resolved `__file__` bytes at `source_sha256["edlab/substrates/lattice_bond/stage_b_reproduce.py"]` and exact equality of the four-key runtime environment object `{python_version,numpy_version,platform,byteorder}` to `sys.version`, `np.__version__`, `platform.platform()`, and `sys.byteorder`. Missing, extra, altered, or stale values fail closed.
+
+The durable tests now directly import the independent source and cover weighted periodic/winding geometry, split, merge, exact-tie and detector-collapse tracking, operation-exact passive-cohort advance, all nine classifier precedence paths, canonical family-object equality and candidate-ID clearing, nested manifest parsing with internal/full seal, executable-source and runtime-environment mismatch rejection, and failed-shard identity/inventory closure. These focused fixtures complement, rather than replace, the previously recorded exhaustive synthetic parity counts.
+
+Independent re-run on the committed checkpoint:
+
+```text
+py_compile stage_b_reproduce.py and test_lattice_bond_stage_b.py: PASS
+accepted-parent engine + instrumentation + Stage-B targeted suite: 88 passed in 0.69s
+standalone import set: Python standard library plus NumPy only
+embedded v4 contract hash equals file SHA-256: PASS
+git diff --check: PASS
+checkpoint worktree clean before journal append: PASS
+remote branch equals checkpoint HEAD: PASS
+```
+
+### Adversarial scientific-claim boundary
+
+- This qualification demonstrates an independent, engine-free raw-mechanical reproduction path and fail-closed source/environment bindings. It establishes no persistence, turnover, boundedness, individuality, autonomy, memory, causal addressability, reproduction, or life result.
+- The reproducer may later read only the committed manifest, enrolled shard identity/integrity metadata, and permitted `physics.npz` arrays. It must not read `online.json`, `classification.json`, `root_manifest.json`, a selected-world list, report, or atlas as an input.
+- A later byte-identical classification reproduction can validate derivation consistency; it cannot convert DEV screening into confirmation or authorize Stage C.
+- No final manifest or DEV initialization is authorized by the source qualification alone. The exact final manifest must still pass KS-B1-01 through KS-B1-06, including exact grid/rationale, fresh namespace, source/environment/hash seals, IC admissibility, budget/feasibility, no-existing namespace, clean/pushed checkpoint, and explicit red-team acceptance.
+
+### Static disposition
+
+No blocking source or parity defect remains at `e63f8556b691f1fe20caf4d1e417bc6e94daecf3`.
+
+**AUTHORIZED: CONSTRUCT ONE FINAL HASH-BOUND B1 MANIFEST FOR INDEPENDENT REVIEW.**
+
+This authorization is limited to manifest construction. It does not authorize opening the result namespace or initializing a DEV world. I must inspect the exact committed manifest and its no-existing-namespace preflight before any such execution.
+
+## First exact B1 manifest audit
+
+The primary agent committed and pushed one canonical manifest at `6734910e7af43164116b18b6fde2121910254fd9` and explicitly authorized my inspection. I opened only that manifest and its exact allowed contracts/sources. I did not initialize a world, execute the runner, open a result shard, or inspect an outcome.
+
+The first sealed manifest passed the following checks:
+
+- complete file SHA-256 `55ff34ba4de1415c98c9b63d59b201cb566486df2f91a4f098527804eb31ee30`, strict finite canonical JSON, and excluding-field seal `6d65fd1d1b5ea2838081add7df163554ec72b99a3cee961e896dfc6f301de579` all matched;
+- all eleven closed source-hash entries matched the exact committed bytes, including the B0 qualification, source allowlist, raw/reproduction contracts, frozen engine, runner, independent reproducer, and three focused test files;
+- both producer and independent manifest loaders accepted exactly 64 worlds, from `L000__soup__r00` through `L007__compact__r03`;
+- the law family is the exact eight-point Cartesian product of the declared two-level `kappa_m`, resource-diffusivity and `k_on` factors, with the full fixed LawSpec complement and deterministic ordering;
+- the soup and generic compact IC parameter envelopes are fully specified, neutral, and bounded by every law's `m_max=n_max=1`; the fresh SHA-256 coordinate initializer and namespace are exact;
+- horizon 160, cadence 1, 12x12 shape, four original worlds per law/IC, detector/tracker/classifier thresholds, two-per-IC law-local candidate rule, and `NO_EXTENSION_NO_REPLACEMENT_NO_RETRY` are frozen;
+- the exact runtime environment matched the executing Python, NumPy, platform and byte order;
+- no law, IC, detector, tracker or classifier extension appeared after static checkpoint `e63f8556b691f1fe20caf4d1e417bc6e94daecf3`;
+- both `results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-DEV` and its `.partial` sibling were absent;
+- the focused source-only suite remained **88 passed in 0.59s**;
+- the family requires 10,240 logical updates and 30,720 audited engine updates at 12x12. The physics NPZ arrays have an uncompressed upper accounting size of 767,977,984 bytes for all 64 worlds before ZIP compression; 124,948,013,056 bytes were free on the target volume. Static cost and storage are therefore feasible.
+
+### KS-B1-01 blocker in the hash-bound invocation contract
+
+The first manifest is **not executable-authorized** because its hash-bound source allowlist freezes only this independent-reproduction command:
+
+```text
+python -m edlab.substrates.lattice_bond.stage_b_reproduce --result-root results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-DEV
+```
+
+That command cannot run: the committed parser also requires `--manifest`, `--manifest-sha256`, and `--output`. No authorized durable independent-output path is declared. KS-B1-01 explicitly requires the complete raw-only reproduction command before execution, so the otherwise valid first manifest remains held.
+
+I recommended a non-self-referential, outcome-free repair with no scientific-code change: predeclare a sibling external manifest-digest file, two distinct durable reproduction-output paths, and two complete commands in the source allowlist; update the manifest's allowlist hash and seal; only after those manifest bytes are final, commit the lowercase full digest in the predeclared external file. The external digest is necessary because embedding the full manifest hash inside an artifact hashed by that same manifest would be circular. A final pushed Git checkpoint plus independent equality check can bind that second-order seal.
+
+Interim disposition: **BLOCK KS-B1-01 — NO DEV INVOCATION.**
+
+## Superseding manifest and final pre-execution authorization
+
+The primary agent repaired only the invocation binding. Commit `dc829efa334e2684086f4b9d06095f191e257e6f` amended the source allowlist, its manifest source hash and the excluding-field seal; commit `962bd52114f76cdf8183d56493a30e9b8be092cc` then added the predeclared external digest. Both commits were pushed before review. No engine, instrumentation, runner, reproducer, test, law, IC, threshold, horizon, world, region or classifier field changed from static checkpoint `e63f8556b691f1fe20caf4d1e417bc6e94daecf3`.
+
+Final exact evidence:
+
+- superseding manifest SHA-256: `194e082f9d3809f2531912d825480fad5b683dbe9d9fceec8050260fe493dd50`;
+- superseding excluding-field seal: `5681f02b746dc024ea5e1c96d7e8ff83934d96493edf4e9a441e8222909ef3ae`;
+- external digest bytes: exactly the lowercase manifest SHA-256 followed by one LF;
+- amended allowlist SHA-256: `099751c86ab5289805bc85369ce7f730362c9edba1962754676c7fe1006295a9`, exactly as bound by the manifest;
+- strict finite canonical JSON: pass;
+- all eleven manifest source hashes: exact;
+- producer and independent loaders: 64 exact worlds accepted;
+- current environment: exact four-key match;
+- final and `.partial` DEV roots: absent;
+- both predeclared independent outputs: absent;
+- local `HEAD` and remote branch tip: both `962bd52114f76cdf8183d56493a30e9b8be092cc` before this journal append;
+- `git diff --check`: pass and worktree clean before this journal append.
+
+The source allowlist now binds two complete independent-reproduction invocations. Each reads the separate committed digest, supplies all four required argument families, uses the qualified Python environment and sealed manifest, and writes to a distinct predeclared exclusive output. Static parser checks accepted both exact argument sets. This closes the first manifest's KS-B1-01 blocker without a self-referential manifest hash and without changing scientific semantics.
+
+### Final KS-B1 disposition before the first world
+
+- **KS-B1-01 PASS:** canonical committed manifest, complete source/environment/family/IC/world/horizon/measurement/classification/raw/reproduction bindings, external full-file seal, and exact run commands are frozen.
+- **KS-B1-02 PASS AS AN EXECUTION CONTRACT:** the runner refuses existing roots and preserves each enrolled terminal world without retry or replacement; the manifest states `NO_EXTENSION_NO_REPLACEMENT_NO_RETRY`.
+- **KS-B1-03 PASS FOR EXECUTION ENTRY:** raw schema, atomic writers, complete root/shard verification, engine-free reproducer and two exact raw-only invocations are prequalified. Actual shard completeness and byte-identical run-1/run-2 reproduction remain mandatory post-execution gates.
+- **KS-B1-04 PASS AS A FROZEN RULE:** each LawSpec point is its predeclared region; a candidate region requires at least two original worlds in each of both IC classes, while the atlas preserves all worlds and nine classes.
+- **KS-B1-05 ACTIVE KILL SWITCH:** any nonfinite/bounds/conservation/energy/replay/open-mechanics failure must yield `MANIPULATION_OR_NUMERICAL_INVALID`.
+- **KS-B1-06 ACTIVE CLAIM LIMIT:** any returned disposition is DEV-only and cannot establish individuality, autonomy, memory, ownership, reproduction, life or Stage-C eligibility.
+
+No pre-execution blocker remains.
+
+**AUTHORIZED: ONE AND ONLY ONE INVOCATION OF THE HASH-BOUND STAGE-B DEV RUNNER AGAINST THE SUPERSEDING MANIFEST.**
+
+The invocation is authorized only after this journal append is committed/pushed and the worktree is clean. It must use the exact allowlisted runner command, must not replace or retry any world, and must stop with the runner's one terminal package. Afterward, the package and two independent raw reproductions require separate audit before any scientific disposition is accepted.

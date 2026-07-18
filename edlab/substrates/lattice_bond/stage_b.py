@@ -865,7 +865,7 @@ def _verify_physics(path: Path, shard: Mapping[str, Any], world: Mapping[str, An
                     raise InstrumentationInvalid(f"physics shape/dtype mismatch for {name}")
                 if not np.isfinite(value).all():
                     raise InstrumentationInvalid(f"nonfinite physics array {name}")
-                if np.issubdtype(value.dtype, np.floating):
+                if np.issubdtype(value.dtype, np.floating) and name != "vector_reference_max_error":
                     maximum_scale = max(maximum_scale, float(np.max(np.abs(value))))
             if shard.get("physics_inventory") != actual_inventory:
                 raise InstrumentationInvalid("physics inventory differs from NPZ content")
