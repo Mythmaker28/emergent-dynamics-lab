@@ -2639,3 +2639,39 @@ copy plus common decay/transport of pre-existing `Mf`. Do not invent a spatial c
 artefact, or V5/03G change is authorized. The question is unanswered, not negative. Human review of the Phase-0
 stop package is the exact next action; checkpoint serialization or local equation-edge operator development is a
 separate future mission.
+
+## D-094 — OWNERSHIP-IDENTIFIABILITY-00 stops because the frozen intervention algebra is non-identifying
+
+**Date:** 2026-07-18
+
+**Decision:** Accept 03G Outcome B, `STOP-TRANSPLANT`, `STOP-CORE-SUFFICIENCY`, `STOP_PAIR_MECHANICS`,
+`STOP-LOCAL-CUT`, and `NO_ACCESS_ESTABLISHED` exactly and issue **STOP-OWNERSHIP-IDENTIFIABILITY — CURRENT ALGEBRA
+INSUFFICIENT**. This is a theoretical identifiability stop, not a negative ownership result and not a permanent
+research stop.
+
+**Algebra decision:** exact clone/common probe/qualified own replay provide no access-factor variation; global
+`lam_plus=0`, `up_ref=0`, passive-copy disable, and `eta_w=0` are not member-specific cuts; local `Mf` erasure and
+reference-`Mf` substitution destroy or replace the carrier; reference replay overwrites all eight collar fields;
+transplant replaces complete core/body state; and the target-centered Gaussian writer is non-compact and creates
+new history. None supplies a clean singleton local/environment access cell. Even
+granting a global ablation as a clean joint-off cell gives a rank-2 design for four saturated coefficients; the
+actual clean ownership rank is at most 1.
+
+**Identifiability decision:** on the reachable natural manifold let `L=E=Z`. The local surface `L`, environmental
+surface `E`, redundant surface `max(L,E)`, and relational surface `L*E` agree on the only clean diagonal cells. The
+model-to-interventional-law map is therefore non-injective. A valid A/B local cut requires localization,
+transience, non-destruction, exact pre-probe state preservation, matched sham, independent order-independent
+composition, and raw observability. Those properties identify directional member-edge dependence only. Full
+local/environment/redundant/relational identification also requires an orthogonal environment/common access factor
+or an explicit, validated modularity/exclusion theorem.
+
+**Architecture boundary:** spatial `lambda_plus(x)` could test necessity of the existing pointwise uptake edge but
+not whole-state ownership; localized probes/readouts map susceptibility or decodability; a passive shadow reader is
+observational; an active ghost or dedicated response port creates a new path; and the existing all-field boundary
+clamp is not a surgical flux cut. Any extension is a new architecture. No 03G result is grandfathered: formation,
+persistence, deep turnover survival, and causal response must be re-established prospectively in the modified
+substrate before ownership is tested.
+
+**Execution boundary:** no engine, seed, state reconstruction, retrospective outcome contrast, prospective
+namespace/family, genome, V5/03G modification, or merge is authorized. Human review of the Phase-0 theorem/audit
+package is the exact next action.

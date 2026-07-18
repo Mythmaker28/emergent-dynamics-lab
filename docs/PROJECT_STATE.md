@@ -1,5 +1,33 @@
 # Project State
 
+## BRANCH ADDENDUM — OWNERSHIP-IDENTIFIABILITY-00 PHASE 0 (2026-07-18)
+
+Phase 0 accepts 03G Outcome B, `STOP-TRANSPLANT`, `STOP-CORE-SUFFICIENCY`, `STOP_PAIR_MECHANICS`,
+`STOP-LOCAL-CUT`, and downstream `NO_ACCESS_ESTABLISHED` without reinterpretation. It performs a theory/static-code
+audit only: no engine, seed, state reconstruction, retrospective outcome contrast, genome, prospective family,
+V5/03G modification, or merge was used.
+
+The exact frozen algebra contains global `lam_plus=0`, global `up_ref=0`, global passive-copy disable, global
+`eta_w=0`, destructive local `Mf` erasure, local reference-`Mf` substitution, trajectory-specific own replay,
+all-field reference collar replay, complete-core transplant, target-centered non-compact history writers, a global
+standardized `N` probe, and exact cloning. None is a qualified intervention
+that independently changes local or environmental access while preserving the already-formed candidate state,
+environment, body, geometry, probe, and clock. The current admissible ownership design reaches only the intact
+joint-access cell; even charitably treating a global ablation as a clean joint cut yields rank 2 rather than the
+rank 4 required for the local/environment saturated factorial.
+
+An explicit construction with `L=E=Z` makes local, environmental, redundant/OR, and relational/AND models identical
+on every clean reachable cell. A valid member-local cut must be localized, transient, non-destructive,
+pre-probe-state-preserving, sham-matchable, independently/order-independently composable at A and B, and fully raw
+observable. That property set permits directional addressability only. Full local/environment/redundant/relational
+identification additionally needs an orthogonal environmental/common access gate or a proved exclusion theorem.
+
+Disposition: **STOP-OWNERSHIP-IDENTIFIABILITY — CURRENT ALGEBRA INSUFFICIENT — NO EXECUTION OR PROSPECTIVE
+AUTHORIZATION**. This is not a negative ownership result. `lambda_plus(x)`, localized probe/readout, a shadow/ghost
+path, or boundary isolation would be a new architecture; no 03G finding is grandfathered, and persistence plus deep
+turnover survival would have to be prospectively re-established before ownership is asked. Exact next authorized
+action: human review of the Phase-0 theorem/audit package only.
+
 ## BRANCH ADDENDUM — DEEP-CHECKPOINT-CAUSAL-CUT-00 PHASE 0 (2026-07-18)
 
 Phase 0 accepts `STOP_PAIR_MECHANICS` without threshold, writer, pair, world, or interpretation changes and audits a

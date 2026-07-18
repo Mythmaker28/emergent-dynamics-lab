@@ -1,0 +1,212 @@
+{
+  "schema": "OWNERSHIP-IDENTIFIABILITY-00-INTERVENTION-ALGEBRA-v1",
+  "phase": "0_THEORY_STATIC_AUDIT_ONLY",
+  "base_commit": "afa05ee82e2663e252e401dded587bcf060833b2",
+  "disposition": "STOP_OWNERSHIP_IDENTIFIABILITY_CURRENT_ALGEBRA_INSUFFICIENT",
+  "scientific_null": false,
+  "engine_execution": false,
+  "outcome_analysis_used": false,
+  "accepted_premises": [
+    "03G_OUTCOME_B_CAUSAL_PERSISTENCE_OWNERSHIP_NOT_ESTABLISHED",
+    "STOP_TRANSPLANT",
+    "STOP_CORE_SUFFICIENCY",
+    "STOP_PAIR_MECHANICS",
+    "STOP_LOCAL_CUT",
+    "NO_ACCESS_ESTABLISHED"
+  ],
+  "implementation_hashes": {
+    "edlab/experiments/sc_mcm/engine.py": "d51a5db1848e717a44f9e00aa4ad4b9c86465ec245184b78b2516dad9842ef2d",
+    "experiments/individuation/causal_confirm.py": "134dc3550f8f36dcb762d799a2bb6d3a0f60a75cf1bce2e91ed19b8d9a5ecdad",
+    "experiments/individuation/turnover_diag_engine.py": "8ba3ac5650cb460d68642d8f4077f3334067ff264c6e976b34364b5bc294480a",
+    "experiments/individuation/turnover_engine_03g.py": "7a7736d2c95b08e073327bfa6984cefa6d8055da49943ced887567ae6cddc8f9",
+    "experiments/individuation/access_structure_operators.py": "ca7a68fcf0d35dfcf4b766f64a1ff5b007678191befe28360b54c341fb537d8f",
+    "experiments/individuation/access_structure_noswap_operators.py": "08ae4c43967bbef4fff28de5eb3cf9d7bdf12b2250d92e7da0ce4bfe75274401",
+    "experiments/individuation/directed_causal_pair_phase05_mechanics.py": "7e37df20a673f146413961a91fe5655b9a08d8a0625fa42c5cf81ed7b1bdc6ad",
+    "experiments/individuation/directed_causal_pair_phase05_executor.py": "66b54dbc53168e4d85e6b4ba99335226becb71e3d3954aca91b1a8d4361d8dac"
+  },
+  "interventions": [
+    {
+      "id": "GLOBAL_LAM_PLUS_ZERO",
+      "changes": ["global engine parameter lam_plus", "future uptake", "downstream N", "downstream rho_U_V_C_Mf_c"],
+      "localized": false,
+      "candidate_arrays_preserved_at_assignment": true,
+      "ordinary_access_mechanism_preserved": false,
+      "perturbs_environment_body_or_geometry_dynamically": true,
+      "clean_member_factorial": false,
+      "identifies": ["contribution of the globally ablated m_plus_to_uptake equation term"],
+      "does_not_identify": ["spatial owner", "member address", "local versus environmental source"]
+    },
+    {
+      "id": "GLOBAL_UP_REF_ZERO",
+      "changes": ["world-global uptake reference in Psi", "future Mf writing", "downstream state"],
+      "localized": false,
+      "candidate_arrays_preserved_at_assignment": true,
+      "ordinary_access_mechanism_preserved": true,
+      "perturbs_environment_body_or_geometry_dynamically": true,
+      "clean_member_factorial": false,
+      "identifies": ["contribution of the world-global write reference"],
+      "does_not_identify": ["local ownership", "environmental compartment", "member-specific access"]
+    },
+    {
+      "id": "GLOBAL_PASSIVE_COPY_DISABLED",
+      "changes": ["global passive inheritance rule Mf_plus_equals_g_times_m", "future Mf", "downstream state"],
+      "localized": false,
+      "candidate_arrays_preserved_at_assignment": true,
+      "ordinary_access_mechanism_preserved": true,
+      "perturbs_environment_body_or_geometry_dynamically": true,
+      "clean_member_factorial": false,
+      "identifies": ["contribution of passive inheritance to future carrier persistence and turnover"],
+      "does_not_identify": ["spatial ownership", "local access", "member-specific readout"]
+    },
+    {
+      "id": "GLOBAL_ETA_W_ZERO_NO_NEW_HISTORY",
+      "changes": ["global exposure-dependent writer coefficient eta_w", "future Mf", "downstream state"],
+      "localized": false,
+      "candidate_arrays_preserved_at_assignment": true,
+      "ordinary_access_mechanism_preserved": true,
+      "perturbs_environment_body_or_geometry_dynamically": true,
+      "clean_member_factorial": false,
+      "identifies": ["persistence and expression without new exposure-dependent writing under the configured future"],
+      "does_not_identify": ["ownership", "local versus environmental access"]
+    },
+    {
+      "id": "LOCAL_MF_ERASURE",
+      "changes": ["both Mf components on selected support", "downstream state"],
+      "localized": true,
+      "candidate_arrays_preserved_at_assignment": false,
+      "ordinary_access_mechanism_preserved": true,
+      "perturbs_environment_body_or_geometry_dynamically": true,
+      "clean_member_factorial": false,
+      "identifies": ["response dependence on destructively deleted Mf contents under declared controls"],
+      "does_not_identify": ["ownership", "redundant storage", "environmental access", "access-edge necessity without source deletion"]
+    },
+    {
+      "id": "LOCAL_REFERENCE_MF_STANDARDIZATION",
+      "changes": ["both Mf components on a selected core replaced by translated reference Mf", "downstream state"],
+      "localized": true,
+      "candidate_arrays_preserved_at_assignment": false,
+      "ordinary_access_mechanism_preserved": true,
+      "perturbs_environment_body_or_geometry_dynamically": true,
+      "clean_member_factorial": false,
+      "identifies": ["response of a declared reference-memory hybrid if mechanically qualified"],
+      "does_not_identify": ["pure access-edge necessity", "original-state ownership", "redundancy outside replaced core"]
+    },
+    {
+      "id": "OWN_REPLAY",
+      "changes": ["all eight state arrays on collar after each step unless trajectory-exact"],
+      "localized": "direct_write_support_only",
+      "candidate_arrays_preserved_at_assignment": true,
+      "ordinary_access_mechanism_preserved": "only_on_exact_qualified_trajectory",
+      "perturbs_environment_body_or_geometry_dynamically": "counterfactual_dependent",
+      "clean_member_factorial": false,
+      "identifies": ["trajectory-specific sham exactness", "direct write confinement"],
+      "does_not_identify": ["ownership", "active access cut"]
+    },
+    {
+      "id": "REFERENCE_REPLAY_NO_SWAP_CLAMP",
+      "changes": ["rho", "U", "V", "c", "N", "C", "uptake", "Mf", "on a two-cell collar after each step"],
+      "localized": "direct_write_support_only",
+      "candidate_arrays_preserved_at_assignment": true,
+      "ordinary_access_mechanism_preserved": false,
+      "perturbs_environment_body_or_geometry_dynamically": true,
+      "clean_member_factorial": false,
+      "identifies": ["mechanics of a declared boundary condition if qualified"],
+      "does_not_identify": ["pure access-edge cut", "material ownership", "source versus manipulation effect"]
+    },
+    {
+      "id": "TRANSPLANT_CORE_EXCHANGE",
+      "changes": ["all eight state arrays inside radius-10 core", "core-boundary seam", "recipient dynamics"],
+      "localized": "core_surgery",
+      "candidate_arrays_preserved_at_assignment": false,
+      "ordinary_access_mechanism_preserved": false,
+      "perturbs_environment_body_or_geometry_dynamically": true,
+      "clean_member_factorial": false,
+      "identifies": ["state-surgery exactness", "paired conservation", "grafted-composite response if qualified"],
+      "does_not_identify": ["ownership in unmodified source system"]
+    },
+    {
+      "id": "LOCAL_HISTORY_WRITER",
+      "changes": ["target-centered non-compact Gaussian N input", "future Mf", "future full state"],
+      "localized": false,
+      "candidate_arrays_preserved_at_assignment": "not_applicable_creates_history",
+      "ordinary_access_mechanism_preserved": true,
+      "perturbs_environment_body_or_geometry_dynamically": true,
+      "clean_member_factorial": "history_H00_H10_H01_H11_only",
+      "identifies": ["assigned-history causal effect after independent qualification"],
+      "does_not_identify": ["access to already-formed state without new history", "ownership independent of writer survival"]
+    },
+    {
+      "id": "STANDARDIZED_PROBE",
+      "changes": ["global N reset to N0", "uniform N pulse", "future full state"],
+      "localized": false,
+      "candidate_arrays_preserved_at_assignment": "Mf_only",
+      "ordinary_access_mechanism_preserved": true,
+      "perturbs_environment_body_or_geometry_dynamically": true,
+      "clean_member_factorial": false,
+      "identifies": ["response under a common controlled stimulus"],
+      "does_not_identify": ["state location", "ownership"]
+    },
+    {
+      "id": "EXACT_CLONE_SERIALIZATION",
+      "changes": [],
+      "localized": false,
+      "candidate_arrays_preserved_at_assignment": true,
+      "ordinary_access_mechanism_preserved": true,
+      "perturbs_environment_body_or_geometry_dynamically": false,
+      "clean_member_factorial": "supplies_common_start_only",
+      "identifies": ["arm-start equality", "consistency", "provenance"],
+      "does_not_identify": ["any causal allocation without a subsequent valid intervention"]
+    }
+  ],
+  "models": {
+    "factor_semantics": "availability bits a_L,a_E with 1=available and 0=unavailable; distinct from member cut bits k_A,k_B with 1=cut",
+    "cell_order": ["Y_a00", "Y_a10", "Y_a01", "Y_a11"],
+    "H_L": ["mu", "mu+theta", "mu", "mu+theta"],
+    "H_E": ["mu", "mu", "mu+theta", "mu+theta"],
+    "H_R": ["mu", "mu+theta", "mu+theta", "mu+theta"],
+    "H_S": ["mu", "mu", "mu", "mu+theta"],
+    "H_0": ["mu", "mu", "mu", "mu"]
+  },
+  "equivalence": {
+    "construction": "L_equals_E_equals_Z_on_all_admissible_state_preserving_support",
+    "model_equations": {
+      "M_L": "Y=mu+theta*L+epsilon",
+      "M_E": "Y=mu+theta*E+epsilon",
+      "M_R": "Y=mu+theta*max(L,E)+epsilon",
+      "M_S": "Y=mu+theta*L*E+epsilon"
+    },
+    "generous_design_rows": [[1, 1, 1, 1], [1, 0, 0, 0]],
+    "generous_rank": 2,
+    "required_rank": 4,
+    "actual_clean_ownership_rank_upper_bound": 1
+  },
+  "minimal_local_cut_properties": [
+    "localized_to_declared_ordinary_equation_edge",
+    "transient",
+    "non_destructive",
+    "state_preserving_before_probe",
+    "sham_matchable",
+    "independently_and_order_independently_composable_at_A_and_B",
+    "raw_observable"
+  ],
+  "member_factorial_semantics": {
+    "response": "Y_i_k(k_A,k_B)",
+    "bit_value_0": "ordinary_access",
+    "bit_value_1": "cut",
+    "arms": ["C00", "C10", "C01", "C11"]
+  },
+  "additional_full_identification_requirement": "independent_valid_environmental_common_access_gate_or_proved_exclusion_with_causal_anchor",
+  "candidate_extensions": {
+    "spatial_lambda_plus": "closest local equation-edge gate; it removes an existing pointwise path but identifies only that edge and remains incomplete without an environmental gate",
+    "localized_probe_or_readout": "maps receptive field or decodability, not ownership",
+    "passive_shadow_reader": "predictive only; causal path is manufactured if allowed to drive physics",
+    "boundary_isolated_channel": "new compartmentalized architecture; claims apply only after full prospective revalidation"
+  },
+  "authorization": {
+    "implementation": false,
+    "prospective_execution": false,
+    "new_seed_namespace": false,
+    "merge": false,
+    "next_action": "HUMAN_REVIEW_OF_PHASE0_THEORY_PACKAGE_ONLY"
+  }
+}
