@@ -1,5 +1,18 @@
 # Project State
 
+## REPOSITORY MAINTENANCE — 2026-07-18
+
+REPOSITORY-HYGIENE-00 completed on maintenance/repository-hygiene-00. The
+primary checkout is clean and recoverable. The exact former primary state is
+preserved on rescue/primary-dirty-20260718-031627 and under
+C:\Users\tommy\Documents\ising-v3-recovery\REPOSITORY-HYGIENE-00-20260718-031627.
+Malformed probe refs were repaired without losing their valid commit, all
+current results/_tomo_cache artefacts were removed from the maintenance tip,
+and historical Windows-invalid paths are handled by
+scripts/New-IsolatedWorktree.ps1. No scientific state or authorized sequence
+changed. The protected directed-causal-pair worktree remained under its active
+owner and was not touched.
+
 ## CURRENT QUESTION
 
 Can CORE V0 local particle laws produce auditable high phenotype continuity under low material retention, beyond tracker and static-flux artefacts?

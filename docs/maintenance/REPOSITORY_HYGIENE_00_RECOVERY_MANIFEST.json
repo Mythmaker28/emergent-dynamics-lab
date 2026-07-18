@@ -1,0 +1,128 @@
+{
+  "schema": "REPOSITORY-HYGIENE-00-RECOVERY-v1",
+  "mission": "REPOSITORY-HYGIENE-00",
+  "date": "2026-07-18",
+  "repository": "C:/Users/tommy/Documents/ising v3",
+  "starting_state": {
+    "branch": "main",
+    "head": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+    "origin_main": "e17f431c7c1aab8ad9bfeb3420a8c5022e311553",
+    "staged_deletions": 350,
+    "staged_modifications": 5,
+    "unstaged_deletions": 19,
+    "unstaged_modifications": 5,
+    "untracked_files": 744,
+    "untracked_bytes": 268975022,
+    "ignored_files": 13566,
+    "ignored_bytes": 994156768,
+    "registered_worktrees": 13
+  },
+  "external_recovery": {
+    "path": "C:/Users/tommy/Documents/ising-v3-recovery/REPOSITORY-HYGIENE-00-20260718-031627",
+    "final_inventory": "final_recovery_sha256.json",
+    "final_inventory_sha256": "9e5abb49febc39b53e44f25e2e0e15d98b7d26a2f4cc6d2d392197b1790d872e",
+    "inventoried_file_count": 945,
+    "inventoried_total_bytes": 358776620,
+    "verification_errors": 0,
+    "untracked_snapshot_file_count": 523,
+    "untracked_snapshot_bytes": 255855456,
+    "tracked_restore_file_count": 350
+  },
+  "rescue_branch": {
+    "name": "rescue/primary-dirty-20260718-031627",
+    "source_head": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+    "exact_index_commit": "401212c4f377280fdaee0d80022381aacdf39273",
+    "exact_index_tree": "cd969152f00358e36d0d702a906e4a1d4e3fef2e",
+    "working_snapshot_commit": "0c2b7b5952ee7eee533e9d5124c1d42e2287e9f5",
+    "working_snapshot_tree": "c57ed22b9199863ee373f0b77eea893ceb1b505e",
+    "selected_new_paths": 476,
+    "excluded_new_paths": 47,
+    "tracked_worktree_paths": 5,
+    "largest_blob_bytes": 15182123,
+    "verification": "PASS",
+    "remote_tip_verified": "0c2b7b5952ee7eee533e9d5124c1d42e2287e9f5"
+  },
+  "ref_repair": {
+    "malformed_refs_preserved": 2,
+    "probe_tmp01_raw_sha256": "bc7cc41b686267e08cadd706ac6c2cf93267de9ec12387114f9658fb4d2f2fe8",
+    "dot_probe_raw_sha256": "f2ca1bb6c7e907d06dafe4687e579fce76b37e4e93b7605022da52e6ccc26fd2",
+    "recovered_commit": "c8a8b354f10e0988adff4264bf0b1fdffcdf19c9",
+    "archive_ref": "refs/archive/probe-tmp01-recovered-20260718",
+    "temporary_object_residue_sha256": "5413d1ace7d2b89d52ecc1b0f54ab4c26456a9d98b7b246ec9ec8792936b8662",
+    "git_objects_deleted": 0
+  },
+  "windows_path_repair": {
+    "invalid_historical_paths": 19,
+    "valid_generated_cache_paths_removed_from_tip": 15,
+    "total_cache_paths_removed_from_tip": 34,
+    "history_rewritten": false,
+    "ignore_rule": "results/_tomo_cache/",
+    "helper": "scripts/New-IsolatedWorktree.ps1",
+    "historical_test_commit": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+    "historical_test_tree": "8672babd1bc11d5912cf4820b06fa5947ebcd04b",
+    "historical_test_skip_count": 19,
+    "historical_test_status_count": 0
+  },
+  "maintenance_branch": {
+    "name": "maintenance/repository-hygiene-00",
+    "base": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+    "implementation_commits": [
+      "02e6224eddd3d33f363aa3b66ca535d6f63fd0bb",
+      "b7506433f14f2643dfbdc16149084afd414ad8a4"
+    ],
+    "implementation_tree": "bbac5961fb88c38aec06e97a585767b572778dff",
+    "pushed_without_force": true,
+    "pull_request_created": false
+  },
+  "worktrees": {
+    "starting_registrations": 13,
+    "final_registrations_before_report_commit": 13,
+    "missing_or_prunable_preexisting_registrations": 0,
+    "preexisting_registrations_removed": 0,
+    "protected_path": "C:/Users/tommy/Documents/ising-v3-directed-causal-pair-00-phase0",
+    "protected_branch_observed": "codex/directed-causal-pair-00-phase05",
+    "protected_head_observed": "4bcb551092291b7383c4168f653818d4bade14f6",
+    "protected_maintenance_action": "NONE",
+    "protected_external_activity_observed": true
+  },
+  "scientific_integrity": {
+    "v5_source_tree": "a56a9f3ea1d5988fc08a67bc75d95f4f3197c2fe",
+    "v5_inventory_sha256": "401849316b07cdab949867578f2ea676cdf83b015c716be37638211a2d8a31bf",
+    "turnover_03g_result_tree": "14050a8eca2b67b897b9b3fdc3b4b69151adbbf9",
+    "turnover_03g_raw_tree": "968c1305ad5d095b2b8603a09070e9d377e81fe4",
+    "turnover_03g_raw_inventory_sha256": "267e6792102eb561f7edbba4fb9eeb73daca51658eb256af17ee24ab7e66e3dd",
+    "turnover_03g_raw_manifest_sha256": "ce8d2cb0b6158965acaeef3553f44c7f9bf0ef9b9567c858ff5cbb27f903a328",
+    "turnover_03g_reproduction_tree": "0c61edde4cb8db14660aece653ac8a423271d630",
+    "downstream_worlds_tree": "de178399ac6b5cb123d87c6a458112b3421c6b06",
+    "downstream_collection_sha256": "8d4baaac198cf5e5526359ad723d4cebd0c0614ffa2441fead41144ef573adf1",
+    "integrity_discrepancies": 0
+  },
+  "validation_before_report_commit": {
+    "helper_tests_passed": 4,
+    "helper_tests_failed": 0,
+    "normal_tip_worktree_status_count": 0,
+    "normal_tip_tree": "bbac5961fb88c38aec06e97a585767b572778dff",
+    "historical_helper_status_count": 0,
+    "show_ref_exit": 0,
+    "for_each_ref_exit": 0,
+    "ref_count": 75,
+    "unresolved_ref_targets": 0,
+    "fsck_exit": 0,
+    "fsck_errors": 0,
+    "dangling_commits_preserved": 11,
+    "dangling_trees_preserved": 10,
+    "dangling_blobs_preserved": 32,
+    "diff_check": "PASS"
+  },
+  "prohibited_actions": {
+    "reset_hard": false,
+    "git_clean": false,
+    "force_push": false,
+    "history_rewrite": false,
+    "destructive_rebase": false,
+    "git_gc": false,
+    "object_prune": false,
+    "worktree_prune": false,
+    "scientific_engine_initialized": false
+  }
+}
