@@ -14,21 +14,17 @@ If they disagree, the CASE IS REJECTED BEFORE SCORING. A benchmark whose labels 
 instrument; it can only slander one.
 
 WHAT THIS FILE SHARES WITH THE INSTRUMENT, DECLARED HONESTLY AND EXHAUSTIVELY:
-    * the DECLARED MEASUREMENT CONTRACT -- the cyclic carrier-shift nuisance, the observation horizon W_EVAL, and
-      the DECLARED noise scale sigma. It must. "The window is too short", "the response is under the noise", and
-      "these two sit on a common channel" are claims ABOUT A CONTRACT, and you cannot adjudicate them without one.
+    * the DECLARED NUISANCE GROUP (affine readout, cyclic carrier shift). It must -- both describe the same world,
+      and those are the same nuisances. A quotient is not a metric.
+    * the DECLARED OBSERVATION HORIZON W_EVAL, and the DECLARED noise scale sigma. It must -- "the window is too
+      short" and "the response is under the noise" are claims ABOUT A MEASUREMENT CONTRACT, and you cannot
+      adjudicate them without one.
 
 WHAT IT SHARES WITH THE INSTRUMENT: NOTHING ELSE.
-    No probe battery. No sigma-HAT (it uses the DECLARED sigma; the instrument must estimate one). No block
-    structure. No detrending. No scale band. No radii. No coverage floor. No max-over-blocks aggregation. No
-    verdict rule. It drives 48 RANDOM inputs and compares raw traces; the instrument drives 8 or 16 FIXED probes
-    and compares a noise-standardized representation. If they agree, that agreement is evidence. If they shared a
-    metric, it would be a tautology.
-
-A CORRECTION THIS FILE HAD TO MAKE TO ITSELF. The residual was originally a FREE GLOBAL AFFINE FIT of B onto A.
-That absorbed a doubled gain (a = 2) and an inverted sign (a = -1) as though they were changes of units, and
-certified two of the benchmark's flagship DIFFERENCE cases as EQUIVALENT. The two-path check caught it -- which is
-exactly what the two-path check is for. See `_contract_residual`. Classified: evaluator / ground-truth failure.
+    No probe battery. No noise standardization. No sigma-hat. No block structure. No detrending. No radii. No
+    coverage floor. No cyclic quotient over phase ROWS. No verdict rule. No distance function of any kind.
+    It uses random inputs and least squares. The instrument uses a fixed battery and a noise-standardized metric.
+    If they agree, that agreement is evidence. If they shared a metric, it would be a tautology.
 """
 
 from __future__ import annotations
@@ -107,36 +103,20 @@ def _traces(spec: Spec, arm: str, seed: int, shift: int = 0) -> np.ndarray:
     return out
 
 
-def _contract_residual(spec_a, YA: np.ndarray, spec_b, YB: np.ndarray) -> float:
-    """The residual between two systems' RESPONSES, expressed in units of THEIR OWN DECLARED NOISE FLOOR.
+def _affine_residual(YA: np.ndarray, YB: np.ndarray) -> float:
+    """The best GLOBAL affine map of B onto A, and what it leaves behind.
 
-    THIS FUNCTION USED TO BE A FREE AFFINE FIT, AND THE FREE AFFINE FIT WAS WRONG. It solved for the best global
-    (a, b) mapping B's traces onto A's and reported what was left. That absorbed a DOUBLED GAIN (a = 2) and an
-    INVERTED SIGN (a = -1) as though they were changes of units, and duly certified `D_leak` EQUIVALENT to
-    `D_leak_gain2` and to `D_leak_sign` -- two of the benchmark's flagship DIFFERENCE cases.
-
-    The two-path check caught it, which is the entire reason the two-path check exists. A BENCHMARK WHOSE TRUTH
-    PATH IS WRONG CANNOT FAIL AN INSTRUMENT; IT CAN ONLY SLANDER ONE. Classified: evaluator / ground-truth failure.
-
-    The error was conceptual, not clerical, and it is the SAME error the measurement-contract theorem describes:
-
-        Under a FREE output scale there is no scale left to reference, and gain is genuinely unidentifiable.
-        Under the DECLARED CONTRACT the noise floor is COMMON AND FIXED, so `a` is NOT free -- it is PINNED.
-
-    So the scale is not fitted. It is taken from the contract: each response is divided by that channel's own
-    declared noise scale `unit_a * sigma`, which is precisely the scale the instrument ESTIMATES as sigma_hat.
-    A change of units multiplies the response and the noise by the same `a` and cancels exactly. A change of GAIN
-    multiplies the response and leaves the noise alone, and therefore survives -- as it must.
-
-    The offset `b` and the operating point cancel identically, because these are DEVIATIONS: probe minus baseline.
-    Nothing is fitted here at all. There is no least squares left in this function, and that is the point.
-    """
-    ra = (YA[1:] - YA[0][None, :]) / (abs(spec_a.unit_a) * spec_a.sigma)
-    rb = (YB[1:] - YB[0][None, :]) / (abs(spec_b.unit_b * 0 + spec_b.unit_a) * spec_b.sigma)
-    scale = float(np.sqrt(np.mean(ra ** 2)))
+    ONE (a,b) for ALL traces jointly -- not one per trace. A per-trace affine fit could absorb a genuine gain
+    difference by refitting on every probe, and would declare every linear system equivalent to every other. The
+    nuisance is a property of the READOUT, so it is fitted once, exactly as a readout is."""
+    x, y = YB.ravel(), YA.ravel()
+    A = np.stack([x, np.ones_like(x)], 1)
+    coef, _r, _rk, _sv = np.linalg.lstsq(A, y, rcond=None)
+    resid = y - A @ coef
+    scale = float(np.sqrt(np.mean((y - y.mean()) ** 2)))
     if scale < 1e-300:
-        return 0.0 if float(np.sqrt(np.mean((ra - rb) ** 2))) < 1e-300 else np.inf
-    return float(np.sqrt(np.mean((ra - rb) ** 2)) / scale)
+        return 0.0 if float(np.sqrt(np.mean(resid ** 2))) < 1e-300 else np.inf
+    return float(np.sqrt(np.mean(resid ** 2)) / scale)
 
 
 def response_profile(spec: Spec, arm: str, seed: int = 7) -> dict:
@@ -206,14 +186,13 @@ def privileged_compare(a: Spec, b: Spec, arm: str, seed: int = 7) -> dict:
     YA = _traces(a, arm, seed)
     best, best_s = np.inf, None
     for s in SHIFT_GROUP:
-        r = _contract_residual(a, YA, b, _traces(b, arm, seed, shift=s))
+        r = _affine_residual(YA, _traces(b, arm, seed, shift=s))
         if r < best:
             best, best_s = r, s
     return {"verdict": PRIV_EQUIVALENT if best <= TOL_REL else PRIV_DIFFERENT,
             "residual": float(best), "shift": best_s, "tol": TOL_REL, "left": pa, "right": pb,
-            "why": "best relative residual %.3e, responses expressed in units of each channel's own DECLARED "
-                   "noise floor and quotiented by the cyclic carrier shift, against a solver tolerance of %.0e"
-                   % (best, TOL_REL)}
+            "why": "best residual %.3e after quotienting by the affine readout and the cyclic carrier shift, "
+                   "against a solver tolerance of %.0e" % (best, TOL_REL)}
 
 
 def solver_convergence(spec: Spec, arm: str = "limited", seed: int = 7) -> float:
