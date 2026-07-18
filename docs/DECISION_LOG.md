@@ -2765,3 +2765,26 @@ complete-world contrasts and classification and a second byte-identical generati
 claim is failure to establish the preregistered one-update downstream interaction under this probe. Never convert
 this into absence, equivalence, ownership, identity, memory or active reconstruction. No follow-up experiment is
 automatically authorized.
+
+## D-099 — DOWNSTREAM-ORDER-READER-01 null-mechanism audit fails closed on raw sufficiency
+
+**Date:** 2026-07-18
+
+**Immutability decision:** Accept the raw collection, reproduction, all 48 ordered world records, all 35 stored
+complete-world contrasts, frozen classification object and 15 manifest-bound parent files as exact at accepted
+commit `d71c7ebb14cb74d47bbaac7858f4ec0286240bdb`. Preserve `NO_ACCESS_ESTABLISHED` without reclassification.
+
+**Decomposition decision:** Freeze the exact equation-based face decomposition, zero-denominator rule,
+original-world statistical unit and descriptive mechanism logic before inspecting data sufficiency. Apply the
+predeclared fail-closed gate because the immutable raw stores aggregate signed/absolute internal flux and hashes,
+but not numerical source-conditioned core `c`, internal face state/flux or boundary flux. A hash is not a
+numerical face array; no decomposition estimate is computed.
+
+**Diagnostic decision:** Return exactly **`RAW_INSUFFICIENT`**. Do not label local buffering, signed cancellation,
+regime heterogeneity, gradient/upwind gating or boundary partition compatible, supported, confirmed or absent.
+
+**Roadmap decision:** Return exactly **`UNRESOLVED_RAW_INSUFFICIENT`**. No unique equation-derived mechanism was
+available, so this audit recommends neither a new probe nor mechanistic closure. Any future design requires a new
+human decision; none is authorized.
+
+**Disposition:** **COMPLETE RAW-ONLY AUDIT; ZERO WORLDS; STOP FOR HUMAN REVIEW.**
