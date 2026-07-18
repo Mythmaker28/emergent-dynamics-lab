@@ -442,3 +442,31 @@ The first implementation was not admissible. Binding counterexamples and mismatc
 8. **No qualification tests.** The 70 targeted tests did not import or exercise the new independent source. I required synthetic producer/reproducer parity fixtures before any manifest freeze.
 
 Interim independent-reproducer verdict: **REVISE INDEPENDENT REPRODUCER — NO MANIFEST SEAL — NO DEV INITIALIZATION**.
+
+## Independent raw-reproducer v3 closure
+
+The implementer repaired the producer-schema, operation-order, classifier, aggregation and failure-inventory defects under the expanded v3 reproduction contract at checkpoint `7a95934`. I re-audited source SHA-256 `0fc99f9c1dc9b4356db65652ad9581140dd63deaf8b1ed98b6d0a6640ff0e3a5` without opening a manifest or result.
+
+Direct independent parity evidence:
+
+- **69,630 detector cases:** every nonempty binary support on 3x4 and 4x4 lattices, with heterogeneous occupied-cell masses, matched producer cells, winding flags, mass, centroid and radius exactly.
+- **8,192 tracker cases:** deterministic three-frame 3x4 trajectories matched exact track IDs, points, sorted parent IDs and unresolved state, including naturally occurring overlaps, splits, merges, ambiguity and detector collapse.
+- **2,304 passive-cohort cases:** actual one-step engine gross-flow records over every binary 2x2 matter/resource corner pattern, three bond levels and three cohort fractions produced array-exact equality with the qualified passive tracer.
+- **32 full measurement trajectories:** hand-built 3x4 states evolved for seven updates under two distinct law `dt` values matched every production track observation, final regime and candidate-track list exactly.
+- **128 family-classification cases:** mixed regimes and terminal statuses across two laws, two ICs and three replicates matched the production classification object, nested atlas, candidate regions and disposition exactly.
+- `py_compile`, `git diff --check`, and the frozen targeted suite passed; the suite result after the v3 contract checkpoint was **70 passed in 0.48s**.
+
+The repaired source:
+
+- imports no project module;
+- rejects forbidden runtime outcome/source basenames;
+- consumes the exact nested producer manifest and shard schema;
+- binds both full/internal manifest seals and the committed raw/reproduction contract hashes;
+- enforces closed root/shard inventory without reading online/classification/root-manifest content;
+- reads only complete-shard `physics.npz`, while preserving terminal failure rows and admitting only declared failure-shard leftovers;
+- applies law-specific `dt`, state bounds, exact raw layouts, neutral scales, zero missing fields and Stage-A raw gates;
+- emits only the exact production classification schema for byte/SHA comparison.
+
+Static verdict: **PASS_INDEPENDENT_SOURCE_FOR_DURABLE_TESTS**.
+
+One qualification gap remains before manifest freeze: the committed 70-test suite still does not import the new 80KB independent source. The parity checks above are strong but currently journal/command evidence rather than durable regression tests. Focused tests for nested manifest parsing, weighted winding, exact divergence/cohort update, classifier/atlas byte shape, candidate-ID clearing, canonical/hash/inventory rejection and failure-shard leftovers should be committed and source-hashed before KS-B1 acceptance.

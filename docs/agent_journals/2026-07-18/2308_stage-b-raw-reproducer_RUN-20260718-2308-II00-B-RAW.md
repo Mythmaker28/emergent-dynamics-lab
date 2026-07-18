@@ -176,3 +176,122 @@ Patching from production source, tests, generated output, reviewer-reported fiel
 ## Normative v2 amendment authorization
 
 Parent authorization admits exactly one new outcome-free design source: `docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_REPRODUCTION_SPEC.json` at commit `22ee3f7`. Its exact committed bytes and SHA-256 may be reread and used to repair the held reproducer. The raw schema remains the previously authorized version at commit `1e11a1b` with SHA-256 `ffa9be82bd4c3285e75e1ac46b63a0a794598e2169afcb6a2890c3834749fe01` and will not be reread. Production source, tests, manifests, results, reports, online classifications, atlases, and selected-world information remain forbidden.
+
+### v2 repair and static evidence
+
+- v2 contract SHA-256: `1255630ada7c3e85342a814eaa4d98ba989e625f45ac6ebb0698dfd7a26330ca`
+- Repair interval through: `2026-07-19 00:02:35 +02:00`
+- Provisional source SHA-256: `1f1c787505a7020ad05f032bdd663e8d3e893b06be5af44c399a4d4607d3d906`
+
+Repairs derived from the v2 contract and pre-output adversarial findings:
+
+- exact nested manifest, source-hash, law/IC/execution, seven-threshold and deterministic enrollment layout;
+- external full-manifest hash plus internal excluding-field seal and strict finite canonical JSON;
+- per-world nested law `spec.dt` and physical bounds;
+- exact nested shard identity, physics inventory and terminal-failure behavior;
+- complete root/shard name inventory without opening forbidden online/root-classification files;
+- exact physics keyset/layout/dtypes, neutral scale/missing/controller gates and raw-scale reference criterion;
+- LIFO weighted periodic detector operations, geometry-only tracking, law-specific time step, exact passive-cohort domain/conservation/no-clipping behavior and stop at final track point;
+- exact seven-gate candidate logic including zero percolated fraction;
+- exact production classification top-level/world/atlas/candidate-region schema with no audit metadata;
+- law-local candidate-region completeness and global disposition precedence.
+
+Hand-built, non-world checks passed:
+
+```text
+weighted row-wrap detector centroid/radius/winding exact values: PASS
+one-to-one, split, merge, collapse and geometric-tie tracking branches: PASS
+cohort tolerance, identity rejection and no-clipping behavior: PASS
+all nine classifier precedence branches: PASS
+v2 nested canonical manifest, internal seal, external hash and class-order preservation: PASS
+strict canonical/non-finite JSON rejection: PASS
+array inventory equality/rejection: PASS
+exact classification object, nested atlas and law-local candidate region: PASS
+failed-shard family behavior without reading failure content: PASS
+AST standalone import allowlist, compile and diff check: PASS
+```
+
+One attempted inline inventory check failed because PowerShell quoting corrupted the Python command; it did not execute the intended assertion or alter any file. The same check was immediately rerun via an in-memory here-string and passed.
+
+### Remaining normative hold after v2
+
+Static and exhaustive hand-built adversarial comparisons identified details not stated exactly enough in v2 to qualify an independent byte reproduction:
+
+1. detector lift traversal must normatively bind LIFO, neighbour order and push-time lift assignment;
+2. law physical-bound field names must be explicit;
+3. reference raw-scale array membership and aggregation order must be explicit;
+4. failed-shard exact/optional inventory rules must be explicit;
+5. `per_ic.complete` must be normatively typed and defined;
+6. candidate IDs must specify clearing under higher-precedence non-candidate regimes;
+7. merge ancestry ordering must be explicit;
+8. divergence grouping must explicitly bind `(axis0 difference) + (axis1 difference)`.
+
+The held source has not been qualified and no manifest/result/world has been read. Await another outcome-free normative amendment rather than importing production behavior through inspection.
+
+## Normative v3 authorization
+
+Parent authorization admits exactly `docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_REPRODUCTION_SPEC.json` at commit `7a95934`, SHA-256 `f47a8d7febf9b9e4abe10281e04005ba4d565f825527a8cfb61d277bafa409a1`. It may be reread and used to resolve the eight held exactness gaps. No other source authorization changes; production source/tests/manifests/results and all outcome-bearing files remain forbidden.
+
+### v3 final static qualification
+
+- Completion time: `2026-07-19 00:08:39 +02:00`
+- Final source SHA-256: `0fc99f9c1dc9b4356db65652ad9581140dd63deaf8b1ed98b6d0a6640ff0e3a5`
+- Disposition: `STATIC_REPRODUCER_QUALIFIED`
+
+The v3 source closes every held normative issue:
+
+- exact v3 contract hash and schema binding;
+- exact unseen-set/LIFO/push-time detector traversal and NumPy weighting order;
+- nested law spec with per-world `dt`, `m_max`, and `n_max`;
+- reference raw scale over exactly state `m/n/b` and raw-schema ledger fields in layout order;
+- independently sorted source track IDs;
+- explicitly grouped axis divergences;
+- world-precedence candidate-ID clearing;
+- boolean per-IC completion;
+- failure inventory with required `failure.json`, optional preserved physics/online entries, declared-vs-actual closure, bytes, and permitted physics hashing without reading forbidden failure/online content.
+
+Local static/hand-built checks all passed: v3 canonical manifest/seals, weighted periodic detector, split/merge/collapse/tie tracking, cohort tolerance and no clipping, all nine classifier branches, exact output/atlas with boolean completion and candidate clearing, failed shards with and without preserved files, malformed/non-finite JSON, array inventory, standalone import allowlist, compilation, CLI and diff checks.
+
+Independent adversarial parity evidence at the final source hash:
+
+```text
+69,630 weighted periodic detector supports: exact
+8,192 three-frame tracker trajectories: exact track IDs, points, parents and unresolved state
+2,304 actual-engine synthetic cohort advances: array-exact
+32 multi-step full synthetic measurement trajectories across two dt values: exact observations, regime and candidate IDs
+128 synthetic family classifications: exact dictionary, atlas and disposition
+static compile and diff checks: pass
+```
+
+Reviewer verdict: `PASS_INDEPENDENT_SOURCE_FOR_DURABLE_TESTS`. This is static source qualification only. It does not authorize reading the future sealed manifest, opening DEV raw shards, running the reproducer on a scientific family, or comparing outcomes. Those remain gated by a separately committed manifest and parent authorization.
+
+No production source/test, Stage-B manifest, result, online output, scientific state, or DEV world was opened in this role.
+
+### Final pre-seal executable self-integrity gate
+
+At explicit pre-seal instruction, `load_manifest` now requires the exact manifest source entry `source_sha256["edlab/substrates/lattice_bond/stage_b_reproduce.py"]` and compares it to SHA-256 of `Path(__file__).resolve()`. A hand-built canonical manifest carrying the current source hash was accepted; an otherwise identical manifest carrying a false source hash was rejected with the intended binding error. Compilation remained clean.
+
+- Provisional source SHA-256 after self-integrity patch: `8a7a4b1133c715fca596fb0bd04d7ab24f3182b6edaaa5a2c6d28dc3428f255f`
+- No Stage-B manifest or result was opened.
+
+Red-team also identified that NumPy reduction and byte reproducibility require exact runtime-environment equality. The authorized v3 contract does not define `manifest.environment` or its key names. This second gate is held pending a committed outcome-free v4 contract and explicit parent authorization; it will not be reconstructed from producer/reviewer knowledge.
+
+## Normative v4 authorization
+
+Parent authorization admits exactly `docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_REPRODUCTION_SPEC.json` at commit `f29a6a54`, SHA-256 `9031a954881aba12dddf081e57850af9c1df92eded5a177b731b245246c6c7c2`. It may be reread to bind the exact manifest environment object while retaining executable self-hash verification. No manifest, result, production source/test, or other file is newly authorized.
+
+The supplied abbreviated commit token did not resolve locally. Read-only Git identity showed the intended current contract commit is `f29a6a5ef57e416d60439b1ba19d8b17099907e5`; red-team then explicitly confirmed that full identifier. The v4 contract was read only from that exact object.
+
+### v4 pre-shard integrity qualification
+
+- Completion time: `2026-07-19 00:16:46 +02:00`
+- v4 contract SHA-256 bound in source: `9031a954881aba12dddf081e57850af9c1df92eded5a177b731b245246c6c7c2`
+- Final source SHA-256: `c058e96697347f8af613159cdcb58de5ee3e254d201c237961f366cc1fd08b58`
+- Static disposition remains: `STATIC_REPRODUCER_QUALIFIED`
+
+`load_manifest` now rejects before any shard access unless:
+
+1. the manifest binds the exact SHA-256 of the executing `stage_b_reproduce.py` bytes; and
+2. `manifest.environment` has exactly the four keys `python_version`, `numpy_version`, `platform`, and `byteorder`, with exact values equal to `sys.version`, `np.__version__`, `platform.platform()`, and `sys.byteorder`.
+
+Hand-built finite canonical manifests proved the positive path and separate source-hash/environment mismatch rejection paths. Static compilation, standard-library-plus-NumPy import audit, CLI parsing, and assigned-file diff checks remained clean. No Stage-B manifest, result, shard, world, or forbidden outcome-bearing file was opened.
