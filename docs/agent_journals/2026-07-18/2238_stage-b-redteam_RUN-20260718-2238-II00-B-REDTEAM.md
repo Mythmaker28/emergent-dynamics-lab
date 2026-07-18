@@ -544,3 +544,39 @@ That command cannot run: the committed parser also requires `--manifest`, `--man
 I recommended a non-self-referential, outcome-free repair with no scientific-code change: predeclare a sibling external manifest-digest file, two distinct durable reproduction-output paths, and two complete commands in the source allowlist; update the manifest's allowlist hash and seal; only after those manifest bytes are final, commit the lowercase full digest in the predeclared external file. The external digest is necessary because embedding the full manifest hash inside an artifact hashed by that same manifest would be circular. A final pushed Git checkpoint plus independent equality check can bind that second-order seal.
 
 Interim disposition: **BLOCK KS-B1-01 — NO DEV INVOCATION.**
+
+## Superseding manifest and final pre-execution authorization
+
+The primary agent repaired only the invocation binding. Commit `dc829efa334e2684086f4b9d06095f191e257e6f` amended the source allowlist, its manifest source hash and the excluding-field seal; commit `962bd52114f76cdf8183d56493a30e9b8be092cc` then added the predeclared external digest. Both commits were pushed before review. No engine, instrumentation, runner, reproducer, test, law, IC, threshold, horizon, world, region or classifier field changed from static checkpoint `e63f8556b691f1fe20caf4d1e417bc6e94daecf3`.
+
+Final exact evidence:
+
+- superseding manifest SHA-256: `194e082f9d3809f2531912d825480fad5b683dbe9d9fceec8050260fe493dd50`;
+- superseding excluding-field seal: `5681f02b746dc024ea5e1c96d7e8ff83934d96493edf4e9a441e8222909ef3ae`;
+- external digest bytes: exactly the lowercase manifest SHA-256 followed by one LF;
+- amended allowlist SHA-256: `099751c86ab5289805bc85369ce7f730362c9edba1962754676c7fe1006295a9`, exactly as bound by the manifest;
+- strict finite canonical JSON: pass;
+- all eleven manifest source hashes: exact;
+- producer and independent loaders: 64 exact worlds accepted;
+- current environment: exact four-key match;
+- final and `.partial` DEV roots: absent;
+- both predeclared independent outputs: absent;
+- local `HEAD` and remote branch tip: both `962bd52114f76cdf8183d56493a30e9b8be092cc` before this journal append;
+- `git diff --check`: pass and worktree clean before this journal append.
+
+The source allowlist now binds two complete independent-reproduction invocations. Each reads the separate committed digest, supplies all four required argument families, uses the qualified Python environment and sealed manifest, and writes to a distinct predeclared exclusive output. Static parser checks accepted both exact argument sets. This closes the first manifest's KS-B1-01 blocker without a self-referential manifest hash and without changing scientific semantics.
+
+### Final KS-B1 disposition before the first world
+
+- **KS-B1-01 PASS:** canonical committed manifest, complete source/environment/family/IC/world/horizon/measurement/classification/raw/reproduction bindings, external full-file seal, and exact run commands are frozen.
+- **KS-B1-02 PASS AS AN EXECUTION CONTRACT:** the runner refuses existing roots and preserves each enrolled terminal world without retry or replacement; the manifest states `NO_EXTENSION_NO_REPLACEMENT_NO_RETRY`.
+- **KS-B1-03 PASS FOR EXECUTION ENTRY:** raw schema, atomic writers, complete root/shard verification, engine-free reproducer and two exact raw-only invocations are prequalified. Actual shard completeness and byte-identical run-1/run-2 reproduction remain mandatory post-execution gates.
+- **KS-B1-04 PASS AS A FROZEN RULE:** each LawSpec point is its predeclared region; a candidate region requires at least two original worlds in each of both IC classes, while the atlas preserves all worlds and nine classes.
+- **KS-B1-05 ACTIVE KILL SWITCH:** any nonfinite/bounds/conservation/energy/replay/open-mechanics failure must yield `MANIPULATION_OR_NUMERICAL_INVALID`.
+- **KS-B1-06 ACTIVE CLAIM LIMIT:** any returned disposition is DEV-only and cannot establish individuality, autonomy, memory, ownership, reproduction, life or Stage-C eligibility.
+
+No pre-execution blocker remains.
+
+**AUTHORIZED: ONE AND ONLY ONE INVOCATION OF THE HASH-BOUND STAGE-B DEV RUNNER AGAINST THE SUPERSEDING MANIFEST.**
+
+The invocation is authorized only after this journal append is committed/pushed and the worktree is clean. It must use the exact allowlisted runner command, must not replace or retry any world, and must stop with the runner's one terminal package. Afterward, the package and two independent raw reproductions require separate audit before any scientific disposition is accepted.
