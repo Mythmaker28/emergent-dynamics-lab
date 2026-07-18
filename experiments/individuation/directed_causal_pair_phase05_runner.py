@@ -298,6 +298,20 @@ def _isolated_import_cache():
             importlib.invalidate_caches()
 
 
+@contextmanager
+def _bound_repo_import_path(repo: Path):
+    """Expose only the already-verified repository root for package imports."""
+    previous = list(sys.path)
+    repo_text = str(repo.resolve(strict=True))
+    sys.path.insert(0, repo_text)
+    importlib.invalidate_caches()
+    try:
+        yield
+    finally:
+        sys.path[:] = previous
+        importlib.invalidate_caches()
+
+
 def validate_preflight(repo: Path, manifest_path: Path) -> tuple[dict[str, Any], str, Path]:
     """Validate every authorization and binding before importing the executor."""
     repo = repo.resolve(strict=True)
@@ -405,7 +419,7 @@ def main() -> None:
     # This is intentionally the first import of any mechanical/engine module.
     # A fresh cache prefix prevents ignored repository bytecode from replacing
     # the exact hash-bound sources after preflight.
-    with _isolated_import_cache():
+    with _isolated_import_cache(), _bound_repo_import_path(repo):
         executor = importlib.import_module(
             "experiments.individuation.directed_causal_pair_phase05_executor"
         )

@@ -75,6 +75,14 @@ cryptographic binding as a seed namespace. Its exact 10,790 bytes are preserved 
 40- or 64-character lowercase hexadecimal identities from namespace parsing; semantic paths/strings and integer
 IDs remain fail-closed. A fresh code commit and canonical manifest binding are required before execution.
 
+The next manifest, bound to `66a7283dac932525d14f86054647c562adf9649a`, passed the complete preflight with
+SHA-256 `3f8ee7dc5e5186298d02cef5998814701566c1459960c33a808dcced46bfe0d4` but the file-style runner invocation then
+failed at the first executor import with `ModuleNotFoundError: No module named 'experiments'`. No engine module or
+world was initialized and the raw directory remained absent. The exact rejected manifest is preserved as
+`DIRECTED_CAUSAL_PAIR_00_PHASE05_DEV_MANIFEST_REJECTED_66a7283_IMPORT_PATH.json`. The narrow repair adds the
+already-verified repository root to `sys.path` only inside the isolated executor-import context and restores the
+previous path afterward; another code commit and manifest rebind are required.
+
 ## Important files read or changed
 
 - `docs/individuation/DIRECTED_CAUSAL_PAIR_00_PHASE0_REPORT.md`

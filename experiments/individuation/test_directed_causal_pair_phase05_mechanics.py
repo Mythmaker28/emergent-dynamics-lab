@@ -604,6 +604,19 @@ def test_executor_import_uses_fresh_external_bytecode_cache() -> None:
     assert sys.dont_write_bytecode is previous_dont_write
 
 
+def test_verified_repo_root_is_available_only_inside_executor_import_context() -> None:
+    repo = Path(runner.__file__).resolve().parents[2]
+    previous = list(sys.path)
+    try:
+        sys.path[:] = [entry for entry in sys.path if Path(entry or ".").resolve() != repo]
+        without_repo = list(sys.path)
+        with runner._bound_repo_import_path(repo):
+            assert Path(sys.path[0]).resolve() == repo
+        assert sys.path == without_repo
+    finally:
+        sys.path[:] = previous
+
+
 @pytest.mark.parametrize(
     "wrong_output",
     [
