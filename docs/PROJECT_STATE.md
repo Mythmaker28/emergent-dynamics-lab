@@ -1,5 +1,38 @@
 # Project State
 
+## BRANCH ADDENDUM — INTERVENTIONAL-INDIVIDUALITY-00 PHASE 0 (2026-07-18)
+
+The human decision accepts `STOP_ARCHITECTURE` exactly and closes `CAUSAL-ADDRESSABILITY-ARCHITECTURE-01` on the
+current passive-copy substrate. Phase 0 performs theory/static architecture comparison only. It opens no engine,
+world, result, checkpoint, analyzer, seed, prospective namespace, genome, V5/03G modification, merge, or PR.
+
+Interventional individuality is specified by eight necessary, scale-bound properties: longitudinal persistence,
+localized existing-edge addressability, independent/order-independent intervention composition, state-preserving
+onset, complete conservation and boundary-work closure, exact open-mode identity, sufficient intervention rank,
+and a tracker-independent instantaneous entity definition. Persistent pattern, material component, operational
+entity, causally addressable individual, and reproductive lineage remain distinct levels.
+
+Three second-substrate families were compared. Phase-field droplets retain diffuse-contour and wider-stencil parent
+ambiguity. Contact-edge particle aggregates provide excellent pairwise accounting but leave the boundary largely a
+detector graph cut and invite ID/occupancy alias. The conditional reference architecture is lattice matter with a
+uniform structural bond/permeability state on every fixed physical face. Closure, inside, components, identity, and
+history are not state variables or bond-law inputs; no-boundary, open-sheet, percolation, dissolution, leakage,
+static-shell, split, and merge regimes are binding falsifiers.
+
+The specified matter/resource fluxes are antisymmetric. Bond formation consumes endpoint resource and bond
+dissociation enters an explicit heat ledger. Stage A would have to prove positivity/CFL admissibility and the exact
+resource-bond-fuel-work identity. The structural bond field is not memory and can never be the later local factor.
+Any future history state must be separately introduced and fully requalified, may only modulate a previously frozen
+native rate, and cannot add a dedicated reporter. Directly gated transduction and crossing fluxes are compliance
+diagnostics, never the primary rank-4 response.
+
+Disposition: **GO — CANDIDATE C SELECTED AS THE PHASE-0 REFERENCE ARCHITECTURE FOR HUMAN REVIEW ONLY**. This GO is
+not scientific evidence and authorizes no implementation or later stage. The staged program remains A boundary and
+conservation qualification; B fresh no-memory entity persistence/turnover; C fresh history dependence and causal
+persistence; D separate single-target rank-4 `Y^a(l,e)`; E separate member-directed `Y_i^k(k_A,k_B)`; and F only
+then reproduction/inheritance. No old 03G number, threshold, seed, outcome, or confirmation status transfers. Exact
+next action: human review of this Phase-0 specification only.
+
 ## BRANCH ADDENDUM — CAUSAL-ADDRESSABILITY-ARCHITECTURE-01 STAGE A (2026-07-18)
 
 Stage A implemented only the exact two-port candidate frozen at accepted parent

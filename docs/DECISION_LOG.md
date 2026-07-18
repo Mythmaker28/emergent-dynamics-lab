@@ -2737,3 +2737,43 @@ only the declared local edge and dynamic-E-deviation bundle, not the unrestricte
 is grandfathered. Stages A code-only qualification, B fresh open-port persistence/turnover, C single-target
 factorial, and D member-directionality each require separate human authorization and sealing. This Phase 0 authorizes
 none of them; human review of the architecture package is the exact next action.
+
+## D-097 — INTERVENTIONAL-INDIVIDUALITY-00 selects a falsifiable second-substrate reference
+
+**Date:** 2026-07-18
+
+**Decision:** Accept the human `STOP_ARCHITECTURE` decision exactly and close
+`CAUSAL-ADDRESSABILITY-ARCHITECTURE-01` on the current substrate. For Phase-0 human review only, select **Candidate
+C: lattice matter with a uniformly dynamical structural bond/permeability state on every fixed physical face**.
+This is a conditional architecture choice, not implementation authorization and not evidence that an entity,
+memory, causal-access structure, individual, or lineage exists.
+
+**Selection decision:** phase-field droplets leave a diffuse contour and wider-stencil environmental-parent
+problem. Conservative contact-edge particle aggregates expose clean pairwise fluxes but leave the boundary largely
+a detector graph cut and risk diagnostic-ID/occupancy alias when targeting moving supports. Candidate C provides a
+fixed physical carrier for paired antisymmetric flux surgery while leaving closure, component, inside, persistence,
+and individuality to emerge or fail. It is selected for stronger falsifiers—not expected positivity—including
+no-boundary, open-sheet, percolation, dissolution, leakage, impermeable static shell, frozen-turnover, split, and
+merge regimes.
+
+**Minimal substrate decision:** before history, physical state is mobile matter `m`, ordinary environmental
+resource `n`, structural face state `b`, and the clock. `b` is not history, cannot serve as the local `L` factor,
+and contains no owner, entity, component, closure, inside, genome, or tracker term. Matter/resource crossing is
+recorded as named antisymmetric face fluxes. Bond formation withdraws finite endpoint resource; dissociation enters
+an explicit heat sink, yielding an exact resource-bond-fuel-work identity. A future code-only Stage A would have to
+prove positivity/CFL admissibility, scalar/vector identity, paired conservation, open identity, and all raw ledgers.
+
+**Anti-manufacture and rank decision:** a later Stage-C history field may modulate only a substrate-native physical
+rate whose purpose, ungated equation, and downstream behavioral response were frozen before that field. No
+dedicated reporter or response path may be added to reveal `h` or `b`. The directly gated `h` transduction term and
+the environment-gated crossing flux are manipulation/compliance diagnostics, never the primary response; otherwise
+the factorial manufactures its own effect. Only mechanically valid `L0E0/L1E0/L0E1/L1E1` rows receive rank 4.
+The later member-directed `Y_i^k(k_A,k_B)` design remains a separate phase and namespace.
+
+**Program and evidence boundary:** future stages are A boundary/conservation qualification; B fresh no-memory
+formation, persistence, turnover, and split/merge; C fresh history dependence and causal persistence; D separately
+sealed single-target rank-4 access; E separately sealed A/B directionality; and F only then reproduction and
+inheritance. Every transition requires new human authorization. No old 03G value, threshold, horizon, seed, effect,
+valid-world set, or confirmation status is grandfathered. Phase 0 runs no engine, scientific world, checkpoint,
+seed, analyzer, or prospective family; modifies no V5/03G code; and creates no merge or PR. Exact next action:
+human review of the Phase-0 reference architecture only.

@@ -1,0 +1,229 @@
+{
+  "schema": "INTERVENTIONAL-INDIVIDUALITY-00-PHASE0-SPEC-v1",
+  "mission": "INTERVENTIONAL-INDIVIDUALITY-00",
+  "phase": 0,
+  "accepted_parent": "81518cc7fcfa7ce4b9f0e7482480b290946dcbe0",
+  "accepted_prior_disposition": "STOP_ARCHITECTURE",
+  "current_substrate_closed": true,
+  "recommendation": "GO",
+  "recommendation_scope": "select candidate C as the reference architecture for human review only",
+  "implementation_authorized": false,
+  "engine_execution_authorized": false,
+  "scientific_or_prospective_authorized": false,
+  "primary_question": "What is the smallest dynamical substrate in which an interventionally addressable boundary can emerge without hard-coding memory ownership or individual identity?",
+  "formal_definition": {
+    "name": "interventional_individuality_at_declared_scale",
+    "necessary_not_sufficient_properties": [
+      "longitudinal persistence under a tracker-independent instantaneous entity definition",
+      "localized addressability through a pre-existing causal edge",
+      "independently and order-independently composable interventions",
+      "state-preserving intervention onset",
+      "complete conservation and boundary-work accounting for the declared channels",
+      "bit-identical or exact open-mode delegation",
+      "full-rank support for every declared factorial estimand",
+      "entity definition and physics independent of tracker output and diagnostic IDs"
+    ],
+    "falsification_rule": "failure of any necessary property blocks the causally addressable individual claim; passing all properties permits only the declared intervention-scale claim"
+  },
+  "ontology": [
+    {
+      "level": "persistent_pattern",
+      "definition": "an ID-independent spatial or dynamical descriptor remains similar through time",
+      "does_not_imply": ["material continuity", "operational closure", "causal addressability", "lineage"]
+    },
+    {
+      "level": "material_component",
+      "definition": "an instantaneous connected or bounded collection of matter",
+      "does_not_imply": ["longitudinal persistence", "operational response", "individuality"]
+    },
+    {
+      "level": "operational_entity",
+      "definition": "an instantaneous material component with a physical boundary and auditable internal, crossing, source, sink and response channels",
+      "does_not_imply": ["history dependence", "causal addressability", "reproduction"]
+    },
+    {
+      "level": "causally_addressable_individual",
+      "definition": "an operational entity satisfying every necessary interventional-individuality property for a declared response, scale and horizon",
+      "does_not_imply": ["ownership in an unrestricted sense", "reproduction", "heredity"]
+    },
+    {
+      "level": "reproductive_lineage",
+      "definition": "a set-valued parent-descendant process with formation of new operational entities and prospective inheritance evidence",
+      "does_not_imply": ["a genome", "permanent identity", "one-to-one tracking"]
+    }
+  ],
+  "constraints_from_current_no_go": [
+    "every physical face update is a named sum of oriented edge fluxes with explicit endpoint parents",
+    "no global normalization may combine local and common channels",
+    "no state or collar clamp may be interpreted as environmental unavailability",
+    "every active boundary intervention must update the two endpoints with equal-and-opposite flux contributions and log controller work",
+    "no reporter may be added specifically to expose a future history field",
+    "no ownership variable, genome, permanent entity ID, inside bit, component target or tracker feedback may enter physics",
+    "no intervention support may follow an entity after onset; supports and face sets are frozen from the common pre-intervention state",
+    "no old threshold, seed, effect, survival rate or confirmation status transfers"
+  ],
+  "candidate_comparison": {
+    "A_phase_field_droplets": {
+      "boundary": "emergent diffuse interface from local phase separation; semipermeability is a constitutive function of the interface",
+      "turnover_split_merge": "possible",
+      "edge_modularity": "medium; chemical-potential and high-order stencil parents complicate unique face attribution",
+      "factorial_surgery": "possible only after a finite-volume edge decomposition and fixed-face support proof",
+      "manufacture_risk": "medium-high; the order parameter can become an imposed inside/outside oracle and interface mobility cuts can manufacture a compartment",
+      "cost": "O(number_of_cells) explicit or O(number_of_cells log number_of_cells) with an implicit or spectral solve",
+      "LawSpec_compatibility": "low direct compatibility; high compatibility with the frozen dataclass/serialization pattern",
+      "disposition": "not selected"
+    },
+    "B_particle_contact_aggregates": {
+      "boundary": "contact-graph cut of an emergent aggregate; no independent physical membrane variable",
+      "turnover_split_merge": "possible",
+      "edge_modularity": "high for pairwise antisymmetric contact fluxes",
+      "factorial_surgery": "algebraically clean, but maintaining member-local support risks using particle IDs or tracker feedback",
+      "manufacture_risk": "medium-high; a detector-defined graph cut can be mistaken for a physical boundary and re-import occupancy alias",
+      "cost": "O(N squared) on the current reference path or O(N times mean_degree) with a new neighbour list",
+      "LawSpec_compatibility": "highest; existing LawSpec mechanics can be composed with a new conservative exchange spec",
+      "disposition": "not selected"
+    },
+    "C_lattice_emergent_bonds": {
+      "boundary": "a closed cut-set may emerge from a bond variable governed uniformly on every lattice face; closure is neither targeted nor rewarded",
+      "turnover_split_merge": "possible when permeability stays nonzero and bonds form and break",
+      "edge_modularity": "high; matter and resource updates are sums of named antisymmetric face fluxes",
+      "factorial_surgery": "fixed t0 face and cell sets permit existing-edge local and environmental gates without tracker or diagnostic IDs",
+      "manufacture_risk": "medium and directly falsifiable by no-boundary, open-sheet, percolation, dissolution, leakage, split and merge regimes",
+      "cost": "O(number_of_cells plus number_of_faces) with a scalar reference path of the same order",
+      "LawSpec_compatibility": "medium-high at the framework level through a new frozen serializable LatticeBondLawSpec; the particle-specific LawSpec remains unchanged",
+      "disposition": "selected conditionally"
+    }
+  },
+  "selected_minimal_substrate": {
+    "family": "C_lattice_matter_with_emergent_membrane_bonds",
+    "minimal_dynamic_state_before_history": [
+      "m_x nonnegative mobile matter on cells",
+      "n_x nonnegative ordinary environmental resource on cells",
+      "b_xy in [0,1] physical structural bond state on every undirected nearest-neighbour face; b is not history and cannot be the L factor",
+      "clock"
+    ],
+    "diagnostics_not_in_physics": [
+      "passive material cohorts",
+      "diagnostic matter IDs if ever used",
+      "instantaneous component labels",
+      "set-valued tracker labels"
+    ],
+    "forbidden_state": [
+      "inside_or_outside bit",
+      "owner field",
+      "entity ID",
+      "genome",
+      "lineage ID in dynamics",
+      "history field before Stage C"
+    ],
+    "equations": {
+      "local_affinity": "A_x = theta_m * sum_y w_xy m_y + theta_n * n_x",
+      "directed_matter_hop": "F_m[x_to_y] = kappa_m * (1-b_xy) * m_x * (1-m_y/m_max) * exp((A_y-A_x)/2)",
+      "net_matter_flux": "J_m[xy] = F_m[x_to_y] - F_m[y_to_x] = -J_m[yx]",
+      "matter_update": "m_x_next = m_x - dt * sum_y J_m[xy]",
+      "resource_flux": "J_n[xy] = D_n * p_n(b_xy) * (n_x-n_y) = -J_n[yx], with p_n in [0,1]",
+      "resource_update": "n_x_tilde = n_x - dt*sum_y J_n[xy] + dt*(S_n[x]-D_n_local[x]-R_native[m_x,n_x]); n_x_next = n_x_tilde - (epsilon_b/2)*sum_incident_e positive(delta_b_e)",
+      "bond_cue": "Psi_xy is a nonnegative symmetric function only of endpoint and fixed-neighbour state; it contains no component, closure, inside or tracker term",
+      "bond_update": "r_on=k_on*Psi_xy; r_off=k_off+k_tension*T_xy; b_eq=r_on/(r_on+r_off); b_xy_next=b_eq+(b_xy-b_eq)*exp(-(r_on+r_off)*dt), with b unchanged when both rates are zero",
+      "bond_fuel": "for delta_b=b_next-b, formation withdraws epsilon_b*positive(delta_b)/2 from each endpoint n and dissociation logs Q_bond=epsilon_b*positive(-delta_b); any symmetric formation limiter is predeclared and input-derived",
+      "primary_response": "Q is a separately frozen substrate-native downstream behavior observable from the ordinary state trajectory; crossing flux and the direct h transduction term are manipulation diagnostics and can never be the rank-4 primary response",
+      "history_extension_rule": "at Stage C, h may modulate a substrate-native physical rate whose purpose, ungated equation and downstream response were frozen before h; no h-specific reporter or response path may be added merely to expose h"
+    },
+    "conservation_identities": {
+      "global_matter": "sum_x m_x_next - sum_x m_x = 0 exactly up to the operation-derived floating-point bound",
+      "regional_matter": "Delta sum_Omega m = -dt * sum_boundary oriented J_m plus declared local sources minus sinks",
+      "resource_and_bond_energy": "Delta(sum_x n_x + epsilon_b*sum_e b_e) + dt*sum_x(D_n_local+R_native) + sum_e Q_bond_e = dt*sum_x S_n, with formation fuel withdrawn explicitly from endpoint n",
+      "face_pair": "the contribution of every active face to its two endpoints sums to zero for every extensive transported channel",
+      "bond_energy": "Delta E_bond = sum_e epsilon_b*positive(delta_b_e) - sum_e Q_bond_e; the positive term equals the two endpoint fuel withdrawals exactly",
+      "controller_onset": "coefficient assignment changes no state byte and has zero state-energy jump; all later flux changes remain in the face ledger"
+    },
+    "admissible_state_obligations": [
+      "derive a CFL bound over a declared compact state and parameter domain proving 0 <= m_x_next <= m_max and n_x_next >= 0",
+      "if one step is not uniformly admissible, use a predeclared deterministic input-derived substep or antisymmetric face-limiter rule common to all clones",
+      "log proposed fluxes, paired limiter coefficients, residuals, bond increments, endpoint fuel withdrawals and heat",
+      "forbid negative-value clipping, output-selected tolerances and arm-specific substep counts"
+    ]
+  },
+  "entity_and_tracker_contract": {
+    "instantaneous_entity": "a matter-rich connected component enclosed by a closed high-bond cut-set under a fixed ID-free detector; the detector is a measurement and never feeds physics",
+    "threshold_source": "analytic or code-only synthetic qualification before any scientific world; never an old substrate threshold or observed yield",
+    "longitudinal_relation": "retain all geometry, size, boundary and flux-compatible associations; splits and merges remain many-to-many events",
+    "forbidden_tracker_inputs": ["final phenotype P", "material retention M", "diagnostic IDs", "future response"],
+    "intervention_support": "fixed cells and physical bond faces selected at t0 from the common state; never recentered or followed"
+  },
+  "future_two_port_factorial": {
+    "availability_namespace": "Y^a(l,e), with 1=open",
+    "local_port": "after Stage C introduces an ordinary experience-dependent field h distinct from structural b, q_L deletes only the pre-existing local h-to-native-rate transduction coefficient on the frozen t0 cell set; q_L never reads or gates b",
+    "environmental_port": "q_E multiplies both orientations of one declared pre-existing resource face flux J_n on the frozen physical high-bond boundary faces; the two endpoint updates remain equal and opposite",
+    "environmental_claim_scope": "declared boundary-resource channel only, not total environment or natural autonomy",
+    "primary_response_exclusion": "Q must be a separately frozen downstream native behavior; the directly gated h transduction term and q_E-multiplied crossing flux are compliance diagnostics only and may not be Y",
+    "arms": {
+      "L0E0": [0,0],
+      "L1E0": [1,0],
+      "L0E1": [0,1],
+      "L1E1": [1,1]
+    },
+    "design_matrix": [
+      [1,0,0,0],
+      [1,1,0,0],
+      [1,0,1,0],
+      [1,1,1,1]
+    ],
+    "rank": 4,
+    "contrasts": {
+      "local_at_E0": "mu_10-mu_00",
+      "local_at_E1": "mu_11-mu_01",
+      "environment_at_L0": "mu_01-mu_00",
+      "environment_at_L1": "mu_11-mu_10",
+      "interaction": "mu_11-mu_10-mu_01+mu_00"
+    },
+    "composition": "local cell coefficient slots and environmental face mobility slots are disjoint; canonical plans and outputs must be identical under L-then-E and E-then-L compilation",
+    "validity_warning": "rank 4 is algebraic only until state preservation, exclusion, conservation, shams and open identity validate every row"
+  },
+  "anti_manufacture_kill_switches": [
+    "any bond rule references a component label, loop closure, inside/outside classification, entity target or tracker output",
+    "closed boundaries form in every law or null state so failure to form a boundary is unavailable",
+    "the environmental gate writes state, gates only one destination, leaves an unpaired face contribution or closes an arbitrary detector graph cut rather than a physical bond face",
+    "the local gate reads or gates structural b, or erases or overwrites the experience-dependent source state h",
+    "a response path or reporter is added specifically for h or b, or the directly gated transduction/crossing term is used as the primary response",
+    "open ports are not exact base dynamics",
+    "A and B supports require diagnostic matter IDs, permanent labels or adaptive tracking",
+    "boundary, controller, source, sink or reservoir work is unlogged",
+    "split, merge, leakage, dissolution, open sheets or percolation are suppressed by construction",
+    "old 03G numerical evidence or confirmation is used as new-substrate evidence"
+  ],
+  "memory_free_vertical_slice": [
+    "code-only scalar and vector face-flux identity with no history field",
+    "formation from state without a pre-drawn shell or component target",
+    "closed-boundary, open-sheet, no-boundary, percolation and dissolution classification",
+    "exact global and regional conservation plus raw per-face crossing ledgers",
+    "material turnover through nonzero crossings while a boundary persists",
+    "fixed-t0 A and B local reaction-edge and physical-face perturbation mechanics with exact neutral shams and order-independent composition",
+    "ID-free instantaneous detector and set-valued split/merge tracker audit"
+  ],
+  "staged_program": {
+    "A": "boundary formation, open identity, scalar reference, positivity and CFL/admissibility proof, exact resource-bond-fuel-heat conservation, face and controller-work qualification; no scientific search",
+    "B": "fresh emergent entity formation and persistence with turnover, detector/tracker/cadence/split/merge controls; still no explicit history",
+    "C": "introduce an ordinary experience-dependent state that may modulate only a previously frozen substrate-native physical rate, add no dedicated reporter/response, requalify everything, then prospectively test history dependence and causal persistence from scratch",
+    "D": "separately seal the single-target rank-4 L by E availability factorial on declared local-transduction and boundary-resource edges",
+    "E": "only after D, seal the separate member-directed K00/K10/K01/K11 A/B individuality factorial with separate Y_A and Y_B",
+    "F": "only after E, define reproduction versus fission and test prospective inheritance; no genome is required or presumed"
+  },
+  "conceptual_transfer_from_03G": {
+    "permitted": [
+      "separate causal persistence from ownership and addressability",
+      "exact cloning, matched shams, outcome firewalls and fail-closed gates",
+      "joint but non-composite phenotype and material evidence",
+      "tracker independence, raw association edges and explicit split/merge events",
+      "fresh prospective revalidation after every architecture change"
+    ],
+    "forbidden": [
+      "any numerical result or effect size",
+      "any threshold, margin, time horizon or valid-world rate",
+      "any seed or namespace",
+      "Mf, its writer or its readout equations",
+      "confirmation status or evidence that the new substrate persists through turnover"
+    ]
+  },
+  "next_action": "human review of the Phase-0 reference architecture only"
+}
