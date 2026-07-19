@@ -259,3 +259,143 @@ Exact next authorized action: implement the primary and genuinely independent an
 - Re-audit end: 2026-07-19 01:35:15 +02:00
 - Ending HEAD at re-audit: `c31bf27ea80a6a3dcc60d0ec5380f668358671ff`
 - Physics/raw access during both reviews: none
+
+## APPENDED CODE-ONLY PRE-RAW IMPLEMENTATION AUDIT — 2026-07-19 02:03:12 +02:00
+
+This was a separate code-only gate after the static-plan PASS. I inspected only the three control files, `analysis/interventional_individuality_stage_b_autopsy.py`, and `analysis/test_interventional_individuality_stage_b_autopsy.py`. I did not open the independent reproducer, any `physics.npz`, Stage-B report, detailed result, forbidden engine/analyzer source, checkpoint or world.
+
+### Exact inspected hashes
+
+| File | SHA-256 at code audit |
+|---|---|
+| frozen plan | `1088478a5e17ea8169143fe20715783cb0727a93727d9f6516313fbe37c5c0f9` |
+| current source allowlist | `c8af265d28b898025b989025ddcf8c39f99c5fe5c48d03113ce7a410ba9ef670` |
+| current reconstruction protocol | `ab47ac077924f146197e27b26f8bb5fa42d691460d5d72c945687942b4e6bbd0` |
+| primary analyzer | `8b539349565da48222457886ca14543de81f5d28fa484e376b6cfecf47bc845c` |
+| focused synthetic tests | `14f35ba9549e5164f49692ec25744d8fefb7e2cdfde84f73d474ceab0566a55a` |
+
+Focused command:
+
+`C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe -m pytest -q analysis/test_interventional_individuality_stage_b_autopsy.py`
+
+Observed result: `50 passed in 0.29s`.
+
+### OBSERVED strengths
+
+- The module is engine-free and import-time inert. The detector, association, tracker, cohort update, classifier precedence, same-track developmental summary, canonical serialization and exclusive partial-root publication substantially follow the frozen specification.
+- The safe NPZ loader uses `allow_pickle=False`, checks the central-directory inventory before NumPy, and rejects duplicate, nested/traversal, object, structured and nonnative members.
+- Synthetic tests cover periodic detector seam/winding behavior, association ties, tracker ID allocation and collapse/many-to-many ambiguity, cohort conservation/bounds/no clipping, candidate boundary values, all classifier branches, outcome precedence, anti-stitching, representative ties, terminal gaps/dissolution/censoring, no-episode zeros and zero-baseline unavailability.
+
+### Binding blockers
+
+1. **The controls are no longer sealed together.** The committed plan still binds protocol `a6304828...` and allowlist `3b86f655...`, while the implementation worktree contains protocol `ab47ac07...` and allowlist `c8af265d...`. The changes add a colon/drive archive rejection, exact fingerprint/trajectory-class encodings, a test journal path and the comparison command. They are reasonable code-only clarifications, but `load_controls` must correctly reject them under the old plan. The final corrected controls must be rehashed, rebound in the plan, recommitted and re-audited before raw.
+
+2. **The destructive-signature law-span gate can be manufactured by an unqualified subtype.** In `build_analysis`, `destructive_laws` is computed from the union of dissolution and high-exchange support, even when only one subtype reaches nine worlds. I ran a deterministic in-memory counterexample: nine dissolution-support worlds across only three laws plus two high-exchange worlds from an unqualified subtype across two other laws produced `qualified=True` and five reported laws. The four-law actionability span must be computed from the support set that actually qualifies: the sole qualifying subtype, or the qualifying common intersection when both subtypes are required to coincide. Add the counterexample as a regression test.
+
+3. **The scientific-read firewall has a substitution window.** `verify_inputs_before_arrays` allowlist-checks and hashes each physics path, closes it, and later `process_world` reopens the path through direct `safe_load_npz`/`numpy.load`. This is not one guarded read of the authenticated bytes and permits path-content substitution between verification and parsing. Pass authenticated bytes or an authenticated open handle into the safe loader, or reverify the exact bytes after parsing before any result is accepted. The same principle applies to controls: `build_package` captures control bytes, but `main` rereads plan/protocol/allowlist after analysis to populate `COMPLETE.json`; use the captured hashes or require unchanged-byte identity before publication.
+
+4. **Output and comparison paths are not fail-closed to the allowlist.** `--output-root`, both `--compare-only` roots and `--qualification` accept arbitrary paths. Comparison reads files directly, does not reject symlink/reparse roots or extra/missing package members as a closed inventory, and does not independently validate each `COMPLETE.json` file/hash inventory before writing `QUALIFICATION.json`. Enforce the exact authorized primary, independent and qualification paths with the same normalized/reparse-aware guard and validate both closed packages.
+
+5. **The runtime report asserts an unchecked pytest version.** The code verifies interpreter, Python, NumPy and byte order, but emits `pytest: 8.4.2` without querying it. Either validate the installed version exactly or remove it from the runtime gate/schema through a resealed amendment.
+
+6. **The focused suite does not yet satisfy the plan's own pre-raw fixture list.** No test exercises casefold, backslash, `..`, symlink or Windows reparse firewall rejection; `validate_raw_arrays` state/finite/neutral-scale/reference/matter/energy identities; exact output schemas; exclusive/no-overwrite partial-root behavior; closed package comparison; or the eligible mechanism law-span logic. Detector weighted lifted geometry and association qualification boundaries also lack direct parity fixtures. Passing 50 current cases is therefore necessary but not sufficient.
+
+7. **Compact-precursor availability needs an exact tested implementation.** Bond availability is initialized permanently true, and low-heterogeneity availability checks only `len(pre) >= 8`, not whether any eight-frame consecutive pre-onset observation window exists. This conflicts with the plan's incomplete-window-to-unavailable rule when a track has gaps. Freeze the intended bond eight-frame opportunity rule if needed, detect consecutive-window availability independently of precursor values, and add missing-frame fixtures.
+
+### INFERRED
+
+The core reconstruction is close, but the present checkpoint can change the selected autopsy outcome and cannot yet prove that parsed raw bytes are the authenticated bytes. The stale embedded hashes independently make the current runner fail closed. These are pre-raw repairable code/control issues and do not license inspecting outcomes, changing thresholds or altering `DEV_FEASIBILITY_FAIL`.
+
+### WHAT WOULD FALSIFY THESE BLOCKERS?
+
+- A corrected law-span regression must return the destructive signature false for the constructed three-law qualifying support, regardless of extra worlds in an unqualified subtype.
+- A guarded-load test must demonstrate that changing or redirecting a shard after authentication cannot reach NumPy or publication.
+- Firewall and publication fixtures must reject every unauthorized/reparse/dotdot/case variant and any pre-existing, incomplete or internally inconsistent package root.
+- The final plan must embed the exact final protocol and allowlist hashes, and the exact code/tests checkpoint must pass the expanded focused suite and another static audit.
+
+### Code-only disposition
+
+**`BINDING_BLOCKERS — NO PASS_CODE_FOR_RAW — DO NOT OPEN physics.npz`**
+
+Exact next authorized action: repair only the primary analyzer/tests and code-only controls, run the expanded synthetic suite, reseal the final plan/protocol/allowlist and request another code-only adversarial audit. Raw execution remains unauthorized.
+
+- Code-audit end: 2026-07-19 02:03:12 +02:00
+- HEAD during audit: `168b86c`
+- Physics/raw access: none
+
+## APPENDED SECOND CODE-ONLY PRE-RAW AUDIT — 2026-07-19 02:29:00 +02:00
+
+This append-only review supersedes the earlier implementation blockers only for the exact final hashes below. It inspected the final plan, protocol, allowlist, primary analyzer/tests, independently structured reproducer and its journal. It did not open, stat, parse or reconstruct any `physics.npz`, scientific world, result report, engine source, checkpoint, enrollment manifest or shard manifest.
+
+### Role, scope and Git state
+
+- Role/run ID: independent adversarial code reviewer, `RUN-20260719-0100-II00-B-AUTOPSY-REDTEAM`.
+- Review interval: second code-only pass begun after the 02:03 blocker report; final audit ended `2026-07-19 02:29:00 +02:00`.
+- Starting and ending HEAD: `168b86c83db22999025b34a5e93aad299529037d` on `codex/interventional-individuality-00-stage-b-autopsy`.
+- Git status was intentionally not invoked because this gate prohibited even broad filesystem statting of the scientific shards; the exact reviewed files were hashed directly instead.
+- Assigned scope: verify closure of the seven prior blockers, source separation, precursor continuity, root/COMPLETE validation, authenticated-byte loading, TOCTOU closure, destructive-support logic, runtime enforcement, classification reconstruction, synthetic byte parity and provenance claims; then issue only a code-for-raw disposition.
+
+### Exact final reviewed hashes
+
+| File | SHA-256 |
+|---|---|
+| analysis plan | `3dda24c82936507566e2abe45186876c22c7954d80b8a4af7b75c9e742e91bb9` |
+| source allowlist | `75b23538e5c7820d96414696727d65baf4bdccde05b3a41c4e49ae686763061b` |
+| reconstruction protocol | `ee7c162755eebbcf57f2ed343c6f5d6bc916b1a971570f4687442cf7f6ff692f` |
+| primary analyzer | `d8961cf7e2e9fd2f93b939584d331db97631cb222b5e5064fdb762d736ab23a5` |
+| independent reproducer | `fe6e72aa18d9b540220f9f3aae185a6c0baae2da88d5b0b1835dba46c3879667` |
+| focused tests | `9aa429f3c1955b94736a42eec8e41fa64550e3c6eeae3d750123cfa384d96dcd` |
+| independent reproducer journal | `abd2ffd0dab29fac286c4f6d69510f7ca84bcfcdcc9f212b0abc69b376e70bfb` |
+
+The final plan embeds exactly the final protocol and allowlist hashes and exact control paths above. The accepted parent remains `c31bf27ea80a6a3dcc60d0ec5380f668358671ff`.
+
+### Reproducible code-only validation
+
+```powershell
+& 'C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe' -m py_compile analysis/interventional_individuality_stage_b_autopsy.py analysis/interventional_individuality_stage_b_autopsy_reproduce.py
+& 'C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe' -m pytest -q analysis/test_interventional_individuality_stage_b_autopsy.py
+& 'C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe' analysis/interventional_individuality_stage_b_autopsy_reproduce.py --self-test
+```
+
+OBSERVED:
+
+- `py_compile`: PASS.
+- Focused primary/cross-implementation suite: `87 passed in 1.01s`, with zero failures and zero skips.
+- Independent self-test: `SELF_TESTS_PASSED`, 26/26 named umbrella fixtures.
+- Deterministic end-to-end empty and persistent synthetic worlds produce canonical-byte-identical world-transition, track-observation and event payloads between the two implementations. Atlas and analysis objects also have explicit cross-implementation canonical-byte parity tests.
+- A deterministic mocked Windows reparse attribute test closes the platform privilege gap that previously caused the live symlink fixture to skip.
+
+### OBSERVED blocker closure
+
+1. **Control reseal:** CLOSED. The plan's protocol/allowlist paths and hashes equal the exact final controls.
+2. **Destructive law span:** CLOSED. Four-law support comes only from the qualifying destructive subtype, or the at-least-nine overlap when both qualify; the earlier three-law counterexample is a regression fixture.
+3. **TOCTOU/authenticated loading:** CLOSED. Both analyzers parse the exact in-memory bytes that pass the second size/SHA-256/Git-blob authentication; a substitution cannot reach NumPy.
+4. **Output/compare scope and COMPLETE validation:** CLOSED. Exact primary, independent and qualification literals are enforced before delegation and again at use; reparse/dot-dot/case variants, nonexact inventories, pre-existing roots, hash lies and overwrite attempts fail closed. All eight package members and COMPLETE semantics are validated before qualification.
+5. **Runtime gate:** CLOSED. Interpreter, Python, NumPy, pytest and byte order are checked rather than asserted.
+6. **Synthetic coverage:** CLOSED for this gate. The final 87-test suite exercises numerical/raw-array identities, detector/tracker/cohort/developmental rules, schema/publication/firewall failures, exact classification aggregation, full zero-count vocabularies and two-implementation parity; the independent 26-fixture suite separately qualifies its implementation.
+7. **Compact precursor continuity:** CLOSED. Availability requires a gap-free same-representative pre-freeze history from onset through freeze minus one, with the exact eight-frame and first-16/final-eight obligations; missing/gapped fixtures fail unavailable.
+
+Additional closures:
+
+- The independently structured reproducer imports no project/scientific module and independently rebuilds every classification field, including atlas counts with zeros, candidate regions and disposition, before comparing canonical bytes. It no longer copies committed atlas or candidate-region fields.
+- The root-manifest exact authenticated bytes, top/shard schemas, population, disposition, bindings and COMPLETE shard/world set are checked before any scientific shard could be loaded. Enrollment and shard manifests remain unopened.
+- No-formation trajectory class is frozen as null and covered by both independent self-tests and end-to-end parity.
+- Open-ended package or arbitrary CLI path behavior found during this audit was repaired and is now regression-tested.
+
+### Independent-reproducer provenance limitation
+
+The reproducer journal now discloses an accidental targeted-`rg` incident. Its command was intended for the plan/protocol after the independent mechanics and 21-fixture suite already passed, but the returned output included isolated primary source/test snippets containing already-frozen signature, maintenance and path-validation literals. No raw data, scientific outcome, classification value, result artifact or primary file was deliberately opened. Some later schema/path hardening overlapped those literals.
+
+INFERRED: this prevents describing the reproducer as a pristine clean-room implementation. It does not require a third implementation for this gate because the substantive detector, association, tracking, cohort, classification and developmental mechanics predated the exposure; the source remains separately structured with no shared project imports; the incident is fully disclosed; and direct adversarial synthetic parity now tests both implementations. Final reports must retain this limitation and use “independently structured/recreated,” not an unqualified clean-room claim.
+
+### Scientific and security boundaries
+
+- `DEV_FEASIBILITY_FAIL` remains immutable; this audit authorizes no reinterpretation, candidate selection, threshold change, new seed/family, intervention, causal claim or Stage C.
+- No scientific outcome was observed. The later raw run remains one bounded, allowlisted developmental autopsy followed by exact package comparison and human review.
+- WHAT WOULD FALSIFY THIS PASS?: any hash/source drift from the table, non-absent authorized output root, runtime mismatch, input-binding/Git-blob/raw-layout/numerical failure, committed classification or candidate-set mismatch, primary-independent byte mismatch, COMPLETE/qualification failure, or firewall violation. Any such event must stop without repair from outcomes.
+
+### Final code-only disposition
+
+**`PASS_CODE_FOR_RAW`**
+
+Exact next authorized action: checkpoint the exact reviewed code-only state and obtain the mission's explicit raw authorization. This journal itself does not open raw, execute the autopsy or authorize any work beyond the single frozen allowlisted run and byte-identity qualification.

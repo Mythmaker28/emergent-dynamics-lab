@@ -97,6 +97,7 @@
     "docs/agent_journals/2026-07-19/0058_stage-b-autopsy_RUN-20260719-0058-II00-B-AUTOPSY.md",
     "docs/agent_journals/2026-07-19/0100_stage-b-autopsy-redteam_RUN-20260719-0100-II00-B-AUTOPSY-REDTEAM.md",
     "docs/agent_journals/2026-07-19/0100_stage-b-autopsy-reproducer_RUN-20260719-0100-II00-B-AUTOPSY-REPRO.md",
+    "docs/agent_journals/2026-07-19/0105_stage-b-autopsy-tests_RUN-20260719-0105-II00-B-AUTOPSY-TESTS.md",
     "results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY/primary/",
     "results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY/primary.partial/",
     "results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY/independent/",
@@ -108,7 +109,9 @@
     "docs/RUN_INDEX.md"
   ],
   "targeted_commands_only": [
+    "C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe -m py_compile analysis/interventional_individuality_stage_b_autopsy.py analysis/interventional_individuality_stage_b_autopsy_reproduce.py",
     "C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe -m pytest -q analysis/test_interventional_individuality_stage_b_autopsy.py",
+    "C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe analysis/interventional_individuality_stage_b_autopsy_reproduce.py --self-test",
     "C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe analysis/interventional_individuality_stage_b_autopsy.py --plan docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_AUTOPSY_ANALYSIS_PLAN.json --allowlist docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_AUTOPSY_SOURCE_ALLOWLIST.json --output-root results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY/primary",
     "C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe analysis/interventional_individuality_stage_b_autopsy_reproduce.py --plan docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_AUTOPSY_ANALYSIS_PLAN.json --allowlist docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_AUTOPSY_SOURCE_ALLOWLIST.json --output-root results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY/independent",
     "C:/Users/tommy/Documents/ising v3/.venv/Scripts/python.exe analysis/interventional_individuality_stage_b_autopsy.py --compare-only --primary-root results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY/primary --independent-root results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY/independent --qualification results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY/QUALIFICATION.json"

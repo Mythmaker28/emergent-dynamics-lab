@@ -115,3 +115,47 @@ leave mechanisms observationally unresolved.
 ## Handoff
 
 IN PROGRESS.
+
+## PRE-RAW CODE CHECKPOINT — 2026-07-19 02:26:18 +02:00
+
+The initial frozen controls were preserved in commit `168b86c`. Subsequent code-only adversarial tests found and
+closed, before any physics read, an incorrectly unioned destructive-signature law span, authenticated-read TOCTOU,
+unconfined publication paths, an unchecked pytest version, incomplete precursor-window availability, incomplete
+publication inventory checks, and underspecified nested output schemas. The controls were amended only to make those
+pre-data rules exact; no threshold, family member, classification, outcome or Stage-B disposition changed.
+
+Final resealed controls for the requested code checkpoint:
+
+- plan: `3dda24c82936507566e2abe45186876c22c7954d80b8a4af7b75c9e742e91bb9`;
+- reconstruction protocol: `ee7c162755eebbcf57f2ed343c6f5d6bc916b1a971570f4687442cf7f6ff692f`;
+- source allowlist: `75b23538e5c7820d96414696727d65baf4bdccde05b3a41c4e49ae686763061b`;
+- primary analyzer: `d8961cf7e2e9fd2f93b939584d331db97631cb222b5e5064fdb762d736ab23a5`;
+- independent reproducer: `fe6e72aa18d9b540220f9f3aae185a6c0baae2da88d5b0b1835dba46c3879667`;
+- focused synthetic tests: `9aa429f3c1955b94736a42eec8e41fa64550e3c6eeae3d750123cfa384d96dcd`.
+
+The focused suite passes `87/87` with zero skips. It includes malicious archives, numerical identities, path and
+reparse rejection, authenticated-byte substitution, no-overwrite publication, closed-package comparison, all outcome
+branches, same-track/anti-stitching cases, compact precursor gaps, qualifying-subtype law span, aggregate atlas and
+analysis parity, plus end-to-end empty and persistent-3x3 parity for transitions, observations and events. The
+independent self-test passes `26/26`. A final defense-in-depth test initially failed because arbitrary compare paths
+were rejected inside `compare_packages` but not before dispatch in `main`; exact path validation was added at both
+layers and the complete suite then passed. This failure occurred entirely on synthetic temporary paths before raw.
+
+The independent reproducer was mechanically authored separately and imports no project/scientific module. During a
+later hardening pass, its agent accidentally issued a targeted `rg` whose scope expanded and exposed limited primary
+source/test snippets containing plan-frozen signature and maintenance literals. No raw, outcome or primary output was
+exposed, and the incident is fully recorded in the reproducer journal. The adversarial reviewer judged this a
+disclosed procedural limitation rather than grounds for replacement because the core mechanics predated it; the final
+work must not call the reproduction strictly clean-room.
+
+`DEV_FEASIBILITY_FAIL` remains immutable. No Stage C, new family, seed, retry, selected subset, engine, runner,
+checkpoint, causal cut, memory or individuality analysis has been opened. All 64 `physics.npz` files remain unopened
+at this checkpoint. Exact next action: independent final hash audit, commit and push this code-only checkpoint, then
+execute the three allowlisted primary/reproducer/comparison commands exactly once if and only if the reviewer returns
+`PASS_CODE_FOR_RAW`.
+
+The independent adversarial reviewer returned `PASS_CODE_FOR_RAW` at the exact hashes above after independently
+re-running `87 passed, 0 skipped`, the `26/26` reproducer self-test, compilation, binding checks and diff hygiene.
+Red-team journal SHA-256 at authorization is
+`f646fbff32010b3f33b486702733c268d746660498cbe870a9b39a3fb8ded249`. Raw remains unopened until the coherent
+code-only checkpoint is committed and pushed.

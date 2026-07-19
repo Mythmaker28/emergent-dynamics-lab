@@ -16,7 +16,7 @@
   "exact_raw_inventory": {
     "gate": "exactly these 46 keys, with no missing or extra key",
     "archive_loader": {
-      "zip_gate": "inspect the ZIP central directory before NumPy: reject duplicate member names, duplicate logical keys, directories, slash or backslash path separators, absolute names, dot/dotdot/traversal names and any member not exactly one expected <key>.npy",
+      "zip_gate": "inspect the ZIP central directory before NumPy: reject duplicate member names, duplicate logical keys, directories, slash or backslash path separators, colon/drive syntax, absolute names, dot/dotdot/traversal names and any member not exactly one expected <key>.npy",
       "numpy_gate": "load only with numpy.load(path,allow_pickle=False); reject object, structured, subarray and nonnative dtypes before any calculation",
       "membership": "the central-directory member set and NumPy files set must each equal exactly the 46 expected <key>.npy members/keys"
     },
@@ -137,7 +137,8 @@
     },
     "temporary_contact": "after each transition, emit annotation-only TEMPORARY_CONTACT for each pair of distinct resolved target components with minimum periodic cell-to-cell Manhattan distance exactly 2; it creates no ancestry edge",
     "world_unresolved": "true if any track or event is unresolved",
-    "canonical_onset_support_fingerprint": "frame plus comma-separated ascending row-major onset cells; used only for deterministic reporting/tie ordering and never association"
+    "canonical_onset_support_fingerprint": "ASCII decimal onset_frame without padding + ':' + comma-separated ASCII decimal ascending row-major onset cell indices without padding; example 0:13,14,25; used only for deterministic reporting/tie ordering and never association",
+    "trajectory_class_encoding": "PATHWAY+'|'+(TERMINAL_STATE or 'NONE')+'|'+FORMATION_TIME_BIN+'|SPLIT_MERGE='+('1' iff any world SPLIT or MERGE else '0')+'|CENSORED='+('1' iff world right_censored else '0')"
   },
   "passive_cohort": {
     "enrollment": "each track independently starts q=state_m on its own first support and q=0 elsewhere; split children, merge children and appearances never inherit a parent cohort",
@@ -256,6 +257,10 @@
   "canonical_classification": {
     "schema": "INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-CLASSIFICATION-v1",
     "top_level_keys": ["atlas", "candidate_regions", "disposition", "manifest_sha256", "schema", "worlds"],
+    "atlas_row_keys": ["law_id", "per_ic", "region_id", "reproducible_candidate"],
+    "per_ic_row_keys": ["complete", "counts", "denominator", "ic_id"],
+    "counts_keys": ["EMPTY_OR_GAS", "STATIC_CRYSTAL_OR_SHELL", "PERCOLATED", "DISSOLVED", "ACTIVE_UNBOUNDED", "PERSISTENT_NO_TURNOVER", "TURNOVER_WITHOUT_PERSISTENCE", "TRACKING_UNRESOLVED", "BOUNDED_ACTIVE_TURNOVER_CANDIDATE"],
+    "counts_rule": "emit every counts_keys entry including exact integer zero; atlas follows manifest law order and per_ic follows soup,compact; region_id equals law_id; candidate_regions is the manifest-order list of reproducible_candidate law IDs",
     "encoding": "json.dumps(object,sort_keys=True,separators=(',',':'),ensure_ascii=False,allow_nan=False)+'\\n'",
     "gate": "bytes and SHA-256 must exactly equal committed classification"
   },
