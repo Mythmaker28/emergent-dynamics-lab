@@ -1,0 +1,31 @@
+{
+  "mission": "FUTURE-LIFECYCLE-CONTRACT-00",
+  "scope": "SOURCE_ONLY_AND_SYNTHETIC_QUALIFICATION",
+  "allowed_existing_reads": [
+    "edlab/substrates/lattice_bond/__init__.py",
+    "edlab/substrates/lattice_bond/instrumentation.py",
+    "tests/test_lattice_bond_instrumentation.py",
+    "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_REPORT.md",
+    "docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_AUTOPSY_REPORT.md"
+  ],
+  "allowed_new_artifacts": [
+    "edlab/substrates/lattice_bond/lifecycle.py",
+    "tests/test_future_lifecycle_contract.py",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_*.json",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_*.md",
+    "docs/agent_journals/2026-07-19/*FUTURE-LIFECYCLE-CONTRACT-00*.md"
+  ],
+  "forbidden_reads": [
+    "all Stage-B physics shards",
+    "all shard filenames and per-world metadata",
+    "all Stage-B manifests and classifications beyond the two committed reports",
+    "all failed-autopsy inputs and analyzers",
+    "all current-family trajectories and candidate records",
+    "all results directories",
+    "edlab/substrates/lattice_bond/stage_b.py",
+    "edlab/substrates/lattice_bond/stage_b_reproduce.py"
+  ],
+  "historical_inference_prohibited": true,
+  "current_family_retrofit_prohibited": true,
+  "engine_execution_prohibited": true
+}
