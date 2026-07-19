@@ -30,6 +30,17 @@ from .instrumentation import (
     detect_components,
     track_components,
 )
+from .lifecycle import (
+    LifecycleContractError,
+    LifecyclePublicationError,
+    LifecycleRunClosure,
+    LifecycleTerminalRecord,
+    LifecycleViolation,
+    canonical_lifecycle_bytes,
+    qualify_and_write_lifecycle_contract,
+    qualify_lifecycle_contract,
+    verify_lifecycle_document,
+)
 
 __all__ = [
     "AdmissibilityError",
@@ -58,4 +69,13 @@ __all__ = [
     "component_diagnostics",
     "detect_components",
     "track_components",
+    "LifecycleContractError",
+    "LifecyclePublicationError",
+    "LifecycleRunClosure",
+    "LifecycleTerminalRecord",
+    "LifecycleViolation",
+    "canonical_lifecycle_bytes",
+    "qualify_and_write_lifecycle_contract",
+    "qualify_lifecycle_contract",
+    "verify_lifecycle_document",
 ]

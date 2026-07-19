@@ -10,6 +10,11 @@ The implementation consumes only the generic tracker output: track records, trac
 explicit ordered schedule of sampled frames. It must not consume matter fields, physics, candidate labels,
 classifications, laws, seeds or outcomes.
 
+Association-edge diagnostics remain separately persisted tracker-audit evidence and do not enter lifecycle-state
+assignment. The lifecycle-input digest therefore binds the complete ordered schedule plus tracks, events and
+assignments, not the association-edge payload. A future raw package must bind those edge diagnostics under its own
+generic tracker schema; their omission here must not be described as a digest of all `TrackingResult` fields.
+
 ## Contract
 
 Let `F=(f_0,...,f_H)` be a non-empty, strictly increasing schedule. For every observed track `i`, let `b_i` and `e_i`
@@ -34,7 +39,7 @@ validator never infers closure from absence.
 |---|---:|---:|---|
 | `APPEARANCE` | 0 | 1 | onset only |
 | `CONTINUATION` | 1 | 1, same track | neither onset nor termination |
-| `TEMPORARY_CONTACT` | at least 2 | same tracks | neither onset nor termination |
+| `TEMPORARY_CONTACT` | exactly 2 | same tracks | neither onset nor termination |
 | `DISSOLUTION` | 1 | 0 | terminal |
 | `SPLIT` | 1 | at least 2 | source terminal; target onset |
 | `MERGE` | at least 2 | 1 | every source terminal; target onset |

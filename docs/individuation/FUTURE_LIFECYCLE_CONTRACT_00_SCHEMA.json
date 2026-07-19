@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "future-lifecycle-contract/v1",
+  "title": "Future lifecycle closure contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "lifecycle_binding",
+    "qualification",
+    "sampled_frames",
+    "schema_version",
+    "source_binding",
+    "terminal_records",
+    "validator_version"
+  ],
+  "properties": {
+    "lifecycle_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["records_sha256", "terminal_record_count"],
+      "properties": {
+        "records_sha256": {"$ref": "#/$defs/sha256"},
+        "terminal_record_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "qualification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["all_tracks_closed", "disposition", "run_terminal_state"],
+      "properties": {
+        "all_tracks_closed": {"const": true},
+        "disposition": {"const": "QUALIFIED"},
+        "run_terminal_state": {
+          "enum": ["EMPTY_TRACK_SET", "ALL_TRACKS_CLOSED"]
+        }
+      }
+    },
+    "sampled_frames": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "integer", "minimum": 0}
+    },
+    "schema_version": {"const": "future-lifecycle-contract/v1"},
+    "source_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assignment_count",
+        "event_count",
+        "lifecycle_input_sha256",
+        "track_count"
+      ],
+      "properties": {
+        "assignment_count": {"type": "integer", "minimum": 0},
+        "event_count": {"type": "integer", "minimum": 0},
+        "lifecycle_input_sha256": {"$ref": "#/$defs/sha256"},
+        "track_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "terminal_records": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/terminal_record"}
+    },
+    "validator_version": {"const": "1.0.0"}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "track_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "integer", "minimum": 0}
+    },
+    "terminal_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_kind",
+        "first_observed_frame",
+        "last_component_index",
+        "last_observed_frame",
+        "lineage_status",
+        "parent_track_ids",
+        "successor_track_ids",
+        "terminal_event_id",
+        "terminal_frame",
+        "terminal_state",
+        "track_id"
+      ],
+      "properties": {
+        "evidence_kind": {"enum": ["TRACK_EVENT", "DECLARED_HORIZON"]},
+        "first_observed_frame": {"type": "integer", "minimum": 0},
+        "last_component_index": {"type": "integer", "minimum": 0},
+        "last_observed_frame": {"type": "integer", "minimum": 0},
+        "lineage_status": {"enum": ["RESOLVED", "UNRESOLVED"]},
+        "parent_track_ids": {"$ref": "#/$defs/track_ids"},
+        "successor_track_ids": {"$ref": "#/$defs/track_ids"},
+        "terminal_event_id": {
+          "oneOf": [
+            {"$ref": "#/$defs/sha256"},
+            {"type": "null"}
+          ]
+        },
+        "terminal_frame": {"type": "integer", "minimum": 0},
+        "terminal_state": {
+          "enum": [
+            "DISSOLVED_DETECTED_TRACK",
+            "SPLIT_INTO_TRACKS",
+            "MERGED_INTO_TRACK",
+            "UNRESOLVED_HANDOFF",
+            "RIGHT_CENSORED_AT_HORIZON"
+          ]
+        },
+        "track_id": {"type": "integer", "minimum": 0}
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"terminal_state": {"const": "RIGHT_CENSORED_AT_HORIZON"}},
+            "required": ["terminal_state"]
+          },
+          "then": {
+            "properties": {
+              "evidence_kind": {"const": "DECLARED_HORIZON"},
+              "terminal_event_id": {"type": "null"}
+            }
+          },
+          "else": {
+            "properties": {
+              "evidence_kind": {"const": "TRACK_EVENT"},
+              "terminal_event_id": {"$ref": "#/$defs/sha256"}
+            }
+          }
+        }
+      ]
+    }
+  }
+}
