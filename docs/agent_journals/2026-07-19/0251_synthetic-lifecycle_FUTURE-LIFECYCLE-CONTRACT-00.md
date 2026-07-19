@@ -3,7 +3,7 @@
 - Role: independent adversarial synthetic-fixture reviewer
 - Run ID: `FUTURE-LIFECYCLE-CONTRACT-00-SYNTHETIC-REVIEW`
 - Start: 2026-07-19 02:51:20 +02:00
-- End: pending parent integration
+- End: 2026-07-19 02:56:12 +02:00
 - Starting Git branch: `codex/future-lifecycle-contract-00`
 - Starting Git HEAD: `389dac1127e3035cdf195c1905965832a299ad6d`
 - Starting worktree: clean
@@ -47,7 +47,7 @@ The smallest exhaustive future contract has five mutually exclusive terminal sta
 4. `TRACKING_UNRESOLVED`
 5. `HORIZON_CENSORED`
 
-Each terminal record should carry at least `track_id`, `terminal_state`, `last_observed_frame`, `terminal_frame`, and sorted unique `successor_track_ids`. The first four are backed by exactly one matching terminal event. `HORIZON_CENSORED` is backed by the track's presence in the declared last sampled frame and has no successor.
+Each terminal record should carry at least `track_id`, `terminal_state`, `last_observed_frame`, `terminal_frame`, sorted unique `successor_track_ids`, and an unambiguous `evidence_event_index` (null only for horizon censoring). The first four terminal states are backed by exactly one matching terminal event. `HORIZON_CENSORED` is backed by the track's presence in the declared last sampled frame and has no successor.
 
 The envelope must declare an ordered, unique sample-frame schedule, not merely an integer horizon. Temporal adjacency is adjacency in that schedule. This keeps cadence explicit and permits a machine-verifiable distinction between a legal next sampled frame and a gap even when simulation-step values are not consecutive integers.
 
@@ -115,7 +115,7 @@ All fixtures are hand-built tracker records/events. No engine state is needed.
 | F24 | Event or terminal record references a missing successor | dangling-track-reference error |
 | F25 | Existing successor starts correctly but parent/child fields do not reciprocate | lineage-mismatch error |
 | F26 | Source appears among its own successors or ancestry graph contains a cycle | self/cyclic-lineage error |
-| F27 | Terminal record successor list differs from event targets, is unsorted, or has duplicates | terminal-record mismatch; canonicalizer must not hide semantic duplicates |
+| F27 | Terminal record successor list differs from event targets or has duplicates | terminal-record mismatch; canonicalizer must not hide a semantic duplicate |
 | F28 | Two event rows reuse the same source/target component key inconsistently | component/event consistency error |
 | F29 | Track has `unresolved=True` but no unresolved origin/source event and no other basis | unresolved-provenance error |
 | F30 | Unresolved target is treated as already terminal solely because of its flag | missing-own-terminal error for that target |
@@ -123,6 +123,7 @@ All fixtures are hand-built tracker records/events. No engine state is needed.
 | F32 | Unknown event kind or unknown terminal-state token | closed-enum/schema error; fail closed |
 | F33 | Extra undeclared field in the raw terminal record | strict-schema error if `additionalProperties: false` is the contract |
 | F34 | Non-canonical numeric/string type for IDs or frames | strict-type error; booleans must not pass as integers |
+| F35 | A published raw terminal row is semantically valid but its successor array or row order violates the declared canonical ordering | dedicated noncanonical-raw error; the generator may normalize semantic inputs before publication, but the raw validator must reject bytes that claim to be canonical and are not |
 
 ## Canonical serialization qualification
 
@@ -182,4 +183,69 @@ The first full-file read of the generic instrumentation source was truncated by 
 
 Implement the validator/generator in a new generic future-only module, leave the frozen Stage-B pipeline untouched, run only hand-built fixtures matching this matrix, and require a canonical machine-readable coverage identity before any future new family can publish raw output.
 
-- Ending Git state: journal added; implementation and tests untouched by this reviewer.
+- Ending Git branch: `codex/future-lifecycle-contract-00`
+- Ending Git HEAD observed: `869c5b2f0f27c759417be80580c85a368b17c897` (advanced by parent while this review was in progress)
+- Ending Git state: this journal has final reviewer amendments relative to that checkpoint; implementation and tests were untouched by this reviewer.
+
+## Final read-only implementation-to-matrix audit
+
+The parent subsequently authorized a read-only audit of exactly:
+
+- `edlab/substrates/lattice_bond/lifecycle.py`;
+- `tests/test_future_lifecycle_contract.py`;
+- `docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SCHEMA.json`;
+- `docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SPEC.md`;
+- `docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SOURCE_ALLOWLIST.json`;
+- this journal.
+
+No other path was discovered or inspected. The first focused synthetic test run used the primary repository's existing Python environment because this isolated worktree has no `.venv` executable:
+
+```powershell
+& 'C:\Users\tommy\Documents\ising v3\.venv\Scripts\python.exe' -m pytest tests/test_future_lifecycle_contract.py -q
+```
+
+Observed result at that checkpoint: `44 passed in 0.19s`. No engine or scientific world was initialized.
+
+### Matrix coverage observed
+
+The committed tests exercise all five terminal states, a zero-track closure, late appearance, non-unit cadence, one-to-many and many-to-many unresolved handoff, temporary contact, exact terminal-row bijection, valid-input canonical-order invariance, input/record digests, independent document verification, overwrite refusal, stale-partial preservation, late-target publication races, open-partial races, silent pre-horizon termination, sample gaps, missing onsets/continuations, terminal timing, duplicate/conflicting terminals, unknown kinds and IDs, duplicate/empty/colliding tracks, reciprocal lineage, unresolved provenance, assignment equality, event cardinality/polarity, target onset, post-terminal references, lineage cycles, strict integer types, malformed-input diagnostic ordering, generic tracker compatibility, and closed schema enums.
+
+The schema parses as JSON and its closed terminal enum, evidence polarity, nonnegative integer domains, SHA-256 pattern, top-level closed fields and terminal-row closed fields match the Python document. The installed environment lacks the optional `jsonschema` package, so no third-party metaschema execution was claimed.
+
+### Adversarial findings and verified repairs
+
+1. **Malformed collision diagnostics were initially order-dependent.** Two tracks claiming the same component caused the first-seen owner to enter the violation detail and downstream event mapping. A hand-built permutation produced unequal machine-readable violation tuples. The parent changed component and assignment ownership to grouped, sorted claims and added a collision-permutation regression. The independent probe now returns `collision_equal=True`.
+
+2. **Unknown-event diagnostic IDs were order-sensitive.** `UNKNOWN_EVENT_KIND` was rejected before ordinary event normalization, while `_event_seed` hashed raw `repr` values. Reversing corresponding source/target ID and component tuples changed only the violation's `event_id`. The repaired seed now applies stable typed normalization and order-independent sequence handling before rejection, with a dedicated regression. The independent probe now returns `unknown_equal=True`.
+
+3. **Publication initially returned success after a partial-path replacement.** The first writer closed a deterministic partial file before calling `os.link` and did not verify the linked target. A hand-built synthetic interposition that replaced the partial immediately before the link yielded:
+
+```text
+returned_success= True
+target_matches_contract= False
+target_bytes= b'swapped partial bytes'
+```
+
+The repaired writer uses an invocation-unique `mkstemp` partial, retains the owned descriptor through the hard-link operation, and verifies owned device/inode identity plus canonical target bytes before success. Cleanup is identity-guarded. The new swapped-link regression and an independent replay both fail closed with `LifecyclePublicationError`, preserve the foreign target and foreign source bytes, and leave zero owned partials.
+
+### Digest binding judgment
+
+For valid inputs, the source digest includes the explicit sampled-frame schedule and normalized complete track, event and assignment semantics; the record digest covers the full canonical terminal-row list. The document verifier recomputes the contract and requires exact canonical bytes, so count, digest or row tampering fails. Diagnostic edges are intentionally outside the frozen spec's lifecycle input algebra and therefore need not enter this digest.
+
+### Final verification
+
+Final exact-file SHA-256 values reviewed:
+
+- lifecycle module: `3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053`;
+- focused tests: `e940199e7befaf7e60535867525d163e3abc807a951265c78a5f7b1d0acddd47`;
+- raw schema: `629bfdc3e6d3017948ad1b07472bea881419c86ea9fa283494a418f27913966c`;
+- frozen specification: `81c5af7cd91b9a780d560b7b7bed52b80b56348e29499c385b696a25e8686974`;
+- source allowlist: `d8743e1f2eb98de610df22d67059ce1132472e8eea405faf7b91ed4c9bb8253a`.
+
+The final focused run returned `50 passed in 0.22s`. The two diagnostic-permutation probes returned equality, and the swapped-partial publication probe failed closed while preserving unowned bytes. An exact-allowlist `git diff --check` completed without findings.
+
+### Final reviewer disposition
+
+**PASS — no remaining blocker in the authorized source-only and synthetic lifecycle-contract scope.** The contract establishes total, single-valued, canonically bound terminal accounting for future tracker outputs and fail-closed publication under the exercised races. It does not validate tracker identity, diagnose the closed family, or make any scientific lifecycle claim.
+
+- Final audit end: 2026-07-19 03:15:50 +02:00
