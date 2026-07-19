@@ -2826,3 +2826,25 @@ threshold, IC, law, horizon or world was changed after outcome access.
 gate. It does not show absence of individuality, autonomy, memory, ownership, reproduction or life. It does not
 authorize causal-conductance selection, cuts, a memory writer, adaptive extension, replacement worlds or Stage C.
 The exact next action is human review of the completed Stage-B package.
+
+## D-100 — Stage-B developmental autopsy stops AUDIT_INVALID
+
+**Date:** 2026-07-19
+
+**Decision:** Close the raw-only Stage-B developmental autopsy as **AUDIT_INVALID**. The pre-raw plan, exact
+46-array reconstruction protocol and source allowlist were frozen before physics access. Two source-separated,
+engine-free implementations passed 87 focused tests, 26 reproducer self-test groups and an independent adversarial
+`PASS_CODE_FOR_RAW` review at pushed checkpoint `085bf5e`.
+
+**Binding failure:** the primary raw invocation stopped because track 0 ended before the horizon without an explicit
+`DISSOLUTION`; the independent raw invocation stopped because its deterministic reporting representative ended before
+the horizon without an explicit `DISSOLUTION`. These are the same frozen terminal-validity predicate. No final or
+partial package was created, so the byte-comparison command and `QUALIFICATION.json` are prohibited and remain
+unrun. A preceding independent publication-parent error happened before physics access; creating only the exact
+allowlisted empty parent was benign scaffolding, not a scientific retry.
+
+**Claim and program boundary:** no complete transition table, trajectory atlas, candidate-duration analysis,
+formation/maintenance estimate or developmental mechanism result exists. The failure cannot be reinterpreted as
+`RAW_INSUFFICIENT`, transient/heterogeneous candidates, or absence of individuality. The original
+`DEV_FEASIBILITY_FAIL` remains exact. No code repair, raw retry, selected subset, threshold relaxation, new family or
+Stage C is authorized. Human review of the fail-closed autopsy is the only next action.

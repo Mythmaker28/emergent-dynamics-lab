@@ -399,3 +399,45 @@ INFERRED: this prevents describing the reproducer as a pristine clean-room imple
 **`PASS_CODE_FOR_RAW`**
 
 Exact next authorized action: checkpoint the exact reviewed code-only state and obtain the mission's explicit raw authorization. This journal itself does not open raw, execute the autopsy or authorize any work beyond the single frozen allowlisted run and byte-identity qualification.
+
+## APPENDED POST-RAW FAILURE REVIEW — 2026-07-19 02:34:41 +02:00
+
+This review is limited to the two error strings supplied by the lead and a static reread of the already-reviewed plan and analyzer branches that emit them. I did not open or stat any `physics.npz`, output package, detailed scientific result, world row, checkpoint, engine source, enrollment manifest or shard manifest.
+
+### Supplied execution facts
+
+- Primary first and only raw invocation ended after authenticated reads with `AUDIT_ERROR: track 0 ends without dissolution`.
+- The independent command initially stopped before any raw read because the exact base publication parent was absent. After creation of only that authorized empty parent, its first invocation that reached raw ended with `AUDIT_INVALID: representative track ended before horizon without dissolution`.
+- The lead reports no primary or independent final/partial root, no analyzer/control edit and no scientific retry.
+- Review HEAD: `085bf5e9aad9d457512ed6a060dbb828393c3ffa` on `codex/interventional-individuality-00-stage-b-autopsy`.
+- Static hashes remained the qualified versions: plan `3dda24c82936507566e2abe45186876c22c7954d80b8a4af7b75c9e742e91bb9`, primary `d8961cf7e2e9fd2f93b939584d331db97631cb222b5e5064fdb762d736ab23a5`, independent `fe6e72aa18d9b540220f9f3aae185a6c0baae2da88d5b0b1835dba46c3879667`.
+
+### OBSERVED static equivalence
+
+- The frozen plan defines `PERSISTENT_OTHER` only for a representative reaching frame 159 and explicitly states that a pre-horizon track end without an explicit `DISSOLUTION` is an audit failure.
+- The primary raises `AuditError` exactly when its deterministic reporting representative has observations, does not reach frame 159 and has no matching explicit `DISSOLUTION` event. Its CLI renders that exception with the transport prefix `AUDIT_ERROR`.
+- The independent reproducer applies the same predicate to its deterministic representative and raises `AuditError("representative track ended before horizon without dissolution")`; its CLI renders that exception with `AUDIT_INVALID`.
+
+INFERRED: the two messages instantiate the same frozen scientific/audit rule. The difference is only the CLI exception prefix and wording; it is not a difference in terminal-state semantics, threshold, tracker rule or observed outcome.
+
+### Required disposition and publication consequences
+
+- The plan's total decision algorithm gives `AUDIT_INVALID` precedence on any audit failure. Therefore the terminal autopsy outcome is **`AUDIT_INVALID`**. It cannot be recoded as `RAW_INSUFFICIENT`, a destructive transition, censoring, dissolution, or any developmental signature.
+- The primary's `AUDIT_ERROR` prefix does not define a fifth outcome; it reports the exception that semantically selects the frozen `AUDIT_INVALID` branch.
+- Publication occurs only after complete package construction. Because both failures precede publication and neither final nor sibling `.partial` root exists, there is no COMPLETE package to compare or qualify.
+- The comparison command must remain unrun. It requires both exact final roots, all eight closed members and valid COMPLETE objects; none exists. A qualification file must not be produced from exception strings.
+- Creating only `results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-AUTOPSY/` as an empty regular parent is benign scaffolding. It is the exact authorized parent needed by the independent output-root guard, contains no scientific or package payload, is neither `independent`, `primary` nor either sibling `.partial`, and changes no input, rule or outcome. The pre-parent failure did not touch raw, so the later invocation was the independent implementation's first scientific raw invocation. Preserve the empty parent; no cleanup is required or authorized.
+
+### Kill switches and exact limits
+
+- Do not edit either analyzer, controls, tracker, terminal rule or publication contract in response to this failure.
+- Do not retry either raw execution, synthesize a missing `DISSOLUTION`, inspect which world/track failed, inspect partial outcomes, open detailed results, or run comparison.
+- Do not reinterpret this instrumentation/audit failure as evidence for or against individuality, persistence, turnover or any developmental mechanism.
+- `DEV_FEASIBILITY_FAIL` remains immutable, and Stage C remains closed.
+- WHAT WOULD FALSIFY THIS REVIEW?: evidence that either error was emitted from a different predicate than the cited static branches, that a complete final/partial package actually exists, or that the empty base parent contains payload. None was inspected here; the review relies on the lead's exact supplied execution facts for those filesystem statements.
+
+### Independent post-raw disposition
+
+**`AUDIT_INVALID — STOP; NO RETRY; DO NOT COMPARE`**
+
+Exact next authorized action: record the audit-invalid terminal disposition and execution provenance for human review while preserving the frozen code, controls and absence of result packages. No further scientific computation is authorized.

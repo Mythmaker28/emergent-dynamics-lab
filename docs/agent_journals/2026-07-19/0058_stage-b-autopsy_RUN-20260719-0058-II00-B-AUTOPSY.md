@@ -3,11 +3,11 @@
 - **Role:** primary raw-only developmental-analysis integrator
 - **Run ID:** `RUN-20260719-0058-II00-B-AUTOPSY`
 - **Start time:** 2026-07-19 00:58 +02:00
-- **End time:** IN PROGRESS
+- **End time:** 2026-07-19 02:37:09 +02:00
 - **Starting branch:** `codex/interventional-individuality-00-stage-b-autopsy`
 - **Starting HEAD:** `c31bf27ea80a6a3dcc60d0ec5380f668358671ff`
 - **Starting Git state:** clean isolated sparse worktree at the exact accepted Stage-B parent
-- **Ending Git state:** IN PROGRESS
+- **Ending Git state:** coherent final audit closure committed and pushed; no final or partial autopsy package
 
 ## Assigned scope
 
@@ -114,7 +114,7 @@ leave mechanisms observationally unresolved.
 
 ## Handoff
 
-IN PROGRESS.
+Superseded by the final `AUDIT_INVALID` handoff below.
 
 ## PRE-RAW CODE CHECKPOINT — 2026-07-19 02:26:18 +02:00
 
@@ -159,3 +159,50 @@ re-running `87 passed, 0 skipped`, the `26/26` reproducer self-test, compilation
 Red-team journal SHA-256 at authorization is
 `f646fbff32010b3f33b486702733c268d746660498cbe870a9b39a3fb8ded249`. Raw remains unopened until the coherent
 code-only checkpoint is committed and pushed.
+
+## RAW EXECUTION, OBSERVED FAILURE AND FINAL HANDOFF — 2026-07-19 02:37:09 +02:00
+
+The coherent code-only checkpoint was committed as `085bf5e9aad9d457512ed6a060dbb828393c3ffa` and pushed before
+raw access. Output final/partial roots and `QUALIFICATION.json` were confirmed absent and the Git worktree/index were
+clean.
+
+The exact primary allowlisted command was executed once. After authenticating the frozen inputs it returned exit 2:
+
+`AUDIT_ERROR: track 0 ends without dissolution`
+
+It published no final or partial root. The exact independent command first failed before physics access because the
+planned publication parent did not exist. I created only that exact allowlisted empty parent; no code, control,
+scientific input or output root changed. The independent implementation's sole raw invocation then returned exit 2:
+
+`AUDIT_INVALID: representative track ended before horizon without dissolution`
+
+It likewise published no final or partial root. The comparison command was not executed and `QUALIFICATION.json`
+does not exist. The post-raw adversarial reviewer independently confirmed that both messages instantiate the same
+frozen terminal-validity predicate, that the primary prefix is only CLI wording, and that the semantic outcome is
+`AUDIT_INVALID — STOP; NO RETRY; DO NOT COMPARE`. Its final journal SHA-256 is
+`a3a5ce057fdf855f9426c523e3fa24d057be6a8f5de2a8e663aa8ee58d815ac7`.
+
+### OBSERVED
+
+- A deterministic reporting representative can end before frame 159 without an explicit `DISSOLUTION` under both
+  source-separated reconstructions.
+- The frozen plan declares that lifecycle state invalid; neither implementation reached a publishable complete
+  64-world table.
+- The authorized autopsy base directory is empty. No partial evidence was selected or salvaged.
+
+### INFERRED
+
+The developmental reconstruction contract and stored lifecycle representation are not jointly sufficient to close
+this autopsy. This is an audit/reproduction failure, not evidence for or against any proposed developmental mechanism.
+
+### WHAT WOULD FALSIFY THIS?
+
+Only a newly authorized, independently frozen reconstruction design could test whether another lifecycle accounting
+rule closes every raw trajectory. Such work would be a new mission and namespace, not a retry or repair here.
+
+### Final decision and handoff
+
+**AUDIT_INVALID.** Preserve `DEV_FEASIBILITY_FAIL` exactly. No complete transition table, atlas, duration/censoring
+analysis or formation/maintenance estimate exists. Do not identify the triggering world retrospectively, change the
+tracker or terminal rule, retry the shards, compute a surviving subset, run comparison, open Stage C or make a
+mechanism/individuality claim. Exact next action: human review of the fail-closed report only.

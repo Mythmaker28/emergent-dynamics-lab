@@ -1,5 +1,18 @@
 # Project State
 
+## BRANCH ADDENDUM — INTERVENTIONAL-INDIVIDUALITY-00 STAGE-B DEVELOPMENTAL AUTOPSY (2026-07-19)
+
+The raw-only developmental autopsy is closed **AUDIT_INVALID**. Before raw access, two source-separated engine-free
+implementations passed 87 focused tests, 26 independent self-test groups and adversarial review at checkpoint
+`085bf5e`. Both raw implementations then stopped on the same frozen lifecycle gate: a reconstructed representative
+track ended before frame 159 without an explicit `DISSOLUTION` event. No primary/independent package, transition
+table, atlas, partial result or `QUALIFICATION.json` was published, and no comparison command was run.
+
+This does not reopen or reinterpret Stage B: its accepted **DEV_FEASIBILITY_FAIL** remains exact, and the autopsy
+supports no claim about transient candidates, IC dependence, freezing, destructive transitions, censoring or absence
+of individuality. No retry, subset rescue, threshold change, new family or Stage C is authorized. Exact next action:
+human review of the fail-closed autopsy report only.
+
 ## BRANCH ADDENDUM — INTERVENTIONAL-INDIVIDUALITY-00 STAGE B (2026-07-19)
 
 Stage B qualified a dynamically passive matter-only detector, geometry-only split/merge-aware tracker, exact
