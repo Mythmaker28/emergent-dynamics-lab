@@ -868,16 +868,66 @@ def _component(frame: int, *, index: int = 0) -> DetectedComponent:
 
 def test_actual_generic_tracker_output_qualifies_at_declared_nonunit_cadence() -> None:
     tracker = TrackerSpec(max_centroid_displacement=2.0, max_area_ratio=2.0, dilation_radius=1)
-    result = track_components(((_component(0),), (_component(5),)), tracker)
+    result = track_components(
+        ((_component(0),), (_component(5),)), tracker, sampled_frames=(0, 5)
+    )
     contract = qualify_lifecycle_contract(result, (0, 5))
     assert contract.terminal_records[0].terminal_state == "RIGHT_CENSORED_AT_HORIZON"
 
 
-def test_generic_tracker_empty_right_frame_cadence_mismatch_is_rejected() -> None:
+def test_generic_tracker_empty_right_frame_now_qualifies_at_nonunit_cadence() -> None:
+    """MANDATORY_SAMPLED_FRAMES_LIFECYCLE_REQUALIFICATION_01R.
+
+    Supersedes ``test_generic_tracker_empty_right_frame_cadence_mismatch_is_rejected``.
+    That test asserted the retained cadence limitation: with no schedule the tracker
+    stamped the disappearance with a fabricated frame and the contract rejected the
+    whole run.  The schedule is now mandatory, so the fabricated frame is
+    unconstructible and the disappearance is retained as terminal information instead
+    of being converted into a global rejection.
+    """
+
     tracker = TrackerSpec(max_centroid_displacement=2.0, max_area_ratio=2.0, dilation_radius=1)
-    result = track_components(((_component(0),), ()), tracker)
+    result = track_components(((_component(0),), ()), tracker, sampled_frames=(0, 5))
+    contract = qualify_lifecycle_contract(result, (0, 5))
+    assert len(contract.terminal_records) == contract.track_count == 1
+    record = contract.terminal_records[0]
+    assert record.terminal_state == "DISSOLVED_DETECTED_TRACK"
+    assert record.terminal_frame == 5
+    assert record.evidence_kind == "TRACK_EVENT"
+
+
+def test_every_component_of_a_frame_must_carry_the_declared_frame_number() -> None:
+    """Reviewer A, OBS-3: the cross-check was only ever pinned against frames whose
+    components all carried the same stamp, so a mutant checking only the first
+    component of each frame survived."""
+
+    tracker = TrackerSpec(max_centroid_displacement=2.0, max_area_ratio=2.0, dilation_radius=1)
+    honest = (_component(0), _component(0, index=1))
+    dishonest = (_component(0), _component(7, index=1))
+    track_components((honest, (_component(5),)), tracker, sampled_frames=(0, 5))
+    with pytest.raises(ValueError, match="disagree with an observed detector frame"):
+        track_components((dishonest, (_component(5),)), tracker, sampled_frames=(0, 5))
+
+
+def test_invalid_event_frame_guard_is_live_but_unreachable_from_the_tracker() -> None:
+    """The guard that caught the deleted fallback must not become dead code.
+
+    The tracker can no longer emit an off-schedule frame, so the input is handcrafted.
+    """
+
+    tracker = TrackerSpec(max_centroid_displacement=2.0, max_area_ratio=2.0, dilation_radius=1)
+    honest = track_components(((_component(0),), ()), tracker, sampled_frames=(0, 5))
+    fabricated = TrackingResult(
+        honest.tracks,
+        tuple(
+            event if event.frame == 0 else replace(event, frame=1)
+            for event in honest.events
+        ),
+        honest.edges,
+        honest.assignments,
+    )
     with pytest.raises(LifecycleContractError) as caught:
-        qualify_lifecycle_contract(result, (0, 5))
+        qualify_lifecycle_contract(fabricated, (0, 5))
     assert "INVALID_EVENT_FRAME" in _codes(caught.value)
     assert "SILENT_PRE_HORIZON_TERMINATION" in _codes(caught.value)
 

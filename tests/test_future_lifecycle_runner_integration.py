@@ -5,7 +5,7 @@ Synthetic fixtures only.  No engine, no historical family, no scientific value.
 
 from __future__ import annotations
 
-from dataclasses import FrozenInstanceError
+from dataclasses import FrozenInstanceError, replace
 import hashlib
 import inspect
 import json
@@ -74,13 +74,38 @@ def _component(frame: int, index: int = 0) -> DetectedComponent:
 def _real_tracker_nonunit() -> TrackingResult:
     """Real generic tracker output at declared non-unit cadence, known to qualify."""
 
-    return track_components(((_component(0),), (_component(5),)), TRACKER)
+    return track_components(
+        ((_component(0),), (_component(5),)), TRACKER, sampled_frames=NONUNIT_SCHEDULE
+    )
 
 
 def _empty_right_nonunit() -> TrackingResult:
-    """Real generic tracker output with an empty right frame: known to be rejected."""
+    """Real generic tracker output with an empty right detector frame.
 
-    return track_components(((_component(0),), ()), TRACKER)
+    01R: with the schedule mandatory this now QUALIFIES — the disappearance is bound
+    to the declared frame 5 instead of a fabricated frame 1.
+    """
+
+    return track_components(((_component(0),), ()), TRACKER, sampled_frames=NONUNIT_SCHEDULE)
+
+
+def _fabricated_off_schedule() -> TrackingResult:
+    """Handcrafted off-schedule tracker-shaped input.
+
+    The tracker cannot produce this any more; it is rebuilt by hand so that the
+    runner's fail-closed lifecycle evidence path stays covered.
+    """
+
+    honest = _empty_right_nonunit()
+    return TrackingResult(
+        honest.tracks,
+        tuple(
+            event if event.frame == NONUNIT_SCHEDULE[0] else replace(event, frame=1)
+            for event in honest.events
+        ),
+        honest.edges,
+        honest.assignments,
+    )
 
 
 def _track(track_id, points, *, parents=(), children=(), unresolved=False) -> TrackRecord:
@@ -625,12 +650,38 @@ def test_20c_completion_record_is_inert_and_frozen(tmp_path: Path) -> None:
 
 
 # --------------------------------------------------------------------------
-# 21. retained cadence limitation
+# 21. the cadence limitation is lifted; the guard behind it is not
 # --------------------------------------------------------------------------
 
 
-def test_21_empty_right_frame_at_nonunit_cadence_remains_rejected(tmp_path: Path) -> None:
+def test_21_empty_right_frame_at_nonunit_cadence_now_publishes(tmp_path: Path) -> None:
+    """01R supersedes ``test_21_empty_right_frame_at_nonunit_cadence_remains_rejected``.
+
+    With the schedule mandatory the disappearance is bound to the declared frame, so
+    the run is published with the disappearance retained as terminal information
+    instead of being discarded by a global rejection.
+    """
+
     tracking = _empty_right_nonunit()
+    record = publish_future_family_completion(tmp_path, tracking, NONUNIT_SCHEDULE)
+    assert _artifacts(tmp_path) == (True, True)
+    document = json.loads((tmp_path / LIFECYCLE_DOCUMENT_NAME).read_text(encoding="utf-8"))
+    states = [row["terminal_state"] for row in document["terminal_records"]]
+    assert states == ["DISSOLVED_DETECTED_TRACK"]
+    assert document["terminal_records"][0]["terminal_frame"] == 5
+    assert record.state is RunnerState.COMPLETE_PUBLISHED
+    access = open_analysis_access(tmp_path, tracking, NONUNIT_SCHEDULE)
+    assert isinstance(access, AnalysisAccess)
+
+
+def test_21b_a_fabricated_off_schedule_frame_is_still_refused(tmp_path: Path) -> None:
+    """The runner's fail-closed lifecycle evidence path must stay live.
+
+    The tracker can no longer produce off-schedule frames, so this input is
+    handcrafted; the runner must still refuse it and write nothing.
+    """
+
+    tracking = _fabricated_off_schedule()
     with pytest.raises(LifecycleEvidenceError) as caught:
         publish_future_family_completion(tmp_path, tracking, NONUNIT_SCHEDULE)
     message = str(caught.value)
@@ -675,31 +726,209 @@ def test_22_no_public_api_exposes_an_unchecked_completion_emitter() -> None:
 
 
 # --------------------------------------------------------------------------
-# 23. the bound lifecycle package is untouched
+# 23. historical / current lineage
+#
+# MANDATORY_SAMPLED_FRAMES_LIFECYCLE_REQUALIFICATION_01R replaces the former
+# current-tree hash tripwire (``test_23_bound_lifecycle_package_remains_byte_identical``).
+# That tripwire pinned the CURRENT tree to the digests recorded by the historical
+# FUTURE-LIFECYCLE-CONTRACT-00 qualification, so any authorized change to the tracker
+# made it fail.  Overwriting its expected digest would have destroyed the evidence it
+# carries.  Instead the pin is split in two: the historical package keeps its own
+# digests and must stay byte-identical, and the current tree is pinned to the
+# SUCCESSOR qualification.  The two are then asserted to differ, in exactly one file,
+# for exactly one authorized reason.
 # --------------------------------------------------------------------------
 
+HISTORICAL_PACKAGE_DIGESTS = {
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SCHEMA.json":
+        "629bfdc3e6d3017948ad1b07472bea881419c86ea9fa283494a418f27913966c",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SOURCE_ALLOWLIST.json":
+        "d8743e1f2eb98de610df22d67059ce1132472e8eea405faf7b91ed4c9bb8253a",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SPEC.md":
+        "81c5af7cd91b9a780d560b7b7bed52b80b56348e29499c385b696a25e8686974",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_REPORT.md":
+        "8015262ae4e1f49713ab422e7aa059a39081d058510fffd884dedac4344e2d16",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json":
+        "8f423bb0f0ece04a3e576b76cb2c7704d5edf6c82c827110bd5608e8e5514ece",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_HUMAN_REVIEW.md":
+        "f1d082e37ca036f516ad22e20a30d0148e6f97d5997999b9a3f90f20f8af4864",
+}
 
-def test_23_bound_lifecycle_package_remains_byte_identical() -> None:
+HISTORICAL_TRACKER_SHA256 = "f40c0817acaad99c881e47ca16a7059164735a37ab15f134f11d1d69c6fd6c88"
+MANDATORY_TRACKER_SHA256 = "65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef"
+UNCHANGED_LIFECYCLE_SHA256 = "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053"
+
+SUCCESSOR_QUALIFICATION = (
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json"
+)
+HISTORICAL_QUALIFICATION = "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json"
+
+
+def _digest(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def test_23a_historical_package_documents_remain_byte_identical() -> None:
+    """The historical 00 package is immutable and stays historically valid."""
+
     root = Path(__file__).resolve().parents[1]
-    expected = {
-        "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SCHEMA.json":
-            "629bfdc3e6d3017948ad1b07472bea881419c86ea9fa283494a418f27913966c",
-        "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SOURCE_ALLOWLIST.json":
-            "d8743e1f2eb98de610df22d67059ce1132472e8eea405faf7b91ed4c9bb8253a",
-        "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SPEC.md":
-            "81c5af7cd91b9a780d560b7b7bed52b80b56348e29499c385b696a25e8686974",
-        "edlab/substrates/lattice_bond/__init__.py":
-            "9d3bea5ac70b514b592f71c2c46738dfdaec62e0072e8055a512b2e22ac6d5b0",
-        "edlab/substrates/lattice_bond/instrumentation.py":
-            "f40c0817acaad99c881e47ca16a7059164735a37ab15f134f11d1d69c6fd6c88",
-        "edlab/substrates/lattice_bond/lifecycle.py":
-            "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
-        "tests/test_future_lifecycle_contract.py":
-            "e940199e7befaf7e60535867525d163e3abc807a951265c78a5f7b1d0acddd47",
-    }
-    for relative, digest in expected.items():
-        observed = hashlib.sha256((root / relative).read_bytes()).hexdigest()
-        assert observed == digest, relative
+    for relative, digest in HISTORICAL_PACKAGE_DIGESTS.items():
+        assert _digest(root / relative) == digest, relative
+
+
+def test_23b_historical_qualification_still_records_the_historical_tracker_hash() -> None:
+    root = Path(__file__).resolve().parents[1]
+    historical = json.loads((root / HISTORICAL_QUALIFICATION).read_text(encoding="utf-8"))
+    recorded = historical["source_hashes_sha256"]
+    assert recorded["edlab/substrates/lattice_bond/instrumentation.py"] == HISTORICAL_TRACKER_SHA256
+    assert recorded["edlab/substrates/lattice_bond/lifecycle.py"] == UNCHANGED_LIFECYCLE_SHA256
+
+
+def test_23c_successor_qualification_records_the_repaired_mandatory_tracker_hash() -> None:
+    root = Path(__file__).resolve().parents[1]
+    successor = json.loads((root / SUCCESSOR_QUALIFICATION).read_text(encoding="utf-8"))
+    recorded = successor["source_hashes_sha256"]
+    assert recorded["edlab/substrates/lattice_bond/instrumentation.py"] == MANDATORY_TRACKER_SHA256
+    assert recorded["edlab/substrates/lattice_bond/lifecycle.py"] == UNCHANGED_LIFECYCLE_SHA256
+
+
+def test_23d_the_two_tracker_hashes_differ_for_the_authorized_reason() -> None:
+    root = Path(__file__).resolve().parents[1]
+    successor = json.loads((root / SUCCESSOR_QUALIFICATION).read_text(encoding="utf-8"))
+    lineage = successor["lineage"]
+    assert HISTORICAL_TRACKER_SHA256 != MANDATORY_TRACKER_SHA256
+    assert lineage["historical_tracker_sha256"] == HISTORICAL_TRACKER_SHA256
+    assert lineage["mandatory_tracker_sha256"] == MANDATORY_TRACKER_SHA256
+    assert lineage["tracker_hash_change_reason"] == "MANDATORY_SAMPLED_FRAMES_SCHEDULE"
+    assert lineage["historical_package"] == "FUTURE-LIFECYCLE-CONTRACT-00"
+    assert lineage["historical_package_remains_valid"] is True
+
+
+def test_23e_lifecycle_source_is_unchanged_across_the_succession() -> None:
+    root = Path(__file__).resolve().parents[1]
+    observed = _digest(root / "edlab/substrates/lattice_bond/lifecycle.py")
+    assert observed == UNCHANGED_LIFECYCLE_SHA256
+    historical = json.loads((root / HISTORICAL_QUALIFICATION).read_text(encoding="utf-8"))
+    successor = json.loads((root / SUCCESSOR_QUALIFICATION).read_text(encoding="utf-8"))
+    key = "edlab/substrates/lattice_bond/lifecycle.py"
+    assert historical["source_hashes_sha256"][key] == successor["source_hashes_sha256"][key]
+
+
+def test_23f_current_source_matches_the_successor_qualification() -> None:
+    """The current tree is pinned to the successor package, not to the historical one."""
+
+    root = Path(__file__).resolve().parents[1]
+    successor = json.loads((root / SUCCESSOR_QUALIFICATION).read_text(encoding="utf-8"))
+    for relative, digest in successor["source_hashes_sha256"].items():
+        assert _digest(root / relative) == digest, relative
+    # Every test file the successor binds is checked here EXCEPT this one: a file
+    # cannot contain the digest of its own final bytes.  Its digest is recorded in the
+    # successor qualification and verified out of band at seal time.
+    own = "tests/test_future_lifecycle_runner_integration.py"
+    assert own in successor["test_hashes_sha256"], "this file must still be bound"
+    for relative, digest in successor["test_hashes_sha256"].items():
+        if relative == own:
+            continue
+        assert _digest(root / relative) == digest, relative
+
+
+def test_23g_runner_integration_remains_pending_formal_requalification() -> None:
+    root = Path(__file__).resolve().parents[1]
+    successor = json.loads((root / SUCCESSOR_QUALIFICATION).read_text(encoding="utf-8"))
+    assert successor["runner_integration"]["status"] == "PENDING_FORMAL_REQUALIFICATION"
+    assert successor["runner_integration"]["requalified_by_this_mission"] is False
+    assert successor["claim_boundary"]["not_qualified"], "the boundary must not be empty"
+    assert any(
+        "runner integration" in item.lower()
+        for item in successor["claim_boundary"]["not_qualified"]
+    )
+    # the historical runner-integration package is untouched by this mission
+    assert _digest(
+        root / "edlab/substrates/lattice_bond/future_lifecycle_runner.py"
+    ) == successor["lineage"]["unchanged_runner_sha256"]
+
+
+HISTORICALLY_PINNED_ARTIFACTS = {
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SCHEMA.json":
+        "629bfdc3e6d3017948ad1b07472bea881419c86ea9fa283494a418f27913966c",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SOURCE_ALLOWLIST.json":
+        "d8743e1f2eb98de610df22d67059ce1132472e8eea405faf7b91ed4c9bb8253a",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SPEC.md":
+        "81c5af7cd91b9a780d560b7b7bed52b80b56348e29499c385b696a25e8686974",
+    "edlab/substrates/lattice_bond/__init__.py":
+        "9d3bea5ac70b514b592f71c2c46738dfdaec62e0072e8055a512b2e22ac6d5b0",
+    "edlab/substrates/lattice_bond/instrumentation.py":
+        "f40c0817acaad99c881e47ca16a7059164735a37ab15f134f11d1d69c6fd6c88",
+    "edlab/substrates/lattice_bond/lifecycle.py":
+        "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+    "tests/test_future_lifecycle_contract.py":
+        "e940199e7befaf7e60535867525d163e3abc807a951265c78a5f7b1d0acddd47",
+}
+
+
+def test_23i_every_historically_pinned_artifact_is_explicitly_accounted_for() -> None:
+    """Reviewer B, OBS-1: the deleted tripwire pinned SEVEN artifacts, and more than one
+    of them has moved.  Each must be either byte-identical today, or declared divergent
+    in the successor qualification with both digests — never silently different.
+    """
+
+    root = Path(__file__).resolve().parents[1]
+    successor = json.loads((root / SUCCESSOR_QUALIFICATION).read_text(encoding="utf-8"))
+    divergent = successor["lineage"]["divergent_from_historical_pin"]
+    assert set(HISTORICALLY_PINNED_ARTIFACTS) == set(
+        successor["lineage"]["historically_pinned_artifacts"]
+    )
+    for relative, historical in HISTORICALLY_PINNED_ARTIFACTS.items():
+        observed = _digest(root / relative)
+        if observed == historical:
+            assert relative not in divergent, f"{relative} is identical but declared divergent"
+            continue
+        assert relative in divergent, f"{relative} diverged without being declared"
+        assert divergent[relative]["historical_sha256"] == historical
+        assert divergent[relative]["current_sha256"] == observed
+        assert divergent[relative]["reason"]
+    assert divergent, "the divergence set must not be silently empty"
+
+
+def test_23h_the_bound_test_node_list_is_complete_and_unaltered() -> None:
+    """A test cannot be quietly dropped from the successor qualification.
+
+    Re-collects the four bound selectors and compares the canonical node-list digest
+    with the one the successor qualification records.  Collection only: no test is
+    executed, so this cannot recurse.
+    """
+
+    import subprocess
+    import sys
+
+    root = Path(__file__).resolve().parents[1]
+    successor = json.loads((root / SUCCESSOR_QUALIFICATION).read_text(encoding="utf-8"))
+    binding = successor["test_binding"]
+    selectors = list(binding["selectors"])
+    assert selectors == [
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py",
+        "tests/test_future_lifecycle_contract.py",
+        "tests/test_future_lifecycle_runner_integration.py",
+        "tests/test_lattice_bond_instrumentation.py",
+    ]
+    completed = subprocess.run(
+        [sys.executable, "-m", "pytest", "--collect-only", "-q", "--no-header",
+         "-p", "no:cacheprovider", *selectors],
+        cwd=root,
+        capture_output=True,
+        text=True,
+        check=True,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+    )
+    collected = sorted(
+        line.strip()
+        for line in completed.stdout.splitlines()
+        if "::" in line and line.strip().startswith("tests/")
+    )
+    digest = hashlib.sha256("\n".join(collected).encode("utf-8")).hexdigest()
+    assert collected == sorted(binding["node_ids"]), "collected node list differs"
+    assert len(collected) == binding["node_count"]
+    assert digest == binding["node_list_sha256"]
 
 
 # --------------------------------------------------------------------------
