@@ -1,8 +1,8 @@
 {
   "mission": "FUTURE-PROSPECTIVE-READINESS-ARCHITECTURE-00",
   "scope": "DESIGN_AND_DECISION_ONLY_NO_SOURCE_NO_EXECUTION",
-  "disposition": "ARCHITECTURE_ROUTE_SELECTED",
-  "disposition_meaning": "A design route is recommended for later human review. This authorizes no implementation and no scientific execution.",
+  "disposition": "ARCHITECTURE_REVISE",
+  "disposition_meaning": "Both independent reviewers returned FAIL. The candidate architecture is returned for revision. No route is selected. This authorizes no implementation, no scientific execution and no next mission other than human review.",
   "authority": {
     "human_review_branch": "codex/future-lifecycle-runner-hardening-00-human-review",
     "human_review_commit": "f8b82882ad78e94cbc9f2268f9fd3c9deb106084",
@@ -16,16 +16,24 @@
     "frozen_evaluation_protocol": "4954b4f35adcb2f6ffb55e9d8b8db34c3bd7a318",
     "frozen_part_one_sha256": "819cb49cc09ec72d46aace4eb4599f799a575c1f8e7ca6c6577bb4907830df3d",
     "frozen_part_one_bytes": 12730,
-    "part_one_retro_edited": false
+    "part_one_retro_edited": false,
+    "candidate_architecture_and_preliminary_decision": "f1150355bf371f364c80714c00f74962564cadc0"
   },
   "decision": {
-    "primary_route": "E",
-    "primary_route_name": "Make the persistence/turnover trade-off the estimand (phase-structure route)",
-    "backup_route": "F",
-    "backup_route_name": "Stop and consolidate",
-    "backup_passes_all_gates_independently": true,
-    "a2_explicitly_not_the_backup": true,
-    "a2_reason": "If stage 2 returns EXCLUSION_CONFIRMED, further turnover restructuring would attempt to defeat a finding rather than test one; the correct next move is F."
+    "outcome": "NO_ROUTE_SELECTED",
+    "reason": "Route E failed hard gates G11 and G1 on independent review; with H_X falsified by the frozen record, no admissible route clears Part I section 9 rule 5, so Route F wins by default and a code+data need triggers ARCHITECTURE_REVISE.",
+    "provisional_standing_not_a_decision": {
+      "currently_primary_by_default": "F — stop and consolidate",
+      "returned_for_reframing": "E — as a replication-density estimand, not an exclusivity claim, with the cadence repair as a hard prerequisite",
+      "destination_unaffected": "D — the rank-4 L x E factorial remains the program's strongest asset",
+      "unchanged": {
+        "A2": "admissible but subsumed",
+        "B": "lineage route; a category error if sold as individuation",
+        "C": "rejected as a next step"
+      }
+    },
+    "primary_route": null,
+    "backup_route": null
   },
   "claim_ladder": {
     "rungs": {
@@ -48,7 +56,13 @@
     "original_individuation_question_preserved": true,
     "estimand_changed_from_individual_to_lineage": false,
     "highest_rung_reachable_by_the_whole_roadmap": 6,
-    "rung_7_reachable_by_any_single_family": false
+    "rung_7_reachable_by_any_single_family": false,
+    "rung_6_requires": [
+      "Stage D (rank-4 single-target L x E factorial) for the channel half",
+      "Stage E (K00/K10/K01/K11 member factorial) for the specificity-to-A half"
+    ],
+    "stage_d_alone_reaches": "channel allocation for one declared target; NOT rung 6",
+    "part_two_roadmap_ceiling_was_inflated_by_one_stage": true
   },
   "routes": [
     {
@@ -228,10 +242,11 @@
     "analysis_code_implemented": false
   },
   "cadence_decision": {
-    "choice": "KEEP_REJECTED_AND_REQUIRE_COMPLETE_FRAME_PAIRS",
-    "tracker_repair_undertaken_now": false,
-    "why_route_e_can_operate": "the sampling schedule is declared in advance as part of the estimand and classification uses complete frame pairs at that schedule; the runner fails closed and records a global rejection if any declared position cannot be realised as a complete pair, so there is no situation in which it discovers mid-run that it needs an unplanned pair",
-    "if_ever_needed": "a separate tracker repair and requalification mission that must precede runner wiring"
+    "choice": "REQUIRE_SEPARATE_TRACKER_REPAIR_AND_REQUALIFICATION_BEFORE_RUNNER_WIRING",
+    "part_two_choice_withdrawn": "KEEP_REJECTED_AND_REQUIRE_COMPLETE_FRAME_PAIRS",
+    "why_withdrawn": "The frozen limitation is a conjunction: empty right detector frame AND non-unit cadence. A prospective schedule controls which frames are sampled but cannot control whether the right detector frame is empty, which physics determines. An entity dissolving before the horizon produces an empty right frame at non-unit cadence, so under any hypothesis where dissolution is common a large fraction of worlds would be globally rejected rather than classified, biasing the primary estimand toward the surviving outcome class. G11 was therefore not demonstrated.",
+    "repair_inserted_as": "M0, ahead of gate wiring",
+    "tracker_repair_undertaken_now": false
   },
   "feasibility_architecture": {
     "stages": [
@@ -358,16 +373,83 @@
     "historical_world_influenced_route_selection": false
   },
   "claim": {
-    "claimed": "Route E is the strongest admissible prospective route: it passes all twelve frozen admissibility gates, reaches claim-ladder rung 3 at world unit without changing the estimand to lineage, subsumes the success case of turnover restructuring without historical tuning, and has a symmetric, publishable interpretation in both directions.",
+    "claimed": "A frozen evaluation protocol was committed before any route existed; six routes were developed; two independent reviewers with the power to reject exercised it; their findings were checked against the frozen sources, accepted, and applied; and the protocol's own rules then selected ARCHITECTURE_REVISE over the preferred outcome.",
     "not_claimed": [
-      "That any implementation is authorized.",
-      "That any scientific execution is authorized.",
+      "That any route is selected.",
+      "That any implementation or scientific execution is authorized.",
       "That entities will form, persist, remember or be individuated.",
       "That the Stage-B failure mechanism is known.",
-      "That ownership is reachable by the selected route.",
+      "That the substrate exhibits a persistence/turnover exclusivity.",
+      "That ownership is reachable by any route analysed here.",
       "That rung 7 is reachable by any single family.",
       "That the architecture is tamper-proof or cryptographically trustworthy."
     ]
   },
-  "next_action": "HUMAN_REVIEW_OF_THIS_ARCHITECTURE_DECISION_PACKAGE_ONLY"
+  "next_action": "HUMAN_REVIEW_OF_THIS_ARCHITECTURE_PACKAGE_ONLY",
+  "corrections_to_part_two": {
+    "C-1": "H_X (mutual exclusivity of persistence and turnover) is falsified by the same aggregate summary Part II cited: eleven BOUNDED_ACTIVE_TURNOVER_CANDIDATE classifications exhibited both properties.",
+    "C-2": "The only defence of H_X is a transient/incoherent relabelling that the frozen autopsy explicitly forbids. Part II credited the classifier's non-candidate counts while discounting its candidate counts. Withdrawn as self-flattery.",
+    "C-3": "The compelled failure was a replication-density failure with initial-condition-class dependence (0/8 laws met the two-of-four minimum in both IC classes), not a structural exclusivity result. Part II omitted this line entirely.",
+    "C-4": "Absence of TRACKING_UNRESOLVED does not refute a SPLIT/LOST characterization; the atlas has no SPLIT/LOST columns and is silent, not contradictory.",
+    "C-5": "What survives: the negative half (no instrumentation failure; byte-identical replay) and Correction 2 (the mechanism is formally unknown because the autopsy returned AUDIT_INVALID).",
+    "C-6": "Part I section 4.4 deviation declared rather than edited; Part I prescribes ARCHITECTURE_REVISE for exactly this."
+  },
+  "accepted_review_findings": [
+    "estimand under-specified: no sampling density, no minimum detectable measure, no decision rule; EXCLUSION_CONFIRMED would be an unpowered null (G1 not met)",
+    "the persistence half was unguarded: no criterion against tracker-created persistence, occupancy aliases, static shells or trivial phase separation",
+    "competing-risk supplement stated incorrectly: option (i) was survivor-conditioned despite forbidding survivor-conditioning",
+    "M7 conflicted with G3 as written; a confirmatory-replication carve-out must be stated explicitly",
+    "unit equivocation between coordinate point, world and entity; the world-level aggregation over entities is an undeclared existential quantifier",
+    "track-versus-world terminal accounting unreconciled (G7 per track, attrition per world)",
+    "detector identity and regime-classifier identity missing from both the association-edge schema and the provenance bindings",
+    "atlas-blindness barrier leaks: this report is mandatory reading for M4 and restates the atlas's qualitative content; direction crosses even though coordinates do not",
+    "read ledger incomplete: section 21 quotes the runner-integration report, which the ledger does not declare",
+    "two overstatements withdrawn: that EXCLUSION_CONFIRMED would explain the frozen failure, and Route E's 'high novelty / nonmodal' self-assessment"
+  ],
+  "revision_requirements": [
+    "restate the frozen-record reading within what the record licenses, including the eleven candidates, the 0/8 replication line and the IC-class dependence",
+    "reframe the feasibility estimand as a replication density with declared sampling density, minimum detectable measure and decision rule",
+    "add an independent criterion for the persistence half naming the frozen falsifiers",
+    "adopt the corrected cadence decision and place the tracker repair (M0) ahead of gate wiring",
+    "fix the competing-risk supplement to a proper cumulative-incidence function over the enrolled set",
+    "state the confirmatory-replication carve-out to G3 explicitly or restructure M7",
+    "declare the world-level aggregation rule over entities and the track-to-world terminal reduction",
+    "add detector identity and regime-classifier identity to the association-edge schema and the provenance bindings",
+    "close the atlas-blindness leak for M4",
+    "complete the read ledger",
+    "correct the claim ceiling everywhere: Stage D is single-target; rungs 4-5 and full rung 6 require Stage E"
+  ],
+  "independent_reviews": [
+    {
+      "role": "causal_identifiability_and_scientific_meaning",
+      "disposition": "FAIL",
+      "binds_to_commit": "f1150355bf371f364c80714c00f74962564cadc0",
+      "blocker_findings": 4,
+      "material_findings": 7,
+      "minor_findings": 4,
+      "note_findings": 1,
+      "demanded": "ARCHITECTURE_REVISE",
+      "final_statement": "H_X is falsified by the record the package cited; defending it requires a relabelling the autopsy forbids; the compelled failure was replication density; the roadmap ceiling is inflated by one stage. Route E as a design survives; its framing, rationale, promised explanatory payoff and terminal ceiling do not."
+    },
+    {
+      "role": "prospective_architecture_and_contamination_firewall",
+      "disposition": "FAIL",
+      "binds_to_commit": "f1150355bf371f364c80714c00f74962564cadc0",
+      "blocker_findings": 1,
+      "material_findings": 3,
+      "minor_findings": 1,
+      "note_findings": 2,
+      "demanded": "ARCHITECTURE_REVISE",
+      "confirmed_clean": [
+        "repository discipline exemplary",
+        "Part I byte-exact prefix, zero deletions, provably not retrofitted",
+        "zero numeric parameters from any previous family anywhere in the package",
+        "firewall held",
+        "route ranking survives every attack mounted"
+      ],
+      "final_statement": "The cadence decision does not discharge G11; dissolution — the expected majority outcome under H_X — is routed to global rejection, reopening the survivorship trapdoor through the cadence door. All fixes are textual, so revision rather than stop."
+    }
+  ],
+  "reviewers_could_reject": true,
+  "reviewers_did_reject": true
 }

@@ -215,6 +215,11 @@ file's state at the pre-analysis commit is the frozen reference.*
 
 ## Part II — read ledger, route analysis, architecture and decision
 
+> **SUPERSEDED IN PART.** Sections 14, 16 (Route E), 17, 18 and 23 below were the *preliminary* analysis
+> submitted to independent review at checkpoint `f1150355bf371f364c80714c00f74962564cadc0`. Both reviewers
+> returned `FAIL`. Part II is retained unedited as the audit record of what was proposed and what was wrong
+> with it. **Part III supersedes it.** Read Part III before relying on anything below.
+
 ### 13. Read ledger
 
 | Document | Sections / lines read | Purpose |
@@ -777,3 +782,208 @@ rather than rejecting the world; any post-window information entering eligibilit
 
 Nine missions and four human reviews separate this document from the ownership question. That is the honest
 distance, and shortening it is the failure mode this whole architecture exists to prevent.
+
+---
+
+## Part III — corrections, revised disposition, and what a revision must deliver
+
+Part I is frozen and unedited (byte-exact prefix, verified). Part II is retained unedited as the audit record.
+This part supersedes Part II's decision. It is written after two independent read-only reviews, **both of which
+returned `FAIL` and both of which demanded `ARCHITECTURE_REVISE`.** Their findings were checked against the frozen
+sources and are accepted.
+
+### 28. Corrections to the frozen-record reading (Part II §14 is wrong)
+
+**C-1 — `H_X` is already falsified by the record Part II cited.** Part II §14 read the aggregate regime atlas as a
+persistence/turnover trade-off, and Part II §16 built Route E's hypothesis `H_X` — "every configuration that
+maintains a closed high-bond boundary does so by suppressing material exchange" — on that reading. **The same
+aggregate summary reports eleven individual `BOUNDED_ACTIVE_TURNOVER_CANDIDATE` classifications.** Eleven worlds
+exhibited both properties. Mutual exclusivity is contradicted eleven times in the very sentence that was being
+cited. `H_X` as posed is dead on arrival.
+
+**C-2 — the only defence of `H_X` is a relabelling the autopsy forbids.** Discounting those eleven as transient or
+incoherent is precisely the move the frozen autopsy prohibits: it states that the audit "may not be relabelled
+`RAW_INSUFFICIENT` or `TRANSIENT_OR_HETEROGENEOUS_CANDIDATES`" and that "no conclusion is permitted about brief
+threshold crossings … candidate coherence". Part II credited the classifier's non-candidate counts while silently
+discounting its candidate counts, from a record whose own audit returned `AUDIT_INVALID`. That is selective trust,
+not a reading. **This was self-flattery and it is withdrawn.**
+
+**C-3 — the compelled failure was replication density, not exclusivity.** The frozen disposition is explicit: no
+LawSpec region met the preregistered replication rule of at least two of four candidate worlds **in each of the
+two neutral initial-condition classes**, and the failure-mode table records `0/8` laws passing both IC-class
+minima. The Stage-B result is a **reproducibility/density** failure with an explicit **initial-condition-class
+dependence**, not a structural exclusivity result. Part II omitted this line entirely, including from the
+machine-readable record. It is restored here as the correct characterisation.
+
+**C-4 — a logical slip.** Part II used the absence of `TRACKING_UNRESOLVED` worlds to argue against a
+`SPLIT`/`LOST` characterisation. Those are different things: `TRACKING_UNRESOLVED` means the tracker *failed*,
+while `SPLIT`/`LOST` mean it *succeeded and reported*. The atlas has no `SPLIT`/`LOST` columns and is therefore
+**silent** on that question, not contradictory. Part II §14's Correction 1 was not entitled to its conclusion.
+
+**C-5 — what survives.** Two things do. First, the *negative* half of Part II §14 is licensed and correct: no
+tracking-invalid or unresolved world occurred, every shard completed, every step replayed byte-identically — so
+the failure was not an instrumentation failure. Second, **Correction 2 stands**: the mechanism remains formally
+unknown because the autopsy returned `AUDIT_INVALID`, and the only path to knowing it is a fresh authorized
+pre-data reconstruction that this mission cannot perform. C-1 to C-4 make that *more* binding, not less: the
+program does not know why replication failed, and it now also does not have a licensed structural story.
+
+**C-6 — Part I §4.4 deviation, declared.** Part I §4.4 recorded, as frozen baseline, that the failure "reflected
+structural integrity loss such as `SPLIT` and `LOST`". Part II contradicted that in substance while attributing
+the characterisation externally to the mission brief. Under Part I's own preamble a required deviation from Part I
+"is a reason to return `ARCHITECTURE_REVISE`, not to edit this section." **The deviation is hereby declared, Part I
+is not edited, and `ARCHITECTURE_REVISE` is returned** — which is the disposition Part I prescribed for exactly
+this situation.
+
+### 29. Correction to the claim ceiling (Part II §18, §27 and the roadmap were inflated)
+
+The frozen staged programme defines **Stage D** as a *"Rank-4 **single-target** `L × E` access factorial"* and
+**Stage E** as *"Directional A/B individuality"*, explicitly *"Only after D"*, using the distinct
+`K00/K10/K01/K11` cut namespace with separate `Y_A/Y_B`.
+
+Rung 6 as this package words it — *the effect belongs specifically to **A** rather than its environment, a
+redundant copy, or a relation* — has two halves. The **channel** half (environment / redundant / relational /
+null) is what Stage D's `L × E` factorial identifies, **for one target**. The **specificity-to-A** half is rungs 4
+and 5, and it requires Stage E's member factorial. The frozen corollary says exactly this: the member factorial is
+necessary to distinguish diagonal, crossed, common-mode and member-relational patterns.
+
+| Stage | Corrected ceiling |
+|---|---|
+| Stage D (`L × E`, single target) | channel allocation for one declared target: `NO_ACCESS_ESTABLISHED`, or channel-specific access through one declared local transduction edge and one declared boundary-resource edge. **Not rung 6.** |
+| Stage E (`K00/K10/K01/K11`, A/B) | rungs 4 and 5; combined with D, the full rung 6 for the declared assay |
+| Stage F | reproduction; outside every claim in this package |
+
+Part II's roadmap therefore ended one stage short of the ceiling it advertised. The roadmap is corrected: **M10 —
+Stage E** is added, and no mission before it may be described as reaching rung 6.
+
+Two further corrections to Part II §15, both from the frozen corollary: the member factorial is insufficient to
+separate a pure environmental owner from `H_0` **specifically when both are invariant to all local member cuts**
+(Part II dropped the condition), and the corollary offers a **second** sufficient path — a previously established
+causal anchor plus a proved exclusion theorem — which Part II did not mention.
+
+### 30. Correction to the cadence decision (Part II §23 chose the wrong option)
+
+The frozen limitation is a **conjunction**: an empty right detector frame **and** non-unit cadence, asserting both
+`INVALID_EVENT_FRAME` and `SILENT_PRE_HORIZON_TERMINATION`. Non-unit cadence is itself the *qualified positive
+path*. Part II §23 discharged only the **scheduling** conjunct — that a prospective schedule never discovers
+mid-run that it needs an unplanned pair. That is true and irrelevant. A prospective schedule controls which frames
+are *sampled*; it cannot control whether the right detector frame is *empty*, which is determined by physics.
+
+An entity that dissolves before the horizon produces an empty right detector frame at non-unit cadence. Under any
+hypothesis in which dissolution is a common outcome — and dissolution was among the frequent classes in the frozen
+atlas — a large fraction of worlds would hit the rejected path. Part II §26's pipeline ordering
+(`detect → track → cohort → classify`) guarantees the empty frame reaches the tracker **before** classification
+can record it as an outcome. Those worlds would be routed to global rejection rather than classified.
+
+**The consequence is the exact failure this architecture exists to prevent:** systematic removal of the worlds
+that support one hypothesis biases the primary estimand toward the other. The survivorship trapdoor is reopened
+through the cadence door.
+
+**Corrected decision. Option 2 is selected: a separate tracker repair and requalification is required, and it must
+precede runner wiring.** Part II §23's option 1 — keep the path rejected and require complete frame pairs — is
+withdrawn as untenable for any route in this substrate that expects dissolution, which is every route that runs
+worlds at all. The repair mission is inserted into the roadmap as **M0**, ahead of gate wiring.
+
+**G11 was therefore not demonstrated for Route E**, and Part I's gates are hard and non-tradeable. Route E's claim
+to pass all twelve gates fails.
+
+### 31. Further accepted findings
+
+- **Estimand under-specification.** "Measure of the both-regime set over a declared span" has no declared sampling
+  density, no minimum detectable measure and no decision rule mapping observed counts to a disposition. Finite
+  sampling of a continuous span cannot distinguish empty from small-but-positive, so `EXCLUSION_CONFIRMED` would
+  be an **unpowered null** — and a power simulation is firewall-prohibited to this mission. G1 was not actually
+  met.
+- **The persistence half was unguarded.** Passive cohorts hardened the *turnover* half. Nothing hardened
+  *persistence*, which rests on tracker association. Part II never mentioned the frozen falsifiers —
+  **tracker-created persistence, occupancy aliases, static shells, trivial phase separation** — any of which
+  produces a `WINDOW_FOUND` false positive: a river called an organism.
+- **Competing-risk supplement stated incorrectly.** Part II §19 required a cumulative-incidence quantity "never a
+  survivor-conditioned mean", then offered as option (i) "the cumulative incidence of the response among entities
+  that remain identity-preserving" — which **is** survivor-conditioned. A proper cumulative-incidence function is
+  computed over the enrolled set with identity destruction as the competing event.
+- **M7 conflicted with G3 as written.** G3 forbids any window derived from a previous family's outcomes, and the
+  stop-conditions list makes that a hard STOP. M7 reproduces the window found by M6 — by construction a window
+  from a previous family. A confirmatory-replication carve-out is defensible but must be stated explicitly, and
+  was not.
+- **Unit equivocation.** Coordinate point, world and entity were conflated. Mapping entity-level classification to
+  a world-level regime label is an undeclared existential quantifier over entities — a latent selection-on-outcome
+  inside each world that the pre-window eligibility rule does not close.
+- **Track-versus-world terminal accounting unreconciled.** G7 asserts one terminal state per **track**; §24
+  asserts one per **world**. A split produces at least two tracks per world and the reduction rule is unspecified —
+  precisely where "no successful subset may redefine the family" could be silently violated, and a blocker to
+  byte-for-byte reproduction.
+- **Detector and classifier identity missing.** Neither the association-edge necessary-field list nor the
+  provenance bindings included **detector identity** or **regime-classifier / frozen-taxonomy identity**, although
+  the classifier *computes the primary estimand* and the stated rationale for binding `tracker_version` applies
+  identically to both.
+- **Atlas-blindness barrier leaks.** This report is mandatory reading for the M4 span-derivation agent, and
+  Part II §14 restates the atlas's qualitative content — dominant class, ordering of the next classes, which
+  classes never occurred. No coordinates cross, so the span cannot be numerically tuned, but **direction** does
+  cross. The barrier is porous as written and M4 carries no read-ledger obligation of its own.
+- **Read ledger incomplete.** Part II §21 quotes the runner-integration report and its qualification record, which
+  the §13 ledger does not declare. No firewall breach — those are permitted engineering artifacts — but Part I §11
+  requires completeness, and the undeclared document is the very one whose cadence section would have prevented the
+  §23 error.
+- **Two overstatements withdrawn.** "`EXCLUSION_CONFIRMED` explains the frozen Stage-B failure" is unsupportable:
+  nothing establishes that the frozen family's region lies inside an atlas-blind span, and establishing it would
+  require either a firewall breach or the diagnosis the package says it lacks. And Route E's "high novelty /
+  nonmodal" self-assessment does not hold: structurally it re-asks the Stage-B feasibility question with a better
+  span and a tracer. That is a real improvement and not a nonmodal route.
+
+### 32. Revised disposition
+
+Applying Part I §9 to the corrected record:
+
+1. **Route E fails G11** (§30) and **G1** (§31). It is inadmissible as submitted.
+2. With `H_X` falsified (C-1) and the true failure being replication density with IC-class dependence (C-3),
+   Route E's remaining content is a better-declared feasibility family with independent turnover evidence — which
+   is a genuine improvement, but is **not** a "materially better identifiability argument" of the kind Part I §9
+   rule 5 requires to displace Route F.
+3. **No admissible route reaches above rung 3, and no admissible route clears rule 5's bar.** Under the frozen
+   rule, **Route F wins by default.**
+4. Part I §10 states that a need for code or data requires `ARCHITECTURE_REVISE`. Both apply: the cadence repair
+   is code, and deciding whether a corrected feasibility route is worth running requires the Correction-2
+   diagnosis, which is data this mission may not open.
+
+**Terminal disposition: `ARCHITECTURE_REVISE`.**
+
+This is not a failure of the mission. It is the mission working: a frozen protocol was written before any route
+existed, two independent reviewers were given the power to reject, they used it, and the protocol's own rules then
+selected the honest answer over the preferred one.
+
+**Provisional standing, for the revision mission — not a decision:**
+
+- **Route F (stop and consolidate)** is currently primary by default under Part I §9 rule 5. It passes every gate,
+  and the five publishable assets listed in the roadmap require no further world.
+- **Route E** is not dead. It is **returned for reframing** as a *replication-density* estimand rather than an
+  exclusivity claim, with a declared minimum detectable effect and decision rule, an independent guard on the
+  persistence half naming the frozen falsifiers, and the cadence repair as a hard prerequisite.
+- **Route D** remains the destination and is unaffected by any of this. The rank-4 `L × E` design is still the
+  program's strongest asset and still the only path toward the channel half of rung 6.
+- **Route A2, Route B, Route C** are unchanged: A2 admissible but subsumed; B is a lineage route and a category
+  error if sold as individuation; C rejected as a next step.
+
+### 33. What a revision mission must deliver
+
+1. Restate the frozen-record reading within what the record licenses — including the eleven candidate
+   classifications, the `0/8` replication line and the initial-condition-class dependence — and delete every
+   claim that the substrate exhibits an exclusivity.
+2. Reframe the feasibility estimand as a **replication density** with a declared sampling density, a minimum
+   detectable measure, and a decision rule mapping observed counts to a disposition, derived only from the three
+   admissible threshold sources.
+3. Add an independent criterion for the **persistence** half, explicitly naming and testing against
+   tracker-created persistence, occupancy aliases, static shells and trivial phase separation.
+4. Adopt the corrected cadence decision (§30) and place the tracker repair and requalification (**M0**) ahead of
+   gate wiring.
+5. Fix the competing-risk supplement to a proper cumulative-incidence function over the enrolled set.
+6. State the confirmatory-replication carve-out to G3 explicitly, or restructure M7.
+7. Declare the world-level aggregation rule over entities, and the track-to-world terminal reduction.
+8. Add detector identity and regime-classifier identity to both the association-edge schema and the provenance
+   bindings.
+9. Close the atlas-blindness leak: either exclude the frozen-record discussion from M4's brief, or impose a
+   read ledger and separate human review on M4's derivation.
+10. Complete the read ledger.
+11. Correct the claim ceiling everywhere: Stage D is single-target; rungs 4–5 and the full rung 6 require Stage E.
+
+**The only authorized next action is human review of this package.** No implementation, no execution, no seed, no
+preregistration and no scientific stage is authorized, and none becomes authorized by any statement in Part II.
