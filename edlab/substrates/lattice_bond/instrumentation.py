@@ -9,6 +9,7 @@ regime labels, or intervention responses.
 from __future__ import annotations
 
 from dataclasses import dataclass, replace
+from numbers import Integral
 import math
 from typing import Iterable, Literal, Mapping, Sequence
 
@@ -405,12 +406,80 @@ def _temporary_contact_pairs(components: Sequence[DetectedComponent]) -> tuple[t
     return tuple(pairs)
 
 
+def _validated_sample_schedule(
+    frames: Sequence[Sequence[DetectedComponent]],
+    sampled_frames: Sequence[int] | None,
+) -> tuple[int, ...] | None:
+    """Validate a declared sample schedule against the observed frame sequence.
+
+    A malformed schedule is rejected outright; it is never silently repaired.
+    """
+
+    if sampled_frames is None:
+        return None
+    schedule = tuple(sampled_frames)
+    if len(schedule) != len(frames):
+        raise ValueError(
+            f"sampled_frames has {len(schedule)} entries for {len(frames)} detector frames"
+        )
+    for value in schedule:
+        if isinstance(value, bool) or not isinstance(value, Integral):
+            raise ValueError("sampled_frames must contain integers")
+        if int(value) < 0:
+            raise ValueError("sampled_frames must be nonnegative")
+    if any(int(b) <= int(a) for a, b in zip(schedule, schedule[1:])):
+        raise ValueError("sampled_frames must be strictly increasing")
+    resolved = tuple(int(value) for value in schedule)
+    for position, observed in enumerate(frames):
+        for component in observed:
+            if int(component.frame) != resolved[position]:
+                raise ValueError(
+                    "declared sampled_frames disagree with an observed detector frame at "
+                    f"schedule position {position}"
+                )
+    return resolved
+
+
+def _transition_right_frame(
+    transition_index: int,
+    right: Sequence[DetectedComponent],
+    schedule: tuple[int, ...] | None,
+) -> int:
+    """Resolve the right observed frame of one transition.
+
+    With a declared schedule the actual right frame ``schedule[transition_index + 1]``
+    is authoritative, including when the right detector frame is empty.  Without one
+    the frame can only be read off an observed component; the pre-existing positional
+    behaviour is preserved unchanged for that legacy call path and is documented in
+    :func:`track_components` as defective for non-unit cadence.
+    """
+
+    if schedule is not None:
+        return schedule[transition_index + 1]
+    return right[0].frame if right else transition_index + 1
+
+
 def track_components(
     frames: Sequence[Sequence[DetectedComponent]],
     spec: TrackerSpec,
+    sampled_frames: Sequence[int] | None = None,
 ) -> TrackingResult:
-    """Track a complete sequence and log contact without merging identities."""
+    """Track a complete sequence and log contact without merging identities.
 
+    ``sampled_frames`` is the declared sample schedule.  When supplied it is the sole
+    authority for the frame stamped on every event of a transition, so a disappearance
+    established by an *empty* right detector frame is bound to the actual scheduled
+    frame rather than to a positional surrogate.  Supplying it is required for any
+    non-unit or irregular cadence.
+
+    When it is omitted the frame is read from an observed component, and an empty right
+    detector frame falls back to ``transition_index + 1``.  That legacy behaviour is
+    preserved byte-for-byte for compatibility with callers qualified against the
+    previous source hash.  **It is wrong for any schedule other than unit cadence from
+    origin zero**, because it stamps a schedule position onto an event frame.
+    """
+
+    schedule = _validated_sample_schedule(frames, sampled_frames)
     if not frames:
         return TrackingResult((), (), (), ())
     all_edges: list[AssociationEdge] = []
@@ -449,7 +518,7 @@ def track_components(
         events.append(TrackEvent(component.frame, "APPEARANCE", (), (), (component.key,), (track_id,), True))
 
     for transition_index, (left, right) in enumerate(zip(frames[:-1], frames[1:], strict=True)):
-        right_frame = right[0].frame if right else transition_index + 1
+        right_frame = _transition_right_frame(transition_index, right, schedule)
         selected = selected_by_transition[transition_index]
         ambiguous = ambiguous_by_transition[transition_index]
         usable_left = list(left)
