@@ -428,7 +428,7 @@ def _forged_closure(frames=NONUNIT_SCHEDULE) -> LifecycleRunClosure:
 
 
 def test_14_no_public_entry_point_accepts_a_lifecycle_closure() -> None:
-    forbidden = ("LifecycleRunClosure", "LifecycleTerminalRecord", "LifecycleRunClosure",
+    forbidden = ("LifecycleRunClosure", "LifecycleTerminalRecord",
                  "lifecycle_document", "disposition", "status", "closure")
     allowed_annotations = {
         "run_directory": "str | os.PathLike[str]",
@@ -921,3 +921,24 @@ def test_35_returned_evidence_is_a_deep_copy(tmp_path: Path) -> None:
     assert fresh["canonicalization"]["encoding"] == "utf-8"
     assert fresh["sampled_frames"] == list(NONUNIT_SCHEDULE)
     assert runner._CANONICALIZATION["encoding"] == "utf-8"
+
+
+def test_36_filesystem_errors_from_the_frozen_writer_stay_typed(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A filesystem without hard links must not leak a bare OSError."""
+
+    import edlab.substrates.lattice_bond.lifecycle as lifecycle
+
+    def unlinkable(source, destination):
+        raise PermissionError(1, "Operation not permitted")
+
+    monkeypatch.setattr(lifecycle.os, "link", unlinkable)
+    with pytest.raises(RunnerIntegrationError) as caught:
+        publish_future_family_completion(tmp_path, _real_tracker_nonunit(), NONUNIT_SCHEDULE)
+    assert isinstance(caught.value, LifecycleEvidenceError)
+    assert isinstance(caught.value.__cause__, OSError)
+    monkeypatch.undo()
+    assert not (tmp_path / COMPLETION_MANIFEST_NAME).exists()
+    with pytest.raises(CompletionEvidenceError):
+        open_analysis_access(tmp_path, _real_tracker_nonunit(), NONUNIT_SCHEDULE)

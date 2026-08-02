@@ -39,6 +39,11 @@ Four further scope facts, stated here so that no reader infers more than holds:
   ``terminal_record_count == 0`` and an explicit ``EMPTY_TRACK_SET`` closure.
   ``COMPLETE`` is a statement about lifecycle accounting, never about content.
 
+On failure this module removes only files whose inode it has confirmed owning.
+A ``.partial`` temporary may therefore survive if the descriptor could not be
+opened at all; it is never mistaken for completion evidence, and this matches
+the behaviour of the frozen lifecycle primitive.
+
 A publication failure after the lifecycle document has been persisted leaves
 that document in place.  This is deliberate: it blocks silent reuse of the
 directory.  The document alone never unlocks analysis.
@@ -235,7 +240,14 @@ def _build_manifest(contract: object, document_sha256: str) -> dict[str, Any]:
 
 
 def _publish_new_canonical_file(target: Path, payload: bytes) -> None:
-    """Atomically create one non-overwriting file, or leave nothing behind."""
+    """Atomically create one non-overwriting file.
+
+    Nothing is left behind that this invocation has *confirmed owning*.  If the
+    descriptor cannot be opened at all, the ``mkstemp`` file may survive, because
+    unlinking a path whose inode has not been confirmed is the more dangerous
+    choice.  Such a leftover is named ``.<target>.<random>.partial`` and can
+    never be mistaken for completion evidence.
+    """
 
     parent = target.parent
     if not parent.is_dir():
@@ -324,7 +336,9 @@ def publish_future_family_completion(
     # that survive a round trip through the filesystem are ever trusted.
     try:
         qualify_and_write_lifecycle_contract(lifecycle_path, tracking, sampled_frames)
-    except (LifecycleContractError, LifecyclePublicationError) as exc:
+    except (LifecycleContractError, LifecyclePublicationError, OSError) as exc:
+        # OSError covers filesystems on which the frozen writer's hard link is
+        # unavailable; it must not escape the typed hierarchy.
         raise LifecycleEvidenceError(
             f"lifecycle qualification or persistence failed: {exc}"
         ) from exc
