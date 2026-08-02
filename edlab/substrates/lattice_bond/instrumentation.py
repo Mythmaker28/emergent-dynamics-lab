@@ -413,10 +413,21 @@ def _validated_sample_schedule(
     """Validate a declared sample schedule against the observed frame sequence.
 
     A malformed schedule is rejected outright; it is never silently repaired.
+
+    The cross-check against observed frames can only cover positions that
+    actually contain a detected component.  An **empty** detector frame carries
+    no frame stamp of its own, so the schedule entry for such a position is
+    unverifiable in principle: it is bracketed by its neighbours through strict
+    monotonicity, and otherwise taken on the caller's declaration.  That is the
+    same declaration handed to the lifecycle contract, so the two agree by
+    construction; a caller that mis-declares its own cadence is out of reach of
+    any check performable here.
     """
 
     if sampled_frames is None:
         return None
+    if isinstance(sampled_frames, (str, bytes, bytearray, set, frozenset)):
+        raise ValueError("sampled_frames must be an ordered sequence of integers")
     schedule = tuple(sampled_frames)
     if len(schedule) != len(frames):
         raise ValueError(
@@ -466,11 +477,18 @@ def track_components(
 ) -> TrackingResult:
     """Track a complete sequence and log contact without merging identities.
 
-    ``sampled_frames`` is the declared sample schedule.  When supplied it is the sole
-    authority for the frame stamped on every event of a transition, so a disappearance
-    established by an *empty* right detector frame is bound to the actual scheduled
-    frame rather than to a positional surrogate.  Supplying it is required for any
-    non-unit or irregular cadence.
+    ``sampled_frames`` is the declared sample schedule.  When supplied it is validated
+    against the observed frames and then becomes the authority for the *right frame of
+    each transition*, so a disappearance established by an *empty* right detector frame
+    is bound to the actual scheduled frame rather than to a positional surrogate.
+    Supplying it is required for any non-unit or irregular cadence.
+
+    Two event families still read their frame from an observed component rather than
+    from the schedule: the onset ``APPEARANCE`` events of ``frames[0]``, and
+    ``CONTINUATION``, which by definition has a target component in the right frame.
+    Validation forces ``component.frame == sampled_frames[position]`` for every observed
+    component, so those values are provably equal to the corresponding schedule entries;
+    the distinction is one of provenance, not of result.
 
     When it is omitted the frame is read from an observed component, and an empty right
     detector frame falls back to ``transition_index + 1``.  That legacy behaviour is

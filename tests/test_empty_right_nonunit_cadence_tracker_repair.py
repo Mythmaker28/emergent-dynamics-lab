@@ -199,7 +199,15 @@ def test_06_several_left_entities_all_close_at_the_empty_right_frame():
 
 
 def test_07_one_track_disappears_while_another_survives():
-    """Disappearance and survival must be distinguishable, and both must qualify."""
+    """Disappearance and survival must be distinguishable, and both must qualify.
+
+    Recorded honestly: the right detector frame here is *not* empty (the survivor is
+    in it), so ``right[0].frame`` already yields the correct number and this case
+    passes on the defective parent too.  It is kept because it pins the mixed-fate
+    accounting, and its passing on the parent is itself informative — the defect is
+    specific to a **totally** empty right detector frame.  The empty-right analogue
+    is :func:`test_s2_a_disappearing_track_stays_in_the_enrolled_denominator`.
+    """
 
     schedule = (0, 5, 11)
     both = BLOB_A | BLOB_B
@@ -435,12 +443,23 @@ def test_s1_disappearance_is_no_longer_correlated_with_global_rejection():
 
 
 def test_s2_a_disappearing_track_stays_in_the_enrolled_denominator():
+    """Empty right detector frame: the tracks that vanish are counted, not dropped."""
+
     schedule = (0, 5, 11)
-    repaired = _tracked(schedule, BLOB_A | BLOB_B, BLOB_B, BLOB_B)
+    repaired = _tracked(schedule, BLOB_A | BLOB_B, EMPTY, BLOB_B)
+    assert _violations(_legacy(schedule, BLOB_A | BLOB_B, EMPTY, BLOB_B), schedule) is not None
     contract = qualify_lifecycle_contract(repaired, schedule)
-    assert contract.track_count == len(repaired.tracks) == 2
+    assert contract.track_count == len(repaired.tracks) == 3
     assert len(contract.terminal_records) == contract.track_count
     assert contract.run_terminal_state == "ALL_TRACKS_CLOSED"
+    fates = sorted(
+        (record.terminal_state, record.terminal_frame) for record in contract.terminal_records
+    )
+    assert fates == [
+        ("DISSOLVED_DETECTED_TRACK", 5),
+        ("DISSOLVED_DETECTED_TRACK", 5),
+        ("RIGHT_CENSORED_AT_HORIZON", 11),
+    ]
 
 
 def test_s3_disappearance_is_not_reported_as_survival():
@@ -449,3 +468,87 @@ def test_s3_disappearance_is_not_reported_as_survival():
     surviving = _tracked(schedule, BLOB_A, BLOB_A, BLOB_A)
     assert _terminals(dissolving, schedule)[0][0] == "DISSOLVED_DETECTED_TRACK"
     assert _terminals(surviving, schedule)[0][0] == "RIGHT_CENSORED_AT_HORIZON"
+
+
+# --------------------------------------------------------------------------
+# review round 1 — coverage gaps found by the independent reviewers
+# --------------------------------------------------------------------------
+
+SEPARATED = _mask({(4, 2), (4, 3), (5, 2), (5, 3), (4, 7), (4, 8), (5, 7), (5, 8)})
+CONTACT = _mask({(4, 2), (4, 3), (5, 2), (5, 3), (4, 5), (4, 6), (5, 5), (5, 6)})
+
+
+def _collapsed() -> np.ndarray:
+    value = SEPARATED.copy()
+    value[4, 4:7] = True
+    return value
+
+
+def test_r1_tracking_unresolved_is_stamped_with_the_scheduled_frame():
+    """Reviewer A, OBS-1: no fixture produced TRACKING_UNRESOLVED at non-unit cadence,
+    so a mutant that reverted *only* that event to the positional surrogate survived."""
+
+    schedule = (0, 5, 11, 40)
+    repaired = _tracked(schedule, SEPARATED, _collapsed(), SEPARATED, EMPTY)
+    unresolved = [event for event in repaired.events if event.kind == "TRACKING_UNRESOLVED"]
+    assert unresolved, "fixture must produce an unresolved handoff"
+    assert {event.frame for event in unresolved} <= set(schedule)
+    assert 1 not in {event.frame for event in repaired.events}
+    assert 2 not in {event.frame for event in repaired.events}
+    assert unresolved[0].frame == 5
+    assert _frames_of(repaired, "DISSOLUTION") == [40] * len(_frames_of(repaired, "DISSOLUTION"))
+    assert _violations(repaired, schedule) is None
+    states = {value[0] for value in _terminals(repaired, schedule).values()}
+    assert "UNRESOLVED_HANDOFF" in states
+
+
+def test_r2_temporary_contact_is_stamped_with_the_scheduled_frame():
+    schedule = (0, 5, 11, 40)
+    repaired = _tracked(schedule, SEPARATED, CONTACT, SEPARATED, EMPTY)
+    contacts = [event for event in repaired.events if event.kind == "TEMPORARY_CONTACT"]
+    assert contacts, "fixture must produce a temporary contact"
+    assert {event.frame for event in contacts} <= set(schedule)
+    assert contacts[0].frame == 5
+    assert _violations(repaired, schedule) is None
+
+
+def test_r3_a_negative_schedule_is_rejected_by_the_nonnegativity_rule_itself():
+    """Reviewer A, OBS-3: every previous negative case was rejected by the
+    *consistency* check instead, leaving the nonnegativity rule unpinned.  With a
+    leading EMPTY frame there is no observed component to disagree with."""
+
+    observed = _observed((0, 5), EMPTY, BLOB_A)
+    with pytest.raises(ValueError, match="nonnegative"):
+        track_components(observed, TRACKER, (-5, 5))
+
+
+def test_r4_an_unordered_container_is_not_accepted_as_a_schedule():
+    """Reviewer A, OBS-4: a set has no order, so it may not stand in for a schedule."""
+
+    observed = _observed((0, 5), BLOB_A, EMPTY)
+    for container in ({0, 5}, frozenset({0, 5}), "05", b"\x00\x05"):
+        with pytest.raises(ValueError):
+            track_components(observed, TRACKER, container)
+
+
+def test_r5_first_frame_empty_then_populated_at_nonunit_cadence():
+    """Reviewer A, C6: an onset APPEARANCE must carry the real frame, not position 1."""
+
+    schedule = (3, 9, 20)
+    repaired = _tracked(schedule, EMPTY, BLOB_A, BLOB_A)
+    assert _frames_of(repaired, "APPEARANCE") == [9]
+    assert _violations(repaired, schedule) is None
+
+
+def test_r6_a_visually_identical_component_returning_later_is_not_stitched():
+    """Reviewer A, C6: disappearance must not be silently undone by a look-alike."""
+
+    schedule = (0, 5, 11, 17, 23)
+    repaired = _tracked(schedule, BLOB_A, EMPTY, EMPTY, EMPTY, BLOB_A)
+    assert _frames_of(repaired, "DISSOLUTION") == [5]
+    assert _frames_of(repaired, "APPEARANCE") == [0, 23]
+    assert len(repaired.tracks) == 2
+    assert _violations(repaired, schedule) is None
+    terminals = _terminals(repaired, schedule)
+    assert terminals[0][:2] == ("DISSOLVED_DETECTED_TRACK", 5)
+    assert terminals[1][:2] == ("RIGHT_CENSORED_AT_HORIZON", 23)
