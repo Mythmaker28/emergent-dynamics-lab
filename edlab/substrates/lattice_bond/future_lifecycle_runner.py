@@ -17,10 +17,36 @@ This is Python.  The guarantee does *not* extend to an actor who edits this
 module or ``lifecycle.py``, monkeypatches module attributes, reaches for private
 names or reflection, replaces the import, or otherwise controls both the written
 bytes and the verifying code.  No absolute protection is claimed.
+
+Four further scope facts, stated here so that no reader infers more than holds:
+
+* Completion evidence is **content-addressed, not provenance-bound**.  Copying a
+  genuine ``LIFECYCLE.json`` and ``COMPLETION.json`` pair into another directory
+  yields a valid access there.  This follows directly from the manifest storing
+  only a relative lifecycle identity, which is what makes identical inputs
+  produce byte-identical evidence.  The correct tracking input and schedule are
+  still required.
+* The manifest carries **no independent authority**.  Every field is a
+  deterministic function of the lifecycle document bytes and module constants,
+  so anyone able to produce a qualifying lifecycle document can mint the
+  matching manifest.  ``COMPLETE`` therefore adds no evidentiary weight beyond
+  the lifecycle document itself; its role is to make the gate unavoidable, not
+  to attest to anything further.
+* Ordering is enforced by straight-line control flow.  :class:`RunnerState` and
+  :class:`_Progress` *assert* that ordering; they are not the mechanism, and a
+  reader should not treat the state enum as the thing that gates completion.
+* A run with no tracks at all publishes ``COMPLETE`` with
+  ``terminal_record_count == 0`` and an explicit ``EMPTY_TRACK_SET`` closure.
+  ``COMPLETE`` is a statement about lifecycle accounting, never about content.
+
+A publication failure after the lifecycle document has been persisted leaves
+that document in place.  This is deliberate: it blocks silent reuse of the
+directory.  The document alone never unlocks analysis.
 """
 
 from __future__ import annotations
 
+import copy
 from dataclasses import dataclass
 from enum import Enum
 import hashlib
@@ -180,9 +206,13 @@ class AnalysisAccess:
         self._evidence = dict(evidence)
 
     def verified_completion_evidence(self) -> dict[str, Any]:
-        """The gated entry point: reverified completion evidence, never an outcome."""
+        """The gated entry point: reverified completion evidence, never an outcome.
 
-        return dict(self._evidence)
+        A deep copy is returned so that a caller mutating a nested value cannot
+        change what this instance reports on a later call.
+        """
+
+        return copy.deepcopy(self._evidence)
 
 
 def _build_manifest(contract: object, document_sha256: str) -> dict[str, Any]:
@@ -362,7 +392,14 @@ def open_analysis_access(
         raise CompletionEvidenceError("completion manifest must be a JSON object")
     if set(manifest) != set(_MANIFEST_KEYS):
         raise CompletionEvidenceError("completion manifest key set mismatch")
-    if _canonical_bytes(manifest) != raw:
+    try:
+        canonical_manifest = _canonical_bytes(manifest)
+    except ValueError as exc:
+        # json.loads accepts NaN/Infinity; the canonical form does not.
+        raise CompletionEvidenceError(
+            f"completion manifest is not canonically representable: {exc}"
+        ) from exc
+    if canonical_manifest != raw:
         raise CompletionEvidenceError("completion manifest bytes are not canonical")
     if manifest["schema_version"] != SCHEMA_VERSION:
         raise CompletionEvidenceError("unsupported completion manifest schema version")

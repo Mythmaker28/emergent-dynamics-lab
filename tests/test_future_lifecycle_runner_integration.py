@@ -5,7 +5,7 @@ Synthetic fixtures only.  No engine, no historical family, no scientific value.
 
 from __future__ import annotations
 
-from dataclasses import FrozenInstanceError, replace
+from dataclasses import FrozenInstanceError
 import hashlib
 import inspect
 import json
@@ -428,12 +428,21 @@ def _forged_closure(frames=NONUNIT_SCHEDULE) -> LifecycleRunClosure:
 
 
 def test_14_no_public_entry_point_accepts_a_lifecycle_closure() -> None:
-    forbidden = {"LifecycleRunClosure", "LifecycleTerminalRecord", "lifecycle_document", "disposition"}
+    forbidden = ("LifecycleRunClosure", "LifecycleTerminalRecord", "LifecycleRunClosure",
+                 "lifecycle_document", "disposition", "status", "closure")
+    allowed_annotations = {
+        "run_directory": "str | os.PathLike[str]",
+        "tracking": "TrackingResult",
+        "sampled_frames": "Sequence[int]",
+    }
     for name in ("publish_future_family_completion", "open_analysis_access"):
         signature = inspect.signature(getattr(runner, name))
-        assert set(signature.parameters) == {"run_directory", "tracking", "sampled_frames"}
+        assert set(signature.parameters) == set(allowed_annotations)
         for parameter in signature.parameters.values():
-            assert not (forbidden & set(str(parameter.annotation).split()))
+            annotation = str(parameter.annotation)
+            assert annotation == allowed_annotations[parameter.name], (name, annotation)
+            assert not any(token in annotation for token in forbidden), (name, annotation)
+        assert signature.return_annotation in ("CompletionRecord", "AnalysisAccess")
 
 
 def test_14b_hand_constructed_closure_cannot_satisfy_the_gate(tmp_path: Path) -> None:
@@ -675,6 +684,10 @@ def test_23_bound_lifecycle_package_remains_byte_identical() -> None:
     expected = {
         "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SCHEMA.json":
             "629bfdc3e6d3017948ad1b07472bea881419c86ea9fa283494a418f27913966c",
+        "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SOURCE_ALLOWLIST.json":
+            "d8743e1f2eb98de610df22d67059ce1132472e8eea405faf7b91ed4c9bb8253a",
+        "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SPEC.md":
+            "81c5af7cd91b9a780d560b7b7bed52b80b56348e29499c385b696a25e8686974",
         "edlab/substrates/lattice_bond/__init__.py":
             "9d3bea5ac70b514b592f71c2c46738dfdaec62e0072e8055a512b2e22ac6d5b0",
         "edlab/substrates/lattice_bond/instrumentation.py":
@@ -823,3 +836,88 @@ def test_32_declared_manifest_fields_must_match(tmp_path: Path, key, value, mess
     _rewrite_manifest(tmp_path, manifest)
     with pytest.raises(CompletionEvidenceError, match=message):
         open_analysis_access(tmp_path, tracking, NONUNIT_SCHEDULE)
+
+
+# --------------------------------------------------------------------------
+# review fixes: the atomic publisher must be proven wired into the gate
+# --------------------------------------------------------------------------
+
+
+class _PlantingTracking:
+    """A tracking input that plants a rival COMPLETION.json mid-publication.
+
+    The plant happens *after* the pre-flight existence check and *before* the
+    manifest is written, which is exactly the window a non-atomic writer would
+    silently clobber.
+    """
+
+    def __init__(self, inner: TrackingResult, directory: Path, payload: bytes) -> None:
+        self._inner = inner
+        self._directory = directory
+        self._payload = payload
+        self.planted = False
+
+    @property
+    def tracks(self):
+        if not self.planted:
+            self.planted = True
+            (self._directory / COMPLETION_MANIFEST_NAME).write_bytes(self._payload)
+        return self._inner.tracks
+
+    @property
+    def events(self):
+        return self._inner.events
+
+    @property
+    def edges(self):
+        return self._inner.edges
+
+    @property
+    def assignments(self):
+        return self._inner.assignments
+
+
+def test_33_completion_published_mid_flight_is_never_clobbered(tmp_path: Path) -> None:
+    """The supported path must route through the atomic non-overwriting writer.
+
+    Without that routing this test fails: a plain write would destroy the rival
+    manifest that appeared after the pre-flight check.
+    """
+
+    sentinel = b"rival completion evidence"
+    hostile = _PlantingTracking(_real_tracker_nonunit(), tmp_path, sentinel)
+    with pytest.raises(CompletionPublicationError, match="existing completion manifest"):
+        publish_future_family_completion(tmp_path, hostile, NONUNIT_SCHEDULE)
+    assert hostile.planted
+    assert (tmp_path / COMPLETION_MANIFEST_NAME).read_bytes() == sentinel
+    assert _leftovers(tmp_path) == []
+    with pytest.raises(CompletionEvidenceError):
+        open_analysis_access(tmp_path, _real_tracker_nonunit(), NONUNIT_SCHEDULE)
+
+
+def test_34_non_finite_manifest_numbers_stay_inside_the_error_hierarchy(tmp_path: Path) -> None:
+    tracking = _real_tracker_nonunit()
+    publish_future_family_completion(tmp_path, tracking, NONUNIT_SCHEDULE)
+    raw = (tmp_path / COMPLETION_MANIFEST_NAME).read_bytes().decode("utf-8")
+    poisoned = raw.replace('"terminal_record_count":1', '"terminal_record_count":NaN')
+    assert poisoned != raw
+    (tmp_path / COMPLETION_MANIFEST_NAME).write_bytes(poisoned.encode("utf-8"))
+    with pytest.raises(RunnerIntegrationError) as caught:
+        open_analysis_access(tmp_path, tracking, NONUNIT_SCHEDULE)
+    assert isinstance(caught.value, CompletionEvidenceError)
+    assert "not canonically representable" in str(caught.value)
+
+
+def test_35_returned_evidence_is_a_deep_copy(tmp_path: Path) -> None:
+    tracking = _real_tracker_nonunit()
+    publish_future_family_completion(tmp_path, tracking, NONUNIT_SCHEDULE)
+    access = open_analysis_access(tmp_path, tracking, NONUNIT_SCHEDULE)
+    evidence = access.verified_completion_evidence()
+    evidence["disposition"] = "TAMPERED"
+    evidence["canonicalization"]["encoding"] = "utf-16"
+    evidence["sampled_frames"].append(99)
+    fresh = access.verified_completion_evidence()
+    assert fresh["disposition"] == "COMPLETE"
+    assert fresh["canonicalization"]["encoding"] == "utf-8"
+    assert fresh["sampled_frames"] == list(NONUNIT_SCHEDULE)
+    assert runner._CANONICALIZATION["encoding"] == "utf-8"
