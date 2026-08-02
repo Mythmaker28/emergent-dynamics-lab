@@ -125,3 +125,76 @@ After all fixes, re-run in the clean room:
 
 Both reviewers returned **PASS**. The mission disposition is
 `LIFECYCLE_REQUALIFICATION_01R_QUALIFIED`, and the only authorized next action is **human review**.
+
+---
+
+## HUMAN-REVIEW DEFERRAL ADDENDUM — NON_LOAD_BEARING_TRACEABILITY_GAP
+
+**This addendum was required by deferred human review. It was not present in the original final
+journal.** Human review of candidate `9185afaa2de69cbfe20b7ee983261d03e2225ce7` returned
+`HUMAN_REVIEW_DEFERRED`. Every technical verification passed — the bound suite reproduced 227 passed /
+0 failed / 0 skipped under a pytest release satisfying the declared `>=8.2,<9` constraint, the collected
+node list matched the bound list element for element with the recorded digest, and the 4096-case
+enumeration returned zero on every required counter. The deferral was caused solely by three statements
+about the historical-partition gap being **absent from this journal**, though both were correctly
+recorded in `..._01R_REPORT.md` and `..._01R_QUALIFICATION.json`. Nothing previously written here was
+wrong; it was incomplete. Nothing above this line has been rewritten or altered — this section is
+appended.
+
+### The five required facts
+
+1. **The historical rejection total `1295` reproduced exactly.** It is an alphabet-independent
+   combinatorial invariant: over an 8-letter alphabet containing exactly one empty mask, a depth-4 word
+   avoids every `non-empty → empty` adjacency exactly when its empty letters form a prefix, so the
+   avoiding words number `Σ_{k=0..4} 7^k = 2801` and the rejecting words number `4096 − 2801 = 1295`.
+   Reviewer B re-derived the arithmetic independently and confirmed empirically that restoring the legacy
+   fallback makes `test_e1` fail with `assert 1295 == 0` on the off-schedule counter.
+
+2. **The historical internal partition `3910 / 186` did not reproduce.** This was stated in the report
+   and the qualification JSON but was missing here.
+
+3. **The fixture geometry needed to reconstruct that partition is absent from the allowlisted record.**
+   `EMPTY_RIGHT_NONUNIT_CADENCE_TRACKER_REPAIR_00_REVIEW_JOURNAL.md:250` describes the historical
+   alphabet only in prose — "empty, two disjoint blobs, a third blob, a joinable bar, a split bar, and a
+   symmetric-tie pair that forces `TRACKING_UNRESOLVED`". The *pixel geometry* of those masks, on which
+   the partition depends, is recorded in no allowlisted document.
+
+4. **No fitting, historical recovery or search for a matching geometry was attempted.** Candidate
+   alphabets were tried while reconstructing the prose description, and the search was stopped once it
+   was clear the partition is geometry-dependent. Continuing to vary geometries until `186` appeared
+   would have been curve-fitting, not verification. No attempt was made to recover the historical script,
+   and none could have been made without leaving the exact-path allowlist.
+
+5. **No qualification criterion, API claim, survivorship result, mutation result or terminal disposition
+   depends on that partition.** Every required outcome of the enumeration is zero-valued and
+   alphabet-independent (zero schedule-free invocations, zero off-schedule event frames, zero
+   disappearance-correlated rejections, zero survival rejections, zero terminal-accounting failures), and
+   `with_disappearance > 0` is asserted so the enumeration cannot pass vacuously on a disappearance-free
+   alphabet. The disposition `LIFECYCLE_REQUALIFICATION_01R_QUALIFIED` is unchanged by this addendum.
+
+### Observed partitions — recorded as fixture measurements, not as results
+
+| run | with-disappearance / without |
+|---|---|
+| historical `00` record | 3910 / 186 |
+| candidate 01R, declared alphabet | **3534 / 562** |
+| independent Reviewer B, its own alphabet | **3516 / 580** |
+
+Neither the candidate figure nor Reviewer B's is a scientific result, and neither is offered as one.
+They are counts over handcrafted synthetic mask sequences, and they exist here only to make the gap
+legible.
+
+- The **disagreement between the three figures confirms that the internal partition is
+  fixture-dependent** — three reconstructions of the same prose description give three different
+  partitions.
+- The **load-bearing `1295` rejection invariant is separate from that partition**: it is fixed by the
+  position of the single empty mask in a depth-4 word and is therefore independent of every other mask's
+  geometry. That is why it reproduces exactly while the partition does not.
+- **The gap is documentary and non-load-bearing.** Classified `NON_LOAD_BEARING_TRACEABILITY_GAP`.
+
+### Scope of this addendum
+
+Documentation only. No test, simulation, enumeration or engine was run to produce it. No scientific
+artifact was opened. No source, test, report, qualification JSON, historical package document or
+human-review file was modified. No disposition was changed. The only authorized next action is **repeat
+human review of the corrected candidate**.
