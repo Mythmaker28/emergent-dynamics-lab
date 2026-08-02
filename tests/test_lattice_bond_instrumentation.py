@@ -519,3 +519,88 @@ def test_tracker_spec_changes_do_not_change_detector_or_physics():
     track_components((components, components), replace(TRACKER, max_centroid_displacement=6.0))
     assert engine.step(state).canonical_bytes() == physical
     assert detect_components(state, DETECTOR) == components
+
+
+# --------------------------------------------------------------------------
+# EMPTY_RIGHT_NONUNIT_CADENCE_TRACKER_REPAIR_00 — backward-compatibility guards
+#
+# The repair added an optional ``sampled_frames`` argument to ``track_components``.
+# These regressions pin the two properties every pre-existing caller depends on:
+# the default call path is unchanged, and supplying the identity schedule changes
+# nothing at unit cadence.  The repair's positive behaviour is qualified in
+# ``tests/test_empty_right_nonunit_cadence_tracker_repair.py``.
+# --------------------------------------------------------------------------
+
+
+def _unit_schedule(frames):
+    return tuple(range(len(frames)))
+
+
+@pytest.mark.parametrize(
+    "cells",
+    [
+        ({(3, 3), (3, 4), (4, 3), (4, 4)},),
+        ({(4, x) for x in range(3, 8)},),
+        ({(4, 3), (4, 4), (4, 6), (4, 7)},),
+    ],
+)
+def test_sampled_frames_argument_is_optional_and_defaults_to_the_legacy_path(cells):
+    empty = np.zeros(SHAPE, dtype=bool)
+    frames = _detected(_mask(*cells), empty)
+    assert track_components(frames, TRACKER) == track_components(frames, TRACKER, None)
+
+
+@pytest.mark.parametrize(
+    "masks",
+    [
+        ("square", "empty"),
+        ("empty", "square", "empty"),
+        ("joined", "split"),
+        ("split", "joined"),
+        ("square", "square", "square"),
+    ],
+)
+def test_identity_schedule_is_inert_at_unit_cadence(masks):
+    catalogue = {
+        "empty": np.zeros(SHAPE, dtype=bool),
+        "square": _mask({(3, 3), (3, 4), (4, 3), (4, 4)}),
+        "joined": _mask({(4, x) for x in range(3, 8)}),
+        "split": _mask({(4, 3), (4, 4), (4, 6), (4, 7)}),
+    }
+    frames = _detected(*(catalogue[name] for name in masks))
+    assert track_components(frames, TRACKER) == track_components(
+        frames, TRACKER, _unit_schedule(frames)
+    )
+
+
+def test_empty_right_frame_at_unit_cadence_still_dissolves_at_the_next_frame():
+    """The pre-existing behaviour this mission classifies as correct at unit cadence."""
+
+    empty = np.zeros(SHAPE, dtype=bool)
+    square = _mask({(3, 3), (3, 4), (4, 3), (4, 4)})
+    frames = _detected(square, empty)
+    for result in (track_components(frames, TRACKER), track_components(frames, TRACKER, (0, 1))):
+        dissolutions = [event for event in result.events if event.kind == "DISSOLUTION"]
+        assert len(dissolutions) == 1
+        assert dissolutions[0].frame == 1
+
+
+def test_a_declared_schedule_that_contradicts_the_detector_is_refused():
+    empty = np.zeros(SHAPE, dtype=bool)
+    square = _mask({(3, 3), (3, 4), (4, 3), (4, 4)})
+    frames = _detected(square, empty)
+    with pytest.raises(ValueError):
+        track_components(frames, TRACKER, (0, 1, 2))
+    with pytest.raises(ValueError):
+        track_components(frames, TRACKER, (1, 0))
+    with pytest.raises(ValueError):
+        track_components(frames, TRACKER, (5, 9))
+
+
+def test_empty_frame_sequence_is_still_accepted_with_and_without_a_schedule():
+    assert track_components((), TRACKER) == track_components((), TRACKER, ())
+
+
+def test_a_malformed_schedule_is_refused_even_for_an_empty_frame_sequence():
+    with pytest.raises(ValueError):
+        track_components((), TRACKER, (0,))

@@ -2807,3 +2807,44 @@ terminated. This is a recorded evidence-firewall deviation and contributes no qu
 inference. Stage A relies only on the focused hand-built lattice suite and independent hand-built stress scan. No
 Stage B, new scientific world, regime discovery, prospective family, endpoint, search, memory, reproduction,
 V5/03G modification, merge, or PR is authorized. Human review of the Stage-A package is the exact next action.
+
+## D-099 — INTERVENTIONAL-INDIVIDUALITY-00 Stage B fixed family is DEV-infeasible
+
+**Date:** 2026-07-19
+
+**Decision:** Issue **DEV_FEASIBILITY_FAIL** for the exact sealed Stage-B family. The passive instrumentation,
+standalone raw reproducer and v4 provenance gates qualified before execution. Exactly one invocation enrolled all 64
+fixed original worlds; all shards completed and retained the Stage-A numerical/conservation identities. Production
+classification and two independent raw-only reproductions are byte-identical.
+
+**Regime decision:** 11 individual worlds satisfy the frozen bounded-active-turnover world rule, but no LawSpec
+region satisfies the predeclared replication requirement of at least two of four candidates separately in both the
+soup and compact IC classes. Candidate worlds are not a surviving subset and cannot be promoted or rerun. No
+threshold, IC, law, horizon or world was changed after outcome access.
+
+**Claim and program boundary:** this result says only that the fixed DEV family failed its regional feasibility
+gate. It does not show absence of individuality, autonomy, memory, ownership, reproduction or life. It does not
+authorize causal-conductance selection, cuts, a memory writer, adaptive extension, replacement worlds or Stage C.
+The exact next action is human review of the completed Stage-B package.
+
+## D-100 — Stage-B developmental autopsy stops AUDIT_INVALID
+
+**Date:** 2026-07-19
+
+**Decision:** Close the raw-only Stage-B developmental autopsy as **AUDIT_INVALID**. The pre-raw plan, exact
+46-array reconstruction protocol and source allowlist were frozen before physics access. Two source-separated,
+engine-free implementations passed 87 focused tests, 26 reproducer self-test groups and an independent adversarial
+`PASS_CODE_FOR_RAW` review at pushed checkpoint `085bf5e`.
+
+**Binding failure:** the primary raw invocation stopped because track 0 ended before the horizon without an explicit
+`DISSOLUTION`; the independent raw invocation stopped because its deterministic reporting representative ended before
+the horizon without an explicit `DISSOLUTION`. These are the same frozen terminal-validity predicate. No final or
+partial package was created, so the byte-comparison command and `QUALIFICATION.json` are prohibited and remain
+unrun. A preceding independent publication-parent error happened before physics access; creating only the exact
+allowlisted empty parent was benign scaffolding, not a scientific retry.
+
+**Claim and program boundary:** no complete transition table, trajectory atlas, candidate-duration analysis,
+formation/maintenance estimate or developmental mechanism result exists. The failure cannot be reinterpreted as
+`RAW_INSUFFICIENT`, transient/heterogeneous candidates, or absence of individuality. The original
+`DEV_FEASIBILITY_FAIL` remains exact. No code repair, raw retry, selected subset, threshold relaxation, new family or
+Stage C is authorized. Human review of the fail-closed autopsy is the only next action.

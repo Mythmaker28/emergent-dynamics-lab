@@ -1,0 +1,258 @@
+{
+  "authority_required_to_reach_TRACKER_REPAIR_QUALIFIED": [
+    "make sampled_frames mandatory at non-unit cadence (requires editing test_21 in tests/test_future_lifecycle_runner_integration.py and a fixture in tests/test_future_lifecycle_contract.py)",
+    "refresh the bound-package digest in test_23 and re-issue FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json against the successor commit"
+  ],
+  "branch": "codex/empty-right-nonunit-cadence-tracker-repair-00",
+  "checkpoints": {
+    "1_frozen_part_i": "04d2d31002e2a72b96ce0dd5f9df14c6a9ac3f04",
+    "2_source_repair_and_tests": "0509ad86da0b3e2279f4a372ae601eb1e2c35679",
+    "3_review_round_fixes": null,
+    "4_qualification_package": null
+  },
+  "compatibility": {
+    "deliberate_strictness_increase": "schedule validation hoisted above the empty-frames early return; unreachable without sampled_frames",
+    "legacy_path_differential_fixtures": 808,
+    "legacy_path_mismatches": 0
+  },
+  "disposition": "TRACKER_REPAIR_INSUFFICIENT",
+  "disposition_ground": "Part I s13: 'TRACKER_REPAIR_INSUFFICIENT if the tracker alone cannot close the survivorship mechanism without changing lifecycle or integration source.' The repair is opt-in; the default call path is unchanged and still defective at non-unit cadence; no caller in the repository supplies a schedule. Making the schedule mandatory requires editing tests/test_future_lifecycle_runner_integration.py (test_21) and tests/test_future_lifecycle_contract.py, both forbidden by the frozen allowlist and both hash-bound by test_23.",
+  "disposition_is_a_finding_against_the_repair": false,
+  "environment": {
+    "clean_room": "/home/claude/cr/repo (bit-exact copy; repository of record never executed against)",
+    "platform": "Linux-6.18.5-x86_64-with-glibc2.39",
+    "pytest": "9.1.1",
+    "python": "3.11.15 (main, Mar  3 2026, 09:26:23) [GCC 13.3.0]"
+  },
+  "firewall": {
+    "admissible_inputs_only": "handcrafted boolean masks through the real detector, and hand-built TrackingResult values",
+    "breached": false
+  },
+  "full_suite": {
+    "collected": 226,
+    "failed": 1,
+    "failing_node": "tests/test_future_lifecycle_runner_integration.py::test_23_bound_lifecycle_package_remains_byte_identical",
+    "failure_explanation": "test_23 byte-pins instrumentation.py to the pre-repair digest f40c0817... . The repair necessarily changes that file; the test file is forbidden to modify. Six of the seven artifacts test_23 pins remain byte-identical. The pin is not enforced at runtime.",
+    "failure_is_expected_and_by_design": true,
+    "node_sequence_sha256": "241bc0f7b74ff489f08690dc350a3411c1b3844ee956716f052b87ff89b9c89f",
+    "passed": 198,
+    "selector": "python -m pytest -q -p no:cacheprovider",
+    "skipped": 0
+  },
+  "horizon_cases": {
+    "a_pre_horizon_terminal_with_later_observation": "QUALIFIED, DISSOLVED_DETECTED_TRACK@5",
+    "b_disappearance_detected_at_the_horizon": "QUALIFIED, DISSOLVED_DETECTED_TRACK@11, TERMINAL_AT_HORIZON did not fire",
+    "c_track_observed_at_the_horizon": "QUALIFIED, RIGHT_CENSORED_AT_HORIZON@11, no terminal event",
+    "d_pre_horizon_end_without_terminal_event": "REJECTED, SILENT_PRE_HORIZON_TERMINATION retained",
+    "forbidden_substitution_check": "TERMINAL_AT_HORIZON fired 0 times across ~29000 repaired-path runs; guard confirmed live on a handcrafted TrackingResult"
+  },
+  "independent_reviews": [
+    {
+      "blocking_finding": "DEFECT-1: the delivered tree leaves test_23 red; unfixable within the allowlist",
+      "mandate": "frame and tracker semantics",
+      "observations_acted_on": [
+        "OBS-1 TRACKING_UNRESOLVED untested at non-unit cadence (surviving mutant)",
+        "OBS-3 non-negativity rule not independently pinned",
+        "OBS-4 unordered containers accepted as a schedule",
+        "OBS-5 two tests labelled as repair coverage lacked an empty frame"
+      ],
+      "reviewer": "A",
+      "semantic_defects_found": 0,
+      "verdict": "FAIL"
+    },
+    {
+      "decisive_observation": "OBS-1: the repair is opt-in; all 30 track_components call sites in the tree are tests; only the new suite passes a schedule; opt-in was forced by the allowlist, not chosen",
+      "defects_found": 0,
+      "mandate": "survivorship and lifecycle audit",
+      "recommended_disposition": "TRACKER_REPAIR_QUALIFIED (scoped, three mandatory conditions)",
+      "reviewer": "B",
+      "verdict": "PASS"
+    }
+  ],
+  "mission": "EMPTY_RIGHT_NONUNIT_CADENCE_TRACKER_REPAIR_00",
+  "mutation_matrix": {
+    "equivalent_classified": [
+      "E1 CONTINUATION reads right_frame",
+      "E2 schedule consulted only on empty right frame"
+    ],
+    "killed": 14,
+    "note": "T11-T14 were surviving mutants found by Reviewer A in the pre-review suite and were closed in checkpoint 3.",
+    "required": 10,
+    "reviewer_derived": [
+      "T11",
+      "T12",
+      "T13",
+      "T14"
+    ],
+    "surviving": 0,
+    "total_built": 14
+  },
+  "parent_accepted_commit": "f7b6c9797dc6bdfc969ddf5c3421bef9991e339c",
+  "production_source": {
+    "edlab/substrates/lattice_bond/instrumentation.py": {
+      "after_checkpoint_2": "3ef52e2ba397e59ee21716873d8f23ea8402b270248c873b1cd6bd5c25d69140",
+      "after_checkpoint_3": "2d896897244bfbc6cd5c01740bff98521633d500178bb2aed176d32ea669dbf4",
+      "before": "f40c0817acaad99c881e47ca16a7059164735a37ab15f134f11d1d69c6fd6c88"
+    }
+  },
+  "requalification_dag": {
+    "behaviourally_compatible": true,
+    "formally_current": false,
+    "historically_valid": [
+      "FUTURE_LIFECYCLE_CONTRACT_00",
+      "FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00",
+      "FUTURE_LIFECYCLE_RUNNER_HARDENING_00"
+    ],
+    "not_claimed": [
+      "downstream requalification",
+      "currency of the bound lifecycle package",
+      "any runner wiring"
+    ]
+  },
+  "reviewer_disagreement": "A voted FAIL, B voted PASS. Not resolved by majority. Resolved by the frozen Part I s13 criterion, which BLOCKER-1 meets literally.",
+  "seven_step_lifecycle_stack_proof": {
+    "all_steps": "PASS",
+    "published_lifecycle_document_sha256": "6d651ee2268bf78c8a12e1a814dd3ec5ffd2ee187fb809025503bd596f531a83",
+    "schedule": [
+      0,
+      5,
+      11
+    ],
+    "steps": {
+      "1_defect_reproduced_on_parent": "PASS",
+      "2_actual_scheduled_event_frame": "PASS",
+      "3_structural_lifecycle_validation": "PASS",
+      "4_publish_and_reopen_without_source_modification": "PASS",
+      "5_terminal_event_in_persisted_evidence": "PASS",
+      "6_not_converted_to_success_with_survival": "PASS",
+      "7_multiple_tracks_exhaustively_accounted": "PASS"
+    }
+  },
+  "survivorship_evidence": {
+    "legacy_depth4_enumeration": {
+      "(0,5,11,12)": {
+        "rejected": 1295,
+        "rejected_without": 0,
+        "with_disappearance": 3910,
+        "without_disappearance": 186
+      },
+      "(7,19,20,44)": {
+        "rejected": 1295,
+        "rejected_without": 0,
+        "with_disappearance": 3910,
+        "without_disappearance": 186
+      },
+      "configurations": 4096
+    },
+    "repaired_depth4_enumeration": {
+      "rejected": 0
+    },
+    "repaired_depth5_enumeration": {
+      "configurations": 16807,
+      "off_schedule_event_frames": 0,
+      "rejected": 0
+    }
+  },
+  "test_files": {
+    "tests/test_empty_right_nonunit_cadence_tracker_repair.py": {
+      "node_count": 58,
+      "node_ids": [
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_01_empty_right_frame_at_unit_cadence_is_unchanged",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_02_empty_right_frame_at_nonunit_cadence_binds_the_actual_frame",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_03_irregular_cadence_binds_each_transition_independently",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_04_nonzero_schedule_origin_is_not_treated_as_an_offset",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_05_very_large_frame_numbers_are_carried_exactly",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_06_several_left_entities_all_close_at_the_empty_right_frame",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_07_one_track_disappears_while_another_survives",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_08_disappearance_followed_by_later_empty_observations",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_09_disappearance_at_the_final_sampled_transition",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_10_split_immediately_before_a_later_empty_frame",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_11_merge_immediately_before_a_later_empty_frame",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_12_malformed_schedules_are_rejected_never_silently_repaired[schedule0-too",
+        "short]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_12_malformed_schedules_are_rejected_never_silently_repaired[schedule1-too",
+        "long]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_12_malformed_schedules_are_rejected_never_silently_repaired[schedule2-not",
+        "strictly",
+        "increasing]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_12_malformed_schedules_are_rejected_never_silently_repaired[schedule3-decreasing]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_12_malformed_schedules_are_rejected_never_silently_repaired[schedule4-negative]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_12_malformed_schedules_are_rejected_never_silently_repaired[schedule5-non-integer]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_12_malformed_schedules_are_rejected_never_silently_repaired[schedule6-bool",
+        "is",
+        "not",
+        "an",
+        "admissible",
+        "frame",
+        "index]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_12_malformed_schedules_are_rejected_never_silently_repaired[schedule7-string]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_12b_a_schedule_contradicting_an_observed_frame_is_rejected",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_13_every_event_frame_belongs_to_the_declared_schedule[schedule0-masks0]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_13_every_event_frame_belongs_to_the_declared_schedule[schedule1-masks1]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_13_every_event_frame_belongs_to_the_declared_schedule[schedule2-masks2]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_13_every_event_frame_belongs_to_the_declared_schedule[schedule3-masks3]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_13_every_event_frame_belongs_to_the_declared_schedule[schedule4-masks4]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_13_every_event_frame_belongs_to_the_declared_schedule[schedule5-masks5]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_13_every_event_frame_belongs_to_the_declared_schedule[schedule6-masks6]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_14_repaired_tracking_is_deterministic_and_canonically_ordered",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_15_unit_cadence_behaviour_is_bit_identical_with_and_without_a_schedule[masks0]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_15_unit_cadence_behaviour_is_bit_identical_with_and_without_a_schedule[masks1]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_15_unit_cadence_behaviour_is_bit_identical_with_and_without_a_schedule[masks2]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_15_unit_cadence_behaviour_is_bit_identical_with_and_without_a_schedule[masks3]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_15_unit_cadence_behaviour_is_bit_identical_with_and_without_a_schedule[masks4]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_15_unit_cadence_behaviour_is_bit_identical_with_and_without_a_schedule[masks5]",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_15b_the_legacy_call_path_is_untouched_when_no_schedule_is_supplied",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_h1_pre_horizon_terminal_event_with_a_later_declared_observation",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_h2_disappearance_first_detected_at_the_horizon_is_still_pre_horizon",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_h3_a_track_observed_at_the_horizon_is_censored_not_terminated",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_h4_a_pre_horizon_end_without_a_terminal_event_remains_a_violation",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_s1_disappearance_is_no_longer_correlated_with_global_rejection",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_s2_a_disappearing_track_stays_in_the_enrolled_denominator",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_s3_disappearance_is_not_reported_as_survival",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_r1_tracking_unresolved_is_stamped_with_the_scheduled_frame",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_r2_temporary_contact_is_stamped_with_the_scheduled_frame",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_r3_a_negative_schedule_is_rejected_by_the_nonnegativity_rule_itself",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_r4_an_unordered_container_is_not_accepted_as_a_schedule",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_r5_first_frame_empty_then_populated_at_nonunit_cadence",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_r6_a_visually_identical_component_returning_later_is_not_stitched"
+      ],
+      "node_sequence_sha256": "d830cf9629c684a4c57fe1bbf662ceb2cc5856bab97e88bee362ce1b6ddc88fd",
+      "sha256": "57cd5b8a8db2beacac768e80da523658cb43789b3d1277ee3233b80d55e72e80"
+    },
+    "tests/test_lattice_bond_instrumentation.py": {
+      "added_node_ids": [
+        "tests/test_lattice_bond_instrumentation.py::test_sampled_frames_argument_is_optional_and_defaults_to_the_legacy_path[cells0]",
+        "tests/test_lattice_bond_instrumentation.py::test_sampled_frames_argument_is_optional_and_defaults_to_the_legacy_path[cells1]",
+        "tests/test_lattice_bond_instrumentation.py::test_sampled_frames_argument_is_optional_and_defaults_to_the_legacy_path[cells2]",
+        "tests/test_lattice_bond_instrumentation.py::test_identity_schedule_is_inert_at_unit_cadence[masks0]",
+        "tests/test_lattice_bond_instrumentation.py::test_identity_schedule_is_inert_at_unit_cadence[masks1]",
+        "tests/test_lattice_bond_instrumentation.py::test_identity_schedule_is_inert_at_unit_cadence[masks2]",
+        "tests/test_lattice_bond_instrumentation.py::test_identity_schedule_is_inert_at_unit_cadence[masks3]",
+        "tests/test_lattice_bond_instrumentation.py::test_identity_schedule_is_inert_at_unit_cadence[masks4]",
+        "tests/test_lattice_bond_instrumentation.py::test_empty_right_frame_at_unit_cadence_still_dissolves_at_the_next_frame",
+        "tests/test_lattice_bond_instrumentation.py::test_a_declared_schedule_that_contradicts_the_detector_is_refused",
+        "tests/test_lattice_bond_instrumentation.py::test_empty_frame_sequence_is_still_accepted_with_and_without_a_schedule",
+        "tests/test_lattice_bond_instrumentation.py::test_a_malformed_schedule_is_refused_even_for_an_empty_frame_sequence"
+      ],
+      "node_count": 47,
+      "node_sequence_sha256": "fe371c015e0a8875e127836f3d5b39ce2607637c7867f45ceb08c7785b977824",
+      "sha256": "30222e98aa6e8a20e7052067c84924557fb5aa90b6554df281f89c12b2279edb"
+    }
+  },
+  "unchanged_and_verified_byte_identical": {
+    "edlab/substrates/lattice_bond/future_lifecycle_runner.py": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
+    "edlab/substrates/lattice_bond/lifecycle.py": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+    "tests/test_future_lifecycle_contract.py": "e940199e7befaf7e60535867525d163e3abc807a951265c78a5f7b1d0acddd47",
+    "tests/test_future_lifecycle_runner_integration.py": "84a2087883b0e590eade37ee687ab7daaec6fbf9870f1df82319133e3bdcf401"
+  },
+  "what_this_mission_did_not_do": [
+    "did not modify lifecycle.py or future_lifecycle_runner.py",
+    "did not modify either forbidden test file or either JSON Schema or package exports",
+    "did not modify any historical report or qualification",
+    "did not start downstream requalification",
+    "did not wire a runner",
+    "did not run a scientific experiment",
+    "did not create or consume a seed",
+    "did not open any material behind the scientific firewall"
+  ]
+}

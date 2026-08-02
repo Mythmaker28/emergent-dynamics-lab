@@ -295,3 +295,69 @@ The supplied abbreviated commit token did not resolve locally. Read-only Git ide
 2. `manifest.environment` has exactly the four keys `python_version`, `numpy_version`, `platform`, and `byteorder`, with exact values equal to `sys.version`, `np.__version__`, `platform.platform()`, and `sys.byteorder`.
 
 Hand-built finite canonical manifests proved the positive path and separate source-hash/environment mismatch rejection paths. Static compilation, standard-library-plus-NumPy import audit, CLI parsing, and assigned-file diff checks remained clean. No Stage-B manifest, result, shard, world, or forbidden outcome-bearing file was opened.
+
+## Post-run raw-only audit authorization
+
+Post-run authorization admits exactly:
+
+- manifest: `docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_MANIFEST.json`, expected SHA-256 `194e082f9d3809f2531912d825480fad5b683dbe9d9fceec8050260fe493dd50`;
+- external digest: `docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_MANIFEST.sha256`;
+- RUN1: `docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_RAW_REPRODUCTION_RUN1.json`;
+- RUN2: `docs/individuation/INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B1_RAW_REPRODUCTION_RUN2.json`;
+- result root: `results/INTERVENTIONAL-INDIVIDUALITY-00-STAGE-B-DEV`;
+- every manifest-enrolled `{world_id}/shard_manifest.json`, restricted to identity, status, declared file inventory, row counts, and physics integrity metadata;
+- every enrolled permitted `physics.npz` required by the raw audit.
+
+Still forbidden: result-root `enrollment.json`, `classification.json`, `root_manifest.json`, every `online.json` and `failure.json`, any docs classification/report/atlas, production sources/tests, and selected-world information. A fresh recomputation may be performed in memory only; no third output file may be written. Only this journal may be changed during the audit.
+
+### Post-run raw-only audit result
+
+- Completion time: `2026-07-19 00:39:08 +02:00`
+- Audit result: **PASS**
+- Final disposition independently reproduced: `DEV_FEASIBILITY_FAIL`
+- Blockers: none
+
+Integrity and determinism:
+
+| Item | Result |
+|---|---:|
+| Manifest SHA-256 | `194e082f9d3809f2531912d825480fad5b683dbe9d9fceec8050260fe493dd50` |
+| External digest text | exact same 64-hex digest |
+| Executing reproducer SHA-256 | `c058e96697347f8af613159cdcb58de5ee3e254d201c237961f366cc1fd08b58` |
+| RUN1 SHA-256 | `7b7cf200fd6cc7ccfbd77b19de0ca1231df22c1d2d9ab5d7548828df7c3ed14e` |
+| RUN2 SHA-256 | `7b7cf200fd6cc7ccfbd77b19de0ca1231df22c1d2d9ab5d7548828df7c3ed14e` |
+| Fresh in-memory canonical bytes SHA-256 | `7b7cf200fd6cc7ccfbd77b19de0ca1231df22c1d2d9ab5d7548828df7c3ed14e` |
+| Canonical output size | `15436` bytes |
+| Enrolled shard manifests | `64` |
+| Terminal COMPLETE shards | `64` |
+| Unique declared/verified physics hashes | `64` |
+| Shard-binding aggregate SHA-256 | `298f86ee06182ad180e3110bc09bbe34d5c95e31bc9b0aa7a7e0a3e7a9e71927` |
+
+The shard-binding aggregate is SHA-256 of canonical JSON over the manifest-enrollment-order records `{world_id,status,shard_sha256,physics_sha256}`. Every shard manifest was strict finite canonical JSON. Every allowed `physics.npz` passed declared byte/hash/inventory, exact key/shape/dtype, environment/source seal, replay, vector-reference, state bounds, neutral scale/missing/controller, matter/energy residual, passive-cohort, detector/tracker, observation and classifier gates. No failed shard existed.
+
+Complete independently reproduced regime counts across 64 worlds:
+
+```json
+{"BOUNDED_ACTIVE_TURNOVER_CANDIDATE":11,"DISSOLVED":10,"EMPTY_OR_GAS":2,"PERSISTENT_NO_TURNOVER":30,"STATIC_CRYSTAL_OR_SHELL":11}
+```
+
+All other frozen regimes had count zero: `TRACKING_UNRESOLVED`, `ACTIVE_UNBOUNDED`, `PERCOLATED`, and `TURNOVER_WITHOUT_PERSISTENCE`.
+
+Exact law/IC atlas, omitting zero-count regimes:
+
+| Law | Soup, n=4 | Compact, n=4 | Region qualified |
+|---|---|---|---|
+| `L000` | candidate 1; persistent-no-turnover 1; static 2 | dissolved 1; persistent-no-turnover 3 | false |
+| `L001` | candidate 1; persistent-no-turnover 3 | persistent-no-turnover 4 | false |
+| `L002` | persistent-no-turnover 3; static 1 | empty-or-gas 2; persistent-no-turnover 2 | false |
+| `L003` | persistent-no-turnover 4 | persistent-no-turnover 4 | false |
+| `L004` | candidate 1; dissolved 1; static 2 | dissolved 2; persistent-no-turnover 1; static 1 | false |
+| `L005` | candidate 2; persistent-no-turnover 2 | candidate 1; dissolved 1; persistent-no-turnover 1; static 1 | false |
+| `L006` | candidate 2; dissolved 1; static 1 | candidate 1; dissolved 2; persistent-no-turnover 1 | false |
+| `L007` | candidate 2; static 2 | dissolved 2; persistent-no-turnover 1; static 1 | false |
+
+`candidate_regions` independently reproduces as the empty list. All 16 law/IC strata are complete, but no law reaches the frozen candidate replication minimum separately in both IC classes. With no numerical/instrumentation-invalid shard and no qualified region, frozen disposition precedence yields `DEV_FEASIBILITY_FAIL`.
+
+RUN1 and RUN2 were each strict finite canonical JSON, byte-identical to one another, and byte-identical to the fresh in-memory raw reconstruction. No third output was written.
+
+Firewall attestation: the audit did not open result-root `enrollment.json`, `classification.json`, `root_manifest.json`, any `online.json` or `failure.json`, any docs classification/report/atlas, production source/test, or selected-world list. Only the exact allowed manifest/digest, RUN1/RUN2, 64 enrolled shard manifests, permitted physics arrays, executing independent source, and this journal were accessed.

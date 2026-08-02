@@ -1,0 +1,107 @@
+{
+  "mission": "FUTURE-LIFECYCLE-CONTRACT-00",
+  "scope": "SOURCE_ONLY_AND_SYNTHETIC_QUALIFICATION",
+  "disposition": "FUTURE_LIFECYCLE_CONTRACT_QUALIFIED",
+  "qualification_commit": "ec494b4c428b394a8f3e8165898711261ab0840c",
+  "contract": {
+    "schema_version": "future-lifecycle-contract/v1",
+    "validator_version": "1.0.0",
+    "terminal_states": [
+      "DISSOLVED_DETECTED_TRACK",
+      "SPLIT_INTO_TRACKS",
+      "MERGED_INTO_TRACK",
+      "UNRESOLVED_HANDOFF",
+      "RIGHT_CENSORED_AT_HORIZON"
+    ],
+    "coverage_identity": "terminal_record_count == track_count",
+    "input_binding": [
+      "sampled_frames",
+      "tracks",
+      "events",
+      "assignments"
+    ],
+    "association_edges_in_lifecycle_digest": false,
+    "association_edges_disposition": "SEPARATE_GENERIC_TRACKER_AUDIT_EVIDENCE"
+  },
+  "source_hashes_sha256": {
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SCHEMA.json": "629bfdc3e6d3017948ad1b07472bea881419c86ea9fa283494a418f27913966c",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SOURCE_ALLOWLIST.json": "d8743e1f2eb98de610df22d67059ce1132472e8eea405faf7b91ed4c9bb8253a",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SPEC.md": "81c5af7cd91b9a780d560b7b7bed52b80b56348e29499c385b696a25e8686974",
+    "edlab/substrates/lattice_bond/__init__.py": "9d3bea5ac70b514b592f71c2c46738dfdaec62e0072e8055a512b2e22ac6d5b0",
+    "edlab/substrates/lattice_bond/instrumentation.py": "f40c0817acaad99c881e47ca16a7059164735a37ab15f134f11d1d69c6fd6c88",
+    "edlab/substrates/lattice_bond/lifecycle.py": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+    "tests/test_future_lifecycle_contract.py": "e940199e7befaf7e60535867525d163e3abc807a951265c78a5f7b1d0acddd47"
+  },
+  "validation": {
+    "lead_combined_synthetic_tests": {
+      "passed": 61,
+      "failed": 0,
+      "skipped": 0,
+      "elapsed_seconds": 0.28,
+      "composition": {
+        "future_lifecycle_contract": 50,
+        "existing_generic_detector_tracker": 11
+      }
+    },
+    "python_compile": "PASS",
+    "json_schema_parse": "PASS",
+    "git_diff_check": "PASS",
+    "canonical_permutation_probes": "PASS",
+    "atomic_nonoverwrite_probes": "PASS",
+    "partial_substitution_probe": "PASS_FAIL_CLOSED",
+    "generic_empty_right_nonunit_cadence": "PASS_REJECTED_AS_UNQUALIFIED"
+  },
+  "independent_reviews": [
+    {
+      "role": "formal_lifecycle_theory",
+      "disposition": "PASS",
+      "journal": "docs/agent_journals/2026-07-19/0252_lifecycle_contract_theory_FLC00-THEORY.md",
+      "journal_sha256": "b1b5d9ce71584bed862e5efba2508062481a0ba5d96d80d621514dc55cc5bccf"
+    },
+    {
+      "role": "synthetic_matrix_reviewer",
+      "disposition": "PASS",
+      "independent_focused_tests_passed": 50,
+      "journal": "docs/agent_journals/2026-07-19/0251_synthetic-lifecycle_FUTURE-LIFECYCLE-CONTRACT-00.md",
+      "journal_sha256": "24f47c4e8310426b1b4d8ba88212b08e0c7d6713baf321871efe18d2ada1385b"
+    },
+    {
+      "role": "scope_and_publication_red_team",
+      "disposition": "PASS",
+      "independent_focused_tests_passed": 50,
+      "journal": "docs/agent_journals/2026-07-19/0251_lifecycle_scope_redteam_FUTURE-LIFECYCLE-CONTRACT-00.md",
+      "journal_sha256": "b8caac4cc396c0e9d67efb20eca9f296eae99615d5213b4e63d83b26491769d0"
+    }
+  ],
+  "firewall": {
+    "stage_b_physics_shards_opened": 0,
+    "stage_b_shard_filenames_or_world_metadata_opened": 0,
+    "failed_autopsy_inputs_opened": 0,
+    "current_family_trajectory_or_candidate_records_opened": 0,
+    "historical_world_initializations": 0,
+    "scientific_engine_updates": 0,
+    "current_family_outputs_created_or_modified": 0,
+    "historical_cause_claimed": false,
+    "current_family_retrofitted": false
+  },
+  "claim_boundary": {
+    "qualified": [
+      "A structurally valid future lifecycle input produces exactly one canonical terminal row per track.",
+      "A silent pre-horizon end, malformed event topology, dangling lineage, invalid cadence, noncanonical document or tested publication race fails closed.",
+      "A zero-track future run receives an explicit machine-verifiable run closure."
+    ],
+    "not_qualified": [
+      "Any cause of the accepted historical failure.",
+      "Any lifecycle diagnosis or reconstruction of the closed current family.",
+      "Tracker correctness, physical identity, life, individuality or physical death.",
+      "A non-bypassable hook in a future-family runner that does not yet exist."
+    ]
+  },
+  "future_integration_obligations": [
+    "A future-family writer must call the qualified primitive before COMPLETE or analysis and persist the canonical contract atomically.",
+    "Independent verification must recompute the lifecycle-input and terminal-record digests before analysis.",
+    "The generic empty-right-frame path at non-unit cadence must remain rejected or be separately repaired and requalified.",
+    "Association-edge evidence must remain separately bound under the future generic tracker raw schema."
+  ],
+  "next_action": "HUMAN_REVIEW_OF_FUTURE_LIFECYCLE_CONTRACT_ONLY"
+}
