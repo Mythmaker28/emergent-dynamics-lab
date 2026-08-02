@@ -1,0 +1,171 @@
+{
+  "mission": "FUTURE-LIFECYCLE-RUNNER-INTEGRATION-00",
+  "scope": "SOURCE_ONLY_AND_SYNTHETIC_ENGINEERING_QUALIFICATION",
+  "disposition": "RUNNER_INTEGRATION_QUALIFIED",
+  "authority": {
+    "human_review_branch": "codex/future-lifecycle-contract-00-human-review",
+    "human_review_commit": "b2331d75153763c8efbfbcd401084a331584f259",
+    "human_review_disposition": "HUMAN_REVIEW_ACCEPTED",
+    "decision_record": "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_HUMAN_REVIEW.md",
+    "accepted_lifecycle_parent": "4282fc6ead915639711f5096c7825d3880a640d4"
+  },
+  "branch": "codex/future-lifecycle-runner-integration-00",
+  "checkpoints": {
+    "frozen_pre_implementation_contract": "5151a70d4cef81e44e29fbf82465789ab62ed4f1",
+    "implementation_and_tests": "6dfef7cdd13c9299d59bdbcd5a3c7150f19dc435",
+    "review_findings_round_2": "68d6a29a2437a78f54cda828d573c89e298332af",
+    "review_findings_round_3": "68c6a8eb0c6b4ee443630ed9d96b1e0199b2a03f"
+  },
+  "frozen_contract_binding": {
+    "commit": "5151a70d4cef81e44e29fbf82465789ab62ed4f1",
+    "path": "docs/individuation/FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00_REPORT.md",
+    "blob": "0a16aec26952425c93efb0746fe09280e603baa2",
+    "sha256_at_freeze": "902443b6d51add1d3b410f86bc356b1ad60c46d2de7861ed028ceae559bf68ad",
+    "part_one_retro_edited": false,
+    "files_in_freeze_commit_versus_parent": 1
+  },
+  "integration": {
+    "module": "edlab.substrates.lattice_bond.future_lifecycle_runner",
+    "schema_version": "future-lifecycle-runner-integration/v1",
+    "integration_version": "1.0.0",
+    "public_api": [
+      "COMPLETION_MANIFEST_NAME",
+      "INTEGRATION_VERSION",
+      "LIFECYCLE_DOCUMENT_NAME",
+      "SCHEMA_VERSION",
+      "AnalysisAccess",
+      "CompletionEvidenceError",
+      "CompletionPublicationError",
+      "CompletionRecord",
+      "LifecycleEvidenceError",
+      "RunnerIntegrationError",
+      "RunnerState",
+      "open_analysis_access",
+      "publish_future_family_completion"
+    ],
+    "state_machine": [
+      "UNSTARTED",
+      "LIFECYCLE_PERSISTED",
+      "LIFECYCLE_VERIFIED",
+      "COMPLETE_PUBLISHED"
+    ],
+    "completion_manifest_keys": [
+      "canonicalization",
+      "disposition",
+      "integration_version",
+      "lifecycle_document_relative_path",
+      "lifecycle_document_sha256",
+      "lifecycle_input_sha256",
+      "lifecycle_records_sha256",
+      "lifecycle_schema_version",
+      "lifecycle_validator_version",
+      "sampled_frames",
+      "schema_version",
+      "terminal_record_count"
+    ],
+    "public_api_accepts_lifecycle_closure": false,
+    "public_unchecked_completion_emitter": false,
+    "analysis_access_public_constructor": false,
+    "in_memory_contract_trusted": false,
+    "reexported_from_package_init": false
+  },
+  "new_file_hashes_sha256": {
+    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00_REPORT.md": "9355749910b93ecc168d434d9e7bb876980cdfbd3c60d77677839637c17c012a",
+    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00_REVIEW_JOURNAL.md": "0906b56ce1d313d89b3fbc8ef0098e969ccfb471f568b5b40df598f6e0452149",
+    "edlab/substrates/lattice_bond/future_lifecycle_runner.py": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
+    "tests/test_future_lifecycle_runner_integration.py": "d1600bcac91c7d7e5a3802d114b31c4b71e032ddfcb31487a4792ae6faf86da1"
+  },
+  "bound_lifecycle_package_unchanged_sha256": {
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SCHEMA.json": "629bfdc3e6d3017948ad1b07472bea881419c86ea9fa283494a418f27913966c",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SOURCE_ALLOWLIST.json": "d8743e1f2eb98de610df22d67059ce1132472e8eea405faf7b91ed4c9bb8253a",
+    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SPEC.md": "81c5af7cd91b9a780d560b7b7bed52b80b56348e29499c385b696a25e8686974",
+    "edlab/substrates/lattice_bond/__init__.py": "9d3bea5ac70b514b592f71c2c46738dfdaec62e0072e8055a512b2e22ac6d5b0",
+    "edlab/substrates/lattice_bond/instrumentation.py": "f40c0817acaad99c881e47ca16a7059164735a37ab15f134f11d1d69c6fd6c88",
+    "edlab/substrates/lattice_bond/lifecycle.py": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+    "tests/test_future_lifecycle_contract.py": "e940199e7befaf7e60535867525d163e3abc807a951265c78a5f7b1d0acddd47"
+  },
+  "diff_versus_accepted_lifecycle_parent": {
+    "added": 4,
+    "modified": 0,
+    "deleted": 0,
+    "tree_file_count_before": 2121,
+    "tree_file_count_after": 2125
+  },
+  "validation": {
+    "execution_environment": "isolated clean-room sparse clone of the remote at 4282fc6; bound files verified byte-identical before any test ran",
+    "bound_lifecycle_contract_suite": {"passed": 50, "failed": 0, "skipped": 0, "file_byte_identical": true},
+    "runner_integration_suite": {"passed": 51, "failed": 0, "skipped": 0},
+    "all_permitted_suites_combined": {"passed": 136, "failed": 0, "skipped": 0},
+    "integration_module_branch_coverage": {
+      "statements": 194, "missed": 0, "branches": 56, "partial_branches": 0, "percent": 100
+    },
+    "deterministic_canonical_completion_evidence": "PASS",
+    "generic_empty_right_nonunit_cadence": "PASS_REJECTED_AS_UNQUALIFIED_AND_RETAINED",
+    "positive_path_uses_real_generic_tracker_at_nonunit_cadence": true,
+    "instrumentation_repaired": false,
+    "committed_json_schema_modified": false,
+    "published_json_schema_used_as_proof_of_validity": false,
+    "test_count_bookkeeping_note": "FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json records a 61-test lead run composed as 50 lifecycle fixtures plus 11 SELECTED generic detector/tracker fixtures. The 50 hash-bound lifecycle tests pass with the file byte-identical. The original 11-test selector was never recorded and is not reconstructible, so instead of asserting an unreproducible figure this mission ran the ENTIRE instrumentation file (35 tests, a superset of the 11), giving 136 total with zero failures and zero skips. The literal figure 61 is NOT reproduced and is NOT claimed."
+  },
+  "adversarial_test_matrix_frozen_items_covered": 24,
+  "independent_reviews": [
+    {
+      "role": "api_and_state_machine_auditor",
+      "rounds": 3,
+      "disposition": "PASS",
+      "material_findings_raised": 1,
+      "material_findings_fixed": 1,
+      "minor_findings_raised": 7,
+      "final_statement": "qualified within its scoped claim; no supported-API path to COMPLETE or AnalysisAccess without a real, persisted, re-read, reverified lifecycle contract"
+    },
+    {
+      "role": "firewall_and_reproducibility_auditor",
+      "rounds": 3,
+      "disposition": "PASS",
+      "minor_findings_raised": 3,
+      "final_statement": "firewall intact for the whole mission; additive-only diff; all seven bound hashes byte-identical"
+    }
+  ],
+  "claim": {
+    "claimed": "Within the committed supported public API of this module, and given immutable on-disk evidence, no code path publishes COMPLETE or returns an AnalysisAccess without the qualified lifecycle contract having been executed from the supplied tracking inputs, canonically persisted, read back from disk and independently reverified against those same inputs.",
+    "not_claimed": [
+      "Protection against an actor who edits this module or lifecycle.py.",
+      "Protection against monkeypatching, reflection, private names or import replacement.",
+      "Protection against an actor controlling both the written bytes and the verifying code.",
+      "Any absolute or cryptographic guarantee.",
+      "Provenance binding: completion evidence is content-addressed and is directory-portable.",
+      "Independent authority for the manifest beyond the lifecycle document it binds.",
+      "Any statement about tracker physics, individuality, ownership, life, death or feasibility.",
+      "Authorization of any scientific stage, family, namespace or experiment."
+    ]
+  },
+  "frozen_dispositions_unchanged": [
+    "STOP-LOCAL-CUT",
+    "STOP-OWNERSHIP-IDENTIFIABILITY",
+    "FINAL_STOP_ARCHITECTURE_CONFIRMED",
+    "DEV_FEASIBILITY_FAIL",
+    "AUDIT_INVALID",
+    "FUTURE_LIFECYCLE_CONTRACT_QUALIFIED",
+    "SCALAR_ONLY_FEASIBLE_THEN_STOP_PROSPECTIVE"
+  ],
+  "firewall": {
+    "physics_shards_opened": 0,
+    "shard_filenames_or_manifests_opened": 0,
+    "world_names_or_per_world_metadata_opened": 0,
+    "trajectories_opened": 0,
+    "candidate_records_opened": 0,
+    "reconstructed_checkpoints_opened": 0,
+    "failed_autopsy_inputs_opened": 0,
+    "results_directories_opened": 0,
+    "prospective_or_54xxx_namespaces_opened": 0,
+    "global_project_indexes_opened": 0,
+    "stage_b_runner_opened_or_modified": 0,
+    "kovacs_materials_opened": 0,
+    "engine_or_scientific_runner_executions": 0,
+    "historical_retrofit": false,
+    "historical_world_selection": false,
+    "scientific_preregistration_created": false,
+    "scientific_outcome_emitted": false
+  },
+  "next_action": "HUMAN_REVIEW_OF_THIS_RUNNER_INTEGRATION_PACKAGE_ONLY"
+}

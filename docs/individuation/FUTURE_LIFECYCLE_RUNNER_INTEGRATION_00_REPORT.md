@@ -229,3 +229,139 @@ packaging/test configuration. A complete read ledger is maintained in Part II.
 
 *Part II (implementation, verification, independent reviews and terminal disposition) is appended after
 this contract is committed. This file's state at the pre-implementation commit is the frozen reference.*
+
+---
+
+## Part II — implementation, verification and disposition
+
+### Disposition
+
+**RUNNER_INTEGRATION_QUALIFIED**
+
+Scoped exactly as Part I §4 froze it, and no further. This is an engineering result about a code path.
+It establishes nothing about individuality, ownership, persistence, life, death or feasibility, and it
+authorizes no scientific execution.
+
+### Conformance to the frozen contract
+
+The frozen pre-implementation contract is Part I of this file at commit
+`5151a70d4cef81e44e29fbf82465789ab62ed4f1`, report blob `0a16aec26952425c93efb0746fe09280e603baa2`,
+SHA-256 `902443b6d51add1d3b410f86bc356b1ad60c46d2de7861ed028ceae559bf68ad`. That blob is byte-identical
+at every subsequent commit — Part I was never retro-edited, and Reviewer B verified this independently
+at each checkpoint. Part I is appended to, never revised.
+
+Every frozen item was honoured: `__all__` is exactly the 13 declared names; the state machine is exactly
+`UNSTARTED → LIFECYCLE_PERSISTED → LIFECYCLE_VERIFIED → COMPLETE_PUBLISHED`; the completion manifest
+carries exactly the 12 declared keys; the file allowlist holds at exactly five new files with **no
+existing file modified**; and the integration is deliberately *not* re-exported from
+`edlab/substrates/lattice_bond/__init__.py`, because that file is hash-bound by the accepted package.
+No sixth file was required, so no scope-expansion stop was triggered.
+
+### What was built
+
+`edlab/substrates/lattice_bond/future_lifecycle_runner.py` exposes two entry points and nothing else
+that can complete or unlock anything:
+
+- `publish_future_family_completion(run_directory, tracking, sampled_frames) -> CompletionRecord`
+- `open_analysis_access(run_directory, tracking, sampled_frames) -> AnalysisAccess`
+
+The completion path refuses both output targets if either already exists, calls
+`qualify_and_write_lifecycle_contract`, **discards the returned in-memory object**, re-reads the exact
+persisted bytes from disk, calls `verify_lifecycle_document` against the original inputs, checks the
+persisted bytes equal the canonical bytes of the reverified contract, digests the bytes *read back from
+disk*, and only then atomically publishes a canonical, non-overwriting completion manifest built solely
+from the reverified contract. `open_analysis_access` repeats the whole disk verification on every call
+and issues the capability only at the end.
+
+`AnalysisAccess` has no public constructor path: its `__init__` refuses any token that is not a
+module-private sentinel. `CompletionRecord` is inert — holding one grants nothing. **No public function
+accepts a `LifecycleRunClosure`, a `LifecycleTerminalRecord`, a lifecycle document, a disposition string
+or any status enum**, so there is no parameter through which a forged qualification could enter.
+
+### Verification
+
+Executed in an isolated clean-room: an independent sparse clone of the repository from the remote at
+`4282fc6`, whose copies of every bound file were confirmed byte-identical to the accepted package before
+any test was run. The device toolchain has neither network access nor pytest, so tests could not be run
+there; the two new files were transported to the device and their SHA-256 verified identical to the
+tested artifacts, and both reviewers independently re-verified that identity at the final commit.
+
+| Suite | Result |
+|---|---|
+| Bound lifecycle contract suite (`tests/test_future_lifecycle_contract.py`, file byte-identical) | **50 passed, 0 failed, 0 skipped** |
+| New integration suite (`tests/test_future_lifecycle_runner_integration.py`) | **51 passed, 0 failed, 0 skipped** |
+| All three permitted files together (incl. `tests/test_lattice_bond_instrumentation.py`, 35 tests) | **136 passed, 0 failed, 0 skipped** |
+| Branch coverage of `future_lifecycle_runner.py` | **100%** — 194 statements, 56 branches, 0 missed, 0 partial |
+
+**One honest discrepancy in test bookkeeping.** `FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json`
+records a lead combined run of 61 tests, composed as 50 lifecycle fixtures plus *11 selected* existing
+generic detector/tracker fixtures. The hash-bound lifecycle file contains exactly those 50, all
+passing, with the file byte-identical. The other 11 were a subset of the unhashed
+`tests/test_lattice_bond_instrumentation.py`, and the original selector was not recorded, so that exact
+composition is not reconstructible. Rather than assert a number that cannot be reproduced, this mission
+ran the **entire** instrumentation file — 35 tests, a superset of the 11 — giving 136 total with zero
+failures and zero skips. The requirement "all original 61 lifecycle tests pass unchanged" is therefore
+met in substance and exceeded in coverage, but the literal figure 61 is not reproduced and is not
+claimed here.
+
+The bound package is unchanged. All seven source hashes recorded in
+`FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json` recompute exactly at the final commit, verified
+independently by Reviewer B. `git diff --name-status 4282fc6 <final>` is four `A` entries and zero `M`
+or `D`, cross-checked by tree size 2121 → 2125 files.
+
+### Adversarial review
+
+Two independent read-only reviewers, three rounds, recorded in
+`FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00_REVIEW_JOURNAL.md`. Both returned `PASS` in every round.
+
+Round 1 produced one **MATERIAL** finding: the atomic publisher was never proven wired into the
+supported path — a mutant replacing the atomic write with a plain `write_bytes` passed the entire suite.
+That gap is now closed by `test_33`, which plants a rival manifest in the window between the pre-flight
+check and publication using only a caller-supplied object, no monkeypatching. Reviewer A confirmed the
+mutant is killed and that the kill is not incidental. Eleven further findings were fixed or explicitly
+documented; two rounds of re-review confirmed each fix and found no regression.
+
+### Cadence limitation — retained, not repaired
+
+The rejection of **empty right detector frame + non-unit cadence** stands unchanged. `instrumentation.py`
+was not repaired and the committed JSON Schema was not modified; both remain byte-identical.
+`test_21` proves that this input can neither publish completion nor unlock analysis, asserting both
+`INVALID_EVENT_FRAME` and `SILENT_PRE_HORIZON_TERMINATION`. The positive path uses a real generic
+tracker output — `track_components` at the declared non-unit cadence `(0, 5)` — not a hand-built fixture.
+
+### Claim, and its limits
+
+**Claimed.** Within the committed supported public API of this module, and given immutable on-disk
+evidence, no code path publishes `COMPLETE` or returns an `AnalysisAccess` without the qualified
+lifecycle contract having been executed from the supplied tracking inputs, canonically persisted, read
+back from disk and independently reverified against those same inputs.
+
+**Not claimed.** No protection against an actor who edits this module or `lifecycle.py`, monkeypatches
+module attributes, uses reflection or private names, replaces the import, or controls both the written
+bytes and the verifying code. This is Python; no absolute protection is asserted.
+
+Four scope facts are stated in the module docstring so no reader infers more than holds: completion
+evidence is content-addressed, not provenance-bound; the manifest carries no independent authority
+beyond the lifecycle document; ordering is enforced by straight-line control flow, with `RunnerState`
+asserting rather than enforcing it; and a run with no tracks publishes `COMPLETE` with zero terminal
+records. Two retained behaviours are also documented: a `.partial` may survive if the descriptor cannot
+be opened at all, and a publication failure after persistence leaves an orphan lifecycle document that
+blocks reuse of the directory. Neither can be mistaken for completion evidence.
+
+### Firewall
+
+No physics shard, shard filename, manifest, world name, per-world metadata, trajectory, candidate
+record, reconstructed checkpoint, failed-autopsy input, `results/` directory, prospective or `54xxx`
+seed namespace, global project index, `stage_b.py`, `stage_b_reproduce.py` or Kovacs material was
+opened. No engine or scientific runner was executed. No historical family was retrofitted, no
+successful historical world was selected, no scientific preregistration was created and **no scientific
+outcome was emitted**. The clean-room's sparse checkout materialised only permitted files, so the
+firewall held by construction rather than by discipline alone.
+
+### Terminal disposition and next action
+
+**RUNNER_INTEGRATION_QUALIFIED.**
+
+The only authorized next action is **human review of this integration package**. No scientific stage is
+authorized. Stage C, a new scientific family, a prospective seed namespace and any reinterpretation of
+`DEV_FEASIBILITY_FAIL` all remain prohibited.
