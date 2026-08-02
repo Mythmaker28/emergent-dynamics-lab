@@ -1,0 +1,471 @@
+{
+  "mission": "FUTURE-LIFECYCLE-RUNNER-HARDENING-00",
+  "scope": "SOURCE_UNCHANGED_TEST_AND_DOCUMENTATION_HARDENING",
+  "disposition": "HARDENING_QUALIFIED",
+  "authority": {
+    "human_review_branch": "codex/future-lifecycle-runner-integration-00-human-review",
+    "human_review_commit": "a2d44c6f9a9decc4c2cc822fcd4c2ef1e4b34b02",
+    "human_review_disposition": "HUMAN_REVIEW_ACCEPTED",
+    "decision_record": "docs/individuation/FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00_HUMAN_REVIEW.md",
+    "accepted_integration_candidate": "23df99dc471558f18316e23e7c176e3d385a24eb",
+    "accepted_lifecycle_ancestor": "4282fc6ead915639711f5096c7825d3880a640d4",
+    "authorized_integration_parent": "b2331d75153763c8efbfbcd401084a331584f259"
+  },
+  "branch": "codex/future-lifecycle-runner-hardening-00",
+  "checkpoints": {
+    "tests_and_selector_binding": "7facb41f3165b1225f85960beb7043f1ae05e9f7",
+    "review_fixes_round_2": "c1faa07a53df69e6cd5836c42c2d4a761a5b283c",
+    "final_test_file_commit": "c1faa07a53df69e6cd5836c42c2d4a761a5b283c"
+  },
+  "min_1_erratum": {
+    "kind": "ADDITIVE_ERRATUM_ONLY",
+    "frozen_documents_rewritten": false,
+    "stale_locations": [
+      "docs/individuation/FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00_QUALIFICATION.json key diff_versus_accepted_lifecycle_parent",
+      "docs/individuation/FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00_REPORT.md line 310"
+    ],
+    "stale_figure": {
+      "added": 4,
+      "tree_file_count_before": 2121,
+      "tree_file_count_after": 2125
+    },
+    "stale_figure_correct_at": [
+      "6dfef7cdd13c9299d59bdbcd5a3c7150f19dc435",
+      "68d6a29a2437a78f54cda828d573c89e298332af",
+      "68c6a8eb0c6b4ee443630ed9d96b1e0199b2a03f"
+    ],
+    "stale_figure_incorrect_at": "23df99dc471558f18316e23e7c176e3d385a24eb",
+    "corrected": {
+      "4282fc6..23df99d": {
+        "added": 6,
+        "modified": 0,
+        "deleted": 0,
+        "tree_file_count_before": 2121,
+        "tree_file_count_after": 2127,
+        "composition": "five integration mission files plus the inherited lifecycle-contract human-review record"
+      },
+      "b2331d7..23df99d": {
+        "added": 5,
+        "modified": 0,
+        "deleted": 0,
+        "tree_file_count_before": 2122,
+        "tree_file_count_after": 2127
+      },
+      "23df99d..a2d44c6": {
+        "added": 1,
+        "modified": 0,
+        "deleted": 0,
+        "tree_file_count_before": 2127,
+        "tree_file_count_after": 2128
+      },
+      "4282fc6..c1faa07": {
+        "added": 7,
+        "modified": 0,
+        "deleted": 0,
+        "tree_file_count_before": 2121,
+        "tree_file_count_after": 2128
+      }
+    }
+  },
+  "min_2_regressions": {
+    "added_test_count": 3,
+    "tests": [
+      "test_37_tampered_lifecycle_input_digest_blocks_analysis",
+      "test_38_tampered_lifecycle_records_digest_blocks_analysis",
+      "test_39_tampered_manifest_sampling_schedule_blocks_analysis"
+    ],
+    "fields_covered": [
+      "lifecycle_input_sha256",
+      "lifecycle_records_sha256",
+      "sampled_frames"
+    ],
+    "replacement_values": {
+      "lifecycle_input_sha256": "a1 repeated 32 times (64 lowercase hex)",
+      "lifecycle_records_sha256": "b2 repeated 32 times (64 lowercase hex)",
+      "sampled_frames": "[0, 6] replacing the genuine [0, 5]"
+    },
+    "rejection_site": "open_analysis_access rebuilt-manifest binding comparison",
+    "rejection_type": "CompletionEvidenceError",
+    "rejection_message": "completion manifest bindings do not match the reverified lifecycle contract",
+    "semantic_fields_changed_per_test": 1
+  },
+  "mutation_proof": {
+    "harness": "disposable copies under /tmp only; committed files never mutated",
+    "mutants": [
+      {
+        "id": "N1",
+        "patch": "open_analysis_access: expected['lifecycle_input_sha256'] = manifest['lifecycle_input_sha256'] inserted after expected = _build_manifest(...)",
+        "control_on_committed_code": "54 passed, 0 failed",
+        "mutant_result": "1 failed, 53 passed",
+        "killed_by": "test_37_tampered_lifecycle_input_digest_blocks_analysis",
+        "paired_test_alone_kills": true,
+        "killed_by_any_pre_existing_test": false,
+        "kill_reason": "pytest.raises saw no exception (analysis wrongly succeeded)",
+        "non_incidental": true
+      },
+      {
+        "id": "N2",
+        "patch": "open_analysis_access: expected['lifecycle_records_sha256'] = manifest['lifecycle_records_sha256']",
+        "control_on_committed_code": "54 passed, 0 failed",
+        "mutant_result": "1 failed, 53 passed",
+        "killed_by": "test_38_tampered_lifecycle_records_digest_blocks_analysis",
+        "paired_test_alone_kills": true,
+        "killed_by_any_pre_existing_test": false,
+        "kill_reason": "pytest.raises saw no exception (analysis wrongly succeeded)",
+        "non_incidental": true
+      },
+      {
+        "id": "N3",
+        "patch": "open_analysis_access: expected['sampled_frames'] = manifest['sampled_frames']",
+        "control_on_committed_code": "54 passed, 0 failed",
+        "mutant_result": "1 failed, 53 passed",
+        "killed_by": "test_39_tampered_manifest_sampling_schedule_blocks_analysis",
+        "paired_test_alone_kills": true,
+        "killed_by_any_pre_existing_test": false,
+        "kill_reason": "pytest.raises saw no exception (analysis wrongly succeeded)",
+        "non_incidental": true
+      }
+    ],
+    "prior_mandatory_mutants_still_killed": 10,
+    "prior_mandatory_mutant_results": {
+      "atomic_publication_replaced_by_write_bytes": "KILLED by test_33_completion_published_mid_flight_is_never_clobbered",
+      "skip_persisted_lifecycle_reread": "KILLED",
+      "skip_lifecycle_verification_before_completion": "KILLED",
+      "trust_manifest_digest_without_rereading_document": "KILLED",
+      "ignore_changed_sampling_schedule": "KILLED",
+      "accept_caller_constructed_closure_or_nominal_QUALIFIED": "KILLED",
+      "skip_manifest_canonicality_verification": "KILLED",
+      "skip_terminal_count_consistency": "KILLED",
+      "return_access_after_verification_failure": "KILLED",
+      "overwrite_existing_completion_target": "KILLED"
+    },
+    "known_surviving_mutants_out_of_scope": [
+      {
+        "id": "MIN-3",
+        "patch": "inline exists() pre-check plus write_bytes instead of hard-link publication",
+        "status": "SURVIVES",
+        "assessment": "not the committed implementation; disclosed at integration review as A-NF3; no repair required"
+      },
+      {
+        "id": "EQUIV",
+        "patch": "publish digests the in-memory canonical bytes instead of the disk bytes",
+        "status": "SURVIVES",
+        "assessment": "provably equivalent mutant: the immediately preceding check asserts the two byte strings are equal"
+      }
+    ]
+  },
+  "selector_binding": {
+    "pytest_command": "python3 -m pytest tests/test_future_lifecycle_contract.py tests/test_future_lifecycle_runner_integration.py tests/test_lattice_bond_instrumentation.py -p no:cacheprovider -q",
+    "selectors_are_complete_files": true,
+    "arbitrary_subset_recreated": false,
+    "selected_files": [
+      "tests/test_future_lifecycle_contract.py",
+      "tests/test_future_lifecycle_runner_integration.py",
+      "tests/test_lattice_bond_instrumentation.py"
+    ],
+    "selected_file_sha256": {
+      "tests/test_future_lifecycle_contract.py": "e940199e7befaf7e60535867525d163e3abc807a951265c78a5f7b1d0acddd47",
+      "tests/test_future_lifecycle_runner_integration.py": "84a2087883b0e590eade37ee687ab7daaec6fbf9870f1df82319133e3bdcf401",
+      "tests/test_lattice_bond_instrumentation.py": "d0d49e6f88d9b7faa5e4af3da33dd1f4a59d5575dfc97ddaf2e69a7af233c22b"
+    },
+    "collection_count": 139,
+    "collection_count_per_file": {
+      "tests/test_future_lifecycle_contract.py": 50,
+      "tests/test_future_lifecycle_runner_integration.py": 54,
+      "tests/test_lattice_bond_instrumentation.py": 35
+    },
+    "node_id_sequence_sha256": "f56f09bf39b93182fb9cfbf9e90ae6077d709352b248e0bc25c4f17117d74fd3",
+    "node_id_sequence_encoding": "collected node IDs joined with a single newline, terminated by one trailing newline, encoded utf-8",
+    "node_ids": [
+      "tests/test_future_lifecycle_contract.py::test_zero_tracks_has_explicit_qualified_run_closure",
+      "tests/test_future_lifecycle_contract.py::test_nonunit_horizon_censoring_is_explicit",
+      "tests/test_future_lifecycle_contract.py::test_late_appearance_at_horizon_is_not_a_gap",
+      "tests/test_future_lifecycle_contract.py::test_dissolution_is_a_detected_track_ending_not_inferred_death",
+      "tests/test_future_lifecycle_contract.py::test_split_closes_parent_and_each_successor_closes_independently",
+      "tests/test_future_lifecycle_contract.py::test_merge_closes_each_parent_and_successor_can_later_dissolve",
+      "tests/test_future_lifecycle_contract.py::test_unresolved_handoff_is_explicit_without_closing_successors",
+      "tests/test_future_lifecycle_contract.py::test_many_to_many_unresolved_handoff_closes_every_source_and_successor",
+      "tests/test_future_lifecycle_contract.py::test_temporary_contact_is_strictly_nonterminal",
+      "tests/test_future_lifecycle_contract.py::test_terminal_count_is_a_bijection_over_tracks[_horizon_fixture-expected_states0]",
+      "tests/test_future_lifecycle_contract.py::test_terminal_count_is_a_bijection_over_tracks[_dissolution_fixture-expected_states1]",
+      "tests/test_future_lifecycle_contract.py::test_terminal_count_is_a_bijection_over_tracks[_split_fixture-expected_states2]",
+      "tests/test_future_lifecycle_contract.py::test_terminal_count_is_a_bijection_over_tracks[_merge_fixture-expected_states3]",
+      "tests/test_future_lifecycle_contract.py::test_terminal_count_is_a_bijection_over_tracks[_unresolved_fixture-expected_states4]",
+      "tests/test_future_lifecycle_contract.py::test_permuted_semantic_inputs_have_identical_canonical_bytes",
+      "tests/test_future_lifecycle_contract.py::test_digest_and_schema_envelope_are_self_consistent",
+      "tests/test_future_lifecycle_contract.py::test_lifecycle_input_digest_binds_the_complete_sample_schedule",
+      "tests/test_future_lifecycle_contract.py::test_atomic_publication_and_independent_byte_verification",
+      "tests/test_future_lifecycle_contract.py::test_atomic_publication_refuses_overwrite_and_preserves_unrelated_partial",
+      "tests/test_future_lifecycle_contract.py::test_atomic_publication_preserves_a_late_racing_target",
+      "tests/test_future_lifecycle_contract.py::test_atomic_publication_rejects_a_swapped_partial_path",
+      "tests/test_future_lifecycle_contract.py::test_atomic_publication_requires_existing_parent",
+      "tests/test_future_lifecycle_contract.py::test_document_verifier_rejects_noncanonical_and_tampered_documents",
+      "tests/test_future_lifecycle_contract.py::test_silent_pre_horizon_termination_is_never_inferred",
+      "tests/test_future_lifecycle_contract.py::test_point_gap_in_declared_schedule_fails",
+      "tests/test_future_lifecycle_contract.py::test_empty_or_nonincreasing_frame_schedule_fails_first",
+      "tests/test_future_lifecycle_contract.py::test_missing_onset_and_continuation_events_fail",
+      "tests/test_future_lifecycle_contract.py::test_terminal_must_be_at_immediately_next_declared_sample",
+      "tests/test_future_lifecycle_contract.py::test_duplicate_or_conflicting_terminal_events_fail",
+      "tests/test_future_lifecycle_contract.py::test_unknown_event_kind_and_unknown_track_fail_closed",
+      "tests/test_future_lifecycle_contract.py::test_duplicate_track_empty_track_and_duplicate_component_fail",
+      "tests/test_future_lifecycle_contract.py::test_reciprocal_parent_and_child_links_are_mandatory",
+      "tests/test_future_lifecycle_contract.py::test_unresolved_flag_requires_and_follows_an_unresolved_event",
+      "tests/test_future_lifecycle_contract.py::test_assignments_are_exactly_bound_to_track_points",
+      "tests/test_future_lifecycle_contract.py::test_terminal_event_cardinality_and_resolution_are_closed[bad_event0]",
+      "tests/test_future_lifecycle_contract.py::test_terminal_event_cardinality_and_resolution_are_closed[bad_event1]",
+      "tests/test_future_lifecycle_contract.py::test_terminal_event_cardinality_and_resolution_are_closed[bad_event2]",
+      "tests/test_future_lifecycle_contract.py::test_terminal_event_cardinality_and_resolution_are_closed[bad_event3]",
+      "tests/test_future_lifecycle_contract.py::test_terminal_event_cardinality_and_resolution_are_closed[bad_event4]",
+      "tests/test_future_lifecycle_contract.py::test_temporary_contact_is_exactly_two_to_same_two",
+      "tests/test_future_lifecycle_contract.py::test_target_must_begin_at_lineage_event_frame",
+      "tests/test_future_lifecycle_contract.py::test_event_component_polarity_and_post_terminal_references_fail",
+      "tests/test_future_lifecycle_contract.py::test_lineage_cycle_and_self_link_fail",
+      "tests/test_future_lifecycle_contract.py::test_boolean_ids_and_frames_do_not_pass_as_integers",
+      "tests/test_future_lifecycle_contract.py::test_error_order_is_stable_under_track_event_and_assignment_permutation",
+      "tests/test_future_lifecycle_contract.py::test_unknown_event_diagnostic_id_is_stable_under_internal_permutation",
+      "tests/test_future_lifecycle_contract.py::test_collision_diagnostics_are_stable_under_input_permutation",
+      "tests/test_future_lifecycle_contract.py::test_actual_generic_tracker_output_qualifies_at_declared_nonunit_cadence",
+      "tests/test_future_lifecycle_contract.py::test_generic_tracker_empty_right_frame_cadence_mismatch_is_rejected",
+      "tests/test_future_lifecycle_contract.py::test_committed_schema_declares_closed_terminal_rows",
+      "tests/test_future_lifecycle_runner_integration.py::test_01_real_generic_tracker_at_nonunit_cadence_publishes_completion",
+      "tests/test_future_lifecycle_runner_integration.py::test_01b_empty_track_set_run_publishes_explicit_closure",
+      "tests/test_future_lifecycle_runner_integration.py::test_02_to_05_lifecycle_failure_blocks_completion[silent_end-_silent_end_tracking-SILENT_PRE_HORIZON_TERMINATION]",
+      "tests/test_future_lifecycle_runner_integration.py::test_02_to_05_lifecycle_failure_blocks_completion[multiple_terminals-_multiple_terminal_tracking-MULTIPLE_TERMINAL_EVENTS]",
+      "tests/test_future_lifecycle_runner_integration.py::test_02_to_05_lifecycle_failure_blocks_completion[one_invalid_track-_one_invalid_track_tracking-SILENT_PRE_HORIZON_TERMINATION]",
+      "tests/test_future_lifecycle_runner_integration.py::test_05b_global_rejection_discards_the_valid_track_too",
+      "tests/test_future_lifecycle_runner_integration.py::test_06_missing_lifecycle_file_blocks_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_07_tampered_lifecycle_bytes_block_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_08_non_canonical_lifecycle_bytes_block_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_09_swapped_tracking_input_blocks_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_09b_binding_is_over_content_not_object_identity",
+      "tests/test_future_lifecycle_runner_integration.py::test_10_changed_sampling_schedule_blocks_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_11_mismatched_lifecycle_digest_blocks_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_12_tampered_completion_manifest_blocks_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_12b_tampered_manifest_disposition_blocks_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_13_non_canonical_completion_manifest_blocks_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_13b_manifest_key_set_mismatch_blocks_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_14_no_public_entry_point_accepts_a_lifecycle_closure",
+      "tests/test_future_lifecycle_runner_integration.py::test_14b_hand_constructed_closure_cannot_satisfy_the_gate",
+      "tests/test_future_lifecycle_runner_integration.py::test_15_hand_constructed_terminal_rows_cannot_satisfy_the_gate",
+      "tests/test_future_lifecycle_runner_integration.py::test_16_nominal_qualified_disposition_cannot_satisfy_the_gate",
+      "tests/test_future_lifecycle_runner_integration.py::test_16b_analysis_access_cannot_be_constructed_directly",
+      "tests/test_future_lifecycle_runner_integration.py::test_17_persistence_exception_leaves_no_completion_manifest",
+      "tests/test_future_lifecycle_runner_integration.py::test_17b_missing_run_directory_is_refused",
+      "tests/test_future_lifecycle_runner_integration.py::test_18_verification_exception_leaves_no_completion_manifest",
+      "tests/test_future_lifecycle_runner_integration.py::test_19_existing_completion_target_is_never_overwritten",
+      "tests/test_future_lifecycle_runner_integration.py::test_19b_republishing_into_a_completed_directory_is_refused",
+      "tests/test_future_lifecycle_runner_integration.py::test_20_lifecycle_document_alone_does_not_unlock_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_20b_state_machine_transitions_are_monotonic",
+      "tests/test_future_lifecycle_runner_integration.py::test_20c_completion_record_is_inert_and_frozen",
+      "tests/test_future_lifecycle_runner_integration.py::test_21_empty_right_frame_at_nonunit_cadence_remains_rejected",
+      "tests/test_future_lifecycle_runner_integration.py::test_22_no_public_api_exposes_an_unchecked_completion_emitter",
+      "tests/test_future_lifecycle_runner_integration.py::test_23_bound_lifecycle_package_remains_byte_identical",
+      "tests/test_future_lifecycle_runner_integration.py::test_24_identical_inputs_produce_byte_identical_completion_evidence",
+      "tests/test_future_lifecycle_runner_integration.py::test_25_publication_refuses_missing_parent_and_existing_target",
+      "tests/test_future_lifecycle_runner_integration.py::test_26_concurrent_creation_is_refused_and_partial_is_removed",
+      "tests/test_future_lifecycle_runner_integration.py::test_27_vanished_partial_during_cleanup_is_tolerated",
+      "tests/test_future_lifecycle_runner_integration.py::test_28_substituted_publication_target_is_rejected_and_not_removed",
+      "tests/test_future_lifecycle_runner_integration.py::test_29_failure_before_ownership_leaves_no_owned_cleanup",
+      "tests/test_future_lifecycle_runner_integration.py::test_30_noncanonical_persisted_bytes_block_completion_and_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_31_malformed_completion_manifest_blocks_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_32_declared_manifest_fields_must_match[schema_version-other/v9-unsupported completion manifest schema version]",
+      "tests/test_future_lifecycle_runner_integration.py::test_32_declared_manifest_fields_must_match[integration_version-9.9.9-unsupported integration version]",
+      "tests/test_future_lifecycle_runner_integration.py::test_32_declared_manifest_fields_must_match[lifecycle_schema_version-other/v9-unsupported lifecycle schema version]",
+      "tests/test_future_lifecycle_runner_integration.py::test_32_declared_manifest_fields_must_match[lifecycle_validator_version-9.9.9-unsupported lifecycle validator version]",
+      "tests/test_future_lifecycle_runner_integration.py::test_32_declared_manifest_fields_must_match[canonicalization-value4-canonicalization declaration mismatch]",
+      "tests/test_future_lifecycle_runner_integration.py::test_32_declared_manifest_fields_must_match[lifecycle_document_relative_path-OTHER.json-unsupported lifecycle document identity]",
+      "tests/test_future_lifecycle_runner_integration.py::test_33_completion_published_mid_flight_is_never_clobbered",
+      "tests/test_future_lifecycle_runner_integration.py::test_34_non_finite_manifest_numbers_stay_inside_the_error_hierarchy",
+      "tests/test_future_lifecycle_runner_integration.py::test_35_returned_evidence_is_a_deep_copy",
+      "tests/test_future_lifecycle_runner_integration.py::test_36_filesystem_errors_from_the_frozen_writer_stay_typed",
+      "tests/test_future_lifecycle_runner_integration.py::test_37_tampered_lifecycle_input_digest_blocks_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_38_tampered_lifecycle_records_digest_blocks_analysis",
+      "tests/test_future_lifecycle_runner_integration.py::test_39_tampered_manifest_sampling_schedule_blocks_analysis",
+      "tests/test_lattice_bond_instrumentation.py::test_detector_is_instantaneous_matter_only_and_tracker_independent",
+      "tests/test_lattice_bond_instrumentation.py::test_periodic_percolation_and_boundary_crossing_are_distinguished",
+      "tests/test_lattice_bond_instrumentation.py::test_stationary_component_keeps_one_track",
+      "tests/test_lattice_bond_instrumentation.py::test_translating_component_keeps_one_track_across_periodic_boundary",
+      "tests/test_lattice_bond_instrumentation.py::test_deformation_does_not_switch_identity",
+      "tests/test_lattice_bond_instrumentation.py::test_split_is_explicit_and_children_reference_parent",
+      "tests/test_lattice_bond_instrumentation.py::test_merge_is_explicit_and_child_references_all_parents",
+      "tests/test_lattice_bond_instrumentation.py::test_one_frame_contact_is_resolved_without_merge_or_split",
+      "tests/test_lattice_bond_instrumentation.py::test_detector_collapse_then_reseparation_is_unresolved_not_retrospective_contact",
+      "tests/test_lattice_bond_instrumentation.py::test_appearance_and_dissolution_are_explicit",
+      "tests/test_lattice_bond_instrumentation.py::test_many_to_many_association_is_unresolved_not_forced",
+      "tests/test_lattice_bond_instrumentation.py::test_symmetric_qualified_geometry_tie_is_unresolved_not_disappear_reappear",
+      "tests/test_lattice_bond_instrumentation.py::test_every_association_edge_records_selection_and_reason_for_raw_reproduction",
+      "tests/test_lattice_bond_instrumentation.py::test_passive_tracer_exactly_tracks_complete_replacement_and_recirculation",
+      "tests/test_lattice_bond_instrumentation.py::test_passive_tracer_matches_actual_engine_transport_and_never_exceeds_matter",
+      "tests/test_lattice_bond_instrumentation.py::test_passive_tracer_rejects_nonfinite_flows_dt_and_inconsistent_matter",
+      "tests/test_lattice_bond_instrumentation.py::test_tracker_rejects_nonfinite_unique_score_margin[nan]",
+      "tests/test_lattice_bond_instrumentation.py::test_tracker_rejects_nonfinite_unique_score_margin[inf]",
+      "tests/test_lattice_bond_instrumentation.py::test_tracker_rejects_nonfinite_unique_score_margin[-inf]",
+      "tests/test_lattice_bond_instrumentation.py::test_logged_and_unlogged_physics_and_ledgers_are_byte_identical",
+      "tests/test_lattice_bond_instrumentation.py::test_activity_energy_geometry_and_leakage_are_raw_and_passive",
+      "tests/test_lattice_bond_instrumentation.py::test_regime_classifier_is_total_deterministic_and_precedence_frozen[metrics0-EMPTY_OR_GAS]",
+      "tests/test_lattice_bond_instrumentation.py::test_regime_classifier_is_total_deterministic_and_precedence_frozen[metrics1-DISSOLVED]",
+      "tests/test_lattice_bond_instrumentation.py::test_regime_classifier_is_total_deterministic_and_precedence_frozen[metrics2-PERCOLATED]",
+      "tests/test_lattice_bond_instrumentation.py::test_regime_classifier_is_total_deterministic_and_precedence_frozen[metrics3-ACTIVE_UNBOUNDED]",
+      "tests/test_lattice_bond_instrumentation.py::test_regime_classifier_is_total_deterministic_and_precedence_frozen[metrics4-TRACKING_UNRESOLVED]",
+      "tests/test_lattice_bond_instrumentation.py::test_regime_classifier_is_total_deterministic_and_precedence_frozen[metrics5-STATIC_CRYSTAL_OR_SHELL]",
+      "tests/test_lattice_bond_instrumentation.py::test_regime_classifier_is_total_deterministic_and_precedence_frozen[metrics6-PERSISTENT_NO_TURNOVER]",
+      "tests/test_lattice_bond_instrumentation.py::test_regime_classifier_is_total_deterministic_and_precedence_frozen[metrics7-TURNOVER_WITHOUT_PERSISTENCE]",
+      "tests/test_lattice_bond_instrumentation.py::test_regime_classifier_is_total_deterministic_and_precedence_frozen[metrics8-BOUNDED_ACTIVE_TURNOVER_CANDIDATE]",
+      "tests/test_lattice_bond_instrumentation.py::test_raw_to_metrics_assembler_enforces_area_chronology_and_missing_data",
+      "tests/test_lattice_bond_instrumentation.py::test_raw_to_metrics_assembler_does_not_trust_claimed_detector_geometry",
+      "tests/test_lattice_bond_instrumentation.py::test_static_bonded_shell_and_active_unbounded_wave_do_not_become_individuality_claims",
+      "tests/test_lattice_bond_instrumentation.py::test_complete_material_replacement_with_structural_persistence_is_not_identity",
+      "tests/test_lattice_bond_instrumentation.py::test_tracker_spec_changes_do_not_change_detector_or_physics"
+    ],
+    "pytest_version": "9.1.1",
+    "python_version": "3.11.15",
+    "platform": "Linux-6.18.5-x86_64-with-glibc2.39",
+    "numpy_version": "2.4.4",
+    "passed": 139,
+    "failed": 0,
+    "skipped": 0
+  },
+  "validation": {
+    "execution_environment": "isolated cloud clean-room whose every .py and .json file was verified byte-identical to the committed blobs before any test ran; the device toolchain has neither network access nor pytest",
+    "bound_lifecycle_contract_suite": {
+      "passed": 50,
+      "failed": 0,
+      "skipped": 0,
+      "file_byte_identical": true
+    },
+    "runner_integration_suite": {
+      "passed": 54,
+      "failed": 0,
+      "skipped": 0
+    },
+    "instrumentation_suite": {
+      "passed": 35,
+      "failed": 0,
+      "skipped": 0
+    },
+    "all_permitted_suites_combined": {
+      "passed": 139,
+      "failed": 0,
+      "skipped": 0
+    },
+    "integration_module_branch_coverage": {
+      "statements": 194,
+      "missed": 0,
+      "branches": 56,
+      "partial_branches": 0,
+      "percent": 100,
+      "denominator_unchanged_versus_integration_qualification": true
+    },
+    "production_source_modified": false,
+    "committed_json_schema_modified": false,
+    "instrumentation_repaired": false,
+    "skeleton_wired_into_a_real_runner": false,
+    "historical_stage_b_runner_touched": false,
+    "scientific_provenance_introduced": false,
+    "cadence_defect_repaired": false,
+    "scientific_family_or_seed_namespace_opened": false,
+    "engine_or_scientific_runner_executions": 0,
+    "scientific_data_consumed": false
+  },
+  "identity_proofs": {
+    "future_lifecycle_runner_py_sha256": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
+    "future_lifecycle_runner_py_blob": "44135ee74d8a19bdd1cbdb8e1a38fa0ecb728ff4",
+    "future_lifecycle_runner_py_identical_at": [
+      "23df99d",
+      "a2d44c6",
+      "7facb41",
+      "c1faa07"
+    ],
+    "integration_test_file_sha256_before": "d1600bcac91c7d7e5a3802d114b31c4b71e032ddfcb31487a4792ae6faf86da1",
+    "integration_test_file_sha256_after": "84a2087883b0e590eade37ee687ab7daaec6fbf9870f1df82319133e3bdcf401",
+    "integration_test_file_bytes_before": 39743,
+    "integration_test_file_bytes_after": 45499,
+    "integration_test_file_change_is_pure_append_then_helper_edit": true,
+    "accepted_prefix_still_byte_identical": true,
+    "bound_lifecycle_package_unchanged_sha256": {
+      "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SCHEMA.json": "629bfdc3e6d3017948ad1b07472bea881419c86ea9fa283494a418f27913966c",
+      "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SOURCE_ALLOWLIST.json": "d8743e1f2eb98de610df22d67059ce1132472e8eea405faf7b91ed4c9bb8253a",
+      "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SPEC.md": "81c5af7cd91b9a780d560b7b7bed52b80b56348e29499c385b696a25e8686974",
+      "edlab/substrates/lattice_bond/__init__.py": "9d3bea5ac70b514b592f71c2c46738dfdaec62e0072e8055a512b2e22ac6d5b0",
+      "edlab/substrates/lattice_bond/instrumentation.py": "f40c0817acaad99c881e47ca16a7059164735a37ab15f134f11d1d69c6fd6c88",
+      "edlab/substrates/lattice_bond/lifecycle.py": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+      "tests/test_future_lifecycle_contract.py": "e940199e7befaf7e60535867525d163e3abc807a951265c78a5f7b1d0acddd47"
+    },
+    "original_dirty_main_checkout": {
+      "head": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+      "branch": "main",
+      "porcelain_line_count": 21,
+      "porcelain_sha256": "54c57f2ad57f9ba7c7d2f3310d8b7f91f482e0f48b66dae518aeae9b8bba7dea",
+      "unchanged": true
+    }
+  },
+  "independent_reviews": [
+    {
+      "role": "regression_and_mutation_reviewer",
+      "rounds": 2,
+      "disposition": "PASS",
+      "binds_to_commit": "c1faa07a53df69e6cd5836c42c2d4a761a5b283c",
+      "binds_to_test_file_sha256": "84a2087883b0e590eade37ee687ab7daaec6fbf9870f1df82319133e3bdcf401",
+      "blocker_findings": 0,
+      "material_findings": 0,
+      "minor_findings_raised": 1,
+      "minor_findings_fixed": 1,
+      "note_findings": 7,
+      "final_statement": "each new test mutates exactly one well-formed field, each failure is proven to reach the rebuilt-manifest binding comparison, each paired mutant is killed non-incidentally and by nothing else, and no prior gate guarantee regressed"
+    },
+    {
+      "role": "traceability_and_firewall_reviewer",
+      "rounds": 2,
+      "disposition": "PASS",
+      "binds_to_commit": "c1faa07a53df69e6cd5836c42c2d4a761a5b283c",
+      "blocker_findings": 0,
+      "material_findings_against_this_package": 0,
+      "material_finding_against_the_frozen_integration_record": 1,
+      "material_finding_disposition": "that finding IS MIN-1; closed by additive erratum, judged adequate by the reviewer",
+      "minor_findings": 0,
+      "note_findings": 4,
+      "final_statement": "every numeric claim independently reproduced; the only refutation is the already-flagged stale documentation figure this mission was authorized to correct"
+    }
+  ],
+  "firewall": {
+    "physics_shards_opened": 0,
+    "shard_filenames_or_manifests_opened": 0,
+    "world_names_or_per_world_metadata_opened": 0,
+    "trajectories_opened": 0,
+    "candidate_records_opened": 0,
+    "reconstructed_checkpoints_opened": 0,
+    "failed_autopsy_inputs_opened": 0,
+    "results_directories_opened": 0,
+    "prospective_or_54xxx_namespaces_opened": 0,
+    "global_project_indexes_opened": 0,
+    "stage_b_runner_opened_or_modified": 0,
+    "kovacs_materials_opened": 0,
+    "engine_or_scientific_runner_executions": 0,
+    "historical_retrofit": false,
+    "historical_world_selection": false,
+    "scientific_preregistration_created": false,
+    "scientific_outcome_emitted": false
+  },
+  "frozen_dispositions_unchanged": [
+    "STOP-LOCAL-CUT",
+    "STOP-OWNERSHIP-IDENTIFIABILITY",
+    "FINAL_STOP_ARCHITECTURE_CONFIRMED",
+    "DEV_FEASIBILITY_FAIL",
+    "AUDIT_INVALID",
+    "FUTURE_LIFECYCLE_CONTRACT_QUALIFIED",
+    "RUNNER_INTEGRATION_QUALIFIED",
+    "SCALAR_ONLY_FEASIBLE_THEN_STOP_PROSPECTIVE"
+  ],
+  "claim": {
+    "claimed": "MIN-1 is corrected by an additive erratum without rewriting any frozen artifact; MIN-2 is closed by three direct manifest-field tampering regressions that each kill their paired semantic mutant non-incidentally; the exact pytest selectors, collected node IDs and test-file hashes are bound; and the production module is byte-identical to the accepted integration candidate.",
+    "not_claimed": [
+      "Any change to the integration gate's behaviour or scope.",
+      "That the repository, any existing runner or the historical Stage-B runner is gated.",
+      "That the skeleton is wired into any real runner.",
+      "Protection against source modification, monkeypatching, reflection or subclassing.",
+      "That replayed, relocated or symlinked valid evidence is rejected.",
+      "Any scientific claim, provenance or authorization."
+    ]
+  },
+  "next_action": "HUMAN_REVIEW_OF_THIS_HARDENING_PACKAGE_ONLY"
+}
