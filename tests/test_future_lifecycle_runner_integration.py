@@ -942,3 +942,112 @@ def test_36_filesystem_errors_from_the_frozen_writer_stay_typed(
     assert not (tmp_path / COMPLETION_MANIFEST_NAME).exists()
     with pytest.raises(CompletionEvidenceError):
         open_analysis_access(tmp_path, _real_tracker_nonunit(), NONUNIT_SCHEDULE)
+
+
+# --------------------------------------------------------------------------
+# 12. FUTURE-LIFECYCLE-RUNNER-HARDENING-00 — MIN-2 manifest-binding regressions
+#
+# Each case tampers with exactly one semantically meaningful manifest field,
+# keeps the replacement structurally well formed and canonically serialised,
+# and proves that analysis access fails closed at the rebuilt-manifest binding
+# comparison rather than at any earlier syntactic or shape check.
+# --------------------------------------------------------------------------
+
+
+_ALTERNATE_INPUT_DIGEST = "a1" * 32
+_ALTERNATE_RECORDS_DIGEST = "b2" * 32
+_ALTERNATE_SCHEDULE = [0, 6]
+
+
+def _assert_well_formed_digest(value: object) -> None:
+    assert isinstance(value, str)
+    assert len(value) == 64
+    assert all(character in "0123456789abcdef" for character in value)
+
+
+def _assert_reaches_binding_comparison(directory: Path, manifest: dict) -> None:
+    """The tampered manifest must survive every check that precedes the binding.
+
+    If any earlier guard fired, the test would prove nothing about the binding
+    comparison, so the preconditions are asserted explicitly.
+    """
+
+    raw = (directory / COMPLETION_MANIFEST_NAME).read_bytes()
+    assert raw == _canonical(manifest), "tampered manifest must remain canonical bytes"
+    assert json.loads(raw) == manifest
+    assert set(manifest) == set(runner._MANIFEST_KEYS)
+    assert manifest["schema_version"] == SCHEMA_VERSION
+    assert manifest["integration_version"] == INTEGRATION_VERSION
+    assert manifest["disposition"] == "COMPLETE"
+    assert manifest["lifecycle_document_relative_path"] == LIFECYCLE_DOCUMENT_NAME
+    document = (directory / LIFECYCLE_DOCUMENT_NAME).read_bytes()
+    assert hashlib.sha256(document).hexdigest() == manifest["lifecycle_document_sha256"]
+
+
+def test_37_tampered_lifecycle_input_digest_blocks_analysis(tmp_path: Path) -> None:
+    """MIN-2 A: a well-formed but wrong ``lifecycle_input_sha256`` must fail closed."""
+
+    tracking = _real_tracker_nonunit()
+    record = publish_future_family_completion(tmp_path, tracking, NONUNIT_SCHEDULE)
+    manifest = _read_manifest(tmp_path)
+    original = manifest["lifecycle_input_sha256"]
+    assert original == record.lifecycle_input_sha256
+    assert original != _ALTERNATE_INPUT_DIGEST
+    manifest["lifecycle_input_sha256"] = _ALTERNATE_INPUT_DIGEST
+    _rewrite_manifest(tmp_path, manifest)
+    _assert_well_formed_digest(manifest["lifecycle_input_sha256"])
+    _assert_reaches_binding_comparison(tmp_path, manifest)
+    assert manifest["lifecycle_records_sha256"] == record.lifecycle_records_sha256
+    assert manifest["sampled_frames"] == list(NONUNIT_SCHEDULE)
+    assert manifest["terminal_record_count"] == record.terminal_record_count
+
+    with pytest.raises(CompletionEvidenceError, match="bindings do not match") as caught:
+        open_analysis_access(tmp_path, tracking, NONUNIT_SCHEDULE)
+    assert not isinstance(caught.value, LifecycleEvidenceError)
+
+
+def test_38_tampered_lifecycle_records_digest_blocks_analysis(tmp_path: Path) -> None:
+    """MIN-2 B: a well-formed but wrong ``lifecycle_records_sha256`` must fail closed."""
+
+    tracking = _real_tracker_nonunit()
+    record = publish_future_family_completion(tmp_path, tracking, NONUNIT_SCHEDULE)
+    manifest = _read_manifest(tmp_path)
+    original = manifest["lifecycle_records_sha256"]
+    assert original == record.lifecycle_records_sha256
+    assert original != _ALTERNATE_RECORDS_DIGEST
+    manifest["lifecycle_records_sha256"] = _ALTERNATE_RECORDS_DIGEST
+    _rewrite_manifest(tmp_path, manifest)
+    _assert_well_formed_digest(manifest["lifecycle_records_sha256"])
+    _assert_reaches_binding_comparison(tmp_path, manifest)
+    assert manifest["lifecycle_input_sha256"] == record.lifecycle_input_sha256
+    assert manifest["sampled_frames"] == list(NONUNIT_SCHEDULE)
+    assert manifest["terminal_record_count"] == record.terminal_record_count
+
+    with pytest.raises(CompletionEvidenceError, match="bindings do not match") as caught:
+        open_analysis_access(tmp_path, tracking, NONUNIT_SCHEDULE)
+    assert not isinstance(caught.value, LifecycleEvidenceError)
+
+
+def test_39_tampered_manifest_sampling_schedule_blocks_analysis(tmp_path: Path) -> None:
+    """MIN-2 C: a valid but different ``sampled_frames`` schedule must fail closed."""
+
+    tracking = _real_tracker_nonunit()
+    record = publish_future_family_completion(tmp_path, tracking, NONUNIT_SCHEDULE)
+    manifest = _read_manifest(tmp_path)
+    assert manifest["sampled_frames"] == list(NONUNIT_SCHEDULE)
+    assert _ALTERNATE_SCHEDULE != list(NONUNIT_SCHEDULE)
+    manifest["sampled_frames"] = list(_ALTERNATE_SCHEDULE)
+    _rewrite_manifest(tmp_path, manifest)
+
+    schedule = manifest["sampled_frames"]
+    assert isinstance(schedule, list) and len(schedule) == len(NONUNIT_SCHEDULE)
+    assert all(isinstance(frame, int) and frame >= 0 for frame in schedule)
+    assert all(later > earlier for earlier, later in zip(schedule, schedule[1:]))
+    _assert_reaches_binding_comparison(tmp_path, manifest)
+    assert manifest["lifecycle_input_sha256"] == record.lifecycle_input_sha256
+    assert manifest["lifecycle_records_sha256"] == record.lifecycle_records_sha256
+    assert manifest["terminal_record_count"] == record.terminal_record_count
+
+    with pytest.raises(CompletionEvidenceError, match="bindings do not match") as caught:
+        open_analysis_access(tmp_path, tracking, NONUNIT_SCHEDULE)
+    assert not isinstance(caught.value, LifecycleEvidenceError)
