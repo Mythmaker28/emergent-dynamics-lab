@@ -978,6 +978,9 @@ def _assert_reaches_binding_comparison(directory: Path, manifest: dict) -> None:
     assert set(manifest) == set(runner._MANIFEST_KEYS)
     assert manifest["schema_version"] == SCHEMA_VERSION
     assert manifest["integration_version"] == INTEGRATION_VERSION
+    assert manifest["lifecycle_schema_version"] == runner.LIFECYCLE_SCHEMA_VERSION
+    assert manifest["lifecycle_validator_version"] == runner.LIFECYCLE_VALIDATOR_VERSION
+    assert manifest["canonicalization"] == runner._CANONICALIZATION
     assert manifest["disposition"] == "COMPLETE"
     assert manifest["lifecycle_document_relative_path"] == LIFECYCLE_DOCUMENT_NAME
     document = (directory / LIFECYCLE_DOCUMENT_NAME).read_bytes()
