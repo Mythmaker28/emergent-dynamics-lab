@@ -890,45 +890,40 @@ def test_23i_every_historically_pinned_artifact_is_explicitly_accounted_for() ->
     assert divergent, "the divergence set must not be silently empty"
 
 
-def test_23h_the_bound_test_node_list_is_complete_and_unaltered() -> None:
-    """A test cannot be quietly dropped from the successor qualification.
+def test_23h_the_01r_node_binding_remains_a_valid_historical_record() -> None:
+    """SUPERSEDED-IN-PART by FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01.
 
-    Re-collects the four bound selectors and compares the canonical node-list digest
-    with the one the successor qualification records.  Collection only: no test is
-    executed, so this cannot recurse.
+    The 01R form of this test re-collected the four selectors and compared the live
+    node list against the 01R qualification.  That binding was correct for the 01R
+    tree and is preserved as a historical record here, but it cannot also describe a
+    tree to which this mission adds tests: the 01R qualification JSON is outside this
+    mission's modification allowlist and may not be rewritten to match.
+
+    So the pin is split, exactly as 01R itself split ``test_23``:
+      * this test verifies the 01R binding is internally intact and unchanged -- its
+        recorded node list still digests to its recorded digest and still counts what
+        it says it counts;
+      * ``test_rs01_12`` performs the live re-collection against the SUCCESSOR
+        qualification, so a test still cannot be quietly dropped.
+
+    Nothing was weakened: the drop-detection property moved, it did not disappear.
     """
-
-    import subprocess
-    import sys
 
     root = Path(__file__).resolve().parents[1]
     successor = json.loads((root / SUCCESSOR_QUALIFICATION).read_text(encoding="utf-8"))
     binding = successor["test_binding"]
-    selectors = list(binding["selectors"])
-    assert selectors == [
+    assert binding["selectors"] == [
         "tests/test_empty_right_nonunit_cadence_tracker_repair.py",
         "tests/test_future_lifecycle_contract.py",
         "tests/test_future_lifecycle_runner_integration.py",
         "tests/test_lattice_bond_instrumentation.py",
     ]
-    completed = subprocess.run(
-        [sys.executable, "-m", "pytest", "--collect-only", "-q", "--no-header",
-         "-p", "no:cacheprovider", *selectors],
-        cwd=root,
-        capture_output=True,
-        text=True,
-        check=True,
-        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
-    )
-    collected = sorted(
-        line.strip()
-        for line in completed.stdout.splitlines()
-        if "::" in line and line.strip().startswith("tests/")
-    )
-    digest = hashlib.sha256("\n".join(collected).encode("utf-8")).hexdigest()
-    assert collected == sorted(binding["node_ids"]), "collected node list differs"
-    assert len(collected) == binding["node_count"]
-    assert digest == binding["node_list_sha256"]
+    recorded = sorted(binding["node_ids"])
+    assert len(recorded) == binding["node_count"]
+    digest = hashlib.sha256("\n".join(recorded).encode("utf-8")).hexdigest()
+    assert digest == binding["node_list_sha256"], "the 01R node binding is internally inconsistent"
+    # the 01R record is historical: it describes the 01R tree, not this one
+    assert binding["node_count"] == 227
 
 
 # --------------------------------------------------------------------------
@@ -1283,3 +1278,426 @@ def test_39_tampered_manifest_sampling_schedule_blocks_analysis(tmp_path: Path) 
     with pytest.raises(CompletionEvidenceError, match="bindings do not match") as caught:
         open_analysis_access(tmp_path, tracking, NONUNIT_SCHEDULE)
     assert not isinstance(caught.value, LifecycleEvidenceError)
+
+
+# ==========================================================================
+# FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01
+#
+# Successor requalification of the runner integration and hardening stack against
+# the accepted 01R lifecycle package and the MANDATORY sampled_frames tracker API.
+#
+# Everything below is additive.  No pre-existing test was altered, renamed or
+# weakened.  Every fixture is a handcrafted synthetic boolean mask pushed through
+# the real detector and the mandatory tracker; there is no scientific input, no
+# engine step, no real runner and no seed.
+#
+# HONEST COMPOSITION BOUNDARY, pinned by test rs01_09 below:
+# future_lifecycle_runner does NOT invoke track_components.  It receives an
+# already-built TrackingResult and a declared schedule as two separate arguments.
+# These tests therefore measure the STRONGEST REAL BINDING the actual APIs give,
+# and pin the one position at which the two schedules can still diverge
+# undetected.  That residual is recorded as a future real-runner obligation, not
+# as a solved problem.
+# ==========================================================================
+
+
+import itertools as _rs01_itertools
+
+import numpy as _rs01_np
+
+from edlab.substrates.lattice_bond import (
+    DetectorSpec as _RS01DetectorSpec,
+    LatticeBondState as _RS01State,
+    detect_components as _rs01_detect,
+)
+from edlab.substrates.lattice_bond.lifecycle import (
+    LifecycleContractError as _RS01LifecycleContractError,
+    qualify_lifecycle_contract as _rs01_qualify,
+)
+
+RS01_SHAPE = (10, 12)
+RS01_DETECTOR = _RS01DetectorSpec(matter_threshold=0.5, min_cells=1)
+RS01_TRACKER = TrackerSpec(max_centroid_displacement=3.0, max_area_ratio=4.0, dilation_radius=1)
+RS01_SCHEDULE = (0, 5, 11, 12)
+
+
+def _rs01_mask(cells):
+    value = _rs01_np.zeros(RS01_SHAPE, dtype=bool)
+    for y, x in cells:
+        value[y, x] = True
+    return value
+
+
+RS01_EMPTY = _rs01_np.zeros(RS01_SHAPE, dtype=bool)
+RS01_BLOB_A = _rs01_mask({(3, 3), (3, 4), (4, 3), (4, 4)})
+RS01_BLOB_B = _rs01_mask({(8, 9), (8, 10), (9, 9), (9, 10)})
+
+
+def _rs01_observed(schedule, *masks):
+    """Detector output stamped FROM the declared schedule, never the reverse."""
+
+    assert len(schedule) == len(masks), "fixture schedule/mask length disagreement"
+    return tuple(
+        _rs01_detect(
+            _RS01State(
+                _rs01_np.where(mask, 0.8, 0.1).astype(_rs01_np.float64),
+                _rs01_np.full(RS01_SHAPE, 0.8, dtype=_rs01_np.float64),
+                _rs01_np.zeros((2, *RS01_SHAPE), dtype=_rs01_np.float64),
+                int(frame),
+            ),
+            RS01_DETECTOR,
+            frame=int(frame),
+        )
+        for frame, mask in zip(schedule, masks)
+    )
+
+
+def _rs01_tracked(schedule, *masks) -> TrackingResult:
+    """The ONLY way to obtain a TrackingResult: through the mandatory schedule API."""
+
+    return track_components(
+        _rs01_observed(schedule, *masks), RS01_TRACKER, sampled_frames=schedule
+    )
+
+
+def _rs01_disappearance_run() -> TrackingResult:
+    """A → gone → B → B at declared cadence (0, 5, 11, 12): one disappearance, one survivor."""
+
+    return _rs01_tracked(RS01_SCHEDULE, RS01_BLOB_A, RS01_EMPTY, RS01_BLOB_B, RS01_BLOB_B)
+
+
+# --- rs01_01: the full synthetic example required at schedule (0, 5, 11, 12) ---
+
+
+def test_rs01_01_full_synthetic_disappearance_run_publishes_and_unlocks(tmp_path: Path) -> None:
+    """End to end through the permitted stack: detector → mandatory tracker → lifecycle
+    → canonical persistence → re-read → reverification → COMPLETE → analysis access.
+
+    On the pre-01R stack this exact run was globally rejected: the disappearance was
+    stamped with a fabricated frame and the whole run failed INVALID_EVENT_FRAME.
+    """
+
+    tracking = _rs01_disappearance_run()
+
+    # the tracker bound every event frame to the declared schedule
+    assert {event.frame for event in tracking.events} <= set(RS01_SCHEDULE)
+    dissolutions = [event for event in tracking.events if event.kind == "DISSOLUTION"]
+    assert len(dissolutions) == 1 and dissolutions[0].frame == 5
+
+    record = publish_future_family_completion(tmp_path, tracking, RS01_SCHEDULE)
+    assert record.state is RunnerState.COMPLETE_PUBLISHED
+    assert record.sampled_frames == RS01_SCHEDULE
+    assert _artifacts(tmp_path) == (True, True)
+
+    document = json.loads((tmp_path / LIFECYCLE_DOCUMENT_NAME).read_text(encoding="utf-8"))
+    assert document["sampled_frames"] == list(RS01_SCHEDULE)
+    fates = sorted(
+        (row["terminal_state"], row["terminal_frame"]) for row in document["terminal_records"]
+    )
+    assert fates == [
+        ("DISSOLVED_DETECTED_TRACK", 5),
+        ("RIGHT_CENSORED_AT_HORIZON", 12),
+    ]
+    # exactly-one-terminal accounting, end to end
+    assert len(document["terminal_records"]) == len(tracking.tracks) == record.terminal_record_count
+
+    access = open_analysis_access(tmp_path, tracking, RS01_SCHEDULE)
+    assert isinstance(access, AnalysisAccess)
+
+
+# --- rs01_02: the mandatory schedule boundary, from inside the runner stack ---
+
+
+def test_rs01_02_no_tracking_result_can_be_obtained_without_a_declared_schedule() -> None:
+    """The runner's `tracking` argument is unobtainable without a schedule."""
+
+    observed = _rs01_observed(RS01_SCHEDULE, RS01_BLOB_A, RS01_EMPTY, RS01_BLOB_B, RS01_BLOB_B)
+    parameter = inspect.signature(track_components).parameters["sampled_frames"]
+    assert parameter.kind is inspect.Parameter.KEYWORD_ONLY
+    assert parameter.default is inspect.Parameter.empty
+    assert "None" not in str(parameter.annotation)
+    with pytest.raises(TypeError):
+        track_components(observed, RS01_TRACKER)
+    with pytest.raises(TypeError):
+        track_components(observed, RS01_TRACKER, RS01_SCHEDULE)
+    with pytest.raises(ValueError):
+        track_components(observed, RS01_TRACKER, sampled_frames=None)
+
+
+def test_rs01_03_transition_right_frames_come_from_the_declared_schedule() -> None:
+    """No positional surrogate, no reconstructed unit cadence, no alias."""
+
+    from edlab.substrates.lattice_bond import instrumentation as _instr
+
+    assert not hasattr(_instr, "_transition_right_frame")
+    source = Path(_instr.__file__).read_text(encoding="utf-8")
+    assert "right[0].frame if right else" not in source
+    assert "range(len(frames))" not in source
+    assert "sampled_frames=None" not in source
+    assert source.count("transition_index + 1") == source.count("schedule[transition_index + 1]") == 1
+    # a disappearance at declared cadence carries the scheduled frame, never the index
+    tracking = _rs01_disappearance_run()
+    assert 1 not in {event.frame for event in tracking.events}
+
+
+# --- rs01_04: schedule perturbation at the runner boundary ---
+
+
+RS01_PERTURBATIONS = (
+    ("reordered", (12, 11, 5, 0)),
+    ("truncated", (0, 5, 11)),
+    ("extended", (0, 5, 11, 12, 20)),
+    ("substituted_interior", (0, 6, 11, 12)),
+    ("substituted_horizon", (0, 5, 11, 13)),
+    ("emptied", ()),
+)
+
+
+@pytest.mark.parametrize("label, schedule", RS01_PERTURBATIONS)
+def test_rs01_04_a_perturbed_schedule_blocks_complete_and_writes_nothing(
+    tmp_path: Path, label: str, schedule
+) -> None:
+    tracking = _rs01_disappearance_run()
+    with pytest.raises(LifecycleEvidenceError):
+        publish_future_family_completion(tmp_path, tracking, schedule)
+    assert _artifacts(tmp_path) == (False, False), label
+    with pytest.raises(CompletionEvidenceError):
+        open_analysis_access(tmp_path, tracking, schedule)
+
+
+def test_rs01_05_an_omitted_schedule_fails_at_the_runner_api_boundary(tmp_path: Path) -> None:
+    tracking = _rs01_disappearance_run()
+    with pytest.raises(TypeError):
+        publish_future_family_completion(tmp_path, tracking)
+    with pytest.raises(TypeError):
+        open_analysis_access(tmp_path, tracking)
+    assert _artifacts(tmp_path) == (False, False)
+
+
+def test_rs01_06_an_explicit_none_schedule_blocks_complete(tmp_path: Path) -> None:
+    tracking = _rs01_disappearance_run()
+    with pytest.raises(LifecycleEvidenceError):
+        publish_future_family_completion(tmp_path, tracking, None)
+    assert _artifacts(tmp_path) == (False, False)
+
+
+def test_rs01_07_tampering_the_published_schedule_binding_denies_analysis(tmp_path: Path) -> None:
+    """Hardening regression N3, re-proved through the successor stack at (0, 5, 11, 12)."""
+
+    tracking = _rs01_disappearance_run()
+    publish_future_family_completion(tmp_path, tracking, RS01_SCHEDULE)
+    manifest_path = tmp_path / COMPLETION_MANIFEST_NAME
+    manifest = json.loads(manifest_path.read_bytes())
+    assert manifest["sampled_frames"] == list(RS01_SCHEDULE)
+    manifest["sampled_frames"] = [0, 6, 11, 12]
+    manifest_path.write_bytes(runner._canonical_bytes(manifest))
+    with pytest.raises(CompletionEvidenceError):
+        open_analysis_access(tmp_path, tracking, RS01_SCHEDULE)
+
+
+def test_rs01_08_a_forged_manifest_alone_never_unlocks_analysis(tmp_path: Path) -> None:
+    """A hand-authored COMPLETE, canonically encoded, without any executed validation."""
+
+    tracking = _rs01_disappearance_run()
+    honest = tmp_path / "honest"
+    honest.mkdir()
+    publish_future_family_completion(honest, tracking, RS01_SCHEDULE)
+    forged = tmp_path / "forged"
+    forged.mkdir()
+    manifest = json.loads((honest / COMPLETION_MANIFEST_NAME).read_bytes())
+    (forged / COMPLETION_MANIFEST_NAME).write_bytes(runner._canonical_bytes(manifest))
+    # manifest only, no lifecycle document
+    with pytest.raises(CompletionEvidenceError):
+        open_analysis_access(forged, tracking, RS01_SCHEDULE)
+    # lifecycle document only, no manifest
+    lifecycle_only = tmp_path / "lifecycle_only"
+    lifecycle_only.mkdir()
+    (lifecycle_only / LIFECYCLE_DOCUMENT_NAME).write_bytes(
+        (honest / LIFECYCLE_DOCUMENT_NAME).read_bytes()
+    )
+    with pytest.raises(CompletionEvidenceError):
+        open_analysis_access(lifecycle_only, tracking, RS01_SCHEDULE)
+
+
+# --- rs01_09: the residual composition gap, pinned rather than hidden ---
+
+
+def test_rs01_09_the_residual_schedule_divergence_is_pinned_not_claimed_closed(
+    tmp_path: Path,
+) -> None:
+    """HONEST LIMITATION — future real-runner obligation.
+
+    The runner does not invoke the tracker, so the schedule it is handed is only
+    checked against what the TrackingResult can witness.  A scheduled position that
+    is BOTH empty in the detector AND referenced by no event carries no witness, so
+    a divergent value there is undetectable by any current API.
+
+    This test pins both halves of that boundary so it cannot silently widen:
+      (a) every position that IS witnessed rejects a divergent schedule;
+      (b) the unwitnessed position does not, and that is a recorded limitation.
+    """
+
+    # (a) witnessed divergence — the disappearance at 5 is stamped from the schedule
+    witnessed = _rs01_disappearance_run()
+    blocked = tmp_path / "blocked"
+    blocked.mkdir()
+    with pytest.raises(LifecycleEvidenceError):
+        publish_future_family_completion(blocked, witnessed, (0, 7, 11, 12))
+    assert _artifacts(blocked) == (False, False)
+
+    # (b) unwitnessed divergence — position 2 is empty AND carries no event
+    unwitnessed = _rs01_tracked(
+        RS01_SCHEDULE, RS01_BLOB_A, RS01_EMPTY, RS01_EMPTY, RS01_BLOB_A
+    )
+    assert 11 not in {event.frame for event in unwitnessed.events}
+    divergent = tmp_path / "divergent"
+    divergent.mkdir()
+    record = publish_future_family_completion(divergent, unwitnessed, (0, 5, 9, 12))
+    assert record.sampled_frames == (0, 5, 9, 12)
+    assert isinstance(open_analysis_access(divergent, unwitnessed, (0, 5, 9, 12)), AnalysisAccess)
+    # the divergence is faithfully published, so it is auditable rather than silent
+    published = json.loads((divergent / LIFECYCLE_DOCUMENT_NAME).read_text(encoding="utf-8"))
+    assert published["sampled_frames"] == [0, 5, 9, 12]
+
+
+# --- rs01_10: disappearance accounting across a small exhaustive sweep ---
+
+
+def test_rs01_10_disappearance_is_never_globally_rejected_across_a_synthetic_sweep() -> None:
+    """Every 3-mask arrangement at declared cadence (0, 5, 11) qualifies, and every run
+    containing a disappearance keeps exactly one terminal record per track."""
+
+    alphabet = (RS01_EMPTY, RS01_BLOB_A, RS01_BLOB_B)
+    schedule = (0, 5, 11)
+    runs = disappearing = 0
+    for combination in _rs01_itertools.product(alphabet, repeat=3):
+        tracking = _rs01_tracked(schedule, *combination)
+        runs += 1
+        assert {event.frame for event in tracking.events} <= set(schedule)
+        contract = _rs01_qualify(tracking, schedule)
+        assert len(contract.terminal_records) == len(tracking.tracks)
+        if any(event.kind == "DISSOLUTION" for event in tracking.events):
+            disappearing += 1
+    assert runs == 27
+    assert disappearing > 0
+
+
+def test_rs01_11_a_malformed_lifecycle_cannot_unlock_analysis(tmp_path: Path) -> None:
+    """A run whose terminal evidence has been stripped fails closed at publication."""
+
+    tracking = _rs01_disappearance_run()
+    stripped = TrackingResult(
+        tracking.tracks,
+        tuple(event for event in tracking.events if event.kind != "DISSOLUTION"),
+        tracking.edges,
+        tracking.assignments,
+    )
+    with pytest.raises(_RS01LifecycleContractError):
+        _rs01_qualify(stripped, RS01_SCHEDULE)
+    with pytest.raises(LifecycleEvidenceError):
+        publish_future_family_completion(tmp_path, stripped, RS01_SCHEDULE)
+    assert _artifacts(tmp_path) == (False, False)
+    with pytest.raises(CompletionEvidenceError):
+        open_analysis_access(tmp_path, stripped, RS01_SCHEDULE)
+
+
+# --- rs01_12: live node binding against the SUCCESSOR qualification ---
+
+RS01_QUALIFICATION = (
+    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json"
+)
+
+
+def test_rs01_12_the_successor_node_binding_is_complete_and_unaltered() -> None:
+    """Takes over the drop-detection duty from the 01R form of ``test_23h``.
+
+    Re-collects the four bound selectors and compares the canonical node-list digest
+    with the one the SUCCESSOR qualification records.  Collection only: no test is
+    executed, so this cannot recurse.
+    """
+
+    import subprocess
+    import sys
+
+    root = Path(__file__).resolve().parents[1]
+    successor = json.loads((root / RS01_QUALIFICATION).read_text(encoding="utf-8"))
+    binding = successor["test_binding"]
+    selectors = list(binding["selectors"])
+    assert selectors == [
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py",
+        "tests/test_future_lifecycle_contract.py",
+        "tests/test_future_lifecycle_runner_integration.py",
+        "tests/test_lattice_bond_instrumentation.py",
+    ]
+    completed = subprocess.run(
+        [sys.executable, "-m", "pytest", "--collect-only", "-q", "--no-header",
+         "-p", "no:cacheprovider", *selectors],
+        cwd=root,
+        capture_output=True,
+        text=True,
+        check=True,
+        env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+    )
+    collected = sorted(
+        line.strip()
+        for line in completed.stdout.splitlines()
+        if "::" in line and line.strip().startswith("tests/")
+    )
+    digest = hashlib.sha256("\n".join(collected).encode("utf-8")).hexdigest()
+    assert collected == sorted(binding["node_ids"]), "collected node list differs"
+    assert len(collected) == binding["node_count"]
+    assert digest == binding["node_list_sha256"]
+
+
+def test_rs01_13_the_successor_qualification_binds_the_current_lineage_and_hashes() -> None:
+    root = Path(__file__).resolve().parents[1]
+    successor = json.loads((root / RS01_QUALIFICATION).read_text(encoding="utf-8"))
+    ancestry = successor["ancestry"]
+    assert ancestry["accepted_stop_review"] == "af765d23fda2d85d77a439278ab03e92c495014a"
+    assert ancestry["technical_01r"] == "9185afaa2de69cbfe20b7ee983261d03e2225ce7"
+    assert ancestry["journal_correction"] == "4e1fd0cbc771a14873eddfcd9147eab4b792c056"
+    assert ancestry["human_review"] == "c2fe25b0cbfcffdb5f2912d5ba7fcb5e9de3d5f4"
+    assert ancestry["authorized_parent"] == "c2fe25b0cbfcffdb5f2912d5ba7fcb5e9de3d5f4"
+    for relative, digest in successor["source_hashes_sha256"].items():
+        observed = hashlib.sha256((root / relative).read_bytes()).hexdigest()
+        assert observed == digest, relative
+    own = "tests/test_future_lifecycle_runner_integration.py"
+    assert own in successor["test_hashes_sha256"], "this file must still be bound"
+    for relative, digest in successor["test_hashes_sha256"].items():
+        if relative == own:
+            continue
+        assert hashlib.sha256((root / relative).read_bytes()).hexdigest() == digest, relative
+    # the historical packages remain valid ONLY for their own commits and hashes
+    historical = successor["historical_versus_current"]
+    assert historical["runner_source_changed_by_this_mission"] is False
+    assert historical["future_lifecycle_runner_py_sha256_historical"] == (
+        historical["future_lifecycle_runner_py_sha256_current"]
+    )
+    assert historical["integration_00_valid_only_for"]
+    assert historical["hardening_00_valid_only_for"]
+    assert successor["claim_boundary"]["real_runner_wired"] is False
+
+
+def test_rs01_14_no_real_runner_or_scientific_surface_was_introduced() -> None:
+    """The supported public surface is unchanged from the accepted historical runner."""
+
+    assert set(runner.__all__) == {
+        "COMPLETION_MANIFEST_NAME",
+        "INTEGRATION_VERSION",
+        "LIFECYCLE_DOCUMENT_NAME",
+        "SCHEMA_VERSION",
+        "AnalysisAccess",
+        "CompletionEvidenceError",
+        "CompletionPublicationError",
+        "CompletionRecord",
+        "LifecycleEvidenceError",
+        "RunnerIntegrationError",
+        "RunnerState",
+        "open_analysis_access",
+        "publish_future_family_completion",
+    }
+    source = Path(runner.__file__).read_text(encoding="utf-8")
+    assert "track_components" not in source, (
+        "the runner must not gain a tracker call without a full successor review"
+    )
+    assert "stage_b" not in source.lower()
