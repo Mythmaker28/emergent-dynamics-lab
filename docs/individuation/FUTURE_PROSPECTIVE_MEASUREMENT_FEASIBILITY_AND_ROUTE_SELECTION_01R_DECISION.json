@@ -1,0 +1,197 @@
+{
+  "schema": "future-prospective-measurement-feasibility/v1",
+  "mission": "FUTURE_PROSPECTIVE_MEASUREMENT_FEASIBILITY_AND_ROUTE_SELECTION_01R",
+  "terminal_disposition": "MEASUREMENT_FEASIBILITY_REVISE",
+  "primary_route": null,
+  "backup_route": null,
+  "route_F_selected": false,
+  "route_selected": false,
+  "scientific_claim": null,
+  "scientific_family_executed": false,
+  "scientific_seed_created": false,
+  "parameter_sweep_executed": false,
+  "pilot_executed": false,
+  "historical_data_opened": false,
+  "authority": {
+    "branch": "codex/future-prospective-measurement-feasibility-route-selection-01r",
+    "authorized_parent": "a735c64dd912dd52c06dd7b890d29e89bdf49b8d",
+    "parent_disposition": "HUMAN_REVIEW_ACCEPTED",
+    "parent_of_parent": "02f7405d784deac69dd849baa7ae976c00240940",
+    "main_at_start": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+    "head_symbolic_ref": "refs/heads/main"
+  },
+  "grounds_for_disposition": [
+    {
+      "rule": "Part I 15",
+      "statement": "A required deviation from frozen Part I is discovered: the section-5 'unavailable' row for a symmetry-partnered observable is false. The lattice transpose T is an exact symmetry of the engine update and Q = mean(b[0]) - mean(b[1]) satisfies Q o T = -Q."
+    },
+    {
+      "rule": "Part I 10.6",
+      "statement": "No route passes all fifteen gates. Route E fails N2/N3/N4 (frame not a probability distribution), N7 (unearned precision target, undeclared effect sizes, attrition-free operating characteristics), N11 (unpowered reproduction stage), N12 (overclaimed gate) and N14 (undeclared ceilings). Route G's gate row is void pending evaluation of Q."
+    },
+    {
+      "rule": "Part I 10.4",
+      "statement": "Route F is not selected: its first condition fails, because a candidate observable for Route G now exists and a bounded repair of the Route-E frame is available."
+    }
+  ],
+  "dispositions_excluded": {
+    "PROSPECTIVE_ROUTE_SELECTED": "No route passes; both reviewers returned FAIL.",
+    "STOP_PROSPECTIVE_READINESS": "Route F's affirmative case is not established; this package offers no affirmative Route-F analysis at all.",
+    "STOP_MEASUREMENT_FIREWALL": "No breach. engine.py and the accepted modules were read at exact paths and never modified; no scientific family, pilot, sweep, seed or outcome analysis was executed."
+  },
+  "engine_capability_conclusions": {
+    "engine_is_deterministic_and_has_no_seed": true,
+    "sampled_frame_labels_come_from_state_step": true,
+    "state_is_never_mutated_by_step": true,
+    "local_intervention_algebra_exists": "FaceIntervention: per-face coefficients, composable, counterfactual recorded. This REFUTES Architecture 01's claim that no intervention algebra existed.",
+    "matter_flux_is_an_exact_gradient_flow": "matter_natural = M*(chi - chi_plus), M >= 0, chi = [m/(1-m/m_max)]*exp(-a); correct on the interior, fails on the closed boundary m = m_max and survives there by continuity",
+    "signed_internal_state_variable": "none: m >= 0, n >= 0, b in [0,1]",
+    "symmetry_partnered_observable": "EXISTS \u2014 the frozen Part I claim was FALSE. Lattice transpose T is an exact symmetry (residual 5.6e-17 over 20 steps); Q = mean(b[0]) - mean(b[1]) has Q o T = -Q (2.2e-16); Q is entity-localisable and addressable by FaceIntervention.",
+    "dimensionless_reduction": "nine groups; source bounds (B1) kappa_hat < 0.25*exp(-(theta_hat_m+theta_hat_n)/2), (B2) 4*D_hat + 2*eps_hat_b*k_hat_on < 1, (B3) leak floor in [0,1]",
+    "unbounded_by_source": [
+      "theta_hat_m",
+      "theta_hat_n",
+      "k_hat_off",
+      "k_hat_tens",
+      "k_hat_on individually",
+      "eps_hat_b individually"
+    ]
+  },
+  "bridge_qualification": {
+    "module": "edlab/substrates/lattice_bond/future_prospective_measurement_bridge.py",
+    "module_bytes": 53493,
+    "module_sha256": "ecb0a03d16c0fe9429f13d76a5de82687ad23eb24d143ba422300274bc10b15e",
+    "tests": "tests/test_future_prospective_measurement_bridge.py",
+    "tests_bytes": 65805,
+    "tests_sha256": "eecadb4aebe96aa16f5bf18283bd2d8fb6c5ebde62c6ad5e1fd47ade89cca30c",
+    "total_tests": 646,
+    "failed": 0,
+    "skipped": 0,
+    "per_file": {
+      "test_lattice_bond_instrumentation.py": 49,
+      "test_future_lifecycle_contract.py": 52,
+      "test_future_lifecycle_runner_integration.py": 87,
+      "test_empty_right_nonunit_cadence_tracker_repair.py": 63,
+      "test_future_lifecycle_owned_pipeline.py": 235,
+      "test_future_prospective_measurement_bridge.py": 160
+    },
+    "ordered_node_digest_sha256": "76c0da8d0b22af12fe86b2dbbb3e78d1bde7098e0f10476d3eef9364447e4bed",
+    "coverage": {
+      "statements": 441,
+      "statements_missed": 0,
+      "branches": 130,
+      "branches_partial": 0,
+      "percent": 100
+    },
+    "regression_in_accepted_modules": "none \u2014 486 accepted tests pass unchanged",
+    "mutation_ledger": {
+      "compiled_mutants": 18,
+      "semantic_kills": 17,
+      "hash_only_kills_upgraded_to_semantic": 4,
+      "survivors_in_the_sealed_implementation": 0,
+      "survivor_history": "M17 (cohort enrolled at the initial state) survived the FIRST implementation because the cohort was the whole matter field, making the channel degenerate; the enrolment was repaired to be entity-local and M17 is now a semantic kill",
+      "known_unpinned": "the anchor-check ordering is not pinned by any test (A6); 'no mutant survives' is withdrawn as W12"
+    },
+    "environment": {
+      "python": "3.11.15",
+      "pytest": "8.4.2",
+      "numpy": "2.4.4"
+    },
+    "files_changed_outside_the_two_new_ones": 0,
+    "verdict": "QUALIFIED, with the defects recorded in W11-W19 to be repaired in-allowlist by the successor"
+  },
+  "review": {
+    "reviewers": [
+      "A - engine, measurement and provenance",
+      "B - route selection and statistics"
+    ],
+    "rounds": 1,
+    "findings_total": 45,
+    "findings_judged_invalid": 0,
+    "withdrawals": 19,
+    "round_1": {
+      "package_sha256": "76561445ebefdca3811353ddf0d1ed15d90a4a996c85baafda970008f869dc68",
+      "package_bytes": 71995,
+      "A": "FAIL",
+      "B": "FAIL",
+      "A_findings": "A1-A19",
+      "B_findings": "B1-B26"
+    },
+    "round_2_not_run": "MEASUREMENT_FEASIBILITY_REVISE does not require reviewer PASS; Part I 10.6 makes PASS/PASS a precondition of PROSPECTIVE_ROUTE_SELECTED only, and that is not claimed",
+    "corrections_against_author_interest": [
+      "W1",
+      "W2"
+    ]
+  },
+  "selected_estimand": null,
+  "sample_size_logic": null,
+  "mde": null,
+  "estimand_note": "No estimand is carried forward. Every Route-E design value - L=104, C=2, R=6, N=1248, Delta0=0.50, Delta1=0.10, w=0.10, k_cell>=4, L2=36, cohort_residual_fraction=0.05, MDE 0.6404/0.02984 - is withdrawn and may not be reused as an anchor, prior or starting point.",
+  "anchor_design": {
+    "root_sealed_before_analysis": true,
+    "fail_closed_in_code": true,
+    "publication_authentication_separated_from_public_verification": true,
+    "primary": "externally pushed immutable Git object whose own object id is the receipt reference",
+    "fallback": "timestamped registry, WORM commitment, transparency-log entry or externally published root digest",
+    "external_service_contacted": false,
+    "test_anchor": "DeterministicAppendOnlyLog, an in-process hash chain",
+    "proxy_403": "does not downgrade the requirement; a sealed run remains unanalysed until an authorised unproxied process anchors it",
+    "known_gaps": [
+      "the accepted open_owned_analysis_access remains reachable without a receipt",
+      "a bit-identical directory copy replays against the same receipt",
+      "the check ordering is unpinned"
+    ]
+  },
+  "frozen_import_decision": {
+    "mechanism": "exact module-level import with pinned source hashes",
+    "package_re_export_authorised": false,
+    "pinned_set_size": 8,
+    "detail": "see the MeasurementSpec document"
+  },
+  "declared_part_I_deviations": [
+    "edlab/engine.py, edlab/substrates/lattice_bond/specs.py and edlab/substrates/lattice_bond/state.py do not exist; the true paths are edlab/substrates/lattice_bond/engine.py, edlab/specs.py and edlab/state.py, predeclared and reached as direct import dependencies",
+    "Part I section 5's 'unavailable' row for a symmetry-partnered observable is FALSE (B1) - this is the deviation that forces the disposition"
+  ],
+  "frozen_part_I": {
+    "bytes": 34848,
+    "sha256": "b704ccff9d3bd38d608fba2aed2cadad7d2caee53c98e20feea46dc3df74a340",
+    "is_byte_exact_prefix_of_final_report": true,
+    "checkpoint_1_commit": "f4bf11e4d2a7f7b4704fcd884e050bc94dce91cc"
+  },
+  "sole_successor_authority": "FUTURE_PROSPECTIVE_AXIS_CONVENTION_AND_FRAME_CLOSURE_01S",
+  "successor_authorised_here": false,
+  "next_action_authorised": "HUMAN REVIEW - FUTURE_PROSPECTIVE_MEASUREMENT_FEASIBILITY_AND_ROUTE_SELECTION_01R",
+  "preregistration_mission_named": null,
+  "firewall": {
+    "exact_paths_only": true,
+    "engine_py_read_at_exact_path": true,
+    "engine_py_modified": false,
+    "accepted_modules_modified": false,
+    "listings_globs_status_find_grep_used": false,
+    "historical_scientific_data_opened": false,
+    "stage_b_source_opened": false,
+    "standalone_engine_smoke_test_performed": false,
+    "engine_executed_in_mechanical_unit_tests": true,
+    "mechanical_execution_disclosure": "the engine runs inside the bridge's handcrafted 6x6 and 8x8 unit tests, and in one 20-step 6x6 author verification of the transpose symmetry; both are mechanical API facts, and every physical characterisation drawn from such a run is withdrawn (W13)"
+  },
+  "deliverables": {
+    "REPORT.md": {
+      "bytes": 95243,
+      "sha256": "207a0c4a519a2fbc681960a110f163caf8d0bf16a6f5fd79adf932bba0f10e31"
+    },
+    "ROADMAP.md": {
+      "bytes": 4762,
+      "sha256": "70d41f9eb1ceb99dd0c330138df954a1ff2721ce9adff40ba4cb22cb94b8efd7"
+    },
+    "REVIEW_JOURNAL.md": {
+      "bytes": 9562,
+      "sha256": "95002fa919ef13002920a5f7d005ca0852446d5b8e48eff827e09bd9212c43de"
+    },
+    "MEASUREMENT_SPEC.json": {
+      "bytes": 10437,
+      "sha256": "300dde9d24ab09f9e51121814476661cb9566d467606df3ef759f57649197739"
+    }
+  },
+  "source_or_test_files_modified": 0,
+  "files_added": 2
+}

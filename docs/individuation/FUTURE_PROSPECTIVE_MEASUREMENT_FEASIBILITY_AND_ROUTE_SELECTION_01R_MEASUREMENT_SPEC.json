@@ -1,0 +1,236 @@
+{
+  "schema": "future-prospective-measurement-spec/v1",
+  "mission": "FUTURE_PROSPECTIVE_MEASUREMENT_FEASIBILITY_AND_ROUTE_SELECTION_01R",
+  "status": "FROZEN INVENTORY \u2014 NOT AUTHORISED FOR A SCIENTIFIC FAMILY. The mission disposition is MEASUREMENT_FEASIBILITY_REVISE; no route was selected.",
+  "exact_module_import": {
+    "statement": "from edlab.substrates.lattice_bond.future_prospective_measurement_bridge import run_measurement_bridge, open_measured_analysis_access, MeasurementSpec, AnchorReceipt, write_anchor_receipt",
+    "package_re_export_authorised": false,
+    "pinned_source_sha256": {
+      "future_prospective_measurement_bridge.py": "ecb0a03d16c0fe9429f13d76a5de82687ad23eb24d143ba422300274bc10b15e",
+      "future_lifecycle_owned_pipeline.py": "cc617f06f517aba7c890b9efbf069b7994696af243fc5a584220411747cae919",
+      "future_lifecycle_runner.py": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
+      "instrumentation.py": "65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef",
+      "lifecycle.py": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+      "engine.py": "e027a9c56b773ed077cdfe725951d215b631c54b7080da73e5321ccedb6d9ff6",
+      "specs.py": "23c152ad33b4542cb9df3c0422186f1001217b2f988638b61830b18e7891fb70",
+      "state.py": "2ed986908ff2e6c587344f65de2265d3c85c0153adc2e390f3aa18e184b36d5a"
+    },
+    "verification": "the scientific runner must verify each pinned hash at start-up and fail closed on mismatch"
+  },
+  "constants": [
+    {
+      "name": "DetectorSpec.matter_threshold",
+      "value": 0.45,
+      "defined_in": "instrumentation.py",
+      "caller_configurable": true,
+      "role": "decides cell occupancy, hence component existence",
+      "justification": "exact midpoint of the admissible interval (absent_matter, present_matter] = (0.1, 0.8], inside which the owned pipeline's own detector reproduces the handed mask bit-for-bit",
+      "justification_status": "HOLDS (confirmed by both reviewers)",
+      "sensitivity_set": [
+        0.3,
+        0.45,
+        0.6
+      ]
+    },
+    {
+      "name": "DetectorSpec.min_cells",
+      "value": 3,
+      "defined_in": "instrumentation.py",
+      "caller_configurable": true,
+      "role": "discards components below the size floor",
+      "justification": "WITHDRAWN \u2014 the 'non-degenerate second moment' argument is false (a straight tromino is collinear; centroid and radius of gyration are already defined at areas 1 and 2)",
+      "justification_status": "WITHDRAWN (W10) \u2014 DECLARED CONVENTION carried by its sensitivity set alone",
+      "sensitivity_set": [
+        2,
+        3,
+        5
+      ]
+    },
+    {
+      "name": "TrackerSpec.dilation_radius",
+      "value": 1,
+      "defined_in": "instrumentation.py",
+      "caller_configurable": true,
+      "role": "dilated-IoU term of the association score",
+      "justification": "one lattice cell \u2014 the smallest dilation that can bridge a one-cell gap on a 4-connected lattice",
+      "justification_status": "HOLDS",
+      "sensitivity_set": [
+        0,
+        1,
+        2
+      ]
+    },
+    {
+      "name": "TrackerSpec.max_centroid_displacement",
+      "value": 3.0,
+      "defined_in": "instrumentation.py",
+      "caller_configurable": true,
+      "role": "association score scale AND hard disqualifier (REJECT_CENTROID_DISTANCE)",
+      "justification": "WITHDRAWN \u2014 addressed only the score scale, omitted the hard cut, and conflated a cell count with a displacement",
+      "justification_status": "WITHDRAWN (W10) \u2014 DECLARED CONVENTION; the successor must give a length-dimensioned argument and show compatibility with the sampling interval",
+      "sensitivity_set": [
+        1.5,
+        3.0,
+        6.0
+      ]
+    },
+    {
+      "name": "TrackerSpec.max_area_ratio",
+      "value": 3.0,
+      "defined_in": "instrumentation.py",
+      "caller_configurable": true,
+      "role": "hard disqualification of an association above this area ratio",
+      "justification": "WITHDRAWN \u2014 the '3 to 9 growth' premise is circular (9 was chosen because 9/3 = 3)",
+      "justification_status": "WITHDRAWN (W10) \u2014 DECLARED CONVENTION",
+      "sensitivity_set": [
+        2.0,
+        3.0,
+        5.0
+      ]
+    },
+    {
+      "name": "TrackerSpec.unique_score_margin",
+      "value": 1e-12,
+      "defined_in": "instrumentation.py",
+      "caller_configurable": true,
+      "role": "decides TRACKING_UNRESOLVED, hence the UNRESOLVED_HANDOFF terminal state \u2014 outcome-determining",
+      "justification": "WITHDRAWN \u2014 Part II called it 'not a scientific criterion', contradicting frozen Part I 6",
+      "justification_status": "WITHDRAWN (W19) \u2014 DECLARED CONVENTION",
+      "sensitivity_set": [
+        1e-14,
+        1e-12,
+        1e-10
+      ]
+    },
+    {
+      "name": "cohort_residual_fraction",
+      "value": 0.05,
+      "defined_in": "future_prospective_measurement_bridge.py (declared convention)",
+      "caller_configurable": true,
+      "role": "E-2 material-replacement criterion; gates the primary endpoint",
+      "justification": "WITHDRAWN \u2014 restates itself; no principle offered",
+      "justification_status": "WITHDRAWN (W19/B16) \u2014 DECLARED CONVENTION; the successor must supply a principle and a prespecified decision mapping over the sensitivity set",
+      "sensitivity_set": [
+        0.01,
+        0.05,
+        0.2
+      ]
+    },
+    {
+      "name": "backend",
+      "value": "vectorized",
+      "defined_in": "future_prospective_measurement_bridge.py (public keyword)",
+      "caller_configurable": true,
+      "role": "selects between two engine implementations that differ at the ulp; materially changes the persisted floats",
+      "justification": "NOT BOUND INTO THE MEASUREMENT ROOT \u2014 defect A2; two different measurements can share one spec digest",
+      "justification_status": "DEFECT RECORDED (W19) \u2014 the successor must bind it into the root and validate it",
+      "sensitivity_set": [
+        "vectorized",
+        "reference"
+      ]
+    }
+  ],
+  "read_not_chosen_constants": {
+    "_FRAME_MATERIALIZATION.absent_matter": 0.1,
+    "_FRAME_MATERIALIZATION.present_matter": 0.8,
+    "_FRAME_MATERIALIZATION.resource": 0.8,
+    "_FRAME_MATERIALIZATION.momentum": 0.0,
+    "note": "module-private in the accepted owned pipeline; read, never chosen; they define the admissible matter_threshold interval"
+  },
+  "channels": {
+    "float_matter": {
+      "class": "D",
+      "source": "LatticeBondState.m",
+      "unit": "matter units, bounded by m_max"
+    },
+    "float_resource": {
+      "class": "D",
+      "source": "LatticeBondState.n",
+      "unit": "resource units, bounded by n_max"
+    },
+    "bond_field": {
+      "class": "D",
+      "source": "LatticeBondState.b",
+      "unit": "dimensionless fraction in [0,1]"
+    },
+    "boolean_mask": {
+      "class": "X",
+      "source": "m >= matter_threshold \u2014 the identical expression detect_components evaluates"
+    },
+    "cohort_identity": {
+      "class": "X",
+      "source": "advance_passive_tracer integrated per engine step with the scaled gross flows; enrolled entity-locally on the detected components at the enrolment frame"
+    },
+    "component_mass": {
+      "class": "X",
+      "source": "DetectedComponent.mass on the true float matter",
+      "note": "the tracker consumes a DIFFERENT, binarised morphology; the two are not equal (A19b)"
+    },
+    "area": {
+      "class": "X"
+    },
+    "centroid": {
+      "class": "X"
+    },
+    "pixel_support": {
+      "class": "X",
+      "source": "sha256 of the sorted linear cell indices"
+    },
+    "radius_of_gyration": {
+      "class": "X"
+    },
+    "exact_sampled_frame_label": {
+      "class": "D",
+      "source": "LatticeBondState.step read from the engine"
+    },
+    "local_intervention": {
+      "class": "D",
+      "source": "FaceIntervention per face (axis,y,x), composable, counterfactual recorded"
+    },
+    "axis_nematic_bond_order_parameter_Q": {
+      "class": "X",
+      "source": "mean(b[0]) - mean(b[1]), or its entity-local restriction to a component's internal faces",
+      "note": "ADDED BY REVIEW. Q o T = -Q under the exact lattice-transpose symmetry T of the engine update, verified to 2.2e-16. This falsifies the frozen Part I 5 'unavailable' row and is the successor mission's central object."
+    },
+    "track_to_component_join": {
+      "class": "UNBOUND",
+      "source": "TrackingResult.assignments \u2014 built in memory, never persisted (W14)"
+    },
+    "signed_internal_state_variable": {
+      "class": "U",
+      "reason": "m>=0, n>=0, b in [0,1]; no state field takes both signs"
+    }
+  },
+  "eligibility_and_edge_rules": {
+    "terminal_states": [
+      "DISSOLVED_DETECTED_TRACK",
+      "SPLIT_INTO_TRACKS",
+      "MERGED_INTO_TRACK",
+      "UNRESOLVED_HANDOFF",
+      "RIGHT_CENSORED_AT_HORIZON"
+    ],
+    "exactly_one_per_track": true,
+    "all_are_outcomes_never_exclusions": true,
+    "global_rejection": "reserved for contract violations (schema, schedule, digest, duplicate id) \u2014 software faults, reported as a failed family",
+    "zero_detection_distinct_from_zero_acquisition": true,
+    "mid_run_ArithmeticError": "UNDECLARED EXIT \u2014 the successor must declare it (B21)"
+  },
+  "missing_channel_behaviour": "a channel the engine does not contain is recorded 'unavailable' with a reason and is never synthesised",
+  "anchor_requirements": {
+    "root_sealed_before_analysis": true,
+    "root_committed_outside_the_mutable_run_directory": true,
+    "receipt_must_bind_the_recomputed_root": true,
+    "verifier_result_must_be_honoured": true,
+    "publication_authentication_and_public_verification_are_separated": true,
+    "credential_may_be_required_to_publish": true,
+    "no_secret_may_be_required_to_verify": true,
+    "primary": "externally pushed immutable Git object whose own object id is the receipt reference",
+    "fallback": "timestamped registry, WORM commitment, transparency-log entry or externally published root digest",
+    "proxy_403_does_not_downgrade": "a sealed run remains unanalysed until an authorised unproxied process anchors it",
+    "known_gaps": [
+      "the accepted open_owned_analysis_access remains reachable without a receipt (W11)",
+      "a bit-identical directory copy replays against the same receipt (A12)",
+      "the anchor check ordering is unpinned by tests (W12)"
+    ]
+  }
+}
