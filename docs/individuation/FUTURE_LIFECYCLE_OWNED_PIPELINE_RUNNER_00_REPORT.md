@@ -286,3 +286,170 @@ success is **human review of `FUTURE_LIFECYCLE_OWNED_PIPELINE_RUNNER_00`**, whic
 begin.
 
 <!-- END OF FROZEN PART I — nothing above this line may change -->
+
+---
+
+# PART II — RESULTS (append-only)
+
+**Terminal disposition: `OWNED_PIPELINE_RUNNER_00_QUALIFIED`**
+
+Everything below was appended after Part I was committed alone as checkpoint 1. Part I is a byte-exact
+prefix of this document.
+
+## II.1 Checkpoints
+
+| # | commit | content |
+|---|---|---|
+| 1 | `f2295bd5454db3c50357acc5e23604561d95168c` | frozen Part I evaluation protocol, alone |
+| 2 | `c0e4fb2d17360fa916ccb173166302b2fc811bd7` | owned pipeline module + successor tests |
+| 3 | `d9995ce53c53e619aa2e25a29f0d36d94431bfc7` | reviewer fixes — **the final reviewed source/test commit** |
+| 4 | this commit | sealed report, qualification and review journal |
+
+**No accepted source was modified.** `instrumentation.py`, `lifecycle.py`, `future_lifecycle_runner.py`,
+`engine.py`, `pyproject.toml` and the four pre-existing bound test files are byte-identical to `d493168`.
+Exactly two files were added: the owned module and its test file.
+
+**`__init__.py` was NOT modified, and that is a recorded scope limitation — see II.7.**
+
+## II.2 What was built
+
+`edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py` (47,716 bytes,
+`cc617f06f517aba7c890b9efbf069b7994696af243fc5a584220411747cae919`) exposes two public entry points:
+
+```
+run_owned_future_pipeline(run_directory, *, acquisition_source, sampled_frames,
+                          detector_spec, tracker_spec, acquisition_source_identity)
+    -> OwnedPipelineRecord
+
+open_owned_analysis_access(run_directory) -> AnalysisAccess
+```
+
+Every parameter is keyword-only with no default except the directory. There is no `frames`, `tracking`,
+`lifecycle`, `disposition`, `qualification`, `manifest`, `completion`, `access`, `ledger` or
+`evidence_directory` parameter, and passing any of those names is a `TypeError` at the boundary
+(`test_op_21a`, `test_op_21h`). The analysis entry point takes a directory **and nothing else**: every
+schedule, specification and frame is re-read from disk, so a caller cannot re-supply the inputs that
+would be compared against the persisted evidence.
+
+The run performs, in order: schedule validation before any acquisition; one call to the source per
+schedule element through an `_InvocationCounter` wrapper; immediate canonical copy of each returned
+frame; per-frame atomic persistence; canonical acquisition ledger; atomic publication; discard of the
+in-memory evidence; re-read and independent digest reverification; its own call to `track_components`
+with the mandatory keyword-only `sampled_frames` taken from the re-read ledger; the frozen lifecycle
+validator through the accepted `publish_future_family_completion`; and the final analysis gate.
+
+On-disk evidence: `ACQUISITION.json`, `acquisition_frames/frame_%06d.bin`, `OWNED_PIPELINE.json`,
+alongside the accepted `LIFECYCLE.json` and `COMPLETION.json`.
+
+## II.3 Tests, coverage and mutation
+
+| quantity | value |
+|---|---|
+| selectors | the five exact bound test files |
+| collected / passed / failed / skipped | **486 / 486 / 0 / 0** |
+| per-file collected | 49 / 52 / 87 / 63 / **235** |
+| canonical node-list digest | `2fb7d16b0014e785e7c678b1aa6587471fcd9fab0748963fa69537f5cf98d5d8` |
+| Python / pytest | 3.11.15 / **8.4.2**, satisfying `pytest>=8.2,<9` |
+| coverage of the owned module | **431 statements, 0 missed; 188 branches, 0 partial; 100%** |
+| coverage of `future_lifecycle_runner.py` | 194 / 56 / 0 / 0 — **unchanged, no regression** |
+| mandatory mutants | A1–A14 frozen in Part I, plus R1–R13 promoted from reviewer survivors |
+
+Reviewer B re-derived the whole ledger independently and classified every kill from the killing test's
+own failure output rather than from an assertion: **21 behavioural, 4 content-integrity, 1
+API-signature, 1 non-compiling**. The non-compiling entry is R10, whose `prelude2` anchor matched at the
+wrong indentation; the mutant it intends was applied correctly by Reviewer B as D5 and dies against all
+four `test_op_02c` flavours. The honest count is therefore **26 real kills plus one ledger-hygiene
+defect whose intended mutant was independently verified to die**. No kill comes from a hash tripwire.
+
+## II.4 The two findings that changed the design
+
+Both reviewers returned **FAIL** twice. Two of their blockers were correct about code, not prose, and
+both are recorded here rather than smoothed over.
+
+**Round 2 — the invocation counter was a loop index.** The first attempt at an on-disk witness of the
+acquisition count advanced a counter once per loop iteration, which is definitionally equal to the loop
+index. Both reviewers falsified it with the frozen A1/A2 patches: the source was called three or five
+times, the ledger recorded four, and the run unlocked. Worse, a *stronger and false* sentence had been
+written into the limitation register on top of it. The counter is now an `_InvocationCounter` wrapper
+that advances inside `__call__`; `test_op_02c` drives four separable drifts and asserts the refusal comes
+from the persisted evidence. OP-L4 now states only what is true.
+
+**Round 2 — `analysis_evidence_sha256` proved nothing.** It was claimed to be evidence that the final
+gate ran. Reviewer B proved that `canonical(verified_completion_evidence())` *is* the completion
+manifest's own bytes, so the field was a restatement of `completion_manifest_sha256` and two mutants that
+never call the gate reproduced it. The claim is withdrawn. The field now binds the acquisition ledger as
+well, so it is at least not a restatement (`test_op_01c`), and the docstrings say plainly that neither
+the enum nor the digest gates anything. What makes the gate load-bearing — the call is on the success
+path and its exception propagates — is pinned by `test_op_01b`.
+
+Reviewer A's round-1 blocker was not repairable and became the register's widest entry, OP-L3.
+
+## II.5 Required invariants — result
+
+| group | result |
+|---|---|
+| acquisition ownership | **PROVED.** No public frames/tracking/lifecycle/manifest/access parameter; one call per schedule element in order; skip, duplication, wrapper bypass and trailing calls all refused **from the persisted evidence**; exceptions fail closed at every position; partial acquisition publishes nothing; post-return mutation of the source's own buffer cannot change persisted evidence. |
+| acquisition-ledger integrity | **PROVED with two recorded residues.** Schedule, order, count, sequence position, frame bytes, frame digest, shape, dtype, ledger digest, missing/extra frame and missing/extra row are all tamper-covered under full re-pinning. The two residues are OP-L2 (inert specification perturbations) and OP-L7 (the free-text identity payload). |
+| tracker composition | **PROVED.** The pipeline calls `track_components` itself with `sampled_frames` from the re-read ledger; tracker output cannot be injected; tracker and detector specifications and the four module source digests are bound; empty-right disappearance at `(0, 5, 11, 12)` remains valid terminal information. |
+| lifecycle and completion | **PROVED.** Records derived from actual tracker output; no caller-authored `QUALIFIED` trusted; exactly-one-terminal accounting holds; evidence persisted, discarded, re-read and independently reverified; atomic publication with no time-of-check window at all; a rival publication fails closed. |
+| zero detection | **PROVED.** Four empty masks publish and unlock with `detected_component_count == 0` and `track_count == 0`, while the ledger still proves four acquisitions at the exact declared schedule. "No detected entity" and "no acquisition occurred" are distinct: an empty schedule is refused before acquisition. |
+| external clock | **PROVED AND DISCLOSED.** See II.6. |
+
+## II.6 The limitation register
+
+The module docstring carries OP-L1 to OP-L7, each pinned by a named test. Both reviewers state they
+would sign all seven as written, and each measured the boundary rather than reading it.
+
+- **OP-L1** the owned artefacts attest *reproduction*, not acquisition.
+- **OP-L2** an inert specification perturbation is accepted.
+- **OP-L3** a track-topology-equivalent frame substitution is accepted — the widest entry. The lifecycle
+  document binds schedule, assignments, events and track records and **no component area, mass, centroid,
+  pixel set or radius of gyration**. For a terminating component a four-cell blob may be replaced by the
+  whole lattice (measured, `test_op_13a3`). A copied run directory verifies elsewhere. A wholesale
+  re-forgery costs one public API call, not a source edit.
+- **OP-L4** the recorded invocation count is a **within-process witness only**. On disk
+  `invocation_count == sample_count == len(entries)` and every ordinal equals its index.
+- **OP-L5** the publication primitive is leaner than the accepted runner's; it fails closed downstream.
+- **OP-L6** the returned capability is the accepted runner's and carries no acquisition evidence.
+- **OP-L7** the declared identity payload is free text; its shape is bound, its content is not.
+
+**Calling a synthetic source with the label `1_000_000` proves that the invocation was recorded under
+that label. It does not prove that one million physical engine steps elapsed.** The sentence appears in
+the module header, in both public docstrings, and in a `provenance_disclosure` field carried by both
+on-disk documents so a consumer who never reads the source still meets it.
+
+## II.7 Recorded scope limitation — the `__init__.py` re-export
+
+Part I permitted `edlab/substrates/lattice_bond/__init__.py` to change. It was **not** changed, because
+doing so is unachievable inside the allowlist: `test_rs01_13`, an unmodifiable bound test, verifies every
+entry of `source_hashes_sha256` in the unmodifiable
+`FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json`, and that map pins
+`__init__.py` at `9d3bea5a…`. Editing the re-export would turn a green tripwire red.
+
+The supported surface is therefore `edlab.substrates.lattice_bond.future_lifecycle_owned_pipeline`, which
+is a real, stable, importable public module. The re-export is deferred, and the **exact missing
+authority** is: permission to update `tests/test_future_lifecycle_runner_integration.py` and/or the
+`__init__.py` entry of `FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json`. This is the
+tripwire working as designed and is reported rather than smuggled past.
+
+## II.8 Firewall
+
+**No breach.** Only predeclared exact Git object paths were used against the repository: no directory
+listing, glob, `git status`, `git ls-tree -r`, tree-wide name listing, `find`, `rg --files`, broad grep,
+archive-on-tree or project-memory search. The dependency closure was materialised one exact blob at a
+time into a disposable clean room outside the repository and every one of its 30 files was byte-verified
+against its `d493168` blob before a single test ran. `engine.py` is a hard import dependency of the
+package and is bound by hash; no `LatticeBondEngine` was instantiated and no step was taken. Both
+reviewers worked only inside that clean room, mutating copies, and both verified afterwards that they had
+not written to it. No shard, manifest, world record, trajectory, candidate, checkpoint, autopsy input,
+result directory, scientific or historical runner, prospective namespace, Stage-B or Kovacs material was
+opened, enumerated, named, hashed or executed. Every fixture is a handcrafted synthetic boolean mask.
+
+## II.9 Qualification boundary
+
+- This is **synthetic engineering infrastructure**. No scientific entity or outcome was observed.
+- **No historical result changes. Stage B remains closed.**
+- **No scientific route is selected. Route G remains deferred.**
+- **External physical time is not authenticated.**
+- The only authorized next action is **human review of `FUTURE_LIFECYCLE_OWNED_PIPELINE_RUNNER_00`**,
+  which this mission does not begin.
