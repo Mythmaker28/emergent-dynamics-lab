@@ -1,0 +1,227 @@
+{
+  "schema": "future-prospective-readiness-architecture/v1",
+  "mission": "FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_01",
+  "terminal_disposition": "ARCHITECTURE_REVISE",
+  "primary_route": null,
+  "backup_route": null,
+  "route_selected": false,
+  "scientific_claim": null,
+  "scientific_execution_occurred": false,
+  "engine_executed": false,
+  "tracker_executed": false,
+  "seed_created": false,
+  "authority": {
+    "branch": "codex/future-prospective-readiness-architecture-01",
+    "authorized_parent": "d293eaf994fa77d4c63fbf14f72d10da377a523d",
+    "parent_of_parent": "10034eaa0bd8f2c32278959db96ae0095f737298",
+    "parent_disposition": "HUMAN_REVIEW_ACCEPTED",
+    "predecessor_architecture": "FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_00",
+    "predecessor_disposition": "ARCHITECTURE_REVISE",
+    "main_at_start": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+    "head_symbolic_ref": "refs/heads/main"
+  },
+  "grounds_for_disposition": [
+    {
+      "rule": "Part I §10.6",
+      "statement": "No route passes all thirty-two gates and Route F's affirmative case under §10.5 is not established."
+    },
+    {
+      "rule": "Part I §14",
+      "statement": "Code and data would be needed to complete the analysis: an exact read of engine.py and the law parameterisation, and an acquisition capability that does not exist."
+    },
+    {
+      "rule": "Part I §14",
+      "statement": "Three required deviations from Part I are declared (§IV.5 items 1-2; §V.3 Y11)."
+    }
+  ],
+  "dispositions_excluded": {
+    "PROSPECTIVE_ROUTE_SELECTED": "No route passes the gate set.",
+    "STOP_PROSPECTIVE_READINESS": "Requires an affirmative case that the question is unanswerable; every blocker named is a specification or engineering blocker with a named remedy.",
+    "STOP_ARCHITECTURE_FIREWALL": "No firewall breach and no scientific execution occurred."
+  },
+  "gate_adjudication": {
+    "gate_count": 32,
+    "binary_values_only": true,
+    "averaging_or_weighting": false,
+    "route_E": {
+      "question": "Q-E replication density",
+      "fail": 25,
+      "pass": 7,
+      "na": 0,
+      "admissible": false
+    },
+    "route_G": {
+      "question": "Q-G symmetry-broken internal convention",
+      "fail": 18,
+      "pass": 14,
+      "na": 0,
+      "admissible": false
+    },
+    "route_F": {
+      "question": "Q-F stop and consolidate",
+      "fail": 0,
+      "pass": 0,
+      "na": 32,
+      "admissible": false,
+      "na_reason": "Route F enrols no unit, measures no quantity and executes no family; every gate regulates a prospective design and has no object. Its admissibility turns solely on the §10.5 affirmative test, which it fails.",
+      "selected": false
+    }
+  },
+  "route_E_fail_gates": [
+    "G1",
+    "G3",
+    "G5",
+    "G6",
+    "G8",
+    "G9",
+    "G11",
+    "G13",
+    "G14",
+    "G15",
+    "G16",
+    "G17",
+    "G18",
+    "G19",
+    "G20",
+    "G21",
+    "G23",
+    "G24",
+    "G25",
+    "G26",
+    "G27",
+    "G28",
+    "G29",
+    "G30",
+    "G31"
+  ],
+  "route_G_fail_gates": [
+    "G1",
+    "G3",
+    "G6",
+    "G9",
+    "G11",
+    "G13",
+    "G14",
+    "G16",
+    "G17",
+    "G18",
+    "G23",
+    "G24",
+    "G26",
+    "G27",
+    "G28",
+    "G29",
+    "G30",
+    "G31"
+  ],
+  "review": {
+    "reviewers": [
+      "A - scientific design and falsifiability",
+      "B - selection bias and provenance"
+    ],
+    "rounds": 3,
+    "findings_total": 79,
+    "findings_judged_invalid": 0,
+    "corrections": {
+      "round_1": "W1-W27",
+      "round_2": "X1-X20",
+      "round_3": "Y1-Y11",
+      "total": 58
+    },
+    "corrections_against_author_interest": [
+      "X3",
+      "X12",
+      "X13",
+      "Y1"
+    ],
+    "over_charge_withdrawn_in_favour_of_rejected_route": [
+      "W23"
+    ],
+    "round_1": {
+      "package_sha256": "4789f8d4a32dfc90e0a9c9b4feb5316512a755c8627ce01d2f57976c947d5f33",
+      "package_bytes": 88370,
+      "A": "FAIL",
+      "B": "FAIL",
+      "A_findings": "A1-A21",
+      "B_findings": "B1-B19"
+    },
+    "round_2": {
+      "package_sha256": "2aeb2b80f9b6104f45b7057fafc3ae3a127388643b2f7e8519305a837696d59c",
+      "package_bytes": 121410,
+      "A": "FAIL",
+      "B": "FAIL",
+      "A_findings": "A22-A33",
+      "B_findings": "B20-B30"
+    },
+    "round_3": {
+      "package_sha256": "1205bf159aeae8c3eede705fa337d8b3a7b40c40495d3bf04fb77aca66de5a80",
+      "package_bytes": 150988,
+      "roadmap_sha256": "70555225eacea33f8fabc155186b59c1875c27ec66bed155e30581104f0edd5d",
+      "journal_sha256": "15094a542daccf27260fd50a213b9d563372abb020f2f09a35ada95d77ffa3a7",
+      "A": "PASS",
+      "B": "PASS",
+      "A_findings": "A34-A41",
+      "B_findings": "B31-B38",
+      "meaning": "The sealed package and its ARCHITECTURE_REVISE disposition are sound and honest. NOT a finding that any route is admissible.",
+      "decision_json_in_reviewed_package": false,
+      "part_V_appended_after_verdicts": true
+    }
+  },
+  "frozen_part_I": {
+    "bytes": 41772,
+    "sha256": "8ba61ce306d03081dec335b8e5b14aea6696763ed148395c172adf56f1410972",
+    "is_byte_exact_prefix_of_final_report": true,
+    "checkpoint_1_commit": "b7f43b25c5d7ee0f7e75f258ffc89406f4062aa9",
+    "checkpoint_2_commit": "8cfdb2e5598555d2bd91a38da6bd020d7c78ee35"
+  },
+  "declared_part_I_deviations": [
+    "The lifecycle-01R and tracker-repair primary records were verified present by exact path in preflight but their exact paths are not reconstructable in the present context; locating them would require a filename search that §11.3 forbids. Facts 3.3.17 and 3.3.18 are therefore carried from the runner-stack and owned-pipeline records and the authorizing brief.",
+    "§11.6 byte ranges are given only where they were actually tracked (Architecture 00's Part I); elsewhere the extent is described qualitatively.",
+    "§11.6 places the read ledger in Part II; it is in Part IV, because R3 and R4 forbid rewriting Part II after a reviewer verdict was issued against it."
+  ],
+  "frozen_import_decision": {
+    "mechanism": "exact module-level import with pinned source hash",
+    "package_re_export_authorised": false,
+    "baseline_module_sha256": "cc617f06f517aba7c890b9efbf069b7994696af243fc5a584220411747cae919",
+    "correction": "The pin must cover the full source-binding set, not a single module (W27, §IV.4 item 15)."
+  },
+  "evidence_root_anchoring": {
+    "primary": "operator-pushed public Git anchor object carrying the root digest",
+    "fallback": "externally published root digest in a public append-only venue",
+    "status": "DESIGN REJECTED as written - Part I §12 V1.2, V1.5 and V1.7 unmet (W18); G30 and G31 FAIL for every route",
+    "performed": false
+  },
+  "successor_requirements": {
+    "count": 21,
+    "location": "REPORT.md §IV.4 as corrected by §V.3 Y2 and Y7",
+    "critical_path": [
+      1,
+      2
+    ]
+  },
+  "next_mission_authorised": "HUMAN REVIEW - FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_01",
+  "next_mission_specified_but_not_authorised": "FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_02",
+  "firewall": {
+    "exact_paths_only": true,
+    "listings_globs_status_find_grep_used": false,
+    "engine_py_opened": false,
+    "per_world_tables_read": false,
+    "historical_observations_consumed": false,
+    "deterministic_power_calculations_under_tmp": true
+  },
+  "deliverables": {
+    "REPORT.md": {
+      "bytes": 165415,
+      "sha256": "8369d446821cf2c6e67c878071481070e1e7181da7a504d4e7dc4ca4d18c02c1"
+    },
+    "ROADMAP.md": {
+      "bytes": 13660,
+      "sha256": "247c648aaedcebbe4cf339eda4b7debad0f641d10c335df78388efd29d481328"
+    },
+    "REVIEW_JOURNAL.md": {
+      "bytes": 23271,
+      "sha256": "ac5337d52a57faf1f5e5f126985c1075a355e4d17f9ffa5afea221e019be114b"
+    }
+  },
+  "source_or_test_files_changed": 0
+}
