@@ -1276,3 +1276,1027 @@ Reasoning, in the order §10 requires:
 
 **Preliminary terminal disposition:** `PROSPECTIVE_ROUTE_SELECTED` — subject to both adversarial
 reviews.
+
+---
+
+## Part III — INDEPENDENT ADVERSARIAL REVIEW, CORRECTIONS, FINAL DECISION
+
+*Parts I and II above are unaltered. Part I remains a byte-exact prefix. Part II is preserved as the
+reviewed candidate, including the claims that review destroyed; per R4 a false claim is withdrawn
+here, not rewritten there.*
+
+### III.1 Review conduct
+
+Two independent adversarial reviewers were launched only after §II.7's preliminary decision existed,
+against the identical package sealed at commit `8cfdb2e5598555d2bd91a38da6bd020d7c78ee35`
+(`REPORT.md` sha256 `4789f8d4a32dfc90e0a9c9b4feb5316512a755c8627ce01d2f57976c947d5f33`).
+
+- **Reviewer A — scientific design and falsifiability.** 21 findings (A1–A21): 7 BLOCKER, 11 MAJOR,
+  3 MINOR. `VERDICT: FAIL`.
+- **Reviewer B — selection bias and provenance.** 19 findings (B1–B19): 9 BLOCKER, 7 MAJOR,
+  3 MINOR. `VERDICT: FAIL`.
+
+Both reviewers recomputed every number in §II.1.5, §II.1.7, §II.1.8 and §II.2.2 independently, and
+both inspected `instrumentation.py`, `lifecycle.py` and `future_lifecycle_owned_pipeline.py` directly.
+Every arithmetic claim they challenged was re-verified by the author before being accepted. The
+complete finding register, with severities, locations and dispositions, is in
+`FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_01_REVIEW_JOURNAL.md`.
+
+The two reviewers converged independently on the same three decisive defects (A1≡B1, A5≡B6≡B10a,
+A7≡B7). Convergence of two blind reviewers on the same load-bearing claims is treated here as
+dispositive.
+
+### III.2 Withdrawn claims
+
+Per R4, each of the following is **withdrawn**, not reworded. The original text stands in Part II.
+
+**W1 — "Free numeric constants in the entire primitive: `ε` … and the integer 2. No other number is
+compared to any observable." (§II.1.4)** — **FALSE.** `DetectorSpec.matter_threshold = 0.45` and
+`DetectorSpec.min_cells = 3` determine whether a component exists at all, hence E-1.
+`TrackerSpec.max_centroid_displacement = 3.0`, `max_area_ratio = 3.0`, `dilation_radius = 1` and
+`unique_score_margin = 1e-12` determine frame-to-frame association, hence E-3's continuity and E-4's
+terminal state. That is **six** further numeric constants, every one of them compared to an
+observable, every one of them load-bearing for the primary outcome. Part II inventoried the seven
+`RegimeThresholds` as a G16 hazard and then inherited six constants of exactly the same character
+without noticing. The claim is withdrawn in full, and with it the G3 and G16 PASS verdicts that rested
+on it.
+
+Aggravating: `matter_threshold` is an **absolute** cut on the matter field while the law frame varies
+free parameters over their admissible ranges. `Δ` would then partly measure how many drawn laws happen
+to sit near 0.45 in matter scale — a quantity with no scientific meaning.
+
+**W2 — "`ε` is the declared numerical tolerance of the tracer integration, not an empirical
+threshold." (§II.1.4 E-2)** — **FALSE.** `advance_passive_tracer` exposes no tolerance parameter. Its
+only internal tolerance is a conservation assertion on the advection step, which is not and cannot be
+a criterion for "the original material has been replaced". `ε` is an undeclared empirical threshold,
+and `T_complete`, `2·T_complete`, `H = 4·q₉₀(T_complete)` and `Δ` are all monotone functions of it.
+Part I §5 C4 names *tolerance* explicitly as a regulated estimand component; Part II's "it is a
+tolerance, not a threshold" move contradicts Part I.
+
+**W3 — "The design is adequate in both directions (G18)." (§II.1.8)** — **FALSE.** Re-verified: at
+`L = 60` with the rule `k ≤ 1`, `P(declare NEGATIVE)` is 0.0138 at `Δ = 0.10`, 0.192 at `Δ = 0.05`,
+0.459 at `Δ = 0.03`, and reaches 0.80 only at `Δ ≈ 0.0138` — seven-fold below the design's own floor,
+while the POSITIVE arm reaches 80% at `Δ = 0.240`, 2.4-fold above it. The asymmetry in effect size is
+roughly 17×. The root cause is structural: both arms use the same `Δ₀` as the boundary, so P4's
+indifference region has been collapsed to a point, which is not an indifference region. 80% NEGATIVE
+power at `Δ = 0.05` would require `L = 231`. G18 is **FAIL**.
+
+**W4 — G6 PASS, "cohort tracer, independent of the persistence readout." (§II.4.2)** — **FALSE.**
+Both readouts are computed on the same tracker-assigned component identity: `T_complete(t)` is cohort
+mass remaining *inside `t`'s component*, and E-3 is *`t` continuously observed*. A tracker identity
+swap produces exactly the POSITIVE signature — the cohort appears to wash out because the label moved
+to a different object, while the track continues. Turnover and persistence are corrupted in the same
+direction by the same error. C8 and G6 require turnover evidence *independent of* the persistence
+readout; this is not it.
+
+**W5 — "Route E therefore has exactly one engineering prerequisite." (§II.1.14) and the G28 PASS
+(§II.4.2, §II.4.3)** — **FALSE**, and the error is the largest in the package. Verified against the
+accepted module's own text: *"No engine runs. Frames are handcrafted synthetic boolean masks supplied
+by an injectable source; the pipeline materialises them into inert lattice states solely so that the
+committed detector can be applied to them."* Route E requires, at minimum:
+
+1. a persisted, re-read **cohort channel** (the one prerequisite Part II named);
+2. a persisted **float matter channel** — E-2 compares cohort mass to component mass, and component
+   mass derives from the matter field, which the pipeline does not persist (`_canonical_frame_bytes`
+   refuses anything but `np.bool_`);
+3. **per-engine-step tracer integration** — `advance_passive_tracer` validates
+   `post = pre − dt·div(net)` at each step and cannot be applied across a non-unit sampled interval,
+   so the cohort must be integrated inside the acquisition source;
+4. an **engine-driven acquisition source** and a law parameterisation — a capability the accepted
+   module explicitly disclaims;
+5. an **anchor-gated analysis access** — `open_owned_analysis_access` performs no anchor check, and
+   the scientific runner that would perform it does not exist.
+
+Worse, item 1 as conceived **inverts** the contract property the G28 reading depended on. The module's
+principle is explicit: *"There is deliberately no `frames`, `tracking`, `lifecycle`, `disposition`,
+`manifest`, `ledger` or `access` parameter: those artefacts are produced here, never accepted."* A
+caller-computed cohort field is an **accepted** artefact, and nothing in the local evidence set can
+check its internal consistency — the detector does not read it, the tracker does not read it, the
+lifecycle document binds nothing about it. The single channel carrying the entire turnover endpoint
+would sit outside the owned guarantee. §II.4.3's asymmetry between Route E ("an addition inside the
+contract") and Route G ("new capabilities the contract does not describe") is therefore drawn on a
+false premise. G28 is **FAIL**.
+
+This is the consequence of frozen fact 3.3.22 — *"current infrastructure provides synthetic mechanical
+qualification only"* — which Part I recorded and Part II failed to apply.
+
+**W6 — "This is a nuisance-parameter pilot, blind to the endpoint." (§II.1.11) and the G21 PASS** —
+**FALSE.** `T_complete` *is* conjunct E-2, and it is the conjunct that defines E-3 (`2·T_complete`) and
+the horizon (`4·q₉₀`). A family that computes it is not endpoint-blind; the fraction of calibration
+tracks for which `T_complete` is defined is a direct monotone proxy for the primary endpoint and is
+unavoidably visible. The same family also measures per-run wall-clock cost, which drives the
+fail-closed authorisation decision of §II.1.12 — that is a feasibility family by definition. One
+family, two roles, no frozen non-adaptive justification. G21 is **FAIL**. There is also an unresolved
+regress: `q₉₀(T_complete)` is a survivor-conditioned quantile over tracks that completed before the
+calibration family's own undeclared horizon `H_cal`, biased downward, hence `H` biased short, hence
+censoring in the main family, hence `Δ̂` biased toward zero.
+
+**W7 — the McNemar discriminator for initial-condition dependence (§II.1.10)** — **WRONG TEST.**
+McNemar tests marginal homogeneity (`b = c`). Law-specific IC dependence with no systematic direction
+— as many laws working in class A only as in class B only — yields `b ≈ c` and a null McNemar while
+producing exactly the excess of single-class laws that is the phenomenon. The test is null precisely
+where the effect is strongest. No numeric threshold was attached to `Δ_any − Δ_both` either, so the
+discriminator was unusable as written. Since IC dependence is the specific historical failure mode
+this design was built around, G26 is **FAIL**.
+
+**W8 — the claim-ladder rung for Route E (§II.1.9, §II.4.1, G25)** — **OVERSTATED.** Rung 3 reads
+"**The state** persists across material turnover", where "the state" is rungs 1–2's exposure-storing,
+causally efficacious state variable. Route E measures no state variable. It measures survival of a
+tracker-assigned connected component through material replacement — structural persistence, a
+*prerequisite* to rung 3, not rung 3. §4's vocabulary discipline names "persistence" and "lineage" as
+non-synonyms precisely to block this substitution. Corrected ceiling: **below rung 3**.
+
+**W9 — G5 "PASS by declination" (§II.4.2)** — **NOT SUSTAINABLE.** Route E's own ceiling text claims
+success "tells the program whether the substrate can supply **the entities** that any entity-level
+experiment would need", and its first conjunct is named "Entity-like". The environmental alternative
+bites without any ownership claim: a structure pinned by a fixed environmental feature persists
+through complete material replacement *by construction* and is not an entity. Combined with W10, that
+is the most likely non-trivial generator of a POSITIVE and it is nowhere confronted.
+
+**W10 — E-1 "Entity-like (boolean, no threshold)" (§II.1.4)** — **MISDESCRIBED AND INSUFFICIENT.**
+`DetectedComponent` has no `percolated` field; `percolates` is a property equal to
+`wraps_y or wraps_x`. The three "independent booleans" are two booleans and their disjunction. More
+importantly, "does not wrap the torus" is not entity-likeness: a component covering most of the
+lattice without wrapping passes E-1. Part II refused `max_area_fraction` on G16 grounds and put
+nothing in its place, so the conjunct named "Entity-like" places no bound on size, compactness or
+separation from a bulk phase.
+
+**W11 — `Δ₀ = 0.10` "two independent arguments converge" (§II.1.7)** — **REVERSE-ENGINEERED.** P2a is
+a bare restatement of the value. P2b has two undeclared free constants (assurance `a`, screen size
+`L'`) whose admissible pairs span `Δ₀ ∈ [0.056, 0.206]`; `(0.95, 30)` is the pair that lands on a round
+0.10. The premise "`L' = 30` is the largest screening budget this program can declare while remaining
+bounded" is false on the document's own face: it simultaneously declares a 60-law family plus a 20-law
+reproduction family, and `1 − 0.05^(1/60) = 0.0487`. P2 is not satisfied, so G17 is **FAIL**.
+
+**W12 — the MDE (§II.1.8) and the design parameters `L = 60`, `C = 2`, `R = 6`, `k_cell ≥ 4`,
+`L₂ = 20`** — **UNJUSTIFIED.** `MDE = 0.240` is an *output* of `(Δ₀, L, CP)`, presented as a justified
+target; that is exactly the circularity G17 exists to catch. `L = 60` has no stated justification
+anywhere (it is reconstructable from the script as the smallest `L` whose NEGATIVE arm tolerates one
+success, which is a legitimate reason, undeclared). `R = 6` and `C = 2` have none, yet `R` defines what
+`Δ` means and `C = 2` with a conjunctive both-class rule structurally reproduces the closed family's
+design without independent argument. G23 is **FAIL**.
+
+**W13 — the reproduction family (§II.1.13)** — **CANNOT FAIL.** At `L₂ = 20` the CP upper bound at
+`k = 0` is 0.168 > `Δ₀`, so a NEGATIVE call can never be reproduced under any outcome; and CP lower
+> 0.10 needs `k ≥ 6/20 = 0.30`, half again above the primary POSITIVE threshold of 0.20. "Consistent
+with" was never defined numerically. `L₂ ≥ 36` is the floor for a reproducible NEGATIVE at `k = 0`.
+
+**W14 — the sampling cadence** — **NEVER DECLARED.** `sampled_frames` is mandatory in the contract and
+is the sole authority for transition frames, yet Route E declared only the horizon. E-1 is evaluated
+at sampled frames; E-3's continuity is continuity in schedule positions; E-4's terminal state is
+produced by inter-sample association under `max_centroid_displacement = 3.0` cells. `Δ` is therefore a
+monotone function of an undeclared knob, and this is the Architecture-00 cadence hazard re-entering
+not as a denominator filter but as an outcome-determining free parameter. G24 is **FAIL**.
+
+**W15 — E-4 (§II.1.4)** — **AMBIGUOUS AND SURVIVOR-CONDITIONED.** The rule ("terminal state is
+`RIGHT_CENSORED_AT_HORIZON`") and the gloss ("tracks terminating … *before satisfying E-3* do not
+satisfy the conjunction") are different endpoints. Under the rule, with `H = 4·q₉₀`, the requirement
+is survival for roughly `4·q₉₀` — far beyond the `2·T_complete` E-3 asks for. The composite framing
+rescues the denominator but not the interpretation: `Δ` becomes "density of laws whose entities survive
+a family-wide constant horizon", not what Q-E and the ceiling both say.
+
+**W16 — the two 50% floors (§II.1.10)** — **UNCALIBRATED.** Being declared in advance is not a
+justification. The floors are not tied to any operating characteristic: at 49% horizon censoring — one
+point under the discriminator, which never fires — a law frame in which 70% of worlds instantiate the
+conjunction given an adequate horizon flips from a certain POSITIVE to a 76%-probable NEGATIVE,
+because the `4/6`-of-`6` cell criterion is a hard nonlinearity that amplifies uniform attrition. There
+is also no discriminator for `H` **too long**, which is the modal failure by construction.
+
+**W17 — "detector artefacts" as a declared alternative explanation (§II.4.1)** — **NO
+DISCRIMINATOR.** G26 requires the negative to distinguish the route's *declared* causes of a null.
+Four were declared; three were discriminated.
+
+**W18 — the anchoring design against Part I §12 V1 (§II.5)** — **THREE REQUIREMENTS UNMET.** V1.2:
+the root does not cover component mass, which no persisted channel carries, nor the calibration record
+that sets `H`. V1.5: a push credential *is* a local secret, and an annotated Git tag is force-updatable
+and deletable and its object is garbage-collectable, so "effectively append-only" is asserted, not
+argued; the Zenodo fallback also requires a token. V1.7: fail-closed enforcement is deferred to a
+scientific runner that does not exist and is not authorised, so it is a prerequisite, not a design
+property.
+
+**W19 — arithmetic corrections.**
+
+| Location | As written | Correct |
+|---|---|---|
+| §II.1.8, worst-case precision | ≤ 0.163 | **0.132** (max CP half-width at `L = 60`, at `k = 30`) |
+| §II.2.2, H2/H3 TOST size | n ≈ 214 at power 0.90 | **n ≈ 271**; at n = 214 the achieved TOST power is 0.800 |
+| §II.2.2, H2 unit | entities | **pairs**, or entities with a declared design effect — H2 assumes the independence H3 exists to test, and is tested first |
+| §II.2.4, enrolment table | 61 / 121 / 304 / 607 (from 30.354) | **62 / 124 / 310 / 620** (from the stated n = 31) |
+| §II.1.5, attenuation table | `P(cell)²` assuming `p₁ = p₂` | must include `p₁ ≠ p₂`: (0.9, 0.5) → 0.338; (0.9, 0.3) → 0.069; (0.8, 0.4) → 0.161 — the conjunction across classes attenuates more than `R` does |
+| §II.4.2 tally | "Route G: 8 fatal failures" | the parenthesis and the table both contain **10**; the tally reproduces nothing |
+
+**W20 — the gate table's own vocabulary (§II.4.2)** — **VIOLATES §6 AND §10.1.** The table declares
+`PASS` / `FAIL` / `N-A` and then uses "PASS (design)" (×17), "PASS by declination", "PASS **with one
+bounded prerequisite**", "at risk" and "PASS in principle". A conditional PASS is a trade, which §10.1
+forbids; "at risk" is neither verdict. Route F is marked `N-A` on all thirty-two gates without the
+stated inapplicability reason §6 requires.
+
+**W21 — the read ledger (§II.0)** — **UNDERSTATED.** Entry 12 declares "public API and limitation
+register", yet §II.1.14 cites `_canonical_frame_bytes`, a private function. Entry 11 declares
+`advance_passive_tracer`'s *signature*, yet E-2's feasibility rests on its *semantics*. Entry 9
+aggregates roughly ten documents into one row with no ranges, while §11.6 requires section or byte
+ranges and entry 4 demonstrates the achievable standard.
+
+**W22 — the asymmetric deferral standard (§II.1.2 vs §II.2.4)** — **THE DECISIVE GOVERNANCE DEFECT.**
+Route G was failed on G1/G13 because defining its convention observable "requires reading the engine
+source (not permitted in this mission)". Route E's population `F`, its initial-condition classes and
+its detector scale were **deferred** on the identical ground, with the explicit concession that the
+preregistration mission "is authorized to read the engine source under its own declared allowlist" —
+while every design parameter (`L`, `C`, `R`, `Δ₀`, the decision rule, the entire power table) was fixed
+now. That is the ordering G13 exists to forbid, and it is a double standard applied inside one
+document. Under Route E's standard Route G is deferrable; under Route G's standard Route E fails G13.
+Both reviewers reached this independently. It is corrected below by applying the stricter standard to
+**both** routes.
+
+**W23 — the G16 FAIL charged against Route G (§II.4.2)** — **WITHDRAWN AS AN OVER-CHARGE.** G16 bans
+*using* closed-family quantities. Route G declined to use them and reported its enrolment as
+non-computable. That is a G14 failure, not a G16 failure. Charging G16 inflated the count in the table
+that decided the comparison. The over-charge is withdrawn.
+
+**W24 — Route G's H4 was not given the composite framing Route E received (§II.2.4)** — **ASYMMETRIC
+TREATMENT.** Route E made an unknown-rate endpoint sizeable on an enrolled denominator by scoring
+non-reachers as 0. The same device was not considered for Route G's H4. It would not rescue Route G —
+the convention observable is still undefined — but the asymmetry is recorded because it inflated the
+contrast the decision rested on.
+
+**W25 — late-born tracks (§II.1.4)** — **IMMORTAL-TIME ASYMMETRY.** `SPLIT`, `MERGE` and
+`TRACKING_UNRESOLVED` each create a **new** track. A track born mid-run starts its `T_complete` clock
+late and has `H − t_birth` to satisfy E-3 and E-4, while a frame-0 track has the whole horizon. Worlds
+with dynamical churn are systematically penalised for a reason unrelated to persistence-with-turnover.
+Cohort inheritance across `SPLIT`/`MERGE` is also undeclared. Relatedly, E-4 excludes tracks that
+*terminate* in `SPLIT`/`MERGE` but says nothing about tracks that *originate* in one
+(`_ONSET_EVENT_KINDS = {APPEARANCE, SPLIT, MERGE, TRACKING_UNRESOLVED}`), so a structure that
+repeatedly fragments with one surviving lineage satisfies E-1–E-4 — lineage survival, which §4
+forbids treating as persistence, and the precise Stage-B failure mode of fact 3.2.12.
+
+**W26 — pre-enrolment eligibility (§II.1.3)** — **ASSERTED ABOUT UNREAD CODE.** "A drawn law that the
+engine's own validator rejects is discarded before enrolment … blind to every outcome" is a claim about
+`engine.py`, which this mission may not read and which the ledger correctly records as unread. If the
+validator is a pure predicate on parameters, the rule is legitimate rejection sampling. If it performs
+any trial integration or stability check, rejection correlates with dynamical regime and therefore
+with the endpoint, and "before enrolment" becomes definitional sleight of hand — the frame is defined
+*as* the accepted set, laundering an outcome-correlated filter into the population definition. The
+document cannot establish which it is.
+
+**W27 — minor specification gaps.** `2·T_complete(t)` need not be a member of the sampling schedule
+and no rounding convention was declared. §II.6 pins one module hash, while `DetectorSpec`, `TrackerSpec`
+and `advance_passive_tracer` live in `instrumentation.py`; the pin must cover the full source-binding
+set. §II.1.2 attribute 3 was declared "None" rather than properly; attribute 5 was declared as two
+ICH E9(R1) strategies joined by a slash; "lost" was never mapped to a lifecycle terminal state; and
+α, the direction and the negative arm's boundary rate (0.0138, giving a total wrong-direction rate of
+0.0284 at the boundary) were never declared.
+
+### III.3 Findings assessed and not accepted
+
+None. Every finding from both reviewers was either accepted in full or accepted with the correction
+recorded above. No finding was judged invalid. This is recorded plainly rather than softened: the
+candidate package was substantially wrong, and the frozen protocol of Part I is what detected it.
+
+### III.4 Corrected gate adjudication
+
+Applying the gates of §6 honestly, with the stricter deferral standard of W22 applied symmetrically and
+every hedged verdict resolved to a binary value.
+
+**Route E (as specified in Part II):**
+
+| Gate | Verdict | Reason |
+|---|---|---|
+| G3 | **FAIL** | six undeclared numeric constants of unestablished provenance (W1) |
+| G6 | **FAIL** | turnover and persistence share a tracker identity (W4) |
+| G13 | **FAIL** | population, IC classes, cadence and `ε` all undeclared; attribute 4 not exact (W2, W14, W22) |
+| G16 | **FAIL** | same constants; `Δ₀` reverse-engineered (W1, W11) |
+| G17 | **FAIL** | MDE is an output, not a justified target; `Δ₀` not independently justified (W11, W12) |
+| G18 | **FAIL** | negative arm powered only at `Δ ≈ 0.0138` (W3) |
+| G21 | **FAIL** | calibration family is dual-role (W6) |
+| G23 | **FAIL** | `L`, `C`, `R`, `k_cell`, `L₂` unjustified (W12) |
+| G24 | **FAIL** | cadence undeclared and outcome-determining (W14, W15, W25) |
+| G25 | **FAIL** | ceiling overstated as rung 3 (W8) |
+| G26 | **FAIL** | wrong IC-dependence test; no `H`-too-long or detector-artefact discriminator (W7, W16, W17) |
+| G27 | **FAIL** | resource ceiling omits tracer integration and the added channels (W5) |
+| G28 | **FAIL** | not executable through the accepted contract; ≥5 prerequisites; the cohort channel inverts the produce-never-accept property (W5) |
+| G30, G31 | **FAIL** | root does not cover component mass or the calibration record; anchoring requires credentials; fail-closed unenforceable today (W18) |
+| G1, G2, G4, G5, G7–G12, G14, G15, G19, G20, G22, G29, G32 | pass or not reached | G5 is downgraded to **at issue** (W9) and is not credited |
+
+**Route E is inadmissible as specified.** Fifteen fatal gate failures.
+
+**Route G (corrected):** G13 **FAIL** (convention observable undefinable from permitted evidence — the
+*same* ground on which Route E now fails, applied symmetrically); G14 **FAIL** (enrolment not
+computable); G17, G18 **FAIL** (derivative of G13); G26 **FAIL** (a null is confounded with the
+unanswered Q-E); G27, G28 **FAIL** (unbounded prerequisites; no intervention or multi-entity
+capability in the contract). **Seven** fatal failures — not eight, not ten. The G1 charge is folded
+into G13 and the G16 charge is withdrawn (W23). **Route G remains inadmissible**, on fewer and better
+grounds.
+
+**Route F:** no gate applies; the affirmative test of §10.5 is evaluated below.
+
+### III.5 Route F re-evaluated
+
+With Route E now inadmissible, §10.5 becomes decisive: Route F is **not** selected merely because E
+and G fail; a final stop requires its own affirmative argument. That argument still fails, for a
+different reason than in §II.3:
+
+Every blocker above is a **specification or engineering** blocker with a named, bounded remedy — an
+allowlist extension permitting an engine read so that `F`, the IC classes, the detector scale, the
+tracer semantics and the cadence can be declared exactly; and an engine-driven acquisition capability
+so that the substrate can be measured at all. None of them is an epistemic dead end. Stopping now
+would be stopping because the architecture was written badly, not because the question is unanswerable.
+Consolidation therefore does **not** have higher expected epistemic value than a corrected bounded
+prospective family. **Route F is not selected.**
+
+### III.6 Terminal disposition
+
+Per §10.6 — *no route passes all gates and Route F's affirmative case is not established* — and per
+§14 and T4 — *code or data would be needed to complete the analysis* — the disposition is:
+
+> ## `ARCHITECTURE_REVISE`
+>
+> **Primary route: none. Backup: none.**
+
+`PROSPECTIVE_ROUTE_SELECTED` is not available: it requires PASS from both reviewers on the same final
+package (R5, §10.9), and both returned FAIL on the candidate. `STOP_PROSPECTIVE_READINESS` is not
+available: it requires Route F's affirmative case (§10.6, §II.3, §III.5), which is not established.
+`STOP_ARCHITECTURE_FIREWALL` is not applicable: no firewall breach occurred and no scientific
+execution took place.
+
+Part I is unmodified and remains a byte-exact 41,772-byte prefix of this report (T4).
+
+### III.7 What survives, exactly
+
+This is not a null result about the programme. Five things are established or preserved:
+
+1. **The question is right.** Q-E — the replication density of persistence with independently verified
+   material turnover — is the correct prerequisite question, it is prospectively answerable, and it is
+   not the falsified mutual-exclusivity hypothesis. No reviewer challenged the question.
+2. **The Architecture-00 cadence blocker is genuinely closed.** Disappearance at non-unit cadence is an
+   ordinary `DISSOLVED_DETECTED_TRACK` outcome, and the lifecycle contract's five exhaustive terminal
+   states give a competing-risk scaffold that keeps every enrolled unit in the denominator. That part
+   of Part II stands.
+3. **The design skeleton stands.** An enrolled-at-allocation denominator, a composite intercurrent-event
+   strategy, a Clopper–Pearson three-way decision partition with a non-empty indeterminate zone, and a
+   prespecified density curve reported at every threshold with only one confirmatory — none of these
+   was faulted. What failed was the *content* poured into that skeleton.
+4. **Route G's structural position is confirmed.** Route G is downstream of Q-E: its
+   persistence-through-turnover endpoint presupposes entities that persist through turnover, its
+   enrolment arithmetic *is* Q-E's estimand, and its null is uninterpretable until Q-E is answered.
+   Reviewer B's fairness correction (W23, W24) does not disturb this.
+5. **The gap between the program and its infrastructure is now named exactly.** The accepted pipeline
+   runs no engine, persists boolean masks, accepts no computed artefact and gates nothing on an
+   external anchor. Every scientific route needs all four of those to change. That is the real state of
+   readiness, and Architecture 00's `ARCHITECTURE_REVISE` was closer to correct than Part II's
+   confidence.
+
+### III.8 What the successor architecture must resolve
+
+Ordered, exact, and each with the mission type that can resolve it. This is a specification for
+`FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_02`, which is **not** authorised here.
+
+| # | Must resolve | Requires |
+|---|---|---|
+| 1 | An allowlist extension permitting an exact read of `edlab/substrates/lattice_bond/engine.py` and the law-space definition | a governance decision in the successor mission's brief |
+| 2 | The law frame `F`, the initial-condition classes, and the semantics of the engine's validator (pure predicate vs trial integration) — W22, W26 | 1 |
+| 3 | Declared values and independent justifications for `matter_threshold`, `min_cells`, `max_centroid_displacement`, `max_area_ratio`, `dilation_radius`, `unique_score_margin` and `ε`, with prespecified sensitivity of the terminal call over a declared range for each — W1, W2 | 1, 2 |
+| 4 | The exact sampling schedule, declared jointly with the tracker association window so the window is a stated invariant — W14 | 3 |
+| 5 | A turnover readout **not** sharing the tracker's component identity, or an explicit identity-swap discriminator reported with `Δ̂` — W4 | 3 |
+| 6 | A separate negative-arm floor `Δ₁ < Δ₀` (a real indifference region), `L` derived from a declared precision target, and `Δ₀` derived from the actual declared downstream budget — W3, W11, W12 | 2 |
+| 7 | A horizon rule containing no draw from `F`, or a per-track horizon; plus the `H`-too-long discriminator and a P8 sensitivity across a declared `H` range — W6, W16 | 3 |
+| 8 | A within-law concordance test against the independence-implied rate, with a numeric threshold, replacing McNemar; per-class marginal densities as co-primary — W7 | 2 |
+| 9 | An entity-likeness criterion with a mechanical justification, and a discriminator for the environmentally-pinned-structure alternative — W9, W10 | 3 |
+| 10 | Cohort inheritance across `SPLIT`/`MERGE`/`UNRESOLVED`, an onset restriction, and the birth-time distribution reported as a covariate — W25 | 3 |
+| 11 | An engine-driven acquisition capability that **produces** the float matter channel and the cohort channel inside the owned guarantee rather than accepting them, with per-step tracer integration — W5 | an engineering mission with its own qualification and human review |
+| 12 | An anchoring venue that genuinely needs no secret and is genuinely append-only, a root covering component mass and the calibration record, and fail-closed enforcement in code — W18 | 11 |
+| 13 | A reproduction family with a numeric criterion and its own power, `L₂ ≥ 36` — W13 | 6 |
+| 14 | A gate table with binary verdicts only, a stated inapplicability reason for every `N-A`, and a read ledger with exact extents and digests — W20, W21 | governance only |
+
+Items 1–2 are the critical path: nothing below them can be specified without them.
+
+### III.9 Reviewer re-review
+
+The corrected package — Parts I, II and III as sealed — was returned to both reviewers for targeted
+re-review of the **corrected disposition** (not of the withdrawn Part II claims). Their verdicts on the
+final package are recorded in
+`FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_01_REVIEW_JOURNAL.md` §5.
+
+### III.10 Firewall, refs and residue
+
+- **Firewall.** Exact Git object paths only throughout. No directory listing, glob, wildcard,
+  `git status`, `git ls-tree -r`, `find`, `rg --files`, broad grep, tree-wide name listing,
+  archive-on-tree or listing-then-filter was used. `engine.py` was not opened. No per-world table, no
+  shard, manifest, world name, trajectory, candidate, checkpoint, autopsy input, `results/` directory,
+  historical runner, Stage-B source, prospective namespace, Kovacs material or global index was
+  opened. No engine, tracker, simulation, sweep, pilot family or seed was executed.
+- **Tree proof.** Each commit's tree was constructed under a temporary index in `/tmp` from the
+  parent tree plus exactly one declared path, and — for the Part I commit — verified bidirectionally:
+  removing that single path from the new tree reproduces the parent tree
+  (`17817179fc3fcad6769db18eebddb83aa5dda06b`) exactly. No undeclared path changed.
+- **Refs.** `refs/heads/main` remains `f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77`. `HEAD` remains
+  `refs/heads/main`. No accepted branch ref was moved.
+- **Residue.** Temporary indexes and staging files under `/tmp` on both the agent container and the
+  device VM; these are outside the repository. The pre-existing, undeletable probe file
+  `.opr00_probe_delete_me` (6 bytes) from the owned-pipeline mission remains — the mount is
+  create-only and `rm` returns `EPERM`. Git wrote several `.git/objects/*/tmp_obj_*` temporary files
+  it could not unlink for the same reason; these are inert and are disclosed here rather than hidden.
+  No new file was written into the working tree.
+
+### III.11 Scientific meaning
+
+**None.** No scientific claim is made, supported, weakened or implied by this mission. No engine ran,
+no tracker ran, no world was generated, no seed was allocated, no historical observation was read. The
+sole output is a governance and design record which concludes that the programme is **not yet ready**
+to preregister a prospective scientific family, and which names the fourteen things that must be
+resolved before it is.
+
+### III.12 Only next action
+
+**Human review of `FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_01`.**
+
+No preregistration, implementation, engineering mission, seed creation or scientific execution is
+authorised by this document. `FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_02` is described in §III.8 but
+is **not** authorised here.
+
+---
+
+## Part IV — SECOND-ROUND REVIEW, CORRECTIONS TO THE CORRECTION, SEALED DECISION
+
+*Parts I, II and III are unaltered. Part I remains a byte-exact 41,772-byte prefix. Per R4 the claims
+that round 2 destroyed are withdrawn here, not rewritten above.*
+
+### IV.1 Round-2 conduct and verdicts
+
+The corrected package (Parts I + II + III, plus the review journal and roadmap as then drafted) was
+returned to both reviewers for a targeted re-review with a narrow charge: is the corrected adjudication
+sound, are the withdrawals complete and honest, is `ARCHITECTURE_REVISE` the right disposition under
+Part I's own rules, and does anything still overclaim.
+
+| Reviewer | Verdict | New findings |
+|---|---|---|
+| A — scientific design and falsifiability | **FAIL** | A22–A33 (4 BLOCKER, 6 MAJOR, 3 MINOR) |
+| B — selection bias and provenance | **FAIL** | B20–B30 (1 BLOCKER, 7 MAJOR, 3 MINOR) |
+
+**Both reviewers independently confirmed the terminal disposition.** Reviewer A: *"`ARCHITECTURE_REVISE`
+is the right one, and it is overdetermined … `STOP_PROSPECTIVE_READINESS` would be wrong."* Reviewer B:
+*"Honest, and doubly grounded … it buys no authorisation … so it is not a way of avoiding a stop."*
+Both `FAIL` verdicts were directed at the **corrective apparatus** — the gate table, the survival
+claims, the successor requirement list and the roadmap — not at the disposition.
+
+Both also confirmed that Part I was never modified, that Part II is byte-identical to the reviewed
+checkpoint-2 package, that nothing was quietly rewritten, and that every load-bearing number in
+Part III reproduces exactly. Reviewer B additionally verified that the round-1 correction which flipped
+the decision (W22) was applied against the author's own preferred route and that Route G's adjudication
+was genuinely improved rather than cosmetically relabelled.
+
+The complete round-2 register is in the review journal §5.
+
+### IV.2 Withdrawn and corrected — round 2
+
+**X1 — §III.4's gate table is not binary and under-charges (A22, B21).** Accepted in full, including
+the aggravating point: the corrective table reproduced the very defect (W20) it withdrew, using
+"at issue" for G5 and a composite bucket "pass or not reached" for seventeen gates, while the review
+journal §6 asserted as governance fact that every hedged verdict had been resolved. **That assertion
+was false.** Route G's fifteen-plus "PASS (design)" cells were never resolved at all, and Route F was
+again marked inapplicable en bloc without the reason §6 requires. §III.8 item 14 then deferred the fix
+to a successor mission — deferring to Architecture 02 a requirement §6 imposed on **this** table.
+Superseded by the complete binary table at §IV.3.
+
+**X2 — G5 must be FAIL for Route E, not "at issue" (A22).** W9's own words are "nowhere confronted".
+G5 requires the route to *explicitly confront* the environmental alternative. Under §6 that is a fatal
+failure, not a downgrade.
+
+**X3 — Route G's corrected count of "seven — not eight, not ten" is unsupported (A23, B20).**
+Removing the G1 fold and the withdrawn G16 charge from Part II's ten leaves **eight**; G9 was dropped
+with no declared reason, in a correction whose purpose was to fix a miscount. The G9 charge is
+**restored**, and the same charge is applied to Route E, which §III.4 had not charged although W3, W16
+and W17 establish it. Both counts are superseded by §IV.3.
+
+**X4 — §III.7 item 3 is false (A24).** "An enrolled-at-allocation denominator, a composite
+intercurrent-event strategy, a Clopper–Pearson three-way partition … and a prespecified density curve
+— none of these was faulted." Three of the four **were** faulted by accepted findings: W26 faults the
+enrolled-at-allocation denominator (an outcome-correlated eligibility filter laundered into the
+population definition); W15 and W25 fault the composite strategy; W3 faults the partition, calling the
+collapse of the indifference region to a point *structural* and *the root cause*. **Withdrawn.** Only
+the prespecified density curve — reporting every threshold with one confirmatory — survives unfaulted.
+
+**X5 — §III.7 items 1, 2, 4 and 5 overclaim (A25, A26).**
+*Item 1:* "No reviewer challenged the question" is not evidence that the question is sound — neither
+charter tasked a reviewer with challenging it. **Withdrawn as support.** The question remains the
+author's judgement, not a reviewed finding.
+*Item 2:* "genuinely closed" is contradicted by this document's own G11/G24 FAIL on cadence (W14).
+**Corrected:** only the *denominator-leak* half of the Architecture-00 cadence blocker is closed —
+disappearance at non-unit cadence is now an ordinary outcome. The *outcome-determining* half is open:
+the schedule is undeclared and it drives the association window.
+*Item 4:* "confirmed" **withdrawn** — no finding disturbed the Route-G structural argument, but no
+reviewer examined it independently either.
+*Item 5:* "Every scientific route needs all four" **withdrawn** as a universal generalised from two
+examined routes; Route F needs none of them.
+
+**X6 — §III.8 claims completeness it does not have (A27).** It omits **W15** (the primary endpoint's
+own definitional conflict: E-4's rule and its gloss are different endpoints), **W17** (no
+detector-artefact discriminator) and **W27** (undeclared α, direction, negative-arm boundary rate;
+the `2·T_complete` rounding convention; the single-module import pin). §III.11's "fourteen things" is
+therefore **withdrawn**. Superseded by the eighteen-item list at §IV.4.
+
+**X7 — §III.8 item 3's remedy is insufficient (A29, B26).** Declaring values with post-hoc
+"independent justifications" plus a sensitivity range is the `Δ₀` pattern W11 condemned, and it leaves
+W1's aggravating clause intact: `matter_threshold` is an **absolute** cut while the law frame varies
+matter scale, so `Δ` would partly measure proximity to 0.45. **Corrected requirement:** the detector
+criterion must be **scale-relative or dimensionless**, and every inherited `DetectorSpec`/`TrackerSpec`
+constant must either have its provenance *established* or be **replaced by a value chosen without
+reference to the inherited default**. A justification written after seeing the default is not
+independent.
+
+**X8 — §III.8 item 5's second branch does not clear G6 (A30).** "…or an explicit identity-swap
+discriminator reported with `Δ̂`" — a discriminator computed on the same tracker identity is not
+independent evidence, which is what G6 requires. **The alternative branch is removed.** The turnover
+readout must not share the tracker's component identity.
+
+**X9 — §III.9 narrated a process that had not happened (A31, B27).** It stated in the past tense that
+the corrected package "was returned to both reviewers" and that "their verdicts … are recorded in
+§5", while §5 recorded none and `DECISION.json` did not yet exist. That is precisely the class of
+claim this review exists to remove, and it is recorded as an author error rather than a formatting
+artefact. **Superseded** by §IV.1, which records the actual round-2 verdicts, and by review journal §5,
+which now carries the round-2 register and the exact package digest each verdict was issued against.
+
+**X10 — the roadmap re-selected Route E after the report declared "primary route: none" (A28, B25).**
+Steps 1, 5, 7 and 8 were named `ROUTE_E_*`; step 1's stated output was "a corrected **Route-E**
+specification"; Route F was deferred to "if step 8 returns NEGATIVE". A route that fails the gate set
+was thereby carried forward as the plan of record, which §10.1 forbids as a trade and §10.7 forbids as
+a conditioned backup, and the framing imported §10.8 non-criteria ("shortest bounded path", "removes
+one governance-only mission"). **The roadmap is replaced** by a route-neutral one: Architecture 02
+must re-run the §10 comparison over Q-E, Q-G and Q-F once the allowlist is extended, and no route name
+appears in any step before that comparison.
+
+**X11 — roadmap step 3 understated its own scope (B24).** An engine-driven acquisition source cannot
+be qualified without running the engine, and running it is a **new family** under G8/G20 — so the step
+as scoped would have left the engine-coupled path unqualified, reproducing the diagnosis it exists to
+close. The "underestimated by a factor of five" phrasing is also **withdrawn**: five was a count of
+prerequisites, not an effort ratio, and presenting it as a magnitude is the reverse-engineered-number
+pattern W11 condemned.
+
+**X12 — W26 was withdrawn without a gate consequence (B23).** Corrected: **G14 and G15 are FAIL** for
+Route E. The enrolled denominator rests on a population defined *as* the validator-accepted set, and
+whether that validator is a pure predicate or performs a trial integration cannot be established
+without reading `engine.py`. Under this document's own stricter standard the eligibility rule cannot be
+credited.
+
+**X13 — W13 was accepted without a gate consequence (A15 follow-up).** A reproduction family that can
+never reproduce a `NEGATIVE` under any outcome is a check that can only agree. **G9 is FAIL** for
+Route E on this ground as well as on W3/W16/W17.
+
+**X14 — §III.6's reasoning about R5 was wrong (A32).** `PROSPECTIVE_ROUTE_SELECTED` is unavailable
+because Route E fails the gate set, not because round-1 verdicts were `FAIL` on the candidate. R5
+governs the *final* package. The conclusion is unchanged; the reasoning is corrected.
+
+**X15 — §III.1 overstated reviewer conduct (A33).** "Both reviewers recomputed every number in
+§II.1.5, §II.1.7, §II.1.8 and §II.2.2" is stronger than either reviewer claimed. **Corrected:** each
+reviewer recomputed the figures it challenged, and Reviewer B independently reproduced the full
+Part III arithmetic in round 2.
+
+**X16 — §10.5's comparator was silently changed (B28).** §10.5 compares consolidation against the best
+**admissible** bounded prospective family; by this package's own adjudication that set is empty, and
+§III.5 substituted a **corrected** — i.e. hypothetical — family. The substitution is **declared here**.
+It does not change the disposition, because §14's "code or data would be needed to complete the
+analysis" clause fires independently. But the honest form of the §10.5 argument is: *no admissible
+family exists today, and a stop nevertheless requires an affirmative case that the question is
+unanswerable, which the named and bounded nature of every blocker denies.*
+
+**X17 — the §11.6 read-ledger obligation is discharged, and the residual gap declared (B22).** See
+§IV.5. The shortfall that remains is declared as a **Part I deviation**, which under §14 is itself an
+`ARCHITECTURE_REVISE` trigger — a third independent ground for the disposition already taken.
+
+**X18 — residue location was misstated (B29).** Corrected in §IV.7.
+
+**X19 — `Δ₀` was omitted from the corrected derivation ordering (B30).** Corrected in §IV.4 item 6.
+
+**X20 — the horizon-censoring defect was mis-filed (A4 follow-up).** W16 filed it as a
+threshold-calibration point. It is more than that: at 49% censoring — one point under a discriminator
+that never fires — a law frame with `q = 0.70` yields a 76%-probable `NEGATIVE`. That is a false-
+negative **error rate of the primary decision rule under censoring**, i.e. a P4/P5/G18 failure and a
+G24 outcome-bearing path, not only a G26 gap. The successor requirement is corrected accordingly
+(§IV.4 item 7): the decision rule's operating characteristics must be evaluated **under** censoring,
+not merely accompanied by a censoring discriminator.
+
+### IV.3 Complete binary gate adjudication
+
+Every gate, every route, one of `PASS` / `FAIL` / `N-A`. No hedged value, no composite bucket, no
+conditional pass. Gates are not averaged, weighted, scored or traded. **One fatal failure rejects.**
+
+| Gate | Route E | Route G | Route F |
+|---|---|---|---|
+| G1 estimand declared | FAIL | FAIL | N-A |
+| G2 no outcome selection | PASS | PASS | N-A |
+| G3 no historical tuning | FAIL | PASS | N-A |
+| G4 competing-risk honesty | PASS | PASS | N-A |
+| G5 ownership confrontation | FAIL | PASS | N-A |
+| G6 turnover evidence | FAIL | FAIL | N-A |
+| G7 lifecycle exhaustiveness | PASS | PASS | N-A |
+| G8 stage separation | FAIL | PASS | N-A |
+| G9 interpretable failure | FAIL | FAIL | N-A |
+| G10 no engineered answer | PASS | PASS | N-A |
+| G11 cadence honesty | FAIL | FAIL | N-A |
+| G12 software is not evidence | PASS | PASS | N-A |
+| G13 exact prospective estimand | FAIL | FAIL | N-A |
+| G14 unit and enrolled denominator | FAIL | FAIL | N-A |
+| G15 no outcome-dependent eligibility or replacement | FAIL | PASS | N-A |
+| G16 no calibration from the closed family | FAIL | PASS | N-A |
+| G17 MDE and numeric decision rule | FAIL | FAIL | N-A |
+| G18 two-sided adequacy | FAIL | FAIL | N-A |
+| G19 edge-event handling | FAIL | PASS | N-A |
+| G20 family separation | FAIL | PASS | N-A |
+| G21 no dual-role family | FAIL | PASS | N-A |
+| G22 entity-level preservation | PASS | PASS | N-A |
+| G23 no manufactured entity | FAIL | FAIL | N-A |
+| G24 no survivorship or cadence trapdoor | FAIL | PASS | N-A |
+| G25 exact claim-ladder ceiling | FAIL | PASS | N-A |
+| G26 informative negative | FAIL | FAIL | N-A |
+| G27 bounded resource and termination | FAIL | FAIL | N-A |
+| G28 owned-pipeline compatibility | FAIL | FAIL | N-A |
+| G29 frozen import | FAIL | FAIL | N-A |
+| G30 external anchoring | FAIL | FAIL | N-A |
+| G31 OP-L3 handled | FAIL | FAIL | N-A |
+| G32 no historical confirmation | PASS | PASS | N-A |
+| **FAIL count** | **25** | **15** | **0** |
+| **PASS count** | **7** | **17** | **0** |
+| **N-A count** | **0** | **0** | **32** |
+
+**Route F's `N-A` reason, stated once as §6 requires:** Route F enrols no unit, measures no quantity
+and executes no family. Every gate in §6 regulates a prospective design and therefore has no object in
+Route F's case. Route F's admissibility is decided **solely** by the affirmative test of §10.5, which
+it fails (§III.5 as corrected by X16).
+
+**Notes on individual verdicts** (each gate's reason, so that no verdict rests on the table alone):
+
+- *Route E `PASS` rows.* **G2** — no post-enrolment filtering, replacement, retry or re-seeding; the
+  pre-enrolment issue is charged under G15. **G4** — a composite strategy is declared and the
+  denominator is preserved; the interpretive defect is charged under G24/G25. **G7** — the lifecycle
+  contract's five exhaustive terminal states are used correctly and global rejection is reserved for
+  contract faults. **G10** — nothing is engineered into the substrate and no individuality claim is
+  made, so the second clause is not triggered. **G12** — no software artefact is offered as evidence.
+  **G22** — the change of unit to the law is declared prominently and no claim to answer the
+  entity-level question is made. **G32** — no historical result is used as confirmation.
+- *Route E `FAIL` rows not already itemised in §III.4.* **G1** — the estimand's population attribute is
+  undeclared, so it is not "one exact estimand". **G5** — X2. **G8** and **G20** — the calibration
+  family combines nuisance calibration with feasibility measurement, which are not separated. **G9** —
+  X13 and W3/W16/W17. **G11** — the schedule is undeclared and drives the association window (W14).
+  **G14**, **G15** — X12. **G19** — cohort inheritance across `SPLIT`/`MERGE`/`UNRESOLVED` undeclared
+  and "lost" unmapped (W25, W27). **G29** — the import pins one module while the endpoint also depends
+  on `instrumentation.py` (W27).
+- *Route G `FAIL` rows.* **G1**, **G13** — the convention observable is undefinable from the permitted
+  evidence; the *same* ground on which Route E now fails, applied symmetrically (W22). **G6**, **G11**
+  — Route G inherits Route E's shared-identity and undeclared-cadence defects, since it would use the
+  same channels. **G9**, **G26** — a null is confounded with the unanswered Q-E; the G9 charge is
+  restored per X3. **G14**, **G17**, **G18** — enrolment is not computable, hence no decision rule or
+  adequacy. **G23** — an observable chosen after inspecting what produces the desired entity cannot be
+  justified independently of the hoped-for outcome. **G27**, **G28** — the prerequisites are unbounded
+  and the contract describes no intervention or multi-entity capability. **G29**, **G30**, **G31** — no
+  module carries the convention readout, so it can be neither pinned nor anchored nor OP-L3-handled.
+- *Route G `PASS` rows* are design-level: the specified design declares no outcome selection, no
+  historical tuning, competing-risk honesty, five predeclared competing causal models, correct
+  lifecycle handling, family separation, a stated ceiling and no historical confirmation. They are
+  recorded as `PASS` because the design as written satisfies them, not because the route is executable.
+- The **G16 charge against Route G is withdrawn** (W23): declining to use a closed-family quantity and
+  reporting the result as non-computable is a G14 failure, not a G16 failure.
+
+**Route E: 25 fatal failures. Route G: 15. Route F: not selected on §10.5.**
+
+### IV.4 What the successor architecture must resolve — complete list
+
+Superseding §III.8. Eighteen items. Items 1–2 are the critical path; nothing below them can be
+specified without them.
+
+| # | Must resolve | Requires |
+|---|---|---|
+| 1 | An allowlist extension permitting an exact read of `edlab/substrates/lattice_bond/engine.py` and the law parameterisation, **and** a single stated deferral standard binding all routes equally (W22) | successor brief |
+| 2 | The law frame `F`, the initial-condition classes, and the validator's semantics — pure predicate vs trial integration (W22, W26) | 1 |
+| 3 | A **scale-relative or dimensionless** detection criterion; and for every inherited `DetectorSpec`/`TrackerSpec` constant, either established provenance or a value chosen **without reference to the inherited default** — not a post-hoc justification of 0.45, 3, 3.0, 3.0, 1, 1e-12 (W1, X7) | 1, 2 |
+| 4 | A declared numeric `ε` (or an `ε`-free replacement) with the terminal call's sensitivity across a declared range (W2) | 3 |
+| 5 | The exact sampling schedule, declared **jointly** with the tracker association window so the window is a stated invariant of the design (W14) | 3 |
+| 6 | A turnover readout that does **not** share the tracker's component identity — the discriminator alternative is removed (W4, X8) | 3 |
+| 7 | Operating characteristics of the decision rule evaluated **under censoring and under mechanical ineligibility**, not merely accompanied by discriminators; plus an `H`-too-long discriminator (W16, X20) | 6, 8 |
+| 8 | A separate negative-arm floor `Δ₁ < Δ₀` (a real indifference region); `Δ₀` derived from the actual declared downstream budget; `L` derived from a declared precision target; the MDE reported as a *consequence*, never as the justification (W3, W11, W12, X19) | 2 |
+| 9 | A horizon rule containing no draw from `F`, or a per-track horizon; with a P8 sensitivity across a declared `H` range (W6) | 3 |
+| 10 | **E-4 resolved:** the primary endpoint's rule and its gloss are currently different endpoints. Either persistence is `2·T_complete` and the terminal state is a reported competing-risk profile, or the endpoint is survival to the horizon and Q-E and the ceiling are rewritten to say so (W15) | 5, 9 |
+| 11 | A within-law concordance test against the independence-implied rate, with a numeric threshold and a `POSITIVE`/`NEGATIVE`/`INDETERMINATE` mapping, replacing McNemar; per-class marginal densities as co-primary (W7) | 2 |
+| 12 | An entity-likeness criterion with a mechanical justification, plus a discriminator for the environmentally-pinned-structure alternative (W9, W10) | 3 |
+| 13 | A **detector- and tracker-artefact discriminator** — `Δ̂` recomputed at declared alternative constant values as a prespecified sensitivity (W17) | 3 |
+| 14 | Cohort inheritance across `SPLIT`/`MERGE`/`UNRESOLVED`; an onset restriction; the birth-time distribution reported as a covariate; "lost" mapped to a terminal state (W25, W27) | 3 |
+| 15 | Declared α, test direction, both boundary error rates, and the rounding convention for `2·T_complete`; an import pin covering the **full** source-binding set, not one module (W27) | 8 |
+| 16 | An acquisition capability that **produces** the float matter channel and the cohort channel inside the owned guarantee — never accepts them — with per-step tracer integration; qualified under its own family, since an engine-driven path cannot be qualified without running the engine (W5, X11) | engineering mission + human review |
+| 17 | An anchoring venue that genuinely needs no secret and is genuinely append-only; a root covering component mass and the calibration record; fail-closed enforcement in code (W18) | 16 |
+| 18 | A reproduction family with a numeric criterion and its own declared power, `L₂ ≥ 36` (W13) | 8 |
+
+### IV.5 Corrected read ledger (discharging §11.6)
+
+Objects verified in this mission by exact path at `d293eaf`, with size and blob id:
+
+| Object (under `docs/individuation/` unless noted) | Bytes | Blob |
+|---|---|---|
+| `FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_00_REPORT.md` | 69,909 | `1814046e31bc8ed14c4d68f57b48c9857b83a910` |
+| `FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_00_DECISION.json` | 24,427 | `94b50edd37c3cbe1bbc119af14afe1c863715243` |
+| `FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_00_ROADMAP.md` | 8,234 | `23518b9c3505cd686ec36633a5fd2eca6968ad00` |
+| `FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_00_REVIEW_JOURNAL.md` | 18,056 | `54e49061a3b1a337128183ca9f3153eed3ef0d74` |
+| `FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_00_HUMAN_REVIEW.md` | 10,528 | `fb8491f9d44887bea0b156dfff79ae7ebba465d2` |
+| `FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_REPORT.md` | 24,085 | `4fd291ae7d42435ee82e12f3f6ae93afa8936e02` |
+| `FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json` | 59,625 | `c86b0b30e13400cf3abc6e82cc9776164d71c423` |
+| `FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_HUMAN_REVIEW.md` | 22,532 | `46e6f48863aef43b57724a5c3820d34846d9f7d8` |
+| `FUTURE_LIFECYCLE_OWNED_PIPELINE_RUNNER_00_REPORT.md` | 27,787 | `e7dce3ce1557e3c89a55df22ec444ec25cdcefe9` |
+| `FUTURE_LIFECYCLE_OWNED_PIPELINE_RUNNER_00_QUALIFICATION.json` | 77,441 | `27efc088e624f4d1b4c127efc173f4a20e3fe558` |
+| `FUTURE_LIFECYCLE_OWNED_PIPELINE_RUNNER_00_REVIEW_JOURNAL.md` | 9,829 | `a017e6cef9cf796926c68025a67ac3a8d7258129` |
+| `FUTURE_LIFECYCLE_OWNED_PIPELINE_RUNNER_00_HUMAN_REVIEW.md` | 24,257 | `ba57744e56ceb02455e4f9bb593726f8dc049c0e` |
+| `edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py` | 47,716 | `5dd8a66ac54dcd051cc2ef7f75984ccd9af891de` |
+| `edlab/substrates/lattice_bond/future_lifecycle_runner.py` | 18,652 | `44135ee74d8a19bdd1cbdb8e1a38fa0ecb728ff4` |
+| `edlab/substrates/lattice_bond/lifecycle.py` | 46,397 | `a3592eb7d97b0ff9d2b5241f908a311b9bdeccd0` |
+| `edlab/substrates/lattice_bond/instrumentation.py` | 43,421 | `b5e5475cbc00ac117e3a8496d66dcc9d7de44b71` |
+| `edlab/substrates/lattice_bond/__init__.py` | 1,907 | `db72a3a0253d4855f267b4e9b3d6a90fff8ba804` |
+| `pyproject.toml` | 590 | `98d78c1d4fac7e539d688e8a82bc80bf6da5fb2e` |
+
+Extents actually consumed: Architecture 00's report — the frozen Part I, bytes 0–12,729, sha256
+`819cb49cc09ec72d46aace4eb4599f799a575c1f8e7ca6c6577bb4907830df3d`; its other four documents — terminal
+disposition, route dispositions, prior roadmap and reviewer findings, at aggregate level only. The
+runner-stack and owned-pipeline records — dispositions and limitation registers only. `lifecycle.py`
+and `instrumentation.py` — declarations only: type aliases, event-kind and terminal-state constants,
+the error-precedence tuple, and the dataclass field lists, plus `advance_passive_tracer`'s signature
+and, in round 1 of review, its validation body. `future_lifecycle_owned_pipeline.py` — module
+docstring, public API and, in round 1 of review, `_canonical_frame_bytes`, `_decode_frame`,
+`_materialise`, `_source_bindings` and `open_owned_analysis_access`. `future_lifecycle_runner.py`,
+`__init__.py` and `pyproject.toml` — identity verification only, no content consumed.
+
+**Declared Part I deviation.** §11.6 requires a complete ledger with section or byte ranges. Two
+obligations are not fully met and are declared rather than glossed:
+
+1. The lifecycle-01R and tracker-repair primary records were verified present by exact path during this
+   mission's preflight, but their exact paths are not reconstructable in the present context, and
+   locating them would require a filename search, which §11.3 forbids. Facts 3.3.17 and 3.3.18 are
+   therefore carried from the runner-stack and owned-pipeline records and the authorizing brief, **not**
+   from those families' primary documents. Any reader who needs those primary records must obtain them
+   under an explicit allowlist.
+2. Byte ranges are given only where they were actually tracked (Architecture 00's Part I). Elsewhere the
+   extent is described qualitatively.
+
+Under §14, "a required deviation from Part I" is itself an `ARCHITECTURE_REVISE` trigger. This is the
+third independent ground for the disposition already taken; it does not change it.
+
+**Not read in this mission:** `engine.py`; any per-world table, even embedded in a permitted document;
+any shard, manifest, world name, trajectory, candidate, checkpoint, autopsy input, `results/`
+directory, historical scientific runner, Stage-B source, prospective namespace, Kovacs material or
+global index.
+
+### IV.6 Sealed terminal disposition
+
+> ## `ARCHITECTURE_REVISE`
+>
+> **Primary route: none. Backup: none.**
+
+Three independent grounds, each sufficient:
+
+1. **§10.6** — no route passes all thirty-two gates (Route E: 25 failures; Route G: 15) and Route F's
+   affirmative case under §10.5 is not established (§III.5 as corrected by X16).
+2. **§14** — code and data would be needed to complete the analysis: an exact read of `engine.py` and
+   the law parameterisation, and an acquisition capability that does not exist.
+3. **§14** — a required deviation from Part I is declared (§IV.5).
+
+`PROSPECTIVE_ROUTE_SELECTED` is unavailable because no route passes the gate set (X14).
+`STOP_PROSPECTIVE_READINESS` is unavailable because it requires an affirmative case that the question
+is unanswerable, and every blocker named here is a specification or engineering blocker with a named
+remedy. `STOP_ARCHITECTURE_FIREWALL` is inapplicable: no breach occurred and no scientific execution
+took place.
+
+Part I is unmodified and remains a byte-exact 41,772-byte prefix of this report (T4).
+
+### IV.7 Firewall, refs and residue — corrected
+
+- **Firewall.** Exact Git object paths only throughout. No directory listing, glob, wildcard,
+  `git status`, `git ls-tree -r`, `find`, `rg --files`, broad grep, tree-wide name listing,
+  archive-on-tree or listing-then-filter. `engine.py` not opened. No engine, tracker, simulation,
+  sweep, pilot family or seed executed. Deterministic analytic power calculations only, under `/tmp`,
+  consuming no historical observation.
+- **Tree proof.** Every commit's tree was built under a temporary index in `/tmp` from the parent tree
+  plus exactly one declared path. For the Part I commit the proof was verified bidirectionally:
+  removing that single path from the new tree reproduces the parent tree
+  `17817179fc3fcad6769db18eebddb83aa5dda06b` exactly. No undeclared path changed at any checkpoint.
+- **Refs.** `refs/heads/main` remains `f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77`; `HEAD` remains
+  `refs/heads/main`; no accepted branch ref was moved.
+- **Residue — corrected per X18.** Authoring files (`PART_I.md`, `PART_II_c2.md`, `PART_III.md`,
+  `PART_IV.md`, the assembled report, and base64 transfer chunks) live under `/home/claude/arch01` in
+  the **ephemeral agent container**, which is discarded when the session ends. On the **device VM**:
+  `/tmp/ARCH01_PART_I.md`, `/tmp/ARCH01_REPORT_C2.md`, `/tmp/arch01_p.b64`, `/tmp/arch01_c2.b64` and
+  the temporary indexes `/tmp/idx_a01`, `/tmp/idx_a01r`, `/tmp/idx_c2` — all outside the repository.
+  Inside the repository: **no new working-tree file was created**; the deliverables were committed
+  from `/tmp` via `git hash-object -w`. The pre-existing, undeletable probe file
+  `.opr00_probe_delete_me` (6 bytes) from the owned-pipeline mission remains, because the mount is
+  create-only and `rm` returns `EPERM`. Git left several `.git/objects/*/tmp_obj_*` temporary files it
+  could not unlink for the same reason; they are inert loose-object staging artefacts and are disclosed
+  rather than hidden.
+
+### IV.8 Scientific meaning
+
+**None.** No scientific claim is made, supported, weakened or implied. No engine ran, no tracker ran,
+no world was generated, no seed was allocated, no historical observation was read. The output is a
+governance and design record concluding that the programme is **not yet ready** to preregister a
+prospective scientific family, and naming the eighteen things that must be resolved before it is.
+
+### IV.9 Only next action
+
+**Human review of `FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_01`.**
+
+No preregistration, implementation, engineering mission, seed creation or scientific execution is
+authorised. `FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_02` is specified in §IV.4 and the roadmap but
+is **not** authorised here.
+
+---
+
+## Part V — ROUND-3 VERDICTS AND SEAL CORRECTIONS
+
+*Parts I–IV are unaltered. Part I remains a byte-exact 41,772-byte prefix.*
+
+### V.1 Round-3 verdicts
+
+The package sealed at 150,988 bytes, sha256
+`1205bf159aeae8c3eede705fa337d8b3a7b40c40495d3bf04fb77aca66de5a80` (Parts I–IV), together with the
+route-neutral roadmap (sha256 `70555225eacea33f8fabc155186b59c1875c27ec66bed155e30581104f0edd5d`) and
+the review journal as then drafted (sha256
+`15094a542daccf27260fd50a213b9d563372abb020f2f09a35ada95d77ffa3a7`), was returned to both reviewers for
+a final confirmatory check. `DECISION.json` was **not** part of that package and neither reviewer saw
+it; it records their verdicts and is written afterwards. This Part V is appended after those verdicts
+and is therefore **not** covered by them — every correction in §V.3 is either a wording repair the
+reviewers themselves specified or an increase in charged failures against the author.
+
+| Reviewer | Round 3 verdict | New findings |
+|---|---|---|
+| A — scientific design and falsifiability | **PASS** | A34–A41 (0 BLOCKER, 3 MAJOR, 5 MINOR) |
+| B — selection bias and provenance | **PASS** | B31–B38 (0 BLOCKER, 6 MAJOR, 2 MINOR) |
+
+`PASS` here means what the charge defined: *the sealed package and its `ARCHITECTURE_REVISE`
+disposition are sound and honest* — **not** that any route is admissible. Both reviewers stated that no
+BLOCKER-level defect remains and that none of their residual findings disturbs any of the three
+grounds for the disposition. Reviewer B independently re-verified the byte arithmetic (41,772 →
+`8ba61ce3…`; 88,370 → `4789f8d4…`; 121,410 → `2aeb2b80…`; 88,370 + 33,040 + 29,578 = 150,988), the
+gate-count sums, and the `L₂ ≥ 36` derivation. Reviewer A independently verified the Part I prefix and
+added the gate table's four count columns.
+
+Per Part I §13 R6, `ARCHITECTURE_REVISE` does not require reviewer `PASS`; only
+`PROSPECTIVE_ROUTE_SELECTED` does, and it is not claimed. The round-3 `PASS` verdicts are recorded
+because they were obtained, not because the disposition depends on them.
+
+### V.2 Round-3 findings
+
+| ID | Sev | Finding | Correction |
+|---|---|---|---|
+| A34 / B31 | MAJOR | §IV.3 applies the channel-inheritance argument asymmetrically: Route G is failed on G6 and G11 because it "would use the same channels", yet passes G3, G16 and G24, which rest on the same channels' constants and the same undeclared cadence | **Y1** |
+| A35 | MAJOR | §IV.4's "complete list" omits W8 (claim-ladder ceiling / G25), W12's `C`, `R`, `k_cell`, and the G8/G20/G21 family-separation requirement | **Y2** |
+| A36 | MAJOR | §IV.1 says "**Both** also confirmed … every load-bearing number reproduces", contradicting X15 three paragraphs later | **Y3** |
+| A37 / B32 | MAJOR | Journal §6 narrates round 3 in the completed past tense and names `DECISION.json` as part of the reviewed package | **Y4** |
+| B33 | MAJOR | R7 unmet for round 3; journal §1 conflates checkpoints 3 and 4 and records 121,410 as the sealed size | **Y4** |
+| B34 | MAJOR | Roadmap step 1 resolves fifteen route-shaped items **before** re-running the comparison — the same inversion the document condemns; Route F needs none of them | **Y5** |
+| B35 | MAJOR | The roadmap retains "removes one governance-only mission" and "shortest path" as justifications for merging human gates — mission-count economy justifying fewer opportunities to stop | **Y6** |
+| B36 | MAJOR | §IV.4 item 18's `L₂ ≥ 36` is computed from `Δ₀ = 0.10`, a withdrawn value, inside the list that forbids that pattern | **Y7** |
+| A38 / B38 | MINOR | Severity tallies do not add: A22–A33 is 4/6/**2**, not 4/6/3; journal §3.2's header says 9/7/3 while its table shows 10/6/3; journal §7 says corrections were appended "as Part III" | **Y8** |
+| A39 | MINOR | Residual roadmap non-neutrality between *prospective* and *stop* | **Y5** |
+| A40 | MINOR | Stale cross-references to journal "§6"; journal §1's checkpoint row mislabelled | **Y4**, **Y8** |
+| A41 | MINOR | §IV.3's Route E G4 `PASS` reason cites the composite strategy and the enrolled denominator, both of which X4 records as faulted | **Y9** |
+| B37 | MINOR | §IV.7's residue enumeration is incomplete on both filesystems | **Y10** |
+| B38(b) | MINOR | §11.6 says the ledger is "maintained in Part II"; it is in Part IV, because R3/R4 forbid rewriting Part II — an undeclared literal Part I deviation | **Y11** |
+
+No round-3 finding was judged invalid. All fourteen are accepted.
+
+### V.3 Seal corrections
+
+**Y1 — Route G's gate verdicts corrected, symmetrically (A34, B31).** Route G would use the same
+detector, tracker and cohort channels as Route E, and Part II §II.2.3 says so explicitly. The
+inheritance therefore runs through every gate those channels touch, not only G6 and G11. Corrected
+cells:
+
+| Gate | Was | Now | Reason |
+|---|---|---|---|
+| G3 — no historical tuning | PASS | **FAIL** | inherits the six `DetectorSpec`/`TrackerSpec` constants of unestablished provenance (W1) |
+| G16 — no calibration from the closed family | PASS | **FAIL** | same constants; same unestablished provenance |
+| G24 — no survivorship or cadence trapdoor | PASS | **FAIL** | inherits the undeclared, outcome-determining sampling schedule (W14) |
+
+**Route G's corrected count is 18 fatal failures and 14 passes.** Route G's `G5` remains **PASS**: it
+predeclares five competing causal models — entity-local, niche, partner-coupled, shared-field, imposed
+detector convention — which is exactly what G5 demands and exactly what Route E fails to do. The
+asymmetry there is real and correctly signed.
+
+This correction increases the charge against the route the author did **not** prefer, which is the
+direction that matters: the round-1 defect W22 was an asymmetry that flattered Route E, and Y1 closes
+its mirror image.
+
+**Y2 — three further successor requirements (A35).** §IV.4's list is extended from eighteen to
+**twenty-one** items:
+
+| # | Must resolve | Requires |
+|---|---|---|
+| 19 | An exact claim-ladder ceiling the design can support, and at least one thing complete success would **not** establish — Route E's ceiling was overstated as rung 3 when it measures no state variable (W8, G25) | 2 |
+| 20 | Justifications for the initial-condition class count `C`, the replicates-per-cell `R`, and the cell criterion `k_cell` — the constants that determine the cell verdict and hence what the primary estimand means; `C = 2` with a conjunctive both-class rule reproduces the closed family's design shape and needs an independent argument (W12) | 2 |
+| 21 | Separation of nuisance calibration, feasibility measurement, independent reproduction and scientific execution into distinct authorised families — Route E's calibration family combined the first two (G8, G20, G21) | 8, 9 |
+
+The claim in §IV.8 that eighteen items were named is **withdrawn**; the number is twenty-one, and the
+list is declared complete only against the findings recorded in this document.
+
+**Y3 — §IV.1's attribution corrected (A36).** The sentence "Both also confirmed … that Part II is
+byte-identical to the reviewed checkpoint-2 package … and that every load-bearing number in Part III
+reproduces exactly" is **corrected to Reviewer B**. Reviewer A verified the Part I prefix and the
+figures it challenged; it did not verify a package hash and did not reproduce the full Part III
+arithmetic. This is the A33 defect recurring in the very paragraph that reports the A33 correction,
+and it is recorded as such.
+
+**Y4 — round-3 provenance corrected (A37, B32, B33, A40).** The review journal is corrected so that:
+§1 splits checkpoints 3 and 4 into separate rows with their own byte counts and digests; the round-3
+package hash `1205bf159aeae8c3eede705fa337d8b3a7b40c40495d3bf04fb77aca66de5a80` (150,988 bytes) is
+recorded as the exact package the round-3 verdicts were issued against, satisfying R7; §6 records the
+verdicts in the indicative rather than narrating a completed process, and **does not** list
+`DECISION.json` among the reviewed components, because no reviewer saw it; and the stale references to
+"journal §6" are repointed.
+
+**Y5 — roadmap step 1 reordered (B34, A39).** Step 1 previously required resolving fifteen
+route-shaped items **and then** re-running the comparison. That fixes design parameters before the
+route and population are chosen — the exact inversion this document condemns — and it structurally
+privileges a prospective outcome, since Route F needs none of those items (X5). Corrected order:
+
+> **1a.** Resolve items 1–2 (allowlist, law frame, initial-condition classes, validator semantics) —
+> route-common. **1b.** Re-run the §10 comparison over Q-E, Q-G and Q-F on equal terms. **1c.** Resolve
+> the remaining items **applicable to the route selected**. If 1b selects Route F, items 3–21 do not
+> apply and the mission terminates on the stop rule instead.
+
+Step 1's stop condition is corrected accordingly: unresolvability of a route-specific item is a stop
+for **that route**, not for the mission.
+
+**Y6 — mission-count economy removed as a justification (B35).** The roadmap's "Combining acceptance
+with engineering authorisation removes one governance-only mission" and "Shortest path … nine steps"
+are **withdrawn as justifications**. Fewer human gates means fewer opportunities to stop, and that is
+not something to optimise in a governance document. The step-2 and step-4 combinations are retained
+only where the same decision-maker genuinely faces one decision, and each now states that reason
+instead.
+
+**Y7 — `L₂ ≥ 36` replaced by its criterion (B36).** 36 is the smallest `n` whose two-sided
+Clopper–Pearson upper bound at `k = 0` falls below **0.10** — a value this document withdrew as
+reverse-engineered (W11). If the successor re-derives `Δ₀ = 0.05`, the correct floor is 72. §IV.4
+item 18 is corrected to state the **criterion**: *`L₂` must be large enough that the upper confidence
+bound at zero successes lies below the re-derived negative-arm floor.* No number is carried forward.
+
+**Y8 — register arithmetic corrected (A38, B38).** Reviewer A's round-2 findings are **4 BLOCKER,
+6 MAJOR, 2 MINOR** (A22–A33 is twelve findings, not thirteen). Reviewer B's round-1 register is
+**10 BLOCKER, 6 MAJOR, 3 MINOR** by its own severity column; the "9/7/3" heading in journal §3.2 and
+§III.1 is corrected. The journal's governance bullet is corrected to record that corrections were
+appended as Parts III, IV **and** V.
+
+**Y9 — §IV.3's Route E G4 reason reworded (A41).** The verdict stands: G4 asks whether post-allocation
+failure is treated as an outcome rather than an exclusion and whether a survival-conditioned quantity
+has been promoted to primary. Route E scores failures as 0 and keeps the primary estimand
+unconditional over enrolled worlds, so G4 is `PASS`. The *reason* is reworded to say that, rather than
+citing "a composite strategy is declared and the denominator is preserved" — wording X4 records as
+faulted. The composite strategy's interpretive defects are charged at G19, G24 and G25, and the
+denominator's population defect at G14 and G15.
+
+**Y10 — residue enumeration completed (B37).** Agent container, `/home/claude/arch01` (ephemeral,
+discarded at session end): `PART_I.md`, `PART_II_c2.md`, `PART_III.md`, `PART_IV.md`, `PART_V.md`,
+`REPORT_c2.md`, `REPORT.md`, `ROADMAP.md`, `REVIEW_JOURNAL.md`, `DECISION.json`, and the base64
+transfer chunk directories `gz/` and `gz2/` and their successors. Also `/tmp/arch01_power.py`, the
+deterministic design-calculation script. Device VM `/tmp` (outside the repository):
+`ARCH01_PART_I.md`, `ARCH01_REPORT_C2.md`, and the corresponding staging and index files for every
+checkpoint — `arch01_p.b64`, `arch01_c2.b64` and their successors, `idx_a01`, `idx_a01r`, `idx_c2` and
+their successors. Inside the repository: **no new working-tree file at any checkpoint**; every
+deliverable was committed from `/tmp` via `git hash-object -w`. The pre-existing, undeletable
+`.opr00_probe_delete_me` (6 bytes) remains, and Git left `.git/objects/*/tmp_obj_*` staging artefacts
+it could not unlink — the mount is create-only and `rm` returns `EPERM`.
+
+**Y11 — a third Part I deviation declared (B38b).** §11.6 states that the read ledger is "maintained
+in Part II". It is in Part IV, because R3 and R4 forbid rewriting Part II after a reviewer verdict has
+been issued against it. Two frozen rules conflicted; the review rule was given precedence and the
+literal placement rule was broken. This is declared rather than glossed, and it joins the two
+deviations already declared in §IV.5. Under §14 a required deviation from Part I is an
+`ARCHITECTURE_REVISE` trigger — the disposition already taken.
+
+### V.4 Corrected counts
+
+| Route | FAIL | PASS | N-A |
+|---|---|---|---|
+| Route E | **25** | 7 | 0 |
+| Route G | **18** | 14 | 0 |
+| Route F | 0 | 0 | **32** |
+
+Route F is not selected: its admissibility turns solely on §10.5's affirmative test, which it fails
+(§III.5 as corrected by X16).
+
+### V.5 Sealed terminal disposition
+
+> ## `ARCHITECTURE_REVISE`
+>
+> **Primary route: none. Backup: none.**
+
+Three independent grounds, each sufficient, none disturbed by any round-3 finding:
+
+1. **§10.6** — no route passes all thirty-two gates (Route E: 25 failures; Route G: 18) and Route F's
+   affirmative case under §10.5 is not established.
+2. **§14** — code and data would be needed to complete the analysis: an exact read of `engine.py` and
+   the law parameterisation, and an acquisition capability that does not exist.
+3. **§14** — three required deviations from Part I are declared (§IV.5 items 1–2; §V.3 Y11).
+
+Part I is unmodified and remains a byte-exact 41,772-byte prefix (T4), independently verified by both
+reviewers.
+
+**Only next action: human review of `FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_01`.** No
+preregistration, implementation, engineering mission, seed creation or scientific execution is
+authorised. `FUTURE_PROSPECTIVE_READINESS_ARCHITECTURE_02` is specified in §IV.4 as corrected by Y2
+and Y7, and in the roadmap as corrected by Y5 and Y6, but is **not** authorised here.
+
+**No scientific claim is made, supported, weakened or implied by this mission.** No engine ran, no
+tracker ran, no world was generated, no seed was allocated, no historical observation was read.
