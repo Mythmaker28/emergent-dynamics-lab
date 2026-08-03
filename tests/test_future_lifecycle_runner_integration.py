@@ -1286,18 +1286,53 @@ def test_39_tampered_manifest_sampling_schedule_blocks_analysis(tmp_path: Path) 
 # Successor requalification of the runner integration and hardening stack against
 # the accepted 01R lifecycle package and the MANDATORY sampled_frames tracker API.
 #
-# Everything below is additive.  No pre-existing test was altered, renamed or
-# weakened.  Every fixture is a handcrafted synthetic boolean mask pushed through
-# the real detector and the mandatory tracker; there is no scientific input, no
-# engine step, no real runner and no seed.
+# Everything below is additive EXCEPT test_23h, which was renamed and re-scoped
+# under an explicit superseded-in-part banner; its live drop-detection duty moved
+# to test_rs01_12 and nothing was lost.  No other pre-existing test was altered.
+# Every fixture is a handcrafted synthetic boolean mask pushed through the real
+# detector and the mandatory tracker; there is no scientific input, no engine
+# step, no real runner and no seed.
 #
-# HONEST COMPOSITION BOUNDARY, pinned by test rs01_09 below:
+# HONEST COMPOSITION BOUNDARY, pinned by tests rs01_09a/09b/09c below:
 # future_lifecycle_runner does NOT invoke track_components.  It receives an
 # already-built TrackingResult and a declared schedule as two separate arguments.
-# These tests therefore measure the STRONGEST REAL BINDING the actual APIs give,
-# and pin the one position at which the two schedules can still diverge
-# undetected.  That residual is recorded as a future real-runner obligation, not
-# as a solved problem.
+# These tests measure the STRONGEST REAL BINDING the actual APIs give, and pin the
+# residual exactly.
+#
+# CORRECTION 1 (independent review round 1).  An earlier form of this section claimed
+# the residual was a single position that is empty and event-free.  Reviewer A
+# falsified that: the divergence class is UNBOUNDED IN SIZE.  That correction was
+# itself incomplete and is SUPERSEDED by correction 2 below; it is preserved here
+# rather than rewritten, per the frozen protocol's additive-correction rule.
+#
+# CORRECTION 2 (independent review round 2).  Reviewer A falsified correction 1 in
+# BOTH directions.  The measured rule, verified case by case, is:
+#
+#   let OCCUPIED = {every track-point frame} u {every event frame}.  A declared
+#   schedule is accepted iff
+#     (i)   it is non-empty, strictly increasing, non-negative integers;
+#     (ii)  it contains every OCCUPIED frame;
+#     (iii) it contains no frame strictly inside any track's point span, and none
+#           strictly between a track's last point and that track's terminal-event
+#           frame;
+#     (iv)  if some track's last point sits at the tracker's final frame, the
+#           declared last entry must equal it -- OTHERWISE THE TAIL IS FREE, both
+#           to extend arbitrarily AND to truncate.
+#
+# Consequences correction 1 got wrong, each now pinned below:
+#   * the horizon is NOT preserved in general (a 3-sample run can be published as
+#     ending 1 000 000 frames later) -- correction 1 asserted a safety property
+#     that does not hold;
+#   * the residual is not only EXTENSION: an unoccupied trailing frame may be
+#     DELETED;
+#   * "an occupied run admits no extension" was false -- prefix extension is
+#     available to every run that does not begin at frame 0;
+#   * conversely an inserted frame carrying no point and no event is still refused
+#     when it falls inside a live interval, so the constraint is on INTERVALS, not
+#     on the inserted frame's own occupancy.
+#
+# A zero-track run occupies nothing, so (ii)-(iv) are vacuous and only the
+# well-formedness floor (i) survives.
 # ==========================================================================
 
 
@@ -1454,15 +1489,48 @@ RS01_PERTURBATIONS = (
 
 
 @pytest.mark.parametrize("label, schedule", RS01_PERTURBATIONS)
-def test_rs01_04_a_perturbed_schedule_blocks_complete_and_writes_nothing(
+def test_rs01_04_a_perturbed_schedule_blocks_complete(
     tmp_path: Path, label: str, schedule
 ) -> None:
+    """For these six perturbations nothing at all is written.  That is NOT universal:
+    see test_rs01_04b, where a one-shot iterator leaves an orphan lifecycle document."""
+
     tracking = _rs01_disappearance_run()
     with pytest.raises(LifecycleEvidenceError):
         publish_future_family_completion(tmp_path, tracking, schedule)
     assert _artifacts(tmp_path) == (False, False), label
     with pytest.raises(CompletionEvidenceError):
         open_analysis_access(tmp_path, tracking, schedule)
+
+
+def test_rs01_04b_a_one_shot_iterator_schedule_leaves_an_orphan_document(tmp_path: Path) -> None:
+    """Reviewer B, M4.  The runner consumes the schedule twice: once to write, once to
+    reverify.  A generator is exhausted by the first pass, so publication is refused --
+    but the lifecycle document has already been written.  Fail-closed is preserved (the
+    orphan alone never unlocks analysis, and it blocks any retry), so this is pinned as
+    a known wart rather than repaired in production source."""
+
+    tracking = _rs01_disappearance_run()
+    with pytest.raises(LifecycleEvidenceError):
+        publish_future_family_completion(tmp_path, tracking, (f for f in RS01_SCHEDULE))
+    assert _artifacts(tmp_path) == (True, False), "orphan lifecycle document, no manifest"
+    with pytest.raises(CompletionEvidenceError):
+        open_analysis_access(tmp_path, tracking, RS01_SCHEDULE)
+
+
+def test_rs01_04c_a_mapping_is_accepted_at_the_runner_boundary(tmp_path: Path) -> None:
+    """Reviewer B, M3.  ``track_components`` refuses a Mapping ("ordered sequence only",
+    pinned by test_12e in the tracker suite).  The runner performs no such type check.
+    A dict whose key order happens to be increasing therefore publishes.  No false
+    evidence results -- the keys ARE the schedule -- but the rule is not enforced at
+    this boundary.  Pinned as a known inconsistency, recorded as a limitation."""
+
+    tracking = _rs01_disappearance_run()
+    record = publish_future_family_completion(
+        tmp_path, tracking, {0: "a", 5: "b", 11: "c", 12: "d"}
+    )
+    assert record.sampled_frames == RS01_SCHEDULE
+    assert isinstance(open_analysis_access(tmp_path, tracking, RS01_SCHEDULE), AnalysisAccess)
 
 
 def test_rs01_05_an_omitted_schedule_fails_at_the_runner_api_boundary(tmp_path: Path) -> None:
@@ -1522,42 +1590,127 @@ def test_rs01_08_a_forged_manifest_alone_never_unlocks_analysis(tmp_path: Path) 
 # --- rs01_09: the residual composition gap, pinned rather than hidden ---
 
 
-def test_rs01_09_the_residual_schedule_divergence_is_pinned_not_claimed_closed(
-    tmp_path: Path,
-) -> None:
-    """HONEST LIMITATION — future real-runner obligation.
+def test_rs01_09a_witnessed_schedule_divergence_is_always_refused(tmp_path: Path) -> None:
+    """Every position the tracking result witnesses rejects a divergent value.
 
-    The runner does not invoke the tracker, so the schedule it is handed is only
-    checked against what the TrackingResult can witness.  A scheduled position that
-    is BOTH empty in the detector AND referenced by no event carries no witness, so
-    a divergent value there is undetectable by any current API.
-
-    This test pins both halves of that boundary so it cannot silently widen:
-      (a) every position that IS witnessed rejects a divergent schedule;
-      (b) the unwitnessed position does not, and that is a recorded limitation.
+    A position is witnessed if it carries a track point or an event.  Because 01R made
+    the tracker stamp every event frame FROM the declared schedule, a disappearance at
+    an empty detector frame is witnessed too -- which is why the value substitution at
+    frame 5 below is caught even though frame 5 has no component.
     """
 
-    # (a) witnessed divergence — the disappearance at 5 is stamped from the schedule
-    witnessed = _rs01_disappearance_run()
-    blocked = tmp_path / "blocked"
-    blocked.mkdir()
-    with pytest.raises(LifecycleEvidenceError):
-        publish_future_family_completion(blocked, witnessed, (0, 7, 11, 12))
-    assert _artifacts(blocked) == (False, False)
+    tracking = _rs01_disappearance_run()
+    assert {event.frame for event in tracking.events} == {0, 5, 11, 12}
+    for divergent in ((7, 5, 11, 12), (0, 7, 11, 12), (0, 5, 7, 12), (0, 5, 11, 13)):
+        target = tmp_path / f"d{divergent[1]}{divergent[2]}{divergent[3]}"
+        target.mkdir()
+        with pytest.raises(LifecycleEvidenceError):
+            publish_future_family_completion(target, tracking, divergent)
+        assert _artifacts(target) == (False, False), divergent
 
-    # (b) unwitnessed divergence — position 2 is empty AND carries no event
-    unwitnessed = _rs01_tracked(
-        RS01_SCHEDULE, RS01_BLOB_A, RS01_EMPTY, RS01_EMPTY, RS01_BLOB_A
+
+def _rs01_occupied(tracking) -> set[int]:
+    """Frames the tracking result witnesses: every track point and every event."""
+
+    return {point.frame for track in tracking.tracks for point in track.points} | {
+        event.frame for event in tracking.events
+    }
+
+
+def test_rs01_09b_the_residual_divergence_class_is_unbounded_and_two_sided(
+    tmp_path: Path,
+) -> None:
+    """SUPERSEDES the original rs01_09 half (b) AND its first correction.  KNOWN LIMITATION.
+
+    Review round 1 falsified "one blind position"; review round 2 falsified the
+    replacement rule in both directions.  What is pinned here is the measured rule
+    stated in the section banner.  The runner does not invoke the tracker, so it
+    cannot know how many samples were actually taken, nor where the run truly ended.
+
+    Future real-runner obligation: a real runner must hand ONE schedule object to
+    both the tracker and the publisher.
+    """
+
+    def publishes(tracking, schedule, name):
+        target = tmp_path / name
+        target.mkdir()
+        try:
+            publish_future_family_completion(target, tracking, schedule)
+        except LifecycleEvidenceError:
+            assert _artifacts(target) == (False, False), name
+            return False
+        assert isinstance(open_analysis_access(target, tracking, schedule), AnalysisAccess)
+        return True
+
+    # (1) a free interval admits unbounded insertion.  A dies at 5, B appears at 11,
+    #     so the open interval (5, 11) carries neither a point nor an event.
+    gap = _rs01_tracked(RS01_SCHEDULE, RS01_BLOB_A, RS01_EMPTY, RS01_BLOB_B, RS01_BLOB_B)
+    assert _rs01_occupied(gap) == {0, 5, 11, 12}
+    assert publishes(gap, (0, 5, 6, 7, 8, 9, 10, 11, 12), "inflated")
+
+    # (2) but occupancy of the INSERTED frame is not the criterion -- the INTERVAL is.
+    #     Frame 3 carries no point and no event, yet lies between track 0's last point
+    #     (0) and its DISSOLUTION (5), so it is refused.
+    assert not publishes(gap, (0, 3, 5, 11, 12), "live_interval")
+
+    # (3) the horizon is NOT preserved in general.  A, gone, gone at (0, 5, 11): no
+    #     track's last point is at 11, so the tail is free.
+    tail_free = _rs01_tracked((0, 5, 11), RS01_BLOB_A, RS01_EMPTY, RS01_EMPTY)
+    assert _rs01_occupied(tail_free) == {0, 5}
+    assert publishes(tail_free, (0, 5, 11, 20), "tail_20")
+    assert publishes(tail_free, (0, 5, 11, 1_000_000), "tail_million"), (
+        "a three-sample run publishes as ending a million frames later"
     )
-    assert 11 not in {event.frame for event in unwitnessed.events}
-    divergent = tmp_path / "divergent"
-    divergent.mkdir()
-    record = publish_future_family_completion(divergent, unwitnessed, (0, 5, 9, 12))
-    assert record.sampled_frames == (0, 5, 9, 12)
-    assert isinstance(open_analysis_access(divergent, unwitnessed, (0, 5, 9, 12)), AnalysisAccess)
-    # the divergence is faithfully published, so it is auditable rather than silent
-    published = json.loads((divergent / LIFECYCLE_DOCUMENT_NAME).read_text(encoding="utf-8"))
-    assert published["sampled_frames"] == [0, 5, 9, 12]
+
+    # (4) the residual is not only extension: an unoccupied trailing frame may be
+    #     DELETED.  Truncation blocks only when it drops an occupied frame.
+    assert publishes(tail_free, (0, 5), "truncated_free")
+    assert not publishes(tail_free, (0,), "truncated_occupied")
+
+    # (5) prefix extension is available to every run that does not begin at frame 0,
+    #     occupied or not -- "an occupied run admits no extension" was false.
+    late = _rs01_tracked((5, 11, 12), RS01_BLOB_A, RS01_BLOB_A, RS01_BLOB_A)
+    assert _rs01_occupied(late) == {5, 11, 12}
+    assert publishes(late, (0, 1, 2, 3, 4, 5, 11, 12), "prefixed")
+
+    # (6) a run occupied from frame 0 to the horizon admits nothing at all
+    spanning = _rs01_tracked(
+        RS01_SCHEDULE, RS01_BLOB_A, RS01_BLOB_A, RS01_BLOB_A, RS01_BLOB_A
+    )
+    assert not publishes(spanning, (0, 1, 5, 11, 12), "spanning_prefix")
+    assert not publishes(spanning, (0, 5, 6, 11, 12), "spanning_interior")
+
+
+def test_rs01_09c_a_zero_track_run_carries_no_schedule_binding_at_all(
+    tmp_path: Path,
+) -> None:
+    """Reviewer A, M2.  KNOWN LIMITATION.
+
+    A run in which nothing was ever detected has no occupancy anywhere, so clauses
+    (ii)-(iv) of the measured rule are vacuous and the schedule's CONTENT is
+    unconstrained: ``COMPLETE`` publishes against an entirely unrelated schedule.  The
+    well-formedness floor (i) still holds -- an empty schedule and negative frames are
+    refused -- so "wholly unconstrained" would overstate it (Reviewer B, m2).
+    """
+
+    tracking = _rs01_tracked(
+        RS01_SCHEDULE, RS01_EMPTY, RS01_EMPTY, RS01_EMPTY, RS01_EMPTY
+    )
+    assert tracking.tracks == () and tracking.events == ()
+    record = publish_future_family_completion(tmp_path, tracking, (999_999,))
+    assert record.sampled_frames == (999_999,)
+    document = json.loads((tmp_path / LIFECYCLE_DOCUMENT_NAME).read_text(encoding="utf-8"))
+    assert document["terminal_records"] == []
+    assert document["sampled_frames"] == [999_999]
+    assert record.terminal_record_count == 0
+    assert isinstance(open_analysis_access(tmp_path, tracking, (999_999,)), AnalysisAccess)
+    # the well-formedness floor survives
+    for malformed in ((), (-1, 5)):
+        target = tmp_path / f"m{len(malformed)}"
+        target.mkdir()
+        with pytest.raises(LifecycleEvidenceError):
+            publish_future_family_completion(target, tracking, malformed)
+        assert _artifacts(target) == (False, False)
 
 
 # --- rs01_10: disappearance accounting across a small exhaustive sweep ---
@@ -1579,7 +1732,7 @@ def test_rs01_10_disappearance_is_never_globally_rejected_across_a_synthetic_swe
         if any(event.kind == "DISSOLUTION" for event in tracking.events):
             disappearing += 1
     assert runs == 27
-    assert disappearing > 0
+    assert disappearing == 20, "pin the exact figure so the sweep cannot go vacuous"
 
 
 def test_rs01_11_a_malformed_lifecycle_cannot_unlock_analysis(tmp_path: Path) -> None:
@@ -1673,9 +1826,68 @@ def test_rs01_13_the_successor_qualification_binds_the_current_lineage_and_hashe
     assert historical["future_lifecycle_runner_py_sha256_historical"] == (
         historical["future_lifecycle_runner_py_sha256_current"]
     )
-    assert historical["integration_00_valid_only_for"]
-    assert historical["hardening_00_valid_only_for"]
+    for key in ("integration_00_valid_only_for", "hardening_00_valid_only_for"):
+        entry = historical[key]
+        assert entry["status"].startswith("HISTORICAL"), key
+        assert "valid only for its own commit and hashes" in entry["status"], key
+        # each historical package bound a DIFFERENT integration-test file than this tree
+        assert entry["integration_test_file_sha256_it_bound"] != hashlib.sha256(
+            (root / "tests/test_future_lifecycle_runner_integration.py").read_bytes()
+        ).hexdigest(), key
+        assert entry["instrumentation_sha256_it_bound"] != successor[
+            "source_hashes_sha256"
+        ]["edlab/substrates/lattice_bond/instrumentation.py"], key
     assert successor["claim_boundary"]["real_runner_wired"] is False
+
+
+HISTORICAL_RUNNER_PACKAGE_DIGESTS = {
+    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00_REPORT.md":
+        "9355749910b93ecc168d434d9e7bb876980cdfbd3c60d77677839637c17c012a",
+    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00_QUALIFICATION.json":
+        "32eb2495f405ce821c117355b6398d9415a8a5bd67271054bf3b82566abd7a98",
+    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00_REVIEW_JOURNAL.md":
+        "0906b56ce1d313d89b3fbc8ef0098e969ccfb471f568b5b40df598f6e0452149",
+    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00_HUMAN_REVIEW.md":
+        "a59ac0ae83dd38f6bbfa8f7c48e153d9da8462d76d4ff72495725ac6c25bda66",
+    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_REPORT.md":
+        "1072d589b8e3b9ea10cb779d87b6bd1638e6a9f0baeb5f3b56b44a4724c85176",
+    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json":
+        "f29da3694b2438ff6bc0d03692771020b145ec6edcfa6ae80a533040207f58df",
+    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_REVIEW_JOURNAL.md":
+        "eb1537bcdf32775d2504f5fb198bfb6b1cc73709b07f1b56b0d56dd228403d4d",
+    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_HUMAN_REVIEW.md":
+        "e0eb2293be1f1d9edae920ddba6988bd17d98f42c1c6a7378e940d6054714b5f",
+}
+
+
+def test_rs01_15_the_historical_runner_package_is_pinned_and_immutable() -> None:
+    """Reviewer B, M2.  The mandatory mutant ledger lives in HARDENING_00's
+    ``mutation_proof``.  Before this test no bound test referenced that file at all, so
+    the ledger could have been reduced, renamed or deleted with the suite still green --
+    the exact thing the protocol forbids.  It is now byte-pinned."""
+
+    root = Path(__file__).resolve().parents[1]
+    for relative, digest in HISTORICAL_RUNNER_PACKAGE_DIGESTS.items():
+        assert _digest(root / relative) == digest, relative
+    ledger = json.loads(
+        (root / "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json")
+        .read_text(encoding="utf-8")
+    )
+    assert len(ledger["mutation_proof"]["mutants"]) == 3
+    assert len(ledger["mutation_proof"]["prior_mandatory_mutant_results"]) == 10
+    assert ledger["mutation_proof"]["prior_mandatory_mutants_still_killed"] == 10
+    assert {item["id"] for item in ledger["mutation_proof"]["known_surviving_mutants_out_of_scope"]} == {
+        "MIN-3",
+        "EQUIV",
+    }
+    assert ledger["identity_proofs"]["future_lifecycle_runner_py_sha256"] == _digest(
+        root / "edlab/substrates/lattice_bond/future_lifecycle_runner.py"
+    ), "the runner this mission requalifies is byte-identical to the hardened one"
+    # Reviewer A, minor 4: the 01R qualification is read by test_23c/d/e/f/h and was
+    # the last bound document with no byte pin of its own.
+    assert _digest(
+        root / "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json"
+    ) == "0752b86c6ef9c7b6579a90e7be6250bc2500dcbfbac4d47379c40e277061f403"
 
 
 def test_rs01_14_no_real_runner_or_scientific_surface_was_introduced() -> None:
