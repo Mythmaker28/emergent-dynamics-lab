@@ -1,0 +1,281 @@
+{
+  "schema": "axis-convention-and-frame-closure/v1",
+  "mission": "FUTURE_PROSPECTIVE_AXIS_CONVENTION_AND_FRAME_CLOSURE_01S",
+  "terminal_disposition": "AXIS_FRAME_CLOSURE_01S_ROUTE_E_SELECTED",
+  "primary_route": "E",
+  "backup_route": null,
+  "scientific_run_authorized": false,
+  "route_G_status": "REJECTED_DEFINITIVELY_FOR_THIS_PROGRAMME",
+  "route_F_selected": false,
+  "authority": {
+    "branch": "codex/future-prospective-axis-convention-and-frame-closure-01s",
+    "parent": "c2f6b0c4b47b39e26bb7b6a2800ad5760ef55c54",
+    "lineage": [
+      "a735c64dd912dd52c06dd7b890d29e89bdf49b8d",
+      "f4bf11e4d2a7f7b4704fcd884e050bc94dce91cc",
+      "f19c9a8c9df85bd1bf8530ee21295115faea69ba",
+      "cc55137435f286a526ef634c5eeddb74b789f282",
+      "c2f6b0c4b47b39e26bb7b6a2800ad5760ef55c54"
+    ],
+    "main_pinned": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+    "head_symbolic_ref": "refs/heads/main",
+    "checkpoint_1_commit": "b560909b9e88e8eb00a6d542ed731239e329573d"
+  },
+  "frozen_part_I": {
+    "bytes": 23901,
+    "sha256": "096cd174213e9dec4a7518ac8e46426e3a59435aabf200712eee383f3770e5c6",
+    "byte_exact_prefix_of_final_report": true
+  },
+  "gate_matrix": {
+    "gates": 14,
+    "binary_only": true,
+    "route_G": {
+      "result": "FAIL",
+      "fatal_gates": [
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C7",
+        "C9"
+      ],
+      "count": 6,
+      "admissible": false
+    },
+    "route_E": {
+      "result": "PASS",
+      "fatal_gates": [],
+      "count": 0,
+      "admissible": true
+    },
+    "route_F": {
+      "result": "N-A on all fourteen",
+      "selected": false,
+      "na_reason": "F enrols no unit, measures no quantity and executes no family; the gates regulate a prospective design and have no object. Its admissibility is decided by the affirmative test of report II.5, which it fails."
+    }
+  },
+  "route_G_rejection_reasons": {
+    "C2": "the primary observable is not stable at the design horizon: sign(Q) crosses zero at steps 509, 774, 820 on the only trajectory ever run; shortening the windows would be tuning a design constant against a mechanical outcome, which the parent and Part I forbid",
+    "C3": "H3/H4/H6 are not executable with the accepted contract: one intervention plan applied at every step, non-withdrawable, not state-dependent; cohort and tracks reset per run; no operation equalises or swaps the resource field. The missing capability is a new engineering programme, not a bounded PRE_RUN_BLOCKER closure",
+    "C4": "the orientation falsifier is void by construction; the shape falsifier cannot fire on its own primary stratum where S is identically zero; the intervention and environment falsifiers vanish with H4 and H6",
+    "C5": "pseudo-replication inside the confirmatory sequence; and the pair-as-one-observation argument rests on a tracker equivariance that is false when a component wraps the torus",
+    "C7": "five outcome-determining thresholds with no value; the literal composite makes the success probability identically zero",
+    "C9": "operating characteristics not evaluated under attrition; the guard sits below the band where attrition alone manufactures a NEGATIVE with probability 0.92"
+  },
+  "route_E_design": {
+    "unit": "the draw (one world): (law in A, lattice size L, initial condition)",
+    "estimand": "proportion of enrolled draws in which at least one eligible component satisfies persistence AND verified complete material replacement",
+    "scales": {
+      "dt": 1.0,
+      "m_max": 1.0,
+      "n_max": 1.0,
+      "proved": "the nine dimensionless groups ARE the LatticeBondSpec fields, and dt <= admissible_dt_limit is exactly equivalent to (B1) and (B2); 2500 points, 0 mismatch"
+    },
+    "law_distribution": "uniform on A = Box ∩ (B1) ∩ (B2), normalized, exactly sampled by rejection; acceptance rate 0.099",
+    "initial_condition_law": "m[y,x] ~ U[0,1] i.i.d., n[y,x] ~ U[0,1] i.i.d., b == 0 — a product of uniform measures on a compact box, normalized and exactly samplable; 1680 validations, 0 rejections",
+    "lattice_sizes": [
+      16,
+      24,
+      32
+    ],
+    "boundaries": {
+      "principle": "declared midpoint convention: absence 0, typical 1/2",
+      "Delta_0": 0.5,
+      "Delta_1": 0.25,
+      "indifference_region": [
+        0.25,
+        0.5
+      ]
+    },
+    "horizon_steps": 1024,
+    "cadence_steps": 16,
+    "eligibility": "non-wrapping component, area <= L^2/2, mass > 0 at readout, and NO wrapping component anywhere in the world at any sampled frame",
+    "terminal_state_mapping": {
+      "dissolution": "DISSOLVED_DETECTED_TRACK",
+      "split": "SPLIT_INTO_TRACKS",
+      "merge": "MERGED_INTO_TRACK",
+      "loss_and_unresolved_handoff": "UNRESOLVED_HANDOFF",
+      "survival_to_horizon": "RIGHT_CENSORED_AT_HORIZON",
+      "note": "the first four score 0; the fifth is the only configuration that can score 1, and only with verified replacement"
+    },
+    "replacement_convention": {
+      "parameter": "cohort_residual_fraction",
+      "status": "declared measurement convention, NOT inherited as authoritative",
+      "sensitivity_set": [
+        0.01,
+        0.05,
+        0.2
+      ],
+      "prespecified_rule": "the conclusion must be invariant across the three values, otherwise the family reports INDETERMINATE - REPLACEMENT_CONVENTION"
+    },
+    "precision_principle": "worst-case 95% Clopper-Pearson half-width <= half the indifference width (<= 0.125)",
+    "sample_size": {
+      "n_draws": 67,
+      "worst_case_half_width": 0.124721,
+      "n_minus_1_half_width": 0.125693,
+      "initial_conditions_per_law": 2,
+      "worlds": 134
+    },
+    "decision_rule": {
+      "POSITIVE": "CP lower > 0.50, i.e. k >= 42",
+      "NEGATIVE": "CP upper < 0.25, i.e. k <= 9",
+      "INDETERMINATE": "10 <= k <= 41"
+    },
+    "operating_characteristics": {
+      "type_I_positive_boundary": 0.0249,
+      "type_I_negative_boundary": 0.016,
+      "MDE_80_positive": 0.668,
+      "MDE_80_negative": 0.11,
+      "power_at_0.70": 0.923,
+      "power_at_0.10": 0.871,
+      "note": "consequences of the precision target, never its justification"
+    },
+    "attrition_guard": "if the fraction of draws with no eligible component exceeds 0.50, POSITIVE is unreachable by construction and the family reports INDETERMINATE - MECHANICAL_INELIGIBILITY, never NEGATIVE",
+    "mandatory_co_primaries": [
+      "mechanical ineligibility fraction",
+      "horizon censoring fraction",
+      "full distribution over the five terminal states"
+    ],
+    "compute": {
+      "engine_steps_seconds": "202 +/- 15%",
+      "acquisition_factor": 1.52,
+      "total_cpu_hours": 0.09,
+      "declared_ceiling_cpu_hours": 8,
+      "declared_storage_ceiling_gb": 8,
+      "fail_closed": true
+    },
+    "reproduction_family": {
+      "n_draws": 67,
+      "criterion": "same numeric criterion as the primary; reproduces both arms"
+    },
+    "claim_ceiling": "below ladder rung 3, at the level of the draw, never the entity; establishes nothing about addressability, ownership or any convention, and nothing outside the declared frame"
+  },
+  "mechanical_facts": {
+    "test_file": "tests/test_axis_transpose_equivariance_01s.py",
+    "bytes": 72939,
+    "sha256": "5c0b02681a16211b87a88baeb9ccbc96793dc3530440f93ad5064e5313f480ab",
+    "tests_in_file": 27,
+    "suite_total": 673,
+    "failed": 0,
+    "skipped": 0,
+    "environment": {
+      "python": "3.11.15",
+      "pytest": "8.4.2",
+      "numpy": "2.4.4"
+    },
+    "established": [
+      "T^2 = id on state, intervention and mask; T acts trivially on the law",
+      "U(Tx,TI) = T U(x,I) at one step and 25 steps, both backends, with and without intervention; ledger equivariant; residuals 0.0 to 2.22e-16",
+      "equivariance also at the declared sizes 16/24/32 and at laws drawn from A",
+      "Q and S are exactly T-odd; Q = 0 exactly on T-invariant states",
+      "Q is NOT a function of the mask (identical mask, Q = +0.625 and -0.625)",
+      "sign(Q) is NOT stable at the design horizon: crossings at steps 509, 774, 820; inter-branch oddness fails at 247 of 1025 samples",
+      "the tracker is NOT transpose-equivariant when a component wraps the torus (179 of 3840 sequences); it IS equivariant on 1280 non-wrapping sequences",
+      "(B1) and (B2) are exactly the engine's own admissibility condition at dt = m_max = n_max = 1",
+      "the initial-condition law is a normalized product of uniforms on a compact box",
+      "Q is recomputable byte-exactly from persisted, re-read evidence"
+    ],
+    "not_scientific_facts": true
+  },
+  "pre_run_blockers": [
+    {
+      "id": "PRB-1",
+      "obligation": "persist the track-component join",
+      "closure": "write (frame, canonical cell-set digest, track_id) into root-bound evidence"
+    },
+    {
+      "id": "PRB-2",
+      "obligation": "mandatory receipt",
+      "closure": "the supported scientific entry point refuses without a verified receipt"
+    },
+    {
+      "id": "PRB-3",
+      "obligation": "frozen check order",
+      "closure": "pin by test: local evidence -> root digest -> verifier"
+    },
+    {
+      "id": "PRB-4",
+      "obligation": "replay binding",
+      "closure": "bind run identity and family enrolment into the root"
+    },
+    {
+      "id": "PRB-5",
+      "obligation": "single supported entry point",
+      "closure": "close or declare out of protocol, with a refusal test: open_owned_analysis_access, future_lifecycle_runner.open_analysis_access, publish_future_family_completion, qualify_and_write_lifecycle_contract (and, per B15, run_owned_future_pipeline)"
+    },
+    {
+      "id": "PRB-6",
+      "obligation": "external anchoring of the final root",
+      "closure": "public immutable or append-only commitment, verifiable without a secret"
+    }
+  ],
+  "review": {
+    "reviewers": [
+      "A - symmetry, Q vs shape, estimands, distribution, statistics, power, pseudo-replication",
+      "B - implementation, detector/tracker, intervention, lifecycle, provenance, replay, bypasses, firewall"
+    ],
+    "rounds": 2,
+    "findings_total": 38,
+    "findings_judged_invalid": 0,
+    "withdrawals": 12,
+    "declared_limitations": 10,
+    "round_1": {
+      "package_sha256": "79e9a85fb13c79732421106f4a2d142cfe716a6c8e2a19141cb8d6628ac1da6c",
+      "package_bytes": 54712,
+      "A": "FAIL",
+      "B": "FAIL",
+      "A_findings": "A1-A14",
+      "B_findings": "B1-B14"
+    },
+    "targeted_re_review": {
+      "package_sha256": "d44609cc9365857ca41f3e21c30b5e05f32df35d28f1279f40004bc11096db36",
+      "package_bytes": 86031,
+      "A": "PASS",
+      "B": "PASS",
+      "A_findings": "A15-A19",
+      "B_findings": "B15-B19",
+      "surviving_package_blockers": 0,
+      "surviving_route_E_gate_fails": 0
+    },
+    "no_third_corrective_loop": true,
+    "corrections_against_author_position": [
+      "R1",
+      "R2",
+      "R3"
+    ]
+  },
+  "declared_part_I_deviation": "Part I 6.6 freezes enrolment in exact (x, Tx) pairs with the pair as the unit; corrected Route E abandons both, forced by findings A3/A4. The purpose of 6.6 - a T-invariant IC law - is preserved because i.i.d. U[0,1] entries are exchangeable and therefore transpose-invariant in law. Recorded per finding A19.",
+  "allowlist": {
+    "files_added": 1,
+    "files_modified": 0,
+    "accepted_sources_modified": 0,
+    "existing_tests_modified": 0,
+    "engine_modified": false,
+    "bridge_modified": false
+  },
+  "firewall": {
+    "exact_paths_only": true,
+    "historical_scientific_data_opened": false,
+    "stage_b_used": false,
+    "m_minus_used": false,
+    "scientific_seed_created": false,
+    "prospective_namespace_used": false,
+    "prospective_family_executed": false,
+    "parameter_sweep_executed": false,
+    "tuning_against_mechanical_outcomes": false,
+    "note": "Route G's windows were NOT shortened to restore the Q signal, precisely because that would have been tuning a design constant against a mechanical outcome"
+  },
+  "next_action_authorised": "HUMAN REVIEW - FUTURE_PROSPECTIVE_AXIS_CONVENTION_AND_FRAME_CLOSURE_01S",
+  "preregistration_mission_named": "ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00",
+  "preregistration_authorised_here": false,
+  "deliverables": {
+    "REPORT.md": {
+      "bytes": 91874,
+      "sha256": "c9bdc2c0416631cee37078e5f2b422a68b821bf2b25ea0813e8e03cfed41cefb"
+    },
+    "REVIEW_JOURNAL.md": {
+      "bytes": 9092,
+      "sha256": "14b4b212c117d4bad9debadde8e78759323562ba53be75af157a42df8f393200"
+    }
+  }
+}
