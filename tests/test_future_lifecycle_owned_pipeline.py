@@ -134,6 +134,24 @@ def _repin(directory: Path, **updates) -> None:
     _write(directory, OWNED_BINDING_NAME, binding)
 
 
+def _analysis_evidence_digest(directory: Path) -> str:
+    """Recompute, independently, the joint digest a completed run must carry."""
+
+    ledger_bytes = (directory / ACQUISITION_LEDGER_NAME).read_bytes()
+    ledger = json.loads(ledger_bytes)
+    return _digest(
+        _canonical(
+            {
+                "acquisition_ledger_sha256": _digest(ledger_bytes),
+                "entries_sha256": ledger["entries_sha256"],
+                "reverified_completion_evidence": open_owned_analysis_access(
+                    directory
+                ).verified_completion_evidence(),
+            }
+        )
+    )
+
+
 def _repin_ledger(directory: Path, ledger) -> None:
     """Persist a mutated ledger and re-pin every digest the owned binding keeps."""
 
@@ -160,6 +178,98 @@ def test_op_01_unit_cadence_run_publishes_and_unlocks(tmp_path: Path) -> None:
     assert record.sample_count == record.invocation_count == 4
     assert _artifacts(tmp_path) == (True, True, True)
     assert isinstance(open_owned_analysis_access(tmp_path), AnalysisAccess)
+    # Reviewer B, blocker 3: neither the state enum nor this digest gates anything.  The
+    # digest is a joint identity of the acquisition ledger and the reverified completion
+    # evidence; what makes the final gate load-bearing is test_op_01b.
+    assert record.analysis_evidence_sha256 == _analysis_evidence_digest(tmp_path)
+
+
+def test_op_01b_a_failing_final_gate_aborts_the_run(tmp_path: Path, monkeypatch) -> None:
+    """Reviewer B, blocker 2.  The digest in the record proves nothing on its own.
+
+    ``canonical(verified_completion_evidence())`` is provably the completion manifest's own
+    bytes, so any implementation with those bytes in scope can compute a look-alike.  What
+    makes the final gate load-bearing is that the call is on the success path and its
+    exception propagates.  That is what this test pins: replace the gate with one that
+    refuses, and the run must refuse too.
+    """
+
+    calls: list[Path] = []
+    real = owned.open_owned_analysis_access
+
+    def refusing(directory):
+        calls.append(Path(directory))
+        real(directory)  # the genuine work still happens, so this is not a stub
+        raise OwnedEvidenceError("synthetic final-gate refusal")
+
+    monkeypatch.setattr(owned, "open_owned_analysis_access", refusing)
+    with pytest.raises(OwnedEvidenceError):
+        _run(tmp_path, _disappearance_source())
+    assert calls == [tmp_path], "the run must reach the final gate exactly once"
+
+
+def test_op_01c_the_recorded_evidence_digest_is_not_merely_the_manifest_digest(
+    tmp_path: Path,
+) -> None:
+    """It is a joint identity of the acquisition ledger and the reverified evidence."""
+
+    record = _run(tmp_path, _disappearance_source())
+    assert record.analysis_evidence_sha256 != record.completion_manifest_sha256
+    expected = _digest(
+        _canonical(
+            {
+                "acquisition_ledger_sha256": record.acquisition_ledger_sha256,
+                "entries_sha256": record.entries_sha256,
+                "reverified_completion_evidence": open_owned_analysis_access(
+                    tmp_path
+                ).verified_completion_evidence(),
+            }
+        )
+    )
+    assert record.analysis_evidence_sha256 == expected
+
+
+@pytest.mark.parametrize(
+    "flavour", ("skip", "duplicate", "skip_and_duplicate", "trailing_extra")
+)
+def test_op_02c_a_skipped_or_duplicated_call_is_visible_in_the_persisted_evidence(
+    tmp_path: Path, monkeypatch, flavour: str
+) -> None:
+    """Reviewer A blocker 1 / Reviewer B blocker 1, round two.
+
+    The first attempt advanced the counter once per loop iteration, which is the loop index
+    by construction and witnessed nothing.  Here the source is genuinely called the wrong
+    number of times, and the refusal must come from the PERSISTED evidence -- not from a
+    spy that only exists inside this test.
+    """
+
+    real_counter = owned._InvocationCounter
+
+    class DriftingCounter(real_counter):
+        def __call__(self, position, label):
+            if flavour in {"duplicate", "skip_and_duplicate"} and position == 1:
+                super().__call__(position, label)
+            if flavour in {"skip", "skip_and_duplicate"} and position == 2:
+                # the call is skipped entirely; the previous frame is reused
+                return self._previous
+            self._previous = super().__call__(position, label)
+            if flavour == "trailing_extra" and position == 3:
+                # an extra acquisition AFTER the ordinal was recorded: the ordinals stay
+                # consecutive, so only the invocation count can object.  The two flavours
+                # above and this one separate the two fields, so neither is redundant.
+                self._source(position, label)
+                self.calls += 1
+            return self._previous
+
+    monkeypatch.setattr(owned, "_InvocationCounter", DriftingCounter)
+    source = _disappearance_source()
+    with pytest.raises(OwnedEvidenceError):
+        _run(tmp_path, source)
+    expected_calls = {
+        "skip": 3, "duplicate": 5, "skip_and_duplicate": 4, "trailing_extra": 5
+    }[flavour]
+    assert len(source.calls) == expected_calls, "the source really was called the wrong number of times"
+    assert not (tmp_path / OWNED_BINDING_NAME).exists()
 
 
 def test_op_02_nonunit_cadence_disappearance_run_is_owned_end_to_end(tmp_path: Path) -> None:
@@ -188,9 +298,12 @@ def test_op_02b_exactly_one_invocation_per_schedule_element_reaches_the_ledger(
 ) -> None:
     """The named killer for a skipped or duplicated acquisition call.
 
-    The count is asserted three ways: what the source observed, what the record
-    reports, and what the persisted ledger contains.  A pipeline that calls the source
-    twice for one position, or silently reuses a frame, disagrees with at least one.
+    Reviewer B, blocker 1: ``sequence_position`` is a loop index and proves nothing on its
+    own.  ``invocation_ordinal`` and ``invocation_count`` are taken from a counter
+    incremented on each ACTUAL call to the source, so an implementation that skips or
+    duplicates a call writes a non-consecutive ordinal and is refused on re-read.  That is
+    a within-process witness (OP-L4), not an externally verifiable one: an actor rewriting
+    the ledger afterwards can write any counts.  The in-test spy remains the direct check.
     """
 
     source = _disappearance_source()
@@ -200,6 +313,7 @@ def test_op_02b_exactly_one_invocation_per_schedule_element_reaches_the_ledger(
     assert len(source.calls) == len(NONUNIT_SCHEDULE)
     assert record.invocation_count == len(source.calls)
     assert ledger["sample_count"] == len(source.calls)
+    assert ledger["invocation_count"] == len(source.calls)
     assert len(ledger["entries"]) == len(source.calls)
     assert [row["invocation_ordinal"] for row in ledger["entries"]] == [0, 1, 2, 3]
     assert [row["sequence_position"] for row in ledger["entries"]] == [0, 1, 2, 3]
@@ -455,6 +569,24 @@ def test_op_12c_a_rewritten_invocation_ordinal_is_refused(tmp_path: Path) -> Non
         open_owned_analysis_access(tmp_path)
 
 
+def test_op_12c2_permuting_row_labels_alone_is_refused(tmp_path: Path) -> None:
+    """Reviewer B, material 4.  ``sampled_frames`` is left untouched; only the per-row
+    labels are swapped, so nothing downstream re-derives them and the per-row binding is
+    the only thing that can object."""
+
+    _run(tmp_path, _disappearance_source())
+    ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
+    rows = ledger["entries"]
+    rows[1]["requested_sample_label"], rows[2]["requested_sample_label"] = (
+        rows[2]["requested_sample_label"],
+        rows[1]["requested_sample_label"],
+    )
+    assert ledger["sampled_frames"] == list(NONUNIT_SCHEDULE), "the schedule is untouched"
+    _repin_ledger(tmp_path, ledger)
+    with pytest.raises(OwnedEvidenceError):
+        open_owned_analysis_access(tmp_path)
+
+
 def test_op_12d_an_additional_ledger_row_is_refused(tmp_path: Path) -> None:
     _run(tmp_path, _disappearance_source())
     ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
@@ -564,6 +696,68 @@ def test_op_13a2_a_detection_neutral_frame_edit_is_still_caught_by_the_digest(
         speck_there.astype(np.uint8).tobytes(order="C")
     )
     # shape, dtype, cell count, detection, tracking and lifecycle are all unchanged
+    with pytest.raises(OwnedEvidenceError):
+        open_owned_analysis_access(tmp_path)
+
+
+def test_op_13a3_a_repinned_detection_equivalent_frame_is_accepted_and_disclosed(
+    tmp_path: Path,
+) -> None:
+    """LIMITATION OP-L3, pinned rather than hidden.  Reviewer A, blocker 1.
+
+    Once the row digest, the entries digest and the ledger digest are all re-pinned, the
+    acquisition chain is self-consistent again, and the only anchor outside it -- the
+    lifecycle document -- binds the TRACKING, not the pixels.  Any frame whose detected
+    components are unchanged is therefore accepted, and the frame that is analysed is not
+    the frame the source returned.
+
+    The honest wording is reproduction, not attestation: the persisted evidence reproduces
+    the published lifecycle document.  It is not evidence of what was acquired.  This test
+    exists to make that limitation impossible to overlook, not to celebrate a capability.
+    """
+
+    source = RecordingSource([BLOB_A, EMPTY, BLOB_B, BLOB_B])
+    _run(tmp_path, source)
+    ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
+    row = ledger["entries"][0]
+    acquired_digest = row["frame_sha256"]
+    # Reviewer A, round two: with the suite's DEFAULT detector, the four-cell blob that
+    # dissolves at frame 5 can be replaced by the ENTIRE LATTICE.  One component in, one
+    # component out, same track topology -- area 4 -> 120, mass and radius of gyration
+    # completely different, and the lifecycle document does not bind any of it.
+    speckled = np.ones(SHAPE, dtype=bool)
+    payload = speckled.astype(np.uint8).tobytes(order="C")
+    (tmp_path / row["frame_relative_path"]).write_bytes(payload)
+    row["frame_sha256"] = _digest(payload)
+    row["true_cell_count"] = int(np.count_nonzero(speckled))
+    _repin_ledger(tmp_path, ledger)
+
+    assert isinstance(open_owned_analysis_access(tmp_path), AnalysisAccess)
+    assert row["frame_sha256"] != acquired_digest, "the analysed frame is not the acquired one"
+    assert row["true_cell_count"] == SHAPE[0] * SHAPE[1] != int(np.count_nonzero(BLOB_A))
+
+
+def test_op_13m_a_symlinked_frame_is_refused(tmp_path: Path) -> None:
+    """Reviewer B, minor 1.  The evidence directory must be self-contained."""
+
+    _run(tmp_path, _disappearance_source())
+    ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
+    target = tmp_path / ledger["entries"][0]["frame_relative_path"]
+    outside = tmp_path / "outside.bin"
+    outside.write_bytes(target.read_bytes())
+    target.unlink()
+    target.symlink_to(outside)
+    with pytest.raises(OwnedEvidenceError):
+        open_owned_analysis_access(tmp_path)
+
+
+def test_op_13n_a_symlink_smuggled_into_the_frame_directory_is_refused(
+    tmp_path: Path,
+) -> None:
+    _run(tmp_path, _disappearance_source())
+    outside = tmp_path / "outside.bin"
+    outside.write_bytes(EMPTY.astype(np.uint8).tobytes(order="C"))
+    (tmp_path / owned.ACQUISITION_FRAME_DIRECTORY / "frame_000004.bin").symlink_to(outside)
     with pytest.raises(OwnedEvidenceError):
         open_owned_analysis_access(tmp_path)
 
@@ -704,6 +898,39 @@ def test_op_14c_a_non_object_identity_is_refused(tmp_path: Path) -> None:
 
 
 @pytest.mark.parametrize(
+    "mutation",
+    (
+        pytest.param({"authority_certificate": "ISO-17025 cert 4471"}, id="extra sibling key"),
+        pytest.param({"declared_by": "a calibrated instrument"}, id="rewritten declared_by"),
+        pytest.param({"declared": None}, id="declaration removed"),
+        pytest.param({"declared": ["synthetic"]}, id="declaration is not an object"),
+        pytest.param({"declared": {}}, id="declaration is empty"),
+        pytest.param({"declared": {"kind": 1}}, id="declaration is not strings"),
+    ),
+)
+def test_op_14e_a_repinned_identity_mutation_is_refused(tmp_path: Path, mutation) -> None:
+    """Reviewer A material 1 / Reviewer B blocker 4.
+
+    The write side enforced an exact three-key str->str shape; the read side did not, so
+    every re-pinned decoration of the identity block was previously accepted -- including
+    an added ``authority_certificate`` key and a ``declared_by`` of "a calibrated
+    instrument".  The read side is now exactly as strict as the write side.
+    """
+
+    _run(tmp_path, _disappearance_source())
+    ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
+    identity = ledger["acquisition_source_identity"]
+    for key, value in mutation.items():
+        if value is None:
+            del identity[key]
+        else:
+            identity[key] = value
+    _repin_ledger(tmp_path, ledger)
+    with pytest.raises(OwnedEvidenceError):
+        open_owned_analysis_access(tmp_path)
+
+
+@pytest.mark.parametrize(
     "identity",
     (
         pytest.param("synthetic", id="not a mapping"),
@@ -821,6 +1048,50 @@ def test_op_15e_a_specification_with_an_unusable_value_is_refused(tmp_path: Path
     _run(tmp_path, _disappearance_source())
     ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
     ledger["detector_spec"]["min_cells"] = "several"
+    _repin_ledger(tmp_path, ledger)
+    with pytest.raises(OwnedEvidenceError):
+        open_owned_analysis_access(tmp_path)
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    (
+        pytest.param("dilation_radius", 1_000_000_000, id="tracker radius beyond the lattice"),
+        pytest.param("dilation_radius", -1, id="negative tracker radius"),
+        pytest.param("max_centroid_displacement", -1.0, id="negative displacement"),
+        pytest.param("max_area_ratio", -1.0, id="negative area ratio"),
+        pytest.param("unique_score_margin", -1.0, id="negative score margin"),
+    ),
+)
+def test_op_15i_an_out_of_range_tracker_specification_is_refused(
+    tmp_path: Path, field, value
+) -> None:
+    """Reviewer A, material 2.  A persisted ``dilation_radius`` of 10**9 previously made
+    the supported analysis entry point run effectively forever instead of failing closed.
+    A radius beyond the lattice is geometrically inert, so bounding it costs nothing."""
+
+    _run(tmp_path, _disappearance_source())
+    ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
+    ledger["tracker_spec"][field] = value
+    _repin_ledger(tmp_path, ledger)
+    with pytest.raises(OwnedEvidenceError):
+        open_owned_analysis_access(tmp_path)
+
+
+@pytest.mark.parametrize(
+    ("field", "value"),
+    (
+        pytest.param("min_cells", 0, id="detector min_cells below one"),
+        pytest.param("matter_threshold", 0.0, id="detector threshold at zero"),
+        pytest.param("matter_threshold", 1.5, id="detector threshold above one"),
+    ),
+)
+def test_op_15j_an_out_of_range_detector_specification_is_refused(
+    tmp_path: Path, field, value
+) -> None:
+    _run(tmp_path, _disappearance_source())
+    ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
+    ledger["detector_spec"][field] = value
     _repin_ledger(tmp_path, ledger)
     with pytest.raises(OwnedEvidenceError):
         open_owned_analysis_access(tmp_path)
@@ -1026,6 +1297,29 @@ def test_op_19a_a_rival_acquisition_ledger_published_mid_flight_fails_closed(
         open_owned_analysis_access(tmp_path)
 
 
+def test_op_19a2_a_dangling_symlink_at_the_target_cannot_be_written_through(
+    tmp_path: Path,
+) -> None:
+    """Reviewer B, blocker 2.  The named killer for an ``exists()``-guarded plain write.
+
+    ``Path.exists()`` follows symlinks, so a dangling symlink reports False and a guarded
+    ``write_bytes`` would create the file at the symlink's target -- outside the run
+    directory.  ``os.link`` refuses the name outright, which is why creation, not a
+    pre-check, is the check.
+    """
+
+    outside = tmp_path / "outside" / "SMUGGLED.json"
+    outside.parent.mkdir()
+    run = tmp_path / "run"
+    run.mkdir()
+    (run / ACQUISITION_LEDGER_NAME).symlink_to(outside)
+    with pytest.raises(OwnedPublicationError):
+        _run(run, _disappearance_source())
+    assert not outside.exists(), "no evidence may be written outside the run directory"
+    with pytest.raises(OwnedEvidenceError):
+        open_owned_analysis_access(run)
+
+
 def test_op_19b_a_rival_frame_file_published_mid_flight_fails_closed(tmp_path: Path) -> None:
     def plant(source, position, label):
         if position == 0:
@@ -1151,12 +1445,18 @@ def test_op_21b_a_prebuilt_frame_container_is_not_an_acquisition_source(
 def test_op_21c_a_callable_prebuilt_container_is_still_refused(tmp_path: Path) -> None:
     """A container does not become a source by growing a ``__call__``."""
 
+    invoked: list[int] = []
+
     class CallableSequence(list):
         def __call__(self, position, label):
-            raise AssertionError("a container must never be invoked as a source")
+            invoked.append(position)
+            return self[position]
 
-    with pytest.raises(OwnedAcquisitionError):
+    with pytest.raises(OwnedAcquisitionError) as caught:
         _run(tmp_path, CallableSequence([BLOB_A, EMPTY, BLOB_B, BLOB_B]))
+    # Reviewer B, material 5: assert the guard fired, not merely that *something* raised.
+    assert invoked == [], "a container must never be invoked as a source"
+    assert "prebuilt frame container" in str(caught.value)
 
 
 def test_op_21d_a_non_callable_source_is_refused(tmp_path: Path) -> None:
@@ -1336,6 +1636,9 @@ def test_op_22e_a_non_canonically_representable_owned_document_is_refused(
         (ACQUISITION_LEDGER_NAME, "frame_encoding", {"dtype": "uint8"}),
         (ACQUISITION_LEDGER_NAME, "frame_materialization", {"absent_matter": 0.4}),
         (ACQUISITION_LEDGER_NAME, "frame_directory_relative_path", "elsewhere"),
+        (ACQUISITION_LEDGER_NAME, "provenance_disclosure", "audited and certified"),
+        (ACQUISITION_LEDGER_NAME, "invocation_count", 3),
+        (OWNED_BINDING_NAME, "provenance_disclosure", "audited and certified"),
         (OWNED_BINDING_NAME, "schema_version", "other/v9"),
         (OWNED_BINDING_NAME, "pipeline_version", "9.9.9"),
         (OWNED_BINDING_NAME, "canonicalization", {"encoding": "utf-16"}),
@@ -1387,6 +1690,139 @@ def test_op_22g_a_malformed_persisted_schedule_is_refused(tmp_path: Path, schedu
         open_owned_analysis_access(tmp_path)
 
 
+@pytest.mark.parametrize(
+    ("document", "path", "value"),
+    (
+        pytest.param(ACQUISITION_LEDGER_NAME, ("sample_count",), True, id="ledger count is a bool"),
+        pytest.param(
+            ACQUISITION_LEDGER_NAME, ("invocation_count",), True, id="invocation count is a bool"
+        ),
+        pytest.param(
+            ACQUISITION_LEDGER_NAME, ("entries", 0, "sequence_position"), False,
+            id="row position is a bool",
+        ),
+        pytest.param(
+            ACQUISITION_LEDGER_NAME, ("entries", 0, "invocation_ordinal"), False,
+            id="row ordinal is a bool",
+        ),
+        pytest.param(
+            ACQUISITION_LEDGER_NAME, ("entries", 0, "true_cell_count"), True,
+            id="row cell count is a bool",
+        ),
+        pytest.param(OWNED_BINDING_NAME, ("sample_count",), 4.0, id="binding count is a float"),
+    ),
+)
+def test_op_22j_boolean_and_float_slop_is_refused_in_integer_fields(
+    tmp_path: Path, document, path, value
+) -> None:
+    """Reviewer A minor 1 / Reviewer B minor 2.  ``True == 1`` must not satisfy a count."""
+
+    _run(tmp_path, RecordingSource([BLOB_A]), (0,))
+    value_document = _read(tmp_path, document)
+    target = value_document
+    for key in path[:-1]:
+        target = target[key]
+    target[path[-1]] = value
+    if document == ACQUISITION_LEDGER_NAME:
+        _repin_ledger(tmp_path, value_document)
+    else:
+        _write(tmp_path, document, value_document)
+    with pytest.raises(OwnedEvidenceError):
+        open_owned_analysis_access(tmp_path)
+
+
+def test_op_22g2_a_non_increasing_schedule_matching_its_rows_is_typed(tmp_path: Path) -> None:
+    """Reviewer B, minor 3.  The per-row label check cannot stand in for this one.
+
+    Here the rows agree with the schedule, so only the monotonicity check on the re-read
+    schedule can object.  Without it the failure would surface as an untyped ``ValueError``
+    out of the accepted tracker instead of an ``OwnedEvidenceError``.
+    """
+
+    _run(tmp_path, _disappearance_source())
+    ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
+    ledger["sampled_frames"] = [0, 5, 5, 12]
+    ledger["entries"][2]["requested_sample_label"] = 5
+    _repin_ledger(tmp_path, ledger)
+    _repin(tmp_path, sampled_frames=[0, 5, 5, 12])
+    with pytest.raises(OwnedEvidenceError):
+        open_owned_analysis_access(tmp_path)
+
+
+@pytest.mark.parametrize(
+    ("block", "field", "value"),
+    (
+        ("detector_spec", "min_cells", "1"),
+        ("detector_spec", "min_cells", 1.9),
+        ("detector_spec", "min_cells", True),
+        ("detector_spec", "matter_threshold", "0.5"),
+        ("detector_spec", "matter_threshold", True),
+        ("tracker_spec", "dilation_radius", "1"),
+        ("tracker_spec", "dilation_radius", 1.9),
+        ("tracker_spec", "dilation_radius", True),
+        ("tracker_spec", "max_area_ratio", "4.0"),
+        ("tracker_spec", "max_centroid_displacement", True),
+    ),
+)
+def test_op_22k_specification_type_slop_is_refused(
+    tmp_path: Path, block, field, value
+) -> None:
+    """Reviewer A, round two, material 2.  The coercion made the recorded specification
+    need not be the one applied: ``1.9`` silently ran as ``1``."""
+
+    _run(tmp_path, _disappearance_source())
+    ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
+    ledger[block][field] = value
+    _repin_ledger(tmp_path, ledger)
+    with pytest.raises(OwnedEvidenceError):
+        open_owned_analysis_access(tmp_path)
+
+
+@pytest.mark.parametrize("shape", ([-1, -120], [-10, -12], [1, 240], [2, 60]))
+def test_op_22l_a_degenerate_or_negative_persisted_shape_is_typed(
+    tmp_path: Path, shape
+) -> None:
+    """Reviewer A, round two, material 3.  A negative shape reached ``reshape`` and left an
+    untyped ``ValueError`` escaping ``OwnedPipelineError``."""
+
+    _run(tmp_path, _disappearance_source())
+    ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
+    ledger["entries"][0]["shape"] = shape
+    _repin_ledger(tmp_path, ledger)
+    with pytest.raises(OwnedEvidenceError):
+        open_owned_analysis_access(tmp_path)
+
+
+def test_op_22m_a_boolean_requested_sample_label_is_refused(tmp_path: Path) -> None:
+    """Reviewer A, round two, material 4.  ``false == 0`` matched the label ``0``."""
+
+    _run(tmp_path, RecordingSource([BLOB_A, BLOB_A]), (0, 1))
+    ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
+    ledger["entries"][0]["requested_sample_label"] = False
+    _repin_ledger(tmp_path, ledger)
+    with pytest.raises(OwnedEvidenceError):
+        open_owned_analysis_access(tmp_path)
+
+
+def test_op_22n_an_array_that_misreports_its_geometry_cannot_describe_its_bytes(
+    tmp_path: Path,
+) -> None:
+    """Reviewer A round one, minor 3, now pinned.  Geometry comes from the owned copy."""
+
+    class LyingMask(np.ndarray):
+        @property
+        def shape(self):
+            return (SHAPE[1], SHAPE[0])
+
+    def source(position, label):
+        return BLOB_A.copy().view(LyingMask)
+
+    record = _run(tmp_path, source, (0, 1, 2, 3))
+    assert record.frame_shape == SHAPE
+    ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
+    assert ledger["entries"][0]["shape"] == [SHAPE[0], SHAPE[1]]
+
+
 def test_op_22h_a_non_list_entries_block_is_refused(tmp_path: Path) -> None:
     _run(tmp_path, _disappearance_source())
     ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
@@ -1415,9 +1851,10 @@ def test_op_23a_a_far_future_label_records_an_invocation_not_elapsed_time(
 ) -> None:
     """Three samples, the last labelled 1,000,000.
 
-    The run is perfectly valid and the ledger proves *three invocations*.  It proves
-    nothing whatsoever about a million elapsed physical steps.  This test exists to pin
-    the limitation, not to celebrate a capability.
+    The run is valid and the ledger records three invocations at three declared labels.
+    It proves nothing whatsoever about a million elapsed physical steps, and -- per OP-L4 --
+    the recorded count is a within-process witness, not an externally verifiable one.  This
+    test exists to pin the limitation, not to celebrate a capability.
     """
 
     source = RecordingSource([BLOB_A, BLOB_A, BLOB_A])
@@ -1427,14 +1864,33 @@ def test_op_23a_a_far_future_label_records_an_invocation_not_elapsed_time(
     assert record.sample_count == 3
     ledger = _read(tmp_path, ACQUISITION_LEDGER_NAME)
     assert ledger["sample_count"] == 3
+    assert ledger["invocation_count"] == 3
     assert ledger["sampled_frames"] == [0, 1, 1_000_000]
+    assert "not evidence of physical elapsed time" in ledger["provenance_disclosure"]
     assert isinstance(open_owned_analysis_access(tmp_path), AnalysisAccess)
 
 
-def test_op_23b_the_module_states_the_external_clock_limitation(tmp_path: Path) -> None:
+def test_op_23b_the_external_clock_limitation_is_stated_where_a_reader_will_meet_it(
+    tmp_path: Path,
+) -> None:
+    """Reviewer B, observation 1.  Prose in one docstring is not a disclosure."""
+
     text = Path(owned.__file__).read_text(encoding="utf-8")
     assert "one million physical engine steps elapsed" in text
     assert "never an authority certificate" in text
+    # every limitation carries an identifier, and OP-L1 exists
+    for limitation in ("OP-L1", "OP-L2", "OP-L3", "OP-L4", "OP-L5", "OP-L6", "OP-L7"):
+        assert limitation in text, limitation
+    # both public entry points repeat it, not just the module header
+    assert "physical engine steps elapsed" in owned.run_owned_future_pipeline.__doc__
+    assert "REPRODUCTION, not acquisition" in owned.open_owned_analysis_access.__doc__
+    # and it is legible on disk, to a consumer who never reads the source
+    _run(tmp_path, _disappearance_source())
+    for name in (ACQUISITION_LEDGER_NAME, OWNED_BINDING_NAME):
+        disclosure = _read(tmp_path, name)["provenance_disclosure"]
+        assert "not evidence of physical elapsed time" in disclosure
+        assert "caller-declared and carries no authority" in disclosure
+        assert "bind bytes, not authority" in disclosure
 
 
 def test_op_23c_the_identity_document_is_stored_as_a_caller_declaration(
@@ -1447,6 +1903,50 @@ def test_op_23c_the_identity_document_is_stored_as_a_caller_declaration(
         "declared": dict(IDENTITY),
         "declared_by": "caller",
     }
+
+
+def test_op_23f_the_returned_capability_carries_no_owned_evidence(tmp_path: Path) -> None:
+    """LIMITATION OP-L6, pinned.  Reviewer A, material 5.
+
+    The capability is the accepted runner's.  It reports the twelve completion-manifest
+    fields and nothing about the acquisition ledger, so a downstream consumer holding one
+    cannot tell an owned run from an unowned one.  The owned guarantee attaches to the call
+    that produced it, not to the object.
+    """
+
+    _run(tmp_path, _disappearance_source())
+    evidence = open_owned_analysis_access(tmp_path).verified_completion_evidence()
+    assert set(evidence) == {
+        "canonicalization",
+        "disposition",
+        "integration_version",
+        "lifecycle_document_relative_path",
+        "lifecycle_document_sha256",
+        "lifecycle_input_sha256",
+        "lifecycle_records_sha256",
+        "lifecycle_schema_version",
+        "lifecycle_validator_version",
+        "sampled_frames",
+        "schema_version",
+        "terminal_record_count",
+    }
+    for owned_field in ("acquisition", "ledger", "invocation", "frame_sha256", "source_bindings"):
+        assert owned_field not in evidence
+
+
+def test_op_23g_a_copied_run_directory_verifies_elsewhere_and_this_is_disclosed(
+    tmp_path: Path,
+) -> None:
+    """LIMITATION OP-L3, second half, pinned.  Evidence is content-addressed."""
+
+    first = tmp_path / "first"
+    first.mkdir()
+    _run(first, _disappearance_source())
+    second = tmp_path / "second"
+    shutil.copytree(first, second)
+    assert isinstance(open_owned_analysis_access(second), AnalysisAccess)
+    text = Path(owned.__file__).read_text(encoding="utf-8")
+    assert "Copying a whole genuine run directory to another directory" in text
 
 
 def test_op_23d_no_engine_or_scientific_surface_is_introduced() -> None:

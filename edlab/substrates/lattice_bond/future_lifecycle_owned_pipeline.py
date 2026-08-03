@@ -15,11 +15,16 @@ This module closes that gap *inside its own API*.  It owns every stage:
 
 Supported guarantee, scoped deliberately:
 
-    Within the supported synthetic public entry point, every acquired frame used for
+    Within ``run_owned_future_pipeline``, the single supported synthetic entry point,
+    every acquired frame used for
     analysis comes from an invocation performed by the runner at a declared schedule
     position, is content-bound in an acquisition ledger, persisted and re-read before
     tracking, then passed through mandatory tracking, lifecycle validation and the
     qualified completion gate before analysis access is possible.
+
+The guarantee is about **one execution of the supported entry point**.  It is not a claim
+that the persisted directory can afterwards be defended against someone who can write to
+it.  Read the limitation register below before quoting anything from this module.
 
 What is **not** claimed, stated here so that no reader infers more:
 
@@ -29,15 +34,60 @@ What is **not** claimed, stated here so that no reader infers more:
   *invocations* are owned.
 * No external experimental source is proved honest.  ``acquisition_source_identity``
   is a caller-declared reproducibility binding, never an authority certificate.
-* SHA-256 binds bytes, not authority.  Per-field tamper coverage is claimed; an actor
-  who re-forges the whole evidence set consistently is not prevented, exactly as the
-  qualified runner already documents for content-addressed evidence.
+* SHA-256 binds bytes, not authority.  There is no secret anywhere in this module, so
+  every digest it writes can also be recomputed by anyone who can write the bytes.
 * No protection is claimed against an actor who edits this module, the tracker, the
   lifecycle validator or the qualified runner, monkeypatches attributes, or uses
   reflection.
 * No engine runs.  Frames are handcrafted synthetic boolean masks supplied by an
   injectable source; the pipeline materialises them into inert lattice states solely
   so that the committed detector can be applied to them.
+
+**Limitation register.**  Each entry is pinned by a named test rather than left to prose.
+
+* **OP-L1 — the owned artefacts attest reproduction, not acquisition.**  On re-read, what
+  is verified is that the persisted frames, specifications and schedule *reproduce* the
+  published lifecycle document; not that they are the objects the source actually
+  returned.  Within one run the two coincide, because the pipeline writes what it was
+  handed.  Afterwards they need not: see OP-L2 and OP-L3.
+* **OP-L2 — an inert specification perturbation is accepted.**  A ``detector_spec`` or
+  ``tracker_spec`` edit that leaves the tracker output identical, with every digest
+  re-pinned, is accepted.  The recorded specification really does reproduce the evidence;
+  it is simply not the only one that would.
+* **OP-L3 — a track-topology-equivalent frame substitution is accepted.**  Same reasoning,
+  and it is by far the widest case.  The lifecycle document binds the schedule, the
+  assignments, the events and the track records; it binds no component area, mass,
+  centroid, pixel set or radius of gyration.  Any frame whose per-frame component count and
+  resulting track topology are unchanged can therefore replace the original once its row
+  digest, its ``true_cell_count``, the entries digest and the ledger digest are re-pinned --
+  and for a component that terminates rather than persists, the geometry is entirely free:
+  a four-cell blob may be replaced by the whole lattice.  (For a persisting track the space
+  is bounded only by the tracker's own association thresholds.)
+  The lifecycle document is the only anchor outside the acquisition chain and it binds the
+  *tracking*, not the pixels.  Copying a whole genuine run directory to another directory
+  likewise verifies there.  Re-minting ``LIFECYCLE.json`` and ``COMPLETION.json`` with the
+  accepted public runner costs one API call, not a source edit, so a wholesale consistent
+  re-forgery is cheap and is not prevented.
+* **OP-L4 — the recorded invocation count is a within-process witness only.**  The
+  ledger's ``invocation_ordinal`` and ``invocation_count`` come from a counter advanced
+  inside the wrapper that calls the source, so an *implementation* that skips or duplicates
+  a call writes a non-consecutive ordinal and is refused on re-read.  That is the whole of
+  the claim.  On disk the fields carry no independent information: any document this module
+  accepts has ``invocation_count == sample_count == len(entries)`` and every ordinal equal
+  to its index, and an actor rewriting the ledger afterwards can write whatever it likes,
+  subject to OP-L3.
+* **OP-L7 — the declared identity payload is free text.**  The identity block's shape is
+  bound (exactly three keys, ``authority == "NONE"``, ``declared_by == "caller"``, a
+  non-empty mapping of strings to strings), but the *content* of ``declared`` is not, and
+  can be rewritten after the fact under the same re-pin as OP-L3.  It is a label, not a
+  measurement.
+* **OP-L5 — the publication primitive is leaner than the accepted runner's.**  It does not
+  confirm the temporary file's inode before unlinking it, and does not re-read the linked
+  target.  Every published document is re-read and reverified downstream, so a hostile swap
+  at the temporary path fails closed rather than being published as evidence.
+* **OP-L6 — the returned capability is the accepted runner's.**  ``AnalysisAccess`` carries
+  the twelve completion-manifest fields and nothing about the acquisition ledger.  The
+  owned guarantee attaches to the *call* that produced it, not to the object.
 
 Failure is always closed: if any stage fails, ``OWNED_PIPELINE.json`` is never
 published, and analysis access is refused for that directory even if a completion
@@ -102,6 +152,16 @@ _FRAME_ENCODING = {
     "true_value": 1,
 }
 
+_PROVENANCE_DISCLOSURE = (
+    "sampled_frames are DECLARED schedule labels recorded by the runner at the moment it "
+    "invoked the acquisition source; they are not evidence of physical elapsed time. "
+    "acquisition_source_identity is caller-declared and carries no authority. "
+    "These digests bind bytes, not authority: any party able to write this directory can "
+    "recompute them."
+)
+
+_IDENTITY_KEYS = frozenset(("authority", "declared", "declared_by"))
+
 _LEDGER_KEYS = frozenset(
     (
         "acquisition_source_identity",
@@ -112,7 +172,9 @@ _LEDGER_KEYS = frozenset(
         "frame_directory_relative_path",
         "frame_encoding",
         "frame_materialization",
+        "invocation_count",
         "pipeline_version",
+        "provenance_disclosure",
         "sample_count",
         "sampled_frames",
         "schema_version",
@@ -145,6 +207,7 @@ _BINDING_KEYS = frozenset(
         "lifecycle_document_relative_path",
         "lifecycle_document_sha256",
         "pipeline_version",
+        "provenance_disclosure",
         "sample_count",
         "sampled_frames",
         "schema_version",
@@ -156,7 +219,17 @@ AcquisitionSource = Callable[[int, int], "np.ndarray"]
 
 
 class OwnedPipelineState(Enum):
-    """Ordered owned-pipeline states.  No later state exists if an earlier one failed."""
+    """Ordered owned-pipeline states.
+
+    Ordering is enforced by straight-line control flow.  This enum and :class:`_Progress`
+    *assert* that ordering; they are not the mechanism, and a reader must not treat
+    ``ANALYSIS_UNLOCKED`` as the thing that gates anything.  Nor is
+    :attr:`OwnedPipelineRecord.analysis_evidence_sha256` a proof that the final gate ran --
+    it is a joint identity of the acquisition ledger and the reverified completion
+    evidence, and any code with those values in scope could compute it.  The only thing
+    that makes the final gate load-bearing is that the call is on the success path and its
+    exception propagates.
+    """
 
     UNSTARTED = 0
     SCHEDULE_VALIDATED = 1
@@ -188,6 +261,28 @@ class OwnedEvidenceError(OwnedPipelineError):
     """Persisted owned evidence is absent, malformed or inconsistent."""
 
 
+class _InvocationCounter:
+    """Wraps the acquisition source so the counter cannot drift from the calls.
+
+    Reviewer A blocker 1 / Reviewer B blocker 1, second round: the first attempt advanced a
+    counter once per loop iteration, which is definitionally equal to the loop index and
+    therefore witnessed nothing.  The increment now happens inside ``__call__``, so a
+    skipped or duplicated call is visible in the persisted ordinals.
+    """
+
+    __slots__ = ("_source", "calls", "ordinal_of_last_call")
+
+    def __init__(self, source: AcquisitionSource) -> None:
+        self._source = source
+        self.calls = 0
+        self.ordinal_of_last_call = -1
+
+    def __call__(self, position: int, label: int) -> object:
+        self.ordinal_of_last_call = self.calls
+        self.calls += 1
+        return self._source(position, label)
+
+
 class _Progress:
     """Monotonic internal state.  There is deliberately no public setter."""
 
@@ -216,6 +311,12 @@ def _canonical_bytes(value: object) -> bytes:
         separators=(",", ":"),
         sort_keys=True,
     ).encode("utf-8")
+
+
+def _plain_int(value: object) -> bool:
+    """A JSON integer, never a bool.  ``True == 1`` must not slip through a count check."""
+
+    return isinstance(value, int) and not isinstance(value, bool)
 
 
 def _sha256_bytes(payload: bytes) -> str:
@@ -320,15 +421,18 @@ def _canonical_frame_bytes(frame: object, expected_shape: tuple[int, int] | None
         raise OwnedAcquisitionError("acquisition source must return a numpy array")
     if frame.dtype != np.bool_:
         raise OwnedAcquisitionError("acquisition source must return a boolean mask")
-    if frame.ndim != 2:
+    # The copy is taken here, immediately on return, and every subsequent question about
+    # geometry is asked of the copy.  A subclass that lies about ``shape`` or ``ndim``
+    # therefore cannot describe the bytes this function persists.
+    owned = np.array(frame, dtype=np.bool_, copy=True, order="C")
+    if owned.ndim != 2:
         raise OwnedAcquisitionError("acquisition source must return a 2-D mask")
-    shape = (int(frame.shape[0]), int(frame.shape[1]))
+    shape = (int(owned.shape[0]), int(owned.shape[1]))
     if min(shape) < 2:
         raise OwnedAcquisitionError("acquired mask must be at least 2x2")
     if expected_shape is not None and shape != expected_shape:
         raise OwnedAcquisitionError("acquired mask shape changed during the run")
-    payload = np.ascontiguousarray(frame, dtype=np.bool_).astype(np.uint8).tobytes(order="C")
-    return payload, shape
+    return owned.astype(np.uint8).tobytes(order="C"), shape
 
 
 def _decode_frame(payload: bytes, shape: tuple[int, int]) -> np.ndarray:
@@ -345,9 +449,17 @@ def _decode_frame(payload: bytes, shape: tuple[int, int]) -> np.ndarray:
 def _atomic_create(target: Path, payload: bytes) -> None:
     """Atomically create one non-overwriting file.
 
-    There is no ``exists()`` pre-check: creation is the check.  A rival publication
-    that appears at any moment before the link fails closed with ``FileExistsError``,
-    so there is no time-of-check/time-of-use window at all.
+    There is no ``exists()`` pre-check: creation is the check.  A rival publication that
+    appears at any moment before the link fails closed, so there is no
+    time-of-check/time-of-use window at all -- and, unlike an ``exists()`` guard,
+    a dangling symlink at the target cannot be written through.
+
+    Disclosed as OP-L5: this is leaner than the accepted runner's publication primitive.
+    It does not confirm the temporary file's inode before unlinking it and does not re-read
+    the linked target.  The temporary name is random and can never be mistaken for
+    evidence, and every published document is re-read and independently reverified
+    downstream, so a hostile swap at the temporary path fails closed instead of being
+    published as evidence.
     """
 
     descriptor, partial_name = tempfile.mkstemp(
@@ -361,9 +473,12 @@ def _atomic_create(target: Path, payload: bytes) -> None:
             os.fsync(handle.fileno())
         try:
             os.link(partial, target)
-        except FileExistsError as exc:
+        except OSError as exc:
+            # ``FileExistsError`` is the rival case and is the common one; every other
+            # ``OSError`` (no hard links on this filesystem, EPERM, ...) is typed here too
+            # so that nothing escapes ``OwnedPipelineError``.
             raise OwnedPublicationError(
-                f"refusing to overwrite an existing {target.name}"
+                f"could not publish {target.name} without overwriting: {exc}"
             ) from exc
     finally:
         partial.unlink(missing_ok=True)
@@ -428,6 +543,7 @@ class OwnedPipelineRecord:
     entries_sha256: str
     lifecycle_document_sha256: str
     completion_manifest_sha256: str
+    analysis_evidence_sha256: str
     terminal_record_count: int
     detected_component_count: int
     track_count: int
@@ -481,13 +597,27 @@ def _reverify_acquisition(directory: Path) -> OwnedAcquisitionEvidence:
         raise OwnedEvidenceError(
             "acquisition ledger source bindings do not match the executing sources"
         )
+    if ledger["provenance_disclosure"] != _PROVENANCE_DISCLOSURE:
+        raise OwnedEvidenceError("acquisition ledger provenance disclosure mismatch")
     identity = ledger["acquisition_source_identity"]
-    if not isinstance(identity, dict) or identity.get("authority") != "NONE":
-        raise OwnedEvidenceError("acquisition source identity must declare no authority")
+    if not isinstance(identity, dict) or set(identity) != set(_IDENTITY_KEYS):
+        raise OwnedEvidenceError("acquisition source identity key set mismatch")
+    if identity["authority"] != "NONE" or identity["declared_by"] != "caller":
+        raise OwnedEvidenceError("acquisition source identity must remain a caller declaration")
+    declared = identity["declared"]
+    if not isinstance(declared, dict) or not declared:
+        raise OwnedEvidenceError("acquisition source identity declaration is malformed")
+    for key, value in declared.items():
+        if not isinstance(value, str):
+            raise OwnedEvidenceError("acquisition source identity must declare only strings")
 
     schedule = _reverified_schedule(ledger["sampled_frames"])
-    if ledger["sample_count"] != len(schedule):
+    if not _plain_int(ledger["sample_count"]) or ledger["sample_count"] != len(schedule):
         raise OwnedEvidenceError("acquisition ledger sample count disagrees with the schedule")
+    if not _plain_int(ledger["invocation_count"]) or ledger["invocation_count"] != len(schedule):
+        raise OwnedEvidenceError(
+            "recorded acquisition invocations disagree with the declared schedule"
+        )
     entries = ledger["entries"]
     if not isinstance(entries, list) or len(entries) != len(schedule):
         raise OwnedEvidenceError("acquisition ledger row count disagrees with the schedule")
@@ -501,11 +631,14 @@ def _reverify_acquisition(directory: Path) -> OwnedAcquisitionEvidence:
     for position, entry in enumerate(entries):
         if not isinstance(entry, dict) or set(entry) != set(_ENTRY_KEYS):
             raise OwnedEvidenceError("acquisition ledger row key set mismatch")
-        if entry["sequence_position"] != position:
+        if not _plain_int(entry["sequence_position"]) or entry["sequence_position"] != position:
             raise OwnedEvidenceError("acquisition ledger rows are out of sequence")
-        if entry["invocation_ordinal"] != position:
+        if not _plain_int(entry["invocation_ordinal"]) or entry["invocation_ordinal"] != position:
             raise OwnedEvidenceError("acquisition invocation ordinals are not consecutive")
-        if entry["requested_sample_label"] != schedule[position]:
+        if (
+            not _plain_int(entry["requested_sample_label"])
+            or entry["requested_sample_label"] != schedule[position]
+        ):
             raise OwnedEvidenceError("acquisition ledger row does not match the schedule")
         if entry["dtype"] != "bool":
             raise OwnedEvidenceError("acquisition ledger row declares a non-boolean frame")
@@ -517,23 +650,28 @@ def _reverify_acquisition(directory: Path) -> OwnedAcquisitionEvidence:
         ):
             raise OwnedEvidenceError("acquisition ledger row shape is malformed")
         row_shape = (row_shape[0], row_shape[1])
+        if min(row_shape) < 2:
+            raise OwnedEvidenceError("acquisition ledger row shape is malformed")
         if shape is not None and row_shape != shape:
             raise OwnedEvidenceError("acquisition ledger rows disagree about the frame shape")
         shape = row_shape
         if entry["frame_relative_path"] != _frame_relative_path(position):
             raise OwnedEvidenceError("acquisition ledger row frame path mismatch")
         frame_path = directory / entry["frame_relative_path"]
-        if not frame_path.is_file():
+        if frame_path.is_symlink() or not frame_path.is_file():
             raise OwnedEvidenceError("acquisition ledger references a missing frame")
         payload = _read_exact_bytes(frame_path)
         digest = _sha256_bytes(payload)
         if digest != entry["frame_sha256"]:
             raise OwnedEvidenceError("persisted frame digest does not match the ledger")
         mask = _decode_frame(payload, row_shape)
+        if not _plain_int(entry["true_cell_count"]):
+            raise OwnedEvidenceError("persisted frame cell count does not match the ledger")
         if int(np.count_nonzero(mask)) != entry["true_cell_count"]:
             raise OwnedEvidenceError("persisted frame cell count does not match the ledger")
         digests.append(digest)
     _refuse_extra_frames(frame_directory, len(entries))
+    _refuse_unusable_specifications(detector_spec, tracker_spec, shape)
     return OwnedAcquisitionEvidence(
         sampled_frames=schedule,
         sample_count=len(schedule),
@@ -570,6 +708,16 @@ def _reverified_specs(ledger: Mapping[str, Any]) -> tuple[DetectorSpec, TrackerS
         "unique_score_margin",
     }:
         raise OwnedEvidenceError("persisted tracker specification key set mismatch")
+    if not _plain_int(detector["min_cells"]) or not _plain_int(tracker["dilation_radius"]):
+        raise OwnedEvidenceError("persisted specifications must use plain integers")
+    for value in (
+        detector["matter_threshold"],
+        tracker["max_centroid_displacement"],
+        tracker["max_area_ratio"],
+        tracker["unique_score_margin"],
+    ):
+        if isinstance(value, bool) or not isinstance(value, (int, float)):
+            raise OwnedEvidenceError("persisted specifications must use plain numbers")
     try:
         detector_spec = DetectorSpec(
             matter_threshold=float(detector["matter_threshold"]),
@@ -586,6 +734,28 @@ def _reverified_specs(ledger: Mapping[str, Any]) -> tuple[DetectorSpec, TrackerS
     return detector_spec, tracker_spec
 
 
+def _refuse_unusable_specifications(
+    detector_spec: DetectorSpec, tracker_spec: TrackerSpec, shape: tuple[int, int]
+) -> None:
+    """Refuse a persisted specification that cannot be applied to the persisted frames.
+
+    Reviewer A, material 2: without an upper bound a persisted ``dilation_radius`` of 10**9
+    made the supported analysis entry point run effectively forever instead of failing
+    closed.  A radius beyond the lattice is geometrically inert, so the bound is free.
+
+    Only the two cases the committed specification types themselves admit are checked here.
+    Every other out-of-range value (``min_cells`` below one, a non-positive threshold, a
+    negative displacement, area ratio or score margin) is already refused by ``DetectorSpec``
+    and ``TrackerSpec`` at construction, and surfaces through the malformed-specification
+    path above.  Duplicating those checks would only create branches no input can reach.
+    """
+
+    if not 0.0 < detector_spec.matter_threshold <= 1.0:
+        raise OwnedEvidenceError("persisted detector specification is out of range")
+    if tracker_spec.dilation_radius > max(shape):
+        raise OwnedEvidenceError("persisted tracker specification is out of range")
+
+
 def _frame_relative_path(position: int) -> str:
     return f"{ACQUISITION_FRAME_DIRECTORY}/frame_{position:06d}.bin"
 
@@ -593,8 +763,14 @@ def _frame_relative_path(position: int) -> str:
 def _refuse_extra_frames(frame_directory: Path, expected: int) -> None:
     """Refuse an additional frame file smuggled into the acquisition directory."""
 
-    observed = sorted(entry.name for entry in os.scandir(frame_directory))
-    if observed != [f"frame_{position:06d}.bin" for position in range(expected)]:
+    observed = []
+    for entry in os.scandir(frame_directory):
+        if not entry.is_file(follow_symlinks=False):
+            raise OwnedEvidenceError(
+                "acquisition frame directory contains a non-regular entry"
+            )
+        observed.append(entry.name)
+    if sorted(observed) != [f"frame_{position:06d}.bin" for position in range(expected)]:
         raise OwnedEvidenceError("acquisition frame directory contains unexpected entries")
 
 
@@ -631,6 +807,11 @@ def run_owned_future_pipeline(
     There is deliberately no ``frames``, ``tracking``, ``lifecycle``, ``disposition``,
     ``manifest``, ``ledger`` or ``access`` parameter: those artefacts are produced
     here, never accepted.
+
+    ``sampled_frames`` are DECLARED labels.  Calling a synthetic source with the label
+    ``1_000_000`` proves that the invocation was recorded under that label; it does not
+    prove that one million physical engine steps elapsed.  See OP-L1 to OP-L6 in the module
+    docstring before quoting any guarantee from this function.
     """
 
     progress = _Progress()
@@ -655,16 +836,19 @@ def run_owned_future_pipeline(
         ) from exc
 
     entries: list[dict[str, Any]] = []
-    invocations = 0
+    counter = _InvocationCounter(source)
     shape: tuple[int, int] | None = None
     for position, label in enumerate(schedule):
         try:
-            acquired = source(position, int(label))
+            acquired = counter(position, int(label))
         except Exception as exc:  # noqa: BLE001 - every source failure is fatal here
             raise OwnedAcquisitionError(
                 f"acquisition source failed at sequence position {position}: {exc!r}"
             ) from exc
-        invocations += 1
+        # The ordinal is the counter's value AT THE CALL, and the counter is advanced
+        # inside the wrapper, not by this loop.  An implementation that skips or duplicates
+        # a call therefore records a non-consecutive ordinal and is refused on re-read.
+        ordinal = counter.ordinal_of_last_call
         payload, shape = _canonical_frame_bytes(acquired, shape)
         relative = _frame_relative_path(position)
         _atomic_create(directory / relative, payload)
@@ -673,7 +857,7 @@ def run_owned_future_pipeline(
                 "dtype": "bool",
                 "frame_relative_path": relative,
                 "frame_sha256": _sha256_bytes(payload),
-                "invocation_ordinal": position,
+                "invocation_ordinal": ordinal,
                 "requested_sample_label": int(label),
                 "sequence_position": position,
                 "shape": [shape[0], shape[1]],
@@ -682,6 +866,7 @@ def run_owned_future_pipeline(
         )
     progress.advance(OwnedPipelineState.ACQUIRED)
 
+    bindings = _source_bindings()
     detector_payload, tracker_payload = _spec_payload(detector_spec, tracker_spec)
     ledger = {
         "acquisition_source_identity": identity,
@@ -692,11 +877,13 @@ def run_owned_future_pipeline(
         "frame_directory_relative_path": ACQUISITION_FRAME_DIRECTORY,
         "frame_encoding": dict(_FRAME_ENCODING),
         "frame_materialization": dict(_FRAME_MATERIALIZATION),
+        "invocation_count": counter.calls,
         "pipeline_version": PIPELINE_VERSION,
+        "provenance_disclosure": _PROVENANCE_DISCLOSURE,
         "sample_count": len(schedule),
         "sampled_frames": [int(value) for value in schedule],
         "schema_version": SCHEMA_VERSION,
-        "source_bindings": _source_bindings(),
+        "source_bindings": bindings,
         "tracker_spec": tracker_payload,
     }
     _atomic_create(directory / ACQUISITION_LEDGER_NAME, _canonical_bytes(ledger))
@@ -704,7 +891,7 @@ def run_owned_future_pipeline(
 
     # Everything built above is now discarded.  Only bytes that survive a round trip
     # through the filesystem are trusted from here on.
-    del entries, ledger, payload, shape, acquired
+    del entries, ledger, payload, shape, acquired, ordinal
     evidence = _reverify_acquisition(directory)
     progress.advance(OwnedPipelineState.ACQUISITION_REVERIFIED)
 
@@ -731,29 +918,49 @@ def run_owned_future_pipeline(
         "lifecycle_document_relative_path": LIFECYCLE_DOCUMENT_NAME,
         "lifecycle_document_sha256": completion.lifecycle_document_sha256,
         "pipeline_version": PIPELINE_VERSION,
+        "provenance_disclosure": _PROVENANCE_DISCLOSURE,
         "sample_count": evidence.sample_count,
         "sampled_frames": [int(value) for value in evidence.sampled_frames],
         "schema_version": SCHEMA_VERSION,
-        "source_bindings": _source_bindings(),
+        "source_bindings": bindings,
     }
     _atomic_create(directory / OWNED_BINDING_NAME, _canonical_bytes(binding))
 
     # Final gate: the access is opened through the same public, disk-only path a later
-    # caller would use.  If this fails, nothing above is treated as a success.
-    open_owned_analysis_access(directory)
+    # caller would use.  If it raises, this function raises and no record is returned.
+    #
+    # Honest scope, after Reviewer B blocker 2: ``canonical(verified_completion_evidence())``
+    # is provably the completion manifest's own bytes, so a digest of it alone would be a
+    # restatement of ``completion_manifest_sha256`` and would witness nothing.  The digest
+    # below additionally binds the acquisition ledger, so it is a joint identity of the
+    # owned and the qualified evidence -- but it is still only a value, not a capability.
+    # What actually makes the gate load-bearing is that this call is on the success path
+    # and propagates; that is pinned by test_op_01b, not by this field.
+    analysis_evidence_sha256 = _sha256_bytes(
+        _canonical_bytes(
+            {
+                "acquisition_ledger_sha256": evidence.ledger_sha256,
+                "entries_sha256": evidence.entries_sha256,
+                "reverified_completion_evidence": (
+                    open_owned_analysis_access(directory).verified_completion_evidence()
+                ),
+            }
+        )
+    )
     progress.advance(OwnedPipelineState.ANALYSIS_UNLOCKED)
 
     return OwnedPipelineRecord(
         run_directory=str(directory),
         sampled_frames=evidence.sampled_frames,
         sample_count=evidence.sample_count,
-        invocation_count=invocations,
+        invocation_count=counter.calls,
         frame_shape=evidence.frame_shape,
         frame_digests=evidence.frame_digests,
         acquisition_ledger_sha256=evidence.ledger_sha256,
         entries_sha256=evidence.entries_sha256,
         lifecycle_document_sha256=completion.lifecycle_document_sha256,
         completion_manifest_sha256=binding["completion_manifest_sha256"],
+        analysis_evidence_sha256=analysis_evidence_sha256,
         terminal_record_count=completion.terminal_record_count,
         detected_component_count=detected,
         track_count=len(tracking.tracks),
@@ -771,6 +978,11 @@ def open_owned_analysis_access(
     re-read frames, and the qualified runner then independently reverifies the
     lifecycle document and completion manifest.  A caller cannot re-supply any input
     that would be compared against the persisted evidence.
+
+    What this verifies is REPRODUCTION, not acquisition: that the persisted frames,
+    specifications and schedule reproduce the published lifecycle document.  It is not
+    evidence that they are the objects the source returned, nor that any physical time
+    elapsed.  See OP-L1 to OP-L6 in the module docstring.
     """
 
     directory = Path(run_directory)
@@ -791,6 +1003,8 @@ def open_owned_analysis_access(
         raise OwnedEvidenceError("owned pipeline binding completion manifest identity mismatch")
     if binding["lifecycle_document_relative_path"] != LIFECYCLE_DOCUMENT_NAME:
         raise OwnedEvidenceError("owned pipeline binding lifecycle document identity mismatch")
+    if binding["provenance_disclosure"] != _PROVENANCE_DISCLOSURE:
+        raise OwnedEvidenceError("owned pipeline binding provenance disclosure mismatch")
     if binding["source_bindings"] != _source_bindings():
         raise OwnedEvidenceError(
             "owned pipeline binding source bindings do not match the executing sources"
@@ -801,7 +1015,7 @@ def open_owned_analysis_access(
         raise OwnedEvidenceError("owned pipeline binding does not match the acquisition ledger")
     if binding["entries_sha256"] != evidence.entries_sha256:
         raise OwnedEvidenceError("owned pipeline binding does not match the ledger entries")
-    if binding["sample_count"] != evidence.sample_count:
+    if not _plain_int(binding["sample_count"]) or binding["sample_count"] != evidence.sample_count:
         raise OwnedEvidenceError("owned pipeline binding disagrees about the sample count")
     if tuple(binding["sampled_frames"]) != evidence.sampled_frames:
         raise OwnedEvidenceError("owned pipeline binding disagrees about the schedule")
