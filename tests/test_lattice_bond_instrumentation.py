@@ -48,8 +48,27 @@ def _state(mask: np.ndarray, frame: int, *, bonded: bool = False) -> LatticeBond
     return LatticeBondState(m, n, b, frame)
 
 
-def _detected(*masks: np.ndarray):
-    return tuple(detect_components(_state(mask, frame), DETECTOR, frame=frame) for frame, mask in enumerate(masks))
+# MANDATORY_SAMPLED_FRAMES_LIFECYCLE_REQUALIFICATION_01R
+#
+# ``track_components`` now requires the declared sample schedule.  Every fixture in
+# this module therefore declares its schedule FIRST and stamps its detector states
+# FROM that declaration; the schedule is never recovered afterwards from the built
+# frame sequence.  The declaration is the authority, in the same direction as a real
+# caller, which knows its own cadence before it samples anything.
+
+UNIT_2 = (0, 1)
+UNIT_3 = (0, 1, 2)
+UNIT_12 = (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+
+def _observed(schedule: tuple[int, ...], *masks: np.ndarray):
+    """Detector output stamped with the ACTUAL declared sampled frame numbers."""
+
+    assert len(schedule) == len(masks), "fixture schedule/mask length disagreement"
+    return tuple(
+        detect_components(_state(mask, int(frame)), DETECTOR, frame=int(frame))
+        for frame, mask in zip(schedule, masks)
+    )
 
 
 def _kinds(result) -> list[str]:
@@ -83,7 +102,7 @@ def test_periodic_percolation_and_boundary_crossing_are_distinguished():
 
 def test_stationary_component_keeps_one_track():
     square = _mask({(3, 3), (3, 4), (4, 3), (4, 4)})
-    result = track_components(_detected(square, square, square), TRACKER)
+    result = track_components(_observed(UNIT_3, square, square, square), TRACKER, sampled_frames=UNIT_3)
     assert len(result.tracks) == 1
     assert len(result.tracks[0].points) == 3
     assert _kinds(result).count("CONTINUATION") == 2
@@ -94,7 +113,7 @@ def test_translating_component_keeps_one_track_across_periodic_boundary():
         _mask({(3, (x + shift) % SHAPE[1]) for x in (10, 11)} | {(4, (x + shift) % SHAPE[1]) for x in (10, 11)})
         for shift in (0, 1, 2)
     ]
-    result = track_components(_detected(*masks), TRACKER)
+    result = track_components(_observed(UNIT_3, *masks), TRACKER, sampled_frames=UNIT_3)
     assert len(result.tracks) == 1
     assert len(result.tracks[0].points) == 3
     assert not result.tracks[0].unresolved
@@ -104,7 +123,7 @@ def test_deformation_does_not_switch_identity():
     square = _mask({(4, 4), (4, 5), (5, 4), (5, 5)})
     cross = _mask({(4, 4), (4, 5), (4, 6), (3, 5), (5, 5)})
     rectangle = _mask({(4, 4), (4, 5), (4, 6), (5, 4), (5, 5), (5, 6)})
-    result = track_components(_detected(square, cross, rectangle), TRACKER)
+    result = track_components(_observed(UNIT_3, square, cross, rectangle), TRACKER, sampled_frames=UNIT_3)
     assert len(result.tracks) == 1
     assert [point.component_index for point in result.tracks[0].points] == [0, 0, 0]
 
@@ -112,7 +131,7 @@ def test_deformation_does_not_switch_identity():
 def test_split_is_explicit_and_children_reference_parent():
     joined = _mask({(4, x) for x in range(3, 8)})
     split = _mask({(4, 3), (4, 4), (4, 6), (4, 7)})
-    result = track_components(_detected(joined, split), TRACKER)
+    result = track_components(_observed(UNIT_2, joined, split), TRACKER, sampled_frames=UNIT_2)
     event = next(event for event in result.events if event.kind == "SPLIT")
     assert len(event.source_track_ids) == 1
     assert len(event.target_track_ids) == 2
@@ -122,7 +141,7 @@ def test_split_is_explicit_and_children_reference_parent():
 def test_merge_is_explicit_and_child_references_all_parents():
     split = _mask({(4, 3), (4, 4), (4, 6), (4, 7)})
     joined = _mask({(4, x) for x in range(3, 8)})
-    result = track_components(_detected(split, joined), TRACKER)
+    result = track_components(_observed(UNIT_2, split, joined), TRACKER, sampled_frames=UNIT_2)
     event = next(event for event in result.events if event.kind == "MERGE")
     assert len(event.source_track_ids) == 2
     assert len(event.target_track_ids) == 1
@@ -132,7 +151,7 @@ def test_merge_is_explicit_and_child_references_all_parents():
 def test_one_frame_contact_is_resolved_without_merge_or_split():
     separated = _mask({(4, 2), (4, 3), (5, 2), (5, 3), (4, 7), (4, 8), (5, 7), (5, 8)})
     contact = _mask({(4, 2), (4, 3), (5, 2), (5, 3), (4, 5), (4, 6), (5, 5), (5, 6)})
-    result = track_components(_detected(separated, contact, separated), TRACKER)
+    result = track_components(_observed(UNIT_3, separated, contact, separated), TRACKER, sampled_frames=UNIT_3)
     kinds = _kinds(result)
     assert "TEMPORARY_CONTACT" in kinds
     assert "MERGE" not in kinds
@@ -145,7 +164,7 @@ def test_detector_collapse_then_reseparation_is_unresolved_not_retrospective_con
     separated = _mask({(4, 2), (4, 3), (5, 2), (5, 3), (4, 7), (4, 8), (5, 7), (5, 8)})
     collapsed = separated.copy()
     collapsed[4, 4:7] = True
-    result = track_components(_detected(separated, collapsed, separated), TRACKER)
+    result = track_components(_observed(UNIT_3, separated, collapsed, separated), TRACKER, sampled_frames=UNIT_3)
     assert "TRACKING_UNRESOLVED" in _kinds(result)
     assert any(track.unresolved for track in result.tracks)
     assert "TEMPORARY_CONTACT" not in _kinds(result)
@@ -154,7 +173,7 @@ def test_detector_collapse_then_reseparation_is_unresolved_not_retrospective_con
 def test_appearance_and_dissolution_are_explicit():
     empty = np.zeros(SHAPE, dtype=bool)
     square = _mask({(3, 3), (3, 4), (4, 3), (4, 4)})
-    result = track_components(_detected(empty, square, empty), TRACKER)
+    result = track_components(_observed(UNIT_3, empty, square, empty), TRACKER, sampled_frames=UNIT_3)
     assert _kinds(result).count("APPEARANCE") == 1
     assert _kinds(result).count("DISSOLUTION") == 1
 
@@ -162,12 +181,12 @@ def test_appearance_and_dissolution_are_explicit():
 def test_many_to_many_association_is_unresolved_not_forced():
     first = _mask({(2, x) for x in range(2, 9)} | {(6, x) for x in range(2, 9)})
     second = _mask({(y, 2) for y in range(2, 7)} | {(y, 8) for y in range(2, 7)})
-    frames = _detected(first, second)
+    frames = _observed(UNIT_2, first, second)
     assert [len(frame) for frame in frames] == [2, 2]
     # Each old horizontal component overlaps each new vertical component: the
     # association graph is genuinely many-to-many and must remain unresolved.
     permissive = TrackerSpec(max_centroid_displacement=5.0, max_area_ratio=10.0, dilation_radius=2)
-    result = track_components(frames, permissive)
+    result = track_components(frames, permissive, sampled_frames=UNIT_2)
     assert "TRACKING_UNRESOLVED" in _kinds(result)
     assert "MERGE" not in _kinds(result)
     assert "SPLIT" not in _kinds(result)
@@ -177,9 +196,9 @@ def test_many_to_many_association_is_unresolved_not_forced():
 def test_symmetric_qualified_geometry_tie_is_unresolved_not_disappear_reappear():
     source = _mask({(4, 3), (4, 7)})
     target = _mask({(3, 5), (5, 5)})
-    frames = _detected(source, target)
+    frames = _observed(UNIT_2, source, target)
     tracker = TrackerSpec(max_centroid_displacement=5.0, max_area_ratio=3.0, dilation_radius=3)
-    result = track_components(frames, tracker)
+    result = track_components(frames, tracker, sampled_frames=UNIT_2)
     edges = [edge for edge in result.edges if edge.qualified]
     assert len(edges) == 4
     assert max(edge.score for edge in edges) - min(edge.score for edge in edges) <= tracker.unique_score_margin
@@ -196,8 +215,8 @@ def test_symmetric_qualified_geometry_tie_is_unresolved_not_disappear_reappear()
 def test_every_association_edge_records_selection_and_reason_for_raw_reproduction():
     source = _mask({(4, 4)})
     targets = _mask({(4, 4), (4, 6)})
-    frames = _detected(source, targets)
-    result = track_components(frames, TRACKER)
+    frames = _observed(UNIT_2, source, targets)
+    result = track_components(frames, TRACKER, sampled_frames=UNIT_2)
     assert len(result.edges) == 2
     selected = [edge for edge in result.edges if edge.selected]
     unselected = [edge for edge in result.edges if edge.qualified and not edge.selected]
@@ -380,8 +399,8 @@ def test_regime_classifier_is_total_deterministic_and_precedence_frozen(metrics,
 
 def test_raw_to_metrics_assembler_enforces_area_chronology_and_missing_data():
     square = _mask({(3, 3), (3, 4), (4, 3), (4, 4)})
-    frames = _detected(*([square] * 12))
-    tracking = track_components(frames, TRACKER)
+    frames = _observed(UNIT_12, *([square] * 12))
+    tracking = track_components(frames, TRACKER, sampled_frames=UNIT_12)
     assert len(tracking.tracks) == 1
     track_id = tracking.tracks[0].track_id
     observations = tuple(
@@ -432,9 +451,9 @@ def test_raw_to_metrics_assembler_enforces_area_chronology_and_missing_data():
 
 def test_raw_to_metrics_assembler_does_not_trust_claimed_detector_geometry():
     winding = _mask({(3, x) for x in range(SHAPE[1])})
-    frames = _detected(*([winding] * 12))
+    frames = _observed(UNIT_12, *([winding] * 12))
     assert frames[0][0].percolates
-    tracking = track_components(frames, TRACKER)
+    tracking = track_components(frames, TRACKER, sampled_frames=UNIT_12)
     track_id = tracking.tracks[0].track_id
     observations = tuple(
         TrackObservation(
@@ -487,8 +506,11 @@ def test_complete_material_replacement_with_structural_persistence_is_not_identi
     b[:, centre[0], centre[1]] = 0.9
     states = tuple(LatticeBondState(m.copy(), n.copy(), b.copy(), frame) for frame in range(3))
     detector = DetectorSpec(matter_threshold=0.5, min_cells=1)
-    frames = tuple(detect_components(state, detector, frame=frame) for frame, state in enumerate(states))
-    tracking = track_components(frames, TRACKER)
+    frames = tuple(
+        detect_components(state, detector, frame=frame)
+        for frame, state in zip(UNIT_3, states)
+    )
+    tracking = track_components(frames, TRACKER, sampled_frames=UNIT_3)
     assert len(tracking.tracks) == 1 and len(tracking.tracks[0].points) == 3
 
     original = np.zeros(shape, dtype=np.float64)
@@ -515,25 +537,29 @@ def test_tracker_spec_changes_do_not_change_detector_or_physics():
     engine = LatticeBondEngine()
     physical = engine.step(state).canonical_bytes()
     components = detect_components(state, DETECTOR)
-    track_components((components, components), TRACKER)
-    track_components((components, components), replace(TRACKER, max_centroid_displacement=6.0))
+    # 01R: the previous fixture handed the SAME frame-0 detector output in twice, which
+    # declares two samples at one instant.  The mandatory schedule makes that
+    # unconstructible, correctly: a two-sample sequence must have two distinct sampled
+    # frames.  The stationary two-frame sequence below preserves the property under test.
+    sequence = _observed(UNIT_2, square, square)
+    track_components(sequence, TRACKER, sampled_frames=UNIT_2)
+    track_components(sequence, replace(TRACKER, max_centroid_displacement=6.0), sampled_frames=UNIT_2)
     assert engine.step(state).canonical_bytes() == physical
     assert detect_components(state, DETECTOR) == components
 
 
 # --------------------------------------------------------------------------
-# EMPTY_RIGHT_NONUNIT_CADENCE_TRACKER_REPAIR_00 — backward-compatibility guards
+# MANDATORY_SAMPLED_FRAMES_LIFECYCLE_REQUALIFICATION_01R — mandatory-schedule guards
 #
-# The repair added an optional ``sampled_frames`` argument to ``track_components``.
-# These regressions pin the two properties every pre-existing caller depends on:
-# the default call path is unchanged, and supplying the identity schedule changes
-# nothing at unit cadence.  The repair's positive behaviour is qualified in
+# Supersedes the EMPTY_RIGHT_NONUNIT_CADENCE_TRACKER_REPAIR_00 backward-compatibility
+# guards, which pinned an optional argument and a schedule-free default path.  Both
+# are gone: the schedule is mandatory, keyword-only and non-optional, so the two
+# properties those guards protected are no longer expressible.  What replaces them is
+# the stronger statement — the schedule-free path does not exist at all.
+#
+# The schedule's positive behaviour at non-unit and irregular cadence is qualified in
 # ``tests/test_empty_right_nonunit_cadence_tracker_repair.py``.
 # --------------------------------------------------------------------------
-
-
-def _unit_schedule(frames):
-    return tuple(range(len(frames)))
 
 
 @pytest.mark.parametrize(
@@ -544,10 +570,23 @@ def _unit_schedule(frames):
         ({(4, 3), (4, 4), (4, 6), (4, 7)},),
     ],
 )
-def test_sampled_frames_argument_is_optional_and_defaults_to_the_legacy_path(cells):
+def test_sampled_frames_argument_is_mandatory_and_has_no_schedule_free_default(cells):
     empty = np.zeros(SHAPE, dtype=bool)
-    frames = _detected(_mask(*cells), empty)
-    assert track_components(frames, TRACKER) == track_components(frames, TRACKER, None)
+    frames = _observed(UNIT_2, _mask(*cells), empty)
+    with pytest.raises(TypeError):
+        track_components(frames, TRACKER)
+    with pytest.raises(ValueError):
+        track_components(frames, TRACKER, sampled_frames=None)
+
+
+def test_sampled_frames_cannot_be_passed_positionally():
+    """Keyword-only: an argument that slid into position 3 could never be a schedule."""
+
+    empty = np.zeros(SHAPE, dtype=bool)
+    square = _mask({(3, 3), (3, 4), (4, 3), (4, 4)})
+    frames = _observed(UNIT_2, square, empty)
+    with pytest.raises(TypeError):
+        track_components(frames, TRACKER, UNIT_2)
 
 
 @pytest.mark.parametrize(
@@ -560,17 +599,23 @@ def test_sampled_frames_argument_is_optional_and_defaults_to_the_legacy_path(cel
         ("square", "square", "square"),
     ],
 )
-def test_identity_schedule_is_inert_at_unit_cadence(masks):
+def test_unit_cadence_results_are_on_schedule_and_deterministic(masks):
+    """Reviewer A, OBS-6: renamed.  This test pins schedule membership and
+    reproducibility only.  The unit-cadence VALUES are pinned by name elsewhere in
+    this module and by ``test_01``/``test_15`` in the repair suite; nothing is claimed
+    here about equality against a stored parent output."""
+
     catalogue = {
         "empty": np.zeros(SHAPE, dtype=bool),
         "square": _mask({(3, 3), (3, 4), (4, 3), (4, 4)}),
         "joined": _mask({(4, x) for x in range(3, 8)}),
         "split": _mask({(4, 3), (4, 4), (4, 6), (4, 7)}),
     }
-    frames = _detected(*(catalogue[name] for name in masks))
-    assert track_components(frames, TRACKER) == track_components(
-        frames, TRACKER, _unit_schedule(frames)
-    )
+    schedule = UNIT_2 if len(masks) == 2 else UNIT_3
+    frames = _observed(schedule, *(catalogue[name] for name in masks))
+    result = track_components(frames, TRACKER, sampled_frames=schedule)
+    assert {event.frame for event in result.events} <= set(schedule)
+    assert result == track_components(frames, TRACKER, sampled_frames=schedule)
 
 
 def test_empty_right_frame_at_unit_cadence_still_dissolves_at_the_next_frame():
@@ -578,29 +623,45 @@ def test_empty_right_frame_at_unit_cadence_still_dissolves_at_the_next_frame():
 
     empty = np.zeros(SHAPE, dtype=bool)
     square = _mask({(3, 3), (3, 4), (4, 3), (4, 4)})
-    frames = _detected(square, empty)
-    for result in (track_components(frames, TRACKER), track_components(frames, TRACKER, (0, 1))):
-        dissolutions = [event for event in result.events if event.kind == "DISSOLUTION"]
-        assert len(dissolutions) == 1
-        assert dissolutions[0].frame == 1
+    frames = _observed(UNIT_2, square, empty)
+    result = track_components(frames, TRACKER, sampled_frames=UNIT_2)
+    dissolutions = [event for event in result.events if event.kind == "DISSOLUTION"]
+    assert len(dissolutions) == 1
+    assert dissolutions[0].frame == 1
+
+
+def test_unit_cadence_from_a_nonzero_origin_is_not_treated_as_an_offset():
+    """Unit cadence, origin 7: a schedule-position surrogate would have emitted 1."""
+
+    empty = np.zeros(SHAPE, dtype=bool)
+    square = _mask({(3, 3), (3, 4), (4, 3), (4, 4)})
+    schedule = (7, 8)
+    frames = _observed(schedule, square, empty)
+    result = track_components(frames, TRACKER, sampled_frames=schedule)
+    dissolutions = [event for event in result.events if event.kind == "DISSOLUTION"]
+    assert len(dissolutions) == 1
+    assert dissolutions[0].frame == 8
+    assert 1 not in {event.frame for event in result.events}
 
 
 def test_a_declared_schedule_that_contradicts_the_detector_is_refused():
     empty = np.zeros(SHAPE, dtype=bool)
     square = _mask({(3, 3), (3, 4), (4, 3), (4, 4)})
-    frames = _detected(square, empty)
+    frames = _observed(UNIT_2, square, empty)
     with pytest.raises(ValueError):
-        track_components(frames, TRACKER, (0, 1, 2))
+        track_components(frames, TRACKER, sampled_frames=(0, 1, 2))
     with pytest.raises(ValueError):
-        track_components(frames, TRACKER, (1, 0))
+        track_components(frames, TRACKER, sampled_frames=(1, 0))
     with pytest.raises(ValueError):
-        track_components(frames, TRACKER, (5, 9))
+        track_components(frames, TRACKER, sampled_frames=(5, 9))
 
 
-def test_empty_frame_sequence_is_still_accepted_with_and_without_a_schedule():
-    assert track_components((), TRACKER) == track_components((), TRACKER, ())
+def test_empty_frame_sequence_still_requires_an_explicit_empty_schedule():
+    assert track_components((), TRACKER, sampled_frames=()).tracks == ()
+    with pytest.raises(TypeError):
+        track_components((), TRACKER)
 
 
 def test_a_malformed_schedule_is_refused_even_for_an_empty_frame_sequence():
     with pytest.raises(ValueError):
-        track_components((), TRACKER, (0,))
+        track_components((), TRACKER, sampled_frames=(0,))

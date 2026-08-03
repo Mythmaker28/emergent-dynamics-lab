@@ -11,11 +11,22 @@ empty.  Under non-unit or irregular cadence that fabricates a frame number that 
 not on the declared sampling schedule, so ``qualify_lifecycle_contract`` raises
 ``INVALID_EVENT_FRAME`` and the *whole run* is rejected.  Because only runs in
 which something disappeared could take that path, the rejection was correlated with
-the outcome: a survivorship trapdoor.  The repair makes the declared schedule
+the outcome: a survivorship trapdoor.  The repair made the declared schedule
 authoritative for the right frame of every transition.
+
+MANDATORY_SAMPLED_FRAMES_LIFECYCLE_REQUALIFICATION_01R extends the repair from
+*available* to *mandatory*.  ``sampled_frames`` is now keyword-only, has no default
+and is non-optional, so the schedule-free call path that carried the defect no
+longer exists.  Every test below that previously compared the repaired path against
+the legacy path has been restated: the legacy path cannot be invoked, and the
+lifecycle guard that caught it is shown to be live — but now unreachable from
+tracker output — using a HANDCRAFTED ``TrackingResult``, never the tracker.
 """
 
 from __future__ import annotations
+
+import inspect
+import itertools
 
 import numpy as np
 import pytest
@@ -27,7 +38,8 @@ from edlab.substrates.lattice_bond import (
     detect_components,
     track_components,
 )
-from edlab.substrates.lattice_bond.instrumentation import TrackingResult
+from edlab.substrates.lattice_bond import instrumentation
+from edlab.substrates.lattice_bond.instrumentation import TrackEvent, TrackingResult
 from edlab.substrates.lattice_bond.lifecycle import (
     LifecycleContractError,
     qualify_lifecycle_contract,
@@ -79,10 +91,35 @@ def _tracked(schedule, *masks) -> TrackingResult:
     return track_components(_observed(schedule, *masks), TRACKER, sampled_frames=schedule)
 
 
-def _legacy(schedule, *masks) -> TrackingResult:
-    """The accepted-parent call path: no declared schedule."""
+def _offschedule_surrogate(schedule, *masks) -> TrackingResult:
+    """Handcrafted stand-in for the DELETED schedule-free path.
 
-    return track_components(_observed(schedule, *masks), TRACKER)
+    The tracker can no longer produce this.  It is rebuilt by hand, from real
+    tracker output, by rewriting every event frame that the deleted fallback would
+    have fabricated (``transition_index + 1``) back onto the events.  It exists only
+    so that the lifecycle guard which used to catch the defect can be shown to be
+    live rather than dead code.
+    """
+
+    honest = track_components(_observed(schedule, *masks), TRACKER, sampled_frames=schedule)
+    position = {int(frame): index for index, frame in enumerate(schedule)}
+    surrogate = tuple(
+        event if event.frame == schedule[0] else _replace_frame(event, position[int(event.frame)])
+        for event in honest.events
+    )
+    return TrackingResult(honest.tracks, surrogate, honest.edges, honest.assignments)
+
+
+def _replace_frame(event, fabricated_frame: int):
+    return TrackEvent(
+        fabricated_frame,
+        event.kind,
+        event.source_track_ids,
+        event.source_components,
+        event.target_components,
+        event.target_track_ids,
+        event.resolved,
+    )
 
 
 def _kinds(result) -> list[str]:
@@ -115,12 +152,15 @@ def _terminals(result, schedule):
 
 
 def test_01_empty_right_frame_at_unit_cadence_is_unchanged():
-    """Unit cadence: the repaired path must agree with the legacy path exactly."""
+    """Unit cadence: the mandatory schedule reproduces the frozen accepted behaviour.
+
+    01R: the legacy comparand is gone with the schedule-free path, so the frozen
+    values are asserted directly instead of against a second call.
+    """
 
     schedule = (0, 1)
     repaired = _tracked(schedule, BLOB_A, EMPTY)
-    legacy = _legacy(schedule, BLOB_A, EMPTY)
-    assert repaired == legacy
+    assert _kinds(repaired) == ["APPEARANCE", "DISSOLUTION"]
     assert _frames_of(repaired, "DISSOLUTION") == [1]
     assert _violations(repaired, schedule) is None
     assert _terminals(repaired, schedule)[0][:2] == ("DISSOLVED_DETECTED_TRACK", 1)
@@ -132,9 +172,16 @@ def test_02_empty_right_frame_at_nonunit_cadence_binds_the_actual_frame():
     schedule = (0, 5)
     observed = _observed(schedule, BLOB_A, EMPTY)
 
-    legacy = track_components(observed, TRACKER)
-    assert _frames_of(legacy, "DISSOLUTION") == [1], "legacy fabricated frame must be 1"
-    assert _violations(legacy, schedule) == [
+    # 01R: the defective call can no longer be made at all.
+    with pytest.raises(TypeError):
+        track_components(observed, TRACKER)
+
+    # The frame the deleted fallback would have fabricated, rebuilt by hand, is still
+    # caught by the lifecycle contract with the identical violation triple: the guard
+    # is live, and it is now simply unreachable from tracker output.
+    surrogate = _offschedule_surrogate(schedule, BLOB_A, EMPTY)
+    assert _frames_of(surrogate, "DISSOLUTION") == [1], "surrogate fabricated frame must be 1"
+    assert _violations(surrogate, schedule) == [
         "INVALID_EVENT_FRAME",
         "SILENT_PRE_HORIZON_TERMINATION",
         "TERMINAL_COUNT_MISMATCH",
@@ -303,6 +350,42 @@ def test_12_malformed_schedules_are_rejected_never_silently_repaired(schedule, r
         track_components(observed, TRACKER, sampled_frames=schedule)
 
 
+@pytest.mark.parametrize(
+    "schedule, reason",
+    [
+        ((0, 5, 3), "third entry decreases: only the first adjacent pair increases"),
+        ((0, 5, 5), "third entry repeats: only the first adjacent pair increases"),
+        ((0, 0, 5), "first adjacent pair repeats"),
+        ((5, 0, 11), "first adjacent pair decreases"),
+    ],
+)
+def test_12c_monotonicity_is_checked_on_every_adjacent_pair(schedule, reason):
+    """Reviewer A, OBS-1: every previous ordering case was a two-entry schedule, so a
+    mutant that scanned only the first adjacent pair survived."""
+
+    observed = _observed((0, 5, 11), BLOB_A, EMPTY, BLOB_B)
+    with pytest.raises(ValueError, match="strictly increasing"):
+        track_components(observed, TRACKER, sampled_frames=schedule)
+
+
+def test_12d_a_unit_cadence_schedule_contradicting_the_detector_is_rejected():
+    """Reviewer A, OBS-2: every previous contradiction case was non-unit, wrong-length
+    or non-monotone, so a mutant that skipped the cross-check for contiguous unit
+    cadence survived and let an off-schedule CONTINUATION frame through."""
+
+    observed = _observed((0, 7), BLOB_A, BLOB_A)
+    with pytest.raises(ValueError, match="disagree with an observed detector frame"):
+        track_components(observed, TRACKER, sampled_frames=(0, 1))
+
+
+def test_12e_a_mapping_is_not_accepted_as_a_schedule():
+    """Reviewer A, NIT-8: the stated rule is 'ordered sequence only'."""
+
+    observed = _observed((0, 5), BLOB_A, EMPTY)
+    with pytest.raises(ValueError, match="ordered sequence"):
+        track_components(observed, TRACKER, sampled_frames={0: "a", 5: "b"})
+
+
 def test_12b_a_schedule_contradicting_an_observed_frame_is_rejected():
     """The declared schedule may not disagree with a detector frame it is describing."""
 
@@ -355,23 +438,30 @@ def test_14_repaired_tracking_is_deterministic_and_canonically_ordered():
         (BLOB_A, BLOB_A, BLOB_A),
     ],
 )
-def test_15_unit_cadence_behaviour_is_bit_identical_with_and_without_a_schedule(masks):
-    """The repair is inert on the unit-cadence path that every existing test uses."""
+def test_15_unit_cadence_output_is_deterministic_and_on_schedule(masks):
+    """01R: the with/without comparison is gone; the invariant it protected is not.
 
-    schedule = tuple(range(len(masks)))
+    At unit cadence every event frame is on the declared schedule and the result is
+    reproducible call to call.
+    """
+
+    schedule = (0, 1) if len(masks) == 2 else (0, 1, 2)
     observed = _observed(schedule, *masks)
-    assert track_components(observed, TRACKER) == track_components(
-        observed, TRACKER, sampled_frames=schedule
-    )
+    first = track_components(observed, TRACKER, sampled_frames=schedule)
+    second = track_components(observed, TRACKER, sampled_frames=schedule)
+    assert first == second
+    assert {event.frame for event in first.events} <= set(schedule)
+    assert _violations(first, schedule) is None
 
 
-def test_15b_the_legacy_call_path_is_untouched_when_no_schedule_is_supplied():
-    """Omitting ``sampled_frames`` must reproduce the accepted-parent behaviour exactly,
-    including the behaviour this mission classifies as defective."""
+def test_15b_the_schedule_free_call_path_no_longer_exists():
+    """01R: the accepted-parent call path is deleted, not merely discouraged."""
 
     observed = _observed((0, 5), BLOB_A, EMPTY)
-    legacy = track_components(observed, TRACKER)
-    assert _frames_of(legacy, "DISSOLUTION") == [1]
+    with pytest.raises(TypeError):
+        track_components(observed, TRACKER)
+    with pytest.raises(ValueError):
+        track_components(observed, TRACKER, sampled_frames=None)
 
 
 # --------------------------------------------------------------------------
@@ -434,12 +524,11 @@ def test_s1_disappearance_is_no_longer_correlated_with_global_rejection():
     assert _violations(dissolving, schedule) is None
     assert _violations(surviving, schedule) is None
 
-    # the accepted parent: the surviving run qualified, the dissolving run did not.
-    legacy_dissolving = _legacy(schedule, BLOB_A, EMPTY, BLOB_B)
-    legacy_surviving = _legacy(schedule, BLOB_A, BLOB_A, BLOB_A)
-    assert _violations(legacy_surviving, schedule) is None
-    legacy_codes = _violations(legacy_dissolving, schedule)
-    assert legacy_codes is not None and "INVALID_EVENT_FRAME" in legacy_codes
+    # the accepted parent, reconstructed by hand: the surviving run qualified, the
+    # dissolving run did not.  Neither is reachable from the tracker any more.
+    surrogate_dissolving = _offschedule_surrogate(schedule, BLOB_A, EMPTY, BLOB_B)
+    surrogate_codes = _violations(surrogate_dissolving, schedule)
+    assert surrogate_codes is not None and "INVALID_EVENT_FRAME" in surrogate_codes
 
 
 def test_s2_a_disappearing_track_stays_in_the_enrolled_denominator():
@@ -447,7 +536,10 @@ def test_s2_a_disappearing_track_stays_in_the_enrolled_denominator():
 
     schedule = (0, 5, 11)
     repaired = _tracked(schedule, BLOB_A | BLOB_B, EMPTY, BLOB_B)
-    assert _violations(_legacy(schedule, BLOB_A | BLOB_B, EMPTY, BLOB_B), schedule) is not None
+    assert (
+        _violations(_offschedule_surrogate(schedule, BLOB_A | BLOB_B, EMPTY, BLOB_B), schedule)
+        is not None
+    )
     contract = qualify_lifecycle_contract(repaired, schedule)
     assert contract.track_count == len(repaired.tracks) == 3
     assert len(contract.terminal_records) == contract.track_count
@@ -519,7 +611,7 @@ def test_r3_a_negative_schedule_is_rejected_by_the_nonnegativity_rule_itself():
 
     observed = _observed((0, 5), EMPTY, BLOB_A)
     with pytest.raises(ValueError, match="nonnegative"):
-        track_components(observed, TRACKER, (-5, 5))
+        track_components(observed, TRACKER, sampled_frames=(-5, 5))
 
 
 def test_r4_an_unordered_container_is_not_accepted_as_a_schedule():
@@ -528,7 +620,7 @@ def test_r4_an_unordered_container_is_not_accepted_as_a_schedule():
     observed = _observed((0, 5), BLOB_A, EMPTY)
     for container in ({0, 5}, frozenset({0, 5}), "05", b"\x00\x05"):
         with pytest.raises(ValueError):
-            track_components(observed, TRACKER, container)
+            track_components(observed, TRACKER, sampled_frames=container)
 
 
 def test_r5_first_frame_empty_then_populated_at_nonunit_cadence():
@@ -552,3 +644,238 @@ def test_r6_a_visually_identical_component_returning_later_is_not_stitched():
     terminals = _terminals(repaired, schedule)
     assert terminals[0][:2] == ("DISSOLVED_DETECTED_TRACK", 5)
     assert terminals[1][:2] == ("RIGHT_CENSORED_AT_HORIZON", 23)
+
+
+# --------------------------------------------------------------------------
+# MANDATORY_SAMPLED_FRAMES_LIFECYCLE_REQUALIFICATION_01R
+#
+# The schedule is mandatory throughout the supported generic tracker and the
+# permitted synthetic stack.  These tests pin the API shape itself, the absence of
+# every removed fallback, the migration of every permitted call site, and the
+# exhaustive synthetic survivorship proof re-run through the mandatory API.
+# --------------------------------------------------------------------------
+
+
+ALLOWED_SOURCE_PATHS = (
+    "edlab/__init__.py",
+    "edlab/specs.py",
+    "edlab/state.py",
+    "edlab/substrates/__init__.py",
+    "edlab/substrates/lattice_bond/__init__.py",
+    "edlab/substrates/lattice_bond/engine.py",
+    "edlab/substrates/lattice_bond/instrumentation.py",
+    "edlab/substrates/lattice_bond/lifecycle.py",
+    "edlab/substrates/lattice_bond/future_lifecycle_runner.py",
+    "tests/test_lattice_bond_instrumentation.py",
+    "tests/test_future_lifecycle_contract.py",
+    "tests/test_future_lifecycle_runner_integration.py",
+    "tests/test_empty_right_nonunit_cadence_tracker_repair.py",
+)
+
+
+def _repository_root():
+    from pathlib import Path
+
+    return Path(__file__).resolve().parents[1]
+
+
+# --- m1-m4: the mandatory API boundary -------------------------------------
+
+
+def test_m1_schedule_omission_fails_at_the_public_api_boundary():
+    observed = _observed((0, 5), BLOB_A, EMPTY)
+    with pytest.raises(TypeError):
+        track_components(observed, TRACKER)
+
+
+def test_m2_explicit_none_is_refused_rather_than_treated_as_absent():
+    observed = _observed((0, 5), BLOB_A, EMPTY)
+    with pytest.raises(ValueError, match="must not be None"):
+        track_components(observed, TRACKER, sampled_frames=None)
+
+
+def test_m3_the_signature_itself_carries_no_schedule_free_path():
+    parameters = inspect.signature(track_components).parameters
+    assert "sampled_frames" in parameters
+    parameter = parameters["sampled_frames"]
+    assert parameter.default is inspect.Parameter.empty, "sampled_frames must have no default"
+    assert parameter.kind is inspect.Parameter.KEYWORD_ONLY, "sampled_frames must be keyword-only"
+    annotation = str(parameter.annotation)
+    assert "None" not in annotation and "Optional" not in annotation, annotation
+
+
+def test_m4_no_compatibility_alias_restores_the_old_signature():
+    """No positional third argument, and no second entry point with a default."""
+
+    observed = _observed((0, 5), BLOB_A, EMPTY)
+    with pytest.raises(TypeError):
+        track_components(observed, TRACKER, (0, 5))
+    module_root = _repository_root() / "edlab" / "substrates" / "lattice_bond"
+    source = (module_root / "instrumentation.py").read_text(encoding="utf-8")
+    assert "sampled_frames: Sequence[int] | None" not in source
+    assert "sampled_frames=None" not in source
+    assert "sampled_frames: Sequence[int] = " not in source
+    exported = (module_root / "__init__.py").read_text(encoding="utf-8")
+    assert exported.count("track_components") == 2, "one import, one __all__ entry, no alias"
+
+
+# --- m5-m7: the removed fallbacks ------------------------------------------
+
+
+def test_m5_the_transition_index_fallback_is_gone_from_the_module():
+    assert not hasattr(instrumentation, "_transition_right_frame")
+    source = (
+        _repository_root() / "edlab" / "substrates" / "lattice_bond" / "instrumentation.py"
+    ).read_text(encoding="utf-8")
+    assert "right[0].frame if right else" not in source
+    # ``transition_index + 1`` may only ever appear as an index INTO the declared
+    # schedule; as a bare frame value it is the deleted positional surrogate.
+    occurrences = source.count("transition_index + 1")
+    assert occurrences == source.count("schedule[transition_index + 1]") == 1, source.count(
+        "transition_index + 1"
+    )
+
+
+def test_m6_no_implicit_unit_cadence_is_reconstructed_anywhere():
+    source = (
+        _repository_root() / "edlab" / "substrates" / "lattice_bond" / "instrumentation.py"
+    ).read_text(encoding="utf-8")
+    assert "range(len(frames))" not in source
+    assert "_validated_sample_schedule" in source
+    validator = inspect.signature(instrumentation._validated_sample_schedule)
+    assert "None" not in str(validator.return_annotation), str(validator.return_annotation)
+
+
+def test_m7_the_validator_never_returns_for_a_missing_schedule():
+    with pytest.raises(ValueError):
+        instrumentation._validated_sample_schedule((), None)
+
+
+# --- m8: every permitted call site supplies a schedule ---------------------
+
+
+def test_m8_every_permitted_call_site_passes_an_explicit_schedule():
+    """Exact-path inventory.  Scoped to the permitted generic tracker and synthetic
+    stack only; it makes no claim about callers outside these declared paths."""
+
+    import ast
+
+    def _raises_guarded(tree):
+        """Nodes lexically inside a ``with pytest.raises(...)`` block.
+
+        Those call sites exist precisely to prove that a malformed or absent schedule
+        is refused, so they are negative evidence, not unmigrated callers.
+        """
+
+        guarded = set()
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.With):
+                continue
+            if not any(
+                isinstance(item.context_expr, ast.Call)
+                and isinstance(item.context_expr.func, ast.Attribute)
+                and item.context_expr.func.attr == "raises"
+                for item in node.items
+            ):
+                continue
+            for statement in node.body:
+                for inner in ast.walk(statement):
+                    guarded.add(id(inner))
+        return guarded
+
+    root = _repository_root()
+    inventory: dict[str, int] = {}
+    refused: dict[str, int] = {}
+    for relative in ALLOWED_SOURCE_PATHS:
+        tree = ast.parse((root / relative).read_text(encoding="utf-8"), filename=relative)
+        guarded = _raises_guarded(tree)
+        calls = 0
+        negatives = 0
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.Call):
+                continue
+            target = node.func
+            name = target.attr if isinstance(target, ast.Attribute) else getattr(target, "id", None)
+            if name != "track_components":
+                continue
+            if id(node) in guarded:
+                negatives += 1
+                continue
+            calls += 1
+            keywords = {keyword.arg for keyword in node.keywords}
+            assert "sampled_frames" in keywords, f"{relative}: schedule-free call site"
+            assert len(node.args) == 2, f"{relative}: schedule must not be positional"
+        if calls:
+            inventory[relative] = calls
+        if negatives:
+            refused[relative] = negatives
+    assert inventory, "the inventory must not be silently empty"
+    assert refused, "the refusal evidence must not be silently empty"
+    assert set(inventory) == {
+        "tests/test_lattice_bond_instrumentation.py",
+        "tests/test_future_lifecycle_contract.py",
+        "tests/test_future_lifecycle_runner_integration.py",
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py",
+    }
+
+
+# --- e1: the exhaustive synthetic proof, re-run through the mandatory API ---
+
+
+ENUMERATION_SCHEDULE = (0, 5, 11, 12)
+# Declared alphabet, eight handcrafted masks, all defined in this module.  Reviewer B
+# of EMPTY_RIGHT_NONUNIT_CADENCE_TRACKER_REPAIR_00 described the historical alphabet in
+# ``EMPTY_RIGHT_NONUNIT_CADENCE_TRACKER_REPAIR_00_REVIEW_JOURNAL.md`` as "empty, two
+# disjoint blobs, a third blob, a joinable bar, a split bar, and a symmetric-tie pair
+# that forces TRACKING_UNRESOLVED"; this reconstruction follows that description.  The
+# third blob's pixel geometry is recorded nowhere, so the with/without-disappearance
+# PARTITION is not reconstructible — see the 01R report.  Every REQUIRED outcome below
+# is zero-valued and alphabet-independent.
+BLOB_C = _mask({(1, 1), (1, 2), (2, 1), (2, 2)})
+ENUMERATION_ALPHABET = (
+    EMPTY,
+    BLOB_A,
+    BLOB_B,
+    BLOB_C,
+    JOINED,
+    SPLIT,
+    SEPARATED,
+)
+
+
+def test_e1_exhaustive_depth4_enumeration_through_the_mandatory_api():
+    alphabet = ENUMERATION_ALPHABET + (_collapsed(),)
+    assert len(alphabet) == 8
+    schedule = ENUMERATION_SCHEDULE
+    configurations = 0
+    with_disappearance = 0
+    rejected_with = 0
+    rejected_without = 0
+    off_schedule = 0
+    accounting_failures = 0
+    scheduled = set(schedule)
+    for combination in itertools.product(alphabet, repeat=len(schedule)):
+        observed = _observed(schedule, *combination)
+        result = track_components(observed, TRACKER, sampled_frames=schedule)
+        configurations += 1
+        if any(event.frame not in scheduled for event in result.events):
+            off_schedule += 1
+        disappeared = any(event.kind == "DISSOLUTION" for event in result.events)
+        try:
+            contract = qualify_lifecycle_contract(result, schedule)
+        except LifecycleContractError:
+            if disappeared:
+                rejected_with += 1
+            else:
+                rejected_without += 1
+            continue
+        if len(contract.terminal_records) != len(result.tracks):
+            accounting_failures += 1
+        if disappeared:
+            with_disappearance += 1
+    assert configurations == 4096
+    assert off_schedule == 0, "every event frame must belong to the declared schedule"
+    assert rejected_with == 0, "disappearance must not be correlated with global rejection"
+    assert rejected_without == 0, "survival must not be rejected either"
+    assert accounting_failures == 0, "terminal accounting must be exhaustive"
+    assert with_disappearance > 0, "the enumeration must actually exercise disappearance"
