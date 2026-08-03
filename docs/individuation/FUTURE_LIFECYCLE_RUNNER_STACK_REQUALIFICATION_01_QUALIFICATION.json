@@ -12,7 +12,8 @@
     "lineage": "af765d2 -> 9185afa -> 4e1fd0c -> c2fe25b -> (this mission)",
     "checkpoints": {
       "checkpoint_1_frozen_protocol": "bc801c1ab625a3a5a1c29f9d5333b45f49b7c079",
-      "checkpoint_2_successor_tests": "9a1bfaff42009f3ae336c4d875eb18e0ab9a6fb5"
+      "checkpoint_2_successor_tests": "9a1bfaff42009f3ae336c4d875eb18e0ab9a6fb5",
+      "checkpoint_3_reviewer_fixes": "fb5619ba2b732fca6358de6a7ad5b025fab582f3"
     }
   },
   "source_hashes_sha256": {
@@ -568,10 +569,49 @@
       "location": "_publish_new_canonical_file defensive layer",
       "recorded_as": "limitation L5"
     },
-    "rerun_after_checkpoint_3": true
+    "rerun_after_checkpoint_3": true,
+    "patch_anchor_note": "Reviewer B, m4: P1 and P3 reproduce different failure counts depending on patch placement. P1 was applied at the CALL SITE inside publish_future_family_completion (the _publish_new_canonical_file(manifest_path, _canonical_bytes(manifest)) line), not in the helper body. P3 was applied by replacing the verify_lifecycle_document call inside publish_future_family_completion's try block, not by deleting the whole try/except. The recorded control and mutant counts correspond to those placements."
   },
-  "independent_reviews": [],
-  "final_reviewed_checkpoint": null,
+  "independent_reviews": [
+    {
+      "reviewer": "A",
+      "role": "public API and non-bypassability",
+      "final_disposition": "PASS",
+      "rounds": 3,
+      "round_verdicts": [
+        "FAIL (blocker B1)",
+        "FAIL (blocker B2)",
+        "PASS"
+      ],
+      "binds_to_test_file_sha256": "a982415a6796bd7185ef3afac241d263d50bd98b03cb549136854fffe2dfaa1b",
+      "binds_to_checkpoint": "fb5619ba2b732fca6358de6a7ad5b025fab582f3",
+      "blockers_raised": 2,
+      "blockers_open": 0,
+      "decisive_evidence": "differential oracle implementing clauses (i)-(iv) from the TrackingResult alone, compared against qualify_lifecycle_contract over every strictly-increasing schedule of length 1-6 drawn from frames 0-13 across 12 fixtures - 77,700 schedules, 0 disagreements - plus 240 real publish+open round trips, 0 disagreements",
+      "remaining_minors": [
+        "clause (iii) read literally would forbid a track's own intermediate point frames; wording only, no behaviour or test change (accepted, precise wording used in this qualification)",
+        "rs01_01 'end to end' phrasing and rs01_03 source-text greps, both withdrawn by the reviewer as non-load-bearing"
+      ]
+    },
+    {
+      "reviewer": "B",
+      "role": "mutation, lineage and schedule adversary",
+      "final_disposition": "PASS",
+      "rounds": 3,
+      "round_verdicts": [
+        "FAIL (blocker B1: empty ledger/coverage/limitations)",
+        "PASS",
+        "PASS"
+      ],
+      "binds_to_test_file_sha256": "a982415a6796bd7185ef3afac241d263d50bd98b03cb549136854fffe2dfaa1b",
+      "binds_to_checkpoint": "fb5619ba2b732fca6358de6a7ad5b025fab582f3",
+      "blockers_raised": 1,
+      "blockers_open": 0,
+      "decisive_evidence": "independent predictor of clauses (i)-(iv) swept over 4131 candidate schedules across 12 tracking runs, 0 mismatches; four ledger-integrity attacks on test_rs01_15 all caught; full 13-mutant ledger re-derived and rerun; 16 further invented mutants, none escaping while weakening a claimed guarantee",
+      "self_correction": "the reviewer recorded that its own round-2 PASS on the round-1 boundary rule was an over-generalisation from a fixture whose horizon frame was occupied, and could not exhibit the counterexample"
+    }
+  ],
+  "final_reviewed_checkpoint": "fb5619ba2b732fca6358de6a7ad5b025fab582f3",
   "firewall_ledger": {
     "exact_path_git_access_only": true,
     "directory_listings": 0,
@@ -622,7 +662,7 @@
       "measured_rule": [
         "let OCCUPIED = every track-point frame union every event frame",
         "(i) the schedule must be non-empty, strictly increasing, non-negative integers",
-        "(ii) it must contain every OCCUPIED frame",
+        "(iii) it must contain no frame OTHER THAN THAT TRACK'S OWN POINT FRAMES strictly inside any track's point span, and none strictly between a track's last point and that track's terminal-event frame [wording precision requested by Reviewer A, round 3 minor 1: read without that clause the rule would contradict clause (ii) for any track with three or more points]",
         "(iii) it must contain no frame strictly inside any track's point span, and none strictly between a track's last point and that track's terminal-event frame",
         "(iv) if some track's last point sits at the tracker's final frame the declared last entry must equal it; OTHERWISE THE TAIL IS FREE, both to extend arbitrarily and to truncate"
       ],

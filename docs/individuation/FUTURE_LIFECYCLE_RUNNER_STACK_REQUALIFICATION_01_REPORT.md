@@ -198,3 +198,160 @@ rewritten, reordered or deleted. Rejected candidate material is preserved under 
 banner with corrections appended beneath it, never silently rewritten.
 
 <!-- END OF FROZEN PART I — nothing above this line may change -->
+
+---
+
+# PART II — RESULTS (append-only)
+
+**Terminal disposition: `RUNNER_STACK_REQUALIFICATION_01_QUALIFIED`**
+
+Everything below was appended after Part I was committed alone as checkpoint 1. Part I is a byte-exact
+prefix of this document.
+
+## II.1 Checkpoints
+
+| # | commit | content |
+|---|---|---|
+| 1 | `bc801c1ab625a3a5a1c29f9d5333b45f49b7c079` | frozen Part I evaluation protocol, alone |
+| 2 | `9a1bfaff42009f3ae336c4d875eb18e0ab9a6fb5` | successor tests + preliminary qualification binding |
+| 3 | `fb5619ba2b732fca6358de6a7ad5b025fab582f3` | independent-review fixes — **the final reviewed source/test commit** |
+| 4 | this commit | sealed report, qualification and review journal |
+
+**No production source was modified.** `future_lifecycle_runner.py` is byte-identical at
+`7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08` to the identity accepted by both
+`FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00` and `FUTURE_LIFECYCLE_RUNNER_HARDENING_00`. `instrumentation.py`,
+`lifecycle.py` and `lattice_bond/__init__.py` are unchanged. Exactly one existing file was edited:
+`tests/test_future_lifecycle_runner_integration.py`.
+
+## II.2 The composition boundary — measured, mis-stated twice, then correctly stated
+
+This is the mission's central result and the place where the review earned its keep.
+
+`future_lifecycle_runner.py` does **not** invoke `track_components`. It receives an already-built
+`TrackingResult` and a declared schedule as two separate arguments. Part I therefore forbade any claim of
+direct end-to-end wiring and required the *strongest real binding* to be measured instead.
+
+It was measured wrongly twice.
+
+- **Round 0** claimed the residual was a single position that is both detector-empty and event-free.
+  Reviewer A falsified this: the divergence class is unbounded in size.
+- **Round 1** claimed extension was possible anywhere with no point and no event, subject to monotonicity
+  and *preserving the horizon*. Reviewer A falsified this in **both** directions: the horizon is not
+  preserved in general; truncation is also possible; prefix extension is available to occupied runs; and
+  an unoccupied inserted frame is still refused inside a live interval.
+
+Both wordings are preserved in the qualification's `superseded_claims` with their falsifiers, and in the
+test module under an explicit superseded marker. Nothing was silently rewritten.
+
+**The rule, as finally measured and independently confirmed.** Let `OCCUPIED` be every track-point frame
+together with every event frame. A declared schedule is accepted iff
+
+1. it is non-empty, strictly increasing, non-negative integers;
+2. it contains every `OCCUPIED` frame;
+3. it contains no frame *other than that track's own point frames* strictly inside any track's point span,
+   and none strictly between a track's last point and that track's terminal-event frame;
+4. if some track's last point sits at the tracker's final frame, the declared last entry must equal it —
+   **otherwise the tail is free, both to extend arbitrarily and to truncate**.
+
+A zero-track run occupies nothing, so (2)–(4) are vacuous and only the well-formedness floor (1) survives.
+
+Consequences, each pinned by a test rather than asserted in prose: a three-sample run can be published as
+ending 1,000,000 frames later; an unoccupied trailing frame can be deleted; prefix extension is available
+to every run that does not begin at frame 0; and a run occupied from frame 0 to the horizon admits nothing
+at all.
+
+**Why the binding is nonetheless real.** Because 01R made the tracker stamp every event frame *from* the
+declared schedule, a disappearance at an empty detector frame is itself witnessed. That is why a
+value substitution at frame 5 is caught on a run where frame 5 has no component at all. Every perturbation
+that removes or displaces an occupied frame, or inserts into a live interval, blocks `COMPLETE` and writes
+nothing.
+
+**Recorded as limitation L1, a future real-runner obligation:** a real runner must hand *one* schedule
+object to both the tracker and the publisher. This mission does not wire one.
+
+## II.3 Required stack properties — result
+
+| # | property | result |
+|---|---|---|
+| 1 | mandatory schedule boundary | **PROVED.** `sampled_frames` is keyword-only, no default, non-optional; omission is a `TypeError`, explicit `None` a `ValueError`; `_transition_right_frame` is absent, no `range(len(frames))`, no alias; each transition's right frame comes from the schedule. `test_rs01_02`, `test_rs01_03`. |
+| 2 | schedule binding downstream | **PROVED WITH A STATED RESIDUAL.** See II.2 and limitation L1. Every witnessed perturbation blocks and writes nothing; the unwitnessed class is measured, pinned two-sided, and marked a future real-runner obligation. |
+| 3 | disappearance remains countable | **PROVED.** Full synthetic example at schedule `(0, 5, 11, 12)`: `DISSOLVED_DETECTED_TRACK` @ 5 alongside `RIGHT_CENSORED_AT_HORIZON` @ 12, `len(terminal_records) == len(tracks) == terminal_record_count`, `COMPLETE` published, analysis unlocked. A 27-run sweep at `(0, 5, 11)` — 20 of them containing a disappearance, pinned exactly — qualifies in every case. A lifecycle stripped of its `DISSOLUTION` fails closed at qualification, at publication and at analysis. `test_rs01_01`, `test_rs01_10`, `test_rs01_11`. |
+| 4 | lifecycle non-bypassability | **PROVED.** Reviewer A's 14-probe bypass battery — hand-authored manifests, manifest-only and lifecycle-only directories, non-canonical bytes, duplicate JSON keys, extra/missing keys, version fields, symlinked and hardlinked evidence, symlinked run directory and publication target, dangling symlinks, republication, direct `AnalysisAccess` construction — is fully blocked. All twelve manifest fields are tamper-covered (Reviewer B enumerated them from source). `test_rs01_08` and the pre-existing suite. |
+| 5 | current lineage binding | **PROVED.** `test_rs01_13` binds the four ancestry commits and every source and test hash; `test_rs01_12` re-collects the node list live against the successor qualification; `test_rs01_15` byte-pins the eight historical runner-package documents, the ledger's shape and the 01R qualification. |
+| 6 | hardening preservation | **PROVED.** The full 13-mutant mandatory ledger was extracted from the exact allowlisted qualifications, rerun after checkpoint 3, and 13/13 killed — each with at least one semantic killer that is not a hash tripwire. |
+
+## II.4 Tests, coverage and mutation
+
+| quantity | value |
+|---|---|
+| selectors | the four exact bound test files |
+| collected / passed / failed / skipped | **251 / 251 / 0 / 0** |
+| per-file collected | 63 / 52 / 87 / 49 |
+| canonical node-list digest | `a425c3736f0b5d819ef708c2433b785cf706381798ffc48a7ce4b5941161276a` |
+| Python / pytest | 3.11.15 / **8.4.2**, satisfying the declared `pytest>=8.2,<9` |
+| coverage of `future_lifecycle_runner.py` | **194 statements, 0 missed; 56 branches, 0 partial; 100%** |
+
+The coverage denominators were **measured**, not copied. They coincide with the historical
+`INTEGRATION_00` figures because the source is byte-identical — that is a verification, and both reviewers
+re-measured them independently.
+
+**Mutation.** 13 mandatory mutants (N1–N3 from `HARDENING_00`'s `mutation_proof`, P1–P10 from its
+`prior_mandatory_mutant_results`), all killed, each with a named non-tripwire semantic killer and each
+killed by its paired test alone. Seven tests in this suite are pure hash tripwires that fire on any byte
+change to a bound file; they are listed explicitly in the qualification and **excluded** from every
+reported semantic count, so "13/13" is not read as coverage it has not earned. The two disclosed
+out-of-scope survivors `MIN-3` and `EQUIV` are carried forward with the reviewers' assessments rather than
+silently re-classified.
+
+## II.5 Historical treatment
+
+`FUTURE_LIFECYCLE_RUNNER_INTEGRATION_00` and `FUTURE_LIFECYCLE_RUNNER_HARDENING_00` are **unchanged** and
+are described throughout as valid **only for their own commits and hashes**. Each bound a different
+integration-test file and a different `instrumentation.py` than this tree, and `test_rs01_13` now asserts
+those inequalities rather than merely asserting the fields are present. Before `test_rs01_15` no bound test
+referenced either package at all — the mandatory ledger could have been reduced or deleted with the suite
+green. That hole is closed and Reviewer B verified the closure with four ledger-integrity attacks,
+including reduction and survivor-renaming with the digest re-pinned to match.
+
+## II.6 Limitations, recorded rather than smoothed over
+
+| id | severity | limitation | pinned by |
+|---|---|---|---|
+| L1 | MATERIAL | the schedule is bound only on occupied frames and live intervals; elsewhere it is free in **both** directions | `test_rs01_09a/09b` |
+| L2 | MATERIAL | a zero-track run's schedule **content** is wholly unconstrained (the well-formedness floor still holds) | `test_rs01_09c` |
+| L3 | MINOR | a `Mapping` is accepted as a schedule at the runner boundary although the tracker refuses one | `test_rs01_04c` |
+| L4 | MINOR | a one-shot iterator schedule leaves an orphan lifecycle document behind a refused publication | `test_rs01_04b` |
+| L5 | MINOR | at least nine mutants in `_publish_new_canonical_file`'s defensive layer die only to hash tripwires; the list is **non-exhaustive** | — |
+| L6 | OBSERVATION | the evidence is content-addressed, not provenance-bound — copying a genuine pair unlocks analysis elsewhere (documented in the module docstring) | pre-existing |
+| L7 | OBSERVATION | the historical `MIN-3` survivor disclosure may be stale; carried forward unverified | — |
+
+L3 and L4 were **not repaired**: repair requires a production-source change, which Part I reserves for
+load-bearing failures. Neither produces false evidence, and both fail closed.
+
+## II.7 Firewall
+
+**No breach.** Only predeclared exact Git object paths. Zero directory listings, globs, wildcards,
+`git status`, `git ls-tree -r`, tree-wide `--name-only`/`--name-status`, `find`, `rg --files`, broad
+`git grep`, archive-on-tree operations, listing-then-filter, or project-memory searches; zero undeclared
+paths opened. The clean room held exactly 31 declared files, each byte-verified against its `c2fe25b`
+blob, and no glob was used inside it. Both reviewers operated under the same allowlist and confirmed the
+same. No scientific shard, manifest, world record, trajectory, candidate record, checkpoint, autopsy
+input, results directory, scientific or historical runner, prospective namespace, Stage-B or Kovacs
+material was opened, enumerated, named, hashed or executed. No engine, runner, simulation or sweep was
+run; no seed and no namespace allocated. Every fixture is a handcrafted synthetic boolean mask.
+
+## II.8 Qualification boundary
+
+- This is **synthetic mechanical requalification**.
+- The generic tracker and the synthetic future-runner stack are qualified, within the boundary of II.2.
+- **No historical runner has been changed.**
+- **No real runner is wired.**
+- **No scientific family is authorized.**
+- **No Stage-B result changes.**
+- **No prospective route is selected. Route G remains deferred.**
+- **Real-runner wiring remains a separate governance decision.**
+
+## II.9 Only authorized next action
+
+**Human review of `FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01`.** This mission does not begin it,
+and authorizes nothing else.
