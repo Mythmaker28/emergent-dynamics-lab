@@ -1,9 +1,24 @@
-"""Route E pre-run closure: thresholds, draw machinery, sampler gate, break cause,
-estimand ceiling and the fail-closed scientific entry point.
+"""Route E ANTICIPATORY frame: thresholds, draw machinery, sampler gate, outcome
+taxonomy, estimand ceiling and the fail-closed scientific entry point.
 
-This module closes the six obligations carried forward by the accepted human review
+SCOPE, RESTORED IN FULL (HR-11).  The accepted human review
 ``FUTURE_PROSPECTIVE_AXIS_CONVENTION_AND_FRAME_CLOSURE_01S_HUMAN_REVIEW.md``
-(commit ``00afcdd1aacbdf32bb030d85ced735a2920421f6``).  It closes **nothing else**.
+(commit ``00afcdd1aacbdf32bb030d85ced735a2920421f6``) section 8 carries these six items
+under a title that must be quoted with them:
+
+    **Obligations portees a la preregistration**
+    (``ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00``), a n'executer qu'apres
+    fermeture **et** revue humaine des blockers : 1. ... 6.
+
+The same section 8 says of the present mission, literally:
+
+    ``FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00`` **pourra** fermer les six
+    ``PRE_RUN_BLOCKER``.
+
+So this module is ANTICIPATORY work on PREREGISTRATION obligations A-F.  It does not
+close the mission's own mandate.  The mandate -- the six frozen ``PRE_RUN_BLOCKER``
+PRB-1..PRB-6 -- lives in ``future_route_e_pre_run_locks.py``.  A-F are never renamed
+onto PRB-1..6 and never counted as their closure.
 
 WHAT THIS MODULE IS NOT
 -----------------------
@@ -39,12 +54,14 @@ RE-L1  The inter-initial-condition discriminator does NOT meet the package's own
        therefore under-powered by that principle.  It is secondary, it never governs
        ``POSITIVE / NEGATIVE / INDETERMINATE``, and this limitation is declared rather
        than repaired.
-RE-L2  ``run_owned_future_pipeline`` has no authorisation parameter and cannot be
-       given one without modifying an accepted source, which the frozen allowlist
-       forbids.  It is therefore DECLARED OUT OF PROTOCOL as a direct scientific
-       entry point (the alternative closure the frozen PRB-5 text explicitly allows),
-       and the refusal pinned by test is a refusal of the real public function before
-       any effect, not an in-function authorisation check.
+RE-L2  The five accepted entry points named by PRB-5 have no authorisation parameter
+       and cannot be given one without modifying an accepted source, which the frozen
+       allowlist forbids.  They are therefore DECLARED OUT OF PROTOCOL as direct
+       scientific entry points -- the alternative the frozen PRB-5 text explicitly
+       allows -- and the in-protocol gate is ``future_route_e_pre_run_locks.route_e_entry``,
+       which refuses before every listed effect.  Called directly, outside the Route E
+       path, an accepted function still refuses at its own first check; that is a
+       weaker, separately bounded property (LK-L1).
 RE-L3  The equivalence between the engine's admissibility check and (B1) AND (B2) is
        exact in real arithmetic.  In IEEE-754 it can differ by at most the rounding of
        ``exp`` and the products near the boundary.  This module never gates on the
@@ -55,12 +72,19 @@ RE-L4  ``ASSOCIATION_GATE_TRACK_BREAK`` is a *cause label* attached to a termina
        any outcome, and it never removes a draw from the denominator.
 RE-L5  The horizon-censoring attribution threshold is an attribution rule for a null.
        It does NOT change the ternary decision, whose cut points remain frozen.
-RE-L6  The beacon round is specified as a rule over a future instant.  This module
-       performs no network access whatsoever; the beacon bytes are an argument.
-RE-L7  Closing the six obligations of this mission does NOT close the six frozen
-       infrastructure blockers PRB-1..PRB-6 of the 01S decision.  Only PRB-5 is
-       touched, and only by the refusal test of PRB-F.  PRB-1, PRB-2, PRB-3, PRB-4
-       and PRB-6 remain open.
+RE-L6  The beacon round is specified as a rule over an instant that is strictly after
+       a PUBLIC commitment.  This module performs no network access whatsoever: the
+       beacon response is an argument, no round is selected or consulted here, and no
+       verifier is bundled.
+RE-L7  A-F are PREREGISTRATION obligations.  Closing them does NOT close PRB-1..PRB-6,
+       whose closure is attempted in ``future_route_e_pre_run_locks.py`` and reported
+       there per blocker, including what remains open.
+RE-L8  The uniform laws realised here are exactly uniform on a FINITE dyadic grid, not
+       on a continuum.  See ``UNIFORMITY_STATEMENT`` for the four distinct claims and
+       the resolution bound.  No literal equality with Lebesgue measure is claimed.
+RE-L9  ``lexical_ceiling_screen`` is a limited software aid, not a semantic guarantee.
+       The enforceable ceiling is the closed-vocabulary ``RouteEClaim`` object, which
+       can only render from authorised templates.  Free text always needs human review.
 """
 
 from __future__ import annotations
@@ -69,6 +93,7 @@ import hashlib
 import math
 import os
 from dataclasses import dataclass
+from enum import Enum
 from pathlib import Path
 from typing import Any, Callable, Mapping, Sequence
 
@@ -104,6 +129,9 @@ __all__ = [
     "derive_seed_root",
     "draw_block",
     "draw_uniform",
+    "draw_index_below",
+    "UNIFORMITY_STATEMENT",
+    "REJECTION_PROOF",
     "beacon_round_at_or_after",
     "build_draw_plan",
     # PRB-C
@@ -121,12 +149,31 @@ __all__ = [
     "DELTA_DEFINITION",
     "CLAIM_CEILING",
     "FORBIDDEN_INFERENCES",
+    "lexical_ceiling_screen",
     "check_claim_within_ceiling",
     # PRB-F
     "OUT_OF_PROTOCOL_ENTRY_POINTS",
     "RouteEAuthorisation",
     "RouteEAuthorisationError",
     "open_route_e_scientific_run",
+    "BeaconUnavailable",
+    "BeaconInvalid",
+    "designated_round",
+    "consume_beacon_round",
+    "FROZEN_TERMINAL_STATES",
+    "DrawDisposition",
+    "DISPOSITION_TABLE",
+    "draw_score",
+    "robust_verdict",
+    "Estimand",
+    "ClaimScope",
+    "ClaimVerdict",
+    "RouteEClaim",
+    "ClaimRefused",
+    "render_claim",
+    "AmbiguousTermination",
+    "DrawOutcome",
+    "assemble_draw_outcome",
     "SCIENTIFIC_RUN_AUTHORIZED",
 ]
 
@@ -300,8 +347,14 @@ HORIZON_CENSORING_ATTRIBUTION = ThresholdSpec(
         "co-primary; never an exclusion and never a decision cut"
     ),
     quantity=(
-        "fraction of the 67 primary draws whose eligible component never reaches verified "
-        "material replacement before step 1024 (right-censored on turnover)"
+        "fraction of the 67 primary draws whose terminal disposition is exactly "
+        "OBSERVED_FAILURE_HORIZON_WITHOUT_REPLACEMENT -- terminal state "
+        "RIGHT_CENSORED_AT_HORIZON with cohort_residual > f at every sampled frame. "
+        "DISJOINT, by construction, from the four other observed failures "
+        "(DISSOLVED_DETECTED_TRACK, SPLIT_INTO_TRACKS, MERGED_INTO_TRACK, "
+        "UNRESOLVED_HANDOFF), from MECHANICALLY_INELIGIBLE, and from TECHNICALLY_UNKNOWN. "
+        "It is an OBSERVED failure inside the declared horizon, never an unknown "
+        "(HR-1, HR-2)."
     ),
     unit="dimensionless fraction, count of censored primary draws divided by 67",
     domain=(0.0, 1.0),
@@ -316,8 +369,12 @@ HORIZON_CENSORING_ATTRIBUTION = ThresholdSpec(
         "above 67 raises; no value is clamped, defaulted or silently coerced."
     ),
     derivation=(
-        "k <= 67 - C and POSITIVE requires k >= 42, so POSITIVE is unreachable iff C > 25. "
-        "Uses only the frozen n = 67 and the frozen cut k >= 42."
+        "This cause alone forecloses the POSITIVE arm exactly when it holds in more than "
+        "25 draws: a draw in this category scores 0, so k <= 67 - C, and POSITIVE requires "
+        "k >= 42, hence POSITIVE is unreachable iff C > 25.  Uses only the frozen n = 67 "
+        "and the frozen cut k >= 42.  Because the category is disjoint from every other "
+        "failure mode, exceeding the threshold attributes the null to horizon censoring "
+        "specifically, which is what A16 asks for."
     ),
     governs_ternary_decision=False,
 )
@@ -456,12 +513,27 @@ BEACON_SOURCE: Mapping[str, Any] = {
         "4af5a6e9c76a4bc09e76eae8991ef5ece45a"
     ),
     "round_rule": (
-        "the FIRST round whose beacon time is at or after T, where T is the committer "
-        "timestamp of the accepted preregistration commit plus 86400 seconds"
+        "the FIRST round whose beacon time is at or after T, where T is the PUBLIC "
+        "timestamp of the external commitment anchoring the preregistration root "
+        "(PRB-6) plus 86400 seconds.  The anchor is the PUBLIC commitment, never a local "
+        "git commit: a local hash is not a timestamp and does not prevent preparing "
+        "several commits and picking one after a reveal (HR-3)."
     ),
     "why_it_cannot_be_known_today": (
         "the beacon value for that round does not exist until the round is emitted, which "
-        "is strictly after the preregistration commit is written and anchored"
+        "is strictly after the PUBLIC commitment is published; and the commitment is "
+        "immutable, so no second candidate can be substituted after the reveal"
+    ),
+    "unavailability_rule": (
+        "if the designated round is not retrievable: WAIT and retry the SAME round.  "
+        "Never the next round, never an alternative endpoint, never another source.  If "
+        "the chain hash, the round number, the encoding or the signature is invalid: STOP "
+        "(HR-5)."
+    ),
+    "verification_rule": (
+        "the round signature MUST be verified cryptographically against the pinned chain "
+        "public key (BLS on G1, RFC 9380) and randomness MUST equal sha256(signature).  An "
+        "HTTP response is not evidence.  No verifier is bundled here: see LK-L2 (HR-4)."
     ),
     "public_verifiability": (
         "the round signature verifies against the fixed chain public key with BLS on G1 "
@@ -542,6 +614,77 @@ def draw_uniform(seed_root: bytes, domain: bytes, index: int) -> float:
     return int.from_bytes(draw_block(seed_root, domain, index)[0:8], "big") / float(2**64)
 
 
+def draw_index_below(seed_root: bytes, domain: bytes, index: int, modulus: int) -> int:
+    """An EXACTLY uniform integer on ``{0, ..., modulus-1}``.  No modulo bias (HR-6).
+
+    Rejection on the 64-bit block: with ``limit = (2**64 // modulus) * modulus``, a block
+    whose value is ``>= limit`` is REJECTED and a fresh block is drawn from a dedicated
+    sub-counter.  The accepted range is an exact multiple of ``modulus``, so every residue
+    class receives exactly ``limit // modulus`` of the ``2**64`` equiprobable blocks.  The
+    rejection probability is ``(2**64 mod modulus) / 2**64`` -- at most ``modulus / 2**64``,
+    so termination is certain and immediate in practice.
+    """
+    if isinstance(modulus, bool) or not isinstance(modulus, int) or modulus <= 0:
+        raise ValueError("modulus must be a positive plain int")
+    if modulus > 2**32:
+        raise ValueError("modulus must not exceed 2**32")
+    limit = (2**64 // modulus) * modulus
+    attempt = 0
+    while True:
+        if attempt >= 4096:  # pragma: no cover - probability below 2**-40 per draw
+            raise RuntimeError("integer rejection budget exhausted")
+        block = draw_block(seed_root, domain + b"#" + str(index).encode("ascii"), attempt)
+        value = int.from_bytes(block[0:8], "big")
+        if value < limit:
+            return value % modulus
+        attempt += 1
+
+
+UNIFORMITY_STATEMENT: Mapping[str, str] = {
+    "1_ideal_continuous": (
+        "The FROZEN 01S law is the continuous uniform measure on "
+        "A = Box AND (B1) AND (B2).  That is the target and it is not changed here."
+    ),
+    "2_realised_grid": (
+        "The generator realises a FINITE dyadic grid: every coordinate is "
+        "lo + (k / 2**64) * (hi - lo) for an integer k in [0, 2**64).  The grid step is "
+        "(hi - lo) / 2**64 -- 6.0e-19 on the affinity coordinates whose span is "
+        "2*ln(H/4) = 11.0904, and 3.3e-21 on the rate coordinates whose span is "
+        "1/16 - 1/1024."
+    ),
+    "3_exact_on_the_grid": (
+        "On that grid the realised law is EXACTLY uniform: the nine coordinates are "
+        "independent, each block is an equiprobable 64-bit value, the integer index draw "
+        "is unbiased by rejection, and rejection sampling preserves uniformity exactly on "
+        "the accepted subset (see REJECTION_PROOF)."
+    ),
+    "4_approximation_bound": (
+        "The realised law approximates the continuous target with a per-coordinate "
+        "resolution of at most (hi - lo) / 2**64.  A proposal can therefore differ from "
+        "its continuous counterpart by at most one grid step per coordinate, and the only "
+        "place this can change an ACCEPT/REJECT verdict is within one grid step of the "
+        "boundary of A.  NO LITERAL EQUALITY WITH LEBESGUE MEASURE IS CLAIMED.  The "
+        "acceptance predicate is the engine's own construction, so whatever the grid "
+        "yields, the sampled set is by definition exactly the set the engine admits."
+    ),
+}
+
+REJECTION_PROOF: str = (
+    "Claim.  Let X be uniform on a finite set B and let A be a subset of B with A "
+    "non-empty.  Draw X_1, X_2, ... independently and return the first X_m in A.  Then "
+    "the returned value is uniform on A.\n"
+    "Proof.  For any a in A, P(return = a) = sum over m >= 1 of "
+    "P(X_1 not in A) ... P(X_{m-1} not in A) * P(X_m = a) = sum over m >= 1 of "
+    "q^(m-1) * (1/|B|) with q = 1 - |A|/|B| < 1, which equals (1/|B|) / (1 - q) = 1/|A|. "
+    "This is independent of a, so the law is uniform on A. Termination is almost sure "
+    "because q < 1, and the expected number of proposals is |B|/|A|.  QED.\n"
+    "Application.  B is the nine-coordinate dyadic product grid; A is B intersected with "
+    "the declared design box (the triangular affinity cap) and with the engine's own "
+    "admissibility verdict.  Rejected proposals are consumed and never re-scaled, so the "
+    "hypothesis of independence across attempts holds by construction."
+)
+
+
 @dataclass(frozen=True)
 class DrawPlan:
     """The complete canonical order, computed before any engine step exists.
@@ -579,7 +722,9 @@ CANONICAL_DRAW_ORDER = (
     "1. laws:   for i = 0..66, consume proposals from domain b'LAW' at strictly increasing "
     "indices j = 0, 1, 2, ...; the proposal counter is NEVER reset and rejected proposals "
     "are consumed, never reordered; law i is the i-th ACCEPTED proposal.",
-    "2. sizes:  L_i = LATTICE_SIZES[floor(3 * u(b'SIZE', i))], u uniform in [0,1).",
+    "2. sizes:  L_i = LATTICE_SIZES[draw_index_below(seed_root, b'SIZE', i, 3)], an "
+    "EXACTLY uniform index on {0,1,2} obtained by rejecting the 2**64 % 3 residual block "
+    "-- no modulo bias, no floor(3*u) shortcut (HR-6).",
     "3. ics:    the two initial-condition stream indices of law i are 2i and 2i+1; index 2i "
     "is X_i1 and serves the primary, index 2i+1 is X_i2 and serves the discriminator only.",
     "4. worlds: executed in lexicographic (law index, initial-condition ordinal) order, "
@@ -587,11 +732,19 @@ CANONICAL_DRAW_ORDER = (
 )
 
 ANTI_REROLL = (
-    "The seed root binds the preregistration commit hash and a beacon round that does not "
-    "exist when that commit is written.  Exactly one derivation is permitted, and it must "
-    "be recorded in the family manifest before the first engine step.  Any reroll changes "
-    "either the commit or the round, both of which are public and both of which change "
-    "every derived byte.  There is no code path in this module that derives a second root.",
+    "The property is CONDITIONAL and the condition is named.  The seed root binds the "
+    "preregistration commit hash and a beacon round.  That alone does NOT prevent a "
+    "reroll: a local commit hash is not a public timestamp, so an operator could prepare "
+    "commit A, wait for its round, dislike the plan, discard A and prepare commit B.",
+    "The reroll is prevented ONLY when the preregistration root is published as a public, "
+    "immutable, independently verifiable commitment whose PUBLIC timestamp is strictly "
+    "earlier than the designated round's time.  That is exactly PRB-6, and PRB-6 is NOT "
+    "closed: no verifier is available inside the frozen allowlist (LK-L2).  Until it is, "
+    "the anti-reroll guarantee is UNPROVEN and is declared so (HR-3).",
+    "Mechanically enforced here: verify_public_commitment(..., must_precede_unix=T) "
+    "refuses any commitment published at or after the designated instant, and refuses "
+    "outright when no verifier is supplied.  Exactly one derivation is permitted and there "
+    "is no code path in this module that derives a second root.",
 )
 
 ORDER_INDEPENDENCE = (
@@ -636,7 +789,9 @@ def propose_law_fields(seed_root: bytes, proposal_index: int) -> dict[str, float
     imposed by a conditional draw -- a conditional draw would make the density on the
     triangle proportional to 1/(cap - theta_m) and would silently change the frozen law
     distribution.  It is imposed by rejection, in ``in_proposal_box``, which preserves
-    uniformity on the accepted region exactly.
+    uniformity on the accepted region EXACTLY ON THE FINITE DYADIC GRID the generator
+    realises -- not on the continuum.  See ``UNIFORMITY_STATEMENT`` and ``REJECTION_PROOF``
+    for the four distinct claims and the resolution bound (HR-6, HR-7).
     """
     if isinstance(proposal_index, bool) or not isinstance(proposal_index, int):
         raise TypeError("proposal_index must be a plain int")
@@ -766,7 +921,7 @@ def build_draw_plan(seed_root: bytes, *, count: int = N_LAW_DRAWS) -> DrawPlan:
     indices, consumed = sample_law_indices(seed_root, count)
     fields = tuple(propose_law_fields(seed_root, index) for index in indices)
     sizes = tuple(
-        LATTICE_SIZES[min(len(LATTICE_SIZES) - 1, int(draw_uniform(seed_root, _DOMAIN_SIZE, i) * len(LATTICE_SIZES)))]
+        LATTICE_SIZES[draw_index_below(seed_root, _DOMAIN_SIZE, i, len(LATTICE_SIZES))]
         for i in range(count)
     )
     ic_indices = tuple((2 * i, 2 * i + 1) for i in range(count))
@@ -941,6 +1096,38 @@ DELTA_DEFINITION: Mapping[str, Any] = {
         "L is drawn uniformly on {16, 24, 32}, so Delta is marginal over lattice size; a "
         "fixed allocation would not estimate the same quantity"
     ),
+    "numerator": (
+        "k = the number of primary draws whose disposition is DrawDisposition.SUCCESS.  "
+        "No other disposition ever enters the numerator."
+    ),
+    "denominator": (
+        "exactly 67, fixed at enrolment.  Every disposition stays in it -- observed "
+        "failures, mechanical ineligibility and technical unknowns alike.  No replacement, "
+        "no re-draw, no supplement, no exclusion, ever (HR-8)."
+    ),
+    "invalid_cases": (
+        "a draw whose evidence fails a contract check (schema, schedule, digest) is "
+        "TECHNICALLY_UNKNOWN: Y is unknown, never 0.  It stays in the denominator and "
+        "forces robust_verdict, which returns TECHNICAL_FAIL rather than a decision it "
+        "cannot support.  A family in which the global rejection fires is a FAILED family, "
+        "reported as such and never pruned."
+    ),
+    "relation_to_censoring": (
+        "OBSERVED_FAILURE_HORIZON_WITHOUT_REPLACEMENT contributes 0 to k, stays in the "
+        "denominator, and is the ONLY disposition that feeds "
+        "HORIZON_CENSORING_ATTRIBUTION.  It is disjoint from the four other observed "
+        "failures, so exceeding 25/67 attributes a null to horizon censoring specifically."
+    ),
+    "relation_to_mechanical_ineligibility": (
+        "MECHANICALLY_INELIGIBLE contributes 0 to k, stays in the denominator, and feeds "
+        "ONLY the frozen mechanical-ineligibility guard at 0.50, never the censoring "
+        "threshold and never the ternary cut points."
+    ),
+    "no_retroactive_effect": (
+        "nothing in this module recomputes, reweights or reclassifies k or the primary "
+        "verdict after observation.  psi, the censoring fraction and the ineligibility "
+        "fraction are reported alongside k; none of them is an input to it."
+    ),
 }
 
 CLAIM_CEILING: Mapping[str, Any] = {
@@ -979,15 +1166,38 @@ FORBIDDEN_INFERENCES: tuple[str, ...] = (
     "goal",
     "robust effect",
     "robustly",
+    "robust",
+    "complex life",
+    "alive",
+    "living",
+    "self-maintain",
+    "self-produc",
+    "self-repair",
+    "autopoie",
+    "owns",
+    "own ",
+    "governs",
+    "generalis",
+    "generaliz",
+    "any distribution",
+    "every law",
+    "all laws",
+    "no dependence",
+    "independent of initial",
+    "no initial-condition",
 )
 
 
-def check_claim_within_ceiling(claim: str) -> tuple[bool, tuple[str, ...]]:
-    """Refuse a claim sentence that reaches past the ceiling.
+def lexical_ceiling_screen(claim: str) -> tuple[bool, tuple[str, ...]]:
+    """A LIMITED SOFTWARE AID.  It is not, and cannot be, a semantic guarantee (HR-9).
 
-    Returns ``(within_ceiling, offending_terms)``.  A vague formulation such as
-    "robust effect" without an estimand and a domain is refused by construction, because
-    the vague terms are themselves in the forbidden list.
+    Substring screening over a finite blocklist.  A paraphrase that avoids every listed
+    term passes, so a ``True`` here means only "no listed term was found" -- never "this
+    sentence is within the ceiling".  The ENFORCEABLE ceiling is :class:`RouteEClaim`,
+    which can only render from authorised templates over a closed vocabulary.  Free text
+    always requires human review.
+
+    Returns ``(no_listed_term_found, offending_terms)``.
     """
     if not isinstance(claim, str):
         raise TypeError("claim must be a str")
@@ -1106,3 +1316,441 @@ SECOND_IC_CONTROL: Mapping[str, Any] = {
     ),
     "status": "fully specifiable at preregistration; no ambiguity remains open",
 }
+
+
+# --------------------------------------------------------------------------------------
+# HR-4 / HR-5.  Beacon consumption gate.  No network, no round selected, no verifier
+# bundled.  WAIT on unavailability, STOP on invalidity.
+# --------------------------------------------------------------------------------------
+
+
+class BeaconUnavailable(RuntimeError):
+    """The designated round could not be retrieved.  The protocol answer is WAIT."""
+
+    disposition = "WAIT"
+
+
+class BeaconInvalid(RuntimeError):
+    """Chain, round, encoding or signature is wrong.  The protocol answer is STOP."""
+
+    disposition = "STOP"
+
+
+BeaconSignatureVerifier = Callable[[bytes, int, bytes], bool]
+
+
+def designated_round(commitment_published_at_unix: int) -> int:
+    """The one round the protocol may ever consume, keyed on the PUBLIC commitment."""
+    if (
+        isinstance(commitment_published_at_unix, bool)
+        or not isinstance(commitment_published_at_unix, int)
+        or commitment_published_at_unix <= 0
+    ):
+        raise ValueError("commitment_published_at_unix must be a positive plain int")
+    return beacon_round_at_or_after(commitment_published_at_unix + 86400)
+
+
+def consume_beacon_round(
+    *,
+    response: Mapping[str, Any] | None,
+    expected_round: int,
+    verifier: BeaconSignatureVerifier | None,
+) -> bytes:
+    """Strictly parse and verify one beacon round, or raise WAIT / STOP.
+
+    ``response`` is supplied by the caller.  THIS FUNCTION PERFORMS NO NETWORK ACCESS and
+    selects no round.  Order: availability, then shape, then round identity, then
+    signature, then the randomness relation.
+    """
+    if isinstance(expected_round, bool) or not isinstance(expected_round, int) or expected_round <= 0:
+        raise BeaconInvalid("STOP: expected_round must be a positive plain int")
+
+    if response is None:
+        raise BeaconUnavailable(
+            "WAIT: the designated round is not retrievable.  Retry the SAME round; never "
+            "the next round, never an alternative endpoint, never another source."
+        )
+    if not isinstance(response, Mapping):
+        raise BeaconInvalid("STOP: the beacon response is malformed")
+
+    required = ("round", "randomness", "signature", "chain_hash")
+    missing = [key for key in required if key not in response]
+    if missing:
+        raise BeaconInvalid(f"STOP: the beacon response is missing {missing}")
+
+    chain_hash = response["chain_hash"]
+    if not isinstance(chain_hash, str) or chain_hash != BEACON_SOURCE["chain_hash"]:
+        raise BeaconInvalid("STOP: the beacon response is not from the pinned chain")
+
+    round_value = response["round"]
+    if isinstance(round_value, bool) or not isinstance(round_value, int):
+        raise BeaconInvalid("STOP: the round number is not a plain int")
+    if round_value != expected_round:
+        raise BeaconInvalid(
+            f"STOP: the response carries round {round_value}, not the designated round "
+            f"{expected_round}.  Changing round is forbidden."
+        )
+
+    try:
+        randomness = bytes.fromhex(str(response["randomness"]))
+        signature = bytes.fromhex(str(response["signature"]))
+    except (TypeError, ValueError) as exc:
+        raise BeaconInvalid("STOP: randomness or signature is not valid hex") from exc
+    if len(randomness) != 32:
+        raise BeaconInvalid("STOP: randomness must be exactly 32 bytes")
+    if len(signature) != 48:
+        raise BeaconInvalid("STOP: a quicknet G1 signature must be exactly 48 bytes")
+
+    if verifier is None:
+        raise BeaconInvalid(
+            "STOP: no BLS verifier supplied.  An HTTP response is not evidence; the round "
+            "signature must verify against the pinned public key.  No verifier is bundled "
+            "inside the frozen allowlist (LK-L2)."
+        )
+    if not callable(verifier):
+        raise BeaconInvalid("STOP: the supplied verifier is not callable")
+    try:
+        verdict = verifier(signature, round_value, bytes.fromhex(str(BEACON_SOURCE["public_key"])))
+    except Exception as exc:  # noqa: BLE001 - any verifier failure is a STOP
+        raise BeaconInvalid(f"STOP: the BLS verifier raised: {exc!r}") from exc
+    if verdict is not True:
+        raise BeaconInvalid("STOP: the round signature did not verify against the pinned key")
+
+    if hashlib.sha256(signature).digest() != randomness:
+        raise BeaconInvalid("STOP: randomness is not sha256(signature)")
+
+    return randomness
+
+
+# --------------------------------------------------------------------------------------
+# HR-1 / HR-2.  Terminal disposition of one primary draw.  Observed failures, mechanical
+# ineligibility and technical unknowns are three different things and never merge.
+# --------------------------------------------------------------------------------------
+
+FROZEN_TERMINAL_STATES: tuple[str, ...] = (
+    "DISSOLVED_DETECTED_TRACK",
+    "SPLIT_INTO_TRACKS",
+    "MERGED_INTO_TRACK",
+    "UNRESOLVED_HANDOFF",
+    "RIGHT_CENSORED_AT_HORIZON",
+)
+
+
+class DrawDisposition(Enum):
+    """Exhaustive, mutually exclusive disposition of one primary draw."""
+
+    SUCCESS = "SUCCESS"
+    OBSERVED_FAILURE_DISSOLVED = "OBSERVED_FAILURE_DISSOLVED"
+    OBSERVED_FAILURE_SPLIT = "OBSERVED_FAILURE_SPLIT"
+    OBSERVED_FAILURE_MERGED = "OBSERVED_FAILURE_MERGED"
+    OBSERVED_FAILURE_UNRESOLVED = "OBSERVED_FAILURE_UNRESOLVED"
+    OBSERVED_FAILURE_HORIZON_WITHOUT_REPLACEMENT = (
+        "OBSERVED_FAILURE_HORIZON_WITHOUT_REPLACEMENT"
+    )
+    MECHANICALLY_INELIGIBLE = "MECHANICALLY_INELIGIBLE"
+    TECHNICALLY_UNKNOWN = "TECHNICALLY_UNKNOWN"
+
+
+DISPOSITION_TABLE: Mapping[str, Mapping[str, Any]] = {
+    DrawDisposition.SUCCESS.value: {
+        "observed": True, "eligible": True, "Y": 1, "in_denominator": True,
+        "terminal_state": "RIGHT_CENSORED_AT_HORIZON",
+        "effect": "the only disposition that can score 1, and only with verified replacement",
+    },
+    DrawDisposition.OBSERVED_FAILURE_DISSOLVED.value: {
+        "observed": True, "eligible": True, "Y": 0, "in_denominator": True,
+        "terminal_state": "DISSOLVED_DETECTED_TRACK",
+        "effect": "observed failure; counts toward NEGATIVE; never called censoring",
+    },
+    DrawDisposition.OBSERVED_FAILURE_SPLIT.value: {
+        "observed": True, "eligible": True, "Y": 0, "in_denominator": True,
+        "terminal_state": "SPLIT_INTO_TRACKS",
+        "effect": "observed failure; counts toward NEGATIVE; never called censoring",
+    },
+    DrawDisposition.OBSERVED_FAILURE_MERGED.value: {
+        "observed": True, "eligible": True, "Y": 0, "in_denominator": True,
+        "terminal_state": "MERGED_INTO_TRACK",
+        "effect": "observed failure; counts toward NEGATIVE; never called censoring",
+    },
+    DrawDisposition.OBSERVED_FAILURE_UNRESOLVED.value: {
+        "observed": True, "eligible": True, "Y": 0, "in_denominator": True,
+        "terminal_state": "UNRESOLVED_HANDOFF",
+        "effect": "observed failure; counts toward NEGATIVE; never called censoring",
+    },
+    DrawDisposition.OBSERVED_FAILURE_HORIZON_WITHOUT_REPLACEMENT.value: {
+        "observed": True, "eligible": True, "Y": 0, "in_denominator": True,
+        "terminal_state": "RIGHT_CENSORED_AT_HORIZON",
+        "effect": "THE censoring category; observed inside the declared horizon, hence a "
+                  "legitimate 0; drives HORIZON_CENSORING_ATTRIBUTION and nothing else",
+    },
+    DrawDisposition.MECHANICALLY_INELIGIBLE.value: {
+        "observed": True, "eligible": False, "Y": 0, "in_denominator": True,
+        "terminal_state": None,
+        "effect": "no eligible component; a true zero; drives the mechanical-ineligibility "
+                  "guard, never the censoring threshold",
+    },
+    DrawDisposition.TECHNICALLY_UNKNOWN.value: {
+        "observed": False, "eligible": None, "Y": None, "in_denominator": True,
+        "terminal_state": None,
+        "effect": "software or contract failure; Y is UNKNOWN and is NEVER silently 0; "
+                  "stays in the denominator and forces the robust rule",
+    },
+}
+
+
+def draw_score(disposition: DrawDisposition) -> int | None:
+    """``1``, ``0`` or ``None``.  ``None`` means unknown and never becomes 0."""
+    if not isinstance(disposition, DrawDisposition):
+        raise TypeError("disposition must be a DrawDisposition")
+    return DISPOSITION_TABLE[disposition.value]["Y"]
+
+
+def robust_verdict(*, successes: int, unknowns: int, n: int = N_LAW_DRAWS) -> str:
+    """The frozen ternary rule, made robust to genuinely unknown draws (HR-2).
+
+    With ``unknowns == 0`` this reduces EXACTLY to the frozen rule on ``k = successes``.
+    With unknowns present it never imputes them: a decision is returned only when it
+    holds for every completion of the unknowns.
+    """
+    for name, value in (("successes", successes), ("unknowns", unknowns), ("n", n)):
+        if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+            raise TypeError(f"{name} must be a non-negative plain int")
+    if n != N_LAW_DRAWS:
+        raise ValueError("n is frozen at 67 and may not be changed")
+    if successes + unknowns > n:
+        raise ValueError("successes + unknowns cannot exceed n")
+    if successes >= POSITIVE_MIN_K:
+        return "POSITIVE"
+    if successes + unknowns <= NEGATIVE_MAX_K:
+        return "NEGATIVE"
+    if unknowns > 0:
+        return "TECHNICAL_FAIL"
+    return "INDETERMINATE"
+
+
+# --------------------------------------------------------------------------------------
+# HR-9.  The enforceable ceiling: a closed-vocabulary claim object that can only render
+# from authorised templates.  Anything not representable by the schema is refused.
+# --------------------------------------------------------------------------------------
+
+
+class Estimand(Enum):
+    DELTA_F_001 = "Delta(f=0.01)"
+    DELTA_F_005 = "Delta(f=0.05)"
+    DELTA_F_020 = "Delta(f=0.20)"
+    PSI_IC_DISCORDANCE = "psi = P(Y_i1 != Y_i2)"
+    CENSORING_FRACTION = "fraction OBSERVED_FAILURE_HORIZON_WITHOUT_REPLACEMENT"
+    MECHANICAL_INELIGIBILITY_FRACTION = "fraction MECHANICALLY_INELIGIBLE"
+
+
+class ClaimScope(Enum):
+    DRAW_LEVEL_FROZEN_FRAME = (
+        "the draw, inside the frozen frame: square periodic lattices of {16,24,32}, "
+        "dt = m_max = n_max = 1, laws uniform on A = Box AND (B1) AND (B2) with "
+        "epsilon_b_hat <= 1, initial conditions i.i.d. U[0,1] with b == 0, horizon 1024, "
+        "cadence 16"
+    )
+
+
+class ClaimVerdict(Enum):
+    POSITIVE = "POSITIVE"
+    NEGATIVE = "NEGATIVE"
+    INDETERMINATE = "INDETERMINATE"
+    TECHNICAL_FAIL = "TECHNICAL_FAIL"
+    INDETERMINATE_MECHANICAL_INELIGIBILITY = "INDETERMINATE - MECHANICAL_INELIGIBILITY"
+    INDETERMINATE_REPLACEMENT_CONVENTION = "INDETERMINATE - REPLACEMENT_CONVENTION"
+
+
+CLAIM_TEMPLATES: Mapping[str, str] = {
+    "POSITIVE": (
+        "In the declared frame ({scope}), the conjunction persistence AND verified "
+        "material replacement is instantiated in a proportion {estimand} of draws, with "
+        "k = {k} of n = {n} and an exact two-sided 95% Clopper-Pearson interval "
+        "[{low:.6f}, {high:.6f}]."
+    ),
+    "NEGATIVE": (
+        "In the declared frame ({scope}), the conjunction persistence AND verified "
+        "material replacement is instantiated in a proportion {estimand} of draws, with "
+        "k = {k} of n = {n} and an exact two-sided 95% Clopper-Pearson interval "
+        "[{low:.6f}, {high:.6f}]."
+    ),
+    "INDETERMINATE": (
+        "In the declared frame ({scope}), the family is INDETERMINATE for {estimand}: "
+        "k = {k} of n = {n}, exact two-sided 95% Clopper-Pearson interval "
+        "[{low:.6f}, {high:.6f}], which separates neither boundary."
+    ),
+    "TECHNICAL_FAIL": (
+        "In the declared frame ({scope}), the family is TECHNICAL_FAIL for {estimand}: "
+        "k = {k} of n = {n} with unknown draws present, so no decision is supported."
+    ),
+    "INDETERMINATE - MECHANICAL_INELIGIBILITY": (
+        "In the declared frame ({scope}), the family is INDETERMINATE - "
+        "MECHANICAL_INELIGIBILITY for {estimand}: k = {k} of n = {n}."
+    ),
+    "INDETERMINATE - REPLACEMENT_CONVENTION": (
+        "In the declared frame ({scope}), the family is INDETERMINATE - "
+        "REPLACEMENT_CONVENTION for {estimand}: k = {k} of n = {n}."
+    ),
+}
+
+
+class ClaimRefused(ValueError):
+    """The claim is not representable by the closed schema and is therefore refused."""
+
+
+@dataclass(frozen=True)
+class RouteEClaim:
+    """The only shape a Route E claim may ever take.  Renders from templates only."""
+
+    estimand: Estimand
+    scope: ClaimScope
+    verdict: ClaimVerdict
+    k: int
+    n: int
+    ci_low: float
+    ci_high: float
+
+    def __post_init__(self) -> None:
+        if not isinstance(self.estimand, Estimand):
+            raise ClaimRefused("estimand must be a member of Estimand")
+        if not isinstance(self.scope, ClaimScope):
+            raise ClaimRefused("scope must be a member of ClaimScope")
+        if not isinstance(self.verdict, ClaimVerdict):
+            raise ClaimRefused("verdict must be a member of ClaimVerdict")
+        for name in ("k", "n"):
+            value = getattr(self, name)
+            if isinstance(value, bool) or not isinstance(value, int) or value < 0:
+                raise ClaimRefused(f"{name} must be a non-negative plain int")
+        if self.n != N_LAW_DRAWS:
+            raise ClaimRefused("n is frozen at 67")
+        if self.k > self.n:
+            raise ClaimRefused("k cannot exceed n")
+        for name in ("ci_low", "ci_high"):
+            value = getattr(self, name)
+            if not isinstance(value, float) or not math.isfinite(value) or not 0.0 <= value <= 1.0:
+                raise ClaimRefused(f"{name} must be a finite float in [0,1]")
+        if self.ci_low > self.ci_high:
+            raise ClaimRefused("ci_low must not exceed ci_high")
+
+    def render(self) -> str:
+        """Render from the authorised template.  There is no free-text path."""
+        template = CLAIM_TEMPLATES[self.verdict.value]
+        return template.format(
+            scope=self.scope.value,
+            estimand=self.estimand.value,
+            k=self.k,
+            n=self.n,
+            low=self.ci_low,
+            high=self.ci_high,
+        )
+
+
+def render_claim(claim: RouteEClaim) -> str:
+    if not isinstance(claim, RouteEClaim):
+        raise ClaimRefused("only a RouteEClaim may be rendered; free text is refused")
+    return claim.render()
+
+
+# --------------------------------------------------------------------------------------
+# HR-10.  The association-gate cause is INTEGRATED: the Route E outcome assembly calls
+# the classifier, and an ambiguous refusal pattern is fail-closed.
+# --------------------------------------------------------------------------------------
+
+
+class AmbiguousTermination(RuntimeError):
+    """A terminal event whose cause cannot be decided.  Fail-closed, never guessed."""
+
+
+@dataclass(frozen=True)
+class DrawOutcome:
+    """The assembled outcome of ONE primary draw.  Inert; holding it grants nothing."""
+
+    disposition: DrawDisposition
+    score: int | None
+    terminations: tuple[TrackTermination, ...]
+    association_gate_breaks: int
+
+
+def assemble_draw_outcome(
+    tracking: TrackingResult,
+    *,
+    persisted_to_horizon: bool,
+    replacement_verified: bool,
+    eligible: bool,
+    evidence_ok: bool = True,
+    classifier: Callable[[TrackingResult], tuple["TrackTermination", ...]] | None = None,
+) -> DrawOutcome:
+    """THE Route E production path for one draw.  It ALWAYS calls the classifier.
+
+    This is the integration HR-10 requires: ``classify_track_terminations`` is not an
+    isolated helper any more, it is on the only path that can ever produce a Route E
+    outcome.  A test can prove the call by substituting ``classifier``.
+
+    Fail-closed order: contract evidence, then eligibility, then classification, then
+    the conjunction.  An ambiguous association-gate pattern raises rather than guessing.
+    """
+    if not isinstance(tracking, TrackingResult):
+        raise TypeError("tracking must be a TrackingResult")
+    for name, value in (
+        ("persisted_to_horizon", persisted_to_horizon),
+        ("replacement_verified", replacement_verified),
+        ("eligible", eligible),
+        ("evidence_ok", evidence_ok),
+    ):
+        if not isinstance(value, bool):
+            raise TypeError(f"{name} must be a bool")
+
+    if not evidence_ok:
+        return DrawOutcome(
+            disposition=DrawDisposition.TECHNICALLY_UNKNOWN,
+            score=None,
+            terminations=(),
+            association_gate_breaks=0,
+        )
+
+    classify = classifier if classifier is not None else classify_track_terminations
+    terminations = classify(tracking)
+    if not isinstance(terminations, tuple):
+        raise TypeError("the classifier must return a tuple of TrackTermination")
+
+    breaks = sum(1 for item in terminations if item.cause == "ASSOCIATION_GATE_TRACK_BREAK")
+
+    if not eligible:
+        return DrawOutcome(
+            disposition=DrawDisposition.MECHANICALLY_INELIGIBLE,
+            score=0,
+            terminations=terminations,
+            association_gate_breaks=breaks,
+        )
+
+    if persisted_to_horizon:
+        disposition = (
+            DrawDisposition.SUCCESS
+            if replacement_verified
+            else DrawDisposition.OBSERVED_FAILURE_HORIZON_WITHOUT_REPLACEMENT
+        )
+    else:
+        observed = {
+            "DISSOLVED_DETECTED_TRACK": DrawDisposition.OBSERVED_FAILURE_DISSOLVED,
+            "SPLIT_INTO_TRACKS": DrawDisposition.OBSERVED_FAILURE_SPLIT,
+            "MERGED_INTO_TRACK": DrawDisposition.OBSERVED_FAILURE_MERGED,
+            "UNRESOLVED_HANDOFF": DrawDisposition.OBSERVED_FAILURE_UNRESOLVED,
+        }
+        states = {item.terminal_state for item in terminations}
+        candidates = {observed[state] for state in states if state in observed}
+        if len(candidates) != 1:
+            raise AmbiguousTermination(
+                "refused: the draw did not reach the horizon and its terminal states are "
+                f"{sorted(states)}, which do not resolve to exactly one observed failure"
+            )
+        disposition = candidates.pop()
+
+    return DrawOutcome(
+        disposition=disposition,
+        score=draw_score(disposition),
+        terminations=terminations,
+        association_gate_breaks=breaks,
+    )
+
+
+check_claim_within_ceiling = lexical_ceiling_screen
