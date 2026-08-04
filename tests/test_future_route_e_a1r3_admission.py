@@ -71,7 +71,13 @@ def _make_world(
             mask = np.zeros(SHAPE, dtype=bool)
             mask[3, :] = True  # a full row wraps the torus in x
         matter = np.where(mask, 0.9, 0.05).astype(np.float64)
-        tracer = np.where(mask, 0.9 * residual, 0.0).astype(np.float64)
+        # A1-R5 enrolment invariant: at the first sampled frame the tracer equals the
+        # matter inside the enrolled union and is zero outside, so residual(t0) == 1.
+        # The residual then falls to `residual` by the horizon: a real replacement history.
+        share = 1.0 if position == 0 else (
+            1.0 + (residual - 1.0) * position / float(len(FRAMES) - 1)
+        )
+        tracer = np.where(mask, 0.9 * share, 0.0).astype(np.float64)
         for channel, array in (
             ("mask", mask),
             ("matter", matter),

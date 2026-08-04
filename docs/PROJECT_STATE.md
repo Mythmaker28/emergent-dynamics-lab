@@ -684,3 +684,11 @@ admissible as Route E evidence.
 · `scientific_run_authorized = false`. No `54xxx` or Route E seed ran; no scientific
 namespace exists. Exact next authorized action: one independent human review of commit
 `FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00`.
+
+## Route E A1-R5 (2026-08-04)
+
+Branch `codex/route-e-a1r5-mechanical-trust-closure`, base `2cb7a48`. Engineering only.
+Eight A1-R4 flags retracted in `A1R5_MECHANICAL_TRUST_CLOSURE.json`. Enrolment proof,
+per-frame bounds, returned classification, public aggregator and the 64-bit mapping
+dossier are closed. Three external STOPs remain open; 23 of the 41 test obligations are
+not implemented. `scientific_run_authorized = false`.

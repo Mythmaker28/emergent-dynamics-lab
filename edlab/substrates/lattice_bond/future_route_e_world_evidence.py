@@ -214,6 +214,9 @@ class WorldEvidence:
     #: f -> the frozen DrawDisposition value
     disposition_by_f: Mapping[str, str]
     observed_from_first_frame: bool
+    #: A1-R5: the trust boundary is a RETURNED FIELD, mechanically attached to
+    #: every world, never a comment.  The scientific entry point refuses it.
+    classification: str
     notes: tuple[str, ...]
 
 
@@ -271,6 +274,7 @@ def derive_world_outcome(
             Y_by_f=zero,
             disposition_by_f={k: "MECHANICALLY_INELIGIBLE" for k in zero},
             observed_from_first_frame=False,
+            classification=_strict.ENGINE_UNPROVEN_CLASS,
             notes=tuple(notes),
         )
 
@@ -280,25 +284,58 @@ def derive_world_outcome(
     # PHYSICAL BOUNDS, enforced BEFORE any outcome arithmetic.  A1-R3 computed the
     # residual straight from the arrays; a negative tracer, a tracer above the matter it
     # labels, a NaN or a zero denominator all produced a silent number.
-    matter_last = read_channel(directory, len(labels) - 1, "matter", shape)
-    tracer_last = read_channel(directory, len(labels) - 1, "tracer", shape)
-    matter_first = read_channel(directory, 0, "matter", shape)
-    tracer_first = read_channel(directory, 0, "tracer", shape)
-    for name, array in (
-        ("matter@first", matter_first), ("tracer@first", tracer_first),
-        ("matter@horizon", matter_last), ("tracer@horizon", tracer_last),
-    ):
-        _strict.require_finite(array, name, code="CHANNEL_NON_FINITE")
-    for name, matter, tracer in (
-        ("first", matter_first, tracer_first), ("horizon", matter_last, tracer_last)
-    ):
+    # A1-R5: EVERY sampled frame, not only enrolment and horizon.  A1-R4 checked two of
+    # them, so a tracer that went negative in the middle of a run passed unnoticed.
+    matter_by_position: list[np.ndarray] = []
+    tracer_by_position: list[np.ndarray] = []
+    for position, label in enumerate(labels):
+        matter = read_channel(directory, position, "matter", shape)
+        tracer = read_channel(directory, position, "tracer", shape)
+        _strict.require_finite(matter, f"matter@{label}", code="CHANNEL_NON_FINITE")
+        _strict.require_finite(tracer, f"tracer@{label}", code="CHANNEL_NON_FINITE")
         if float(np.min(matter)) < 0.0:
-            raise _strict.StrictRefusal(f"matter@{name} is negative", reason_code="MATTER_NEGATIVE")
+            raise _strict.StrictRefusal(f"matter@{label} is negative", reason_code="MATTER_NEGATIVE")
         if float(np.min(tracer)) < 0.0:
-            raise _strict.StrictRefusal(f"tracer@{name} is negative", reason_code="TRACER_NEGATIVE")
+            raise _strict.StrictRefusal(f"tracer@{label} is negative", reason_code="TRACER_NEGATIVE")
         if float(np.max(tracer - matter)) > 1e-12:
             raise _strict.StrictRefusal(
-                f"tracer@{name} exceeds the matter it labels", reason_code="TRACER_ABOVE_MATTER"
+                f"tracer@{label} exceeds the matter it labels", reason_code="TRACER_ABOVE_MATTER"
+            )
+        matter_by_position.append(matter)
+        tracer_by_position.append(tracer)
+    matter_first, tracer_first = matter_by_position[0], tracer_by_position[0]
+    matter_last, tracer_last = matter_by_position[-1], tracer_by_position[-1]
+
+    # A1-R5 ENROLMENT PROOF.  The cohort is enrolled ONCE, at the first sampled frame,
+    # inside the detected components and nowhere else.  A fixture that starts already
+    # depleted is refused: it would satisfy "residual <= f" without any replacement
+    # having occurred, which is the whole quantity under test.
+    enrolled_union = np.zeros(shape, dtype=bool)
+    for component in frames[0]:
+        rows, cols = np.divmod(np.asarray(sorted(int(c) for c in component.cells)), shape[1])
+        enrolled_union[rows, cols] = True
+    if bool(np.any(enrolled_union)):
+        inside = np.abs(tracer_first[enrolled_union] - matter_first[enrolled_union])
+        if float(np.max(inside)) > 1e-12:
+            raise _strict.StrictRefusal(
+                "at enrolment the tracer must equal the matter inside the enrolled union; "
+                "a pre-depleted fixture proves no replacement",
+                reason_code="ENROLMENT_NOT_FULLY_LABELLED",
+            )
+        outside = tracer_first[~enrolled_union]
+        if outside.size and float(np.max(np.abs(outside))) > 1e-12:
+            raise _strict.StrictRefusal(
+                "at enrolment the tracer must be zero outside the enrolled union",
+                reason_code="ENROLMENT_LABEL_LEAKED",
+            )
+        mass0 = float(np.sum(matter_first[enrolled_union]))
+        cohort0 = float(np.sum(tracer_first[enrolled_union]))
+        if not mass0 > 0.0:
+            raise _strict.StrictRefusal("the enrolled union carries no mass", reason_code="COHORT_EMPTY")
+        if abs(cohort0 / mass0 - 1.0) > 1e-12:
+            raise _strict.StrictRefusal(
+                f"cohort_residual(t0) is {cohort0 / mass0!r}, frozen at exactly 1",
+                reason_code="ENROLMENT_RESIDUAL_NOT_ONE",
             )
 
     by_index_last = {int(c.index): c for c in frames[-1]}
@@ -388,6 +425,7 @@ def derive_world_outcome(
             Y_by_f=zero,
             disposition_by_f=disposition,
             observed_from_first_frame=False,
+            classification=_strict.ENGINE_UNPROVEN_CLASS,
             notes=tuple(notes),
         )
 
@@ -421,6 +459,7 @@ def derive_world_outcome(
         Y_by_f=Y_by_f,
         disposition_by_f=disposition_by_f,
         observed_from_first_frame=observed_from_first,
+        classification=_strict.ENGINE_UNPROVEN_CLASS,
         notes=tuple(notes),
     )
 
