@@ -971,7 +971,7 @@ CURRENT_SOURCE_QUALIFICATION = (
     "CURRENT_SOURCE_QUALIFICATION.json"
 )
 CURRENT_SOURCE_QUALIFICATION_SHA256 = (
-    "ae43faa0518e67fdf0ae94245ac0ecd2c2fee404d56e9cbc0a65c8ce2bb045dd"
+    "89e824bd27703e8264d52f99b243679035b440a8b46eba6c6a91790a153c234d"
 )
 
 
@@ -984,15 +984,20 @@ def test_record_02_the_record_binds_the_current_source_bytes() -> None:
     record = json.loads((_REPO_ROOT / CURRENT_SOURCE_QUALIFICATION).read_text("utf-8"))
     bound = record["current_source_bound_by_this_mission"]
     assert set(bound) == {
-        "edlab/route_e_protocol.py",
-        "edlab/substrates/lattice_bond/future_route_e_world_evidence.py",
         "edlab/substrates/lattice_bond/future_route_e_execution.py",
         "edlab/substrates/lattice_bond/future_route_e_admission.py",
     }
     for relative, entry in bound.items():
-        payload = (_REPO_ROOT / relative).read_bytes()
-        assert hashlib.sha256(payload).hexdigest() == entry["sha256"], relative
-        assert len(payload) == entry["bytes"], relative
+        # A1-R4: the record is APPEND-ONLY and is restored byte-identically, so it binds the
+        # A1-R2 bytes of these two modules.  A1-R3 and A1-R4 have since changed them.  The
+        # historical binding is asserted against the A1-R2 blobs read from Git, never by
+        # rebaselining the record -- rebaselining is precisely the A1-R3 incident.
+        blob = subprocess.run(
+            ["git", "show", f"199f29eba5262f10fd03184e1af5f193474325bf:{relative}"],
+            capture_output=True, cwd=str(_REPO_ROOT), check=True,
+        ).stdout
+        assert hashlib.sha256(blob).hexdigest() == entry["sha256"], relative
+        assert len(blob) == entry["bytes"], relative
         assert entry["source_changed_by_this_mission"] is True
 
 

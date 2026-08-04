@@ -45,6 +45,7 @@ from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 from ... import route_e_protocol as _p
+from ... import route_e_strict as _strict
 from . import future_route_e_pre_run_frame as _frame
 from . import future_route_e_pre_run_locks as _locks
 from . import future_route_e_world_evidence as _evidence
@@ -579,7 +580,8 @@ def verify_route_e_run(
         except (KeyError, TypeError, ValueError) as exc:
             raise _refuse(f"the horizon/cadence declaration is malformed: {exc}", "MANIFEST_SCHEMA") from exc
         sampled_frames = tuple(range(0, horizon + 1, cadence))
-        spec = MeasurementSpec(min_cells=1)
+        spec = MeasurementSpec()
+        _strict.check_frozen_measurement_spec(spec)
         outcomes = tuple(
             _verify_world(
                 root, attempt, detector=spec.detector_spec(), tracker=spec.tracker_spec(),

@@ -77,3 +77,4 @@
 | EXP-GT-A0-20260713-001 | 2026-07-13 | ontology audit of A | **FAILED — ONTOLOGY** (benchmark-label error; D-052 repair withdrawn) | D-053 |
 | EXP-GT-ACERT-20260713-001 | 2026-07-13 | architecture resolution certificate | **QUALIFIED** (development) — tol 0, resolution 4 steps / 1 edge / 1 node | D-055 |
 | EXP-GT-03-20260713-001 | 2026-07-13 | frozen factorized observer, held-out | **FAILED — IMPLEMENTATION** (phase invariance; over-abstention x2) | D-056 |
+| A1R4-VERIFIABLE-CLOSURE-00 | 2026-08-04 | engineering only; no scientific run; 3 STOPs declared; branch codex/route-e-a1r4-verifiable-closure |

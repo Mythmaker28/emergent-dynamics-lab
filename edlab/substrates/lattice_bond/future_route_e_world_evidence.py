@@ -35,6 +35,7 @@ No engine step is taken anywhere in this module and no ``LatticeBondEngine`` is 
 from __future__ import annotations
 
 import hashlib
+import math
 import struct
 from dataclasses import dataclass
 from pathlib import Path
@@ -42,6 +43,7 @@ from typing import Any, Mapping, Sequence
 
 import numpy as np
 
+from ... import route_e_strict as _strict
 from .engine import LatticeBondState
 from .instrumentation import (
     DetectedComponent,
@@ -88,16 +90,16 @@ def read_channel(
     cells = shape[0] * shape[1]
     if channel == "mask":
         if len(payload) != cells:
-            raise ValueError(f"{path.name}: mask length {len(payload)} != {cells}")
+            raise _strict.StrictRefusal(f"{path.name}: mask length {len(payload)} != {cells}", reason_code="CHANNEL_SHAPE")
         values = np.frombuffer(payload, dtype=np.uint8)
         if bool(np.any(values > 1)):
-            raise ValueError(f"{path.name}: mask is not a canonical 0/1 field")
+            raise _strict.StrictRefusal(f"{path.name}: mask is not a canonical 0/1 field", reason_code="CHANNEL_SHAPE")
         return values.reshape(shape).astype(bool)
     if len(payload) != cells * 8:
-        raise ValueError(f"{path.name}: float length {len(payload)} != {cells * 8}")
+        raise _strict.StrictRefusal(f"{path.name}: float length {len(payload)} != {cells * 8}", reason_code="CHANNEL_SHAPE")
     values = np.frombuffer(payload, dtype="<f8")
     if not bool(np.isfinite(values).all()):
-        raise ValueError(f"{path.name}: channel carries a non-finite value")
+        raise _strict.StrictRefusal(f"{path.name}: channel carries a non-finite value", reason_code="CHANNEL_NON_FINITE")
     return values.reshape(shape)
 
 
@@ -148,16 +150,44 @@ def build_join_document(
 
     owner: dict[tuple[int, int], int] = {}
     for track in tracking.tracks:
+        if int(track.track_id) < 0:
+            raise _strict.StrictRefusal(
+                f"track {track.track_id} has a negative identifier", reason_code="JOIN_NEGATIVE_TRACK_ID"
+            )
         for point in track.points:
-            owner[(int(point.frame), int(point.component_index))] = int(track.track_id)
+            key = (int(point.frame), int(point.component_index))
+            if key in owner:
+                raise _strict.StrictRefusal(
+                    f"component {key} is claimed by two tracks", reason_code="JOIN_DUPLICATE"
+                )
+            owner[key] = int(track.track_id)
 
     assignments: list[list[Any]] = []
     for position, label in enumerate(sampled_frames):
         for component in frames[position]:
-            digest = cell_set_digest(component.cells)
-            track_id = owner.get((int(label), int(component.index)), -1)
-            assignments.append([int(label), digest, track_id])
+            key = (int(label), int(component.index))
+            if key not in owner:
+                # A1-R4 closes the A1-R3 design choice of recording a negative track identifier.  An
+                # orphan component is a gap in the join, not evidence to carry forward:
+                # the frozen requirement is EXACT coverage of every detected component.
+                raise _strict.StrictRefusal(
+                    f"component {key} is detected but assigned to no track",
+                    reason_code="JOIN_ORPHAN_COMPONENT",
+                )
+            assignments.append([int(label), cell_set_digest(component.cells), owner[key]])
     assignments.sort(key=lambda item: (item[0], item[1]))
+
+    detected = sum(len(frame_components) for frame_components in frames)
+    if len(assignments) != detected:
+        raise _strict.StrictRefusal(
+            f"the join holds {len(assignments)} assignments for {detected} detected components",
+            reason_code="JOIN_COVERAGE_INEXACT",
+        )
+    if len(owner) != detected:
+        raise _strict.StrictRefusal(
+            "a track claims a component that no frame detected",
+            reason_code="JOIN_SURPLUS_ENTRY",
+        )
 
     return {
         "assignments": assignments,
@@ -246,9 +276,33 @@ def derive_world_outcome(
 
     last_label = labels[-1]
     first_label = labels[0]
+
+    # PHYSICAL BOUNDS, enforced BEFORE any outcome arithmetic.  A1-R3 computed the
+    # residual straight from the arrays; a negative tracer, a tracer above the matter it
+    # labels, a NaN or a zero denominator all produced a silent number.
     matter_last = read_channel(directory, len(labels) - 1, "matter", shape)
     tracer_last = read_channel(directory, len(labels) - 1, "tracer", shape)
+    matter_first = read_channel(directory, 0, "matter", shape)
+    tracer_first = read_channel(directory, 0, "tracer", shape)
+    for name, array in (
+        ("matter@first", matter_first), ("tracer@first", tracer_first),
+        ("matter@horizon", matter_last), ("tracer@horizon", tracer_last),
+    ):
+        _strict.require_finite(array, name, code="CHANNEL_NON_FINITE")
+    for name, matter, tracer in (
+        ("first", matter_first, tracer_first), ("horizon", matter_last, tracer_last)
+    ):
+        if float(np.min(matter)) < 0.0:
+            raise _strict.StrictRefusal(f"matter@{name} is negative", reason_code="MATTER_NEGATIVE")
+        if float(np.min(tracer)) < 0.0:
+            raise _strict.StrictRefusal(f"tracer@{name} is negative", reason_code="TRACER_NEGATIVE")
+        if float(np.max(tracer - matter)) > 1e-12:
+            raise _strict.StrictRefusal(
+                f"tracer@{name} exceeds the matter it labels", reason_code="TRACER_ABOVE_MATTER"
+            )
+
     by_index_last = {int(c.index): c for c in frames[-1]}
+    by_index_first = {int(c.index): c for c in frames[0]}
 
     eligible: list[int] = []
     residuals: dict[int, float] = {}
@@ -257,24 +311,64 @@ def derive_world_outcome(
         points = list(track.points)
         if not points:
             continue
+        if int(track.track_id) < 0:
+            continue
+        # A1-R4: the candidate must exist at the ENROLMENT frame, be assigned exactly once
+        # per scheduled frame, keep the SAME track throughout, and reach the horizon.  A
+        # component born after enrolment carries residual ~0 by construction and could
+        # otherwise score 1 trivially -- the frozen rule now forbids it.
+        if int(points[0].frame) != first_label:
+            continue
         if int(points[-1].frame) != last_label:
-            continue  # did not reach the horizon
+            continue
+        observed = [int(point.frame) for point in points]
+        if observed != labels:
+            continue  # a missing intermediate frame, or disappear-then-reappear
+        if len(set(observed)) != len(observed):
+            continue  # assigned twice at one frame
+        enrolled = by_index_first.get(int(points[0].component_index))
+        if enrolled is None:
+            continue
+        rows0, cols0 = np.divmod(np.asarray(sorted(int(c) for c in enrolled.cells)), shape[1])
+        cohort_initial = float(np.sum(tracer_first[rows0, cols0]))
+        if not cohort_initial > 0.0:
+            raise _strict.StrictRefusal(
+                f"track {track.track_id} enrols an empty cohort", reason_code="COHORT_EMPTY"
+            )
         component = by_index_last.get(int(points[-1].component_index))
         if component is None:
             continue
-        if bool(component.wraps_y or component.wraps_x):
-            continue
-        if int(component.area) * 2 > cells_total:
+        # continuous eligibility at EVERY scheduled frame, not only at the horizon
+        continuously_eligible = True
+        for position, point in enumerate(points):
+            observed_component = next(
+                (c for c in frames[position] if int(c.index) == int(point.component_index)), None
+            )
+            if observed_component is None:
+                continuously_eligible = False
+                break
+            if bool(observed_component.wraps_y or observed_component.wraps_x):
+                continuously_eligible = False
+                break
+            if int(observed_component.area) * 2 > cells_total:
+                continuously_eligible = False
+                break
+        if not continuously_eligible:
             continue
         rows, cols = np.divmod(np.asarray(sorted(int(c) for c in component.cells)), shape[1])
         mass = float(np.sum(matter_last[rows, cols]))
         if not mass > 0.0:
             continue
         cohort = float(np.sum(tracer_last[rows, cols]))
+        residual = cohort / mass
+        if not (0.0 <= residual <= 1.0) or not math.isfinite(residual):
+            raise _strict.StrictRefusal(
+                f"track {track.track_id} residual {residual!r} leaves [0,1]",
+                reason_code="RESIDUAL_OUT_OF_DOMAIN",
+            )
         eligible.append(int(track.track_id))
-        residuals[int(track.track_id)] = cohort / mass if mass > 0.0 else 1.0
-        if int(points[0].frame) == first_label and len(points) == len(labels):
-            observed_from_first = True
+        residuals[int(track.track_id)] = residual
+        observed_from_first = True
 
     if not eligible:
         zero = {f"{value:g}": 0 for value in COHORT_RESIDUAL_CONVENTIONS}

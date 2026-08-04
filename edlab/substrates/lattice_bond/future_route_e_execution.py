@@ -62,6 +62,7 @@ from typing import Any, Mapping, Sequence
 import numpy as np
 
 from ... import route_e_protocol as _protocol
+from ... import route_e_strict as _strict
 from . import future_route_e_pre_run_frame as _frame
 from . import future_route_e_pre_run_locks as _locks
 from . import future_route_e_world_evidence as _world_evidence
@@ -645,36 +646,32 @@ def _law_spec_from_fields(fields: Mapping[str, float]) -> LatticeBondSpec:
 #: i.i.d. and INDEPENDENT of one another, so they may not be drawn from one stream: a
 #: single stream makes n[y,x] a deterministic function of the m draws that precede it.
 #: Two distinct domains give two independent streams from the same frozen generator.
-IC_MATTER_DOMAIN = b"IC-M"
-IC_RESOURCE_DOMAIN = b"IC-N"
+IC_MATTER_DOMAIN = _strict.IC_MATTER_DOMAIN
+IC_RESOURCE_DOMAIN = _strict.IC_RESOURCE_DOMAIN
 
-#: The frozen resolution.  32-bit words divided by 2**32, i.e. the uniform law is realised
-#: on a finite dyadic grid of step 2**-32.  This is the resolution 01S declares (RE-L8);
-#: it is not re-derived here and is not widened.
-IC_WORD_BYTES = 4
-IC_DENOMINATOR = float(1 << 32)
+#: A1-R4 correction of A1-R3 defect B4.  A1-R2 and A1-R3 hand-rolled a FOUR-byte loop
+#: dividing by ``2**32``.  The canonical frozen generator is
+#: ``future_route_e_pre_run_frame.draw_uniform``, which is
+#: ``int.from_bytes(draw_block(...)[0:8], "big") / float(2**64)`` -- EIGHT bytes, ``2**-64``.
+#: The hand-rolled loop was never the frozen law; it is removed, not parameterised.
+IC_WORD_BYTES = _strict.IC_WORD_BYTES
+IC_RESOLUTION_BITS = _strict.IC_RESOLUTION_BITS
 
 
 def _uniform_field(seed_root: bytes, domain: bytes, ic_index: int, cells: int) -> np.ndarray:
-    """``cells`` i.i.d. U[0,1] draws from the FROZEN generator on the given domain.
+    """``cells`` i.i.d. U[0,1) draws from THE canonical frozen generator.
 
-    No NumPy RNG, no ``random``, no proprietary substitute: the bytes come from
-    :func:`future_route_e_pre_run_frame.draw_block`, which is the generator the frozen
-    design names, and the block index is a pure function of ``ic_index``.
+    One call to :func:`future_route_e_pre_run_frame.draw_uniform` per cell, on a stream
+    index that is a pure function of ``(ic_index, cell)``.  Eight bytes consumed per draw,
+    divided by ``2**64``.  No NumPy RNG, no ``random``, no substitute, no four-byte word,
+    no ``2**-32``, and ``m`` and ``n`` never share a domain.
     """
-    values = np.empty(cells, dtype=np.float64)
-    produced = 0
-    block_index = ic_index * 1_000_000
-    while produced < cells:
-        block = _frame.draw_block(seed_root, domain, block_index)
-        block_index += 1
-        for offset in range(0, 32, IC_WORD_BYTES):
-            if produced == cells:
-                break
-            word = int.from_bytes(block[offset : offset + IC_WORD_BYTES], "big")
-            values[produced] = word / IC_DENOMINATOR
-            produced += 1
-    return values
+    base = ic_index * 1_000_000
+    return np.fromiter(
+        (_frame.draw_uniform(seed_root, domain, base + offset) for offset in range(cells)),
+        dtype=np.float64,
+        count=cells,
+    )
 
 
 def _initial_state(seed_root: bytes, ic_index: int, size: int) -> LatticeBondState:
@@ -870,7 +867,9 @@ def run_route_e(
     horizon = int(distributions["horizon_steps"])
     cadence = int(distributions["cadence_steps"])
     schedule = _schedule(horizon, cadence)
-    measurement_spec = MeasurementSpec(min_cells=1)
+    # A1-R4 defect B3: A1-R2/A1-R3 used min_cells=1 in BOTH producer and verifier.
+    measurement_spec = MeasurementSpec()
+    _strict.check_frozen_measurement_spec(measurement_spec)
     attempts: list[dict[str, Any]] = []
     succeeded = 0
     for ordinal, (law_index, ic_ordinal) in enumerate(plan.world_order[:worlds]):

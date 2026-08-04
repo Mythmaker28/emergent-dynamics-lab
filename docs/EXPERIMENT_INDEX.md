@@ -51,3 +51,4 @@ development null used the estimator's own strike phases and therefore could not 
 confounded intervention, contradicting the observability contract; (3) an E1 expected label that was wrong (a
 handoff that moves a component changes its causal delay, so A is right to call it DIFFERENT).
 Hold-outs QUARANTINED. One repair cycle authorized, on development data only.
+| A1R4-VERIFIABLE-CLOSURE-00 | NOT AN EXPERIMENT | engineering closure; synthetic fixtures are SYNTHETIC_NON_SCIENTIFIC and are never runs |
