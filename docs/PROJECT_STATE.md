@@ -654,3 +654,33 @@ No `54xxx` seed ran. No prospective directory, final seal, or valid human author
 Exact next authorized action: a fresh independent narrow audit of the repair commit. Only a fresh auditor may issue
 a new final seal; only a separate later human authorization may bind that new seal. No prospective execution is
 authorized.
+
+## Active authority reconciliation — FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00
+
+The five-optional-guard strategy for Route E is **RETIRED**. `PRB-5 as written` is
+**SUPERSEDED**: an optional keyword-only `route_e` parameter on five generic functions is a
+caller self-declaration, and `future_prospective_measurement_bridge.run_measurement_bridge`
+runs the engine and persists frames before it reaches the owned pipeline, so a guard placed
+there fires after the fact when it fires at all. Extending the allowlist to the unguarded
+real entry points was **REJECTED** by the owner.
+
+The selected topology is a **new dedicated Route E entry above the existing bridge**
+(`edlab/substrates/lattice_bond/future_route_e_execution.py`, single API
+`run_route_e(pre_run_bundle_path, beacon_response_path, output_directory)`) plus an
+**independent admission layer**
+(`edlab/substrates/lattice_bond/future_route_e_admission.py`, single API
+`verify_route_e_run(output_directory, final_receipt_path=None)`), which re-reads every byte,
+recomputes every root and takes no engine step.
+
+The authoritative property is now: *no artefact contributes to the Route E dataset, to any
+`Y_i` or to `k` without satisfying, in full, the pre-run manifest, the enrolment, the beacon,
+the attempt inventory and the independent verification.* Universal prevention of engine
+execution is **NOT CLAIMED**. `stage_b.py` remains a legacy executor out of Route E,
+`stage_b_reproduce.py` remains a preserved independent reproducer, and the generic bridge
+remains a generic internal component; none of them was modified and none of their outputs is
+admissible as Route E evidence.
+
+`human_review = PENDING` · `pilot_authorized = false` · `preregistration_authorized = false`
+· `scientific_run_authorized = false`. No `54xxx` or Route E seed ran; no scientific
+namespace exists. Exact next authorized action: one independent human review of commit
+`FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00`.

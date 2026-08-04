@@ -1,0 +1,339 @@
+{
+  "schema": "route-e-execution-boundary-correction/v1-factual-fields",
+  "schema_note": "descriptive label, not a JSON Schema identifier; no schema file defines it and no canonical vocabulary is created here",
+  "mission": "FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00",
+  "mission_consumed": false,
+  "base": "da0ec3f1e6198fcb25690cee02490f0d2ce9d034",
+  "parent_of_base": "f152c3c43d316cfbc4d7704fc91c69e51ee5fefa",
+  "authorised_by": "owner authorisation FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00",
+  "lineage": [
+    "00afcdd1aacbdf32bb030d85ced735a2920421f6",
+    "c6d4acf037d4e51d59e5b75dc91b977b9eb83dbd",
+    "bc2a42c468eec5a4e1732ebb08c7cc20c4dab7dd",
+    "a379efa6e230efd6b4051b36717169be9c0f5dbf",
+    "31ccccfb9e61809cf5d461a70425e00c3db7bc17",
+    "054140024267183fa43ef86755cd1c82d5a41483",
+    "c08e27c0d7c133789333a73fa66fedc5ab0a2979",
+    "f152c3c43d316cfbc4d7704fc91c69e51ee5fefa",
+    "da0ec3f1e6198fcb25690cee02490f0d2ce9d034"
+  ],
+  "preflight": {
+    "base_object_present": true,
+    "base_type": "commit",
+    "parent_matches_authorisation": true,
+    "merge": false,
+    "parent_count": 1,
+    "base_vs_parent_changes": [
+      "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_DECISION.json",
+      "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_REPORT.md"
+    ],
+    "base_vs_parent_change_count": 2,
+    "nothing_reconstructed_from_reports": true
+  },
+  "owner_decisions_applied": {
+    "A1_R2_ALLOWLIST_EXTENSION": "REJECTED",
+    "PRB5_AS_WRITTEN": "SUPERSEDED",
+    "FIVE_FUNCTION_GUARD_STRATEGY": "RETIRED",
+    "SELECTED_TOPOLOGY": "NEW_DEDICATED_ROUTE_E_ENTRY_ABOVE_EXISTING_BRIDGE",
+    "ROUTE_E_SECURITY_BOUNDARY": "CANONICAL_EXECUTION_PLUS_INDEPENDENT_ADMISSION",
+    "UNIVERSAL_ENGINE_EXECUTION_PREVENTION": "NOT_CLAIMED"
+  },
+  "authoritative_property": "no artefact contributes to the Route E dataset, to any Y_i or to k without satisfying, in full, the pre-run manifest, the enrolment, the beacon, the attempt inventory and the independent verification",
+  "explicitly_not_claimed": [
+    "that anyone holding the repository is prevented from calling LatticeBondEngine",
+    "that the code cannot be copied",
+    "that an exploratory simulation cannot be run"
+  ],
+  "no_route_e_parameter_added_to_generic_functions": true,
+  "pre_run_root": {
+    "domain": "EDLAB/ROUTE-E/PRE-RUN/v1\\x00",
+    "kind": "route-e-pre-run-manifest/v1",
+    "required_keys": [
+      "canonical_cutoff_C", "crash_retry_and_attempt_policy", "designated_round_rule",
+      "distributions_and_draw_algorithm", "experiment_id", "fixture_class", "kind", "mode",
+      "outcome_and_claim_ceiling", "output_namespace", "protocol_and_analysis_digests",
+      "run_identity", "sample_size_and_world_policy", "schema_version",
+      "source_commit_and_digests"
+    ],
+    "unknown_key": "refused",
+    "post_run_key_at_any_depth": "refused, as a key name AND as a whole string value",
+    "round_rule": "designated_round(C) = beacon_round_at_or_after(C + 86400); the rule must be literally the pinned one",
+    "proof_timestamp_never_selects_the_round": true,
+    "seed_derivation": "SHA-256(\"EDLAB/ROUTE-E/SEED-FROM-PRE-RUN-ROOT/v1\\x00\" || chain_hash || round(8B BE) || randomness(32B) || P)",
+    "seed_derivation_is_not_a_duplicate": "frame.derive_seed_root binds a preregistration commit; binding P instead is the correction this mission makes",
+    "caller_may_inject": "nothing: no seed, round, plan, law, initial condition, root, tracking or outcome appears in the public signature"
+  },
+  "post_run_root": {
+    "domain": "EDLAB/ROUTE-E/POST-RUN/v1\\x00",
+    "kind": "route-e-post-run-envelope/v1",
+    "binds": [
+      "P", "the anteriority proof", "the verified beacon response and round",
+      "the seed root digest", "the complete draw plan and enrolment", "the source snapshot",
+      "the world order", "every attempt including crashes and invalidities",
+      "the per-world measurement roots", "the track/component joins",
+      "the exact file inventory"
+    ],
+    "never_takes_part_in_choosing_the_beacon": true,
+    "hash_cycle": "none: worlds -> attempts -> file inventory -> envelope -> receipt; the inventory explicitly excludes the three files written after it"
+  },
+  "interchange_between_the_two_roots": "impossible: different domain prefixes AND different kind strings",
+  "canonical_entry_point": {
+    "module": "edlab/substrates/lattice_bond/future_route_e_execution.py",
+    "api": "run_route_e(pre_run_bundle_path, beacon_response_path, output_directory)",
+    "parameter_count": 3,
+    "accepts_no_verification_callback": true,
+    "accepts_no_authorisation_boolean": true,
+    "accepts_no_law_ic_seed_round_root_tracking_or_outcome": true,
+    "phases": [
+      "READ_AND_CANONICALISE_BUNDLE", "RECOMPUTE_PRE_RUN_ROOT", "VERIFY_ANTERIORITY",
+      "DERIVE_ROUND_FROM_CUTOFF", "VERIFY_BEACON", "DERIVE_SEED_PLAN_ENROLMENT",
+      "CHECK_NAMESPACE_FIRST_WRITE_WINS", "CREATE_OUTPUT_ROOT", "EXECUTE_WORLDS",
+      "RECORD_ATTEMPTS", "SEAL_ENVELOPE"
+    ],
+    "first_authorised_effect_phase": "CREATE_OUTPUT_ROOT",
+    "phases_before_the_first_effect_are_pure": true,
+    "calls_run_measurement_bridge_internally": true,
+    "keeps_every_success_crash_and_failure_without_silent_replacement": true,
+    "valid_path_ends_with_a_returned_record": true,
+    "no_terminal_unreachable_raise": true,
+    "no_global_boolean_to_flip_later": true
+  },
+  "verifier_pinning": {
+    "location_may_be_supplied_by_the_environment": true,
+    "bytes_are_pinned": true,
+    "pinned_sha256": {
+      "linux-amd64": "2534fa4af5ed6d6d4294be26542b52fe7445412532db97e66a955cacba3cca6d",
+      "windows-amd64": "ea15b5de9f88a6fd0557e1912c31493670f9322bc901d8841b6868cd3220045c"
+    },
+    "absent_or_unpinned_verifier": "STOP, never a pass"
+  },
+  "admission": {
+    "module": "edlab/substrates/lattice_bond/future_route_e_admission.py",
+    "api": "verify_route_e_run(output_directory, final_receipt_path=None)",
+    "rereads_every_byte_from_disk": true,
+    "recomputes": ["P", "the seed root", "the draw plan", "the enrolment", "the file inventory", "E"],
+    "engine_steps_taken": 0,
+    "engine_not_even_imported": true,
+    "believes_no_runner_written_Y_k_or_verdict": true,
+    "refuses_a_root_carrying_such_a_field": "RUNNER_WROTE_AN_ANSWER",
+    "outcome_recomputation": {
+      "crash": "TECHNICALLY_UNKNOWN, Y = None, never a silent 0",
+      "observed_failure_terminal_state": "OBSERVED_FAILURE_*, Y = 0",
+      "no_terminal_record": "MECHANICALLY_INELIGIBLE, Y = 0",
+      "only_RIGHT_CENSORED_AT_HORIZON": "TECHNICALLY_UNKNOWN, Y = None: the frozen table splits that state on verified replacement evidence this mission does not produce, so the ambiguity is named and never silently resolved"
+    },
+    "refuses": [
+      "an incomplete attempt inventory", "a deleted attempt", "a changed order",
+      "an added or removed file", "a divergent digest", "a discordant envelope or receipt"
+    ],
+    "thresholds_42_9_applied_outside_a_confirmatory_scientific_run": false,
+    "pilot_or_synthetic_units_added_to_the_confirmatory_k": false,
+    "refusal_is_returned_as_a_verdict_not_raised": true
+  },
+  "inadmissible_origins": {
+    "generic_bridge_outputs_admissible": false,
+    "legacy_stage_b_outputs_admissible": false,
+    "historical_reproducer_outputs_admissible": false,
+    "five_historical_functions_outputs_admissible": false,
+    "direct_engine_call_outputs_admissible": false,
+    "discriminator": "none of them writes ROUTE_E_PROVENANCE.json with the canonical tag; proved twice, by directory shape and by a source scan of each module",
+    "stage_b_reproduce_preserved": true,
+    "refusal_does_not_alter_or_hide_the_artefact": true
+  },
+  "old_paths_classification": {
+    "edlab/substrates/lattice_bond/future_prospective_measurement_bridge.py": "GENERIC_INTERNAL_COMPONENT",
+    "edlab/substrates/lattice_bond/stage_b.py": "LEGACY_EXECUTOR / OUT_OF_ROUTE_E",
+    "edlab/substrates/lattice_bond/stage_b_reproduce.py": "PRESERVED_INDEPENDENT_REPRODUCER",
+    "five_historical_guarded_functions": "GENERIC_OR_DOWNSTREAM / OUT_OF_ROUTE_E",
+    "files_modified": 0
+  },
+  "files": {
+    "added": [
+      {
+        "path": "edlab/substrates/lattice_bond/future_route_e_execution.py",
+        "bytes": 38329,
+        "sha256": "d766d59a9a8b4d273732c2cebefc1edc23e24a966fb94909eeb9f2642ea2b687"
+      },
+      {
+        "path": "edlab/substrates/lattice_bond/future_route_e_admission.py",
+        "bytes": 23150,
+        "sha256": "8ece89e2140fc2b2b406917acce2707627117dce712da004ca45107fa71a6bcc"
+      },
+      {
+        "path": "tests/test_future_route_e_execution_boundary_00.py",
+        "bytes": 44419,
+        "sha256": "063b47177a1f63fa11cad5cea794d8b0616444cdeb3e9c7ec0f2b24c232af7ab"
+      },
+      {
+        "path": "docs/individuation/FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00_CURRENT_SOURCE_QUALIFICATION.json",
+        "bytes": 8559,
+        "sha256": "89e824bd27703e8264d52f99b243679035b440a8b46eba6c6a91790a153c234d"
+      },
+      {"path": "docs/individuation/FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00_REPORT.md"},
+      {"path": "docs/individuation/FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00_DECISION.json"}
+    ],
+    "modified": [
+      {"path": "docs/PROJECT_STATE.md", "scope": "active-authority reconciliation only, appended"},
+      {"path": "docs/DECISION_LOG.md", "scope": "active-authority reconciliation only, appended"}
+    ],
+    "deleted": [],
+    "forbidden_files_untouched": [
+      "the four historical qualifications",
+      "edlab/substrates/lattice_bond/lifecycle.py",
+      "edlab/substrates/lattice_bond/future_lifecycle_runner.py",
+      "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py",
+      "edlab/substrates/lattice_bond/instrumentation.py",
+      "edlab/substrates/lattice_bond/future_prospective_measurement_bridge.py",
+      "edlab/substrates/lattice_bond/stage_b.py",
+      "edlab/substrates/lattice_bond/stage_b_reproduce.py",
+      "the four test files selected by test_rs01_12",
+      "tools/drand_verify/main.go", "tools/drand_verify/go.mod", "tools/drand_verify/go.sum",
+      "tests/data/route_e_beacon_vectors.json",
+      "tests/test_future_route_e_pre_run_blocker_closure_00.py",
+      "pyproject.toml"
+    ],
+    "no_fake_run_created_in_experiment_index_or_run_index": true
+  },
+  "qualification_order": {
+    "sequence": [
+      "final code",
+      "final behavioural tests",
+      "append-only current-source record",
+      "literal pin of that record in the new test file",
+      "REPORT and DECISION"
+    ],
+    "intermediate_seal": false,
+    "expected_value_computed_dynamically": false,
+    "self_acceptance": false,
+    "record_sha256_pinned_literally": "89e824bd27703e8264d52f99b243679035b440a8b46eba6c6a91790a153c234d",
+    "test_file_digest_verified_out_of_band": "063b47177a1f63fa11cad5cea794d8b0616444cdeb3e9c7ec0f2b24c232af7ab, recorded in the REPORT because the record precedes the pin and cannot bind its own consumer without a cycle"
+  },
+  "historical_surface": {
+    "historical_qualification_files_modified": 0,
+    "historical_qualifications_sha256": {
+      "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json": "8f423bb0f0ece04a3e576b76cb2c7704d5edf6c82c827110bd5608e8e5514ece",
+      "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json": "0752b86c6ef9c7b6579a90e7be6250bc2500dcbfbac4d47379c40e277061f403",
+      "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json": "509f27b23a17b36b7c027cb687860f61b5ee53f4247c0f58e04d2ff1ffd6643a",
+      "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json": "f29da3694b2438ff6bc0d03692771020b145ec6edcfa6ae80a533040207f58df"
+    },
+    "selected_node_count": 251,
+    "selected_node_list_sha256": "a425c3736f0b5d819ef708c2433b785cf706381798ffc48a7ce4b5941161276a",
+    "selected_node_set_unchanged": true,
+    "tests_added_removed_or_renamed_in_a_selector": 0,
+    "all_new_tests_live_in_a_non_selected_file": true
+  },
+  "tests": {
+    "environment": {"python": "3.11.15", "pytest": "8.4.2", "numpy": "2.4.4"},
+    "groups": [
+      {"scope": "new file, pinned verifier PRESENT", "collected": 72, "passed": 72, "failed": 0, "skipped": 0},
+      {"scope": "new file, pinned verifier ABSENT", "collected": 69, "passed": 47, "failed": 0, "skipped": 22,
+       "note": "the binary is deliberately not committed; both branches assert something real, and without the verifier the run is refused at VERIFY_BEACON with nothing written"},
+      {"scope": "PRB / HR", "collected": 152, "passed": 152, "failed": 0},
+      {"scope": "A-F, unchanged", "collected": 104, "passed": 104, "failed": 0},
+      {"scope": "guard and five entry points", "collected": 33, "passed": 33, "failed": 0},
+      {"scope": "verifier and adapter, unchanged", "collected": 42, "passed": 42, "failed": 0},
+      {"scope": "seven accepted-lineage files", "collected": 673, "passed": 673, "failed": 0},
+      {"scope": "four selectors, collection only", "collected": 251, "passed": null, "failed": null},
+      {"scope": "FULL SUITE", "collected": 1349, "passed": 1344, "failed": 5}
+    ],
+    "inherited_failures": [
+      "tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[split]",
+      "tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[merge]",
+      "tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[tie]",
+      "tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[collapse]",
+      "tests/test_motile_polar.py::test_scramble_preserves_all_declared_invariants_and_destroys_organization"
+    ],
+    "inherited_failures_identical_node_ids_signatures_and_causes": true,
+    "new_failures": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "deselected": 0,
+    "collection_errors": 0,
+    "never_presented_as_green": true
+  },
+  "mutation_campaign": {
+    "single_final_campaign": true,
+    "documentary_pins_excluded": ["test_historical_13...", "test_collection_14..."],
+    "a_mutant_killed_by_a_hash_signature_import_syntax_typeerror_or_broken_collection_does_not_count": true,
+    "mutants": [
+      {"id": "M1", "mutation": "verification moved after the first effect: mkdir at the top of run_route_e",
+       "killed": 47, "killed_behaviourally": true,
+       "sample_killers": ["test_bundle_01_an_absent_bundle_is_refused_before_any_effect",
+                          "test_pre_run_01_a_post_run_field_anywhere_in_p_is_refused",
+                          "test_no_effect_01_nothing_is_created_before_the_verification_completes"]},
+      {"id": "M2", "mutation": "the P binding of the anteriority proof removed",
+       "killed": 2, "killed_behaviourally": true,
+       "sample_killers": ["test_bundle_05_an_altered_manifest_invalidates_its_own_proof",
+                          "test_no_effect_01_nothing_is_created_before_the_verification_completes[altered_manifest]"]},
+      {"id": "M3", "mutation": "seed injectable: taken from the manifest when present",
+       "killed": 7, "killed_behaviourally": true,
+       "sample_killers": ["test_tamper_00_an_untouched_root_is_admissible",
+                          "test_reader_01_the_admission_recomputes_every_root_from_disk",
+                          "test_scope_06_two_namespaces_produce_disjoint_seeds_and_counts"]},
+      {"id": "M4", "mutation": "generic output admitted: the provenance requirement disappears",
+       "killed": 3, "killed_behaviourally": true,
+       "sample_killers": ["test_inadmissible_01_a_bare_measurement_bridge_output_is_refused",
+                          "test_inadmissible_02_a_stage_b_namespace_is_refused",
+                          "test_inadmissible_03_the_historical_reproducer_is_refused_but_stays_readable"]},
+      {"id": "M5", "mutation": "a crash is omitted from the attempt inventory",
+       "killed": 2, "killed_behaviourally": true,
+       "sample_killers": ["test_tamper_02_a_crash_removed_from_the_inventory_is_detected",
+                          "test_tamper_03_a_crash_is_unknown_and_never_a_silent_zero"]}
+    ],
+    "all_five_killed": true
+  },
+  "a2_frozen_decision": {
+    "public_registry": "Bitcoin mainnet via complete OpenTimestamps proof",
+    "signed_time": "Sigstore RFC 3161 timestamp over the canonical completed OTS proof",
+    "acceptance_rule": "OTS AND RFC3161",
+    "never": "OTS OR RFC3161",
+    "implemented_here": false,
+    "root_published_here": false,
+    "registry_contacted_here": false,
+    "proof_type_OTS_PLUS_RFC3161": "recognised and REFUSED: its verifier does not exist yet, so a run claiming it is stopped rather than believed",
+    "proof_type_SELF_ATTESTED_NON_PUBLIC": "structurally verified, binds P and C, may never claim public inclusion, and yields a root that cannot contribute to the dataset",
+    "public_pre_run_inclusion_proven": false
+  },
+  "scientific_firewall": {
+    "scientific_run_performed": false,
+    "scientific_seed_created": false,
+    "scientific_family_executed": false,
+    "scientific_namespace_created": false,
+    "drand_contacted": false,
+    "live_round_consulted": false,
+    "results_directory_walked": false,
+    "preregistration_started": false,
+    "only_engine_execution": "one temporary SYNTHETIC_NON_SCIENTIFIC world, 16x16 lattice, 3-frame schedule, inside pytest tmp_path, namespace prefixed SYNTHETIC-NONSCI-, declared non-contributing by construction",
+    "beacon_round_used": 123,
+    "beacon_round_provenance": "committed quicknet fixture V2; no drand endpoint contacted"
+  },
+  "git_discipline": {
+    "single_non_merge_commit": true,
+    "explicit_path_by_path_add": true,
+    "no_git_add_all": true,
+    "git_index_file_neutralised": true,
+    "temporary_indexes_under_tmp_only": true,
+    "no_checkout_stash_amend_rebase_merge_cherry_pick": true,
+    "no_git_gc": true,
+    "no_user_file_cleanup": true,
+    "user_working_tree_untouched_for_project_state_and_decision_log": "the two reconciled files were rebuilt from their da0ec3f1 blobs in a temporary location; the user's dirty working-tree copies were not overwritten",
+    "main_pinned": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77"
+  },
+  "final_declaration": {
+    "architecture_cycle_removed": true,
+    "pre_run_root_distinct_from_post_run_root": true,
+    "single_route_e_execution_api_present": true,
+    "pre_effect_authorization_verified": true,
+    "generic_bridge_outputs_admissible": false,
+    "legacy_stage_b_outputs_admissible": false,
+    "stage_b_reproduce_preserved": true,
+    "selected_node_set_unchanged": true,
+    "historical_qualification_files_modified": 0,
+    "public_pre_run_inclusion_proven": false,
+    "human_review": "PENDING",
+    "pilot_authorized": false,
+    "preregistration_authorized": false,
+    "scientific_run_authorized": false
+  },
+  "next_action_authorised": "ONE independent human review of this increment. No further architectural review and no review of that review."
+}
