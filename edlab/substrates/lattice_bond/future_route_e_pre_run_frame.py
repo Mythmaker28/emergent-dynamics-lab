@@ -85,6 +85,11 @@ RE-L8  The uniform laws realised here are exactly uniform on a FINITE dyadic gri
 RE-L9  ``lexical_ceiling_screen`` is a limited software aid, not a semantic guarantee.
        The enforceable ceiling is the closed-vocabulary ``RouteEClaim`` object, which
        can only render from authorised templates.  Free text always needs human review.
+RE-L10 ``assemble_draw_outcome`` always calls the real classifier and has no
+       ``classifier`` parameter, but it is ANTICIPATORY: no accepted source calls it,
+       so ``ASSOCIATION_GATE_TRACK_BREAK`` is still a convention and NOT an integration
+       into the production tracker.  Wiring it in requires editing an accepted source,
+       which the frozen allowlist forbids.
 """
 
 from __future__ import annotations
@@ -1671,23 +1676,19 @@ class DrawOutcome:
     association_gate_breaks: int
 
 
-def assemble_draw_outcome(
+def _assemble_draw_outcome(
     tracking: TrackingResult,
     *,
     persisted_to_horizon: bool,
     replacement_verified: bool,
     eligible: bool,
-    evidence_ok: bool = True,
-    classifier: Callable[[TrackingResult], tuple["TrackTermination", ...]] | None = None,
+    evidence_ok: bool,
+    classifier: Callable[[TrackingResult], tuple["TrackTermination", ...]],
 ) -> DrawOutcome:
-    """THE Route E production path for one draw.  It ALWAYS calls the classifier.
+    """PRIVATE seam.  Not reachable from the public API and not re-exported.
 
-    This is the integration HR-10 requires: ``classify_track_terminations`` is not an
-    isolated helper any more, it is on the only path that can ever produce a Route E
-    outcome.  A test can prove the call by substituting ``classifier``.
-
-    Fail-closed order: contract evidence, then eligibility, then classification, then
-    the conjunction.  An ambiguous association-gate pattern raises rather than guessing.
+    It exists so a test can prove, by substitution, that the public path passes the
+    REAL classifier -- never so that a caller can choose one.
     """
     if not isinstance(tracking, TrackingResult):
         raise TypeError("tracking must be a TrackingResult")
@@ -1708,8 +1709,7 @@ def assemble_draw_outcome(
             association_gate_breaks=0,
         )
 
-    classify = classifier if classifier is not None else classify_track_terminations
-    terminations = classify(tracking)
+    terminations = classifier(tracking)
     if not isinstance(terminations, tuple):
         raise TypeError("the classifier must return a tuple of TrackTermination")
 
@@ -1753,4 +1753,41 @@ def assemble_draw_outcome(
     )
 
 
+def assemble_draw_outcome(
+    tracking: TrackingResult,
+    *,
+    persisted_to_horizon: bool,
+    replacement_verified: bool,
+    eligible: bool,
+    evidence_ok: bool = True,
+) -> DrawOutcome:
+    """THE Route E outcome assembly for one draw.  It ALWAYS calls the REAL classifier.
+
+    HR-10, corrected: there is no ``classifier`` parameter.  The public path passes
+    ``classify_track_terminations`` itself, so no caller can substitute, disable or
+    weaken the classification, and ``TypeError`` is raised if one tries.
+
+    Fail-closed order: contract evidence, then eligibility, then classification, then
+    the conjunction.  An ambiguous association-gate pattern raises rather than guessing.
+
+    SCOPE, stated plainly (HR-10, second half): this function is not called by any
+    accepted source.  ``lifecycle.py``, ``instrumentation.py``,
+    ``future_lifecycle_owned_pipeline.py`` and the measurement bridge are unchanged and
+    do not emit ``ASSOCIATION_GATE_TRACK_BREAK``.  This is an ANTICIPATORY assembly for
+    a Route E draw that does not exist; it is not an integration into production, and
+    the cause must not be attributed to the production tracker.
+    """
+    return _assemble_draw_outcome(
+        tracking,
+        persisted_to_horizon=persisted_to_horizon,
+        replacement_verified=replacement_verified,
+        eligible=eligible,
+        evidence_ok=evidence_ok,
+        classifier=classify_track_terminations,
+    )
+
+
+#: Backwards-compatible alias.  The name is kept so existing callers keep working, but
+#: the function is the DEMOTED lexical screen: a limited software aid, never a semantic
+#: guarantee (HR-9, RE-L9).  The enforceable ceiling is ``RouteEClaim``.
 check_claim_within_ceiling = lexical_ceiling_screen
