@@ -34,34 +34,46 @@ result is created, read or written.  There is no network access of any kind.
 The obligations A-F closed by commit ``c6d4acf0`` are PREREGISTRATION obligations, not
 this mission's mandate; they are kept, corrected, and are NOT renamed onto PRB-1..6.
 
+WHAT IS AND IS NOT CLOSED -- read ``blocker_status()`` for the field-by-field facts.
+``PRB-5`` and ``PRB-6`` are OPEN.  This module must never be summarised as "the
+pre-run blockers are closed".
+
 LOCK LIMITATION REGISTER
 ------------------------
 LK-L1  The accepted sources (engine, instrumentation, lifecycle, runner, owned
        pipeline, measurement bridge) are immutable under the frozen allowlist.  Every
        lock here therefore sits in the ROUTE E path, in front of them.  A caller who
        bypasses the Route E path and calls an accepted function directly is refused by
-       that function's own first check, which is a weaker property, separately tested
-       and separately bounded (see PRB-5 below).
-LK-L2  ``verify_public_commitment`` and ``consume_beacon_round`` require a verifier
-       supplied by the caller.  No verifier is bundled: closing PRB-6 and HR-4 with a
-       real BLS check needs a maintained cryptographic dependency, and adding one would
-       modify ``pyproject.toml``, which is outside the frozen allowlist.  The gate is
+       that function's own first check -- a strictly WEAKER property, separately
+       tested and separately bounded (see LK-L4 and PRB-5 below).
+LK-L2  ``verify_public_commitment`` requires a verifier supplied by the caller.  No
+       verifier is bundled: closing PRB-6 and HR-4 with a real BLS check needs a
+       maintained cryptographic dependency, and adding one would modify
+       ``pyproject.toml``, which is outside the frozen allowlist.  The gate is
        implemented and fail-closed; the CRYPTOGRAPHIC VERIFIER ITSELF REMAINS AN OPEN
-       SUB-OBLIGATION, reported rather than faked.
+       SUB-OBLIGATION, reported rather than faked.  While it is open, the authenticity
+       layer of PRB-2 is open too.
 LK-L3  The Route E root binds the measurement root, the track-component join and the
        family enrolment.  It does not replace the bridge's own measurement root, which
        is computed inside an immutable accepted source.
+LK-L4  ``route_e_entry`` is a PROTOCOL FACADE, not a gate.  It does not import the five
+       accepted entry points, does not hold them as callables, is not in their call
+       graph, and cannot intercept a direct call.  No test of the facade is evidence
+       about those five functions.  See ``FACADE_IS_NOT_A_GATE``.
+LK-L5  Nothing in this module is called by any accepted source.  The persisted join
+       evidence of PRB-1 exists only when a Route E caller writes it; there is no
+       accepted producer today, and creating one means editing an accepted source.
 """
 
 from __future__ import annotations
 
 import hashlib
 import json
-import math
 import os
+import tempfile
 from dataclasses import dataclass
-from enum import Enum
-from typing import Any, Callable, Iterable, Mapping, Sequence
+from pathlib import Path
+from typing import Any, Callable, Mapping, Sequence
 
 from .instrumentation import TrackingResult
 
@@ -69,10 +81,17 @@ __all__ = [
     "LOCKS_VERSION",
     "PRE_RUN_BLOCKERS",
     # PRB-1
+    "EVIDENCE_SCHEMA",
+    "JOIN_EVIDENCE_FILENAME",
+    "EvidenceInvalid",
+    "JoinIncomplete",
     "JoinRecord",
     "canonical_cell_set_digest",
     "build_track_component_join",
+    "canonical_join_bytes",
     "join_digest",
+    "write_join_evidence",
+    "read_join_evidence",
     # PRB-4
     "FamilyEnrolment",
     "enrolment_digest",
@@ -87,11 +106,13 @@ __all__ = [
     "ReceiptInvalid",
     # PRB-3
     "CHECK_ORDER",
+    "CHECK_PHASES",
     "CheckOrderViolation",
     "RouteEAnalysisRefused",
     "open_route_e_analysis",
     # PRB-5
     "SUPPORTED_ENTRY_POINTS",
+    "FACADE_IS_NOT_A_GATE",
     "EntryPointRefused",
     "route_e_entry",
     # status
@@ -167,7 +188,25 @@ def _is_sha256_hex(value: object) -> bool:
 
 # ======================================================================================
 # PRB-1  persist the track-component join
+#
+# The obligation is literally "WRITE (frame, canonical cell-set digest, track_id) INTO
+# root-bound evidence".  Digest algebra alone does not discharge it: the triples must be
+# serialised canonically, written atomically inside a bounded evidence root, read back
+# from disk, and the Route E root recomputed FROM THE RE-READ BYTES -- never from an
+# object still held in memory.
 # ======================================================================================
+
+
+class EvidenceInvalid(RuntimeError):
+    """The persisted join evidence is absent, malformed, mutated or out of its root."""
+
+
+class JoinIncomplete(ValueError):
+    """The join does not cover the detected support exactly.  Never a silent drop."""
+
+
+EVIDENCE_SCHEMA = "route-e-join-evidence/v1"
+JOIN_EVIDENCE_FILENAME = "route_e_track_component_join.json"
 
 
 @dataclass(frozen=True)
@@ -228,20 +267,51 @@ def build_track_component_join(
     tracking: TrackingResult,
     components_by_frame: Mapping[int, Mapping[int, tuple[tuple[int, int], Sequence[int]]]],
 ) -> tuple[JoinRecord, ...]:
-    """Every assignment of the tracking artefact, as a canonical join record.
+    """The join, with EXACT support coverage.  Fail-closed on every mismatch.
 
-    ``components_by_frame[frame][component_index] = (shape, cells)``.  Every assignment
-    must resolve: a missing component is a refusal, never a silently dropped row.
+    ``components_by_frame[frame][component_index] = (shape, cells)``.
+
+    Four refusals, all before any byte is written:
+
+    * an assignment with no component support        -> orphan assignment, refused;
+    * a detected component with no assignment        -> incomplete join, refused;
+    * a duplicated ``(frame, component_index)`` key   -> refused;
+    * two identical resulting triples                 -> refused.
+
+    The declared policy on duplicates is therefore REFUSAL, not absorption: a duplicate
+    is a defect of the caller's support map, never something the digest should hide.
     """
     if not isinstance(tracking, TrackingResult):
         raise TypeError("tracking must be a TrackingResult")
+    if not isinstance(components_by_frame, Mapping):
+        raise TypeError("components_by_frame must be a mapping frame -> index -> support")
+
+    support_keys: set[tuple[int, int]] = set()
+    for frame, per_frame in components_by_frame.items():
+        if isinstance(frame, bool) or not isinstance(frame, int) or frame < 0:
+            raise ValueError("every support frame must be a non-negative plain int")
+        if not isinstance(per_frame, Mapping):
+            raise TypeError("every support frame must map component index -> support")
+        for index in per_frame:
+            if isinstance(index, bool) or not isinstance(index, int) or index < 0:
+                raise ValueError("every component index must be a non-negative plain int")
+            support_keys.add((int(frame), int(index)))
+
+    seen: set[tuple[int, int]] = set()
     records: list[JoinRecord] = []
     for frame, component_index, track_id in tracking.assignments:
+        key = (int(frame), int(component_index))
+        if key in seen:
+            raise JoinIncomplete(
+                f"duplicated assignment for (frame={frame}, index={component_index})"
+            )
+        seen.add(key)
         try:
             shape, cells = components_by_frame[frame][component_index]
         except (KeyError, TypeError, ValueError) as exc:
-            raise ValueError(
-                f"no component support for (frame={frame}, index={component_index})"
+            raise JoinIncomplete(
+                f"orphan assignment: no component support for (frame={frame}, "
+                f"index={component_index})"
             ) from exc
         records.append(
             JoinRecord(
@@ -250,11 +320,26 @@ def build_track_component_join(
                 track_id=int(track_id),
             )
         )
+
+    unassigned = sorted(support_keys - seen)
+    if unassigned:
+        raise JoinIncomplete(
+            f"incomplete join: {len(unassigned)} detected component(s) carry no "
+            f"assignment, first is (frame={unassigned[0][0]}, index={unassigned[0][1]}); "
+            "an unassigned component is refused, never silently omitted"
+        )
+
+    triples = [record.as_tuple() for record in records]
+    if len(set(triples)) != len(triples):
+        raise JoinIncomplete(
+            "two assignments produce an identical (frame, cell-set digest, track_id) "
+            "triple; duplicates are refused, never absorbed by the digest"
+        )
     return tuple(sorted(records, key=JoinRecord.as_tuple))
 
 
-def join_digest(records: Sequence[JoinRecord]) -> str:
-    """Order-independent digest of a complete join.  Empty joins are refused."""
+def canonical_join_bytes(records: Sequence[JoinRecord]) -> bytes:
+    """The exact bytes that are written, and the exact bytes that are digested."""
     if isinstance(records, (str, bytes)) or not isinstance(records, Sequence):
         raise TypeError("records must be a sequence of JoinRecord")
     if not records:
@@ -264,8 +349,113 @@ def join_digest(records: Sequence[JoinRecord]) -> str:
         if not isinstance(record, JoinRecord):
             raise TypeError("every record must be a JoinRecord")
         rows.append([record.frame, record.cell_set_sha256, record.track_id])
-    payload = {"schema": LOCKS_VERSION, "join": sorted(rows)}
-    return _sha256_hex(_canonical_bytes(payload))
+    if len({tuple(row) for row in rows}) != len(rows):
+        raise ValueError("duplicate join rows are refused")
+    payload = {"join": sorted(rows), "schema": EVIDENCE_SCHEMA}
+    return _canonical_bytes(payload)
+
+
+def join_digest(records: Sequence[JoinRecord]) -> str:
+    """Order-independent digest of a complete join = sha256 of the persisted bytes."""
+    return _sha256_hex(canonical_join_bytes(records))
+
+
+def _records_from_payload(payload: object) -> tuple[JoinRecord, ...]:
+    if not isinstance(payload, dict) or set(payload) != {"join", "schema"}:
+        raise EvidenceInvalid("refused: the join evidence key set is not the canonical one")
+    if payload["schema"] != EVIDENCE_SCHEMA:
+        raise EvidenceInvalid("refused: unsupported join evidence schema")
+    rows = payload["join"]
+    if not isinstance(rows, list) or not rows:
+        raise EvidenceInvalid("refused: the join evidence carries no row")
+    records = []
+    for row in rows:
+        if not isinstance(row, list) or len(row) != 3:
+            raise EvidenceInvalid("refused: a join row is not a triple")
+        frame, digest, track_id = row
+        try:
+            records.append(
+                JoinRecord(frame=frame, cell_set_sha256=digest, track_id=track_id)
+            )
+        except (TypeError, ValueError) as exc:
+            raise EvidenceInvalid(f"refused: malformed join row: {exc}") from exc
+    return tuple(records)
+
+
+def write_join_evidence(
+    evidence_root: str | os.PathLike[str],
+    records: Sequence[JoinRecord],
+) -> tuple[Path, str]:
+    """Write the join into a BOUNDED evidence root, atomically, without overwriting.
+
+    Returns ``(path, digest)`` where ``digest`` is the sha256 of the bytes that are now
+    on disk -- verified by reading them back before returning.  Refusals: root absent,
+    root not a real directory, root is a symlink, target already exists, target escapes
+    the root, no atomic link available, or read-back mismatch.  Nothing is ever
+    overwritten and nothing is written outside the declared root.
+    """
+    payload = canonical_join_bytes(records)
+    root = Path(evidence_root)
+    if root.is_symlink():
+        raise EvidenceInvalid("refused: the evidence root is a symlink")
+    if not root.is_dir():
+        raise EvidenceInvalid("refused: the evidence root must already exist")
+    real_root = os.path.realpath(root)
+    target = root / JOIN_EVIDENCE_FILENAME
+    if os.path.dirname(os.path.realpath(target)) != real_root:
+        raise EvidenceInvalid("refused: the evidence path escapes its declared root")
+    if target.exists() or target.is_symlink():
+        raise EvidenceInvalid("refused: refusing to overwrite existing join evidence")
+
+    descriptor, partial_name = tempfile.mkstemp(dir=root, prefix=".join.", suffix=".partial")
+    partial = Path(partial_name)
+    try:
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        try:
+            os.link(partial, target)
+        except OSError as exc:  # pragma: no cover - platform without hard links
+            raise EvidenceInvalid(
+                f"refused: no atomic non-overwriting link available: {exc}"
+            ) from exc
+    finally:
+        try:
+            os.unlink(partial)
+        except OSError:  # pragma: no cover - create-only mounts
+            pass
+
+    _, digest = read_join_evidence(target)
+    if digest != _sha256_hex(payload):
+        raise EvidenceInvalid("refused: the persisted bytes do not reproduce the join digest")
+    return target, digest
+
+
+def read_join_evidence(path: str | os.PathLike[str]) -> tuple[tuple[JoinRecord, ...], str]:
+    """Re-read the artefact and recompute its digest FROM THE BYTES ON DISK.
+
+    The digest returned here is ``sha256`` of exactly what was read.  A mutated,
+    re-ordered or non-canonical file is refused rather than re-canonicalised, so a
+    tampered artefact can never reproduce the original digest.
+    """
+    target = Path(path)
+    if target.is_symlink():
+        raise EvidenceInvalid("refused: the join evidence is a symlink")
+    if not target.is_file():
+        raise EvidenceInvalid("refused: the join evidence does not exist")
+    raw = target.read_bytes()
+    digest = _sha256_hex(raw)
+    try:
+        payload = json.loads(raw.decode("ascii"))
+    except (UnicodeDecodeError, ValueError) as exc:
+        raise EvidenceInvalid(f"refused: the join evidence is not canonical JSON: {exc}") from exc
+    records = _records_from_payload(payload)
+    if _canonical_bytes(payload) != raw:
+        raise EvidenceInvalid("refused: the join evidence is not in canonical byte form")
+    if canonical_join_bytes(records) != raw:
+        raise EvidenceInvalid("refused: the join evidence does not round-trip byte-for-byte")
+    return records, digest
 
 
 # ======================================================================================
@@ -384,17 +574,21 @@ def verify_public_commitment(
     *,
     verifier: CommitmentVerifier | None,
     expected_root_sha256: str,
-    must_precede_unix: int | None = None,
+    must_precede_unix: int,
 ) -> None:
     """Fail-closed verification of PRB-6.  Returns ``None`` or raises.
 
     In this order, and no other:
       1. a commitment must be present and well formed;
       2. it must bind exactly the expected root;
-      3. a verifier must be supplied -- there is no default and no bundled verifier;
-      4. the verifier must return exactly ``True``;
-      5. if ``must_precede_unix`` is given, the PUBLIC timestamp must be strictly
-         earlier, which is the anti-reroll precondition HR-3 requires.
+      3. the public-priority cutoff must be present -- there is NO default, because a
+         commitment that is not prior to the reveal cannot bind it (HR-3);
+      4. the PUBLIC timestamp must be strictly earlier than that cutoff;
+      5. a verifier must be supplied -- there is no default and no bundled verifier;
+      6. the verifier must return exactly ``True``.
+
+    LK-L2 still holds: this function decides nothing about cryptographic authenticity.
+    It delegates it, and the delegate is exactly as strong as PRB-6 is closed.
     """
     if commitment is None:
         raise CommitmentInvalid("refused: no public commitment was presented")
@@ -404,6 +598,20 @@ def verify_public_commitment(
         raise CommitmentInvalid("refused: expected root is not a sha256 digest")
     if commitment.root_sha256 != expected_root_sha256:
         raise CommitmentInvalid("refused: the commitment does not bind the expected root")
+    if must_precede_unix is None:
+        raise CommitmentInvalid(
+            "refused: no public-priority cutoff supplied; the anti-reroll precondition "
+            "has no default and cannot be skipped (HR-3)"
+        )
+    if isinstance(must_precede_unix, bool) or not isinstance(must_precede_unix, int):
+        raise CommitmentInvalid("refused: must_precede_unix must be a plain int")
+    if must_precede_unix <= 0:
+        raise CommitmentInvalid("refused: must_precede_unix must be positive")
+    if commitment.published_at_unix >= must_precede_unix:
+        raise CommitmentInvalid(
+            "refused: the public commitment is not strictly prior to the designated "
+            "instant; a commitment published at or after the reveal cannot bind it"
+        )
     if verifier is None:
         raise CommitmentInvalid(
             "refused: no commitment verifier supplied; PRB-6 has no bundled verifier "
@@ -417,14 +625,6 @@ def verify_public_commitment(
         raise CommitmentInvalid(f"refused: the commitment verifier raised: {exc!r}") from exc
     if verdict is not True:
         raise CommitmentInvalid("refused: the commitment verifier did not return True")
-    if must_precede_unix is not None:
-        if isinstance(must_precede_unix, bool) or not isinstance(must_precede_unix, int):
-            raise CommitmentInvalid("refused: must_precede_unix must be a plain int")
-        if commitment.published_at_unix >= must_precede_unix:
-            raise CommitmentInvalid(
-                "refused: the public commitment is not strictly prior to the designated "
-                "instant; a commitment published at or after the reveal cannot bind it"
-            )
 
 
 # ======================================================================================
@@ -442,7 +642,12 @@ class ReceiptInvalid(RuntimeError):
 
 @dataclass(frozen=True)
 class RouteEReceipt:
-    """A receipt is a claim that ``root_sha256`` was anchored by ``commitment``."""
+    """A receipt is a claim that ``root_sha256`` was anchored by ``commitment``.
+
+    A receipt is a CLAIM, never a proof.  Its root is never believed: the gate
+    recomputes the root from persisted evidence and compares.  Its authenticity is
+    exactly the strength of the PRB-6 verifier, which is not delivered.
+    """
 
     root_sha256: str
     commitment: PublicCommitment
@@ -458,9 +663,25 @@ class RouteEReceipt:
 
 # ======================================================================================
 # PRB-3  frozen check order:  local evidence -> root digest -> verifier
+#
+# ONE internal path, used by EVERY public entry.  A public function that skipped a
+# phase would have to re-implement this function, which is what the mutation tests
+# detect.
 # ======================================================================================
 
 CHECK_ORDER: tuple[str, ...] = ("LOCAL_EVIDENCE", "ROOT_DIGEST", "VERIFIER")
+
+#: The realisation of the frozen order.  ``ENTRY_GUARD`` is a preflight that trusts
+#: NOTHING (it only checks that a receipt of the right shape is present, before any
+#: effect), and ``RECEIPT_ROOT_BINDING`` is a sub-step inside ``VERIFIER``.  The three
+#: frozen phases are neither reordered nor removed.
+CHECK_PHASES: tuple[str, ...] = (
+    "ENTRY_GUARD",
+    "LOCAL_EVIDENCE",
+    "ROOT_DIGEST",
+    "RECEIPT_ROOT_BINDING",
+    "VERIFIER",
+)
 
 
 class CheckOrderViolation(RuntimeError):
@@ -486,58 +707,106 @@ class _OrderTrace:
         self.steps.append(step)
 
 
-def open_route_e_analysis(
+def _frozen_check_order(
     *,
-    local_evidence_ok: bool,
-    recomputed_root_sha256: str,
+    evidence_path: str | os.PathLike[str],
+    measurement_root_sha256: str,
+    family_enrolment: FamilyEnrolment,
     receipt: RouteEReceipt | None,
     verifier: CommitmentVerifier | None,
-    must_precede_unix: int | None = None,
-    trace: list[str] | None = None,
-) -> None:
-    """The single supported Route E analysis entry point.  Fail-closed, in order.
+    must_precede_unix: int,
+    trace: list[str] | None,
+) -> str:
+    """THE single ordered path.  Returns the recomputed root, or raises.
 
-    1. LOCAL_EVIDENCE -- the caller's local re-verification must have succeeded.
-    2. ROOT_DIGEST    -- a receipt must exist and bind the RECOMPUTED root exactly.
-    3. VERIFIER       -- the public commitment must verify, and be prior.
-
-    A failure at step *n* raises before step *n+1* is entered; that is what ``trace``
-    pins.  Even when all three pass, this function refuses, because
-    ``scientific_run_authorized`` is ``False`` for this mission and no preregistration
-    or execution authorisation exists.
+    ``ENTRY_GUARD``  a receipt must be present and of the right type.  Its root is NOT
+                     read here and NOT believed anywhere.
+    ``LOCAL_EVIDENCE`` the persisted join is re-read from disk and its digest recomputed
+                     from those bytes.
+    ``ROOT_DIGEST``  the Route E root is RECOMPUTED from the re-read join digest, the
+                     measurement root and the enrolment digest.  No caller-supplied
+                     root string exists anywhere in this signature.
+    ``RECEIPT_ROOT_BINDING`` the receipt must bind exactly that recomputed root.
+    ``VERIFIER``     the public commitment must verify, and be strictly prior.
     """
-    order = _OrderTrace()
 
-    order.enter("LOCAL_EVIDENCE")
-    if trace is not None:
-        trace.append("LOCAL_EVIDENCE")
-    if local_evidence_ok is not True:
-        raise RouteEAnalysisRefused("refused at LOCAL_EVIDENCE: local re-verification failed")
+    def mark(step: str) -> None:
+        if trace is not None:
+            trace.append(step)
 
-    order.enter("ROOT_DIGEST")
-    if trace is not None:
-        trace.append("ROOT_DIGEST")
+    # -- phase 0: ENTRY_GUARD, before any effect, believing nothing -------------------
+    mark("ENTRY_GUARD")
     if receipt is None:
-        raise ReceiptMissing("refused at ROOT_DIGEST: no receipt was presented")
+        raise ReceiptMissing("refused at ENTRY_GUARD: no receipt was presented")
     if not isinstance(receipt, RouteEReceipt):
-        raise ReceiptInvalid("refused at ROOT_DIGEST: receipt is not a RouteEReceipt")
-    if not _is_sha256_hex(recomputed_root_sha256):
-        raise ReceiptInvalid("refused at ROOT_DIGEST: recomputed root is not a digest")
-    if receipt.root_sha256 != recomputed_root_sha256:
-        raise ReceiptInvalid(
-            "refused at ROOT_DIGEST: the receipt does not bind the recomputed root"
+        raise ReceiptInvalid("refused at ENTRY_GUARD: receipt is not a RouteEReceipt")
+    if must_precede_unix is None:
+        raise CommitmentInvalid(
+            "refused at ENTRY_GUARD: no public-priority cutoff supplied; there is no "
+            "default and the check cannot be skipped (HR-3)"
         )
 
+    order = _OrderTrace()
+
+    # -- phase 1: LOCAL_EVIDENCE ------------------------------------------------------
+    order.enter("LOCAL_EVIDENCE")
+    mark("LOCAL_EVIDENCE")
+    _, recomputed_join_digest = read_join_evidence(evidence_path)
+
+    # -- phase 2: ROOT_DIGEST ---------------------------------------------------------
+    order.enter("ROOT_DIGEST")
+    mark("ROOT_DIGEST")
+    if not isinstance(family_enrolment, FamilyEnrolment):
+        raise ReceiptInvalid("refused at ROOT_DIGEST: enrolment is not a FamilyEnrolment")
+    recomputed_root = route_e_root(
+        measurement_root_sha256=measurement_root_sha256,
+        track_component_join_digest=recomputed_join_digest,
+        family_enrolment_digest=enrolment_digest(family_enrolment),
+    )
+
+    # -- phase 3: RECEIPT_ROOT_BINDING then VERIFIER ----------------------------------
     order.enter("VERIFIER")
-    if trace is not None:
-        trace.append("VERIFIER")
+    mark("RECEIPT_ROOT_BINDING")
+    if receipt.root_sha256 != recomputed_root:
+        raise ReceiptInvalid(
+            "refused at RECEIPT_ROOT_BINDING: the receipt does not bind the root "
+            "recomputed from the persisted evidence"
+        )
+    mark("VERIFIER")
     verify_public_commitment(
         receipt.commitment,
         verifier=verifier,
-        expected_root_sha256=recomputed_root_sha256,
+        expected_root_sha256=recomputed_root,
         must_precede_unix=must_precede_unix,
     )
+    return recomputed_root
 
+
+def open_route_e_analysis(
+    *,
+    evidence_path: str | os.PathLike[str],
+    measurement_root_sha256: str,
+    family_enrolment: FamilyEnrolment,
+    receipt: RouteEReceipt | None,
+    verifier: CommitmentVerifier | None,
+    must_precede_unix: int,
+    trace: list[str] | None = None,
+) -> None:
+    """The Route E analysis entry point.  Fail-closed, in the frozen order.
+
+    Even when every phase passes, this function refuses: ``scientific_run_authorized``
+    is ``False`` for this mission and no preregistration or execution authorisation
+    exists.  There is no argument that makes it return.
+    """
+    _frozen_check_order(
+        evidence_path=evidence_path,
+        measurement_root_sha256=measurement_root_sha256,
+        family_enrolment=family_enrolment,
+        receipt=receipt,
+        verifier=verifier,
+        must_precede_unix=must_precede_unix,
+        trace=trace,
+    )
     raise RouteEAnalysisRefused(
         "refused after VERIFIER: scientific_run_authorized is False; no preregistration "
         "exists and no human review has authorised execution"
@@ -545,7 +814,18 @@ def open_route_e_analysis(
 
 
 # ======================================================================================
-# PRB-5  single supported entry point -- all five, each with its own refusal
+# PRB-5  single supported entry point
+#
+# WHAT THIS IS, STATED WITHOUT EMBELLISHMENT
+# ------------------------------------------
+# ``route_e_entry`` is a PROTOCOL FACADE, not a gate.  It is NOT in the call graph of
+# the five accepted functions: it does not import them, does not reference them as
+# callables, and cannot prevent a direct call to any of them.  Its own tests therefore
+# prove a property of the facade and NOTHING about those five functions.
+#
+# Closing PRB-5 requires a refusal that lives INSIDE each accepted entry point, which
+# means editing an accepted source.  That is outside the frozen allowlist, so PRB-5 is
+# reported OPEN and the exact paths required are named in the report.
 # ======================================================================================
 
 SUPPORTED_ENTRY_POINTS: tuple[str, ...] = (
@@ -556,26 +836,35 @@ SUPPORTED_ENTRY_POINTS: tuple[str, ...] = (
     "lifecycle.qualify_and_write_lifecycle_contract",
 )
 
+FACADE_IS_NOT_A_GATE: str = (
+    "route_e_entry is a protocol facade.  It is not in the call graph of the five "
+    "accepted entry points, it cannot intercept a direct call to any of them, and no "
+    "test of this facade is evidence about them.  The weaker property that an accepted "
+    "function called directly in an unauthorised Route E context refuses at its own "
+    "first check is tested separately and is bounded by LK-L1."
+)
+
 
 class EntryPointRefused(RuntimeError):
-    """The Route E entry gate refused before dispatching to an accepted source."""
+    """The Route E protocol facade refused."""
 
 
 def route_e_entry(
     entry_point: str,
     *,
     authorisation: Any = None,
+    evidence_path: str | os.PathLike[str] | None = None,
+    measurement_root_sha256: str | None = None,
+    family_enrolment: FamilyEnrolment | None = None,
     receipt: RouteEReceipt | None = None,
     verifier: CommitmentVerifier | None = None,
-    **_ignored: Any,
+    must_precede_unix: int | None = None,
 ) -> None:
-    """The ONLY in-protocol way for Route E to reach an accepted entry point.
+    """The in-protocol Route E facade.  It always refuses, in the frozen order.
 
-    It refuses before anything: before entropy, before any network or external source,
-    before any subprocess, before any seed, family or namespace, before any law or
-    initial condition, before the engine, before any file, before any result read and
-    before any persistent write.  Nothing below this refusal is ever reached, which is
-    what the per-entry-point refusal tests pin -- one test per entry point, five in all.
+    It delegates to ``_frozen_check_order`` -- the SAME internal path used by
+    ``open_route_e_analysis`` -- so the frozen order and the mandatory public-priority
+    cutoff hold identically on both public entries.  It dispatches to nothing.
     """
     from . import future_route_e_pre_run_frame as _frame
 
@@ -593,16 +882,14 @@ def route_e_entry(
         raise EntryPointRefused(
             f"refused: {entry_point} received an invalid Route E authorisation"
         )
-    if receipt is None:
-        raise ReceiptMissing(
-            f"refused: {entry_point} requires a verified receipt (PRB-2) and none was given"
-        )
-    if not isinstance(receipt, RouteEReceipt):
-        raise ReceiptInvalid(f"refused: {entry_point} received a malformed receipt")
-    verify_public_commitment(
-        receipt.commitment,
+    _frozen_check_order(
+        evidence_path=evidence_path,
+        measurement_root_sha256=measurement_root_sha256,
+        family_enrolment=family_enrolment,
+        receipt=receipt,
         verifier=verifier,
-        expected_root_sha256=receipt.root_sha256,
+        must_precede_unix=must_precede_unix,
+        trace=None,
     )
     if not _frame.SCIENTIFIC_RUN_AUTHORIZED:
         raise EntryPointRefused(
@@ -616,51 +903,86 @@ def route_e_entry(
 
 
 # ======================================================================================
-# Honest per-blocker status.  Read by the report and by the DECISION.json.
+# Factual per-blocker status.  No composite token, no boolean "closed" verdict.
 # ======================================================================================
 
 
 def blocker_status() -> Mapping[str, Mapping[str, Any]]:
-    """What is closed, what is not, and what the residue is.  No optimism."""
+    """Separate facts, not a verdict.  Human review is still required for all six."""
     return {
         "PRB-1": {
-            "closed": True,
-            "mechanism": "JoinRecord / canonical_cell_set_digest / build_track_component_join "
-            "/ join_digest, bound into route_e_root",
-            "residue": None,
+            "mechanism_present": True,
+            "persistence_present": True,
+            "discriminating_tests_present": True,
+            "integration_into_accepted_sources": False,
+            "remaining_sub_obligations": (
+                "no accepted producer calls build_track_component_join or "
+                "write_join_evidence; the evidence exists only when a Route E caller "
+                "writes it (LK-L1)",
+            ),
+            "human_review_required": True,
         },
         "PRB-2": {
-            "closed": True,
-            "mechanism": "RouteEReceipt required by open_route_e_analysis and by "
-            "route_e_entry; absence raises ReceiptMissing before anything else",
-            "residue": None,
+            "mechanism_present": True,
+            "root_recomputed_from_reread_bytes": True,
+            "discriminating_tests_present": True,
+            "integration_into_accepted_sources": False,
+            "authenticity_established": False,
+            "remaining_sub_obligations": (
+                "cryptographic authenticity of the receipt's provenance depends on "
+                "PRB-6, which is OPEN",
+                "no accepted entry point requires a receipt; adding one means editing "
+                "an accepted source, outside the frozen allowlist",
+            ),
+            "human_review_required": True,
         },
         "PRB-3": {
-            "closed": True,
-            "mechanism": "CHECK_ORDER pinned by _OrderTrace inside open_route_e_analysis; "
-            "a failure at step n raises before step n+1 is entered",
-            "residue": None,
+            "mechanism_present": True,
+            "single_internal_path": "_frozen_check_order, used by both public entries",
+            "discriminating_tests_present": True,
+            "integration_into_accepted_sources": False,
+            "remaining_sub_obligations": (
+                "the order binds the Route E path only; an accepted function called "
+                "directly follows its own order (LK-L1)",
+            ),
+            "human_review_required": True,
         },
         "PRB-4": {
-            "closed": True,
-            "mechanism": "FamilyEnrolment (run identity + seed root + draw plan digest + "
-            "counts) folded into route_e_root",
-            "residue": None,
+            "mechanism_present": True,
+            "closed_at_digest_level": True,
+            "discriminating_tests_present": True,
+            "persistence_or_external_anchoring": False,
+            "remaining_sub_obligations": (
+                "the root is computed and bound, never anchored; anchoring is PRB-6",
+            ),
+            "human_review_required": True,
         },
         "PRB-5": {
-            "closed": True,
-            "mechanism": "route_e_entry gates all five literal entry points; one refusal "
-            "test per entry point, each proving refusal before every listed effect",
-            "residue": "the accepted functions remain reachable outside the Route E path; "
-            "that weaker property is tested separately and bounded (LK-L1)",
+            "mechanism_present": False,
+            "facade_present": True,
+            "facade_is_a_gate": False,
+            "real_entry_point_refusal_tests": "5 of 5, but each is the WEAKER property: "
+            "the accepted function refuses at its own first check, not at a Route E gate",
+            "route_e_specific_refusal_inside_accepted_sources": False,
+            "remaining_sub_obligations": (
+                "a Route E refusal inside each of the five accepted entry points; this "
+                "requires editing accepted sources, outside the frozen allowlist",
+            ),
+            "status": "OPEN",
+            "human_review_required": True,
         },
         "PRB-6": {
-            "closed": False,
-            "mechanism": "PublicCommitment + verify_public_commitment, fail-closed, with "
-            "the strict-priority precondition HR-3 requires",
-            "residue": "OPEN: no maintained BLS / commitment verifier is available inside "
-            "the frozen allowlist; supplying one would modify pyproject.toml. The gate is "
-            "implemented and refuses without a verifier, but the verifier itself is not "
-            "delivered (LK-L2)",
+            "mechanism_present": True,
+            "gate_is_fail_closed": True,
+            "verifier_delivered": False,
+            "remaining_sub_obligations": (
+                "a maintained BLS/G1 (RFC 9380) verifier for the quicknet chain; "
+                "supplying one modifies pyproject.toml and adds lockfiles, outside the "
+                "frozen allowlist",
+                "the exact RFC 9380 domain separation tag is not pinned here",
+            ),
+            "status": "OPEN",
+            "anti_reroll": "UNPROVEN",
+            "human_review_required": True,
         },
     }
