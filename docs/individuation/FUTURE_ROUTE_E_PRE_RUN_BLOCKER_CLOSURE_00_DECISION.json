@@ -1,12 +1,12 @@
 {
-  "schema": "route-e-pre-run-blocker-closure/v5-factual-fields",
+  "schema": "route-e-pre-run-blocker-closure/v6-factual-fields",
   "schema_note": "descriptive label, not a JSON Schema identifier; no schema file defines it and no canonical vocabulary is created here",
   "mission": "FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00",
   "mission_consumed": false,
-  "base": "c08e27c0d7c133789333a73fa66fedc5ab0a2979",
-  "parent_of_base": "054140024267183fa43ef86755cd1c82d5a41483",
-  "authorised_by": "owner authorisation A1, narrow corrective fix; allowlist extended to exactly tests/test_future_lifecycle_runner_integration.py and tests/test_future_lifecycle_owned_pipeline.py",
-  "increment_outcome": "STOPPED_BEFORE_MODIFYING_THE_PINS, as required by section 4 of the authorisation: 'Si leur nombre ou leur nature differe, arrete-toi avant de les mettre a jour.'",
+  "base": "f152c3c43d316cfbc4d7704fc91c69e51ee5fefa",
+  "parent_of_base": "c08e27c0d7c133789333a73fa66fedc5ab0a2979",
+  "authorised_by": "owner authorisation A1-R: lineage transition and real installation of the five guards; allowlist as recorded in allowlist.extended_to",
+  "increment_outcome": "STOPPED_BEFORE_ANY_MATERIAL_MUTATION. Section 4 of A1-R: the Route E signal is bypassable and a sixth real entry point exists outside the allowlist. Section 3 independently: the consumers and the number of binding sites differ from the f152c3c report (14, not 13). No accepted source, no pin, no hook and no new record were written.",
   "lineage": [
     "00afcdd1aacbdf32bb030d85ced735a2920421f6",
     "c6d4acf037d4e51d59e5b75dc91b977b9eb83dbd",
@@ -14,7 +14,8 @@
     "a379efa6e230efd6b4051b36717169be9c0f5dbf",
     "31ccccfb9e61809cf5d461a70425e00c3db7bc17",
     "054140024267183fa43ef86755cd1c82d5a41483",
-    "c08e27c0d7c133789333a73fa66fedc5ab0a2979"
+    "c08e27c0d7c133789333a73fa66fedc5ab0a2979",
+    "f152c3c43d316cfbc4d7704fc91c69e51ee5fefa"
   ],
   "no_composite_disposition_token": {
     "emitted": false,
@@ -40,7 +41,8 @@
     "HR-10/D": "LOCAL_PASS / PARTIAL_GLOBALLY",
     "ANTI_REROLL": "UNPROVEN",
     "five_entry_guard_integration_present": false,
-    "note": "factual descriptions, not a new canonical vocabulary"
+    "note": "factual descriptions, not a new canonical vocabulary",
+    "guard_signal_authoritative": false
   },
   "a1_pin_audit": {
     "authorisation_clause": "section 4: enumerate the nine pins BEFORE touching them; if their number or their nature differs, stop before updating them",
@@ -308,31 +310,53 @@
   },
   "a3_go_module_provenance": {
     "go_files_modified": 0,
+    "go": "go1.24.7 linux/amd64",
     "checks": [
       {
-        "check": "local verification against go.sum",
+        "n": 1,
+        "check": "local verification against the committed go.sum",
         "command": "GOPROXY=off go mod verify",
         "result": "all modules verified",
         "pass": true
       },
       {
-        "check": "re-download into a temporary GOMODCACHE with GOSUMDB=sum.golang.org, never off",
-        "command": "env -i ... GOMODCACHE=<tmp> GOPROXY=direct GOSUMDB=sum.golang.org go mod download github.com/drand/kyber-bls12381",
+        "n": 2,
+        "check": "EMPTY GOMODCACHE, GOSUMDB=sum.golang.org (never off), cold download of the three build modules",
+        "command": "env -i ... GOMODCACHE=<empty> GOPROXY=direct GOSUMDB=sum.golang.org go mod download github.com/drand/kyber-bls12381 github.com/drand/kyber github.com/kilic/bls12-381",
         "result": "exit 0",
-        "pass": true,
-        "does_not_prove_transparency_log_consultation": true
+        "proves_transparency_log_consulted": false,
+        "why_not": "when an entry already exists in go.sum the go command verifies against go.sum and does NOT consult the checksum database"
       },
       {
-        "check": "discriminating probe: a module ABSENT from go.sum, which forces a log lookup",
-        "command": "... go mod download github.com/google/uuid@v1.6.0",
-        "result": "failure: reading https://sum.golang.org/lookup/...: 403 Forbidden - Host not in allowlist: sum.golang.org",
+        "n": 3,
+        "check": "DECISIVE PROBE: go.sum removed entirely, so a checksum-database lookup becomes mandatory",
+        "command": "same environment, no go.sum, go mod download github.com/drand/kyber-bls12381",
+        "result": "failure: verifying go.mod: reading https://sum.golang.org/lookup/github.com/drand/kyber-bls12381@v0.3.4: 403 Forbidden - Host not in allowlist: sum.golang.org",
         "pass": false
+      },
+      {
+        "n": 4,
+        "check": "CONTENT reconstruction from a cold cache; sumdb bypassed with GOPRIVATE=* - EXPLICITLY NOT a transparency proof",
+        "command": "env -i ... GOMODCACHE=<empty> GOPROXY=direct GOPRIVATE='*' go build",
+        "result": "reconstructed go.sum has 10 lines, ALL present verbatim in the 21 committed lines; ZERO divergent line; the 11 extra committed lines are /go.mod-only entries for graph and test-only modules",
+        "divergent_lines": 0,
+        "pass": true
+      },
+      {
+        "n": 5,
+        "check": "reproducible rebuild from a cold module cache using the COMMITTED go.sum",
+        "command": "CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags=-buildid=",
+        "result": "sha256 2534fa4af5ed6d6d4294be26542b52fe7445412532db97e66a955cacba3cca6d, 3433098 bytes - identical to the recorded digest",
+        "pass": true
       }
     ],
-    "rigorous_reading": "the success of the second check does NOT prove that the transparency log was consulted: when an entry already exists in go.sum the go command verifies against go.sum and does NOT consult the checksum database. The third check demonstrates this: as soon as a lookup is genuinely required it fails, because sum.golang.org is not in this environment's network allowlist.",
+    "gosumdb_off_never_used_as_proof": true,
     "go_mod_verify_local": "pass",
+    "go_sum_content_reconstruction": "consistent, 0 divergent line",
+    "build_reproducible_byte_identical": true,
     "sumdb_transparency_verified": false,
-    "to_be_done_by_a_networked_third_party": "go mod verify AND a cold-cache download with GOSUMDB=sum.golang.org, on the five pinned modules"
+    "no_dependency_changed_because_of_the_blocked_host": true,
+    "to_be_done_before_the_final_review": "go mod verify AND a cold-cache download with GOSUMDB=sum.golang.org on the five pinned modules, from a discriminating networked environment"
   },
   "frozen_pre_run_blockers": {
     "PRB-1": {
@@ -589,19 +613,31 @@
     "sumdb": "go mod verify passes locally against go.sum; the transparency log itself was NOT consulted, because sum.golang.org is not in this environment's network allowlist. See a3_go_module_provenance for the discriminating probe."
   },
   "allowlist": {
-    "increment": "A1",
+    "increment": "A1-R",
     "extended_to": [
-      "tests/test_future_lifecycle_runner_integration.py",
-      "tests/test_future_lifecycle_owned_pipeline.py"
-    ],
-    "authorised_but_deliberately_not_modified": [
-      "tests/test_future_lifecycle_runner_integration.py",
-      "tests/test_future_lifecycle_owned_pipeline.py",
       "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py",
       "edlab/substrates/lattice_bond/future_lifecycle_runner.py",
-      "edlab/substrates/lattice_bond/lifecycle.py"
+      "edlab/substrates/lattice_bond/lifecycle.py",
+      "tests/test_future_lifecycle_runner_integration.py",
+      "tests/test_future_lifecycle_owned_pipeline.py",
+      "tests/test_future_route_e_pre_run_integration_00.py",
+      "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_REPORT.md",
+      "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_DECISION.json"
     ],
-    "reason_not_modified": "section 4 stop: the nature of the pins differs from what the authorisation assumed; see a1_pin_audit",
+    "new_files_authorised": [
+      "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_CURRENT_SOURCE_REQUALIFICATION_01.json",
+      "tests/test_future_route_e_current_source_requalification_01.py"
+    ],
+    "new_files_created": 0,
+    "authorised_but_deliberately_not_modified": [
+      "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py",
+      "edlab/substrates/lattice_bond/future_lifecycle_runner.py",
+      "edlab/substrates/lattice_bond/lifecycle.py",
+      "tests/test_future_lifecycle_runner_integration.py",
+      "tests/test_future_lifecycle_owned_pipeline.py",
+      "tests/test_future_route_e_pre_run_integration_00.py"
+    ],
+    "reason_not_modified": "section 4 stop: the Route E signal is bypassable and three real entry points outside the allowlist reach the capability; section 3 stop: the binding sites number 14, not 13",
     "files_added": 0,
     "files_modified": 2,
     "files_deleted": 0,
@@ -615,30 +651,24 @@
         "status": "modified"
       }
     ],
+    "historical_qualification_files_modified": 0,
     "accepted_sources_byte_identical_to_base": true,
-    "byte_identity_verified_against_c08e27c": [
-      "edlab/substrates/lattice_bond/lifecycle.py",
-      "edlab/substrates/lattice_bond/future_lifecycle_runner.py",
-      "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py",
-      "edlab/substrates/lattice_bond/instrumentation.py",
-      "edlab/substrates/lattice_bond/__init__.py",
-      "tests/test_future_lifecycle_runner_integration.py",
-      "tests/test_future_lifecycle_owned_pipeline.py",
-      "edlab/substrates/lattice_bond/future_route_e_pre_run_locks.py",
+    "forbidden_files_untouched": [
       "edlab/substrates/lattice_bond/future_route_e_pre_run_frame.py",
+      "edlab/substrates/lattice_bond/future_route_e_pre_run_locks.py",
       "edlab/substrates/lattice_bond/route_e_beacon_verifier.py",
-      "tests/test_future_route_e_pre_run_locks_00.py",
-      "tests/test_future_route_e_pre_run_integration_00.py",
-      "tests/test_route_e_beacon_verifier.py",
-      "tests/data/route_e_beacon_vectors.json",
       "tools/drand_verify/main.go",
       "tools/drand_verify/go.mod",
-      "tools/drand_verify/go.sum"
+      "tools/drand_verify/go.sum",
+      "tests/data/route_e_beacon_vectors.json",
+      "tests/test_future_route_e_pre_run_blocker_closure_00.py",
+      "pyproject.toml"
     ],
-    "pyproject_modified": false,
-    "a_to_f_test_file_modified": false,
-    "human_review_records_modified": false,
-    "historical_qualification_documents_modified": false
+    "blockers_reported_not_worked_around": [
+      "edlab/substrates/lattice_bond/future_prospective_measurement_bridge.py would have to change for the signal to be forwarded at all",
+      "edlab/substrates/lattice_bond/stage_b.py and stage_b_reproduce.py would have to change for the capability to be reachable only through guarded paths",
+      "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json would have to change for any test name to be added to tests/test_future_lifecycle_runner_integration.py"
+    ]
   },
   "tests": {
     "no_total_preannounced": true,
@@ -647,64 +677,79 @@
       "pytest": "8.4.2",
       "numpy": "2.4.4"
     },
-    "note": "this increment changes only two documents, so the numbers are expected to equal those of c08e27c; they were nevertheless re-executed, not copied",
+    "note": "A1-R changes only two documents, and no test reads either of them (verified by search), so the code-path numbers equal those of f152c3c; they were nevertheless re-executed on the delivered tree, not copied. The fourteen groups required by section 12 are reported separately below.",
     "runs": [
       {
-        "scope": "PRB + HR",
-        "command": "pytest tests/test_future_route_e_pre_run_locks_00.py -q",
-        "collected": 152,
-        "passed": 152,
-        "failed": 0
-      },
-      {
-        "scope": "A-F (file unmodified)",
-        "command": "pytest tests/test_future_route_e_pre_run_blocker_closure_00.py -q",
-        "collected": 104,
-        "passed": 104,
-        "failed": 0
-      },
-      {
-        "scope": "guard + five real entry points + blocker",
-        "command": "pytest tests/test_future_route_e_pre_run_integration_00.py -q",
-        "collected": 33,
-        "passed": 33,
-        "failed": 0
-      },
-      {
-        "scope": "Go verifier + Python adapter",
-        "command": "pytest tests/test_route_e_beacon_verifier.py -q",
-        "collected": 42,
-        "passed": 42,
-        "failed": 0
-      },
-      {
-        "scope": "REGRESSION ON THE ACCEPTED LINEAGE, seven named files",
-        "command": "pytest -q tests/test_future_lifecycle_contract.py tests/test_future_lifecycle_runner_integration.py tests/test_empty_right_nonunit_cadence_tracker_repair.py tests/test_future_lifecycle_owned_pipeline.py tests/test_future_prospective_measurement_bridge.py tests/test_axis_transpose_equivariance_01s.py tests/test_lattice_bond_instrumentation.py",
-        "collected": 673,
-        "passed": 673,
-        "failed": 0
-      },
-      {
-        "scope": "tests/ minus the four mission files",
-        "command": "pytest tests -q --ignore=tests/test_future_route_e_pre_run_locks_00.py --ignore=tests/test_future_route_e_pre_run_blocker_closure_00.py --ignore=tests/test_future_route_e_pre_run_integration_00.py --ignore=tests/test_route_e_beacon_verifier.py",
-        "collected": 946,
-        "passed": 941,
-        "failed": 5
-      },
-      {
-        "scope": "WHOLE CANDIDATE SUITE",
+        "scope": "FULL SUITE on the delivered tree (groups 1 and 11)",
         "command": "pytest tests -q",
         "collected": 1277,
         "passed": 1272,
         "failed": 5
       },
       {
-        "scope": "determinism, the four mission files run twice",
-        "command": "pytest tests/test_future_route_e_pre_run_locks_00.py tests/test_future_route_e_pre_run_blocker_closure_00.py tests/test_future_route_e_pre_run_integration_00.py tests/test_route_e_beacon_verifier.py -q",
+        "scope": "tests/ minus the four mission files (group 10)",
+        "command": "pytest tests -q --ignore=<four mission files>",
+        "collected": 946,
+        "passed": 941,
+        "failed": 5
+      },
+      {
+        "scope": "seven accepted-lineage files (group 9)",
+        "command": "pytest -q <seven files>",
+        "collected": 673,
+        "passed": 673,
+        "failed": 0
+      },
+      {
+        "scope": "PRB/HR (group 6)",
+        "command": "pytest -q tests/test_future_route_e_pre_run_locks_00.py",
+        "collected": 152,
+        "passed": 152,
+        "failed": 0
+      },
+      {
+        "scope": "A-F (group 7)",
+        "command": "pytest -q tests/test_future_route_e_pre_run_blocker_closure_00.py",
+        "collected": 104,
+        "passed": 104,
+        "failed": 0
+      },
+      {
+        "scope": "five real entry points (group 5)",
+        "command": "pytest -q tests/test_future_route_e_pre_run_integration_00.py",
+        "collected": 33,
+        "passed": 33,
+        "failed": 0
+      },
+      {
+        "scope": "verifier and adapter (group 8)",
+        "command": "pytest -q tests/test_route_e_beacon_verifier.py",
+        "collected": 42,
+        "passed": 42,
+        "failed": 0
+      },
+      {
+        "scope": "historical-record integrity (group 3)",
+        "command": "pytest -q tests/test_future_lifecycle_runner_integration.py -k \"23a or rs01_15 or rs01_12 or 23h\"",
+        "collected": 4,
+        "passed": 4,
+        "failed": 0
+      },
+      {
+        "scope": "determinism, four mission files run twice (group 12)",
+        "command": "pytest -q <four mission files>",
         "collected": 331,
         "passed": 331,
         "failed": 0,
         "second_execution_identical": true
+      },
+      {
+        "scope": "binding-site audit, THROWAWAY copy with the patch (group 2)",
+        "command": "pytest -q <seven files>",
+        "collected": 673,
+        "passed": 664,
+        "failed": 9,
+        "not_part_of_the_delivered_tree": true
       }
     ],
     "arithmetic": "152 + 104 + 33 + 42 + 946 = 1277; groups disjoint, no double counting",
@@ -737,7 +782,118 @@
     "drand_contacted": false,
     "live_round_consulted": false,
     "scientific_data_opened": false,
-    "scientific_family_executed": false
+    "scientific_family_executed": false,
+    "groups_section_12": [
+      {
+        "n": 1,
+        "group": "full baseline of f152c3c",
+        "command": "pytest tests -q",
+        "collected": 1277,
+        "passed": 1272,
+        "failed": 5
+      },
+      {
+        "n": 2,
+        "group": "audit of the binding sites (throwaway copy carrying the exact patch)",
+        "command": "pytest -q <seven accepted-lineage files>",
+        "collected": 673,
+        "passed": 664,
+        "failed": 9
+      },
+      {
+        "n": 3,
+        "group": "integrity of the four historical records",
+        "command": "pytest -q tests/test_future_lifecycle_runner_integration.py -k \"23a or rs01_15 or rs01_12 or 23h\"",
+        "collected": 4,
+        "passed": 4,
+        "failed": 0,
+        "plus": "and a direct sha256 comparison of each record between its seal commit and HEAD: all four byte-identical"
+      },
+      {
+        "n": 4,
+        "group": "new record and its pin",
+        "status": "NOT APPLICABLE",
+        "reason": "no record was created; see a1r_architectural_precondition.not_delivered_on_purpose"
+      },
+      {
+        "n": 5,
+        "group": "five real entry points",
+        "command": "pytest -q tests/test_future_route_e_pre_run_integration_00.py",
+        "collected": 33,
+        "passed": 33,
+        "failed": 0
+      },
+      {
+        "n": 6,
+        "group": "PRB / HR",
+        "command": "pytest -q tests/test_future_route_e_pre_run_locks_00.py",
+        "collected": 152,
+        "passed": 152,
+        "failed": 0
+      },
+      {
+        "n": 7,
+        "group": "A-F unchanged",
+        "command": "pytest -q tests/test_future_route_e_pre_run_blocker_closure_00.py",
+        "collected": 104,
+        "passed": 104,
+        "failed": 0
+      },
+      {
+        "n": 8,
+        "group": "verifier and adapter unchanged",
+        "command": "pytest -q tests/test_route_e_beacon_verifier.py",
+        "collected": 42,
+        "passed": 42,
+        "failed": 0
+      },
+      {
+        "n": 9,
+        "group": "seven accepted-lineage files",
+        "command": "pytest -q <seven files>",
+        "collected": 673,
+        "passed": 673,
+        "failed": 0
+      },
+      {
+        "n": 10,
+        "group": "tests/ minus the four mission files",
+        "command": "pytest tests -q --ignore=<four mission files>",
+        "collected": 946,
+        "passed": 941,
+        "failed": 5
+      },
+      {
+        "n": 11,
+        "group": "full candidate suite",
+        "command": "pytest tests -q",
+        "collected": 1277,
+        "passed": 1272,
+        "failed": 5
+      },
+      {
+        "n": 12,
+        "group": "second deterministic execution",
+        "command": "pytest -q <four mission files>, twice",
+        "collected": 331,
+        "passed": 331,
+        "failed": 0
+      },
+      {
+        "n": 13,
+        "group": "six behavioural mutations",
+        "status": "NOT EXECUTED",
+        "executed": 0,
+        "killed": 0,
+        "reason": "they presuppose installed hooks; no hook is installed. Executing them against an unhooked tree would produce mutants killed only by pins, which section 9 explicitly excludes."
+      },
+      {
+        "n": 14,
+        "group": "go mod verify and sumdb attempt",
+        "result": "see a3_go_module_provenance: local verify pass, sumdb 403, reconstruction consistent, rebuild byte-identical"
+      }
+    ],
+    "identical_to_f152c3c": true
   },
   "discriminating_mutations": {
     "note": "these were executed in earlier increments against the mission modules; the SIX behavioural hook mutations required by section 6 of the A1 authorisation were NOT executed, because no hook is installed",
@@ -783,47 +939,53 @@
       "executed": 0,
       "killed": 0,
       "reason": "not applicable: no hook is installed"
+    },
+    "behavioral_hook_mutations_required_by_a1r": {
+      "executed": 0,
+      "killed": 0,
+      "reason": "no hook is installed; the six mutations (individual hook removal from each of the five functions, and moving one hook after the first ordinary validation) presuppose an installed guard",
+      "exclusion_rule_respected": "pin tests were and would be excluded entirely from any mutation campaign; a mutant killed by a hash, a signature, an import, a syntax error, a TypeError or a broken collection does not count"
     }
   },
   "authority_requested": [
     {
-      "id": "A1-REVISED",
-      "supersedes": "A1",
+      "id": "A1-R",
+      "status": "INSUFFICIENT AS WRITTEN, STOPPED AT SECTION 4",
       "purpose": "install the guard: close PRB-5 and enforce PRB-2",
-      "why_a1_is_insufficient": "see a1_pin_audit: ten of the thirteen binding sites lie outside the A1 allowlist, in four sealed historical qualification documents, two of which carry semantic mission assertions",
-      "paths_already_granted": [
-        "tests/test_future_lifecycle_runner_integration.py",
-        "tests/test_future_lifecycle_owned_pipeline.py"
-      ],
-      "additional_decision_required": "either (a) authorise updating the four historical qualification documents with documented old -> new transitions, or (b) authorise a mission-specific requalification document that explicitly supersedes the affected bindings and leaves the historical records intact",
-      "documents_concerned": [
-        "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json",
-        "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json",
-        "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json",
-        "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json"
+      "why_insufficient": [
+        "the Route E signal is a caller self-declaration; an optional keyword-only parameter cannot make it unavoidable",
+        "three real entry points outside the allowlist reach the capability: future_prospective_measurement_bridge.run_measurement_bridge (which runs the engine BEFORE calling the owned pipeline, with no route_e), stage_b.py and stage_b_reproduce.py (zero lifecycle references)",
+        "sections 2 and 7.1/7.2 contradict each other: adding any test name to tests/test_future_lifecycle_runner_integration.py breaks test_rs01_12, whose expected node list lives in a record declared PRESERVE_BYTE_IDENTICAL"
       ]
     },
     {
+      "id": "A1-R2",
+      "status": "REQUESTED",
+      "purpose": "make the Route E signal authoritative rather than declarative",
+      "decision_required": "either extend the allowlist to edlab/substrates/lattice_bond/future_prospective_measurement_bridge.py, edlab/substrates/lattice_bond/stage_b.py and edlab/substrates/lattice_bond/stage_b_reproduce.py so that every path to the capability is guarded at its own first executable statement, or explicitly acknowledge that guarding the five functions will never close PRB-5",
+      "plus": "an explicit rule on test names: either authorise updating STACK_01 test_binding, or require that every test name in tests/test_future_lifecycle_runner_integration.py be preserved exactly and that all new assertions live in non-selector files"
+    },
+    {
       "id": "A2",
-      "status": "DOSSIER DELIVERED, DECISION PENDING WITH THE OWNER",
+      "status": "FROZEN BY THE OWNER, NOT IMPLEMENTED",
       "purpose": "close the publication half of the anti-reroll",
-      "paths": [],
-      "scope": "choose the venue; see a2_public_registry_dossier. No registry was chosen silently and nothing was implemented."
+      "scope": "see a2_frozen_decision"
     },
     {
       "id": "A3",
-      "status": "PARTIALLY ANSWERED",
+      "status": "ANSWERED AS FAR AS THIS ENVIRONMENT ALLOWS",
       "purpose": "module provenance",
-      "paths": [],
-      "scope": "go mod verify passes locally; the sum.golang.org transparency log remains unverifiable in this environment; see a3_go_module_provenance"
+      "scope": "see a3_go_module_provenance; sumdb_transparency_verified = false, proven by a discriminating probe"
     }
   ],
   "unresolved_or_contradictory": [
-    "two drand schemes sign on G1: bls-unchained-on-g1 (fastnet, G2 DST) and bls-unchained-g1-rfc9380 (quicknet, G1 DST); the helper refuses any other scheme and the cross-implementation check shows a quicknet round evaluated with the fastnet DST is INVALID, but the trap is named rather than glossed over",
-    "no official drand-signed versioned vector set exists for bls-unchained-g1-rfc9380; two of the three fixtures used come from drand-organisation repositories (drand/tlock, drand/drand-client) and one from a third party (noislabs/drand-verify), which must never be called official",
-    "go.sum was not checked against the sum.golang.org transparency log; the discriminating probe proves the host is blocked here",
-    "A1 as written is insufficient to install the guard; the required decision concerns four sealed qualification documents and is a governance decision, not an implementation one",
-    "no public registry is chosen for the anti-reroll publication half"
+    "the Route E signal cannot be made unavoidable by a parameter on the five accepted functions: nothing in run_directory, tracking or sampled_frames identifies a Route E intent",
+    "future_prospective_measurement_bridge.run_measurement_bridge declares itself the single supported measurement entry point, runs LatticeBondEngine.step and persists frames BEFORE calling run_owned_future_pipeline, and passes no Route E signal",
+    "stage_b.py and stage_b_reproduce.py reach the scientific capability with zero lifecycle references",
+    "A1-R sections 2 and 7.1/7.2 are mutually unsatisfiable while tests/test_future_lifecycle_runner_integration.py is a bound selector of test_rs01_12",
+    "two drand schemes sign on G1: bls-unchained-on-g1 (fastnet, G2 DST) and bls-unchained-g1-rfc9380 (quicknet, G1 DST); the helper refuses any other scheme",
+    "no official drand-signed versioned vector set exists for bls-unchained-g1-rfc9380; two of the three fixtures come from drand-organisation repositories and one from a third party (noislabs), which must never be called official",
+    "go.sum was not checked against the sum.golang.org transparency log; the discriminating probe proves the host is blocked here"
   ],
   "scientific_results": "NONE. No Delta(f), no psi, no censoring fraction, no ineligibility fraction, no terminal-state distribution, no Route E world, no law drawn, no initial condition drawn, no scientific seed, no scientific beacon round, no namespace, no family.",
   "firewall": {
@@ -859,18 +1021,443 @@
     "guarded_entry_count": 0,
     "behavioral_hook_mutations_killed": 0,
     "behavioral_hook_mutations_note": "not applicable: no hook is installed",
+    "guard_signal_authoritative": false,
     "accepted_entry_integration_present": false,
+    "historical_qualification_files_modified": 0,
+    "current_source_requalification_human_review": "PENDING",
+    "current_source_requalification_record_created": false,
     "public_registry_inclusion_proven": false,
     "sumdb_transparency_verified": false,
     "ANTI_REROLL": "UNPROVEN",
     "human_review": "PENDING",
     "preregistration_authorized": false,
     "scientific_run_authorized": false,
-    "final_acceptance_of_the_six_prb_not_requested": true,
-    "reason_not_requested": "A2 remains unresolved, and A1 as written is insufficient"
+    "human_closure_declared": false,
+    "six_prb_acceptance_requested": false
   },
-  "next_action_authorised": "OWNER DECISIONS: (1) on the four sealed qualification documents, option (a) or option (b) of A1-REVISED; (2) on the public registry venue of A2. Only afterwards, the full independent human review of the six PRB.",
+  "next_action_authorised": "OWNER ARCHITECTURAL DECISION (A1-R2): either extend the allowlist to the three unguarded real entry points so that the Route E signal becomes unavoidable, or acknowledge explicitly that guarding the five functions will never close PRB-5. Plus an explicit rule on test names versus the STACK_01 node binding. Only afterwards, the full independent human review of the six PRB.",
   "preregistration_mission_named": "ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00",
   "preregistration_authorised_here": false,
-  "preregistration_precondition_literal": "closure AND human review of the blockers; PRB-5 is not closed"
+  "preregistration_precondition_literal": "closure AND human review of the blockers; PRB-5 is not closed",
+  "grandparent_of_base": "054140024267183fa43ef86755cd1c82d5a41483",
+  "a1r_preflight": {
+    "base_object_present": true,
+    "base_type": "commit",
+    "parent_matches_authorisation": true,
+    "grandparent_matches_authorisation": true,
+    "merge": false,
+    "parent_count": 1,
+    "f152c3c_vs_c08e27c_changes": [
+      "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_DECISION.json",
+      "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_REPORT.md"
+    ],
+    "f152c3c_vs_c08e27c_change_count": 2,
+    "historical_objects_present": [
+      "00afcdd1aacbdf32bb030d85ced735a2920421f6",
+      "c6d4acf037d4e51d59e5b75dc91b977b9eb83dbd",
+      "bc2a42c468eec5a4e1732ebb08c7cc20c4dab7dd",
+      "a379efa6e230efd6b4051b36717169be9c0f5dbf",
+      "31ccccfb9e61809cf5d461a70425e00c3db7bc17",
+      "054140024267183fa43ef86755cd1c82d5a41483",
+      "c08e27c0d7c133789333a73fa66fedc5ab0a2979"
+    ],
+    "nothing_reconstructed_from_reports": true,
+    "clean_room": {
+      "scope": "exact paths only: edlab/, tests/, tools/, docs/individuation/",
+      "manifest_entries": 470,
+      "byte_identical": 269,
+      "extra_local_files": 0,
+      "differing_files": 5,
+      "difference_cause": ".gitattributes declares text eol=crlf for these five inherited files; git archive applied the declared conversion on export. Content is identical, EOL is the declared one.",
+      "differing_file_list": [
+        "edlab/experiments/sc_iom/engine.py",
+        "edlab/experiments/sc_mcm/config.py",
+        "edlab/experiments/sc_mcm/engine.py",
+        "edlab/substrates/scaffold/engine.py",
+        "edlab/substrates/scaffold/observables.py"
+      ],
+      "not_staged": "196 docs/individuation entries outside the exact-path allowlist were never enumerated or staged (firewall)"
+    }
+  },
+  "a1r_binding_audit": {
+    "reproduced_exactly": true,
+    "assertions": 9,
+    "binding_sites_reported_at_f152c3c": 13,
+    "sites_outside_allowlist": 10,
+    "historical_records": 4,
+    "probe": {
+      "kind": "throwaway copy carrying the exact patch envisaged",
+      "patch": "keyword-only typed route_e: RouteERequest | None = None on the five functions, plus, as the first executable statement after the docstring, if route_e is not None: enforce_route_e_guard(route_e, entry_point=...)",
+      "command": "pytest -q <the seven accepted-lineage files>",
+      "failed": 9,
+      "passed": 664,
+      "collected": 673,
+      "failing_node_ids": [
+        "tests/test_future_lifecycle_runner_integration.py::test_14_no_public_entry_point_accepts_a_lifecycle_closure",
+        "tests/test_future_lifecycle_runner_integration.py::test_23e_lifecycle_source_is_unchanged_across_the_succession",
+        "tests/test_future_lifecycle_runner_integration.py::test_23f_current_source_matches_the_successor_qualification",
+        "tests/test_future_lifecycle_runner_integration.py::test_23g_runner_integration_remains_pending_formal_requalification",
+        "tests/test_future_lifecycle_runner_integration.py::test_23i_every_historically_pinned_artifact_is_explicitly_accounted_for",
+        "tests/test_future_lifecycle_runner_integration.py::test_rs01_13_the_successor_qualification_binds_the_current_lineage_and_hashes",
+        "tests/test_future_lifecycle_runner_integration.py::test_rs01_15_the_historical_runner_package_is_pinned_and_immutable",
+        "tests/test_future_lifecycle_owned_pipeline.py::test_op_21a_the_public_signature_accepts_no_injectable_artifact",
+        "tests/test_future_lifecycle_owned_pipeline.py::test_op_23e_the_accepted_stack_sources_are_unchanged_by_this_mission"
+      ],
+      "no_other_test_broke": true
+    },
+    "verification_method": "each historical value was RECOMPUTED from the real Git blob at the commit that sealed the record; the JSON declarations were never taken as evidence of themselves",
+    "sites": [
+      {
+        "n": 1,
+        "record_path": "tests/test_future_lifecycle_runner_integration.py",
+        "field": "test_14.allowed_annotations",
+        "historical_value": "{run_directory, tracking, sampled_frames} with literal annotations",
+        "historical_commit": null,
+        "historical_source_blob": null,
+        "consumer_test_node_id": "::test_14_no_public_entry_point_accepts_a_lifecycle_closure",
+        "classification": "current_head_tripwire",
+        "inside_allowlist": true,
+        "proposed_treatment": "extend to the typed route_e parameter, removing no check"
+      },
+      {
+        "n": 2,
+        "record_path": "tests/test_future_lifecycle_owned_pipeline.py",
+        "field": "test_op_21a ordered parameter list",
+        "historical_value": "literal list of 6 names; list(open_owned_analysis_access) == [\"run_directory\"]",
+        "historical_commit": null,
+        "historical_source_blob": null,
+        "consumer_test_node_id": "::test_op_21a_the_public_signature_accepts_no_injectable_artifact",
+        "classification": "current_head_tripwire",
+        "inside_allowlist": true,
+        "proposed_treatment": "extend to the typed route_e parameter, removing no check"
+      },
+      {
+        "n": 3,
+        "record_path": "tests/test_future_lifecycle_owned_pipeline.py",
+        "field": "test_op_23e in-file sha256 map",
+        "historical_value": "lifecycle.py=3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053, future_lifecycle_runner.py=7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08, instrumentation.py=65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef, __init__.py=9d3bea5ac70b514b592f71c2c46738dfdaec62e0072e8055a512b2e22ac6d5b0",
+        "historical_commit": null,
+        "historical_source_blob": null,
+        "consumer_test_node_id": "::test_op_23e_the_accepted_stack_sources_are_unchanged_by_this_mission",
+        "classification": "current_head_tripwire",
+        "inside_allowlist": true,
+        "proposed_treatment": "new values with a documented old -> new transition"
+      },
+      {
+        "n": 4,
+        "record_path": "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json",
+        "field": "/source_hashes_sha256/edlab/substrates/lattice_bond/lifecycle.py",
+        "historical_value": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+        "historical_commit": "4282fc6ead915639711f5096c7825d3880a640d4",
+        "historical_source_blob": "a3592eb7d97b0ff9d2b5241f908a311b9bdeccd0",
+        "recomputed_from_blob_matches": true,
+        "consumer_test_node_id": "::test_23b_historical_qualification_still_records_the_historical_tracker_hash, ::test_23e_lifecycle_source_is_unchanged_across_the_succession",
+        "classification": "historical_fact",
+        "inside_allowlist": false,
+        "proposed_treatment": "UNCHANGED"
+      },
+      {
+        "n": 5,
+        "record_path": "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json",
+        "field": "/source_hashes_sha256/edlab/substrates/lattice_bond/lifecycle.py",
+        "historical_value": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+        "historical_commit": "9185afaa2de69cbfe20b7ee983261d03e2225ce7",
+        "historical_source_blob": "a3592eb7d97b0ff9d2b5241f908a311b9bdeccd0",
+        "recomputed_from_blob_matches": true,
+        "consumer_test_node_id": "::test_23e\u2026, ::test_23f_current_source_matches_the_successor_qualification",
+        "classification": "historical_fact",
+        "inside_allowlist": false,
+        "proposed_treatment": "UNCHANGED"
+      },
+      {
+        "n": 6,
+        "record_path": "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json",
+        "field": "/source_hashes_sha256/edlab/substrates/lattice_bond/future_lifecycle_runner.py",
+        "historical_value": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
+        "historical_commit": "9185afaa2de69cbfe20b7ee983261d03e2225ce7",
+        "historical_source_blob": "44135ee74d8a19bdd1cbdb8e1a38fa0ecb728ff4",
+        "recomputed_from_blob_matches": true,
+        "consumer_test_node_id": "::test_23f_current_source_matches_the_successor_qualification",
+        "classification": "historical_fact",
+        "inside_allowlist": false,
+        "proposed_treatment": "UNCHANGED"
+      },
+      {
+        "n": 7,
+        "record_path": "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json",
+        "field": "/lineage/unchanged_runner_sha256",
+        "historical_value": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
+        "historical_commit": "9185afaa2de69cbfe20b7ee983261d03e2225ce7",
+        "historical_source_blob": "44135ee74d8a19bdd1cbdb8e1a38fa0ecb728ff4",
+        "recomputed_from_blob_matches": true,
+        "consumer_test_node_id": "::test_23g_runner_integration_remains_pending_formal_requalification",
+        "classification": "historical_fact",
+        "inside_allowlist": false,
+        "proposed_treatment": "UNCHANGED"
+      },
+      {
+        "n": 8,
+        "record_path": "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json",
+        "field": "/lineage/historically_pinned_artifacts and /lineage/divergent_from_historical_pin",
+        "historical_value": "7 pinned artifacts plus the declared divergence set",
+        "historical_commit": "9185afaa2de69cbfe20b7ee983261d03e2225ce7",
+        "historical_source_blob": null,
+        "consumer_test_node_id": "::test_23i_every_historically_pinned_artifact_is_explicitly_accounted_for",
+        "classification": "historical_fact",
+        "inside_allowlist": false,
+        "proposed_treatment": "UNCHANGED"
+      },
+      {
+        "n": 9,
+        "record_path": "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json",
+        "field": "/source_hashes_sha256/edlab/substrates/lattice_bond/lifecycle.py",
+        "historical_value": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+        "historical_commit": "9a1bfaff42009f3ae336c4d875eb18e0ab9a6fb5",
+        "sealed_at": "d493168d9013198723200308e1c3a91141ac2de4",
+        "historical_source_blob": "a3592eb7d97b0ff9d2b5241f908a311b9bdeccd0",
+        "recomputed_from_blob_matches": true,
+        "consumer_test_node_id": "::test_rs01_13_the_successor_qualification_binds_the_current_lineage_and_hashes",
+        "classification": "historical_fact",
+        "inside_allowlist": false,
+        "proposed_treatment": "UNCHANGED"
+      },
+      {
+        "n": 10,
+        "record_path": "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json",
+        "field": "/source_hashes_sha256/edlab/substrates/lattice_bond/future_lifecycle_runner.py",
+        "historical_value": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
+        "historical_commit": "9a1bfaff42009f3ae336c4d875eb18e0ab9a6fb5",
+        "sealed_at": "d493168d9013198723200308e1c3a91141ac2de4",
+        "historical_source_blob": "44135ee74d8a19bdd1cbdb8e1a38fa0ecb728ff4",
+        "recomputed_from_blob_matches": true,
+        "consumer_test_node_id": "::test_rs01_13_the_successor_qualification_binds_the_current_lineage_and_hashes",
+        "classification": "historical_fact",
+        "inside_allowlist": false,
+        "proposed_treatment": "UNCHANGED"
+      },
+      {
+        "n": 11,
+        "record_path": "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json",
+        "field": "/historical_versus_current/runner_source_changed_by_this_mission",
+        "historical_value": false,
+        "historical_commit": "9a1bfaff42009f3ae336c4d875eb18e0ab9a6fb5",
+        "historical_source_blob": "44135ee74d8a19bdd1cbdb8e1a38fa0ecb728ff4",
+        "consumer_test_node_id": "::test_rs01_13_the_successor_qualification_binds_the_current_lineage_and_hashes",
+        "classification": "historical_fact (SEMANTIC mission assertion, deliberate tripwire)",
+        "inside_allowlist": false,
+        "proposed_treatment": "UNCHANGED"
+      },
+      {
+        "n": 12,
+        "record_path": "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json",
+        "field": "/historical_versus_current/future_lifecycle_runner_py_sha256_historical == _current",
+        "historical_value": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08 on both sides",
+        "historical_commit": "9a1bfaff42009f3ae336c4d875eb18e0ab9a6fb5",
+        "historical_source_blob": "44135ee74d8a19bdd1cbdb8e1a38fa0ecb728ff4",
+        "recomputed_from_blob_matches": true,
+        "consumer_test_node_id": "::test_rs01_13_the_successor_qualification_binds_the_current_lineage_and_hashes",
+        "classification": "historical_fact (SEMANTIC mission assertion)",
+        "inside_allowlist": false,
+        "proposed_treatment": "UNCHANGED"
+      },
+      {
+        "n": 13,
+        "record_path": "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json",
+        "field": "/identity_proofs/{future_lifecycle_runner_py_sha256, _blob, _identical_at} and /identity_proofs/bound_lifecycle_package_unchanged_sha256",
+        "historical_value": "sha256 7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08; blob 44135ee74d8a19bdd1cbdb8e1a38fa0ecb728ff4; identical_at [23df99d, a2d44c6, 7facb41, c1faa07]; lifecycle.py 3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+        "historical_commit": "9d13e9b72596f3cf08e1f09dab53a900e82600c9",
+        "historical_source_blob": "44135ee74d8a19bdd1cbdb8e1a38fa0ecb728ff4",
+        "recomputed_from_blob_matches": true,
+        "identical_at_verified": "all four cited commits resolve future_lifecycle_runner.py to blob 44135ee74d8a19bdd1cbdb8e1a38fa0ecb728ff4",
+        "consumer_test_node_id": "::test_rs01_15_the_historical_runner_package_is_pinned_and_immutable",
+        "classification": "historical_fact (SEALED record of another mission)",
+        "inside_allowlist": false,
+        "proposed_treatment": "UNCHANGED"
+      }
+    ],
+    "historical_records_byte_identical_seal_vs_head": {
+      "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json": {
+        "seal_commit": "4282fc6ead915639711f5096c7825d3880a640d4",
+        "sha256": "8f423bb0f0ece04a3e576b76cb2c7704d5edf6c82c827110bd5608e8e5514ece",
+        "identical": true
+      },
+      "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json": {
+        "seal_commit": "9185afaa2de69cbfe20b7ee983261d03e2225ce7",
+        "sha256": "0752b86c6ef9c7b6579a90e7be6250bc2500dcbfbac4d47379c40e277061f403",
+        "identical": true
+      },
+      "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json": {
+        "seal_commit": "d493168d9013198723200308e1c3a91141ac2de4",
+        "sha256": "509f27b23a17b36b7c027cb687860f61b5ee53f4247c0f58e04d2ff1ffd6643a",
+        "identical": true
+      },
+      "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json": {
+        "seal_commit": "9d13e9b72596f3cf08e1f09dab53a900e82600c9",
+        "sha256": "f29da3694b2438ff6bc0d03692771020b145ec6edcfa6ae80a533040207f58df",
+        "identical": true
+      }
+    },
+    "fourteenth_site_not_anticipated_by_A1_or_A1R": {
+      "record_path": "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json",
+      "fields": [
+        "/test_binding/selectors",
+        "/test_binding/node_ids",
+        "/test_binding/node_count",
+        "/test_binding/node_list_sha256"
+      ],
+      "node_count": 251,
+      "node_list_sha256": "a425c3736f0b5d819ef708c2433b785cf706381798ffc48a7ce4b5941161276a",
+      "selectors": [
+        "tests/test_empty_right_nonunit_cadence_tracker_repair.py",
+        "tests/test_future_lifecycle_contract.py",
+        "tests/test_future_lifecycle_runner_integration.py",
+        "tests/test_lattice_bond_instrumentation.py"
+      ],
+      "consumer_test_node_id": "tests/test_future_lifecycle_runner_integration.py::test_rs01_12_the_successor_node_binding_is_complete_and_unaltered",
+      "consumer_kind": "LIVE collection: it runs pytest --collect-only in a subprocess over the four selectors and compares the node list and its sha256",
+      "why_it_matters": "tests/test_future_lifecycle_runner_integration.py IS one of the four selectors, and A1-R sections 7.1 and 7.2 require adding tests to it",
+      "experimental_proof": "a throwaway copy with ONE extra test function added to that file turns test_rs01_12 red: \"collected node list differs\", at index 178",
+      "only_possible_fix": "rewrite node_ids, node_count and node_list_sha256 inside STACK_01, which section 2 declares PRESERVE_BYTE_IDENTICAL",
+      "internal_contradiction_in_A1R": "section 2 (records byte-identical) and sections 7.1/7.2 (add tests to that file) cannot both hold",
+      "narrow_surviving_path_requiring_explicit_authorisation": "rewrite ONLY the bodies of the nine tests in that file, preserving every test name exactly, and place all new assertions in tests/test_future_lifecycle_owned_pipeline.py, tests/test_future_route_e_pre_run_integration_00.py or the new file, none of which is a selector",
+      "classification": "current_head_tripwire on a record that may not change"
+    },
+    "stop_taken_under_section_3": true
+  },
+  "a1r_architectural_precondition": {
+    "section": "4",
+    "conditions": [
+      {
+        "n": 1,
+        "condition": "the existing Route E type and guard can be reused without duplication",
+        "verdict": "PASS",
+        "evidence": "RouteERequest and enforce_route_e_guard imported from future_route_e_pre_run_locks into the three sources; no import cycle; no duplicated logic"
+      },
+      {
+        "n": 2,
+        "condition": "the five real functions are still exactly the listed ones",
+        "verdict": "PASS",
+        "evidence": "inspect.signature on the five, and SUPPORTED_ENTRY_POINTS names exactly those five",
+        "five_functions": [
+          "future_lifecycle_owned_pipeline.open_owned_analysis_access",
+          "future_lifecycle_runner.open_analysis_access",
+          "future_lifecycle_runner.publish_future_family_completion",
+          "lifecycle.qualify_and_write_lifecycle_contract",
+          "future_lifecycle_owned_pipeline.run_owned_future_pipeline"
+        ]
+      },
+      {
+        "n": 3,
+        "condition": "no sixth real facade, export or CLI bypasses these capabilities",
+        "verdict": "FAIL",
+        "evidence": "three found; see bypassing_entry_points"
+      },
+      {
+        "n": 4,
+        "condition": "the Route E signal is authoritative and unavoidable in the accepted call graph",
+        "verdict": "FAIL",
+        "evidence": "an optional keyword-only parameter is a caller self-declaration; nothing in run_directory, tracking or sampled_frames lets an accepted function distinguish a Route E intent; making it required only forces callers to pass route_e=None; making it unconditional would break non-Route-E behaviour, which section 8 requires unchanged"
+      },
+      {
+        "n": 5,
+        "condition": "the future A2 format will not require another public-signature change",
+        "verdict": "PASS",
+        "evidence": "the parameter is typed by the CONTAINER dataclass RouteERequest; adding OTS and RFC 3161 fields to PublicCommitment / RouteEReceipt changes none of the five signatures"
+      }
+    ],
+    "bypassing_entry_points": [
+      {
+        "module": "edlab/substrates/lattice_bond/future_prospective_measurement_bridge.py",
+        "function": "run_measurement_bridge",
+        "def_line": 1106,
+        "self_description": "The single supported measurement entry point. It performs every stage itself.",
+        "engine_line": 1139,
+        "engine_call": "_execute(...) -> line 759 LatticeBondEngine(law_spec), line 767 engine.step(...)",
+        "persist_line": 1148,
+        "owned_pipeline_call_line": 1160,
+        "route_e_argument_passed": false,
+        "can_forward_a_signal": false,
+        "why": "run_measurement_bridge has no Route E parameter, so it cannot forward one; the Route E request reaches run_owned_future_pipeline with route_e=None and the guard never fires. Even if it forwarded one, the refusal would arrive AFTER LatticeBondEngine.step and AFTER the frames were persisted.",
+        "inside_allowlist": false
+      },
+      {
+        "module": "edlab/substrates/lattice_bond/stage_b.py",
+        "function": "run_family / run_world / main",
+        "def_lines": {
+          "run_world": 718,
+          "run_family": 1019,
+          "main": 1065
+        },
+        "lifecycle_references": 0,
+        "engine_lines": [
+          721,
+          733,
+          734,
+          735
+        ],
+        "cli": "python -m edlab.substrates.lattice_bond.stage_b --manifest <path>",
+        "why": "enumerates worlds, runs the engine and writes a namespace result root: a complete scientific family execution with ZERO lifecycle references. This is the finding already recorded by the FUTURE_LIFECYCLE_CONTRACT_00 resumption audit; it has not changed.",
+        "inside_allowlist": false
+      },
+      {
+        "module": "edlab/substrates/lattice_bond/stage_b_reproduce.py",
+        "function": "reproduce_family / reproduce_complete_world / main",
+        "def_lines": {
+          "reproduce_complete_world": 1633,
+          "reproduce_family": 1844,
+          "main": 1952
+        },
+        "lifecycle_references": 0,
+        "cli": "python -m edlab.substrates.lattice_bond.stage_b_reproduce",
+        "inside_allowlist": false
+      }
+    ],
+    "guard_refuses_when_route_e_is_signaled": true,
+    "route_e_request_cannot_omit_or_bypass_signal": false,
+    "guard_signal_authoritative": false,
+    "stop_taken_under_section_4": true,
+    "not_delivered_on_purpose": {
+      "accepted_sources_modified": 0,
+      "pins_modified": 0,
+      "hooks_installed": 0,
+      "behavioral_mutations_executed": 0,
+      "current_source_requalification_record_created": false,
+      "why_no_record": "it would attest a transition that did not happen and would carry source_changed_by_this_mission = true on unchanged sources; creating it would be a claim exceeding the evidence",
+      "partial_integration_refused": "section 4 forbids delivering a partial integration that would still force a later rebaselining"
+    },
+    "what_would_be_required_to_make_the_signal_authoritative": "act on future_prospective_measurement_bridge.py, stage_b.py and stage_b_reproduce.py - three files outside every current allowlist - or explicitly acknowledge that guarding the five functions will never close PRB-5"
+  },
+  "a2_frozen_decision": {
+    "status": "FROZEN BY THE OWNER, NOT IMPLEMENTED HERE",
+    "public_registry": "Bitcoin mainnet via complete OpenTimestamps proof",
+    "signed_time": "Sigstore RFC 3161 timestamp over the canonical completed OTS proof",
+    "acceptance_rule": "OTS AND RFC3161",
+    "never": "OTS OR RFC3161",
+    "nothing_published_here": true,
+    "no_registry_contacted_here": true,
+    "no_ots_file": true,
+    "no_tsr_token": true,
+    "obligations_for_the_future_A2_mission": [
+      "the OTS proof must be COMPLETE, never Pending",
+      "the RFC 3161 token must be taken over the canonical encoding of the COMPLETE OTS proof",
+      "the token must indirectly bind the same manifest and the same route_e_root",
+      "the round must derive ONLY from the canonical cutoff C already contained in the manifest",
+      "neither the Bitcoin nTime, nor genTime, nor the choice of token may select the round",
+      "genTime + accuracy must be strictly earlier than C, with a pre-frozen margin",
+      "absence of accuracy without an officially frozen bound is a STOP",
+      "no retry, no restamp, no alternative registry, no new round",
+      "several prepublished manifests or cutoffs without a deterministic or first-write-wins rule means the anti-reroll is NOT proven"
+    ],
+    "still_to_be_frozen_by_the_A2_mandate": [
+      "canonical bytes of the manifest and of the proof",
+      "uniqueness of C",
+      "OTS calendars and quorum",
+      "Bitcoin confirmations and reorg policy",
+      "margin before the Quicknet round",
+      "TSA, policy OID, chain and revocation",
+      "offline verification on Windows and Linux",
+      "exact WAIT / STOP rules"
+    ],
+    "public_registry_inclusion_proven": false
+  }
 }
