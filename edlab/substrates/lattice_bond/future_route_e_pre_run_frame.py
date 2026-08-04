@@ -102,6 +102,7 @@ from enum import Enum
 from pathlib import Path
 from typing import Any, Callable, Mapping, Sequence
 
+from . import route_e_beacon_verifier as _beacon
 from .engine import AdmissibilityError, LatticeBondSpec
 from .instrumentation import AssociationEdge, TrackerSpec, TrackEvent, TrackingResult
 
@@ -165,6 +166,7 @@ __all__ = [
     "BeaconInvalid",
     "designated_round",
     "consume_beacon_round",
+    "BEACON_VERIFIER_IS_PINNED",
     "FROZEN_TERMINAL_STATES",
     "DrawDisposition",
     "DISPOSITION_TABLE",
@@ -201,6 +203,12 @@ NEGATIVE_MAX_K = 9
 DELTA_0 = 0.50
 DELTA_1 = 0.25
 COHORT_RESIDUAL_SENSITIVITY_SET: tuple[float, ...] = (0.01, 0.05, 0.20)
+
+BEACON_VERIFIER_IS_PINNED = (
+    "the scheme, the DST, the chain hash and the chain public key live in "
+    "route_e_beacon_verifier and are never chosen by a caller, never read from a "
+    "receipt and never taken from a beacon response"
+)
 
 SCIENTIFIC_RUN_AUTHORIZED = False
 
@@ -509,14 +517,10 @@ DRAW_GENERATOR: Mapping[str, Any] = {
 BEACON_SOURCE: Mapping[str, Any] = {
     "name": "drand League of Entropy, quicknet chain",
     "chain_hash": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
-    "scheme": "bls-unchained-g1-rfc9380",
-    "period_seconds": 3,
-    "genesis_time_unix": 1692803367,
-    "public_key": (
-        "83cf0f2896adee7eb8b5f01fcad3912212c437e0073e911fb90022d3e760183c8c4b450b6a0a6c"
-        "3ac6a5776a2d1064510d1fec758c921cc22b0e17e63aaf4bcb5ed66304de9cf809bd274ca73bab"
-        "4af5a6e9c76a4bc09e76eae8991ef5ece45a"
-    ),
+    "scheme": _beacon.QUICKNET_SCHEME,
+    "period_seconds": _beacon.QUICKNET_PERIOD_SECONDS,
+    "genesis_time_unix": _beacon.QUICKNET_GENESIS_TIME_UNIX,
+    "public_key": _beacon.QUICKNET_PUBLIC_KEY,
     "round_rule": (
         "the FIRST round whose beacon time is at or after T, where T is the PUBLIC "
         "timestamp of the external commitment anchoring the preregistration root "
@@ -537,9 +541,12 @@ BEACON_SOURCE: Mapping[str, Any] = {
     ),
     "verification_rule": (
         "the round signature MUST be verified cryptographically against the pinned chain "
-        "public key (BLS on G1, RFC 9380) and randomness MUST equal sha256(signature).  An "
-        "HTTP response is not evidence.  No verifier is bundled here: see LK-L2 (HR-4)."
+        "public key (BLS on G1, RFC 9380, DST " + _beacon.QUICKNET_DST + ") and randomness "
+        "MUST equal sha256(signature).  An HTTP response is not evidence.  The verifier is "
+        "the maintained drand stack behind route_e_beacon_verifier; there is no callback "
+        "and no caller-supplied verdict (HR-4, PRB-6)."
     ),
+    "dst": _beacon.QUICKNET_DST,
     "public_verifiability": (
         "the round signature verifies against the fixed chain public key with BLS on G1 "
         "(RFC 9380) and the randomness is sha256(signature); verification needs no secret"
@@ -1359,72 +1366,33 @@ def consume_beacon_round(
     *,
     response: Mapping[str, Any] | None,
     expected_round: int,
-    verifier: BeaconSignatureVerifier | None,
+    helper_path: str | os.PathLike[str] | None,
 ) -> bytes:
-    """Strictly parse and verify one beacon round, or raise WAIT / STOP.
+    """Verify ONE designated round through the PINNED maintained verifier, or raise.
 
-    ``response`` is supplied by the caller.  THIS FUNCTION PERFORMS NO NETWORK ACCESS and
-    selects no round.  Order: availability, then shape, then round identity, then
-    signature, then the randomness relation.
+    THIS FUNCTION PERFORMS NO NETWORK ACCESS and selects no round.  ``response`` is
+    supplied by the caller; ``expected_round`` is derived from the frozen public
+    timestamp by :func:`designated_round` and is never negotiated.
+
+    The scheme, the DST, the chain hash and the chain public key are pinned inside
+    ``route_e_beacon_verifier`` and cannot be chosen by any caller.  There is no
+    boolean callback: a caller cannot assert that a round verified.
+
+    WAIT / STOP follows the frozen rule:
+      * genuine unavailability of the designated round -> ``BeaconUnavailable`` (WAIT),
+        on the SAME round, never the next one, never another endpoint or source;
+      * everything else -- absent or misconfigured verifier, wrong chain, wrong round,
+        bad encoding, bad signature, inconsistent randomness, crash, timeout or
+        ambiguous answer -> ``BeaconInvalid`` (STOP).
     """
-    if isinstance(expected_round, bool) or not isinstance(expected_round, int) or expected_round <= 0:
-        raise BeaconInvalid("STOP: expected_round must be a positive plain int")
-
-    if response is None:
-        raise BeaconUnavailable(
-            "WAIT: the designated round is not retrievable.  Retry the SAME round; never "
-            "the next round, never an alternative endpoint, never another source."
-        )
-    if not isinstance(response, Mapping):
-        raise BeaconInvalid("STOP: the beacon response is malformed")
-
-    required = ("round", "randomness", "signature", "chain_hash")
-    missing = [key for key in required if key not in response]
-    if missing:
-        raise BeaconInvalid(f"STOP: the beacon response is missing {missing}")
-
-    chain_hash = response["chain_hash"]
-    if not isinstance(chain_hash, str) or chain_hash != BEACON_SOURCE["chain_hash"]:
-        raise BeaconInvalid("STOP: the beacon response is not from the pinned chain")
-
-    round_value = response["round"]
-    if isinstance(round_value, bool) or not isinstance(round_value, int):
-        raise BeaconInvalid("STOP: the round number is not a plain int")
-    if round_value != expected_round:
-        raise BeaconInvalid(
-            f"STOP: the response carries round {round_value}, not the designated round "
-            f"{expected_round}.  Changing round is forbidden."
-        )
-
-    try:
-        randomness = bytes.fromhex(str(response["randomness"]))
-        signature = bytes.fromhex(str(response["signature"]))
-    except (TypeError, ValueError) as exc:
-        raise BeaconInvalid("STOP: randomness or signature is not valid hex") from exc
-    if len(randomness) != 32:
-        raise BeaconInvalid("STOP: randomness must be exactly 32 bytes")
-    if len(signature) != 48:
-        raise BeaconInvalid("STOP: a quicknet G1 signature must be exactly 48 bytes")
-
-    if verifier is None:
-        raise BeaconInvalid(
-            "STOP: no BLS verifier supplied.  An HTTP response is not evidence; the round "
-            "signature must verify against the pinned public key.  No verifier is bundled "
-            "inside the frozen allowlist (LK-L2)."
-        )
-    if not callable(verifier):
-        raise BeaconInvalid("STOP: the supplied verifier is not callable")
-    try:
-        verdict = verifier(signature, round_value, bytes.fromhex(str(BEACON_SOURCE["public_key"])))
-    except Exception as exc:  # noqa: BLE001 - any verifier failure is a STOP
-        raise BeaconInvalid(f"STOP: the BLS verifier raised: {exc!r}") from exc
-    if verdict is not True:
-        raise BeaconInvalid("STOP: the round signature did not verify against the pinned key")
-
-    if hashlib.sha256(signature).digest() != randomness:
-        raise BeaconInvalid("STOP: randomness is not sha256(signature)")
-
-    return randomness
+    verdict = _beacon.verify_round(
+        response=response, expected_round=expected_round, helper_path=helper_path
+    )
+    if verdict.outcome is _beacon.BeaconOutcome.VERIFIED:
+        return bytes.fromhex(verdict.randomness or "")
+    if verdict.outcome is _beacon.BeaconOutcome.UNAVAILABLE:
+        raise BeaconUnavailable(f"WAIT: {verdict.reason}")
+    raise BeaconInvalid(f"STOP: [{verdict.outcome.value}] {verdict.reason}")
 
 
 # --------------------------------------------------------------------------------------

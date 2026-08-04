@@ -1,0 +1,202 @@
+{
+  "schema": "route-e-beacon-vectors/v1",
+  "provenance_rule": "every vector below was copied out of a COMMITTED fixture file in an official repository, fetched over https from raw.githubusercontent.com during the mission. NO drand beacon endpoint was contacted, no live round was retrieved.",
+  "scheme": "bls-unchained-g1-rfc9380",
+  "dst": "BLS_SIG_BLS12381G1_XMD:SHA-256_SSWU_RO_NUL_",
+  "message_rule": "SHA256(uint64 big-endian round)",
+  "randomness_rule": "SHA256(signature)",
+  "sources": [
+    {
+      "id": "tlock",
+      "repository": "github.com/drand/tlock",
+      "ref": "main",
+      "path": "tlock_test.go",
+      "licence": "Apache-2.0 OR MIT",
+      "fetched_file_sha256": "f2e7110589c254473f53b0a18d39d4705993daec1733f1833f6f9fe9a004ef71",
+      "fetched_bytes": 17630,
+      "committed_fixture": true,
+      "network_at_test_time": false
+    },
+    {
+      "id": "noislabs",
+      "repository": "github.com/noislabs/drand-verify",
+      "ref": "main",
+      "path": "src/verify.rs",
+      "licence": "Apache-2.0",
+      "fetched_file_sha256": "47c7a755b4bc226371df83ec8dc430c7a37f0f0ef2bcf55f898cad52e100f9a6",
+      "fetched_bytes": 21456,
+      "committed_fixture": true,
+      "network_at_test_time": false
+    },
+    {
+      "id": "drand-client",
+      "repository": "github.com/drand/drand-client",
+      "ref": "master",
+      "path": "test/beacon-verification.test.ts",
+      "licence": "Apache-2.0 OR MIT",
+      "fetched_file_sha256": "e9b91a7a598a300702b52e4800f14da1017ee47080ebbe89dfa60b2d2d93c67d",
+      "fetched_bytes": 10828,
+      "committed_fixture": true,
+      "network_at_test_time": false
+    },
+    {
+      "id": "drand-schemes",
+      "repository": "github.com/drand/drand",
+      "ref": "master",
+      "path": "crypto/schemes.go",
+      "licence": "Apache-2.0 OR MIT",
+      "fetched_file_sha256": "58f32452ce9e38e9f25d8692baa1c51b9cfac0167d899aff44cbe70c11a04629",
+      "fetched_bytes": 14359,
+      "committed_fixture": true,
+      "role": "normative definition of the scheme id, the DST, DigestBeacon and RandomnessFromSignature"
+    }
+  ],
+  "vectors": [
+    {
+      "id": "V1",
+      "source": "tlock",
+      "chain_hash": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+      "chain": "quicknet",
+      "public_key": "83cf0f2896adee7eb8b5f01fcad3912212c437e0073e911fb90022d3e760183c8c4b450b6a0a6c3ac6a5776a2d1064510d1fec758c921cc22b0e17e63aaf4bcb5ed66304de9cf809bd274ca73bab4af5a6e9c76a4bc09e76eae8991ef5ece45a",
+      "scheme": "bls-unchained-g1-rfc9380",
+      "round": 12040883,
+      "signature": "929906c959032ab363c9f26570d215d66f5c06cb0c44fe508c12bb5839f04ec895bb6868e5b9ff13ab289bdb5266b394",
+      "randomness": "173df1f57805453a8d2015268205d68147de12cafc2f451f7bc6adadca3571b3",
+      "randomness_provenance": "DERIVED as sha256(signature); the source fixture does not commit the randomness",
+      "expected": "verified",
+      "transformation": "none; hex copied verbatim from the fixture"
+    },
+    {
+      "id": "V2",
+      "source": "noislabs",
+      "chain_hash": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
+      "chain": "quicknet",
+      "public_key": "83cf0f2896adee7eb8b5f01fcad3912212c437e0073e911fb90022d3e760183c8c4b450b6a0a6c3ac6a5776a2d1064510d1fec758c921cc22b0e17e63aaf4bcb5ed66304de9cf809bd274ca73bab4af5a6e9c76a4bc09e76eae8991ef5ece45a",
+      "scheme": "bls-unchained-g1-rfc9380",
+      "round": 123,
+      "signature": "b75c69d0b72a5d906e854e808ba7e2accb1542ac355ae486d591aa9d43765482e26cd02df835d3546d23c4b13e0dfc92",
+      "randomness": "fb8f7bc29bf24db51871ec8c79f3a1e4bd0557bc0dfcee9ed1d924e69d1c60dc",
+      "randomness_provenance": "DERIVED as sha256(signature); the source fixture does not commit the randomness",
+      "expected": "verified",
+      "transformation": "none; hex copied verbatim from the fixture"
+    },
+    {
+      "id": "V3",
+      "source": "drand-client",
+      "chain_hash": "af8b6fc95693b058a3a59efe586eb31c2c352fe00cf40c62a427d87c34f7a235",
+      "chain": "walkthrough (NOT quicknet; same scheme)",
+      "public_key": "81d320f220ee9c79e60e19dedc838c31e3ab919b15481e9feb52f643628c4f6a13fdc52129493875a818109d767272ca0541cbcdcea9335f2870d781b39b845ba8cbd44fdfe4967781cf72ca5917fc9398bcf97ca0548ed5a709016c4b1ff0f3",
+      "scheme": "bls-unchained-g1-rfc9380",
+      "round": 38,
+      "signature": "95c93585c513ebbcb4777ff15599b3140e5ec0295faa0e483f3deadd88fa6d43f0d3703e3a4ce106e8fd6c6987f32126",
+      "randomness": "b2fc21325a24904a6a9e81a6c63f65f6cec3f0b2400df3f4a56b214770e9ccca",
+      "randomness_provenance": "COMMITTED in the source fixture; this is the only vector that proves randomness = sha256(signature) against an official file",
+      "expected": "verified",
+      "transformation": "none; hex copied verbatim from the fixture"
+    }
+  ],
+  "negative_cases": [
+    {
+      "id": "N01",
+      "from": "V2",
+      "mutation": "round + 1",
+      "expected": "invalid"
+    },
+    {
+      "id": "N02",
+      "from": "V2",
+      "mutation": "round - 1",
+      "expected": "invalid"
+    },
+    {
+      "id": "N03",
+      "from": "V2",
+      "mutation": "public key replaced by the walkthrough key",
+      "expected": "invalid"
+    },
+    {
+      "id": "N04",
+      "from": "V2",
+      "mutation": "first signature byte flipped",
+      "expected": "invalid"
+    },
+    {
+      "id": "N05",
+      "from": "V2",
+      "mutation": "randomness replaced by another vector's randomness",
+      "expected": "invalid"
+    },
+    {
+      "id": "N06",
+      "from": "V2",
+      "mutation": "signature replaced by the point at infinity (c0 00...)",
+      "expected": "invalid"
+    },
+    {
+      "id": "N07",
+      "from": "V2",
+      "mutation": "signature x >= p (non-canonical encoding)",
+      "expected": "invalid"
+    },
+    {
+      "id": "N08",
+      "from": "V2",
+      "mutation": "signature one byte too long",
+      "expected": "invalid"
+    },
+    {
+      "id": "N09",
+      "from": "V2",
+      "mutation": "scheme replaced by bls-unchained-on-g1 (fastnet DST)",
+      "expected": "configuration_error"
+    },
+    {
+      "id": "N10",
+      "from": "V2",
+      "mutation": "an extra JSON field is added",
+      "expected": "configuration_error"
+    },
+    {
+      "id": "N11",
+      "from": "V2",
+      "mutation": "two JSON objects on stdin",
+      "expected": "configuration_error"
+    },
+    {
+      "id": "N12",
+      "from": "V2",
+      "mutation": "malformed JSON",
+      "expected": "configuration_error"
+    },
+    {
+      "id": "N13",
+      "from": "V2",
+      "mutation": "public key not on the correct subgroup",
+      "expected": "configuration_error"
+    },
+    {
+      "id": "N14",
+      "from": "-",
+      "mutation": "helper binary absent",
+      "expected": "configuration_error"
+    },
+    {
+      "id": "N15",
+      "from": "-",
+      "mutation": "helper crashes",
+      "expected": "internal_error"
+    },
+    {
+      "id": "N16",
+      "from": "-",
+      "mutation": "helper exceeds the timeout",
+      "expected": "internal_error"
+    },
+    {
+      "id": "N17",
+      "from": "-",
+      "mutation": "helper writes malformed output",
+      "expected": "internal_error"
+    }
+  ]
+}

@@ -1,247 +1,407 @@
 {
-  "schema": "route-e-pre-run-blocker-closure/v3-factual-fields",
-  "schema_note": "this is a descriptive label, not a JSON Schema identifier; no schema file defines it and no canonical vocabulary is created here",
+  "schema": "route-e-pre-run-blocker-closure/v4-factual-fields",
+  "schema_note": "descriptive label, not a JSON Schema identifier; no schema file defines it and no canonical vocabulary is created here",
   "mission": "FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00",
   "mission_consumed": false,
-  "revision_of": "a379efa6e230efd6b4051b36717169be9c0f5dbf",
-  "revision_ordered_by": {
-    "human_review_commit": "31ccccfb9e61809cf5d461a70425e00c3db7bc17",
-    "human_review_disposition": "HUMAN_REVIEW_REVISE",
-    "earlier_human_review_commit": "bc2a42c468eec5a4e1732ebb08c7cc20c4dab7dd",
-    "records_not_modified": true
-  },
+  "base": "054140024267183fa43ef86755cd1c82d5a41483",
+  "authorised_by": "owner authorisation for real integration and PRB-6 closure, allowlist extension as recorded in allowlist.paths",
+  "lineage": [
+    "00afcdd1aacbdf32bb030d85ced735a2920421f6",
+    "c6d4acf037d4e51d59e5b75dc91b977b9eb83dbd",
+    "bc2a42c468eec5a4e1732ebb08c7cc20c4dab7dd",
+    "a379efa6e230efd6b4051b36717169be9c0f5dbf",
+    "31ccccfb9e61809cf5d461a70425e00c3db7bc17",
+    "054140024267183fa43ef86755cd1c82d5a41483"
+  ],
   "no_composite_disposition_token": {
     "emitted": false,
-    "note": "the previous candidate_disposition field and the literal ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_MANDATE_ADDRESSED_PRB6_OPEN are REMOVED; no schema authorised that token and none is invented to replace it",
-    "facts_are_reported_field_by_field_in": "frozen_pre_run_blockers"
+    "note": "facts are reported field by field in frozen_pre_run_blockers"
   },
   "identifier_discipline": {
     "no_00R_identifier_created": true,
     "no_new_scientific_mission_created": true,
     "no_A_to_1_renaming_performed": true,
-    "git_branch_suffix_is_not_an_identifier": "codex/future-route-e-pre-run-blocker-closure-00-revision-2 is a Git branch name only; the scientific identifier remains FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00"
+    "git_branch_suffix_is_not_an_identifier": "codex/future-route-e-pre-run-blocker-closure-00-authorized-integration is a Git branch name only"
   },
   "human_acceptance_declared_here": false,
-  "human_review_accepted_emitted_here": false,
-  "human_review_still_required": true,
+  "human_review": "PENDING",
   "scientific_run_authorized": false,
-  "forbidden_summary": "this record must never be summarised as 'the pre-run blockers are closed', nor as 'five of six are closed'",
-  "mandate_two_layers": {
-    "section_8_title_literal": "Obligations portees a la preregistration (ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00), a n'executer qu'apres fermeture ET revue humaine des blockers",
-    "layer_1_preregistration_obligations": {
-      "carrier": "ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00",
-      "items": ["A", "B", "C", "D", "E", "F"],
-      "consumes_this_mission": false,
-      "status": "ANTICIPATORY WORK, PRESERVED AND CORRECTED"
-    },
-    "layer_2_this_mission_mandate": {
-      "literal": "FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00 pourra fermer les six PRE_RUN_BLOCKER",
-      "items": ["PRB-1", "PRB-2", "PRB-3", "PRB-4", "PRB-5", "PRB-6"]
-    },
-    "prb_moved_to_preregistration_a_second_time": false
-  },
+  "forbidden_summary": "this record must never be summarised as 'the pre-run blockers are closed'",
   "starting_state_not_rewritten": {
     "PRB-1": "PARTIAL",
-    "PRB-2": "STRUCTURAL_ONLY",
-    "PRB-3": "PARTIAL",
-    "PRB-4": "CANDIDATE_CLOSED_AT_DIGEST_LEVEL",
+    "PRB-2": "STRUCTURAL_ONLY / OPEN_GLOBALLY",
+    "PRB-3": "LOCAL_PASS / PARTIAL_GLOBALLY",
+    "PRB-4": "CLOSED_AT_DIGEST_LEVEL_ONLY",
     "PRB-5": "OPEN",
     "PRB-6": "OPEN",
-    "HR-10": "PARTIAL",
+    "HR-10/D": "LOCAL_PASS / PARTIAL_GLOBALLY",
     "ANTI_REROLL": "UNPROVEN",
-    "note": "these labels describe facts; they are not a new canonical vocabulary"
+    "note": "factual descriptions, not a new canonical vocabulary"
   },
   "frozen_pre_run_blockers": {
     "PRB-1": {
       "literal_obligation": "persist the track-component join",
-      "literal_closure": "write (frame, canonical cell-set digest, track_id) into root-bound evidence",
       "mechanism_present": true,
       "persistence_present": true,
       "discriminating_tests_present": true,
       "integration_into_accepted_sources": false,
-      "mechanism": "build_track_component_join (exact support coverage, four fail-closed refusals) -> canonical_join_bytes -> write_join_evidence (atomic, bounded, non-overwriting) -> read_join_evidence (digest recomputed from the re-read bytes) -> route_e_root",
-      "discriminating_mutation": "writer replaced by a no-op -> 13 tests fail",
+      "discriminating_mutations": [
+        "writer -> no-op: 6 tests fail",
+        "re-read replaced by a direct parse: 3 tests fail"
+      ],
       "remaining_sub_obligations": [
-        "no accepted producer calls the writer; the evidence exists only when a Route E caller writes it (LK-L5)"
+        "no accepted producer calls the writer (LK-L5)"
       ],
       "human_review_required": true
     },
     "PRB-2": {
       "literal_obligation": "mandatory receipt",
-      "literal_closure": "the supported scientific entry point refuses without a verified receipt",
       "layer_1_presence_and_shape": "delivered",
       "layer_2_root_recomputed_internally": "delivered",
       "layer_3_receipt_bound_to_recomputed_root": "delivered",
       "layer_4_public_priority_mandatory": "delivered",
-      "layer_5_cryptographic_authenticity": "OPEN",
+      "layer_5_cryptographic_authenticity": "DELIVERED via the pinned maintained verifier; there is no boolean callback in any public signature",
       "no_caller_supplied_root_in_any_public_signature": true,
-      "discriminating_tests_present": true,
+      "no_boolean_callback_anywhere": true,
       "integration_into_accepted_sources": false,
-      "authenticity_established": false,
+      "authenticity_established": true,
+      "discriminating_tests_present": true,
       "remaining_sub_obligations": [
-        "authenticity depends on PRB-6, which is OPEN",
-        "no accepted entry point requires a receipt; adding one means editing an accepted source, outside the frozen allowlist"
+        "enforcement inside the five accepted entry points is blocked with PRB-5"
       ],
-      "not_closed_by_vacuity": "the refusals are exercised on populated, valid inputs; scientific_run_authorized=false is never used as the reason a layer passes",
       "human_review_required": true
     },
     "PRB-3": {
       "literal_obligation": "frozen check order",
-      "literal_closure": "pin by test: local evidence -> root digest -> verifier",
       "mechanism_present": true,
-      "single_internal_path": "_frozen_check_order, used by BOTH open_route_e_analysis and route_e_entry",
-      "check_order_frozen": ["LOCAL_EVIDENCE", "ROOT_DIGEST", "VERIFIER"],
-      "check_phases_realised": ["ENTRY_GUARD", "LOCAL_EVIDENCE", "ROOT_DIGEST", "RECEIPT_ROOT_BINDING", "VERIFIER"],
+      "single_internal_path": "_frozen_check_order, used by both public entries AND by enforce_route_e_guard",
+      "check_order_frozen": [
+        "LOCAL_EVIDENCE",
+        "ROOT_DIGEST",
+        "VERIFIER"
+      ],
+      "check_phases_realised": [
+        "ENTRY_GUARD",
+        "LOCAL_EVIDENCE",
+        "ROOT_DIGEST",
+        "RECEIPT_ROOT_BINDING",
+        "VERIFIER"
+      ],
       "must_precede_unix_mandatory_no_default": true,
-      "discriminating_tests_present": true,
+      "verifier_phase_performs_real_cryptography": true,
       "discriminating_mutations": [
-        "LOCAL_EVIDENCE phase removed -> 7 tests fail",
-        "must_precede_unix made optional -> 3 tests fail",
-        "route_e_entry replaced by a stub -> 2 order tests fail"
+        "phase order changed: 7 tests fail",
+        "cutoff made optional everywhere: 5 tests fail"
       ],
       "integration_into_accepted_sources": false,
-      "remaining_sub_obligations": [
-        "the order binds the Route E path only; an accepted function called directly follows its own order (LK-L1)"
-      ],
       "human_review_required": true
     },
     "PRB-4": {
       "literal_obligation": "replay binding",
-      "literal_closure": "bind run identity and family enrolment into the root",
       "mechanism_present": true,
       "closed_at_digest_level": true,
       "persistence_or_external_anchoring": false,
       "discriminating_tests_present": true,
-      "properties_preserved": ["run identity", "seed root", "draw plan digest", "counts", "slot order", "fail-closed types and dimensions"],
-      "remaining_sub_obligations": [
-        "the root is computed and bound, never anchored; anchoring is PRB-6"
-      ],
       "human_review_required": true
     },
     "PRB-5": {
       "literal_obligation": "single supported entry point",
-      "literal_closure": "close or declare out of protocol, with a refusal test: open_owned_analysis_access, future_lifecycle_runner.open_analysis_access, publish_future_family_completion, qualify_and_write_lifecycle_contract (and, per B15, run_owned_future_pipeline)",
       "status": "OPEN",
-      "mechanism_present": false,
-      "facade_present": true,
-      "facade_is_a_gate": false,
-      "facade_in_call_graph_of_the_five": false,
-      "real_entry_point_refusal_tests": "5 of 5, calling the REAL public functions under ForbiddenEffects, each refusing with its own typed exception before entropy, network, subprocess, seed/family/namespace, law or initial condition, engine, historical read and persistent write",
-      "what_those_tests_prove": "the WEAKER LK-L1 property: the function's own first check refuses. NOT a Route E gate.",
-      "discriminating_mutations": {
-        "run_owned_future_pipeline": "2 tests fail",
-        "open_owned_analysis_access": "1 test fails",
-        "future_lifecycle_runner.open_analysis_access": "1 test fails",
-        "publish_future_family_completion": "2 tests fail",
-        "qualify_and_write_lifecycle_contract": "2 tests fail"
-      },
+      "guard_implemented": true,
+      "guard_installed": false,
+      "typed_signal": "RouteERequest, never a free string",
+      "guard_tested_end_to_end_including_real_cryptography": true,
       "route_e_specific_refusal_inside_accepted_sources": false,
-      "alternative_facades_searched": "no alternative export, CLI, runner or facade found that opens the same capability",
-      "remaining_sub_obligations": [
-        "a Route E refusal inside each of the five accepted entry points; this requires editing accepted sources, outside the frozen allowlist"
+      "accepted_sources_byte_identical_to_base": true,
+      "blocked_by": [
+        "tests/test_future_lifecycle_runner_integration.py",
+        "tests/test_future_lifecycle_owned_pipeline.py"
       ],
+      "blocked_tests": [
+        "test_14_no_public_entry_point_accepts_a_lifecycle_closure",
+        "test_23e_lifecycle_source_is_unchanged_across_the_succession",
+        "test_23f_current_source_matches_the_successor_qualification",
+        "test_23g_runner_integration_remains_pending_formal_requalification",
+        "test_23i_every_historically_pinned_artifact_is_explicitly_accounted_for",
+        "test_rs01_13_the_successor_qualification_binds_the_current_lineage_and_hashes",
+        "test_rs01_15_the_historical_runner_package_is_pinned_and_immutable",
+        "test_op_21a_the_public_signature_accepts_no_injectable_artifact",
+        "test_op_23e_the_accepted_stack_sources_are_unchanged_by_this_mission"
+      ],
+      "why_not_installed": "installing the one-line hook changes the bytes of three accepted sources, which are pinned by nine assertions in two test files outside this mission's allowlist; the 'no new failing test' condition is binding, so the edits were reverted in full",
+      "installation_was_written_and_measured": "yes; during the attempt the five real functions refused with RouteEGuardRefused before every effect and non-Route-E behaviour was unchanged; each per-function hook removal killed 1 to 2 tests",
+      "alternative_facades_searched": "no additional export, CLI, runner or entry point found",
+      "real_entry_point_refusal_tests": "5 of 5, but the WEAKER LK-L1 property only",
       "human_review_required": true
     },
     "PRB-6": {
       "literal_obligation": "external anchoring of the final root",
-      "literal_closure": "public immutable or append-only commitment, verifiable without a secret",
-      "status": "OPEN",
-      "mechanism_present": true,
-      "gate_is_fail_closed": true,
-      "verifier_delivered": false,
-      "anti_reroll": "UNPROVEN",
+      "status": "CANDIDATE_CLOSED",
+      "verifier_delivered": true,
+      "verifier": "tools/drand_verify, a no-network Go helper built on github.com/drand/kyber-bls12381 v0.3.4 and github.com/drand/kyber v1.3.1 (github.com/kilic/bls12-381 v0.1.0); no BLS arithmetic is written in this repository",
+      "verified_in_library_source_not_documentation": {
+        "scheme_id": "crypto/schemes.go SigsOnG1ID",
+        "dst": "NewPedersenBLSUnchainedG1 -> BLS_SIG_BLS12381G1_XMD:SHA-256_SSWU_RO_NUL_",
+        "key_group": "G2",
+        "signature_group": "G1",
+        "message": "DigestFunc: sha256(binary.BigEndian uint64 round)",
+        "randomness": "RandomnessFromSignature: sha256(sig)",
+        "canonical_encoding": "kilic fp.fromBytes -> fe.isValid(): must be less than modulus",
+        "subgroup_check": "kilic g1.go/g2.go FromCompressed -> InCorrectSubgroup",
+        "infinity": "FromCompressed ACCEPTS infinity and returns Zero; the helper rejects it explicitly for G1 and G2",
+        "non_canonical_residual": "the helper re-serialises the point and requires byte equality with the input"
+      },
+      "chain_parameters_pinned_in_adapter": true,
+      "round_derived_never_supplied": true,
       "no_drand_contact": true,
+      "no_live_round": true,
       "no_handmade_bls": true,
-      "no_dependency_added": true,
-      "no_round_selected": true,
+      "no_binary_committed": true,
+      "no_system_install": true,
+      "no_unpinned_dependency": true,
+      "protocol": {
+        "transport": "one bounded JSON object on stdin, one JSON result on stdout",
+        "max_request_bytes": 8192,
+        "argv": "fixed: ['verify']",
+        "shell": false,
+        "env": "minimal (PATH='', LC_ALL=C)",
+        "timeout_seconds": 20,
+        "exit_codes": {
+          "0": "verdict produced",
+          "2": "configuration error",
+          "3": "internal error"
+        },
+        "unknown_fields": "refused",
+        "two_objects": "refused"
+      },
+      "outcomes": [
+        "verified",
+        "invalid",
+        "unavailable",
+        "configuration_error",
+        "internal_error"
+      ],
+      "wait_stop_translation": "UNAVAILABLE is the only WAIT, on the SAME round; everything else is STOP",
+      "discriminating_mutations": [
+        "helper call replaced by a forged 'verified': 12 tests fail",
+        "randomness check neutralised: 1 test fails",
+        "round taken from the caller response: 2 tests fail"
+      ],
       "remaining_sub_obligations": [
-        "a maintained BLS/G1 (RFC 9380) verifier for the quicknet chain",
-        "the exact RFC 9380 domain separation tag is not pinned here"
+        "the binary is not committed; an absent or unusable verifier is a STOP, never a pass",
+        "go.sum hashes were not checked against sum.golang.org, which this environment blocks"
       ],
       "human_review_required": true
     }
   },
-  "human_review_findings_resolution": {
-    "HR-1": {"local_fix": "PASS", "global_property": "censoring disjoint"},
-    "HR-2": {"local_fix": "PASS", "global_property": "no unsupported decision; exhaustive over 2346 (S,U) pairs"},
-    "HR-3": {"local_fix": "PASS", "global_property": "ANTI_REROLL UNPROVEN, conditional on PRB-6"},
-    "HR-4": {"local_fix": "PASS", "global_property": "no verifier delivered"},
-    "HR-5": {"local_fix": "PASS", "global_property": "WAIT and STOP strictly separated"},
-    "HR-6": {"local_fix": "PASS", "global_property": "modulo bias removed, not bounded"},
-    "HR-7": {"local_fix": "PASS", "global_property": "analytic rejection proof present"},
-    "HR-8": {"local_fix": "PASS", "global_property": "denominator exactly 67 at both enforcement points"},
-    "HR-9": {"local_fix": "PASS", "global_property": "enforceable ceiling is RouteEClaim; the lexical screen stays a demoted aid"},
-    "HR-10": {"local_fix": "CORRECTED: classifier parameter removed from the public API, private seam only, TypeError if passed", "global_property": "integration still absent: no accepted source calls the assembler (RE-L10)"},
-    "HR-11": {"local_fix": "PASS", "global_property": "section 8 title and scope restored"}
+  "anti_reroll": {
+    "round_selection": "CANDIDATE_PASS: derived from the frozen public timestamp, never an argument, cryptographically verified, no loop, no retry, no alternative endpoint or source",
+    "publication": "UNPROVEN: that the root was actually published immutably at the declared instant is asserted by the commitment venue and reference, not verified; the drand verification proves the ROUND, not the publication",
+    "what_would_close_it": "a venue-specific verifiable inclusion proof"
   },
-  "anticipatory_work_A_to_F": {
-    "status": "CORRECTED AND PRESERVED ANTICIPATORY WORK; NOT A CONSUMED MANDATE",
-    "test_file_unchanged_since_a379efa6": true,
-    "A": "PASS - censoring and second-IC boundaries, Clopper-Pearson",
-    "B": "PASS as anticipation; anti-reroll UNPROVEN",
-    "C": "PASS, bounded to the inspected validator",
-    "D": "PARTIAL - convention, not integration (RE-L10)",
-    "E": "PASS - eleven axes, denominator, ceiling",
-    "F": "PASS in the narrow sense; absorbed by PRB-5, which stays OPEN"
+  "vectors": {
+    "file": "tests/data/route_e_beacon_vectors.json",
+    "count": 3,
+    "negative_cases": 17,
+    "no_beacon_endpoint_contacted": true,
+    "all_from_committed_fixtures": true,
+    "sources": [
+      {
+        "id": "tlock",
+        "repository": "github.com/drand/tlock",
+        "path": "tlock_test.go",
+        "licence": "Apache-2.0 OR MIT",
+        "fetched_file_sha256": "f2e7110589c254473f53b0a18d39d4705993daec1733f1833f6f9fe9a004ef71"
+      },
+      {
+        "id": "noislabs",
+        "repository": "github.com/noislabs/drand-verify",
+        "path": "src/verify.rs",
+        "licence": "Apache-2.0",
+        "fetched_file_sha256": "47c7a755b4bc226371df83ec8dc430c7a37f0f0ef2bcf55f898cad52e100f9a6"
+      },
+      {
+        "id": "drand-client",
+        "repository": "github.com/drand/drand-client",
+        "path": "test/beacon-verification.test.ts",
+        "licence": "Apache-2.0 OR MIT",
+        "fetched_file_sha256": "e9b91a7a598a300702b52e4800f14da1017ee47080ebbe89dfa60b2d2d93c67d"
+      },
+      {
+        "id": "drand-schemes",
+        "repository": "github.com/drand/drand",
+        "path": "crypto/schemes.go",
+        "licence": "Apache-2.0 OR MIT",
+        "fetched_file_sha256": "58f32452ce9e38e9f25d8692baa1c51b9cfac0167d899aff44cbe70c11a04629"
+      }
+    ],
+    "randomness_committed_in_exactly_one_vector": "V3 (drand-client, walkthrough chain); it is the only official proof that randomness = sha256(signature)",
+    "cross_implementation_check": "the three vectors were re-verified with py_ecc, an unrelated pure-Python implementation: full agreement; round+1, wrong key and the fastnet G2 DST all come out INVALID. py_ecc was an audit oracle only and is NOT a repository dependency."
+  },
+  "builds": {
+    "go": "go1.24.7 linux/amd64",
+    "cgo": "disabled for both targets",
+    "linux_amd64": {
+      "command": "CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags=-buildid=",
+      "sha256": "2534fa4af5ed6d6d4294be26542b52fe7445412532db97e66a955cacba3cca6d",
+      "bytes": 3433098
+    },
+    "windows_amd64": {
+      "command": "CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -trimpath -ldflags=-buildid=",
+      "sha256": "ea15b5de9f88a6fd0557e1912c31493670f9322bc901d8841b6868cd3220045c",
+      "bytes": 3527168,
+      "executed_here": false
+    },
+    "linux_rebuild_byte_identical": true,
+    "binaries_committed": false,
+    "modules": [
+      "github.com/drand/kyber v1.3.1",
+      "github.com/drand/kyber-bls12381 v0.3.4",
+      "github.com/kilic/bls12-381 v0.1.0",
+      "golang.org/x/crypto v0.43.0 (replace github.com/golang/crypto)",
+      "golang.org/x/sys v0.38.0 (replace github.com/golang/sys)"
+    ],
+    "sumdb": "NOT consulted; sum.golang.org is blocked in this environment, so go.sum pins the downloaded content but was not checked against the transparency log"
   },
   "allowlist": {
-    "files_added": 0,
-    "files_modified": 5,
+    "files_added": 7,
+    "files_modified": 4,
     "files_deleted": 0,
-    "accepted_sources_modified": 0,
-    "engine_modified": false,
-    "specs_modified": false,
-    "state_modified": false,
-    "instrumentation_modified": false,
-    "lifecycle_modified": false,
-    "future_lifecycle_runner_modified": false,
-    "owned_pipeline_modified": false,
-    "measurement_bridge_modified": false,
-    "init_files_modified": false,
+    "authorised_but_deliberately_not_modified": [
+      "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py",
+      "edlab/substrates/lattice_bond/future_lifecycle_runner.py",
+      "edlab/substrates/lattice_bond/lifecycle.py"
+    ],
+    "accepted_sources_byte_identical_to_base": true,
     "pyproject_modified": false,
-    "pre_existing_tests_modified": false,
     "a_to_f_test_file_modified": false,
-    "s01_records_modified": false,
     "human_review_records_modified": false,
     "paths": [
-      {"path": "edlab/substrates/lattice_bond/future_route_e_pre_run_locks.py", "status": "modified", "justification": "PRB-1 persistence, PRB-2 root recomputation, PRB-3 single ordered path, PRB-5 facade requalification, factual blocker_status"},
-      {"path": "edlab/substrates/lattice_bond/future_route_e_pre_run_frame.py", "status": "modified", "justification": "HR-10: classifier parameter removed from the public API"},
-      {"path": "tests/test_future_route_e_pre_run_locks_00.py", "status": "modified", "justification": "corrected PRB and HR tests, plus refusal tests on the five REAL accepted functions"},
-      {"path": "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_REPORT.md", "status": "modified", "justification": "report"},
-      {"path": "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_DECISION.json", "status": "modified", "justification": "this decision"}
+      {
+        "path": "edlab/substrates/lattice_bond/route_e_beacon_verifier.py",
+        "status": "added"
+      },
+      {
+        "path": "tools/drand_verify/main.go",
+        "status": "added"
+      },
+      {
+        "path": "tools/drand_verify/go.mod",
+        "status": "added"
+      },
+      {
+        "path": "tools/drand_verify/go.sum",
+        "status": "added"
+      },
+      {
+        "path": "tests/data/route_e_beacon_vectors.json",
+        "status": "added"
+      },
+      {
+        "path": "tests/test_route_e_beacon_verifier.py",
+        "status": "added"
+      },
+      {
+        "path": "tests/test_future_route_e_pre_run_integration_00.py",
+        "status": "added"
+      },
+      {
+        "path": "edlab/substrates/lattice_bond/future_route_e_pre_run_frame.py",
+        "status": "modified"
+      },
+      {
+        "path": "edlab/substrates/lattice_bond/future_route_e_pre_run_locks.py",
+        "status": "modified"
+      },
+      {
+        "path": "tests/test_future_route_e_pre_run_locks_00.py",
+        "status": "modified"
+      },
+      {
+        "path": "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_REPORT.md",
+        "status": "modified"
+      },
+      {
+        "path": "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_DECISION.json",
+        "status": "modified"
+      }
     ]
-  },
-  "allowlist_conflicts": [
-    {"obligation": "PRB-2 enforcement inside the supported entry points", "paths_required": ["edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py", "edlab/substrates/lattice_bond/future_lifecycle_runner.py", "edlab/substrates/lattice_bond/lifecycle.py"], "action_taken": "none; reported"},
-    {"obligation": "PRB-5 Route E refusal inside the five accepted entry points", "paths_required": ["edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py", "edlab/substrates/lattice_bond/future_lifecycle_runner.py", "edlab/substrates/lattice_bond/lifecycle.py"], "action_taken": "none; reported"},
-    {"obligation": "PRB-6 maintained BLS/G1 verifier", "paths_required": ["tools/drand_verify/main.go", "tools/drand_verify/go.mod", "tools/drand_verify/go.sum", "edlab/substrates/lattice_bond/route_e_beacon_verifier.py", "tests/data/route_e_beacon_vectors.json", "tests/test_route_e_beacon_verifier.py", "pyproject.toml"], "action_taken": "none; reported"},
-    {"obligation": "repair of the five inherited red tests", "paths_required": ["tests/test_lattice_bond_stage_b.py", "tests/test_motile_polar.py"], "action_taken": "none; owner decision requested"}
-  ],
-  "prb6_pinning_required_when_authorised": {
-    "scheme": "bls-unchained-g1-rfc9380",
-    "public_key": "G2, 96 bytes",
-    "signature": "G1, 48 bytes",
-    "message": "SHA256(uint64_be(round))",
-    "dst": "BLS_SIG_BLS12381G1_XMD:SHA-256_SSWU_RO_NUL_",
-    "randomness": "SHA256(signature)",
-    "mandatory_negative_cases": ["tampered signature", "round +-1", "wrong chain or key", "fastnet DST on a quicknet round", "inconsistent randomness", "point at infinity", "point outside the subgroup", "non-canonical encoding", "helper absent, misconfigured or crashed", "genuine unavailability -> WAIT on the SAME round", "invalidity or impossible verification -> STOP"],
-    "unresolved_from_primary_sources": ["exact deserialisation path of the pinned kyber-bls12381 (FromCompressed with subgroup, infinity and canonical-encoding checks, not FromBytes)", "binary provenance and checksums", "existence of an official versioned vector set for this scheme", "the bounded fail-closed JSON I/O model of the adapter"]
   },
   "tests": {
     "no_total_preannounced": true,
-    "environment": {"python": "3.11.15", "pytest": "8.4.2", "numpy": "2.4.4"},
+    "environment": {
+      "python": "3.11.15",
+      "pytest": "8.4.2",
+      "numpy": "2.4.4"
+    },
     "runs": [
-      {"scope": "BASE 31ccccfb, whole repository tests/", "command": "pytest tests -q", "collected": 1206, "passed": 1201, "failed": 5},
-      {"scope": "candidate, PRB + HR", "command": "pytest tests/test_future_route_e_pre_run_locks_00.py -q", "collected": 191, "passed": 191, "failed": 0},
-      {"scope": "candidate, A-F (file unchanged)", "command": "pytest tests/test_future_route_e_pre_run_blocker_closure_00.py -q", "collected": 104, "passed": 104, "failed": 0},
-      {"scope": "candidate, REGRESSION ON THE ACCEPTED LINEAGE, seven named files", "command": "pytest -q tests/test_future_lifecycle_contract.py tests/test_future_lifecycle_runner_integration.py tests/test_empty_right_nonunit_cadence_tracker_repair.py tests/test_future_lifecycle_owned_pipeline.py tests/test_future_prospective_measurement_bridge.py tests/test_axis_transpose_equivariance_01s.py tests/test_lattice_bond_instrumentation.py", "collected": 673, "passed": 673, "failed": 0},
-      {"scope": "candidate, tests/ minus the two mission files", "command": "pytest tests -q --ignore=tests/test_future_route_e_pre_run_locks_00.py --ignore=tests/test_future_route_e_pre_run_blocker_closure_00.py", "collected": 946, "passed": 941, "failed": 5},
-      {"scope": "candidate, WHOLE SUITE", "command": "pytest tests -q", "collected": 1241, "passed": 1236, "failed": 5},
-      {"scope": "determinism, mission tests run twice", "command": "pytest tests/test_future_route_e_pre_run_locks_00.py tests/test_future_route_e_pre_run_blocker_closure_00.py -q", "collected": 295, "passed": 295, "failed": 0}
+      {
+        "scope": "BASE 0541400, whole tests/",
+        "command": "pytest tests -q",
+        "collected": 1241,
+        "passed": 1236,
+        "failed": 5
+      },
+      {
+        "scope": "PRB + HR",
+        "command": "pytest tests/test_future_route_e_pre_run_locks_00.py -q",
+        "collected": 152,
+        "passed": 152,
+        "failed": 0
+      },
+      {
+        "scope": "A-F (file unmodified)",
+        "command": "pytest tests/test_future_route_e_pre_run_blocker_closure_00.py -q",
+        "collected": 104,
+        "passed": 104,
+        "failed": 0
+      },
+      {
+        "scope": "guard + five real entry points + blocker",
+        "command": "pytest tests/test_future_route_e_pre_run_integration_00.py -q",
+        "collected": 33,
+        "passed": 33,
+        "failed": 0
+      },
+      {
+        "scope": "Go verifier + Python adapter",
+        "command": "pytest tests/test_route_e_beacon_verifier.py -q",
+        "collected": 42,
+        "passed": 42,
+        "failed": 0
+      },
+      {
+        "scope": "REGRESSION ON THE ACCEPTED LINEAGE, seven named files",
+        "command": "pytest -q tests/test_future_lifecycle_contract.py tests/test_future_lifecycle_runner_integration.py tests/test_empty_right_nonunit_cadence_tracker_repair.py tests/test_future_lifecycle_owned_pipeline.py tests/test_future_prospective_measurement_bridge.py tests/test_axis_transpose_equivariance_01s.py tests/test_lattice_bond_instrumentation.py",
+        "collected": 673,
+        "passed": 673,
+        "failed": 0
+      },
+      {
+        "scope": "tests/ minus the four mission files",
+        "command": "pytest tests -q --ignore=tests/test_future_route_e_pre_run_locks_00.py --ignore=tests/test_future_route_e_pre_run_blocker_closure_00.py --ignore=tests/test_future_route_e_pre_run_integration_00.py --ignore=tests/test_route_e_beacon_verifier.py",
+        "collected": 946,
+        "passed": 941,
+        "failed": 5
+      },
+      {
+        "scope": "WHOLE CANDIDATE SUITE",
+        "command": "pytest tests -q",
+        "collected": 1277,
+        "passed": 1272,
+        "failed": 5
+      },
+      {
+        "scope": "determinism, mission groups run twice",
+        "command": "pytest <four mission files> -q",
+        "collected": 331,
+        "passed": 331,
+        "failed": 0
+      }
     ],
-    "arithmetic": "191 + 104 + 946 = 1241; groups disjoint, no double counting",
+    "arithmetic": "152 + 104 + 33 + 42 + 946 = 1277; groups disjoint, no double counting",
     "933_is_not_the_total_suite": true,
-    "673_means": "regression on the accepted lineage, seven named files -- never 'the whole suite minus two files'",
+    "673_means": "regression on the accepted lineage, seven named files",
     "skipped": 0,
     "xfail": 0,
     "xpass": 0,
@@ -256,31 +416,87 @@
     ],
     "candidate_failures_identical_to_base": true,
     "new_failures": 0,
-    "inherited_failures_are_not_green": "pre-existing does not mean passing; the files are outside this mission's allowlist and an explicit owner decision is requested",
+    "inherited_debt_conditions_met": {
+      "identical_node_ids": true,
+      "identical_signatures_and_causes": true,
+      "no_new_failing_test": true,
+      "not_masked_by_skip_xfail_or_deselection": true,
+      "never_presented_as_green": true
+    },
+    "inherited_debt_note": "treating these five as inherited debt does not erase them and does not make the whole suite a PASS; no repair was attempted, none is authorised in this mission",
     "engine_step_calls_in_this_mission_tests": 0,
     "drand_contacted": false,
+    "live_round_consulted": false,
     "scientific_data_opened": false,
     "scientific_family_executed": false
   },
   "discriminating_mutations": [
-    {"target": "PRB-1 writer replaced by a no-op", "result": "13 tests fail"},
-    {"target": "PRB-3 LOCAL_EVIDENCE phase removed", "result": "7 tests fail"},
-    {"target": "PRB-3 must_precede_unix made optional", "result": "3 tests fail"},
-    {"target": "HR-10 classifier call removed from the public path", "result": "3 tests fail"},
-    {"target": "PRB-5 refusal removed in run_owned_future_pipeline", "result": "2 tests fail"},
-    {"target": "PRB-5 refusal removed in open_owned_analysis_access", "result": "1 test fails"},
-    {"target": "PRB-5 refusal removed in future_lifecycle_runner.open_analysis_access", "result": "1 test fails"},
-    {"target": "PRB-5 refusal removed in publish_future_family_completion", "result": "2 tests fail"},
-    {"target": "PRB-5 refusal removed in qualify_and_write_lifecycle_contract", "result": "2 tests fail"},
-    {"target": "control: route_e_entry replaced by a do-nothing stub", "result": "2 order tests fail; facade tests still pass, which is declared, and the five real-function tests are unaffected, which is the intended separation"}
+    {
+      "target": "PRB-1 writer -> no-op",
+      "result": "6 tests fail"
+    },
+    {
+      "target": "PRB-1 re-read replaced by a direct parse",
+      "result": "3 tests fail"
+    },
+    {
+      "target": "PRB-3 phase order changed",
+      "result": "7 tests fail"
+    },
+    {
+      "target": "PRB-3 cutoff made optional everywhere",
+      "result": "5 tests fail"
+    },
+    {
+      "target": "PRB-6 helper call replaced by a forged verified answer",
+      "result": "12 tests fail"
+    },
+    {
+      "target": "PRB-6 randomness check neutralised",
+      "result": "1 test fails"
+    },
+    {
+      "target": "anti-reroll: round taken from the caller response",
+      "result": "2 tests fail"
+    },
+    {
+      "target": "HR-10 classifier call removed",
+      "result": "3 tests fail"
+    },
+    {
+      "target": "guard accepts an untyped signal",
+      "result": "4 tests fail"
+    }
   ],
-  "limitations": {
-    "locks": ["LK-L1 accepted sources immutable", "LK-L2 no bundled BLS verifier, so PRB-2 authenticity stays open", "LK-L3 the Route E root binds, does not replace, the measurement root", "LK-L4 route_e_entry is a facade, not a gate, and is not in the call graph of the five functions", "LK-L5 nothing in the locks module is called by an accepted source"],
-    "frame": ["RE-L1 through RE-L9 unchanged", "RE-L10 assemble_draw_outcome always calls the real classifier and has no classifier parameter, but stays ANTICIPATORY: no accepted source calls it"],
-    "proof": ["mutations live in throwaway copies under /tmp and are never committed", "ForbiddenEffects covers the enumerated list and nothing more", "the clean-room omits results/ (historical data, deliberately not transported); no collected test depends on it"],
-    "mount_residue": [".opr00_probe_delete_me", ".git/objects/*/tmp_obj_*", "REVIEW_a379efa6_tree.tar.gz", "REVIEW_bc2a42c_parent.tar.gz"]
-  },
-  "scientific_results": "NONE. No Delta(f), no psi, no censoring fraction, no ineligibility fraction, no terminal-state distribution, no Route E world, no law drawn, no initial condition drawn, no scientific seed, no beacon round consulted, no namespace, no family.",
+  "authority_requested": [
+    {
+      "id": "A1",
+      "purpose": "install the guard: close PRB-5 and enforce PRB-2",
+      "paths": [
+        "tests/test_future_lifecycle_runner_integration.py",
+        "tests/test_future_lifecycle_owned_pipeline.py"
+      ],
+      "scope": "update the nine listed assertions (seven hash pins, two signature pins) for the route_e parameter and the new digests, without removing a single check"
+    },
+    {
+      "id": "A2",
+      "purpose": "close the publication half of the anti-reroll",
+      "paths": [],
+      "scope": "a venue-specific verifiable inclusion proof; the venue choice is a governance decision"
+    },
+    {
+      "id": "A3",
+      "purpose": "module provenance",
+      "paths": [],
+      "scope": "run go mod verify and check go.sum against sum.golang.org from a networked environment"
+    }
+  ],
+  "unresolved_or_contradictory": [
+    "two drand schemes sign on G1: bls-unchained-on-g1 (fastnet, G2 DST) and bls-unchained-g1-rfc9380 (quicknet, G1 DST); the helper refuses any other scheme and the cross-implementation check shows a quicknet round evaluated with the fastnet DST is INVALID, but the trap is named rather than glossed over",
+    "no official drand-signed versioned vector set exists for bls-unchained-g1-rfc9380; the vectors used come from official repositories (drand/tlock, drand/drand-client) and one third party (noislabs), all committed fixtures",
+    "go.sum was not checked against the transparency log"
+  ],
+  "scientific_results": "NONE. No Delta(f), no psi, no censoring fraction, no ineligibility fraction, no terminal-state distribution, no Route E world, no law drawn, no initial condition drawn, no scientific seed, no scientific beacon round, no namespace, no family.",
   "firewall": {
     "exact_git_paths_only": true,
     "results_directory_walked": false,
@@ -289,12 +505,11 @@
     "kovacs_opened": false,
     "shards_or_trajectories_opened": false,
     "scientific_seed_created": false,
-    "beacon_round_consulted": false,
+    "live_beacon_consulted": false,
     "drand_contacted": false,
     "calibration_from_data": false,
     "preregistration_started": false,
-    "route_g_reopened": false,
-    "fixtures": "deterministic synthetic fixtures and temporary directories only"
+    "route_g_reopened": false
   },
   "git_discipline": {
     "git_index_file_neutralised": true,
@@ -307,18 +522,11 @@
     "main_pinned": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
     "real_index_untouched": true,
     "dirty_checkout_preserved": true,
-    "earlier_branches_not_moved": true
+    "earlier_branches_not_moved": true,
+    "human_review_records_intact": true
   },
-  "next_action_authorised": "INDEPENDENT HUMAN REVIEW OF THIS REVISED CANDIDATE, and owner decisions on the four allowlist conflicts",
+  "next_action_authorised": "INDEPENDENT HUMAN REVIEW of the closure of the six PRB, plus owner decisions on A1, A2 and A3",
   "preregistration_mission_named": "ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00",
   "preregistration_authorised_here": false,
-  "preregistration_precondition_literal": "closure AND human review of the blockers; PRB-5 and PRB-6 are not closed",
-  "deliverables": {
-    "edlab/substrates/lattice_bond/future_route_e_pre_run_locks.py": "modified",
-    "edlab/substrates/lattice_bond/future_route_e_pre_run_frame.py": "modified",
-    "tests/test_future_route_e_pre_run_locks_00.py": "modified",
-    "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_REPORT.md": "modified",
-    "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_DECISION.json": "modified",
-    "note": "byte counts and sha256 are reported in the commit's diff-tree rather than restated here, so that no digest in this file can drift from the object it names"
-  }
+  "preregistration_precondition_literal": "closure AND human review of the blockers; PRB-5 is not closed"
 }

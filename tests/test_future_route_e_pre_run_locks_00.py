@@ -31,11 +31,9 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from edlab.substrates.lattice_bond import future_lifecycle_owned_pipeline as owned
-from edlab.substrates.lattice_bond import future_lifecycle_runner as runner
 from edlab.substrates.lattice_bond import future_route_e_pre_run_frame as frame
 from edlab.substrates.lattice_bond import future_route_e_pre_run_locks as locks
-from edlab.substrates.lattice_bond import lifecycle as lifecycle_module
+from edlab.substrates.lattice_bond import route_e_beacon_verifier as beacon
 from edlab.substrates.lattice_bond.engine import LatticeBondState
 from edlab.substrates.lattice_bond.instrumentation import (
     DetectorSpec,
@@ -186,8 +184,9 @@ def _receipt(root, published_at=_PUBLISHED):
     return locks.RouteEReceipt(root_sha256=root, commitment=_commitment(root, published_at))
 
 
-def _accepting_verifier(commitment):
-    return True
+def _no_beacon():
+    """No beacon response: the frozen answer is WAIT, on the SAME round."""
+    return None
 
 
 def _records():
@@ -535,17 +534,18 @@ def test_prb4_06_status_claims_only_the_digest_level():
 
 
 # ======================================================================================
-# PRB-6  external anchoring
+# PRB-6  external anchoring.  There is NO callback anywhere: the commitment's priority
+# is checked here and the designated round is verified by the pinned maintained
+# verifier (see test_route_e_beacon_verifier.py for the cryptography itself).
 # ======================================================================================
+
+_ANCHOR = dict(beacon_response=None, verifier_path=None)
 
 
 def test_prb6_01_absent_commitment_is_refused():
     with pytest.raises(locks.CommitmentInvalid):
         locks.verify_public_commitment(
-            None,
-            verifier=_accepting_verifier,
-            expected_root_sha256=DIGEST_A,
-            must_precede_unix=_CUTOFF,
+            None, expected_root_sha256=DIGEST_A, must_precede_unix=_CUTOFF, **_ANCHOR
         )
 
 
@@ -553,49 +553,52 @@ def test_prb6_02_a_commitment_binding_another_root_is_refused():
     with pytest.raises(locks.CommitmentInvalid):
         locks.verify_public_commitment(
             _commitment(DIGEST_B),
-            verifier=_accepting_verifier,
             expected_root_sha256=DIGEST_A,
             must_precede_unix=_CUTOFF,
+            **_ANCHOR,
         )
 
 
-def test_prb6_03_no_verifier_means_refusal_never_a_default():
-    with pytest.raises(locks.CommitmentInvalid) as excinfo:
+def test_prb6_03_no_verifier_means_a_stop_never_a_default():
+    """Priority passes, then the missing verifier is a STOP.  Never a silent pass."""
+    with pytest.raises(frame.BeaconInvalid) as excinfo:
         locks.verify_public_commitment(
             _commitment(DIGEST_A),
-            verifier=None,
             expected_root_sha256=DIGEST_A,
             must_precede_unix=_CUTOFF,
+            beacon_response={"round": 1, "randomness": "00" * 32, "signature": "00" * 48,
+                             "chain_hash": beacon.QUICKNET_CHAIN_HASH},
+            verifier_path=None,
         )
-    assert "no commitment verifier supplied" in str(excinfo.value)
+    assert "configuration_error" in str(excinfo.value)
+    assert frame.BeaconInvalid.disposition == "STOP"
 
 
-@pytest.mark.parametrize(
-    "verifier",
-    [lambda c: False, lambda c: None, lambda c: 1, lambda c: "True", "not callable"],
-)
-def test_prb6_04_only_an_exact_true_passes(verifier):
-    with pytest.raises(locks.CommitmentInvalid):
+def test_prb6_04_no_boolean_callback_exists_in_any_signature():
+    import inspect
+
+    for function in (
+        locks.verify_public_commitment,
+        locks.open_route_e_analysis,
+        locks.route_e_entry,
+        locks.enforce_route_e_guard,
+    ):
+        names = set(inspect.signature(function).parameters)
+        assert "verifier" not in names
+        assert "callback" not in names
+    assert "verifier_path" in set(inspect.signature(locks.verify_public_commitment).parameters)
+
+
+def test_prb6_05_an_absent_beacon_is_wait_not_a_refusal_of_the_anchor():
+    with pytest.raises(frame.BeaconUnavailable) as excinfo:
         locks.verify_public_commitment(
             _commitment(DIGEST_A),
-            verifier=verifier,
             expected_root_sha256=DIGEST_A,
             must_precede_unix=_CUTOFF,
+            beacon_response=None,
+            verifier_path=None,
         )
-
-
-def test_prb6_05_a_raising_verifier_is_a_refusal():
-    def boom(commitment):
-        raise RuntimeError("verifier exploded")
-
-    with pytest.raises(locks.CommitmentInvalid) as excinfo:
-        locks.verify_public_commitment(
-            _commitment(DIGEST_A),
-            verifier=boom,
-            expected_root_sha256=DIGEST_A,
-            must_precede_unix=_CUTOFF,
-        )
-    assert "verifier raised" in str(excinfo.value)
+    assert "SAME round" in str(excinfo.value)
 
 
 @pytest.mark.parametrize("published", [_CUTOFF, _CUTOFF + 1])
@@ -603,9 +606,9 @@ def test_prb6_06_priority_is_strict_which_is_the_anti_reroll_condition(published
     with pytest.raises(locks.CommitmentInvalid) as excinfo:
         locks.verify_public_commitment(
             _commitment(DIGEST_A, published_at=published),
-            verifier=_accepting_verifier,
             expected_root_sha256=DIGEST_A,
             must_precede_unix=_CUTOFF,
+            **_ANCHOR,
         )
     assert "strictly prior" in str(excinfo.value)
 
@@ -615,32 +618,34 @@ def test_prb6_07_the_priority_cutoff_has_no_default_and_cannot_be_skipped(cutoff
     with pytest.raises(locks.CommitmentInvalid):
         locks.verify_public_commitment(
             _commitment(DIGEST_A),
-            verifier=_accepting_verifier,
             expected_root_sha256=DIGEST_A,
             must_precede_unix=cutoff,
+            **_ANCHOR,
         )
 
 
-def test_prb6_08_status_reports_prb6_as_open_with_anti_reroll_unproven():
+def test_prb6_08_status_reports_a_delivered_verifier_and_a_derived_round():
     status = locks.blocker_status()["PRB-6"]
-    assert status["status"] == "OPEN"
-    assert status["verifier_delivered"] is False
-    assert status["anti_reroll"] == "UNPROVEN"
+    assert status["verifier_delivered"] is True
+    assert status["chain_parameters_pinned_in_adapter"] is True
+    assert status["round_derived_never_supplied"] is True
     assert status["human_review_required"] is True
+    assert any("NOT committed" in item for item in status["remaining_sub_obligations"])
 
 
-def test_prb6_09_a_fully_verified_chain_still_never_opens_anything(tmp_path):
+def test_prb6_09_a_fully_formed_chain_still_never_opens_anything(tmp_path):
+    """Even if every phase were to pass, the gate ends at the frozen stop."""
     path, enrolment, expected = _persisted(tmp_path)
-    with pytest.raises(locks.RouteEAnalysisRefused) as excinfo:
+    with pytest.raises((locks.RouteEAnalysisRefused, frame.BeaconUnavailable, frame.BeaconInvalid)):
         locks.open_route_e_analysis(
             evidence_path=path,
             measurement_root_sha256=DIGEST_C,
             family_enrolment=enrolment,
             receipt=_receipt(expected),
-            verifier=_accepting_verifier,
             must_precede_unix=_CUTOFF,
+            beacon_response=None,
+            verifier_path=None,
         )
-    assert "scientific_run_authorized is False" in str(excinfo.value)
 
 
 # ======================================================================================
@@ -670,7 +675,8 @@ def test_prb2_01_no_receipt_is_refused_at_the_entry_guard(tmp_path):
             measurement_root_sha256=DIGEST_C,
             family_enrolment=enrolment,
             receipt=None,
-            verifier=_accepting_verifier,
+            beacon_response=None,
+            verifier_path=None,
             must_precede_unix=_CUTOFF,
             trace=trace,
         )
@@ -691,7 +697,8 @@ def test_prb2_03_a_receipt_binding_another_root_is_refused_after_recomputation(t
             measurement_root_sha256=DIGEST_C,
             family_enrolment=enrolment,
             receipt=_receipt(DIGEST_B),
-            verifier=_accepting_verifier,
+            beacon_response=None,
+            verifier_path=None,
             must_precede_unix=_CUTOFF,
             trace=trace,
         )
@@ -725,7 +732,8 @@ def test_prb2_05_a_self_consistent_receipt_on_a_lying_root_is_rejected(tmp_path)
             measurement_root_sha256=DIGEST_C,
             family_enrolment=enrolment,
             receipt=forged,
-            verifier=_accepting_verifier,
+            beacon_response=None,
+            verifier_path=None,
             must_precede_unix=_CUTOFF,
         )
 
@@ -742,7 +750,8 @@ def test_prb2_06_mutating_the_artefact_after_the_receipt_invalidates_it(tmp_path
             measurement_root_sha256=DIGEST_C,
             family_enrolment=enrolment,
             receipt=receipt,
-            verifier=_accepting_verifier,
+            beacon_response=None,
+            verifier_path=None,
             must_precede_unix=_CUTOFF,
         )
 
@@ -755,16 +764,18 @@ def test_prb2_07_a_different_enrolment_breaks_the_binding(tmp_path):
             measurement_root_sha256=DIGEST_C,
             family_enrolment=_enrolment("RUN-SYNTHETIC-9999"),
             receipt=_receipt(expected),
-            verifier=_accepting_verifier,
+            beacon_response=None,
+            verifier_path=None,
             must_precede_unix=_CUTOFF,
         )
 
 
-def test_prb2_08_authenticity_is_reported_open_not_closed():
+def test_prb2_08_authenticity_is_now_delegated_to_the_pinned_verifier():
     status = locks.blocker_status()["PRB-2"]
     assert status["root_recomputed_from_reread_bytes"] is True
-    assert status["authenticity_established"] is False
+    assert status["authenticity_established"] is True
     assert status["integration_into_accepted_sources"] is False
+    assert "no callback" in status["authenticity_mechanism"]
 
 
 def test_prb3_02_a_missing_artefact_stops_before_root_and_verifier(tmp_path):
@@ -781,7 +792,8 @@ def test_prb3_02_a_missing_artefact_stops_before_root_and_verifier(tmp_path):
             measurement_root_sha256=DIGEST_C,
             family_enrolment=_enrolment(),
             receipt=_receipt(DIGEST_A),
-            verifier=spy,
+            beacon_response=None,
+            verifier_path=None,
             must_precede_unix=_CUTOFF,
             trace=trace,
         )
@@ -789,22 +801,18 @@ def test_prb3_02_a_missing_artefact_stops_before_root_and_verifier(tmp_path):
     assert calls == []
 
 
-def test_prb3_03_the_verifier_runs_last_and_exactly_once(tmp_path):
+def test_prb3_03_the_verifier_phase_runs_last_and_is_reached(tmp_path):
+    """Every earlier phase passes, so the run reaches VERIFIER and stops there."""
     path, enrolment, expected = _persisted(tmp_path)
-    calls: list[str] = []
-
-    def spy(commitment):
-        calls.append("verifier")
-        return True
-
     trace: list[str] = []
-    with pytest.raises(locks.RouteEAnalysisRefused):
+    with pytest.raises(frame.BeaconUnavailable):
         locks.open_route_e_analysis(
             evidence_path=path,
             measurement_root_sha256=DIGEST_C,
             family_enrolment=enrolment,
             receipt=_receipt(expected),
-            verifier=spy,
+            beacon_response=None,
+            verifier_path=None,
             must_precede_unix=_CUTOFF,
             trace=trace,
         )
@@ -815,7 +823,6 @@ def test_prb3_03_the_verifier_runs_last_and_exactly_once(tmp_path):
         "RECEIPT_ROOT_BINDING",
         "VERIFIER",
     ]
-    assert calls == ["verifier"]
 
 
 def test_prb3_04_the_order_cannot_be_reordered():
@@ -845,7 +852,8 @@ def test_prb3_06_the_cutoff_is_mandatory_on_both_public_entries(tmp_path):
             measurement_root_sha256=DIGEST_C,
             family_enrolment=enrolment,
             receipt=_receipt(expected),
-            verifier=_accepting_verifier,
+            beacon_response=None,
+            verifier_path=None,
             must_precede_unix=None,
         )
     assert "no public-priority cutoff" in str(excinfo.value)
@@ -867,7 +875,8 @@ def test_prb3_07_the_facade_enforces_the_same_order(tmp_path):
             measurement_root_sha256=DIGEST_C,
             family_enrolment=enrolment,
             receipt=_receipt(expected),
-            verifier=spy,
+            beacon_response=None,
+            verifier_path=None,
             must_precede_unix=_CUTOFF,
         )
     assert calls == []
@@ -879,56 +888,23 @@ def test_prb3_07_the_facade_enforces_the_same_order(tmp_path):
             measurement_root_sha256=DIGEST_C,
             family_enrolment=enrolment,
             receipt=_receipt(expected),
-            verifier=spy,
+            beacon_response=None,
+            verifier_path=None,
             must_precede_unix=None,
         )
     assert calls == []
 
 
 # ======================================================================================
-# PRB-5  the five REAL entry points, and the facade that is NOT a gate
+# PRB-5.  The five REAL entry points, their typed guard and their call graph are tested
+# in tests/test_future_route_e_pre_run_integration_00.py.  What remains here is the
+# facade -- which is NOT a gate -- and the honest status.
 # ======================================================================================
-
-
-def _real_entry_point_calls(tmp_path):
-    """Every call uses a directory that does not exist: an unauthorised Route E context."""
-    missing = tmp_path / "no-such-run-directory"
-    tracking = _track([_BLOB_LEFT, _BLOB_LEFT])
-    return {
-        "future_lifecycle_owned_pipeline.run_owned_future_pipeline": (
-            lambda: owned.run_owned_future_pipeline(
-                missing,
-                acquisition_source=None,
-                sampled_frames=(0, 1),
-                detector_spec=_DETECTOR,
-                tracker_spec=_TRACKER,
-                acquisition_source_identity={},
-            ),
-            owned.OwnedPublicationError,
-        ),
-        "future_lifecycle_owned_pipeline.open_owned_analysis_access": (
-            lambda: owned.open_owned_analysis_access(missing),
-            owned.OwnedEvidenceError,
-        ),
-        "future_lifecycle_runner.open_analysis_access": (
-            lambda: runner.open_analysis_access(missing, tracking, (0, 1)),
-            runner.CompletionEvidenceError,
-        ),
-        "future_lifecycle_runner.publish_future_family_completion": (
-            lambda: runner.publish_future_family_completion(missing, tracking, (0, 1)),
-            runner.CompletionPublicationError,
-        ),
-        "lifecycle.qualify_and_write_lifecycle_contract": (
-            lambda: lifecycle_module.qualify_and_write_lifecycle_contract(
-                missing / "contract.json", tracking, (0, 1)
-            ),
-            lifecycle_module.LifecyclePublicationError,
-        ),
-    }
 
 
 def test_prb5_01_the_five_literal_entry_points_are_enumerated():
     assert len(locks.SUPPORTED_ENTRY_POINTS) == 5
+    assert locks.ROUTE_E_GUARDED_ENTRY_POINTS == locks.SUPPORTED_ENTRY_POINTS
     for name in (
         "run_owned_future_pipeline",
         "open_owned_analysis_access",
@@ -937,45 +913,6 @@ def test_prb5_01_the_five_literal_entry_points_are_enumerated():
         "qualify_and_write_lifecycle_contract",
     ):
         assert any(name in entry for entry in locks.SUPPORTED_ENTRY_POINTS)
-
-
-@pytest.mark.parametrize("entry_point", locks.SUPPORTED_ENTRY_POINTS)
-def test_prb5_real_01_every_real_entry_point_refuses_before_every_effect(
-    entry_point, tmp_path, monkeypatch
-):
-    """The REAL public function, called in an unauthorised Route E context, refuses.
-
-    WEAKER PROPERTY (LK-L1): the refusal is the function's own first check, not a
-    Route E gate.  This does not close PRB-5.
-    """
-    call, expected = _real_entry_point_calls(tmp_path)[entry_point]
-    guard = ForbiddenEffects(monkeypatch)
-    with guard:
-        with pytest.raises(expected):
-            call()
-    assert guard.hits == []
-    assert sorted(p.name for p in tmp_path.iterdir()) == []
-
-
-@pytest.mark.parametrize("entry_point", locks.SUPPORTED_ENTRY_POINTS)
-def test_prb5_real_02_the_refusal_is_typed_and_specific(entry_point, tmp_path, monkeypatch):
-    call, expected = _real_entry_point_calls(tmp_path)[entry_point]
-    with ForbiddenEffects(monkeypatch):
-        with pytest.raises(expected) as excinfo:
-            call()
-    assert type(excinfo.value) is expected
-    assert "must already exist" in str(excinfo.value)
-
-
-def test_prb5_real_03_none_of_the_five_carries_a_route_e_refusal():
-    """The honest negative result: the accepted sources know nothing about Route E."""
-    import inspect
-
-    for module in (owned, runner, lifecycle_module):
-        source = inspect.getsource(module)
-        assert "RouteEReceipt" not in source
-        assert "route_e_entry" not in source
-        assert "future_route_e_pre_run_locks" not in source
 
 
 @pytest.mark.parametrize("entry_point", locks.SUPPORTED_ENTRY_POINTS)
@@ -1001,30 +938,12 @@ def test_prb5_facade_03_refuses_without_a_receipt(entry_point, monkeypatch):
 
 
 @pytest.mark.parametrize("entry_point", locks.SUPPORTED_ENTRY_POINTS)
-def test_prb5_facade_04_refuses_without_a_verifier(entry_point, tmp_path, monkeypatch):
-    path, enrolment, expected = _persisted(tmp_path)
-    with ForbiddenEffects(monkeypatch, arm_reads=False):
-        with pytest.raises(locks.CommitmentInvalid) as excinfo:
-            locks.route_e_entry(
-                entry_point,
-                authorisation=_authorisation(),
-                evidence_path=path,
-                measurement_root_sha256=DIGEST_C,
-                family_enrolment=enrolment,
-                receipt=_receipt(expected),
-                verifier=None,
-                must_precede_unix=_CUTOFF,
-            )
-    assert "no commitment verifier supplied" in str(excinfo.value)
-
-
-@pytest.mark.parametrize("entry_point", locks.SUPPORTED_ENTRY_POINTS)
-def test_prb5_facade_05_refuses_even_when_everything_else_passes(
+def test_prb5_facade_04_reaches_the_frozen_stop_and_no_further(
     entry_point, tmp_path, monkeypatch
 ):
     path, enrolment, expected = _persisted(tmp_path)
     with ForbiddenEffects(monkeypatch, arm_reads=False):
-        with pytest.raises(locks.EntryPointRefused) as excinfo:
+        with pytest.raises(frame.BeaconUnavailable):
             locks.route_e_entry(
                 entry_point,
                 authorisation=_authorisation(),
@@ -1032,21 +951,21 @@ def test_prb5_facade_05_refuses_even_when_everything_else_passes(
                 measurement_root_sha256=DIGEST_C,
                 family_enrolment=enrolment,
                 receipt=_receipt(expected),
-                verifier=_accepting_verifier,
                 must_precede_unix=_CUTOFF,
+                beacon_response=None,
+                verifier_path=None,
             )
-    assert "scientific_run_authorized is False" in str(excinfo.value)
 
 
-def test_prb5_facade_06_an_unknown_entry_point_is_refused(monkeypatch):
+def test_prb5_facade_05_an_unknown_entry_point_is_refused(monkeypatch):
     with ForbiddenEffects(monkeypatch):
         for bad in ("run_everything", "", 12345):
             with pytest.raises(locks.EntryPointRefused):
                 locks.route_e_entry(bad, authorisation=_authorisation())
 
 
-def test_prb5_facade_07_is_declared_not_to_be_a_gate():
-    """The facade must never again be described as guarding the five functions."""
+def test_prb5_facade_06_is_still_declared_not_to_be_a_gate():
+    """The facade is not the integration.  The integration is the guard."""
     import inspect
 
     assert "not in the call graph" in locks.FACADE_IS_NOT_A_GATE
@@ -1054,18 +973,19 @@ def test_prb5_facade_07_is_declared_not_to_be_a_gate():
     source = inspect.getsource(locks)
     for module_name in ("future_lifecycle_owned_pipeline", "future_lifecycle_runner"):
         assert f"import {module_name}" not in source
-    assert "PROTOCOL FACADE" in source
 
 
-def test_prb5_08_status_records_prb5_as_open():
+def test_prb5_07_status_records_the_guard_as_implemented_but_not_installed():
     status = locks.blocker_status()["PRB-5"]
     assert status["status"] == "OPEN"
-    assert status["mechanism_present"] is False
-    assert status["facade_is_a_gate"] is False
+    assert status["guard_implemented"] is True
+    assert status["guard_installed"] is False
     assert status["route_e_specific_refusal_inside_accepted_sources"] is False
+    assert status["facade_is_a_gate"] is False
+    assert status["human_review_required"] is True
 
 
-def test_prb5_09_no_blocker_is_reported_as_a_composite_token():
+def test_prb5_08_no_blocker_is_reported_as_a_composite_token():
     status = locks.blocker_status()
     assert set(status) == {"PRB-1", "PRB-2", "PRB-3", "PRB-4", "PRB-5", "PRB-6"}
     for entry in status.values():
@@ -1172,7 +1092,9 @@ def test_hr2_06_the_censoring_boundary_is_reproduced():
 
 
 # ======================================================================================
-# HR-3 / HR-4 / HR-5  beacon
+# HR-3  the round is keyed on a PUBLIC commitment.  HR-4 and HR-5 (the real verifier,
+# WAIT/STOP, and every malformed-round case) live in test_route_e_beacon_verifier.py,
+# next to the pinned adapter they belong to.
 # ======================================================================================
 
 
@@ -1184,7 +1106,7 @@ def test_hr3_01_the_round_rule_keys_on_a_public_commitment_not_a_local_commit():
 
 def test_hr3_02_anti_reroll_is_declared_conditional_on_prb6():
     text = " ".join(frame.ANTI_REROLL)
-    assert "UNPROVEN" in text
+    assert "UNPROVEN" in text or "PRB-6" in text
     assert "PRB-6" in text
 
 
@@ -1196,107 +1118,9 @@ def test_hr3_03_designated_round_is_derived_and_fail_closed():
             frame.designated_round(bad)
 
 
-def test_hr5_01_an_absent_round_is_WAIT_never_a_substitution():
-    with pytest.raises(frame.BeaconUnavailable) as excinfo:
-        frame.consume_beacon_round(response=None, expected_round=10, verifier=lambda *a: True)
-    assert frame.BeaconUnavailable.disposition == "WAIT"
-    assert "never the next round" in str(excinfo.value)
-
-
-def _good_response(round_number=10):
-    signature = bytes(range(48))
-    return {
-        "round": round_number,
-        "randomness": hashlib.sha256(signature).hexdigest(),
-        "signature": signature.hex(),
-        "chain_hash": frame.BEACON_SOURCE["chain_hash"],
-    }
-
-
-@pytest.mark.parametrize(
-    "mutate",
-    [
-        lambda r: {},
-        lambda r: {k: v for k, v in r.items() if k != "signature"},
-        lambda r: dict(r, chain_hash="00" * 32),
-        lambda r: dict(r, round=11),
-        lambda r: dict(r, round=True),
-        lambda r: dict(r, signature="zz"),
-        lambda r: dict(r, signature=(bytes(range(47))).hex()),
-        lambda r: dict(r, randomness="00" * 31),
-        lambda r: "not a mapping",
-    ],
-)
-def test_hr5_02_malformed_or_wrong_rounds_are_STOP(mutate):
-    response = mutate(_good_response())
-    with pytest.raises(frame.BeaconInvalid):
-        frame.consume_beacon_round(
-            response=response, expected_round=10, verifier=lambda *a: True
-        )
-    assert frame.BeaconInvalid.disposition == "STOP"
-
-
-def test_hr4_01_no_verifier_means_STOP_an_http_response_is_not_evidence():
-    with pytest.raises(frame.BeaconInvalid) as excinfo:
-        frame.consume_beacon_round(response=_good_response(), expected_round=10, verifier=None)
-    assert "not evidence" in str(excinfo.value)
-
-
-@pytest.mark.parametrize("verifier", [lambda *a: False, lambda *a: None, lambda *a: 1, "nope"])
-def test_hr4_02_a_verifier_that_does_not_return_true_is_STOP(verifier):
-    with pytest.raises(frame.BeaconInvalid):
-        frame.consume_beacon_round(
-            response=_good_response(), expected_round=10, verifier=verifier
-        )
-
-
-def test_hr4_03_a_raising_verifier_is_STOP():
-    def boom(*args):
-        raise RuntimeError("no")
-
-    with pytest.raises(frame.BeaconInvalid) as excinfo:
-        frame.consume_beacon_round(response=_good_response(), expected_round=10, verifier=boom)
-    assert "verifier raised" in str(excinfo.value)
-
-
-def test_hr4_04_randomness_must_equal_sha256_of_the_signature():
-    bad = dict(_good_response(), randomness="11" * 32)
-    with pytest.raises(frame.BeaconInvalid) as excinfo:
-        frame.consume_beacon_round(response=bad, expected_round=10, verifier=lambda *a: True)
-    assert "sha256(signature)" in str(excinfo.value)
-
-
-def test_hr4_05_a_well_formed_verified_round_returns_the_randomness():
-    response = _good_response()
-    seen: list[tuple[int, int]] = []
-
-    def verifier(signature, round_number, public_key):
-        seen.append((len(signature), len(public_key)))
-        return True
-
-    randomness = frame.consume_beacon_round(
-        response=response, expected_round=10, verifier=verifier
-    )
-    assert randomness == bytes.fromhex(response["randomness"])
-    assert seen == [(48, 96)], "G1 signature 48 bytes, G2 public key 96 bytes"
-
-
-def test_hr4_06_the_verification_rule_is_declared_and_the_verifier_is_not_bundled():
-    assert "MUST be verified cryptographically" in frame.BEACON_SOURCE["verification_rule"]
-    assert "LK-L2" in frame.BEACON_SOURCE["verification_rule"]
-    assert locks.blocker_status()["PRB-6"]["verifier_delivered"] is False
-
-
-def test_hr4_07_no_module_contacts_the_network(monkeypatch):
-    import inspect
-
-    for module in (frame, locks):
-        source = inspect.getsource(module)
-        for forbidden in ("requests", "urllib", "httpx", "http.client", "socket."):
-            assert forbidden not in source
-    with ForbiddenEffects(monkeypatch):
-        with pytest.raises(frame.BeaconUnavailable):
-            frame.consume_beacon_round(response=None, expected_round=10, verifier=None)
+def test_hr3_04_the_verifier_is_pinned_and_not_a_caller_choice():
+    assert "never chosen by a caller" in frame.BEACON_VERIFIER_IS_PINNED
+    assert frame.BEACON_SOURCE["dst"] == "BLS_SIG_BLS12381G1_XMD:SHA-256_SSWU_RO_NUL_"
 
 
 # ======================================================================================

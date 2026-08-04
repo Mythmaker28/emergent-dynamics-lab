@@ -1,25 +1,19 @@
-# FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00 — rapport (révision corrective après `31cccc`)
+# FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00 — rapport (intégration autorisée, après `0541400`)
 
-> **Aucun token de disposition composite n'est émis.** Les faits sont exposés séparément,
-> champ par champ, au §2. Ce record ne prononce **aucune acceptation humaine**.
+> **Aucun token composite n'est émis.** Les faits sont exposés champ par champ au §2.
+> Ce record ne prononce **aucune acceptation humaine**.
 >
-> `PRB-5 = OPEN` · `PRB-6 = OPEN` · `ANTI_REROLL = UNPROVEN`
+> `PRB-6 = CANDIDATE_CLOSED` — vérificateur BLS/G1 maintenu livré, vecteurs officiels
+> hors réseau, round dérivé et vérifié cryptographiquement.
+> `PRB-5 = OPEN` — le garde est **écrit et testé** mais **non installé** : le crochet
+> d'une ligne change les octets de trois sources acceptées, épinglés par deux fichiers de
+> tests **hors allowlist**. Blocker rapporté, non contourné.
+> `ANTI_REROLL` : moitié « choix du round » **CANDIDATE_PASS**, moitié « publication »
+> **UNPROVEN**.
 >
-> **`scientific_run_authorized = false`**
+> **`human_review = PENDING`** · **`scientific_run_authorized = false`**
 >
-> Il est **interdit** de résumer ce package par « les pre-run blockers sont fermés », ou
-> par « cinq blockers sur six sont fermés ».
-
----
-
-## 0. Les quatre catégories, tenues séparées
-
-1. **Preuves mécaniques** — tests exécutés et mutations discriminantes, §10.
-2. **Décisions de gouvernance** — les verrous, l'ordre gelé, les préconditions, ce qui est
-   déclaré hors protocole.
-3. **Limitations et conflits d'allowlist** — `LK-L1 … LK-L5`, `RE-L1 … RE-L10`, plus les
-   sous-obligations restantes par blocker, §12.
-4. **Résultats scientifiques** — **catégorie vide.**
+> Il est **interdit** de résumer ce package par « les pre-run blockers sont fermés ».
 
 ---
 
@@ -28,458 +22,422 @@
 | Élément | Valeur |
 |---|---|
 | Mandat | `00afcdd1aacbdf32bb030d85ced735a2920421f6`, §8 |
-| Candidat partiel initial | `c6d4acf037d4e51d59e5b75dc91b977b9eb83dbd` |
 | Première revue contraignante | `bc2a42c468eec5a4e1732ebb08c7cc20c4dab7dd` — `HUMAN_REVIEW_REVISE` |
-| Candidat révisé | `a379efa6e230efd6b4051b36717169be9c0f5dbf` |
-| **Revue indépendante contraignante** | `31ccccfb9e61809cf5d461a70425e00c3db7bc17` — `HUMAN_REVIEW_REVISE` |
-| Base de cette révision | `31ccccfb…`, **parent unique**, aucun merge |
+| Revue indépendante contraignante | `31ccccfb9e61809cf5d461a70425e00c3db7bc17` — `HUMAN_REVIEW_REVISE` |
+| Base exclusive de cette révision | `054140024267183fa43ef86755cd1c82d5a41483`, **parent unique**, aucun merge |
+| Autorisation propriétaire | extension d'allowlist du §3, intégration **et** PRB-6 |
 | Mission | `FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00`, **non consommée** |
-| Branche Git | `codex/future-route-e-pre-run-blocker-closure-00-revision-2` — nom Git, **pas** un identifiant scientifique |
+| Branche Git | `codex/future-route-e-pre-run-blocker-closure-00-authorized-integration` — nom Git, pas un identifiant scientifique |
 
-### 1.1 La portée du §8, maintenue intégralement
-
-> **Obligations portées à la prérégistration** (`ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00`),
-> à n'exécuter qu'après fermeture **et** revue humaine des blockers : 1. … 6.
-
-et, du mandat de cette mission :
-
-> `FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00` **pourra** fermer les six `PRE_RUN_BLOCKER`.
-
-**Deux couches, deux missions.** A–F appartiennent à la prérégistration et restent du
-travail **anticipatoire** ; `PRB-1 … PRB-6` sont le mandat de cette mission. Aucun
-renommage `A→1`, aucun identifiant `00R`, aucune mission nouvelle, aucune prérégistration.
-
-### 1.2 État de départ, non réécrit
-
-```text
-PRB-1 = PARTIAL           PRB-4 = CANDIDATE_CLOSED_AT_DIGEST_LEVEL
-PRB-2 = STRUCTURAL_ONLY   PRB-5 = OPEN
-PRB-3 = PARTIAL           PRB-6 = OPEN
-HR-10 = PARTIAL           ANTI_REROLL = UNPROVEN
-```
+État de départ, non réécrit : `PRB-1 = PARTIAL` · `PRB-2 = STRUCTURAL_ONLY /
+OPEN_GLOBALLY` · `PRB-3 = LOCAL_PASS / PARTIAL_GLOBALLY` · `PRB-4 =
+CLOSED_AT_DIGEST_LEVEL_ONLY` · `PRB-5 = OPEN` · `PRB-6 = OPEN` · `HR-10/D = LOCAL_PASS /
+PARTIAL_GLOBALLY` · `ANTI_REROLL = UNPROVEN` · `human_review = PENDING` ·
+`scientific_run_authorized = false`.
 
 ---
 
-## 2. Disposition — champs factuels séparés, sans token
+## 2. Disposition — champs factuels séparés
 
-| Fait | Valeur |
+| Blocker | Mécanisme | Intégration dans une source acceptée | Tests discriminants | Statut |
+|---|---|---|---|---|
+| **PRB-1** | présent, **avec persistance réelle** | **non** | oui (writer no-op ⇒ 6 rouges ; relecture retirée ⇒ 3 rouges) | mécanisme + persistance livrés |
+| **PRB-2** | présent ; **authenticité désormais établie** | **non** (blocker §7) | oui | couches 1–5 livrées, **enforcement bloqué** |
+| **PRB-3** | présent, chemin interne unique | **non** | oui (ordre modifié ⇒ 7 rouges ; cutoff optionnel ⇒ 5 rouges) | livré pour le chemin Route E |
+| **PRB-4** | présent | **non** | oui | **niveau digest seulement** |
+| **PRB-5** | **garde écrit et testé, NON installé** | **non** | oui (garde qui accepte un signal non typé ⇒ 4 rouges) | **OPEN** |
+| **PRB-6** | **vérificateur maintenu livré** | s.o. | oui (appel du helper retiré ⇒ 12 rouges ; contrôle de randomness retiré ⇒ 1 rouge) | **CANDIDATE_CLOSED** |
+
+`blocker_status()` ne renvoie **aucun** champ `closed` et porte `human_review_required =
+True` pour les six. Aucun schéma fictif n'a été créé.
+
+---
+
+## 3. Allowlist effectivement utilisée
+
+| Chemin | Statut | Autorisé par |
+|---|---|---|
+| `edlab/substrates/lattice_bond/future_route_e_pre_run_frame.py` | modifié | §3 handoff |
+| `edlab/substrates/lattice_bond/future_route_e_pre_run_locks.py` | modifié | §3 handoff |
+| `edlab/substrates/lattice_bond/route_e_beacon_verifier.py` | **ajouté** | §3 handoff |
+| `tools/drand_verify/main.go` | **ajouté** | §3 handoff |
+| `tools/drand_verify/go.mod` | **ajouté** | §3 handoff |
+| `tools/drand_verify/go.sum` | **ajouté** | §3 handoff |
+| `tests/data/route_e_beacon_vectors.json` | **ajouté** | §3 handoff |
+| `tests/test_route_e_beacon_verifier.py` | **ajouté** | §3 handoff |
+| `tests/test_future_route_e_pre_run_integration_00.py` | **ajouté** | §3 handoff |
+| `tests/test_future_route_e_pre_run_locks_00.py` | modifié | §3 handoff |
+| `docs/individuation/…_00_REPORT.md` | modifié | §3 handoff |
+| `docs/individuation/…_00_DECISION.json` | modifié | §3 handoff |
+
+**Autorisés mais volontairement NON modifiés** (voir §7) :
+`future_lifecycle_owned_pipeline.py`, `future_lifecycle_runner.py`, `lifecycle.py`.
+Ils sont **byte-identiques** à la base, vérifié par comparaison.
+
+**`pyproject.toml` n'a pas été touché** et n'a pas eu besoin de l'être : le vérificateur
+est un helper Go externe, pas une dépendance Python.
+
+---
+
+## 4. PRB-6 — vérificateur maintenu, hors réseau — **CANDIDATE_CLOSED**
+
+### 4.1 Ce qui est livré
+
+`tools/drand_verify` est un helper **Go, sans réseau**, construit sur
+`github.com/drand/kyber-bls12381 v0.3.4` et `github.com/drand/kyber v1.3.1` (donc
+`github.com/kilic/bls12-381 v0.1.0`). **Aucune BLS artisanale n'a été écrite** : aucune
+arithmétique de courbe ne figure dans ce dépôt.
+
+Propriétés **vérifiées dans le code source des bibliothèques, pas dans leur documentation** :
+
+| Exigence | Constat, avec l'emplacement |
 |---|---|
-| Mécanisme présent | PRB-1 **oui** · PRB-2 **oui** · PRB-3 **oui** · PRB-4 **oui** · PRB-5 **non** · PRB-6 **gate seul** |
-| Persistance présente | PRB-1 **oui** (écriture atomique + relecture + recomputation) |
-| Intégration dans une source acceptée | **non**, pour les six, sans exception |
-| Tests discriminants présents | PRB-1 **oui** · PRB-2 **oui** · PRB-3 **oui** · PRB-4 **oui** · PRB-5 **oui, pour la propriété faible seulement** · PRB-6 **oui** |
-| Authenticité cryptographique établie | **non** — dépend de `PRB-6` |
-| Sous-obligations restantes | §4 à §8, et `blocker_status()` |
-| Revue humaine encore requise | **oui, pour les six** |
-| Autorisation scientifique | **false** |
+| Scheme exact | `crypto/schemes.go` : `const SigsOnG1ID = "bls-unchained-g1-rfc9380"` |
+| DST RFC 9380 | `NewPedersenBLSUnchainedG1` : `BLS_SIG_BLS12381G1_XMD:SHA-256_SSWU_RO_NUL_` (G1) |
+| Groupes | même fonction : `KeyGroup = Pairing.G2()`, `SigGroup = Pairing.G1()` |
+| Message | `DigestFunc` : `sha256.New()` + `binary.Write(h, binary.BigEndian, round)` |
+| `randomness` | `RandomnessFromSignature` : `sha256.Sum256(sig)` |
+| Clé G2 96 o, signature G1 48 o | imposé par le helper et par `FromCompressed` |
+| Désérialisation compressée canonique | `kilic/bls12-381 g1.go/g2.go FromCompressed` → `fromBytes` → `fe.isValid()` : *« must be less than modulus »* (rejet de `x ≥ p`) |
+| Contrôle de sous-groupe | `g1.go` : `if !g.InCorrectSubgroup(p) { return nil, errors.New("point is not on correct subgroup") }` ; idem `g2.go` |
+| Point à l'infini | `FromCompressed` **l'accepte** et renvoie `Zero()` — **le helper le rejette donc explicitement**, pour G1 et pour G2 |
+| Encodage non canonique résiduel | le helper **re-sérialise** le point et exige l'égalité octet à octet avec l'entrée |
 
-`blocker_status()` ne renvoie **plus aucun champ `closed`** : il renvoie ces faits, un par
-un, avec `human_review_required = True` partout. Le champ `candidate_disposition` et le
-token `ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_MANDATE_ADDRESSED_PRB6_OPEN` sont **supprimés**
-du `DECISION.json`. Aucun schéma fictif n'a été créé pour donner à ces champs une
-apparence canonique : ce sont des faits, pas un vocabulaire.
+Interface : **un** objet JSON borné sur stdin (8 192 octets max), champs stricts,
+`DisallowUnknownFields`, un seul objet accepté, argv fixe `["verify"]`, **aucun shell**,
+environnement minimal (`PATH=""`, `LC_ALL=C`), timeout, stdout borné, stderr borné et
+traité comme diagnostic, codes de sortie documentés (0 verdict, 2 configuration,
+3 interne).
 
----
-
-## 3. Allowlist littérale, chemin par chemin
-
-Écrite avant la première édition, depuis les textes gelés.
-
-| # | Chemin | Statut | Justification |
-|---|---|---|---|
-| 1 | `edlab/substrates/lattice_bond/future_route_e_pre_run_locks.py` | modifié | mécanisme des six `PRE_RUN_BLOCKER` (fichier créé par cette mission) |
-| 2 | `edlab/substrates/lattice_bond/future_route_e_pre_run_frame.py` | modifié | HR-10 : suppression du paramètre `classifier` de l'API publique |
-| 3 | `tests/test_future_route_e_pre_run_locks_00.py` | modifié | tests PRB/HR corrigés + refus sur les cinq **vraies** fonctions |
-| 4 | `docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_REPORT.md` | modifié | ce rapport |
-| 5 | `docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_DECISION.json` | modifié | cette décision |
-
-**Non modifiés** : `engine.py`, `specs.py`, `state.py`, `instrumentation.py`,
-`lifecycle.py`, `future_lifecycle_runner.py`, `future_lifecycle_owned_pipeline.py`,
-`future_prospective_measurement_bridge.py`, tout `__init__.py`, `pyproject.toml`, tout
-test préexistant, `tests/test_future_route_e_pre_run_blocker_closure_00.py` (A–F,
-**inchangé** depuis `a379efa6`), tout document 01S, et **les deux records humains
-`bc2a42c4` et `31ccccfb`**.
-
-### 3.1 Matrice obligation → chemin d'exécution → fichier → statut atteignable
-
-| Obligation littérale | Chemin d'exécution réel | Fichier nécessaire | Autorisé ? | Mécanisme | Test discriminant | Statut atteignable |
-|---|---|---|---|---|---|---|
-| PRB-1 *write the join into root-bound evidence* | écriture → relecture → recomputation | `future_route_e_pre_run_locks.py` | **oui** | `write_join_evidence` / `read_join_evidence` | writer → no-op ⇒ **13 rouges** | mécanisme **et** persistance livrés ; **intégration non** |
-| PRB-2 couches 1–2 (présence, liaison à la racine recomputée) | chemin Route E | `future_route_e_pre_run_locks.py` | **oui** | `_frozen_check_order` | recomputation retirée ⇒ rouge | livré |
-| PRB-2 *the supported entry point refuses without a receipt* | à l'intérieur des cinq fonctions acceptées | `future_lifecycle_*.py`, `lifecycle.py` | **NON** | — | — | **impossible** sous l'allowlist |
-| PRB-2 couche 3 (authenticité) | vérificateur BLS maintenu | `pyproject.toml` + lockfiles | **NON** | — | — | **impossible** : c'est PRB-6 |
-| PRB-3 *frozen check order* | chaque API publique Route E | `future_route_e_pre_run_locks.py` | **oui** | un seul `_frozen_check_order` | phase retirée ⇒ **7 rouges** ; cutoff optionnel ⇒ **3 rouges** | livré pour le chemin Route E |
-| PRB-4 *replay binding* | algèbre de digest | `future_route_e_pre_run_locks.py` | **oui** | `FamilyEnrolment` → `route_e_root` | mutation de champ ⇒ racine différente | **niveau digest seulement** |
-| PRB-5 *refusal test on the five entry points* | à l'intérieur des cinq fonctions | `future_lifecycle_*.py`, `lifecycle.py` | **NON** | — | refus réel neutralisé ⇒ **1 à 2 rouges par fonction** | **OPEN** |
-| PRB-6 *external anchoring* | vérificateur BLS/G1 maintenu | `pyproject.toml`, `go.mod`, `go.sum`, adaptateur, vecteurs | **NON** | gate fail-closed seul | absence de vérificateur ⇒ STOP | **OPEN** |
-| HR-10 *classifieur non substituable* | API publique d'assemblage | `future_route_e_pre_run_frame.py` | **oui** | `classifier` retiré, seam privé | appel retiré ⇒ **3 rouges** | livré ; **intégration non** |
-
-**Conflit d'allowlist, énoncé sans détour :** les quatre lignes marquées **NON** sont les
-seules qui fermeraient réellement PRB-2 (authenticité), PRB-5 et PRB-6. Aucun fichier
-interdit n'a été touché. Les extensions exactes nécessaires sont demandées au §11.
-
----
-
-## 4. PRB-1 — évidence persistée, complète et liée
-
-Ce qui est **livré** :
-
-- **Couverture exacte du support.** `build_track_component_join` refuse quatre défauts
-  distincts, chacun **avant toute écriture** : assignation orpheline (`orphan
-  assignment`), composant détecté non assigné (`incomplete join`), clé `(frame, index)`
-  dupliquée, deux triples identiques. La politique sur les doublons est **le refus**,
-  déclarée comme telle, jamais l'absorption silencieuse par le digest.
-- **Sérialisation canonique.** `canonical_join_bytes` produit exactement les octets écrits
-  **et** digérés : `join_digest(records) == sha256(canonical_join_bytes(records))`. Les
-  lignes sont triées, donc permuter l'entrée donne des octets identiques.
-- **Écriture atomique et bornée.** `write_join_evidence` refuse une racine absente, une
-  racine qui est un lien symbolique, un chemin sortant de la racine (`realpath`), et toute
-  réécriture. L'écriture passe par un fichier temporaire dans la même racine, `fsync`,
-  puis `os.link` — **non écrasant**. Sans lien atomique disponible, le writer refuse au
-  lieu de dégrader silencieusement.
-- **Relecture obligatoire.** `read_join_evidence` refuse un lien symbolique, un fichier
-  absent, du JSON non canonique, et tout ce qui ne fait pas un aller-retour octet pour
-  octet. Le digest renvoyé est `sha256` **des octets lus sur le disque**.
-- **Liaison à la racine.** `_frozen_check_order` recompute `route_e_root` depuis le digest
-  **relu**, jamais depuis un objet resté en mémoire ni depuis une chaîne d'appelant.
-
-Ce qui **reste ouvert** : aucune source acceptée n'appelle ce writer. L'évidence n'existe
-que si un appelant Route E l'écrit — `LK-L5`.
-
----
-
-## 5. PRB-2 — présence, liaison et authenticité, séparées
-
-| Couche | Statut | Preuve |
-|---|---|---|
-| 1. Présence et forme minimale du receipt | **livrée** | `ENTRY_GUARD` refuse `None` et tout objet d'un autre type, **avant tout effet** ; sa racine n'est ni lue ni crue à ce stade |
-| 2. Recomputation interne de la racine | **livrée** | plus **aucune** signature publique n'accepte de racine fournie par l'appelant (`test_prb2_04`) |
-| 3. Liaison receipt ↔ racine recomputée | **livrée** | receipt auto-cohérent sur une racine mensongère **rejeté** (`test_prb2_05`) ; évidence mutée après émission ⇒ invalide (`test_prb2_06`) ; enrôlement différent ⇒ liaison cassée (`test_prb2_07`) |
-| 4. Antériorité publique obligatoire | **livrée** | `must_precede_unix` n'a **plus de défaut `None`** ; absence ⇒ refus sur les deux chemins publics |
-| 5. Authenticité cryptographique de la provenance | **OUVERTE** | dépend de `PRB-6` ; aucun vérificateur maintenu n'existe dans l'allowlist |
-
-Ordre effectivement imposé, identique sur les deux entrées publiques :
+L'adaptateur `route_e_beacon_verifier.py` **épingle** la chaîne : `chain_hash`,
+`public_key` (96 o), `scheme`, `DST`, période et genesis sont des constantes de module.
+**Elles ne proviennent jamais du receipt ni de la réponse beacon** ; une réponse qui
+annonce une autre chaîne est refusée. Il distingue exactement cinq issues :
 
 ```text
-ENTRY_GUARD (receipt présent, cutoff présent — rien n'est cru)
-  → LOCAL_EVIDENCE        (relecture de l'artefact persisté)
-  → ROOT_DIGEST           (racine RECOMPUTÉE depuis les octets relus)
-  → RECEIPT_ROOT_BINDING
-  → VERIFIER              (commitment vérifié, antériorité stricte)
+verified · invalid · unavailable · configuration_error · internal_error
 ```
 
-**Ce que PRB-2 ne ferme pas, et pourquoi.** Le texte gelé dit « **the supported scientific
-entry point** refuses without a verified receipt ». Les trois modules acceptés ne
-contiennent **aucune** occurrence de `RouteEReceipt`, `route_e_entry` ou
-`future_route_e_pre_run_locks` — vérifié par test (`test_prb5_real_03`). Le receipt est
-donc exigé par des fonctions Route E qu'aucun chemin de production n'appelle. Ce n'est
-**pas** une fermeture par vacuité invoquant `scientific_run_authorized = false` : c'est un
-conflit d'allowlist, nommé au §3.1 et au §11.
+et la traduction est fixe : **`unavailable` est le SEUL WAIT**, sur le **même** round ;
+tout le reste est **STOP**. Un verdict « verified » qui ne réécho pas le scheme et le DST
+épinglés est refusé comme `internal_error` — un helper qui se contenterait de dire
+« verified » n'est pas cru.
+
+### 4.2 Ce qui n'est pas livré, et le reste ouvert
+
+- Le **binaire n'est pas committé**. Un vérificateur absent ou non exécutable est un
+  **STOP**, jamais un passage. C'est testé dans les deux branches.
+- La base de données de sommes de contrôle Go (`sum.golang.org`) est **inaccessible**
+  depuis cet environnement : le build a utilisé `GOSUMDB=off`. Les modules sont **épinglés
+  par version et par hash dans `go.sum`**, mais ces hashes n'ont **pas** été confrontés au
+  journal de transparence. **À vérifier par un tiers disposant du réseau** (`go mod verify`
+  + sumdb). C'est un résidu de provenance, déclaré, non masqué.
+- Les chemins canoniques `golang.org/x/*` ne se résolvent pas ici ; `go.mod` porte deux
+  `replace` **explicites** vers `github.com/golang/{sys,crypto}`, qui sont les mêmes dépôts
+  amont, épinglés aux mêmes versions.
 
 ---
 
-## 6. PRB-3 — un ordre unique sur tous les chemins publics
+## 5. Vecteurs hors réseau et cas négatifs
 
-- **Un seul chemin interne**, `_frozen_check_order`, utilisé par `open_route_e_analysis`
-  **et** par `route_e_entry` (`test_prb3_05`).
-- `LOCAL_EVIDENCE → ROOT_DIGEST → VERIFIER` reste l'ordre gelé ; `CHECK_PHASES` en donne
-  la réalisation (`ENTRY_GUARD` en préflight qui ne croit rien, `RECEIPT_ROOT_BINDING`
-  comme sous-étape de `VERIFIER`), **sans réordonner ni supprimer** les trois phases
-  gelées (`test_prb3_01`).
-- Échec d'évidence ⇒ racine et vérificateur **jamais** atteints, prouvé par espion
-  (`test_prb3_02`). Échec de liaison ⇒ vérificateur jamais atteint (`test_prb2_03`).
-  Succès synthétique ⇒ journal exact des cinq étapes, vérificateur appelé **exactement une
-  fois** (`test_prb3_03`).
-- `must_precede_unix` **obligatoire**, sans défaut, sur les deux entrées, et propagé par
-  `route_e_entry` (`test_prb3_06`, `test_prb3_07`).
-- L'appel direct à `_OrderTrace` subsiste (`test_prb3_04`) mais **n'est plus le test
-  principal** : les tests principaux instrumentent les vraies frontières.
+**Aucun endpoint drand n'a été contacté. Aucun round live n'a été récupéré.** Chaque
+vecteur a été copié d'une **fixture committée** dans un dépôt officiel, récupérée en
+https depuis `raw.githubusercontent.com`, et `tests/data/route_e_beacon_vectors.json`
+enregistre pour chacun : dépôt, ref, chemin, licence, sha256 du fichier source récupéré,
+taille, chain hash, clé publique, scheme, round, signature, randomness, provenance de la
+randomness, transformation (aucune) et résultat attendu.
 
-`route_e_entry` est **requalifié en façade de protocole**. Le module le déclare
-(`FACADE_IS_NOT_A_GATE`, `LK-L4`) : elle n'est pas dans le call graph des cinq fonctions,
-n'en importe aucune, ne peut intercepter aucun appel direct, et **aucun test de la façade
-n'est une preuve à leur sujet**.
+| Id | Source | Chaîne | Round | Randomness |
+|---|---|---|---|---|
+| **V1** | `github.com/drand/tlock`, `tlock_test.go`, Apache-2.0 / MIT, sha256 `f2e71105…ef71` | **quicknet** | 12 040 883 | **dérivée** `sha256(sig)` |
+| **V2** | `github.com/noislabs/drand-verify`, `src/verify.rs`, Apache-2.0, sha256 `47c7a755…f9a6` | **quicknet** | 123 | **dérivée** `sha256(sig)` |
+| **V3** | `github.com/drand/drand-client`, `test/beacon-verification.test.ts`, Apache-2.0 / MIT, sha256 `e9b91a7a…c67d` | `walkthrough` (**pas** quicknet ; même scheme) | 38 | **COMMITTÉE** |
 
----
+**V3 est le seul vecteur dont la randomness est committée** : il prouve
+`randomness = sha256(signature)` contre un fichier officiel, et c'est vérifié
+(`b2fc2132…9ccca` reproduit exactement). Pour V1 et V2 la randomness est **dérivée**, ce
+que le fichier de vecteurs dit explicitement.
 
-## 7. PRB-5 — les cinq vraies fonctions, testées ; le blocker reste OUVERT
+**Contrôle inter-implémentations.** Les trois vecteurs ont été revérifiés avec `py_ecc`,
+une implémentation Python pure **sans rapport** avec `kilic`/`kyber` : accord complet.
+Les contre-épreuves passent aussi : round 124 → invalide, clé `walkthrough` sur un round
+quicknet → invalide, et **DST fastnet (G2) appliqué à un round quicknet → invalide**.
+`py_ecc` a servi d'oracle d'audit uniquement ; ce n'est **pas** une dépendance du dépôt.
 
-Les cinq entrées littérales du mandat sont testées **en appelant la vraie fonction
-publique**, dans un contexte Route E non autorisé, sous `ForbiddenEffects` armant
-entropie, réseau, sous-processus, `open`, **lecture** (`Path.read_bytes` / `read_text`),
-écriture, `mkdir` et `LatticeBondEngine.step` :
-
-| Vraie fonction publique | Exception typée observée | Effet atteint |
-|---|---|---|
-| `future_lifecycle_owned_pipeline.run_owned_future_pipeline` | `OwnedPublicationError` | **aucun** |
-| `future_lifecycle_owned_pipeline.open_owned_analysis_access` | `OwnedEvidenceError` | **aucun** |
-| `future_lifecycle_runner.open_analysis_access` | `CompletionEvidenceError` | **aucun** |
-| `future_lifecycle_runner.publish_future_family_completion` | `CompletionPublicationError` | **aucun** |
-| `lifecycle.qualify_and_write_lifecycle_contract` | `LifecyclePublicationError` | **aucun** |
-
-`ForbiddenEffects.hits == []` et le répertoire temporaire est **vide** après chaque refus.
-
-**Pouvoir discriminant, mesuré** (copies jetables, jamais committées) : neutraliser le
-refus **à l'intérieur** de chacune des cinq fonctions rend son test **rouge** — 2, 1, 1, 2
-et 2 échecs respectivement. Les deux qui n'en tuent qu'un possèdent un **second** refus
-fail-closed en aval (« no owned pipeline binding … », « no completion manifest … »), que
-le test de message capture.
-
-**Pourquoi le blocker reste OUVERT, sans échappatoire.** Ces refus sont le **premier
-contrôle propre à chaque fonction**, pas un refus Route E : `run_directory must already
-exist`. Le texte gelé exige « close or declare out of protocol, **with a refusal test** »
-sur ces cinq noms ; la déclaration hors protocole existe (`OUT_OF_PROTOCOL_ENTRY_POINTS`)
-et les cinq tests existent désormais, mais **aucun mécanisme Route E ne vit à l'intérieur
-de ces fonctions**, et en installer un signifie éditer une source acceptée, ce que
-l'allowlist gelée interdit. **`PRB-5 = OPEN`.** Aucune fermeture n'est fabriquée avec des
-tests seuls.
-
-Recherche des façades alternatives : aucun export, CLI, runner ou point d'entrée
-alternatif n'a été trouvé qui ouvrirait la même capacité sans passer par ces cinq
-fonctions.
+Cas négatifs exécutés contre le vrai binaire : round ±1 · mauvaise clé · signature altérée
+· randomness incohérente · point à l'infini · encodage non canonique (`x ≥ p`) · longueur
+incorrecte · scheme fastnet · champ JSON supplémentaire · deux objets JSON · JSON
+malformé — plus, côté adaptateur, helper absent, helper qui plante, timeout, sortie
+malformée, sortie sans `status`, statut inconnu, succès forgé sans écho épinglé, sortie
+surdimensionnée. Le catalogue complet est dans le fichier de vecteurs et le test
+`test_crypto_04` vérifie qu'il est complet.
 
 ---
 
-## 8. PRB-6 — inchangé, OUVERT, et rien n'a été installé
+## 6. Anti-reroll — la moitié qui passe et la moitié qui ne passe pas
 
-Aucune modification de `pyproject.toml`, aucun `go.mod`, aucun `go.sum`, aucun lockfile,
-aucune installation, **aucun contact drand**, aucun round choisi, aucune BLS artisanale.
+**Ce qui passe.** Le round est **dérivé** du timestamp public gelé par
+`designated_round(T) = beacon_round_at_or_after(T + 86400)`. Il n'est **argument nulle
+part** : ni `RouteERequest`, ni `verify_public_commitment` n'ont de champ `round`,
+`scheme`, `dst` ou `chain_hash`. Un round voisin, même cryptographiquement valide, est
+refusé. Il n'existe **aucune boucle**, aucun retry, aucun endpoint alternatif :
+l'adaptateur fait **exactement un** `subprocess.run` et un timeout est terminal. Une
+indisponibilité renvoie **WAIT sur le même round**.
 
-Les gates fail-closed sont préservés : absence de vérificateur ⇒ **STOP** ; verdict
-non-`True`, vérificateur qui lève, `randomness ≠ sha256(signature)`, mauvaise chaîne,
-mauvais round, longueurs non conformes (G1 48 o, G2 96 o) ⇒ **STOP** ; indisponibilité
-authentique ⇒ **WAIT** sur le **même** round, jamais le suivant, jamais un autre endpoint,
-jamais une autre source.
+**Ce qui ne passe pas.** Que la racine ait été **réellement publiée**, immuablement, à
+l'instant déclaré, reste **affirmé** par le `venue` et la `reference` du commitment, pas
+vérifié. La vérification drand prouve le **round**, pas la publication. Fermer cette
+moitié demande une preuve d'inclusion propre au registre choisi, qui n'est pas livrée.
 
 ```text
-PRB-6 = OPEN
-ANTI_REROLL = UNPROVEN
+ANTI_REROLL_round_selection = CANDIDATE_PASS
+ANTI_REROLL_publication     = UNPROVEN
 ```
 
-La demande d'autorisation d'ingénierie étroite, avec les chemins exacts, est au §11.2.
+---
+
+## 7. PRB-5 — blocker précis, non contourné
+
+Le garde **existe** : `RouteERequest` (signal **typé**, jamais une chaîne libre),
+`enforce_route_e_guard(request, entry_point=…)`, qui exécute le chemin gelé complet —
+`ENTRY_GUARD → LOCAL_EVIDENCE → ROOT_DIGEST → RECEIPT_ROOT_BINDING → VERIFIER` — avec la
+vérification cryptographique réelle, et **ne peut jamais retourner**. Il est testé de bout
+en bout, y compris avec le vrai binaire et le vrai vecteur.
+
+**Il n'est pas installé.** L'installer signifie ajouter, en **première** instruction des
+cinq fonctions acceptées :
+
+```python
+if route_e is not None:
+    from .future_route_e_pre_run_locks import enforce_route_e_guard
+
+    enforce_route_e_guard(route_e, entry_point="<nom littéral>")
+```
+
+Cette modification a été **écrite, exécutée et mesurée** pendant cette mission : les cinq
+fonctions refusent alors correctement, `RouteEGuardRefused` avant tout effet, et le
+comportement sans signal est inchangé. **Mais elle change les octets de trois sources
+acceptées**, et ces octets sont épinglés, test par test, par **deux fichiers hors
+allowlist**. Neuf tests verts deviennent rouges :
+
+```text
+tests/test_future_lifecycle_runner_integration.py
+  ::test_14_no_public_entry_point_accepts_a_lifecycle_closure            (pin de signature)
+  ::test_23e_lifecycle_source_is_unchanged_across_the_succession         (pin de hash)
+  ::test_23f_current_source_matches_the_successor_qualification          (pin de hash)
+  ::test_23g_runner_integration_remains_pending_formal_requalification   (pin de hash)
+  ::test_23i_every_historically_pinned_artifact_is_explicitly_accounted_for
+  ::test_rs01_13_the_successor_qualification_binds_the_current_lineage_and_hashes
+  ::test_rs01_15_the_historical_runner_package_is_pinned_and_immutable
+tests/test_future_lifecycle_owned_pipeline.py
+  ::test_op_21a_the_public_signature_accepts_no_injectable_artifact      (pin de signature)
+  ::test_op_23e_the_accepted_stack_sources_are_unchanged_by_this_mission (pin de hash)
+```
+
+La condition du §9 du handoff — *« aucun nouveau test n'échoue »* — est **binding**. Les
+modifications des trois sources acceptées ont donc été **intégralement annulées** : elles
+sont **byte-identiques** à la base. `PRB-5` reste **OPEN**, le garde est déclaré non
+installé dans le code lui-même (`GUARD_IS_NOT_INSTALLED`), et l'extension nécessaire est
+demandée au §11. **Aucune fermeture n'est fabriquée.**
+
+Ce qui est testé aujourd'hui sur les cinq **vraies** fonctions reste donc la propriété
+**faible** LK-L1 : chacune refuse à son propre premier contrôle, avec son exception typée,
+avant entropie, réseau, sous-processus non cryptographique, seed/famille/namespace, loi ou
+CI, moteur, lecture historique et écriture persistante. Ce n'est **pas** un refus Route E.
+
+Recherche de façades alternatives : aucun export, CLI, runner ou point d'entrée
+supplémentaire donnant accès aux mêmes capacités n'a été trouvé. Aucune sixième entrée
+réelle n'est à signaler.
 
 ---
 
-## 9. HR-1 … HR-11
+## 8. PRB-1 … PRB-4 et HR-10
 
-| ID | Correctif local | Propriété globale |
-|---|---|---|
-| HR-1 | **PASS**, inchangé | censure disjointe, disposition unique |
-| HR-2 | **PASS**, inchangé + preuve exhaustive sur les 2 346 couples `(S, U)` | aucune décision non fondée |
-| HR-3 | **PASS**, inchangé | **`ANTI_REROLL = UNPROVEN`**, conditionné par `PRB-6` |
-| HR-4 | **PASS** ; cas négatifs élargis à neuf réponses malformées | aucun vérificateur livré |
-| HR-5 | **PASS**, inchangé | WAIT / STOP strictement séparés |
-| HR-6 | **PASS**, inchangé | biais modulo **supprimé**, pas borné |
-| HR-7 | **PASS**, inchangé | preuve analytique du rejet |
-| HR-8 | **PASS**, inchangé | dénominateur exactement 67 aux deux points d'application |
-| HR-9 | **PASS** ; l'alias `check_claim_within_ceiling` est conservé mais documenté comme l'aide **rétrogradée** | plafond exécutoire = `RouteEClaim` |
-| **HR-10** | **CORRIGÉ** : le paramètre `classifier` est **retiré** de l'API publique ; le seam vit dans `_assemble_draw_outcome`, privé et non ré-exporté ; le passer publiquement lève `TypeError` | **intégration toujours absente** : aucune source acceptée n'appelle l'assembleur — déclaré dans le docstring et dans `RE-L10`, non caché |
-| HR-11 | **PASS**, inchangé | titre et portée du §8 restitués |
+- **PRB-1** inchangé depuis `0541400` et toujours discriminant : couverture exacte du
+  support (orphelin, non assigné, doublon de clé, doublon de triple), octets canoniques,
+  écriture atomique bornée non écrasante, relecture obligatoire, digest recomputé **depuis
+  les octets relus**, symlinks et chemins hors racine refusés. Intégration : **absente**.
+- **PRB-2** : couches 1 à 4 déjà livrées ; la couche 5 — **authenticité** — l'est
+  désormais. Il n'existe **plus aucun callback booléen** dans une signature publique :
+  `verify_public_commitment` prend une réponse beacon et un chemin de vérificateur, jamais
+  un verdict. `verifier=lambda _: True` n'est plus exprimable. Enforcement dans les
+  entrées acceptées : **bloqué** (§7).
+- **PRB-3** : un seul `_frozen_check_order`, utilisé par les deux entrées publiques **et**
+  par le garde ; `must_precede_unix` obligatoire sans défaut ; la phase `VERIFIER` fait
+  maintenant la vérification cryptographique réelle.
+- **PRB-4** : inchangé, revendiqué **au niveau digest uniquement**.
+- **HR-10 / D** : `assemble_draw_outcome` n'a **aucun** paramètre `classifier` ; le seam
+  est privé. L'assembleur reste **anticipatoire** : aucune source acceptée ne l'appelle
+  (`RE-L10`), donc D reste `PARTIAL`.
+
+**HR-1 … HR-11** : tous conservés. HR-4 et HR-5 sont désormais prouvés contre le **vrai**
+vérificateur au lieu d'un callback synthétique. HR-3 : correctif `PASS`, propriété globale
+détaillée au §6.
 
 ---
 
-## 10. Tests réellement exécutés — périmètres nommés, aucun total préannoncé
+## 9. Tests réellement exécutés
 
-Clean-room ; Python **3.11.15**, pytest **8.4.2**, numpy **2.4.4**. Aucun réseau, aucun
-contact drand, aucune donnée historique, aucun moteur scientifique.
+Python **3.11.15**, pytest **8.4.2**, numpy **2.4.4**. Aucun réseau, aucun contact drand,
+aucune donnée historique, aucun pas moteur dans les tests de cette mission.
 
 | # | Commande exacte | Périmètre | Collectés | Passed | Failed |
 |---|---|---|---|---|---|
-| 1 | `pytest tests -q` **sur la base `31cccc`** | dépôt entier, base | **1 206** | 1 201 | **5** |
-| 2 | `pytest tests/test_future_route_e_pre_run_locks_00.py -q` | PRB + HR corrigés | **191** | 191 | 0 |
-| 3 | `pytest tests/test_future_route_e_pre_run_blocker_closure_00.py -q` | A–F (fichier inchangé) | **104** | 104 | 0 |
-| 4 | `pytest -q <les sept fichiers nommés>` | **régression sur la lignée acceptée** : `test_future_lifecycle_contract`, `test_future_lifecycle_runner_integration`, `test_empty_right_nonunit_cadence_tracker_repair`, `test_future_lifecycle_owned_pipeline`, `test_future_prospective_measurement_bridge`, `test_axis_transpose_equivariance_01s`, `test_lattice_bond_instrumentation` | **673** | 673 | 0 |
-| 5 | `pytest tests -q --ignore=<locks> --ignore=<A–F>` | `tests/` **moins** les fichiers de mission | **946** | 941 | **5** |
-| 6 | `pytest tests -q` | **suite candidate entière** | **1 241** | 1 236 | **5** |
-| 7 | `pytest <locks> <A–F> -q`, deux fois de suite | déterminisme | 295 | 295 | 0 |
+| 1 | `pytest tests -q` sur la base `0541400` | dépôt entier, base | **1 241** | 1 236 | **5** |
+| 2 | `pytest tests/test_future_route_e_pre_run_locks_00.py -q` | PRB + HR | **152** | 152 | 0 |
+| 3 | `pytest tests/test_future_route_e_pre_run_blocker_closure_00.py -q` | A–F, **fichier non modifié** | **104** | 104 | 0 |
+| 4 | `pytest tests/test_future_route_e_pre_run_integration_00.py -q` | garde + cinq vraies entrées + blocker | **33** | 33 | 0 |
+| 5 | `pytest tests/test_route_e_beacon_verifier.py -q` | vérificateur Go + adaptateur | **42** | 42 | 0 |
+| 6 | `pytest -q <les sept fichiers nommés>` | régression sur la lignée acceptée | **673** | 673 | 0 |
+| 7 | `pytest tests -q --ignore=<les quatre fichiers de mission>` | `tests/` moins la mission | **946** | 941 | **5** |
+| 8 | `pytest tests -q` | **suite candidate entière** | **1 277** | 1 272 | **5** |
+| 9 | groupes 2+3+4+5, deux fois de suite | déterminisme | 331 | 331 | 0 |
 
-`191 + 104 + 946 = 1 241` : groupes **disjoints**, aucun double comptage.
+`152 + 104 + 33 + 42 + 946 = 1 277` : groupes **disjoints**, aucun double comptage.
 **0 skip, 0 xfail, 0 xpass, 0 deselected, 0 erreur de collecte** partout.
+Le groupe 6 est nommé **régression sur la lignée acceptée (sept fichiers)**, jamais « la
+suite entière ». **933 n'est pas et n'a jamais été la suite totale.**
 
-**933 n'est pas la suite totale** et n'est plus employé. Le nombre 673 désigne désormais
-explicitement la **régression sur la lignée acceptée (sept fichiers nommés)**, jamais « la
-suite entière moins deux fichiers ».
-
-### 10.1 Mutations discriminantes (copies jetables, jamais committées)
-
-| Mutation | Effet sur les tests |
-|---|---|
-| PRB-1 : `write_join_evidence` remplacé par un no-op | **13 rouges** |
-| PRB-3 : phase `LOCAL_EVIDENCE` retirée du chemin unique | **7 rouges** |
-| PRB-3 : `must_precede_unix` redevenu optionnel | **3 rouges** |
-| HR-10 : appel au classifieur retiré du chemin public | **3 rouges** |
-| PRB-5 : refus retiré dans `run_owned_future_pipeline` | **2 rouges** |
-| PRB-5 : refus retiré dans `open_owned_analysis_access` | **1 rouge** |
-| PRB-5 : refus retiré dans `future_lifecycle_runner.open_analysis_access` | **1 rouge** |
-| PRB-5 : refus retiré dans `publish_future_family_completion` | **2 rouges** |
-| PRB-5 : refus retiré dans `qualify_and_write_lifecycle_contract` | **2 rouges** |
-| Contrôle : `route_e_entry` remplacé par un stub qui ne fait rien | **2 rouges** parmi les tests d'ordre (`prb3`) — la façade est donc réellement épinglée au chemin unique ; les tests de façade passent encore, ce qui est **attendu et déclaré**, et les tests des cinq vraies fonctions sont **inchangés**, ce qui est exactement la séparation voulue |
-
-### 10.2 Les cinq échecs hérités
+### 9.1 Builds
 
 ```text
-tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[split]
-tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[merge]
-tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[tie]
-tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[collapse]
+go version go1.24.7 linux/amd64
+CGO_ENABLED=0 GOOS=linux   GOARCH=amd64 go build -trimpath -ldflags="-buildid="
+   sha256 2534fa4af5ed6d6d4294be26542b52fe7445412532db97e66a955cacba3cca6d   3 433 098 o
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -trimpath -ldflags="-buildid="
+   sha256 ea15b5de9f88a6fd0557e1912c31493670f9322bc901d8841b6868cd3220045c   3 527 168 o  (PE32+)
+```
+
+Rebuild Linux : **byte-identique**. Les deux binaires ont été construits dans un
+répertoire temporaire et **ne sont pas committés**. Modules épinglés :
+`github.com/drand/kyber v1.3.1`, `github.com/drand/kyber-bls12381 v0.3.4`,
+`github.com/kilic/bls12-381 v0.1.0`, plus `golang.org/x/{crypto,sys}` via les `replace`
+déclarés — tous dans `go.sum`. Aucun cgo. Le binaire Windows n'a **pas** été exécuté ici.
+
+### 9.2 Mutations discriminantes (copies jetables, jamais committées)
+
+Chaque mutant est **sémantiquement valide** : il compile, s'importe et change le
+comportement, jamais la syntaxe ni une signature.
+
+| Mutation | Effet |
+|---|---|
+| writer d'évidence remplacé par un no-op | **6 rouges** |
+| relecture des octets remplacée par un parse direct | **3 rouges** |
+| ordre des phases modifié | **7 rouges** |
+| cutoff rendu optionnel partout (garde + anchor + priorité) | **5 rouges** |
+| appel du helper remplacé par un faux « verified » | **12 rouges** |
+| contrôle `randomness = sha256(signature)` neutralisé | **1 rouge** |
+| round pris dans la réponse de l'appelant au lieu d'être dérivé | **2 rouges** |
+| appel du vrai classifieur retiré | **3 rouges** |
+| garde acceptant un signal non typé | **4 rouges** |
+
+Les cinq mutations « retrait du hook de garde dans chaque fonction acceptée » ne sont pas
+applicables ici : **le hook n'est pas installé** (§7). Elles ont été exécutées lors de
+l'essai d'intégration et tuaient chacune 1 à 2 tests ; elles seront rejouables dès que
+l'extension d'allowlist du §11.1 sera accordée.
+
+### 9.3 Les cinq échecs hérités
+
+```text
+tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[split|merge|tie|collapse]
     TypeError: track_components() missing 1 required keyword-only argument: 'sampled_frames'
 tests/test_motile_polar.py::test_scramble_preserves_all_declared_invariants_and_destroys_organization
     AssertionError: support overlaps its own translate: displacement would not conserve mass
 ```
 
-Ensemble **strictement identique** entre la base `31cccc` et ce candidat :
-**`new_failures = 0`**. Ce sont des rouges **préexistants**, mais cela **n'en fait pas des
-tests verts**. Les fichiers en cause (`tests/test_lattice_bond_stage_b.py`,
-`tests/test_motile_polar.py`, `edlab/substrates/lattice_bond/instrumentation.py`,
-`edlab/experiments/exp_mo_00_gate0.py`) sont **hors allowlist** de cette mission : la
-dette ne peut pas être réparée ici. **Décision explicite du propriétaire demandée** au
-§11.3. Cette révision **n'invente aucune dérogation**.
+Ensemble, node IDs, signatures et causes **strictement identiques** à la base :
+**`new_failures = 0`**. Aucun skip, xfail ni deselection ne les masque. Ils ne sont
+**jamais** présentés comme verts ni résolus. Aucune réparation n'a été tentée : elle n'est
+pas autorisée dans cette mission. La revue finale devra dire si cette dette est compatible
+avec une fermeture pré-run ou si une réparation séparée doit précéder la prérégistration.
+
+---
+
+## 10. Ce qui demeure inconnu, et les contradictions relevées
+
+- **Contradiction rapportée, non tranchée en silence** : le mandat et le reviewer
+  précédent supposaient que le DST exact suffirait à identifier le schéma. Le code source
+  de drand montre que **deux** schémas signent sur G1 — `bls-unchained-on-g1` (fastnet)
+  avec le **DST G2**, et `bls-unchained-g1-rfc9380` (quicknet) avec le DST G1. Le helper
+  refuse tout autre scheme, et le contrôle inter-implémentations montre qu'un round
+  quicknet évalué avec le DST fastnet est **invalide** — la discrimination est donc
+  effective, mais le piège devait être nommé.
+- **Non résolu** : les hashes `go.sum` n'ont pas été confrontés à `sum.golang.org`
+  (inaccessible ici). **À vérifier par un tiers.**
+- **Non trouvé** : aucun jeu de vecteurs officiel, signé et versionné **par drand**
+  spécifiquement pour `bls-unchained-g1-rfc9380`. Les vecteurs utilisés viennent de dépôts
+  officiels (drand/tlock, drand/drand-client) et d'un tiers (noislabs), tous committés.
+- **Scientifiquement, tout reste inconnu** : aucune valeur de `Δ(f)`, de `ψ`, aucune
+  fraction observée, aucune répartition sur les cinq états terminaux, aucun monde Route E,
+  aucune loi tirée, aucune condition initiale, aucun seed scientifique, aucun round de
+  beacon **scientifique** consulté, aucun namespace, aucune famille. Route E reste **un
+  protocole sélectionné, non confirmé**. Le seul résultat publié demeure le premier article
+  (`https://doi.org/10.5281/zenodo.21403458`), sans ownership local, sans autonomie, sans
+  individualité complète, sans reconstruction, sans reproduction et sans hérédité.
 
 ---
 
 ## 11. Autorité demandée
 
-### 11.1 Intégration réelle de PRB-2 et PRB-5
+### 11.1 Installer le garde (fermeture de PRB-5 et enforcement de PRB-2)
 
-Extension d'allowlist strictement limitée à un refus Route E **à l'intérieur** des cinq
-fonctions acceptées :
-
-```text
-edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py
-edlab/substrates/lattice_bond/future_lifecycle_runner.py
-edlab/substrates/lattice_bond/lifecycle.py
-```
-
-Portée demandée : ajouter, en **première** vérification de chacune des cinq fonctions
-publiques, un refus Route E fail-closed (receipt vérifié requis, sinon exception dédiée),
-sans changer aucun comportement existant lorsque le refus ne se déclenche pas. Aucune
-autre modification.
-
-### 11.2 Fermeture de PRB-6
-
-Chemins exacts à ajouter, aucun autre :
+Extension strictement limitée aux **deux fichiers de tests** qui épinglent les octets :
 
 ```text
-tools/drand_verify/main.go                                helper Go hors réseau, vérificateur drand v2
-tools/drand_verify/go.mod                                 dépendances épinglées
-tools/drand_verify/go.sum                                 hachages
-edlab/substrates/lattice_bond/route_e_beacon_verifier.py  adaptateur Python, sans shell
-tests/data/route_e_beacon_vectors.json                    table de vecteurs hors réseau
-tests/test_route_e_beacon_verifier.py                     tests, dont tous les cas négatifs
-pyproject.toml                                            uniquement si drand-verify est retenu comme oracle secondaire
+tests/test_future_lifecycle_runner_integration.py
+tests/test_future_lifecycle_owned_pipeline.py
 ```
 
-Épinglage obligatoire du futur chemin Quicknet :
+Portée : mettre à jour les neuf assertions listées au §7 — sept pins de hash et deux pins
+de signature — pour tenir compte du paramètre `route_e` et des nouveaux digests, **sans**
+supprimer un seul contrôle. Les trois sources acceptées sont déjà autorisées ; le diff
+attendu y est exactement le bloc de cinq lignes montré au §7, répété cinq fois.
 
-```text
-scheme      = bls-unchained-g1-rfc9380
-public key  = G2, 96 bytes
-signature   = G1, 48 bytes
-message     = SHA256(uint64_be(round))
-DST         = BLS_SIG_BLS12381G1_XMD:SHA-256_SSWU_RO_NUL_
-randomness  = SHA256(signature)
-```
+### 11.2 Fermer la seconde moitié de l'anti-reroll
 
-Cas négatifs obligatoires : signature altérée ; round ±1 ; mauvaise chaîne ou clé ;
-**DST fastnet appliqué à un round Quicknet** ; randomness incohérente ; point à l'infini ;
-point hors sous-groupe ; encodage non canonique ; helper absent, mal configuré ou crashé ;
-indisponibilité authentique ⇒ **WAIT** sur le même round ; invalidité ou vérification
-impossible ⇒ **STOP**.
+Preuve d'inclusion vérifiable propre au registre d'ancrage choisi, pour établir que la
+racine a bien été publiée immuablement avant l'instant désigné. Aucun chemin n'est
+proposé ici : le choix du registre est une décision de gouvernance.
 
-Points **non résolus** depuis les sources primaires, à trancher avant implémentation : le
-chemin de désérialisation exact de la version épinglée de `kyber-bls12381`
-(`FromCompressed`, avec contrôles de sous-groupe, point à l'infini et encodage canonique,
-plutôt que `FromBytes`) ; la provenance et les checksums du binaire ; l'existence d'un jeu
-de vecteurs officiel versionné par drand pour ce schéma ; le modèle d'entrée/sortie JSON
-borné et fail-closed de l'adaptateur. **Aucune recherche n'a impliqué d'installation ni de
-requête de beacon.**
+### 11.3 Provenance des modules Go
 
-### 11.3 Dette héritée des cinq rouges
-
-Deux options, au choix du propriétaire — cette révision n'en choisit aucune :
-
-1. autorisation étroite d'ajouter `tests/test_lattice_bond_stage_b.py`,
-   `tests/test_motile_polar.py` et les sources concernées à l'allowlist pour les réparer ;
-2. décision formelle de les traiter comme **baseline héritée** déclarée, avec le mandat
-   historique « zéro fail » explicitement borné au périmètre de la lignée acceptée.
+Une exécution de `go mod verify` et une confrontation de `go.sum` au journal de
+transparence, depuis un environnement disposant du réseau.
 
 ---
 
-## 12. Limitations
+## 12. Firewall et remote
 
-**Verrous** — `LK-L1` sources acceptées immuables, donc tout verrou est **en amont**
-d'elles ; `LK-L2` aucun vérificateur BLS empaqueté, donc l'authenticité de PRB-2 reste
-ouverte ; `LK-L3` la racine Route E **lie** la racine de mesure, elle ne la remplace pas ;
-`LK-L4` `route_e_entry` est une **façade**, pas un gate, et n'est pas dans le call graph
-des cinq fonctions ; `LK-L5` **rien** dans ce module n'est appelé par une source acceptée.
+Aucune lecture de `results/`, aucun shard, monde, trajectoire ou checkpoint ouvert, aucun
+seed, famille, namespace, loi ou CI créé, aucun appel moteur dans les tests de cette
+mission, **aucun beacon live consulté**, aucun calcul de `Δ(f)` ou `ψ`, aucune
+prérégistration, aucun run, aucune analyse scientifique. Fixtures synthétiques
+déterministes, répertoires temporaires et vecteurs cryptographiques publics versionnés
+uniquement.
 
-**Cadre A–F** — `RE-L1` … `RE-L9` inchangés ; `RE-L10` nouveau : `assemble_draw_outcome`
-appelle toujours le vrai classifieur et n'a plus de paramètre `classifier`, mais reste
-**anticipatoire** — aucune source acceptée ne l'appelle, donc
-`ASSOCIATION_GATE_TRACK_BREAK` demeure une **convention**, pas une intégration, et la
-cause ne doit pas être attribuée au tracker de production.
-
-**Preuve** — les mutations sont conduites dans des copies jetables sous `/tmp`, jamais
-committées. Les tests d'écriture utilisent `tmp_path` uniquement. `ForbiddenEffects`
-couvre la liste énumérée et **rien de plus** : ce n'est pas une preuve d'innocuité
-globale. Le clean-room reconstitue l'arbre sans `results/` (données historiques,
-délibérément non transportées) ; aucun test collecté n'en dépend.
-
-**Résidu de montage, redivulgué** — le montage est en création seule (`rm` renvoie
-`EPERM`) : subsistent `.opr00_probe_delete_me`, des `.git/objects/*/tmp_obj_*`, et les
-deux archives de transport `REVIEW_a379efa6_tree.tar.gz` et `REVIEW_bc2a42c_parent.tar.gz`
-créées par la revue `31cccc`. Rien n'a été nettoyé ; aucune de ces entrées n'appartient à
-un arbre committé.
-
----
-
-## 13. Ce qui reste scientifiquement inconnu
-
-**Tout.** Aucune valeur de `Δ(f)`, aucune de `ψ`, aucune fraction de censure, aucune
-fraction d'inéligibilité, aucune répartition sur les cinq états terminaux, aucun monde
-Route E, aucune loi tirée, aucune condition initiale tirée, aucun seed scientifique, aucun
-round de beacon consulté, aucun namespace, aucune famille.
-
-Route E reste **un protocole sélectionné, non confirmé**. Le seul résultat publié du
-programme demeure le premier article (`https://doi.org/10.5281/zenodo.21403458`), qui
-n'établit **ni ownership local, ni autonomie, ni individualité complète, ni
-reconstruction, ni reproduction, ni hérédité**.
-
-Aucune donnée Stage B, `M_MINUS`, Kovacs, trajectoire, shard, candidat ou résultat
-historique n'a été ouverte. Aucun calibrage à partir de données. Route G n'a pas été
-rouverte. Aucune prérégistration n'est commencée.
-
----
-
-## 14. Prochaine étape conditionnelle
-
-- **Obligations internes encore ouvertes** ⇒ la suite est une nouvelle correction sous le
-  **même** identifiant `FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00`, **après** les
-  autorisations du §11 ; sans elles, PRB-2 (authenticité), PRB-5 et PRB-6 ne peuvent pas
-  être fermés, quel que soit le travail fourni.
-- **Puis** : fermeture de PRB-6 sous le même identifiant, puis **revue humaine
-  indépendante**.
-- **Seulement après acceptation indépendante des six PRB** :
-  `ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00` — qui restera une **prérégistration**,
-  **pas un run**.
-
----
-
-## 15. Firewall et remote
-
-Chemins Git exacts, `diff-tree` borné au couple parent–candidat, `GIT_INDEX_FILE`
-neutralisé, index de preuve sous `/tmp`. Aucun `git add -A`, aucun checkout, stash, amend,
-rebase, merge, cherry-pick, `git gc`, aucun nettoyage de fichier utilisateur, aucune
-modification du véritable index. `main` immobile à
+Git : chemins exacts, `GIT_INDEX_FILE` neutralisé, index de preuve sous `/tmp`, ajout
+**chemin par chemin**, aucun `git add -A`, aucun checkout, stash, amend, rebase, merge,
+cherry-pick, `git gc`, aucun nettoyage. `main` immobile à
 `f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77`, `.git/index` réel intact, working tree sale
-préservé. Les branches `…-00`, `…-00-human-review`, `…-00-revision` et
-`…-00-revision-human-review` sont préservées et non déplacées ; les records `bc2a42c4` et
-`31ccccfb` ne sont pas modifiés.
+préservé, toutes les branches antérieures préservées, les records `bc2a42c4` et
+`31ccccfb` non modifiés, archives et résidus divulgués conservés.
 
-**Remote.** Une tentative de push **normale**, unique, de la seule branche de révision.
-Aucun `--force`, aucun push de `main`, aucun changement de credentials, aucun retry.
+**Remote.** Une tentative de push **normale**, unique, de la seule branche de cette
+révision. Aucun `--force`, aucun retry, aucun changement de credentials, aucun push de
+`main`.
 
+---
+
+## 13. Prochaine étape
+
+La seule étape suivante possible est une **revue humaine indépendante** de la fermeture
+des six PRB. La prérégistration
+(`ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00`) reste **interdite** jusqu'à cette
+acceptation, et resterait de toute façon une prérégistration, **pas un run**.
+
+> ### `human_review = PENDING`
 > ### `scientific_run_authorized = false`
 >
-> `PRB-5 = OPEN` · `PRB-6 = OPEN` · `ANTI_REROLL = UNPROVEN`
+> `PRB-6 = CANDIDATE_CLOSED` · `PRB-5 = OPEN` · `PRB-2` enforcement bloqué ·
+> `ANTI_REROLL` : choix du round `CANDIDATE_PASS`, publication `UNPROVEN`.
 > Aucune acceptation humaine n'est prononcée ici.

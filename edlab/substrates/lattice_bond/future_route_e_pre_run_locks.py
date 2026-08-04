@@ -100,6 +100,11 @@ __all__ = [
     "PublicCommitment",
     "CommitmentInvalid",
     "verify_public_commitment",
+    "RouteERequest",
+    "RouteEGuardRefused",
+    "enforce_route_e_guard",
+    "ROUTE_E_GUARDED_ENTRY_POINTS",
+    "GUARD_IS_NOT_INSTALLED",
     # PRB-2
     "RouteEReceipt",
     "ReceiptMissing",
@@ -566,17 +571,15 @@ class PublicCommitment:
             raise ValueError("published_at_unix must be a positive plain int")
 
 
-CommitmentVerifier = Callable[[PublicCommitment], bool]
-
-
 def verify_public_commitment(
     commitment: PublicCommitment | None,
     *,
-    verifier: CommitmentVerifier | None,
     expected_root_sha256: str,
     must_precede_unix: int,
-) -> None:
-    """Fail-closed verification of PRB-6.  Returns ``None`` or raises.
+    beacon_response: Mapping[str, Any] | None,
+    verifier_path: str | os.PathLike[str] | None,
+) -> bytes:
+    """Fail-closed verification of PRB-6.  Returns the verified randomness, or raises.
 
     In this order, and no other:
       1. a commitment must be present and well formed;
@@ -584,11 +587,13 @@ def verify_public_commitment(
       3. the public-priority cutoff must be present -- there is NO default, because a
          commitment that is not prior to the reveal cannot bind it (HR-3);
       4. the PUBLIC timestamp must be strictly earlier than that cutoff;
-      5. a verifier must be supplied -- there is no default and no bundled verifier;
-      6. the verifier must return exactly ``True``.
+      5. the designated round is DERIVED from that public timestamp; it is never an
+         argument and never negotiable;
+      6. the round is verified cryptographically by the pinned maintained verifier.
 
-    LK-L2 still holds: this function decides nothing about cryptographic authenticity.
-    It delegates it, and the delegate is exactly as strong as PRB-6 is closed.
+    There is no boolean callback anywhere in this signature.  A caller cannot assert
+    that a commitment is anchored, cannot choose the chain, the scheme, the DST or the
+    public key, and cannot choose the round.
     """
     if commitment is None:
         raise CommitmentInvalid("refused: no public commitment was presented")
@@ -612,19 +617,15 @@ def verify_public_commitment(
             "refused: the public commitment is not strictly prior to the designated "
             "instant; a commitment published at or after the reveal cannot bind it"
         )
-    if verifier is None:
-        raise CommitmentInvalid(
-            "refused: no commitment verifier supplied; PRB-6 has no bundled verifier "
-            "and none is inferred (LK-L2)"
-        )
-    if not callable(verifier):
-        raise CommitmentInvalid("refused: verifier is not callable")
-    try:
-        verdict = verifier(commitment)
-    except Exception as exc:  # noqa: BLE001 - any verifier failure is a refusal
-        raise CommitmentInvalid(f"refused: the commitment verifier raised: {exc!r}") from exc
-    if verdict is not True:
-        raise CommitmentInvalid("refused: the commitment verifier did not return True")
+
+    from . import future_route_e_pre_run_frame as _frame
+
+    designated = _frame.designated_round(commitment.published_at_unix)
+    return _frame.consume_beacon_round(
+        response=beacon_response,
+        expected_round=designated,
+        helper_path=verifier_path,
+    )
 
 
 # ======================================================================================
@@ -713,8 +714,9 @@ def _frozen_check_order(
     measurement_root_sha256: str,
     family_enrolment: FamilyEnrolment,
     receipt: RouteEReceipt | None,
-    verifier: CommitmentVerifier | None,
     must_precede_unix: int,
+    beacon_response: Mapping[str, Any] | None,
+    verifier_path: str | os.PathLike[str] | None,
     trace: list[str] | None,
 ) -> str:
     """THE single ordered path.  Returns the recomputed root, or raises.
@@ -775,9 +777,10 @@ def _frozen_check_order(
     mark("VERIFIER")
     verify_public_commitment(
         receipt.commitment,
-        verifier=verifier,
         expected_root_sha256=recomputed_root,
         must_precede_unix=must_precede_unix,
+        beacon_response=beacon_response,
+        verifier_path=verifier_path,
     )
     return recomputed_root
 
@@ -788,8 +791,9 @@ def open_route_e_analysis(
     measurement_root_sha256: str,
     family_enrolment: FamilyEnrolment,
     receipt: RouteEReceipt | None,
-    verifier: CommitmentVerifier | None,
     must_precede_unix: int,
+    beacon_response: Mapping[str, Any] | None = None,
+    verifier_path: str | os.PathLike[str] | None = None,
     trace: list[str] | None = None,
 ) -> None:
     """The Route E analysis entry point.  Fail-closed, in the frozen order.
@@ -803,8 +807,9 @@ def open_route_e_analysis(
         measurement_root_sha256=measurement_root_sha256,
         family_enrolment=family_enrolment,
         receipt=receipt,
-        verifier=verifier,
         must_precede_unix=must_precede_unix,
+        beacon_response=beacon_response,
+        verifier_path=verifier_path,
         trace=trace,
     )
     raise RouteEAnalysisRefused(
@@ -857,8 +862,9 @@ def route_e_entry(
     measurement_root_sha256: str | None = None,
     family_enrolment: FamilyEnrolment | None = None,
     receipt: RouteEReceipt | None = None,
-    verifier: CommitmentVerifier | None = None,
     must_precede_unix: int | None = None,
+    beacon_response: Mapping[str, Any] | None = None,
+    verifier_path: str | os.PathLike[str] | None = None,
 ) -> None:
     """The in-protocol Route E facade.  It always refuses, in the frozen order.
 
@@ -887,8 +893,9 @@ def route_e_entry(
         measurement_root_sha256=measurement_root_sha256,
         family_enrolment=family_enrolment,
         receipt=receipt,
-        verifier=verifier,
         must_precede_unix=must_precede_unix,
+        beacon_response=beacon_response,
+        verifier_path=verifier_path,
         trace=None,
     )
     if not _frame.SCIENTIFIC_RUN_AUTHORIZED:
@@ -898,6 +905,97 @@ def route_e_entry(
             "precede any execution"
         )
     raise EntryPointRefused(  # pragma: no cover - unreachable by construction
+        "refused: unreachable"
+    )
+
+
+# ======================================================================================
+# PRB-5 / PRB-2  THE ROUTE E GUARD, installed inside the five accepted entry points
+#
+# ``RouteERequest`` is a TYPED signal, never a free string.  When an accepted entry
+# point receives one, it runs ``enforce_route_e_guard`` as its FIRST statement -- before
+# its own directory check, before any argument validation, before any effect.  When it
+# receives ``None`` (the default), the accepted function behaves exactly as before and
+# nothing in this module runs.
+# ======================================================================================
+
+ROUTE_E_GUARDED_ENTRY_POINTS: tuple[str, ...] = SUPPORTED_ENTRY_POINTS
+
+#: THE GUARD IS PREPARED BUT NOT INSTALLED.  Installing it means adding one call as the
+#: first statement of each of the five accepted public functions, which changes the
+#: bytes of three accepted sources.  Those bytes are pinned, test by test, in
+#: ``tests/test_future_lifecycle_runner_integration.py`` and
+#: ``tests/test_future_lifecycle_owned_pipeline.py`` -- two files that are NOT in this
+#: mission's allowlist.  Installing without extending the allowlist to those two files
+#: turns nine previously green tests red, so it is not done here.  See the report.
+GUARD_IS_NOT_INSTALLED: str = (
+    "enforce_route_e_guard is implemented and tested, but it is NOT called by any "
+    "accepted entry point.  The one-line hook is blocked by byte-level source pins in "
+    "tests/test_future_lifecycle_runner_integration.py and "
+    "tests/test_future_lifecycle_owned_pipeline.py, which are outside the allowlist."
+)
+
+
+class RouteEGuardRefused(RuntimeError):
+    """The Route E guard refused inside an accepted entry point.  It always does."""
+
+
+@dataclass(frozen=True)
+class RouteERequest:
+    """The typed Route E signal.  Constructing one grants nothing.
+
+    It carries everything the frozen order needs and NOTHING the caller may decide:
+    there is no root, no round, no scheme, no DST, no chain and no verdict callback in
+    this object.  The root is recomputed from the persisted evidence, the round is
+    derived from the public timestamp, and the chain parameters are pinned in
+    ``route_e_beacon_verifier``.
+    """
+
+    evidence_path: str | os.PathLike[str]
+    measurement_root_sha256: str
+    family_enrolment: FamilyEnrolment
+    receipt: RouteEReceipt
+    must_precede_unix: int
+    beacon_response: Mapping[str, Any] | None = None
+    verifier_path: str | os.PathLike[str] | None = None
+
+
+def enforce_route_e_guard(request: Any, *, entry_point: str) -> None:
+    """Run the frozen order for an accepted entry point.  ALWAYS raises.
+
+    It is deliberately impossible for this function to return: even a request that
+    passes every phase ends at ``scientific_run_authorized is False``.  A caller
+    therefore cannot use the Route E path to reach any accepted behaviour.
+    """
+    if not isinstance(entry_point, str) or entry_point not in ROUTE_E_GUARDED_ENTRY_POINTS:
+        raise RouteEGuardRefused(
+            f"refused: {entry_point!r} is not one of the five guarded entry points"
+        )
+    if not isinstance(request, RouteERequest):
+        raise RouteEGuardRefused(
+            f"refused: {entry_point} received a Route E signal that is not a "
+            "RouteERequest; a free string or an untyped object is never a signal"
+        )
+
+    from . import future_route_e_pre_run_frame as _frame
+
+    _frozen_check_order(
+        evidence_path=request.evidence_path,
+        measurement_root_sha256=request.measurement_root_sha256,
+        family_enrolment=request.family_enrolment,
+        receipt=request.receipt,
+        must_precede_unix=request.must_precede_unix,
+        beacon_response=request.beacon_response,
+        verifier_path=request.verifier_path,
+        trace=None,
+    )
+    if not _frame.SCIENTIFIC_RUN_AUTHORIZED:
+        raise RouteEGuardRefused(
+            f"refused: {entry_point} is unreachable while scientific_run_authorized is "
+            "False; PRB-1..PRB-6 closure, a preregistration and a human review all "
+            "precede any execution"
+        )
+    raise RouteEGuardRefused(  # pragma: no cover - unreachable by construction
         "refused: unreachable"
     )
 
@@ -927,12 +1025,13 @@ def blocker_status() -> Mapping[str, Mapping[str, Any]]:
             "root_recomputed_from_reread_bytes": True,
             "discriminating_tests_present": True,
             "integration_into_accepted_sources": False,
-            "authenticity_established": False,
+            "authenticity_established": True,
+            "authenticity_mechanism": "the commitment is bound to the recomputed root and "
+            "the designated round is verified by the pinned maintained drand verifier; "
+            "there is no callback and no caller-supplied verdict",
             "remaining_sub_obligations": (
-                "cryptographic authenticity of the receipt's provenance depends on "
-                "PRB-6, which is OPEN",
-                "no accepted entry point requires a receipt; adding one means editing "
-                "an accepted source, outside the frozen allowlist",
+                "no accepted entry point calls the guard; the one-line hook is blocked "
+                "by byte-level source pins outside the allowlist (GUARD_IS_NOT_INSTALLED)",
             ),
             "human_review_required": True,
         },
@@ -942,8 +1041,8 @@ def blocker_status() -> Mapping[str, Mapping[str, Any]]:
             "discriminating_tests_present": True,
             "integration_into_accepted_sources": False,
             "remaining_sub_obligations": (
-                "the order binds the Route E path only; an accepted function called "
-                "directly follows its own order (LK-L1)",
+                "the order binds every Route E path in this module; an accepted "
+                "function called directly still follows its own order (LK-L1)",
             ),
             "human_review_required": True,
         },
@@ -958,15 +1057,27 @@ def blocker_status() -> Mapping[str, Mapping[str, Any]]:
             "human_review_required": True,
         },
         "PRB-5": {
-            "mechanism_present": False,
+            "mechanism_present": True,
             "facade_present": True,
             "facade_is_a_gate": False,
-            "real_entry_point_refusal_tests": "5 of 5, but each is the WEAKER property: "
-            "the accepted function refuses at its own first check, not at a Route E gate",
             "route_e_specific_refusal_inside_accepted_sources": False,
+            "guard_implemented": True,
+            "guard_installed": False,
+            "guard": "enforce_route_e_guard is written and tested; it is designed to be "
+            "the FIRST statement of each accepted public function when a typed "
+            "RouteERequest is presented, and it is NOT called by any of them today",
+            "real_entry_point_refusal_tests": "5 of 5, calling the REAL public functions, "
+            "but each proves only the WEAKER LK-L1 property: the function refuses at its "
+            "own first check, not at a Route E guard",
+            "non_route_e_behaviour_preserved": True,
+            "blocked_by": (
+                "tests/test_future_lifecycle_runner_integration.py",
+                "tests/test_future_lifecycle_owned_pipeline.py",
+            ),
             "remaining_sub_obligations": (
-                "a Route E refusal inside each of the five accepted entry points; this "
-                "requires editing accepted sources, outside the frozen allowlist",
+                "install the one-line hook in the five accepted public functions; this "
+                "changes three accepted sources whose bytes are pinned by the two test "
+                "files above, which are outside this mission's allowlist",
             ),
             "status": "OPEN",
             "human_review_required": True,
@@ -974,15 +1085,24 @@ def blocker_status() -> Mapping[str, Mapping[str, Any]]:
         "PRB-6": {
             "mechanism_present": True,
             "gate_is_fail_closed": True,
-            "verifier_delivered": False,
+            "verifier_delivered": True,
+            "verifier": "tools/drand_verify, a no-network Go helper built on the "
+            "maintained github.com/drand/kyber-bls12381 and github.com/drand/kyber; no "
+            "BLS arithmetic is written in this repository",
+            "chain_parameters_pinned_in_adapter": True,
+            "round_derived_never_supplied": True,
             "remaining_sub_obligations": (
-                "a maintained BLS/G1 (RFC 9380) verifier for the quicknet chain; "
-                "supplying one modifies pyproject.toml and adds lockfiles, outside the "
-                "frozen allowlist",
-                "the exact RFC 9380 domain separation tag is not pinned here",
+                "the helper binary is built from pinned sources and is NOT committed; a "
+                "verifier that is absent or unusable is a STOP, never a pass",
             ),
-            "status": "OPEN",
-            "anti_reroll": "UNPROVEN",
+            "status": "CANDIDATE_CLOSED",
+            "anti_reroll_round_selection": "CANDIDATE_PASS: the designated round is "
+            "derived from the frozen public timestamp, is never an argument, is verified "
+            "cryptographically, and cannot be retried or substituted",
+            "anti_reroll_publication": "UNPROVEN: that the root was actually published, "
+            "immutably, at the declared instant is still ASSERTED by the commitment's "
+            "venue and reference, not verified; verifying it needs a venue-specific "
+            "inclusion proof, which is not delivered",
             "human_review_required": True,
         },
     }
