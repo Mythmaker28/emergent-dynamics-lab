@@ -5,9 +5,12 @@ archive, a scientific trajectory, an old family, a candidate, a champion or any 
 result.  None creates a scientific seed, namespace, family, law, initial condition or
 world.  None executes a Route E draw.
 
-The tests are grouped by the six obligations PRB-A .. PRB-F carried forward by the
-accepted human review of 01S.  Boundary cases are pinned just below, exactly on, and
-just above every declared threshold.
+The tests are grouped by the six ANTICIPATORY obligations A .. F which the accepted
+human review of 01S section 8 carries, under its own title, "Obligations portees a la
+PREREGISTRATION (ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00)".  They are NOT this
+mission's mandate; the mandate is PRB-1 .. PRB-6 and is tested in
+``test_future_route_e_pre_run_locks_00.py``.  Boundary cases are pinned just below,
+exactly on, and just above every declared threshold.
 """
 
 from __future__ import annotations
@@ -822,9 +825,15 @@ def test_prb_f_07_out_of_protocol_declaration_names_the_real_entry_point():
         assert name in frame.OUT_OF_PROTOCOL_ENTRY_POINTS
 
 
-def test_prb_f_08_the_closure_declares_that_prb_1_to_6_remain_open():
+def test_prb_f_08_the_frame_declares_that_a_to_f_are_preregistration_obligations():
+    """HR-11: the accepted section 8 title and scope are restored in full."""
     assert "RE-L7" in frame.__doc__
-    assert "PRB-1, PRB-2, PRB-3, PRB-4" in frame.__doc__
+    assert "PREREGISTRATION" in frame.__doc__
+    assert "preregistration" in frame.__doc__.lower()
+    assert "close the mission's own mandate" in frame.__doc__
+    assert "future_route_e_pre_run_locks.py" in frame.__doc__
+    # A-F are never renamed onto PRB-1..6
+    assert "never renamed" in frame.__doc__
 
 
 # ======================================================================================

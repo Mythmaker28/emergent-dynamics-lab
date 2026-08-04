@@ -1,47 +1,251 @@
 {
- "schema": "route-e-pre-run-blocker-closure/v1",
+ "schema": "route-e-pre-run-blocker-closure/v2",
  "mission": "FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00",
- "terminal_disposition": "ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_CARRIED_OBLIGATIONS_CLOSED",
- "disposition_literal_source": "no literal was prescribed by the accepted 01S human review or by the 01S DECISION.json; this literal is derived in the programme's established <MISSION>_<OUTCOME> pattern and is declared as derived, not quoted",
+ "revision_of": "c6d4acf037d4e51d59e5b75dc91b977b9eb83dbd",
+ "revision_ordered_by": {
+  "human_review_commit": "bc2a42c468eec5a4e1732ebb08c7cc20c4dab7dd",
+  "human_review_disposition": "HUMAN_REVIEW_REVISE",
+  "record_not_modified": true
+ },
+ "identifier_discipline": {
+  "no_00R_identifier_created": true,
+  "no_new_scientific_mission_created": true,
+  "git_branch_suffix_is_not_an_identifier": "codex/future-route-e-pre-run-blocker-closure-00-revision is a Git branch name only; the scientific identifier remains FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00",
+  "no_A_to_1_renaming_performed": true
+ },
+ "candidate_disposition": "ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_MANDATE_ADDRESSED_PRB6_OPEN",
+ "candidate_disposition_status": "PROPOSED BY THE IMPLEMENTATION AGENT; NOT A HUMAN ACCEPTANCE",
+ "disposition_literal_source": "no literal was prescribed by the accepted 01S record, by the 01S DECISION.json, or by the bc2a42c4 human review; this literal is DERIVED in the programme's established <MISSION>_<OUTCOME> pattern and is declared as derived, not quoted",
+ "human_acceptance_declared_here": false,
+ "human_review_accepted_emitted_here": false,
  "scientific_run_authorized": false,
- "carried_obligations_closed": "6/6",
- "frozen_pre_run_blockers_closed": "0/6",
+
+ "mandate_two_layers": {
+  "section_8_title_literal": "Obligations portees a la preregistration (ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00), a n'executer qu'apres fermeture ET revue humaine des blockers",
+  "section_8_scope_restored": "the previous candidate quoted the six items A-F faithfully but omitted the title of the block, hence their scope; the title is restored verbatim in the report (section 1.1), in the A-F module docstring and in the A-F test docstring",
+  "layer_1_preregistration_obligations": {
+   "carrier": "ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00",
+   "items": ["A", "B", "C", "D", "E", "F"],
+   "consumes_this_mission": false
+  },
+  "layer_2_this_mission_mandate": {
+   "literal": "FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00 pourra fermer les six PRE_RUN_BLOCKER",
+   "items": ["PRB-1", "PRB-2", "PRB-3", "PRB-4", "PRB-5", "PRB-6"]
+  },
+  "prb_moved_to_preregistration_a_second_time": false
+ },
+
+ "mandate_closure_summary": {
+  "frozen_pre_run_blockers_closed": "5/6",
+  "closed": ["PRB-1", "PRB-2", "PRB-3", "PRB-4", "PRB-5"],
+  "open": ["PRB-6"],
+  "forbidden_summary": "this record must never be summarised as 'all pre-run blockers are closed'"
+ },
+
  "authority": {
-  "parent": "00afcdd1aacbdf32bb030d85ced735a2920421f6",
-  "grandparent": "63c371d52036c7e91ec928118c2b8901776d79d0",
-  "accepted_record": "docs/individuation/FUTURE_PROSPECTIVE_AXIS_CONVENTION_AND_FRAME_CLOSURE_01S_HUMAN_REVIEW.md",
-  "branch": "codex/future-route-e-pre-run-blocker-closure-00",
+  "mandate_record": "00afcdd1aacbdf32bb030d85ced735a2920421f6",
+  "partial_candidate_revised": "c6d4acf037d4e51d59e5b75dc91b977b9eb83dbd",
+  "binding_review": "bc2a42c468eec5a4e1732ebb08c7cc20c4dab7dd",
+  "sole_parent_of_this_commit": "bc2a42c468eec5a4e1732ebb08c7cc20c4dab7dd",
+  "lineage": "00afcdd1 -> c6d4acf -> bc2a42c -> this revision, linear, no merge",
+  "branch": "codex/future-route-e-pre-run-blocker-closure-00-revision",
   "main_pinned": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
   "main_working_tree": "dirty and preserved untouched"
  },
+
  "allowlist": {
-  "files_added": 4,
-  "files_modified": 0,
+  "files_added": 2,
+  "files_modified": 4,
   "files_deleted": 0,
   "accepted_sources_modified": 0,
-  "existing_tests_modified": 0,
   "engine_modified": false,
-  "bridge_modified": false,
+  "specs_modified": false,
+  "state_modified": false,
   "instrumentation_modified": false,
   "lifecycle_modified": false,
+  "future_lifecycle_runner_modified": false,
   "owned_pipeline_modified": false,
+  "measurement_bridge_modified": false,
+  "init_files_modified": false,
+  "pyproject_modified": false,
+  "pre_existing_tests_modified": false,
   "s01_records_modified": false,
+  "human_review_record_modified": false,
   "paths": [
-   "edlab/substrates/lattice_bond/future_route_e_pre_run_frame.py",
-   "tests/test_future_route_e_pre_run_blocker_closure_00.py",
-   "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_REPORT.md",
-   "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_DECISION.json"
+   {"path": "edlab/substrates/lattice_bond/future_route_e_pre_run_locks.py", "status": "added", "justification": "mechanism of the six frozen PRE_RUN_BLOCKERs - this mission's mandate"},
+   {"path": "tests/test_future_route_e_pre_run_locks_00.py", "status": "added", "justification": "positive, negative and bypass tests for the six blockers and for HR-1..HR-11"},
+   {"path": "edlab/substrates/lattice_bond/future_route_e_pre_run_frame.py", "status": "modified", "justification": "HR-1..HR-11 corrections on the anticipatory A-F work"},
+   {"path": "tests/test_future_route_e_pre_run_blocker_closure_00.py", "status": "modified", "justification": "align the A-F tests with the restored scope"},
+   {"path": "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_REPORT.md", "status": "modified", "justification": "report"},
+   {"path": "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_DECISION.json", "status": "modified", "justification": "this decision"}
   ]
  },
+
+ "frozen_pre_run_blockers": {
+  "PRB-1": {
+   "literal_obligation": "persist the track-component join",
+   "initial_state": "OPEN",
+   "closed": true,
+   "mechanism": "JoinRecord, canonical_cell_set_digest, build_track_component_join, join_digest, folded into route_e_root",
+   "tests": "test_prb1_01..09",
+   "closure_proof": "canonical digest bound to the lattice shape, invariant under order and duplicates; missing support raises ValueError and is never dropped; empty join refused; changing the join changes the Route E root",
+   "residue": "the join sits in front of the accepted sources, which are immutable (LK-L1)"
+  },
+  "PRB-2": {
+   "literal_obligation": "mandatory receipt",
+   "initial_state": "OPEN",
+   "closed": true,
+   "mechanism": "RouteEReceipt required by open_route_e_analysis AND by route_e_entry",
+   "tests": "test_prb2_01..03, test_prb5_04",
+   "closure_proof": "absence -> ReceiptMissing; receipt binding another root -> ReceiptInvalid; receipt inconsistent with its own commitment -> refused at construction",
+   "residue": "a receipt is only as strong as the commitment it binds, and that commitment cannot be verified while PRB-6 is open"
+  },
+  "PRB-3": {
+   "literal_obligation": "frozen check order: local evidence -> root digest -> verifier",
+   "initial_state": "OPEN",
+   "closed": true,
+   "mechanism": "CHECK_ORDER = (\"LOCAL_EVIDENCE\", \"ROOT_DIGEST\", \"VERIFIER\") with _OrderTrace inside open_route_e_analysis",
+   "tests": "test_prb3_01..06",
+   "closure_proof": "failure at step n raises BEFORE step n+1; observed traces exactly [\"LOCAL_EVIDENCE\"], then [..,\"ROOT_DIGEST\"], then [..,\"VERIFIER\"]; reordering raises CheckOrderViolation",
+   "residue": "the order is pinned inside the Route E path only"
+  },
+  "PRB-4": {
+   "literal_obligation": "replay binding",
+   "initial_state": "OPEN",
+   "closed": true,
+   "mechanism": "FamilyEnrolment (run identity + seed root + draw-plan digest + counts) -> enrolment_digest -> route_e_root",
+   "tests": "test_prb4_01..04",
+   "closure_proof": "bit-identical evidence under a different run identity yields a DIFFERENT root",
+   "residue": "the Route E root binds, and does not replace, the bridge's measurement root (LK-L3)"
+  },
+  "PRB-5": {
+   "literal_obligation": "single supported entry point; close or declare out of protocol, with a refusal test",
+   "initial_state": "OPEN (1 of the 5 entry points covered by the previous candidate)",
+   "closed": true,
+   "mechanism": "route_e_entry guards the five literal entry points; SUPPORTED_ENTRY_POINTS",
+   "entry_points": [
+    "run_owned_future_pipeline",
+    "open_owned_analysis_access",
+    "future_lifecycle_runner.open_analysis_access",
+    "publish_future_family_completion",
+    "qualify_and_write_lifecycle_contract"
+   ],
+   "tests": "test_prb5_01..09, parametrised per entry point",
+   "closure_proof": "5 entry points x 5 scenarios = 25 parametrised refusals, each executed under ForbiddenEffects (entropy, network, subprocess, open, write_bytes, write_text, mkdir, engine.step all armed to raise); the five accepted functions replaced by spies record 0 calls",
+   "residue": "the accepted functions remain reachable outside the Route E path; they cannot be given an authorisation parameter without modifying an accepted source, which the frozen allowlist forbids (RE-L2)"
+  },
+  "PRB-6": {
+   "literal_obligation": "external anchoring of the final root: an immutable or append-only public commitment, verifiable without a secret",
+   "initial_state": "OPEN",
+   "closed": false,
+   "mechanism_delivered": "PublicCommitment, CommitmentInvalid, verify_public_commitment, fail-closed in order presence -> binds the expected root -> verifier supplied -> verifier returns exactly True -> strict anteriority",
+   "tests": "test_prb6_01..07",
+   "what_is_proved": "absence, wrong root, missing verifier, non-True verifier, raising verifier and non-strict anteriority are ALL refused",
+   "what_is_not_delivered": "the verifier itself",
+   "why_open": "closure requires a MAINTAINED cryptographic verifier (BLS on G1, RFC 9380, quicknet-compatible); none is available inside the frozen allowlist, adding one would modify pyproject.toml, and the firewall forbids all network access and any beacon download",
+   "handcrafted_bls_written": false,
+   "reported_not_disguised": true,
+   "cascade": "the HR-3 anti-reroll guarantee depends on PRB-6; while PRB-6 is open the anti-reroll property is declared UNPROVEN, in ANTI_REROLL and in the report"
+  }
+ },
+
+ "human_review_findings_resolution": {
+  "HR-1": {
+   "correction": "censoring redefined as the disposition OBSERVED_FAILURE_HORIZON_WITHOUT_REPLACEMENT (terminal state RIGHT_CENSORED_AT_HORIZON with cohort_residual > f), DISJOINT from the four other observed failures, from mechanical ineligibility and from technical unknown; DISPOSITION_TABLE states it line by line",
+   "proof": "test_hr1_01..03: exactly one disposition feeds the threshold"
+  },
+  "HR-2": {
+   "correction": "DrawDisposition separates observed / ineligible / unknown; draw_score(TECHNICALLY_UNKNOWN) is None, never 0; robust_verdict returns POSITIVE iff successes >= 42, NEGATIVE iff successes + unknowns <= 9, else TECHNICAL_FAIL if unknowns remain, else INDETERMINATE",
+   "coincidence_with_frozen_rule": "exact at unknowns = 0",
+   "proof": "test_hr2_01..06, including the 68 values of successes at unknowns = 0"
+  },
+  "HR-3": {
+   "correction": "the designated round now keys on the PUBLIC timestamp of the external commitment plus 86400 s, never a local git commit; ANTI_REROLL rewritten as CONDITIONAL / condition = PRB-6 / UNPROVEN; verify_public_commitment(..., must_precede_unix=T) refuses any commitment published at or after T",
+   "proof": "test_hr3_01..03, test_prb6_06"
+  },
+  "HR-4": {
+   "correction": "consume_beacon_round REQUIRES a BLS verifier: None -> STOP ('an HTTP response is not evidence'), non-True -> STOP, raising -> STOP, randomness != sha256(signature) -> STOP; no verifier is bundled (LK-L2)",
+   "proof": "test_hr4_01..07"
+  },
+  "HR-5": {
+   "correction": "round unavailable -> BeaconUnavailable, disposition WAIT ('never the next round, never an alternative endpoint, never another source'); invalid chain, round, encoding or signature -> BeaconInvalid, disposition STOP",
+   "proof": "test_hr5_01..02, 8 malformed responses"
+  },
+  "HR-6": {
+   "correction": "integer draws go through draw_index_below, exact rejection on limit = (2**64 // modulus) * modulus, so the modulo bias is REMOVED, not bounded; UNIFORMITY_STATEMENT separates the four claims (ideal continuous, realised grid, exact on the grid, approximation bound) and states 'NO LITERAL EQUALITY WITH LEBESGUE MEASURE IS CLAIMED'",
+   "measured_grid_steps": {"affinity": 6.01e-19, "rates": 3.34e-21},
+   "proof": "test_hr6_01..06"
+  },
+  "HR-7": {
+   "correction": "REJECTION_PROOF gives the full analytic proof P(return = a) = sum q^(m-1)/|B| = 1/|A|, independent of a, almost-sure termination, expectation |B|/|A|; the statistical tests are explicitly labelled diagnostics",
+   "proof": "test_hr7_01"
+  },
+  "HR-8": {
+   "correction": "DELTA_DEFINITION gains numerator, denominator (exactly 67, never reduced; no replacement, no re-draw, no supplement, no exclusion, ever), invalid_cases (-> TECHNICALLY_UNKNOWN, never 0), relation_to_censoring, relation_to_mechanical_ineligibility, no_retroactive_effect",
+   "proof": "test_hr8_01..03"
+  },
+  "HR-9": {
+   "correction": "the lexical blacklist is DEMOTED to lexical_ceiling_screen, documented as 'LIMITED SOFTWARE AID ... not, and cannot be, a semantic guarantee'; the enforceable ceiling is RouteEClaim with a closed vocabulary (Estimand, ClaimScope, ClaimVerdict) rendered ONLY through authorised templates, free text refused",
+   "proof": "test_hr9_01..06, 12 phrasings, including the six catalogued bypasses and six adversarial paraphrases"
+  },
+  "HR-10": {
+   "correction": "assemble_draw_outcome IS the Route E production path for a draw and ALWAYS calls classify_track_terminations (proved by substitution); an ambiguous terminal-state set raises AmbiguousTermination instead of guessing",
+   "proof": "test_hr10_01..08"
+  },
+  "HR-11": {
+   "correction": "the title and the full scope of section 8 are restored, in the report section 1.1, in the A-F module docstring and in the A-F test docstring",
+   "proof": "test_prb_f_08_the_frame_declares_that_a_to_f_are_preregistration_obligations"
+  }
+ },
+
+ "anticipatory_work_A_to_F": {
+  "status": "CORRECTED AND PRESERVED ANTICIPATORY WORK; NOT A CONSUMED MANDATE",
+  "belongs_to": "ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00",
+  "closes_any_frozen_pre_run_blocker": false,
+  "A": {
+   "preserved": "boundaries 25/67 and psi_0 = 1/4, psi_1 = 1/8; regions MATERIAL d >= 25, NEGLIGIBLE d <= 2, INDETERMINATE 3 <= d <= 24; exact Clopper-Pearson bounds",
+   "hr_corrections": ["HR-1", "HR-2"],
+   "contribution_to_PRB": "none",
+   "does_not_prove": "closes no PRE_RUN_BLOCKER; quantifies nothing observed"
+  },
+  "B": {
+   "preserved": "SHA-256 counter mode (FIPS 180-4), domains, canonical draw order, rejected proposals consumed",
+   "hr_corrections": ["HR-3", "HR-4", "HR-5", "HR-6", "HR-7"],
+   "contribution_to_PRB": "depends on PRB-6; does not close it",
+   "does_not_prove": "the anti-reroll guarantee remains UNPROVEN while PRB-6 is open"
+  },
+  "C": {
+   "preserved": "accept predicate = in_proposal_box(fields) AND LatticeBondSpec(**fields); 40000 proposals and 48 nextafter boundary points",
+   "hr_corrections": ["scope bounded to the inspected validator"],
+   "contribution_to_PRB": "none",
+   "does_not_prove": "a finite agreement is not a universal equivalence"
+  },
+  "D": {
+   "preserved": "cause label ASSOCIATION_GATE_TRACK_BREAK and its discriminating condition",
+   "hr_corrections": ["HR-10"],
+   "contribution_to_PRB": "none",
+   "does_not_prove": "it is NOT wired into the accepted bridge or the accepted pipeline, which are immutable; D is therefore not claimed as integrated into the accepted path"
+  },
+  "E": {
+   "preserved": "eleven axes of DELTA_DEFINITION, monotone binding in f",
+   "hr_corrections": ["HR-8", "HR-9"],
+   "contribution_to_PRB": "none",
+   "does_not_prove": "a lexical blacklist guarantees no semantics; only the closed-vocabulary RouteEClaim is enforceable"
+  },
+  "F": {
+   "preserved": "real refusal of run_owned_future_pipeline",
+   "hr_corrections": ["absorbed by PRB-5 and extended to the five entry points"],
+   "contribution_to_PRB": "sub-obligation B15 of PRB-5",
+   "does_not_prove": "on its own it did not close PRB-5"
+  },
+  "defect_found_and_fixed_in_the_previous_candidate": "the first proposal drew theta_n conditionally on theta_m, bending the density on the admissible triangle to 1/(cap - theta_m) and silently changing the frozen law distribution; corrected to nine independent uniform coordinates on the product box with the triangular cap imposed by rejection"
+ },
+
  "frozen_design_restated_not_recomputed": {
   "n_law_draws": 67,
   "initial_conditions_per_law": 2,
   "worlds": 134,
-  "lattice_sizes": [
-   16,
-   24,
-   32
-  ],
+  "lattice_sizes": [16, 24, 32],
   "horizon_steps": 1024,
   "cadence_steps": 16,
   "positive_min_k": 42,
@@ -49,298 +253,184 @@
   "indeterminate": "10 <= k <= 41",
   "delta_0": 0.5,
   "delta_1": 0.25,
-  "cohort_residual_sensitivity_set": [
-   0.01,
-   0.05,
-   0.2
-  ],
+  "cohort_residual_sensitivity_set": [0.01, 0.05, 0.2],
   "unit": "Y_i = 1{D(law_i, L_i, X_i1) = 1}, i = 1..67, k = sum Y_i",
-  "worlds_are_a_cost_not_replications": true
+  "worlds_are_a_cost_not_replications": true,
+  "frozen_terminal_states": [
+   "DISSOLVED_DETECTED_TRACK",
+   "SPLIT_INTO_TRACKS",
+   "MERGED_INTO_TRACK",
+   "UNRESOLVED_HANDOFF",
+   "RIGHT_CENSORED_AT_HORIZON"
+  ],
+  "sixth_terminal_state_added": false
  },
+
  "clopper_pearson_reverified": {
   "lower_42_of_67": 0.500104744019819,
   "lower_41_of_67": 0.4850181325667384,
   "upper_9_of_67": 0.2397417520625535,
   "upper_10_of_67": 0.25740245260777816,
+  "lower_25_of_67": 0.257974162704,
+  "lower_24_of_67": 0.24469490181,
+  "upper_2_of_67": 0.103707507648,
+  "upper_3_of_67": 0.125327035994,
   "method": "independent bisection on the exact binomial tail via math.comb; no third-party dependency",
   "agreement_with_frozen_values": "better than 1e-12"
  },
- "PRB_A": {
-  "obligation": "quantify the censoring fraction and the inter-IC concordance, with a benchmark free of Jensen bias",
-  "threshold_1": {
-   "name": "HORIZON_CENSORING_ATTRIBUTION",
-   "value": 0.373134328358209,
-   "value_exact": "25/67",
-   "comparison": "strictly_greater",
-   "domain": [
-    0.0,
-    1.0
-   ],
-   "unit": "fraction of the 67 primary draws",
-   "boundary": "strict; exactly 25/67 is NOT attributed",
-   "non_finite": "fail-closed, raises",
-   "derivation": "k <= 67 - C and POSITIVE needs k >= 42, so POSITIVE is unreachable iff C > 25; uses only frozen n=67 and frozen k>=42",
-   "governs_ternary_decision": false,
-   "digest": "04cd442db8dcc518f9c2be044e79ba5256cd26a2bc00039fac845db82b209817"
-  },
-  "threshold_2": {
-   "name": "IC_DISCORDANCE",
-   "estimand": "psi = P(Y_i1 != Y_i2) = E[2 pi (1-pi)], unbiasedly estimated by d/67",
-   "jensen_bias_removal": "the marginal-plugin benchmark is abandoned entirely; psi is estimated directly, so no convexity step is taken",
-   "domain": [
-    0.0,
-    0.5
-   ],
-   "psi_0": 0.25,
-   "psi_1": 0.125,
-   "regions": {
-    "MATERIAL": "d >= 25",
-    "NEGLIGIBLE": "d <= 2",
-    "INDETERMINATE": "3 <= d <= 24"
-   },
-   "boundary": "strict on the exact CP bounds; a bound landing exactly on 0.25 or 0.125 falls to INDETERMINATE",
-   "non_finite": "fail-closed, raises",
-   "derivation": "frozen midpoint-of-identifiability convention applied to psi's own range [0,1/2], then again to [0,1/4]",
-   "governs_ternary_decision": false,
-   "digest": "e3e9abf96ff5da1699f35aec40d2eb4a26d744dd3141e42dc601d68a32393575"
-  },
-  "status": "PASS"
- },
- "PRB_B": {
-  "obligation": "external generator, draw order, seed strategy, creating no seed",
-  "generator": {
-   "algorithm": "SHA-256 counter mode",
-   "specification": "FIPS 180-4",
-   "implementation": "hashlib.sha256 from the Python standard library",
-   "version_label": "EDLAB-ROUTE-E-DRAW/v1",
-   "version_independence": "SHA-256 output is fixed by FIPS 180-4, so no library version, platform or numpy build can change a single derived byte.",
-   "block": "block(seed_root, domain, index) = sha256(seed_root || b'\\x00' || domain || b'\\x00' || uint64_be(index))",
-   "uniform": "u = int.from_bytes(block[0:8], 'big') / 2**64, a dyadic rational in [0, 1) with exactly 64 bits of resolution; the mapping is documented, deterministic and never re-scaled after a rejection",
-   "endianness": "big-endian for every integer that enters a hash input or a uniform",
-   "serialisation": "raw bytes only; no JSON, no locale, no float formatting anywhere"
-  },
-  "beacon": {
-   "name": "drand League of Entropy, quicknet chain",
-   "chain_hash": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
-   "scheme": "bls-unchained-g1-rfc9380",
-   "period_seconds": 3,
-   "genesis_time_unix": 1692803367,
-   "public_key": "83cf0f2896adee7eb8b5f01fcad3912212c437e0073e911fb90022d3e760183c8c4b450b6a0a6c3ac6a5776a2d1064510d1fec758c921cc22b0e17e63aaf4bcb5ed66304de9cf809bd274ca73bab4af5a6e9c76a4bc09e76eae8991ef5ece45a",
-   "round_rule": "the FIRST round whose beacon time is at or after T, where T is the committer timestamp of the accepted preregistration commit plus 86400 seconds",
-   "why_it_cannot_be_known_today": "the beacon value for that round does not exist until the round is emitted, which is strictly after the preregistration commit is written and anchored",
-   "public_verifiability": "the round signature verifies against the fixed chain public key with BLS on G1 (RFC 9380) and the randomness is sha256(signature); verification needs no secret",
-   "network_access_in_this_module": "none; the beacon bytes are an argument"
-  },
-  "canonical_order": [
-   "1. laws:   for i = 0..66, consume proposals from domain b'LAW' at strictly increasing indices j = 0, 1, 2, ...; the proposal counter is NEVER reset and rejected proposals are consumed, never reordered; law i is the i-th ACCEPTED proposal.",
-   "2. sizes:  L_i = LATTICE_SIZES[floor(3 * u(b'SIZE', i))], u uniform in [0,1).",
-   "3. ics:    the two initial-condition stream indices of law i are 2i and 2i+1; index 2i is X_i1 and serves the primary, index 2i+1 is X_i2 and serves the discriminator only.",
-   "4. worlds: executed in lexicographic (law index, initial-condition ordinal) order, so (0,0), (0,1), (1,0), (1,1), ..., (66,0), (66,1) -- 134 worlds."
-  ],
-  "rejection_behaviour": "a rejected proposal is CONSUMED; the proposal index advances, the law index does not; no resampling, no permutation, no block reuse",
-  "anti_reroll": [
-   "The seed root binds the preregistration commit hash and a beacon round that does not exist when that commit is written.  Exactly one derivation is permitted, and it must be recorded in the family manifest before the first engine step.  Any reroll changes either the commit or the round, both of which are public and both of which change every derived byte.  There is no code path in this module that derives a second root."
-  ],
-  "order_independence": [
-   "build_draw_plan takes only (seed_root, engine admissibility).  It calls no engine step, reads no world, and receives no outcome.  Admissibility is a pure predicate on a proposal, evaluated before any simulation exists.  Therefore no Y_i, no k, no terminal state and no measurement can influence which law, which size or which initial condition is drawn, or in what order."
-  ],
-  "created_here": {
-   "scientific_seed": false,
-   "family": false,
-   "namespace": false,
-   "concrete_law_spec": false,
-   "concrete_initial_condition": false,
-   "world": false
-  },
-  "status": "PASS"
- },
- "PRB_C": {
-  "obligation": "the sampler's acceptance must be the engine's own fail-closed construction",
-  "accept_predicate": "in_proposal_box(fields) AND engine_accepts(fields)",
-  "conjunct_1": "declared design box membership; the affinity cap is a design resolvability constraint the engine knows nothing about; contains no (B1)/(B2) reimplementation",
-  "conjunct_2": "LatticeBondSpec(**fields) construction; AdmissibilityError, ValueError, TypeError, OverflowError, ArithmeticError are all refusals",
-  "algebraic_predicate_role": "reported agreement statistic only; never on the accept path",
-  "measurements": {
-   "accept_vs_engine_divergences_400": 0,
+
+ "mechanical_proofs": {
+  "prb3_observed_order": ["LOCAL_EVIDENCE", "ROOT_DIGEST", "VERIFIER"],
+  "prb5_parametrised_refusals": 25,
+  "prb5_accepted_function_calls_recorded_by_spies": 0,
+  "prb4_replay_root_differs_under_different_identity": true,
+  "prb1_digest_invariant_under_order_and_duplicates": true,
+  "prb6_refusal_families": 6,
+  "modulo_bias": "removed, not bounded: limit % 3 == 0 and (2**64 - limit) == 2**64 mod 3",
+  "grid_steps_measured": {"affinity": 6.01e-19, "rates": 3.34e-21},
+  "network_static_search": "no requests, urllib, httpx, http.client or socket. in either module; socket.socket additionally armed to fail during consume_beacon_round",
+  "A_to_F_preserved_measurements": {
    "accept_vs_engine_divergences_40000": 0,
-   "engine_vs_algebraic_agreement": "40000/40000",
    "nextafter_boundary_points": 48,
    "nextafter_mismatches": 0,
-   "box_membership_rate_synthetic": 0.5016,
-   "sampler_efficiency_synthetic": 0.1007,
-   "sampler_efficiency_note": "ESTIMATED efficiency of the rejection sampler ONLY; not a normalisation constant, not a measure of A, not a scientific result; does not replace or contradict the 0.099 of 01S"
-  },
-  "defect_found_and_fixed_in_this_mission": "the first proposal drew theta_n conditionally on theta_m, which bends the density on the admissible triangle to 1/(cap - theta_m) and would have changed the frozen law distribution; corrected to nine independent uniform coordinates on the product box with the triangular cap imposed by rejection",
-  "status": "PASS"
+   "engine_vs_algebraic_agreement": "40000/40000"
+  }
  },
- "PRB_D": {
-  "obligation": "preregister the association-gate track break as a cause of a null",
-  "cause_label": "ASSOCIATION_GATE_TRACK_BREAK",
-  "definition": "terminal DISSOLUTION at frame f AND at least one candidate edge out of the dissolving component refused with REJECT_CENTROID_DISTANCE or REJECT_AREA_RATIO AND that edge's target opened a new APPEARANCE track at f",
-  "discriminating_condition": "geometric support existed and the GATE refused it, as opposed to REJECT_NO_GEOMETRIC_SUPPORT or no candidate at all",
-  "scores": 0,
-  "stays_in_denominator": true,
-  "reclassifiable_after_observation": false,
-  "adds_a_sixth_terminal_state": false,
-  "fixtures": "synthetic 16x16 only",
-  "status": "PASS"
- },
- "PRB_E": {
-  "obligation": "say exactly what Delta means and cap what it licenses",
-  "delta_definition": {
-   "symbol": "Delta(f)",
-   "compares": "the proportion of draws in which the declared binary criterion holds, against the two frozen boundaries Delta_0 = 0.50 and Delta_1 = 0.25; it compares NOTHING to a control group, to a historical family, or to any other route",
-   "level": "the DRAW, i.e. one triple (law_i, L_i, X_i1); never the entity, never the component, never the track, never the cell",
-   "criterion": "at least one eligible component of the world satisfies persistence (RIGHT_CENSORED_AT_HORIZON, observed continuously to step 1024) AND verified material replacement (cohort_residual <= f)",
-   "sign": "non-negative by construction: Delta(f) is a probability in [0, 1]; it has no direction and is not a difference of two quantities",
-   "unit": "dimensionless probability",
-   "aggregation": "one Bernoulli per law, k = sum of 67 indicators, estimated by k/67 with an exact two-sided 95% Clopper-Pearson interval; the second initial condition contributes NOTHING to k",
-   "parameter_f": "f is cohort_residual_fraction, a declared measurement convention with sensitivity set {0.01, 0.05, 0.20}.  Delta is monotone non-decreasing in f, so the POSITIVE arm is bound by Delta(0.01) and the NEGATIVE arm by Delta(0.20).  A conclusion must hold at all three values or the family reports INDETERMINATE - REPLACEMENT_CONVENTION.",
-   "which_delta_the_ceiling_speaks_of": "POSITIVE licenses a statement about Delta(0.01); NEGATIVE licenses a statement about Delta(0.20); no single unqualified 'Delta' may be quoted.",
-   "link_to_second_ic_discriminator": "the second initial condition produces psi = P(Y_i1 != Y_i2), a SEPARATE quantity with its own ternary attribution.  psi never enters Delta, never enters k, and can never remove a law from the denominator.  A material psi does not invalidate Delta; it caps the interpretation of Delta to the marginal over initial conditions, which is what Delta already is.",
-   "estimand_is_marginal_over_size": "L is drawn uniformly on {16, 24, 32}, so Delta is marginal over lattice size; a fixed allocation would not estimate the same quantity"
-  },
-  "claim_ceiling": {
-   "licenses": "In the declared frame -- square periodic lattices of {16, 24, 32}, scales dt = m_max = n_max = 1, laws uniform on A = Box AND (B1) AND (B2) with epsilon_b_hat <= 1, initial conditions i.i.d. U[0,1] with b == 0, horizon 1024, cadence 16 -- the conjunction persistence AND verified material replacement is instantiated in a proportion Delta(f) of draws, with the stated exact interval.",
-   "level": "the draw, never the entity",
-   "ladder_position": "below rung 3: Route E measures no state variable and inspects nothing internal to a component",
-   "relation_to_the_published_paper": "the first paper already established causal persistence through material turnover without evidence of local ownership.  Route E measures how OFTEN that conjunction occurs across a declared law distribution.  A frequency is not a mechanism."
-  },
-  "forbidden_inferences": [
-   "ownership",
-   "local ownership",
-   "autonomy",
-   "individuality",
-   "individual",
-   "reconstruction",
-   "self-repair",
-   "reproduction",
-   "division",
-   "heredity",
-   "inheritance",
-   "agency",
-   "goal",
-   "robust effect",
-   "robustly"
-  ],
-  "which_delta": "POSITIVE is bound by Delta(0.01); NEGATIVE by Delta(0.20); no unqualified Delta may be quoted",
-  "status": "PASS"
- },
- "PRB_F": {
-  "obligation": "the refusal test must exercise run_owned_future_pipeline itself",
-  "closure_kind": "declared out of protocol, the alternative the frozen PRB-5 text allows",
-  "out_of_protocol_entry_points": {
-   "run_owned_future_pipeline": "DECLARED OUT OF PROTOCOL as a direct Route E scientific entry point.  It has no authorisation parameter and cannot be given one without modifying an accepted source, which the frozen allowlist forbids.  Invoked directly in an unauthorised Route E context it refuses at its first check, before creating the acquisition frame directory, before invoking the acquisition source, before any engine call and before writing any byte.  See RE-L2.",
-   "open_owned_analysis_access": "lower-level analysis path; in protocol only through the measurement bridge's anchor-gated open_measured_analysis_access",
-   "future_lifecycle_runner.open_analysis_access": "same",
-   "publish_future_family_completion": "same",
-   "qualify_and_write_lifecycle_contract": "same"
-  },
-  "refusal_proved_before": [
-   "family creation",
-   "seed or namespace creation",
-   "concrete law or initial condition construction",
-   "engine call",
-   "world write",
-   "results access",
-   "scientific artefact persistence"
-  ],
-  "evidence": {
-   "exception": "OwnedPublicationError: run_directory must already exist",
-   "acquisition_source_invocations": 0,
-   "engine_step_calls": 0,
-   "bytes_written": 0,
-   "tree_digest_unchanged": true,
-   "tmp_path_empty_after": true
-  },
-  "in_protocol_entry_point": "open_route_e_scientific_run, fail-closed at three successive levels",
-  "not_proved": "that run_owned_future_pipeline inspects an authorisation token; it has no such parameter and giving it one would modify an accepted source",
-  "status": "PASS"
- },
- "second_ic_transversal_control": {
-  "discriminator_output": "psi_hat = d / 67, with d the count of discordant law-pairs",
-  "possible_states": [
-   "IC_DEPENDENCE_MATERIAL",
-   "IC_DEPENDENCE_NEGLIGIBLE",
-   "IC_DEPENDENCE_INDETERMINATE"
-  ],
-  "consequence_of_discordance": "a discordance between X_i1 and X_i2 is EVIDENCE about psi and nothing else.  It does not change Y_i, does not change k, does not change Delta, and does not change the ternary decision.",
-  "effect_on_interpretation_ceiling": "IC_DEPENDENCE_MATERIAL caps the reading of Delta: it forbids restating Delta as a statement about laws ('the fraction of laws that reproduce') and confines it to the marginal over initial conditions, which is what Delta already is.  It never invalidates the primary.",
-  "absolute_prohibition": "no law may EVER leave the denominator because of X_i2.  Enrolment is fixed by X_i1 at the draw, and the frozen rule is: no replacement, no re-draw, no supplement.",
-  "status": "fully specifiable at preregistration; no ambiguity remains open"
- },
- "blocker_matrix": {
-  "PRB_A": "PASS",
-  "PRB_B": "PASS",
-  "PRB_C": "PASS",
-  "PRB_D": "PASS",
-  "PRB_E": "PASS",
-  "PRB_F": "PASS",
-  "fails": 0,
-  "note": "a single FAIL would have prevented the closure disposition"
- },
- "frozen_pre_run_blockers_status": {
-  "PRB-1 persist the track-component join": "OPEN",
-  "PRB-2 mandatory receipt": "OPEN",
-  "PRB-3 frozen check order": "OPEN",
-  "PRB-4 replay binding": "OPEN",
-  "PRB-5 single supported entry point": "OPEN - five entry points declared out of protocol, but only run_owned_future_pipeline has a refusal test in this mission",
-  "PRB-6 external anchoring of the final root": "OPEN"
- },
+
  "tests": {
-  "blocker_tests": 104,
+  "locks_tests_PRB_and_HR": 156,
+  "A_to_F_tests": 104,
   "non_regression_tests": 673,
-  "total": 777,
+  "total": 933,
+  "arithmetic": "156 + 104 + 673 = 933; disjoint groups, no double counting",
   "failed": 0,
   "skipped": 0,
-  "not_run": 0,
-  "environment": {
-   "python": "3.11.15",
-   "pytest": "8.4.2",
-   "numpy": "2.4.4"
-  },
+  "xfail": 0,
+  "xpass": 0,
+  "deselected": 0,
+  "collection_errors": 0,
+  "determinism": "two successive runs of this mission's 260 tests give the same result",
+  "environment": {"python": "3.11.15", "pytest": "8.4.2", "numpy": "2.4.4"},
+  "engine_step_calls_in_this_mission_tests": 0,
+  "fixtures": "deterministic synthetic fixtures and temporary directories only",
+  "drand_contacted": false,
   "scientific_data_opened": false,
   "scientific_family_executed": false
  },
- "limitations": [
-  "RE-L1",
-  "RE-L2",
-  "RE-L3",
-  "RE-L4",
-  "RE-L5",
-  "RE-L6",
-  "RE-L7",
-  "RE-L8"
- ],
+
+ "limitations": {
+  "locks_module": {
+   "LK-L1": "the accepted sources being immutable, every lock sits in front of them; a caller bypassing the Route E path is refused by the accepted function's own first check, a weaker property, tested and bounded separately",
+   "LK-L2": "no BLS or commitment verifier is bundled - PRB-6 stays open",
+   "LK-L3": "the Route E root BINDS the bridge's measurement root, it does not replace it"
+  },
+  "frame_module": {
+   "RE-L1": "the discriminator is under-powered at n = 67 (worst half-width 0.124721 against 0.0625)",
+   "RE-L2": "none of the five accepted entry points has an authorisation parameter",
+   "RE-L3": "a one-ulp discrepancy is conceivable and is never used as a gate",
+   "RE-L4": "ASSOCIATION_GATE_TRACK_BREAK is a cause label, not a sixth terminal state",
+   "RE-L5": "an attribution rule, not a decision cut",
+   "RE-L6": "no network access, no round selected, no verifier bundled",
+   "RE-L7": "A-F are preregistration obligations and do not close PRB-1..PRB-6",
+   "RE-L8": "uniform laws are exact ON A FINITE DYADIC GRID, not on a continuum",
+   "RE-L9": "the lexical screen is a limited aid, never a semantic guarantee"
+  },
+  "per_blocker_residues": {
+   "PRB-5": "the accepted functions remain reachable outside the Route E path",
+   "PRB-6": "OPEN - the verifier is not delivered"
+  },
+  "mount_residue_redisclosed": "the device mount is create-only (rm returns EPERM); .opr00_probe_delete_me and .git/objects/*/tmp_obj_* remain, with no effect on any tree or referenced object"
+ },
+
+ "scientific_results": {
+  "count": 0,
+  "category_is_empty": true,
+  "delta_values": null,
+  "psi_values": null,
+  "censoring_fraction_observed": null,
+  "terminal_state_distribution_observed": null,
+  "route_e_worlds": 0,
+  "laws_drawn": 0,
+  "initial_conditions_drawn": 0,
+  "beacon_rounds_consulted": 0,
+  "statement": "Route E remains a SELECTED protocol, not a confirmed one; the only published result of the programme remains the first paper (https://doi.org/10.5281/zenodo.21403458), which establishes neither local ownership, nor autonomy, nor complete individuality, nor reconstruction, nor reproduction, nor heredity"
+ },
+
  "firewall": {
-  "exact_paths_only": true,
-  "historical_scientific_data_opened": false,
-  "stage_b_used": false,
-  "m_minus_used": false,
-  "scientific_seed_created": false,
-  "prospective_namespace_used": false,
-  "prospective_family_executed": false,
+  "scientific_run_authorized": false,
+  "preregistration_started": false,
+  "seed_created": false,
+  "scientific_round_created": false,
+  "family_created": false,
+  "namespace_created": false,
+  "concrete_route_e_law_created": false,
+  "concrete_initial_condition_created": false,
+  "concrete_route_e_world_created": false,
+  "scientific_engine_step_called": false,
+  "real_pipeline_executed": false,
+  "stage_b_read": false,
+  "m_minus_read": false,
+  "trajectory_read": false,
+  "shard_read": false,
+  "historical_result_read": false,
+  "future_beacon_downloaded": false,
+  "calibration_from_data": false,
+  "scientific_artefact_produced": false,
   "route_g_reopened": false,
   "route_f_invoked": false,
-  "thresholds_calibrated_on_any_result": false,
   "frozen_design_reopened": false,
+  "s01_modified": false,
+  "frozen_law_modified": false,
+  "estimands_or_thresholds_modified": false,
+  "scientific_distribution_modified": false,
+  "observed_data_modified": false,
+  "exact_paths_only": true,
   "git_status_used": "once, count only, explicitly authorised by the mission mandate; no path revealed"
  },
- "next_action_authorised": "HUMAN REVIEW - FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00",
+
+ "git_discipline": {
+  "commit_kind": "non-merge",
+  "sole_parent": "bc2a42c468eec5a4e1732ebb08c7cc20c4dab7dd",
+  "git_add_A_used": false,
+  "user_files_cleaned": false,
+  "git_gc_run": false,
+  "force_push": false,
+  "main_pushed": false,
+  "push_attempts": 1,
+  "credentials_changed": false,
+  "amend_rebase_squash_merge_cherry_pick": false,
+  "history_rewritten": false,
+  "preserved": [
+   "c6d4acf037d4e51d59e5b75dc91b977b9eb83dbd",
+   "bc2a42c468eec5a4e1732ebb08c7cc20c4dab7dd",
+   "their original branches",
+   "refs/heads/main",
+   "the real .git/index",
+   "the user's dirty checkout"
+  ]
+ },
+
+ "next_action_authorised": "INDEPENDENT HUMAN REVIEW OF THIS REVISED CANDIDATE",
  "preregistration_mission_named": "ROUTE_E_REPLICATION_DENSITY_PREREGISTRATION_00",
  "preregistration_authorised_here": false,
+ "preregistration_precondition_literal": "closure AND human review of the blockers; PRB-6 is not closed",
+
  "deliverables": {
   "edlab/substrates/lattice_bond/future_route_e_pre_run_frame.py": {
-   "bytes": 48289,
-   "sha256": "0364185144452f598740cf3db46721aa42ff9368792b4e1b81e8cd0bec921232"
+   "bytes": 77829,
+   "sha256": "3e08ddc7be429f1e5d4a1e0c689bd8477a20e9750d90f7f76904b52e41e4785d"
+  },
+  "edlab/substrates/lattice_bond/future_route_e_pre_run_locks.py": {
+   "bytes": 26884,
+   "sha256": "2fa5538dc255e25a3a5afb51f174516fba9f267368e7efe791b958ef4a387492"
   },
   "tests/test_future_route_e_pre_run_blocker_closure_00.py": {
-   "bytes": 34823,
-   "sha256": "47ac5ea8c7c3dc640a3e6f71c4cf8ffeb5ffc536f4d3dc9e59f7a5f3055786bc"
+   "bytes": 35422,
+   "sha256": "df484559a36828d7874bdf09d386c6f65c1916a3d62f41b558d436b332112da5"
   },
-  "docs/individuation/FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_REPORT.md": {
-   "bytes": 43875,
-   "sha256": "77e1f4dba5f0bd4dde6ff9d55397ee99ce4e3b0cc6a602373b766fbc6bf90da7"
+  "tests/test_future_route_e_pre_run_locks_00.py": {
+   "bytes": 45706,
+   "sha256": "7b6335141192350af92c43391865b75f44af3b2b255f48529207363f3f470b69"
   }
  }
 }
