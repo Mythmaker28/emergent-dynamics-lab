@@ -1,13 +1,17 @@
-# FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00 — rapport (intégration autorisée, après `0541400`)
+# FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00 — rapport (autorisation A1, après `c08e27c`)
 
 > **Aucun token composite n'est émis.** Les faits sont exposés champ par champ au §2.
 > Ce record ne prononce **aucune acceptation humaine**.
 >
 > `PRB-6 = CANDIDATE_CLOSED` — vérificateur BLS/G1 maintenu livré, vecteurs officiels
 > hors réseau, round dérivé et vérifié cryptographiquement.
-> `PRB-5 = OPEN` — le garde est **écrit et testé** mais **non installé** : le crochet
-> d'une ligne change les octets de trois sources acceptées, épinglés par deux fichiers de
-> tests **hors allowlist**. Blocker rapporté, non contourné.
+> `PRB-5 = OPEN` — le garde reste **écrit et testé** mais **non installé**.
+> **L'autorisation A1 ne suffit pas** : l'audit obligatoire des neuf pins (§14) montre que
+> leur **nature diffère** de ce qui était annoncé. Ils ne vivent pas seulement dans les
+> deux fichiers de tests étendus : ils sont adossés à **quatre documents de qualification
+> historiques** appartenant à quatre missions déjà scellées et acceptées, hors allowlist
+> A1, dont deux portent des **assertions sémantiques** de mission, pas de simples digests.
+> Conformément au §4 de l'autorisation, **je me suis arrêté avant de les mettre à jour**.
 > `ANTI_REROLL` : moitié « choix du round » **CANDIDATE_PASS**, moitié « publication »
 > **UNPROVEN**.
 >
@@ -140,9 +144,15 @@ tout le reste est **STOP**. Un verdict « verified » qui ne réécho pas le sch
 
 ## 5. Vecteurs hors réseau et cas négatifs
 
-**Aucun endpoint drand n'a été contacté. Aucun round live n'a été récupéré.** Chaque
-vecteur a été copié d'une **fixture committée** dans un dépôt officiel, récupérée en
-https depuis `raw.githubusercontent.com`, et `tests/data/route_e_beacon_vectors.json`
+**Aucun endpoint drand n'a été contacté. Aucun round live n'a été récupéré.**
+
+**Formulation corrigée (A3).** Il n'existe **aucun jeu de vecteurs officiel signé et
+versionné par drand** pour `bls-unchained-g1-rfc9380`. Les trois vecteurs employés sont
+des **fixtures committées** dans des dépôts publics, dont **deux appartiennent à
+l'organisation drand** (`drand/tlock`, `drand/drand-client`) et **un à un tiers**
+(`noislabs/drand-verify`) — ce dernier ne doit **jamais** être présenté comme un jeu
+officiel drand. Chaque fixture a été récupérée en https depuis
+`raw.githubusercontent.com`, et `tests/data/route_e_beacon_vectors.json`
 enregistre pour chacun : dépôt, ref, chemin, licence, sha256 du fichier source récupéré,
 taille, chain hash, clé publique, scheme, round, signature, randomness, provenance de la
 randomness, transformation (aucune) et résultat attendu.
@@ -150,7 +160,7 @@ randomness, transformation (aucune) et résultat attendu.
 | Id | Source | Chaîne | Round | Randomness |
 |---|---|---|---|---|
 | **V1** | `github.com/drand/tlock`, `tlock_test.go`, Apache-2.0 / MIT, sha256 `f2e71105…ef71` | **quicknet** | 12 040 883 | **dérivée** `sha256(sig)` |
-| **V2** | `github.com/noislabs/drand-verify`, `src/verify.rs`, Apache-2.0, sha256 `47c7a755…f9a6` | **quicknet** | 123 | **dérivée** `sha256(sig)` |
+| **V2** | `github.com/noislabs/drand-verify` — **tiers, PAS l'organisation drand** —, `src/verify.rs`, Apache-2.0, sha256 `47c7a755…f9a6` | **quicknet** | 123 | **dérivée** `sha256(sig)` |
 | **V3** | `github.com/drand/drand-client`, `test/beacon-verification.test.ts`, Apache-2.0 / MIT, sha256 `e9b91a7a…c67d` | `walkthrough` (**pas** quicknet ; même scheme) | 38 | **COMMITTÉE** |
 
 **V3 est le seul vecteur dont la randomness est committée** : il prouve
@@ -441,3 +451,224 @@ acceptation, et resterait de toute façon une prérégistration, **pas un run**.
 > `PRB-6 = CANDIDATE_CLOSED` · `PRB-5 = OPEN` · `PRB-2` enforcement bloqué ·
 > `ANTI_REROLL` : choix du round `CANDIDATE_PASS`, publication `UNPROVEN`.
 > Aucune acceptation humaine n'est prononcée ici.
+
+---
+
+## 14. A1 — audit obligatoire des neuf pins, et arrêt
+
+L'autorisation A1 étend l'allowlist à `tests/test_future_lifecycle_runner_integration.py`
+et `tests/test_future_lifecycle_owned_pipeline.py`, et impose : *« Si leur nombre ou leur
+nature diffère, arrête-toi avant de les mettre à jour. »* **Leur nature diffère.** Voici
+l'énumération, faite **avant** toute modification.
+
+### 14.1 Les neuf tests et ce qui les protège réellement
+
+| # | Fichier de test | Objet protégé | Ancienne valeur | Ce qui l'invalide |
+|---|---|---|---|---|
+| 1 | `…runner_integration.py::test_14_no_public_entry_point_accepts_a_lifecycle_closure` | jeu de paramètres **exact** de `publish_future_family_completion` et `open_analysis_access` | `{run_directory, tracking, sampled_frames}` + annotations littérales | tout paramètre ajouté, y compris un `route_e` keyword-only typé |
+| 2 | `…owned_pipeline.py::test_op_21a_the_public_signature_accepts_no_injectable_artifact` | liste **ordonnée** des paramètres de `run_owned_future_pipeline` ; `list(open_owned_analysis_access) == ["run_directory"]` | liste littérale de 6 noms | idem |
+| 3 | `…owned_pipeline.py::test_op_23e_the_accepted_stack_sources_are_unchanged_by_this_mission` | sha256 de `instrumentation.py`, `lifecycle.py`, `future_lifecycle_runner.py`, `__init__.py` | `lifecycle.py = 3120d820…d03053`, `runner = 7691da35…4b33d08` | toute édition d'octet |
+| 4 | `…runner_integration.py::test_23e_lifecycle_source_is_unchanged_across_the_succession` | `UNCHANGED_LIFECYCLE_SHA256` **et** l'égalité entre `CONTRACT_00_QUALIFICATION.json` et `CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json` | `3120d820…d03053` | édition de `lifecycle.py` |
+| 5 | `…runner_integration.py::test_23f_current_source_matches_the_successor_qualification` | **toutes** les entrées `source_hashes_sha256` de `…01R_QUALIFICATION.json` | digests dans le **document historique** | édition de `lifecycle.py` ou `future_lifecycle_runner.py` |
+| 6 | `…runner_integration.py::test_23g_runner_integration_remains_pending_formal_requalification` | `lineage.unchanged_runner_sha256` de `…01R_QUALIFICATION.json` | digest dans le **document historique** | édition de `future_lifecycle_runner.py` |
+| 7 | `…runner_integration.py::test_23i_every_historically_pinned_artifact_is_explicitly_accounted_for` | `HISTORICALLY_PINNED_ARTIFACTS` (7 entrées) **et** `lineage.divergent_from_historical_pin` de `…01R_QUALIFICATION.json` | 7 digests + le bloc de divergence déclarée | édition de `lifecycle.py` (une divergence non déclarée fait échouer le test) |
+| 8 | `…runner_integration.py::test_rs01_13_the_successor_qualification_binds_the_current_lineage_and_hashes` | `source_hashes_sha256` de `…RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json` **et** `historical_versus_current.runner_source_changed_by_this_mission is False` **et** `…_historical == …_current` | digests + **assertion sémantique** | édition de `future_lifecycle_runner.py` |
+| 9 | `…runner_integration.py::test_rs01_15_the_historical_runner_package_is_pinned_and_immutable` | `HISTORICAL_RUNNER_PACKAGE_DIGESTS` **et** `identity_proofs.future_lifecycle_runner_py_sha256` de `…RUNNER_HARDENING_00_QUALIFICATION.json`, avec le message « the runner this mission requalifies is byte-identical to the hardened one » | digest dans un record **scellé** d'une autre mission | édition de `future_lifecycle_runner.py` |
+
+### 14.2 Pourquoi A1 ne suffit pas
+
+Les neuf tests s'appuient sur **treize sites de liaison** répartis sur **deux fichiers de
+tests** (dans l'allowlist A1) **et quatre documents de qualification historiques** (hors
+allowlist A1) :
+
+```text
+docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json
+    source_hashes_sha256[lifecycle.py]
+docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json
+    source_hashes_sha256[lifecycle.py] · source_hashes_sha256[future_lifecycle_runner.py]
+    lineage[unchanged_runner_sha256]
+docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json
+    source_hashes_sha256[lifecycle.py] · source_hashes_sha256[future_lifecycle_runner.py]
+    historical_versus_current[runner_source_changed_by_this_mission]  <- SÉMANTIQUE
+    historical_versus_current[future_lifecycle_runner_py_sha256_historical|_current]
+docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json
+    identity_proofs[future_lifecycle_runner_py_sha256]                <- RECORD SCELLÉ
+    identity_proofs[future_lifecycle_runner_py_blob|_identical_at]
+    identity_proofs[bound_lifecycle_package_unchanged_sha256]
+```
+
+Trois raisons, chacune suffisante, d'arrêter :
+
+1. **Hors allowlist.** Ces quatre documents ne sont pas listés par A1, et le §3 interdit
+   explicitement de modifier « les anciens records ».
+2. **Ce ne sont pas des digests, ce sont des affirmations de mission.**
+   `runner_source_changed_by_this_mission is False` et l'`identity_proofs` de
+   `HARDENING_00` sont des **tripwires délibérés** : ils existent précisément pour qu'une
+   modification ultérieure du runner ne puisse pas passer inaperçue. Les mettre à jour
+   reviendrait à **masquer le tripwire en éditant la qualification** — exactement ce qu'une
+   revue humaine antérieure de ce programme a interdit.
+3. **Ce serait une requalification, pas un rebaselining.** Rendre la suite verte après
+   édition des trois sources acceptées suppose de **requalifier** quatre missions déjà
+   scellées et humainement acceptées. Cela demande son propre mandat, sa propre revue, et
+   très probablement de nouveaux documents de qualification — ce qu'aucune autorisation en
+   cours ne couvre.
+
+**Conséquence.** Aucun pin n'a été modifié. Aucun crochet n'a été installé. Les trois
+sources acceptées restent **byte-identiques** à `c08e27c`. `PRB-5` reste **OPEN**.
+
+```text
+guarded_entry_count = 0
+accepted_entry_integration_present = false
+behavioral_hook_mutations_killed = 0   (non applicable : aucun crochet n'est installé)
+```
+
+Les six mutations comportementales du §6 de l'autorisation **n'ont pas été exécutées** :
+elles supposent des crochets installés. Elles restent prêtes et seront exécutables dès que
+l'autorité demandée au §14.3 sera accordée.
+
+### 14.3 Autorité désormais nécessaire (remplace A1)
+
+A1 tel qu'écrit est **insuffisant**. Ce qu'il faut, précisément :
+
+```text
+1. les deux fichiers de tests déjà accordés par A1 (suffisants pour les pins 1, 2, 3,
+   et pour les constantes UNCHANGED_LIFECYCLE_SHA256, HISTORICALLY_PINNED_ARTIFACTS,
+   HISTORICAL_RUNNER_PACKAGE_DIGESTS) ;
+2. PLUS une décision explicite sur les quatre documents de qualification historiques,
+   au choix du propriétaire :
+   (a) autoriser leur mise à jour, en documentant chaque transition ancienne -> nouvelle
+       valeur et en conservant l'ancienne comme preuve de lignée ; ou
+   (b) créer un document de requalification propre à cette mission qui supersède
+       explicitement les bindings concernés, en laissant les records historiques intacts.
+```
+
+L'option (b) est la plus conservatrice : elle ne réécrit aucun record scellé. Elle exige
+en revanche que les tests concernés lisent le nouveau document, donc une modification des
+deux fichiers de tests **et** la création d'un document — ce qui dépasse aussi A1.
+
+---
+
+## 15. Réconciliation des identifiants de tests (§7 de l'autorisation)
+
+L'autorisation compare `191` (base `0541400`) à `152 + 33 = 185` et en déduit **six tests
+nets manquants**. Cette soustraction **omet un fichier** : la mission compte désormais
+**quatre** fichiers, pas trois.
+
+| Groupe | `0541400` | `c08e27c` |
+|---|---|---|
+| `test_future_route_e_pre_run_locks_00.py` | **191** | 152 |
+| `test_future_route_e_pre_run_integration_00.py` | — | 33 |
+| `test_route_e_beacon_verifier.py` | — | **42** |
+| **total mission (hors A–F)** | **191** | **227** |
+
+Le solde réel est donc **+36**, pas −6. Par fonction distincte : **115 → 155**.
+
+Classification des **25** noms de fonctions qui disparaissent :
+
+| Classe | Nombre | Détail |
+|---|---|---|
+| **déplacé** | 9 | `hr4_01…07`, `hr5_01…02` → `test_route_e_beacon_verifier.py`, où ils sont **renforcés** : ils s'exécutent contre le vrai vérificateur et de vrais vecteurs au lieu de callbacks synthétiques |
+| **déplacé** | 3 | `prb5_real_01/02/03` → `weak_01`, `blocker_01`, `blocker_02` dans le fichier d'intégration |
+| **renommé** | 11 | `prb2_08`, `prb3_03`, `prb5_08/09`, `prb5_facade_04/05/06/07`, `prb6_03/08/09` — renommés parce que la propriété a changé de forme (statut factuel, absence de callback) |
+| **fusionné / paramétré** | 1 | `prb6_05` (vérificateur qui lève) → `test_helper_01` (helper qui plante) + `test_helper_04/05` |
+| **supersédé par construction** | 1 | `hr4_02_a_verifier_that_does_not_return_true_is_STOP` : le callback booléen qu'il testait **n'existe plus**, donc la propriété est inviolable par construction. Le cas adverse équivalent est `test_helper_05_a_forged_success_without_the_pinned_echo_is_refused` (un helper qui dit « verified » sans réécho du scheme et du DST épinglés est refusé) et `test_helper_04` (statut inconnu ⇒ `internal_error`) |
+| **nouveau** | 40 | garde, round dérivé, vecteurs, protocole du helper, blocker |
+
+**Aucune assertion matérielle n'a été supprimée ni réduite en silence.** Aucune
+restauration n'est donc nécessaire dans `tests/test_future_route_e_pre_run_locks_00.py`,
+et ce fichier n'est pas modifié par ce commit.
+
+---
+
+## 16. A2 — dossier de décision propriétaire sur le registre public
+
+**Aucun texte gelé ne fixe de registre.** Vérifié : le mandat `01S` et les deux revues
+humaines ne nomment ni venue, ni format de preuve, ni racine de confiance. La seule
+contrainte littérale est *« public immutable or append-only commitment, verifiable without
+a secret »*, précisée par `ARCHITECTURE_01` : la **publication** peut exiger un credential,
+la **vérification** non. Le mot « zenodo » n'apparaît que comme DOI du premier article,
+jamais comme venue d'ancrage.
+
+**Rien n'est implémenté ici.** Trois options, à trancher par le propriétaire.
+
+| | **A. OpenTimestamps (Bitcoin)** | **B. RFC 3161 (TSA)** | **C. Sigstore / Rekor** |
+|---|---|---|---|
+| Preuve d'inclusion | fichier `.ots` (opérations + `BitcoinBlockHeaderAttestation`) | jeton DER `.tsr` (CMS `SignedData`, `TSTInfo`) | bundle Sigstore v0.3 (preuve d'inclusion + checkpoint signé) |
+| Antériorité | inclusion dans un bloc Bitcoin ; `nTime` de l'en-tête ; adossée à la preuve de travail | `genTime` **signé** par la TSA, immédiat | **faible** : la doc Sigstore dit que l'`integratedTime` de Rekor v1 vient de son horloge interne et est *mutable sans détection* |
+| Vérification hors ligne | oui **si** l'en-tête de bloc (80 o) est livré ; réserve : aucun vérificateur « headers-only » prêt à l'emploi identifié | **oui, nativement** ; il faut livrer le certificat TSA et sa chaîne | oui (`--offline`) mais il faut embarquer la racine TUF |
+| Racine de confiance | Bitcoin (PoW), **pas de partie unique** | **une seule partie** (mitigeable par 2–3 TSA indépendantes) | l'opérateur du journal + TUF ; partie unique pour le temps |
+| Windows + Linux, Python 3.11 | `opentimestamps` (LGPL-3.0, dernière release ≈ 2022, maintenance lente) + `python-bitcoinlib`, `pycryptodomex` | `rfc3161-client` 1.0.6 (2026-04), Apache-2.0, **wheels abi3 Windows + manylinux**, PyO3, aucune fonction réseau | `sigstore` (Apache-2.0, bien maintenu) mais arbre de dépendances large |
+| Fichiers / dépendances à ajouter | `.ots`, en-tête de bloc, `anchor.json` + 2–3 dépendances lourdes (ou un parseur `.ots` maison) | `.tsq`, `.tsr`, `tsa_chain.pem` + **1** dépendance | bundle + `trusted_root.json` + nombreuses dépendances |
+| WAIT / STOP | **WAIT réel** : l'attestation est *pending* quelques heures, puis `ots upgrade`. **STOP** si elle n'est pas complète, ou si `nTime ≥ T` | **aucun WAIT** (synchrone). **STOP** si `genTime ≥ T`, empreinte ≠ racine, chaîne invalide | STOP si l'inclusion ou le checkpoint ne valide pas |
+| Publication | gratuite, **sans compte** | FreeTSA gratuit, sans compte | identité OIDC requise (acceptable : la vérification reste sans secret) |
+| Satisfait littéralement « public immutable or append-only » | **oui** | **non** — un jeton TSA n'est pas un registre | oui pour l'append-only, **non** pour l'antériorité |
+
+**Recommandation, à valider par le propriétaire :** **A en primaire, B en garde-fou
+obligatoire**. A est la seule option satisfaisant littéralement l'obligation gelée avec une
+antériorité qui ne repose pas sur une partie unique ; B est instantané, vérifiable hors
+ligne nativement, et couvre exactement la fenêtre WAIT de A. C est écarté comme ancre
+temporelle primaire **par sa propre documentation**.
+
+Séquence opérateur si A+B est retenu : figer `R` → jeton RFC 3161 auprès de ≥ 2 TSA →
+`ots stamp` → attendre la confirmation Bitcoin → `ots upgrade` jusqu'à attestation
+complète → extraire la hauteur et l'en-tête → **vérifier `nTime < T` et `genTime < T`,
+sinon STOP** → committer `R.ots`, l'en-tête, `R.tsq`, les `.tsr`, `tsa_chain.pem` et un
+`anchor.json` liant racine, hauteur, `nTime`, `genTime`, `T` et le round drand.
+
+**Non vérifié depuis les sources primaires** : taille typique d'un `.ots` ; licence et
+disponibilité de wheels du paquet `opentimestamps` (PyPI bloqué par robots.txt) ;
+existence d'un vérificateur OTS hors-ligne « headers-only » prêt à l'emploi ; limites de
+débit de FreeTSA ; toute voie Certificate Transparency acceptant une charge arbitraire de
+32 octets.
+
+```text
+public_registry_inclusion_proven = false
+anti_reroll_publication_inclusion_proven = false
+ANTI_REROLL = UNPROVEN
+```
+
+---
+
+## 17. A3 — provenance des modules Go
+
+Aucun fichier Go n'a été modifié.
+
+| Contrôle | Commande | Résultat |
+|---|---|---|
+| Vérification **locale** contre `go.sum` | `GOPROXY=off go mod verify` | **`all modules verified`** |
+| Re-téléchargement dans un `GOMODCACHE` temporaire, **`GOSUMDB=sum.golang.org`, jamais `off`** | `env -i … GOMODCACHE=<tmp> GOPROXY=direct GOSUMDB=sum.golang.org go mod download github.com/drand/kyber-bls12381` | **exit 0** |
+| Sonde discriminante : module **absent** de `go.sum`, qui force une consultation du journal | `… go mod download github.com/google/uuid@v1.6.0` | **échec** : `reading https://sum.golang.org/lookup/…: 403 Forbidden — Host not in allowlist: sum.golang.org` |
+
+**Lecture rigoureuse.** Le succès de la deuxième ligne **ne prouve pas** que le journal de
+transparence a été consulté : lorsqu'une entrée existe déjà dans `go.sum`, le go command
+vérifie contre `go.sum` et **ne consulte pas** la base de sommes. La troisième ligne le
+démontre : dès qu'une consultation est réellement nécessaire, elle échoue, parce que
+`sum.golang.org` n'est pas dans l'allowlist réseau de cet environnement.
+
+```text
+go_mod_verify_local = pass
+sumdb_transparency_verified = false
+```
+
+À faire par un tiers disposant du réseau : `go mod verify` **et** un téléchargement à
+cache vide avec `GOSUMDB=sum.golang.org`, sur les cinq modules épinglés.
+
+---
+
+## 18. Déclaration finale de cet incrément
+
+```text
+guarded_entry_count                      = 0
+behavioral_hook_mutations_killed         = 0   (non applicable : aucun crochet installé)
+accepted_entry_integration_present       = false
+public_registry_inclusion_proven         = false
+sumdb_transparency_verified              = false
+ANTI_REROLL                              = UNPROVEN
+human_review                             = PENDING
+preregistration_authorized               = false
+scientific_run_authorized                = false
+```
+
+Aucune acceptation des six PRB n'est demandée : A2 reste non résolu. La prochaine étape est
+la **décision propriétaire sur le registre public** et sur l'autorité du §14.3, puis
+seulement la revue humaine indépendante complète.
