@@ -2848,3 +2848,38 @@ formation/maintenance estimate or developmental mechanism result exists. The fai
 `RAW_INSUFFICIENT`, transient/heterogeneous candidates, or absence of individuality. The original
 `DEV_FEASIBILITY_FAIL` remains exact. No code repair, raw retry, selected subset, threshold relaxation, new family or
 Stage C is authorized. Human review of the fail-closed autopsy is the only next action.
+
+## FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00 — execution boundary corrected once
+
+**Owner decisions, applied literally:** `A1_R2_ALLOWLIST_EXTENSION = REJECTED`;
+`PRB5_AS_WRITTEN = SUPERSEDED`; `FIVE_FUNCTION_GUARD_STRATEGY = RETIRED`;
+`SELECTED_TOPOLOGY = NEW_DEDICATED_ROUTE_E_ENTRY_ABOVE_EXISTING_BRIDGE`;
+`ROUTE_E_SECURITY_BOUNDARY = CANONICAL_EXECUTION_PLUS_INDEPENDENT_ADMISSION`;
+`UNIVERSAL_ENGINE_EXECUTION_PREVENTION = NOT_CLAIMED`.
+
+**What changed:** two new modules and one new test file were added above the existing stack.
+No generic source, no historical qualification, no Stage-B file and none of the four test
+files selected by `test_rs01_12` was touched; the selected collection stays at 251 nodes with
+`node_list_sha256 = a425c3736f0b5d819ef708c2433b785cf706381798ffc48a7ce4b5941161276a`. No
+`route_e` parameter was added anywhere.
+
+**Pre-run and post-run are now different objects.** `P` is domain-separated under
+`EDLAB/ROUTE-E/PRE-RUN/v1` and may not contain a seed, plan, draw, measurement root, join,
+`Y_i`, `k`, outcome or result at any depth; the round is a function of the canonical cutoff
+`C` alone and no proof timestamp takes part in choosing it; the seed is derived by domain
+separation from `P` and the verified randomness. `E` is domain-separated under
+`EDLAB/ROUTE-E/POST-RUN/v1`, binds every attempt including crashes, and is computed after the
+run. The two can never be interchanged.
+
+**Boundary evidence:** five semantically valid mutations were run once (verification after
+the first effect; `P` binding removed; seed injectable; generic output admitted; crash omitted
+from the inventory) and all five were killed behaviourally, with documentary pins excluded
+from the campaign. Full suite 1349 collected, 1344 passed, the same five inherited failures
+with unchanged node IDs, signatures and causes, `new_failures = 0`.
+
+**Still open:** `public_pre_run_inclusion_proven = false`. The frozen A2 decision
+(complete OpenTimestamps proof **AND** an RFC 3161 token over its canonical encoding, never
+`OR`) is recorded and deliberately not implemented; a run claiming that proof type is refused
+rather than believed. `human_review = PENDING`, `pilot_authorized = false`,
+`preregistration_authorized = false`, `scientific_run_authorized = false`. The only next
+action is one independent human review.
