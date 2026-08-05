@@ -506,10 +506,15 @@ DRAW_GENERATOR: Mapping[str, Any] = {
         "b'\\x00' || uint64_be(index))"
     ),
     "uniform": (
-        "u = int.from_bytes(block[0:8], 'big') / 2**64, a dyadic rational in [0, 1) with "
-        "exactly 64 bits of resolution; the mapping is documented, deterministic and "
-        "never re-scaled after a rejection"
+        "U53_TOP_BITS_V1: u = (int.from_bytes(block[0:8], 'big') >> 11) * 2**-53, a "
+        "dyadic rational on the grid {j / 2**53 : 0 <= j < 2**53}, strictly inside "
+        "[0, 1) for every one of the 2**64 source words; eight bytes are consumed per "
+        "draw and the low 11 bits do not affect the output; the mapping is documented, "
+        "deterministic and never re-scaled after a rejection.  It SUPERSEDES "
+        "U64_DIVIDE_V0_SUPERSEDED (word / 2**64), whose declared [0,1) and declared "
+        "64-bit resolution were both false in binary64."
     ),
+    "mapping_version": "U53_TOP_BITS_V1",
     "endianness": "big-endian for every integer that enters a hash input or a uniform",
     "serialisation": "raw bytes only; no JSON, no locale, no float formatting anywhere",
 }
@@ -621,8 +626,68 @@ def draw_block(seed_root: bytes, domain: bytes, index: int) -> bytes:
     ).digest()
 
 
+#: OWNER DECISION, applied by ROUTE_E_PILOT_READINESS_AND_FEASIBILITY_00:
+#: ``rng_mapping_owner_decision = SELECT_OPTION_1_TOP_53_BITS``.
+#:
+#: The superseded mapping was ``word / float(2**64)``.  Two of its DECLARED properties
+#: were false in binary64 and A1-R5 demonstrated both: ``(2**64 - 1) / float(2**64)``
+#: is exactly ``1.0`` (so the declared ``[0, 1)`` was wrong for 1024 of the 2**64 words),
+#: and near 1 the binary64 step is ``2**-53``, so 2048 consecutive words collapsed onto
+#: 2 outputs (so "64 bits of resolution" was scale-dependent and false where it mattered).
+#:
+#: ``U53_TOP_BITS_V1`` takes the top 53 bits of the SAME eight bytes.  Every output is
+#: exactly representable in binary64, the grid step is uniform at ``2**-53`` everywhere,
+#: and the range is strictly ``[0, 1)`` including at ``word = 2**64 - 1``.
+#:
+#: This is a FORWARD-ONLY change.  Nothing has ever been run under the superseded
+#: mapping, so no artefact is reinterpreted; and no artefact may be interpreted under
+#: this one unless it carries ``DRAW_UNIFORM_MAPPING_VERSION`` explicitly.
+DRAW_UNIFORM_MAPPING_VERSION = "U53_TOP_BITS_V1"
+DRAW_UNIFORM_MAPPING_SUPERSEDED = "U64_DIVIDE_V0_SUPERSEDED"
+
+DRAW_UNIFORM_MAPPING: Mapping[str, Any] = {
+    "version": DRAW_UNIFORM_MAPPING_VERSION,
+    "source_word": "uniform on the 2**64 words of block[0:8], big-endian",
+    "output_mapping": "u = (word >> 11) * 2**-53",
+    "output_support": "{j / 2**53 : 0 <= j < 2**53}",
+    "output_distribution": "exactly uniform on that grid",
+    "output_range": "[0, 1)",
+    "low_11_bits_affect_output": False,
+    "supersedes": DRAW_UNIFORM_MAPPING_SUPERSEDED,
+    "superseded_defect": (
+        "(2**64 - 1) / float(2**64) == 1.0, so the declared [0,1) was false for 1024 "
+        "words; and the output grid was 2**-53 near 1, not 2**-64, so the declared "
+        "resolution was false exactly where the range claim failed"
+    ),
+    "ideal_versus_realised": (
+        "the FROZEN 01S law is the CONTINUOUS uniform measure; this mapping is its "
+        "DISCRETE realisation on a finite dyadic grid of step 2**-53.  The continuous "
+        "law is the target and is unchanged; no literal equality with Lebesgue measure "
+        "is claimed.  The 01S text writes U[0,1] with a closed bracket for the ideal "
+        "law; the realised generator is half-open [0,1) and can never return 1.0."
+    ),
+}
+
+
 def draw_uniform(seed_root: bytes, domain: bytes, index: int) -> float:
-    """A uniform in [0, 1) with exactly 64 bits of resolution."""
+    """A uniform on ``{j / 2**53 : 0 <= j < 2**53}``, strictly inside ``[0, 1)``.
+
+    ``U53_TOP_BITS_V1``: eight bytes are consumed exactly as before, and the top 53 bits
+    of that word become the output.  The low 11 bits do not affect the output.
+    """
+    word = int.from_bytes(draw_block(seed_root, domain, index)[0:8], "big")
+    return (word >> 11) * 2.0**-53
+
+
+def draw_uniform_superseded_v0(seed_root: bytes, domain: bytes, index: int) -> float:
+    """The SUPERSEDED ``word / 2**64`` mapping.  Retained for one purpose only.
+
+    It exists so that a historical artefact can NEVER be reinterpreted silently: an
+    artefact produced under the old mapping would have to name
+    ``U64_DIVIDE_V0_SUPERSEDED`` explicitly to be read at all.  No such artefact exists,
+    because no Route E family was ever executed.  This function is on no live path: the
+    pilot and the confirmatory entry points both refuse a manifest that names it.
+    """
     return int.from_bytes(draw_block(seed_root, domain, index)[0:8], "big") / float(2**64)
 
 
@@ -659,10 +724,11 @@ UNIFORMITY_STATEMENT: Mapping[str, str] = {
     ),
     "2_realised_grid": (
         "The generator realises a FINITE dyadic grid: every coordinate is "
-        "lo + (k / 2**64) * (hi - lo) for an integer k in [0, 2**64).  The grid step is "
-        "(hi - lo) / 2**64 -- 6.0e-19 on the affinity coordinates whose span is "
-        "2*ln(H/4) = 11.0904, and 3.3e-21 on the rate coordinates whose span is "
-        "1/16 - 1/1024."
+        "lo + (k / 2**53) * (hi - lo) for an integer k in [0, 2**53).  The grid step is "
+        "(hi - lo) / 2**53 -- 1.2e-15 on the affinity coordinates whose span is "
+        "2*ln(H/4) = 11.0904, and 6.8e-18 on the rate coordinates whose span is "
+        "1/16 - 1/1024.  Under U53_TOP_BITS_V1 every grid point is exactly "
+        "representable in binary64, which the superseded 2**-64 grid was not."
     ),
     "3_exact_on_the_grid": (
         "On that grid the realised law is EXACTLY uniform: the nine coordinates are "
@@ -672,7 +738,7 @@ UNIFORMITY_STATEMENT: Mapping[str, str] = {
     ),
     "4_approximation_bound": (
         "The realised law approximates the continuous target with a per-coordinate "
-        "resolution of at most (hi - lo) / 2**64.  A proposal can therefore differ from "
+        "resolution of at most (hi - lo) / 2**53.  A proposal can therefore differ from "
         "its continuous counterpart by at most one grid step per coordinate, and the only "
         "place this can change an ACCEPT/REJECT verdict is within one grid step of the "
         "boundary of A.  NO LITERAL EQUALITY WITH LEBESGUE MEASURE IS CLAIMED.  The "

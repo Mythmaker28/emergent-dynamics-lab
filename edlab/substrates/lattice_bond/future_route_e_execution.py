@@ -61,8 +61,11 @@ from typing import Any, Mapping, Sequence
 
 import numpy as np
 
+from ... import route_e_protocol as _protocol
+from ... import route_e_strict as _strict
 from . import future_route_e_pre_run_frame as _frame
 from . import future_route_e_pre_run_locks as _locks
+from . import future_route_e_world_evidence as _world_evidence
 from .engine import LatticeBondSpec, LatticeBondState
 from .future_prospective_measurement_bridge import (
     BridgeError,
@@ -616,26 +619,22 @@ def _pinned_verifier() -> Path | None:
 
 
 def _write_exact(path: Path, payload: bytes) -> str:
-    """Non-overwriting durable write.  Returns the sha256 of the bytes written."""
-    if path.exists():
-        raise RouteEExecutionRefused(
-            f"{path.name} already exists; nothing is ever replaced", phase="SEAL_ENVELOPE",
-            effects_started=True,
-        )
-    handle, temporary = tempfile.mkstemp(dir=str(path.parent), prefix=".partial-")
+    """Genuinely exclusive first-write-wins.  Returns the sha256 of the bytes written.
+
+    A1-R2 used ``if path.exists(): refuse`` followed by ``os.replace``.  ``os.replace`` is
+    atomic but NOT exclusive, so two concurrent runs under the same namespace both pass the
+    ``exists()`` check and the second silently destroys the first.  The kernel closes that
+    window when create-and-check is one operation, which is what ``O_CREAT | O_EXCL`` is.
+    """
     try:
-        with os.fdopen(handle, "wb") as stream:
-            stream.write(payload)
-            stream.flush()
-            os.fsync(stream.fileno())
-        os.replace(temporary, path)
-    except BaseException:
-        try:
-            os.unlink(temporary)
-        except OSError:
-            pass
-        raise
-    return _sha256_hex(payload)
+        return _protocol.no_clobber_write(path, payload)
+    except FileExistsError as exc:
+        raise RouteEExecutionRefused(
+            f"{path.name} already exists; nothing is ever replaced, and a concurrent run "
+            "under the same namespace loses rather than overwrites",
+            phase="SEAL_ENVELOPE",
+            effects_started=True,
+        ) from exc
 
 
 def _law_spec_from_fields(fields: Mapping[str, float]) -> LatticeBondSpec:
@@ -643,25 +642,60 @@ def _law_spec_from_fields(fields: Mapping[str, float]) -> LatticeBondSpec:
     return LatticeBondSpec(**{k: float(v) for k, v in fields.items() if k in accepted})
 
 
+#: Domain separation for the initial-condition streams.  ``m`` and ``n`` are declared
+#: i.i.d. and INDEPENDENT of one another, so they may not be drawn from one stream: a
+#: single stream makes n[y,x] a deterministic function of the m draws that precede it.
+#: Two distinct domains give two independent streams from the same frozen generator.
+IC_MATTER_DOMAIN = _strict.IC_MATTER_DOMAIN
+IC_RESOURCE_DOMAIN = _strict.IC_RESOURCE_DOMAIN
+
+#: A1-R4 correction of A1-R3 defect B4.  A1-R2 and A1-R3 hand-rolled a FOUR-byte loop
+#: dividing by ``2**32``.  The canonical frozen generator is
+#: ``future_route_e_pre_run_frame.draw_uniform``.  Since the owner decision
+#: ``SELECT_OPTION_1_TOP_53_BITS`` that generator is ``U53_TOP_BITS_V1``:
+#: ``(int.from_bytes(draw_block(...)[0:8], "big") >> 11) * 2**-53`` -- EIGHT bytes
+#: consumed, 53 bits of resolution, range strictly ``[0, 1)``.
+#: The hand-rolled loop was never the frozen law; it is removed, not parameterised.
+IC_WORD_BYTES = _strict.IC_WORD_BYTES
+IC_RESOLUTION_BITS = _strict.IC_RESOLUTION_BITS
+IC_MAPPING_VERSION = _strict.IC_MAPPING_VERSION
+
+
+def _uniform_field(seed_root: bytes, domain: bytes, ic_index: int, cells: int) -> np.ndarray:
+    """``cells`` i.i.d. U[0,1) draws from THE canonical frozen generator.
+
+    One call to :func:`future_route_e_pre_run_frame.draw_uniform` per cell, on a stream
+    index that is a pure function of ``(ic_index, cell)``.  Eight bytes consumed per draw,
+    divided by ``2**64``.  No NumPy RNG, no ``random``, no substitute, no four-byte word,
+    no ``2**-32``, and ``m`` and ``n`` never share a domain.
+    """
+    base = ic_index * 1_000_000
+    return np.fromiter(
+        (_frame.draw_uniform(seed_root, domain, base + offset) for offset in range(cells)),
+        dtype=np.float64,
+        count=cells,
+    )
+
+
 def _initial_state(seed_root: bytes, ic_index: int, size: int) -> LatticeBondState:
-    """The initial condition of one world, derived from the seed root alone."""
+    """The FROZEN initial-condition law of one world, derived from the seed root alone.
+
+    ``m[y,x] ~ U[0,1]`` i.i.d., ``n[y,x] ~ U[0,1]`` i.i.d. and independent of ``m``,
+    ``b(axis,y,x) = 0``.
+
+    A1-R2 set ``n`` to the constant 0.8 everywhere.  That is not the frozen law, and it is
+    not a harmless simplification: a constant resource field removes the resource gradient
+    from ``resource_natural`` at every face on the first step, and it fixes
+    ``min(n, n_plus)/n_max`` in ``bond_cue`` at a single value, so the whole bond-formation
+    landscape is degenerate.  Any Delta measured from it would be a measurement of the
+    constant, not of the declared population.
+    """
     cells = size * size
-    matter = np.empty(cells, dtype=np.float64)
-    produced = 0
-    block_index = ic_index * 1_000_000
-    while produced < cells:
-        block = _frame.draw_block(seed_root, b"IC", block_index)
-        block_index += 1
-        for offset in range(0, 32, 4):
-            if produced == cells:
-                break
-            word = int.from_bytes(block[offset : offset + 4], "big")
-            matter[produced] = word / float(1 << 32)
-            produced += 1
-    grid = matter.reshape((size, size))
+    matter = _uniform_field(seed_root, IC_MATTER_DOMAIN, ic_index, cells).reshape((size, size))
+    resource = _uniform_field(seed_root, IC_RESOURCE_DOMAIN, ic_index, cells).reshape((size, size))
     return LatticeBondState(
-        grid,
-        np.full((size, size), 0.8, dtype=np.float64),
+        matter,
+        resource,
         np.zeros((2, size, size), dtype=np.float64),
         0,
     )
@@ -836,7 +870,9 @@ def run_route_e(
     horizon = int(distributions["horizon_steps"])
     cadence = int(distributions["cadence_steps"])
     schedule = _schedule(horizon, cadence)
-    measurement_spec = MeasurementSpec(min_cells=1)
+    # A1-R4 defect B3: A1-R2/A1-R3 used min_cells=1 in BOTH producer and verifier.
+    measurement_spec = MeasurementSpec()
+    _strict.check_frozen_measurement_spec(measurement_spec)
     attempts: list[dict[str, Any]] = []
     succeeded = 0
     for ordinal, (law_index, ic_ordinal) in enumerate(plan.world_order[:worlds]):
@@ -869,10 +905,28 @@ def run_route_e(
             attempt["failure_class"] = type(exc).__name__
             attempt["failure_detail"] = str(exc)[:400]
         else:
+            # PRB-1's literal obligation, now actually PRODUCED.  A1-R2 declared the file
+            # name and never wrote it, so the join it claimed to bind did not exist.  The
+            # document is derived from the frames just persisted, by the SAME definition
+            # the admission uses to recompute it, so a disagreement is a detected fault
+            # rather than an untested assumption.
+            join_document = _world_evidence.build_join_document(
+                world_directory,
+                sampled_frames=schedule,
+                frame_shape=(int(state.m.shape[0]), int(state.m.shape[1])),
+                detector=measurement_spec.detector_spec(),
+                tracker=measurement_spec.tracker_spec(),
+                horizon_steps=horizon,
+                cadence_steps=cadence,
+            )
+            _write_exact(
+                world_directory / JOIN_EVIDENCE_NAME, canonical_bytes(join_document)
+            )
             attempt["status"] = "SUCCESS"
             attempt["measurement_root_sha256"] = record.measurement_root_sha256
             attempt["lifecycle_document_sha256"] = record.owned_record.lifecycle_document_sha256
             attempt["terminal_record_count"] = int(record.owned_record.terminal_record_count)
+            attempt["join_sha256"] = _sha256_hex(canonical_bytes(join_document))
             succeeded += 1
         attempts.append(attempt)
 

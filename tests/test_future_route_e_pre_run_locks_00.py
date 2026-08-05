@@ -1178,9 +1178,13 @@ def test_hr6_05_the_declared_resolution_bound_is_the_real_one():
 
     cap = 2 * math.log(frame.HORIZON_STEPS / 4)
     assert cap == frame.PROPOSAL_BOX["affinity_sum_cap"]
-    assert abs(cap / 2**64 - 6.0e-19) < 1e-20
+    # PILOT_READINESS_00: under U53_TOP_BITS_V1 the realised grid step is (hi-lo)/2**53.
+    # The superseded values on these lines were 6.0e-19 and 3.3e-21 over 2**64.
+    assert abs(cap / 2**53 - 1.2312767348986591e-15) < 1e-25
     low, high = frame.PROPOSAL_BOX["rate_interval"]
-    assert abs((high - low) / 2**64 - 3.3e-21) < 1e-22
+    assert abs((high - low) / 2**53 - 6.830473686658678e-18) < 1e-28
+    assert "1.2e-15" in frame.UNIFORMITY_STATEMENT["2_realised_grid"]
+    assert "6.8e-18" in frame.UNIFORMITY_STATEMENT["2_realised_grid"]
 
 
 def test_hr6_06_the_frame_no_longer_claims_exact_uniformity_on_the_continuum():

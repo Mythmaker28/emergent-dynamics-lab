@@ -77,3 +77,6 @@
 | EXP-GT-A0-20260713-001 | 2026-07-13 | ontology audit of A | **FAILED — ONTOLOGY** (benchmark-label error; D-052 repair withdrawn) | D-053 |
 | EXP-GT-ACERT-20260713-001 | 2026-07-13 | architecture resolution certificate | **QUALIFIED** (development) — tol 0, resolution 4 steps / 1 edge / 1 node | D-055 |
 | EXP-GT-03-20260713-001 | 2026-07-13 | frozen factorized observer, held-out | **FAILED — IMPLEMENTATION** (phase invariance; over-abstention x2) | D-056 |
+| A1R4-VERIFIABLE-CLOSURE-00 | 2026-08-04 | engineering only; no scientific run; 3 STOPs declared; branch codex/route-e-a1r4-verifiable-closure |
+| A1R5-MECHANICAL-TRUST-CLOSURE-00 | 2026-08-04 | engineering only; 8 overclaims retracted; 3 STOPs open; no scientific run |
+| ROUTE-E-PILOT-READINESS-00 | 2026-08-05 | exploratory pilot 24 laws x 2 IC = 48 worlds, 299 s; 48/48 mechanically ineligible (wrapping); PILOT_DESIGN_RISK_OBSERVED; no k, no 42/9, no confirmatory |

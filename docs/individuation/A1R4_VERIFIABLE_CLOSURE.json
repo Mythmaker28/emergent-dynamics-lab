@@ -1,0 +1,61 @@
+{
+  "a1_r3_incident_recorded": {
+    "deleted_or_renamed": 0,
+    "other_append_only_records_touched": 0,
+    "remedy": "restored byte-identically in A1-R4; the test pin is reverted to its A1-R2 value; Git history is NOT rewritten and the incident is not concealed",
+    "sha256_before": "89e824bd27703e8264d52f99b243679035b440a8b46eba6c6a91790a153c234d",
+    "sha256_written_by_a1r3": "ae43faa0518e67fdf0ae94245ac0ecd2c2fee404d56e9cbc0a65c8ce2bb045dd",
+    "what": "A1-R3 rewrote docs/individuation/FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00_CURRENT_SOURCE_QUALIFICATION.json, a record declaring append_only=true, and rebaselined its own test pin to match."
+  },
+  "a2_authorized": false,
+  "a2_rule_modified": false,
+  "append_only": true,
+  "base": "e5049d06e7fba07770f09e22910ae0cec023a16f",
+  "base_parent": "199f29eba5262f10fd03184e1af5f193474325bf",
+  "current_source_bound_by_this_mission": {
+    "edlab/route_e_protocol.py": {
+      "bytes": 18210,
+      "sha256": "92e4a2377bf8d2f6411b41ec604261e39f6cc68780ac8419db0e4f23585b6034"
+    },
+    "edlab/route_e_strict.py": {
+      "bytes": 9420,
+      "sha256": "0764cb1c42d1a40d639ef55578ca78929d9ce6e8c3968786ebec71dd51f37a2b"
+    },
+    "edlab/substrates/lattice_bond/future_route_e_admission.py": {
+      "bytes": 32282,
+      "sha256": "37bb6f2384a7dc48d64fb305e0c4abf61baedfa332a5e0fd54fd4376f3fdb3aa"
+    },
+    "edlab/substrates/lattice_bond/future_route_e_execution.py": {
+      "bytes": 41670,
+      "sha256": "2f66f0ea820b8ffcd8146f0d3149cf3361707ec0d575dbab883947ce3fcbe80d"
+    },
+    "edlab/substrates/lattice_bond/future_route_e_world_evidence.py": {
+      "bytes": 18265,
+      "sha256": "1b1862757daef0bf95a305a9ec88470b26d5bd088b7cf420c362fd43144892ab"
+    }
+  },
+  "defects_closed_by_a1r4": {
+    "B3_min_cells": "producer and verifier both hard-coded MeasurementSpec(min_cells=1); frozen value is 3; both now assert a single shared authority",
+    "B4_ic_resolution": "a hand-rolled 4-byte / 2**-32 loop replaced by the canonical frozen draw_uniform: 8 bytes, /2**64, domains IC-M and IC-N",
+    "B5_join_coverage": "track_id = -1 removed; orphan, duplicate, surplus and inexact coverage all refused",
+    "B6_late_track": "a component absent at the enrolment frame can no longer produce Y=1"
+  },
+  "engine_execution_proven": false,
+  "human_review": "PENDING",
+  "independent_admission_verified": false,
+  "mission": "ROUTE_E_A1R4_VERIFIABLE_CLOSURE_00",
+  "pilot_authorized": false,
+  "preregistration_authorized": false,
+  "schema": "a1r4-verifiable-closure/v1",
+  "scientific_independent_admission_verified": false,
+  "scientific_run_authorized": false,
+  "scientific_run_performed": false,
+  "self_accepting": false,
+  "stops_declared": [
+    "STOP_PINNED_VERIFIER_UNAVAILABLE",
+    "STOP_SOURCE_AUTHORITY_UNFROZEN",
+    "STOP_NAMESPACE_AUTHORITY_UNFROZEN"
+  ],
+  "supersedes_nothing_historical": true,
+  "trust_boundary": "INTERNAL_ARTIFACT_CONSISTENCY_ONLY"
+}

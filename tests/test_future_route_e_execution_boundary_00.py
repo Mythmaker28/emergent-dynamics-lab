@@ -204,11 +204,32 @@ def test_arch_04_the_execution_module_sits_above_the_bridge_and_never_edits_it()
     assert "route_e" not in bridge
 
 
-def test_arch_05_the_admission_module_imports_no_engine() -> None:
+def test_arch_05_the_admission_reuses_no_private_helper_of_the_producer() -> None:
+    """A1-R3 replaces a FALSE claim with a true one.
+
+    The A1-R2 assertion here was "the admission module imports no engine", established by
+    searching the source text for ``from .engine import``.  Both halves were wrong: the
+    module imported ``future_route_e_execution``, which imports the engine, so the property
+    was false; and a string search is not evidence of an import graph, so the method could
+    not have detected it.
+
+    What is asserted now is the property that is true and that matters: the verifier reuses
+    no private helper of the producer.  The runtime claim -- no ``LatticeBondEngine``
+    instantiated, no simulation step taken, no output-tree mutation -- is established in a
+    fresh subprocess by ``tests/test_future_route_e_a1r3_admission.py::test_f02``, because
+    only an interpreter can establish it.
+    """
+    import ast
+
     text = (_REPO_ROOT / "edlab/substrates/lattice_bond/future_route_e_admission.py").read_text("utf-8")
-    assert "LatticeBondEngine" not in text
-    assert "from .engine import" not in text
-    assert ".step(" not in text
+    imported: list[str] = []
+    for node in ast.walk(ast.parse(text)):
+        if isinstance(node, ast.ImportFrom):
+            imported.extend(f"{node.module or ''}.{alias.name}" for alias in node.names)
+        elif isinstance(node, ast.Import):
+            imported.extend(alias.name for alias in node.names)
+    assert not any("future_route_e_execution" in name for name in imported), imported
+    assert any("route_e_protocol" in name for name in imported), imported
 
 
 # --------------------------------------------------------------------------------------
@@ -967,9 +988,16 @@ def test_record_02_the_record_binds_the_current_source_bytes() -> None:
         "edlab/substrates/lattice_bond/future_route_e_admission.py",
     }
     for relative, entry in bound.items():
-        payload = (_REPO_ROOT / relative).read_bytes()
-        assert hashlib.sha256(payload).hexdigest() == entry["sha256"], relative
-        assert len(payload) == entry["bytes"], relative
+        # A1-R4: the record is APPEND-ONLY and is restored byte-identically, so it binds the
+        # A1-R2 bytes of these two modules.  A1-R3 and A1-R4 have since changed them.  The
+        # historical binding is asserted against the A1-R2 blobs read from Git, never by
+        # rebaselining the record -- rebaselining is precisely the A1-R3 incident.
+        blob = subprocess.run(
+            ["git", "show", f"199f29eba5262f10fd03184e1af5f193474325bf:{relative}"],
+            capture_output=True, cwd=str(_REPO_ROOT), check=True,
+        ).stdout
+        assert hashlib.sha256(blob).hexdigest() == entry["sha256"], relative
+        assert len(blob) == entry["bytes"], relative
         assert entry["source_changed_by_this_mission"] is True
 
 
