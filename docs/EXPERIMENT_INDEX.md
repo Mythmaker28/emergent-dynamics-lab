@@ -53,3 +53,4 @@ handoff that moves a component changes its causal delay, so A is right to call i
 Hold-outs QUARANTINED. One repair cycle authorized, on development data only.
 | A1R4-VERIFIABLE-CLOSURE-00 | NOT AN EXPERIMENT | engineering closure; synthetic fixtures are SYNTHETIC_NON_SCIENTIFIC and are never runs |
 | A1R5-MECHANICAL-TRUST-CLOSURE-00 | NOT AN EXPERIMENT | synthetic fixtures only, never a run |
+- **ROUTE_E_PILOT_READINESS_AND_FEASIBILITY_00** — owner-authorised minimal closure (six gates) then ONE exploratory pilot off `eccd46bc`. RNG mapping `U53_TOP_BITS_V1` applied. 48/48 worlds engine-verified byte-identically, 0 incidents, 1024 transitions recomputed each. **48/48 mechanically ineligible** (wrapping component; only 6/48 at enrolment, so the dynamics produce it). Union tracer tracks the global labelled fraction (~0.74) while focal residuals of the same tracks reach 0. `PILOT_DESIGN_RISK_OBSERVED`; `confirmatory_run_authorized = false`.

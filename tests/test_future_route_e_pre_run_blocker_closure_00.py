@@ -209,7 +209,10 @@ def test_prb_b_02_uniform_resolution_and_range():
         u = frame.draw_uniform(SEED_A, b"LAW", index)
         assert 0.0 <= u < 1.0
     block = frame.draw_block(SEED_A, b"LAW", 3)
-    assert frame.draw_uniform(SEED_A, b"LAW", 3) == int.from_bytes(block[:8], "big") / 2.0**64
+    # PILOT_READINESS_00 owner decision SELECT_OPTION_1_TOP_53_BITS: the mapping is now
+    # U53_TOP_BITS_V1.  The superseded expectation on this line was ``/ 2.0**64``.
+    word = int.from_bytes(block[:8], "big")
+    assert frame.draw_uniform(SEED_A, b"LAW", 3) == (word >> 11) * 2.0**-53
 
 
 @pytest.mark.parametrize(

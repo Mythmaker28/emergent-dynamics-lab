@@ -651,11 +651,14 @@ IC_RESOURCE_DOMAIN = _strict.IC_RESOURCE_DOMAIN
 
 #: A1-R4 correction of A1-R3 defect B4.  A1-R2 and A1-R3 hand-rolled a FOUR-byte loop
 #: dividing by ``2**32``.  The canonical frozen generator is
-#: ``future_route_e_pre_run_frame.draw_uniform``, which is
-#: ``int.from_bytes(draw_block(...)[0:8], "big") / float(2**64)`` -- EIGHT bytes, ``2**-64``.
+#: ``future_route_e_pre_run_frame.draw_uniform``.  Since the owner decision
+#: ``SELECT_OPTION_1_TOP_53_BITS`` that generator is ``U53_TOP_BITS_V1``:
+#: ``(int.from_bytes(draw_block(...)[0:8], "big") >> 11) * 2**-53`` -- EIGHT bytes
+#: consumed, 53 bits of resolution, range strictly ``[0, 1)``.
 #: The hand-rolled loop was never the frozen law; it is removed, not parameterised.
 IC_WORD_BYTES = _strict.IC_WORD_BYTES
 IC_RESOLUTION_BITS = _strict.IC_RESOLUTION_BITS
+IC_MAPPING_VERSION = _strict.IC_MAPPING_VERSION
 
 
 def _uniform_field(seed_root: bytes, domain: bytes, ic_index: int, cells: int) -> np.ndarray:

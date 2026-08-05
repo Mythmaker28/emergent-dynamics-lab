@@ -39,6 +39,8 @@ __all__ = [
     "IC_RESOURCE_DOMAIN",
     "IC_RESOLUTION_BITS",
     "IC_WORD_BYTES",
+    "IC_MAPPING_VERSION",
+    "IC_MAPPING_SUPERSEDED",
     "StrictRefusal",
     "strict_json_object",
     "require_plain_int",
@@ -71,12 +73,19 @@ FROZEN_PRIMARY_SHAPE: Mapping[str, int] = {
 
 COHORT_RESIDUAL_CONVENTIONS: tuple[float, ...] = (0.01, 0.05, 0.20)
 
-#: The canonical frozen generator is ``future_route_e_pre_run_frame.draw_uniform``:
-#: ``int.from_bytes(draw_block(...)[0:8], "big") / float(2**64)`` -- EIGHT bytes, ``2**-64``.
+#: The canonical frozen generator is ``future_route_e_pre_run_frame.draw_uniform``.
+#: OWNER DECISION ``SELECT_OPTION_1_TOP_53_BITS`` applied by
+#: ROUTE_E_PILOT_READINESS_AND_FEASIBILITY_00: the mapping is now ``U53_TOP_BITS_V1``,
+#: ``u = (int.from_bytes(draw_block(...)[0:8], "big") >> 11) * 2**-53``.
+#: EIGHT bytes are still consumed per draw; the RESOLUTION is 53 bits, not 64, and the
+#: range is strictly ``[0, 1)``.  ``IC_RESOLUTION_BITS = 64`` was a declared property
+#: that binary64 made false (A1-R5 Phase 8), so it is corrected forward, not restated.
 IC_MATTER_DOMAIN = b"IC-M"
 IC_RESOURCE_DOMAIN = b"IC-N"
-IC_RESOLUTION_BITS = 64
+IC_RESOLUTION_BITS = 53
 IC_WORD_BYTES = 8
+IC_MAPPING_VERSION = "U53_TOP_BITS_V1"
+IC_MAPPING_SUPERSEDED = "U64_DIVIDE_V0_SUPERSEDED"
 
 
 class StrictRefusal(ValueError):

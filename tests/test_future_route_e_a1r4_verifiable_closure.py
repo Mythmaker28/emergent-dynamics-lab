@@ -106,14 +106,26 @@ GOLDEN_SEED = bytes.fromhex(
 
 
 def test_m04_golden_vectors_bind_the_bytes_consumed_and_the_values_obtained():
-    """Eight bytes per draw, divided by 2**64, from the canonical frozen generator."""
+    """Eight bytes per draw; the top 53 bits are the value (U53_TOP_BITS_V1).
+
+    PILOT_READINESS_00 owner decision SELECT_OPTION_1_TOP_53_BITS.  The superseded
+    expectation on this line was ``word / float(2**64)``; it is replaced, not deleted,
+    and the superseded mapping stays reachable under its explicit name so that a
+    historical artefact could never be reinterpreted silently.
+    """
     for domain in (strict.IC_MATTER_DOMAIN, strict.IC_RESOURCE_DOMAIN):
         for index in (0, 1, 999):
             block = frame.draw_block(GOLDEN_SEED, domain, index)
             assert len(block) == 32
-            expected = int.from_bytes(block[0:8], "big") / float(2**64)
+            word = int.from_bytes(block[0:8], "big")
+            expected = (word >> 11) * 2.0**-53
             assert frame.draw_uniform(GOLDEN_SEED, domain, index) == expected
             assert 0.0 <= expected < 1.0
+            assert expected * 2**53 == float(word >> 11)  # exactly representable
+            # the superseded mapping is still callable, and is a DIFFERENT function
+            assert frame.draw_uniform_superseded_v0(GOLDEN_SEED, domain, index) == (
+                word / float(2**64)
+            )
 
     state = execution._initial_state(GOLDEN_SEED, 0, 4)
     assert state.m[0, 0] == frame.draw_uniform(GOLDEN_SEED, b"IC-M", 0)
@@ -130,7 +142,10 @@ def test_m05_the_four_byte_and_2_pow_32_generator_is_gone():
     for forbidden in ("1 << 32", "2**32", "np.random", "default_rng", "import random"):
         assert forbidden not in body, forbidden
     assert strict.IC_WORD_BYTES == 8
-    assert strict.IC_RESOLUTION_BITS == 64
+    # PILOT_READINESS_00: the declared resolution was 64 and binary64 made that false;
+    # under U53_TOP_BITS_V1 it is 53 and the grid is uniform everywhere.
+    assert strict.IC_RESOLUTION_BITS == 53
+    assert strict.IC_MAPPING_VERSION == "U53_TOP_BITS_V1"
     assert "draw_uniform" in body
 
 
