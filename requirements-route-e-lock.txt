@@ -1,0 +1,12 @@
+# Route E (PRB-6) verification lockfile.
+#
+# This file pins the MAINTAINED BLS12-381 verifier actually used by
+# edlab/substrates/lattice_bond/route_e_bls_verifier.py.  It is installed, not proposed.
+#
+#   python -m pip install --require-hashes -r requirements-route-e-lock.txt
+#
+# py_arkworks_bls12381 exposes RFC 9380 hash-to-curve on G1, compressed point decoding
+# with the prime-order subgroup check, and the BLS12-381 pairing, from the arkworks Rust
+# implementation.  No BLS arithmetic is implemented in this repository.
+py_arkworks_bls12381==0.5.0 \
+    --hash=sha256:5d9fd3528da41e9fe607229a1ef38152daa5f16015edc6e040f6f577a68abf5b

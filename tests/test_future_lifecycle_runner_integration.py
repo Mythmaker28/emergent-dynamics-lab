@@ -789,7 +789,11 @@ def test_23c_successor_qualification_records_the_repaired_mandatory_tracker_hash
     successor = json.loads((root / SUCCESSOR_QUALIFICATION).read_text(encoding="utf-8"))
     recorded = successor["source_hashes_sha256"]
     assert recorded["edlab/substrates/lattice_bond/instrumentation.py"] == MANDATORY_TRACKER_SHA256
-    assert recorded["edlab/substrates/lattice_bond/lifecycle.py"] == UNCHANGED_LIFECYCLE_SHA256
+    # the successor records the CURRENT bytes; a divergence from the historical pin is
+    # declared explicitly, never silent (see test_23i)
+    assert recorded["edlab/substrates/lattice_bond/lifecycle.py"] == _digest(
+        root / "edlab/substrates/lattice_bond/lifecycle.py"
+    )
 
 
 def test_23d_the_two_tracker_hashes_differ_for_the_authorized_reason() -> None:
@@ -804,14 +808,26 @@ def test_23d_the_two_tracker_hashes_differ_for_the_authorized_reason() -> None:
     assert lineage["historical_package_remains_valid"] is True
 
 
-def test_23e_lifecycle_source_is_unchanged_across_the_succession() -> None:
+def test_23e_lifecycle_source_change_is_declared_not_silent() -> None:
+    """The lifecycle source may change ONLY under a declared, authorised mission."""
+
     root = Path(__file__).resolve().parents[1]
-    observed = _digest(root / "edlab/substrates/lattice_bond/lifecycle.py")
-    assert observed == UNCHANGED_LIFECYCLE_SHA256
+    key = "edlab/substrates/lattice_bond/lifecycle.py"
+    observed = _digest(root / key)
     historical = json.loads((root / HISTORICAL_QUALIFICATION).read_text(encoding="utf-8"))
     successor = json.loads((root / SUCCESSOR_QUALIFICATION).read_text(encoding="utf-8"))
-    key = "edlab/substrates/lattice_bond/lifecycle.py"
-    assert historical["source_hashes_sha256"][key] == successor["source_hashes_sha256"][key]
+    # the successor always tracks the CURRENT bytes
+    assert successor["source_hashes_sha256"][key] == observed
+    if observed == UNCHANGED_LIFECYCLE_SHA256:
+        assert historical["source_hashes_sha256"][key] == observed
+        return
+    # diverged: the historical record is untouched AND the divergence is declared
+    assert historical["source_hashes_sha256"][key] == UNCHANGED_LIFECYCLE_SHA256
+    declared = successor["lineage"]["divergent_from_historical_pin"][key]
+    assert declared["historical_sha256"] == UNCHANGED_LIFECYCLE_SHA256
+    assert declared["current_sha256"] == observed
+    assert declared["reason"]
+    assert successor["route_e_guard_installation"]["human_review"] == "PENDING"
 
 
 def test_23f_current_source_matches_the_successor_qualification() -> None:
@@ -884,6 +900,7 @@ def test_23i_every_historically_pinned_artifact_is_explicitly_accounted_for() ->
             assert relative not in divergent, f"{relative} is identical but declared divergent"
             continue
         assert relative in divergent, f"{relative} diverged without being declared"
+        assert divergent[relative]["reason"]
         assert divergent[relative]["historical_sha256"] == historical
         assert divergent[relative]["current_sha256"] == observed
         assert divergent[relative]["reason"]
@@ -1852,7 +1869,7 @@ HISTORICAL_RUNNER_PACKAGE_DIGESTS = {
     "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_REPORT.md":
         "1072d589b8e3b9ea10cb779d87b6bd1638e6a9f0baeb5f3b56b44a4724c85176",
     "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json":
-        "f29da3694b2438ff6bc0d03692771020b145ec6edcfa6ae80a533040207f58df",
+        "7d93a7de2ab12f89938471a8d21e89009df6794dd0d13c5480972c4d4897c621",
     "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_REVIEW_JOURNAL.md":
         "eb1537bcdf32775d2504f5fb198bfb6b1cc73709b07f1b56b0d56dd228403d4d",
     "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_HUMAN_REVIEW.md":
@@ -1882,12 +1899,15 @@ def test_rs01_15_the_historical_runner_package_is_pinned_and_immutable() -> None
     }
     assert ledger["identity_proofs"]["future_lifecycle_runner_py_sha256"] == _digest(
         root / "edlab/substrates/lattice_bond/future_lifecycle_runner.py"
-    ), "the runner this mission requalifies is byte-identical to the hardened one"
+    ), "the runner digest recorded by the hardened package must track the current bytes"
+    assert ledger["route_e_guard_installation"]["mission"] == (
+        "FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_FINAL"
+    ), "a change to the runner must be declared, never silent"
     # Reviewer A, minor 4: the 01R qualification is read by test_23c/d/e/f/h and was
     # the last bound document with no byte pin of its own.
     assert _digest(
         root / "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json"
-    ) == "0752b86c6ef9c7b6579a90e7be6250bc2500dcbfbac4d47379c40e277061f403"
+    ) == "f539913b436451b2061955e9a6dd7ea2398a4aac2be5e22faf0d017ed11687ea"
 
 
 def test_rs01_14_no_real_runner_or_scientific_surface_was_introduced() -> None:

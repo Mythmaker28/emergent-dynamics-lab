@@ -368,7 +368,7 @@
     "scientific_data_consumed": false
   },
   "identity_proofs": {
-    "future_lifecycle_runner_py_sha256": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
+    "future_lifecycle_runner_py_sha256": "1dbb2f06cd4311990567e512804994f5a39793b9895e44c5427709d8aa82410a",
     "future_lifecycle_runner_py_blob": "44135ee74d8a19bdd1cbdb8e1a38fa0ecb728ff4",
     "future_lifecycle_runner_py_identical_at": [
       "23df99d",
@@ -467,5 +467,25 @@
       "Any scientific claim, provenance or authorization."
     ]
   },
-  "next_action": "HUMAN_REVIEW_OF_THIS_HARDENING_PACKAGE_ONLY"
+  "next_action": "HUMAN_REVIEW_OF_THIS_HARDENING_PACKAGE_ONLY",
+  "route_e_guard_installation": {
+    "mission": "FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_FINAL",
+    "authorised_by": "repository owner, explicit engineering authorisation",
+    "sources_changed": {
+      "edlab/substrates/lattice_bond/lifecycle.py": {
+        "previous_sha256": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+        "current_sha256": "57b249cc7893f8fc908cffc2cfec26419563b393e9a9fadae0a8c880f6e17ced"
+      },
+      "edlab/substrates/lattice_bond/future_lifecycle_runner.py": {
+        "previous_sha256": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
+        "current_sha256": "1dbb2f06cd4311990567e512804994f5a39793b9895e44c5427709d8aa82410a"
+      },
+      "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py": {
+        "previous_sha256": null,
+        "current_sha256": "348140bd06f7e0de057ebde2b8a4c24530d29e7272b807bf556a987f82cebb78"
+      }
+    },
+    "reason": "changed by FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_FINAL: the Route E guard (_refuse_route_e_signal -> enforce_route_e_guard) is installed as the FIRST statement of the accepted public entry points, closing PRB-5.  No signature changed, no authorisation parameter was added, non-Route-E behaviour is unchanged.",
+    "human_review": "PENDING"
+  }
 }

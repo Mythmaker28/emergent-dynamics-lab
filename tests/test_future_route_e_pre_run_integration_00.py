@@ -308,12 +308,10 @@ def test_guard_02_a_complete_signal_reaches_the_frozen_stop_and_no_further(
         with pytest.raises(Exception) as excinfo:
             _guard(route_e_request)
     assert spies.hits == []
-    if HELPER is None:
-        assert isinstance(excinfo.value, frame.BeaconInvalid)
-        assert "configuration_error" in str(excinfo.value)
-    else:
-        assert isinstance(excinfo.value, locks.RouteEGuardRefused)
-        assert "scientific_run_authorized is False" in str(excinfo.value)
+    # With the maintained verifier INSTALLED (PRB-6), the crypto phase really passes and
+    # the guard still refuses on scientific_run_authorized.
+    assert isinstance(excinfo.value, locks.RouteEGuardRefused)
+    assert "scientific_run_authorized is False" in str(excinfo.value)
 
 
 @pytest.mark.parametrize(
@@ -346,6 +344,12 @@ def test_guard_05_an_absent_beacon_is_wait_on_the_same_round(route_e_request, mo
 def test_guard_06_a_missing_verifier_is_stop(route_e_request, monkeypatch):
     import dataclasses
 
+    import edlab.substrates.lattice_bond.route_e_bls_verifier as bls
+
+    def absent():
+        raise bls.BlsVerifierUnavailable("simulated absence of the maintained verifier")
+
+    monkeypatch.setattr(bls, "_library", absent)
     signal = dataclasses.replace(route_e_request, verifier_path=None)
     with ArmedSpies(monkeypatch):
         with pytest.raises(frame.BeaconInvalid) as excinfo:
@@ -410,14 +414,17 @@ def test_weak_01_every_real_entry_point_refuses_before_every_effect(
     assert not (tmp_path / "no-such-run-directory").exists()
 
 
-def test_blocker_01_no_accepted_source_knows_anything_about_route_e():
-    """The honest negative result that keeps PRB-5 OPEN."""
+def test_blocker_01_the_guard_is_installed_and_changes_nothing_else():
+    """PRB-5, closed: the accepted sources now refuse a typed Route E signal at their
+    FIRST statement, and know nothing else about Route E."""
     import inspect
 
     for module in (owned, runner, lifecycle_module):
         source = inspect.getsource(module)
-        for term in ("RouteERequest", "enforce_route_e_guard", "route_e", "RouteEReceipt"):
-            assert term not in source, f"{module.__name__} unexpectedly mentions {term}"
+        assert "_refuse_route_e_signal" in source, module.__name__
+        # no receipt, no request construction, no Route E behaviour beyond the refusal
+        assert "RouteEReceipt(" not in source, module.__name__
+        assert "RouteERequest(" not in source, module.__name__
 
 
 def test_blocker_02_no_accepted_public_signature_carries_a_route_e_parameter():
@@ -433,19 +440,13 @@ def test_blocker_02_no_accepted_public_signature_carries_a_route_e_parameter():
         assert "route_e" not in inspect.signature(function).parameters
 
 
-def test_blocker_03_the_blocker_is_declared_not_hidden():
-    assert "NOT called by any accepted entry point" in locks.GUARD_IS_NOT_INSTALLED
-    assert "tests/test_future_lifecycle_runner_integration.py" in locks.GUARD_IS_NOT_INSTALLED
-    assert "tests/test_future_lifecycle_owned_pipeline.py" in locks.GUARD_IS_NOT_INSTALLED
+def test_blocker_03_the_closure_is_declared_not_assumed():
     status = locks.blocker_status()["PRB-5"]
-    assert status["status"] == "OPEN"
+    assert status["status"] == "CANDIDATE_CLOSED"
     assert status["guard_implemented"] is True
-    assert status["guard_installed"] is False
-    assert status["route_e_specific_refusal_inside_accepted_sources"] is False
-    assert set(status["blocked_by"]) == {
-        "tests/test_future_lifecycle_runner_integration.py",
-        "tests/test_future_lifecycle_owned_pipeline.py",
-    }
+    assert status["guard_installed"] is True
+    assert set(status["blocked_by"]) == set()
+    assert status["human_review_required"] is True
 
 
 # ======================================================================================
@@ -542,7 +543,7 @@ def test_firewall_02_the_integration_never_reads_a_historical_result():
 
 def test_firewall_03_the_status_is_factual_and_carries_no_composite_token():
     status = locks.blocker_status()
-    assert status["PRB-5"]["status"] == "OPEN"
+    assert status["PRB-5"]["status"] == "CANDIDATE_CLOSED"
     assert status["PRB-2"]["authenticity_established"] is True
     assert status["PRB-2"]["integration_into_accepted_sources"] is False
     for entry in status.values():

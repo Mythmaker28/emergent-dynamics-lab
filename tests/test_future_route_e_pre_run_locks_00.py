@@ -559,8 +559,14 @@ def test_prb6_02_a_commitment_binding_another_root_is_refused():
         )
 
 
-def test_prb6_03_no_verifier_means_a_stop_never_a_default():
+def test_prb6_03_no_verifier_means_a_stop_never_a_default(monkeypatch):
     """Priority passes, then the missing verifier is a STOP.  Never a silent pass."""
+    import edlab.substrates.lattice_bond.route_e_bls_verifier as bls
+
+    def absent():
+        raise bls.BlsVerifierUnavailable("simulated absence of the maintained verifier")
+
+    monkeypatch.setattr(bls, "_library", absent)
     with pytest.raises(frame.BeaconInvalid) as excinfo:
         locks.verify_public_commitment(
             _commitment(DIGEST_A),
@@ -570,8 +576,20 @@ def test_prb6_03_no_verifier_means_a_stop_never_a_default():
                              "chain_hash": beacon.QUICKNET_CHAIN_HASH},
             verifier_path=None,
         )
-    assert "configuration_error" in str(excinfo.value)
+    assert str(excinfo.value).startswith("STOP")
     assert frame.BeaconInvalid.disposition == "STOP"
+    # and with a well-formed designated round, the absent verifier is the reason
+    verdict = beacon.verify_round(
+        response={
+            "round": frame.designated_round(_CUTOFF),
+            "randomness": "00" * 32,
+            "signature": "00" * 48,
+            "chain_hash": beacon.QUICKNET_CHAIN_HASH,
+        },
+        expected_round=frame.designated_round(_CUTOFF),
+        helper_path=None,
+    )
+    assert verdict.outcome is beacon.BeaconOutcome.CONFIGURATION_ERROR
 
 
 def test_prb6_04_no_boolean_callback_exists_in_any_signature():
@@ -630,7 +648,9 @@ def test_prb6_08_status_reports_a_delivered_verifier_and_a_derived_round():
     assert status["chain_parameters_pinned_in_adapter"] is True
     assert status["round_derived_never_supplied"] is True
     assert status["human_review_required"] is True
-    assert any("NOT committed" in item for item in status["remaining_sub_obligations"])
+    assert any("not committed" in item.lower() for item in status["remaining_sub_obligations"])
+    assert status["installed_verifier_distribution"] == "py_arkworks_bls12381"
+    assert status["installed_verifier_lockfile"] == "requirements-route-e-lock.txt"
 
 
 def test_prb6_09_a_fully_formed_chain_still_never_opens_anything(tmp_path):
@@ -975,12 +995,11 @@ def test_prb5_facade_06_is_still_declared_not_to_be_a_gate():
         assert f"import {module_name}" not in source
 
 
-def test_prb5_07_status_records_the_guard_as_implemented_but_not_installed():
+def test_prb5_07_status_records_the_guard_as_implemented_and_installed():
     status = locks.blocker_status()["PRB-5"]
-    assert status["status"] == "OPEN"
+    assert status["status"] == "CANDIDATE_CLOSED"
     assert status["guard_implemented"] is True
-    assert status["guard_installed"] is False
-    assert status["route_e_specific_refusal_inside_accepted_sources"] is False
+    assert status["guard_installed"] is True
     assert status["facade_is_a_gate"] is False
     assert status["human_review_required"] is True
 

@@ -594,6 +594,17 @@ def _validated_anteriority(payload: bytes, root: str, cutoff: int) -> tuple[dict
     raise RouteEExecutionRefused(f"unknown anteriority proof type {proof_type!r}", phase=phase)
 
 
+def _installed_verifier_available() -> bool:
+    """True only when the maintained BLS library is importable.  Never permissive."""
+    from . import route_e_bls_verifier as _bls
+
+    try:
+        _bls.library_version()
+    except Exception:  # noqa: BLE001 - absence is a STOP, never an accept
+        return False
+    return True
+
+
 def _pinned_verifier() -> Path | None:
     """Locate the helper, then PIN ITS BYTES.  A wrong binary is not a verifier."""
     override = os.environ.get("ROUTE_E_DRAND_VERIFY")
@@ -732,11 +743,17 @@ def run_route_e(
     response = _strict_object(beacon_bytes, phase, "the beacon response")
     helper = _pinned_verifier()
     if helper is None:
-        raise RouteEExecutionRefused(
-            "no verifier whose bytes match the pinned digests is available; an absent or "
-            "unpinned verifier is a STOP, never a pass",
-            phase=phase,
-        )
+        # PRB-6: no byte-pinned external helper.  Fall through to the INSTALLED
+        # maintained verifier (py_arkworks_bls12381, pinned by version and wheel hash
+        # in requirements-route-e-lock.txt).  This is not a permissive fallback: if the
+        # library is absent the adapter answers CONFIGURATION_ERROR and consume_beacon_round
+        # raises BeaconInvalid, which is a STOP.  There is no accept-anyway branch.
+        if not _installed_verifier_available():
+            raise RouteEExecutionRefused(
+                "no verifier is available: neither a byte-pinned external helper nor the "
+                "installed maintained library; an absent verifier is a STOP, never a pass",
+                phase=phase,
+            )
     try:
         randomness = _frame.consume_beacon_round(
             response=response, expected_round=designated, helper_path=helper

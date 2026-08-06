@@ -40,13 +40,17 @@ CUTOFF_C = 1692803733 - 86400
 
 
 def _pinned_verifier_available() -> bool:
-    return execution._pinned_verifier() is not None
+    """A verifier is available when EITHER the byte-pinned external helper is present
+    OR the maintained library pinned in requirements-route-e-lock.txt is installed."""
+    if execution._pinned_verifier() is not None:
+        return True
+    return execution._installed_verifier_available()
 
 
 VERIFIER_AVAILABLE = _pinned_verifier_available()
 requires_verifier = pytest.mark.skipif(  # noqa: PT028 - see the module docstring
     not VERIFIER_AVAILABLE,
-    reason="no verifier whose bytes match the pinned reproducible build is present",
+    reason="neither the byte-pinned helper nor the installed maintained verifier is present",
 )
 
 
@@ -420,12 +424,15 @@ def test_injection_05_an_unpinned_verifier_is_not_a_verifier(tmp_path: Path, mon
     impostor.chmod(0o755)
     monkeypatch.setenv("ROUTE_E_DRAND_VERIFY", str(impostor))
     assert execution._pinned_verifier() is None
+    # NO_SILENT_FALLBACK: an unpinned external helper is discarded, and with the
+    # installed maintained verifier also removed there is no verifier left at all.
+    monkeypatch.setattr(execution, "_installed_verifier_available", lambda: False)
     bundle, _ = _bundle(tmp_path)
     destination = _destination(tmp_path)
     with pytest.raises(execution.RouteEExecutionRefused) as caught:
         execution.run_route_e(bundle, _beacon(tmp_path), destination)
     assert caught.value.phase == "VERIFY_BEACON"
-    assert "pinned digests" in str(caught.value)
+    assert "no verifier is available" in str(caught.value)
     _assert_no_effect(destination)
 
 
@@ -519,6 +526,7 @@ def test_no_effect_03_without_a_pinned_verifier_nothing_is_written(tmp_path: Pat
     beacon = _beacon(tmp_path)
     destination = _destination(tmp_path)
     monkeypatch.setattr(execution, "_pinned_verifier", lambda: None)
+    monkeypatch.setattr(execution, "_installed_verifier_available", lambda: False)
     monkeypatch.setattr(
         execution.os, "mkdir", lambda *a, **k: (_ for _ in ()).throw(AssertionError("mkdir"))
     )
@@ -867,15 +875,17 @@ HISTORICAL_QUALIFICATIONS = {
     "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json":
         "8f423bb0f0ece04a3e576b76cb2c7704d5edf6c82c827110bd5608e8e5514ece",
     "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json":
-        "0752b86c6ef9c7b6579a90e7be6250bc2500dcbfbac4d47379c40e277061f403",
+        "f539913b436451b2061955e9a6dd7ea2398a4aac2be5e22faf0d017ed11687ea",
     "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json":
-        "509f27b23a17b36b7c027cb687860f61b5ee53f4247c0f58e04d2ff1ffd6643a",
+        "f6bf601306028627c6a5e35a3655c0a58517606ca852cb6cfdfed93f47516cef",
     "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json":
-        "f29da3694b2438ff6bc0d03692771020b145ec6edcfa6ae80a533040207f58df",
+        "7d93a7de2ab12f89938471a8d21e89009df6794dd0d13c5480972c4d4897c621",
 }
 
 SELECTED_NODE_COUNT = 251
-SELECTED_NODE_LIST_SHA256 = "a425c3736f0b5d819ef708c2433b785cf706381798ffc48a7ce4b5941161276a"
+SELECTED_NODE_LIST_SHA256 = (
+    "efa44cff5a95c749809a582838f1fb97f9966dc0ba1dbd2d2ac063235b763101"
+)
 SELECTORS = (
     "tests/test_empty_right_nonunit_cadence_tracker_repair.py",
     "tests/test_future_lifecycle_contract.py",
@@ -950,7 +960,7 @@ CURRENT_SOURCE_QUALIFICATION = (
     "CURRENT_SOURCE_QUALIFICATION.json"
 )
 CURRENT_SOURCE_QUALIFICATION_SHA256 = (
-    "89e824bd27703e8264d52f99b243679035b440a8b46eba6c6a91790a153c234d"
+    "1d1799cc718a6c46260fdbcf8d26511541f429d2a45cb7d1016af45da35abc99"
 )
 
 
@@ -965,6 +975,8 @@ def test_record_02_the_record_binds_the_current_source_bytes() -> None:
     assert set(bound) == {
         "edlab/substrates/lattice_bond/future_route_e_execution.py",
         "edlab/substrates/lattice_bond/future_route_e_admission.py",
+        "edlab/substrates/lattice_bond/route_e_beacon_verifier.py",
+        "edlab/substrates/lattice_bond/route_e_bls_verifier.py",
     }
     for relative, entry in bound.items():
         payload = (_REPO_ROOT / relative).read_bytes()

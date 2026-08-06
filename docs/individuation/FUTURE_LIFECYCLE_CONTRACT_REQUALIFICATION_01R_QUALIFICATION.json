@@ -35,8 +35,8 @@
     "repaired_optional_tracker_sha256": "2d896897244bfbc6cd5c01740bff98521633d500178bb2aed176d32ea669dbf4",
     "mandatory_tracker_sha256": "65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef",
     "tracker_hash_change_reason": "MANDATORY_SAMPLED_FRAMES_SCHEDULE",
-    "unchanged_lifecycle_sha256": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
-    "unchanged_runner_sha256": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
+    "unchanged_lifecycle_sha256": "57b249cc7893f8fc908cffc2cfec26419563b393e9a9fadae0a8c880f6e17ced",
+    "unchanged_runner_sha256": "1dbb2f06cd4311990567e512804994f5a39793b9895e44c5427709d8aa82410a",
     "historical_package_remains_valid": true,
     "historically_pinned_artifacts": [
       "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_SCHEMA.json",
@@ -59,6 +59,11 @@
         "current_sha256": "b12b34651236c526ea772ce5c15ff5b2ca4054f638340069d0178be37c297126",
         "intermediate_sha256_at_authorized_parent": "e940199e7befaf7e60535867525d163e3abc807a951265c78a5f7b1d0acddd47",
         "reason": "01R migrated its two track_components call sites to the mandatory keyword schedule, restated the superseded empty-right rejection test, and added within-frame stamp-consistency coverage requested by Reviewer A."
+      },
+      "edlab/substrates/lattice_bond/lifecycle.py": {
+        "historical_sha256": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+        "current_sha256": "57b249cc7893f8fc908cffc2cfec26419563b393e9a9fadae0a8c880f6e17ced",
+        "reason": "changed by FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_FINAL: the Route E guard (_refuse_route_e_signal -> enforce_route_e_guard) is installed as the FIRST statement of the accepted public entry points, closing PRB-5.  No signature changed, no authorisation parameter was added, non-Route-E behaviour is unchanged."
       }
     },
     "reason_for_succession": "The historical qualification bound the current tree to a tracker source hash. The authorized removal of the schedule-free path changes that hash, so the historical pin can no longer describe the current tree without being falsified. Overwriting it would have destroyed the evidence it carries; a successor package records the new hash and asserts the difference explicitly.",
@@ -68,8 +73,8 @@
   "source_hashes_sha256": {
     "edlab/substrates/lattice_bond/__init__.py": "9d3bea5ac70b514b592f71c2c46738dfdaec62e0072e8055a512b2e22ac6d5b0",
     "edlab/substrates/lattice_bond/instrumentation.py": "65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef",
-    "edlab/substrates/lattice_bond/lifecycle.py": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
-    "edlab/substrates/lattice_bond/future_lifecycle_runner.py": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08"
+    "edlab/substrates/lattice_bond/lifecycle.py": "57b249cc7893f8fc908cffc2cfec26419563b393e9a9fadae0a8c880f6e17ced",
+    "edlab/substrates/lattice_bond/future_lifecycle_runner.py": "1dbb2f06cd4311990567e512804994f5a39793b9895e44c5427709d8aa82410a"
   },
   "test_hashes_sha256": {
     "tests/test_empty_right_nonunit_cadence_tracker_repair.py": "50918cf0a77f0505e54e42f177de4084281dd2f05257b4e29942b2666615675e",
@@ -504,5 +509,25 @@
     "main_worktree_written": false,
     "head_moved": false
   },
-  "next_action": "HUMAN_REVIEW_OF_LIFECYCLE_REQUALIFICATION_01R_ONLY"
+  "next_action": "HUMAN_REVIEW_OF_LIFECYCLE_REQUALIFICATION_01R_ONLY",
+  "route_e_guard_installation": {
+    "mission": "FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_FINAL",
+    "authorised_by": "repository owner, explicit engineering authorisation",
+    "sources_changed": {
+      "edlab/substrates/lattice_bond/lifecycle.py": {
+        "previous_sha256": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+        "current_sha256": "57b249cc7893f8fc908cffc2cfec26419563b393e9a9fadae0a8c880f6e17ced"
+      },
+      "edlab/substrates/lattice_bond/future_lifecycle_runner.py": {
+        "previous_sha256": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
+        "current_sha256": "1dbb2f06cd4311990567e512804994f5a39793b9895e44c5427709d8aa82410a"
+      },
+      "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py": {
+        "previous_sha256": null,
+        "current_sha256": "348140bd06f7e0de057ebde2b8a4c24530d29e7272b807bf556a987f82cebb78"
+      }
+    },
+    "reason": "changed by FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_FINAL: the Route E guard (_refuse_route_e_signal -> enforce_route_e_guard) is installed as the FIRST statement of the accepted public entry points, closing PRB-5.  No signature changed, no authorisation parameter was added, non-Route-E behaviour is unchanged.",
+    "human_review": "PENDING"
+  }
 }

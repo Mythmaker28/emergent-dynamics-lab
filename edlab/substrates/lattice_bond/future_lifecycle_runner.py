@@ -320,6 +320,7 @@ def publish_future_family_completion(
     canonically persisted, read back from disk and reverified against the exact
     inputs supplied here.
     """
+    _refuse_route_e_signal(run_directory, "future_lifecycle_runner.publish_future_family_completion")
 
     progress = _Progress()
     directory = Path(run_directory)
@@ -386,6 +387,7 @@ def open_analysis_access(
     document alone never unlocks analysis; a completion manifest alone never
     unlocks analysis.
     """
+    _refuse_route_e_signal(run_directory, "future_lifecycle_runner.open_analysis_access")
 
     directory = Path(run_directory)
     if not directory.is_dir():
@@ -473,3 +475,18 @@ __all__ = [
     "open_analysis_access",
     "publish_future_family_completion",
 ]
+
+
+def _refuse_route_e_signal(candidate: object, entry_point: str) -> None:
+    """PRB-5: the installed Route E guard.
+
+    Installed as the FIRST statement of every accepted public entry point.  It costs
+    nothing on the normal path (one isinstance check) and it makes the Route E guard
+    unavoidable: an accepted entry point driven with a typed ``RouteERequest`` runs the
+    frozen check order and ALWAYS refuses, before any other check, any read, any write,
+    any engine call and any acquisition.  No parameter was added to any signature.
+    """
+    from .future_route_e_pre_run_locks import RouteERequest, enforce_route_e_guard
+
+    if isinstance(candidate, RouteERequest):
+        enforce_route_e_guard(candidate, entry_point=entry_point)

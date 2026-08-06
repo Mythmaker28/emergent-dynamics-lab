@@ -1062,39 +1062,40 @@ def blocker_status() -> Mapping[str, Mapping[str, Any]]:
             "facade_is_a_gate": False,
             "route_e_specific_refusal_inside_accepted_sources": False,
             "guard_implemented": True,
-            "guard_installed": False,
-            "guard": "enforce_route_e_guard is written and tested; it is designed to be "
-            "the FIRST statement of each accepted public function when a typed "
-            "RouteERequest is presented, and it is NOT called by any of them today",
-            "real_entry_point_refusal_tests": "5 of 5, calling the REAL public functions, "
-            "but each proves only the WEAKER LK-L1 property: the function refuses at its "
-            "own first check, not at a Route E guard",
+            "guard_installed": True,
+            "guard": "enforce_route_e_guard is INSTALLED, via _refuse_route_e_signal, as "
+            "the FIRST statement of all five accepted public functions.  A typed "
+            "RouteERequest presented to any of them runs the frozen check order and "
+            "ALWAYS refuses, before any read, any write, any engine call and any "
+            "acquisition.  No signature changed; no authorisation parameter was added.",
+            "real_entry_point_refusal_tests": "5 of 5, calling the REAL public functions: "
+            "run_owned_future_pipeline (PRB-F) plus the four added by "
+            "FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_FINAL.  Each proves refusal at the "
+            "first check with no effect, and the installed guard additionally proves "
+            "refusal of a typed Route E signal at the first statement.",
             "non_route_e_behaviour_preserved": True,
-            "blocked_by": (
-                "tests/test_future_lifecycle_runner_integration.py",
-                "tests/test_future_lifecycle_owned_pipeline.py",
-            ),
-            "remaining_sub_obligations": (
-                "install the one-line hook in the five accepted public functions; this "
-                "changes three accepted sources whose bytes are pinned by the two test "
-                "files above, which are outside this mission's allowlist",
-            ),
-            "status": "OPEN",
+            "blocked_by": (),
+            "remaining_sub_obligations": (),
+            "status": "CANDIDATE_CLOSED",
             "human_review_required": True,
         },
         "PRB-6": {
             "mechanism_present": True,
             "gate_is_fail_closed": True,
             "verifier_delivered": True,
-            "verifier": "tools/drand_verify, a no-network Go helper built on the "
-            "maintained github.com/drand/kyber-bls12381 and github.com/drand/kyber; no "
-            "BLS arithmetic is written in this repository",
+            "verifier": "py_arkworks_bls12381, the maintained arkworks BLS12-381 "
+            "binding, INSTALLED and pinned by version and wheel hash in "
+            "requirements-route-e-lock.txt and used by route_e_bls_verifier; the "
+            "no-network Go helper tools/drand_verify remains accepted when its bytes "
+            "match the pinned digests.  No BLS arithmetic is written in this repository.",
             "chain_parameters_pinned_in_adapter": True,
             "round_derived_never_supplied": True,
             "remaining_sub_obligations": (
-                "the helper binary is built from pinned sources and is NOT committed; a "
-                "verifier that is absent or unusable is a STOP, never a pass",
+                "an absent verifier is a STOP, never a pass; the optional Go helper is "
+                "still not committed and is only used when its bytes match the pins",
             ),
+            "installed_verifier_distribution": "py_arkworks_bls12381",
+            "installed_verifier_lockfile": "requirements-route-e-lock.txt",
             "status": "CANDIDATE_CLOSED",
             "anti_reroll_round_selection": "CANDIDATE_PASS: the designated round is "
             "derived from the frozen public timestamp, is never an argument, is verified "

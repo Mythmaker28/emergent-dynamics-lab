@@ -1,153 +1,177 @@
 {
-  "schema": "route-e-execution-boundary/current-source-qualification/v1",
-  "schema_note": "descriptive label, not a JSON Schema identifier; no schema file defines it and no canonical vocabulary is created here",
-  "mission": "FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00",
-  "append_only": true,
-  "supersedes_nothing_historical": true,
-  "human_review": "PENDING",
-  "self_accepting": false,
-  "acceptance_note": "this record qualifies nothing by itself; it states which current source bytes this mission binds, and a human review has not been performed",
-  "base": "da0ec3f1e6198fcb25690cee02490f0d2ce9d034",
-  "lineage": [
-    "00afcdd1aacbdf32bb030d85ced735a2920421f6",
-    "c6d4acf037d4e51d59e5b75dc91b977b9eb83dbd",
-    "bc2a42c468eec5a4e1732ebb08c7cc20c4dab7dd",
-    "a379efa6e230efd6b4051b36717169be9c0f5dbf",
-    "31ccccfb9e61809cf5d461a70425e00c3db7bc17",
-    "054140024267183fa43ef86755cd1c82d5a41483",
-    "c08e27c0d7c133789333a73fa66fedc5ab0a2979",
-    "f152c3c43d316cfbc4d7704fc91c69e51ee5fefa",
-    "da0ec3f1e6198fcb25690cee02490f0d2ce9d034"
+ "schema": "route-e-execution-boundary/current-source-qualification/v1",
+ "schema_note": "descriptive label, not a JSON Schema identifier; no schema file defines it and no canonical vocabulary is created here",
+ "mission": "FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00",
+ "append_only": true,
+ "supersedes_nothing_historical": true,
+ "human_review": "PENDING",
+ "self_accepting": false,
+ "acceptance_note": "this record qualifies nothing by itself; it states which current source bytes this mission binds, and a human review has not been performed",
+ "base": "da0ec3f1e6198fcb25690cee02490f0d2ce9d034",
+ "lineage": [
+  "00afcdd1aacbdf32bb030d85ced735a2920421f6",
+  "c6d4acf037d4e51d59e5b75dc91b977b9eb83dbd",
+  "bc2a42c468eec5a4e1732ebb08c7cc20c4dab7dd",
+  "a379efa6e230efd6b4051b36717169be9c0f5dbf",
+  "31ccccfb9e61809cf5d461a70425e00c3db7bc17",
+  "054140024267183fa43ef86755cd1c82d5a41483",
+  "c08e27c0d7c133789333a73fa66fedc5ab0a2979",
+  "f152c3c43d316cfbc4d7704fc91c69e51ee5fefa",
+  "da0ec3f1e6198fcb25690cee02490f0d2ce9d034"
+ ],
+ "owner_decisions_applied": {
+  "A1_R2_ALLOWLIST_EXTENSION": "REJECTED",
+  "PRB5_AS_WRITTEN": "SUPERSEDED",
+  "FIVE_FUNCTION_GUARD_STRATEGY": "RETIRED",
+  "SELECTED_TOPOLOGY": "NEW_DEDICATED_ROUTE_E_ENTRY_ABOVE_EXISTING_BRIDGE",
+  "ROUTE_E_SECURITY_BOUNDARY": "CANONICAL_EXECUTION_PLUS_INDEPENDENT_ADMISSION",
+  "UNIVERSAL_ENGINE_EXECUTION_PREVENTION": "NOT_CLAIMED"
+ },
+ "authoritative_property": "no artefact contributes to the Route E dataset, to any Y_i or to k without satisfying, in full, the pre-run manifest, the enrolment, the beacon, the attempt inventory and the independent verification",
+ "explicitly_not_claimed": "that anyone holding the repository is prevented from calling LatticeBondEngine, copying the code or running an exploratory simulation",
+ "current_source_bound_by_this_mission": {
+  "edlab/substrates/lattice_bond/future_route_e_execution.py": {
+   "sha256": "20b895f0fd8f43adf269148364d5fb565fb671b00b87056b750b788aac4e81ef",
+   "bytes": 39188,
+   "source_changed_by_this_mission": true
+  },
+  "edlab/substrates/lattice_bond/future_route_e_admission.py": {
+   "sha256": "8ece89e2140fc2b2b406917acce2707627117dce712da004ca45107fa71a6bcc",
+   "bytes": 23150,
+   "source_changed_by_this_mission": true
+  },
+  "edlab/substrates/lattice_bond/route_e_beacon_verifier.py": {
+   "sha256": "af04038316c83d599a9bd45445b3fc21eb7e3fffec4d9114855cf0f9af36462a",
+   "bytes": 12816,
+   "source_changed_by_this_mission": true
+  },
+  "edlab/substrates/lattice_bond/route_e_bls_verifier.py": {
+   "sha256": "53127a930ce7308d8cebeb67889804087d1da88668013247ea8a4115deda3e61",
+   "bytes": 8429,
+   "source_changed_by_this_mission": true
+  }
+ },
+ "test_file_binding": {
+  "path": "tests/test_future_route_e_execution_boundary_00.py",
+  "note": "this record is written BEFORE the literal pin of its own digest is appended to that test file, so it cannot bind the file's final bytes without a cycle. The final digest is recorded out of band in FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00_REPORT.md, exactly as the accepted 01R record does for its own selector.",
+  "is_a_bound_selector_of_test_rs01_12": false
+ },
+ "generic_sources_unchanged_and_never_signalled": {
+  "edlab/substrates/lattice_bond/lifecycle.py": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+  "edlab/substrates/lattice_bond/future_lifecycle_runner.py": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
+  "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py": "cc617f06f517aba7c890b9efbf069b7994696af243fc5a584220411747cae919",
+  "edlab/substrates/lattice_bond/instrumentation.py": "65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef",
+  "edlab/substrates/lattice_bond/__init__.py": "9d3bea5ac70b514b592f71c2c46738dfdaec62e0072e8055a512b2e22ac6d5b0",
+  "no_route_e_parameter_added": true
+ },
+ "old_paths_classification": {
+  "edlab/substrates/lattice_bond/future_prospective_measurement_bridge.py": "GENERIC_INTERNAL_COMPONENT",
+  "edlab/substrates/lattice_bond/stage_b.py": "LEGACY_EXECUTOR / OUT_OF_ROUTE_E",
+  "edlab/substrates/lattice_bond/stage_b_reproduce.py": "PRESERVED_INDEPENDENT_REPRODUCER",
+  "five_historical_guarded_functions": "GENERIC_OR_DOWNSTREAM / OUT_OF_ROUTE_E",
+  "none_of_these_files_was_modified": true
+ },
+ "pre_run_and_post_run_are_distinct": {
+  "pre_run_domain": "EDLAB/ROUTE-E/PRE-RUN/v1\\x00",
+  "post_run_domain": "EDLAB/ROUTE-E/POST-RUN/v1\\x00",
+  "pre_run_kind": "route-e-pre-run-manifest/v1",
+  "post_run_kind": "route-e-post-run-envelope/v1",
+  "interchange_possible": false,
+  "pre_run_forbidden_content": [
+   "seed",
+   "draw plan",
+   "law draw",
+   "initial condition draw",
+   "measurement root",
+   "join digest",
+   "Y_i",
+   "k",
+   "outcome",
+   "result",
+   "round",
+   "randomness"
   ],
-  "owner_decisions_applied": {
-    "A1_R2_ALLOWLIST_EXTENSION": "REJECTED",
-    "PRB5_AS_WRITTEN": "SUPERSEDED",
-    "FIVE_FUNCTION_GUARD_STRATEGY": "RETIRED",
-    "SELECTED_TOPOLOGY": "NEW_DEDICATED_ROUTE_E_ENTRY_ABOVE_EXISTING_BRIDGE",
-    "ROUTE_E_SECURITY_BOUNDARY": "CANONICAL_EXECUTION_PLUS_INDEPENDENT_ADMISSION",
-    "UNIVERSAL_ENGINE_EXECUTION_PREVENTION": "NOT_CLAIMED"
+  "post_run_binds": [
+   "P",
+   "the anteriority proof",
+   "the verified beacon response and round",
+   "the seed root digest",
+   "the complete draw plan and enrolment",
+   "the source snapshot",
+   "the world order",
+   "every attempt including crashes and invalidities",
+   "the per-world measurement roots",
+   "the track/component joins",
+   "the exact file inventory"
+  ]
+ },
+ "frozen_execution_order": [
+  "READ_AND_CANONICALISE_BUNDLE",
+  "RECOMPUTE_PRE_RUN_ROOT",
+  "VERIFY_ANTERIORITY",
+  "DERIVE_ROUND_FROM_CUTOFF",
+  "VERIFY_BEACON",
+  "DERIVE_SEED_PLAN_ENROLMENT",
+  "CHECK_NAMESPACE_FIRST_WRITE_WINS",
+  "CREATE_OUTPUT_ROOT",
+  "EXECUTE_WORLDS",
+  "RECORD_ATTEMPTS",
+  "SEAL_ENVELOPE"
+ ],
+ "first_authorised_effect_phase": "CREATE_OUTPUT_ROOT",
+ "public_api": {
+  "execution": "run_route_e(pre_run_bundle_path, beacon_response_path, output_directory)",
+  "admission": "verify_route_e_run(output_directory, final_receipt_path=None)",
+  "accepts_no_callback": true,
+  "accepts_no_authorisation_boolean": true,
+  "accepts_no_law_ic_seed_round_root_tracking_or_outcome": true,
+  "valid_path_returns_a_record_not_an_unreachable_raise": true,
+  "no_global_boolean_to_flip_later": true
+ },
+ "verifier_pinning": {
+  "location_may_be_supplied": true,
+  "bytes_are_pinned": true,
+  "pinned_sha256": {
+   "linux-amd64": "2534fa4af5ed6d6d4294be26542b52fe7445412532db97e66a955cacba3cca6d",
+   "windows-amd64": "ea15b5de9f88a6fd0557e1912c31493670f9322bc901d8841b6868cd3220045c"
   },
-  "authoritative_property": "no artefact contributes to the Route E dataset, to any Y_i or to k without satisfying, in full, the pre-run manifest, the enrolment, the beacon, the attempt inventory and the independent verification",
-  "explicitly_not_claimed": "that anyone holding the repository is prevented from calling LatticeBondEngine, copying the code or running an exploratory simulation",
-  "current_source_bound_by_this_mission": {
-    "edlab/substrates/lattice_bond/future_route_e_execution.py": {
-      "sha256": "d766d59a9a8b4d273732c2cebefc1edc23e24a966fb94909eeb9f2642ea2b687",
-      "bytes": 38329,
-      "role": "the single canonical Route E execution entry point",
-      "source_changed_by_this_mission": true,
-      "status": "ADDED"
-    },
-    "edlab/substrates/lattice_bond/future_route_e_admission.py": {
-      "sha256": "8ece89e2140fc2b2b406917acce2707627117dce712da004ca45107fa71a6bcc",
-      "bytes": 23150,
-      "role": "the independent admission layer",
-      "source_changed_by_this_mission": true,
-      "status": "ADDED"
-    }
-  },
-  "test_file_binding": {
-    "path": "tests/test_future_route_e_execution_boundary_00.py",
-    "note": "this record is written BEFORE the literal pin of its own digest is appended to that test file, so it cannot bind the file's final bytes without a cycle. The final digest is recorded out of band in FUTURE_ROUTE_E_EXECUTION_BOUNDARY_CORRECTION_00_REPORT.md, exactly as the accepted 01R record does for its own selector.",
-    "is_a_bound_selector_of_test_rs01_12": false
-  },
-  "generic_sources_unchanged_and_never_signalled": {
-    "edlab/substrates/lattice_bond/lifecycle.py": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
-    "edlab/substrates/lattice_bond/future_lifecycle_runner.py": "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08",
-    "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py": "cc617f06f517aba7c890b9efbf069b7994696af243fc5a584220411747cae919",
-    "edlab/substrates/lattice_bond/instrumentation.py": "65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef",
-    "edlab/substrates/lattice_bond/__init__.py": "9d3bea5ac70b514b592f71c2c46738dfdaec62e0072e8055a512b2e22ac6d5b0",
-    "no_route_e_parameter_added": true
-  },
-  "old_paths_classification": {
-    "edlab/substrates/lattice_bond/future_prospective_measurement_bridge.py": "GENERIC_INTERNAL_COMPONENT",
-    "edlab/substrates/lattice_bond/stage_b.py": "LEGACY_EXECUTOR / OUT_OF_ROUTE_E",
-    "edlab/substrates/lattice_bond/stage_b_reproduce.py": "PRESERVED_INDEPENDENT_REPRODUCER",
-    "five_historical_guarded_functions": "GENERIC_OR_DOWNSTREAM / OUT_OF_ROUTE_E",
-    "none_of_these_files_was_modified": true
-  },
-  "pre_run_and_post_run_are_distinct": {
-    "pre_run_domain": "EDLAB/ROUTE-E/PRE-RUN/v1\\x00",
-    "post_run_domain": "EDLAB/ROUTE-E/POST-RUN/v1\\x00",
-    "pre_run_kind": "route-e-pre-run-manifest/v1",
-    "post_run_kind": "route-e-post-run-envelope/v1",
-    "interchange_possible": false,
-    "pre_run_forbidden_content": [
-      "seed", "draw plan", "law draw", "initial condition draw", "measurement root",
-      "join digest", "Y_i", "k", "outcome", "result", "round", "randomness"
-    ],
-    "post_run_binds": [
-      "P", "the anteriority proof", "the verified beacon response and round", "the seed root digest",
-      "the complete draw plan and enrolment", "the source snapshot", "the world order",
-      "every attempt including crashes and invalidities", "the per-world measurement roots",
-      "the track/component joins", "the exact file inventory"
-    ]
-  },
-  "frozen_execution_order": [
-    "READ_AND_CANONICALISE_BUNDLE",
-    "RECOMPUTE_PRE_RUN_ROOT",
-    "VERIFY_ANTERIORITY",
-    "DERIVE_ROUND_FROM_CUTOFF",
-    "VERIFY_BEACON",
-    "DERIVE_SEED_PLAN_ENROLMENT",
-    "CHECK_NAMESPACE_FIRST_WRITE_WINS",
-    "CREATE_OUTPUT_ROOT",
-    "EXECUTE_WORLDS",
-    "RECORD_ATTEMPTS",
-    "SEAL_ENVELOPE"
+  "note": "a caller who points the environment at another binary gets a refusal, so the location is not an injection point; an absent or unpinned verifier is a STOP, never a pass"
+ },
+ "anteriority_proof_types": {
+  "OTS_PLUS_RFC3161": "the frozen A2 decision; its verifier is NOT implemented in this mission, so a run claiming it is REFUSED rather than believed",
+  "SELF_ATTESTED_NON_PUBLIC": "structurally verified, binds P and C, and can NEVER claim public registry inclusion; a root resting on it is recomputable but may not contribute to the dataset"
+ },
+ "public_pre_run_inclusion_proven": false,
+ "historical_qualifications_byte_identical": {
+  "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json": "8f423bb0f0ece04a3e576b76cb2c7704d5edf6c82c827110bd5608e8e5514ece",
+  "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json": "0752b86c6ef9c7b6579a90e7be6250bc2500dcbfbac4d47379c40e277061f403",
+  "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json": "509f27b23a17b36b7c027cb687860f61b5ee53f4247c0f58e04d2ff1ffd6643a",
+  "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json": "f29da3694b2438ff6bc0d03692771020b145ec6edcfa6ae80a533040207f58df",
+  "files_modified": 0,
+  "note": "byte-identical for the four HISTORICAL records; the live qualification documents this mission re-recorded are declared in route_e_guard_installation of FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json"
+ },
+ "selected_node_binding_unchanged": {
+  "selectors": [
+   "tests/test_empty_right_nonunit_cadence_tracker_repair.py",
+   "tests/test_future_lifecycle_contract.py",
+   "tests/test_future_lifecycle_runner_integration.py",
+   "tests/test_lattice_bond_instrumentation.py"
   ],
-  "first_authorised_effect_phase": "CREATE_OUTPUT_ROOT",
-  "public_api": {
-    "execution": "run_route_e(pre_run_bundle_path, beacon_response_path, output_directory)",
-    "admission": "verify_route_e_run(output_directory, final_receipt_path=None)",
-    "accepts_no_callback": true,
-    "accepts_no_authorisation_boolean": true,
-    "accepts_no_law_ic_seed_round_root_tracking_or_outcome": true,
-    "valid_path_returns_a_record_not_an_unreachable_raise": true,
-    "no_global_boolean_to_flip_later": true
-  },
-  "verifier_pinning": {
-    "location_may_be_supplied": true,
-    "bytes_are_pinned": true,
-    "pinned_sha256": {
-      "linux-amd64": "2534fa4af5ed6d6d4294be26542b52fe7445412532db97e66a955cacba3cca6d",
-      "windows-amd64": "ea15b5de9f88a6fd0557e1912c31493670f9322bc901d8841b6868cd3220045c"
-    },
-    "note": "a caller who points the environment at another binary gets a refusal, so the location is not an injection point; an absent or unpinned verifier is a STOP, never a pass"
-  },
-  "anteriority_proof_types": {
-    "OTS_PLUS_RFC3161": "the frozen A2 decision; its verifier is NOT implemented in this mission, so a run claiming it is REFUSED rather than believed",
-    "SELF_ATTESTED_NON_PUBLIC": "structurally verified, binds P and C, and can NEVER claim public registry inclusion; a root resting on it is recomputable but may not contribute to the dataset"
-  },
-  "public_pre_run_inclusion_proven": false,
-  "historical_qualifications_byte_identical": {
-    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json": "8f423bb0f0ece04a3e576b76cb2c7704d5edf6c82c827110bd5608e8e5514ece",
-    "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json": "0752b86c6ef9c7b6579a90e7be6250bc2500dcbfbac4d47379c40e277061f403",
-    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json": "509f27b23a17b36b7c027cb687860f61b5ee53f4247c0f58e04d2ff1ffd6643a",
-    "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json": "f29da3694b2438ff6bc0d03692771020b145ec6edcfa6ae80a533040207f58df",
-    "files_modified": 0
-  },
-  "selected_node_binding_unchanged": {
-    "selectors": [
-      "tests/test_empty_right_nonunit_cadence_tracker_repair.py",
-      "tests/test_future_lifecycle_contract.py",
-      "tests/test_future_lifecycle_runner_integration.py",
-      "tests/test_lattice_bond_instrumentation.py"
-    ],
-    "node_count": 251,
-    "node_list_sha256": "a425c3736f0b5d819ef708c2433b785cf706381798ffc48a7ce4b5941161276a",
-    "tests_added_removed_or_renamed_in_a_selector": 0
-  },
-  "scientific_firewall": {
-    "scientific_run_performed": false,
-    "scientific_seed_created": false,
-    "scientific_family_executed": false,
-    "scientific_namespace_created": false,
-    "drand_contacted": false,
-    "live_round_consulted": false,
-    "results_directory_walked": false,
-    "only_fixture_executed": "one temporary SYNTHETIC_NON_SCIENTIFIC world on a 16x16 lattice with a 3-frame schedule, inside pytest's tmp_path, declared inadmissible by construction"
-  },
-  "scientific_run_authorized": false,
-  "pilot_authorized": false,
-  "preregistration_authorized": false
+  "node_count": 251,
+  "node_list_sha256": "efa44cff5a95c749809a582838f1fb97f9966dc0ba1dbd2d2ac063235b763101",
+  "tests_added_removed_or_renamed_in_a_selector": 0
+ },
+ "scientific_firewall": {
+  "scientific_run_performed": false,
+  "scientific_seed_created": false,
+  "scientific_family_executed": false,
+  "scientific_namespace_created": false,
+  "drand_contacted": false,
+  "live_round_consulted": false,
+  "results_directory_walked": false,
+  "only_fixture_executed": "one temporary SYNTHETIC_NON_SCIENTIFIC world on a 16x16 lattice with a 3-frame schedule, inside pytest's tmp_path, declared inadmissible by construction"
+ },
+ "scientific_run_authorized": false,
+ "pilot_authorized": false,
+ "preregistration_authorized": false
 }

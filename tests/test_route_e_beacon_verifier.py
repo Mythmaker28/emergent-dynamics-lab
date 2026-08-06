@@ -174,7 +174,14 @@ def test_outcome_03_an_absent_round_is_unavailable_hence_wait():
     assert "never the next round" in verdict.reason.lower()
 
 
-def test_outcome_04_a_missing_verifier_is_a_stop_never_a_pass():
+def test_outcome_04_a_missing_verifier_is_a_stop_never_a_pass(monkeypatch):
+    """PRB-6 / NO_SILENT_FALLBACK: no library, no verdict.  Never an accept."""
+    import edlab.substrates.lattice_bond.route_e_bls_verifier as bls
+
+    def absent():
+        raise bls.BlsVerifierUnavailable("simulated absence of the maintained verifier")
+
+    monkeypatch.setattr(bls, "_library", absent)
     vector = VECTORS["vectors"][0]
     verdict = verifier.verify_round(
         response=_response(vector), expected_round=vector["round"], helper_path=None
@@ -335,25 +342,28 @@ def test_helper_08_the_helper_is_invoked_with_a_fixed_argv_and_no_shell(tmp_path
 # ======================================================================================
 
 
-def test_crypto_01_the_helper_availability_is_reported_not_assumed():
-    """This test documents which branch the run took.  It never fails for absence."""
-    assert isinstance(HELPER_AVAILABLE, bool)
-    if not HELPER_AVAILABLE:
-        verdict = verifier.verify_round(
-            response=_response(VECTORS["vectors"][0]),
-            expected_round=VECTORS["vectors"][0]["round"],
-            helper_path=None,
-        )
-        assert verdict.outcome is verifier.BeaconOutcome.CONFIGURATION_ERROR
+def test_crypto_01_the_installed_verifier_is_present_and_named():
+    """PRB-6: the maintained verifier is INSTALLED, not merely proposed."""
+    import edlab.substrates.lattice_bond.route_e_bls_verifier as bls
+
+    assert verifier.INSTALLED_VERIFIER_DISTRIBUTION == bls.BLS_LIBRARY_DISTRIBUTION
+    version = bls.library_version()
+    assert tuple(int(p) for p in version.split(".")[:3]) >= (0, 5, 0)
 
 
 @pytest.mark.parametrize("vector", VECTORS["vectors"], ids=lambda v: v["id"])
 def test_crypto_02_every_official_vector_verifies(vector):
     if not HELPER_AVAILABLE:
+        # The installed maintained verifier is the one under test.
         verdict = verifier.verify_round(
             response=_response(vector), expected_round=vector["round"], helper_path=None
         )
-        assert verdict.outcome is verifier.BeaconOutcome.CONFIGURATION_ERROR
+        if vector["chain"] == "quicknet":
+            assert verdict.outcome is verifier.BeaconOutcome.VERIFIED
+            assert verdict.randomness == vector["randomness"]
+        else:
+            # another chain: the adapter pins quicknet, so it must REFUSE, never accept
+            assert verdict.outcome is verifier.BeaconOutcome.INVALID
         return
     if vector["chain"] != "quicknet":
         # the adapter pins quicknet, so a vector on another chain is refused there;
@@ -457,7 +467,13 @@ def test_consume_02_unavailability_is_wait():
     assert "never the next round" in str(excinfo.value).lower()
 
 
-def test_consume_03_a_missing_verifier_is_stop():
+def test_consume_03_a_missing_verifier_is_stop(monkeypatch):
+    import edlab.substrates.lattice_bond.route_e_bls_verifier as bls
+
+    def absent():
+        raise bls.BlsVerifierUnavailable("simulated absence of the maintained verifier")
+
+    monkeypatch.setattr(bls, "_library", absent)
     vector = VECTORS["vectors"][0]
     with pytest.raises(frame.BeaconInvalid) as excinfo:
         frame.consume_beacon_round(
@@ -470,10 +486,10 @@ def test_consume_03_a_missing_verifier_is_stop():
 def test_consume_04_a_verified_round_returns_the_randomness():
     vector = next(v for v in VECTORS["vectors"] if v["chain"] == "quicknet")
     if not HELPER_AVAILABLE:
-        with pytest.raises(frame.BeaconInvalid):
-            frame.consume_beacon_round(
-                response=_response(vector), expected_round=vector["round"], helper_path=None
-            )
+        randomness = frame.consume_beacon_round(
+            response=_response(vector), expected_round=vector["round"], helper_path=None
+        )
+        assert randomness == bytes.fromhex(vector["randomness"])
         return
     randomness = frame.consume_beacon_round(
         response=_response(vector), expected_round=vector["round"], helper_path=HELPER

@@ -40,6 +40,7 @@ is a STOP.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import subprocess
@@ -62,7 +63,12 @@ __all__ = [
     "BeaconVerdict",
     "disposition_for",
     "verify_round",
+    "INSTALLED_VERIFIER_DISTRIBUTION",
 ]
+
+#: PRB-6: the maintained verifier actually installed and used when no external helper
+#: is supplied.  Pinned by version and wheel hash in requirements-route-e-lock.txt.
+INSTALLED_VERIFIER_DISTRIBUTION = "py_arkworks_bls12381"
 
 # --------------------------------------------------------------------------------------
 # Pinned chain parameters.  NOT caller-supplied, NOT read from any receipt or response.
@@ -134,8 +140,7 @@ def _internal(reason: str) -> BeaconVerdict:
 def _validated_helper(helper_path: Any) -> tuple[Path | None, BeaconVerdict | None]:
     if helper_path is None:
         return None, _configuration(
-            "no verifier supplied; PRB-6 requires a maintained verifier and there is "
-            "no default, no fallback and no callback"
+            "no external helper supplied; the installed verifier is used instead"
         )
     if not isinstance(helper_path, (str, os.PathLike)):
         return None, _configuration("helper_path must be a filesystem path")
@@ -179,6 +184,44 @@ def _validated_response(response: Any, expected_round: int) -> tuple[dict | None
     return dict(response), None
 
 
+def _verify_in_process(parsed: dict, expected_round: int) -> BeaconVerdict:
+    """PRB-6: verify with the INSTALLED maintained library, in this process.
+
+    There is no permissive branch.  An absent library is a CONFIGURATION_ERROR, and a
+    randomness that is not ``sha256(signature)`` is INVALID even when the signature
+    itself verifies.
+    """
+    from . import route_e_bls_verifier as bls
+
+    try:
+        check = bls.verify_beacon_signature(
+            round_number=expected_round,
+            signature_hex=parsed["signature"],
+            public_key_hex=QUICKNET_PUBLIC_KEY,
+            dst=QUICKNET_DST,
+        )
+    except bls.BlsVerifierUnavailable as exc:
+        return _configuration(str(exc))
+    except Exception as exc:  # noqa: BLE001 - never silently accept
+        return _internal(f"the installed verifier raised {type(exc).__name__}: {exc}")
+
+    if not check.valid:
+        return _invalid(check.reason, expected_round)
+
+    expected_randomness = hashlib.sha256(bytes.fromhex(parsed["signature"])).hexdigest()
+    if parsed["randomness"] != expected_randomness:
+        return _invalid(
+            "randomness is not sha256(signature); an HTTP response is not evidence",
+            expected_round,
+        )
+    return BeaconVerdict(
+        BeaconOutcome.VERIFIED,
+        check.reason,
+        round=expected_round,
+        randomness=parsed["randomness"],
+    )
+
+
 def verify_round(
     *,
     response: Mapping[str, Any] | None,
@@ -200,6 +243,12 @@ def verify_round(
             "Never the next round, never an alternative endpoint, never another source.",
             round=expected_round,
         )
+
+    if helper_path is None:
+        parsed, failure = _validated_response(response, expected_round)
+        if failure is not None:
+            return failure
+        return _verify_in_process(parsed, expected_round)
 
     helper, failure = _validated_helper(helper_path)
     if failure is not None:

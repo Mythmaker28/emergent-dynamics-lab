@@ -1973,8 +1973,25 @@ def test_op_23d_no_engine_or_scientific_surface_is_introduced() -> None:
     }
 
 
-def test_op_23e_the_accepted_stack_sources_are_unchanged_by_this_mission() -> None:
-    """The owned pipeline is additive: it edits none of the accepted sources."""
+def test_op_23e_the_accepted_stack_sources_change_only_under_a_declared_mission() -> None:
+    """The owned pipeline is additive.  The only permitted divergence is the Route E
+    guard installed by FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_FINAL, and it must be
+    declared in the successor qualification, never silent."""
+
+    import hashlib as _h
+    import json as _j
+
+    repo = Path(owned.__file__).resolve().parents[3]
+    successor = _j.loads(
+        (repo / "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json")
+        .read_text(encoding="utf-8")
+    )
+    declared = successor["route_e_guard_installation"]
+    assert declared["mission"] == "FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_FINAL"
+    for relative, entry in declared["sources_changed"].items():
+        observed = _h.sha256((repo / relative).read_bytes()).hexdigest()
+        assert observed == entry["current_sha256"], relative
+        assert "_refuse_route_e_signal" in (repo / relative).read_text(encoding="utf-8")
 
     root = Path(owned.__file__).parent
     expected = {
@@ -1988,4 +2005,7 @@ def test_op_23e_the_accepted_stack_sources_are_unchanged_by_this_mission() -> No
         "__init__.py": "9d3bea5ac70b514b592f71c2c46738dfdaec62e0072e8055a512b2e22ac6d5b0",
     }
     for name, digest in expected.items():
+        relative = f"edlab/substrates/lattice_bond/{name}"
+        if relative in declared["sources_changed"]:
+            continue  # declared above, with its current digest
         assert _digest((root / name).read_bytes()) == digest, name

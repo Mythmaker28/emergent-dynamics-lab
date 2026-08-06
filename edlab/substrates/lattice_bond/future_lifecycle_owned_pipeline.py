@@ -813,6 +813,7 @@ def run_owned_future_pipeline(
     prove that one million physical engine steps elapsed.  See OP-L1 to OP-L6 in the module
     docstring before quoting any guarantee from this function.
     """
+    _refuse_route_e_signal(run_directory, "future_lifecycle_owned_pipeline.run_owned_future_pipeline")
 
     progress = _Progress()
     directory = Path(run_directory)
@@ -984,6 +985,7 @@ def open_owned_analysis_access(
     evidence that they are the objects the source returned, nor that any physical time
     elapsed.  See OP-L1 to OP-L6 in the module docstring.
     """
+    _refuse_route_e_signal(run_directory, "future_lifecycle_owned_pipeline.open_owned_analysis_access")
 
     directory = Path(run_directory)
     if not directory.is_dir():
@@ -1057,3 +1059,18 @@ __all__ = [
     "open_owned_analysis_access",
     "run_owned_future_pipeline",
 ]
+
+
+def _refuse_route_e_signal(candidate: object, entry_point: str) -> None:
+    """PRB-5: the installed Route E guard.
+
+    Installed as the FIRST statement of every accepted public entry point.  It costs
+    nothing on the normal path (one isinstance check) and it makes the Route E guard
+    unavoidable: an accepted entry point driven with a typed ``RouteERequest`` runs the
+    frozen check order and ALWAYS refuses, before any other check, any read, any write,
+    any engine call and any acquisition.  No parameter was added to any signature.
+    """
+    from .future_route_e_pre_run_locks import RouteERequest, enforce_route_e_guard
+
+    if isinstance(candidate, RouteERequest):
+        enforce_route_e_guard(candidate, entry_point=entry_point)

@@ -1188,6 +1188,7 @@ def qualify_and_write_lifecycle_contract(
     sampled_frames: Sequence[int],
 ) -> LifecycleRunClosure:
     """Qualify first, then atomically create one non-overwriting contract file."""
+    _refuse_route_e_signal(path, "lifecycle.qualify_and_write_lifecycle_contract")
 
     contract = qualify_lifecycle_contract(tracking, sampled_frames)
     target = Path(path)
@@ -1270,3 +1271,18 @@ __all__ = [
     "qualify_lifecycle_contract",
     "verify_lifecycle_document",
 ]
+
+
+def _refuse_route_e_signal(candidate: object, entry_point: str) -> None:
+    """PRB-5: the installed Route E guard.
+
+    Installed as the FIRST statement of every accepted public entry point.  It costs
+    nothing on the normal path (one isinstance check) and it makes the Route E guard
+    unavoidable: an accepted entry point driven with a typed ``RouteERequest`` runs the
+    frozen check order and ALWAYS refuses, before any other check, any read, any write,
+    any engine call and any acquisition.  No parameter was added to any signature.
+    """
+    from .future_route_e_pre_run_locks import RouteERequest, enforce_route_e_guard
+
+    if isinstance(candidate, RouteERequest):
+        enforce_route_e_guard(candidate, entry_point=entry_point)
