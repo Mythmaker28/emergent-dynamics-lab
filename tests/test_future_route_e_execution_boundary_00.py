@@ -204,8 +204,12 @@ def test_arch_04_the_execution_module_sits_above_the_bridge_and_never_edits_it()
     text = (_REPO_ROOT / "edlab/substrates/lattice_bond/future_route_e_execution.py").read_text("utf-8")
     assert "run_measurement_bridge" in text
     bridge = (_REPO_ROOT / "edlab/substrates/lattice_bond/future_prospective_measurement_bridge.py").read_text("utf-8")
+    # the bridge never imports the EXECUTION module: Route E still sits above it.
     assert "future_route_e_execution" not in bridge
-    assert "route_e" not in bridge
+    # PRB-2: the bridge does import the LOCKS module, and only to hand the anchor to the
+    # installed maintained verifier.  It gains no Route E parameter and no engine step.
+    assert "future_route_e_pre_run_locks" in bridge
+    assert "run_route_e" not in bridge
 
 
 def test_arch_05_the_admission_module_imports_no_engine() -> None:
@@ -875,11 +879,11 @@ HISTORICAL_QUALIFICATIONS = {
     "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_00_QUALIFICATION.json":
         "8f423bb0f0ece04a3e576b76cb2c7704d5edf6c82c827110bd5608e8e5514ece",
     "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json":
-        "f539913b436451b2061955e9a6dd7ea2398a4aac2be5e22faf0d017ed11687ea",
+        "503a49b4c6939b05577bfdb95ef2ddea447b85184005e8146025b63b1b8c4ea8",
     "docs/individuation/FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json":
-        "f6bf601306028627c6a5e35a3655c0a58517606ca852cb6cfdfed93f47516cef",
+        "514112d07dc5394d4cdad7facee0f9859bc823b22ca0885281a0e12246264438",
     "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json":
-        "7d93a7de2ab12f89938471a8d21e89009df6794dd0d13c5480972c4d4897c621",
+        "d1e1475d2035715cbc7a98cffe7cafe77ce61b9a3de14596529d9e7296ba3f76",
 }
 
 SELECTED_NODE_COUNT = 251
@@ -960,7 +964,7 @@ CURRENT_SOURCE_QUALIFICATION = (
     "CURRENT_SOURCE_QUALIFICATION.json"
 )
 CURRENT_SOURCE_QUALIFICATION_SHA256 = (
-    "1d1799cc718a6c46260fdbcf8d26511541f429d2a45cb7d1016af45da35abc99"
+    "cc42b706cbe4e52fb074fb6e0cd9bfe264768f37ce9056aba297f11f8643d583"
 )
 
 

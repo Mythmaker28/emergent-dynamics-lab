@@ -372,6 +372,80 @@ def verify_route_e_run(
                     "ATTEMPT_ORDER_CHANGED",
                 )
 
+        # 7b -- PRB-1 and PRB-4: the persisted join and the persisted replay root are
+        # re-read from disk, recomputed from those bytes, and required.  A missing,
+        # mutated, swapped or foreign artefact refuses here, before any admission.
+        replay_bytes = _read(root / _execution.REPLAY_ROOT_NAME, "REPLAY_ROOT_UNREADABLE")
+        replay_document = _canonical_object(
+            replay_bytes, "the replay root document", "REPLAY_ROOT_UNREADABLE"
+        )
+        if replay_document.get("kind") != _execution.REPLAY_ROOT_KIND:
+            raise _refuse("the replay root document has the wrong kind", "KIND_MISMATCH")
+        if replay_document.get("run_identity") != str(manifest["run_identity"]):
+            raise _refuse(
+                "the replay root document belongs to another run identity",
+                "REPLAY_ROOT_FOREIGN_RUN",
+            )
+        if replay_document.get("pre_run_root") != recomputed_p:
+            raise _refuse(
+                "the replay root document binds a different pre-run root",
+                "REPLAY_ROOT_FOREIGN_RUN",
+            )
+        if replay_document.get("enrolment_digest") != recomputed_enrolment_digest:
+            raise _refuse(
+                "the replay root document binds a different enrolment",
+                "REPLAY_ROOT_MISMATCH",
+            )
+        successes = [item for item in attempts if item.get("status") == "SUCCESS"]
+        recorded_worlds = replay_document.get("worlds")
+        if not isinstance(recorded_worlds, list) or len(recorded_worlds) != len(successes):
+            raise _refuse(
+                "the replay root document does not cover exactly the successful worlds",
+                "REPLAY_ROOT_INCOMPLETE",
+            )
+        for attempt, recorded in zip(successes, recorded_worlds):
+            if int(recorded.get("attempt_ordinal", -1)) != int(attempt["attempt_ordinal"]):
+                raise _refuse("the replay root document is out of order", "REPLAY_ROOT_MISMATCH")
+            world_directory = root / str(attempt["world_relative_path"])
+            join_path = world_directory / _locks.JOIN_EVIDENCE_FILENAME
+            try:
+                _, recomputed_join = _locks.read_join_evidence(join_path)
+            except Exception as exc:  # noqa: BLE001 - any refusal is a refusal
+                raise _refuse(
+                    f"the persisted track-component join is absent or not canonical: {exc}",
+                    "JOIN_EVIDENCE_INVALID",
+                ) from exc
+            if recomputed_join != attempt.get("track_component_join_sha256"):
+                raise _refuse(
+                    "the persisted join does not reproduce the digest the attempt records",
+                    "JOIN_EVIDENCE_MISMATCH",
+                )
+            if recomputed_join != recorded.get("track_component_join_sha256"):
+                raise _refuse(
+                    "the replay root document binds another join digest",
+                    "JOIN_EVIDENCE_MISMATCH",
+                )
+            recomputed_replay = _locks.route_e_root(
+                measurement_root_sha256=str(attempt["measurement_root_sha256"]),
+                track_component_join_digest=recomputed_join,
+                family_enrolment_digest=recomputed_enrolment_digest,
+            )
+            if recomputed_replay != attempt.get("route_e_replay_root"):
+                raise _refuse(
+                    "the attempt records a replay root the persisted evidence does not "
+                    "recompute; a root is never reconstructed from a missing artefact",
+                    "REPLAY_ROOT_MISMATCH",
+                )
+            if recomputed_replay != recorded.get("route_e_replay_root"):
+                raise _refuse(
+                    "the replay root document binds another replay root",
+                    "REPLAY_ROOT_MISMATCH",
+                )
+        notes.append(
+            f"PRB-1/PRB-4: {len(successes)} persisted join(s) and replay root(s) re-read "
+            "from disk and recomputed"
+        )
+
         # 8 -- the file inventory must be exact.
         inventory_bytes = _read(root / _execution.FILE_INVENTORY_NAME, "INVENTORY_UNREADABLE")
         inventory = _canonical_object(inventory_bytes, "the file inventory", "INVENTORY_UNREADABLE")

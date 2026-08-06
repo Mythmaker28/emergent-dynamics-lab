@@ -59,6 +59,7 @@ from edlab.substrates.lattice_bond.future_prospective_measurement_bridge import 
     DeterministicAppendOnlyLog,
     MeasurementSpec,
     open_measured_analysis_access,
+    _open_measured_analysis_access_with_injected_verifier,
     run_measurement_bridge,
     write_anchor_receipt,
 )
@@ -414,7 +415,7 @@ def test_a_corrupted_persisted_mask_is_refused(run_dir):
     payload[0] = 1 - payload[0]
     path.write_bytes(bytes(payload))
     with pytest.raises(BridgeEvidenceError, match="not the threshold of the persisted float"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_non_canonical_mask_byte_is_refused(run_dir):
@@ -423,14 +424,14 @@ def test_a_non_canonical_mask_byte_is_refused(run_dir):
     payload[0] = 2
     path.write_bytes(bytes(payload))
     with pytest.raises(BridgeChannelError, match="canonical 0/1 mask"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_truncated_mask_is_refused(run_dir):
     path = _channel(run_dir, 0, "mask")
     path.write_bytes(path.read_bytes()[:-1])
     with pytest.raises(BridgeChannelError, match="mask channel has the wrong byte length"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 # --------------------------------------------------------------------------------------
@@ -447,7 +448,7 @@ def test_a_tampered_float_channel_is_refused(run_dir, channel):
     payload[:8] = struct.pack("<d", 0.05)
     path.write_bytes(bytes(payload))
     with pytest.raises(BridgeEvidenceError) as excinfo:
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
     assert "do not reproduce" in str(excinfo.value) or "threshold" in str(excinfo.value)
 
 
@@ -458,38 +459,38 @@ def test_a_non_finite_float_channel_is_refused(run_dir, channel):
     payload[:8] = struct.pack("<d", float("nan"))
     path.write_bytes(bytes(payload))
     with pytest.raises(BridgeChannelError, match="is not finite"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_truncated_float_channel_is_refused(run_dir):
     path = _channel(run_dir, 0, "resource")
     path.write_bytes(path.read_bytes()[:-8])
     with pytest.raises(BridgeChannelError, match="resource channel has the wrong byte length"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_missing_channel_file_is_refused(run_dir):
     _channel(run_dir, 1, "bond").unlink()
     with pytest.raises(BridgeEvidenceError, match="missing or unexpected entries"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_an_extra_channel_file_is_refused(run_dir):
     (run_dir / MEASUREMENT_FRAME_DIRECTORY / "frame_000009_matter.bin").write_bytes(b"")
     with pytest.raises(BridgeEvidenceError, match="missing or unexpected entries"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_non_regular_frame_entry_is_refused(run_dir):
     (run_dir / MEASUREMENT_FRAME_DIRECTORY / "smuggled").mkdir()
     with pytest.raises(BridgeEvidenceError, match="non-regular entry"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_missing_frame_directory_is_refused(run_dir):
     shutil.rmtree(run_dir / MEASUREMENT_FRAME_DIRECTORY)
     with pytest.raises(BridgeEvidenceError, match="no measurement frame directory"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 # --------------------------------------------------------------------------------------
@@ -995,19 +996,19 @@ def _tamper_binding(directory: Path, **updates) -> None:
 def test_a_missing_measurement_document_is_refused(run_dir):
     (run_dir / MEASUREMENT_DOCUMENT_NAME).unlink()
     with pytest.raises(BridgeEvidenceError, match="no measurement document"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_an_invalid_json_measurement_document_is_refused(run_dir):
     (run_dir / MEASUREMENT_DOCUMENT_NAME).write_bytes(b"{not json")
     with pytest.raises(BridgeEvidenceError, match="not valid JSON"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_non_object_measurement_document_is_refused(run_dir):
     (run_dir / MEASUREMENT_DOCUMENT_NAME).write_bytes(b"[]")
     with pytest.raises(BridgeEvidenceError, match="must be a JSON object"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_measurement_document_key_set_mismatch_is_refused(run_dir):
@@ -1015,7 +1016,7 @@ def test_a_measurement_document_key_set_mismatch_is_refused(run_dir):
     document.pop("step_count")
     (run_dir / MEASUREMENT_DOCUMENT_NAME).write_bytes(_canonical(document))
     with pytest.raises(BridgeEvidenceError, match="key set mismatch"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_non_canonical_measurement_document_bytes_are_refused(run_dir):
@@ -1024,7 +1025,7 @@ def test_non_canonical_measurement_document_bytes_are_refused(run_dir):
         json.dumps(document, sort_keys=True, indent=1).encode("utf-8")
     )
     with pytest.raises(BridgeEvidenceError, match="not canonical"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_non_canonically_representable_binding_is_refused(run_dir):
@@ -1036,7 +1037,7 @@ def test_a_non_canonically_representable_binding_is_refused(run_dir):
         )
     )
     with pytest.raises(BridgeEvidenceError, match="not canonically representable"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 @pytest.mark.parametrize(
@@ -1084,7 +1085,7 @@ def test_a_non_canonically_representable_binding_is_refused(run_dir):
 def test_a_tampered_measurement_document_is_refused(run_dir, updates, message):
     _tamper_document(run_dir, **updates)
     with pytest.raises(BridgeEvidenceError, match=message):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_substituted_source_binding_is_refused(run_dir):
@@ -1092,7 +1093,7 @@ def test_a_substituted_source_binding_is_refused(run_dir):
     document["source_bindings"]["instrumentation_sha256"] = "0" * 64
     (run_dir / MEASUREMENT_DOCUMENT_NAME).write_bytes(_canonical(document))
     with pytest.raises(BridgeEvidenceError, match="source bindings do not match"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_an_inadmissible_persisted_specification_is_refused(run_dir):
@@ -1100,7 +1101,7 @@ def test_an_inadmissible_persisted_specification_is_refused(run_dir):
         run_dir, measurement_spec={**SPEC.as_dict(), "matter_threshold": 0.05}
     )
     with pytest.raises(BridgeSpecificationError, match="matter_threshold must satisfy"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_reordered_frame_list_is_refused(run_dir):
@@ -1108,7 +1109,7 @@ def test_a_reordered_frame_list_is_refused(run_dir):
     document["frames"] = list(reversed(document["frames"]))
     (run_dir / MEASUREMENT_DOCUMENT_NAME).write_bytes(_canonical(document))
     with pytest.raises(BridgeEvidenceError, match="do not reproduce"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_dropped_frame_row_is_refused(run_dir):
@@ -1116,7 +1117,7 @@ def test_a_dropped_frame_row_is_refused(run_dir):
     document["frames"] = document["frames"][:-1]
     (run_dir / MEASUREMENT_DOCUMENT_NAME).write_bytes(_canonical(document))
     with pytest.raises(BridgeEvidenceError, match="do not reproduce"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 @pytest.mark.parametrize(
@@ -1136,19 +1137,19 @@ def test_a_dropped_frame_row_is_refused(run_dir):
 def test_a_tampered_bridge_binding_is_refused(run_dir, updates, message):
     _tamper_binding(run_dir, **updates)
     with pytest.raises(BridgeEvidenceError, match=message):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_missing_bridge_binding_is_refused(run_dir):
     (run_dir / BRIDGE_BINDING_NAME).unlink()
     with pytest.raises(BridgeEvidenceError, match="no bridge binding"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_a_missing_owned_pipeline_binding_is_refused(run_dir):
     (run_dir / OWNED_BINDING_NAME).unlink()
     with pytest.raises(BridgeEvidenceError, match="no owned pipeline binding"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 # --------------------------------------------------------------------------------------
@@ -1223,7 +1224,7 @@ class _Spy:
 
 
 def test_a_valid_anchor_unlocks_owned_analysis(anchored, run_dir):
-    access = open_measured_analysis_access(run_dir, verifier=anchored.log.verify)
+    access = _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=anchored.log.verify)
     evidence = access.owned_access.verified_completion_evidence()
     assert evidence["disposition"] == "COMPLETE"
     assert access.anchor_receipt.root_sha256 == anchored.record.measurement_root_sha256
@@ -1241,7 +1242,7 @@ def test_analysis_before_the_anchor_is_refused(fresh, monkeypatch):
     spy = _Spy()
     monkeypatch.setattr(mb, "open_owned_analysis_access", spy)
     with pytest.raises(BridgeAnchorError, match="no anchor receipt"):
-        open_measured_analysis_access(fresh, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(fresh, verifier=lambda receipt: True)
     assert spy.calls == 0
     assert record.measurement_root_sha256
 
@@ -1253,7 +1254,7 @@ def test_a_receipt_binding_a_different_root_is_refused(run_dir, monkeypatch):
     spy = _Spy()
     monkeypatch.setattr(mb, "open_owned_analysis_access", spy)
     with pytest.raises(BridgeAnchorError, match="does not bind the recomputed measurement root"):
-        open_measured_analysis_access(run_dir, verifier=log.verify)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=log.verify)
     assert spy.calls == 0
 
 
@@ -1272,7 +1273,7 @@ def test_a_forged_reference_is_refused(anchored, run_dir, monkeypatch):
     spy = _Spy()
     monkeypatch.setattr(mb, "open_owned_analysis_access", spy)
     with pytest.raises(BridgeAnchorError, match="verifier refused"):
-        open_measured_analysis_access(run_dir, verifier=anchored.log.verify)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=anchored.log.verify)
     assert spy.calls == 0
 
 
@@ -1280,14 +1281,14 @@ def test_a_verifier_returning_false_is_refused(run_dir, monkeypatch):
     spy = _Spy()
     monkeypatch.setattr(mb, "open_owned_analysis_access", spy)
     with pytest.raises(BridgeAnchorError, match="verifier refused"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: False)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: False)
     assert spy.calls == 0
 
 
 def test_a_malformed_anchor_receipt_is_refused(run_dir):
     (run_dir / ANCHOR_RECEIPT_NAME).write_bytes(b"[]")
     with pytest.raises(BridgeAnchorError, match="must be a JSON object"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_an_anchor_receipt_with_the_wrong_schema_is_refused(run_dir):
@@ -1295,7 +1296,7 @@ def test_an_anchor_receipt_with_the_wrong_schema_is_refused(run_dir):
     receipt["schema_version"] = "other/v9"
     (run_dir / ANCHOR_RECEIPT_NAME).write_bytes(_canonical(receipt))
     with pytest.raises(BridgeAnchorError, match="unsupported anchor receipt schema version"):
-        open_measured_analysis_access(run_dir, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=lambda receipt: True)
 
 
 def test_an_anchor_receipt_is_never_overwritten(run_dir, anchored):
@@ -1318,7 +1319,7 @@ def test_write_anchor_receipt_verifies_nothing(fresh):
     )
     assert (fresh / ANCHOR_RECEIPT_NAME).is_file()
     with pytest.raises(BridgeAnchorError, match="does not bind"):
-        open_measured_analysis_access(fresh, verifier=lambda receipt: True)
+        _open_measured_analysis_access_with_injected_verifier(fresh, verifier=lambda receipt: True)
     assert record.measurement_root_sha256 != "00" * 32
 
 
@@ -1335,7 +1336,7 @@ def test_a_post_anchor_byte_mutation_is_refused(anchored, run_dir, monkeypatch):
     spy = _Spy()
     monkeypatch.setattr(mb, "open_owned_analysis_access", spy)
     with pytest.raises(BridgeEvidenceError, match="do not reproduce"):
-        open_measured_analysis_access(run_dir, verifier=anchored.log.verify)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=anchored.log.verify)
     assert spy.calls == 0
 
 
@@ -1349,14 +1350,14 @@ def test_a_fully_repinned_post_anchor_mutation_still_fails_the_anchor(
     spy = _Spy()
     monkeypatch.setattr(mb, "open_owned_analysis_access", spy)
     with pytest.raises(BridgeAnchorError, match="does not bind the recomputed measurement root"):
-        open_measured_analysis_access(run_dir, verifier=anchored.log.verify)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=anchored.log.verify)
     assert spy.calls == 0
 
 
 def test_owned_evidence_removed_after_the_anchor_is_refused(anchored, run_dir):
     (run_dir / ACQUISITION_FRAME_DIRECTORY / "frame_000000.bin").unlink()
     with pytest.raises(BridgeEvidenceError, match="owned analysis access refused"):
-        open_measured_analysis_access(run_dir, verifier=anchored.log.verify)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=anchored.log.verify)
 
 
 # --------------------------------------------------------------------------------------
@@ -1451,7 +1452,7 @@ def test_an_owned_evidence_error_is_typed_as_a_bridge_evidence_error(
 
     monkeypatch.setattr(mb, "open_owned_analysis_access", _refusing)
     with pytest.raises(BridgeEvidenceError) as excinfo:
-        open_measured_analysis_access(run_dir, verifier=anchored.log.verify)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=anchored.log.verify)
     assert "owned analysis access refused" in str(excinfo.value)
     assert isinstance(excinfo.value, BridgeError)
     assert excinfo.value.__cause__ is original
@@ -1467,7 +1468,7 @@ def test_a_real_owned_evidence_error_is_typed_and_keeps_its_cause(anchored, run_
 
     (run_dir / ACQUISITION_FRAME_DIRECTORY / "frame_000001.bin").unlink()
     with pytest.raises(BridgeEvidenceError) as excinfo:
-        open_measured_analysis_access(run_dir, verifier=anchored.log.verify)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=anchored.log.verify)
     assert isinstance(excinfo.value.__cause__, OwnedEvidenceError)
 
 
@@ -1565,7 +1566,7 @@ def test_a_repinned_morphology_only_change_is_still_refused_by_the_anchor(
     spy = _Spy()
     monkeypatch.setattr(mb, "open_owned_analysis_access", spy)
     with pytest.raises(BridgeAnchorError, match="does not bind the recomputed measurement root"):
-        open_measured_analysis_access(run_dir, verifier=anchored.log.verify)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=anchored.log.verify)
     assert spy.calls == 0
 
 
@@ -1579,7 +1580,7 @@ def test_a_repinned_owned_root_substitution_is_refused_by_the_anchor(
     spy = _Spy()
     monkeypatch.setattr(mb, "open_owned_analysis_access", spy)
     with pytest.raises(BridgeAnchorError, match="does not bind the recomputed measurement root"):
-        open_measured_analysis_access(run_dir, verifier=anchored.log.verify)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=anchored.log.verify)
     assert spy.calls == 0
 
 
@@ -1595,5 +1596,5 @@ def test_a_repinned_source_binding_substitution_is_refused_by_the_anchor(
     spy = _Spy()
     monkeypatch.setattr(mb, "open_owned_analysis_access", spy)
     with pytest.raises(BridgeAnchorError, match="does not bind the recomputed measurement root"):
-        open_measured_analysis_access(run_dir, verifier=anchored.log.verify)
+        _open_measured_analysis_access_with_injected_verifier(run_dir, verifier=anchored.log.verify)
     assert spy.calls == 0

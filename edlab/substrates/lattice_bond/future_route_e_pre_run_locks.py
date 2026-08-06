@@ -828,9 +828,10 @@ def open_route_e_analysis(
 # callables, and cannot prevent a direct call to any of them.  Its own tests therefore
 # prove a property of the facade and NOTHING about those five functions.
 #
-# Closing PRB-5 requires a refusal that lives INSIDE each accepted entry point, which
-# means editing an accepted source.  That is outside the frozen allowlist, so PRB-5 is
-# reported OPEN and the exact paths required are named in the report.
+# The refusal that lives INSIDE each accepted entry point is installed separately, by
+# _refuse_route_e_signal -> enforce_route_e_guard (PRB-5).  This facade remains a
+# protocol convention: both public paths delegate to the SAME _frozen_check_order, so
+# the frozen order and the mandatory cutoff hold identically on each (PRB-3).
 # ======================================================================================
 
 SUPPORTED_ENTRY_POINTS: tuple[str, ...] = (
@@ -865,6 +866,7 @@ def route_e_entry(
     must_precede_unix: int | None = None,
     beacon_response: Mapping[str, Any] | None = None,
     verifier_path: str | os.PathLike[str] | None = None,
+    trace: list[str] | None = None,
 ) -> None:
     """The in-protocol Route E facade.  It always refuses, in the frozen order.
 
@@ -896,7 +898,7 @@ def route_e_entry(
         must_precede_unix=must_precede_unix,
         beacon_response=beacon_response,
         verifier_path=verifier_path,
-        trace=None,
+        trace=trace,
     )
     if not _frame.SCIENTIFIC_RUN_AUTHORIZED:
         raise EntryPointRefused(
@@ -1012,48 +1014,64 @@ def blocker_status() -> Mapping[str, Mapping[str, Any]]:
             "mechanism_present": True,
             "persistence_present": True,
             "discriminating_tests_present": True,
-            "integration_into_accepted_sources": False,
-            "remaining_sub_obligations": (
-                "no accepted producer calls build_track_component_join or "
-                "write_join_evidence; the evidence exists only when a Route E caller "
-                "writes it (LK-L1)",
-            ),
+            "integration_into_accepted_sources": True,
+            "operational_path": "run_route_e rebuilds the tracking AND the component "
+            "support from the persisted frames, builds the join, writes it atomically "
+            "into the world evidence, and verify_route_e_run re-reads it, recomputes its "
+            "digest from those bytes and REFUSES admission when it is absent, mutated, "
+            "swapped or foreign.  Tests: "
+            "tests/test_future_route_e_prb1_to_4_operational_closure_00.py::test_prb1_*",
+            "remaining_sub_obligations": (),
+            "status": "CANDIDATE_CLOSED",
             "human_review_required": True,
         },
         "PRB-2": {
             "mechanism_present": True,
             "root_recomputed_from_reread_bytes": True,
             "discriminating_tests_present": True,
-            "integration_into_accepted_sources": False,
+            "integration_into_accepted_sources": True,
+            "operational_path": "open_measured_analysis_access REFUSES any caller-supplied "
+            "verifier and verifies ROUTE_E_ANCHOR.json through the INSTALLED maintained "
+            "verifier: the commitment must bind the recomputed measurement root, the round "
+            "is derived from the public timestamp, and the pinned chain and DST decide.  "
+            "The injection seam lives in the private, unexported "
+            "_open_measured_analysis_access_with_injected_verifier.  Tests: "
+            "tests/test_future_route_e_prb1_to_4_operational_closure_00.py::test_prb2_*",
             "authenticity_established": True,
             "authenticity_mechanism": "the commitment is bound to the recomputed root and "
             "the designated round is verified by the pinned maintained drand verifier; "
             "there is no callback and no caller-supplied verdict",
-            "remaining_sub_obligations": (
-                "no accepted entry point calls the guard; the one-line hook is blocked "
-                "by byte-level source pins outside the allowlist (GUARD_IS_NOT_INSTALLED)",
-            ),
+            "remaining_sub_obligations": (),
+            "status": "CANDIDATE_CLOSED",
             "human_review_required": True,
         },
         "PRB-3": {
             "mechanism_present": True,
             "single_internal_path": "_frozen_check_order, used by both public entries",
             "discriminating_tests_present": True,
-            "integration_into_accepted_sources": False,
-            "remaining_sub_obligations": (
-                "the order binds every Route E path in this module; an accepted "
-                "function called directly still follows its own order (LK-L1)",
-            ),
+            "integration_into_accepted_sources": True,
+            "operational_path": "open_route_e_analysis and route_e_entry delegate to the "
+            "SAME _frozen_check_order and produce the IDENTICAL trace; must_precede_unix is "
+            "mandatory on both and a None value CLOSES admission at ENTRY_GUARD instead of "
+            "disabling the check.  Tests: "
+            "tests/test_future_route_e_prb1_to_4_operational_closure_00.py::test_prb3_*",
+            "remaining_sub_obligations": (),
+            "status": "CANDIDATE_CLOSED",
             "human_review_required": True,
         },
         "PRB-4": {
             "mechanism_present": True,
             "closed_at_digest_level": True,
             "discriminating_tests_present": True,
-            "persistence_or_external_anchoring": False,
-            "remaining_sub_obligations": (
-                "the root is computed and bound, never anchored; anchoring is PRB-6",
-            ),
+            "persistence_or_external_anchoring": True,
+            "operational_path": "run_route_e persists ROUTE_E_REPLAY_ROOT.json, bound to "
+            "the run identity, the pre-run root and the enrolment digest, and binds its "
+            "sha256 into the post-run envelope and the sealed receipt.  "
+            "verify_route_e_run re-reads those bytes, recomputes every world root and "
+            "REFUSES on any divergence; an absent artefact is never reconstructed.  Tests: "
+            "tests/test_future_route_e_prb1_to_4_operational_closure_00.py::test_prb4_*",
+            "remaining_sub_obligations": (),
+            "status": "CANDIDATE_CLOSED",
             "human_review_required": True,
         },
         "PRB-5": {

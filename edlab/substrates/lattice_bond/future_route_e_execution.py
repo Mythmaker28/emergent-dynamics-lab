@@ -64,6 +64,7 @@ import numpy as np
 from . import future_route_e_pre_run_frame as _frame
 from . import future_route_e_pre_run_locks as _locks
 from .engine import LatticeBondSpec, LatticeBondState
+from .future_lifecycle_owned_pipeline import rebuild_tracking_and_components
 from .future_prospective_measurement_bridge import (
     BridgeError,
     MeasurementSpec,
@@ -88,6 +89,8 @@ __all__ = [
     "FINAL_RECEIPT_NAME",
     "WORLDS_DIRECTORY",
     "JOIN_EVIDENCE_NAME",
+    "REPLAY_ROOT_NAME",
+    "REPLAY_ROOT_KIND",
     "POST_RUN_ONLY_KEYS",
     "REQUIRED_MANIFEST_KEYS",
     "DESIGNATED_ROUND_RULE",
@@ -133,6 +136,8 @@ POST_RUN_ENVELOPE_NAME = "POST_RUN_ENVELOPE.json"
 FINAL_RECEIPT_NAME = "FINAL_RECEIPT.json"
 WORLDS_DIRECTORY = "worlds"
 JOIN_EVIDENCE_NAME = "TRACK_COMPONENT_JOIN.json"
+REPLAY_ROOT_NAME = "ROUTE_E_REPLAY_ROOT.json"
+REPLAY_ROOT_KIND = "route-e-replay-root/v1"
 
 #: Files written AFTER the inventory, therefore deliberately outside it.  There is no
 #: cycle: inventory -> envelope -> receipt, each binding only what precedes it.
@@ -890,6 +895,20 @@ def run_route_e(
             attempt["measurement_root_sha256"] = record.measurement_root_sha256
             attempt["lifecycle_document_sha256"] = record.owned_record.lifecycle_document_sha256
             attempt["terminal_record_count"] = int(record.owned_record.terminal_record_count)
+            # PRB-1: the join is built from the REAL tracking and the REAL component
+            # support, both rebuilt from the bytes just persisted, then written
+            # atomically into the world evidence and read back.
+            tracking, components_by_frame = rebuild_tracking_and_components(world_directory)
+            join_records = _locks.build_track_component_join(tracking, components_by_frame)
+            _, join_digest = _locks.write_join_evidence(world_directory, join_records)
+            attempt["track_component_join_sha256"] = join_digest
+            # PRB-4: the replay root is computed from the re-read join digest, the
+            # measurement root and the enrolment digest, and persisted below.
+            attempt["route_e_replay_root"] = _locks.route_e_root(
+                measurement_root_sha256=record.measurement_root_sha256,
+                track_component_join_digest=join_digest,
+                family_enrolment_digest=enrolment_sha,
+            )
             succeeded += 1
         attempts.append(attempt)
 
@@ -898,6 +917,31 @@ def run_route_e(
         destination / ATTEMPTS_NAME,
         b"".join(canonical_bytes(item) + b"\n" for item in attempts),
     )
+
+    # PRB-4 -- persist and anchor the replay root.  It is bound to the run identity and
+    # to the enrolment digest, so a bit-identical directory replayed under another run
+    # identity does not reproduce it.  Nothing here is ever reconstructed on read.
+    phase = "RECORD_REPLAY_ROOT"
+    replay_worlds = [
+        {
+            "attempt_ordinal": int(item["attempt_ordinal"]),
+            "measurement_root_sha256": str(item["measurement_root_sha256"]),
+            "route_e_replay_root": str(item["route_e_replay_root"]),
+            "track_component_join_sha256": str(item["track_component_join_sha256"]),
+            "world_relative_path": str(item["world_relative_path"]),
+        }
+        for item in attempts
+        if item.get("status") == "SUCCESS"
+    ]
+    replay_document = {
+        "enrolment_digest": enrolment_sha,
+        "kind": REPLAY_ROOT_KIND,
+        "pre_run_root": root,
+        "run_identity": str(manifest["run_identity"]),
+        "schema_version": EXECUTION_VERSION,
+        "worlds": replay_worlds,
+    }
+    replay_root_sha256 = _write_exact(destination / REPLAY_ROOT_NAME, canonical_bytes(replay_document))
 
     # 11 -- inventory, envelope, receipt.  Each binds only what precedes it: no cycle.
     phase = "SEAL_ENVELOPE"
@@ -929,6 +973,7 @@ def run_route_e(
         "pre_run_root": root,
         "provenance_tag": ROUTE_E_PROVENANCE_TAG,
         "public_registry_inclusion_proven": public_inclusion,
+        "replay_root_document_sha256": replay_root_sha256,
         "seed_root_sha256": enrolment.seed_root_sha256,
         "world_order": [list(item) for item in plan.world_order[:worlds]],
         "worlds_attempted": len(attempts),

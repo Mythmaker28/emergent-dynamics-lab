@@ -29,7 +29,7 @@
     "init_reexport_missing_authority": "permission to update tests/test_future_lifecycle_runner_integration.py and/or the __init__.py entry of FUTURE_LIFECYCLE_RUNNER_STACK_REQUALIFICATION_01_QUALIFICATION.json, which byte-pin __init__.py at 9d3bea5a"
   },
   "source_hashes_sha256": {
-    "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py": "348140bd06f7e0de057ebde2b8a4c24530d29e7272b807bf556a987f82cebb78",
+    "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py": "967dbf8b40f28a500bafdd871503451496d6e439f4d58c3b680e538f155cfd9a",
     "edlab/substrates/lattice_bond/instrumentation.py": "65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef",
     "edlab/substrates/lattice_bond/lifecycle.py": "57b249cc7893f8fc908cffc2cfec26419563b393e9a9fadae0a8c880f6e17ced",
     "edlab/substrates/lattice_bond/future_lifecycle_runner.py": "1dbb2f06cd4311990567e512804994f5a39793b9895e44c5427709d8aa82410a",
@@ -869,10 +869,11 @@
       },
       "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py": {
         "previous_sha256": null,
-        "current_sha256": "348140bd06f7e0de057ebde2b8a4c24530d29e7272b807bf556a987f82cebb78"
+        "current_sha256": "967dbf8b40f28a500bafdd871503451496d6e439f4d58c3b680e538f155cfd9a"
       }
     },
     "reason": "changed by FUTURE_ROUTE_E_PRE_RUN_BLOCKER_CLOSURE_00_FINAL: the Route E guard (_refuse_route_e_signal -> enforce_route_e_guard) is installed as the FIRST statement of the accepted public entry points, closing PRB-5.  No signature changed, no authorisation parameter was added, non-Route-E behaviour is unchanged.",
-    "human_review": "PENDING"
+    "human_review": "PENDING",
+    "operational_closure_00": "changed by FUTURE_ROUTE_E_PRB_1_TO_4_AND_HR10_OPERATIONAL_CLOSURE_00: the track-component join and the replay root are now persisted by run_route_e and required by the admission consumer (PRB-1, PRB-4); the measured analysis entry refuses a caller-supplied verifier and verifies the anchor through the installed maintained verifier (PRB-2); both public Route E paths share the frozen order (PRB-3)."
   }
 }

@@ -173,6 +173,10 @@ BRIDGE_VERSION = "1.0.0"
 MEASUREMENT_DOCUMENT_NAME = "MEASUREMENT.json"
 BRIDGE_BINDING_NAME = "BRIDGE_BINDING.json"
 ANCHOR_RECEIPT_NAME = "ANCHOR_RECEIPT.json"
+#: PRB-2: the Route E anchor.  It carries the PUBLIC commitment and the persisted
+#: beacon response, so authenticity is decided by the INSTALLED maintained verifier
+#: and never by a caller-supplied callable.
+ROUTE_E_ANCHOR_NAME = "ROUTE_E_ANCHOR.json"
 MEASUREMENT_FRAME_DIRECTORY = "measurement_frames"
 
 #: Read from the owned pipeline's inert materialisation table at import time.
@@ -1271,8 +1275,91 @@ class MeasuredAnalysisAccess:
     anchor_receipt: AnchorReceipt
 
 
-def open_measured_analysis_access(
+def _verify_route_e_anchor(directory: Path, receipt: AnchorReceipt) -> None:
+    """PRB-2: authenticity through the INSTALLED verifier.  No callable, no default.
+
+    ``ROUTE_E_ANCHOR.json`` must be present and must carry the public commitment, the
+    persisted beacon response and the public-priority cutoff.  The commitment must bind
+    exactly the receipt root; the round is DERIVED from the commitment timestamp and
+    verified cryptographically against the pinned chain, network and DST.
+    """
+    from . import future_route_e_pre_run_locks as _locks
+
+    anchor_path = directory / ROUTE_E_ANCHOR_NAME
+    if not anchor_path.is_file():
+        raise BridgeAnchorError(
+            "refused: no ROUTE_E_ANCHOR.json; a receipt without a verifiable public "
+            "commitment is not evidence (PRB-2)"
+        )
+    raw = anchor_path.read_bytes()
+    try:
+        document = json.loads(raw.decode("ascii"))
+    except (UnicodeDecodeError, ValueError) as exc:
+        raise BridgeAnchorError(f"refused: the Route E anchor is not canonical JSON: {exc}") from exc
+    if _canonical_bytes(document) != raw:
+        raise BridgeAnchorError("refused: the Route E anchor is not in canonical byte form")
+    required = {"beacon_response", "commitment", "must_precede_unix", "schema_version"}
+    if not isinstance(document, dict) or set(document) != required:
+        raise BridgeAnchorError("refused: the Route E anchor key set is not the canonical one")
+    if document["schema_version"] != SCHEMA_VERSION:
+        raise BridgeAnchorError("refused: unsupported Route E anchor schema version")
+    fields = document["commitment"]
+    if not isinstance(fields, dict):
+        raise BridgeAnchorError("refused: the Route E anchor commitment is malformed")
+    try:
+        commitment = _locks.PublicCommitment(
+            root_sha256=fields["root_sha256"],
+            venue=fields["venue"],
+            reference=fields["reference"],
+            published_at_unix=fields["published_at_unix"],
+        )
+    except (KeyError, TypeError, ValueError) as exc:
+        raise BridgeAnchorError(f"refused: the Route E anchor commitment is malformed: {exc}") from exc
+    if commitment.root_sha256 != receipt.root_sha256:
+        raise BridgeAnchorError(
+            "refused: the public commitment does not bind the receipt root"
+        )
+    try:
+        _locks.verify_public_commitment(
+            commitment,
+            expected_root_sha256=receipt.root_sha256,
+            must_precede_unix=document["must_precede_unix"],
+            beacon_response=document["beacon_response"],
+            verifier_path=None,
+        )
+    except Exception as exc:  # noqa: BLE001 - every refusal is a refusal
+        raise BridgeAnchorError(f"refused: the Route E anchor did not verify: {exc}") from exc
+
+
+def _open_measured_analysis_access_with_injected_verifier(
     run_directory: str | os.PathLike[str], *, verifier: AnchorVerifier
+) -> MeasuredAnalysisAccess:
+    """TEST-ONLY.  NOT a production entry point and NOT exported.
+
+    It exists so internal tests can exercise the local evidence path without a real
+    public commitment.  No accepted entry point calls it, and the public
+    :func:`open_measured_analysis_access` refuses any caller-supplied verifier.
+    """
+    directory = Path(run_directory)
+    verified = _verified_evidence(directory)
+    receipt = _read_anchor_receipt(directory)
+    if receipt.root_sha256 != verified.measurement_root_sha256:
+        raise BridgeAnchorError("anchor receipt does not bind the recomputed measurement root")
+    if not verifier(receipt):
+        raise BridgeAnchorError("anchor verifier refused the receipt")
+    try:
+        owned_access = open_owned_analysis_access(directory)
+    except OwnedPipelineError as exc:
+        raise BridgeEvidenceError(
+            f"owned analysis access refused the measured evidence: {exc}"
+        ) from exc
+    return MeasuredAnalysisAccess(
+        owned_access=owned_access, verified_record=verified, anchor_receipt=receipt
+    )
+
+
+def open_measured_analysis_access(
+    run_directory: str | os.PathLike[str], *, verifier: AnchorVerifier | None = None
 ) -> MeasuredAnalysisAccess:
     """The single supported measured analysis entry point.  Fail-closed, in order.
 
@@ -1287,6 +1374,11 @@ def open_measured_analysis_access(
     the receipt was written recomputes a different root and is refused.
     """
 
+    if verifier is not None:
+        raise BridgeAnchorError(
+            "refused: no caller-supplied verifier is accepted on a production path "
+            "(PRB-2); the installed maintained verifier is the only authority"
+        )
     directory = Path(run_directory)
     verified = _verified_evidence(directory)
     receipt = _read_anchor_receipt(directory)
@@ -1294,8 +1386,7 @@ def open_measured_analysis_access(
         raise BridgeAnchorError(
             "anchor receipt does not bind the recomputed measurement root"
         )
-    if not verifier(receipt):
-        raise BridgeAnchorError("anchor verifier refused the receipt")
+    _verify_route_e_anchor(directory, receipt)
     try:
         owned_access = open_owned_analysis_access(directory)
     except OwnedPipelineError as exc:
@@ -1309,6 +1400,7 @@ def open_measured_analysis_access(
 
 __all__ = [
     "ANCHOR_RECEIPT_NAME",
+    "ROUTE_E_ANCHOR_NAME",
     "BRIDGE_BINDING_NAME",
     "BRIDGE_VERSION",
     "MEASUREMENT_DOCUMENT_NAME",

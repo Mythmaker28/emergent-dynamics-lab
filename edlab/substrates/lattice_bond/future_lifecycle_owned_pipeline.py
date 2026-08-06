@@ -1042,7 +1042,44 @@ def open_owned_analysis_access(
         ) from exc
 
 
+
+def rebuild_tracking_and_components(run_directory: str | os.PathLike[str]):
+    """PRB-1: rebuild the tracking AND the component support, from disk only.
+
+    Re-reads the persisted acquisition frames, re-runs the mandatory detector and the
+    mandatory tracker on those bytes, and returns
+    ``(tracking, components_by_frame)`` where
+    ``components_by_frame[frame][component_index] = (shape, cells)`` -- exactly the
+    support map ``build_track_component_join`` requires.  Nothing is taken from memory
+    and nothing is supplied by a caller.
+    """
+    directory = Path(run_directory)
+    if not directory.is_dir():
+        raise OwnedEvidenceError("run_directory must already exist")
+    evidence = _reverify_acquisition(directory)
+    components_by_frame: dict[int, dict[int, tuple[tuple[int, int], tuple[int, ...]]]] = {}
+    observed = []
+    for position, label in enumerate(evidence.sampled_frames):
+        payload = _read_exact_bytes(directory / _frame_relative_path(position))
+        mask = _decode_frame(payload, evidence.frame_shape)
+        components = detect_components(
+            _materialise(mask, int(label)), evidence.detector_spec, frame=int(label)
+        )
+        observed.append(components)
+        per_frame: dict[int, tuple[tuple[int, int], tuple[int, ...]]] = {}
+        for component in components:
+            per_frame[int(component.index)] = (
+                (int(component.shape[0]), int(component.shape[1])),
+                tuple(int(cell) for cell in component.cells),
+            )
+        components_by_frame[int(label)] = per_frame
+    tracking = track_components(
+        tuple(observed), evidence.tracker_spec, sampled_frames=evidence.sampled_frames
+    )
+    return tracking, components_by_frame
+
 __all__ = [
+    "rebuild_tracking_and_components",
     "ACQUISITION_FRAME_DIRECTORY",
     "ACQUISITION_LEDGER_NAME",
     "OWNED_BINDING_NAME",

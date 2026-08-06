@@ -527,10 +527,11 @@ def test_prb4_05_the_three_root_slots_are_not_interchangeable():
     )
 
 
-def test_prb4_06_status_claims_only_the_digest_level():
+def test_prb4_06_status_claims_persistence_and_anchoring():
     status = locks.blocker_status()["PRB-4"]
     assert status["closed_at_digest_level"] is True
-    assert status["persistence_or_external_anchoring"] is False
+    assert status["persistence_or_external_anchoring"] is True
+    assert "ROUTE_E_REPLAY_ROOT.json" in status["operational_path"]
 
 
 # ======================================================================================
@@ -794,8 +795,9 @@ def test_prb2_08_authenticity_is_now_delegated_to_the_pinned_verifier():
     status = locks.blocker_status()["PRB-2"]
     assert status["root_recomputed_from_reread_bytes"] is True
     assert status["authenticity_established"] is True
-    assert status["integration_into_accepted_sources"] is False
+    assert status["integration_into_accepted_sources"] is True
     assert "no callback" in status["authenticity_mechanism"]
+    assert "REFUSES any caller-supplied" in status["operational_path"]
 
 
 def test_prb3_02_a_missing_artefact_stops_before_root_and_verifier(tmp_path):

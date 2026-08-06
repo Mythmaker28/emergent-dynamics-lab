@@ -545,7 +545,7 @@ def test_firewall_03_the_status_is_factual_and_carries_no_composite_token():
     status = locks.blocker_status()
     assert status["PRB-5"]["status"] == "CANDIDATE_CLOSED"
     assert status["PRB-2"]["authenticity_established"] is True
-    assert status["PRB-2"]["integration_into_accepted_sources"] is False
+    assert status["PRB-2"]["integration_into_accepted_sources"] is True
     for entry in status.values():
         assert "closed" not in entry
         assert entry["human_review_required"] is True

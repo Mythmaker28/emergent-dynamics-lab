@@ -1955,6 +1955,9 @@ def test_op_23d_no_engine_or_scientific_surface_is_introduced() -> None:
     assert "stage_b" not in text.lower()
     assert "step(" not in text
     assert set(owned.__all__) == {
+        # PRB-1: the disk-only rebuild of tracking AND component support.  It runs no
+        # engine step and opens nothing scientific; it only re-reads persisted frames.
+        "rebuild_tracking_and_components",
         "ACQUISITION_FRAME_DIRECTORY",
         "ACQUISITION_LEDGER_NAME",
         "OWNED_BINDING_NAME",
@@ -1998,9 +2001,9 @@ def test_op_23e_the_accepted_stack_sources_change_only_under_a_declared_mission(
         "instrumentation.py": (
             "65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef"
         ),
-        "lifecycle.py": "3120d820e30f2b7f71a709ba0fe335a732a0dc849473265f506d2c0307d03053",
+        "lifecycle.py": "57b249cc7893f8fc908cffc2cfec26419563b393e9a9fadae0a8c880f6e17ced",
         "future_lifecycle_runner.py": (
-            "7691da3583ecd0fa6a84b87ebedceb815815307340c62eddaabb3190f4b33d08"
+            "1dbb2f06cd4311990567e512804994f5a39793b9895e44c5427709d8aa82410a"
         ),
         "__init__.py": "9d3bea5ac70b514b592f71c2c46738dfdaec62e0072e8055a512b2e22ac6d5b0",
     }

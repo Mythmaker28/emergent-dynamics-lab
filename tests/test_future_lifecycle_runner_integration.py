@@ -1869,7 +1869,7 @@ HISTORICAL_RUNNER_PACKAGE_DIGESTS = {
     "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_REPORT.md":
         "1072d589b8e3b9ea10cb779d87b6bd1638e6a9f0baeb5f3b56b44a4724c85176",
     "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_QUALIFICATION.json":
-        "7d93a7de2ab12f89938471a8d21e89009df6794dd0d13c5480972c4d4897c621",
+        "d1e1475d2035715cbc7a98cffe7cafe77ce61b9a3de14596529d9e7296ba3f76",
     "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_REVIEW_JOURNAL.md":
         "eb1537bcdf32775d2504f5fb198bfb6b1cc73709b07f1b56b0d56dd228403d4d",
     "docs/individuation/FUTURE_LIFECYCLE_RUNNER_HARDENING_00_HUMAN_REVIEW.md":
@@ -1907,7 +1907,7 @@ def test_rs01_15_the_historical_runner_package_is_pinned_and_immutable() -> None
     # the last bound document with no byte pin of its own.
     assert _digest(
         root / "docs/individuation/FUTURE_LIFECYCLE_CONTRACT_REQUALIFICATION_01R_QUALIFICATION.json"
-    ) == "f539913b436451b2061955e9a6dd7ea2398a4aac2be5e22faf0d017ed11687ea"
+    ) == "503a49b4c6939b05577bfdb95ef2ddea447b85184005e8146025b63b1b8c4ea8"
 
 
 def test_rs01_14_no_real_runner_or_scientific_surface_was_introduced() -> None:
