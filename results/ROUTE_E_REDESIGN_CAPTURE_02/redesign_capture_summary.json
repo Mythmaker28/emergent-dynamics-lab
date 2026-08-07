@@ -1,0 +1,62 @@
+{
+ "mission": "ROUTE_E_REDESIGN_SOURCE_CAPTURE_DEV_02",
+ "FRESH_T0_BLOCKS": 18,
+ "NEW_LOGICAL_TRAJECTORIES": 144,
+ "ENGINE_INVOCATIONS": 144,
+ "TECHNICAL_FAILURES": 0,
+ "T256_VALID": "18/18 (9/9 par taille)",
+ "survival_2048_total": 144,
+ "joint_capture_success_total": 0,
+ "max_total_system_balance_error": 1.1368683772161603e-13,
+ "DECISION": "PROBE_INVALID",
+ "invalidity": {
+  "scope": "the six D1 arms only",
+  "cause": "the frozen admissibility filter refuses any source site with a 4-neighbour inside the track. At graph distance 1 EVERY candidate is 4-adjacent by definition, so the filter and the D1 mask are LOGICALLY INCOMPATIBLE and the six D1 arms injected exactly nothing (realized_source_injection = 0.00).",
+  "consequence": "the six D1 arms are MISLABELLED: they are SINK_ONLY arms at three doses, not coupled arms.",
+  "detected_by": "realized_source_injection = 0 with normal removal, and lattice_balance_error equal to the full removed mass (0.104 to 2.219) while the total lattice+reservoir balance stayed exact (1.1e-13).",
+  "not_patched": "REFINEMENT_PASSES = 0 was frozen; no re-run was attempted."
+ },
+ "still_valid": {
+  "D2_replication_with_fresh_seeds": {
+   "L24": {
+    "now": 2.97,
+    "DECOMPOSE_01": 3.09
+   },
+   "L32": {
+    "now": 4.95,
+    "DECOMPOSE_01": 5.01
+   },
+   "verdict": "REPLICATED \u2014 4% and 1% apart on fresh seeds"
+  },
+  "accidental_pure_ablation_dose_response": {
+   "L24": {
+    "sham": 0.869,
+    "low": 0.814,
+    "mid": 0.748,
+    "high": 0.679,
+    "egress": [
+     0.0,
+     6.92,
+     14.81,
+     22.81
+    ],
+    "survival": "9/9 partout"
+   },
+   "L32": {
+    "sham": 0.899,
+    "low": 0.845,
+    "mid": 0.776,
+    "high": 0.706,
+    "egress": [
+     0.0,
+     12.99,
+     27.29,
+     41.81
+    ],
+    "survival": "9/9 partout"
+   },
+   "reading": "pure removal at 0.15*M256 drives the PER_TRACK initial residual to 0.679 (L=24) and 0.706 (L=32) with ZERO survival cost \u2014 the deepest material turnover reached in this project so far, and it needs no external source at all."
+  }
+ },
+ "design_lesson": "the non-adjacency filter is what caps capture. It was introduced for a correct reason (a directly injected cell must not count as ingress) but it forces fresh material to cross a vacant ring, and the dynamics do not transport it across. Any future capture design must either credit ingress by mixing rather than by adjacency, or measure the transport length scale directly."
+}
