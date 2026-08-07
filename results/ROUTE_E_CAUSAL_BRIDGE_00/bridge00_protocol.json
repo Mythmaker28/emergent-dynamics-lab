@@ -1,0 +1,114 @@
+{
+  "kind": "route-e-causal-bridge-dev-protocol/v1",
+  "mission": "ROUTE_E_NONMERGING_CAUSAL_BRIDGE_DEV_00",
+  "frozen_before_outputs": true,
+  "authorisations": {
+    "DEV_EXPERIMENT_AUTHORIZED": true,
+    "PRIMARY_RUN_AUTHORIZED": false,
+    "REPRODUCTION_RUN_AUTHORIZED": false,
+    "HOLDOUT_OPENED": false,
+    "MAX_ENGINE_WORLDS": 144,
+    "PRODUCTION_MODEL_CHANGES": 0,
+    "NEW_AUDIT_DOCUMENTS": 0
+  },
+  "substrate": {
+    "branch": "dev/route-e-feasibility-sweep-00",
+    "tip": "ddbda94c2edb6b35d89e1a1203ff08702b9803fc",
+    "parent": "7e6faeb173a6a2692a541dc0006c75a3972b08d1",
+    "bundle_sha256": "0ee393a427bf8b574e49d2fcf88ec0ba101b45f528f42131cb5387e8b4f39393",
+    "lineage_verified": true
+  },
+
+  "PHASE_1_FINDING": {
+    "question_as_posed": "at identical initial microstate, replace the Route E dynamics by the frozen positive dynamics of NONMERGING_CONFIRM_02",
+    "verdict": "NOT_EXECUTABLE_AS_POSED",
+    "reason": "the two are not two laws of one substrate; they are TWO DIFFERENT SUBSTRATES with disjoint state spaces. No initial microstate is shared, so the requested paired swap has no domain.",
+    "CAUSAL_FACTOR": "SUBSTRATE",
+    "route_e": {
+      "engine": "edlab.substrates.lattice_bond.engine.LatticeBondEngine",
+      "state": "LatticeBondState(m[L,L], n[L,L], b[2,L,L], step)",
+      "state_fields": 3,
+      "dt": 1.0,
+      "geometry": "periodic L x L, L in {16,24,32}",
+      "detector": "matter threshold 0.45 on m",
+      "cohort": "enrolled union of all detected components, passive tracer"
+    },
+    "nonmerging_confirm_02": {
+      "engine": "edlab.substrates.scaffold.engine.ScaffoldEngine",
+      "driver": "edlab.experiments.sc_mcm",
+      "state": "SCState(rho, U, V, c, N, C, uptake, step)",
+      "state_fields": 7,
+      "dt": 0.1,
+      "size": 64,
+      "extra_dynamics": "reaction-diffusion with an internal toggle network (a=2.0, K=0.5, D_int=0.008, tau=0.20, beta=0.6) and exact cohorts sum_c C == rho",
+      "readout": "uptake, coupled to m_plus by construction"
+    },
+    "consequence": "The effect must NOT be attributed to a law. It cannot even be attributed to a DYNAMICS_PACKAGE within one substrate, because the substrates differ."
+  },
+
+  "EXECUTABLE_SUBSTITUTE": {
+    "rationale": "The scientific content of the question that IS testable: does the SWEEP_00 failure (no persistent bounded non-wrapping component) belong to the one law used there, or is it generic over the frozen Route E law measure? This holds the substrate AND the initial microstate bit-identical and varies only the LawSpec.",
+    "CAUSAL_FACTOR_OF_THE_SUBSTITUTE": "LAW",
+    "design": "paired, same seed -> bit-identical initial microstate across all law arms",
+    "arms": [
+      {"name": "BASELINE_SWEEP00", "law": "LatticeBondSpec(dt=1.0, m_max=1.0, n_max=1.0) with frozen defaults", "role": "the law used in ANTI_STAGNATION_ROUTE_E_FEASIBILITY_SWEEP_00"},
+      {"name": "LAW_15", "proposal_index": 15},
+      {"name": "LAW_16", "proposal_index": 16},
+      {"name": "LAW_19", "proposal_index": 19},
+      {"name": "LAW_29", "proposal_index": 29},
+      {"name": "LAW_35", "proposal_index": 35}
+    ],
+    "law_source": "propose_law_fields(seed_root, index) from future_route_e_pre_run_frame.py, the FROZEN law measure; every arm passed in_proposal_box() AND engine_accepts()",
+    "law_seed_root": "sha256(b'ROUTE_E_NONMERGING_CAUSAL_BRIDGE_DEV_00')",
+    "initial_condition": "the frozen production IC m ~ U(0,1), n = 0.8, b = 0 -- identical bytes for a given (seed, L) across every arm"
+  },
+
+  "sizes": [24, 32],
+  "seeds_per_cell": 12,
+  "seeds": "DEV_CAUSAL_BRIDGE_00 namespace 910000-910011, offset by size; open, recorded before the run, PERMANENTLY EXCLUDED from any future primary, reproduction or holdout",
+  "worlds": {"arms": 6, "sizes": 2, "seeds": 12, "total_engine_worlds": 144},
+  "sampled_frames": [0, 16, 32, 64, 128, 256, 512, 1024],
+  "native_horizon_note": "NONMERGING_CONFIRM_02 has a different native horizon (probe 0.25x5, horizon 40 in its own substrate units at dt=0.1); it is NOT commensurable with the lattice_bond step count and is therefore NOT added to this schedule. Recorded as a declared limitation rather than forced.",
+
+  "measurement": {
+    "entry_point": "edlab.substrates.lattice_bond.future_prospective_measurement_bridge.run_measurement_bridge",
+    "detector_tracker_residual": "PRODUCTION, unmodified",
+    "measurement_spec": "MeasurementSpec() frozen defaults"
+  },
+
+  "metrics": [
+    "bounded_survival_to_1024", "first_wrapping_frame", "first_empty_frame",
+    "component_count_by_frame", "largest_component_over_L2_by_frame",
+    "labelled_fraction", "min_bounded_residual_at_1024", "PASS_at_f"
+  ],
+
+  "primary_paired_comparison": {
+    "outcome": "bounded_survival_to_1024 = (never wraps) AND (at least one component at EVERY sampled frame) AND (a non-wrapping component exists at frame 1024)",
+    "unit": "one (seed, L) pair, matched across arms",
+    "test": "per-arm survival counts with conservative Wilson lower bounds; paired McNemar-style discordance counts vs BASELINE_SWEEP00; no p-value is used as a decision cut",
+    "censoring": "a world that raises inside the engine is recorded as TECHNICAL_FAILURE and kept in the denominator; it is never replaced, retried or topped up"
+  },
+
+  "decision_table": {
+    "LAW_IS_CAUSAL_FOR_SURVIVAL": "at least one drawn law shows bounded survival on both L=24 and L=32 with a Wilson lower bound above 0 while BASELINE survives 0",
+    "LAW_NOT_CAUSAL_WITHIN_FROZEN_MEASURE": "survival is 0 in every arm at both sizes",
+    "INDETERMINATE": "survival appears at one size only, or in a single seed with no size replication"
+  },
+
+  "measurement_controls": {
+    "purpose": "validate detection, wrapping and dissolution only -- NOT cohort_residual",
+    "cases": [
+      "a persistent compact bounded non-wrapping component",
+      "a wrapping band",
+      "a component that disappears"
+    ],
+    "path": "the production detect_components on hand-built states"
+  },
+
+  "declared_limitations": [
+    "the requested Route E <-> NONMERGING_CONFIRM_02 swap is not executable; the substitute varies the LAW inside the Route E substrate and answers a strictly narrower question",
+    "5 laws is a sample of the frozen measure, not the measure; absence of survival across 5 laws does not establish absence across the family",
+    "the schedule is non-uniform (8 frames) rather than the pilot cadence 16 (65 frames); wrapping and dissolution are step functions in practice, so this cannot change the sign of a null, but a transient between sampled frames could be missed",
+    "no scaffold world is run as a paired counterpart; any scaffold measurement is a REFERENCE, never a causal contrast"
+  ]
+}

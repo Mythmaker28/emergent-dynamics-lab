@@ -1,0 +1,23 @@
+[
+ {
+  "control": "compact_bounded_persistent",
+  "n_components": 1,
+  "any_wrapping": false,
+  "expected": "1 component, no wrapping",
+  "PASS": true
+ },
+ {
+  "control": "wrapping_band",
+  "n_components": 1,
+  "any_wrapping": true,
+  "expected": "wrapping detected",
+  "PASS": true
+ },
+ {
+  "control": "dissolved_component",
+  "n_components": 0,
+  "any_wrapping": false,
+  "expected": "0 components",
+  "PASS": true
+ }
+]
