@@ -1,0 +1,57 @@
+{
+ "mission": "ROUTE_E_SINGLE_DISC_SOURCE_SINK_DEV_00",
+ "reconstruction": "from this session's own action log",
+ "pilots": [
+  {
+   "RUN_ID": "P1",
+   "SEED": 940000,
+   "CONFIG": "L=24 LAW_16 FLOW_2N, narrow annulus (r+3)",
+   "START_TIME": "before protocol hash",
+   "OUTPUT_PATH": "stdout only, not persisted",
+   "OUTPUT_SHA256": "NOT_PERSISTED",
+   "RELATION_TO_PROTOCOL_HASH": "BEFORE",
+   "note": "CRASHED with AdmissibilityError: m leaves [0,m_max]"
+  },
+  {
+   "RUN_ID": "P2",
+   "SEED": 940000,
+   "CONFIG": "L=24 LAW_16 SHAM, narrow annulus",
+   "START_TIME": "before protocol hash",
+   "OUTPUT_PATH": "stdout only",
+   "OUTPUT_SHA256": "NOT_PERSISTED",
+   "RELATION_TO_PROTOCOL_HASH": "BEFORE"
+  },
+  {
+   "RUN_ID": "P3",
+   "SEED": 940000,
+   "CONFIG": "L=24 LAW_16 FLOW_2N, narrow annulus",
+   "START_TIME": "before protocol hash",
+   "OUTPUT_PATH": "stdout only",
+   "OUTPUT_SHA256": "NOT_PERSISTED",
+   "RELATION_TO_PROTOCOL_HASH": "BEFORE",
+   "note": "this is the run that produced the '74% integration' figure (ingress 31.7 of 43 injected)"
+  },
+  {
+   "RUN_ID": "P4..P9",
+   "SEED": 940000,
+   "CONFIG": "L in {24,32} x {SHAM,FLOW_2N,FLOW_4N}, WIDE upstream half-plane",
+   "START_TIME": "before protocol hash",
+   "OUTPUT_PATH": "stdout only",
+   "OUTPUT_SHA256": "NOT_PERSISTED",
+   "RELATION_TO_PROTOCOL_HASH": "BEFORE",
+   "note": "6 trajectories; this is where the wide band was observed to DESTROY the disc"
+  }
+ ],
+ "PARENT_DECLARED_TRAJECTORIES": 144,
+ "PARENT_PILOT_ENGINE_TRAJECTORIES": 9,
+ "pilot_completed": 8,
+ "pilot_crashed": 1,
+ "PARENT_TOTAL_ENGINE_TRAJECTORIES": 153,
+ "PARENT_PROTOCOL_STATUS": "PILOT_INFORMED_RETROSPECTIVE_DEV",
+ "status_evidence": [
+  "the source-band geometry was chosen AFTER observing both pilot configurations (declared in the parent protocol itself)",
+  "AGGRAVATING AND NOT PREVIOUSLY DECLARED: the 144-trajectory recorded run was LAUNCHED before forced_exchange_protocol.json was written and hashed. The protocol hash therefore postdates the start of the recorded engine output, not merely the pilots."
+ ],
+ "SEED_CONTAMINATION": "seed 940000 was used in every pilot AND is one of the 24 recorded t0 blocks (L=24, k=0). Its recorded trajectories are pilot-contaminated.",
+ "consequence": "the parent's 144 trajectories remain valid as DESCRIPTIVE DEV data; they cannot support any prospective or confirmatory claim."
+}

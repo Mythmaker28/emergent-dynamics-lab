@@ -1,0 +1,330 @@
+{
+ "mission": "ROUTE_E_DECOMPOSE_EXCHANGE_OPERATOR_DEV_01",
+ "FRESH_T0_BLOCKS": 18,
+ "NEW_LOGICAL_TRAJECTORIES": 144,
+ "ENGINE_INVOCATIONS": 152,
+ "TECHNICAL_FAILURES": 0,
+ "T256_VALID_BY_SIZE": {
+  "24": "9/9",
+  "32": "9/9"
+ },
+ "M256_range": [
+  162.94268207312285,
+  300.5193568354109
+ ],
+ "PER_TRACK_READOUT": "PASS",
+ "MEASUREMENT_FIXTURES": "PASS",
+ "OPERATOR_FIXTURES": "PASS",
+ "survival_2048_total": 144,
+ "joint_total": 0,
+ "max_total_system_balance_error": 1.1368683772161603e-13,
+ "max_lattice_balance_error": 0.7459385581849766,
+ "lattice_balance_note": "lattice-only balance is violated in COUPLED arms because the near-source region SATURATES: the operator removes the full quota but cannot place all of it. Total lattice+reservoir balance is exact (1.1e-13). This imbalance is itself direct evidence of source-capture limitation, not an operator bug.",
+ "by_cell": {
+  "24|SHAM": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 0.0,
+   "gate_e": 6.644586495006296,
+   "ingress": 0.0,
+   "transit": 0.0,
+   "resid": 0.8660423898520472,
+   "fresh": 0.0,
+   "joint": 0,
+   "maxlatt": 0.0,
+   "maxsys": 5.684341886080802e-14,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "24|SINK_ONLY_LOW_SMOOTH_DISTRIBUTED": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 6.936302674302102,
+   "gate_e": 6.644586495006296,
+   "ingress": 0.0,
+   "transit": 0.0,
+   "resid": 0.8128159962982909,
+   "fresh": 0.0,
+   "joint": 0,
+   "maxlatt": 0.0,
+   "maxsys": 5.684341886080802e-14,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "24|SOURCE_ONLY_LOW_SMOOTH_NEAR": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 0.0,
+   "gate_e": 6.644586495006296,
+   "ingress": 3.1045833484530814,
+   "transit": 0.0,
+   "resid": 0.8852483912675707,
+   "fresh": 0.01777948605033717,
+   "joint": 0,
+   "maxlatt": 0.0,
+   "maxsys": 5.684341886080802e-14,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "24|COUPLED_NEAR_LOW_SMOOTH_DISTRIBUTED": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 6.919138059076761,
+   "gate_e": 6.644586495006296,
+   "ingress": 3.089674331892645,
+   "transit": 0.0003650918045634519,
+   "resid": 0.8315095672221993,
+   "fresh": 0.018810097097003223,
+   "joint": 0,
+   "maxlatt": 0.10406403759820593,
+   "maxsys": 5.684341886080802e-14,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "24|COUPLED_NEAR_HIGH_SMOOTH_DISTRIBUTED": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 22.75437013195772,
+   "gate_e": 19.933759485018886,
+   "ingress": 4.73443688804575,
+   "transit": 0.00022431863746720567,
+   "resid": 0.7027998063692563,
+   "fresh": 0.03345979435368871,
+   "joint": 0,
+   "maxlatt": 0.3209653327331724,
+   "maxsys": 8.526512829121202e-14,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "24|COUPLED_NEAR_LOW_PULSE_DISTRIBUTED": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 6.749468580124697,
+   "gate_e": 6.644586495006296,
+   "ingress": 3.620485813657982,
+   "transit": 0.0005756761658898507,
+   "resid": 0.824981402756268,
+   "fresh": 0.020664347125821263,
+   "joint": 0,
+   "maxlatt": 0.0,
+   "maxsys": 1.1368683772161603e-13,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "24|COUPLED_NEAR_LOW_SMOOTH_CONTIGUOUS": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 7.960723529810198,
+   "gate_e": 6.644586495006296,
+   "ingress": 3.0929140286695023,
+   "transit": 0.0002856337093234728,
+   "resid": 0.824759120858495,
+   "fresh": 0.0187947253071276,
+   "joint": 0,
+   "maxlatt": 0.10406403759820593,
+   "maxsys": 1.1368683772161603e-13,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "24|COUPLED_FAR_LOW_SMOOTH_DISTRIBUTED": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 6.919152297771315,
+   "gate_e": 6.644586495006296,
+   "ingress": 0.5546694761379911,
+   "transit": 0.010797185210469996,
+   "resid": 0.813227600435392,
+   "fresh": 0.003670215438813368,
+   "joint": 0,
+   "maxlatt": 0.0,
+   "maxsys": 5.684341886080802e-14,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "32|SHAM": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 0.0,
+   "gate_e": 11.935016930959627,
+   "ingress": 0.0,
+   "transit": 0.0,
+   "resid": 0.9028183206748808,
+   "fresh": 0.0,
+   "joint": 0,
+   "maxlatt": 0.0,
+   "maxsys": 1.1368683772161603e-13,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "32|SINK_ONLY_LOW_SMOOTH_DISTRIBUTED": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 12.924850831059485,
+   "gate_e": 11.935016930959627,
+   "ingress": 0.0,
+   "transit": 0.0,
+   "resid": 0.8443632691493549,
+   "fresh": 0.0,
+   "joint": 0,
+   "maxlatt": 0.0,
+   "maxsys": 1.1368683772161603e-13,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "32|SOURCE_ONLY_LOW_SMOOTH_NEAR": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 0.0,
+   "gate_e": 11.935016930959627,
+   "ingress": 5.01242967882158,
+   "transit": 0.0,
+   "resid": 0.9179796041952101,
+   "fresh": 0.016135485756861245,
+   "joint": 0,
+   "maxlatt": 0.0,
+   "maxsys": 1.1368683772161603e-13,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "32|COUPLED_NEAR_LOW_SMOOTH_DISTRIBUTED": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 12.924843090820502,
+   "gate_e": 11.935016930959627,
+   "ingress": 5.009132891607835,
+   "transit": 5.847822571111946e-06,
+   "resid": 0.8610500355769599,
+   "fresh": 0.017289806265614993,
+   "joint": 0,
+   "maxlatt": 0.18782459802213183,
+   "maxsys": 5.684341886080802e-14,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "32|COUPLED_NEAR_HIGH_SMOOTH_DISTRIBUTED": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 41.416398491666484,
+   "gate_e": 35.80505079287887,
+   "ingress": 8.477567523228393,
+   "transit": 6.871386761033831e-05,
+   "resid": 0.7321685252037942,
+   "fresh": 0.02988355127032033,
+   "joint": 0,
+   "maxlatt": 0.5634737940663954,
+   "maxsys": 1.1368683772161603e-13,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "32|COUPLED_NEAR_LOW_PULSE_DISTRIBUTED": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 12.768857677954616,
+   "gate_e": 11.935016930959627,
+   "ingress": 6.767304090449919,
+   "transit": 8.648670580065008e-06,
+   "resid": 0.8594912271260734,
+   "fresh": 0.021976989669523782,
+   "joint": 0,
+   "maxlatt": 0.7459385581849766,
+   "maxsys": 1.1368683772161603e-13,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "32|COUPLED_NEAR_LOW_SMOOTH_CONTIGUOUS": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 14.301832212885158,
+   "gate_e": 11.935016930959627,
+   "ingress": 5.009674034594528,
+   "transit": 2.6009184713899207e-05,
+   "resid": 0.8549654600318771,
+   "fresh": 0.017318492096961777,
+   "joint": 0,
+   "maxlatt": 0.18782459802213183,
+   "maxsys": 1.1368683772161603e-13,
+   "fail": {
+    "NONE": 9
+   }
+  },
+  "32|COUPLED_FAR_LOW_SMOOTH_DISTRIBUTED": {
+   "n": 9,
+   "s1536": 9,
+   "s2048": 9,
+   "egress": 12.924758293774694,
+   "gate_e": 11.935016930959627,
+   "ingress": 1.3164935241662405,
+   "transit": 0.0001287430818828635,
+   "resid": 0.8460106437348923,
+   "fresh": 0.004696381083995623,
+   "joint": 0,
+   "maxlatt": 0.0,
+   "maxsys": 1.1368683772161603e-13,
+   "fail": {
+    "NONE": 9
+   }
+  }
+ },
+ "contrasts": {
+  "L24": {
+   "ablation_2v1": 0,
+   "source_addition_3v1": 0,
+   "dose_5v4": 0,
+   "pulse_6v4": 0,
+   "contiguous_7v4": 0,
+   "far_8v4": 0
+  },
+  "L32": {
+   "ablation_2v1": 0,
+   "source_addition_3v1": 0,
+   "dose_5v4": 0,
+   "pulse_6v4": 0,
+   "contiguous_7v4": 0,
+   "far_8v4": 0
+  }
+ },
+ "mechanism_flags": {
+  "ABLATION_DOMINATED_FAILURE": false,
+  "SOURCE_ADDITION_DOMINATED_FAILURE": false,
+  "PER_EVENT_SHOCK_DOMINATED": false,
+  "CONTIGUOUS_SINK_INJURY": false,
+  "SOURCE_CAPTURE_LIMITED": true,
+  "SOURCE_DISTANCE_EFFECT": false
+ },
+ "source_distance_note": "the flag is FALSE by its frozen definition (it requires >=3 extra failures, and there are 0), but the ingress effect is large and size-replicated: far-source capture is 0.55 vs 3.09 near at L=24 and 1.32 vs 5.01 at L=32, i.e. 3.8-5.6x lower, at zero survival cost.",
+ "DECISION": "SOURCE_CAPTURE_LIMITED",
+ "decision_trace": [
+  "OPERATOR_OR_LINEAGE_INVALID: fixtures 10/10 PASS, total-system balance 1.1e-13 -> no",
+  "PREPHASE_YIELD_INSUFFICIENT: 9/9 valid at both sizes -> no",
+  "SOURCE_CAPTURE_LIMITED: arm 4 reaches its egress gate 9/9 at BOTH sizes and fails its ingress gate 9/9 at both sizes (>= 5/9 required) -> FIRST APPLICABLE, SELECTED"
+ ]
+}

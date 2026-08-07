@@ -1,0 +1,148 @@
+{
+ "kind": "operator-decomposition-protocol/v1",
+ "mission": "ROUTE_E_DECOMPOSE_EXCHANGE_OPERATOR_DEV_01",
+ "PRESEAL_STAGE_1": "written and hashed BEFORE the recorded engine run",
+ "PRESEAL_INCIDENT": "DECLARED HONESTLY: a first launch of the harness began before this protocol was written (the protocol script died on a Python syntax error while the run started). It was killed after 8 trajectories on block (L=24, seed=950000); its outputs were NEVER read \u2014 the log printed only a progress counter \u2014 and its row file was deleted. The recorded run below was restarted from scratch AFTER this hash existed. These 8 pre-seal trajectories are counted in ENGINE_INVOCATIONS.",
+ "authorisations": {
+  "DEV_EXPERIMENT_AUTHORIZED": true,
+  "PRIMARY_RUN_AUTHORIZED": false,
+  "CONFIRMATORY_RUN_AUTHORIZED": false,
+  "REPRODUCTION_RUN_AUTHORIZED": false,
+  "HOLDOUT_OPENED": false,
+  "PRODUCTION_ENGINE_CHANGES": 0,
+  "FRESH_T0_BLOCKS": 18,
+  "BRANCHES_PER_T256_CHECKPOINT": 8,
+  "PLANNED_LOGICAL_TRAJECTORIES": 144,
+  "SEED_REPLACEMENT": "FORBIDDEN",
+  "RETROSPECTIVE_THRESHOLD_CHANGE": "FORBIDDEN"
+ },
+ "parent": {
+  "result_commit": "5e31527be48d9785dff236ae47303554dcff6eda",
+  "status": "PILOT_INFORMED_RETROSPECTIVE_DEV",
+  "pilot_engine_trajectories": 9,
+  "total_engine_trajectories": 153,
+  "corrected_decision": "NO_EFFECTIVE_EXCHANGE_DELIVERED"
+ },
+ "harness_code_sha256": {
+  "od_core.py": "bde7548c04edc7fa23c700318fa55d5bce7a3544d08b2ed8dd30a28feec15ba2",
+  "od_ops.py": "1320a448d517fd6ed5cb9c410706fa4173883a1dd259a896adc6614db1055242",
+  "od_fixtures.py": "317fe38c4ea32ac46f13493ec61e85c103b7dddd26d69d3a17961521dda2a431",
+  "operator_decomposition_harness.py": "3320ae741ac3662e5970af92cd33ce5bac6e5791180ef191860e07403d723575",
+  "morph02_ic.py": "a91a68db65df16ff007fb778eda058c0bb78acbffe2a79b28f9a8515bed334a2"
+ },
+ "material": {
+  "MATERIAL_UNIT": "sum of the continuous matter field m over the tracked component (mass), NOT site count",
+  "M256": "tracked material mass at t=256",
+  "doses_expressed_in": "fractions of M256, never of N0",
+  "GLOBAL_UNION_IS_TRACK": false,
+  "GLOBAL_TRACER_FIELD": true,
+  "PER_TRACK_READOUT": "mandatory"
+ },
+ "seeds": {
+  "rule": "950000 + 100*size_index + k, k in 0..8",
+  "label": "DEV_DECOMPOSE_OPERATOR_01",
+  "fresh": true,
+  "disjoint_from": [
+   "91xxxx",
+   "92xxxx",
+   "93xxxx",
+   "94xxxx"
+  ],
+  "excluded_forever": true,
+  "replacement": "FORBIDDEN"
+ },
+ "design": {
+  "LAW": "LAW_16",
+  "LAW_SELECTION": "POST_HOC_STABLE_CHASSIS",
+  "GENERALIZATION_TO_OTHER_LAWS": "FORBIDDEN",
+  "SIZES": [
+   24,
+   32
+  ],
+  "FRESH_SEEDS_PER_SIZE": 9,
+  "UNIQUE_T0_BLOCKS": 18,
+  "ARMS_PER_BLOCK": 8,
+  "PLANNED_LOGICAL_TRAJECTORIES": 144,
+  "NATURAL_PREPHASE": [
+   0,
+   256
+  ],
+  "FORCED_PHASE": [
+   256,
+   1536
+  ],
+  "UNFORCED_COAST": [
+   1536,
+   2048
+  ],
+  "HORIZON": 2048,
+  "MEASUREMENT_CADENCE": 16,
+  "arms": [
+   "SHAM",
+   "SINK_ONLY_LOW_SMOOTH_DISTRIBUTED",
+   "SOURCE_ONLY_LOW_SMOOTH_NEAR",
+   "COUPLED_NEAR_LOW_SMOOTH_DISTRIBUTED",
+   "COUPLED_NEAR_HIGH_SMOOTH_DISTRIBUTED",
+   "COUPLED_NEAR_LOW_PULSE_DISTRIBUTED",
+   "COUPLED_NEAR_LOW_SMOOTH_CONTIGUOUS",
+   "COUPLED_FAR_LOW_SMOOTH_DISTRIBUTED"
+  ],
+  "contrasts": {
+   "ABLATION": "2 vs 1",
+   "SOURCE_ADDITION": "3 vs 1",
+   "REFERENCE_MICROFLOW": "4",
+   "CUMULATIVE_DOSE": "5 vs 4",
+   "PER_EVENT_SHOCK": "6 vs 4",
+   "SINK_GEOMETRY": "7 vs 4",
+   "SOURCE_COUPLING_DISTANCE": "8 vs 4"
+  }
+ },
+ "mask_algorithm": "frozen in od_core.build_masks: sink = downstream half of C256 (proj>0); source_near = graph distance EXACTLY 2 from C256 and upstream; source_far = graph distance >= 4 and upstream; the distributed sink priority avoids 4-adjacent picks within one event while non-adjacent candidates remain; the contiguous sink priority sorts by angular distance from the axis. Masks are built ONCE at t256 in absolute coordinates and never follow the current track.",
+ "doses": {
+  "Q_LOW": "0.05 * M256",
+  "Q_HIGH": "0.15 * M256",
+  "SMOOTH": "80 events, t_e = 272 + 16*(e-1)",
+  "PULSE": "20 events, t_e = 272 + floor((e-1)*1264/19)",
+  "identical cumulative dose for LOW_SMOOTH and LOW_PULSE": true,
+  "deficit": "recorded, never caught up"
+ },
+ "reservoirs": {
+  "OUTGOING_PROVENANCE": "sink reservoir, never re-injected as fresh in the same trajectory",
+  "INCOMING_PROVENANCE": "fresh source reservoir",
+  "balance": "lattice + reservoirs exact for every arm; lattice-only exact for COUPLED arms"
+ },
+ "joint_endpoint": {
+  "name": "TOLERATED_DIRECTIONAL_MICROFLOW_H2048",
+  "clauses": [
+   "same track continuously valid from t256 to t2048",
+   "bounded, nonwrapping, nonmerged, not track-lost at 1536 and 2048",
+   "0.75*M256 <= tracked material mass <= 1.25*M256 at 1536 and 2048",
+   "UNIQUE_INITIAL_EGRESS >= 0.80*Q_LOW (LOW) or >= 0.12*M256 (HIGH)",
+   "UNIQUE_FRESH_INGRESS >= 0.80*Q_LOW (LOW) or >= 0.12*M256 (HIGH)",
+   "INITIAL_RESIDUAL <= 0.96 (LOW) or <= 0.88 (HIGH) at 1536 and 2048",
+   "FRESH_SOURCE_FRACTION >= 0.04 (LOW) or >= 0.12 (HIGH) at 1536 and 2048",
+   "DIRECTIONAL_TRANSIT_MASS >= 0.01*M256",
+   "EVENTWISE_LEDGER_ERROR = 0",
+   "UNFORCED_COAST_SURVIVAL = true"
+  ],
+  "ingress_credit": "fresh mass is credited only when measured inside the track at a checkpoint, which is at least one full engine interval after injection since source sites are non-adjacent to the track"
+ },
+ "decision_order": [
+  "OPERATOR_OR_LINEAGE_INVALID",
+  "PREPHASE_YIELD_INSUFFICIENT",
+  "SOURCE_CAPTURE_LIMITED",
+  "LOW_FLOW_WINDOW_BRACKETED",
+  "TOLERATED_DIRECTIONAL_MICROFLOW_DEV",
+  "NO_TOLERATED_FLOW_AT_TESTED_DOSES"
+ ],
+ "prephase_yield_rule": "T256_VALID >= 7/9 per size, else PREPHASE_YIELD_INSUFFICIENT; no replacement seed",
+ "fixtures": "operator_decomposition_fixtures.json \u2014 10 checks, all PASS. Fixture 7 was corrected MECHANICALLY BEFORE this preseal: the original specification exercised the OPERATOR (whole-cell removal fragments the block and shrinks the track, so the residual fell 0.15 instead of 0.10) where the required test is of the MEASUREMENT; it now applies a distributed PARTIAL removal that leaves every cell above threshold and the track set unchanged, and the residual falls by exactly the removed fraction.",
+ "forbidden": [
+  "80_PERCENT_REPLACEMENT",
+  "AUTONOMOUS_TURNOVER",
+  "SELF_MAINTENANCE",
+  "INDIVIDUATION",
+  "IDENTITY",
+  "LIFE"
+ ]
+}
