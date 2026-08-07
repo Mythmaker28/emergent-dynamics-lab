@@ -1,0 +1,271 @@
+{
+ "mission": "ROUTE_E_SINGLE_DISC_SOURCE_SINK_DEV_00",
+ "UNIQUE_T0_BLOCKS": 24,
+ "LAW_SPECIFIC_T256_CHECKPOINTS": 48,
+ "NEW_ENGINE_TRAJECTORIES": 144,
+ "T256_VALID_BY_SIZE_AND_LAW": {
+  "24|BASELINE": 12,
+  "24|LAW_16": 12,
+  "32|BASELINE": 12,
+  "32|LAW_16": 12
+ },
+ "TECHNICAL_FAILURES": 0,
+ "MATERIAL_LINEAGE": "IDENTIFIABLE",
+ "COHORT_SCOPE": "GLOBAL_UNION",
+ "TRACKER_INDEPENDENT_OF_COHORT": true,
+ "MEASUREMENT_FIXTURES": "PASS",
+ "SOURCE_SINK_FIXTURES": "PASS",
+ "EVENTWISE_BALANCE": "PASS (max error 0.0)",
+ "JOINT_EXCHANGE_PERSISTENCE_H2048_total": 0,
+ "effective_exchange_trajectories": "0/96 reach 0.80*N0 in both ingress and egress",
+ "by_cell": {
+  "24|BASELINE_SWEEP00|SHAM": {
+   "n": 12,
+   "s1536": 12,
+   "s2048": 5,
+   "coast": 5,
+   "joint2048": 0,
+   "ingress_med": 0.0,
+   "egress_med": 0.0,
+   "resid_med": 0.7268472446750146,
+   "fresh_med": 0.0,
+   "max_bal_err": 0.0,
+   "fail": {
+    "TRACK_LOST_OR_DISSOLVED": 7,
+    "NONE": 5
+   }
+  },
+  "24|BASELINE_SWEEP00|FLOW_2N": {
+   "n": 12,
+   "s1536": 0,
+   "s2048": 0,
+   "coast": 0,
+   "joint2048": 0,
+   "ingress_med": 19.433497026137534,
+   "egress_med": 57.5,
+   "resid_med": 0.6016663614306551,
+   "fresh_med": 0.09450298349576702,
+   "max_bal_err": 0.0,
+   "fail": {
+    "TRACK_LOST_OR_DISSOLVED": 12
+   }
+  },
+  "24|BASELINE_SWEEP00|FLOW_4N": {
+   "n": 12,
+   "s1536": 0,
+   "s2048": 0,
+   "coast": 0,
+   "joint2048": 0,
+   "ingress_med": 24.05917320470537,
+   "egress_med": 60.5,
+   "resid_med": 0.5413365373544247,
+   "fresh_med": 0.13912057613670425,
+   "max_bal_err": 0.0,
+   "fail": {
+    "TRACK_LOST_OR_DISSOLVED": 12
+   }
+  },
+  "24|LAW_16|SHAM": {
+   "n": 12,
+   "s1536": 12,
+   "s2048": 12,
+   "coast": 12,
+   "joint2048": 0,
+   "ingress_med": 0.0,
+   "egress_med": 0.0,
+   "resid_med": 0.8764763710682073,
+   "fresh_med": 0.0,
+   "max_bal_err": 0.0,
+   "fail": {
+    "NONE": 12
+   }
+  },
+  "24|LAW_16|FLOW_2N": {
+   "n": 12,
+   "s1536": 1,
+   "s2048": 1,
+   "coast": 1,
+   "joint2048": 0,
+   "ingress_med": 0.017212183071268074,
+   "egress_med": 92.0,
+   "resid_med": 0.8221283267791895,
+   "fresh_med": 0.03990691652301616,
+   "max_bal_err": 0.0,
+   "fail": {
+    "TRACK_LOST_OR_DISSOLVED": 10,
+    "TRACK_LOSS": 1,
+    "NONE": 1
+   }
+  },
+  "24|LAW_16|FLOW_4N": {
+   "n": 12,
+   "s1536": 1,
+   "s2048": 1,
+   "coast": 1,
+   "joint2048": 0,
+   "ingress_med": 0.16386652736925483,
+   "egress_med": 98.5,
+   "resid_med": 0.8711588019177415,
+   "fresh_med": 0.015029015283787799,
+   "max_bal_err": 0.0,
+   "fail": {
+    "TRACK_LOST_OR_DISSOLVED": 11,
+    "NONE": 1
+   }
+  },
+  "32|BASELINE_SWEEP00|SHAM": {
+   "n": 12,
+   "s1536": 12,
+   "s2048": 12,
+   "coast": 12,
+   "joint2048": 0,
+   "ingress_med": 0.0,
+   "egress_med": 0.0,
+   "resid_med": 0.786358975835881,
+   "fresh_med": 0.0,
+   "max_bal_err": 0.0,
+   "fail": {
+    "NONE": 12
+   }
+  },
+  "32|BASELINE_SWEEP00|FLOW_2N": {
+   "n": 12,
+   "s1536": 0,
+   "s2048": 0,
+   "coast": 0,
+   "joint2048": 0,
+   "ingress_med": 32.33689256608578,
+   "egress_med": 98.0,
+   "resid_med": 0.6211279169332455,
+   "fresh_med": 0.11274872027290689,
+   "max_bal_err": 0.0,
+   "fail": {
+    "TRACK_LOST_OR_DISSOLVED": 12
+   }
+  },
+  "32|BASELINE_SWEEP00|FLOW_4N": {
+   "n": 12,
+   "s1536": 0,
+   "s2048": 0,
+   "coast": 0,
+   "joint2048": 0,
+   "ingress_med": 30.72070840763601,
+   "egress_med": 107.0,
+   "resid_med": 0.6260984937307579,
+   "fresh_med": 0.1142598872331261,
+   "max_bal_err": 0.0,
+   "fail": {
+    "TRACK_LOST_OR_DISSOLVED": 11,
+    "TRACK_LOSS": 1
+   }
+  },
+  "32|LAW_16|SHAM": {
+   "n": 12,
+   "s1536": 12,
+   "s2048": 12,
+   "coast": 12,
+   "joint2048": 0,
+   "ingress_med": 0.0,
+   "egress_med": 0.0,
+   "resid_med": 0.9073045755106295,
+   "fresh_med": 0.0,
+   "max_bal_err": 0.0,
+   "fail": {
+    "NONE": 12
+   }
+  },
+  "32|LAW_16|FLOW_2N": {
+   "n": 12,
+   "s1536": 0,
+   "s2048": 0,
+   "coast": 0,
+   "joint2048": 0,
+   "ingress_med": 0.029558017782853312,
+   "egress_med": 80.0,
+   "resid_med": null,
+   "fresh_med": null,
+   "max_bal_err": 0.0,
+   "fail": {
+    "TRACK_LOST_OR_DISSOLVED": 12
+   }
+  },
+  "32|LAW_16|FLOW_4N": {
+   "n": 12,
+   "s1536": 1,
+   "s2048": 1,
+   "coast": 1,
+   "joint2048": 0,
+   "ingress_med": 0.7489050283857562,
+   "egress_med": 89.0,
+   "resid_med": 0.8358383037052526,
+   "fresh_med": 0.04951833175293558,
+   "max_bal_err": 0.0,
+   "fail": {
+    "TRACK_LOST_OR_DISSOLVED": 11,
+    "NONE": 1
+   }
+  }
+ },
+ "paired_vs_sham": {
+  "24|BASELINE_SWEEP00|FLOW_2N": {
+   "sham_only_survival": 5,
+   "flow_only_survival": 0,
+   "b_joint": 0,
+   "c_joint": 0
+  },
+  "24|BASELINE_SWEEP00|FLOW_4N": {
+   "sham_only_survival": 5,
+   "flow_only_survival": 0,
+   "b_joint": 0,
+   "c_joint": 0
+  },
+  "24|LAW_16|FLOW_2N": {
+   "sham_only_survival": 11,
+   "flow_only_survival": 0,
+   "b_joint": 0,
+   "c_joint": 0
+  },
+  "24|LAW_16|FLOW_4N": {
+   "sham_only_survival": 11,
+   "flow_only_survival": 0,
+   "b_joint": 0,
+   "c_joint": 0
+  },
+  "32|BASELINE_SWEEP00|FLOW_2N": {
+   "sham_only_survival": 12,
+   "flow_only_survival": 0,
+   "b_joint": 0,
+   "c_joint": 0
+  },
+  "32|BASELINE_SWEEP00|FLOW_4N": {
+   "sham_only_survival": 12,
+   "flow_only_survival": 0,
+   "b_joint": 0,
+   "c_joint": 0
+  },
+  "32|LAW_16|FLOW_2N": {
+   "sham_only_survival": 12,
+   "flow_only_survival": 0,
+   "b_joint": 0,
+   "c_joint": 0
+  },
+  "32|LAW_16|FLOW_4N": {
+   "sham_only_survival": 11,
+   "flow_only_survival": 0,
+   "b_joint": 0,
+   "c_joint": 0
+  }
+ },
+ "DECISION": "PERSISTENCE_WITHOUT_SUFFICIENT_REPLACEMENT",
+ "decision_trace": [
+  "1 FORCED_EXCHANGE_PERSISTENCE_SIGNAL: b=0 per size -> fail",
+  "2 BASELINE_FORCED_EXCHANGE_CANDIDATE: joint=0 -> fail",
+  "3 HIGH_DOSE_ONLY: joint=0 -> fail",
+  "4 FINITE_SIZE_EXCHANGE_CANDIDATE: no cell meets the bar at any size -> fail",
+  "5 EXTERNALLY_SUPPORTED_TRANSIENT_ONLY: joint at 1536 is also 0 -> fail",
+  "6 PERSISTENCE_WITHOUT_SUFFICIENT_REPLACEMENT: components DO persist (SHAM 41/48 to 2048) while residual, fresh fraction and ingress/egress never reach their gates -> FIRST APPLICABLE, SELECTED",
+  "note REPLACEMENT_DESTROYS_PERSISTENCE was NOT selected although the forcing destroys the disc in 46/48 flow trajectories, because its precondition (a SUFFICIENT exchange actually delivered) is false: egress reached only 28-53% and ingress 0-19% of the 0.80*N0 target."
+ ],
+ "key_observation": "the PARTIAL exchange that was delivered already destroyed the disc: paired against its own SHAM, survival is lost in 11/12 pairs at L=24 and 12/12 at L=32 under LAW_16 x FLOW_2N, with 0 pairs in the opposite direction. Directionally the forcing does work: residual falls from 0.73-0.91 (sham) to 0.54-0.63 (BASELINE flow) and fresh-source fraction rises from 0 to 0.10-0.14.",
+ "DIRECTIONAL_THROUGH_FLOW": "NOT_VERIFIED \u2014 ingress into the track and egress from the track were both measured, but no per-unit residence-then-exit counter was instrumented, so THROUGH_FLOW is not claimed; only FORCED_SOURCE_SINK_REPLACEMENT is."
+}

@@ -1,0 +1,214 @@
+{
+ "kind": "forced-exchange-protocol/v1",
+ "mission": "ROUTE_E_SINGLE_DISC_SOURCE_SINK_DEV_00",
+ "authorisations": {
+  "DEV_EXPERIMENT_AUTHORIZED": true,
+  "PRIMARY_RUN_AUTHORIZED": false,
+  "REPRODUCTION_RUN_AUTHORIZED": false,
+  "HOLDOUT_OPENED": false,
+  "MAX_NEW_ENGINE_TRAJECTORIES": 144,
+  "PRODUCTION_ENGINE_CHANGES": 0,
+  "DEV_WRAPPER": "AUTHORIZED",
+  "REFINEMENT_PASSES": 0,
+  "SEED_REPLACEMENT": "FORBIDDEN"
+ },
+ "parent_artifacts": {
+  "morph02_protocol.json": "6cbc509ede422abfa9bcb65c7038f73c98a55622a967c573283fd11bf4af147f",
+  "morph02_harness.py": "4e027b3ea4c131431b5234114988b4165ff86cad2a8361387ee151702a6651cb",
+  "morph02_ic.py": "a91a68db65df16ff007fb778eda058c0bb78acbffe2a79b28f9a8515bed334a2",
+  "morph02_rows.csv": "acc2e631408d09917706983d6bfd0230218b987d4278f63f650d46ba7e0f4fb6",
+  "morph02_summary.json": "3b9229f79f2ba4238c6111b51c9ab8d0bc0f5a7f7692881faed8dc0920f00c0c",
+  "MORPH02_REPORT.md": "f0f268943ab614783e716efd3ba63ec021c4fe58441fb21f539d3b56ee3657a1",
+  "morph02_frontier.png": "d9aaa5109c08c0114272eefadf652a508fcedbd5db849eac8cd4055b85074d0a",
+  "morph02_blocks.json": "18b792de29f7101bdb85e94ab87a94752d22d132db682d3f151df6e2c4bfbe1a"
+ },
+ "parent_verification": {
+  "COMMIT_OR_UNCOMMITTED": "UNCOMMITTED_INCLUDED_IN_ARCHIVE (bridge down at write time)",
+  "VERIFICATION_MODE": "recomputed directly from morph02_rows.csv, no physics re-run",
+  "ENGINE_TRAJECTORIES": 144,
+  "UNIQUE_T0_MICROSTATES": 72,
+  "UNIQUE_MICROSTATE_HASHES": 72,
+  "T0_ADMISSIBLE": 72,
+  "INITIAL_GATE_FAILS": 0,
+  "TECHNICAL_FAILURES": 0,
+  "SURVIVAL_TOTALS": {
+   "RANDOM_IID": "2/48",
+   "SINGLE_DISC": "42/48",
+   "COMPACT_ISLANDS": "6/48",
+   "TOTAL": 50
+  },
+  "ARITHMETIC_CORRECTION": "the parent REPORT said 36/48 for SINGLE_DISC. The authentic rows give 6+12+12+12 = 42/48. The prompt is right and the report was wrong: a summation error in prose, not in the data. Corrected in place in MORPH02_REPORT.md and morph02_summary.json.",
+  "CARDINALITY_SCOPE_CORRECTION": "the parent claimed 'cardinalite exactement egale entre morphologies'. Authentic rows: SINGLE_DISC and COMPACT_ISLANDS are EXACTLY 202/576 and 358/1024 in every seed; RANDOM_IID is binomial and ranges 0.302-0.382 at L=24 and 0.325-0.361 at L=32. Cardinality is exact between the two constructed morphologies and equal only IN EXPECTATION for the random arm. This is the origin of the reported 0.343-0.351 range.",
+  "PAIRING_SCOPE": "the two LAW arms of one microstate are bit-identical at t=0 (hash + array_equal). The three MORPHOLOGIES are NOT array_equal and are not paired: they are balanced by seed index only.",
+  "MORPHOLOGY_INTERPRETATION": "SINGLE_DISC_INITIALIZATION_STRONGLY_INCREASES_PERSISTENCE_RELATIVE_TO_EQUAL_EXPECTED_MASS_RANDOM_IID_IN_THIS_DEV \u2014 not COMPACTNESS_ALONE_CAUSES_SURVIVAL. The disc holds all its mass in ONE component while the random field splits the same expected mass across 22-38, and the tracker follows only the largest; component-count and tracked-fraction are confounded with compactness.",
+  "RANDOM_IID_REPLICATION": {
+   "FRESH_REPLICATION": "2/12",
+   "FROZEN_BAR": "3/12",
+   "REPLICATION_DECISION": "NOT_REPLICATED_AT_FROZEN_BAR",
+   "DESCRIPTIVE_CUMULATIVE": "LAW_16 5/24 vs BASELINE 0/24",
+   "CONFIRMATORY_POOLING": "FORBIDDEN"
+  },
+  "LAW16_RETENTION_INTERPRETATION": "AMONG PAIRED CO-SURVIVORS (6 at L=24, 12 at L=32), LAW_16 is associated with greater retained cohort; the analysis is CONDITIONED ON JOINT SURVIVAL and is not evidence that LAW_16 prevents renewal in general."
+ },
+ "measurement_gate": {
+  "COHORT_SCOPE": "GLOBAL_UNION (enrolled at the first sampled frame over the union of all detected components; for SINGLE_DISC the union IS the single component, so union == track here)",
+  "COHORT_SEMANTICS": "MATERIAL_LINEAGE",
+  "evidence": "advance_passive_tracer advects the labelled cohort through the engine ledger's ACTUAL gross matter flows (matter_forward/matter_reverse x matter_scale) using the local labelled fraction tracer/pre_matter; it re-derives expected_post = pre - dt*div(net) and REFUSES any pre/post inconsistency, enforces 0 <= tracer <= matter, and asserts exact fsum conservation.",
+  "TRACKER_DEPENDS_ON_INITIAL_COHORT": false,
+  "evidence_tracker": "detect_components thresholds state.m only; the tracked-component rule uses area and centroid only; no code path reads the tracer.",
+  "RIGID_TRANSLATION_PRESERVES_MATERIAL_IDENTITY": true,
+  "SAME_SITE_REPLACEMENT_IS_DETECTABLE": true,
+  "MATERIAL_LINEAGE": "IDENTIFIABLE"
+ },
+ "fixtures": "forced_exchange_fixtures.json \u2014 9 checks, all PASS. Fixtures 3 and 4 initially FAILED because the FIXTURE SPECIFICATION was wrong (a radius-6 disc has 113 cells so 50% is not exact), not the measurement; mechanically corrected to an exact 100-cell block, then re-run. No physics was run before all fixtures passed.",
+ "operator": {
+  "name": "STATE_MATCHED_OPEN_RESERVOIR_EXCHANGE",
+  "MATERIAL_STATE_FIELDS": "m (matter), n (resource), b (bond, shape (2,L,L))",
+  "OCCUPANCY_PREDICATE": "m >= 0.45",
+  "SINK_OPERATION": "remove mass from cells of the frozen downstream half of the INITIAL disc that are currently occupied AND currently inside the tracked component; the removed payload is exactly the cell mass",
+  "SOURCE_OPERATION": "place exactly the removed mass into frozen upstream cells that are currently vacant (m<0.45), have free capacity (m_max - m > 0) and have NO 4-neighbour inside the tracked component; filling respects m_max = 1.0, spilling to the next frozen source cell in priority order",
+  "CONSERVED_QUANTITIES": "total matter exactly (removed == injected, measured balance error 0.0); cardinality of paired transfer events exactly",
+  "INTERVENTION_TIMING": "before the engine step, at frames 272, 288, ..., 1536 (80 events, cadence 16)",
+  "CONNECTIVITY_RULE": "4-connectivity for the separation test; the detector's own periodic connectivity for components",
+  "RNG_BEHAVIOR": "a dedicated intervention RNG (default_rng(7)) is drawn identically in every arm including SHAM; the engine RNG is never touched (the engine is deterministic)",
+  "quota_rule": "q_e = floor(e*Q/80) - floor((e-1)*Q/80); sum(q) == Q exactly (verified 404 and 1432)",
+  "no_catch_up": true,
+  "forbidden": [
+   "RECENTERING",
+   "HOLE_FILLING",
+   "SHAPE_REPAIR",
+   "COHORT_LABEL_SELECTION",
+   "DOSE_ADAPTATION",
+   "MASK_ADAPTATION",
+   "SEED_SEARCH",
+   "DEFICIT_CATCH_UP"
+  ],
+  "SHAM": "SCHEDULE_AND_INSTRUMENTATION_SHAM \u2014 same schedule, same quotas, same intervention RNG draw, no physical mutation. It is NOT a mechanical sham of the ablation itself."
+ },
+ "source_band_choice": {
+  "declared_honestly": true,
+  "narrow_annulus_pilot": "dist <= (r+3), delivers ~43-60 of 404 cells; the disc SURVIVES with residual 0.72",
+  "wide_upstream_halfplane_pilot": "entire upstream half-plane outside the disc, delivers 60-107; the disc is DESTROYED around frame 368-464",
+  "frozen_choice": "WIDE upstream half-plane",
+  "rationale": "capacity, not outcome: the narrow annulus caps delivery at ~0.27*N0, which makes the frozen criterion (>=0.80*N0) arithmetically unreachable and collapses the dose factor (FLOW_2N and FLOW_4N would deliver identically). I state plainly that BOTH pilots were observed before freezing and that this choice was made after seeing them, on capacity grounds. It selects the configuration in which the disc DIES, i.e. it works AGAINST a positive result, so it is not outcome shopping."
+ },
+ "design": {
+  "MORPHOLOGY": "SINGLE_DISC",
+  "TARGET_OCCUPANCY": 0.35,
+  "SIZES": [
+   24,
+   32
+  ],
+  "N0": {
+   "24": 202,
+   "32": 358
+  },
+  "LAWS": [
+   "BASELINE_SWEEP00",
+   "LAW_16"
+  ],
+  "INTERVENTIONS": [
+   "SHAM",
+   "FLOW_2N",
+   "FLOW_4N"
+  ],
+  "FRESH_SEEDS_PER_SIZE": 12,
+  "seed_rule": "940000 + 100*size_index + k, DEV_SINGLE_DISC_SOURCE_SINK_00, fresh, disjoint from 91xxxx/92xxxx/93xxxx, permanently excluded from any primary, reproduction or holdout",
+  "UNIQUE_T0_MICROSTATES": 24,
+  "LAW_SPECIFIC_T256_CHECKPOINTS": 48,
+  "PLANNED_ENGINE_TRAJECTORIES": 144,
+  "HORIZON": 2048,
+  "NATURAL_PREPHASE": [
+   0,
+   256
+  ],
+  "FORCED_PHASE": [
+   256,
+   1536
+  ],
+  "UNFORCED_COAST": [
+   1536,
+   2048
+  ],
+  "MEASUREMENT_CADENCE": 16,
+  "INTERVENTION_CADENCE": 16,
+  "axis_balancing": "AXIS_ORDER[k % 4] over +x,-x,+y,-y",
+  "laws_diff": {
+   "kappa_m": [
+    0.05,
+    0.003244812098633786
+   ],
+   "theta_m": [
+    0.5,
+    4.450367261609654
+   ],
+   "theta_n": [
+    0.5,
+    0.6479370984731864
+   ],
+   "resource_diffusivity": [
+    0.1,
+    0.014757118414015754
+   ],
+   "resource_leak_floor": [
+    0.05,
+    0.8845957128095082
+   ],
+   "epsilon_b": [
+    0.25,
+    0.3084761785392201
+   ],
+   "k_on": [
+    0.3,
+    0.008143803883714724
+   ],
+   "k_off": [
+    0.05,
+    0.03881257041910309
+   ],
+   "k_tension": [
+    0.15,
+    0.016145760649360165
+   ]
+  },
+  "baseline_sha256": "76b3c015d8e1503fb66ec9fed9e697b3dc857b84bbdfb15d441dd921f5c660a7",
+  "law16_sha256": "62ba0cf6c8526b79f73d674510260bff79fc71387d23f9efc19aa0689d723d68"
+ },
+ "joint_criterion": {
+  "name": "JOINT_EXCHANGE_PERSISTENCE_H2048",
+  "clauses": [
+   "same track continuously valid from 256 to the horizon",
+   "bounded, non-wrapping, non-lost at 1536 and 2048",
+   "0.5*N0 <= tracked_mass <= 1.5*N0 at 1536 and 2048 (frozen prospectively, no canonical window existed)",
+   "initial_cohort_residual <= 0.20 at 1536 and 2048",
+   "fresh_source_fraction >= 0.80 at 1536 and 2048",
+   "unique_realized_ingress >= 0.80*N0 by 1536",
+   "unique_realized_egress >= 0.80*N0 by 1536",
+   "exact eventwise balance",
+   "no direct injection into the track (enforced by the 4-neighbour separation filter)",
+   "survival through the 512-frame unforced coast"
+  ],
+  "no_double_counting": {
+   "unique_egress": "count of sink cells driven below the occupancy predicate while inside the track; each removal is a distinct physical act at a distinct time and site",
+   "unique_ingress": "max over checkpoints of fresh-provenance mass inside the track, divided by the mean initial cell mass. The running MAXIMUM never double counts material that oscillates in and out; it is a conservative LOWER bound on ingress."
+  }
+ },
+ "decision_rules": "as specified in the mission, applied in order, primary cell LAW_16 x FLOW_2N",
+ "forbidden_conclusions": [
+  "SPONTANEOUS_REPLACEMENT",
+  "AUTONOMOUS_SELF_MAINTENANCE",
+  "INDIVIDUATION = PASS",
+  "IDENTITY = ESTABLISHED",
+  "BOUNDED_ENTITY = ESTABLISHED",
+  "LIFE",
+  "GLOBAL_IDENTITY",
+  "TURING_BEHAVIOR"
+ ],
+ "mandatory_interpretation": {
+  "FORCING_IS_EXTERNAL": true,
+  "REPLACEMENT_IS_OPERATIONALLY_IMPOSED": true,
+  "AUTONOMOUS_REPLACEMENT": false,
+  "SPONTANEOUS_SELF_MAINTENANCE": "not established",
+  "INDIVIDUATION": "not established"
+ }
+}
