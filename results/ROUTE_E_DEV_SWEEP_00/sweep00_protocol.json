@@ -1,0 +1,71 @@
+{
+  "kind": "anti-stagnation-dev-feasibility-protocol/v1",
+  "mission": "ANTI_STAGNATION_ROUTE_E_FEASIBILITY_SWEEP_00",
+  "fixture_class": "DEV_FEASIBILITY_EXPLORATORY_NON_CONFIRMATORY",
+  "authorisations": {
+    "EXPLORATORY_DEV_SWEEP_AUTHORIZED": true,
+    "PRIMARY_RUN_AUTHORIZED": false,
+    "REPRODUCTION_RUN_AUTHORIZED": false,
+    "HOLDOUT_OPENED": false,
+    "PRODUCTION_MODEL_CHANGES": 0
+  },
+  "substrate": {
+    "latest_authentic_tip": "7e6faeb173a6a2692a541dc0006c75a3972b08d1",
+    "tip_lineage_to_prerequisite": ["7e6faeb", "f069d33", "c17712b", "fb83059", "199f29eb"],
+    "bundle": "route-e-empty-right-nonunit-disk-closure.bundle",
+    "bundle_sha256": "b3be0a5fc09301681fbf1b227d58ffe51ef5f65a40ffc5204926a5aa76ae6670",
+    "source_archive_sha256": "545efe85414a5a4480e97ea5b8c9d74ee631f759f691d5bf879166d0c1ae0541"
+  },
+  "control_parameter": {
+    "name": "target_initial_occupancy",
+    "definition": "P(m >= matter_threshold) at step 0, imposed by a monotone piecewise-linear quantile map of U(0,1)",
+    "map": "u < 1-p  ->  m = 0.45*u/(1-p) ;  u >= 1-p  ->  m = 0.45 + 0.55*(u-(1-p))/p",
+    "exactness_property": "at p = 0.55 the map is the IDENTITY, so this arm is bit-identical to the frozen production initial condition _initial_state (m ~ U(0,1)); the sweep therefore contains the pilot regime as an exact special case",
+    "is_production_model_change": false,
+    "rationale": "the frozen production IC hard-codes m ~ U(0,1) and the detector threshold is 0.45, hence occupancy is fixed at exactly 0.55; no law parameter of LatticeBondSpec controls occupancy"
+  },
+  "grid": [0.03, 0.056, 0.1, 0.2, 0.35, 0.45, 0.55, 0.6],
+  "lattice_sizes": [16, 24, 32],
+  "dev_seeds_per_level": 12,
+  "seed_labelling": "DEV_FEASIBILITY_SWEEP_00, open, seeds 900000-999999 namespace, PERMANENTLY BANNED from any future primary or reproduction run",
+  "arms": {
+    "ROUTE_E": "quantile-mapped i.i.d. initial condition; p=0.55 is the production IC exactly",
+    "SHUFFLED": "same cell-value multiset, spatially permuted; identical cardinality and identical occupancy",
+    "COMPACT_ISLANDS": "positive control: disjoint compact discs above threshold on a sub-threshold background, equal occupancy",
+    "SPANNING_BAND": "negative morphological control: one band spanning the lattice, equal occupancy"
+  },
+  "engine_and_measurement": {
+    "entry_point": "edlab.substrates.lattice_bond.future_prospective_measurement_bridge.run_measurement_bridge",
+    "detector_tracker_residual": "PRODUCTION, unmodified; no approximation is substituted",
+    "law_spec": "LatticeBondSpec(dt=1.0, m_max=1.0, n_max=1.0), remaining fields at frozen defaults",
+    "measurement_spec": "MeasurementSpec() defaults: matter_threshold=0.45, min_cells=3, dilation_radius=1, max_area_ratio=3.0, max_centroid_displacement=3.0",
+    "horizon_steps": 256,
+    "cadence_steps": 16,
+    "sampled_frames": 17
+  },
+  "metrics": [
+    "realized_occupation_t0", "realized_occupation_end",
+    "component_count_t0", "largest_component_over_L2", "largest_component_over_occupied",
+    "wraps_at_t0", "wraps_anywhere", "first_wrapping_frame",
+    "labelled_fraction", "min_cohort_residual_any_frame", "min_cohort_residual_at_horizon",
+    "attainable_at_f", "mechanically_ineligible", "ineligibility_reason"
+  ],
+  "frozen_predicate_as_transcribed": {
+    "source": "future_route_e_pre_run_frame.py (tip 7e6faeb) and ROUTE_E_PILOT_READINESS_00 world evidence",
+    "criterion": "at least one ELIGIBLE component satisfies persistence to the horizon AND cohort_residual <= f",
+    "mechanical_ineligibility": "any component wrapping the periodic boundary at any sampled frame makes the world MECHANICALLY_INELIGIBLE",
+    "conventions_f": [0.01, 0.05, 0.2]
+  },
+  "declared_limitations": [
+    "DEV horizon is 256 steps, not the frozen 1024: all 48 pilot worlds became mechanically ineligible by frame 48, so 256 is ample to observe the mechanism; this cannot change the sign of a null result and is therefore a DECLARED_LIMITATION",
+    "attainability uses the MINIMUM cohort_residual over all components at all sampled frames, an UPPER bound on what any tracker could achieve; a world whose minimum never reaches f cannot pass under any tracking, which is the direction needed for a negative conclusion",
+    "SHUFFLED is degenerate at t0 because the production IC is already i.i.d.; it is retained as a harness control, not as a correlation test",
+    "worlds within a level share the law and differ only by seed; they are not treated as independent draws"
+  ],
+  "decision_rule": {
+    "candidate_band_requires": ["two adjacent levels", "observable at L=24 and L=32", "non-trivial bounded components", "positive controls correctly recognised"],
+    "allowed_decisions": ["MECHANICAL_FEASIBILITY_BAND_FOUND", "DENSITY_ONLY_HYPOTHESIS_NOT_SUPPORTED", "NO_ONE_PARAMETER_RESCUE_OBSERVED_IN_SCANNED_RANGE", "MEASUREMENT_GATE_MISMATCH", "NO_SINGLE_OCCUPANCY_CONTROL", "PROBE_INVALID"]
+  },
+  "single_refinement_rule": "at most one refinement pass between two adjacent promising levels; no third sweep",
+  "prospective_analytic_prediction": "cohort_residual is bounded below by labelled_fraction = total_cohort/total_matter, because both are exactly conserved and mixing drives every local ratio to the global one; therefore f=0.20 is unreachable whenever labelled_fraction > 0.20, independently of occupancy, morphology and horizon"
+}
