@@ -1,0 +1,234 @@
+{
+ "kind": "law16-occupancy-frontier-protocol/v1",
+ "mission": "ROUTE_E_LAW16_OCCUPANCY_FRONTIER_PAIRED_DEV_01",
+ "frozen_before_any_new_physics": true,
+ "authorisations": {
+  "DEV_EXPERIMENT_AUTHORIZED": true,
+  "PRIMARY_RUN_AUTHORIZED": false,
+  "REPRODUCTION_RUN_AUTHORIZED": false,
+  "HOLDOUT_OPENED": false,
+  "MAX_NEW_ENGINE_TRAJECTORIES": 144,
+  "PLANNED_UNIQUE_INITIAL_BLOCKS": 72,
+  "PRODUCTION_MODEL_CHANGES": 0,
+  "REFINEMENT_PASSES": 0
+ },
+ "parent_inputs": {
+  "sweep00_rows_sha256": "81d632df4252fb8730a344047af152684d9fa78278e3194874a93ac5581b3d3d",
+  "sweep00_refine_rows_sha256": "4e6e4bd3e52561892b5b34fe783bb613a594aece0d7f8382b4b70ff6b05d413a",
+  "sweep00_summary_sha256": "7f913f64265b5ff71003fa0c8da6e8c3eb26c07044dd89a39092a8fa6202111e",
+  "bridge00_rows_sha256": "1d02b03624411e784868039bd709d4d27defc03595ea41ff2eeced5462e370fc",
+  "sweep_tip": "ddbda94c2edb6b35d89e1a1203ff08702b9803fc",
+  "bridge_artifact_commit": "86a258e5051b30c36c542f94695208c96abd62e3"
+ },
+ "CANONICAL_DISPOSITION_OF_THE_BRIDGE": {
+  "ORIGINAL_CAUSAL_BRIDGE_EXECUTED": false,
+  "ORIGINAL_BRIDGE_STATUS": "BRIDGE_IDENTIFIED_AND_NOT_EXECUTABLE_DISJOINT_SUBSTRATES",
+  "note_on_the_suggested_wording": "The suggested label BRIDGE_NOT_IDENTIFIABLE_ON_RECOVERED_SUBSTRATE is NOT adopted because it is factually wrong: the bridge WAS identified. NONMERGING_CONFIRM_02 was located exactly (edlab.substrates.scaffold.ScaffoldEngine driven by edlab.experiments.sc_mcm, SCState with 7 array fields, dt=0.1, size=64, internal toggle network a=2.0/K=0.5/D_int=0.008/tau=0.20/beta=0.6, exact cohorts sum_c C == rho). It is not executable against Route E because the state spaces are DISJOINT, not because it could not be found.",
+  "EXECUTED_SUBSTITUTE": "FIVE_LAW_PACKAGES_ON_ROUTE_E_PRODUCTION_INITIAL_STATES",
+  "SURVIVAL_RESULT": "NO_SURVIVAL_RESCUE_OBSERVED_FOR_THE_FIVE_TESTED_LAWS_AT_ROUTE_E_PRODUCTION_OCCUPANCY",
+  "SECONDARY_CANDIDATE": "LAW_16_AND_LAW_29_DELAY_THE_RECORDED_WRAPPING_CHECKPOINT_IN_SOME_TESTED_PAIRS_WITHOUT_CHANGING_FATE",
+  "forbidden_readings": [
+   "LAW_IS_NOT_CAUSAL",
+   "NONMERGING_CONFIRM_02_IS_REFUTED",
+   "MORPHOLOGY_IS_IRRELEVANT",
+   "DENSITY_IS_IRRELEVANT",
+   "ROUTE_E_IS_IMPOSSIBLE"
+  ]
+ },
+ "PARENT_FORENSICS": {
+  "PARENT_ENGINE_TRAJECTORIES": 144,
+  "PARENT_UNIQUE_INITIAL_BLOCKS": 24,
+  "PARENT_CONSERVATIVE_CLUSTERS": 24,
+  "seeds_shared_between_sizes": "NONE (L=24 uses 910000-910011, L=32 uses 911000-911011)",
+  "PARENT_INITIAL_GATE_FAILS": 6,
+  "PARENT_INITIAL_GATE_FAILS_BY_SIZE": {
+   "24": 2,
+   "32": 4
+  },
+  "PARENT_CAUSAL_RISK_SET": 18,
+  "PARENT_MICROSTATE_PAIRING": "CODE_PATH_ONLY",
+  "pairing_justification": "The parent claim 'identical enrolled fraction proves the initial microstate was bit-identical' is a NON SEQUITUR and is RETRACTED: a scalar equality constrains neither spatial organisation nor the internal fields nor byte equality. The defensible parent status is CODE_PATH_ONLY: each arm calls the same initial_state(L, seed) which draws from np.random.default_rng(seed); a post-hoc regeneration confirmed field-by-field determinism 24/24, but NO microstate hash was recorded in the run outputs, so HASH_VERIFIED is not claimable for the parent. This mission records the hash in the rows.",
+  "PARENT_POST_STEP_RANDOMNESS": "NONE (engine verified deterministic: two identical runs give an identical component digest)",
+  "PARENT_EFFECTIVE_LAWSPEC_DIFFS": "9 of 12 fields differ between BASELINE and LAW_16; dt, m_max, n_max identical",
+  "PARENT_KINETIC_INTERPRETATION": "POST_HOC_LAW_DEPENDENT_KINETIC_ASSOCIATION. The LAW_16 deltas are {0:12, +16:6, +48:5, +112:1} over checkpoints spaced 16 apart, so the 'median +8 frames' is a median of INTERVAL-CENSORED checkpoint labels, not an observed 8-frame time resolution.",
+  "note_on_0_over_144": "0/144 is NOT 144 independent replications: it is 24 unique initial blocks replayed under six arms."
+ },
+ "FRONTIER_LOCATION": {
+  "rule": "p_D = highest tested level where, at BOTH sizes, zero bounded survivors at H=1024 AND >=80% of admissible blocks dissolve before wrapping. p_W = lowest level strictly above p_D where, at BOTH sizes, zero bounded survivors AND >=80% wrap before dissolution.",
+  "evidence_H1024_route_e": {
+   "0.056": "adm 6/6 both sizes, 0 survivors, 6/6 dissolution-first",
+   "0.10": "adm 6/6, 0 survivors, 6/6 dissolution-first",
+   "0.20": "adm 6/6, 0 survivors, 6/6 dissolution-first",
+   "0.35": "adm 6/6, 0 survivors, 6/6 dissolution-first"
+  },
+  "evidence_upper_levels": {
+   "0.45": "wrap-first rate 0.75 (L=24) / 0.75 (L=32) -> below the 0.80 rule",
+   "0.55": "wrap-first rate 1.00 / 1.00 -> satisfies the rule",
+   "0.60": "1.00 / 1.00 but only 1-3 admissible blocks"
+  },
+  "wrapping_is_absorbing": "wrapping observed at or before frame 256 is exact for H=1024 as well: the engine is deterministic and a wrapped world is mechanically ineligible from that frame on.",
+  "p_D": 0.35,
+  "p_M": 0.45,
+  "p_W": 0.55,
+  "OCCUPANCY_GRID": [
+   0.35,
+   0.45,
+   0.55
+  ],
+  "departure_from_the_suggested_grid": "The suggested expectation [0.35, 0.40, 0.45] is NOT used. The authentic rows put p_W at 0.55, not 0.45, because at 0.45 the wrap-first rate is 0.75 at both sizes, below the frozen 0.80 threshold. 0.40 was never a tested level and inventing it would be an unfrozen calibration."
+ },
+ "LAW_SELECTION": {
+  "SELECTED_LAW": "LAW_16",
+  "LAW_SELECTION_FROM_PARENT_DEV": true,
+  "CONFIRMATORY_INTERPRETATION_AUTHORIZED": false,
+  "LAW_29_OPENED_IN_THIS_MISSION": false,
+  "justification": "most coherent parent kinetic signal: 12/24 discordant checkpoints, median checkpoint delta +8 (interval-censored), max +112; LAW_29 had 11/24 with a median of 0.",
+  "baseline_sha256": "76b3c015d8e1503fb66ec9fed9e697b3dc857b84bbdfb15d441dd921f5c660a7",
+  "law_16_sha256": "62ba0cf6c8526b79f73d674510260bff79fc71387d23f9efc19aa0689d723d68",
+  "law_diff": {
+   "kappa_m": {
+    "baseline": 0.05,
+    "law_16": 0.003244812098633786
+   },
+   "theta_m": {
+    "baseline": 0.5,
+    "law_16": 4.450367261609654
+   },
+   "theta_n": {
+    "baseline": 0.5,
+    "law_16": 0.6479370984731864
+   },
+   "resource_diffusivity": {
+    "baseline": 0.1,
+    "law_16": 0.014757118414015754
+   },
+   "resource_leak_floor": {
+    "baseline": 0.05,
+    "law_16": 0.8845957128095082
+   },
+   "epsilon_b": {
+    "baseline": 0.25,
+    "law_16": 0.3084761785392201
+   },
+   "k_on": {
+    "baseline": 0.3,
+    "law_16": 0.008143803883714724
+   },
+   "k_off": {
+    "baseline": 0.05,
+    "law_16": 0.03881257041910309
+   },
+   "k_tension": {
+    "baseline": 0.15,
+    "law_16": 0.016145760649360165
+   }
+  },
+  "identical_fields": {
+   "dt": 1.0,
+   "m_max": 1.0,
+   "n_max": 1.0
+  },
+  "law_source": "propose_law_fields(sha256(b'ROUTE_E_NONMERGING_CAUSAL_BRIDGE_DEV_00'), 16), accepted by in_proposal_box() and engine_accepts()"
+ },
+ "DESIGN": {
+  "LAWS": [
+   "BASELINE_SWEEP00",
+   "LAW_16"
+  ],
+  "SIZES": [
+   24,
+   32
+  ],
+  "OCCUPANCIES": [
+   0.35,
+   0.45,
+   0.55
+  ],
+  "SEEDS_PER_OCCUPANCY_SIZE": 12,
+  "UNIQUE_INITIAL_BLOCKS": 72,
+  "PAIRED_ENGINE_TRAJECTORIES": 144,
+  "seed_rule": "920000 + 1000*occupancy_index + 100*size_index + k, k in 0..11 \u2014 disjoint across every cell, label DEV_LAW16_OCCUPANCY_FRONTIER_01, permanently excluded from any primary, reproduction or holdout",
+  "PRIMARY_HORIZON": 2048,
+  "TRANSIENT_HORIZON": 1024,
+  "FAILURE_CHECK_CADENCE": 16,
+  "REPORTING_FRAMES": [
+   0,
+   16,
+   32,
+   64,
+   128,
+   256,
+   512,
+   1024,
+   2048
+  ],
+  "no_seed_replacement": true,
+  "no_fourth_occupancy": true,
+  "no_refinement": true
+ },
+ "PAIRING_PROCEDURE": [
+  "generate the full initial state once with the sweep quantile generator",
+  "hash m, n, b separately (sha256 of C-ordered bytes) with dtype, shape, contiguity and sum",
+  "deep-copy the state twice, one per arm",
+  "np.array_equal field by field BEFORE the first step (assertion)",
+  "re-hash both copies and assert equality with the source hash",
+  "record the same initial_microstate_sha256 in both arms' rows"
+ ],
+ "FACTOR_NAME": "LAW",
+ "factor_justification": "the engine is deterministic (verified: two identical runs give an identical component digest), so there is no post-step stochastic innovation that could diverge between arms; the only differing input is the LawSpec.",
+ "TRACKED_COMPONENT_RULE_FROZEN_BEFORE_RUN": "the largest bounded non-wrapping component, ties broken by (-area, centroid_y, centroid_x, index). Continuity is judged with the FROZEN tracker gate terms applied at cadence 16: centroid displacement <= max_centroid_displacement (3.0) and area ratio within max_area_ratio (3.0).",
+ "PRIMARY_METRIC": "SAME_TRACKED_COMPONENT_DURABLY_SURVIVES_AT_H2048 \u2014 operationalised as: no wrapping at any checkpoint, never empty, track continuity never broken under the frozen gate terms, and a bounded non-wrapping component present at 2048.",
+ "primary_metric_limitation": "ComponentMeasurement carries no track_id, so strict track identity is NOT directly observable from the production bridge output; the conjunction above is a declared PROXY.",
+ "COHORT_RESIDUAL_SCOPE": "GLOBAL_UNION",
+ "INDIVIDUAL_REPLACEMENT_INTERPRETATION": "NOT_AUTHORIZED",
+ "residual_note": "the residual thresholds 0.01/0.05/0.20 are NESTED and are not three independent replications; the residual stays secondary.",
+ "DECISION_RULES_IN_ORDER": [
+  {
+   "1_LAW16_DURABLE_RESCUE_SIGNAL": "same occupancy, both sizes: b_2048>=4 per size, c_2048=0 per size, T0_ADMISSIBLE>=8 per size, and the exact paired test combining both sizes gives p<=0.01"
+  },
+  {
+   "2_LAW16_TRANSIENT_ONLY_SIGNAL": "rule 1 passes at H=1024 but not at H=2048"
+  },
+  {
+   "3_OCCUPANCY_WINDOW_NOT_LAW_SPECIFIC": "both_2048>=4 per size and T0_ADMISSIBLE>=8 per size at the same level"
+  },
+  {
+   "4_LAW16_SHIFTS_FAILURE_FRONTIER": ">=4 pairs move the same way between WRAPPING_FIRST and DISSOLUTION_FIRST and <=1 moves the other way, at the same level and both sizes. A dissolution replacing a wrapping is NOT a rescue."
+  },
+  {
+   "5_LAW16_KINETIC_ONLY_SIGNAL": "tested prospectively at p_W: per size, >=5 non-zero time-to-first-failure differences, one-sided exact sign test p<=0.05 in the direction LAW_16 > BASELINE, paired median >=16 frames"
+  },
+  {
+   "6_NO_LAW16_FRONTIER_EFFECT": "none of the above"
+  },
+  {
+   "technical": [
+    "FRONTIER_NOT_LOCATABLE_FROM_FROZEN_SWEEP",
+    "INITIAL_GATE_YIELD_INSUFFICIENT",
+    "PROBE_INVALID"
+   ]
+  }
+ ],
+ "INITIAL_GATE_YIELD_INSUFFICIENT_RULE": "applies if no occupancy retains >=8 admissible blocks per size",
+ "MEASUREMENT_CONTROLS": {
+  "fixtures": [
+   "compact bounded series -> BOUNDED_PERSISTENT",
+   "wrapping band -> WRAPPING",
+   "series ending empty -> DISSOLVED"
+  ],
+  "path": "production detect_components",
+  "not_engine_worlds": true
+ },
+ "FORBIDDEN_CONCLUSIONS": [
+  "INDIVIDUATION = PASS",
+  "IDENTITY = ESTABLISHED",
+  "BOUNDED_ENTITY = ESTABLISHED",
+  "GLOBAL_IDENTITY",
+  "DISTAL_BEHAVIOR",
+  "GRADED_METROLOGY",
+  "TURING",
+  "ROUTE_E_UNIVERSALLY_REFUTED",
+  "NONMERGING_CONFIRM_02_REFUTED"
+ ],
+ "note": "an increased lifetime is not survival; DEV survival at 2048 is not a confirmation."
+}

@@ -1,0 +1,329 @@
+{
+ "mission": "ROUTE_E_LAW16_OCCUPANCY_FRONTIER_PAIRED_DEV_01",
+ "unique_initial_blocks": 72,
+ "paired_engine_trajectories": 144,
+ "t0_admissible_blocks": 63,
+ "initial_gate_fails": 9,
+ "technical_failures": 0,
+ "primary_worlds_opened": 0,
+ "reproduction_worlds_opened": 0,
+ "holdout_opened": false,
+ "occupancy_grid": [
+  0.35,
+  0.45,
+  0.55
+ ],
+ "p_D": 0.35,
+ "p_M": 0.45,
+ "p_W": 0.55,
+ "DECISION": "NO_LAW16_FRONTIER_EFFECT",
+ "by_cell": {
+  "0.35|24": {
+   "BASELINE_SWEEP00": {
+    "n": 12,
+    "realized_occupancy_median": 0.34895833333333337,
+    "survival_1024": 0,
+    "survival_2048": 0,
+    "failures": {
+     "track_loss_only": 9,
+     "dissolution_involved": 3
+    },
+    "lifetime_median": 16.0
+   },
+   "LAW_16": {
+    "n": 12,
+    "realized_occupancy_median": 0.34895833333333337,
+    "survival_1024": 3,
+    "survival_2048": 3,
+    "failures": {
+     "track_loss_only": 9,
+     "survived": 3
+    },
+    "lifetime_median": 16.0
+   },
+   "paired": {
+    "b_2048": 3,
+    "c_2048": 0,
+    "both_2048": 0,
+    "lifetime_deltas": [
+     0,
+     0,
+     -144,
+     0,
+     1856,
+     0,
+     2032,
+     16,
+     0,
+     1776,
+     32,
+     0
+    ],
+    "nonzero": 6,
+    "median_delta": 0.0,
+    "max_delta": 2032,
+    "wrapping_involvement_lost": 0,
+    "wrapping_involvement_gained": 0
+   }
+  },
+  "0.35|32": {
+   "BASELINE_SWEEP00": {
+    "n": 12,
+    "realized_occupancy_median": 0.34619140625,
+    "survival_1024": 0,
+    "survival_2048": 0,
+    "failures": {
+     "track_loss_only": 11,
+     "dissolution_involved": 1
+    },
+    "lifetime_median": 16.0
+   },
+   "LAW_16": {
+    "n": 12,
+    "realized_occupancy_median": 0.34619140625,
+    "survival_1024": 0,
+    "survival_2048": 0,
+    "failures": {
+     "track_loss_only": 12
+    },
+    "lifetime_median": 48.0
+   },
+   "paired": {
+    "b_2048": 0,
+    "c_2048": 0,
+    "both_2048": 0,
+    "lifetime_deltas": [
+     0,
+     64,
+     0,
+     0,
+     0,
+     80,
+     0,
+     32,
+     32,
+     -64,
+     32,
+     -32
+    ],
+    "nonzero": 7,
+    "median_delta": 0.0,
+    "max_delta": 80,
+    "wrapping_involvement_lost": 0,
+    "wrapping_involvement_gained": 0
+   }
+  },
+  "0.45|24": {
+   "BASELINE_SWEEP00": {
+    "n": 12,
+    "realized_occupancy_median": 0.4496527777777778,
+    "survival_1024": 0,
+    "survival_2048": 0,
+    "failures": {
+     "track_loss_only": 2,
+     "wrapping_involved": 10
+    },
+    "lifetime_median": 16.0
+   },
+   "LAW_16": {
+    "n": 12,
+    "realized_occupancy_median": 0.4496527777777778,
+    "survival_1024": 0,
+    "survival_2048": 0,
+    "failures": {
+     "track_loss_only": 9,
+     "wrapping_involved": 3
+    },
+    "lifetime_median": 16.0
+   },
+   "paired": {
+    "b_2048": 0,
+    "c_2048": 0,
+    "both_2048": 0,
+    "lifetime_deltas": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     16,
+     0,
+     48,
+     0,
+     0,
+     0,
+     0
+    ],
+    "nonzero": 2,
+    "median_delta": 0.0,
+    "max_delta": 48,
+    "wrapping_involvement_lost": 7,
+    "wrapping_involvement_gained": 0
+   }
+  },
+  "0.45|32": {
+   "BASELINE_SWEEP00": {
+    "n": 12,
+    "realized_occupancy_median": 0.44775390625,
+    "survival_1024": 0,
+    "survival_2048": 0,
+    "failures": {
+     "track_loss_only": 5,
+     "wrapping_involved": 7
+    },
+    "lifetime_median": 16.0
+   },
+   "LAW_16": {
+    "n": 12,
+    "realized_occupancy_median": 0.44775390625,
+    "survival_1024": 0,
+    "survival_2048": 0,
+    "failures": {
+     "track_loss_only": 11,
+     "wrapping_involved": 1
+    },
+    "lifetime_median": 16.0
+   },
+   "paired": {
+    "b_2048": 0,
+    "c_2048": 0,
+    "both_2048": 0,
+    "lifetime_deltas": [
+     0,
+     0,
+     48,
+     16,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "nonzero": 2,
+    "median_delta": 0.0,
+    "max_delta": 48,
+    "wrapping_involvement_lost": 6,
+    "wrapping_involvement_gained": 0
+   }
+  },
+  "0.55|24": {
+   "BASELINE_SWEEP00": {
+    "n": 6,
+    "realized_occupancy_median": 0.5451388888888888,
+    "survival_1024": 0,
+    "survival_2048": 0,
+    "failures": {
+     "wrapping_involved": 6
+    },
+    "lifetime_median": 16.0
+   },
+   "LAW_16": {
+    "n": 6,
+    "realized_occupancy_median": 0.5451388888888888,
+    "survival_1024": 0,
+    "survival_2048": 0,
+    "failures": {
+     "track_loss_only": 1,
+     "wrapping_involved": 5
+    },
+    "lifetime_median": 16.0
+   },
+   "paired": {
+    "b_2048": 0,
+    "c_2048": 0,
+    "both_2048": 0,
+    "lifetime_deltas": [
+     0,
+     0,
+     0,
+     0,
+     16,
+     16
+    ],
+    "nonzero": 2,
+    "median_delta": 0.0,
+    "max_delta": 16,
+    "wrapping_involvement_lost": 1,
+    "wrapping_involvement_gained": 0
+   }
+  },
+  "0.55|32": {
+   "BASELINE_SWEEP00": {
+    "n": 9,
+    "realized_occupancy_median": 0.546875,
+    "survival_1024": 0,
+    "survival_2048": 0,
+    "failures": {
+     "wrapping_involved": 9
+    },
+    "lifetime_median": 16
+   },
+   "LAW_16": {
+    "n": 9,
+    "realized_occupancy_median": 0.546875,
+    "survival_1024": 0,
+    "survival_2048": 0,
+    "failures": {
+     "wrapping_involved": 5,
+     "track_loss_only": 4
+    },
+    "lifetime_median": 16
+   },
+   "paired": {
+    "b_2048": 0,
+    "c_2048": 0,
+    "both_2048": 0,
+    "lifetime_deltas": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "nonzero": 0,
+    "median_delta": 0,
+    "max_delta": 0,
+    "wrapping_involvement_lost": 4,
+    "wrapping_involvement_gained": 0
+   }
+  }
+ },
+ "notable": {
+  "survivors_at_2048": [
+   {
+    "arm": "LAW_16",
+    "p": 0.35,
+    "L": 24,
+    "seed": 920004,
+    "residual_at_2048": 0.5981895926873678,
+    "labelled_fraction": 0.4493421802432247
+   },
+   {
+    "arm": "LAW_16",
+    "p": 0.35,
+    "L": 24,
+    "seed": 920006,
+    "residual_at_2048": 0.6122862411870391,
+    "labelled_fraction": 0.5008346903996245
+   },
+   {
+    "arm": "LAW_16",
+    "p": 0.35,
+    "L": 24,
+    "seed": 920009,
+    "residual_at_2048": 0.6324743771077767,
+    "labelled_fraction": 0.4760363840076338
+   }
+  ],
+  "survivors_fail_the_residual_gate": true,
+  "rule4_specification_defect": "Rule 4 names WRAPPING_FIRST and DISSOLUTION_FIRST as sole first-failure labels, but neither ever occurs alone in this regime: track loss co-occurs in every world, so the literal rule can never fire. The size-replicated pattern it was designed to catch IS present: at p=0.45, wrapping involvement in the first failure is LOST under LAW_16 in 7/12 pairs at L=24 and 6/12 at L=32, and GAINED in 0/12 at both sizes. Reported, not used to change the decision.",
+  "track_loss_dominates": "TRACK_LOSS is the binding first failure almost everywhere, so the declared track-continuity PROXY, not wrapping or dissolution, sets the primary metric in this regime."
+ }
+}
