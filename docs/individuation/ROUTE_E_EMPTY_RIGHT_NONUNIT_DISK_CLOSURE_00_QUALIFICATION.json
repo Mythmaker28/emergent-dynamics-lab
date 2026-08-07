@@ -1,0 +1,153 @@
+{
+  "blocker": "STOP_ROUTE_E_SCENARIO_DISK_PATH_FAILED",
+  "blocker_disposition": "PARTIALLY_REMOVED",
+  "branch": "codex/route-e-empty-right-nonunit-disk-closure-00",
+  "start_commit": "f069d3394ab9b79cff9600e9764c86281681352b",
+  "previous_verified_commit": "c17712b481b581496bb4449d65d736fc9c042bc0",
+  "schema": "route-e-empty-right-nonunit-disk-closure/v1",
+
+  "defect_accepted": {
+    "statement": "The scenario named `collapse`, at cadence (0,4,9), has COMPONENT_COUNTS [2,1,2], EMPTY_FRAME false and no DISSOLUTION. It does not qualify the conjunction `empty right frame x non-unit cadence x persisted frames x rebuild_tracking_and_components x real Route E consumer`.",
+    "action_taken": "The scenario is retained as supplementary coverage only. Its module comment and its test docstring now state explicitly that it is NOT proof of this closure. No node id was removed or renamed."
+  },
+
+  "historical_witness": {
+    "source": "tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_r1_tracking_unresolved_is_stamped_with_the_scheduled_frame",
+    "source_sha256": "50918cf0a77f0505e54e42f177de4084281dd2f05257b4e29942b2666615675e",
+    "byte_identical_to_start_commit": true,
+    "still_collected_and_still_passing": true,
+    "states": ["SEPARATED", "_collapsed()", "SEPARATED", "EMPTY"],
+    "sampled_frames": [0, 5, 11, 40],
+    "component_counts": [2, 1, 2, 0],
+    "geometry_reused_verbatim": true,
+    "expectations_reinvented_or_modified": false,
+    "STOP_HISTORICAL_CONTRACT_CONTRADICTION": false,
+    "contract_check": "Every value the brief mandates was measured on the disk-rebuilt tracking and agrees with the frozen test_r1 assertions: APPEARANCE at 0 (x2), TRACKING_UNRESOLVED at 5 and 11, DISSOLUTION at 40 (x2), no event at 1, 2 or 3, no TRACKING_UNRESOLVED on the terminal transition into EMPTY. No contradiction."
+  },
+
+  "new_node": {
+    "node_id": "tests/test_route_e_tracker_baseline_relevance_closure_00.py::test_tb_12_empty_right_nonunit_cadence_tracker_repair_through_the_route_e_disk_path",
+    "single_run_id": true,
+    "single_execution": true,
+    "steps": {
+      "1_four_frames_persisted_including_empty_40": "PASS -- four files in acquisition_frames/, the fourth is 120 bytes of 0x00, its sha256 is the ledger digest, true_cell_count 0, sequence_position 3, requested_sample_label 40. Not an absent file, not an omitted entry, not a truncated list.",
+      "2_exact_schedule_persisted": "PASS -- ACQUISITION.json sampled_frames == [0,5,11,40], sample_count 4",
+      "3_in_memory_objects_destroyed": "PASS -- the record, the ledger dict and the frame payload are deleted before any re-read",
+      "4_bytes_re_read_through_the_real_acquisition_path": "PASS -- _reverify_acquisition inside rebuild_tracking_and_components",
+      "5_real_detector_gives_2_1_2_0": "PASS",
+      "6_real_rebuild_tracking_and_components": "PASS",
+      "7_real_track_components_no_mock_no_substitution": "PASS",
+      "8_tracker_witnessed_receiving_0_5_11_40": "PASS -- _TrackerSpy wraps the module's own track_components, records (len(frames), sampled_frames) and returns the real result unaltered; observed exactly [(4, (0,5,11,40))]",
+      "9_full_canonical_comparison": "PASS -- tracks, points, parents, unresolved flags, event kinds, event frames, source/target track ids, source/target components and resolved flags compared to the frozen independent oracle mapped through the schedule; 5 tracks, 5 assignments, 4 edges",
+      "10_run_route_e_join_persistence_restart_verify": "PARTIAL -- see architectural_boundary below",
+      "11_join_re_read_from_the_persisted_bytes": "PASS -- canonical_join_bytes(reread) equals the bytes on disk; the restarted rebuild reproduces the same digest"
+    }
+  },
+
+  "causal_assertions": {
+    "APPEARANCE_frames": [0, 0],
+    "TRACKING_UNRESOLVED_frames": [5, 11],
+    "DISSOLUTION_frames": [40, 40],
+    "positional_surrogates_1_2_3_absent": true,
+    "tracking_unresolved_on_the_terminal_transition_into_empty": false,
+    "ghost_tracks_components_or_join_rows": 0,
+    "join_rows": 5,
+    "join_frames": [0, 5, 11],
+    "frame_40_contributes_no_join_row": true,
+    "track_count": 5,
+    "assignment_count": 5,
+    "edge_count": 4,
+    "terminal_records": [
+      ["DISSOLVED_DETECTED_TRACK", 40],
+      ["DISSOLVED_DETECTED_TRACK", 40],
+      ["UNRESOLVED_HANDOFF", 5],
+      ["UNRESOLVED_HANDOFF", 5],
+      ["UNRESOLVED_HANDOFF", 11]
+    ],
+    "run_terminal_state": "ALL_TRACKS_CLOSED",
+    "identical_after_restart": true,
+    "event_types_compared_without_their_frames": false
+  },
+
+  "architectural_boundary": {
+    "finding": "STOP_ROUTE_E_ROOT_CANNOT_CARRY_A_HANDCRAFTED_FIXTURE",
+    "statement": "Requirement 4.10 -- carry THIS fixture through run_route_e and verify_route_e_run -- cannot be satisfied without modifying production source. verify_route_e_run refuses, by design, any root that lacks ROUTE_E_PROVENANCE.json with the canonical tag, returning NOT_A_CANONICAL_ROUTE_E_ROOT and naming a generic measurement-bridge run as exactly the case it excludes. run_route_e derives every world frame from the engine: run_measurement_bridge takes law_spec and initial_state and builds its acquisition source as a private closure re-reading engine captures from disk. There is no frames, masks, acquisition_source or fixture parameter anywhere on that path.",
+    "consequence": "A handcrafted mask sequence -- which is what the frozen test_r1 witness is, and what an EMPTY right frame requires, since the engine field does not vanish -- cannot become a Route E world. Requirement 3 (reuse the frozen test_r1 geometry exactly) and requirement 4.10 (carry that same fixture through verify_route_e_run) are jointly unsatisfiable under requirement 2 (production byte-identical).",
+    "measured_evidence": [
+      "verify_route_e_run(handcrafted world) -> admissible False, reason_code NOT_A_CANONICAL_ROUTE_E_ROOT (pinned in test_tb_13)",
+      "a real run_route_e probe at cadence 5 and horizons 15/40/60/120/240 produces component counts 7,2,1,1 / 22,14,8,4,3,3,4,5,5 / 45,22,13,10,9 / 24,1,1,1,1 / 8,3,4,3,2 -- the field never empties, so no engine-produced world offers an empty right frame"
+    ],
+    "what_was_delivered_instead": "test_tb_13 pins the boundary as a positive asserted fact and shows function-object identity: execution.rebuild_tracking_and_components IS the helper the fixture used, execution._locks.build_track_component_join and write_join_evidence ARE the join functions it used, and admission._locks.read_join_evidence IS the reader verify_route_e_run uses. The fixture therefore traverses the identical production call chain up to the provenance gate, and stops there for a declared reason rather than being carried across on a second fixture.",
+    "no_production_change_attempted": true
+  },
+
+  "mutants": {
+    "applied_in": "a throwaway copy at /tmp/mut, never in the commit",
+    "A_tracking_unresolved_positional_surrogate": {
+      "edit": "instrumentation.py line 576 only: TrackEvent(right_frame, \"TRACKING_UNRESOLVED\", ...) -> TrackEvent(transition_index + 1, \"TRACKING_UNRESOLVED\", ...)",
+      "historical_test_r1": "FAIL -- assert {event.frame for event in unresolved} <= set(schedule); assert {1, 2} <= {0, 5, 11, 40}",
+      "new_route_e_disk_node": "FAIL -- AssertionError raised by the test naming the event-frame semantics; frozen-contract violations INVALID_EVENT_FRAME frame=1; INVALID_EVENT_FRAME frame=2",
+      "cause": "semantic comparison of event frames",
+      "verdict": "KILLED"
+    },
+    "B_terminal_empty_right_positional_surrogate": {
+      "edit": "instrumentation.py line 581 only: TrackEvent(right_frame, \"DISSOLUTION\", ...) -> TrackEvent(transition_index + 1, \"DISSOLUTION\", ...), producing 3 instead of 40",
+      "new_route_e_disk_node": "FAIL -- INVALID_EVENT_FRAME frame=3; INVALID_EVENT_FRAME frame=3",
+      "historical_test_r1": "FAIL -- assert [3, 3] == [40, 40]",
+      "cause": "semantic comparison of the terminal event",
+      "verdict": "KILLED"
+    },
+    "both_revoked": true,
+    "diff_clean_before_commit": true,
+    "STOP_POSITIONAL_SURROGATE_MUTANT_SURVIVED": false
+  },
+
+  "byte_identity": {
+    "production_files_changed": 0,
+    "git_diff_edlab_vs_start_commit": "empty",
+    "independent_oracle_sha256": "c058e96697347f8af613159cdcb58de5ee3e254d201c237961f366cc1fd08b58",
+    "instrumentation_sha256": "65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef",
+    "owned_pipeline_sha256": "967dbf8b40f28a500bafdd871503451496d6e439f4d58c3b680e538f155cfd9a",
+    "test_lattice_bond_stage_b_sha256": "d015756cc45f200b8a2b08c03ed88e83dcd30d69ba1d03c9c6fdd3b79b522dc3",
+    "test_empty_right_nonunit_cadence_tracker_repair_sha256": "50918cf0a77f0505e54e42f177de4084281dd2f05257b4e29942b2666615675e",
+    "test_motile_polar_sha256": "ce7578fe5418238d8bbdae785e7de16173ec6f9e1e7c72042594ce417086cec5",
+    "modified_test_file_sha256": "92d58391332dce27a49cf92831c7c06e89cb2eb96292ddf8e6b9e84f8e9d02de",
+    "STOP_EMPTY_RIGHT_NONUNIT_PRODUCTION_DIVERGENCE": false
+  },
+
+  "selectors": {
+    "historical_test_r1": "1 passed",
+    "new_node_id": "1 passed",
+    "legacy_differentials": "4 passed",
+    "route_e_qualification_file": "25 passed",
+    "perennial_selector_empty_right_nonunit_cadence_tracker_repair": {
+      "before": 63,
+      "after": 65,
+      "nodes_removed": 0,
+      "node_list_sha256": "9d7a1223043350ad9ea5d08c78bd39b333d06dee81c29b3e771823492a8792a0",
+      "result": "65 passed, 1380 deselected"
+    },
+    "node_bound_four_selectors": {
+      "node_count": 251,
+      "node_list_sha256": "efa44cff5a95c749809a582838f1fb97f9966dc0ba1dbd2d2ac063235b763101",
+      "unchanged": true
+    }
+  },
+
+  "scientific_boundary": {
+    "NEW_SCIENTIFIC_LAWS": 0,
+    "SCIENTIFIC_SEEDS_OPENED": 0,
+    "SCIENTIFIC_TRAJECTORIES": 0,
+    "HOLDOUT_OPENED": false,
+    "PREREGISTRATION_EXECUTED": false,
+    "PREREGISTRATION_AUTHORIZED": false,
+    "SCIENTIFIC_RUN_AUTHORIZED": false,
+    "canary": ["ENGINEERING_ONLY", "NOT_SCIENTIFIC_DATA", "NOT_ELIGIBLE_FOR_ANALYSIS"]
+  },
+
+  "preserved": ["PRB-1", "PRB-2", "PRB-3", "PRB-4", "PRB-5", "PRB-6", "HR-10", "TRACE_CAUSALITY", "PROSPECTIVE_BEACON_BINDING", "INTEGRATED_PUBLIC_PATH"],
+  "preserved_ground": "zero production bytes changed; the full suite is re-run at the clean commit",
+
+  "human_review_required": true,
+  "author_may_declare_qualified": false
+}

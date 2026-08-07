@@ -18,6 +18,15 @@ compared to the independent oracle.  The canonical join built from that rebuilt 
 is persisted, re-read, and the real consumer ``verify_route_e_run`` is exercised on a
 real ``run_route_e`` run.
 
+ROUND 2 -- ROUTE_E_EMPTY_RIGHT_NONUNIT_DISK_CLOSURE_00.  The ``collapse`` scenario has
+component counts ``[2, 1, 2]``: no empty right frame, no dissolution.  It is therefore
+supplementary coverage and is NOT proof of the conjunction ``empty right frame x non-unit
+cadence x persisted frames x rebuild_tracking_and_components x real Route E consumer``.
+That conjunction is carried by the ``empty_right_nonunit_cadence_tracker_repair`` section
+at the bottom of this file, on the frozen ``test_r1`` fixture: ``SEPARATED, _collapsed(),
+SEPARATED, EMPTY`` at ``(0, 5, 11, 40)``, component counts ``[2, 1, 2, 0]``, with frame 40
+a genuine persisted zero-component artefact.
+
 Rules honoured here, verbatim from the brief:
 
 * the independent oracle ``stage_b_reproduce.track_components`` is **not modified** and
@@ -39,6 +48,7 @@ opened, read or written anywhere in this file.
 
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -47,6 +57,7 @@ import pytest
 
 from edlab.substrates.lattice_bond import DetectorSpec, TrackerSpec
 from edlab.substrates.lattice_bond import stage_b_reproduce as raw_reproduce
+from edlab.substrates.lattice_bond.lifecycle import qualify_lifecycle_contract
 from edlab.substrates.lattice_bond import future_route_e_admission as admission
 from edlab.substrates.lattice_bond import future_route_e_execution as execution
 from edlab.substrates.lattice_bond import future_route_e_pre_run_locks as locks
@@ -95,9 +106,13 @@ _COLLAPSED[4, 4:7] = True
 
 #: ``scenario -> (masks, tracker spec, declared schedule, required event kind)``.
 #:
-#: ``collapse`` is deliberately declared at a **non-unit cadence** ``(0, 4, 9)``: the
-#: schedule is not the positional index, so any code path that silently reconstructed a
-#: cadence from transition indices would produce frame stamps ``0, 1, 2`` and fail here.
+#: ``collapse`` is declared at a **non-unit cadence** ``(0, 4, 9)``.  CORRECTION, round 2:
+#: this scenario is SUPPLEMENTARY COVERAGE ONLY.  It has component counts ``[2, 1, 2]``,
+#: no empty right frame and no dissolution, so it does NOT qualify the conjunction
+#: ``empty right frame x non-unit cadence x persisted frames x rebuild_tracking_and_components
+#: x real Route E consumer`` and must never be quoted as proof of it.  That conjunction is
+#: carried by the ``empty_right_nonunit_cadence_tracker_repair`` section at the bottom of
+#: this file, on the frozen ``test_r1`` fixture ``(0, 5, 11, 40)``.
 SCENARIOS: dict[str, tuple[list[np.ndarray], TrackerSpec, tuple[int, ...], str]] = {
     "split": ([_JOINED, _SEPARATED], TrackerSpec(3.0, 4.0, 1, 1e-12), (0, 1), "SPLIT"),
     "merge": ([_SEPARATED, _JOINED], TrackerSpec(3.0, 4.0, 1, 1e-12), (0, 1), "MERGE"),
@@ -274,7 +289,12 @@ def test_tb_02_disk_rebuilt_tracking_matches_the_independent_oracle(tmp_path, sc
 
 
 def test_tb_03_at_least_one_scenario_runs_at_non_unit_cadence(tmp_path):
-    """A positional surrogate for the schedule would be visible here and nowhere else."""
+    """Supplementary non-unit-cadence coverage.
+
+    CORRECTION, round 2: this test proves the schedule is not a positional surrogate.
+    It does NOT prove the empty-right-frame conjunction -- its right frames are never
+    empty.  See the ``empty_right_nonunit_cadence_tracker_repair`` section below.
+    """
     _, _, schedule, _ = SCENARIOS[NON_UNIT_CADENCE_SCENARIO]
     assert schedule != tuple(range(len(schedule))), "this scenario must not be unit cadence"
 
@@ -513,3 +533,366 @@ def test_tb_11_engineering_canary_and_scope():
     oracle_source = Path(raw_reproduce.__file__).read_text("utf-8")
     assert "future_lifecycle_owned_pipeline" not in oracle_source
     assert "from .instrumentation" not in oracle_source
+
+
+# ======================================================================================
+# 5 -- ROUTE_E_EMPTY_RIGHT_NONUNIT_DISK_CLOSURE_00
+#
+# The conjunction the `collapse` scenario above does NOT cover:
+#
+#     empty right frame
+#   x non-unit cadence
+#   x frames actually persisted
+#   x rebuild_tracking_and_components
+#   x the real Route E consumer chain
+#
+# The fixture is the historical witness, taken VERBATIM from
+# tests/test_empty_right_nonunit_cadence_tracker_repair.py::test_r1 -- same geometry,
+# same schedule, same frozen assertions.  Nothing here is re-invented and nothing there
+# is modified; that file stays byte-identical and its test_r1 keeps running unchanged.
+# ======================================================================================
+
+#: Transcribed, unchanged, from tests/test_empty_right_nonunit_cadence_tracker_repair.py.
+R1_SHAPE = (10, 12)
+R1_DETECTOR = DetectorSpec(matter_threshold=0.5, min_cells=1)
+R1_TRACKER = TrackerSpec(max_centroid_displacement=3.0, max_area_ratio=4.0, dilation_radius=1)
+R1_EMPTY = np.zeros(R1_SHAPE, dtype=bool)
+R1_SEPARATED = _mask({(4, 2), (4, 3), (5, 2), (5, 3), (4, 7), (4, 8), (5, 7), (5, 8)})
+
+
+def _r1_collapsed() -> np.ndarray:
+    value = R1_SEPARATED.copy()
+    value[4, 4:7] = True
+    return value
+
+
+R1_SCHEDULE = (0, 5, 11, 40)
+R1_MASKS = (R1_SEPARATED, _r1_collapsed(), R1_SEPARATED, R1_EMPTY)
+R1_COMPONENT_COUNTS = (2, 1, 2, 0)
+
+#: The positional surrogates the schedule (0, 5, 11, 40) would collapse onto if any code
+#: path reconstructed a cadence from transition indices.  No event may carry one.
+R1_POSITIONAL_SURROGATES = (1, 2, 3)
+
+#: The oracle names the terminal event DISSOLVE where production names it DISSOLUTION.
+#: That naming difference is pre-existing and is declared here rather than absorbed.
+_ORACLE_EVENT_NAMES = {"DISSOLVE": "DISSOLUTION"}
+
+
+class _TrackerSpy:
+    """Wraps the REAL tracker.  It records the call and returns the real result.
+
+    No result is substituted and no argument is altered: the wrapped callable is the
+    module's own ``track_components``, invoked with exactly the arguments the pipeline
+    passed.  Its only purpose is to witness the ``sampled_frames`` the production tracker
+    actually received from the disk path.
+    """
+
+    def __init__(self, wrapped) -> None:
+        self.wrapped = wrapped
+        self.calls: list[tuple[int, tuple[int, ...]]] = []
+
+    def __call__(self, frames, spec, *, sampled_frames):
+        self.calls.append((len(frames), tuple(int(value) for value in sampled_frames)))
+        return self.wrapped(frames, spec, sampled_frames=sampled_frames)
+
+
+def _r1_oracle():
+    """The frozen independent oracle on the r1 masks.  Shares no helper with production."""
+    raw_frames = [
+        raw_reproduce.detect_components(
+            np.where(mask, 0.8, 0.1).astype(np.float64),
+            raw_reproduce.DetectorConfig(0.5, 1),
+        )
+        for mask in R1_MASKS
+    ]
+    tracking = raw_reproduce.track_components(
+        raw_frames,
+        R1_SHAPE,
+        raw_reproduce.TrackerConfig(
+            dilation_radius=R1_TRACKER.dilation_radius,
+            max_centroid_displacement=R1_TRACKER.max_centroid_displacement,
+            max_area_ratio=R1_TRACKER.max_area_ratio,
+            unique_score_margin=R1_TRACKER.unique_score_margin,
+        ),
+    )
+    return raw_frames, tracking
+
+
+def test_tb_12_empty_right_nonunit_cadence_tracker_repair_through_the_route_e_disk_path(
+    tmp_path, monkeypatch
+):
+    """ONE run id, ONE execution, the whole conjunction.
+
+    Persist (0, 5, 11, 40) including a real EMPTY frame 40, forget everything, re-read the
+    bytes through the real acquisition path, re-detect, re-track through the real Route E
+    disk helper, and compare the complete canonical form to the frozen independent oracle
+    and to the frozen test_r1 assertions.
+    """
+    directory = tmp_path / "r1"
+    directory.mkdir()
+    source = _MaskSource(list(R1_MASKS))
+
+    # --- 8. the tracker must be witnessed receiving exactly (0, 5, 11, 40) --------------
+    spy = _TrackerSpy(owned.track_components)
+    monkeypatch.setattr(owned, "track_components", spy)
+
+    # --- 1/2. persist the four frames and the exact schedule ---------------------------
+    try:
+        record = run_owned_future_pipeline(
+            directory,
+            acquisition_source=source,
+            sampled_frames=R1_SCHEDULE,
+            detector_spec=R1_DETECTOR,
+            tracker_spec=R1_TRACKER,
+            acquisition_source_identity={
+                "kind": "handcrafted-synthetic-mask",
+                "name": "empty-right-nonunit-disk-closure-00/r1",
+            },
+        )
+    except OwnedEvidenceError as exc:  # pragma: no cover - reached only under a mutant
+        # The acquisition itself succeeded and was re-verified; what refused is the frozen
+        # lifecycle contract comparing EVENT FRAMES against the declared schedule.  Raised
+        # as an assertion so the cause is unambiguous: this is a semantic frame comparison,
+        # not a checksum, an acquisition or an import failure.
+        raise AssertionError(
+            "event-frame semantics refused on the disk path: every event frame must be a "
+            f"declared label of {R1_SCHEDULE}, never a positional surrogate "
+            f"{R1_POSITIONAL_SURROGATES}; frozen-contract violations: {exc}"
+        ) from exc
+    run_identity = str(record.run_identity) if hasattr(record, "run_identity") else str(directory)
+    assert source.calls == [(0, 0), (1, 5), (2, 11), (3, 40)]
+
+    ledger = json.loads((directory / ACQUISITION_LEDGER_NAME).read_bytes().decode("utf-8"))
+    assert tuple(ledger["sampled_frames"]) == R1_SCHEDULE
+    assert ledger["sample_count"] == 4
+
+    # frame 40 is a REAL persisted artefact: a fourth file, present, non-empty as bytes,
+    # decoding to a mask with zero true cells.  It is not an absent file, not an omitted
+    # entry and not a list truncated before the tracker.
+    entries = {int(item["requested_sample_label"]): item for item in ledger["entries"]}
+    assert sorted(entries) == list(R1_SCHEDULE)
+    terminal = entries[40]
+    assert terminal["sequence_position"] == 3
+    assert terminal["true_cell_count"] == 0
+    assert terminal["shape"] == [R1_SHAPE[0], R1_SHAPE[1]]
+    terminal_path = directory / terminal["frame_relative_path"]
+    assert terminal_path.is_file()
+    payload = terminal_path.read_bytes()
+    assert len(payload) == R1_SHAPE[0] * R1_SHAPE[1]
+    assert set(payload) == {0}
+    assert (
+        hashlib.sha256(payload).hexdigest() == terminal["frame_sha256"]
+    ), "the empty frame must be covered by the ledger digest like any other frame"
+    frame_files = sorted(path.name for path in (directory / owned.ACQUISITION_FRAME_DIRECTORY).iterdir())
+    assert len(frame_files) == 4
+
+    # --- 3. forget everything built above ----------------------------------------------
+    del record, ledger, entries, terminal, payload
+
+    # --- 4/5/6/7. re-read the bytes; real detector; real disk helper; real tracker ------
+    spy.calls.clear()
+    tracking, components_by_frame = rebuild_tracking_and_components(directory)
+
+    # --- 8. the witness -----------------------------------------------------------------
+    assert spy.calls == [(4, R1_SCHEDULE)], (
+        "the production tracker did not receive exactly (0, 5, 11, 40) from the disk path"
+    )
+    assert spy.wrapped.__module__.endswith("instrumentation")
+
+    assert sorted(components_by_frame) == list(R1_SCHEDULE)
+    assert tuple(len(components_by_frame[label]) for label in R1_SCHEDULE) == R1_COMPONENT_COUNTS
+    assert components_by_frame[40] == {}, "frame 40 must be present AND carry zero components"
+
+    # --- 9. the complete canonical form, against the independent oracle -----------------
+    raw_frames, independent = _r1_oracle()
+    assert tuple(len(frame) for frame in raw_frames) == R1_COMPONENT_COUNTS
+
+    assert _oracle_tracks(independent, R1_SCHEDULE) == _production_tracks(tracking)
+    assert len(tracking.tracks) == 5
+    assert len(tracking.assignments) == 5
+    assert len(tracking.edges) == 4
+    assert independent.unresolved is True
+
+    production_events = sorted((event.frame, event.kind) for event in tracking.events)
+    oracle_events = sorted(
+        (R1_SCHEDULE[event["frame"]], _ORACLE_EVENT_NAMES.get(event["event"], event["event"]))
+        for event in independent.events
+    )
+    assert production_events == [
+        (0, "APPEARANCE"),
+        (0, "APPEARANCE"),
+        (5, "TRACKING_UNRESOLVED"),
+        (11, "TRACKING_UNRESOLVED"),
+        (40, "DISSOLUTION"),
+        (40, "DISSOLUTION"),
+    ]
+    # the oracle emits no onset APPEARANCE; everything it does emit, production emits at
+    # the same schedule label
+    assert set(oracle_events) <= set(production_events)
+    assert oracle_events == [
+        (5, "TRACKING_UNRESOLVED"),
+        (11, "TRACKING_UNRESOLVED"),
+        (40, "DISSOLUTION"),
+        (40, "DISSOLUTION"),
+    ]
+
+    # every association, source and target, expressed in schedule labels
+    assert sorted(
+        (
+            event.frame,
+            event.kind,
+            event.source_track_ids,
+            event.source_components,
+            event.target_components,
+            event.target_track_ids,
+            event.resolved,
+        )
+        for event in tracking.events
+    ) == [
+        (0, "APPEARANCE", (), (), ((0, 0),), (0,), True),
+        (0, "APPEARANCE", (), (), ((0, 1),), (1,), True),
+        (5, "TRACKING_UNRESOLVED", (0, 1), ((0, 0), (0, 1)), ((5, 0),), (2,), False),
+        (11, "TRACKING_UNRESOLVED", (2,), ((5, 0),), ((11, 0), (11, 1)), (3, 4), False),
+        (40, "DISSOLUTION", (3,), ((11, 0),), (), (), True),
+        (40, "DISSOLUTION", (4,), ((11, 1),), (), (), True),
+    ]
+
+    # --- 5 (brief section 5). the causal locks -----------------------------------------
+    event_frames = {event.frame for event in tracking.events}
+    assert event_frames <= set(R1_SCHEDULE)
+    for surrogate in R1_POSITIONAL_SURROGATES:
+        assert surrogate not in event_frames, (
+            f"positional surrogate {surrogate} appeared where a schedule label was required"
+        )
+    assert sorted(
+        event.frame for event in tracking.events if event.kind == "APPEARANCE"
+    ) == [0, 0]
+    assert sorted(
+        event.frame for event in tracking.events if event.kind == "TRACKING_UNRESOLVED"
+    ) == [5, 11]
+    assert sorted(
+        event.frame for event in tracking.events if event.kind == "DISSOLUTION"
+    ) == [40, 40]
+    assert not [
+        event
+        for event in tracking.events
+        if event.kind == "TRACKING_UNRESOLVED" and event.frame == 40
+    ], "the terminal transition into an empty right frame is a dissolution, not a handoff"
+
+    # no ghost track, no ghost component
+    assert {point.frame for track in tracking.tracks for point in track.points} == {0, 5, 11}
+    assert all(
+        point.component_index in components_by_frame[point.frame]
+        for track in tracking.tracks
+        for point in track.points
+    )
+
+    # --- the frozen test_r1 assertions themselves, re-run on the DISK-rebuilt tracking --
+    unresolved = [event for event in tracking.events if event.kind == "TRACKING_UNRESOLVED"]
+    assert unresolved
+    assert {event.frame for event in unresolved} <= set(R1_SCHEDULE)
+    assert 1 not in event_frames
+    assert 2 not in event_frames
+    assert unresolved[0].frame == 5
+    dissolutions = sorted(
+        event.frame for event in tracking.events if event.kind == "DISSOLUTION"
+    )
+    assert dissolutions == [40] * len(dissolutions)
+    contract = qualify_lifecycle_contract(tracking, R1_SCHEDULE)
+    assert {record.terminal_state for record in contract.terminal_records} == {
+        "UNRESOLVED_HANDOFF",
+        "DISSOLVED_DETECTED_TRACK",
+    }
+    assert sorted(
+        (record.terminal_state, record.terminal_frame) for record in contract.terminal_records
+    ) == [
+        ("DISSOLVED_DETECTED_TRACK", 40),
+        ("DISSOLVED_DETECTED_TRACK", 40),
+        ("UNRESOLVED_HANDOFF", 5),
+        ("UNRESOLVED_HANDOFF", 5),
+        ("UNRESOLVED_HANDOFF", 11),
+    ]
+    assert contract.run_terminal_state == "ALL_TRACKS_CLOSED"
+
+    # --- 10/11. the canonical join, its persistence, a real restart, the consumer -------
+    records = locks.build_track_component_join(tracking, components_by_frame)
+    assert len(records) == 5, "one row per detected component; frame 40 contributes none"
+    assert sorted({row.frame for row in records}) == [0, 5, 11]
+    join_path, digest = locks.write_join_evidence(directory, records)
+    assert join_path.name == locks.JOIN_EVIDENCE_FILENAME
+
+    # forget the whole in-memory chain, then restart from the bytes alone
+    del tracking, components_by_frame, records, contract, unresolved
+    restarted_tracking, restarted_components = rebuild_tracking_and_components(directory)
+    restarted = locks.build_track_component_join(restarted_tracking, restarted_components)
+    assert locks.join_digest(restarted) == digest
+
+    # the join the consumer re-reads comes from the persisted bytes, not from memory
+    on_disk_bytes = join_path.read_bytes()
+    reread, reread_digest = locks.read_join_evidence(join_path)
+    assert reread_digest == digest
+    assert locks.canonical_join_bytes(reread) == on_disk_bytes
+    assert sorted(row.as_tuple() for row in reread) == sorted(
+        row.as_tuple() for row in restarted
+    )
+    # the rows re-read from disk carry exactly the (frame, track) assignments the
+    # restarted tracking produced -- no ghost row, no missing row, no relabelling
+    assert sorted((row.frame, row.track_id) for row in reread) == sorted(
+        (point.frame, track.track_id)
+        for track in restarted_tracking.tracks
+        for point in track.points
+    )
+    assert sorted({row.frame for row in reread}) == [0, 5, 11]
+    assert 40 not in {row.frame for row in reread}
+
+    # the replay root the real run binds is computable from these re-read bytes alone
+    root = locks.route_e_root(
+        measurement_root_sha256="0" * 64,
+        track_component_join_digest=reread_digest,
+        family_enrolment_digest="1" * 64,
+    )
+    assert isinstance(root, str) and len(root) == 64
+    assert run_identity
+
+
+def test_tb_13_empty_right_nonunit_cadence_tracker_repair_consumer_boundary(tmp_path):
+    """Why this fixture stops exactly where it stops -- asserted, not assumed.
+
+    ``verify_route_e_run`` is not a generic evidence reader.  By design (PRB-1/PRB-4) it
+    refuses any root that was not produced by the canonical ``run_route_e`` entry point,
+    and ``run_route_e`` derives every world frame from the engine through
+    ``run_measurement_bridge``: there is no parameter, seam or hook by which a handcrafted
+    mask sequence can become a Route E world.  A fixture with an EMPTY right frame at
+    non-unit cadence therefore cannot be carried into ``verify_route_e_run`` without
+    modifying production source, which this mission forbids.
+
+    That boundary is pinned here as a positive fact rather than worked around, and the
+    functions the consumer uses to re-read the join are shown to be the very ones the
+    fixture above went through.
+    """
+    directory = tmp_path / "r1"
+    directory.mkdir()
+    run_owned_future_pipeline(
+        directory,
+        acquisition_source=_MaskSource(list(R1_MASKS)),
+        sampled_frames=R1_SCHEDULE,
+        detector_spec=R1_DETECTOR,
+        tracker_spec=R1_TRACKER,
+        acquisition_source_identity={
+            "kind": "handcrafted-synthetic-mask",
+            "name": "empty-right-nonunit-disk-closure-00/boundary",
+        },
+    )
+    tracking, components = rebuild_tracking_and_components(directory)
+    locks.write_join_evidence(directory, locks.build_track_component_join(tracking, components))
+
+    verdict = admission.verify_route_e_run(directory)
+    assert not verdict.admissible
+    assert verdict.reason_code == "NOT_A_CANONICAL_ROUTE_E_ROOT"
+
+    # the helper and the join functions this fixture used ARE the ones run_route_e uses
+    assert execution.rebuild_tracking_and_components is rebuild_tracking_and_components
+    assert execution._locks.build_track_component_join is locks.build_track_component_join
+    assert execution._locks.write_join_evidence is locks.write_join_evidence
+    assert admission._locks.read_join_evidence is locks.read_join_evidence
