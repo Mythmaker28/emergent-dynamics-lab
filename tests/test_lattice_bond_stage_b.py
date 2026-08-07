@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from dataclasses import asdict, replace
 import hashlib
 import json
@@ -144,16 +145,48 @@ def _parity_state(mask: np.ndarray, frame: int, *, weights: np.ndarray | None = 
     )
 
 
-def _parity_frames(masks: list[np.ndarray], tracker: TrackerSpec):
+#: The independent Stage-B oracle -- ``stage_b_reproduce.track_components`` -- carries no
+#: frame stamp of its own: it names the right frame of transition ``i`` as ``i + 1`` and
+#: the onset frame as ``0``.  Its sample schedule is therefore, by construction of the
+#: oracle itself, the positional one.  A differential control against that oracle must
+#: consequently be posed at unit cadence; this constant records *why*, so no reader can
+#: mistake it for a value picked to satisfy a signature.
+INDEPENDENT_ORACLE_SCHEDULE_IS_POSITIONAL = True
+
+
+def _parity_fixture_schedule(masks: Sequence[np.ndarray]) -> tuple[int, ...]:
+    """The sample schedule this fixture actually realises.
+
+    The fixture *is* the mask sequence: element ``k`` of ``masks`` is the sample taken
+    at frame ``k``, and that same value is stamped onto every state and every detected
+    component below.  The schedule is read off the fixture here, once, and is then the
+    single source used both for the frame stamps and for the ``sampled_frames``
+    declaration handed to the production tracker -- so the declaration cannot drift away
+    from the data it describes.
+    """
+
+    assert INDEPENDENT_ORACLE_SCHEDULE_IS_POSITIONAL
+    return tuple(range(len(masks)))
+
+
+def _parity_frames(
+    masks: list[np.ndarray],
+    tracker: TrackerSpec,
+    *,
+    sampled_frames: Sequence[int],
+):
     detector = DetectorSpec(matter_threshold=0.5, min_cells=1)
     raw_detector = raw_reproduce.DetectorConfig(matter_threshold=0.5, min_cells=1)
+    schedule = tuple(int(value) for value in sampled_frames)
+    if len(schedule) != len(masks):
+        raise AssertionError("the declared schedule must have one entry per fixture mask")
     production = [
         detect_components(_parity_state(mask, frame), detector, frame=frame)
-        for frame, mask in enumerate(masks)
+        for frame, mask in zip(schedule, masks, strict=True)
     ]
     independent = [
         raw_reproduce.detect_components(_parity_state(mask, frame).m, raw_detector)
-        for frame, mask in enumerate(masks)
+        for frame, mask in zip(schedule, masks, strict=True)
     ]
     raw_tracker = raw_reproduce.TrackerConfig(
         dilation_radius=tracker.dilation_radius,
@@ -161,7 +194,7 @@ def _parity_frames(masks: list[np.ndarray], tracker: TrackerSpec):
         max_area_ratio=tracker.max_area_ratio,
         unique_score_margin=tracker.unique_score_margin,
     )
-    return production, independent, raw_tracker
+    return production, independent, raw_tracker, schedule
 
 
 def _raw_manifest_contract(manifest: dict) -> raw_reproduce.ManifestContract:
@@ -512,8 +545,17 @@ def test_independent_tracker_matches_split_merge_tie_and_collapse(scenario):
         collapsed[4, 4:7] = True
         masks = [wide_separation, collapsed, wide_separation]
 
-    frames, raw_frames, raw_tracker = _parity_frames(masks, tracker)
-    production = track_components(frames, tracker)
+    schedule = _parity_fixture_schedule(masks)
+    frames, raw_frames, raw_tracker, declared = _parity_frames(
+        masks, tracker, sampled_frames=schedule
+    )
+    assert declared == schedule
+    # The declaration is the fixture's own schedule, not a value invented for the call:
+    # every detected component carries exactly the frame stamp the schedule names.
+    for position, observed in enumerate(frames):
+        for component in observed:
+            assert component.frame == schedule[position]
+    production = track_components(frames, tracker, sampled_frames=schedule)
     independent = raw_reproduce.track_components(raw_frames, shape, raw_tracker)
 
     production_tracks = [

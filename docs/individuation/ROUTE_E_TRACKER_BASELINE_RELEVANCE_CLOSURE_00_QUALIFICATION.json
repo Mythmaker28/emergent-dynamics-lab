@@ -1,0 +1,150 @@
+{
+  "blocker": "STOP_ROUTE_E_TRACKER_BASELINE_RELEVANT",
+  "blocker_disposition": "REMOVED",
+  "blocker_disposition_ground": "The four differential controls were not failing on a semantic divergence between the production tracker and the frozen independent oracle. They were failing at the call site, before any comparison was ever reached, with TypeError: track_components() missing 1 required keyword-only argument: 'sampled_frames'. Once the fixture declares the schedule it actually realises, the four controls pass against the oracle with NO expectation modified, NO oracle line modified and NO production line modified. The defect was therefore one of qualification, not of the tracker. Relevance is re-established because the four scenarios now additionally traverse the real Route E disk helper (rebuild_tracking_and_components) end to end and are compared to the same frozen oracle from that path.",
+  "branch": "codex/route-e-tracker-baseline-closure-00",
+  "case": "A -- QUALIFICATION_DEFECT_ONLY",
+  "start_commit": "c17712b481b581496bb4449d65d736fc9c042bc0",
+
+  "diagnosis": {
+    "failing_nodes_before": [
+      "tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[split]",
+      "tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[merge]",
+      "tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[tie]",
+      "tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse[collapse]"
+    ],
+    "observed_error": "TypeError: track_components() missing 1 required keyword-only argument: 'sampled_frames'",
+    "semantic_divergence_observed": false,
+    "tracker_declared_wrong": false,
+    "production_source_modified": false
+  },
+
+  "repair": {
+    "kind": "TEST_CALL_SITE_ONLY",
+    "files_modified": ["tests/test_lattice_bond_stage_b.py"],
+    "files_added": ["tests/test_route_e_tracker_baseline_relevance_closure_00.py"],
+    "production_files_modified": [],
+    "sampled_frames_provenance": "_parity_frames now REQUIRES an explicit sampled_frames keyword and stamps every LatticeBondState and every DetectedComponent with schedule[position]. The same tuple is then handed to track_components. The schedule is read off the fixture by _parity_fixture_schedule(masks): element k of the mask list IS the sample at frame k. It is not a constant chosen to satisfy the signature, and the test asserts component.frame == schedule[position] for every observed component before comparing.",
+    "sampled_frames_remains_mandatory": true,
+    "implicit_default_added": false,
+    "fallback_reconstruction_added": false,
+    "none_accepted": false
+  },
+
+  "independent_oracle": {
+    "module": "edlab/substrates/lattice_bond/stage_b_reproduce.py",
+    "sha256": "c058e96697347f8af613159cdcb58de5ee3e254d201c237961f366cc1fd08b58",
+    "byte_identical_to_start_commit": true,
+    "algorithm_modified": false,
+    "expectations_replaced": false,
+    "expectations_generated_by_track_components": false,
+    "expectations_generated_by_rebuild_tracking_and_components": false,
+    "shares_a_helper_with_production": false,
+    "frame_axis": "positional by construction of the oracle itself: the onset frame is named 0 and the right frame of transition i is named i + 1",
+    "unit_change_applied": "for the non-unit-cadence scenario only, oracle position p is read as schedule[p]. This is a change of unit, not of expectation, and is the identity at unit cadence. Asserted in tests/test_route_e_tracker_baseline_relevance_closure_00.py::_oracle_tracks.",
+    "STOP_INDEPENDENT_ORACLE_CHANGE_REQUIRED": false
+  },
+
+  "route_e_disk_path_qualification": {
+    "helper": "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py::rebuild_tracking_and_components",
+    "helper_sha256_of_module": "967dbf8b40f28a500bafdd871503451496d6e439f4d58c3b680e538f155cfd9a",
+    "scenarios_qualified_through_disk": ["collapse", "merge", "split", "tie"],
+    "scenarios_qualified_count": 4,
+    "path": "handcrafted mask -> run_owned_future_pipeline acquisition -> frames persisted to acquisition_frames/ -> ACQUISITION.json ledger -> in-memory artefacts discarded -> _reverify_acquisition re-reads the bytes -> detector re-run -> mandatory tracker re-run with the PERSISTED sampled_frames -> build_track_component_join -> write_join_evidence -> read_join_evidence",
+    "track_components_mocked": false,
+    "component_support_injected_by_test": false,
+    "non_unit_cadence_scenario": "collapse",
+    "non_unit_cadence_schedule": [0, 4, 9],
+    "join_rows_by_scenario": {"collapse": 5, "merge": 3, "split": 3, "tie": 4},
+    "restart_from_disk_reproduces_join_digest": true
+  },
+
+  "real_consumer": {
+    "entry": "future_route_e_execution.run_route_e",
+    "spy_kind": "WRAPS_THE_REAL_FUNCTION",
+    "spy_substitutes_a_result": false,
+    "call_witnessed": "exactly one call to the real rebuild_tracking_and_components per successful world, on the world directory",
+    "persisted_join_equals_rebuilt_join": true,
+    "verify_route_e_run_admits_intact_evidence": true,
+    "verify_route_e_run_refuses_mutated_join": true,
+    "refusal_codes_accepted": ["FILE_INVENTORY_INEXACT", "JOIN_EVIDENCE_INVALID", "JOIN_EVIDENCE_MISMATCH"]
+  },
+
+  "refusal_coverage": {
+    "malformed_schedules_refused_before_any_acquisition": [
+      "None -> OwnedScheduleError 'sampled_frames is mandatory; explicit None is refused'",
+      "() -> OwnedScheduleError 'sampled_frames must not be empty'",
+      "(0, 4, 4) -> OwnedScheduleError 'sampled_frames must be strictly increasing'",
+      "(0, -4, 9) -> OwnedScheduleError 'sampled_frames entries must be non-negative'",
+      "{0, 4, 9} -> OwnedScheduleError 'sampled_frames must be an ordered sequence of integers'"
+    ],
+    "schedule_longer_than_the_sequence": "(0, 4, 9, 12) -> OwnedAcquisitionError at sequence position 3; never silently truncated",
+    "tampered_persisted_schedule": "rewriting ACQUISITION.json sampled_frames from [0,4,9] to the positional surrogate [0,1,2] makes rebuild_tracking_and_components raise OwnedEvidenceError",
+    "keyword_only_and_defaultless": "inspect.signature(track_components).parameters['sampled_frames'].kind is KEYWORD_ONLY and default is empty; None raises ValueError"
+  },
+
+  "mutation_probes": {
+    "note": "Throwaway probes, applied and reverted; no probe is committed. They exist to show the controls are not vacuous.",
+    "probe_1_reverse_the_expected_track_list": "4 of 4 differential controls turn red",
+    "probe_2_positional_surrogate_inside_rebuild_tracking_and_components": "6 nodes turn red, all of them the non-unit-cadence ones (tb_01[collapse], tb_02[collapse], tb_03, tb_04[collapse], tb_05[collapse], tb_07)"
+  },
+
+  "test_tiers": [
+    {"tier": 1, "selector": "tests/test_lattice_bond_stage_b.py::test_independent_tracker_matches_split_merge_tie_and_collapse", "passed": 4, "failed": 0},
+    {"tier": 2, "selector": "tests/test_route_e_tracker_baseline_relevance_closure_00.py", "passed": 23, "failed": 0},
+    {"tier": 3, "selector": "tests/test_lattice_bond_stage_b.py", "passed": 32, "failed": 0},
+    {"tier": 4, "selector": "tests/test_future_lifecycle_owned_pipeline.py tests/test_future_prospective_measurement_bridge.py", "passed": 395, "failed": 0},
+    {"tier": 5, "selector": "the seven Route E suites (prb1_to_4, execution_boundary, pre_run_locks_00, pre_run_integration_00, pre_run_blocker_closure_00, pre_run_blocker_closure_00_final, runtime_wiring_00)", "passed": 432, "failed": 0},
+    {"tier": 6, "selector": "the four node-bound selectors (empty_right_nonunit_cadence_tracker_repair, future_lifecycle_contract, future_lifecycle_runner_integration, lattice_bond_instrumentation)", "passed": 251, "failed": 0}
+  ],
+
+  "bound_selector_node_binding": {
+    "node_count": 251,
+    "node_list_sha256": "efa44cff5a95c749809a582838f1fb97f9966dc0ba1dbd2d2ac063235b763101",
+    "unchanged_by_this_mission": true,
+    "reason": "neither modified file is one of the four bound selectors"
+  },
+
+  "full_suite": {
+    "selector": "python -m pytest -q -p no:cacheprovider",
+    "passed": 1442,
+    "failed": 1,
+    "duration_seconds": 207.69,
+    "before_this_mission": {"passed": 1415, "failed": 5},
+    "TRACKER_BASELINE_FAILURES": "RESOLVED_4_OF_4",
+    "MOTILE_POLAR_BASELINE": "UNCHANGED",
+    "remaining_failing_node": "tests/test_motile_polar.py::test_scramble_preserves_all_declared_invariants_and_destroys_organization",
+    "remaining_failure_is_out_of_scope": true,
+    "remaining_failure_detail": "exp_mo_00_gate0.swap_support asserts the support does not overlap its own translate; the fixture's support is the full 64x64 lattice, so every non-zero displacement overlaps. Untouched by design: the brief forbids modifying the motile_polar code or test."
+  },
+
+  "scope_discipline": {
+    "not_touched": ["PRB-2", "PRB-3", "PRB-5", "PRB-6", "the BLS verifier", "commitment, beacon, network and DST", "Route E selection", "scientific thresholds and metrics", "the 67 laws", "feasibility and holdout seeds", "Stage B and M_MINUS data", "the motile_polar code and test"],
+    "failures_masked_by_skip_xfail_rename_or_relaxation": 0,
+    "scientific_trajectory_executed": false,
+    "engine_law_or_seed_opened": false,
+    "canary": ["ENGINEERING_ONLY", "NOT_SCIENTIFIC_DATA", "NOT_ELIGIBLE_FOR_ANALYSIS"]
+  },
+
+  "source_digests_at_delivery": {
+    "edlab/substrates/lattice_bond/future_lifecycle_owned_pipeline.py": "967dbf8b40f28a500bafdd871503451496d6e439f4d58c3b680e538f155cfd9a",
+    "edlab/substrates/lattice_bond/future_route_e_admission.py": "20d8350083f74015daf5bf11d6684898935cb62ae43143d7ac32a26c40148632",
+    "edlab/substrates/lattice_bond/future_route_e_execution.py": "e76a0b0eb9050a9851ef4ffbe769555233262486a562dfc99e7749688170fb66",
+    "edlab/substrates/lattice_bond/future_route_e_pre_run_locks.py": "fcbb653ac8b09ea989f09a1e2a299cbdcca04d3e391163e00f74b261c1e056f8",
+    "edlab/substrates/lattice_bond/instrumentation.py": "65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef",
+    "edlab/substrates/lattice_bond/stage_b_reproduce.py": "c058e96697347f8af613159cdcb58de5ee3e254d201c237961f366cc1fd08b58",
+    "tests/test_lattice_bond_stage_b.py": "d015756cc45f200b8a2b08c03ed88e83dcd30d69ba1d03c9c6fdd3b79b522dc3",
+    "tests/test_route_e_tracker_baseline_relevance_closure_00.py": "dcbeecd2e04cffad23b9f075cf0130a9e19dc53ffe246513bb71ce5056d9e14a"
+  },
+
+  "environment": {
+    "platform": "Linux-6.18.5-fc-v18-x86_64-with-glibc2.39",
+    "pytest": "8.4.2",
+    "python": "3.11.15 (main, Mar  3 2026, 09:26:23) [GCC 13.3.0]",
+    "bls_verifier": "py_arkworks_bls12381 installed; the @requires_verifier Route E tests RAN and were not skipped"
+  },
+
+  "human_review_required": true,
+  "author_may_declare_qualified": false,
+  "schema": "route-e-tracker-baseline-relevance-closure/v1"
+}
