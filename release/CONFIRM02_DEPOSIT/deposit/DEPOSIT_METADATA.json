@@ -1,0 +1,155 @@
+{
+  "_schema_note": "Deposit metadata for LCI-CAUSAL-NONMERGING-CONFIRM-02. Zenodo-shaped but deliberately NOT submission-ready: identity and licence fields are unresolved. No identifier in this file was invented; every value is traced in PROVENANCE_LEDGER.md.",
+  "submission_status": "NOT SUBMITTED — no repository record, no preprint, no journal, no DOI. This file is a draft.",
+
+  "title": "Local interventional causal individuation in non-merging droplets",
+  "upload_type": "dataset",
+  "publication_type": null,
+  "description_short": "Frozen prospective computational experiment in a reaction-transport droplet model. Erasing one droplet's internal memory field causally and specifically lowers that droplet's own nutrient uptake, on three droplets that never merge (23/23 eligible worlds G0-valid, zero fusion). The readout is directly coupled to the memory field m+ by construction through N*rho*(1 + lambda_plus*m_plus); the result is interventional and local, not distal, not graded metrology, and concerns a COMPUTATIONAL MODEL.",
+
+  "maximal_authorised_claim_verbatim": "Local interventional causal individuation in non-merging droplets.",
+  "claims_explicitly_not_made": [
+    "distal behaviour",
+    "graded metrology / graded decoding of dose from behaviour",
+    "global identity",
+    "bounded entity established",
+    "Turing behaviour",
+    "life, agency, or any physical/biological result",
+    "cross-platform generality"
+  ],
+
+  "mandatory_disclosures": {
+    "coupling_by_construction": "Uptake is DIRECTLY COUPLED to the memory field m_plus by construction, through N*rho*(1 + lambda_plus*m_plus) (sealed engine, exactly g = dt*g0*rho*N*qq*(1+beta*sigma)*(1+lambda_plus*m_plus), lambda_plus = 0.25). This is disclosed in the manuscript ABSTRACT, not only in the limitations.",
+    "nesting_of_units": "The 69 droplet-targets are NESTED WITHIN 23 ELIGIBLE WORLDS (3 targets per world). They are NOT 69 independent replications. All gated inference is at the world level, n = 23, world bootstrap.",
+    "computational_model": "The result concerns a COMPUTATIONAL MODEL (chaotic reaction-transport PDE on a 64x64 grid). No physical, chemical or biological system was studied.",
+    "post_hoc_scope": "The R* = 0.2575 sensitivity work is POST HOC ADDITIONAL SENSITIVITY WORK, NOT part of the frozen prospective design. It postdates the sealed protocol and the executed run, uses DEV worlds only, and no headline result depends on it.",
+    "verification_semantics": "In PROVENANCE_LEDGER.md, VERIFIED means traced to an exact repository artefact. It does NOT mean independently reproduced."
+  },
+
+  "creators": [
+    {
+      "name": "Lepesteur, Tommy",
+      "name_status": "CONFIRMED by the corresponding author on 2026-08-08.",
+      "affiliation": null,
+      "affiliation_status": "NOT_DECLARED — never present in the repository and not declared by the author. Not invented.",
+      "orcid": null,
+      "orcid_status": "NOT_FOUND — no ORCID exists anywhere in the repository; placeholders only. Not invented."
+    }
+  ],
+  "contributors_note": "Autonomous AI coding/analysis agents implemented the simulation and analysis code, the tracker audit, the figures, and drafted the documents, under human direction. This does not constitute authorship. See MANUSCRIPT.md section 9.",
+
+  "license_decision": {
+    "_authorisation": "APPROVED by the corresponding author (Tommy Lepesteur) on 2026-08-08: copyright holder confirmed, CC-BY-4.0 for data/figures/text, Apache-2.0 for code.",
+    "code": "Apache-2.0",
+    "data_figures_text": "CC-BY-4.0",
+    "approval_status": "APPROVED_BY_AUTHOR_2026-08-08",
+    "prior_blocking_defect": "release/LICENSE-CODE and release/LICENSE-DATA-TEXT contained the literal marker '[COPYRIGHT HOLDER — to be confirmed by the author]' at commit 4dfb73e.",
+    "prior_blocking_defect_status": "RESOLVED — both files now name the holder on line 1; the marker no longer occurs anywhere in the deposit."
+  },
+  "license": "cc-by-4.0",
+  "license_note": "Zenodo record licence applies to data, figures and text. Source code in sources/ remains Apache-2.0 per LICENSE-CODE.",
+  "submission_status": "NOT_SUBMITTED — no Zenodo record created, reserved or published. Authorisation to deposit has NOT been given and is a separate decision from the licence approval above.",
+
+  "identifiers": {
+    "doi": null,
+    "doi_status": "NOT_FOUND — no DOI has ever been minted or reserved for this work. Not invented.",
+    "related_identifiers": [],
+    "related_identifiers_status": "NOT_FOUND — none verified. Not invented."
+  },
+  "funding": [],
+  "funding_status": "NOT_FOUND — release/README_RELEASE.md and release/VERDICT_V4.md record funding metadata as an unfilled placeholder. Not invented.",
+
+  "provenance": {
+    "repository_branch": "exp/lci-causal-nonmerging-confirm-02",
+    "branch_off": "6470513",
+    "commits": [
+      {"short": "9b7580bc", "full": "9b7580bc3a09293a4b0b19b70cff8c39c5cb1378", "role": "PRESEAL — frozen prospective design", "date_utc": "2026-07-16T01:07:15Z", "exists": true},
+      {"short": "830c2d0", "full": "830c2d006f5278295e965887f8ccedee34d47e67", "role": "RESULTS — family 53001-53032 run once", "date_utc": "2026-07-16T01:20:01Z", "exists": true},
+      {"short": "9c8a62c", "full": "9c8a62cd3f6794eb9ac435f638671e5561086cd0", "role": "ADDENDUM — R* = 0.2575 post hoc DEV geometric sensitivity", "date_utc": "2026-07-16T01:31:07Z", "exists": true}
+    ],
+    "parent_commit": {"short": "6470513", "full": "647051382f64512508fd0602603f3d001b505529", "role": "merge-incident audit (base)", "exists": true},
+    "pushed": false,
+    "tagged": false,
+    "merged": false,
+    "published": false,
+    "main_branch_untouched_at": "f3921a4"
+  },
+
+  "design_seal": {
+    "preseal_commit": "9b7580bc",
+    "seed_family": "53001-53032 (32 contiguous seeds, cap 32, executed once, no extension after outcomes)",
+    "bootstrap_null_seed": 20260715,
+    "platform": {"python": "3.11.15", "numpy": "2.2.6", "scipy": "1.15.3", "matplotlib": "3.10.9"},
+    "sealed_file_sha256_manifest_entries": 8,
+    "sealed_file_sha256_reverified_matching": 8,
+    "seal_integrity": "PASS — all 8 sealed SHA-256 entries re-hashed in this deposit pass match the committed content exactly; no post-seal code drift."
+  },
+
+  "headline_results": {
+    "_units": "own / fixed-mask effects are differences of uptake integrated over t = 1..40, in dimensionless model units. They are NOT percentages.",
+    "n_seeds": 32,
+    "n_eligible_worlds": 23,
+    "n_g0_valid_worlds": 23,
+    "nonfusing_fraction": 1.0,
+    "n_droplet_targets": 69,
+    "n_droplet_targets_positive": 69,
+    "targets_are_nested_not_independent": true,
+    "max_grid_coverage_range_percent": [1.1963, 5.6396],
+    "fusion_cap_percent": 15.0,
+    "own_effect_mean": 0.2236,
+    "own_effect_world_bootstrap_ci95": [0.1926, 0.2583],
+    "worlds_own_positive": "23/23",
+    "own_minus_sham_ci95_lower": 0.1926,
+    "own_minus_neighbour_ci95_lower": 0.1926,
+    "sham_mean": -6.8e-09,
+    "neighbour_mean": -7.3e-06,
+    "ablation_mean": 0.0,
+    "ablation_ratio": 0.0,
+    "ablation_note": "manipulation check on a channel that is coupled by construction; NOT independent evidence",
+    "fixed_mask_mean": 0.2068,
+    "fixed_mask_ci95": [0.1799, 0.2344],
+    "tracked_over_fixed_ratio": 1.08,
+    "tracked_over_fixed_ratio_under_prior_fusion": 4.8,
+    "storage_DD_mem": 2590.0,
+    "storage_offdiagonal_abs": 7.03e-05,
+    "dose_decode_R2": 0.691,
+    "dose_decode_null95": 0.153,
+    "dose_decode_p": 0.0002,
+    "neighbour_dose_R2": -0.014,
+    "graded_decode_status": "INDETERMINATE",
+    "graded_decode_world_correlation": 0.174,
+    "G6_composite": "PASS"
+  },
+
+  "post_hoc_addendum_rstar": {
+    "_status": "POST HOC — NOT part of the frozen prospective design",
+    "commit": "9c8a62c",
+    "worlds": "8 DEV worlds (50001-50009); no prospective 53xxx seed used",
+    "mode": "geometry only; causal effect size never consulted",
+    "sealed_probe_worst_cov_H40_percent": 3.3203,
+    "rstar_probe_worst_cov_H40_percent": 3.3447,
+    "delta_percentage_points": 0.0244,
+    "both_pass_G0": true,
+    "decision": "keep the sealed 0.25x5 probe; R* = 0.2575 has NO independent theoretical derivation (fails 4 of 6 anti-numerology criteria; the other 2 do not discriminate)"
+  },
+
+  "reproduction": {
+    "simulation_stage_rerun": false,
+    "simulation_stage_reason": "32 seeds x 5 branch families of a chaotic RD-PDE with an 800-step warm-up; not cheap under the tooling budget of this pass",
+    "analysis_stage_rerun": true,
+    "analysis_stage_command": "python3 nonmerging_analyze.py nonmerging_confirm_raw.json RECOMPUTED_CERTIFICATE_02.json",
+    "analysis_stage_wall_clock_seconds": 33.7,
+    "analysis_stage_result": "All gated statistics reproduced EXACTLY. Not byte-identical: 5 non-gating floats differ by 1-3 ULP (dose CI endpoints, neighbour dose R2, order R2, order null95), relative discrepancy ~1e-15, consistent with a different BLAS/LAPACK backend. Recorded as DIFFERS in the ledger; see verification/certificate_diff.txt."
+  },
+
+  "keywords": [
+    "causal individuation",
+    "interventional causality",
+    "reaction-transport model",
+    "organizational memory",
+    "prospective pre-registration",
+    "non-merging droplets",
+    "computational model"
+  ],
+  "language": "eng"
+}
