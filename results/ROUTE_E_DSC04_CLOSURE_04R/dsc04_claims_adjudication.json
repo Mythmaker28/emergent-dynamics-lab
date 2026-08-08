@@ -1,0 +1,182 @@
+{
+ "mission": "ROUTE_E_DSC04_RAW_ONLY_CAUSAL_CLOSURE_04R",
+ "shell_preload_decision_fraction_overall": 0.9588,
+ "n_accept_shell_preload": 67309,
+ "n_accept_remote_halo": 2892,
+ "claims": [
+  {
+   "claim": "P2_IS_STATIC_PARENT_LOCK",
+   "original_status": "TRUE",
+   "recomputed_status": "CONFIRMED",
+   "supporting_artifacts": [
+    "source_filter_audit.json"
+   ],
+   "contradicting_artifacts": [],
+   "causal_class": "STATIC_COUNTERFACTUAL",
+   "independent_n_by_size": "36 rejeux moteur parents, graines 960xxx (hors mission)",
+   "reason": "Retrait isole de P2: 0,5%->100% a gd=1 et 82,4%->100% a gd=2. P1 vaut +1,7%, P3 zero, headroom 107-135x. Le predicat est bien la cause statique."
+  },
+  {
+   "claim": "P2_PRIME_RECOVERS_STATIC_CAPACITY",
+   "original_status": "TRUE",
+   "recomputed_status": "CONFIRMED",
+   "supporting_artifacts": [
+    "source_filter_audit.json"
+   ],
+   "contradicting_artifacts": [],
+   "causal_class": "STATIC_COUNTERFACTUAL",
+   "independent_n_by_size": "meme jeu de rejeux",
+   "reason": "P2' livre 208,2 = exactement autant que supprimer P2. Propriete du contrefactuel STATIQUE uniquement."
+  },
+  {
+   "claim": "P2_PRIME_RECOVERS_REALIZED_DELIVERY",
+   "original_status": "TRUE (implicite: 100%)",
+   "recomputed_status": "PARTIALLY_OVERTURNED",
+   "supporting_artifacts": [
+    "dynamic_source_capture_rows.csv"
+   ],
+   "contradicting_artifacts": [
+    "dsc04_causal_route_partition.csv"
+   ],
+   "causal_class": "REALIZED",
+   "independent_n_by_size": "9+9",
+   "reason": "Le 100% est STATIQUE. Le realise va de 64%/51% (D1) a 12%/9% (D2 Q100). Le rapport parent presentait les deux dans la meme phrase."
+  },
+  {
+   "claim": "MATERIAL_GAP_PRESERVED",
+   "original_status": "TRUE (revendique comme 'sur')",
+   "recomputed_status": "OVERTURNED",
+   "supporting_artifacts": [],
+   "contradicting_artifacts": [
+    "dsc04_causal_route_partition.csv",
+    "dsc04_no_engine_tests.json test 6"
+   ],
+   "causal_class": "MATERIAL",
+   "independent_n_by_size": "9+9",
+   "reason": "95.9% des acceptations d'injection sont ACCEPTED_SUBTHRESHOLD_ADJACENT, c'est-a-dire a distance de graphe 1 de la piste COURANTE. Le site reste vide au DETECTEUR (ecart topologique preserve) mais porte une masse fraiche > 0 : il n'est pas materiellement vide. D1_REDESIGNED L=24 : 100% de coque, masse halo distante EXACTEMENT nulle."
+  },
+  {
+   "claim": "REMOTE_HALO_CONTACT_FOUND",
+   "original_status": "TRUE (contact 0,031-0,054)",
+   "recomputed_status": "UNVERIFIED",
+   "supporting_artifacts": [],
+   "contradicting_artifacts": [
+    "dsc04_chain_invariants.csv",
+    "dsc04_injection_geometry_events.csv"
+   ],
+   "causal_class": "UNATTRIBUTABLE",
+   "independent_n_by_size": "0",
+   "reason": "Le compteur `contact` credite la masse fraiche presente sur la coque externe. La masse PRECHARGEE par l'operateur y est deposee directement : elle est creditee sans qu'aucun transport moteur ait eu lieu. Aucune separation possible sans le ledger par injection."
+  },
+  {
+   "claim": "REMOTE_NONMERGING_CAPTURE_FOUND",
+   "original_status": "TRUE (capture 0,017-0,044)",
+   "recomputed_status": "UNVERIFIED",
+   "supporting_artifacts": [],
+   "contradicting_artifacts": [
+    "dsc04_chain_invariants.csv"
+   ],
+   "causal_class": "UNATTRIBUTABLE",
+   "independent_n_by_size": "0",
+   "reason": "`credited` est un champ STATIQUE par cellule alors que `fre` est advecte : toute masse fraiche qui se deplace vers une cellule dont le credit n'a pas suivi est comptee comme capture, quelle que soit sa provenance. Preuve structurelle: test 3, ou un simple transfert interne A->B produit 0,600 de 'capture' sans qu'aucune matiere ne soit entree."
+  },
+  {
+   "claim": "SHELL_PRELOAD_ASSISTED_ENTRY_FOUND",
+   "original_status": "NOT_REPORTED",
+   "recomputed_status": "CONFIRMED_AS_DOMINANT",
+   "supporting_artifacts": [
+    "dsc04_causal_route_partition.csv"
+   ],
+   "contradicting_artifacts": [],
+   "causal_class": "OPERATOR_ASSISTED",
+   "independent_n_by_size": "9+9",
+   "reason": "67309 decisions de coque contre 2892 decisions de halo distant. C'est la voie majoritaire, et elle ne peut produire ni DYNAMICS_MEDIATED_CONTACT ni DYNAMICS_MEDIATED_CAPTURE au sens gele."
+  },
+  {
+   "claim": "MERGER_CAPTURE_FOUND",
+   "original_status": "TRUE (flag)",
+   "recomputed_status": "CONFIRMED_AND_DOMINANT_AT_DOSE",
+   "supporting_artifacts": [
+    "dynamic_source_capture_rows.csv"
+   ],
+   "contradicting_artifacts": [],
+   "causal_class": "MERGER",
+   "independent_n_by_size": "9+9",
+   "reason": "Ensemble jamais fusionne par dose, L=24 : 9, 0, 2, 0 ; L=32 : 5, 4, 1, 3. Deux points sur quatre ont un ensemble VIDE a L=24."
+  },
+  {
+   "claim": "ASSIMILATION_NOT_LIMITING",
+   "original_status": "TRUE (efficacite plate 0,34-0,40)",
+   "recomputed_status": "OVERTURNED",
+   "supporting_artifacts": [],
+   "contradicting_artifacts": [
+    "dsc04_chain_invariants.csv"
+   ],
+   "causal_class": "UNATTRIBUTABLE",
+   "independent_n_by_size": "0",
+   "reason": "Le rapport parent nomme BOUNDARY_ASSIMILATION_LIMITED=false a partir de capture/injection, qui melange transport, englobement, fusion et precharge de coque. L'efficacite d'assimilation propre (capture_non_fusionnante_distante / contact_distant) n'est pas calculable : UNDEFINED."
+  },
+  {
+   "claim": "HALO_PLATEAU_AT_6_PERCENT",
+   "original_status": "TRUE",
+   "recomputed_status": "OVERTURNED",
+   "supporting_artifacts": [],
+   "contradicting_artifacts": [
+    "dsc04_causal_route_partition.csv"
+   ],
+   "causal_class": "MERGER_CONTAMINATED",
+   "independent_n_by_size": "0 a L=24 Q100",
+   "reason": "Le plafond etait mesure sur des bras ou 9/9 blocs fusionnent a L=24 Q100. Sur l'ensemble jamais fusionne, deux doses sur quatre ont n=0 a L=24. Aucun plateau non fusionnant n'est etabli."
+  },
+  {
+   "claim": "PULSE_IRRELEVANT",
+   "original_status": "TRUE ('un calendrier ne deplace pas un plafond de livraison')",
+   "recomputed_status": "RETRACTED",
+   "supporting_artifacts": [],
+   "contradicting_artifacts": [
+    "dsc04_arm_conformance.csv"
+   ],
+   "causal_class": "NOT_TESTED",
+   "independent_n_by_size": "0",
+   "reason": "Aucun bras d'impulsion n'a ete instancie. Et l'affirmation est fausse en principe : la cadence change le temps de recuperation entre evenements, donc la capacite liberee par evenement, donc la residence, la formation de satellites et les fusions. PULSE_EFFECT = NOT_TESTED."
+  },
+  {
+   "claim": "EP_1_OF_9",
+   "original_status": "1/144",
+   "recomputed_status": "REPRODUCED_ARITHMETICALLY_BUT_NOT_VALID",
+   "supporting_artifacts": [
+    "dsc04_trajectory_endpoint_audit.csv"
+   ],
+   "contradicting_artifacts": [
+    "dsc04_chain_invariants.csv"
+   ],
+   "causal_class": "UNATTRIBUTABLE",
+   "independent_n_by_size": "1 trajectoire",
+   "reason": "Un evaluateur independant a comparaisons explicites reproduit 1/144, meme trajectoire (L=24, Q050, graine 980002). Mais le critere `capture` qu'elle franchit repose sur un compteur invalide."
+  },
+  {
+   "claim": "DIRECT_INTERFACE_EXCHANGE_TOLERATED",
+   "original_status": "TRUE",
+   "recomputed_status": "CONFIRMED_AS_DEV",
+   "supporting_artifacts": [
+    "dsc04_direct_control_audit.csv"
+   ],
+   "contradicting_artifacts": [],
+   "causal_class": "OPERATOR_IMPOSED",
+   "independent_n_by_size": "9+9",
+   "reason": "18/18 blocs : meme piste continue, jamais fusionnee, masse 0,983-1,018 (L=24) et 0,985-0,999 (L=32), fraction fraiche 0,249-0,276 et 0,211-0,232, retention de derive 0,979-0,992, residu incumbent 0,589-0,682. Le compteur unique_capture_transport de ce bras est a jeter (il devrait valoir 0 et vaut 10-15) mais aucune de ces mesures n'en depend."
+  },
+  {
+   "claim": "SCALE_COUPLED_MICROREPLACEMENT_JUSTIFIED",
+   "original_status": "TRUE",
+   "recomputed_status": "OVERTURNED_AS_STATED",
+   "supporting_artifacts": [],
+   "contradicting_artifacts": [
+    "dsc04_causal_route_partition.csv"
+   ],
+   "causal_class": "MERGER_CONTAMINATED",
+   "independent_n_by_size": "0",
+   "reason": "Justifie dans le rapport parent par les bras halo, qui sont fusionnants et non attribuables. La branche directe reste justifiee, mais scientifiquement SEPAREE de la capture halo."
+  }
+ ]
+}

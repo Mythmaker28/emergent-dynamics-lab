@@ -1,0 +1,114 @@
+{
+ "PRESEAL_STATUS": "ANALYSIS_IMPLEMENTATION_CORRECTED_POSTSEAL",
+ "sealed_files": [
+  {
+   "file": "bridge00_harness.py",
+   "role": "inherited_dependency",
+   "frozen_hash": "4d920363a6b785a243f8577e4dc8e4c52da53978d6047c671bb493d2f5cc7062",
+   "executed_hash": "4d920363a6b785a243f8577e4dc8e4c52da53978d6047c671bb493d2f5cc7062",
+   "identical": true
+  },
+  {
+   "file": "dsc_audit.py",
+   "role": "parent_replay_audit",
+   "frozen_hash": "d967002144090178648d1fbe64a7bac92aa4da837e9ce77e8523510e523a7c7f",
+   "executed_hash": "d967002144090178648d1fbe64a7bac92aa4da837e9ce77e8523510e523a7c7f",
+   "identical": true
+  },
+  {
+   "file": "dsc_core.py",
+   "role": "operators_legacy_and_redesigned+tracker+provenance",
+   "frozen_hash": "aec37fe1b44744a70956c47660ec73b1264c85398ff48704c4e6953073eb0d99",
+   "executed_hash": "aec37fe1b44744a70956c47660ec73b1264c85398ff48704c4e6953073eb0d99",
+   "identical": true
+  },
+  {
+   "file": "dsc_fixtures.py",
+   "role": "fixtures",
+   "frozen_hash": "f02617b7cf931df8bcc15ac1095a88ccff69e7bbbe9631d53f66e54cf736564e",
+   "executed_hash": "f02617b7cf931df8bcc15ac1095a88ccff69e7bbbe9631d53f66e54cf736564e",
+   "identical": true
+  },
+  {
+   "file": "dsc_harness.py",
+   "role": "harness",
+   "frozen_hash": "5dd7d77763b94431a8e2a6d36cd9868852267673af1861035aa14cabbaa6032d",
+   "executed_hash": "5dd7d77763b94431a8e2a6d36cd9868852267673af1861035aa14cabbaa6032d",
+   "identical": true
+  },
+  {
+   "file": "morph02_ic.py",
+   "role": "inherited_dependency",
+   "frozen_hash": "a91a68db65df16ff007fb778eda058c0bb78acbffe2a79b28f9a8515bed334a2",
+   "executed_hash": "a91a68db65df16ff007fb778eda058c0bb78acbffe2a79b28f9a8515bed334a2",
+   "identical": true
+  },
+  {
+   "file": "od_core.py",
+   "role": "inherited_dependency",
+   "frozen_hash": "bde7548c04edc7fa23c700318fa55d5bce7a3544d08b2ed8dd30a28feec15ba2",
+   "executed_hash": "bde7548c04edc7fa23c700318fa55d5bce7a3544d08b2ed8dd30a28feec15ba2",
+   "identical": true
+  },
+  {
+   "file": "od_ops.py",
+   "role": "inherited_dependency",
+   "frozen_hash": "1320a448d517fd6ed5cb9c410706fa4173883a1dd259a896adc6614db1055242",
+   "executed_hash": "1320a448d517fd6ed5cb9c410706fa4173883a1dd259a896adc6614db1055242",
+   "identical": true
+  },
+  {
+   "file": "sweep00_harness.py",
+   "role": "inherited_dependency",
+   "frozen_hash": "421efafe20471feba9922a4e76355548b1b1019b790dc0b18a8c6a556673613a",
+   "executed_hash": "421efafe20471feba9922a4e76355548b1b1019b790dc0b18a8c6a556673613a",
+   "identical": true
+  }
+ ],
+ "sealed_files_all_identical": true,
+ "endpoint_evaluator_and_decision_rules": {
+  "file": "dsc_final.py",
+  "sealed_in_protocol": false,
+  "executed_hash": "8c032efd4bef78bd5bcf1bf76d69a1c3bc6a8212ff042164755d0c42500cbb63",
+  "note": "the 20 endpoint conditions, the aggregate 7/9 rule and the disposition ladder were sealed AS TEXT inside dynamic_source_capture_protocol.json before any engine call; their IMPLEMENTATION (dsc_final.py) was never hash-sealed and was corrected after the run."
+ },
+ "truthiness_corrections": [
+  {
+   "n": 1,
+   "file": "dsc_final.py",
+   "function": "endpoint",
+   "old_expression": "(f(r, \"algebraic_ledger_error\") or 1) <= 1e-12",
+   "new_expression": "alg is not None and alg <= 1e-12",
+   "defect": "`0.0 or 1` evaluates to 1, so an EXACT zero error was scored as a gate failure",
+   "frozen_hash": null,
+   "executed_hash": "8c032efd4bef78bd5bcf1bf76d69a1c3bc6a8212ff042164755d0c42500cbb63",
+   "fix_time_relative_to_engine": "AFTER the last engine call",
+   "fix_time_relative_to_result_inspection": "AFTER first inspection",
+   "affected_rows": "rows whose error term was exactly 0.0",
+   "affected_endpoint_decisions": 0,
+   "threshold_or_rule_changed": false
+  },
+  {
+   "n": 2,
+   "file": "dsc_final.py",
+   "function": "endpoint",
+   "old_expression": "if f(r, \"direct_operator_insertion\") or 0.0 > 0:",
+   "new_expression": "if (f(r, \"direct_operator_insertion\") or 0.0) > 1e-12:",
+   "defect": "operator precedence: parsed as `f(...) or (0.0 > 0)`",
+   "frozen_hash": null,
+   "executed_hash": "8c032efd4bef78bd5bcf1bf76d69a1c3bc6a8212ff042164755d0c42500cbb63",
+   "fix_time_relative_to_engine": "AFTER the last engine call",
+   "fix_time_relative_to_result_inspection": "AFTER first inspection",
+   "affected_rows": "rows with zero direct insertion",
+   "affected_endpoint_decisions": 0,
+   "threshold_or_rule_changed": false
+  }
+ ],
+ "raw_immutable": true,
+ "physics_unchanged": true,
+ "both_before_and_after_results_retained": true,
+ "endpoint_before_correction": "1/144",
+ "endpoint_after_correction": "1/144",
+ "endpoint_independent_reevaluation_this_closure": "1/144",
+ "honest_phrasing": "the pipeline was NOT entirely unchanged after sealing: the analysis implementation was corrected post-run. The harness, the two operators, the tracker and the provenance code are byte-identical to the seal."
+}

@@ -1,0 +1,83 @@
+{
+ "mission": "ROUTE_E_DSC04_RAW_ONLY_CAUSAL_CLOSURE_04R",
+ "clock": "UTC, container mtimes",
+ "events": [
+  {
+   "event": "first_parent_replay",
+   "time": "2026-08-08T21:54:28Z",
+   "detail": "dsc_audit.py written; replay() calls prephase() then eng.step() -> REAL ENGINE, 36 full trajectories on parent seeds 960xxx"
+  },
+  {
+   "event": "parent_replay_output",
+   "time": "2026-08-08T22:03:45Z",
+   "detail": "source_filter_audit.json; its delivery ratios and P2' capacity ceilings SELECTED the arms, the halo distances and the dose ladder"
+  },
+  {
+   "event": "operator_finalised",
+   "time": "2026-08-08T22:09:41Z",
+   "detail": "dsc_core.py final (includes the fixture-3/12 credit fix)"
+  },
+  {
+   "event": "fixtures_passed",
+   "time": "2026-08-08T22:09:44Z",
+   "detail": "17/17, 0 engine calls"
+  },
+  {
+   "event": "harness_finalised",
+   "time": "2026-08-08T22:07:52Z",
+   "detail": "dsc_harness.py final"
+  },
+  {
+   "event": "protocol_created_and_hashed",
+   "time": "2026-08-08T22:10:52Z",
+   "detail": "seal 48888a9f...; guard enabled in the same act"
+  },
+  {
+   "event": "guard_enabled",
+   "time": "2026-08-08T22:10:52Z",
+   "detail": "preseal_guard compares protocol sha256 AND code_sha256 of dsc_core/dsc_harness"
+  },
+  {
+   "event": "first_mission_engine_call",
+   "time": "~2026-08-08T22:10:52Z",
+   "detail": "immediately after the seal; guard printed OK, first block logged 27 s later"
+  },
+  {
+   "event": "last_mission_engine_call",
+   "time": "2026-08-08T22:20:51Z",
+   "detail": "594 s of engine time, 162 invocations, rows.csv + manifest written"
+  },
+  {
+   "event": "first_result_inspection",
+   "time": "2026-08-08T22:20:51Z",
+   "detail": "dsc_final.py run for the first time on the completed rows"
+  },
+  {
+   "event": "truthiness_bug_1_and_2_detected",
+   "time": "2026-08-08T22:20:51Z",
+   "detail": "'numeric' appeared as a failure reason although max system error was 1.7e-13 << 1.7e-10"
+  },
+  {
+   "event": "truthiness_bug_1_and_2_fixed",
+   "time": "2026-08-08T22:24:38Z",
+   "detail": "dsc_final.py only; harness, operators and tracker untouched"
+  },
+  {
+   "event": "final_report_generated",
+   "time": "2026-08-08T22:25:57Z"
+  },
+  {
+   "event": "result_commit_created",
+   "time": "2026-08-08T22:27Z",
+   "detail": "f4f0a936fbccea096e63a75de6c9e5b8ec7d1878"
+  }
+ ],
+ "ordering_checks": {
+  "operator_and_harness_finalised_before_seal": true,
+  "fixtures_passed_before_seal": true,
+  "parent_replays_before_seal": true,
+  "parent_replay_output_used_to_choose_design": true,
+  "analysis_corrected_after_first_result_inspection": true,
+  "harness_changed_after_seal": false
+ }
+}

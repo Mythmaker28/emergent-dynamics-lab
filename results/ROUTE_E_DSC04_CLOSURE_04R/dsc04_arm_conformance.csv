@@ -1,0 +1,13 @@
+REQUESTED_ARM,SEALED_ARM,EXECUTED_ARM,SIZE,GEOMETRY,DOSE,SCHEDULE,SOURCE_ONLY,SINK_ONLY,COUPLED,LEGACY_OR_REDESIGNED,DIRECT_CONTROL,N_BLOCKS,REASON_FOR_CHANGE,CHANGE_DECIDED_BEFORE_PRESEAL
+SHAM,SHAM,SHAM,24+32,gd2,0.00,smooth(none),no,no,no,n/a,no,18,as sealed,yes
+COUPLED_LEGACY,D1_LEGACY_Q005,D1_LEGACY_Q005,24+32,gd1,0.05,smooth80,no,no,yes,LEGACY,no,18,as sealed,yes
+COUPLED_REDESIGNED,D1_REDESIGNED_Q005,D1_REDESIGNED_Q005,24+32,gd1,0.05,smooth80,no,no,yes,REDESIGNED,no,18,as sealed,yes
+COUPLED_REDESIGNED,D2_REDESIGNED_Q005,D2_REDESIGNED_Q005,24+32,gd2,0.05,smooth80,no,no,yes,REDESIGNED,no,18,as sealed,yes
+COUPLED_REDESIGNED,D2_REDESIGNED_Q020,D2_REDESIGNED_Q020,24+32,gd2,0.20,smooth80,no,no,yes,REDESIGNED,no,18,"dose ladder added: the pre-seal parent replay showed the legacy filter already delivers 82.4% at gd2, so a legacy-vs-redesigned contrast there would have been near-null",yes
+COUPLED_REDESIGNED,D2_REDESIGNED_Q050,D2_REDESIGNED_Q050,24+32,gd2,0.50,smooth80,no,no,yes,REDESIGNED,no,18,"dose ladder added: the pre-seal parent replay showed the legacy filter already delivers 82.4% at gd2, so a legacy-vs-redesigned contrast there would have been near-null",yes
+COUPLED_REDESIGNED,D2_REDESIGNED_Q100,D2_REDESIGNED_Q100,24+32,gd2,1.00,smooth80,no,no,yes,REDESIGNED,no,18,"dose ladder added: the pre-seal parent replay showed the legacy filter already delivers 82.4% at gd2, so a legacy-vs-redesigned contrast there would have been near-null",yes
+DIRECT_INTERFACE_CONTROL,DIRECT_INTERFACE_Q100,DIRECT_INTERFACE_Q100,24+32,interface,1.00,smooth80,no,no,yes,n/a,yes,18,as sealed,yes
+SINK_ONLY,ABSENT,ABSENT,-,-,-,-,-,-,-,-,-,0,never instantiated; the parent ablation tested sink-only in a DIFFERENT mission,yes
+SOURCE_ONLY_LEGACY,ABSENT,ABSENT,-,-,-,-,-,-,-,-,-,0,never instantiated; every dosed arm is atomically COUPLED,yes
+SOURCE_ONLY_REDESIGNED,ABSENT,ABSENT,-,-,-,-,-,-,-,-,-,0,never instantiated; every dosed arm is atomically COUPLED,yes
+COUPLED_REDESIGNED_PULSE,ABSENT,ABSENT,-,-,-,-,-,-,-,-,-,0,deliberately dropped and replaced by the dose ladder,yes

@@ -1,0 +1,56 @@
+{
+ "n": 8,
+ "n_pass": 8,
+ "VERDICT": "PASS",
+ "engine_invocations": 0,
+ "tests": [
+  {
+   "test": 1,
+   "name": "aucun moteur scientifique importe dans la cloture",
+   "PASS": true,
+   "detail": "modules interdits charges: aucun"
+  },
+  {
+   "test": 2,
+   "name": "le champ `credited` n'est PAS advecte alors que `fre` l'est",
+   "PASS": true,
+   "detail": "advectes = ['inc', 'amb', 'fre'] -> le credit absorbant est STATIQUE par cellule, la masse fraiche se deplace sous lui"
+  },
+  {
+   "test": 3,
+   "name": "masse inseree directement recreditee en capture apres advection",
+   "PASS": true,
+   "detail": "capture au frame d'injection = 0.000 (correct), apres un simple transfert interne A->B = 0.600 (FAUX, aucune matiere n'est entree)"
+  },
+  {
+   "test": 4,
+   "name": "contact et capture = deux credits INDEPENDANTS, aucun ordre impose",
+   "PASS": true,
+   "detail": "aucune ligne ne borne capture par contact -> capture > contact est mecaniquement possible"
+  },
+  {
+   "test": 5,
+   "name": "incorporation_16 somme TOUTE la masse fraiche de la piste",
+   "PASS": true,
+   "detail": "toutes voies confondues (transport + englobement + fusion) -> inc16 > capture_transport est attendu et n'est PAS une anomalie mais une comparaison de populations differentes"
+  },
+  {
+   "test": 6,
+   "name": "P2' injecte DANS la coque adjacente (gd=1) sous le seuil",
+   "PASS": true,
+   "detail": "le site reste vide au DETECTEUR mais porte une masse fraiche > 0 -> TOPOLOGICALLY_EMPTY = true, MATERIALLY_EMPTY_OF_FRESH_SOURCE = false"
+  },
+  {
+   "test": 7,
+   "name": "aucun ledger evenementiel; les sites d'injection ne sont jamais persistes",
+   "PASS": true,
+   "detail": "fichiers trouves=0; `sites` lu dans branch() uniquement pour l'assertion, jamais ecrit -> geometrie par injection NON reconstructible sans re-run"
+  },
+  {
+   "test": 8,
+   "name": "donnees brutes inchangees pendant la cloture",
+   "PASS": true,
+   "detail": "sha256 = 9545a4fe32af9f73f136b6e2..."
+  }
+ ]
+}
