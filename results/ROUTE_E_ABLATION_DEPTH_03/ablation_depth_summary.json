@@ -1,0 +1,137 @@
+{
+ "mission": "ROUTE_E_ABLATION_DEPTH_DEV_03",
+ "NEW_LOGICAL_TRAJECTORIES": 144,
+ "T256_VALID": "18/18",
+ "survival_2048": 144,
+ "ROUTE_E_GATE_MET": 0,
+ "TECHNICAL_FAILURES": 0,
+ "DECISION": "RESIDUAL_FLOOR_ABOVE_GATE",
+ "residual_floor": {
+  "L24": 0.392,
+  "L32": 0.425,
+  "reached_at_dose": 0.5,
+  "note": "doses 0.70, 1.00, 1.40 and 2.00 x M256 move the residual by less than 0.03 in total; the sink saturates (egress 56 -> 69 at L=24 across a 4x dose increase)."
+ },
+ "DECISIVE_FINDING": "the residual drop is SHRINKAGE, not turnover. Dividing by the CURRENT tracked mass instead of M256, the composition of the surviving component goes from 0.873 to 0.852 (L=24) and from 0.905 to 0.900 (L=32) across the entire dose ladder. Pure removal makes the disc smaller while leaving it made of ~85-90% original matter. This is exactly the confound AGENTS.md names for the mirror case (an object that merely grew); here it is an object that merely shrank.",
+ "consequence": "PURE ABLATION CANNOT RENEW. Renewal requires INFLOW of foreign matter into the component, and inflow is precisely what the capture experiments showed to be blocked.",
+ "by_cell": {
+  "24|0.0": {
+   "resid": 0.8646818511620771,
+   "mass_ratio": 0.9913172504717113,
+   "composition": 0.8722554265555496,
+   "s2048": 9,
+   "egress": 0.0
+  },
+  "24|0.15": {
+   "resid": 0.6759572457628801,
+   "mass_ratio": 0.761686245699219,
+   "composition": 0.8874484075032224,
+   "s2048": 9,
+   "egress": 22.78502889147741
+  },
+  "24|0.3": {
+   "resid": 0.5042705990871856,
+   "mass_ratio": 0.5785882884632257,
+   "composition": 0.8715534156879782,
+   "s2048": 9,
+   "egress": 46.82580007292648
+  },
+  "24|0.5": {
+   "resid": 0.42231637554426177,
+   "mass_ratio": 0.48759352573962367,
+   "composition": 0.8661238372754356,
+   "s2048": 9,
+   "egress": 56.06764331040444
+  },
+  "24|0.7": {
+   "resid": 0.4041325494986574,
+   "mass_ratio": 0.4745050058758679,
+   "composition": 0.8516929104945624,
+   "s2048": 9,
+   "egress": 63.400242573541746
+  },
+  "24|1.0": {
+   "resid": 0.39828257981909876,
+   "mass_ratio": 0.46627058558095313,
+   "composition": 0.8541876587022014,
+   "s2048": 9,
+   "egress": 66.34829113786616
+  },
+  "24|1.4": {
+   "resid": 0.39408434770207973,
+   "mass_ratio": 0.46143151728991505,
+   "composition": 0.854047313492196,
+   "s2048": 9,
+   "egress": 67.52781975724116
+  },
+  "24|2.0": {
+   "resid": 0.3923252967332914,
+   "mass_ratio": 0.459968029889812,
+   "composition": 0.8529403594142733,
+   "s2048": 9,
+   "egress": 68.73833697739636
+  },
+  "32|0.0": {
+   "resid": 0.9009577703702074,
+   "mass_ratio": 0.9964235444347465,
+   "composition": 0.904191571347609,
+   "s2048": 9,
+   "egress": 0.0
+  },
+  "32|0.15": {
+   "resid": 0.7111698869232214,
+   "mass_ratio": 0.7748197200923551,
+   "composition": 0.9178520738197694,
+   "s2048": 9,
+   "egress": 41.32988440841103
+  },
+  "32|0.3": {
+   "resid": 0.5103144463885093,
+   "mass_ratio": 0.5624642695686097,
+   "composition": 0.9072833138003638,
+   "s2048": 9,
+   "egress": 84.37998635585205
+  },
+  "32|0.5": {
+   "resid": 0.433392424655049,
+   "mass_ratio": 0.48029135261314204,
+   "composition": 0.9023531702102734,
+   "s2048": 9,
+   "egress": 108.33205977967424
+  },
+  "32|0.7": {
+   "resid": 0.43142166477198296,
+   "mass_ratio": 0.47851585071169833,
+   "composition": 0.9015828088668912,
+   "s2048": 9,
+   "egress": 114.51417093698039
+  },
+  "32|1.0": {
+   "resid": 0.4288280690407287,
+   "mass_ratio": 0.4761340672847735,
+   "composition": 0.9006456342983092,
+   "s2048": 9,
+   "egress": 120.06408312666369
+  },
+  "32|1.4": {
+   "resid": 0.4261274846165539,
+   "mass_ratio": 0.47306090710986637,
+   "composition": 0.9007877806262855,
+   "s2048": 9,
+   "egress": 121.85006153142093
+  },
+  "32|2.0": {
+   "resid": 0.4245550021398898,
+   "mass_ratio": 0.4716683495445825,
+   "composition": 0.9001134007609737,
+   "s2048": 9,
+   "egress": 120.00749634601956
+  }
+ },
+ "mandatory_interpretation": {
+  "FORCING_IS_EXTERNAL": true,
+  "AUTONOMOUS_TURNOVER": false,
+  "INDIVIDUATION": "not established",
+  "note": "nothing here establishes 80% replacement, self-maintenance or life"
+ }
+}
