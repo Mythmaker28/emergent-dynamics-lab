@@ -1,0 +1,111 @@
+{
+ "mission": "ROUTE_E_DYNAMIC_SOURCE_CAPTURE_DEV_04",
+ "engine_invocations": 0,
+ "n": 17,
+ "n_pass": 17,
+ "OPERATOR_FIXTURES": "PASS",
+ "fixtures": [
+  {
+   "fixture": 1,
+   "name": "relabeling without transfer",
+   "PASS": true,
+   "detail": "|m| inchange, erreur=0.0e+00, flux=0"
+  },
+  {
+   "fixture": 2,
+   "name": "injection lointaine",
+   "PASS": true,
+   "detail": "inj=2.000 contact=0.000 capture=0.000"
+  },
+  {
+   "fixture": 3,
+   "name": "injection directement connectee",
+   "PASS": true,
+   "detail": "insertion_directe=1.000 capture_dyn=0.000"
+  },
+  {
+   "fixture": 4,
+   "name": "contact sans entree",
+   "PASS": true,
+   "detail": "contact=1.2000 (attendu 1.2000) capture=0.0000"
+  },
+  {
+   "fixture": 5,
+   "name": "entree de moins de 16 frames",
+   "PASS": true,
+   "detail": "capture=0.2000 incorporation_16=0.0000"
+  },
+  {
+   "fixture": 6,
+   "name": "sejour 16 puis 128 frames",
+   "PASS": true,
+   "detail": "inc16=0.3000 dur128=0.3000 exact=0.3000"
+  },
+  {
+   "fixture": 7,
+   "name": "sortie puis reentree",
+   "PASS": true,
+   "detail": "capture unique=0.1000 (attendu 0.1000, une seule fois)"
+  },
+  {
+   "fixture": 8,
+   "name": "bypass source->puits",
+   "PASS": true,
+   "detail": "transit=0.0000 fre_vers_puits=0.0000"
+  },
+  {
+   "fixture": 9,
+   "name": "source->piste->sejour->puits",
+   "PASS": true,
+   "detail": "transit=0.1200 (masse exacte connue 0.1200)"
+  },
+  {
+   "fixture": 10,
+   "name": "accretion pure",
+   "PASS": true,
+   "detail": "fraction_fraiche=0.0068 perte_incumbent=0.00e+00 remplacement_apparie_puits=0"
+  },
+  {
+   "fixture": 11,
+   "name": "ablation: masse /2, composition constante",
+   "PASS": true,
+   "detail": "masse=0.500xM256 composition=1.0000 MATERIAL_RENEWAL=False"
+  },
+  {
+   "fixture": 12,
+   "name": "echange physique direct exact q",
+   "PASS": true,
+   "detail": "masse_stable=True insertion=1.0000 remplacement_apparie=1.0000 capture_dyn=0.0000"
+  },
+  {
+   "fixture": 13,
+   "name": "fragmentation: seule la continuation gelee compte",
+   "PASS": true,
+   "detail": "2 composants, piste = le plus grand (29 cellules)"
+  },
+  {
+   "fixture": 14,
+   "name": "disparition puis reapparition",
+   "PASS": true,
+   "detail": "continuite=False (historique de sejour remis a zero: 1 echantillon)"
+  },
+  {
+   "fixture": 15,
+   "name": "couplage atomique, source indisponible",
+   "PASS": true,
+   "detail": "source=0 puits=0 etat_inchange=True"
+  },
+  {
+   "fixture": 16,
+   "name": "conservation fractionnaire",
+   "PASS": true,
+   "detail": "max|m-(INC+AMB+FRE)|=0.00e+00  |lattice+reservoirs-total0|=1.42e-14"
+  },
+  {
+   "fixture": 17,
+   "name": "source separee puis fusion",
+   "PASS": true,
+   "detail": "capture_par_fusion=8.1000 capture_dyn=0.0000 JOINT_SUCCESS=False"
+  }
+ ]
+}

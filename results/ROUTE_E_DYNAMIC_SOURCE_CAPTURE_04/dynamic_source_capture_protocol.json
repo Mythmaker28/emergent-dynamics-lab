@@ -1,0 +1,228 @@
+{
+ "aggregate_signal": "DYNAMICS_MEDIATED_CAPTURE_DEV requires, per size: T256_VALID>=7/9, delivered source gate in >=7/9, delivered sink gate in >=7/9, endpoint in >=7/9, excess H2048 failures vs SHAM <= 2",
+ "analysis_plan": "sizes analysed separately; paired block-by-block differences; medians and distributions; the 144 branches are NEVER pooled as n=144 independent",
+ "arms": {
+  "D1_LEGACY_Q005": {
+   "dose_fraction": 0.05,
+   "filter": "LEGACY_P2",
+   "gd_source": 1,
+   "mode": "COUPLED"
+  },
+  "D1_REDESIGNED_Q005": {
+   "dose_fraction": 0.05,
+   "filter": "REDESIGNED_P2PRIME",
+   "gd_source": 1,
+   "mode": "COUPLED"
+  },
+  "D2_REDESIGNED_Q005": {
+   "dose_fraction": 0.05,
+   "filter": "REDESIGNED_P2PRIME",
+   "gd_source": 2,
+   "mode": "COUPLED"
+  },
+  "D2_REDESIGNED_Q020": {
+   "dose_fraction": 0.2,
+   "filter": "REDESIGNED_P2PRIME",
+   "gd_source": 2,
+   "mode": "COUPLED"
+  },
+  "D2_REDESIGNED_Q050": {
+   "dose_fraction": 0.5,
+   "filter": "REDESIGNED_P2PRIME",
+   "gd_source": 2,
+   "mode": "COUPLED"
+  },
+  "D2_REDESIGNED_Q100": {
+   "dose_fraction": 1.0,
+   "filter": "REDESIGNED_P2PRIME",
+   "gd_source": 2,
+   "mode": "COUPLED"
+  },
+  "DIRECT_INTERFACE_Q100": {
+   "dose_fraction": 1.0,
+   "filter": "REDESIGNED_P2PRIME",
+   "gd_source": 2,
+   "mode": "DIRECT_INTERFACE"
+  },
+  "SHAM": {
+   "dose_fraction": 0.0,
+   "filter": "REDESIGNED_P2PRIME",
+   "gd_source": 2,
+   "mode": "SHAM"
+  }
+ },
+ "arms_are": "paired branches off the same t256 microstate, NOT additional independent replications",
+ "atomic_coupling": "q_event = min(planned, source_capacity, sink_capacity), both sides selected BEFORE any mutation; if q<=0 neither side is mutated. No dose catch-up.",
+ "claim_ceiling": "Even a positive result establishes none of: 80% replacement, autonomous turnover, self-maintenance, INDIVIDUATION, IDENTITY, LIFE, generalization beyond LAW_16. Status stays PARENT_INFORMED_PROSPECTIVE_DEV.",
+ "code_sha256": {
+  "bridge00_harness.py": "4d920363a6b785a243f8577e4dc8e4c52da53978d6047c671bb493d2f5cc7062",
+  "dsc_audit.py": "d967002144090178648d1fbe64a7bac92aa4da837e9ce77e8523510e523a7c7f",
+  "dsc_core.py": "aec37fe1b44744a70956c47660ec73b1264c85398ff48704c4e6953073eb0d99",
+  "dsc_fixtures.py": "f02617b7cf931df8bcc15ac1095a88ccff69e7bbbe9631d53f66e54cf736564e",
+  "dsc_harness.py": "5dd7d77763b94431a8e2a6d36cd9868852267673af1861035aa14cabbaa6032d",
+  "morph02_ic.py": "a91a68db65df16ff007fb778eda058c0bb78acbffe2a79b28f9a8515bed334a2",
+  "od_core.py": "bde7548c04edc7fa23c700318fa55d5bce7a3544d08b2ed8dd30a28feec15ba2",
+  "od_ops.py": "1320a448d517fd6ed5cb9c410706fa4173883a1dd259a896adc6614db1055242",
+  "sweep00_harness.py": "421efafe20471feba9922a4e76355548b1b1019b790dc0b18a8c6a556673613a"
+ },
+ "contrasts": {
+  "CONTROL": "DIRECT_INTERFACE_Q100, never countable as dynamics-mediated capture",
+  "DISTANCE": "D1_REDESIGNED_Q005 vs D2_REDESIGNED_Q005",
+  "DOSE": "D2_REDESIGNED_Q005 -> Q020 -> Q050 -> Q100 (20x ladder)",
+  "FILTER": "D1_LEGACY_Q005 vs D1_REDESIGNED_Q005 (paired, identical mask/dose/schedule)"
+ },
+ "deviations_from_proposed_mission": [
+  "The proposed legacy-vs-redesigned contrast at the NEAR halo would have been near-null: the mechanical audit shows the legacy filter already delivers 82.4% of want at gd==2. The filter contrast is therefore placed at gd==1, where legacy delivers 0.5% and the redesign delivers 100%. This is the sharpest available and the only non-null placement.",
+  "A DOSE LADDER replaces the pulse/burst schedule arms. The audit proves delivery, not schedule, is the binding mechanism, and a schedule cannot move a delivery ceiling. PULSE_DEPENDENT_CAPTURE_DEV is therefore UNAVAILABLE as a disposition in this mission and is declared so.",
+  "PER_EVENT_PROVENANCE fields are AGGREGATED into a single FRESH_SOURCE field. No endpoint resolves individual events; 80 advected fields per trajectory is not affordable. Exact conservation m = INCUMBENT + AMBIENT + FRESH is still enforced after every mutation and step.",
+  "DYNAMICS_MEDIATED_CAPTURE is split into capture_transport / capture_engulfment / capture_by_merger. Only capture_transport (fresh mass appearing in a cell that was ALREADY in the track) feeds the primary endpoint. Boundary expansion over standing matter is NOT transport and is reported separately. The proposed mission did not distinguish these.",
+  "INCORPORATION_16 / DURABLE_INCORPORATION_128 use a rolling-window MINIMUM of fresh mass inside the track. This lower-bounds continuously-resident mass and can only UNDERSTATE."
+ ],
+ "disposition_unavailable": [
+  "PULSE_DEPENDENT_CAPTURE_DEV -- no pulse arm, see deviations"
+ ],
+ "dispositions": [
+  "OPERATOR_OR_LINEAGE_INVALID",
+  "PREPHASE_YIELD_INSUFFICIENT",
+  "SAFE_FILTER_REDESIGN_UNAVAILABLE",
+  "SOURCE_DELIVERY_LIMITED",
+  "HALO_TRANSPORT_LIMITED",
+  "BOUNDARY_ASSIMILATION_LIMITED",
+  "CAPTURE_TRANSIENT_ONLY",
+  "COUPLING_LIMITED",
+  "DYNAMICS_MEDIATED_CAPTURE_DEV"
+ ],
+ "forced_phase": [
+  256,
+  1536
+ ],
+ "horizon": 2048,
+ "independent_unit": "T256_CHECKPOINT",
+ "law": "LAW_16",
+ "law_source": "bridge00_harness.law_arms(), frozen Route E law measure",
+ "measurement_cadence": 16,
+ "mission": "ROUTE_E_DYNAMIC_SOURCE_CAPTURE_DEV_04",
+ "morphology": "SINGLE_DISC at p=0.35 (morph02_ic.ic_single_disc), the only regime with survivors",
+ "n_independent_per_size": 9,
+ "natural_prephase": [
+  0,
+  256
+ ],
+ "no_replacement_seeds": true,
+ "operator_fixtures": "PASS",
+ "operator_fixtures_n": "17/17",
+ "parent": {
+  "arithmetic_check": "residual floor = mass_ratio x composition, verified to 4.1e-3 (L=24) and 8.4e-4 (L=32)",
+  "commit": "5869283d6662f8b4f983c9f6f33243754be72cd9",
+  "interpretation": "PERSISTENCE_UNDER_EROSION_NOT_RENEWAL",
+  "mission": "ROUTE_E_ABLATION_DEPTH_DEV_03",
+  "parent_correction": "AB_REPORT composition column was median(residual)/median(mass), not median of the ratio. Correct per-trajectory composition at dose 2.00 is 0.8626 (L=24) and 0.9010 (L=32), not 0.853/0.900. Direction and conclusion unchanged; the composition is even FLATTER than reported."
+ },
+ "planned_logical_trajectories": 144,
+ "postforce_readout": 1552,
+ "pre_seal_engine_calls": {
+  "mission_engine_calls_before_seal": 0,
+  "note": "the 36 parent-reproduction calls replay REDESIGN_02 trajectories verbatim (same law, seeds 960xxx, dose, schedule, masks) to instrument the source filter. They produce no mission output and no mission seed is touched.",
+  "parent_reproduction_calls": 36
+ },
+ "prephase_yield_requirement": "T256_VALID >= 7/9 per size, else DECISION = PREPHASE_YIELD_INSUFFICIENT",
+ "primary_endpoint": {
+  "arm": "D2_REDESIGNED_Q100",
+  "name": "DYNAMICS_MEDIATED_CAPTURE_H2048",
+  "per_trajectory_conditions": [
+   "same track continuously valid t256->t2048, bounded, non-wrapping, never reacquired",
+   "direct_operator_insertion == 0",
+   "capture_by_merger == 0",
+   "realized_source_injection >= 0.04 x M256",
+   "realized_sink_removal >= 0.04 x M256",
+   "unique_capture_transport >= 0.04 x M256",
+   "incorporation_16 >= 0.04 x M256",
+   "durable_incorporation_128 >= 0.03 x M256",
+   "unique_incumbent_egress_to_sink >= 0.04 x M256",
+   "fresh_retention_postforce >= 0.04 x M256",
+   "fresh_retention_2048 >= 0.02 x M256",
+   "coast_retention_ratio >= 0.50",
+   "sink_matched_replacement_postforce >= 0.04",
+   "sink_matched_replacement_2048 >= 0.02",
+   "0.75 x M256 <= tracked_mass <= 1.25 x M256 at postforce and 2048",
+   "|mass_ratio(arm) - mass_ratio(paired SHAM)| <= 0.15",
+   "algebraic_ledger_error == 0",
+   "numerical_recomputation_error <= 1e-12 x M256",
+   "unforced coast survival"
+  ]
+ },
+ "production_files_modified": 0,
+ "refinement_passes_allowed": 0,
+ "risk_set": [
+  "T256_VALID_TRACK",
+  "T256_DISSOLVED",
+  "T256_WRAPPING",
+  "T256_MERGED",
+  "T256_TRACK_LOST",
+  "T256_OTHER_INVALID"
+ ],
+ "safe_filter_redesign": {
+  "audited_predicate": "P2: `if any(n in track for n in nbrs(s,L)): continue` in od_ops.do_event",
+  "evidence": {
+   "gd1_P2prime_delivery": 208.2338801869588,
+   "gd1_legacy_delivery_ratio": 0.0047,
+   "gd2_P2prime_delivery": 208.2338801869588,
+   "gd2_legacy_delivery_ratio": 0.8238,
+   "want_total": 208.2338801869588
+  },
+  "invariants_preserved": [
+   "SOURCE_MASK_FIXED_AT_T256",
+   "EMPTY_GAP_TO_TRACK_AT_INJECTION",
+   "DIRECT_INJECTION_INTO_TRACK=false",
+   "DIRECT_CONNECTION_CREATED_BY_OPERATOR=false",
+   "TRACK_FOLLOWING_SOURCE=false",
+   "RECENTERING=false",
+   "HOLE_FILLING=false",
+   "SHAPE_REPAIR=false",
+   "OUTCOME_ADAPTATION=false",
+   "DOSE_CATCHUP=false"
+  ],
+  "legacy_kept": "od_ops.do_event is untouched; dsc_core.source_filter carries BOTH filters selected by a boolean, and the legacy path is exercised by arm D1_LEGACY_Q005.",
+  "replacement_P2prime": "a track-adjacent site MAY receive matter, capped so that the post-injection value stays STRICTLY below THRESH=0.45. It stays detector-empty, the operator never creates a supra-threshold bridge, and the empty gap survives the injection. Non-adjacent sites keep the legacy capacity MMAX - m."
+ },
+ "schedule_smooth": "t_e = 272 + 16*(e-1), e=1..80",
+ "sealed_before_any_mission_engine_call": true,
+ "seed_family": "980000+li*100+k, li in {0,1}, k in 0..8 -- DEV_DYNAMIC_SOURCE_CAPTURE_04",
+ "seed_policy": "fresh, unique across sizes, disjoint from every parent/pilot/ablation family (910xxx 920xxx 930xxx 940xxx 950xxx 960xxx 970xxx), excluded from any future confirmation, never replaced",
+ "seeds": [
+  980000,
+  980001,
+  980002,
+  980003,
+  980004,
+  980005,
+  980006,
+  980007,
+  980008,
+  980100,
+  980101,
+  980102,
+  980103,
+  980104,
+  980105,
+  980106,
+  980107,
+  980108
+ ],
+ "seeds_per_size": 9,
+ "sizes": [
+  24,
+  32
+ ],
+ "stop_conditions": [
+  "fixtures FAIL -> OPERATOR_OR_LINEAGE_INVALID, 0 trajectories",
+  "prephase yield < 7/9 -> PREPHASE_YIELD_INSUFFICIENT",
+  "any DIRECT_CONNECTION_CREATED_BY_OPERATOR assertion -> abort"
+ ],
+ "tracker": "FROZEN largest bounded non-wrapping component, ties by (-area, cy, cx, index); track loss if centroid displacement > 3.0 or area ratio outside [1/3, 3]",
+ "unforced_coast": [
+  1536,
+  2048
+ ],
+ "unique_t0_blocks": 18
+}
