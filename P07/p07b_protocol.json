@@ -1,0 +1,70 @@
+{
+ "arms": {
+  "COMOVING": "GATE_MASK = COMOVING: the downstream half of the CURRENT track, re-centred each event. Tests MASK REGISTRATION.",
+  "MULTISITE": "SPREAD = MULTISITE on the parent frozen mask: the quota is spread proportionally over every eligible cell instead of draining them in order. Tests whether the limit is per-site depth or total capacity.",
+  "PARENT": "reused verbatim from 07A PARENT_Q400_UNIFORM -- no new engine call",
+  "SHAM": "reused verbatim from 07A (identical code hash, identical t256 state) -- no new engine call",
+  "SRC_DISPERSED": "parent sink, source spread proportionally over the whole track EXCEPT the sink mask. Mass-matched control: does the coupling gain need upstream locality, or is generic replenishment enough?",
+  "SRC_SINKSIDE": "parent sink, source deposited into the sink's own cells. Futile-cycle bound of the locality ladder.",
+  "TRACKALL": "GATE_MASK = TRACKALL: the whole current track. Upper bound on reachability.",
+  "UNTRACKED": "GATE_TRACK = false on the parent frozen mask, GATE_THRESH = true: the sink may take matter that has detached from the tracked component. Tests whether the track gate itself is the limiter."
+ },
+ "co_primary_safety_endpoint": {
+  "definition": "number of the nine blocks whose tracked component is continuous and intact at the horizon",
+  "name": "ITT_TRACK_CONTINUITY",
+  "rule": "an arm counts as an improvement ONLY IF it raises DELIVERED_FRACTION (paired sign test p < 0.05) AND its ITT continuity is not lower than PARENT's. An arm that increases throughput by destroying the component is recorded as a throughput result and explicitly NOT as a regime improvement."
+ },
+ "code_sha256": {
+  "p07_core.py": "4d06add2bba1ab525c27b0018c130442e957332c32d22c7415539698a1a47c63",
+  "p07b_run.py": "e7aa57313a0b9fef9169607100215449bafb0a36eb154d9936fd44ef3e7988d7"
+ },
+ "date_sealed": "2026-08-09",
+ "decision_rule_frozen_before_any_07A_result_is_read": {
+  "both_contrasts_are_run_regardless": true,
+  "definition_R": "R = fraction of REJECTED events at which CAP_TRACKALL > 0 while CAP_PARENT = 0, i.e. removable matter exists inside the tracked component but the frozen actuator cannot reach it",
+  "if_R_at_least_0.5": "the limiter is MASK REGISTRATION, an actuator property. The primary contrast is COMOVING vs PARENT.",
+  "if_R_below_0.5": "the limiter is MATERIAL DEPLETION inside the reachable region. The primary contrast is SRC_DISPERSED vs PARENT, because the question becomes how fast matter is resupplied where the actuator can act.",
+  "purpose": "the rule fixes which single contrast carries the confirmatory claim in 07C; it does not select which arms are run"
+ },
+ "mode": "PROSPECTIVE_INTERVENTIONAL",
+ "parent_phase": "07A",
+ "phase": "07B_GATE_INTERVENTION_WHAT_SETS_THE_THROUGHPUT",
+ "primary_endpoint": {
+  "analysis": "median per arm per size over the NINE blocks (intention to treat, blocks that lose the track keep the realized mass they achieved and are never dropped); paired exact sign test against PARENT, block by block",
+  "definition": "realized_sink summed over the forced phase, divided by planned_sink (320 * quantum), one value per block",
+  "name": "DELIVERED_FRACTION",
+  "why": "it is the delivered dose, not the planned dose. FLUX_06 showed that multiplying the planned dose by 8 multiplies the delivered removal by only 2.3-3.0."
+ },
+ "program": "ROUTE_E_EXCHANGE_THROUGHPUT_CAUSAL_PROGRAM_07",
+ "prohibitions_carried_forward": [
+  "internal events are never independent replicates",
+  "the nine blocks stay in every ITT analysis including after track loss",
+  "survivors are never presented as the complete cohort",
+  "every rejection cause is reported",
+  "no residue is called a scaffold without a functional intervention",
+  "no physical crossing is attributed from a moving tracker alone",
+  "no life / identity / autonomy / metabolism / organisation claim is fabricated",
+  "a throughput gain obtained by destroying the component is never reported as an improvement"
+ ],
+ "sealed_before_reading_any_07A_result": true,
+ "secondary_endpoints": [
+  "event rejection rate and the complete cause taxonomy",
+  "I/I0 at the horizon (incumbent residual)",
+  "F/T at the horizon (fresh fraction)",
+  "CUM_TRACKER_SWEEP / M256 and CUM_MATERIAL_CHANGE_ON_RETAINED_SITES / M256",
+  "terminal mass_in_frozen_C256 / M256 (fixed frame, immune to tracker motion)",
+  "median eligible sites per event and median capacity per event"
+ ],
+ "shared_design": {
+  "dose": "Q400 uniform: 320 events, quantum M256/80, spacing 16, first 272, last 5376, coast 2048, horizon 7424",
+  "independent_unit": "one block = one (size, seed) lineage. Internal events are NEVER replicates.",
+  "order": "SINK_FIRST in every arm, the parent's order, because fixture 6 showed the overlapping placement SINKSIDE is order-dependent by construction",
+  "seeds_per_size": 9,
+  "sizes": [
+   24,
+   32
+  ],
+  "t256_states": "the very checkpoints written by 07A, verified by SHA-256 before use"
+ },
+ "why_this_design": "07A measures WHERE the sink's capacity goes without perturbing it. 07B intervenes on each candidate limiter, one gate at a time, at matched dose, matched quantum, matched schedule and matched t256 state. Every arm is conservative, provenance-blind and atomic; the arms differ ONLY in the eligibility rule or in where the source deposits."
+}

@@ -1,0 +1,80 @@
+{
+ "n": 12,
+ "n_pass": 12,
+ "VERDICT": "PASS",
+ "engine_invocations": 0,
+ "checks": [
+  {
+   "check": 1,
+   "name": "aucune analyse n'importe le moteur",
+   "PASS": true,
+   "detail": "violations = aucune"
+  },
+  {
+   "check": 2,
+   "name": "identite des cohortes et bilan global sur TOUS les ledgers",
+   "PASS": true,
+   "detail": "62450 lignes evenementielles; pire identite = 1.57e-14, pire bilan = 7.96e-13"
+  },
+  {
+   "check": 3,
+   "name": "masse NETTE deplacee par l'operateur couple = 0",
+   "PASS": true,
+   "detail": "234 trajectoires, pire |source - puits| = 1.24e-11"
+  },
+  {
+   "check": 4,
+   "name": "executes + rejetes = programmes (aucun evenement perdu)",
+   "PASS": true,
+   "detail": "0 divergences"
+  },
+  {
+   "check": 5,
+   "name": "ITT: 9 blocs par cellule du plan, jamais moins",
+   "PASS": true,
+   "detail": "cellules hors norme = aucune"
+  },
+  {
+   "check": 6,
+   "name": "toute non-execution porte une cause nommee",
+   "PASS": true,
+   "detail": "24518 rejets, 24518 nommes; taxonomie = {'SHAM': 11520, 'NO_SINK_CAPACITY': 12088, 'NO_TRACK': 910}"
+  },
+  {
+   "check": 7,
+   "name": "a chaque rejet, de la matiere reste retirable dans le composant",
+   "PASS": true,
+   "detail": "4036/4036 rejets ont CAP_TRACKALL > 0 et CAP_PARENT = 0"
+  },
+  {
+   "check": 8,
+   "name": "UNTRACKED ~ PARENT (la porte de piste est quasi inerte)",
+   "PASS": true,
+   "detail": "15/18 blocs BIT-IDENTIQUES, pire ecart relatif sur les autres = 6.98e-03 (les 3 blocs qui different sont exactement ceux ou de la matiere >= THRESH s'est detachee de la piste : 3 evenements sur 5760)"
+  },
+  {
+   "check": 9,
+   "name": "SINKSIDE: efficacite de remplacement effondree",
+   "PASS": true,
+   "detail": "rapport PARENT/SINKSIDE = L24:26x, L32:37x, LAW_16|L24:26x, LAW_16|L32:39x, LAW_16|L40:47x, LAW_29|L24:16x, LAW_29|L32:19x"
+  },
+  {
+   "check": 10,
+   "name": "loi de cadence recalculee depuis le brut (delivre/fenetre)",
+   "PASS": true,
+   "detail": "pire rapport = 1.097 (tolerance scellee 1,35); L24s2=1.017 L24s8=0.984 L24s32=0.912 L24s128=1.004 L32s2=0.978 L32s8=0.969 L32s32=0.932 L32s128=0.994"
+  },
+  {
+   "check": 11,
+   "name": "tous les sceaux tiennent encore (protocoles et code)",
+   "PASS": true,
+   "detail": "violations = aucune"
+  },
+  {
+   "check": 12,
+   "name": "aucun artefact du parent DEV_05 modifie",
+   "PASS": true,
+   "detail": "28 fichiers verifies; violations = aucune"
+  }
+ ]
+}

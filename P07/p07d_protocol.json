@@ -1,0 +1,127 @@
+{
+ "SEALED_POINT_PREDICTIONS": {
+  "P1_CADENCE_SATURATION_LAW": {
+   "FALSIFIER": "if Phi at s=128 is NOT lower than at s=32, or if any point misses by more than 1.35x, the saturation law is refuted as stated",
+   "PASS_CRITERION": "every predicted value within a factor 1.35 of the observed median AND the ordering Phi(128) < Phi(32) holds at both sizes",
+   "known_caveat_declared_in_advance": "rho is not perfectly stationary: over the 5104-step forced window of 07A it declines by roughly a factor 2. The 1.35 tolerance is set for the 2048-step window in which rho was estimated, not beyond it.",
+   "law": "Phi(s) = min(quantum/s, rho), where Phi is delivered mass per step over a 2048-step window and rho is a property of the substrate and of the injection region, NOT of the planned dose",
+   "predicted_Phi": {
+    "L24": {
+     "128": 0.0161,
+     "2": 0.02966,
+     "32": 0.02966,
+     "8": 0.02966
+    },
+    "L32": {
+     "128": 0.02903,
+     "2": 0.0405,
+     "32": 0.0405,
+     "8": 0.0405
+    }
+   },
+   "rho_from_discovery_only": {
+    "L24": 0.02966,
+    "L32": 0.0405
+   },
+   "s_star": {
+    "L24": 69.5,
+    "L32": 91.7
+   }
+  },
+  "P2_FUTILE_CYCLE_EFFICIENCY_COLLAPSE": {
+   "FALSIFIER": "if SINKSIDE's efficiency is within a factor 2 of PARENT's, the futile-cycle interpretation is refuted",
+   "claim": "SRC_SINKSIDE delivers essentially the whole planned dose while achieving far less material replacement than PARENT",
+   "discovery_values": {
+    "PARENT_eff": [
+     0.744,
+     0.91
+    ],
+    "SINKSIDE_eff": [
+     0.029,
+     0.025
+    ]
+   },
+   "predicted": {
+    "PARENT_over_SINKSIDE_efficiency_ratio": ">= 4",
+    "SINKSIDE_DELIVERED_FRACTION": ">= 0.95",
+    "SINKSIDE_incumbent_removed_over_M256": "<= 0.20",
+    "SINKSIDE_replacement_efficiency": "<= 0.10"
+   }
+  },
+  "P3_BOUNDED_EXCHANGE_INVARIANCE": {
+   "FALSIFIER": "any size or law whose median falls outside [0.25, 0.60]",
+   "claim": "the incumbent mass the operator can actually remove from the tracked component, over the whole forced phase, is bounded and does not depend on size or on the law",
+   "discovery_values": {
+    "L24": 0.46,
+    "L32": 0.377,
+    "observed_range_over_all_non_degenerate_arms": [
+     0.349,
+     0.478
+    ]
+   },
+   "predicted_band": "PARENT incumbent_removed_total / M256 lies in [0.25, 0.60] at every size (24, 32, 40) and under both laws (LAW_16, LAW_29)"
+  },
+  "P4_SOURCE_IS_THE_BINDING_CONSTRAINT": {
+   "FALSIFIER": "any size or law below 0.70",
+   "claim": "under PARENT at spacing 16, the coupled event is bounded by the free room in the injection region, not by the removable matter in the removal region",
+   "discovery_values": {
+    "L24": 0.87,
+    "L32": 0.966
+   },
+   "predicted": "fraction of EXECUTED events whose realised quantum equals the source capacity >= 0.70 at every size and under both laws"
+  }
+ },
+ "arms": [
+  "SHAM",
+  "PARENT",
+  "SRC_SINKSIDE"
+ ],
+ "cadence_sizes": [
+  24,
+  32
+ ],
+ "cadence_window": 2048,
+ "code_sha256": {
+  "p07_core.py": "4d06add2bba1ab525c27b0018c130442e957332c32d22c7415539698a1a47c63",
+  "p07d_run.py": "19fefdae2f940899d0a7950cc5856823075ce5ce99502f0fb7481f4552fe4e08"
+ },
+ "date_sealed": "2026-08-09",
+ "dose_arms": "Q400 uniform: 320 events, quantum M256/80, spacing 16, coast 2048, horizon 7424",
+ "endpoint_correction_declared": {
+  "corrected_endpoint_for_07D": "REPLACEMENT_EFFICIENCY = incumbent_removed_total / realized_sink, together with incumbent_removed_total / M256. Neither can be inflated by re-injecting into the cell just drained, because removal is proportional to local cohort presence and re-injected matter is FRESH.",
+  "handling": "the 07B verdict is reported verbatim as it was pre-registered, together with the proof that the endpoint is degenerate for that arm. It is NOT retrospectively swapped.",
+  "problem": "the 07B primary endpoint DELIVERED_FRACTION is gameable. SRC_SINKSIDE reached 1.000 with 9/9 continuity and was therefore declared an IMPROVEMENT by the sealed 07B rule, while achieving the LEAST material replacement of any arm."
+ },
+ "held_out_cadences": [
+  2,
+  8,
+  32,
+  128
+ ],
+ "mode": "PROSPECTIVE_CONFIRMATORY",
+ "phase": "07D_CONFIRMATION_AND_GENERALISATION",
+ "program": "ROUTE_E_EXCHANGE_THROUGHPUT_CAUSAL_PROGRAM_07",
+ "prohibitions_carried_forward": [
+  "internal events are never independent replicates",
+  "the nine blocks stay in every ITT analysis including after track loss",
+  "survivors are never presented as the complete cohort",
+  "every rejection cause is reported",
+  "no life / identity / autonomy / metabolism / organisation claim is fabricated",
+  "a throughput gain obtained by recycling or by destroying the component is never reported as an improvement"
+ ],
+ "seeds": {
+  "base": 950000,
+  "never_used_before": true,
+  "per_size": 9
+ },
+ "separation": "07A/07B/07C were DISCOVERY on seeds 990000+. 07D is CONFIRMATION on seeds 950000+ which have never been used in any mission of this project, at a third size, at held-out cadences, and under a second law. Every number below was computed from discovery data ONLY and is frozen before the first 07D engine call.",
+ "sizes_LAW_16": [
+  24,
+  32,
+  40
+ ],
+ "sizes_LAW_29": [
+  24,
+  32
+ ]
+}

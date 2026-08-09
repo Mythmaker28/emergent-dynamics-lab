@@ -1,0 +1,464 @@
+{
+ "protocol_sha256": "cfdf1f40b84988fa95c9edeb7fcc999d35552d90b5c7314d806c61fe6a8bc11c",
+ "cohort": {
+  "blocks_attempted": 45,
+  "t256_status": {
+   "T256_VALID_TRACK": 45
+  },
+  "engine_invocations": 252
+ },
+ "P1_CADENCE_SATURATION_LAW": {
+  "tolerance_factor": 1.35,
+  "detail": {
+   "L24": {
+    "2": {
+     "observed_median": 0.03016304530964187,
+     "n_blocks": 9,
+     "predicted": 0.02966,
+     "ratio_obs_over_pred": 1.0169603947957475,
+     "within_tolerance": true
+    },
+    "8": {
+     "observed_median": 0.029195127006104365,
+     "n_blocks": 9,
+     "predicted": 0.02966,
+     "ratio_obs_over_pred": 0.9843266016892909,
+     "within_tolerance": true
+    },
+    "32": {
+     "observed_median": 0.027036187054914645,
+     "n_blocks": 9,
+     "predicted": 0.02966,
+     "ratio_obs_over_pred": 0.911536987690986,
+     "within_tolerance": true
+    },
+    "128": {
+     "observed_median": 0.016159225250280462,
+     "n_blocks": 9,
+     "predicted": 0.0161,
+     "ratio_obs_over_pred": 1.0036785869739417,
+     "within_tolerance": true
+    },
+    "ORDERING_Phi128_below_Phi32": true
+   },
+   "L32": {
+    "2": {
+     "observed_median": 0.039608493594175585,
+     "n_blocks": 9,
+     "predicted": 0.0405,
+     "ratio_obs_over_pred": 0.9779874961524836,
+     "within_tolerance": true
+    },
+    "8": {
+     "observed_median": 0.03925202307832782,
+     "n_blocks": 9,
+     "predicted": 0.0405,
+     "ratio_obs_over_pred": 0.96918575502044,
+     "within_tolerance": true
+    },
+    "32": {
+     "observed_median": 0.03775982996503321,
+     "n_blocks": 9,
+     "predicted": 0.0405,
+     "ratio_obs_over_pred": 0.9323414806181038,
+     "within_tolerance": true
+    },
+    "128": {
+     "observed_median": 0.02884198068614186,
+     "n_blocks": 9,
+     "predicted": 0.02903,
+     "ratio_obs_over_pred": 0.9935232754440875,
+     "within_tolerance": true
+    },
+    "ORDERING_Phi128_below_Phi32": true
+   }
+  },
+  "VERDICT": "CONFIRMED"
+ },
+ "P2_FUTILE_CYCLE_EFFICIENCY_COLLAPSE": {
+  "detail": {
+   "LAW_16|L24": {
+    "PARENT": {
+     "DELIVERED_FRACTION": 0.1546556207818975,
+     "incumbent_over_M256": 0.45450987511434315,
+     "REPLACEMENT_EFFICIENCY": 0.739017517064612,
+     "ITT_continuity": "9/9"
+    },
+    "SRC_SINKSIDE": {
+     "DELIVERED_FRACTION": 1.0,
+     "incumbent_over_M256": 0.11298241773339196,
+     "REPLACEMENT_EFFICIENCY": 0.02824560443334799,
+     "ITT_continuity": "9/9"
+    },
+    "ratio_PARENT_over_SINKSIDE": 26.16398310075092,
+    "checks": {
+     "SINKSIDE_delivered_ge_0.95": true,
+     "SINKSIDE_incumbent_le_0.20": true,
+     "SINKSIDE_efficiency_le_0.10": true,
+     "efficiency_ratio_ge_4": true
+    }
+   },
+   "LAW_16|L32": {
+    "PARENT": {
+     "DELIVERED_FRACTION": 0.10120762898909896,
+     "incumbent_over_M256": 0.3727934068067848,
+     "REPLACEMENT_EFFICIENCY": 0.9251799517963436,
+     "ITT_continuity": "9/9"
+    },
+    "SRC_SINKSIDE": {
+     "DELIVERED_FRACTION": 1.0,
+     "incumbent_over_M256": 0.09509719671049441,
+     "REPLACEMENT_EFFICIENCY": 0.023774299177623703,
+     "ITT_continuity": "9/9"
+    },
+    "ratio_PARENT_over_SINKSIDE": 38.91513036342708,
+    "checks": {
+     "SINKSIDE_delivered_ge_0.95": true,
+     "SINKSIDE_incumbent_le_0.20": true,
+     "SINKSIDE_efficiency_le_0.10": true,
+     "efficiency_ratio_ge_4": true
+    }
+   },
+   "LAW_16|L40": {
+    "PARENT": {
+     "DELIVERED_FRACTION": 0.08196096631584535,
+     "incumbent_over_M256": 0.3129566977739228,
+     "REPLACEMENT_EFFICIENCY": 0.9545906784697732,
+     "ITT_continuity": "9/9"
+    },
+    "SRC_SINKSIDE": {
+     "DELIVERED_FRACTION": 1.0,
+     "incumbent_over_M256": 0.08104781631216963,
+     "REPLACEMENT_EFFICIENCY": 0.020261954078042297,
+     "ITT_continuity": "9/9"
+    },
+    "ratio_PARENT_over_SINKSIDE": 47.11246875760393,
+    "checks": {
+     "SINKSIDE_delivered_ge_0.95": true,
+     "SINKSIDE_incumbent_le_0.20": true,
+     "SINKSIDE_efficiency_le_0.10": true,
+     "efficiency_ratio_ge_4": true
+    }
+   },
+   "LAW_29|L24": {
+    "PARENT": {
+     "DELIVERED_FRACTION": 0.12471480165324907,
+     "incumbent_over_M256": 0.4246228664656187,
+     "REPLACEMENT_EFFICIENCY": 0.8511877917390656,
+     "ITT_continuity": "0/9"
+    },
+    "SRC_SINKSIDE": {
+     "DELIVERED_FRACTION": 0.996875,
+     "incumbent_over_M256": 0.19649981526575994,
+     "REPLACEMENT_EFFICIENCY": 0.051830976624545166,
+     "ITT_continuity": "0/9"
+    },
+    "ratio_PARENT_over_SINKSIDE": 16.42237609962332,
+    "checks": {
+     "SINKSIDE_delivered_ge_0.95": true,
+     "SINKSIDE_incumbent_le_0.20": true,
+     "SINKSIDE_efficiency_le_0.10": true,
+     "efficiency_ratio_ge_4": true
+    }
+   },
+   "LAW_29|L32": {
+    "PARENT": {
+     "DELIVERED_FRACTION": 0.13488892255766874,
+     "incumbent_over_M256": 0.43767216672070364,
+     "REPLACEMENT_EFFICIENCY": 0.8130100512857902,
+     "ITT_continuity": "1/9"
+    },
+    "SRC_SINKSIDE": {
+     "DELIVERED_FRACTION": 1.0,
+     "incumbent_over_M256": 0.16796368027407854,
+     "REPLACEMENT_EFFICIENCY": 0.041990920068519656,
+     "ITT_continuity": "2/9"
+    },
+    "ratio_PARENT_over_SINKSIDE": 19.36156792847459,
+    "checks": {
+     "SINKSIDE_delivered_ge_0.95": true,
+     "SINKSIDE_incumbent_le_0.20": true,
+     "SINKSIDE_efficiency_le_0.10": true,
+     "efficiency_ratio_ge_4": true
+    }
+   }
+  },
+  "VERDICT": "CONFIRMED"
+ },
+ "P3_BOUNDED_EXCHANGE_INVARIANCE": {
+  "band": [
+   0.25,
+   0.6
+  ],
+  "detail": {
+   "LAW_16|L24": {
+    "median": 0.45450987511434315,
+    "min": 0.444775767666068,
+    "max": 0.472786483760446,
+    "n_blocks": 9,
+    "in_band": true
+   },
+   "LAW_16|L32": {
+    "median": 0.3727934068067848,
+    "min": 0.3449156973959683,
+    "max": 0.4156949311642903,
+    "n_blocks": 9,
+    "in_band": true
+   },
+   "LAW_16|L40": {
+    "median": 0.3129566977739228,
+    "min": 0.2975754108555397,
+    "max": 0.3247653694272335,
+    "n_blocks": 9,
+    "in_band": true
+   },
+   "LAW_29|L24": {
+    "median": 0.4246228664656187,
+    "min": 0.3932574707926721,
+    "max": 0.4436518764517621,
+    "n_blocks": 9,
+    "in_band": true
+   },
+   "LAW_29|L32": {
+    "median": 0.43767216672070364,
+    "min": 0.41424419181519945,
+    "max": 0.45179036416385376,
+    "n_blocks": 9,
+    "in_band": true
+   }
+  },
+  "VERDICT": "CONFIRMED"
+ },
+ "P4_SOURCE_IS_THE_BINDING_CONSTRAINT": {
+  "threshold": 0.7,
+  "detail": {
+   "LAW_16|L24": {
+    "median_source_bound_fraction": 0.8773234200743495,
+    "n_blocks": 9,
+    "meets_threshold": true
+   },
+   "LAW_16|L32": {
+    "median_source_bound_fraction": 0.965625,
+    "n_blocks": 9,
+    "meets_threshold": true
+   },
+   "LAW_16|L40": {
+    "median_source_bound_fraction": 0.96875,
+    "n_blocks": 9,
+    "meets_threshold": true
+   },
+   "LAW_29|L24": {
+    "median_source_bound_fraction": 0.2962962962962963,
+    "n_blocks": 9,
+    "meets_threshold": false
+   },
+   "LAW_29|L32": {
+    "median_source_bound_fraction": 0.4927536231884058,
+    "n_blocks": 9,
+    "meets_threshold": false
+   }
+  },
+  "VERDICT": "REFUTED_AS_STATED"
+ },
+ "ITT_AND_INVARIANTS": {
+  "LAW_16|L24|SHAM": {
+   "n_blocks_ITT": 9,
+   "continuous": 9,
+   "failure_types": {
+    "NONE": 9
+   },
+   "terminal_I_over_I0": 0.7508771797005848,
+   "terminal_F_over_T": 0.0,
+   "reject_causes": {},
+   "max_identity_residual": 0,
+   "max_global_balance_residual": 0
+  },
+  "LAW_16|L24|PARENT": {
+   "n_blocks_ITT": 9,
+   "continuous": 9,
+   "failure_types": {
+    "NONE": 9
+   },
+   "terminal_I_over_I0": 0.42426335609233345,
+   "terminal_F_over_T": 0.3782067152463072,
+   "reject_causes": {
+    "NO_SINK_CAPACITY": 498
+   },
+   "max_identity_residual": 1.1879386363489175e-14,
+   "max_global_balance_residual": 1.1368683772161603e-13
+  },
+  "LAW_16|L24|SRC_SINKSIDE": {
+   "n_blocks_ITT": 9,
+   "continuous": 9,
+   "failure_types": {
+    "NONE": 9
+   },
+   "terminal_I_over_I0": 0.6821489230060437,
+   "terminal_F_over_T": 0.10333373398973138,
+   "reject_causes": {},
+   "max_identity_residual": 3.552713678800501e-15,
+   "max_global_balance_residual": 5.115907697472721e-13
+  },
+  "LAW_16|L32|SHAM": {
+   "n_blocks_ITT": 9,
+   "continuous": 9,
+   "failure_types": {
+    "NONE": 9
+   },
+   "terminal_I_over_I0": 0.8093239937046219,
+   "terminal_F_over_T": 0.0,
+   "reject_causes": {},
+   "max_identity_residual": 0,
+   "max_global_balance_residual": 0
+  },
+  "LAW_16|L32|PARENT": {
+   "n_blocks_ITT": 9,
+   "continuous": 9,
+   "failure_types": {
+    "NONE": 9
+   },
+   "terminal_I_over_I0": 0.4942985248020545,
+   "terminal_F_over_T": 0.33583705623334503,
+   "reject_causes": {},
+   "max_identity_residual": 1.1546319456101628e-14,
+   "max_global_balance_residual": 2.8421709430404007e-13
+  },
+  "LAW_16|L32|SRC_SINKSIDE": {
+   "n_blocks_ITT": 9,
+   "continuous": 9,
+   "failure_types": {
+    "NONE": 9
+   },
+   "terminal_I_over_I0": 0.7478742265769251,
+   "terminal_F_over_T": 0.08966985287408072,
+   "reject_causes": {},
+   "max_identity_residual": 3.9968028886505635e-15,
+   "max_global_balance_residual": 2.2737367544323206e-13
+  },
+  "LAW_16|L40|SHAM": {
+   "n_blocks_ITT": 9,
+   "continuous": 9,
+   "failure_types": {
+    "NONE": 9
+   },
+   "terminal_I_over_I0": 0.8484239961956392,
+   "terminal_F_over_T": 0.0,
+   "reject_causes": {},
+   "max_identity_residual": 0,
+   "max_global_balance_residual": 0
+  },
+  "LAW_16|L40|PARENT": {
+   "n_blocks_ITT": 9,
+   "continuous": 9,
+   "failure_types": {
+    "NONE": 9
+   },
+   "terminal_I_over_I0": 0.5636131557141412,
+   "terminal_F_over_T": 0.29018938050735693,
+   "reject_causes": {},
+   "max_identity_residual": 1.4432899320127035e-14,
+   "max_global_balance_residual": 5.684341886080801e-13
+  },
+  "LAW_16|L40|SRC_SINKSIDE": {
+   "n_blocks_ITT": 9,
+   "continuous": 9,
+   "failure_types": {
+    "NONE": 9
+   },
+   "terminal_I_over_I0": 0.7943699903386204,
+   "terminal_F_over_T": 0.07674845237773194,
+   "reject_causes": {},
+   "max_identity_residual": 4.551914400963142e-15,
+   "max_global_balance_residual": 4.547473508864641e-13
+  },
+  "LAW_29|L24|SHAM": {
+   "n_blocks_ITT": 9,
+   "continuous": 9,
+   "failure_types": {
+    "NONE": 9
+   },
+   "terminal_I_over_I0": 0.46683023865584683,
+   "terminal_F_over_T": 0.0,
+   "reject_causes": {},
+   "max_identity_residual": 0,
+   "max_global_balance_residual": 0
+  },
+  "LAW_29|L24|PARENT": {
+   "n_blocks_ITT": 9,
+   "continuous": 0,
+   "failure_types": {
+    "TRACK_LOST_OR_DISSOLVED": 9
+   },
+   "terminal_I_over_I0": null,
+   "terminal_F_over_T": null,
+   "reject_causes": {
+    "NO_SINK_CAPACITY": 1076,
+    "NO_TRACK": 1164
+   },
+   "max_identity_residual": 4.884981308350689e-15,
+   "max_global_balance_residual": 1.1368683772161603e-13
+  },
+  "LAW_29|L24|SRC_SINKSIDE": {
+   "n_blocks_ITT": 9,
+   "continuous": 0,
+   "failure_types": {
+    "SPLIT": 3,
+    "TRACK_LOST_OR_DISSOLVED": 6
+   },
+   "terminal_I_over_I0": null,
+   "terminal_F_over_T": null,
+   "reject_causes": {
+    "NO_TRACK": 176
+   },
+   "max_identity_residual": 2.4424906541753444e-15,
+   "max_global_balance_residual": 3.410605131648481e-13
+  },
+  "LAW_29|L32|SHAM": {
+   "n_blocks_ITT": 9,
+   "continuous": 9,
+   "failure_types": {
+    "NONE": 9
+   },
+   "terminal_I_over_I0": 0.5842819495103738,
+   "terminal_F_over_T": 0.0,
+   "reject_causes": {},
+   "max_identity_residual": 0,
+   "max_global_balance_residual": 0
+  },
+  "LAW_29|L32|PARENT": {
+   "n_blocks_ITT": 9,
+   "continuous": 1,
+   "failure_types": {
+    "NONE": 1,
+    "TRACK_LOST_OR_DISSOLVED": 8
+   },
+   "terminal_I_over_I0": 0.3495850901382303,
+   "terminal_F_over_T": 0.33741837210440356,
+   "reject_causes": {
+    "NO_SINK_CAPACITY": 1509,
+    "NO_TRACK": 188
+   },
+   "max_identity_residual": 6.994405055138486e-15,
+   "max_global_balance_residual": 1.7053025658242404e-13
+  },
+  "LAW_29|L32|SRC_SINKSIDE": {
+   "n_blocks_ITT": 9,
+   "continuous": 2,
+   "failure_types": {
+    "NONE": 2,
+    "SPLIT": 7
+   },
+   "terminal_I_over_I0": 0.5096749353196728,
+   "terminal_F_over_T": 0.15456139569471924,
+   "reject_causes": {},
+   "max_identity_residual": 3.1086244689504383e-15,
+   "max_global_balance_residual": 3.410605131648481e-13
+  }
+ },
+ "OVERALL": {
+  "P1_CADENCE_SATURATION_LAW": "CONFIRMED",
+  "P2_FUTILE_CYCLE_EFFICIENCY_COLLAPSE": "CONFIRMED",
+  "P3_BOUNDED_EXCHANGE_INVARIANCE": "CONFIRMED",
+  "P4_SOURCE_IS_THE_BINDING_CONSTRAINT": "REFUTED_AS_STATED"
+ }
+}

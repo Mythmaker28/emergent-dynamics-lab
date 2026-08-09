@@ -1,0 +1,92 @@
+{
+ "n": 14,
+ "n_pass": 14,
+ "VERDICT": "PASS",
+ "engine_state_generators": 18,
+ "fixtures": [
+  {
+   "fixture": 1,
+   "name": "i in TRACK  =>  m[i] >= THRESH  (GATE_THRESH redundant)",
+   "PASS": true,
+   "detail": "5308 cellules suivies, min m = 0.450457 >= 0.45; predicat du detecteur litteral verifie dans la source = True"
+  },
+  {
+   "fixture": 2,
+   "name": "operateur PARENT == DEV_05 exactement (etats geles)",
+   "PASS": true,
+   "detail": "216 cas (taille x graine x temps x axe x quota), max|dm| = 0.0e+00, max|d cohorte| = 0.0e+00 -> continuite operatoire exacte avec le parent scelle"
+  },
+  {
+   "fixture": 3,
+   "name": "evenement couple: masse NETTE deplacee = 0",
+   "PASS": true,
+   "detail": "72 combinaisons porte x placement, pire |source - puits| = 2.8e-14"
+  },
+  {
+   "fixture": 4,
+   "name": "identite des cohortes + bilan global conserves sous advection",
+   "PASS": true,
+   "detail": "pire residu d'identite = 7.8e-16, pire residu de bilan = 5.7e-14"
+  },
+  {
+   "fixture": 5,
+   "name": "aucun selecteur ne lit la provenance (scan AST)",
+   "PASS": true,
+   "detail": "selecteurs audites: sink_eligible, source_eligible, capacity_spectrum, _mask_cells; violations = aucune"
+  },
+  {
+   "fixture": 6,
+   "name": "invariance a l'ordre source-puits (mesuree, pas supposee)",
+   "PASS": true,
+   "detail": "SINKSIDE: max|dm|=9.4e-16 max|dcoh|=2.5e-01; INTERFACE: max|dm|=8.9e-16 max|dcoh|=8.9e-16; DISPERSED: max|dm|=2.7e-15 max|dcoh|=2.7e-15  -> INTERFACE et DISPERSED invariants a l'ordre (masques disjoints du puits, ecart au niveau de l'arrondi); SINKSIDE ordre-dependant PAR CONSTRUCTION et detecte comme tel. Ordre canonique de tous les bras = SINK_FIRST (celui du parent)"
+  },
+  {
+   "fixture": 7,
+   "name": "dT = retenu + entree de masque + sortie de masque (exact)",
+   "PASS": true,
+   "detail": "128 pas apparies, pire ecart = 2.5e-14"
+  },
+  {
+   "fixture": 8,
+   "name": "spectre de capacite ordonne (PARENT est une borne inferieure)",
+   "PASS": true,
+   "detail": "18 etats, violations = aucune"
+  },
+  {
+   "fixture": 9,
+   "name": "MULTISITE: quota respecte, aucune masse negative",
+   "PASS": true,
+   "detail": "18 cas, pire depassement = 7.1e-15, min m = 0.0e+00"
+  },
+  {
+   "fixture": 10,
+   "name": "la source ne depasse jamais MMAX et n'ecrit que dans FRESH",
+   "PASS": true,
+   "detail": "18 cas a quota sature, max m = 1.000000000 <= 1.0, fuite hors FRESH = 0.0e+00"
+  },
+  {
+   "fixture": 11,
+   "name": "le puits retire proportionnellement a la presence locale des cohortes",
+   "PASS": true,
+   "detail": "6 cas avec cohortes melangees, pire ecart de part = 5.6e-17"
+  },
+  {
+   "fixture": 12,
+   "name": "cadre fige coherent et masque COMOVING reellement distinct",
+   "PASS": true,
+   "detail": "differences symetriques FROZEN vs COMOVING apres 200 pas: [2, 1, 3, 1]; incoherences = aucune"
+  },
+  {
+   "fixture": 13,
+   "name": "un evenement rejete ne mute rien et nomme sa cause",
+   "PASS": true,
+   "detail": "6 cas force a capacite nulle, causes = ['NO_SINK_CAPACITY'], max|dm| = 0.0e+00"
+  },
+  {
+   "fixture": 14,
+   "name": "moteur et detecteur de production intacts; n et b jamais ecrits",
+   "PASS": true,
+   "detail": "aucune ecriture sur state.n / state.b dans p07_core; engine.py = e027a9c56b77, instrumentation.py = 65d4185bd9ef"
+  }
+ ]
+}

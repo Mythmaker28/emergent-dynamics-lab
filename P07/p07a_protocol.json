@@ -1,0 +1,133 @@
+{
+ "arms_07A": {
+  "PARENT_Q400_UNIFORM": "exact DEV_05 DIRECT_Q400_UNIFORM, plus instrumentation",
+  "PARENT_Q800_UNIFORM": "exact DEV_05 DIRECT_Q800_UNIFORM, plus instrumentation",
+  "SHAM": "no operator; capacity spectrum evaluated on the Q800 schedule times"
+ },
+ "code_sha256": {
+  "p07_core.py": "4d06add2bba1ab525c27b0018c130442e957332c32d22c7415539698a1a47c63",
+  "p07_fixtures.py": "38863164ce18a450bebc2b0e6e780a08efd299db0490bc8d78a5c061bd9bfb40",
+  "p07a_observe.py": "01bd584b6cbd988a1e91667d86af98eac5d38fb6a23a8641a8eb68ed0086b605"
+ },
+ "date_sealed": "2026-08-09",
+ "design": {
+  "axis_order": [
+   "+x",
+   "-x",
+   "+y",
+   "-y"
+  ],
+  "coast": 2048,
+  "independent_unit": "one block = one (size, seed) lineage; internal events are NEVER replicates",
+  "law": "LAW_16",
+  "note_on_seeds": "IDENTICAL to DEV_05 on purpose: 07A is a measurement replay of an already sealed arm, so the reproduction of DEV_05 realized totals is itself a falsifiable check. 07C will use fresh, never-used seeds.",
+  "p": 0.35,
+  "quantum": "M256 / 80, frozen, identical in every dosed arm",
+  "seed_base": 990000,
+  "seeds_per_size": 9,
+  "sizes": [
+   24,
+   32
+  ],
+  "spacing": 16,
+  "t256": 256
+ },
+ "gate_decomposition": {
+  "GATE_MASK": [
+   "FROZEN",
+   "COMOVING",
+   "TRACKALL"
+  ],
+  "GATE_THRESH": [
+   true,
+   false
+  ],
+  "GATE_TRACK": [
+   true,
+   false
+  ],
+  "PARENT": {
+   "GATE_MASK": "FROZEN",
+   "GATE_THRESH": true,
+   "GATE_TRACK": true,
+   "SPREAD": "ORDERED"
+  },
+  "SPREAD": [
+   "ORDERED",
+   "MULTISITE"
+  ]
+ },
+ "impulse_response_design": {
+  "estimand": "tau50 and tau90 of recovery, per size, with block-level bootstrap intervals; blocks are the independent units",
+  "principle": "paired clones from an identical t256 state, one probe, then either a continuous zero-perturbation capacity readout or a second identical probe after a frozen delay",
+  "readout_A": "CAP_PARENT(t) after a single probe of amplitude a*quantum, a in [1, 2, 4], against a paired no-probe clone, for 128 steps",
+  "readout_B": "realized bite of a SECOND identical probe at delay d in [1, 2, 4, 8, 16, 32, 64] steps, against a paired clone that received no first probe"
+ },
+ "instrumentation_declared_before_the_run": {
+  "fixed_frame_metrics_DEV_05_never_saved": [
+   "mass_in_frozen_C256",
+   "incumbent_in_frozen_C256",
+   "fresh_in_frozen_C256",
+   "mass_in_C256_cap_Ct",
+   "jaccard_C256_Ct",
+   "boundary_site_turnover",
+   "perimeter"
+  ],
+  "per_event_COMPLETE_ledger_no_subsampling": [
+   "CAP_PARENT",
+   "CAP_FROZEN_UNTRACKED",
+   "CAP_FROZEN_ANY",
+   "CAP_COMOVING",
+   "CAP_TRACKALL",
+   "NEL_* for each",
+   "MASK_REGISTRATION",
+   "SHORTFALL_DEREGISTRATION",
+   "SHORTFALL_SUBTHRESHOLD",
+   "HEADROOM_COMOVING",
+   "HEADROOM_TRACKALL",
+   "realized_sink",
+   "realized_source",
+   "removed_by_cohort",
+   "rejected",
+   "reject_reason"
+  ],
+  "per_step_exact_sweep_accounting": [
+   "MATERIAL_CHANGE_ON_RETAINED_SITES",
+   "MASK_ENTRY",
+   "MASK_EXIT",
+   "TRACKER_SWEEP"
+  ]
+ },
+ "mode": "PROSPECTIVE_OBSERVATIONAL_NO_NEW_INTERVENTION",
+ "operator_continuity": {
+  "claim": "PARENT gate is bit-identical to the sealed DEV_05 operator direct_event(mode=DIRECT)",
+  "evidence": "fixture 2: 216 frozen cases (2 sizes x 3 seeds x 3 times x 4 axes x 3 quanta), max|dm| = 0.0, max|d cohort| = 0.0",
+  "status": "EXACT_REPLICATION_NOT_REDESIGN"
+ },
+ "parent_commit": "8e619e61e776f962d3d73c1ccfeaa0591a81baf3",
+ "parent_mission": "ROUTE_E_DIRECT_EXCHANGE_FLUX_DECOMPOSITION_06",
+ "phase": "07A_OBSERVATIONAL_CAPACITY_SPECTRUM_AND_IMPULSE_RESPONSE",
+ "program": "ROUTE_E_EXCHANGE_THROUGHPUT_CAUSAL_PROGRAM_07",
+ "prohibitions_carried_forward": [
+  "internal events are never independent replicates",
+  "the nine blocks stay in every ITT analysis including after track loss",
+  "survivors are never presented as the complete cohort",
+  "every rejection cause is reported",
+  "no residue is called a scaffold without a functional intervention",
+  "SIZE_NORMALIZED is not a result on two sizes without a relevant collapse",
+  "no physical crossing is attributed from a moving tracker alone",
+  "no life / identity / autonomy / metabolism / organisation claim is fabricated"
+ ],
+ "questions_07A_must_answer": {
+  "Q1": "Is the sink starved by DE-REGISTRATION (the frozen mask leaving the tracked component) or by DEPLETION (matter inside a still-registered mask consumed)?",
+  "Q2": "Is the capacity loss caused by the ACTUATOR (self-inflicted) or by the DYNAMICS (present in the paired SHAM)?",
+  "Q3": "What fraction of the change in tracked mass is TRACKER_SWEEP rather than material change on retained sites? This is the boundary-crossing question FLUX_06 declared NOT_RECONSTRUCTIBLE_FROM_SAVED_RAW.",
+  "Q4": "What is the capacity recovery time constant, with uncertainty, rather than the claim that 16 steps is magic?"
+ },
+ "structural_finding_that_reorganises_the_program": {
+  "consequence": "SUBTHRESHOLD_SINK is NOT a testable relaxation of the parent operator while the track gate is in force. The planned 07B arm SUBTHRESHOLD_SINK is withdrawn as a null manipulation and replaced by gates that are genuinely independent.",
+  "statement": "The DEV_05 sink eligibility predicate is (i in MASK) and (i in TRACK) and (m[i] >= THRESH). detect_components builds every component from occupied = (m >= matter_threshold) with matter_threshold == THRESH == 0.45. Therefore the third conjunct is implied by the second and is dead code.",
+  "status": "PROVED_BEFORE_ANY_07_SCIENTIFIC_RUN",
+  "verified_by": "fixture 1 (5308 tracked cells, min m = 0.450457) plus a literal source check of the detector predicate"
+ }
+}
