@@ -1,0 +1,39 @@
+{
+ "mission": "ROUTE_E_DIRECT_EXCHANGE_FLUX_DECOMPOSITION_06",
+ "engine_steps": 0,
+ "OPERATOR_CODE_STATUS": "REIMPLEMENTED_PRESEAL",
+ "PHYSICAL_SEMANTIC_REPLICATION": "REDESIGNED_PRESEAL",
+ "distinction": {
+  "code": "REIMPLEMENTED_PRESEAL -- dr_core.py is a new file, not an import of dsc_core.py; the two share no function object.",
+  "instrumentation": "REDESIGNED -- the static per-cell `credited` counter is gone, the incumbent cohort is split by depth into CORE/INTERMEDIATE/BOUNDARY, atomicity is asserted, and two ledgers are written. None of this touches the matter field.",
+  "physical_semantics": "REDESIGNED_PRESEAL, conservatively. The interface geometry is identical member for member, the reservoirs and every per-cohort removal are identical to 0.0, but the matter field is NOT bit-identical: max|dm| = 1.3e-15 over 36 frozen-state cases. The cause is isolated exactly: DEV_05 declares a source cell ineligible at fm >= MMAX - 1e-12 while DSC_04 uses fm >= MMAX. Restoring the DSC_04 predicate drops the divergence to 0.0 on the same 36 cases. So the physical semantics differ ONLY inside a 1e-12 saturation band, at float-rounding scale, and nowhere else.",
+  "divergence_scale": "1.3e-15, i.e. below the mission's own float identity residual",
+  "why_not_EXACT": "the mission's criterion is exact functional equivalence on frozen states; 1.3e-15 is not exact, so the conservative label is kept even though the difference is not a semantic one."
+ },
+ "PARENT_SIGNAL_WORDING": "REPRODUCED_PROSPECTIVELY_UNDER_REDESIGNED_OPERATOR",
+ "checks": [
+  {
+   "check": "geometrie d'interface identique (puits et source)",
+   "PASS": true,
+   "detail": "36 cas: masques `sink` et `source_interface` identiques membre a membre"
+  },
+  {
+   "check": "champ de matiere bit-identique apres N evenements",
+   "PASS": false,
+   "detail": "36 cas (3 rayons x 4 axes x 3 quotas): max|m_DSC04 - m_DEV05| = 1.3e-15",
+   "max_abs_matter_difference": 1.3322676295501878e-15
+  },
+  {
+   "check": "reservoirs et retraits par cohorte identiques",
+   "PASS": true,
+   "detail": "|dpuits|=0.0e+00 |dsource|=0.0e+00 |dincumbent|=0.0e+00 |dambiant|=0.0e+00 |dfresh|=0.0e+00"
+  },
+  {
+   "check": "la SEULE divergence est la bande de saturation 1e-12 cote source",
+   "PASS": true,
+   "detail": "en remplacant `fm < MMAX - 1e-12` par `fm < MMAX` dans DEV_05, la divergence tombe de 1.3e-15 a 0.0e+00 sur les 36 memes cas -> cause isolee, aucune autre difference de semantique physique",
+   "divergence_with_band": 1.3322676295501878e-15,
+   "divergence_without_band": 0.0
+  }
+ ]
+}

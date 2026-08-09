@@ -1,0 +1,378 @@
+{
+ "mission": "ROUTE_E_DIRECT_EXCHANGE_FLUX_DECOMPOSITION_06",
+ "scientific_engine_invocations": 0,
+ "PAIR_IDENTITY": "PASS",
+ "MATCHED_SHAM_HORIZONS": "PASS",
+ "RISK_SET_HANDLING": "PASS",
+ "mechanisms": {
+  "SIZE_NORMALIZED_FLUX_LIMIT": {
+   "verdict": "SUPPORTED_PRIMARY",
+   "evidence": {
+    "event_rejection_rate_by_dose": {
+     "L24": {
+      "DIRECT_Q100_ANCHOR": 0.0,
+      "DIRECT_Q200_UNIFORM": 0.0,
+      "DIRECT_Q400_UNIFORM": 0.175,
+      "DIRECT_Q800_UNIFORM": 0.406
+     },
+     "L32": {
+      "DIRECT_Q100_ANCHOR": 0.0,
+      "DIRECT_Q200_UNIFORM": 0.0,
+      "DIRECT_Q400_UNIFORM": 0.0,
+      "DIRECT_Q800_UNIFORM": 0.139
+     }
+    },
+    "event_rejection_sink_only": {
+     "L24": 0.948,
+     "L32": 0.945
+    },
+    "gross_sink_over_M256_by_dose": {
+     "L24": {
+      "DIRECT_Q100_ANCHOR": 0.2867,
+      "DIRECT_Q200_UNIFORM": 0.4032,
+      "DIRECT_Q400_UNIFORM": 0.6252,
+      "DIRECT_Q800_UNIFORM": 0.6716
+     },
+     "L32": {
+      "DIRECT_Q100_ANCHOR": 0.2356,
+      "DIRECT_Q200_UNIFORM": 0.2967,
+      "DIRECT_Q400_UNIFORM": 0.4146,
+      "DIRECT_Q800_UNIFORM": 0.699
+     }
+    },
+    "dose_x8_buys": {
+     "L24": 2.34,
+     "L32": 2.97
+    },
+    "median_eligible_sink_sites_per_event": 1
+   },
+   "statement": "The ladder saturates because scheduled events are increasingly REJECTED for zero eligible sink capacity: 0% at Q100 and Q200, 40.6% at Q800 (L=24) and 13.9% (L=32), and 94.8% / 94.5% when the source is uncoupled. x8 dose buys only x2.34 (L=24) and x2.97 (L=32) gross removal."
+  },
+  "FRESH_SELF_WASHOUT_DOMINATED": {
+   "verdict": "SUPPORTED_SECONDARY",
+   "evidence": {
+    "washout_fraction_by_dose": {
+     "L24": {
+      "DIRECT_Q100_ANCHOR": 0.0015,
+      "DIRECT_Q200_UNIFORM": 0.0357,
+      "DIRECT_Q400_UNIFORM": 0.1895,
+      "DIRECT_Q800_UNIFORM": 0.2188
+     },
+     "L32": {
+      "DIRECT_Q100_ANCHOR": 0.0,
+      "DIRECT_Q200_UNIFORM": 0.0011,
+      "DIRECT_Q400_UNIFORM": 0.0345,
+      "DIRECT_Q800_UNIFORM": 0.2631
+     }
+    },
+    "incumbent_share_of_bite": {
+     "L24": {
+      "DIRECT_Q100_ANCHOR": 0.962,
+      "DIRECT_Q200_UNIFORM": 0.9099,
+      "DIRECT_Q400_UNIFORM": 0.7441,
+      "DIRECT_Q800_UNIFORM": 0.7042
+     },
+     "L32": {
+      "DIRECT_Q100_ANCHOR": 0.9746,
+      "DIRECT_Q200_UNIFORM": 0.9656,
+      "DIRECT_Q400_UNIFORM": 0.9102,
+      "DIRECT_Q800_UNIFORM": 0.6673
+     }
+    }
+   },
+   "statement": "Real and rising, but second order: from Q100 to Q800 the flux limit costs a factor 2.7-3.4 while the falling incumbent share of the bite costs a further 1.35-1.47."
+  },
+  "EXCHANGEABLE_BOUNDARY_SHELL": {
+   "verdict": "REJECTED",
+   "evidence": {
+    "depth_survival_normalised_by_own_t256_mass": {
+     "L24": {
+      "SHAM": {
+       "core": 0.751,
+       "inter": 0.608,
+       "bnd": 0.576,
+       "scaffold_persistent_blocks": "9/9"
+      },
+      "DIRECT_Q400_UNIFORM": {
+       "core": 0.421,
+       "inter": 0.461,
+       "bnd": 0.373,
+       "scaffold_persistent_blocks": "9/9"
+      },
+      "DIRECT_Q800_UNIFORM": {
+       "core": 0.377,
+       "inter": 0.427,
+       "bnd": 0.37,
+       "scaffold_persistent_blocks": "9/9"
+      }
+     },
+     "L32": {
+      "SHAM": {
+       "core": 0.827,
+       "inter": 0.618,
+       "bnd": 0.575,
+       "scaffold_persistent_blocks": "9/9"
+      },
+      "DIRECT_Q400_UNIFORM": {
+       "core": 0.508,
+       "inter": 0.51,
+       "bnd": 0.398,
+       "scaffold_persistent_blocks": "9/9"
+      },
+      "DIRECT_Q800_UNIFORM": {
+       "core": 0.421,
+       "inter": 0.464,
+       "bnd": 0.369,
+       "scaffold_persistent_blocks": "9/9"
+      }
+     }
+    }
+   },
+   "statement": "Normalised by each cohort's OWN t256 mass, CORE/BOUNDARY survival is 1.02-1.44x, and the ratio is LARGEST in the SHAM. Forcing FLATTENS the depth gradient instead of sparing the core. The apparent 4-6x core protection in DEV_05 was an artefact of normalising by I0 while CORE holds 63% of I0 and BOUNDARY only 17%."
+  },
+  "CORE_ACCESS_LIMITED": {
+   "verdict": "REJECTED",
+   "statement": "same evidence as above: the core is reached about as efficiently as the shell."
+  },
+  "AMBIENT_COMPETITION_ASSOCIATED": {
+   "verdict": "SUPPORTED_ASSOCIATIVE_ONLY",
+   "evidence": {
+    "AMBIENT_DELTA_median": {
+     "L24": {
+      "DIRECT_Q100_ANCHOR": -0.0054,
+      "DIRECT_Q200_UNIFORM": -0.0124,
+      "DIRECT_Q400_UNIFORM": -0.0211,
+      "DIRECT_Q800_UNIFORM": -0.0195
+     },
+     "L32": {
+      "DIRECT_Q100_ANCHOR": -0.0037,
+      "DIRECT_Q200_UNIFORM": -0.0047,
+      "DIRECT_Q400_UNIFORM": -0.0158,
+      "DIRECT_Q800_UNIFORM": -0.0278
+     }
+    }
+   },
+   "statement": "AMBIENT_DELTA is NEGATIVE in every direct arm (-0.004 to -0.028 of M256): the treated track carries LESS ambient than its matched sham. A negative delta does not by itself prove the source causally displaces ambient."
+  },
+  "AMBIENT_REPLENISHMENT_ASSOCIATED": {
+   "verdict": "NOT_SUPPORTED",
+   "statement": "the sign is the opposite of the one this mechanism requires."
+  },
+  "TRACKER_BOUNDARY_SWEEP_DOMINATED": {
+   "verdict": "NOT_IDENTIFIABLE_FROM_SAVED_RAW",
+   "evidence": {
+    "centroid_displacement_t256_to_terminal": {
+     "L24": {
+      "SHAM": 0.08,
+      "DIRECT_Q400_UNIFORM": 4.52,
+      "DIRECT_Q800_UNIFORM": 5.12
+     },
+     "L32": {
+      "SHAM": 0.08,
+      "DIRECT_Q400_UNIFORM": 5.29,
+      "DIRECT_Q800_UNIFORM": 6.28
+     }
+    },
+    "missing_frozen_frame_fields": [
+     "mass_inside_frozen_C256",
+     "C256_to_Ct_overlap",
+     "boundary_site_turnover"
+    ]
+   },
+   "statement": "Under forcing the tracked component TRANSLATES 4.5-6.3 cells while the sham moves 0.08. Ambient appearing inside the track therefore cannot be separated from the track sweeping over stationary ambient. The frozen-frame fields that would settle it were never saved."
+  },
+  "CONNECTIVITY_BREAKAGE_LIMIT": {
+   "verdict": "SUPPORTED_AT_L24_Q800_ONLY",
+   "statement": "7/9 track losses between t=7696 and t=10880, at compositions (I/I0 0.36-0.42, F/T 0.37-0.43) indistinguishable from the 2 survivors: breakage is a connectivity event, not a compositional threshold."
+  },
+  "PERSISTENT_INCUMBENT_SCAFFOLD": {
+   "verdict": "SUPPORTED_TIME_FOLLOWED",
+   "evidence": {
+    "L24": {
+     "SHAM": "9/9",
+     "DIRECT_Q400_UNIFORM": "9/9",
+     "DIRECT_Q800_UNIFORM": "9/9",
+     "SINK_ONLY_Q800": "9/9"
+    },
+    "L32": {
+     "SHAM": "9/9",
+     "DIRECT_Q400_UNIFORM": "9/9",
+     "DIRECT_Q800_UNIFORM": "9/9",
+     "SINK_ONLY_Q800": "9/9"
+    }
+   },
+   "statement": "A non-empty connected incumbent scaffold exists at EVERY sampled step in 9/9 blocks of every arm, including SINK_ONLY_Q800. This is the time-followed qualification, not merely a terminal snapshot."
+  }
+ },
+ "RATE_EFFECT": {
+  "verdict": "RATE_EFFECT_RELAXATION_COMPATIBLE",
+  "rejected_label": "RATE_EFFECT_SELF_WASHOUT_MEDIATED",
+  "why_rejected": "washout moves OPPOSITE to the outcome: uniform has MORE washout (9/9 both sizes) yet BETTER turnover, so washout cannot mediate the effect.",
+  "event_level_mediator": {
+   "burst_bite_by_position": {
+    "L24": {
+     "1": 2.0602,
+     "9": 0.0847,
+     "17": 0.0792,
+     "25": 0.0778,
+     "33": 0.0768
+    },
+    "L32": {
+     "1": 3.7159,
+     "9": 0.0787,
+     "17": 0.0743,
+     "25": 0.0711,
+     "33": 0.0688
+    }
+   },
+   "uniform_bite_by_position": {
+    "L24": {
+     "1": 0.2868,
+     "9": 0.2872,
+     "17": 0.2907,
+     "25": 0.2818,
+     "33": 0.2846
+    },
+    "L32": {
+     "1": 0.236,
+     "9": 0.236,
+     "17": 0.232,
+     "25": 0.2282,
+     "33": 0.2277
+    }
+   },
+   "statement": "Inside a burst the realized sink bite collapses from 2.06 (L=24) / 3.72 (L=32) at position 1 to ~0.08 at positions 9-33, a 26-48x fall across 4-step gaps, while the uniform arm is flat at 0.287 / 0.231 across the same positions with 16-step gaps. The schedule acts through sink-capacity relaxation, and this link IS measured at event level."
+  },
+  "paired_signs": {
+   "24": {
+    "I_over_I0": {
+     "min": -0.05311799620945029,
+     "median": -0.010775460256935987,
+     "max": 0.0035882899384814815,
+     "n_neg": 7,
+     "n_pos": 2,
+     "n": 9
+    },
+    "INCUMBENT_REMOVED_BY_SINK": {
+     "min": 0.006196736674105807,
+     "median": 0.041794062375719365,
+     "max": 0.07709906438478653,
+     "n_neg": 0,
+     "n_pos": 9,
+     "n": 9
+    },
+    "FRESH_WASHOUT_FRACTION": {
+     "min": 0.03517849968950566,
+     "median": 0.1085681270858324,
+     "max": 0.13432172365485762,
+     "n_neg": 0,
+     "n_pos": 9,
+     "n": 9
+    },
+    "FRESH_TERMINAL_RETENTION": {
+     "min": -0.13642916565428898,
+     "median": -0.09668040273974798,
+     "max": -0.05325092350560401,
+     "n_neg": 9,
+     "n_pos": 0,
+     "n": 9
+    },
+    "CORE_256_SURVIVAL": {
+     "min": -0.05154408969125779,
+     "median": -0.015850969993016994,
+     "max": -0.0031918458825443974,
+     "n_neg": 9,
+     "n_pos": 0,
+     "n": 9
+    },
+    "T_over_M256": {
+     "min": -0.014643968707589883,
+     "median": 0.013364017771874126,
+     "max": 0.02248185961673521,
+     "n_neg": 4,
+     "n_pos": 5,
+     "n": 9
+    }
+   },
+   "32": {
+    "I_over_I0": {
+     "min": -0.0455300349274268,
+     "median": -0.04133818419954843,
+     "max": -0.0378458579861044,
+     "n_neg": 9,
+     "n_pos": 0,
+     "n": 9
+    },
+    "INCUMBENT_REMOVED_BY_SINK": {
+     "min": 0.04553272947402981,
+     "median": 0.04929723488332727,
+     "max": 0.05591115382787326,
+     "n_neg": 0,
+     "n_pos": 9,
+     "n": 9
+    },
+    "FRESH_WASHOUT_FRACTION": {
+     "min": 0.011104146525544305,
+     "median": 0.023584851779445665,
+     "max": 0.07502294524962022,
+     "n_neg": 0,
+     "n_pos": 9,
+     "n": 9
+    },
+    "FRESH_TERMINAL_RETENTION": {
+     "min": -0.09651998256853633,
+     "median": -0.04181181456365879,
+     "max": -0.02484728549978865,
+     "n_neg": 9,
+     "n_pos": 0,
+     "n": 9
+    },
+    "CORE_256_SURVIVAL": {
+     "min": -0.046009376679713276,
+     "median": -0.042264794465520894,
+     "max": -0.03733197871652871,
+     "n_neg": 9,
+     "n_pos": 0,
+     "n": 9
+    },
+    "T_over_M256": {
+     "min": -0.01614763110452011,
+     "median": -0.01027378673427326,
+     "max": -0.0051921025635492946,
+     "n_neg": 9,
+     "n_pos": 0,
+     "n": 9
+    }
+   }
+  }
+ },
+ "SOURCE_FEEDS_SINK": {
+  "verdict": "SUPPORTED",
+  "evidence": {
+   "L24": {
+    "coupled_gross_sink": 0.6716,
+    "sink_only_gross_sink": 0.4186,
+    "ratio": 1.6
+   },
+   "L32": {
+    "coupled_gross_sink": 0.699,
+    "sink_only_gross_sink": 0.4295,
+    "ratio": 1.63
+   }
+  },
+  "statement": "At the identical Q800 schedule the coupled arm removes 1.63-1.65x MORE mass than sink-only, and is rejected 14-41% of the time instead of 95%. Upstream injection keeps downstream cells above threshold: the source feeds the sink."
+ },
+ "AMBIENT_ASSISTANCE": "NOT_ESTABLISHED",
+ "PHYSICAL_BOUNDARY_CROSSING_STATUS": "NOT_RECONSTRUCTIBLE_FROM_SAVED_RAW",
+ "FRESH_EVENT_SURVIVAL_CURVES": "NOT_RECONSTRUCTIBLE_FROM_SAVED_RAW (per-event FRESH cohorts were aggregated by design in DEV_05)",
+ "PRIMARY_MECHANISM": "SIZE_NORMALIZED_FLUX_LIMIT",
+ "SECONDARY_MECHANISMS": [
+  "FRESH_SELF_WASHOUT_DOMINATED",
+  "AMBIENT_COMPETITION_ASSOCIATED",
+  "CONNECTIVITY_BREAKAGE_LIMIT",
+  "PERSISTENT_INCUMBENT_SCAFFOLD",
+  "TRACKER_BOUNDARY_SWEEP_DOMINATED (not identifiable)"
+ ],
+ "DECISION": "SIZE_NORMALIZED_FLUX_LIMIT",
+ "NEXT_SCIENTIFIC_ACTION": "MAP_RATE_AND_GEOMETRY_FRONTIER"
+}

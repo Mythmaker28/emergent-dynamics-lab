@@ -1,0 +1,68 @@
+{
+ "n": 10,
+ "n_pass": 10,
+ "VERDICT": "PASS",
+ "engine_invocations": 0,
+ "tests": [
+  {
+   "test": 1,
+   "name": "aucun moteur importe par la decomposition",
+   "PASS": true,
+   "detail": "imports interdits: aucun"
+  },
+  {
+   "test": 2,
+   "name": "T = I + F + A dans chaque snapshot sauvegarde",
+   "PASS": true,
+   "detail": "10101 snapshots, pire ecart = 1.02e-12"
+  },
+  {
+   "test": 3,
+   "name": "identite de paire fermee bloc par bloc",
+   "PASS": true,
+   "detail": "110 paires vivantes, pire residu = 9.88e-13"
+  },
+  {
+   "test": 4,
+   "name": "les rendements du puits partitionnent exactement",
+   "PASS": true,
+   "detail": "108 trajectoires avec puits actif, pire |somme - 1| = 1.44e-15"
+  },
+  {
+   "test": 5,
+   "name": "delta de masse NET de l'operateur DIRECT = 0",
+   "PASS": true,
+   "detail": "pire |source - puits| sur tous les bras DIRECT = 4.26e-14 -> toute variation de masse suivie est dynamique ou geometrique, jamais operatoire"
+  },
+  {
+   "test": 6,
+   "name": "risk sets ITT vs survivants conditionnels etiquetes",
+   "PASS": true,
+   "detail": "L24 Q800: ITT=9 intacts=2 echecs=7 label=SURVIVOR_CONDITIONAL_N_2; SOURCE_ONLY L24 intacts=0"
+  },
+  {
+   "test": 7,
+   "name": "ledger evenementiel sous-echantillonne 1/8, rejets COMPLETS",
+   "PASS": true,
+   "detail": "evenements executes: tous ev_id % 8 == 1 (80 ids distincts); 15295 lignes de rejet enregistrees sans sous-echantillonnage"
+  },
+  {
+   "test": 8,
+   "name": "cohortes FRESH par evenement NON tracees -> courbe de survie impossible",
+   "PASS": true,
+   "detail": "un seul champ FRESH advecte (declare dans le protocole DEV_05); le ledger ne porte aucune colonne par cohorte d'injection -> FRESH_EVENT survival = NOT_RECONSTRUCTIBLE"
+  },
+  {
+   "test": 9,
+   "name": "cadre fige absent -> franchissement de frontiere non reconstructible",
+   "PASS": true,
+   "detail": "manquants: ['C256_to_Ct_overlap', 'boundary_site_turnover', 'mass_inside_frozen_C256']; disponibles seulement: ['T', 'area', 'cx', 'cy']"
+  },
+  {
+   "test": 10,
+   "name": "les trois cohortes de profondeur n'ont PAS la meme masse initiale",
+   "PASS": true,
+   "detail": "a t256: core=0.632 inter=0.200 bnd=0.168 de I0 -> normaliser par I0 fabriquerait un faux contraste noyau/coque"
+  }
+ ]
+}
