@@ -1,8 +1,8 @@
-# A conjugate saturation limit on forced material exchange, and a guard that harms by allocation but rescues only by dose
+# A conjugate saturation limit on forced material exchange, and a guard whose harm is an allocation effect while its rescue is reproduced by low dose alone
 
 **Tommy Lepesteur**
 Emergent Dynamics Lab · `Mythmaker28/emergent-dynamics-lab`
-Draft **V1.1 / RC1** — 9 August 2026 — licensed CC BY 4.0
+Draft **V1.1 / RC2** — 9 August 2026 (stabilised: paired exact tests, comparability gate distinguished from equivalence, exclusive-mediation wording withdrawn; see `STABILIZATION_P09.md`) — licensed CC BY 4.0
 *(V0, the P07-only narrative, and V1, the P08 narrative, are archived unchanged as the record of
 what was known before each audit. This version incorporates the P08 corrigendum and the P09
 dose-yoked closure. The chronology of predictions, refutations and corrections is preserved.)*

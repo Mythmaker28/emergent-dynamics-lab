@@ -1,5 +1,7 @@
 # `P09_DOSE_YOKED_GUARD_SIGN_CLOSURE` — rapport
 
+> **Passe de stabilisation, 2026-08-09.** Les tests de survie de ce rapport étaient des Fisher exacts à échantillons indépendants ; le plan est **apparié par bloc fondateur**. Ils sont remplacés ici par le test exact de McNemar. La « équivalence de dose » est une **porte de comparabilité**, pas un test d'équivalence. Les énoncés de médiation exclusive sont retirés. Détail complet et TOST post hoc : `STABILIZATION_P09.md`.
+
 **2026-08-09** · parent `070aef4b0fa310ae3e9c3aa9a893ebae889cac09`
 (branche `dev/route-e-safe-actuation-and-feedback-08`,
 bundle `_bundles/route-e-safe-actuation-08.bundle`,
@@ -107,7 +109,7 @@ Le `SHAM` survit **9/9 dans les quatre cellules** et son UCR est structurellemen
 
 ## 5. Les quatre contrastes primaires scellés
 
-| cellule | contraste | survie | Fisher | UCR : Δ médian [IC] , p |
+| cellule | contraste | survie | McNemar exact apparié | UCR : Δ médian [IC] , p |
 |---|---|---|---|---|
 | `LAW_16` L=24 | **allocation** `FLOOR_Q − PARENT_Q` | 9/9 → **0/9** (**9 scissions**) | **p < 0,0001** | −0,012 [−0,048 ; −0,010] p=0,004 |
 | | profil temporel | 9/9 → 9/9 | p = 1,00 | −0,019 [−0,027 ; +0,008] p=0,18 |
@@ -119,12 +121,12 @@ Le `SHAM` survit **9/9 dans les quatre cellules** et son UCR est structurellemen
 | | réplication `P08` | 9/9 → **0/9** | **p < 0,0001** | −0,118 [−0,141 ; −0,111] p=0,004 |
 | `LAW_29` L=24 | allocation *(dose non appariée)* | 6/9 → 9/9 | p = 0,21 | −0,022 [−0,039 ; +0,115] p=0,51 |
 | | profil temporel | 9/9 → 6/9 | p = 0,21 | +0,015 [−0,134 ; +0,029] p=0,51 |
-| | **réduction de dose** | **1/9 → 9/9** | **p = 0,0004** | **+0,128 [+0,124 ; +0,136] p=0,039** |
-| | réplication `P08` | **1/9 → 9/9** | **p = 0,0004** | +0,117 [+0,113 ; +0,127] p=0,039 |
+| | **réduction de dose** | **1/9 → 9/9** | **p = 0,0078 (McNemar exact apparié)** | **+0,128 [+0,124 ; +0,136] p=0,039** |
+| | réplication `P08` | **1/9 → 9/9** | **p = 0,0078 (McNemar exact apparié)** | +0,117 [+0,113 ; +0,127] p=0,039 |
 | `LAW_29` L=32 | allocation *(dose non appariée)* | 9/9 → 9/9 | p = 1,00 | **−0,052 [−0,076 ; −0,041] p=0,004** |
 | | profil temporel | 9/9 → 9/9 | p = 1,00 | +0,028 [+0,019 ; +0,043] p=0,004 |
-| | **réduction de dose** | **1/9 → 9/9** | **p = 0,0004** | **+0,175 [+0,172 ; +0,183] p=0,039** |
-| | réplication `P08` | **1/9 → 9/9** | **p = 0,0004** | +0,157 [+0,151 ; +0,159] p=0,039 |
+| | **réduction de dose** | **1/9 → 9/9** | **p = 0,0078 (McNemar exact apparié)** | **+0,175 [+0,172 ; +0,183] p=0,039** |
+| | réplication `P08` | **1/9 → 9/9** | **p = 0,0078 (McNemar exact apparié)** | +0,157 [+0,151 ; +0,159] p=0,039 |
 
 **Ce que cela dit, ligne par ligne.**
 
@@ -134,7 +136,7 @@ Le `SHAM` survit **9/9 dans les quatre cellules** et son UCR est structurellemen
   séquence, mêmes instants, même support, **9/9 scissions contre 0/9**. C'est un effet
   d'allocation propre, `p < 0,0001` aux deux tailles.
 - **Sous `LAW_29`, la réduction de quantité seule suffit.** `PARENT_LOW_CONSTANT` n'a **aucun
-  plancher** — allocation `PARENT` pure — et passe de **1/9 à 9/9**, `p = 0,0004`, aux deux
+  plancher** — allocation `PARENT` pure — et passe de **1/9 à 9/9**, `p = 0,0078 (McNemar exact apparié)`, aux deux
   tailles, avec un UCR **supérieur** à celui du plancher (0,128 contre 0,117 ; 0,175 contre 0,157).
 - **Le plancher n'ajoute rien de détectable sous `LAW_29`** : +3/9 à L=24 (p = 0,21) et 0/9 à
   L=32 ; et à L=32 il **coûte** de l'UCR à séquence identique (−0,052, p = 0,004).
@@ -176,8 +178,8 @@ isolée. Et la preuve positive va dans l'autre sens : le sauvetage s'obtient **s
 | 4 | équivalence de dose **non** atteinte sous `LAW_29` | **ÉTABLI** | 0,796 et 0,767, IC entièrement sous la bande |
 | 5 | le résultat `P08` se réplique | **CONFIRMÉ** | 9/9 scissions et +8/9 survie, 4 cellules |
 | 6 | sous `LAW_16` la nocivité du plancher est un effet d'allocation | **ÉTABLI** | dose appariée, 9/9 vs 0/9, p < 0,0001 |
-| 7 | sous `LAW_29` le sauvetage vient de la réduction de dose | **ÉTABLI** | `PARENT_LOW_CONSTANT` sans plancher : 1/9 → 9/9, p = 0,0004 |
-| 8 | sous `LAW_29` le plancher ajoute un effet propre | **NON IDENTIFIABLE** | équivalence en échec ; +3/9 p = 0,21 ; UCR −0,052 à L=32 |
+| 7 | sous `LAW_29`, une dose basse **sans garde suffit à reproduire** le sauvetage (suffisance seulement ; la médiation exclusive par la dose n'est pas établie) | **ÉTABLI** | `PARENT_LOW_CONSTANT` sans plancher : 1/9 → 9/9, p = 0,0078 (McNemar exact apparié) |
+| 8 | sous `LAW_29` le plancher ajoute un effet propre | **NON IDENTIFIABLE** | équivalence en échec ; +3/9 p = 0,25 (McNemar exact apparié) ; UCR −0,052 à L=32 |
 | 9 | « le signe de la garde s'inverse avec le mode de défaillance » | **RETIRÉ** | le sauvetage est dose-dépendant |
 | 10 | le profil temporel explique le sauvetage | **RÉFUTÉ** | p = 0,21 et 1,00 sur la survie |
 | 11 | `FAILURE_MODE_CAUSATION` | **NON IDENTIFIÉ** | le mode de défaillance n'a jamais été manipulé |

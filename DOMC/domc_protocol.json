@@ -1,0 +1,177 @@
+{
+ "adjudication": {
+  "ADDRESSABLE_BUT_NOT_TRANSFERABLE": "G1-G4 pass and G5 fails: the states are distinct, local and selectively erasable, but the future response does not travel with the state",
+  "AUDIT_INVALID": "any fixture or any mechanical gate fails",
+  "DUAL_OWNERSHIP_ESTABLISHED": "G1-G9 all pass",
+  "ENVIRONMENT_EXPLAINS": "CROSS_ENV transfers the responses and CROSS does not",
+  "NOT_ESTABLISHED": "G3 fails",
+  "TRANSFERABLE_BUT_REDUCIBLE": "G5 passes and G6 fails"
+ },
+ "arms": {
+  "CROSS": "the reciprocal permutation on Mf alone, in DUAL_AB",
+  "CROSS_ENV": "the SAME permutation applied to the two EXTERNAL HANDLES c and N instead of to Mf: the preregistered adjudicator for H_ENVIRONMENT",
+  "CROSS_ENV_SHAM": "CROSS_ENV in DUAL_AA",
+  "CROSS_ROLL": "FAR only: the same permutation realised as a pure translation instead of a reflection, to show mirroring is not what produces the effect",
+  "CROSS_SHAM": "the SAME permutation in DUAL_AA, where the two states are the same: the mechanical floor",
+  "DUAL_AA": "both sites own cc -- the same-history ceiling and the host of the sham permutations",
+  "DUAL_AB": "site A owns cc, site B owns 00",
+  "DUAL_BA": "site A owns 00, site B owns cc",
+  "ERASE_A": "Mf <- 0 on half-plane A",
+  "ERASE_B": "Mf <- 0 on half-plane B",
+  "ERASE_SHAM": "not run in the confirmatory split: fixture 6 proves it a bit-exact no-op on the whole state, so it would cost 12 trajectories for zero information"
+ },
+ "branch": "dev/dual-owner-memory-collision-00",
+ "budget": {
+  "calibration_not_counted_as_trajectories": "probes 0, 1 and 2 and the Phase C candidate scan evolve worlds but produce no endpoint, no probe and no response; they are reported as engine invocations, following the convention used by P07-P09",
+  "dev_blocks": 12,
+  "dev_seeds": "34000-34011",
+  "hard_maximum_trajectories": 384,
+  "planned": {
+   "DEV_Nc-cN_9_arms": 108,
+   "DEV_cc-00_7_arms": 84,
+   "PROSP_FAR_cc-00_10_arms": 120,
+   "PROSP_NEAR_cc-00_4_arms": 48,
+   "total": 360
+  },
+  "prospective_blocks": 12,
+  "prospective_seeds": "35000-35011",
+  "seeds_never_used_before": true
+ },
+ "co_primary_endpoint": {
+  "definition": "ERASE_A must move site A's response more than site B's, AND ERASE_B must move site B's response more than site A's, both paired over blocks",
+  "name": "SELECTIVE_ERASURE_DOUBLE_DISSOCIATION",
+  "sealed_prediction": "both sign tests significant at p <= 0.05 with the correct sign"
+ },
+ "code_sha256": {
+  "domc_analyse.py": "bfe8d9c60e327ca80542c425e5b87a9936e6fb144f79c4c844cc6a48e93827ae",
+  "domc_core.py": "b32a32498e0c9aef3301b8ce745468c4a8cc50a4757c4062f3a85c2c35cc1390",
+  "domc_fixtures.py": "9ddc2ef21f8eaf898c912643fdf2c355f1968a40e9f68025cdb657c91463a964",
+  "domc_phaseC.py": "215265b75e8790371719fc143c1d7c86161ddc89c22a3925793dd9bb4bc269b5",
+  "domc_run.py": "31d09fce11c24593e395867ec017119a4625411b96dab4b19255264437d3394a"
+ },
+ "date_sealed": "2026-08-09",
+ "gates": {
+  "G0_EVIDENCE_ELIGIBILITY": "documentary; see phase0_evidence_eligibility",
+  "G1_DUAL_FEASIBILITY": ">= 11 of 12 blocks found a clean pair, and >= 90 percent of arm-readouts have both sites occupied, at t0 and after turnover",
+  "G2_TURNOVER": "median per-component M <= M_LOW = 0.35 at the turnover readout AND >= 80 percent of readouts <= M_LOW",
+  "G3_OWNERSHIP": "d_history > d_site, paired sign test p <= 0.05, and the 95 percent CI of the ratio strictly above 1",
+  "G4_SELECTIVE_ERASURE": "the double dissociation above",
+  "G5_RECIPROCAL_EXCHANGE": "median TRANSFER_FRACTION > 0 with CI excluding 0 and above the sham",
+  "G6_SCALAR_IRREDUCIBILITY": "the leave-one-out R2 of the response gap from the confounding scalar dictionary is below the R2 from the memory scalars",
+  "G7_GLOBAL_FORCING_NULL": "mechanical, fixture 7",
+  "G8_PROVENANCE_BLINDNESS": "mechanical, fixture 9: no online reader or operation touches C or mem()",
+  "G9_PROSPECTIVE_REPLICATION": "G1-G6 reproduce on the held-out split with every gate frozen"
+ },
+ "geometry": {
+  "FAR": {
+   "A": [
+    32,
+    16
+   ],
+   "B": [
+    32,
+    48
+   ],
+   "separation": 32
+  },
+  "NEAR": {
+   "A": [
+    32,
+    24
+   ],
+   "B": [
+    32,
+    40
+   ],
+   "separation": 16
+  },
+  "founding": "the initial support of rho is restricted to two Gaussian caps of width W_FOUND = 3.0 at the two sites; U, V and C are multiplied by the same mask so that sum_c C == rho remains exact and the internal fields remain the frozen seed's. Selected in probe 1 as the only width for which EXACTLY TWO components persist over the whole horizon.",
+  "interface": "the half-plane boundary x = 0 / x = 32, equidistant from the two sites in both geometries",
+  "no_third_geometry": true,
+  "reciprocal_permutation": "x -> (L - x) mod L applied to the memory field alone: an involution, an exact permutation of lattice sites, exchanging the two sites of BOTH geometries and leaving rho, U, V, c, N and C bit-identical",
+  "world": "one periodic 64x64 lattice, ONE communicating world: N and c are shared fields, and the memory write signal Psi contains up_ref = mean uptake over ALL living cells, which is an exact, instantaneous, unattenuated global coupling"
+ },
+ "history_pair": {
+  "SELECTED": "cc|00",
+  "alphabet": "two-character codes over the three primitives already in the frozen sc_mcm alphabet: N = add AMP to nutrient, c = add AMP to attractant, 0 = add nothing",
+  "candidates": [
+   "Nc|cN",
+   "NN|cc",
+   "NN|00",
+   "cc|00",
+   "Nc|00",
+   "N0|0N",
+   "NN|Nc",
+   "cN|cc"
+  ],
+  "runner_up": "cN|cc (Q = 1.662)",
+  "selected_Q": 2.672,
+  "selected_properties_on_DEV": "memory separation |dm_plus| = 2.63 with a body mismatch of 0.5 cells out of 21; the declared residual confound is the local attractant, |d local_mean_c| = 1.03, which is why CROSS_ENV exists",
+  "selection_criterion": "Q = (|dm_plus| + |dm_minus|) / (1 + |dsize| / mean_size), median over the 12 DEVELOPMENT blocks, computed entirely from the frozen scalar dictionary on the settled state, BEFORE any probe, any response, any intervention and any endpoint. Ties broken by the order of the candidate list.",
+  "why_this_criterion_is_not_an_outcome": "Q contains no response, no probe, no survival, no endpoint and no comparison between arms. It measures how well separated the two memory STATES are per unit of body mismatch, which is instrument calibration."
+ },
+ "lawspec": {
+  "detector": "SCDetectionSpec(threshold=0.30, min_cells=12) -- FROZEN, untouched",
+  "module": "edlab.experiments.sc_mcm.engine.MultiChannelMemoryEngine",
+  "nothing_added": "no new LawSpec, no new field, no new memory channel, no controller, no new detector or tracker threshold",
+  "params": "MCParams(eta_w=0.05, eta_d1=0.03, eta_d2=0.003, eta_t=0.010, D_m=0.010, lam_plus=0.25, lam_minus=0.15, k_exp=2.0, k_up=1.0, n_comp=2)",
+  "substrate": "ScaffoldSpec of exp_sc_00 with beta=0.10, size 64, dt 0.1, periodic",
+  "why_this_lawspec": "It is the line with the strongest PROSPECTIVELY validated causal-memory and turnover evidence: EXP-SC-MULTI-CHANNEL-ORGANIZATIONAL-MEMORY-00 (commit 5841b9b) passed G1-G9 and G13-G15 on a held-out prospective split, with turnover M ~ 0.12 <= M_LOW, erase, transplant and clone-ceiling regressions. Its G10-G12 (dimensionality, individuation) FAILED, which is exactly what this programme re-opens at the level of two coexisting owners."
+ },
+ "maximal_permitted_wording": "At most: in this LawSpec and at these two separations, two coexisting components hold memory states that are written locally, are selectively erasable, and are exchangeable by an exactly conservative permutation. Whether the future causal response follows the state is decided by the primary endpoint and by CROSS_ENV; no claim about individuality, identity, heredity or autonomy is licensed by any outcome of this programme.",
+ "mode": "PROSPECTIVE_CONFIRMATORY_AFTER_DEV_FROZEN",
+ "parent_branch": "dev/route-e-p09-dose-yoked-closure",
+ "parent_bundle": "_bundles/route-e-p09-dose-yoked-closure.bundle",
+ "parent_bundle_sha256": "d3d4c35e744ef300e5005e1678b4581bcacdae59486ea230ea330dc1ad3962c7",
+ "parent_commit": "b6bc514126ffd559407065eb89c07b4e950958ce",
+ "parent_program": "P09_DOSE_YOKED_GUARD_SIGN_CLOSURE",
+ "phase0_evidence_eligibility": {
+  "DOWNSTREAM_ORDER_READER_01": "CODE-ONLY INSTRUMENT QUALIFIED, STOP FOR EXECUTION, equivalence_margin=null, no seed opened. Zero confirmatory evidence.",
+  "INTERVENTIONAL_INDIVIDUALITY_00": "AUDIT_INVALID and never executed: its Phase-0 spec records implementation_authorized=false, engine_execution_authorized=false, scientific_or_prospective_authorized=false. It contributes no observation. Its accepted prior disposition STOP_ARCHITECTURE closed the passive-copy scaffold substrate to a NEW ENVIRONMENTAL PORT; the present programme adds no port, uses only the two existing external handles N and c, and is therefore not blocked by it. Its stated reason -- that the scaffold is a passive-copy substrate -- is carried forward as the live rival H_MATERIAL.",
+  "M_MINUS_ORDER_READER_00": "DEVELOPMENT ONLY, NON-CONFIRMATORY. Its own frozen disposition is `ORDER_READER_CANDIDATE - GO to human scientific review only`, `NO-GO for automatic prospective execution`, and it states in terms that it establishes neither local ownership, nor individual memory, nor identity, nor prospective confirmation, and that the parent verdict `NO_MEMORY_FIRST_STAGE - STOP THIS PREREGISTRATION CANDIDATE` is unchanged. No observation from it is used here as confirmation, and none of its seed namespaces is reused.",
+  "no_silent_promotion": "No previously DEV-selected observation becomes confirmation. The confirmatory split of this programme uses founding blocks 35000-35011, which have never been evolved before."
+ },
+ "primary_endpoint": {
+  "definition": "the post-exchange response of a site, projected onto the axis joining the response that site shows when it owns its own history and the response it shows when it owns the other history. 0 = the exchange moved nothing; 1 = the exchange moved the response the whole way. Signed and unclipped.",
+  "name": "TRANSFER_FRACTION",
+  "sealed_prediction_under_H_CAUSAL_INDIVIDUATION": "median TRANSFER_FRACTION > 0, CI excluding 0, and strictly greater than the CROSS_SHAM projection",
+  "test": "exact two-sided paired sign test over the 12 blocks, plus a block-bootstrap 95 percent CI of the median",
+  "unit": "the founding block; never the component, the cell or the time point"
+ },
+ "program": "DUAL_OWNER_MEMORY_COLLISION_00",
+ "prohibitions_carried_forward": [
+  "the independent unit is the founding block, never the component, the event, the cell or the time point",
+  "no reproduction, division, heredity, genome, organisation or autonomy claim is opened",
+  "no reconstruction in fresh matter",
+  "the primary analysis is never conditioned on survival, on delivery or on tracker retention",
+  "provenance is visible to the auditor and invisible to every online policy and reader",
+  "non-significance is never called equivalence",
+  "after a terminal stop: no third geometry, no additional distance, no ninth history, no new reader, no threshold revision, no new LawSpec, no controller rescue, no opportunistic horizon extension"
+ ],
+ "rivals": {
+  "H_CAUSAL_INDIVIDUATION": "the owned states are separately addressable, selectively erasable and reciprocally exchangeable.",
+  "H_COMPONENT_OWNER": "each component owns a state that travels with its memory field.",
+  "H_ENVIRONMENT": "the state is the persisting local environment (c, N). Tested by CROSS_ENV against CROSS.",
+  "H_GLOBAL": "the state is a function of the global forcing. Refuted by construction if DUAL_AB and DUAL_BA differ, because fixture 7 proves their global forcing time series identical step by step.",
+  "H_LOCAL_SCALAR": "the state is one low-dimensional local scalar. Tested by the frozen scalar dictionary and by the leave-one-out decode of the response gap from the confounding scalars.",
+  "H_MATERIAL": "the state is the material body and its internal fields. Tested by CROSS, which leaves rho, U, V, C bit-identical, and by the turnover readout after 700 steps."
+ },
+ "route_e_status": "CLOSED",
+ "single_question": "Can two material components coexisting in one communicating world simultaneously possess distinct, separately addressable causal states that (1) survive the frozen material-turnover criterion, (2) are not reducible to global forcing, position, provenance or local environment, (3) can be erased selectively, (4) exchange future responses under a globally conservative reciprocal state permutation, and (5) remain distinct after matching the frozen scalar dictionary?",
+ "timing": {
+  "AMP": 0.03,
+  "PROBE": [
+   "N",
+   "add",
+   0.5,
+   15
+  ],
+  "PROBE_CADENCE": 30,
+  "PROBE_HORIZON": 120,
+  "SETTLE": 120,
+  "T_FOUND": 150,
+  "T_PHASE": 60,
+  "T_TURN": 700,
+  "T_TURN_provenance": "the FROZEN parent horizon sc_iom.config.TURNOVER_STEPS = 700. It is not tuned here. The development run used 600 and reached median M = 0.309 with 85 percent of readouts below M_LOW; the confirmatory split uses the parent's own validated horizon."
+ }
+}

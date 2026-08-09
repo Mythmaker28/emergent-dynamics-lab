@@ -1,0 +1,52 @@
+[
+ {
+  "check": "1 the sealed protocol hash matches",
+  "PASS": true,
+  "detail": "ecbaa85e5bbd1fdcd071a8274c2cd0a983d11dca9c15bc7952720adaa563582f"
+ },
+ {
+  "check": "2 every sealed code file is unchanged since sealing",
+  "PASS": true,
+  "detail": "changed: []"
+ },
+ {
+  "check": "3 every mechanical fixture passes",
+  "PASS": true,
+  "detail": "29/29"
+ },
+ {
+  "check": "4 the hard maximum of 384 trajectories is respected",
+  "PASS": true,
+  "detail": "360 trajectories: domc_FAR_DEV.pkl=108, domc_FAR_DEV_cc-00.pkl=84, domc_FAR_PROSP_cc-00.pkl=120, domc_NEAR_PROSP_cc-00.pkl=48"
+ },
+ {
+  "check": "5 development and prospective founding blocks are disjoint",
+  "PASS": true,
+  "detail": "dev=[34000, 34001, 34002]...  prosp=[35000, 35001, 35002]...  overlap=[]"
+ },
+ {
+  "check": "6 sum(Mf) is unchanged by the reciprocal permutation, to float summation order",
+  "PASS": true,
+  "detail": "max |d sum Mf| = 1.066e-14 over 12 blocks"
+ },
+ {
+  "check": "7 the reciprocal permutation does not move or resize the material bodies",
+  "PASS": true,
+  "detail": "max |d size| = 0.0"
+ },
+ {
+  "check": "8 ERASE_A zeroes site A's memory and leaves site B's bit-identical",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "9 the frozen material-turnover criterion M <= 0.35 is met at the readout",
+  "PASS": true,
+  "detail": "median M = 0.2405, max = 0.2898, 100.0% of readouts below"
+ },
+ {
+  "check": "10 every block enters every analysis: no arm was dropped for survival",
+  "PASS": true,
+  "detail": "120/120 arm-readouts have both sites occupied"
+ }
+]

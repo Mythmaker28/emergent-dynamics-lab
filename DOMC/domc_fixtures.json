@@ -1,0 +1,147 @@
+[
+ {
+  "fixture": "1 founding: sum_c C == rho exactly",
+  "PASS": true,
+  "detail": "max |residual| = 0.000e+00"
+ },
+ {
+  "fixture": "1b founding: Mf == 0 everywhere",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "2 lam_plus = lam_minus = 0 reproduces the frozen scaffold BIT-IDENTICALLY",
+  "PASS": true,
+  "detail": "max |diff| over rho,U,V,c,N,C after 200 steps = 0.000e+00"
+ },
+ {
+  "fixture": "3 cross: the memory field is EXACTLY permuted (multiset of values identical)",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "3b cross: the correctly rounded total is identical (math.fsum)",
+  "PASS": true,
+  "detail": "fsum before 194.97823950961444 after 194.97823950961444 | naive np.sum discrepancy 2.842e-14 (float summation order only)"
+ },
+ {
+  "fixture": "3c cross applied twice is the IDENTITY (bit-exact)",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "3d the cross index map exchanges the two sites of BOTH frozen geometries",
+  "PASS": true,
+  "detail": "FAR: 16<->48 NEAR: 24<->40"
+ },
+ {
+  "fixture": "3e the FAR-only translation variant is also an exact conserving involution",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "3f swapping the tracer changes C only: rho, U, V, c, N, Mf evolve bit-identically",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "4 cross leaves rho, U, V, c, N, C, uptake bit-identical",
+  "PASS": true,
+  "detail": "max |diff| = 0.000e+00"
+ },
+ {
+  "fixture": "4b cross DOES move the memory field (it is not a no-op)",
+  "PASS": true,
+  "detail": "max |dMf| = 0.2014"
+ },
+ {
+  "fixture": "5 ERASE_A zeroes exactly half the lattice in Mf",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "5b ERASE_B is the exact complement",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "5c ERASE_A then ERASE_B == total erasure",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "5d erasure touches nothing but Mf",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "6 ERASE_SHAM is a bit-exact no-op on the whole state",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "7 DUAL_AB and DUAL_BA have an IDENTICAL global forcing time series",
+  "PASS": true,
+  "detail": "120 steps compared"
+ },
+ {
+  "fixture": "7b DUAL_AA has a DIFFERENT global forcing series (it is not a global-forcing control)",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "8 a one-sided N drive raises N far more at the driven site than at the other",
+  "PASS": true,
+  "detail": "mean |dN| near A = 1.6532 vs near B = 0.0000  ratio = 2653841.2x"
+ },
+ {
+  "fixture": "8b and it writes memory far more at the driven site",
+  "PASS": true,
+  "detail": "mean |dMf| near A = 0.03124 vs near B = 0.00000  ratio = 28197.2x"
+ },
+ {
+  "fixture": "9 every online reader and operation is blind to provenance C and to mem()",
+  "PASS": true,
+  "detail": "audited ['_feat_site', '_perturb_N', 'erase_half', 'erase_sham', 'read_sites', 'reciprocal_cross', 'reciprocal_cross_env', 'reciprocal_cross_roll', 'response_at_sites']"
+ },
+ {
+  "fixture": "9b scalars() uses mem() (declared privileged diagnostic) and NEVER provenance C",
+  "PASS": true,
+  "detail": "mem=True C=False"
+ },
+ {
+  "fixture": "9c CROSS_ENV permutes c and N exactly and leaves Mf, rho, U, V, C untouched",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "9d CROSS_ENV applied twice is the IDENTITY (bit-exact)",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "10 the probe is deterministic (bit-exact on repetition)",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "11 a zero-amplitude probe gives an exactly zero causal response (intervention null)",
+  "PASS": true,
+  "detail": "max |R| = 0.000e+00"
+ },
+ {
+  "fixture": "12 pulse-chase cohorts sum to rho exactly after 100 steps",
+  "PASS": true,
+  "detail": "max |residual| = 1.284e-13"
+ },
+ {
+  "fixture": "13 the settled founded world holds exactly two components, one per frozen site",
+  "PASS": true,
+  "detail": "n_components = 2, d(A) = 0.10, d(B) = 0.02"
+ },
+ {
+  "fixture": "14 the two components are separately sized and neither is privileged",
+  "PASS": true,
+  "detail": "sizes = (52, 41)"
+ }
+]

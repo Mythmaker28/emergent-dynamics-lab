@@ -1,0 +1,1144 @@
+{
+ "program": "P09_DOSE_YOKED_GUARD_SIGN_CLOSURE",
+ "pass": "STABILIZATION_ENGINE_FREE",
+ "engine_invocations_added": 0,
+ "trajectories_added": 0,
+ "PAIRING_AUDIT": {
+  "PAIRED": true,
+  "per_cell": {
+   "LAW_16|L24": {
+    "blocks": [
+     "LAW_16_L24_S890000",
+     "LAW_16_L24_S890001",
+     "LAW_16_L24_S890002",
+     "LAW_16_L24_S890003",
+     "LAW_16_L24_S890004",
+     "LAW_16_L24_S890005",
+     "LAW_16_L24_S890006",
+     "LAW_16_L24_S890007",
+     "LAW_16_L24_S890008"
+    ],
+    "n": 9,
+    "all_arms_share_the_same_blocks": true,
+    "per_arm_counts": {
+     "SHAM": 9,
+     "PARENT_FULL": 9,
+     "FLOOR_FULL": 9,
+     "PARENT_Q_REPLAY": 9,
+     "FLOOR_Q_REPLAY": 9,
+     "PARENT_LOW_CONSTANT": 9
+    }
+   },
+   "LAW_16|L32": {
+    "blocks": [
+     "LAW_16_L32_S890000",
+     "LAW_16_L32_S890001",
+     "LAW_16_L32_S890002",
+     "LAW_16_L32_S890003",
+     "LAW_16_L32_S890004",
+     "LAW_16_L32_S890005",
+     "LAW_16_L32_S890006",
+     "LAW_16_L32_S890007",
+     "LAW_16_L32_S890008"
+    ],
+    "n": 9,
+    "all_arms_share_the_same_blocks": true,
+    "per_arm_counts": {
+     "SHAM": 9,
+     "PARENT_FULL": 9,
+     "FLOOR_FULL": 9,
+     "PARENT_Q_REPLAY": 9,
+     "FLOOR_Q_REPLAY": 9,
+     "PARENT_LOW_CONSTANT": 9
+    }
+   },
+   "LAW_29|L24": {
+    "blocks": [
+     "LAW_29_L24_S890000",
+     "LAW_29_L24_S890001",
+     "LAW_29_L24_S890002",
+     "LAW_29_L24_S890003",
+     "LAW_29_L24_S890004",
+     "LAW_29_L24_S890005",
+     "LAW_29_L24_S890006",
+     "LAW_29_L24_S890007",
+     "LAW_29_L24_S890008"
+    ],
+    "n": 9,
+    "all_arms_share_the_same_blocks": true,
+    "per_arm_counts": {
+     "SHAM": 9,
+     "PARENT_FULL": 9,
+     "FLOOR_FULL": 9,
+     "PARENT_Q_REPLAY": 9,
+     "FLOOR_Q_REPLAY": 9,
+     "PARENT_LOW_CONSTANT": 9
+    }
+   },
+   "LAW_29|L32": {
+    "blocks": [
+     "LAW_29_L32_S890000",
+     "LAW_29_L32_S890001",
+     "LAW_29_L32_S890002",
+     "LAW_29_L32_S890003",
+     "LAW_29_L32_S890004",
+     "LAW_29_L32_S890005",
+     "LAW_29_L32_S890006",
+     "LAW_29_L32_S890007",
+     "LAW_29_L32_S890008"
+    ],
+    "n": 9,
+    "all_arms_share_the_same_blocks": true,
+    "per_arm_counts": {
+     "SHAM": 9,
+     "PARENT_FULL": 9,
+     "FLOOR_FULL": 9,
+     "PARENT_Q_REPLAY": 9,
+     "FLOOR_Q_REPLAY": 9,
+     "PARENT_LOW_CONSTANT": 9
+    }
+   }
+  },
+  "M256_identity_check": {
+   "LAW_16|L24": {
+    "blocks_with_a_unique_M256": 9,
+    "n_blocks": 9
+   },
+   "LAW_16|L32": {
+    "blocks_with_a_unique_M256": 9,
+    "n_blocks": 9
+   },
+   "LAW_29|L24": {
+    "blocks_with_a_unique_M256": 9,
+    "n_blocks": 9
+   },
+   "LAW_29|L32": {
+    "blocks_with_a_unique_M256": 9,
+    "n_blocks": 9
+   }
+  },
+  "consequence": "The independent-sample Fisher exact test used for SURVIVAL_ITT in p09_analyse.py is inappropriate for this design. Survival must be tested with the exact paired test on discordant blocks (McNemar exact). The UCR and delivered-mass tests were already paired sign tests and are unaffected."
+ },
+ "PAIRED_SURVIVAL_TESTS": {
+  "LAW_16|L24": {
+   "ALLOCATION": {
+    "reference_arm": "PARENT_Q_REPLAY",
+    "test_arm": "FLOOR_Q_REPLAY",
+    "survival": {
+     "PARENT_Q_REPLAY": "9/9",
+     "FLOOR_Q_REPLAY": "0/9"
+    },
+    "difference_blocks": -9,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 9,
+     "c_only_B": 0,
+     "n_discordant": 9,
+     "p_exact": 0.00390625
+    },
+    "SUPERSEDED_unpaired_fisher_p": 4.113533525298231e-05,
+    "discordant_blocks": [
+     "LAW_16_L24_S890000",
+     "LAW_16_L24_S890001",
+     "LAW_16_L24_S890002",
+     "LAW_16_L24_S890003",
+     "LAW_16_L24_S890004",
+     "LAW_16_L24_S890005",
+     "LAW_16_L24_S890006",
+     "LAW_16_L24_S890007",
+     "LAW_16_L24_S890008"
+    ]
+   },
+   "TEMPORAL_PROFILE": {
+    "reference_arm": "PARENT_LOW_CONSTANT",
+    "test_arm": "PARENT_Q_REPLAY",
+    "survival": {
+     "PARENT_LOW_CONSTANT": "9/9",
+     "PARENT_Q_REPLAY": "9/9"
+    },
+    "difference_blocks": 0,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 0,
+     "c_only_B": 0,
+     "n_discordant": 0,
+     "p_exact": 1.0,
+     "note": "no discordant block; the test is uninformative by design"
+    },
+    "SUPERSEDED_unpaired_fisher_p": 1.0,
+    "discordant_blocks": []
+   },
+   "DOSE_REDUCTION": {
+    "reference_arm": "PARENT_FULL",
+    "test_arm": "PARENT_LOW_CONSTANT",
+    "survival": {
+     "PARENT_FULL": "9/9",
+     "PARENT_LOW_CONSTANT": "9/9"
+    },
+    "difference_blocks": 0,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 0,
+     "c_only_B": 0,
+     "n_discordant": 0,
+     "p_exact": 1.0,
+     "note": "no discordant block; the test is uninformative by design"
+    },
+    "SUPERSEDED_unpaired_fisher_p": 1.0,
+    "discordant_blocks": []
+   },
+   "P08_REPLICATION": {
+    "reference_arm": "PARENT_FULL",
+    "test_arm": "FLOOR_FULL",
+    "survival": {
+     "PARENT_FULL": "9/9",
+     "FLOOR_FULL": "0/9"
+    },
+    "difference_blocks": -9,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 9,
+     "c_only_B": 0,
+     "n_discordant": 9,
+     "p_exact": 0.00390625
+    },
+    "SUPERSEDED_unpaired_fisher_p": 4.113533525298231e-05,
+    "discordant_blocks": [
+     "LAW_16_L24_S890000",
+     "LAW_16_L24_S890001",
+     "LAW_16_L24_S890002",
+     "LAW_16_L24_S890003",
+     "LAW_16_L24_S890004",
+     "LAW_16_L24_S890005",
+     "LAW_16_L24_S890006",
+     "LAW_16_L24_S890007",
+     "LAW_16_L24_S890008"
+    ]
+   }
+  },
+  "LAW_16|L32": {
+   "ALLOCATION": {
+    "reference_arm": "PARENT_Q_REPLAY",
+    "test_arm": "FLOOR_Q_REPLAY",
+    "survival": {
+     "PARENT_Q_REPLAY": "9/9",
+     "FLOOR_Q_REPLAY": "0/9"
+    },
+    "difference_blocks": -9,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 9,
+     "c_only_B": 0,
+     "n_discordant": 9,
+     "p_exact": 0.00390625
+    },
+    "SUPERSEDED_unpaired_fisher_p": 4.113533525298231e-05,
+    "discordant_blocks": [
+     "LAW_16_L32_S890000",
+     "LAW_16_L32_S890001",
+     "LAW_16_L32_S890002",
+     "LAW_16_L32_S890003",
+     "LAW_16_L32_S890004",
+     "LAW_16_L32_S890005",
+     "LAW_16_L32_S890006",
+     "LAW_16_L32_S890007",
+     "LAW_16_L32_S890008"
+    ]
+   },
+   "TEMPORAL_PROFILE": {
+    "reference_arm": "PARENT_LOW_CONSTANT",
+    "test_arm": "PARENT_Q_REPLAY",
+    "survival": {
+     "PARENT_LOW_CONSTANT": "9/9",
+     "PARENT_Q_REPLAY": "9/9"
+    },
+    "difference_blocks": 0,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 0,
+     "c_only_B": 0,
+     "n_discordant": 0,
+     "p_exact": 1.0,
+     "note": "no discordant block; the test is uninformative by design"
+    },
+    "SUPERSEDED_unpaired_fisher_p": 1.0,
+    "discordant_blocks": []
+   },
+   "DOSE_REDUCTION": {
+    "reference_arm": "PARENT_FULL",
+    "test_arm": "PARENT_LOW_CONSTANT",
+    "survival": {
+     "PARENT_FULL": "9/9",
+     "PARENT_LOW_CONSTANT": "9/9"
+    },
+    "difference_blocks": 0,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 0,
+     "c_only_B": 0,
+     "n_discordant": 0,
+     "p_exact": 1.0,
+     "note": "no discordant block; the test is uninformative by design"
+    },
+    "SUPERSEDED_unpaired_fisher_p": 1.0,
+    "discordant_blocks": []
+   },
+   "P08_REPLICATION": {
+    "reference_arm": "PARENT_FULL",
+    "test_arm": "FLOOR_FULL",
+    "survival": {
+     "PARENT_FULL": "9/9",
+     "FLOOR_FULL": "0/9"
+    },
+    "difference_blocks": -9,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 9,
+     "c_only_B": 0,
+     "n_discordant": 9,
+     "p_exact": 0.00390625
+    },
+    "SUPERSEDED_unpaired_fisher_p": 4.113533525298231e-05,
+    "discordant_blocks": [
+     "LAW_16_L32_S890000",
+     "LAW_16_L32_S890001",
+     "LAW_16_L32_S890002",
+     "LAW_16_L32_S890003",
+     "LAW_16_L32_S890004",
+     "LAW_16_L32_S890005",
+     "LAW_16_L32_S890006",
+     "LAW_16_L32_S890007",
+     "LAW_16_L32_S890008"
+    ]
+   }
+  },
+  "LAW_29|L24": {
+   "ALLOCATION": {
+    "reference_arm": "PARENT_Q_REPLAY",
+    "test_arm": "FLOOR_Q_REPLAY",
+    "survival": {
+     "PARENT_Q_REPLAY": "6/9",
+     "FLOOR_Q_REPLAY": "9/9"
+    },
+    "difference_blocks": 3,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 0,
+     "c_only_B": 3,
+     "n_discordant": 3,
+     "p_exact": 0.25
+    },
+    "SUPERSEDED_unpaired_fisher_p": 0.20588235294117646,
+    "discordant_blocks": [
+     "LAW_29_L24_S890000",
+     "LAW_29_L24_S890001",
+     "LAW_29_L24_S890008"
+    ]
+   },
+   "TEMPORAL_PROFILE": {
+    "reference_arm": "PARENT_LOW_CONSTANT",
+    "test_arm": "PARENT_Q_REPLAY",
+    "survival": {
+     "PARENT_LOW_CONSTANT": "9/9",
+     "PARENT_Q_REPLAY": "6/9"
+    },
+    "difference_blocks": -3,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 3,
+     "c_only_B": 0,
+     "n_discordant": 3,
+     "p_exact": 0.25
+    },
+    "SUPERSEDED_unpaired_fisher_p": 0.20588235294117646,
+    "discordant_blocks": [
+     "LAW_29_L24_S890000",
+     "LAW_29_L24_S890001",
+     "LAW_29_L24_S890008"
+    ]
+   },
+   "DOSE_REDUCTION": {
+    "reference_arm": "PARENT_FULL",
+    "test_arm": "PARENT_LOW_CONSTANT",
+    "survival": {
+     "PARENT_FULL": "1/9",
+     "PARENT_LOW_CONSTANT": "9/9"
+    },
+    "difference_blocks": 8,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 0,
+     "c_only_B": 8,
+     "n_discordant": 8,
+     "p_exact": 0.0078125
+    },
+    "SUPERSEDED_unpaired_fisher_p": 0.00041135335252982314,
+    "discordant_blocks": [
+     "LAW_29_L24_S890000",
+     "LAW_29_L24_S890001",
+     "LAW_29_L24_S890002",
+     "LAW_29_L24_S890003",
+     "LAW_29_L24_S890005",
+     "LAW_29_L24_S890006",
+     "LAW_29_L24_S890007",
+     "LAW_29_L24_S890008"
+    ]
+   },
+   "P08_REPLICATION": {
+    "reference_arm": "PARENT_FULL",
+    "test_arm": "FLOOR_FULL",
+    "survival": {
+     "PARENT_FULL": "1/9",
+     "FLOOR_FULL": "9/9"
+    },
+    "difference_blocks": 8,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 0,
+     "c_only_B": 8,
+     "n_discordant": 8,
+     "p_exact": 0.0078125
+    },
+    "SUPERSEDED_unpaired_fisher_p": 0.00041135335252982314,
+    "discordant_blocks": [
+     "LAW_29_L24_S890000",
+     "LAW_29_L24_S890001",
+     "LAW_29_L24_S890002",
+     "LAW_29_L24_S890003",
+     "LAW_29_L24_S890005",
+     "LAW_29_L24_S890006",
+     "LAW_29_L24_S890007",
+     "LAW_29_L24_S890008"
+    ]
+   }
+  },
+  "LAW_29|L32": {
+   "ALLOCATION": {
+    "reference_arm": "PARENT_Q_REPLAY",
+    "test_arm": "FLOOR_Q_REPLAY",
+    "survival": {
+     "PARENT_Q_REPLAY": "9/9",
+     "FLOOR_Q_REPLAY": "9/9"
+    },
+    "difference_blocks": 0,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 0,
+     "c_only_B": 0,
+     "n_discordant": 0,
+     "p_exact": 1.0,
+     "note": "no discordant block; the test is uninformative by design"
+    },
+    "SUPERSEDED_unpaired_fisher_p": 1.0,
+    "discordant_blocks": []
+   },
+   "TEMPORAL_PROFILE": {
+    "reference_arm": "PARENT_LOW_CONSTANT",
+    "test_arm": "PARENT_Q_REPLAY",
+    "survival": {
+     "PARENT_LOW_CONSTANT": "9/9",
+     "PARENT_Q_REPLAY": "9/9"
+    },
+    "difference_blocks": 0,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 0,
+     "c_only_B": 0,
+     "n_discordant": 0,
+     "p_exact": 1.0,
+     "note": "no discordant block; the test is uninformative by design"
+    },
+    "SUPERSEDED_unpaired_fisher_p": 1.0,
+    "discordant_blocks": []
+   },
+   "DOSE_REDUCTION": {
+    "reference_arm": "PARENT_FULL",
+    "test_arm": "PARENT_LOW_CONSTANT",
+    "survival": {
+     "PARENT_FULL": "1/9",
+     "PARENT_LOW_CONSTANT": "9/9"
+    },
+    "difference_blocks": 8,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 0,
+     "c_only_B": 8,
+     "n_discordant": 8,
+     "p_exact": 0.0078125
+    },
+    "SUPERSEDED_unpaired_fisher_p": 0.00041135335252982314,
+    "discordant_blocks": [
+     "LAW_29_L32_S890000",
+     "LAW_29_L32_S890001",
+     "LAW_29_L32_S890003",
+     "LAW_29_L32_S890004",
+     "LAW_29_L32_S890005",
+     "LAW_29_L32_S890006",
+     "LAW_29_L32_S890007",
+     "LAW_29_L32_S890008"
+    ]
+   },
+   "P08_REPLICATION": {
+    "reference_arm": "PARENT_FULL",
+    "test_arm": "FLOOR_FULL",
+    "survival": {
+     "PARENT_FULL": "1/9",
+     "FLOOR_FULL": "9/9"
+    },
+    "difference_blocks": 8,
+    "PAIRED_McNemar_exact": {
+     "n_pairs": 9,
+     "b_only_A": 0,
+     "c_only_B": 8,
+     "n_discordant": 8,
+     "p_exact": 0.0078125
+    },
+    "SUPERSEDED_unpaired_fisher_p": 0.00041135335252982314,
+    "discordant_blocks": [
+     "LAW_29_L32_S890000",
+     "LAW_29_L32_S890001",
+     "LAW_29_L32_S890003",
+     "LAW_29_L32_S890004",
+     "LAW_29_L32_S890005",
+     "LAW_29_L32_S890006",
+     "LAW_29_L32_S890007",
+     "LAW_29_L32_S890008"
+    ]
+   }
+  }
+ },
+ "DOSE_COMPARABILITY_vs_EQUIVALENCE": {
+  "LAW_16|L24": {
+   "SEALED_COMPARABILITY_GATE": {
+    "what_it_is": "a containment gate: the median paired ratio inside the inner band AND its 95% block-bootstrap CI inside the outer band. It is NOT a test of the equivalence hypothesis and yields no equivalence p.",
+    "median_ratio": 1.0009114212541195,
+    "bootstrap_ci95": [
+     0.8400714333380086,
+     1.0062307123117493
+    ],
+    "inner_band": [
+     0.847,
+     1.18
+    ],
+    "outer_band": [
+     0.781,
+     1.28
+    ],
+    "GATE_PASSES": true
+   },
+   "POST_HOC_TOST_log_ratio": {
+    "n": 9,
+    "mean_log_ratio": -0.06537691102651771,
+    "geometric_mean_ratio": 0.9367143388703062,
+    "se": 0.03639252702550844,
+    "ci90_log": [
+     -0.13305063465680195,
+     0.0022968126037665043
+    ],
+    "ci90_ratio": [
+     0.8754207643565599,
+     1.0022994522984094
+    ],
+    "bounds_ratio": [
+     0.847,
+     1.18
+    ],
+    "t_lower": 2.7664380995855953,
+    "t_upper": 6.344471471911074,
+    "EQUIVALENCE_ESTABLISHED_post_hoc": true,
+    "status": "POST_HOC_NOT_SEALED"
+   },
+   "per_block_ratios": {
+    "LAW_16_L24_S890000": 0.9311800210128313,
+    "LAW_16_L24_S890001": 0.9358433351976243,
+    "LAW_16_L24_S890002": 1.0177497965209477,
+    "LAW_16_L24_S890003": 1.0009114212541195,
+    "LAW_16_L24_S890004": 0.8400714333380086,
+    "LAW_16_L24_S890005": 1.0017296292890066,
+    "LAW_16_L24_S890006": 1.0062307123117493,
+    "LAW_16_L24_S890007": 1.0030100463628728,
+    "LAW_16_L24_S890008": 0.736413016332749
+   }
+  },
+  "LAW_16|L32": {
+   "SEALED_COMPARABILITY_GATE": {
+    "what_it_is": "a containment gate: the median paired ratio inside the inner band AND its 95% block-bootstrap CI inside the outer band. It is NOT a test of the equivalence hypothesis and yields no equivalence p.",
+    "median_ratio": 0.9058812523752965,
+    "bootstrap_ci95": [
+     0.8469482095706851,
+     1.0449060895347162
+    ],
+    "inner_band": [
+     0.847,
+     1.18
+    ],
+    "outer_band": [
+     0.781,
+     1.28
+    ],
+    "GATE_PASSES": true
+   },
+   "POST_HOC_TOST_log_ratio": {
+    "n": 9,
+    "mean_log_ratio": -0.06326055905953598,
+    "geometric_mean_ratio": 0.93869885533082,
+    "se": 0.033093715512388856,
+    "ci90_log": [
+     -0.12479997774059867,
+     -0.0017211403784732834
+    ],
+    "ci90_ratio": [
+     0.8826734392640092,
+     0.9982803399342308
+    ],
+    "bounds_ratio": [
+     0.847,
+     1.18
+    ],
+    "t_lower": 3.10614942078852,
+    "t_upper": 6.912943862452249,
+    "EQUIVALENCE_ESTABLISHED_post_hoc": true,
+    "status": "POST_HOC_NOT_SEALED"
+   },
+   "per_block_ratios": {
+    "LAW_16_L32_S890000": 1.0183343092935986,
+    "LAW_16_L32_S890001": 0.8674456318519886,
+    "LAW_16_L32_S890002": 0.8469482095706851,
+    "LAW_16_L32_S890003": 1.0380230070337273,
+    "LAW_16_L32_S890004": 1.0467827317217506,
+    "LAW_16_L32_S890005": 0.818619565844823,
+    "LAW_16_L32_S890006": 0.8983651954435667,
+    "LAW_16_L32_S890007": 0.9058812523752965,
+    "LAW_16_L32_S890008": 1.0449060895347162
+   }
+  },
+  "LAW_29|L24": {
+   "SEALED_COMPARABILITY_GATE": {
+    "what_it_is": "a containment gate: the median paired ratio inside the inner band AND its 95% block-bootstrap CI inside the outer band. It is NOT a test of the equivalence hypothesis and yields no equivalence p.",
+    "median_ratio": 0.7963157731679239,
+    "bootstrap_ci95": [
+     0.691519943867333,
+     0.8827068466265181
+    ],
+    "inner_band": [
+     0.847,
+     1.18
+    ],
+    "outer_band": [
+     0.781,
+     1.28
+    ],
+    "GATE_PASSES": false
+   },
+   "POST_HOC_TOST_log_ratio": {
+    "n": 9,
+    "mean_log_ratio": -0.2525038881558988,
+    "geometric_mean_ratio": 0.776853192307119,
+    "se": 0.0375121805506992,
+    "ci90_log": [
+     -0.3222596634989515,
+     -0.1827481128128461
+    ],
+    "ci90_ratio": [
+     0.7245100370914392,
+     0.8329779457859944
+    ],
+    "bounds_ratio": [
+     0.847,
+     1.18
+    ],
+    "t_lower": -2.3045662117395826,
+    "t_upper": 11.143535792820783,
+    "EQUIVALENCE_ESTABLISHED_post_hoc": false,
+    "status": "POST_HOC_NOT_SEALED"
+   },
+   "per_block_ratios": {
+    "LAW_29_L24_S890000": 0.7089945006746624,
+    "LAW_29_L24_S890001": 0.718464692344903,
+    "LAW_29_L24_S890002": 0.8228513609830462,
+    "LAW_29_L24_S890003": 0.9126554962420829,
+    "LAW_29_L24_S890004": 0.691519943867333,
+    "LAW_29_L24_S890005": 0.8827068466265181,
+    "LAW_29_L24_S890006": 0.8296612024116217,
+    "LAW_29_L24_S890007": 0.7963157731679239,
+    "LAW_29_L24_S890008": 0.6679850230639222
+   }
+  },
+  "LAW_29|L32": {
+   "SEALED_COMPARABILITY_GATE": {
+    "what_it_is": "a containment gate: the median paired ratio inside the inner band AND its 95% block-bootstrap CI inside the outer band. It is NOT a test of the equivalence hypothesis and yields no equivalence p.",
+    "median_ratio": 0.7674697795864315,
+    "bootstrap_ci95": [
+     0.7049138273113579,
+     0.8122531088529794
+    ],
+    "inner_band": [
+     0.847,
+     1.18
+    ],
+    "outer_band": [
+     0.781,
+     1.28
+    ],
+    "GATE_PASSES": false
+   },
+   "POST_HOC_TOST_log_ratio": {
+    "n": 9,
+    "mean_log_ratio": -0.2659977219032535,
+    "geometric_mean_ratio": 0.7664408735254907,
+    "se": 0.027683319953438465,
+    "ci90_log": [
+     -0.31747623952267,
+     -0.214519204283837
+    ],
+    "ci90_ratio": [
+     0.7279839778156193,
+     0.8069293150834969
+    ],
+    "bounds_ratio": [
+     0.847,
+     1.18
+    ],
+    "t_lower": -3.610229471799937,
+    "t_upper": 15.587442586604572,
+    "EQUIVALENCE_ESTABLISHED_post_hoc": false,
+    "status": "POST_HOC_NOT_SEALED"
+   },
+   "per_block_ratios": {
+    "LAW_29_L32_S890000": 0.8876448353505961,
+    "LAW_29_L32_S890001": 0.7049138273113579,
+    "LAW_29_L32_S890002": 0.714769214262254,
+    "LAW_29_L32_S890003": 0.8122531088529794,
+    "LAW_29_L32_S890004": 0.8091645737129779,
+    "LAW_29_L32_S890005": 0.7137363531450462,
+    "LAW_29_L32_S890006": 0.7021696782810262,
+    "LAW_29_L32_S890007": 0.7674697795864315,
+    "LAW_29_L32_S890008": 0.8072301985992841
+   }
+  }
+ },
+ "MASS_ACCOUNTING_SOURCE_AND_SINK_SEPARATE": {
+  "LAW_16|L24": {
+   "SHAM": {
+    "attempted_over_M256": 0.0,
+    "SINK_realized_over_M256": 0.0,
+    "SOURCE_realized_over_M256": 0.0,
+    "source_minus_sink_over_M256": 0,
+    "n_events": 0.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.0,
+    "UCR": 0.0,
+    "survival_ITT": "9/9"
+   },
+   "PARENT_FULL": {
+    "attempted_over_M256": 3.999999999999995,
+    "SINK_realized_over_M256": 0.6103819182137245,
+    "SOURCE_realized_over_M256": 0.6103819182137245,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 248.0,
+    "n_rejected": 72.0,
+    "futile_fraction": 0.18670194453675737,
+    "UCR": 0.38546417633225744,
+    "survival_ITT": "9/9"
+   },
+   "FLOOR_FULL": {
+    "attempted_over_M256": 3.999999999999995,
+    "SINK_realized_over_M256": 0.3024815018919515,
+    "SOURCE_realized_over_M256": 0.3024815018919515,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.040556664828577026,
+    "UCR": 0.21708102100581597,
+    "survival_ITT": "0/9"
+   },
+   "PARENT_Q_REPLAY": {
+    "attempted_over_M256": 0.3061426656200532,
+    "SINK_realized_over_M256": 0.2948559862881051,
+    "SOURCE_realized_over_M256": 0.2948559862881051,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.005836477211868924,
+    "UCR": 0.2264733663570988,
+    "survival_ITT": "9/9"
+   },
+   "FLOOR_Q_REPLAY": {
+    "attempted_over_M256": 0.3061426656200532,
+    "SINK_realized_over_M256": 0.2736869575219772,
+    "SOURCE_realized_over_M256": 0.27368695752197725,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.026608459622780162,
+    "UCR": 0.2015008382034794,
+    "survival_ITT": "0/9"
+   },
+   "PARENT_LOW_CONSTANT": {
+    "attempted_over_M256": 0.30614266562005404,
+    "SINK_realized_over_M256": 0.2917954223845208,
+    "SOURCE_realized_over_M256": 0.2917954223845208,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.0002446795524353358,
+    "UCR": 0.24377169566379545,
+    "survival_ITT": "9/9"
+   }
+  },
+  "LAW_16|L32": {
+   "SHAM": {
+    "attempted_over_M256": 0.0,
+    "SINK_realized_over_M256": 0.0,
+    "SOURCE_realized_over_M256": 0.0,
+    "source_minus_sink_over_M256": 0,
+    "n_events": 0.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.0,
+    "UCR": 0.0,
+    "survival_ITT": "9/9"
+   },
+   "PARENT_FULL": {
+    "attempted_over_M256": 4.00000000000001,
+    "SINK_realized_over_M256": 0.4390679117290673,
+    "SOURCE_realized_over_M256": 0.4390679117290674,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.058526191392785115,
+    "UCR": 0.34119509633771006,
+    "survival_ITT": "9/9"
+   },
+   "FLOOR_FULL": {
+    "attempted_over_M256": 4.00000000000001,
+    "SINK_realized_over_M256": 0.3046959803301306,
+    "SOURCE_realized_over_M256": 0.3046959803301306,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.058180344975219116,
+    "UCR": 0.2236687120937463,
+    "survival_ITT": "0/9"
+   },
+   "PARENT_Q_REPLAY": {
+    "attempted_over_M256": 0.30827186510969645,
+    "SINK_realized_over_M256": 0.2981914634445445,
+    "SOURCE_realized_over_M256": 0.29819146344454456,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.003307737881196815,
+    "UCR": 0.24556873514642696,
+    "survival_ITT": "9/9"
+   },
+   "FLOOR_Q_REPLAY": {
+    "attempted_over_M256": 0.30827186510969645,
+    "SINK_realized_over_M256": 0.2792505110225603,
+    "SOURCE_realized_over_M256": 0.2792505110225603,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.027438936061521514,
+    "UCR": 0.2165236107536325,
+    "survival_ITT": "0/9"
+   },
+   "PARENT_LOW_CONSTANT": {
+    "attempted_over_M256": 0.3082718651096966,
+    "SINK_realized_over_M256": 0.3082718651096966,
+    "SOURCE_realized_over_M256": 0.3082718651096966,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.006487318432296579,
+    "UCR": 0.26731847218660937,
+    "survival_ITT": "9/9"
+   }
+  },
+  "LAW_29|L24": {
+   "SHAM": {
+    "attempted_over_M256": 0.0,
+    "SINK_realized_over_M256": 0.0,
+    "SOURCE_realized_over_M256": 0.0,
+    "source_minus_sink_over_M256": 0,
+    "n_events": 0.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.0,
+    "UCR": 0.0,
+    "survival_ITT": "9/9"
+   },
+   "PARENT_FULL": {
+    "attempted_over_M256": 4.000000000000003,
+    "SINK_realized_over_M256": 0.4652660852515504,
+    "SOURCE_realized_over_M256": 0.4652660852515504,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 64.0,
+    "n_rejected": 256.0,
+    "futile_fraction": 0.08808151097810446,
+    "UCR": 0.0,
+    "survival_ITT": "1/9"
+   },
+   "FLOOR_FULL": {
+    "attempted_over_M256": 4.000000000000003,
+    "SINK_realized_over_M256": 0.23113311230858333,
+    "SOURCE_realized_over_M256": 0.23113311230858333,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.003901981500512628,
+    "UCR": 0.11730178629946995,
+    "survival_ITT": "9/9"
+   },
+   "PARENT_Q_REPLAY": {
+    "attempted_over_M256": 0.3061426656200536,
+    "SINK_realized_over_M256": 0.3061426656200536,
+    "SOURCE_realized_over_M256": 0.3061426656200536,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.005349782784036113,
+    "UCR": 0.14710525301012567,
+    "survival_ITT": "6/9"
+   },
+   "FLOOR_Q_REPLAY": {
+    "attempted_over_M256": 0.3061426656200536,
+    "SINK_realized_over_M256": 0.23089262223006463,
+    "SOURCE_realized_over_M256": 0.23089262223006454,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.0038177568824100594,
+    "UCR": 0.11719334965424859,
+    "survival_ITT": "9/9"
+   },
+   "PARENT_LOW_CONSTANT": {
+    "attempted_over_M256": 0.3061426656200545,
+    "SINK_realized_over_M256": 0.20807350746671896,
+    "SOURCE_realized_over_M256": 0.20807350746671896,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 226.0,
+    "n_rejected": 94.0,
+    "futile_fraction": 0.0013077374234372733,
+    "UCR": 0.12824041180259854,
+    "survival_ITT": "9/9"
+   }
+  },
+  "LAW_29|L32": {
+   "SHAM": {
+    "attempted_over_M256": 0.0,
+    "SINK_realized_over_M256": 0.0,
+    "SOURCE_realized_over_M256": 0.0,
+    "source_minus_sink_over_M256": 0,
+    "n_events": 0.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.0,
+    "UCR": 0.0,
+    "survival_ITT": "9/9"
+   },
+   "PARENT_FULL": {
+    "attempted_over_M256": 4.000000000000001,
+    "SINK_realized_over_M256": 0.5214162668856358,
+    "SOURCE_realized_over_M256": 0.5214162668856358,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 126.0,
+    "n_rejected": 194.0,
+    "futile_fraction": 0.13798937189692392,
+    "UCR": 0.0,
+    "survival_ITT": "1/9"
+   },
+   "FLOOR_FULL": {
+    "attempted_over_M256": 4.000000000000001,
+    "SINK_realized_over_M256": 0.2519656977930514,
+    "SOURCE_realized_over_M256": 0.2519656977930514,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.010332774076024176,
+    "UCR": 0.15645862327111507,
+    "survival_ITT": "9/9"
+   },
+   "PARENT_Q_REPLAY": {
+    "attempted_over_M256": 0.308271865109697,
+    "SINK_realized_over_M256": 0.30827186510969695,
+    "SOURCE_realized_over_M256": 0.30827186510969695,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.00291339469394345,
+    "UCR": 0.1996159382129068,
+    "survival_ITT": "9/9"
+   },
+   "FLOOR_Q_REPLAY": {
+    "attempted_over_M256": 0.308271865109697,
+    "SINK_realized_over_M256": 0.24361239460965142,
+    "SOURCE_realized_over_M256": 0.24361239460965142,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 320.0,
+    "n_rejected": 0.0,
+    "futile_fraction": 0.004170402546833465,
+    "UCR": 0.15246497660912658,
+    "survival_ITT": "9/9"
+   },
+   "PARENT_LOW_CONSTANT": {
+    "attempted_over_M256": 0.308271865109698,
+    "SINK_realized_over_M256": 0.23806290934912516,
+    "SOURCE_realized_over_M256": 0.23806290934912516,
+    "source_minus_sink_over_M256": 0.0,
+    "n_events": 244.0,
+    "n_rejected": 76.0,
+    "futile_fraction": 0.0001103200660664273,
+    "UCR": 0.17529640301640145,
+    "survival_ITT": "9/9"
+   }
+  }
+ },
+ "MANDATED_STATEMENTS": {
+  "A_low_unguarded_dose_is_sufficient": {
+   "statement": "Sous LAW_29, une dose basse SANS AUCUNE GARDE suffit a reproduire le sauvetage attribue au plancher : PARENT_LOW_CONSTANT, dont la regle d'allocation est celle du parent, survit comme FLOOR_FULL.",
+   "evidence": {
+    "L24": {
+     "PARENT_FULL": "1/9",
+     "PARENT_LOW_CONSTANT": "9/9",
+     "FLOOR_FULL": "9/9",
+     "McNemar_LOWCONST_vs_FULL": {
+      "n_pairs": 9,
+      "b_only_A": 0,
+      "c_only_B": 8,
+      "n_discordant": 8,
+      "p_exact": 0.0078125
+     }
+    },
+    "L32": {
+     "PARENT_FULL": "1/9",
+     "PARENT_LOW_CONSTANT": "9/9",
+     "FLOOR_FULL": "9/9",
+     "McNemar_LOWCONST_vs_FULL": {
+      "n_pairs": 9,
+      "b_only_A": 0,
+      "c_only_B": 8,
+      "n_discordant": 8,
+      "p_exact": 0.0078125
+     }
+    }
+   },
+   "supported": true
+  },
+  "B_exclusive_dose_mediation_not_established": {
+   "statement": "La mediation exclusive par la dose n'est PAS etablie. Sous LAW_29 la porte de comparabilite de dose ECHOUE (le plancher delivre environ 23 % de moins que le parent a requetes identiques), donc le contraste d'allocation n'est pas a dose egale et aucune decomposition dose/allocation n'est identifiee.",
+   "evidence": {
+    "LAW_16|L24": {
+     "median_ratio": 1.0009114212541195,
+     "GATE_PASSES": true,
+     "post_hoc_TOST": true
+    },
+    "LAW_16|L32": {
+     "median_ratio": 0.9058812523752965,
+     "GATE_PASSES": true,
+     "post_hoc_TOST": true
+    },
+    "LAW_29|L24": {
+     "median_ratio": 0.7963157731679239,
+     "GATE_PASSES": false,
+     "post_hoc_TOST": false
+    },
+    "LAW_29|L32": {
+     "median_ratio": 0.7674697795864315,
+     "GATE_PASSES": false,
+     "post_hoc_TOST": false
+    }
+   },
+   "supported": true
+  },
+  "C_floor_specific_allocation_non_identifiable": {
+   "statement": "Sous LAW_29, l'allocation specifique au plancher reste NON IDENTIFIABLE. C'est la disposition scellee avant execution pour le cas ou la porte de dose echoue.",
+   "sealed_verdict": "FLOOR_SPECIFIC_MECHANISM_NOT_IDENTIFIABLE",
+   "supported": true
+  },
+  "D_calendar_effect_not_established": {
+   "statement": "Un effet de CALENDRIER (profil temporel des quantites, a dose totale et nombre d'evenements egaux) n'est PAS etabli. Le seul contraste discordant va dans le sens DEFAVORABLE au replay et n'atteint pas le seuil sur des blocs apparies.",
+   "evidence": {
+    "LAW_16|L24": {
+     "reference_arm": "PARENT_LOW_CONSTANT",
+     "test_arm": "PARENT_Q_REPLAY",
+     "survival": {
+      "PARENT_LOW_CONSTANT": "9/9",
+      "PARENT_Q_REPLAY": "9/9"
+     },
+     "difference_blocks": 0,
+     "PAIRED_McNemar_exact": {
+      "n_pairs": 9,
+      "b_only_A": 0,
+      "c_only_B": 0,
+      "n_discordant": 0,
+      "p_exact": 1.0,
+      "note": "no discordant block; the test is uninformative by design"
+     },
+     "SUPERSEDED_unpaired_fisher_p": 1.0,
+     "discordant_blocks": []
+    },
+    "LAW_29|L24": {
+     "reference_arm": "PARENT_LOW_CONSTANT",
+     "test_arm": "PARENT_Q_REPLAY",
+     "survival": {
+      "PARENT_LOW_CONSTANT": "9/9",
+      "PARENT_Q_REPLAY": "6/9"
+     },
+     "difference_blocks": -3,
+     "PAIRED_McNemar_exact": {
+      "n_pairs": 9,
+      "b_only_A": 3,
+      "c_only_B": 0,
+      "n_discordant": 3,
+      "p_exact": 0.25
+     },
+     "SUPERSEDED_unpaired_fisher_p": 0.20588235294117646,
+     "discordant_blocks": [
+      "LAW_29_L24_S890000",
+      "LAW_29_L24_S890001",
+      "LAW_29_L24_S890008"
+     ]
+    },
+    "LAW_16|L32": {
+     "reference_arm": "PARENT_LOW_CONSTANT",
+     "test_arm": "PARENT_Q_REPLAY",
+     "survival": {
+      "PARENT_LOW_CONSTANT": "9/9",
+      "PARENT_Q_REPLAY": "9/9"
+     },
+     "difference_blocks": 0,
+     "PAIRED_McNemar_exact": {
+      "n_pairs": 9,
+      "b_only_A": 0,
+      "c_only_B": 0,
+      "n_discordant": 0,
+      "p_exact": 1.0,
+      "note": "no discordant block; the test is uninformative by design"
+     },
+     "SUPERSEDED_unpaired_fisher_p": 1.0,
+     "discordant_blocks": []
+    },
+    "LAW_29|L32": {
+     "reference_arm": "PARENT_LOW_CONSTANT",
+     "test_arm": "PARENT_Q_REPLAY",
+     "survival": {
+      "PARENT_LOW_CONSTANT": "9/9",
+      "PARENT_Q_REPLAY": "9/9"
+     },
+     "difference_blocks": 0,
+     "PAIRED_McNemar_exact": {
+      "n_pairs": 9,
+      "b_only_A": 0,
+      "c_only_B": 0,
+      "n_discordant": 0,
+      "p_exact": 1.0,
+      "note": "no discordant block; the test is uninformative by design"
+     },
+     "SUPERSEDED_unpaired_fisher_p": 1.0,
+     "discordant_blocks": []
+    }
+   },
+   "supported": true
+  }
+ },
+ "P09_STABILIZATION": "CORRECTED_NO_NEW_RUNS",
+ "sealed_verdict_unchanged": "FLOOR_SPECIFIC_MECHANISM_NOT_IDENTIFIABLE"
+}
