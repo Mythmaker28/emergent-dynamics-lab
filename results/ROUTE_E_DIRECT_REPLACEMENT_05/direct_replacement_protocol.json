@@ -1,0 +1,273 @@
+{
+ "arms": {
+  "DIRECT_Q100_ANCHOR": {
+   "first_force": 272,
+   "last_force": 1536,
+   "mode": "DIRECT",
+   "n_events": 80,
+   "stage": "A",
+   "terminal_time": 3584
+  },
+  "DIRECT_Q200_UNIFORM": {
+   "first_force": 272,
+   "last_force": 2816,
+   "mode": "DIRECT",
+   "n_events": 160,
+   "stage": "B",
+   "terminal_time": 4864
+  },
+  "DIRECT_Q400_BURST": {
+   "first_force": 272,
+   "last_force": 5376,
+   "mode": "DIRECT",
+   "n_events": 320,
+   "stage": "B",
+   "terminal_time": 7424
+  },
+  "DIRECT_Q400_UNIFORM": {
+   "first_force": 272,
+   "last_force": 5376,
+   "mode": "DIRECT",
+   "n_events": 320,
+   "stage": "B",
+   "terminal_time": 7424
+  },
+  "DIRECT_Q800_UNIFORM": {
+   "first_force": 272,
+   "last_force": 10496,
+   "mode": "DIRECT",
+   "n_events": 640,
+   "stage": "B",
+   "terminal_time": 12544
+  },
+  "SHAM": {
+   "first_force": null,
+   "last_force": null,
+   "mode": "SHAM",
+   "n_events": 0,
+   "stage": "A",
+   "terminal_time": 12544
+  },
+  "SINK_ONLY_Q800": {
+   "first_force": 272,
+   "last_force": 10496,
+   "mode": "SINK_ONLY",
+   "n_events": 640,
+   "stage": "B",
+   "terminal_time": 12544
+  },
+  "SOURCE_ONLY_Q800": {
+   "first_force": 272,
+   "last_force": 10496,
+   "mode": "SOURCE_ONLY",
+   "n_events": 640,
+   "stage": "B",
+   "terminal_time": 12544
+  }
+ },
+ "authorized_decisions": [
+  "INVALID_OPERATOR_OR_PROVENANCE",
+  "DIRECT_Q100_SIGNAL_NOT_REPLICATED",
+  "TRACKED_COMPONENT_TURNOVER_80_DEV",
+  "DIRECT_SOURCE_REPLACEMENT_80_DEV",
+  "TURNOVER_80_NOT_SOURCE_ATTRIBUTED",
+  "BULK_TURNOVER_WITH_PERSISTENT_INCUMBENT_SCAFFOLD",
+  "DOSE_RANGE_INSUFFICIENT",
+  "BREAKAGE_THRESHOLD_BRACKETED",
+  "RATE_DEPENDENT_REPLACEMENT",
+  "COMPONENT_CONTINUITY_ONLY"
+ ],
+ "budget": {
+  "INDEPENDENT_BLOCKS": 18,
+  "MAX_ENGINE_INVOCATIONS": 162,
+  "MAX_LOGICAL_TRAJECTORIES": 144,
+  "PREPHASE_INVOCATIONS": 18,
+  "STAGE_A_BRANCH_INVOCATIONS": 36,
+  "STAGE_B_BRANCH_INVOCATIONS": 108
+ },
+ "burst_construction": "DIRECT_Q400_BURST keeps the dose (320 events), the quantum, the first force time (272) and the last force time (5376) of DIRECT_Q400_UNIFORM; only the intermediate distribution changes: 8 bursts of 40 events at spacing 4",
+ "claim_scope": "FORCED_DIRECT_INTERFACE_MATERIAL_TURNOVER_ONLY",
+ "coast_steps": 2048,
+ "code_sha256": {
+  "bridge00_harness.py": "4d920363a6b785a243f8577e4dc8e4c52da53978d6047c671bb493d2f5cc7062",
+  "dr_core.py": "6bf8648c289b29af261d85bb94218b557e55deb8accc4a94bb09d5bbcf3cacc7",
+  "dr_fixtures.py": "cfb2a4e799bfb5b5325007e17db9408608c85ccf1141ebefb34b1b7571725508",
+  "dr_gate_zero.py": "8a46590c55b0890ea9c307a2a13f88aada727bb045034d874acae17b1361094b",
+  "dr_harness.py": "7dcf52c74eeef83bf8a0cb421ce286a6940b53a2c2ca31a6870b780db71f05ab",
+  "morph02_ic.py": "a91a68db65df16ff007fb778eda058c0bb78acbffe2a79b28f9a8515bed334a2",
+  "od_core.py": "bde7548c04edc7fa23c700318fa55d5bce7a3544d08b2ed8dd30a28feec15ba2",
+  "sweep00_harness.py": "421efafe20471feba9922a4e76355548b1b1019b790dc0b18a8c6a556673613a"
+ },
+ "endpoints": {
+  "DIRECT_SOURCE_REPLACEMENT_80": [
+   "FORCED_COMPONENT_TURNOVER_80",
+   "F/T >= 0.80",
+   "F/M256 >= 0.80",
+   "MATCHED_FRESH_REPLACEMENT >= 0.80"
+  ],
+  "EXCESS_INCUMBENT_EGRESS": "max(0, I_sham_at_matched_time - I_treated) / M256",
+  "FORCED_COMPONENT_TURNOVER_80": [
+   "I/I0 <= 0.20",
+   "I/T <= 0.20",
+   "mass_gate PASS",
+   "coast_gate PASS",
+   "lineage_continuous",
+   "no merger",
+   "no split",
+   "no reacquisition",
+   "provenance_ledger PASS"
+  ],
+  "MATCHED_FRESH_REPLACEMENT": "min(EXCESS_INCUMBENT_EGRESS, F/M256)",
+  "collective_gate": ">=7/9 separately at L=24 and L=32",
+  "if_turnover_without_source": "TURNOVER_80_NOT_SOURCE_ATTRIBUTED, and the ambient contribution A/T is reported explicitly"
+ },
+ "engine": "edlab.substrates.lattice_bond.engine.LatticeBondEngine, unmodified, dt=1.0",
+ "even_on_success": {
+  "AUTONOMOUS_RENEWAL": "NOT_TESTED",
+  "GENERALIZATION_BEYOND_LAW_16": false,
+  "IDENTITY": "NOT_ESTABLISHED",
+  "INDIVIDUATION": "NOT_ESTABLISHED",
+  "LIFE": "NOT_ESTABLISHED"
+ },
+ "fixtures": {
+  "LINEAGE_FIXTURES": "PASS",
+  "PROVENANCE_FIXTURES": "PASS",
+  "engine_invocations": 0,
+  "file": "direct_operator_fixtures.json",
+  "n": 28,
+  "n_pass": 28
+ },
+ "fresh_t0_blocks": 18,
+ "global_gates_unchanged": {
+  "AUTONOMOUS_RENEWAL": "NOT_TESTED",
+  "GENERALIZATION_BEYOND_LAW_16": false,
+  "IDENTITY": "NOT_ESTABLISHED",
+  "INDIVIDUATION": "NOT_ESTABLISHED",
+  "LIFE": "NOT_ESTABLISHED",
+  "ROUTE_E_VERDICT": "NONE"
+ },
+ "law": "LAW_16",
+ "law_source": "bridge00_harness.law_arms(), frozen Route E law measure",
+ "measurement_cadence": 16,
+ "metric_cadence": 128,
+ "mission": "ROUTE_E_DIRECT_INTERFACE_REPLACEMENT_FRONTIER_DEV_05",
+ "mode": "PROSPECTIVE_STAGED",
+ "morphology": "SINGLE_DISC at p=0.35 (morph02_ic.ic_single_disc)",
+ "operator": {
+  "OPERATOR_NONTRIVIALITY": "PASS",
+  "PARENT_OPERATOR_REPLICATION": "REDESIGNED_PRESEAL",
+  "atomicity": "q = min(planned, sink_capacity, source_capacity) selected BEFORE any mutation; both sides move exactly q or the whole event is rejected",
+  "nontriviality_audit": "direct_operator_nontriviality_audit.json",
+  "payload": "bare matter into state.m only; n and b untouched",
+  "physical_state_delta_frozen_tolerance": 1e-09,
+  "selectors_read": "state.m, frozen masks, current track cells -- never any provenance field",
+  "sink_rule": "proportional to each cohort's local presence; never selects by provenance"
+ },
+ "organization": {
+  "ORGANIZATION_PRESERVATION": "NOT_TESTED",
+  "claim_ceiling": "TRACKED_COMPONENT_CONTINUITY_UNDER_FORCED_TURNOVER",
+  "reason": "no organisational observable or reader was validated before this mission; none is invented here and no organisational threshold is created after observation"
+ },
+ "parent": {
+  "04R_data_role": "DEV data used PROSPECTIVELY to choose the dose scale of this mission; no new pilot was run",
+  "95.9_percent": "ACCEPTED_PLACEMENT_DECISIONS_AT_GRAPH_DISTANCE_1, never a mass fraction",
+  "ARITHMETIC_1_OF_144": "REPRODUCED_DIAGNOSTIC_ONLY",
+  "DYNAMICS_MEDIATED_CAPTURE_FOUND": "NOT_IDENTIFIABLE",
+  "EP_1_OF_9": "NOT_AUDITABLE",
+  "MERGER_CAPTURE": "NOT_IDENTIFIABLE",
+  "MERGER_OCCURRENCE": "CONFIRMED",
+  "PARENT_DIRECT_RESULT": "PROMISING_DESCRIPTIVE_SIGNAL_UNVERIFIED",
+  "commit": "7e4182821fb5447dfed7238801dccae0e193bd12",
+  "corrigendum": "parent_04r_claim_corrigendum.md",
+  "scientific_grandparent": "f4f0a936fbccea096e63a75de6c9e5b8ec7d1878"
+ },
+ "per_arm_snapshots": "t256, end_of_force, +16, +128, +2048, first failure, first threshold crossing",
+ "prephase": [
+  0,
+  256
+ ],
+ "production_files_modified": 0,
+ "provenance": {
+  "absorbing": "every unit introduced by the operator is FRESH / DIRECT_OPERATOR_INSERTION for life, even if it leaves and returns",
+  "cohorts": [
+   "CORE_256",
+   "INTERMEDIATE_256",
+   "BOUNDARY_256",
+   "AMBIENT_256",
+   "FRESH_SOURCE"
+  ],
+  "depth_partition": "BOUNDARY=depth 1 from outside C256, INTERMEDIATE=depth 2, CORE=depth>=3",
+  "forbidden": "no static per-cell `credited` counter exists anywhere in dr_core.py",
+  "identity": "CORE+INTERMEDIATE+BOUNDARY+AMBIENT+FRESH == TOTAL_MATERIAL",
+  "residual_name": "FLOAT_RECOMPUTATION_RESIDUAL",
+  "residual_tolerance": 1e-09
+ },
+ "quantum": "M256/80 planned per event, FROZEN and IDENTICAL in every dosed arm; a higher dose means MORE EVENTS, never a larger amplitude",
+ "required_snapshot_times": [
+  256,
+  1536,
+  1552,
+  1664,
+  2816,
+  2832,
+  2944,
+  3584,
+  4864,
+  5376,
+  5392,
+  5504,
+  7424,
+  10496,
+  10512,
+  10624,
+  12544
+ ],
+ "scaffold": {
+  "definition": "largest 4-connected set of tracked cells whose INCUMBENT mass alone clears THRESH=0.45",
+  "qualifier": "a residual below 0.20 together with a permanent incumbent core must be reported as BULK_TURNOVER_WITH_PERSISTENT_INCUMBENT_SCAFFOLD"
+ },
+ "sealed_before_all_new_engine_output": true,
+ "seed_branch_plan": "direct_replacement_seed_branch_plan.json",
+ "seed_branch_plan_sha256": "16900532632bd4456895306aeb92cca81ed9896d3dd768d3092a2ba430729577",
+ "seeds_per_size": 9,
+ "sham": "run to the longest terminal horizon (12544) so every arm has a checkpoint-matched control at its own terminal time",
+ "sizes": [
+  24,
+  32
+ ],
+ "stage_a_gate": {
+  "global": [
+   "PROVENANCE_AND_LEDGER_INVARIANTS = 18/18",
+   "OPERATOR_NONTRIVIALITY = PASS",
+   "T256_INITIALIZATION = 18/18"
+  ],
+  "on_failure": "STAGE_B_EXECUTED = false; DECISION = DIRECT_Q100_SIGNAL_NOT_REPLICATED or OPERATOR_OR_LINEAGE_INVALID; no higher dose is launched",
+  "per_size_at_least_7_of_9": [
+   "same_track_continuous",
+   "never_merged",
+   "never_split",
+   "no reacquisition",
+   "frozen_mass_gate 0.75 <= T/M256 <= 1.25 at terminal",
+   "frozen_coast_gate F_terminal/F_force_end >= 0.50",
+   "fresh_source_mass/M256 >= 0.15",
+   "1 - I/I0 >= 0.20"
+  ]
+ },
+ "statistics": {
+  "forbidden": "144 logical trajectories must NEVER be reported as n = 144 independent",
+  "inference": "n = 9 independent blocks per size, one LawSpec",
+  "pairing": "every comparison is paired checkpoint by checkpoint",
+  "report": "the nine individual values, min/median/max, treated-minus-sham differences, per-block dose curves, first threshold crossed, first failure type and time, remaining risk set at each dose"
+ },
+ "stop_rules": [
+  "gate zero FAIL -> OPERATOR_DISPOSITION = PROVENANCE_ONLY_RELABEL, 0 engine calls",
+  "fixtures FAIL -> 0 engine calls",
+  "T256_VALID < 9/9 per size -> PREPHASE_YIELD_INSUFFICIENT",
+  "Stage A gate FAIL -> Stage B not executed",
+  "atomicity assertion -> abort",
+  "no extension beyond Q800 after inspecting results"
+ ],
+ "t256_valid_required": "9/9 per size, else DECISION = PREPHASE_YIELD_INSUFFICIENT; NO replacement seed after observation",
+ "tracker": "FROZEN largest bounded non-wrapping component; lineage classifier flags merger (track contains cells of a DIFFERENT previous component), split (previous track cells now span >=2 components), loss, reacquisition",
+ "uniform_inter_event_spacing": 16
+}

@@ -1,0 +1,179 @@
+{
+ "mission": "ROUTE_E_DIRECT_INTERFACE_REPLACEMENT_FRONTIER_DEV_05",
+ "engine_invocations": 0,
+ "n": 28,
+ "n_pass": 28,
+ "PROVENANCE_FIXTURES": "PASS",
+ "LINEAGE_FIXTURES": "PASS",
+ "OPERATOR_FIXTURES": "PASS",
+ "fixtures": [
+  {
+   "group": 1,
+   "name": "incumbent_256 dans C256 == M256",
+   "PASS": true,
+   "detail": "72.900000000 vs M256 72.900000000"
+  },
+  {
+   "group": 1,
+   "name": "ambient dans C256 == 0",
+   "PASS": true,
+   "detail": "0.0e+00"
+  },
+  {
+   "group": 1,
+   "name": "fresh dans C256 == 0",
+   "PASS": true,
+   "detail": "0.0e+00"
+  },
+  {
+   "group": 1,
+   "name": "I/I0 initial == 1 exactement",
+   "PASS": true,
+   "detail": "1.000000000000000"
+  },
+  {
+   "group": 1,
+   "name": "partition CORE/INTERMEDIATE/BOUNDARY exclusive et complete",
+   "PASS": true,
+   "detail": "29 core + 24 inter + 28 bnd = 81 cellules"
+  },
+  {
+   "group": 1,
+   "name": "identite des cinq cohortes",
+   "PASS": true,
+   "detail": "residu = 0.0e+00"
+  },
+  {
+   "group": 2,
+   "name": "transfert interne A->B: aucune masse fraiche creee",
+   "PASS": true,
+   "detail": "fresh = 0, incumbent inchange 72.900000000"
+  },
+  {
+   "group": 2,
+   "name": "identite preservee apres transfert interne",
+   "PASS": true,
+   "detail": "residu = 0.0e+00"
+  },
+  {
+   "group": 3,
+   "name": "chaque cohorte est conservee par l'advection",
+   "PASS": true,
+   "detail": "max |dmasse| sur les 5 cohortes = 3.55e-15"
+  },
+  {
+   "group": 3,
+   "name": "identite preservee apres advection (linearite)",
+   "PASS": true,
+   "detail": "FLOAT_RECOMPUTATION_RESIDUAL = 1.11e-16"
+  },
+  {
+   "group": 3,
+   "name": "aucune cohorte ne devient negative",
+   "PASS": true,
+   "detail": "min = 0.00e+00"
+  },
+  {
+   "group": 4,
+   "name": "retrait strictement proportionnel aux cohortes locales",
+   "PASS": true,
+   "detail": "parts retirees ['0.5000', '0.3000', '0.2000'] == parts presentes ['0.5000', '0.3000', '0.2000']"
+  },
+  {
+   "group": 4,
+   "name": "masse retiree == quota demande",
+   "PASS": true,
+   "detail": "0.333000000"
+  },
+  {
+   "group": 5,
+   "name": "payload exterieur = matiere nue, `n` et `b` intacts",
+   "PASS": true,
+   "detail": "aucun champ de memoire ou d'organisation n'est ecrit par l'operateur"
+  },
+  {
+   "group": 5,
+   "name": "toute la matiere introduite est FRESH",
+   "PASS": true,
+   "detail": "injecte 0.800000 == fresh total 0.800000"
+  },
+  {
+   "group": 5,
+   "name": "reservoir source debite du meme montant",
+   "PASS": true,
+   "detail": "res_source = 0.800000"
+  },
+  {
+   "group": 6,
+   "name": "quota reduit identiquement des deux cotes",
+   "PASS": true,
+   "detail": "q reduit a 3.5000, retire 3.5000 == injecte 3.5000"
+  },
+  {
+   "group": 6,
+   "name": "sinon evenement entier rejete, aucun cote mute",
+   "PASS": true,
+   "detail": "etat bit-identique"
+  },
+  {
+   "group": 7,
+   "name": "le reetiquetage ne produit AUCUN delta physique",
+   "PASS": true,
+   "detail": "max|dm| = 0.0e+00 -> un tel evenement ne passerait pas la porte zero"
+  },
+  {
+   "group": 7,
+   "name": "l'operateur reel produit un delta physique > tolerance",
+   "PASS": true,
+   "detail": "delta = 0.900000"
+  },
+  {
+   "group": 8,
+   "name": "selection identique sous un etiquetage totalement different",
+   "PASS": true,
+   "detail": "2 sites puits et 35 sites source, identiques dans les deux mondes"
+  },
+  {
+   "group": 9,
+   "name": "scission detectee",
+   "PASS": true,
+   "detail": "type=SPLIT split=True"
+  },
+  {
+   "group": 9,
+   "name": "fusion detectee",
+   "PASS": true,
+   "detail": "merger=True"
+  },
+  {
+   "group": 9,
+   "name": "perte de piste detectee",
+   "PASS": true,
+   "detail": "type=TRACK_LOST_OR_DISSOLVED"
+  },
+  {
+   "group": 9,
+   "name": "reacquisition detectee et marquee comme echec",
+   "PASS": true,
+   "detail": "reacq=True, premier echec reste a t=16"
+  },
+  {
+   "group": 10,
+   "name": "recomposition exacte cellule par cellule",
+   "PASS": true,
+   "detail": "pire ecart sur 576 cellules = 0.00e+00"
+  },
+  {
+   "group": 10,
+   "name": "recomposition exacte au niveau de la piste",
+   "PASS": true,
+   "detail": "I+F+A = 72.800000000 vs T = 72.800000000"
+  },
+  {
+   "group": 10,
+   "name": "echafaudage incumbent calculable",
+   "PASS": true,
+   "detail": "77 cellules, masse 69.300"
+  }
+ ]
+}

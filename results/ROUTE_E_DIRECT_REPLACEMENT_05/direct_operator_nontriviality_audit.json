@@ -1,0 +1,142 @@
+{
+ "mission": "ROUTE_E_DIRECT_INTERFACE_REPLACEMENT_FRONTIER_DEV_05",
+ "gate": "ZERO_PHYSICAL_EXCHANGE_OR_RELABEL",
+ "scientific_engine_invocations": 0,
+ "checks": [
+  {
+   "check": "selecteurs aveugles a la provenance",
+   "PASS": true,
+   "detail": "aucun selecteur ne prend `prov` en parametre ni ne nomme une cohorte -> la geometrie NE PEUT PAS lire INCUMBENT/FRESH/AMBIENT"
+  },
+  {
+   "check": "delta d'etat PHYSIQUE hors provenance",
+   "PASS": true,
+   "detail": "max|dm| = 0.900000 > 1e-09 ; masse deplacee = 2.0000 ; retire = 1.0000 injecte = 1.0000",
+   "physical_state_delta": 0.9,
+   "frozen_tolerance": 1e-09
+  },
+  {
+   "check": "un pur reetiquetage ne reproduit PAS l'evenement",
+   "PASS": true,
+   "detail": "le reetiquetage laisse `m` bit-identique alors que l'evenement le modifie -> le resultat n'est pas atteignable en ne changeant que les etiquettes"
+  },
+  {
+   "check": "couple source-puits atomique",
+   "PASS": true,
+   "detail": "retire 1.000000000 == injecte 1.000000000"
+  },
+  {
+   "check": "evenement entierement rejete si un cote est impossible",
+   "PASS": true,
+   "detail": "aucun des deux cotes n'est mute"
+  },
+  {
+   "check": "retrait proportionnel a la presence locale",
+   "PASS": true,
+   "detail": "rapport core/bnd inchange 0.666667 -> 0.666667 ; le puits ne trie jamais par provenance"
+  },
+  {
+   "check": "identite INCUMBENT+AMBIENT+FRESH = TOTAL",
+   "PASS": true,
+   "detail": "FLOAT_RECOMPUTATION_RESIDUAL identite = 0.00e+00, bilan global = 2.84e-14",
+   "float_recomputation_residual": 0.0,
+   "global_balance_residual": 2.842170943040401e-14
+  },
+  {
+   "check": "aucun compteur `credited` / credit / age dans le CODE",
+   "PASS": true,
+   "detail": "identifiants bannis references par le code: aucun (la mention en docstring ne compte pas: elle n'est pas executable)"
+  }
+ ],
+ "source_site_selection": {
+  "function": "select_source_sites",
+  "rule": "cells of the frozen upstream interface mask that are inside the current track and not saturated",
+  "inputs": [
+   "fm",
+   "mask",
+   "track"
+  ]
+ },
+ "sink_site_selection": {
+  "function": "select_sink_sites",
+  "rule": "cells of the frozen downstream mask inside the current track above threshold, spread to avoid adjacent bites",
+  "inputs": [
+   "fm",
+   "mask",
+   "track",
+   "L",
+   "quota"
+  ]
+ },
+ "operator_read_set": [
+  "state.m",
+  "frozen masks (built once at t256)",
+  "current track cells",
+  "planned quota"
+ ],
+ "operator_write_set": [
+  "state.m",
+  "prov.f['fre'] (source)",
+  "all five prov.f[*] proportionally (sink)",
+  "prov.res_source",
+  "prov.res_sink"
+ ],
+ "active_state_fields": {
+  "m": "written by the operator",
+  "n": "NEVER touched by the operator",
+  "b": "NEVER touched by the operator"
+ },
+ "memory_or_organization_fields": {
+  "present_in_substrate": [
+   "n",
+   "b"
+  ],
+  "written_by_operator": [],
+  "note": "the external reservoir supplies bare matter only; no state, memory, organisation or credit is copied from the target cell"
+ },
+ "physical_payload": "+add to state.m at the target site",
+ "provenance_payload": "+add to prov.f['fre'] at the same site, absorbing for life",
+ "selectors": {
+  "select_sink_sites": {
+   "params": [
+    "fm",
+    "mask",
+    "track",
+    "L",
+    "quota"
+   ],
+   "provenance_names_referenced": [],
+   "takes_prov": []
+  },
+  "select_source_sites": {
+   "params": [
+    "fm",
+    "mask",
+    "track"
+   ],
+   "provenance_names_referenced": [],
+   "takes_prov": []
+  },
+  "sink_capacity": {
+   "params": [
+    "fm",
+    "mask",
+    "track"
+   ],
+   "provenance_names_referenced": [],
+   "takes_prov": []
+  },
+  "source_capacity": {
+   "params": [
+    "fm",
+    "mask",
+    "track"
+   ],
+   "provenance_names_referenced": [],
+   "takes_prov": []
+  }
+ },
+ "OPERATOR_NONTRIVIALITY": "PASS",
+ "PARENT_OPERATOR_REPLICATION": "REDESIGNED_PRESEAL",
+ "replication_note": "The PHYSICS is the parent's: same interface geometry (downstream half of C256 as sink, upstream half as source), same per-event quantum, same schedule, same proportional removal, same bare-matter payload. The INSTRUMENTATION is redesigned: the static per-cell credit counter is removed, the incumbent cohort is split by depth, atomicity is asserted, and both ledgers are written. Declared REDESIGNED_PRESEAL, not EXACT."
+}
