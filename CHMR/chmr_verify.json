@@ -1,0 +1,147 @@
+[
+ {
+  "check": "1 sealed protocol hash matches",
+  "PASS": true,
+  "detail": "b1e4b06587c07f00689e3c3b37428f45e430ea46e29496e5b74da86933c97f20"
+ },
+ {
+  "check": "2 every sealed code file is unchanged since sealing",
+  "PASS": true,
+  "detail": "changed: []"
+ },
+ {
+  "check": "3 the hard maximum of 320 new trajectories is respected",
+  "PASS": true,
+  "detail": "256: chmr_FAR_CONF.pkl=96, chmr_FAR_DEV.pkl=64, chmr_NEAR_HELD.pkl=96"
+ },
+ {
+  "check": "4 DEV blocks are disjoint from every confirmatory block",
+  "PASS": true,
+  "detail": "dev=[36000, 36001, 36002, 36003, 36004, 36005, 36006, 36007]  conf/held=[37000, 37001, 37002, 37003]..."
+ },
+ {
+  "check": "5 no founding block of any earlier programme is reused",
+  "PASS": true,
+  "detail": "overlap = []"
+ },
+ {
+  "check": "6[FAR_CONF] every block carries all 8 arms (no conditioning on survival or surgery)",
+  "PASS": true,
+  "detail": "arm counts = {8}"
+ },
+ {
+  "check": "7[FAR_CONF] lineage is continuous: zero splits, zero fusions, zero disappearances",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "8[FAR_CONF] HALO_CROSS permutes c and N exactly and leaves Mf and rho bit-identical",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "9[FAR_CONF] CORE_CROSS permutes Mf exactly and leaves c, N and rho bit-identical",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "10[FAR_CONF] MATCHED_SHAM is a bit-exact no-op on the whole state",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "11[FAR_CONF] ORPHAN_HALO removes all matter and preserves c and N exactly",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "12[FAR_CONF] the halo permutation conserves the REALIZED global c (recorded, not assumed)",
+  "PASS": true,
+  "detail": "max |d sum c| = 4.547e-13"
+ },
+ {
+  "check": "13[FAR_CONF] frozen turnover criterion met inside a continuous lineage",
+  "PASS": true,
+  "detail": "median M = 0.1874, max = 0.2275, n = 72"
+ },
+ {
+  "check": "6[FAR_DEV] every block carries all 8 arms (no conditioning on survival or surgery)",
+  "PASS": true,
+  "detail": "arm counts = {8}"
+ },
+ {
+  "check": "7[FAR_DEV] lineage is continuous: zero splits, zero fusions, zero disappearances",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "8[FAR_DEV] HALO_CROSS permutes c and N exactly and leaves Mf and rho bit-identical",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "9[FAR_DEV] CORE_CROSS permutes Mf exactly and leaves c, N and rho bit-identical",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "10[FAR_DEV] MATCHED_SHAM is a bit-exact no-op on the whole state",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "11[FAR_DEV] ORPHAN_HALO removes all matter and preserves c and N exactly",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "12[FAR_DEV] the halo permutation conserves the REALIZED global c (recorded, not assumed)",
+  "PASS": true,
+  "detail": "max |d sum c| = 4.547e-13"
+ },
+ {
+  "check": "13[FAR_DEV] frozen turnover criterion met inside a continuous lineage",
+  "PASS": true,
+  "detail": "median M = 0.1830, max = 0.2312, n = 48"
+ },
+ {
+  "check": "6[NEAR_HELD] every block carries all 8 arms (no conditioning on survival or surgery)",
+  "PASS": true,
+  "detail": "arm counts = {8}"
+ },
+ {
+  "check": "7[NEAR_HELD] lineage is continuous: zero splits, zero fusions, zero disappearances",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "8[NEAR_HELD] HALO_CROSS permutes c and N exactly and leaves Mf and rho bit-identical",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "9[NEAR_HELD] CORE_CROSS permutes Mf exactly and leaves c, N and rho bit-identical",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "10[NEAR_HELD] MATCHED_SHAM is a bit-exact no-op on the whole state",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "11[NEAR_HELD] ORPHAN_HALO removes all matter and preserves c and N exactly",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "check": "12[NEAR_HELD] the halo permutation conserves the REALIZED global c (recorded, not assumed)",
+  "PASS": true,
+  "detail": "max |d sum c| = 4.547e-13"
+ },
+ {
+  "check": "13[NEAR_HELD] frozen turnover criterion met inside a continuous lineage",
+  "PASS": true,
+  "detail": "median M = 0.2001, max = 0.2372, n = 72"
+ }
+]

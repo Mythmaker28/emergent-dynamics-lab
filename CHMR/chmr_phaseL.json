@@ -1,0 +1,720 @@
+{
+ "programme": "CORE_HALO_MISMATCH_RECOVERY_00",
+ "phase": "L_LINEAGE_RANK_AUDIT",
+ "connectivity": "FROZEN parent detector, SCDetectionSpec(0.30, 12), periodic labelling",
+ "cadence": 25,
+ "PART1_raw_only": {
+  "question": "can the parent turnover claim be re-derived from raw artefacts?",
+  "parent_line_raw_state": {
+   "results/sc_mcm": "present but EMPTY (0 bytes)",
+   "results/sc_iom": "present but EMPTY (0 bytes)",
+   "git_tracked_artifacts": "docs and code only; no raw world, no checkpoint, no field dump",
+   "consequence": "no connected-component recomputation, no temporal lineage graph and no argmax-switch statistic can be derived for the parent line. Interpolation or reconstruction is forbidden.",
+   "PARENT_COMPONENT_MEMORY_THROUGH_TURNOVER": "NOT_IDENTIFIABLE"
+  },
+  "domc_stored_evidence": {
+   "time_points_stored": 2,
+   "spatial_state_stored": false,
+   "n_components_values": [
+    2
+   ],
+   "max_site_distance_t0": 0.127,
+   "max_site_distance_turn": 0.177,
+   "note": "DOMC never used largest(st): it used a frozen-site nearest-centroid reader, so the rank-statistic defect of the parent line does not apply to it directly. But two time points are not a lineage: with no intermediate checkpoint, a split and re-merge, or a swap of which physical object occupies a site, is invisible.",
+   "DOMC_A_B_LINEAGE_FROM_RAW": "NOT_IDENTIFIABLE"
+  }
+ },
+ "PART2_frozen_world_largest_audit": [
+  {
+   "seed": 32000,
+   "steps": 2600,
+   "cadence": 25,
+   "n_components_min_max": [
+    0,
+    44
+   ],
+   "n_argmax_switches": 18,
+   "argmax_switch_frames": [
+    50,
+    75,
+    550,
+    800,
+    1075,
+    1200,
+    1300,
+    1325,
+    1350,
+    1650,
+    1675,
+    1750,
+    1825,
+    1850,
+    2075,
+    2350,
+    2475,
+    2525
+   ],
+   "n_splits": 61,
+   "n_fusions": 51,
+   "n_disappearances": 21,
+   "median_rank1_rank2_gap": 0.0968,
+   "min_rank1_rank2_gap": 0.0,
+   "n_frames_with_gap_below_0.05": 25,
+   "n_exact_ties": 9
+  },
+  {
+   "seed": 32001,
+   "steps": 2600,
+   "cadence": 25,
+   "n_components_min_max": [
+    0,
+    44
+   ],
+   "n_argmax_switches": 27,
+   "argmax_switch_frames": [
+    50,
+    75,
+    150,
+    500,
+    800,
+    875,
+    975,
+    1025,
+    1100,
+    1150,
+    1175,
+    1225,
+    1250,
+    1275,
+    1525,
+    1625,
+    1650,
+    1725,
+    1775,
+    1800,
+    1875,
+    1950,
+    2000,
+    2100,
+    2125,
+    2400,
+    2425
+   ],
+   "n_splits": 53,
+   "n_fusions": 61,
+   "n_disappearances": 14,
+   "median_rank1_rank2_gap": 0.0556,
+   "min_rank1_rank2_gap": 0.0,
+   "n_frames_with_gap_below_0.05": 48,
+   "n_exact_ties": 17
+  },
+  {
+   "seed": 32002,
+   "steps": 2600,
+   "cadence": 25,
+   "n_components_min_max": [
+    0,
+    48
+   ],
+   "n_argmax_switches": 19,
+   "argmax_switch_frames": [
+    50,
+    275,
+    300,
+    475,
+    550,
+    1125,
+    1200,
+    1225,
+    1250,
+    1275,
+    1300,
+    1475,
+    1500,
+    1625,
+    1850,
+    1875,
+    1975,
+    2175,
+    2225
+   ],
+   "n_splits": 54,
+   "n_fusions": 48,
+   "n_disappearances": 15,
+   "median_rank1_rank2_gap": 0.1212,
+   "min_rank1_rank2_gap": 0.0,
+   "n_frames_with_gap_below_0.05": 27,
+   "n_exact_ties": 7
+  }
+ ],
+ "PART2_founded_pair_lineage": [
+  {
+   "seed": 36000,
+   "geometry": "FAR",
+   "n_components_min_max": [
+    0,
+    2
+   ],
+   "n_argmax_switches": 3,
+   "n_splits": 0,
+   "n_fusions": 0,
+   "median_rank1_rank2_gap": 0.0,
+   "lineage": {
+    "0": {
+     "first_frame": 3,
+     "last_frame_present": 56,
+     "continuous_to_end": true,
+     "max_components_in_lineage": 1,
+     "M_series": [
+      [
+       75,
+       0.0
+      ],
+      [
+       175,
+       0.0
+      ],
+      [
+       275,
+       0.0
+      ],
+      [
+       375,
+       0.0
+      ],
+      [
+       475,
+       0.874062119352493
+      ],
+      [
+       575,
+       0.724707940775648
+      ],
+      [
+       675,
+       0.5891354021650685
+      ],
+      [
+       775,
+       0.47227542141228174
+      ],
+      [
+       875,
+       0.3743073905201224
+      ],
+      [
+       975,
+       0.3168502439121078
+      ],
+      [
+       1075,
+       0.2460767042578569
+      ],
+      [
+       1175,
+       0.1887437210449483
+      ],
+      [
+       1275,
+       0.1396151356752819
+      ],
+      [
+       1375,
+       0.09759828482414971
+      ]
+     ]
+    },
+    "1": {
+     "first_frame": 3,
+     "last_frame_present": 56,
+     "continuous_to_end": true,
+     "max_components_in_lineage": 1,
+     "M_series": [
+      [
+       75,
+       0.0
+      ],
+      [
+       175,
+       0.0
+      ],
+      [
+       275,
+       0.0
+      ],
+      [
+       375,
+       0.0
+      ],
+      [
+       475,
+       0.8742333422764341
+      ],
+      [
+       575,
+       0.7244779458228141
+      ],
+      [
+       675,
+       0.5883349743068228
+      ],
+      [
+       775,
+       0.4709247589488002
+      ],
+      [
+       875,
+       0.38557565067464655
+      ],
+      [
+       975,
+       0.3017538066781128
+      ],
+      [
+       1075,
+       0.23302979448023875
+      ],
+      [
+       1175,
+       0.1736954638203588
+      ],
+      [
+       1275,
+       0.1271497251053268
+      ],
+      [
+       1375,
+       0.09172217930311174
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "seed": 36001,
+   "geometry": "FAR",
+   "n_components_min_max": [
+    0,
+    2
+   ],
+   "n_argmax_switches": 1,
+   "n_splits": 0,
+   "n_fusions": 0,
+   "median_rank1_rank2_gap": 0.0,
+   "lineage": {
+    "0": {
+     "first_frame": 3,
+     "last_frame_present": 56,
+     "continuous_to_end": true,
+     "max_components_in_lineage": 1,
+     "M_series": [
+      [
+       75,
+       0.0
+      ],
+      [
+       175,
+       0.0
+      ],
+      [
+       275,
+       0.0
+      ],
+      [
+       375,
+       0.0
+      ],
+      [
+       475,
+       0.8742004896565678
+      ],
+      [
+       575,
+       0.7241184890026913
+      ],
+      [
+       675,
+       0.5877601206768657
+      ],
+      [
+       775,
+       0.4702910062472612
+      ],
+      [
+       875,
+       0.3716946345862728
+      ],
+      [
+       975,
+       0.2901433856521941
+      ],
+      [
+       1075,
+       0.22343761501479464
+      ],
+      [
+       1175,
+       0.16952505922865482
+      ],
+      [
+       1275,
+       0.1266186952875093
+      ],
+      [
+       1375,
+       0.0932104640594463
+      ]
+     ]
+    },
+    "1": {
+     "first_frame": 3,
+     "last_frame_present": 56,
+     "continuous_to_end": true,
+     "max_components_in_lineage": 1,
+     "M_series": [
+      [
+       75,
+       0.0
+      ],
+      [
+       175,
+       0.0
+      ],
+      [
+       275,
+       0.0
+      ],
+      [
+       375,
+       0.0
+      ],
+      [
+       475,
+       0.8768176091688399
+      ],
+      [
+       575,
+       0.729167103324181
+      ],
+      [
+       675,
+       0.5934437624825795
+      ],
+      [
+       775,
+       0.47494963305039867
+      ],
+      [
+       875,
+       0.3744255135922655
+      ],
+      [
+       975,
+       0.2908167327356385
+      ],
+      [
+       1075,
+       0.22240979747494388
+      ],
+      [
+       1175,
+       0.1673647607965552
+      ],
+      [
+       1275,
+       0.12390664496291005
+      ],
+      [
+       1375,
+       0.08867823604299775
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "seed": 36002,
+   "geometry": "FAR",
+   "n_components_min_max": [
+    0,
+    2
+   ],
+   "n_argmax_switches": 0,
+   "n_splits": 0,
+   "n_fusions": 0,
+   "median_rank1_rank2_gap": 0.0,
+   "lineage": {
+    "0": {
+     "first_frame": 3,
+     "last_frame_present": 56,
+     "continuous_to_end": true,
+     "max_components_in_lineage": 1,
+     "M_series": [
+      [
+       75,
+       0.0
+      ],
+      [
+       175,
+       0.0
+      ],
+      [
+       275,
+       0.0
+      ],
+      [
+       375,
+       0.0
+      ],
+      [
+       475,
+       0.8743981116064617
+      ],
+      [
+       575,
+       0.7253131220720577
+      ],
+      [
+       675,
+       0.5902439757122274
+      ],
+      [
+       775,
+       0.47401102392523026
+      ],
+      [
+       875,
+       0.38951465313828143
+      ],
+      [
+       975,
+       0.3191377637271899
+      ],
+      [
+       1075,
+       0.24832801425654852
+      ],
+      [
+       1175,
+       0.18642856705987151
+      ],
+      [
+       1275,
+       0.1377149036812941
+      ],
+      [
+       1375,
+       0.09776583191245986
+      ]
+     ]
+    },
+    "1": {
+     "first_frame": 3,
+     "last_frame_present": 56,
+     "continuous_to_end": true,
+     "max_components_in_lineage": 1,
+     "M_series": [
+      [
+       75,
+       0.0
+      ],
+      [
+       175,
+       0.0
+      ],
+      [
+       275,
+       0.0
+      ],
+      [
+       375,
+       0.0
+      ],
+      [
+       475,
+       0.876149468151066
+      ],
+      [
+       575,
+       0.7282699013866233
+      ],
+      [
+       675,
+       0.5934549629321366
+      ],
+      [
+       775,
+       0.5006377584754139
+      ],
+      [
+       875,
+       0.406010873757441
+      ],
+      [
+       975,
+       0.3193477746320547
+      ],
+      [
+       1075,
+       0.2478711044468968
+      ],
+      [
+       1175,
+       0.1897343162345806
+      ],
+      [
+       1275,
+       0.13664634873977027
+      ],
+      [
+       1375,
+       0.09687209769138196
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "seed": 36003,
+   "geometry": "FAR",
+   "n_components_min_max": [
+    0,
+    2
+   ],
+   "n_argmax_switches": 3,
+   "n_splits": 0,
+   "n_fusions": 0,
+   "median_rank1_rank2_gap": 0.0488,
+   "lineage": {
+    "0": {
+     "first_frame": 3,
+     "last_frame_present": 56,
+     "continuous_to_end": true,
+     "max_components_in_lineage": 1,
+     "M_series": [
+      [
+       75,
+       0.0
+      ],
+      [
+       175,
+       0.0
+      ],
+      [
+       275,
+       0.0
+      ],
+      [
+       375,
+       0.0
+      ],
+      [
+       475,
+       0.8747682378513939
+      ],
+      [
+       575,
+       0.7268355912835317
+      ],
+      [
+       675,
+       0.5933247310933166
+      ],
+      [
+       775,
+       0.4859920062052056
+      ],
+      [
+       875,
+       0.41874047780723644
+      ],
+      [
+       975,
+       0.3564673026957733
+      ],
+      [
+       1075,
+       0.2806994679443389
+      ],
+      [
+       1175,
+       0.2188569418846357
+      ],
+      [
+       1275,
+       0.16422171671756505
+      ],
+      [
+       1375,
+       0.11561147396601469
+      ]
+     ]
+    },
+    "1": {
+     "first_frame": 3,
+     "last_frame_present": 56,
+     "continuous_to_end": true,
+     "max_components_in_lineage": 1,
+     "M_series": [
+      [
+       75,
+       0.0
+      ],
+      [
+       175,
+       0.0
+      ],
+      [
+       275,
+       0.0
+      ],
+      [
+       375,
+       0.0
+      ],
+      [
+       475,
+       0.8735926029804008
+      ],
+      [
+       575,
+       0.7226653067368635
+      ],
+      [
+       675,
+       0.5857370757320571
+      ],
+      [
+       775,
+       0.46823603254716734
+      ],
+      [
+       875,
+       0.3703032233979277
+      ],
+      [
+       975,
+       0.2900128139475993
+      ],
+      [
+       1075,
+       0.23390894139327725
+      ],
+      [
+       1175,
+       0.17941095496698922
+      ],
+      [
+       1275,
+       0.1358838581381869
+      ],
+      [
+       1375,
+       0.09737977191290914
+      ]
+     ]
+    }
+   }
+  }
+ ]
+}

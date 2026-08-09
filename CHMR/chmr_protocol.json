@@ -1,0 +1,141 @@
+{
+ "NEW_LAWSPEC_AUTHORIZED": false,
+ "adjudication": {
+  "CORE_REBUILDS_HALO": "G5, G6, G8, G9 and G10 pass",
+  "HALO_OVERWRITES_CORE": "a halo pulse leaves a persistent core/response change after restoration",
+  "MUTUAL_CORE_HALO_ATTRACTOR": "both directed causal effects pass and mismatched pairs recover one of the matched states prospectively",
+  "NOT_IDENTIFIABLE": "lineage, surgery or timescale separation fails",
+  "PASSIVE_ENVIRONMENTAL_TRACE": "the halo's dynamics match orphan decay and the core does not rebuild it",
+  "STATIC_ENVIRONMENTAL_CONTROL": "the response follows the current halo but no persistent rewriting occurs",
+  "STRONG_PAPER_GATE_PASS_only_for": "CORE_REBUILDS_HALO or MUTUAL_CORE_HALO_ATTRACTOR with causal necessity, future-response transfer, lineage-resolved turnover and held-out confirmation",
+  "TRANSIENT_MIXED": "both layers influence the trajectory but no stable directional disposition passes"
+ },
+ "arms": {
+  "CORE_CROSS": "reciprocal permutation of the frozen internal marker field Mf only",
+  "DOUBLE_CROSS": "core and halo crossed together; the matched relationship is preserved",
+  "HALO_CROSS": "reciprocal permutation of c and N only; cores bit-identical",
+  "HALO_CROSS_CORE_ERASE": "halo crossed, then Mf <- 0 everywhere: is the internal state necessary?",
+  "HALO_CROSS_WRITER_OFF": "halo crossed, recovery run with lam_minus = 0 exactly. This is a zero-versus-sham ablation of a term ALREADY PRESENT in the frozen LawSpec, c += dt(D_c lap c + s rho (1 + lam_minus m_minus) - delta c), which is the ONLY place where the core writes the halo. Nothing is created or tuned. WRITER_CAUSATION is therefore IDENTIFIABLE in this engine.",
+  "HALO_PULSE_RESTORE": "halo crossed, held for T_PULSE, then the same involution re-applied to restore. Tests whether the halo persistently rewrote the core.",
+  "MATCHED_SHAM": "no operation; CORE_H+HALO_H at A, CORE_L+HALO_L at B",
+  "ORPHAN_HALO": "rho, U, V, C, Mf zeroed; c and N preserved exactly. The passive halo relaxation reader.",
+  "count": 8
+ },
+ "branch": "dev/core-halo-mismatch-recovery-00",
+ "budget": {
+  "calibration_not_counted": "Phase L lineage audits and the Phase D orphan-halo timescale study produce no arm comparison and no endpoint; they are reported as engine invocations, per the P07-P09 convention.",
+  "conf_seeds": "37000-37011",
+  "dev_seeds": "36000-36007",
+  "hard_maximum_new_trajectories": 320,
+  "held_seeds": "38000-38011",
+  "planned": {
+   "CONF_FAR_12_blocks_x_8_arms": 96,
+   "DEV_FAR_8_blocks_x_8_arms": 64,
+   "HELD_NEAR_12_blocks_x_8_arms": 96,
+   "total": 256
+  },
+  "seeds_never_used_before": true
+ },
+ "code_sha256": {
+  "../DOMC/domc_core.py": "b32a32498e0c9aef3301b8ce745468c4a8cc50a4757c4062f3a85c2c35cc1390",
+  "chmr_analyse.py": "0698dac1e0849e63227441771584337bf2e0138c08f0df646ef40500697f83ee",
+  "chmr_core.py": "b643b5c4537e9e2c34ab1caf9d1fc4070100a314a40a0eb3c6b683c08a03f729",
+  "chmr_devD.py": "70e9a0c1ebea6814d7a3b8fa1f966b6e6f9fc05a1fa16b5c09ec11e8eda25ba1",
+  "chmr_lineage.py": "3d198194810e4944bbc933f34e03cd5b47281681fa5972e80ef414963a09131f",
+  "chmr_phaseA.py": "e1a2e55270e401050dfa9b4d6619f1b33e4d6a5460bcf58d77f65c80fa963128",
+  "chmr_phaseL.py": "c5da2accb32bb0baf27c5402c9ec571c7acc6ceb0cd3f27e915a5c2f0a14379d",
+  "chmr_run.py": "e6ecefbf70735c6354e8be35eef931cc74593aeb4e416b41ae2cc17f8b804162"
+ },
+ "date_sealed": "2026-08-09",
+ "gates": {
+  "G0_PROTOCOL": "all readers, histories, masks, horizons, margins and analyses sealed before confirmatory output",
+  "G10_HELD_OUT": "the complete result replicates at the already designated held-out geometry with no reader, threshold, horizon or intervention change",
+  "G1_LINEAGE": "one prospective component lineage tracked throughout, splits and fusions retained in ITT",
+  "G2_SURGERY": "core, halo and double-cross operations pass their sham controls: exact permutation multisets, untouched non-target fields, zero mass change",
+  "G3_TIMESCALE": "orphan halos decay below the frozen 10 percent residual while intact pairs remain interpretable",
+  "G4_MISMATCH": "the four core x halo states are distinct and comparable immediately after intervention",
+  "G5_CORE_TO_HALO": "intact cores reconstruct their history-specific halo in BOTH mirrored directions: CDHR(HALO_CROSS) strictly above CDHR(HALO_CROSS_CORE_ERASE) and above CDHR(ORPHAN_HALO), with both dir_A > 0 and dir_B < 0",
+  "G6_NECESSITY": "core erasure AND writer ablation abolish reconstruction, while non-target variables pass equivalence",
+  "G7_HALO_TO_CORE": "the pulse-restore arm determines whether the halo persistently rewrites the core, measured against MATCHED_SHAM at the SAME total time",
+  "G8_CAUSAL_RESPONSE": "the final challenge response follows the reconstructed or rewritten state in the preregistered direction",
+  "G9_TURNOVER": "the result survives the frozen turnover criterion M <= 0.35 inside a continuously tracked lineage"
+ },
+ "geometry": "FAR = the DOMC primary geometry, sites (32,16) and (32,48). NEAR = the DOMC already designated held-out geometry, sites (32,24) and (32,40). NO THIRD GEOMETRY, NO NEW DISTANCE.",
+ "history_pair": "cc | 00, inherited from the DOMC Phase C selection. NO NEW HISTORY PAIR.",
+ "lawspec": "FROZEN sc_mcm MultiChannelMemoryEngine, MCParams(lam_plus=0.25, lam_minus=0.15), ScaffoldSpec of exp_sc_00 with beta=0.10, detector SCDetectionSpec(0.30, 12). Imported, never edited. The founding, the frozen sites, the half-plane driving and the reciprocal permutation are inherited unchanged from domc_core.py.",
+ "maximal_permitted_wording": "Bounded by the adjudication. CORE_REBUILDS_HALO would license only: after a reciprocal conservative exchange of local fields, renewing material components reconstructed history-specific causal environments, erasing the internal memory state or disabling its existing writer abolished reconstruction, orphan environments decayed, the reconstructed state determined a later response, and the result replicated held out. HALO_OVERWRITES_CORE would license only: a transient local environmental state reprogrammed the later response of renewing material after the imposed field was removed. Neither establishes individuality, autonomy, organismality or life.",
+ "parent_branch": "dev/dual-owner-memory-collision-00",
+ "parent_bundle": "_bundles/dual-owner-memory-collision-00.bundle",
+ "parent_bundle_sha256_verified": "29505e987fa8e5b541dfc3d172417befd3739078008191a97e9c372c2b8b661a",
+ "parent_commit": "1b4c80e03ef7637073edb581c7cbf6b346956860",
+ "parent_program": "DUAL_OWNER_MEMORY_COLLISION_00",
+ "primary_endpoint": {
+  "definition": "CDHR_X(t) = [h_A(t) - h_B(t)]_X / [h_A(t) - h_B(t)]_MATCHED_SHAM, where h is the frozen halo scalar (mean c over the frozen halo support). Immediately after HALO_CROSS it is exactly -1; +1 means the halo has been fully rebuilt toward the label the intact core carries; 0 means the label is gone. Signed, continuous, paired within block, and it carries BOTH mirrored directions at once.",
+  "inference": "exact paired sign test AND block-level randomisation inference on the paired differences, plus block-bootstrap and Student-t intervals. Equivalence by TOST for non-target effects.",
+  "mirrored_directions_required": "dir_A = h_A(HALO_CROSS) - h_A(HALO_CROSS_CORE_ERASE) must be > 0 AND dir_B = h_B(HALO_CROSS) - h_B(HALO_CROSS_CORE_ERASE) must be < 0. One direction alone is insufficient.",
+  "name": "CORE_DEPENDENT_HALO_RECONSTRUCTION",
+  "references": [
+   "ORPHAN_HALO",
+   "HALO_CROSS_CORE_ERASE",
+   "HALO_CROSS_WRITER_OFF",
+   "MATCHED_SHAM"
+  ],
+  "unit": "the founding block; components and time points are paired repeated observations"
+ },
+ "program": "CORE_HALO_MISMATCH_RECOVERY_00",
+ "prohibitions": [
+  "no new LawSpec",
+  "no private memory-output channel",
+  "no LawSpec in which the environment is prevented by construction from reproducing the response",
+  "no third geometry",
+  "no new history pair",
+  "no new reader",
+  "no threshold or equivalence-margin revision",
+  "no opportunistic recovery time",
+  "no controller rescue",
+  "no additional halo definition",
+  "no reproduction, heredity, autonomy, organismality or life claim",
+  "the independent unit is the founding block",
+  "no conditioning on successful tracking, survival or surgery",
+  "ITT retains every fusion, split, loss of tracking and failed delivery"
+ ],
+ "secondary_endpoints": [
+  "core movement toward the imposed halo",
+  "persistence after HALO_PULSE_RESTORE",
+  "future response to the common frozen challenge",
+  "core and halo relaxation times",
+  "component survival, split and dissolution",
+  "lineage-resolved turnover",
+  "local and world-level field summaries",
+  "surgery and tracker diagnostics"
+ ],
+ "single_question": "Within the frozen sc_mcm LawSpec, is the local c/N environment a PASSIVE_ENVIRONMENTAL_TRACE, or does the HALO_OVERWRITE_CORE, or does the CORE_REBUILD_HALO, or are they a MUTUAL_CORE_HALO_ATTRACTOR, or TRANSIENT_MIXED, or NOT_IDENTIFIABLE?",
+ "timing": {
+  "T_END": 700,
+  "T_PREFIX": 390,
+  "T_PULSE": 350,
+  "T_RECOVERY": 350,
+  "T_RECOVERY_provenance": "chosen on DEVELOPMENT blocks 36000-36007 ONLY, before any mismatch outcome existed, as the earliest sealed observation time at which the ORPHAN_HALO residual of the halo contrast is <= 10 percent AND pair/lineage feasibility holds in every DEV block. Measured: residual 0.0739 at t=350 (0.1078 at t=300, so 350 is the earliest passing sealed time), 0 splits, 0 fusions, exactly 2 components everywhere.",
+  "T_TURN": 700,
+  "rule": "time points are repeated paired observations, never independent replicates. The horizon may not be extended and the residual criterion may not be weakened after outcomes are read.",
+  "sealed_observation_times": [
+   0,
+   25,
+   50,
+   100,
+   150,
+   200,
+   250,
+   300,
+   350,
+   400,
+   500,
+   700
+  ]
+ },
+ "two_layers_never_combined": {
+  "CORE": "the memory field Mf. Frozen marker vector: mass-weighted (m1, m2) over the component the frozen-site reader selects. Reads Mf and rho only.",
+  "HALO": "the two external handles c and N. Frozen halo vector: (mean c, mean N) over the frozen HALO SUPPORT, a disc of radius R_HALO = 8 around the frozen site. Reads c and N only.",
+  "rule": "no reader combines them into a single ownership score. The primary endpoint is a halo quantity; the core is an independent covariate and an independent endpoint."
+ }
+}
