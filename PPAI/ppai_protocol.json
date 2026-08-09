@@ -1,0 +1,114 @@
+{
+ "NEW_LAWSPEC_AUTHORIZED": true,
+ "PROGRAM_STATUS": "SEPARATE_MODEL_CONSTRUCTION, NOT CONFIRMATION OF sc_mcm",
+ "after_failure_forbidden": [
+  "a stronger gain",
+  "a second internal state",
+  "signed secretion",
+  "direct propulsion",
+  "a controller or set-point",
+  "another reader",
+  "another wash duration",
+  "another history pair",
+  "opportunistic horizon extension"
+ ],
+ "arms_if_reached": [
+  "HL_SHAM",
+  "HL_STATE_CROSS",
+  "SAME_STATE_CROSS_SHAM",
+  "HL_ERASE_A",
+  "HL_ERASE_B",
+  "HL_COUPLING_OFF",
+  "HL_PUBLIC_PATH_REPLAY",
+  "HL_REPLAY_THEN_RELEASE"
+ ],
+ "branch": "dev/public-path-adaptive-interface-00",
+ "budget": {
+  "confirmatory_seeds_reserved_unopened": "41000+",
+  "dev_cap_blocks": 6,
+  "dev_cap_trajectories": 48,
+  "dev_seeds": "40000-40005",
+  "hard_maximum_new_trajectories": 240
+ },
+ "code_sha256": {
+  "ppai_audit.py": "3b3d62eebd7c02a0a0de88f0c45872083b46dfe87b784b606f9de4d78bb02a04",
+  "ppai_core.py": "88945808a458afab89676e73473a54fb243a85608beca85ca5a26ef5dad2394d",
+  "ppai_dev.py": "cc157aa93f65df522ebe81235911bcd04abc7d6394a1769e6075bb71f8dc2be0",
+  "ppai_engine.py": "9c7d0c133007fd04339ad519df8caacbe8262997bb9a1bd150bcc11bd3c0f7f8",
+  "ppai_fixtures.py": "463f851963872b9cabeaca68697f20e33a5ea0e05754a079cc592c361587fd07",
+  "ppai_phaseA.py": "1896ab7aa93a25bda2d1f7fe1f435b239cda9655c4219121e99479de6f85e94e"
+ },
+ "date_sealed": "2026-08-09",
+ "frozen_wash_criteria": {
+  "T_WASH": "the earliest sealed time at which BOTH hold in EVERY DEV block; otherwise NO_WASH_WINDOW",
+  "public_match": "every public A-B difference in {c, N, flux_c, mass, size, rg, position, material age} <= 10 percent",
+  "sealed_times": [
+   0,
+   40,
+   80,
+   120,
+   160,
+   200,
+   240,
+   280,
+   320,
+   360,
+   400,
+   480,
+   560
+  ],
+  "state_separation": "|z_A - z_B| >= 50 percent of its value at the start of the wash"
+ },
+ "interface_law": {
+  "applied_to": "the diffusive transport of c AND of N with the SAME factor; H is not encoded as secretion of one species and L as another",
+  "face_factor": "0.5*(kappa(z_i)+kappa(z_j)), symmetric -> translation and rotation invariant, owner-label symmetric",
+  "fresh_material": "z = 0: the parent's `Mf += g*m` inheritance term is REMOVED, so persistence through turnover must be physically rewritten",
+  "gain_classes": {
+   "NEGATIVE_FEEDBACK": -0.3333333333333333,
+   "POSITIVE_FEEDBACK": 0.3333333333333333,
+   "ZERO_FEEDBACK": 0.0
+  },
+  "gain_justification": "positivity needs |g|<1; the frozen requirement that the permeability contrast not exceed 2x native gives (1+g)/(1-g)<=2, i.e. |g|<=1/3. Fixed by those two constraints, not optimised on any ownership outcome. Measured contrast 1.6805x.",
+  "interface_name": "STATE_DEPENDENT_ADAPTIVE_INTERFACE (not memristive: z is updated by the local fields and uptake surprise, not by the interface flux itself)",
+  "kappa": "kappa(z) = 1 + g*tanh(z), bounded, odd, centred, kappa(0)=1 exactly",
+  "nesting_target": "gain=0 reproduces the FROZEN ROOT ScaffoldEngine of exp_sc_00 BIT-IDENTICALLY; sc_mcm itself reduces to that engine when both private couplings vanish (DOMC fixture 2)",
+  "removed_private_paths": [
+   "lam_plus (m_plus -> uptake)",
+   "lam_minus (m_minus -> c production)"
+  ]
+ },
+ "internal_coordinate": {
+  "no_second_memory_field_added": true,
+  "why": "the coordinate the parent line certified robust (TCA-01 certifies h1; SMC-01 h2 homogenises while h1 persists; H2-CERT-01 h2 transient under deep turnover) AND the only unsaturated one here (m2 clips at 1.0). Frozen before any outcome of this programme.",
+  "z": "m1"
+ },
+ "mechanistic_endpoint": "ENDOGENOUS_PUBLIC_MEDIATOR_REGENERATION",
+ "parent_bundle_sha256_verified": "9a41376f9defc7e6721b4efd596ad2b782507ea17492c04868ab3e8d3bb4a534",
+ "parent_commit": "586108f43d8706183f4e8cde8735f866133d3ea7",
+ "parent_program": "CORE_HALO_MISMATCH_RECOVERY_00",
+ "permitted_causal_graph": "public realized c/N flux -> existing internal state z -> public boundary permeability -> public realized c/N flux -> existing material dynamics -> externally observable future response. Forbidden and structurally absent: z->response, z->force, z->survival, z->challenge reader, z->component identity.",
+ "primary_endpoint": "LATE_COMPONENT_RESPONSE_TRANSFER, the block-level change in DELAYED future response caused by the reciprocal z permutation after public-state matching. Direct and continuous; NOT a normalized transfer ratio.",
+ "program": "PUBLIC_PATH_ADAPTIVE_INTERFACE_00",
+ "prohibited_claims": [
+  "emergence in the original sc_mcm substrate",
+  "reproduction",
+  "heredity",
+  "genome",
+  "autonomy",
+  "autopoiesis",
+  "organismality",
+  "life"
+ ],
+ "stop_rules": [
+  "ARCHITECTURE_INVALID",
+  "NESTED_NULL_FAIL",
+  "NO_WASH_WINDOW",
+  "CONSTITUTIVE_ONLY",
+  "ENVIRONMENT_BOUND",
+  "HALO_REPROGRAMS_STATE",
+  "NO_CLOSED_LOOP",
+  "CROSS_TALK",
+  "MATERIAL_ASSOCIATED",
+  "RESTRICTED"
+ ]
+}

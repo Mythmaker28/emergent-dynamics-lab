@@ -1,0 +1,720 @@
+{
+ "programme": "PUBLIC_PATH_ADAPTIVE_INTERFACE_00",
+ "phase": "B_STRUCTURAL_CAUSAL_AUDIT",
+ "DEPENDENCY_GRAPH_PARENT_sc_mcm": {
+  "edges": [
+   [
+    "N,c,uptake",
+    "Psi",
+    "Psi = tanh(k_exp*(N-c) + k_up*(uptake - up_ref))  [engine l.154]"
+   ],
+   [
+    "Psi",
+    "m1,m2",
+    "dmk = eta_w*Psi - eta_d[k]*mk + eta_t*(tmean-mk) + D_m*lap(mk)"
+   ],
+   [
+    "m1,m2",
+    "m_plus",
+    "m_plus = m1 + m2"
+   ],
+   [
+    "m1,m2",
+    "m_minus",
+    "m_minus = m1 - m2"
+   ],
+   [
+    "m_plus",
+    "uptake",
+    "PRIVATE: g = ... * (1 + lam_plus*tanh(m_plus))   [engine l.79]"
+   ],
+   [
+    "m_minus",
+    "c",
+    "PRIVATE: c += dt*(... + s*rho*(1 + lam_minus*m_minus) - delta*c) [l.116]"
+   ],
+   [
+    "uptake",
+    "rho",
+    "rho += g"
+   ],
+   [
+    "rho",
+    "c",
+    "c += dt*s*rho"
+   ],
+   [
+    "c",
+    "rho",
+    "chemotactic flux chi(c)*grad(c)"
+   ],
+   [
+    "rho,U,V,c",
+    "challenge response",
+    "the reader is [size, rg, specific_uptake, mass, c]"
+   ],
+   [
+    "m_plus",
+    "specific_uptake -> RESPONSE",
+    "DIRECT PRIVATE PATH, one hop, bypasses the bath"
+   ]
+  ],
+  "directed_paths_from_memory_to_response": [
+   "m_plus -> uptake -> specific_uptake  : DIRECT, PRIVATE, 1 hop",
+   "m_plus -> uptake -> rho -> size/mass : DIRECT, PRIVATE, 2 hops",
+   "m_minus -> c production -> c -> chemotaxis -> rho : PUBLIC but species-asymmetric, and it encodes one state as secretion of one species",
+   "m1/m2 -> (nothing else)"
+  ],
+  "classification": "DIRECT_PUBLIC_PATH is absent; what exists is a DIRECT PRIVATE PATH (lam_plus) plus a species-asymmetric secretion path (lam_minus). Neither matches the permitted graph."
+ },
+ "DEPENDENCY_GRAPH_PPAI": {
+  "edges": [
+   [
+    "N,c,uptake",
+    "Psi",
+    "unchanged writer"
+   ],
+   [
+    "Psi",
+    "m1,m2",
+    "unchanged writer"
+   ],
+   [
+    "m1 = z",
+    "kappa",
+    "kappa = 1 + g*tanh(z), bounded, odd, centred"
+   ],
+   [
+    "kappa",
+    "public c,N transport",
+    "face permeability 0.5*(kappa_i + kappa_j) on BOTH c and N"
+   ],
+   [
+    "public c,N",
+    "rho",
+    "chemotaxis and uptake, unchanged frozen physics"
+   ],
+   [
+    "rho,U,V,c",
+    "challenge response",
+    "unchanged frozen reader"
+   ]
+  ],
+  "removed": [
+   "lam_plus (m_plus -> uptake)",
+   "lam_minus (m_minus -> c production)",
+   "Mf += g*m (memory inheritance by fresh matter)"
+  ],
+  "directed_paths_from_z_to_response": [
+   "z -> kappa -> public c,N -> rho/geometry -> response   : PUBLIC, >= 3 hops"
+  ],
+  "forbidden_edges_absent": [
+   "z -> response",
+   "z -> force",
+   "z -> survival",
+   "z -> challenge reader",
+   "z -> component identity"
+  ],
+  "classification": "DIRECT_PUBLIC_PATH by construction, and no private path of any kind."
+ },
+ "COEFFICIENTS": {
+  "K_ENV_TO_CORE": {
+   "n": 96,
+   "median_per_step": -0.016342704634007815,
+   "ci95": [
+    -0.017613992484766437,
+    -0.01466117802411173
+   ],
+   "units": "d(core gap)/dt per unit halo gap, per step",
+   "identifiable": true
+  },
+  "K_CORE_TO_ENV": {
+   "n": 12,
+   "median": -0.026577001768899967,
+   "ci95": [
+    -0.027135211866378142,
+    -0.02513610679625638
+   ],
+   "units": "excess halo gap maintained per unit core gap",
+   "identifiable": true
+  },
+  "K_ENV_TO_RESPONSE": {
+   "n": 60,
+   "slope": 66.70645820242204,
+   "pearson_r": 0.5962058492803813,
+   "units": "signed response gap per unit halo gap",
+   "identifiable": true
+  },
+  "K_CORE_TO_RESPONSE_GIVEN_ENV": {
+   "n": 60,
+   "beta_core_given_halo": 0.7260297718283045,
+   "beta_halo": 74.75152940054616,
+   "ratio_core_over_halo": 0.009712574145981284,
+   "identifiable": true
+  },
+  "transfer_function": "NOT ATTEMPTED. CHMR sampled 12 times on a single relaxation; that cannot identify a frequency-domain response. The four coefficients above are local slopes, not a transfer function."
+ },
+ "WHY_SATURATION_ALONE_WOULD_NOT_REPAIR_THE_PATH": "The parent writer saturates: Psi = tanh(...) makes N0 and NN store the same m_plus to 1e-4 (measured in DOMC Phase C). A less saturating writer would widen the DYNAMIC RANGE of the stored value. It would not create an output edge. In the parent graph the only edges leaving the memory are lam_plus (private, straight into the response reader) and lam_minus (species-asymmetric secretion). Desaturating the writer changes how much is written, not where it can act; a bigger number on a wire that goes nowhere public is still not causal ownership. That is why this programme adds an OUTPUT edge and removes the private ones, rather than retuning eta_w or k_exp.",
+ "WASH_DIAGNOSTIC_ALL_GAIN_CLASSES": {
+  "NEGATIVE_FEEDBACK": [
+   {
+    "t": 0,
+    "relative_public_difference": {
+     "c": 1.471665772644286,
+     "N": 0.021240774497210464,
+     "flux_c": 0.014633051221318418,
+     "mass": 0.11058223048421353,
+     "size": 0.47058823529411764,
+     "rg": 0.16715096685470887
+    },
+    "worst_key": "c",
+    "worst_value": 1.471665772644286,
+    "min_z_sep_ratio": 1.0
+   },
+   {
+    "t": 40,
+    "relative_public_difference": {
+     "c": 1.3606678943474935,
+     "N": 0.02440717107837505,
+     "flux_c": 0.07399592125781976,
+     "mass": 0.2022081973064637,
+     "size": 0.47058823529411764,
+     "rg": 0.1726579871113885
+    },
+    "worst_key": "c",
+    "worst_value": 1.3606678943474935,
+    "min_z_sep_ratio": 1.0497724321161352
+   },
+   {
+    "t": 80,
+    "relative_public_difference": {
+     "c": 1.247172822304524,
+     "N": 0.026357434240976422,
+     "flux_c": 0.13348646480921447,
+     "mass": 0.32139832485726405,
+     "size": 0.5555555555555556,
+     "rg": 0.21836950443024683
+    },
+    "worst_key": "c",
+    "worst_value": 1.247172822304524,
+    "min_z_sep_ratio": 1.0504551654755643
+   },
+   {
+    "t": 120,
+    "relative_public_difference": {
+     "c": 1.1366970857963934,
+     "N": 0.02717199765045191,
+     "flux_c": 0.19058281250442624,
+     "mass": 0.3996337595078761,
+     "size": 0.5555555555555556,
+     "rg": 0.22881391244291008
+    },
+    "worst_key": "c",
+    "worst_value": 1.1366970857963934,
+    "min_z_sep_ratio": 1.0170883298605793
+   },
+   {
+    "t": 160,
+    "relative_public_difference": {
+     "c": 1.0337311270602298,
+     "N": 0.02715576386105506,
+     "flux_c": 0.24198254999555066,
+     "mass": 0.4664615566712653,
+     "size": 0.5945945945945946,
+     "rg": 0.2544068232409757
+    },
+    "worst_key": "c",
+    "worst_value": 1.0337311270602298,
+    "min_z_sep_ratio": 0.947784035282209
+   },
+   {
+    "t": 200,
+    "relative_public_difference": {
+     "c": 0.9412669275130854,
+     "N": 0.02663602487722571,
+     "flux_c": 0.2845051203430974,
+     "mass": 0.4995030465534751,
+     "size": 0.5945945945945946,
+     "rg": 0.26011877547749657
+    },
+    "worst_key": "c",
+    "worst_value": 0.9412669275130854,
+    "min_z_sep_ratio": 0.8712535535654635
+   },
+   {
+    "t": 240,
+    "relative_public_difference": {
+     "c": 0.8607808950016415,
+     "N": 0.02584635653163244,
+     "flux_c": 0.3184621002661886,
+     "mass": 0.5053101202617694,
+     "size": 0.5555555555555556,
+     "rg": 0.246930949160689
+    },
+    "worst_key": "c",
+    "worst_value": 0.8607808950016415,
+    "min_z_sep_ratio": 0.8035511564542991
+   },
+   {
+    "t": 280,
+    "relative_public_difference": {
+     "c": 0.7924870864054124,
+     "N": 0.024928280199780283,
+     "flux_c": 0.3449713122554258,
+     "mass": 0.5048465645943012,
+     "size": 0.5142857142857142,
+     "rg": 0.2328773690678709
+    },
+    "worst_key": "c",
+    "worst_value": 0.7924870864054124,
+    "min_z_sep_ratio": 0.7235907761778086
+   },
+   {
+    "t": 320,
+    "relative_public_difference": {
+     "c": 0.7357027732884241,
+     "N": 0.023964319355692477,
+     "flux_c": 0.3648440874971531,
+     "mass": 0.49986095437104927,
+     "size": 0.47058823529411764,
+     "rg": 0.21658737604508807
+    },
+    "worst_key": "c",
+    "worst_value": 0.7357027732884241,
+    "min_z_sep_ratio": 0.6480035031517573
+   },
+   {
+    "t": 360,
+    "relative_public_difference": {
+     "c": 0.6892100654545351,
+     "N": 0.023002398366643563,
+     "flux_c": 0.3798710628398549,
+     "mass": 0.509272574085497,
+     "size": 0.47058823529411764,
+     "rg": 0.2185083033771803
+    },
+    "worst_key": "c",
+    "worst_value": 0.6892100654545351,
+    "min_z_sep_ratio": 0.5785689153543639
+   },
+   {
+    "t": 400,
+    "relative_public_difference": {
+     "c": 0.6515504748956458,
+     "N": 0.02206980574397097,
+     "flux_c": 0.390935338744142,
+     "mass": 0.5159412980917065,
+     "size": 0.47058823529411764,
+     "rg": 0.2196956830370398
+    },
+    "worst_key": "c",
+    "worst_value": 0.6515504748956458,
+    "min_z_sep_ratio": 0.5159206182287049
+   },
+   {
+    "t": 480,
+    "relative_public_difference": {
+     "c": 0.5968650455710502,
+     "N": 0.020344077494878685,
+     "flux_c": 0.4050904920884669,
+     "mass": 0.523194741101152,
+     "size": 0.47058823529411764,
+     "rg": 0.22027614338463328
+    },
+    "worst_key": "c",
+    "worst_value": 0.5968650455710502,
+    "min_z_sep_ratio": 0.41048108173296444
+   },
+   {
+    "t": 560,
+    "relative_public_difference": {
+     "c": 0.5612508323639708,
+     "N": 0.018833947150037975,
+     "flux_c": 0.4122563997867945,
+     "mass": 0.5248097736231302,
+     "size": 0.47058823529411764,
+     "rg": 0.21904038764350645
+    },
+    "worst_key": "c",
+    "worst_value": 0.5612508323639708,
+    "min_z_sep_ratio": 0.33680286291365763
+   }
+  ],
+  "ZERO_FEEDBACK": [
+   {
+    "t": 0,
+    "relative_public_difference": {
+     "c": 1.4751047579904708,
+     "N": 0.022670929410785638,
+     "flux_c": 0.17594758202872138,
+     "mass": 0.08906706212277335,
+     "size": 0.21052631578947367,
+     "rg": 0.10276448152527311
+    },
+    "worst_key": "c",
+    "worst_value": 1.4751047579904708,
+    "min_z_sep_ratio": 1.0
+   },
+   {
+    "t": 40,
+    "relative_public_difference": {
+     "c": 1.3638380970143185,
+     "N": 0.025780563636444945,
+     "flux_c": 0.24810235541217462,
+     "mass": 0.22460686195920995,
+     "size": 0.47058823529411764,
+     "rg": 0.17239264659069103
+    },
+    "worst_key": "c",
+    "worst_value": 1.3638380970143185,
+    "min_z_sep_ratio": 1.0593177292846394
+   },
+   {
+    "t": 80,
+    "relative_public_difference": {
+     "c": 1.2499400821637152,
+     "N": 0.027370100869177034,
+     "flux_c": 0.3065291881267472,
+     "mass": 0.34043003460354343,
+     "size": 0.5555555555555556,
+     "rg": 0.2174821240922619
+    },
+    "worst_key": "c",
+    "worst_value": 1.2499400821637152,
+    "min_z_sep_ratio": 1.0755893830934486
+   },
+   {
+    "t": 120,
+    "relative_public_difference": {
+     "c": 1.138419178278659,
+     "N": 0.027636852012369373,
+     "flux_c": 0.3493617226137366,
+     "mass": 0.4109030353135663,
+     "size": 0.5555555555555556,
+     "rg": 0.22682216005737443
+    },
+    "worst_key": "c",
+    "worst_value": 1.138419178278659,
+    "min_z_sep_ratio": 1.0547251668325532
+   },
+   {
+    "t": 160,
+    "relative_public_difference": {
+     "c": 1.0333483996364272,
+     "N": 0.027035585734309624,
+     "flux_c": 0.3779797728683596,
+     "mass": 0.4690316934528348,
+     "size": 0.5945945945945946,
+     "rg": 0.25042866399267283
+    },
+    "worst_key": "c",
+    "worst_value": 1.0333483996364272,
+    "min_z_sep_ratio": 1.0044993309614954
+   },
+   {
+    "t": 200,
+    "relative_public_difference": {
+     "c": 0.9375894890771019,
+     "N": 0.02598237129342962,
+     "flux_c": 0.39508753175751404,
+     "mass": 0.47804357987764634,
+     "size": 0.5555555555555556,
+     "rg": 0.23730397847789664
+    },
+    "worst_key": "c",
+    "worst_value": 0.9375894890771019,
+    "min_z_sep_ratio": 0.9374604875191284
+   },
+   {
+    "t": 240,
+    "relative_public_difference": {
+     "c": 0.8527876267969856,
+     "N": 0.024744440306997958,
+     "flux_c": 0.40454854999658224,
+     "mass": 0.47833306489834215,
+     "size": 0.5142857142857142,
+     "rg": 0.2229682450967077
+    },
+    "worst_key": "c",
+    "worst_value": 0.8527876267969856,
+    "min_z_sep_ratio": 0.8598123410869015
+   },
+   {
+    "t": 280,
+    "relative_public_difference": {
+     "c": 0.7795180982300689,
+     "N": 0.02347027078959553,
+     "flux_c": 0.4094442754082691,
+     "mass": 0.47285327885685596,
+     "size": 0.47058823529411764,
+     "rg": 0.2061299695030882
+    },
+    "worst_key": "c",
+    "worst_value": 0.7795180982300689,
+    "min_z_sep_ratio": 0.7742854771712191
+   },
+   {
+    "t": 320,
+    "relative_public_difference": {
+     "c": 0.7175135635570419,
+     "N": 0.02223720928354716,
+     "flux_c": 0.4111801365942443,
+     "mass": 0.4816659772575156,
+     "size": 0.47058823529411764,
+     "rg": 0.20772562787595883
+    },
+    "worst_key": "c",
+    "worst_value": 0.7175135635570419,
+    "min_z_sep_ratio": 0.6902387703184005
+   },
+   {
+    "t": 360,
+    "relative_public_difference": {
+     "c": 0.6659210169164685,
+     "N": 0.021082531536996327,
+     "flux_c": 0.41129353054281625,
+     "mass": 0.487573915850041,
+     "size": 0.47058823529411764,
+     "rg": 0.20861508522144961
+    },
+    "worst_key": "c",
+    "worst_value": 0.6659210169164685,
+    "min_z_sep_ratio": 0.6108494164519288
+   },
+   {
+    "t": 400,
+    "relative_public_difference": {
+     "c": 0.6235457762147852,
+     "N": 0.0200212133800443,
+     "flux_c": 0.41026541082891194,
+     "mass": 0.49129856846885,
+     "size": 0.47058823529411764,
+     "rg": 0.20892835813881355
+    },
+    "worst_key": "c",
+    "worst_value": 0.6235457762147852,
+    "min_z_sep_ratio": 0.537829710710858
+   },
+   {
+    "t": 480,
+    "relative_public_difference": {
+     "c": 0.5611157677112734,
+     "N": 0.01818427441575227,
+     "flux_c": 0.4067241891988935,
+     "mass": 0.4941056192703182,
+     "size": 0.47058823529411764,
+     "rg": 0.2082208740700033
+    },
+    "worst_key": "c",
+    "worst_value": 0.5611157677112734,
+    "min_z_sep_ratio": 0.41314022921808624
+   },
+   {
+    "t": 560,
+    "relative_public_difference": {
+     "c": 0.5201525576360734,
+     "N": 0.016696489030340385,
+     "flux_c": 0.4024170516901798,
+     "mass": 0.49283834365995305,
+     "size": 0.47058823529411764,
+     "rg": 0.20625660854608882
+    },
+    "worst_key": "c",
+    "worst_value": 0.5201525576360734,
+    "min_z_sep_ratio": 0.32023052436532584
+   }
+  ],
+  "POSITIVE_FEEDBACK": [
+   {
+    "t": 0,
+    "relative_public_difference": {
+     "c": 1.4775237817438311,
+     "N": 0.02404873215992581,
+     "flux_c": 0.331469224233939,
+     "mass": 0.08106438512029122,
+     "size": 0.04878048780487805,
+     "rg": 0.05565436943896931
+    },
+    "worst_key": "c",
+    "worst_value": 1.4775237817438311,
+    "min_z_sep_ratio": 1.0
+   },
+   {
+    "t": 40,
+    "relative_public_difference": {
+     "c": 1.3659325295462623,
+     "N": 0.027058646540684295,
+     "flux_c": 0.41592805505602803,
+     "mass": 0.1594701838429095,
+     "size": 0.2564102564102564,
+     "rg": 0.12192304661166026
+    },
+    "worst_key": "c",
+    "worst_value": 1.3659325295462623,
+    "min_z_sep_ratio": 1.0632017339434452
+   },
+   {
+    "t": 80,
+    "relative_public_difference": {
+     "c": 1.2516457214201682,
+     "N": 0.02823728549711812,
+     "flux_c": 0.47271185021592327,
+     "mass": 0.3602679556992277,
+     "size": 0.5555555555555556,
+     "rg": 0.21645334476409572
+    },
+    "worst_key": "c",
+    "worst_value": 1.2516457214201682,
+    "min_z_sep_ratio": 1.0969167941160394
+   },
+   {
+    "t": 120,
+    "relative_public_difference": {
+     "c": 1.1390784362679793,
+     "N": 0.027918749204648614,
+     "flux_c": 0.50137921862146,
+     "mass": 0.42253931991489263,
+     "size": 0.5555555555555556,
+     "rg": 0.2244933983590634
+    },
+    "worst_key": "c",
+    "worst_value": 1.1390784362679793,
+    "min_z_sep_ratio": 1.091600608282626
+   },
+   {
+    "t": 160,
+    "relative_public_difference": {
+     "c": 1.0318414774520384,
+     "N": 0.026709222533341438,
+     "flux_c": 0.5078340891654433,
+     "mass": 0.45514136007872846,
+     "size": 0.5555555555555556,
+     "rg": 0.22890939474298122
+    },
+    "worst_key": "c",
+    "worst_value": 1.0318414774520384,
+    "min_z_sep_ratio": 1.051358582168015
+   },
+   {
+    "t": 200,
+    "relative_public_difference": {
+     "c": 0.9326501065986612,
+     "N": 0.025110236101174948,
+     "flux_c": 0.499858117021294,
+     "mass": 0.46322329636031095,
+     "size": 0.5555555555555556,
+     "rg": 0.22850425585025883
+    },
+    "worst_key": "c",
+    "worst_value": 0.9326501065986612,
+    "min_z_sep_ratio": 0.9874343343667922
+   },
+   {
+    "t": 240,
+    "relative_public_difference": {
+     "c": 0.8433298899980397,
+     "N": 0.023425187396191212,
+     "flux_c": 0.484874615601502,
+     "mass": 0.4691047426168481,
+     "size": 0.5142857142857142,
+     "rg": 0.21587963178392844
+    },
+    "worst_key": "c",
+    "worst_value": 0.8433298899980397,
+    "min_z_sep_ratio": 0.9067678168045824
+   },
+   {
+    "t": 280,
+    "relative_public_difference": {
+     "c": 0.7648458180905034,
+     "N": 0.021811421063533242,
+     "flux_c": 0.46771780249053074,
+     "mass": 0.4591072707309898,
+     "size": 0.47058823529411764,
+     "rg": 0.19816493544134375
+    },
+    "worst_key": "c",
+    "worst_value": 0.7648458180905034,
+    "min_z_sep_ratio": 0.8159858961063012
+   },
+   {
+    "t": 320,
+    "relative_public_difference": {
+     "c": 0.6973788180711762,
+     "N": 0.020339706724656733,
+     "flux_c": 0.4504258947635918,
+     "mass": 0.4636768406565622,
+     "size": 0.47058823529411764,
+     "rg": 0.19874335159183226
+    },
+    "worst_key": "c",
+    "worst_value": 0.6973788180711762,
+    "min_z_sep_ratio": 0.7239193604601744
+   },
+   {
+    "t": 360,
+    "relative_public_difference": {
+     "c": 0.6404730317803587,
+     "N": 0.019033370250184957,
+     "flux_c": 0.43463038580936064,
+     "mass": 0.46606497056407736,
+     "size": 0.47058823529411764,
+     "rg": 0.19883476395946095
+    },
+    "worst_key": "c",
+    "worst_value": 0.6404730317803587,
+    "min_z_sep_ratio": 0.6352360782877572
+   },
+   {
+    "t": 400,
+    "relative_public_difference": {
+     "c": 0.5932270421907744,
+     "N": 0.017891334534577703,
+     "flux_c": 0.42056265849149405,
+     "mass": 0.46693014880942985,
+     "size": 0.47058823529411764,
+     "rg": 0.1985532798662403
+    },
+    "worst_key": "c",
+    "worst_value": 0.5932270421907744,
+    "min_z_sep_ratio": 0.5527820884654693
+   },
+   {
+    "t": 480,
+    "relative_public_difference": {
+     "c": 0.5230057892543418,
+     "N": 0.01604634694845001,
+     "flux_c": 0.39811389155091526,
+     "mass": 0.4657361638017528,
+     "size": 0.47058823529411764,
+     "rg": 0.19718428314714015
+    },
+    "worst_key": "c",
+    "worst_value": 0.5230057892543418,
+    "min_z_sep_ratio": 0.4115222537940194
+   },
+   {
+    "t": 560,
+    "relative_public_difference": {
+     "c": 0.47706210797677207,
+     "N": 0.014676610070571262,
+     "flux_c": 0.3822275698413919,
+     "mass": 0.46232310429925494,
+     "size": 0.47058823529411764,
+     "rg": 0.19512027040528945
+    },
+    "worst_key": "c",
+    "worst_value": 0.47706210797677207,
+    "min_z_sep_ratio": 0.30601331750146615
+   }
+  ]
+ },
+ "WASH_VERDICT": {
+  "FROZEN_CRITERION_RESULT": "NO_WASH_WINDOW",
+  "second_well_posed_normalisation": "NO_WASH_WINDOW",
+  "why_the_first_statistic_was_ill_posed": "the frozen criterion normalised each public A-B difference by its own value at the START of the wash. Mass and size start nearly equal (21 cells against 21), so that denominator is near zero and the criterion demands a difference that is already ~0 to stay ~0 forever. It is the same small-denominator trap this programme corrected in DOMC. The second statistic, |A-B| divided by the mean level, is well posed. NO TARGET OUTCOME had been computed when the second statistic was introduced: only the wash diagnostic itself.",
+  "what_the_well_posed_statistic_shows": "the halo difference falls from 148 % to 48 % of the mean level over 560 steps and never approaches 10 %, while mass and size DIVERGE from 8 % and 5 % to 46 % and 47 % and stay there. The public state does not converge; it separates. z separation meanwhile falls below the 50 % floor at t ~ 480.",
+  "is_it_caused_by_the_new_coupling": "NO. The same failure occurs at ZERO_FEEDBACK, where the engine is bit-identical to the frozen root ScaffoldEngine. The unmatchable public state is inherited from the founding and history construction of DOMC/CHMR, not created by the adaptive interface.",
+  "consequence": "the stop rule NO_WASH_WINDOW fires. No confirmatory arm may be run, because every downstream gate is conditioned on a matched public state."
+ }
+}

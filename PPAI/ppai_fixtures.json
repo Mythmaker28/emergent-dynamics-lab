@@ -1,0 +1,112 @@
+[
+ {
+  "fixture": "G1.1 gain = 0 reproduces the FROZEN root ScaffoldEngine BIT-IDENTICALLY over 400 steps",
+  "PASS": true,
+  "detail": "max |diff| = 0.000e+00"
+ },
+ {
+  "fixture": "G1.2 the general flux branch agrees with the frozen `lap` branch to float round-off",
+  "PASS": true,
+  "detail": "max |diff| after 200 steps = 2.220e-16 (declared, not assumed)"
+ },
+ {
+  "fixture": "G1.3[NEGATIVE_FEEDBACK] kappa is strictly positive and bounded",
+  "PASS": true,
+  "detail": "g = -0.3333, kappa in [0.7461, 1.2539], contrast = 1.6805x"
+ },
+ {
+  "fixture": "G1.3[ZERO_FEEDBACK] kappa is strictly positive and bounded",
+  "PASS": true,
+  "detail": "g = +0.0000, kappa in [1.0000, 1.0000], contrast = 1.0000x"
+ },
+ {
+  "fixture": "G1.3[POSITIVE_FEEDBACK] kappa is strictly positive and bounded",
+  "PASS": true,
+  "detail": "g = +0.3333, kappa in [0.7461, 1.2539], contrast = 1.6805x"
+ },
+ {
+  "fixture": "G1.4 the permeability contrast never exceeds 2x native",
+  "PASS": true,
+  "detail": "contrast = 1.680479"
+ },
+ {
+  "fixture": "G1.5 kappa(0) = 1 exactly for every gain class",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "G1.6 kappa is ODD around z = 0 for every gain class",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "G1.7[NEGATIVE_FEEDBACK] 900 steps stay finite, non-negative and bounded",
+  "PASS": true,
+  "detail": "rho in [2.913e-11,0.976] c in [1.028e-05,0.676] N in [9.158e-01,1.000]"
+ },
+ {
+  "fixture": "G1.7[POSITIVE_FEEDBACK] 900 steps stay finite, non-negative and bounded",
+  "PASS": true,
+  "detail": "rho in [2.818e-11,0.969] c in [1.708e-05,0.569] N in [9.234e-01,1.000]"
+ },
+ {
+  "fixture": "G1.8 the parent's memory-inheritance term `Mf += g*m` is absent from the CODE: fresh matter starts at z = 0",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "G1.9 no lam_plus / lam_minus private path exists in any executable line of the engine",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "G0.1 the dynamics read no identity, history label, provenance, tracker or future outcome",
+  "PASS": true,
+  "detail": "violations = []"
+ },
+ {
+  "fixture": "G0.2 the public reader and the challenge reader never touch z",
+  "PASS": true,
+  "detail": "[]"
+ },
+ {
+  "fixture": "G0.3 z is read only by the declared privileged auditor diagnostic",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "G4.0a the permutation is an exact bijection of the INTENSIVE field (multiset preserved)",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "G4.0b the effective-z histogram residual is within the frozen mechanical tolerance",
+  "PASS": true,
+  "detail": "residual = 50 cells of 4096 (1.2 %), tolerance 205; the residual lives on near-empty margin cells where z is masked to 0 by the engine"
+ },
+ {
+  "fixture": "G4.1 the permutation leaves rho, U, V, c, N, C bit-identical",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "G4.2 the permutation is an involution on the live support",
+  "PASS": true,
+  "detail": "max |residual| on live cells = 1.110e-16"
+ },
+ {
+  "fixture": "G4.3 erasure touches Mf only and exactly one half-plane",
+  "PASS": true,
+  "detail": ""
+ },
+ {
+  "fixture": "G4.4 the two components carry distinct z after the mirrored histories",
+  "PASS": true,
+  "detail": "z_A = -0.4900  z_B = +0.6007  |dz| = 1.0907"
+ },
+ {
+  "fixture": "G0.4 the two mirrored worlds have an identical global attempted forcing series",
+  "PASS": true,
+  "detail": ""
+ }
+]
