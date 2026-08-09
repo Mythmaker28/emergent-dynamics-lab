@@ -1,0 +1,116 @@
+{
+ "co_primary": {
+  "definition": "number of the nine blocks whose tracked component is continuous and intact at the horizon",
+  "name": "ITT_TRACK_CONTINUITY"
+ },
+ "code_sha256": {
+  "p08_core.py": "b1f396c307acdf420d6f42aaaa28d79d710279bd7748120eb6b1e24155ef94b6",
+  "p08_fixtures.py": "7377aa6438cb0a814780bccf02825e342a87bfd8c6e54d17779dcb85dea1f9c0",
+  "p08b_run.py": "0eeb0c9fe70c0c770b8a035050586cd773f294ce134a7fa56021c8d7ceeb058f"
+ },
+ "date_sealed": "2026-08-09",
+ "decision_rules_sealed": {
+  "IMPROVES": "paired sign test on UCR vs PARENT with p < 0.05 AND positive median difference AND ITT continuity not below PARENT's AND futile fraction not above PARENT's + 0.10 AND shadow-0.55 survival not below PARENT's",
+  "NO_EFFECT": "none of the above",
+  "SAFE_ABSTENTION": "delivered mass below 0.5 x PARENT's AND UCR not significantly above PARENT's. Such an arm is never reported as an improvement.",
+  "TRACKER_GAMING_DETECTED": "official survival at or above PARENT's while shadow-0.55 survival is below PARENT's, OR median fraction of tracked cells with m - THRESH < 0.05 above 0.5"
+ },
+ "design": {
+  "coast": 2048,
+  "horizon": 7424,
+  "independent_unit": "one block = one (size, seed) lineage. Internal events are NEVER replicates.",
+  "law": "LAW_16",
+  "quantum": "M256/80",
+  "seed_base": 990000,
+  "seeds_per_size": 9,
+  "sizes": [
+   24,
+   32
+  ],
+  "status": "DISCOVERY. These seeds were used in P07. Confirmation uses never-used seeds.",
+  "t256_states": "the P07 checkpoints, SHA-256 verified against p07a_manifest.json before use"
+ },
+ "factorial": {
+  "BOTH_SAFE": [
+   0.5,
+   0.9
+  ],
+  "PARENT": [
+   0.0,
+   1.0
+  ],
+  "SINK_FLOOR": [
+   0.5,
+   1.0
+  ],
+  "SRC_CAP": [
+   0.0,
+   0.9
+  ],
+  "ceil": "the source never fills a cell above this value",
+  "chosen_a_priori": "round values, not tuned; eps=0.05 places the floor at 0.50, which is exactly one of the shadow thresholds, making the adversarial shadow test maximally severe",
+  "eps_floor": 0.05,
+  "floor": "the sink never leaves a cell it drains below this value",
+  "h_headroom": 0.1
+ },
+ "firewall": {
+  "AMOUNT": "the only thing that varies",
+  "WHEN": "identical in every arm: 320 events, spacing 16, first 272, last 5376",
+  "WHERE": "identical in every arm: the frozen C256 downstream/upstream half masks",
+  "note": "the feedback phase 08C varies only WHEN; a spatial phase, if it is opened at all, would vary only WHERE"
+ },
+ "mode": "PROSPECTIVE_INTERVENTIONAL_DISCOVERY",
+ "parent_bundle_sha256": "0f398c8c5da641ddfcac0f3a0e243ae803dad3cb886bfc3d7d250f3af1a5ffd1",
+ "parent_commit": "99df74531e5ada73bd02953cab6072c2f04e7485",
+ "parent_program": "ROUTE_E_EXCHANGE_THROUGHPUT_CAUSAL_PROGRAM_07",
+ "phase": "08B_AMOUNT_RULE_FACTORIAL_SELF_SABOTAGE_DECOUPLING",
+ "primary_endpoint": {
+  "analysis": "median over the NINE blocks per size, intention to treat, blocks that lose the track keep the replacement they achieved and are never dropped; paired exact sign test against PARENT",
+  "definition": "UCR = min( incumbent mass removed by the sink and never re-counted , fresh mass still inside the tracked component at the horizon ) / M256",
+  "name": "UNIQUE_CAUSAL_REPLACEMENT",
+  "why_not_delivered_mass": "P07 proved DELIVERED_FRACTION is inflatable by a futile cycle. UCR was adversarially validated on the P07 arms before this protocol was sealed: it ranks both known-degenerate arms (SRC_SINKSIDE 0.104, TRACKALL 0.251) below PARENT (0.387) and gives 0 to any arm whose component is dead at the horizon."
+ },
+ "program": "ROUTE_E_SAFE_ACTUATION_AND_FEEDBACK_CAUSAL_PROGRAM_08",
+ "prohibitions_carried_forward": [
+  "internal events are never independent replicates",
+  "the nine blocks stay in every ITT analysis including after track loss",
+  "survivors are never presented as the complete cohort",
+  "every rejection cause is reported",
+  "delivered mass is a diagnostic, never a substitute for exchange",
+  "an arm that survives by acting almost never is SAFE_ABSTENTION, not an improvement",
+  "no life / identity / autonomy / metabolism / organisation claim is fabricated"
+ ],
+ "reported_separately_never_merged": [
+  "replacement / elapsed_time",
+  "replacement / attempted_mass",
+  "replacement / delivered_mass",
+  "delivered_mass / elapsed_time",
+  "fresh_retention",
+  "incumbent_displacement",
+  "tracker_sweep"
+ ],
+ "shadow_readers_predeclared": {
+  "margin_distribution": [
+   "min",
+   "q10",
+   "median",
+   "fraction below 0.05",
+   "fraction below 0.10"
+  ],
+  "recorded": [
+   "alive",
+   "area",
+   "jaccard with the official track",
+   "jaccard with C256"
+  ],
+  "rule": "the official tracker stays frozen at 0.45 and is the ONLY one used for endpoints; the shadow readers can only invalidate a survival, never create one",
+  "thresholds": [
+   0.4,
+   0.45,
+   0.5,
+   0.55,
+   0.6
+  ]
+ },
+ "why_these_arms": "The P08 audit found that 4036/4036 P07 rejections fall in exactly one category: the allowed support still holds matter (median 24.2 units) but all of it below THRESH. Global exhaustion 0/4036. Supra-threshold matter stranded outside the track 0/4036. The limit is LOCAL_SUBTHRESHOLD_INACCESSIBILITY_IN_A_FIXED_SUPPORT and the operator manufactures it. The amount rule therefore reduces to two numbers and a 2x2 factorial answers whether the useful correction is on the sink side, the source side, both, or neither."
+}

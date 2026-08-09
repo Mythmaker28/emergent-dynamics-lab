@@ -1,0 +1,235 @@
+{
+ "RHO_PREDICTION_STRATIFIED_BY_BINDING_CONSTRAINT": {
+  "stratifier": "fraction of executed events in the predicted window whose realised quantum equals the SOURCE capacity; instrumented in P07, not defined here",
+  "SOURCE_BOUND": {
+   "n": 46,
+   "median_ratio": 1.0201830956929854,
+   "ci": [
+    0.9858916563394576,
+    1.0590738764631875
+   ],
+   "range": [
+    0.877764367934832,
+    1.2384766198969976
+   ],
+   "within_factor_1.5": 46
+  },
+  "SINK_BOUND_OR_MIXED": {
+   "n": 26,
+   "median_ratio": 1.1341360416740671,
+   "range": [
+    1.0363958808372213,
+    4.896527641752807
+   ]
+  },
+  "FINDING": "the probe measures the SOURCE side only. It therefore predicts the delivered rate exactly when and only when the source is the binding constraint, and over-predicts by the amount the sink is throttling. Every comparison outside a factor 1.5 is a window in which the sink had taken over. This is a falsifiable consequence of what the probe measures, and it holds without exception."
+ },
+ "RHO_INDEPENDENT_PREDICTION": {
+  "probe": "at a checkpoint of an ordinary forced trajectory, a clone is forked, the injection region is saturated to MMAX in one shot, then the substrate runs FREE with no operator; rho_probe is the initial slope of the reopening of free room. It never sees any delivery curve.",
+  "target": "the mass the coupled operator actually delivers per step over the NEXT window of the same trajectory (never the previous one, never the same points)",
+  "detail": {
+   "L24|t272": {
+    "rho_probe_initial_slope_median": 0.04951973626407857,
+    "ci": [
+     0.048689340844106574,
+     0.05175552585662485
+    ],
+    "rho_observed_over_the_NEXT_window_median": 0.04074617538766972,
+    "ci_obs": [
+     0.03855196359081484,
+     0.0434063030495923
+    ],
+    "ratio_probe_over_observed_median": 1.2066730408114987,
+    "ratio_ci": [
+     1.1245860753212489,
+     1.2844932307384946
+    ],
+    "n_blocks": 9,
+    "saturation_mass_added_median": 21.09435489498206
+   },
+   "L24|t1296": {
+    "rho_probe_initial_slope_median": 0.014952331175557332,
+    "ci": [
+     0.014255462989108042,
+     0.017169634710345216
+    ],
+    "rho_observed_over_the_NEXT_window_median": 0.01417144899982007,
+    "ci_obs": [
+     0.012820570298231644,
+     0.018705342253349945
+    ],
+    "ratio_probe_over_observed_median": 1.0551024934533637,
+    "ratio_ci": [
+     0.917900056454209,
+     1.1119211281166108
+    ],
+    "n_blocks": 9,
+    "saturation_mass_added_median": 0.0
+   },
+   "L24|t2320": {
+    "rho_probe_initial_slope_median": 0.015793758294470148,
+    "ci": [
+     0.012855050965407205,
+     0.02159284317529596
+    ],
+    "rho_observed_over_the_NEXT_window_median": 0.015844646039531944,
+    "ci_obs": [
+     0.013867822385667132,
+     0.020042862442752093
+    ],
+    "ratio_probe_over_observed_median": 0.9269696862207681,
+    "ratio_ci": [
+     0.8982543704658505,
+     1.0456033839109562
+    ],
+    "n_blocks": 9,
+    "saturation_mass_added_median": 0.0
+   },
+   "L24|t3344": {
+    "rho_probe_initial_slope_median": 0.01916822238934278,
+    "ci": [
+     0.015790374888088668,
+     0.02374193203461021
+    ],
+    "rho_observed_over_the_NEXT_window_median": 0.015384455749644352,
+    "ci_obs": [
+     0.0061736626956817725,
+     0.018802331964064348
+    ],
+    "ratio_probe_over_observed_median": 1.0371608430023909,
+    "ratio_ci": [
+     0.9302465016499601,
+     4.023750498936727
+    ],
+    "n_blocks": 9,
+    "saturation_mass_added_median": 0.0
+   },
+   "L32|t272": {
+    "rho_probe_initial_slope_median": 0.0639483047405742,
+    "ci": [
+     0.06124842883471124,
+     0.06537687655079219
+    ],
+    "rho_observed_over_the_NEXT_window_median": 0.060694306999672674,
+    "ci_obs": [
+     0.055630449311733915,
+     0.061909319531730886
+    ],
+    "ratio_probe_over_observed_median": 1.0771500620502146,
+    "ratio_ci": [
+     1.0393058835327027,
+     1.1144669421365738
+    ],
+    "n_blocks": 9,
+    "saturation_mass_added_median": 34.550544939252255
+   },
+   "L32|t1296": {
+    "rho_probe_initial_slope_median": 0.018734741099366334,
+    "ci": [
+     0.01824642733996179,
+     0.018919655121281645
+    ],
+    "rho_observed_over_the_NEXT_window_median": 0.015246868245797018,
+    "ci_obs": [
+     0.014732960676705646,
+     0.01582765177727935
+    ],
+    "ratio_probe_over_observed_median": 1.2309487703495718,
+    "ratio_ci": [
+     1.219923233553756,
+     1.2364884535351282
+    ],
+    "n_blocks": 9,
+    "saturation_mass_added_median": 0.0
+   },
+   "L32|t2320": {
+    "rho_probe_initial_slope_median": 0.013570402057521788,
+    "ci": [
+     0.013003782702221259,
+     0.014793465557108698
+    ],
+    "rho_observed_over_the_NEXT_window_median": 0.012817561984515169,
+    "ci_obs": [
+     0.01202667870862853,
+     0.014399732935061652
+    ],
+    "ratio_probe_over_observed_median": 1.056326238320182,
+    "ratio_ci": [
+     1.0273430503067424,
+     1.0804772212445977
+    ],
+    "n_blocks": 9,
+    "saturation_mass_added_median": 0.0
+   },
+   "L32|t3344": {
+    "rho_probe_initial_slope_median": 0.01302040757269779,
+    "ci": [
+     0.011897362569433814,
+     0.01503541344760688
+    ],
+    "rho_observed_over_the_NEXT_window_median": 0.013180981287976304,
+    "ci_obs": [
+     0.011668017457866886,
+     0.015275571960608206
+    ],
+    "ratio_probe_over_observed_median": 0.9864028324349209,
+    "ratio_ci": [
+     0.9842782637782315,
+     1.0194553810801428
+    ],
+    "n_blocks": 9,
+    "saturation_mass_added_median": 0.0
+   }
+  },
+  "overall_ratio_median": 1.0577000573916848,
+  "overall_ratio_ci": [
+   1.0409322967619168,
+   1.093364227586909
+  ],
+  "n_paired_comparisons": 72,
+  "worst_ratio": [
+   0.877764367934832,
+   4.896527641752807
+  ],
+  "VERDICT_UNSTRATIFIED": "INDEPENDENTLY_PREDICTED_WITH_EXCEPTIONS",
+  "VERDICT": "INDEPENDENTLY_PREDICTED_WITHIN_THE_SOURCE_BOUND_REGIME"
+ },
+ "RHO_NONSTATIONARITY_CONFIRMED_BY_THE_PROBE": {
+  "detail": {
+   "L24": {
+    "rho_probe_at_t272": 0.04951973626407857,
+    "rho_probe_at_t2320": 0.015793758294470148,
+    "paired_decay_factor_median": 3.1102080281119155,
+    "sign_test_t2320_vs_t272": {
+     "n": 9,
+     "pos": 9,
+     "neg": 0,
+     "p": 0.00390625,
+     "median_diff": 0.03343786383182176
+    }
+   },
+   "L32": {
+    "rho_probe_at_t272": 0.0639483047405742,
+    "rho_probe_at_t2320": 0.013570402057521788,
+    "paired_decay_factor_median": 4.708027178300209,
+    "sign_test_t2320_vs_t272": {
+     "n": 9,
+     "pos": 9,
+     "neg": 0,
+     "p": 0.00390625,
+     "median_diff": 0.050213208128279146
+    }
+   }
+  },
+  "FINDING": "the probe reproduces the decay of rho without being told about it. rho is a real local physical rate -- the reopening of free room at zero headroom -- and it is state dependent, not a constant of the substrate."
+ },
+ "REOPENING_RATE_IS_MAXIMAL_AT_ZERO_HEADROOM": {
+  "median_slope_ratio_late_over_early": 0.7615824521142216,
+  "ci": [
+   0.7522189144677853,
+   0.7667280158412695
+  ],
+  "n": 90,
+  "PREDICTION_MADE_BEFORE_08B_IS_READ": "the reopening rate is highest when the injection region is empty of headroom and decays as headroom accumulates. A rule that DELIBERATELY KEEPS HEADROOM OPEN (SRC_CAP) therefore operates where the substrate reopens room more slowly, and must deliver LESS than PARENT, not more. If 08B shows SRC_CAP delivering more, this probe model is wrong."
+ }
+}

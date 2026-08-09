@@ -1,0 +1,93 @@
+{
+ "LAW29_TRANSPORT": {
+  "SHAM_NORMALIZED_TRANSPORT": "the ONLINE trigger's registration floor and kappa are unchanged, but the SPACING is rescaled to LAW_29's own relaxation time, estimated ONLY from LAW_29 SHAM blocks of this same confirmation cohort, as spacing = 16 * (tau29 / tau16) rounded to the nearest power of two, where tau is the number of steps for a SHAM block's tracked mass autocorrelation proxy |T(t)-T(t+d)|/T to reach 0.02. No treated block is used to compute it.",
+  "STRICT_POLICY_TRANSPORT": "identical physical parameters: floor, ceil, quantum M256/80, spacing 16, kappa 0.9, registration floor 0.10",
+  "adjudication": {
+   "BOTH_FAIL": "GENERALIZATION_LIMIT_CONFIRMED",
+   "STRICT_CONFIRMS": "STRICT_MECHANISTIC_TRANSPORT",
+   "STRICT_FAILS_NORMALIZED_CONFIRMS": "NORMALIZED_MECHANISTIC_TRANSPORT",
+   "rule": "after both transports fail, no third rescue tuned on the results is created"
+  },
+  "what_counts_as_confirming_under_LAW_29": "a policy that raises ITT track continuity above PARENT's WITHOUT dropping unique causal replacement below half of PARENT's. A policy that survives by acting almost never is SAFE_ABSTENTION and is reported as such."
+ },
+ "SEALED_POINT_PREDICTIONS": {
+  "C1_FLOOR_SPLITS_THE_COMPONENT": {
+   "FALSIFIER": "fewer than 7 splits under SINK_FLOOR, or more than 1 under PARENT",
+   "claim": "the per-cell safety floor converts a local excision into a global thinning of the removal band and therefore SPLITS the tracked component",
+   "discovery": "SPLIT in 9/9 blocks at both sizes, first failure at t = 976 (L24) and 1280 (L32); PARENT and SRC_CAP: 0 splits",
+   "predicted": "SINK_FLOOR splits in at least 7 of 9 blocks at each size under LAW_16, while PARENT splits in at most 1 of 9"
+  },
+  "C2_HEADROOM_CAP_LOWERS_THE_FLUX": {
+   "FALSIFIER": "SRC_CAP delivering at or above PARENT, which would refute the probe model",
+   "claim": "the 08A saturation probe showed the reopening rate is maximal at zero headroom (late/early slope ratio 0.76). A rule that deliberately keeps headroom open must therefore deliver LESS.",
+   "discovery": "SRC_CAP delivered 0.314 vs PARENT 0.620 (L24) and 0.228 vs 0.414 (L32), i.e. 0.51 and 0.55 of PARENT",
+   "predicted": "SRC_CAP delivered mass lies between 0.35 and 0.75 of PARENT's at both sizes, and is strictly below it in at least 8 of 9 blocks"
+  },
+  "C3_NO_SAFE_AMOUNT_RULE_IMPROVES_REPLACEMENT": {
+   "FALSIFIER": "any safe rule beating PARENT on UCR",
+   "claim": "neither guard improves unique causal replacement",
+   "discovery": "UCR: PARENT 0.387/0.333, SINK_FLOOR 0.216/0.225, SRC_CAP 0.236/0.180",
+   "predicted": "PARENT's UCR exceeds both SINK_FLOOR's and SRC_CAP's, by paired sign test p < 0.05, at both sizes"
+  },
+  "C4_PROBE_PREDICTS_RHO_UNDER_A_SECOND_LAW": {
+   "FALSIFIER": "systematic departure beyond 1.5 in source-bound windows",
+   "claim": "the saturation probe is a physical measurement, not a LAW_16 curve fit, so it must predict the delivered rate under LAW_29 too, in source-bound windows",
+   "predicted": "in windows where at least 90 percent of executed events are source-bound, the ratio of probe slope to observed delivery rate lies within a factor 1.5, at both sizes, under LAW_29"
+  }
+ },
+ "code_sha256": {
+  "p08_core.py": "b1f396c307acdf420d6f42aaaa28d79d710279bd7748120eb6b1e24155ef94b6",
+  "p08d_run.py": "1bacc9bb99256d5dc946760e236ea334be818dd0219d0bddc03ed3ff9aca49cd"
+ },
+ "configurations": [
+  {
+   "arms": [
+    "SHAM",
+    "PARENT",
+    "SINK_FLOOR",
+    "SRC_CAP"
+   ],
+   "law": "LAW_16",
+   "sizes": [
+    24,
+    32
+   ]
+  },
+  {
+   "arms": [
+    "SHAM",
+    "PARENT",
+    "SINK_FLOOR",
+    "SRC_CAP",
+    "ONLINE_STRICT",
+    "ONLINE_NORMALIZED"
+   ],
+   "law": "LAW_29",
+   "sizes": [
+    24,
+    32
+   ]
+  }
+ ],
+ "date_sealed": "2026-08-09",
+ "dose": "320 opportunities, spacing 16, quantum M256/80, coast 2048, horizon 7424",
+ "mode": "PROSPECTIVE_CONFIRMATORY",
+ "phase": "08D_SEALED_CONFIRMATION_AND_LAW29_TRANSPORT",
+ "program": "ROUTE_E_SAFE_ACTUATION_AND_FEEDBACK_CAUSAL_PROGRAM_08",
+ "prohibitions_carried_forward": [
+  "internal events and internal decisions are never statistical replicates",
+  "the nine blocks stay in every ITT analysis including after track loss",
+  "survivors are never presented as the complete cohort",
+  "every rejection cause is reported",
+  "delivered mass is a diagnostic, never a substitute for exchange",
+  "a magnitude accumulated entirely before dissolution is TRANSIENT_PRE_FAILURE, never a generalised exchange regime",
+  "no life / identity / autonomy / metabolism / organisation claim is fabricated"
+ ],
+ "sealed_before_reading_any_08C_result": true,
+ "seeds": {
+  "base": 930000,
+  "never_used_before": true,
+  "per_size": 9
+ },
+ "separation": "08A/08B/08C are DISCOVERY on seeds 990000+. 08D is CONFIRMATION on seeds 930000+, which have never been used in any mission of this project. Every number below was computed from discovery data only and is frozen before the first 08D engine call."
+}

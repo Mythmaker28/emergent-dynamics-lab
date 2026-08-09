@@ -1,0 +1,68 @@
+{
+ "n": 10,
+ "n_pass": 10,
+ "VERDICT": "PASS",
+ "engine_state_generators": 22,
+ "fixtures": [
+  {
+   "fixture": 1,
+   "name": "regle PARENT == operateur P07 scelle, bit a bit",
+   "PASS": true,
+   "detail": "216 cas geles, max|dm| = 0.0e+00, max|d cohorte| = 0.0e+00 -> la chaine DEV_05 -> P07 -> P08 partage une physique identique"
+  },
+  {
+   "fixture": 2,
+   "name": "le plancher: aucune cellule DRAINEE n'est laissee sous le plancher",
+   "PASS": true,
+   "detail": "PARENT: marge min = +0.000e+00 (273 drainages); SINK_FLOOR: marge min = +0.000e+00 (720 drainages); SRC_CAP: marge min = +0.000e+00 (165 drainages); BOTH_SAFE: marge min = +0.000e+00 (427 drainages)"
+  },
+  {
+   "fixture": 3,
+   "name": "le plafond de reserve n'est jamais depasse",
+   "PASS": true,
+   "detail": "PARENT: depassement max = +0.000e+00; SINK_FLOOR: depassement max = +0.000e+00; SRC_CAP: depassement max = +0.000e+00; BOTH_SAFE: depassement max = +0.000e+00"
+  },
+  {
+   "fixture": 4,
+   "name": "identite des cohortes, bilan global, masse nette nulle",
+   "PASS": true,
+   "detail": "identite 8.9e-16, bilan 8.5e-14, |source-puits| 4.4e-15"
+  },
+  {
+   "fixture": 5,
+   "name": "pare-feu oracle: le controleur ne lit ni provenance ni futur",
+   "PASS": true,
+   "detail": "fonctions auditees: sensor_readout, sink_eligible, source_eligible; violations = aucune"
+  },
+  {
+   "fixture": 6,
+   "name": "le plancher n'est pas un no-op",
+   "PASS": true,
+   "detail": "ecart max de champ apres 4 evenements, par etat: ['0.500', '0.500', '0.500', '0.500', '0.500', '0.500']"
+  },
+  {
+   "fixture": 7,
+   "name": "lecteurs fantomes ordonnes, et 0.45 reproduit le tracker officiel",
+   "PASS": true,
+   "detail": "18 etats; l'aire decroit avec le seuil et le lecteur a 0.45 coincide exactement avec la piste officielle; violations = aucune"
+  },
+  {
+   "fixture": 8,
+   "name": "UCR penalise le cycle futile sur chaque etat",
+   "PASS": true,
+   "detail": "PARENT ['0.1434', '0.1500', '0.1500', '0.1428', '0.1487', '0.1500'] vs SINKSIDE ['0.0598', '0.0595', '0.0584', '0.0935', '0.0952', '0.0551']"
+  },
+  {
+   "fixture": 9,
+   "name": "rejets: aucune mutation, causes nommees et exhaustives",
+   "PASS": true,
+   "detail": "causes observees = ['NO_SINK_CAPACITY', 'NO_SOURCE_CAPACITY'], max|dm| sur rejet = 0.0e+00"
+  },
+  {
+   "fixture": 10,
+   "name": "moteur et detecteur de production intacts",
+   "PASS": true,
+   "detail": "aucune ecriture sur state.n / state.b; engine e027a9c56b77, instrumentation 65d4185bd9ef"
+  }
+ ]
+}

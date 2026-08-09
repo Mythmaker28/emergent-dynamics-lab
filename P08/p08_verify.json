@@ -1,0 +1,68 @@
+{
+ "n": 10,
+ "n_pass": 10,
+ "VERDICT": "PASS",
+ "engine_invocations": 0,
+ "checks": [
+  {
+   "check": 1,
+   "name": "aucune analyse ne fait tourner le moteur",
+   "PASS": true,
+   "detail": "violations = aucune (p08b_analyse importe p08_core pour lire la table des regles, sans jamais appeler le moteur)"
+  },
+  {
+   "check": 2,
+   "name": "identite des cohortes et bilan global sur toutes les trajectoires",
+   "PASS": true,
+   "detail": "378 trajectoires; pire identite = 1.28e-14, pire bilan = 2.84e-13"
+  },
+  {
+   "check": 3,
+   "name": "ITT: 9 blocs par cellule du plan, jamais moins",
+   "PASS": true,
+   "detail": "cellules hors norme = aucune"
+  },
+  {
+   "check": 4,
+   "name": "aucune cellule suivie sous le seuil du detecteur dans les bras a plancher",
+   "PASS": true,
+   "detail": "violations = aucune"
+  },
+  {
+   "check": 5,
+   "name": "UCR = min(incumbent retire, frais retenu) recalcule depuis le brut",
+   "PASS": true,
+   "detail": "378 trajectoires, pire ecart = 0.00e+00"
+  },
+  {
+   "check": 6,
+   "name": "les 4 sceaux P08 tiennent (protocoles et code)",
+   "PASS": true,
+   "detail": "violations = aucune"
+  },
+  {
+   "check": 7,
+   "name": "aucun artefact P07 ni DEV_05 modifie",
+   "PASS": true,
+   "detail": "3 sceaux P07 + 28 fichiers DEV_05; violations = aucune"
+  },
+  {
+   "check": 8,
+   "name": "renversement 08E recalcule depuis le brut",
+   "PASS": true,
+   "detail": "L24 PARENT: ITT 0/9, ombre55 0/9; L24 SINK_FLOOR: ITT 9/9, ombre55 9/9; L32 PARENT: ITT 0/9, ombre55 0/9; L32 SINK_FLOOR: ITT 9/9, ombre55 9/9"
+  },
+  {
+   "check": 9,
+   "name": "TRACKER_GAMING au niveau du bras (critere pre-enregistre en 08B)",
+   "PASS": true,
+   "detail": "bras suspects = aucun; a titre declaratif, 1 trajectoire(s) sur 378 sont vivantes a 0,45 et mortes a 0,50 : [('p08d_rows.csv', 'LAW_29_L24_S930001', 'ONLINE_NORMALIZED')] \u2014 dans un bras SANS plancher, deja en echec sur tous les criteres, donc sans mecanisme de parking"
+  },
+  {
+   "check": 10,
+   "name": "toute non-execution porte une cause nommee",
+   "PASS": true,
+   "detail": "21054 rejets; taxonomie = {'SHAM': 5760, 'NO_SINK_CAPACITY': 8190, 'NO_TRACK': 7104}"
+  }
+ ]
+}

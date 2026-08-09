@@ -1,0 +1,55 @@
+{
+ "SEALED_POINT_PREDICTIONS": {
+  "E1_FLOOR_RESCUES_CONTINUITY_UNDER_LAW_29": {
+   "FALSIFIER": "SINK_FLOOR below 7/9 at either size, or PARENT above 4/9 at either size",
+   "discovery_08D": "SINK_FLOOR 9/9 and 9/9; PARENT 0/9 and 3/9",
+   "predicted": "SINK_FLOOR ITT continuity at least 7/9 at each size, while PARENT is at most 4/9 at each size"
+  },
+  "E2_FLOOR_IS_THE_ONLY_ARM_WITH_NON_ZERO_REPLACEMENT": {
+   "FALSIFIER": "SINK_FLOOR median UCR at or below 0.05, or no significant advantage over PARENT",
+   "discovery_08D": "SINK_FLOOR UCR 0.117 and 0.150; PARENT UCR 0.000 at both sizes",
+   "predicted": "median UCR of SINK_FLOOR strictly above 0.05 at both sizes, and strictly above PARENT's by paired sign test p < 0.05"
+  },
+  "E3_THE_SPLIT_EFFECT_REVERSES_SIGN_WITH_THE_LAW": {
+   "FALSIFIER": "3 or more splits at either size",
+   "discovery": "under LAW_16 the floor splits in 9/9 blocks at both sizes; under LAW_29 in 0/9",
+   "predicted": "SINK_FLOOR splits in at most 2 of 9 blocks at each size under LAW_29"
+  }
+ },
+ "arms": [
+  "SHAM",
+  "PARENT",
+  "SINK_FLOOR"
+ ],
+ "code_sha256": {
+  "p08_core.py": "b1f396c307acdf420d6f42aaaa28d79d710279bd7748120eb6b1e24155ef94b6",
+  "p08e_run.py": "569b7cb7aba5b3d85ce39f303c6573ef6ce0626e01953da3e279aa546621f0ef"
+ },
+ "date_sealed": "2026-08-09",
+ "dose": "320 opportunities, spacing 16, quantum M256/80, coast 2048, horizon 7424",
+ "interpretation": {
+  "if_all_three_confirm": "REGIME_DEPENDENT_REPAIR_CONFIRMED: the sign of a safety guard is set by the failure mode of the component, fragmentation or dissolution, not by the guard itself",
+  "if_any_fails": "the reversal stays a DISCOVERY_WITHIN_A_CONFIRMATION_COHORT and is reported as such",
+  "no_third_setting": "whatever the outcome, no further tuned variant is created"
+ },
+ "law": "LAW_29",
+ "mode": "PROSPECTIVE_CONFIRMATORY",
+ "phase": "08E_CONFIRMATION_OF_THE_REGIME_DEPENDENT_SIGN_REVERSAL_OF_THE_SAFETY_FLOOR",
+ "program": "ROUTE_E_SAFE_ACTUATION_AND_FEEDBACK_CAUSAL_PROGRAM_08",
+ "prohibitions_carried_forward": [
+  "internal events are never statistical replicates",
+  "the nine blocks stay in every ITT analysis including after track loss",
+  "a magnitude accumulated entirely before dissolution is TRANSIENT_PRE_FAILURE",
+  "no life / identity / autonomy / metabolism / organisation claim is fabricated"
+ ],
+ "seeds": {
+  "base": 910000,
+  "never_used_before": true,
+  "per_size": 9
+ },
+ "sizes": [
+  24,
+  32
+ ],
+ "why": "08D was a confirmation cohort for four sealed predictions about LAW_16. Inside it, an effect that was NOT pre-registered appeared: under LAW_29 the per-cell safety floor, which fragments the component in 9/9 blocks under LAW_16, instead keeps it alive in 9/9 blocks at both sizes while the parent operator loses it in 9/9 and 6/9. That is a DISCOVERY inside a confirmation cohort and it is not reported as confirmed. This phase tests it prospectively on a third, never-used seed cohort."
+}

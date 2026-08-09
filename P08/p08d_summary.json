@@ -1,0 +1,760 @@
+{
+ "protocol_sha256": "9ffc7f1e0f545f2aca25fc6535b54d60027e0525718504ad3fc2a7d1effea61e",
+ "cohort": {
+  "blocks_attempted": 36,
+  "t256_status": {
+   "T256_VALID_TRACK": 36
+  },
+  "engine_invocations": 216,
+  "sham_relaxation_steps": {
+   "LAW_16|L24": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "LAW_16|L32": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "LAW_29|L24": [
+    1,
+    225,
+    1,
+    222,
+    199,
+    146,
+    127,
+    170,
+    224
+   ],
+   "LAW_29|L32": [
+    1,
+    1,
+    1,
+    1,
+    219,
+    1,
+    1,
+    1,
+    167
+   ]
+  }
+ },
+ "DESCRIPTIVE": {
+  "LAW_16|L24|PARENT": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.37263013240628445,
+   "UCR_ci": [
+    0.0,
+    0.3965321334157817
+   ],
+   "ITT_TRACK_CONTINUITY": "7/9",
+   "n_split": 0,
+   "n_loss": 2,
+   "failure_types": {
+    "NONE": 7,
+    "TRACK_LOST_OR_DISSOLVED": 2
+   },
+   "delivered_over_M256": 0.5932188743659241,
+   "incumbent_removed_over_M256": 0.4585313724237801,
+   "fresh_over_M256": 0.37263013240628445,
+   "futile_fraction": 0.1873362012087319,
+   "n_events_median": 252.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {
+    "NO_SINK_CAPACITY": 664
+   },
+   "terminal_I_over_I0": 0.4185209561905502,
+   "max_identity_residual": 1.0103029524088925e-14
+  },
+  "LAW_16|L24|SHAM": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.0,
+   "UCR_ci": [
+    0.0,
+    0.0
+   ],
+   "ITT_TRACK_CONTINUITY": "9/9",
+   "n_split": 0,
+   "n_loss": 0,
+   "failure_types": {
+    "NONE": 9
+   },
+   "delivered_over_M256": 0.0,
+   "incumbent_removed_over_M256": 0.0,
+   "fresh_over_M256": 0.0,
+   "futile_fraction": 0.0,
+   "n_events_median": 0.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {},
+   "terminal_I_over_I0": 0.7500148751481036,
+   "max_identity_residual": 3.9968028886505635e-15
+  },
+  "LAW_16|L24|SINK_FLOOR": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.21212304738533913,
+   "UCR_ci": [
+    0.2025071364552756,
+    0.23058473040394853
+   ],
+   "ITT_TRACK_CONTINUITY": "0/9",
+   "n_split": 9,
+   "n_loss": 0,
+   "failure_types": {
+    "SPLIT": 9
+   },
+   "delivered_over_M256": 0.29505400345095206,
+   "incumbent_removed_over_M256": 0.27435548526740655,
+   "fresh_over_M256": 0.21212304738533913,
+   "futile_fraction": 0.040040701919931386,
+   "n_events_median": 320.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {},
+   "terminal_I_over_I0": 0.4579546614204756,
+   "max_identity_residual": 7.327471962526033e-15
+  },
+  "LAW_16|L24|SRC_CAP": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.23710360814304535,
+   "UCR_ci": [
+    0.22851236920659765,
+    0.2585719345399952
+   ],
+   "ITT_TRACK_CONTINUITY": "9/9",
+   "n_split": 0,
+   "n_loss": 0,
+   "failure_types": {
+    "NONE": 9
+   },
+   "delivered_over_M256": 0.3193115744620371,
+   "incumbent_removed_over_M256": 0.2857250620440563,
+   "fresh_over_M256": 0.23710360814304535,
+   "futile_fraction": 0.02749953267734321,
+   "n_events_median": 320.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {},
+   "terminal_I_over_I0": 0.522950169789664,
+   "max_identity_residual": 4.773959005888173e-15
+  },
+  "LAW_16|L32|PARENT": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.3377690026216133,
+   "UCR_ci": [
+    0.33252499064608454,
+    0.3430005567760406
+   ],
+   "ITT_TRACK_CONTINUITY": "9/9",
+   "n_split": 0,
+   "n_loss": 0,
+   "failure_types": {
+    "NONE": 9
+   },
+   "delivered_over_M256": 0.43189620807564577,
+   "incumbent_removed_over_M256": 0.3783829126246787,
+   "fresh_over_M256": 0.3377690026216133,
+   "futile_fraction": 0.06826263295329665,
+   "n_events_median": 320.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {},
+   "terminal_I_over_I0": 0.4887641044916097,
+   "max_identity_residual": 1.2545520178264269e-14
+  },
+  "LAW_16|L32|SHAM": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.0,
+   "UCR_ci": [
+    0.0,
+    0.0
+   ],
+   "ITT_TRACK_CONTINUITY": "9/9",
+   "n_split": 0,
+   "n_loss": 0,
+   "failure_types": {
+    "NONE": 9
+   },
+   "delivered_over_M256": 0.0,
+   "incumbent_removed_over_M256": 0.0,
+   "fresh_over_M256": 0.0,
+   "futile_fraction": 0.0,
+   "n_events_median": 0.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {},
+   "terminal_I_over_I0": 0.8085959238915236,
+   "max_identity_residual": 3.9968028886505635e-15
+  },
+  "LAW_16|L32|SINK_FLOOR": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.21319671253497965,
+   "UCR_ci": [
+    0.20696583710588556,
+    0.22930511111789417
+   ],
+   "ITT_TRACK_CONTINUITY": "0/9",
+   "n_split": 9,
+   "n_loss": 0,
+   "failure_types": {
+    "SPLIT": 9
+   },
+   "delivered_over_M256": 0.29071096998954954,
+   "incumbent_removed_over_M256": 0.26709760220592094,
+   "fresh_over_M256": 0.21319671253497965,
+   "futile_fraction": 0.05645278637033327,
+   "n_events_median": 320.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {},
+   "terminal_I_over_I0": 0.4771246293061151,
+   "max_identity_residual": 9.325873406851315e-15
+  },
+  "LAW_16|L32|SRC_CAP": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.1819047097015603,
+   "UCR_ci": [
+    0.17610399564744791,
+    0.18506980633124484
+   ],
+   "ITT_TRACK_CONTINUITY": "9/9",
+   "n_split": 0,
+   "n_loss": 0,
+   "failure_types": {
+    "NONE": 9
+   },
+   "delivered_over_M256": 0.23066251268020213,
+   "incumbent_removed_over_M256": 0.21662339517718485,
+   "fresh_over_M256": 0.1819047097015603,
+   "futile_fraction": 0.0027778623166380685,
+   "n_events_median": 320.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {},
+   "terminal_I_over_I0": 0.6269900735429571,
+   "max_identity_residual": 5.329070518200751e-15
+  },
+  "LAW_29|L24|ONLINE_NORMALIZED": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.0,
+   "UCR_ci": [
+    0.0,
+    0.0
+   ],
+   "ITT_TRACK_CONTINUITY": "0/9",
+   "n_split": 0,
+   "n_loss": 9,
+   "failure_types": {
+    "TRACK_LOST_OR_DISSOLVED": 9
+   },
+   "delivered_over_M256": 0.3423664182482006,
+   "incumbent_removed_over_M256": 0.3138630183786461,
+   "fresh_over_M256": 0.0,
+   "futile_fraction": 0.008482857051848827,
+   "n_events_median": 21.0,
+   "n_waited_median": 209.0,
+   "spacing": 64.0,
+   "reject_causes": {
+    "NO_TRACK": 827,
+    "NO_SINK_CAPACITY": 2
+   },
+   "terminal_I_over_I0": 0.0650871182489755,
+   "max_identity_residual": 5.995204332975845e-15
+  },
+  "LAW_29|L24|ONLINE_STRICT": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.0,
+   "UCR_ci": [
+    0.0,
+    0.0
+   ],
+   "ITT_TRACK_CONTINUITY": "0/9",
+   "n_split": 0,
+   "n_loss": 9,
+   "failure_types": {
+    "TRACK_LOST_OR_DISSOLVED": 9
+   },
+   "delivered_over_M256": 0.48272534789033156,
+   "incumbent_removed_over_M256": 0.4139729249126074,
+   "fresh_over_M256": 0.0,
+   "futile_fraction": 0.09376861057423057,
+   "n_events_median": 25.0,
+   "n_waited_median": 137.0,
+   "spacing": 16.0,
+   "reject_causes": {
+    "NO_TRACK": 1405
+   },
+   "terminal_I_over_I0": null,
+   "max_identity_residual": 5.995204332975845e-15
+  },
+  "LAW_29|L24|PARENT": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.0,
+   "UCR_ci": [
+    0.0,
+    0.0
+   ],
+   "ITT_TRACK_CONTINUITY": "0/9",
+   "n_split": 0,
+   "n_loss": 9,
+   "failure_types": {
+    "TRACK_LOST_OR_DISSOLVED": 9
+   },
+   "delivered_over_M256": 0.4738629957254212,
+   "incumbent_removed_over_M256": 0.41324289389788016,
+   "fresh_over_M256": 0.0,
+   "futile_fraction": 0.08519703192181657,
+   "n_events_median": 65.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {
+    "NO_SINK_CAPACITY": 1011,
+    "NO_TRACK": 1272
+   },
+   "terminal_I_over_I0": null,
+   "max_identity_residual": 6.772360450213455e-15
+  },
+  "LAW_29|L24|SHAM": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.0,
+   "UCR_ci": [
+    0.0,
+    0.0
+   ],
+   "ITT_TRACK_CONTINUITY": "9/9",
+   "n_split": 0,
+   "n_loss": 0,
+   "failure_types": {
+    "NONE": 9
+   },
+   "delivered_over_M256": 0.0,
+   "incumbent_removed_over_M256": 0.0,
+   "fresh_over_M256": 0.0,
+   "futile_fraction": 0.0,
+   "n_events_median": 0.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {},
+   "terminal_I_over_I0": 0.4733365838473295,
+   "max_identity_residual": 2.886579864025407e-15
+  },
+  "LAW_29|L24|SINK_FLOOR": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.11651142732278508,
+   "UCR_ci": [
+    0.10509244417920206,
+    0.12607634524505754
+   ],
+   "ITT_TRACK_CONTINUITY": "9/9",
+   "n_split": 0,
+   "n_loss": 0,
+   "failure_types": {
+    "NONE": 9
+   },
+   "delivered_over_M256": 0.22736900400647286,
+   "incumbent_removed_over_M256": 0.22311779113551772,
+   "fresh_over_M256": 0.11651142732278508,
+   "futile_fraction": 0.003692254283826581,
+   "n_events_median": 320.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {},
+   "terminal_I_over_I0": 0.3402729753257769,
+   "max_identity_residual": 4.218847493575595e-15
+  },
+  "LAW_29|L24|SRC_CAP": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.0,
+   "UCR_ci": [
+    0.0,
+    0.0
+   ],
+   "ITT_TRACK_CONTINUITY": "0/9",
+   "n_split": 0,
+   "n_loss": 9,
+   "failure_types": {
+    "TRACK_LOST_OR_DISSOLVED": 9
+   },
+   "delivered_over_M256": 0.4502016359840377,
+   "incumbent_removed_over_M256": 0.3808760423523108,
+   "fresh_over_M256": 0.0,
+   "futile_fraction": 0.10402104086793715,
+   "n_events_median": 84.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {
+    "NO_SINK_CAPACITY": 473,
+    "NO_TRACK": 1623
+   },
+   "terminal_I_over_I0": null,
+   "max_identity_residual": 3.219646771412954e-15
+  },
+  "LAW_29|L32|ONLINE_NORMALIZED": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.0,
+   "UCR_ci": [
+    0.0,
+    0.2697097405609558
+   ],
+   "ITT_TRACK_CONTINUITY": "3/9",
+   "n_split": 0,
+   "n_loss": 6,
+   "failure_types": {
+    "NONE": 3,
+    "TRACK_LOST_OR_DISSOLVED": 6
+   },
+   "delivered_over_M256": 0.4706347692510542,
+   "incumbent_removed_over_M256": 0.40757438002232066,
+   "fresh_over_M256": 0.0,
+   "futile_fraction": 0.09094105529552922,
+   "n_events_median": 22.0,
+   "n_waited_median": 297.0,
+   "spacing": 16.0,
+   "reject_causes": {
+    "NO_TRACK": 54,
+    "NO_SINK_CAPACITY": 4
+   },
+   "terminal_I_over_I0": 0.3277975540395694,
+   "max_identity_residual": 6.772360450213455e-15
+  },
+  "LAW_29|L32|ONLINE_STRICT": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.0,
+   "UCR_ci": [
+    0.0,
+    0.2697097405609558
+   ],
+   "ITT_TRACK_CONTINUITY": "3/9",
+   "n_split": 0,
+   "n_loss": 6,
+   "failure_types": {
+    "NONE": 3,
+    "TRACK_LOST_OR_DISSOLVED": 6
+   },
+   "delivered_over_M256": 0.4706347692510542,
+   "incumbent_removed_over_M256": 0.40757438002232066,
+   "fresh_over_M256": 0.0,
+   "futile_fraction": 0.09094105529552922,
+   "n_events_median": 22.0,
+   "n_waited_median": 297.0,
+   "spacing": 16.0,
+   "reject_causes": {
+    "NO_TRACK": 54,
+    "NO_SINK_CAPACITY": 4
+   },
+   "terminal_I_over_I0": 0.3277975540395694,
+   "max_identity_residual": 6.772360450213455e-15
+  },
+  "LAW_29|L32|PARENT": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.0,
+   "UCR_ci": [
+    0.0,
+    0.2611825225200009
+   ],
+   "ITT_TRACK_CONTINUITY": "3/9",
+   "n_split": 0,
+   "n_loss": 6,
+   "failure_types": {
+    "NONE": 3,
+    "TRACK_LOST_OR_DISSOLVED": 6
+   },
+   "delivered_over_M256": 0.500621492166341,
+   "incumbent_removed_over_M256": 0.4183512010288021,
+   "fresh_over_M256": 0.0,
+   "futile_fraction": 0.13667163737836577,
+   "n_events_median": 116.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {
+    "NO_SINK_CAPACITY": 1621,
+    "NO_TRACK": 170
+   },
+   "terminal_I_over_I0": 0.3435822479981396,
+   "max_identity_residual": 6.5503158452884236e-15
+  },
+  "LAW_29|L32|SHAM": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.0,
+   "UCR_ci": [
+    0.0,
+    0.0
+   ],
+   "ITT_TRACK_CONTINUITY": "9/9",
+   "n_split": 0,
+   "n_loss": 0,
+   "failure_types": {
+    "NONE": 9
+   },
+   "delivered_over_M256": 0.0,
+   "incumbent_removed_over_M256": 0.0,
+   "fresh_over_M256": 0.0,
+   "futile_fraction": 0.0,
+   "n_events_median": 0.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {},
+   "terminal_I_over_I0": 0.5785970946259348,
+   "max_identity_residual": 2.886579864025407e-15
+  },
+  "LAW_29|L32|SINK_FLOOR": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.1502580515421373,
+   "UCR_ci": [
+    0.14361177596676114,
+    0.16138606828823687
+   ],
+   "ITT_TRACK_CONTINUITY": "9/9",
+   "n_split": 0,
+   "n_loss": 0,
+   "failure_types": {
+    "NONE": 9
+   },
+   "delivered_over_M256": 0.24380008022526195,
+   "incumbent_removed_over_M256": 0.2386260711572267,
+   "fresh_over_M256": 0.1502580515421373,
+   "futile_fraction": 0.009341794800992736,
+   "n_events_median": 320.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {},
+   "terminal_I_over_I0": 0.39101712113017006,
+   "max_identity_residual": 5.88418203051333e-15
+  },
+  "LAW_29|L32|SRC_CAP": {
+   "n_blocks_ITT": 9,
+   "UCR_median": 0.0,
+   "UCR_ci": [
+    0.0,
+    0.0
+   ],
+   "ITT_TRACK_CONTINUITY": "1/9",
+   "n_split": 0,
+   "n_loss": 8,
+   "failure_types": {
+    "NONE": 1,
+    "TRACK_LOST_OR_DISSOLVED": 8
+   },
+   "delivered_over_M256": 0.4672005558623076,
+   "incumbent_removed_over_M256": 0.38147353299476183,
+   "fresh_over_M256": 0.0,
+   "futile_fraction": 0.1437567613144286,
+   "n_events_median": 156.0,
+   "n_waited_median": 0.0,
+   "spacing": 16.0,
+   "reject_causes": {
+    "NO_SINK_CAPACITY": 1109,
+    "NO_TRACK": 313
+   },
+   "terminal_I_over_I0": 0.36070588636696843,
+   "max_identity_residual": 3.885780586188048e-15
+  }
+ },
+ "C1_FLOOR_SPLITS_THE_COMPONENT": {
+  "detail": {
+   "LAW_16|L24": {
+    "SINK_FLOOR_splits": "9/9",
+    "PARENT_splits": "0/9",
+    "meets": true
+   },
+   "LAW_16|L32": {
+    "SINK_FLOOR_splits": "9/9",
+    "PARENT_splits": "0/9",
+    "meets": true
+   }
+  },
+  "VERDICT": "CONFIRMED",
+  "transport_to_LAW_29": {
+   "LAW_29|L24": {
+    "SINK_FLOOR_splits": "0/9"
+   },
+   "LAW_29|L32": {
+    "SINK_FLOOR_splits": "0/9"
+   }
+  }
+ },
+ "C2_HEADROOM_CAP_LOWERS_THE_FLUX": {
+  "detail": {
+   "LAW_16|L24": {
+    "ratio_SRC_CAP_over_PARENT": 0.5209768805309826,
+    "n_blocks_strictly_below": "9/9",
+    "meets": true
+   },
+   "LAW_16|L32": {
+    "ratio_SRC_CAP_over_PARENT": 0.5214476248521386,
+    "n_blocks_strictly_below": "9/9",
+    "meets": true
+   }
+  },
+  "VERDICT": "CONFIRMED"
+ },
+ "C3_NO_SAFE_AMOUNT_RULE_IMPROVES_REPLACEMENT": {
+  "detail": {
+   "LAW_16|L24|SINK_FLOOR": {
+    "sign_test_vs_PARENT": {
+     "n": 9,
+     "pos": 2,
+     "neg": 7,
+     "p": 0.1796875,
+     "median_diff": -0.15995208648717757
+    },
+    "PARENT_wins": false
+   },
+   "LAW_16|L24|SRC_CAP": {
+    "sign_test_vs_PARENT": {
+     "n": 9,
+     "pos": 2,
+     "neg": 7,
+     "p": 0.1796875,
+     "median_diff": -0.13774041749646485
+    },
+    "PARENT_wins": false
+   },
+   "LAW_16|L32|SINK_FLOOR": {
+    "sign_test_vs_PARENT": {
+     "n": 9,
+     "pos": 0,
+     "neg": 9,
+     "p": 0.00390625,
+     "median_diff": -0.11957920987583023
+    },
+    "PARENT_wins": true
+   },
+   "LAW_16|L32|SRC_CAP": {
+    "sign_test_vs_PARENT": {
+     "n": 9,
+     "pos": 0,
+     "neg": 9,
+     "p": 0.00390625,
+     "median_diff": -0.15646324523980706
+    },
+    "PARENT_wins": true
+   }
+  },
+  "VERDICT": "REFUTED_AS_STATED"
+ },
+ "C4_PROBE_PREDICTS_RHO_UNDER_A_SECOND_LAW": {
+  "detail": {
+   "LAW_16|L24": {
+    "n": 18,
+    "median_ratio": 1.157689580966367,
+    "range": [
+     0.8939493331437266,
+     1.332776391170867
+    ],
+    "within_factor_1.5": "18/18"
+   },
+   "LAW_16|L32": {
+    "n": 18,
+    "median_ratio": 1.192532460226599,
+    "range": [
+     1.0168441441711449,
+     2.077499519370296
+    ],
+    "within_factor_1.5": "17/18"
+   },
+   "LAW_29|L24": {
+    "n": 18,
+    "median_ratio": 3.939605135103621,
+    "range": [
+     1.4182277443719118,
+     16.221662142664815
+    ],
+    "within_factor_1.5": "2/18"
+   },
+   "LAW_29|L32": {
+    "n": 18,
+    "median_ratio": 1.4668760822509443,
+    "range": [
+     0.9965360124825389,
+     5.271295990339794
+    ],
+    "within_factor_1.5": "10/18"
+   }
+  },
+  "VERDICT": "REFUTED_AS_STATED",
+  "note": "the probe measures the SOURCE side only; comparisons in windows where the sink has taken over are expected to over-predict and are not counted against it, exactly as established in 08A"
+ },
+ "LAW29_TRANSPORT": {
+  "detail": {
+   "L24|ONLINE_STRICT": {
+    "ITT_continuity": "0/9",
+    "PARENT_ITT": "0/9",
+    "UCR": 0.0,
+    "PARENT_UCR": 0.0,
+    "delivered_over_M256": 0.48272534789033156,
+    "PARENT_delivered": 0.4738629957254212,
+    "spacing": 16.0,
+    "n_events_median": 25.0,
+    "CONFIRMS": false,
+    "SAFE_ABSTENTION": false
+   },
+   "L24|ONLINE_NORMALIZED": {
+    "ITT_continuity": "0/9",
+    "PARENT_ITT": "0/9",
+    "UCR": 0.0,
+    "PARENT_UCR": 0.0,
+    "delivered_over_M256": 0.3423664182482006,
+    "PARENT_delivered": 0.4738629957254212,
+    "spacing": 64.0,
+    "n_events_median": 21.0,
+    "CONFIRMS": false,
+    "SAFE_ABSTENTION": false
+   },
+   "L32|ONLINE_STRICT": {
+    "ITT_continuity": "3/9",
+    "PARENT_ITT": "3/9",
+    "UCR": 0.0,
+    "PARENT_UCR": 0.0,
+    "delivered_over_M256": 0.4706347692510542,
+    "PARENT_delivered": 0.500621492166341,
+    "spacing": 16.0,
+    "n_events_median": 22.0,
+    "CONFIRMS": false,
+    "SAFE_ABSTENTION": false
+   },
+   "L32|ONLINE_NORMALIZED": {
+    "ITT_continuity": "3/9",
+    "PARENT_ITT": "3/9",
+    "UCR": 0.0,
+    "PARENT_UCR": 0.0,
+    "delivered_over_M256": 0.4706347692510542,
+    "PARENT_delivered": 0.500621492166341,
+    "spacing": 16.0,
+    "n_events_median": 22.0,
+    "CONFIRMS": false,
+    "SAFE_ABSTENTION": false
+   }
+  },
+  "VERDICT": "GENERALIZATION_LIMIT_CONFIRMED",
+  "rule": {
+   "BOTH_FAIL": "GENERALIZATION_LIMIT_CONFIRMED",
+   "STRICT_CONFIRMS": "STRICT_MECHANISTIC_TRANSPORT",
+   "STRICT_FAILS_NORMALIZED_CONFIRMS": "NORMALIZED_MECHANISTIC_TRANSPORT",
+   "rule": "after both transports fail, no third rescue tuned on the results is created"
+  },
+  "pre_failure_note": "under LAW_29 the PARENT arm accumulates its exchange before the component dissolves; any magnitude reported there is TRANSIENT_PRE_FAILURE"
+ },
+ "OVERALL": {
+  "C1_FLOOR_SPLITS_THE_COMPONENT": "CONFIRMED",
+  "C2_HEADROOM_CAP_LOWERS_THE_FLUX": "CONFIRMED",
+  "C3_NO_SAFE_AMOUNT_RULE_IMPROVES_REPLACEMENT": "REFUTED_AS_STATED",
+  "C4_PROBE_PREDICTS_RHO_UNDER_A_SECOND_LAW": "REFUTED_AS_STATED",
+  "LAW29_TRANSPORT": "GENERALIZATION_LIMIT_CONFIRMED"
+ }
+}

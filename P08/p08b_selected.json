@@ -1,0 +1,30 @@
+{
+ "arm": "PARENT",
+ "floor": 0.0,
+ "ceil": 1.0,
+ "pooled_UCR": 0.3543553274509068,
+ "rule": "highest pooled UCR among arms that are neither SAFE_ABSTENTION nor TRACKER_GAMING_DETECTED; a simpler arm whose CI overlaps the winner's is preferred",
+ "candidates": [
+  {
+   "arm": "PARENT",
+   "pooled_UCR": 0.3543553274509068,
+   "ci_lo": 0.3198454404805022,
+   "ci_hi": 0.3929076774102442,
+   "guards": 0
+  },
+  {
+   "arm": "BOTH_SAFE",
+   "pooled_UCR": 0.20056133907261636,
+   "ci_lo": 0.1762459548146155,
+   "ci_hi": 0.24384444577029493,
+   "guards": 2
+  },
+  {
+   "arm": "SRC_CAP",
+   "pooled_UCR": 0.2001504872527421,
+   "ci_lo": 0.1709172124556484,
+   "ci_hi": 0.2665061827687748,
+   "guards": 1
+  }
+ ]
+}

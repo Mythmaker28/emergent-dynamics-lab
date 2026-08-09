@@ -1,0 +1,65 @@
+{
+ "arms": {
+  "SAFE_DONOR_YOKED_REPLAY": "open-loop replay of the fire / no-fire sequence AND the intended bites that SAFE_ONLINE_TRIGGER produced on a DIFFERENT block: block k of a size replays the schedule of block (k+1) mod 9 of the same size. Never the same clone, never the same seed.",
+  "SAFE_FIXED_SCHEDULE": "reused verbatim from 08B: attempt one quantum at every opportunity. No new engine call.",
+  "SAFE_LAGGED_SENSOR": "the identical online rule, but reading a sensor snapshot taken one opportunity (16 steps) earlier. Closed-loop in structure, stale in time.",
+  "SAFE_ONLINE_TRIGGER": "act at an opportunity iff feasible_q >= 0.9 * intended_bite AND mask_registration >= 0.10; otherwise wait and bank the quantum"
+ },
+ "budget_matching": {
+  "backlog": "an opportunity that is skipped adds its quantum to a backlog, capped at 4 quanta; the last opportunity flushes whatever backlog remains",
+  "consequence": "the ATTEMPTED mass is exactly 320 quanta in every arm. Only its distribution in time differs.",
+  "note": "matching on DELIVERED mass would be matching on a post-intervention variable and is used only as a clearly labelled secondary ratio",
+  "opportunities": "320, at spacing 16, identical in every arm"
+ },
+ "co_primary": "ITT_TRACK_CONTINUITY over the nine blocks",
+ "code_sha256": {
+  "p08_core.py": "b1f396c307acdf420d6f42aaaa28d79d710279bd7748120eb6b1e24155ef94b6",
+  "p08c_run.py": "2203c36b3ffb2de8cf983ce0276aca67ebcd98107f89983256dd37d124c20c7e"
+ },
+ "date_sealed": "2026-08-09",
+ "interpretation_rules_sealed": {
+  "FEEDBACK_VALUE_ESTABLISHED": "ONLINE beats FIXED and ONLINE beats DONOR_YOKED and ONLINE beats LAGGED, on the primary endpoint, by paired sign test p < 0.05",
+  "FUTILE_CYCLE": "delivered mass rises without a rise in UNIQUE_CAUSAL_REPLACEMENT",
+  "OPEN_LOOP_SCHEDULE_EFFECT": "ONLINE is indistinguishable from DONOR_YOKED",
+  "SAFE_ABSTENTION": "survival rises but delivered mass falls below half of FIXED's without a significant gain in UNIQUE_CAUSAL_REPLACEMENT",
+  "SAFE_ALLOCATION_SUFFICIENT": "ONLINE is indistinguishable from FIXED"
+ },
+ "mode": "PROSPECTIVE_INTERVENTIONAL_DISCOVERY",
+ "oracle_firewall": {
+  "enforcement": "everything the policy reads comes from p08_core.sensor_readout, which is AST-audited by fixture 5",
+  "the_policy_may_not_read": [
+   "provenance",
+   "the future",
+   "the terminal outcome",
+   "the seed",
+   "cohort membership",
+   "whether the tracker will survive"
+  ],
+  "the_policy_may_read": [
+   "sink capacity under the active amount rule",
+   "source capacity under the active amount rule",
+   "number of eligible sites",
+   "mask registration",
+   "its own backlog and its own past decisions"
+  ]
+ },
+ "phase": "08C_FEEDBACK_VALUE_WHEN_ONLY",
+ "primary_endpoint": "UNIQUE_CAUSAL_REPLACEMENT, as sealed in p08b_protocol.json, unchanged",
+ "program": "ROUTE_E_SAFE_ACTUATION_AND_FEEDBACK_CAUSAL_PROGRAM_08",
+ "prohibitions_carried_forward": [
+  "internal decisions are never statistical replicates",
+  "the nine blocks stay in every ITT analysis including after track loss",
+  "delivered mass is a diagnostic, never a substitute for exchange",
+  "no life / identity / autonomy / metabolism / organisation claim is fabricated"
+ ],
+ "sealed_before_reading_any_08B_result": true,
+ "trigger_parameters_frozen": {
+  "backlog_cap_in_quanta": 4,
+  "chosen_a_priori": "kappa = 0.9 means 'act when the state can absorb almost all of the intended bite'; the registration floor is the value below which P07 showed the frozen actuator has effectively lost contact with its target. Neither was tuned on 08B or 08C data.",
+  "kappa": 0.9,
+  "lag_steps": 16,
+  "registration_floor": 0.1
+ },
+ "what_varies": "WHEN only. The AMOUNT rule is held fixed at the 08B factorial cell selected by the sealed 08B rule; WHERE is the frozen P07 geometry in every arm; the attempted mass is matched by construction.",
+ "why_a_waiting_controller_cannot_beat_rho": "The 08A saturation probe measured, independently of any delivery curve, that free room reopens at a rate rho that is MAXIMAL at zero headroom and decays as headroom accumulates (late/early slope ratio 0.76, CI [0.752, 0.767], n=90). A controller that waits therefore operates where the substrate reopens room more slowly. It cannot raise the sustained flux. Its only possible value is on the FUTILITY and SURVIVAL axes: skipping events that would mostly recycle already-injected matter, or that would act while the actuator has lost its grip on the target."
+}
