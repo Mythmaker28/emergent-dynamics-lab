@@ -1,0 +1,405 @@
+{
+ "gates": [
+  {
+   "gate": "R0_PARENT_PROVENANCE",
+   "fixture": "parent bundle hash recorded and parent artefacts present",
+   "PASS": true,
+   "detail": "parent bundle sha256 = 1a1cea19272a4c8659d756cfb50338c2cbadc50cb893f3ef3c2553d185655479 (verified on the device in Phase A)"
+  },
+  {
+   "gate": "R0_PARENT_PROVENANCE",
+   "fixture": "parent commit and reference table resolved",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "R1_REFERENCE_IDENTITY",
+   "fixture": "A, B, C and the root each have an exact code identity",
+   "PASS": true,
+   "detail": "A=d51a5db1848e B=9c7d0c133007 root=dee42f1879c9"
+  },
+  {
+   "gate": "R1_REFERENCE_IDENTITY",
+   "fixture": "A differs from B in every predicted channel",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "R1_REFERENCE_IDENTITY",
+   "fixture": "B equals C bitwise (declared near-tautological)",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "R2_STATE_SCHEMA",
+   "fixture": "every canonical array is hashed with name, shape, dtype and bytes",
+   "PASS": true,
+   "detail": "['C', 'Mf', 'N', 'U', 'V', 'c', 'meta', 'rho', 'step', 'uptake']"
+  },
+  {
+   "gate": "R2_STATE_SCHEMA",
+   "fixture": "the step function reads no dynamical attribute outside the schema",
+   "PASS": true,
+   "detail": "step reads ['C', 'Mf', 'N', 'U', 'V', 'c', 'rho', 'step']"
+  },
+  {
+   "gate": "R2_STATE_SCHEMA",
+   "fixture": "integrator/event/forcing/accumulator/cache state proven ABSENT",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "R3_CHECKPOINT_EXACTNESS",
+   "fixture": "test_checkpoint_roundtrip",
+   "PASS": true,
+   "detail": "a0f794735793999c"
+  },
+  {
+   "gate": "R3_CHECKPOINT_EXACTNESS",
+   "fixture": "test_uninterrupted_vs_resume",
+   "PASS": true,
+   "detail": "43cce110a3eef800 vs 43cce110a3eef800"
+  },
+  {
+   "gate": "R4_EXOGENOUS_NOISE",
+   "fixture": "test_global_rng_forbidden / complete no-random-path audit",
+   "PASS": true,
+   "detail": "no random attribute in any engine or harness file; the only stochastic object is the founding seed_state, evaluated once at t=0 before any branch"
+  },
+  {
+   "gate": "R4_EXOGENOUS_NOISE",
+   "fixture": "test_rng_golden_vectors",
+   "PASS": true,
+   "detail": "NOT APPLICABLE and declared: there is no variate to pin. Determinism is verified directly by R3 and R5 bitwise identity instead of by golden vectors."
+  },
+  {
+   "gate": "R4_EXOGENOUS_NOISE",
+   "fixture": "test_rng_key_injectivity / mask_independence / branch_name_invariance",
+   "PASS": true,
+   "detail": "vacuously satisfied: no variate is drawn after the branch point, so no key, no mask and no branch name can influence any draw. Branch-independence is exact by construction."
+  },
+  {
+   "gate": "R5_TWIN_EXACTNESS",
+   "fixture": "test_fork_memory_isolation",
+   "PASS": true,
+   "detail": "mutating one reload does not mutate another"
+  },
+  {
+   "gate": "R5_TWIN_EXACTNESS",
+   "fixture": "test_sham_noop",
+   "PASS": true,
+   "detail": "the identity hook is bitwise equivalent to no hook"
+  },
+  {
+   "gate": "R5_TWIN_EXACTNESS",
+   "fixture": "test_no_intervention_twins",
+   "PASS": true,
+   "detail": "per-step logical hashes identical over 120 steps"
+  },
+  {
+   "gate": "R6_INTERVENTION_TOUCHSET",
+   "fixture": "test_swap_touchset",
+   "PASS": true,
+   "detail": "changed fields = ['Mf'], Mf[0] sites changed = 42, Mf[1] untouched = True"
+  },
+  {
+   "gate": "R7_PERMUTATION",
+   "fixture": "test_swap_then_inverse",
+   "PASS": true,
+   "detail": "max residual = 2.776e-17"
+  },
+  {
+   "gate": "R7_PERMUTATION",
+   "fixture": "test_swap_declared_invariants (Sigma rho z conserved EXACTLY)",
+   "PASS": true,
+   "detail": "Sigma rho z: 0.179324868330 -> 0.179324868330, |delta| = 4.663e-15"
+  },
+  {
+   "gate": "R7_PERMUTATION",
+   "fixture": "test_swap_bijection_and_involution",
+   "PASS": true,
+   "detail": "bijective with an exact stored inverse (residual 2.776e-17); involutive only when the two masses are equal: a = 1.000000, b = 0.926359, P(P(x)) residual = 1.958e+00 -- DECLARED, not asserted"
+  },
+  {
+   "gate": "R7_PERMUTATION",
+   "fixture": "the two components receive reciprocal, nonzero z changes",
+   "PASS": true,
+   "detail": "dzbar_A = +1.085064, dzbar_B = -1.005159"
+  },
+  {
+   "gate": "R8_GAIN_ZERO_EXCLUSION",
+   "fixture": "test_gain_zero_public_exclusion",
+   "PASS": true,
+   "detail": "all public fields bitwise identical over 300 steps with nonzero z, active turnover and the same deterministic future"
+  },
+  {
+   "gate": "R8_GAIN_ZERO_EXCLUSION",
+   "fixture": "z really did differ throughout (the test is not vacuous)",
+   "PASS": true,
+   "detail": "max |dMf[0]| after 300 steps = 3.0394e-01"
+  },
+  {
+   "gate": "R9_ORDER_INDEPENDENCE",
+   "fixture": "test_serial_parallel_order_invariance",
+   "PASS": true,
+   "detail": "reversing branch order gives identical hashes"
+  },
+  {
+   "gate": "R9_ORDER_INDEPENDENCE",
+   "fixture": "separate-process execution gives the identical hash",
+   "PASS": true,
+   "detail": "c3ceea6b35b29696 vs c3ceea6b35b29696"
+  },
+  {
+   "gate": "R10_CLEAN_REPLAY",
+   "fixture": "test_clean_bundle_replay",
+   "PASS": true,
+   "detail": "a founding block regenerated from scratch reproduces the checkpoint-replayed hash"
+  }
+ ],
+ "engine_starts": 17,
+ "operator": {
+  "dzA": 1.0850639228480425,
+  "dzB": -1.005158645607204,
+  "a": 1.0,
+  "b": 0.9263589217572493,
+  "m_star": 12.749342788702563,
+  "M_A": 12.749342788702563,
+  "M_B": 13.7628542126175,
+  "zbar_A": -0.48976247581095494,
+  "zbar_B": 0.5953014470370875,
+  "transferred_fraction_A": 1.0,
+  "transferred_fraction_B": 0.9263589217572493,
+  "involutive": false,
+  "rule": "mass-matched: exchange exactly the common material measure min(M_A, M_B)",
+  "hash": "9b86de7bf6d89537fe15ad7b20c4262d9357741bd79c0e40f4f210135139f6fc"
+ },
+ "ledger_before": {
+  "raw_z_multiset_sha256": "12e0ecaa06e63a2353eb89797ea4d55273d8455158fe56df3e03363193f4f52c",
+  "sum_z": 284.5077078985962,
+  "sum_rho_z": 0.17932486832953803,
+  "z_histogram": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   6,
+   15,
+   26,
+   81,
+   330,
+   83,
+   46,
+   36,
+   24,
+   2469,
+   23,
+   13,
+   37,
+   13,
+   50,
+   51,
+   267,
+   513,
+   9,
+   4,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "rho_z_covariance": -0.0036455169974269975,
+  "z_exposure_at_material_bath_boundary": 15.952064860178552,
+  "n_boundary_cells": 128,
+  "components": {
+   "A": {
+    "mass": 12.749342788702563,
+    "zbar": -0.48976247581095494,
+    "sum_rho_z": -6.244149689157512,
+    "n_cells": 21
+   },
+   "B": {
+    "mass": 13.7628542126175,
+    "zbar": 0.5953014470370875,
+    "sum_rho_z": 8.193047028131673,
+    "n_cells": 21
+   }
+  },
+  "material_mass": 36.567439439213786,
+  "c_sum": 2267.9274154766426,
+  "N_sum": 4069.000446288336,
+  "c_histogram": [
+   1426,
+   345,
+   268,
+   393,
+   373,
+   1128,
+   114,
+   28,
+   12,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "N_histogram": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   4087,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "ledger_after": {
+  "raw_z_multiset_sha256": "901589df8c0608d97fec5599f61b99ff166c239f2beeea34165ebe64b99fceb6",
+  "sum_z": 286.1857187206538,
+  "sum_rho_z": 0.17932486832953337,
+  "z_histogram": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   8,
+   39,
+   81,
+   330,
+   83,
+   46,
+   36,
+   24,
+   2469,
+   23,
+   13,
+   37,
+   13,
+   50,
+   51,
+   267,
+   506,
+   12,
+   8,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "rho_z_covariance": -0.0036676536621861808,
+  "z_exposure_at_material_bath_boundary": 15.952064860178552,
+  "n_boundary_cells": 128,
+  "components": {
+   "A": {
+    "mass": 12.749342788702563,
+    "zbar": 0.5953014470370875,
+    "sum_rho_z": 7.589702210886493,
+    "n_cells": 21
+   },
+   "B": {
+    "mass": 13.7628542126175,
+    "zbar": -0.40985719857011654,
+    "sum_rho_z": -5.640804871912335,
+    "n_cells": 21
+   }
+  },
+  "material_mass": 36.567439439213786,
+  "c_sum": 2267.9274154766426,
+  "N_sum": 4069.000446288336,
+  "c_histogram": [
+   1426,
+   345,
+   268,
+   393,
+   373,
+   1128,
+   114,
+   28,
+   12,
+   9,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "N_histogram": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   9,
+   4087,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ]
+ },
+ "state_schema": {
+  "material_fields": [
+   "rho (scaffold density)",
+   "U, V (internal bistable species, extensive)"
+  ],
+  "internal_coordinates": [
+   "Mf[0] = rho*z, the extensive content of z = m1",
+   "Mf[1] = rho*m2, the second memory component (untouched)"
+  ],
+  "public_bath_fields": [
+   "c (attractant)",
+   "N (nutrient)"
+  ],
+  "provenance": [
+   "C (cohort tracer), auditor-only, never read by dynamics or readers"
+  ],
+  "derived_last_step": [
+   "uptake (per-cell nutrient consumed last step)"
+  ],
+  "counters": [
+   "step"
+  ],
+  "integrator_or_event_state": "ABSENT: the engine is a single explicit forward map with no integrator memory, no event queue and no adaptive step.",
+  "external_forcing_schedule": "ABSENT after the founding histories: no forcing remains at or after the intervention checkpoint.",
+  "reader_accumulators": "ABSENT: every reader is a pure function of the current state.",
+  "non_reconstructible_caches": "ABSENT: kappa is recomputed from Mf and rho inside every step.",
+  "lineage": "prospective, reconstructed from the state by the frozen detector; not a dynamical variable and never fed back into the dynamics.",
+  "lawspec_and_parameters": "ScaffoldSpec(exp_sc_00, beta=0.10) + PPAIParams(gain, z_index=0)",
+  "noise_provider": "NONE. The model is deterministic; see the Phase A determinism audit."
+ },
+ "runtime": {
+  "python": "3.11.15",
+  "numpy": "2.4.4",
+  "platform": "Linux-6.18.5-fc-v20-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "byteorder": "little",
+  "float_dtype": "float64"
+ }
+}

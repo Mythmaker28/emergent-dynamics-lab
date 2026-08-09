@@ -1,0 +1,100 @@
+{
+ "NEW_LAWSPEC": false,
+ "PPAI_G3_TO_G10_REOPENED": false,
+ "PPAI_REOPENED": false,
+ "arms": {
+  "OFF_SHAM": "identity surgery, g=0",
+  "OFF_SWAP": "P(z), g=0",
+  "ON_SHAM": "identity surgery, g=+1/3",
+  "ON_SWAP": "P(z), g=+1/3"
+ },
+ "branch": "dev/exact-twin-public-path-counterfactual-00",
+ "budget": {
+  "ABSOLUTE_TOTAL_MAX": 160,
+  "HELDOUT": "10 blocks x 5 = 50",
+  "PLANNED_TOTAL_MAX": 124,
+  "PRIMARY": "10 blocks x (1 founder + 4 arms) = 50",
+  "TECHNICAL_QUALIFICATION_MAX": 24,
+  "heldout_seeds": "62000-62009",
+  "planned_total": 117,
+  "primary_seeds": "61000-61009",
+  "qualification_used": 17
+ },
+ "code_sha256": {
+  "etpc_core.py": "7f0d49617ab7e278ac4e3b10e7e794067d7678c005ac56cee02aa4b325e83f92",
+  "etpc_gates.py": "b63cbd2a78101e8c4b3b56a411c710d5e2f8044a1b46fd7af6e99967aa1abfc1",
+  "etpc_phaseA.py": "155f8dd1442d0ffe39df6b3621b32907f9b2232f4b6e9256f3dfd08f03406b82",
+  "etpc_run.py": "f61dd7f3b50c62ba27609aa7f1757b5ad84bd8f78e31a97659c84db01c538943"
+ },
+ "date_sealed": "2026-08-09",
+ "design": "four independent reloads of ONE complete checkpoint per founding block. A and B are selected prospectively before history assignment by the frozen-site reader; largest(st) is never an identity. Orientation HL/LH alternates by block parity, balanced prospectively.",
+ "determinism": "the model is FULLY DETERMINISTIC (Phase A audit: no random draw anywhere in the engine step). Exogenous noise is the empty set after the branch point, so branch-independence is exact by construction and R4 is discharged by a no-random-path audit rather than an artificial tape.",
+ "endpoints_frozen_before_outcomes": {
+  "COUPLING_OFF_ABOLITION": "tau_off[b] = 0.5 * sum_k q[b,k] * (Y[b,k,OFF_SWAP] - Y[b,k,OFF_SHAM]) must be BITWISE zero, and every public field of OFF_SWAP and OFF_SHAM must be bitwise identical. tau_public_path[b] = tau_on[b] - tau_off[b].",
+  "DELAYED_PUBLIC_MEDIATOR_EFFECT": "(mean c in the frozen halo support at t = 200)[ON_SWAP] - [ON_SHAM], oriented by q, with the first 40 steps excluded as the instantaneous constitutive transient. Same predicted sign, one-sided.",
+  "EARLY_PUBLIC_FLUX_EFFECT": "sum over t = 1..40 of (mean c in the frozen halo support)[ON_SWAP] - [ON_SHAM], oriented by q. PREDICTED SIGN: NEGATIVE, one-sided. Derivation: kappa = 1 + g tanh(z) with g > 0, so a higher z raises the local material-bath permeability; the component is a net c SOURCE (s*rho), so raising its boundary permeability drains its own attractant halo faster and LOWERS the local c.",
+  "HELD_OUT_REPLICATION": "the complete fixed chain repeats at the already designated held-out geometry NEAR with no change of operator, gain, reader, window, threshold, margin or analysis.",
+  "TWIN_PAIRED_DELAYED_RESPONSE_EFFECT": "tau_on[b] = 0.5 * sum_k q[b,k] * (Y[b,k,ON_SWAP] - Y[b,k,ON_SHAM]). TWO-SIDED: the response reader is a perturbed-minus-control difference vector and no unambiguous sign is derivable from the equations before outcomes.",
+  "Y": "the mean of the FROZEN 20-dimensional PPAI/DOMC response vector at each site, in RAW units, challenge launched at t0 + 200 (>= the frozen delay D_LATE = 120)",
+  "q": "sign(zbar_k[ON_SWAP] - zbar_k[ON_SHAM]) at t0, oriented before any future execution"
+ },
+ "excluded_claims": [
+  "public-state matching between historically different components",
+  "endogenous mediator regeneration",
+  "selective addressability or double dissociation",
+  "ownership or individuality",
+  "minimal causal closure",
+  "turnover persistence",
+  "autonomy, metabolism, organismality",
+  "reproduction, heredity or life",
+  "consciousness or AGI"
+ ],
+ "inference": "the founding block is the independent unit; components and arms are paired repeated counterfactual observations. Exact paired sign-flip randomisation inference on the block-level statistic, with direct confidence intervals and every raw block value published. Deterministic identity gates use BITWISE equality, never p > 0.05. Hierarchical gatekeeping in the endpoint order above. ITT: no conditioning on delivery, lineage retention, survival or visible effect.",
+ "operator_P": {
+  "algorithm": "m* = min(M_A,M_B); a = m*/M_A; b = m*/M_B; z_A <- z_A + a(zbar_B - zbar_A); z_B <- z_B + b(zbar_A - zbar_B)",
+  "applied": "through a buffer, never destructively in place; identity outside A and B; touches Mf[0] only",
+  "bijective": true,
+  "built_from": "the PRE-INTERVENTION checkpoint only: canonical state plus prospective A/B membership from the frozen-site reader. Never a future value, a response, a branch label, a dynamic largest(st) or a held-out result.",
+  "conserves_exactly": "Sigma rho z (extensive z content), by construction",
+  "involutive": "only when M_A == M_B; otherwise DECLARED not involutive, with an exact stored inverse",
+  "unequal_masses": "the lighter component exchanges its whole mean; the heavier exchanges only the mass-matched share, so the excess material is left unchanged. The transferred fraction is fixed by the masses alone and is published."
+ },
+ "parent_bundle_sha256": "1a1cea19272a4c8659d756cfb50338c2cbadc50cb893f3ef3c2553d185655479",
+ "parent_commit": "ba92a16a10c92cc400af81f022ef4dc78b16377e",
+ "parent_program": "PUBLIC_PATH_ADAPTIVE_INTERFACE_00",
+ "program": "EXACT_TWIN_PUBLIC_PATH_COUNTERFACTUAL_00",
+ "question": "Starting from one complete checkpoint, does a prespecified intervention on z change the later public flux, public mediator and delayed response of a component relative to its own exact counterfactual twin under the same exogenous future noise?",
+ "stop_rules": [
+  "BASE_BUNDLE_INVALID",
+  "PARENT_REFERENCE_AMBIGUOUS",
+  "STATE_SCHEMA_INCOMPLETE",
+  "CHECKPOINT_ROUNDTRIP_FAIL",
+  "SAVE_RESUME_DIVERGENCE",
+  "BRANCH_MEMORY_ALIASING",
+  "GLOBAL_RNG_ESCAPE",
+  "CLONE_NONIDENTITY",
+  "SHAM_MUTATES_STATE",
+  "INTERVENTION_TOUCHSET_INVALID",
+  "INCOHERENT_STATE_SURGERY",
+  "PERMUTATION_INVARIANT_FAIL",
+  "CONSERVATIVE_SWAP_UNAVAILABLE",
+  "GAIN_ZERO_LEAK",
+  "EXECUTION_ORDER_DEPENDENCE",
+  "CLEAN_REPLAY_FAIL",
+  "NO_ELIGIBLE_CHECKPOINT",
+  "NO_FROZEN_PUBLIC_RESPONSE_READER",
+  "NO_PUBLIC_FLUX_EFFECT",
+  "CONSTITUTIVE_ONLY",
+  "NO_DELAYED_RESPONSE",
+  "NONPUBLIC_OR_RESIDUAL_PATH",
+  "PRIMARY_NOT_CONFIRMED",
+  "RESTRICTED_AT_HELDOUT",
+  "BUDGET_EXHAUSTED"
+ ],
+ "z": {
+  "aliases_and_descendants": "kappa(z) is recomputed inside every step from Mf and rho; there is no cache and no other derived view. Mf[1] (m2) is an independent coordinate and is never touched.",
+  "definition": "z = m1 = Mf[0]/rho, an INTENSIVE material-carried concentration",
+  "extensive_content": "rho*z = Mf[0]",
+  "physically_relevant_global_measure": "Sigma rho z = Sigma Mf[0]"
+ }
+}

@@ -1,0 +1,345 @@
+{
+ "programme": "EXACT_TWIN_PUBLIC_PATH_COUNTERFACTUAL_00",
+ "phase": "A_PPAI_CORRIGENDUM",
+ "REFERENCE_TABLE": {
+  "A_original_sc_mcm": {
+   "lawspec": "MultiChannelMemoryEngine, MCParams(eta_w=0.05, eta_d1=0.03, eta_d2=0.003, eta_t=0.010, D_m=0.010, lam_plus=0.25, lam_minus=0.15, k_exp=2.0, k_up=1.0)",
+   "executable": "edlab/experiments/sc_mcm/engine.py",
+   "sha256": "d51a5db1848e717a44f9e00aa4ad4b9c86465ec245184b78b2516dad9842ef2d",
+   "active_terms": [
+    "lam_plus: m_plus -> uptake (PRIVATE)",
+    "lam_minus: m_minus -> c production (WEAK PUBLIC)",
+    "Mf += g*m : fresh material INHERITS memory"
+   ]
+  },
+  "B_constructed_PPAI_baseline": {
+   "lawspec": "PPAIEngine, PPAIParams(gain=0 or nonzero), private paths removed, inheritance removed",
+   "executable": "PPAI/ppai_engine.py",
+   "sha256": "9c7d0c133007fd04339ad519df8caacbe8262997bb9a1bd150bcc11bd3c0f7f8",
+   "removed_terms": [
+    "lam_plus",
+    "lam_minus",
+    "Mf += g*m"
+   ]
+  },
+  "C_PPAI_at_gain_zero": {
+   "lawspec": "PPAIEngine, PPAIParams(gain=0.0)",
+   "executable": "PPAI/ppai_engine.py",
+   "sha256": "9c7d0c133007fd04339ad519df8caacbe8262997bb9a1bd150bcc11bd3c0f7f8",
+   "relation_to_B": "C IS B with the adaptive gain set to zero. B and C are the SAME executable and the SAME LawSpec family; the only difference is one parameter. Their bitwise identity at g=0 is therefore near-tautological and is reported as such, not as evidence of nesting in A."
+  },
+  "root_reference": {
+   "lawspec": "the FROZEN ScaffoldEngine of exp_sc_00 (beta=0.10)",
+   "executable": "edlab/substrates/scaffold/engine.py",
+   "sha256": "dee42f1879c9a42ec52833406cc3d89e859c154157eab34c1f570919b93b1df5",
+   "note": "this, NOT A, is what PPAI's G1.1 compared against. The parent text said 'root', which was accurate, but the corrigendum makes the distinction explicit."
+  },
+  "parent_commit": "ba92a16a10c92cc400af81f022ef4dc78b16377e",
+  "parent_bundle_sha256": "1a1cea19272a4c8659d756cfb50338c2cbadc50cb893f3ef3c2553d185655479"
+ },
+ "ACTIVE_TERM_MICRO_FIXTURE": {
+  "pre_state": {
+   "n_alive_cells": 1225,
+   "m_plus_range": [
+    -0.9753180495338724,
+    0.8136078463568136
+   ],
+   "m_minus_range": [
+    -0.9755647672086918,
+    0.8136078463568136
+   ],
+   "z_range": [
+    -0.5985965876819334,
+    0.5278960197911908
+   ],
+   "c_gradient_rms": 0.013878434101588137,
+   "N_gradient_rms": 0.005551373640635254,
+   "growth_active": true,
+   "death_rate_k": 0.02588
+  },
+  "steps": 25,
+  "B_equals_C_bitwise": {
+   "rho": true,
+   "U": true,
+   "V": true,
+   "c": true,
+   "N": true,
+   "C": true,
+   "Mf": true,
+   "uptake": true
+  },
+  "B_equals_C_all": true,
+  "A_minus_B_max_abs": {
+   "rho": 0.00516149671985594,
+   "U": 0.004630192999571181,
+   "V": 0.005066244844963208,
+   "c": 0.008349325383244038,
+   "N": 0.0024195474469804745,
+   "C": 0.003734484635686375,
+   "Mf": 0.009227834238849486,
+   "uptake": 9.485259652738487e-05
+  },
+  "A_differs_from_B_in_predicted_channels": {
+   "uptake (lam_plus channel)": true,
+   "c (lam_minus channel)": true,
+   "Mf (inheritance channel)": true,
+   "rho (downstream of uptake)": true
+  },
+  "A_equals_B": false
+ },
+ "NESTED_NULL_ADJUDICATION": {
+  "PPAI_GAIN_ZERO_REPRODUCES_CONSTRUCTED_EXPURGATED_BASELINE": "ESTABLISHED",
+  "ORIGINAL_PARENT_NESTED_NULL": "NOT_ESTABLISHED",
+  "why": "A (original sc_mcm) and B (the constructed expurgated baseline) DIFFER in exactly the channels the removed terms predict, in a micro-fixture where all of them are active. PPAI's G1.1 compared the constructed baseline against the ROOT ScaffoldEngine, not against A. The constructed model therefore nests the ROOT physics, not the parent sc_mcm LawSpec. B == C is near-tautological (same executable, one parameter) and is reported as such.",
+  "what_PPAI_correctly_claimed": "PPAI's report and commit say 'the FROZEN ROOT ScaffoldEngine' and 'la LawSpec racine gelee'. That statement stands. What is corrected here is any reading of it as nesting the PARENT."
+ },
+ "CORRECTION_graph_classification": {
+  "old_label": "no DIRECT_PUBLIC_PATH; a DIRECT PRIVATE PATH plus a species-asymmetric secretion",
+  "corrected_label": "DIRECT_PRIVATE_READER_PATH + WEAK_ENVIRONMENT_MEDIATED_PUBLIC_PATH",
+  "why": "m_minus -> c production already supplied a weak PUBLIC path in A. Saying there was no public path at all was wrong; the correct statement is that the public path existed, was weak, and was species-asymmetric."
+ },
+ "CORRECTION_core_halo_ratio": {
+  "withdrawn": "'the core weighs 0.97 % of the halo'",
+  "why": "beta_core_given_halo = +0.726 and beta_halo = +74.75 are regression slopes in DIFFERENT units (per unit core gap in m_plus, per unit halo gap in mean c). They were never standardized and no commensurable estimand was prespecified, so their ratio is not a meaningful fraction.",
+  "reported_instead": {
+   "beta_core_given_halo": 0.726,
+   "beta_halo": 74.75,
+   "units": "signed response gap per unit core gap (m_plus) and per unit halo gap (mean c), respectively; NOT commensurable"
+  }
+ },
+ "CORRECTION_permeability_contrast": {
+  "three_distinct_objects": {
+   "physical_clip_|z|<=1": {
+    "site_kappa": [
+     0.746135,
+     1.253865
+    ],
+    "site_ratio": 1.680479,
+    "material_bath_face_ratio_bath_kappa_1": 1.290773
+   },
+   "asymptotic_|z|->inf": {
+    "site_kappa": [
+     0.666667,
+     1.333333
+    ],
+    "site_ratio": 2.0,
+    "material_bath_face_ratio_bath_kappa_1": 1.4
+   }
+  },
+  "where_1.6805_was_measured": "it is the SITE-LEVEL ratio kappa_max/kappa_min evaluated over z in [-1, +1], the physical clip the engine enforces. It is a property of kappa(z) alone, computed in fixture G1.3/G1.4 by sweeping z on a grid. It is NOT a material-bath face ratio and NOT the asymptotic value.",
+  "the_frozen_constraint": "the sealed requirement was 'permeability contrast <= 2x native'. The asymptotic SITE ratio is exactly 2.000 at g = 1/3, so the constraint binds exactly at the site level. The asymptotic MATERIAL-BATH FACE ratio, with the bath at kappa = 1 and an arithmetic-mean face, is 1.400; at the physical clip it is 1.291. All three are now named separately.",
+  "does_it_change_any_conclusion": "no: every value is at or below the sealed 2x bound, and the wash failure occurs identically at gain zero."
+ },
+ "CORRECTION_chmr_reconciliation": {
+  "n_blocks": 12,
+  "rows": [
+   {
+    "seed": 37000,
+    "zA_matched": -0.24826656662134267,
+    "zB_matched": 1.8752009826820273,
+    "zA_cross": 1.082765861879949,
+    "zB_cross": 1.23161167272217,
+    "sep_matched": 2.12346754930337,
+    "sep_cross": 0.14884581084222104,
+    "mvA": 0.6268202351092925,
+    "mvB": 0.30308412773766885
+   },
+   {
+    "seed": 37001,
+    "zA_matched": -0.26911182390475624,
+    "zB_matched": 1.8789275179371157,
+    "zA_cross": 1.1013391832151918,
+    "zB_cross": 1.2156195996308632,
+    "sep_matched": 2.148039341841872,
+    "sep_cross": 0.11428041641567144,
+    "mvA": 0.6380008877979079,
+    "mvB": 0.3087969132527564
+   },
+   {
+    "seed": 37002,
+    "zA_matched": -0.21286864023813615,
+    "zB_matched": 1.8827866036191736,
+    "zA_cross": 1.1167694026401982,
+    "zB_cross": 1.215934808522519,
+    "sep_matched": 2.0956552438573097,
+    "sep_cross": 0.09916540588232081,
+    "mvA": 0.6344736553284275,
+    "mvB": 0.31820682197193484
+   },
+   {
+    "seed": 37003,
+    "zA_matched": -0.2502571623054458,
+    "zB_matched": 1.8830043470674518,
+    "zA_cross": 1.113208190040314,
+    "zB_cross": 1.22169218168713,
+    "sep_matched": 2.1332615093728977,
+    "sep_cross": 0.1084839916468161,
+    "mvA": 0.6391459023448887,
+    "mvB": 0.31000051445859717
+   },
+   {
+    "seed": 37004,
+    "zA_matched": -0.2447481524009842,
+    "zB_matched": 1.8842274352128294,
+    "zA_cross": 1.1126503054461143,
+    "zB_cross": 1.234415419922661,
+    "sep_matched": 2.1289755876138137,
+    "sep_cross": 0.12176511447654659,
+    "mvA": 0.6375829134651986,
+    "mvB": 0.3052228588579013
+   },
+   {
+    "seed": 37005,
+    "zA_matched": -0.2244692514004728,
+    "zB_matched": 1.8803334817972646,
+    "zA_cross": 1.0908397052579768,
+    "zB_cross": 1.2197309174159465,
+    "sep_matched": 2.1048027331977375,
+    "sep_cross": 0.12889121215796973,
+    "mvA": 0.6249084229666296,
+    "mvB": 0.313854858682026
+   },
+   {
+    "seed": 37006,
+    "zA_matched": -0.20738669079797192,
+    "zB_matched": 1.8807143114641847,
+    "zA_cross": 1.150088304980786,
+    "zB_cross": 1.219124805496425,
+    "sep_matched": 2.0881010022621567,
+    "sep_cross": 0.06903650051563903,
+    "mvA": 0.6501002558344301,
+    "mvB": 0.31683788535661
+   },
+   {
+    "seed": 37007,
+    "zA_matched": -0.2518254538311475,
+    "zB_matched": 1.8848879457227825,
+    "zA_cross": 1.1116886687889354,
+    "zB_cross": 1.2092598960358194,
+    "sep_matched": 2.13671339955393,
+    "sep_cross": 0.09757122724688405,
+    "mvA": 0.6381361781625633,
+    "mvB": 0.31619965963989854
+   },
+   {
+    "seed": 37008,
+    "zA_matched": -0.26248106625235046,
+    "zB_matched": 1.8762629286381862,
+    "zA_cross": 1.1063207527001007,
+    "zB_cross": 1.2377420894258993,
+    "sep_matched": 2.138743994890537,
+    "sep_cross": 0.1314213367257986,
+    "mvA": 0.640002647452206,
+    "mvB": 0.2985494480581661
+   },
+   {
+    "seed": 37009,
+    "zA_matched": -0.24945297450466358,
+    "zB_matched": 1.8842115015148893,
+    "zA_cross": 1.1272603785187933,
+    "zB_cross": 1.241796182276132,
+    "sep_matched": 2.1336644760195527,
+    "sep_cross": 0.11453580375733874,
+    "mvA": 0.645234228950457,
+    "mvB": 0.30108544546667054
+   },
+   {
+    "seed": 37010,
+    "zA_matched": -0.2795133181500185,
+    "zB_matched": 1.882360714599221,
+    "zA_cross": 1.1251597557308082,
+    "zB_cross": 1.2212911704388387,
+    "sep_matched": 2.1618740327492394,
+    "sep_cross": 0.09613141470803055,
+    "mvA": 0.6497478819774315,
+    "mvB": 0.305785413093521
+   },
+   {
+    "seed": 37011,
+    "zA_matched": -0.21003109440700077,
+    "zB_matched": 1.8795481892984087,
+    "zA_cross": 1.1689470961907502,
+    "zB_cross": 1.2471529121939284,
+    "sep_matched": 2.0895792837054095,
+    "sep_cross": 0.07820581600317822,
+    "mvA": 0.6599310212113303,
+    "mvB": 0.3026423941105821
+   }
+  ],
+  "medians": {
+   "zA_matched": -0.24885977056300312,
+   "zB_matched": 1.8815375130317027,
+   "zA_cross": 1.1129292477432142,
+   "zB_cross": 1.2214916760629844,
+   "sep_matched": 2.1311185484933555,
+   "sep_cross": 0.11138220403124377,
+   "mvA": 0.6386410402537259,
+   "mvB": 0.30729116317313865
+  },
+  "sign_convention": "z here is the component-level mass-weighted m_plus = m1 + m2, read on the component the frozen-site reader selects, at checkpoint t = 350 after the intervention. Site A carries the H core, site B the L core.",
+  "estimands": {
+   "mvA": "(z_A[cross] - z_A[matched]) / (z_B[matched] - z_A[matched]), a DIMENSIONLESS FRACTION of the matched separation",
+   "mvB": "(z_B[cross] - z_B[matched]) / (z_A[matched] - z_B[matched]), idem",
+   "separation": "|z_A - z_B|, in RAW z units"
+  },
+  "the_apparent_arithmetic_error": {
+   "claimed": "2.131 - 0.639 - 0.307 = 1.185, which is not 0.111",
+   "why_it_is_not_an_error": "0.639 and 0.307 are FRACTIONS of the separation, not raw displacements. Subtracting them from a raw separation mixes units. The coherent identity is sep_cross ~ sep_matched x (1 - mvA - mvB).",
+   "check": {
+    "sep_matched": 2.1311185484933555,
+    "mvA": 0.6386410402537259,
+    "mvB": 0.30729116317313865,
+    "predicted_sep_cross": 0.11522488415317439,
+    "observed_sep_cross": 0.11138220403124377,
+    "note": "medians of ratios are not the ratio of medians, so the two agree only approximately; the per-block raw coordinates are published above so the identity can be checked block by block."
+   },
+   "per_block_identity_residual": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  "OPPOSITE_STATE_OVERWRITE": "NOT_ESTABLISHED. No directional criterion was frozen before the CHMR outcomes, so no overwrite is inferred from the post-hoc directional analysis. The raw coordinates are published instead."
+ },
+ "CORRECTION_permutation_invariant_ledger": {
+  "withdrawn_wording": "'conservative permutation', used unqualified",
+  "required_ledger": [
+   "raw z multiset over the lattice",
+   "Sigma z",
+   "Sigma rho*z",
+   "z histogram (binned)",
+   "rho-z covariance",
+   "z exposure at the material-bath boundary",
+   "per-component means and distributions",
+   "fraction transferred A<->B"
+  ],
+  "what_PPAI_actually_conserved": "the MULTISET of the intensive field m over the lattice, exactly, because the operator is a bijection of lattice sites applied to m. Sigma(rho*z) was NOT conserved, because rho is not reflection-symmetric. The effective-z histogram residual was 1.2 % of lattice cells and was declared.",
+  "consequence_for_this_programme": "every intervention here publishes the full ledger above, before and after, and names which invariant is exact."
+ },
+ "PRESERVED_PARENT_STATEMENTS": {
+  "PPAI_G3": "FAIL_FOR_THE_PREREGISTERED_DESIGN",
+  "NO_VALID_WASH_WINDOW_IDENTIFIED_IN_BOUNDED_DEV": "SUPPORTED",
+  "PPAI_G4_TO_G10": "NOT_REACHED",
+  "PPAI_CAUSAL_ARCHITECTURE": "NOT_YET_TESTED",
+  "MORPHOLOGY_AS_UNIQUE_BLOCKER": "NOT_ESTABLISHED"
+ },
+ "DETERMINISM_AUDIT": {
+  "per_file": {
+   "PPAI/ppai_engine.py": [],
+   "PPAI/ppai_core.py": [],
+   "DOMC/domc_core.py": [],
+   "edlab/substrates/scaffold/engine.py": []
+  },
+  "verdict": "the engine step contains NO random draw of any kind. The only stochastic object in the whole path is `seed_state(..., 'random')`, a deterministic function of the founding seed evaluated ONCE at t=0, before any branch exists. The model is FULLY DETERMINISTIC.",
+  "consequence": "R4_EXOGENOUS_NOISE is discharged by a no-random-path audit rather than by an artificial noise tape, as the protocol requires. Twins are exact by determinism, and branch-independence is trivially satisfied because no variate is ever drawn after the branch point."
+ }
+}
