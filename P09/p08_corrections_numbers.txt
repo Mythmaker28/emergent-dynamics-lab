@@ -1,0 +1,47 @@
+### A. FACTORIELLE 2x2 COMPLETE (08B, LAW_16, graines 990000+)
+ floor  ceil  bras          L     UCR                IC  surv split  delivre    inc  frais  futile
+  0.00  1.00  PARENT       24  0.3868     [0.369,0.393]   9/9     0    0.620  0.460  0.387   0.190
+  0.00  1.00  PARENT       32  0.3330     [0.320,0.342]   9/9     0    0.414  0.377  0.333   0.034
+  0.00  0.90  SRC_CAP      24  0.2355     [0.224,0.267]   9/9     0    0.314  0.284  0.236   0.017
+  0.00  0.90  SRC_CAP      32  0.1796     [0.171,0.186]   9/9     0    0.228  0.215  0.180   0.001
+  0.50  1.00  SINK_FLOOR   24  0.2157     [0.197,0.227]   0/9     9    0.306  0.284  0.216   0.044
+  0.50  1.00  SINK_FLOOR   32  0.2250     [0.217,0.245]   0/9     9    0.308  0.284  0.225   0.061
+  0.50  0.90  BOTH_SAFE    24  0.2267     [0.196,0.244]   0/9     9    0.351  0.298  0.227   0.097
+  0.50  0.90  BOTH_SAFE    32  0.1958     [0.176,0.217]   0/9     9    0.265  0.243  0.196   0.037
+
+### B. IDENTITE DE CHAQUE COHORTE
+   ('990000+', 'P07 decouverte + P08 08A/08B/08C', 'LAW_16', '24,32', '9/taille')
+   ('950000+', 'P07 confirmation 07D', 'LAW_16 (24,32,40) + LAW_29 (24,32)', '', '9/config')
+   ('930000+', 'P08 confirmation 08D', 'LAW_16 + LAW_29', '24,32', '9/config')
+   ('910000+', 'P08 confirmation 08E', 'LAW_29', '24,32', '9/config')
+   ('890000+', 'P09', 'LAW_16 + LAW_29', '24,32', '9/config')
+
+### C. 3/9 CONTRE 0/9 (LAW_29, L=32, bras PARENT)
+  08D (graines 930000+) : 3/9   08E (graines 910000+) : 0/9
+  Fisher exact bilateral : p = 0.2059  -> deux cohortes independantes, difference non significative
+  temps de premier echec 08D: [4240, 4288, 4928, 5728, 5808, 5936]
+  temps de premier echec 08E: [4080, 4384, 4640, 5216, 5984, 6032, 6240, 6768, 6768]
+
+### D. SHAM et COMPOSANTES SEPAREES DE L'UCR
+cohorte                   loi       L  surv  I/I0 terminal  inc_retire   frais     UCR
+08B 990000+               LAW_16   24   9/9          0.749       0.000   0.000   0.000
+08B 990000+               LAW_16   32   9/9          0.811       0.000   0.000   0.000
+08D 930000+               LAW_16   24   9/9          0.750       0.000   0.000   0.000
+08D 930000+               LAW_16   32   9/9          0.809       0.000   0.000   0.000
+08D 930000+               LAW_29   24   9/9          0.473       0.000   0.000   0.000
+08D 930000+               LAW_29   32   9/9          0.579       0.000   0.000   0.000
+08E 910000+               LAW_29   24   9/9          0.478       0.000   0.000   0.000
+08E 910000+               LAW_29   32   9/9          0.585       0.000   0.000   0.000
+
+### E. TRAJECTOIRE SIGNALEE PAR CHECK 9
+  bloc LAW_29_L24_S930001 bras ONLINE_NORMALIZED: floor=0.0 (AUCUN plancher), surv=False, T terminal=23.895795371028395, ombre0.45 vivante mais 0.50 et 0.55 mortes, UCR=0.0311, delivre/M256=0.329
+
+### F. 08C : FIXE / EN LIGNE / DONNEUR ASSERVI / RETARDE, avec intervalles d'effet
+  L24 SAFE_FIXED_SCHEDULE      UCR 0.3868 IC[0.369,0.393]  tirs 264/320  
+  L24 SAFE_ONLINE_TRIGGER      UCR 0.3054 IC[0.288,0.346]  tirs 18/320  vs FIXE d=-0.0838 IC[-0.1000,-0.0229] p=0.0039
+  L24 SAFE_DONOR_YOKED_REPLAY  UCR 0.3104 IC[0.288,0.332]  tirs 18/320  vs FIXE d=-0.0757 IC[-0.0995,-0.0552] p=0.0039 | vs EN LIGNE d=+0.0006 IC[-0.0199,+0.0103] p=0.5078
+  L24 SAFE_LAGGED_SENSOR       UCR 0.3119 IC[0.291,0.347]  tirs 23/320  vs FIXE d=-0.0776 IC[-0.0966,-0.0217] p=0.0039 | vs EN LIGNE d=+0.0062 IC[+0.0012,+0.0076] p=0.0391
+  L32 SAFE_FIXED_SCHEDULE      UCR 0.3330 IC[0.320,0.342]  tirs 320/320  
+  L32 SAFE_ONLINE_TRIGGER      UCR 0.2309 IC[0.220,0.243]  tirs 14/320  vs FIXE d=-0.0985 IC[-0.1011,-0.0971] p=0.0039
+  L32 SAFE_DONOR_YOKED_REPLAY  UCR 0.2337 IC[0.224,0.238]  tirs 14/320  vs FIXE d=-0.0963 IC[-0.1067,-0.0956] p=0.0039 | vs EN LIGNE d=+0.0000 IC[-0.0091,+0.0068] p=1.0000
+  L32 SAFE_LAGGED_SENSOR       UCR 0.2357 IC[0.225,0.243]  tirs 17/320  vs FIXE d=-0.0962 IC[-0.0977,-0.0937] p=0.0039 | vs EN LIGNE d=+0.0034 IC[-0.0005,+0.0048] p=0.1797

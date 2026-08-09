@@ -1,0 +1,80 @@
+{
+ "n": 12,
+ "n_pass": 12,
+ "VERDICT": "PASS",
+ "engine_invocations": 0,
+ "checks": [
+  {
+   "check": 1,
+   "name": "l'analyse n'importe aucun moteur",
+   "PASS": true,
+   "detail": "imports = ['__future__', 'csv', 'json', 'math', 'pathlib', 'statistics']"
+  },
+  {
+   "check": 2,
+   "name": "identite des cohortes et bilan global",
+   "PASS": true,
+   "detail": "216 trajectoires; identite 1.13e-14, bilan 2.84e-13"
+  },
+  {
+   "check": 3,
+   "name": "ITT: 9 blocs par cellule du plan",
+   "PASS": true,
+   "detail": "24 cellules, toutes a 9 blocs; total 216 trajectoires"
+  },
+  {
+   "check": 4,
+   "name": "les deux bras q-replay ont une masse TENTEE identique",
+   "PASS": true,
+   "detail": "36 blocs, pire ecart absolu = 0.00e+00"
+  },
+  {
+   "check": 5,
+   "name": "PARENT_LOW_CONSTANT demande le meme total que les q-replay",
+   "PASS": true,
+   "detail": "36 blocs, pire ecart relatif = 8.38e-15"
+  },
+  {
+   "check": 6,
+   "name": "equivalence de dose: PASS sous LAW_16, ECHEC sous LAW_29",
+   "PASS": true,
+   "detail": "LAW_16|L24 1.001; LAW_16|L32 0.906; LAW_29|L24 0.796; LAW_29|L32 0.767"
+  },
+  {
+   "check": 7,
+   "name": "la reduction de dose SEULE (sans plancher) sauve LAW_29",
+   "PASS": true,
+   "detail": "L24: pleine dose 1/9 -> bas constant 9/9 (floor=0.0); L32: pleine dose 1/9 -> bas constant 9/9 (floor=0.0)"
+  },
+  {
+   "check": 8,
+   "name": "sous LAW_16 a dose appariee, le plancher scinde 9/9",
+   "PASS": true,
+   "detail": "L24: scissions parent 0/9 vs plancher 9/9; L32: scissions parent 0/9 vs plancher 9/9"
+  },
+  {
+   "check": 9,
+   "name": "sceaux P09 (protocole, code, sequence exogene)",
+   "PASS": true,
+   "detail": "protocole 043a11d382fc, sequence 7f8e5e9f116a"
+  },
+  {
+   "check": 10,
+   "name": "aucun artefact P07 / P08 / DEV_05 modifie",
+   "PASS": true,
+   "detail": "7 sceaux + 28 fichiers DEV_05; violations = aucune"
+  },
+  {
+   "check": 11,
+   "name": "le donneur n'est jamais le bloc receveur ni la meme cohorte",
+   "PASS": true,
+   "detail": "36 blocs; receveurs 89xxxx, donneurs 99xxxx (prefixes ['99'])"
+  },
+  {
+   "check": 12,
+   "name": "UCR = min(incumbent retire, frais retenu), recalcule",
+   "PASS": true,
+   "detail": "216 trajectoires, pire ecart = 0.00e+00"
+  }
+ ]
+}

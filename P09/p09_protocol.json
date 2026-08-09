@@ -1,0 +1,136 @@
+{
+ "adjudication_sealed": {
+  "ALLOCATION_SIGN_REVERSAL_ESTABLISHED": "FLOOR_Q_REPLAY harmful under LAW_16 and beneficial under LAW_29, with dose equivalence passing",
+  "DOSE_THROTTLING_EXPLAINS_RESCUE": "PARENT_LOW_CONSTANT rescues LAW_29 like the floor AND FLOOR_Q_REPLAY is indistinguishable from PARENT_Q_REPLAY",
+  "FLOOR_SPECIFIC_MECHANISM_NOT_IDENTIFIABLE": "dose equivalence fails",
+  "MIXED_DOSE_AND_ALLOCATION_MECHANISM": "FLOOR_Q_REPLAY adds an effect beyond both dose controls",
+  "OPEN_LOOP_AMOUNT_PROFILE_EFFECT": "PARENT_Q_REPLAY rescues LAW_29 but PARENT_LOW_CONSTANT does not"
+ },
+ "arm_construction": {
+  "FLOOR_FULL": "floor 0.50, ceil 1.00, same full-dose request (the P08 guarded arm)",
+  "FLOOR_Q_REPLAY": "floor 0.50, ceil 1.00, EXACTLY the same exogenous requests at exactly the same times. The allowed geometric support and the action times are identical to PARENT_Q_REPLAY; only the per-site allocation rule differs.",
+  "PARENT_FULL": "floor 0.00, ceil 1.00, one quantum M256/80 requested at each of the 320 opportunities (the P08 full-dose arm)",
+  "PARENT_LOW_CONSTANT": "floor 0.00, ceil 1.00, the SAME total requested mass as the replay arms, split into the SAME number of non-zero events, placed as evenly as possible across the same forcing window. It separates total amount from temporal profile.",
+  "PARENT_Q_REPLAY": "floor 0.00, ceil 1.00, requests taken from the exogenous sequence at the exogenous times",
+  "SHAM": "no operator"
+ },
+ "arms": [
+  "SHAM",
+  "PARENT_FULL",
+  "FLOOR_FULL",
+  "PARENT_Q_REPLAY",
+  "FLOOR_Q_REPLAY",
+  "PARENT_LOW_CONSTANT"
+ ],
+ "cells": [
+  [
+   "LAW_16",
+   24
+  ],
+  [
+   "LAW_16",
+   32
+  ],
+  [
+   "LAW_29",
+   24
+  ],
+  [
+   "LAW_29",
+   32
+  ]
+ ],
+ "closure": [
+  "no third rescue",
+  "no new policy",
+  "no new LawSpec",
+  "no organisational branch",
+  "no opportunistic horizon extension"
+ ],
+ "code_sha256": {
+  "p09_build_sequences.py": "c64f73b59efa8d03a45bfc063e5471c5cf38fc3153177e48fb05224c6f9c2cb8",
+  "p09_run.py": "34d7eedc0c5811b6d0ddccf949630815c7b309adcec5eab44482df6a5d191b36"
+ },
+ "date_sealed": "2026-08-09",
+ "dose_equivalence_margin_sealed_before_execution": {
+  "PASS": "median ratio inside [0.847, 1.180] AND its 95 percent block bootstrap CI inside [0.781, 1.280]",
+  "basis": "block-to-block coefficient of variation of delivered mass in P08 is 0.051 to 0.105; the inner band is about 1.5 to 3 block standard deviations, the outer band about 2.5 to 5",
+  "rule": "if equivalence fails, no claim of isolated allocation is made; the disposition becomes FLOOR_SPECIFIC_MECHANISM_NOT_IDENTIFIABLE",
+  "statistic": "paired per-block ratio of DELIVERED sink mass, FLOOR_Q_REPLAY / PARENT_Q_REPLAY"
+ },
+ "exogenous_sequence": {
+  "donor_mapping": "receiver block index k of a size replays donor block (k+1) mod 9 of the SAME size; never the same block, never the same seed cohort (donors are the 990000 discovery blocks, receivers are 890000)",
+  "file": "p09_sequences.json",
+  "origin": "the P08 08B SINK_FLOOR event ledger, which is COMPLETE (320 of 320 events per block, no sub-sampling) -- verified before sealing",
+  "preserved_per_event": [
+   "WHEN",
+   "SOURCE_REQUESTED",
+   "SINK_REQUESTED",
+   "SOURCE_REALIZED",
+   "SINK_REALIZED"
+  ],
+  "scaling": "requested_k = donor realized_sink_k * (M256_receiver / M256_donor)",
+  "sha256": "7f8e5e9f116aae96b13c99f8e3ca78685edc1fcebebfd9197b9c4ac32e086bd2",
+  "why_this_sequence_is_conservative": "it is what the FLOOR itself realised under LAW_16. At any state the PARENT rule's sink capacity is greater than or equal to the FLOOR rule's, so a request the floor could satisfy is a request the parent can satisfy. This is the choice that makes a genuine delivered-mass equivalence attainable."
+ },
+ "frames": [
+  "fixed C256 frame",
+  "co-moving tracked component",
+  "intersection C256 and C_t"
+ ],
+ "horizon": "frozen from P08: 320 opportunities, spacing 16, first 272, last 5376, coast 2048, horizon 7424",
+ "max_trajectories": 216,
+ "maximal_permitted_wording": "The effect of threshold allocation reverses prospectively between two regimes with distinct failure modes. Two LawSpecs do not establish that the failure mode universally determines the sign.",
+ "mode": "PROSPECTIVE_CONFIRMATORY_DOSE_YOKED",
+ "parent_branch": "dev/route-e-safe-actuation-and-feedback-08",
+ "parent_bundle": "_bundles/route-e-safe-actuation-08.bundle",
+ "parent_bundle_sha256": "05b732520b3341454be270098ad5fcb31f78f344e6131559d685549da01954e4",
+ "parent_commit": "070aef4b0fa310ae3e9c3aa9a893ebae889cac09",
+ "parent_program": "ROUTE_E_SAFE_ACTUATION_AND_FEEDBACK_CAUSAL_PROGRAM_08",
+ "primary_contrasts": {
+  "ALLOCATION": "FLOOR_Q_REPLAY - PARENT_Q_REPLAY, valid only if dose equivalence passes",
+  "DOSE_REDUCTION": "PARENT_LOW_CONSTANT - PARENT_FULL",
+  "P08_REPLICATION": "FLOOR_FULL - PARENT_FULL",
+  "TEMPORAL_PROFILE": "PARENT_Q_REPLAY - PARENT_LOW_CONSTANT"
+ },
+ "primary_endpoints": [
+  "SURVIVAL_ITT",
+  "UNIQUE_CAUSAL_REPLACEMENT",
+  "SPLIT",
+  "DISSOLUTION"
+ ],
+ "program": "P09_DOSE_YOKED_GUARD_SIGN_CLOSURE",
+ "prohibitions_carried_forward": [
+  "the independent unit is the block, never the event",
+  "the nine blocks stay in every ITT analysis including after track loss",
+  "non-significance is never called equivalence without the sealed margin",
+  "delivered mass is a diagnostic, never a substitute for exchange",
+  "no life / identity / autonomy / metabolism / organisation claim is fabricated"
+ ],
+ "reported_separately": [
+  "incumbent_removed_once",
+  "fresh_retained_at_T",
+  "SHAM_attributable_turnover",
+  "source_mass_attempted_and_realized",
+  "sink_mass_attempted_and_realized",
+  "UCR_per_elapsed_time",
+  "UCR_per_attempted_mass",
+  "UCR_per_delivered_mass",
+  "tracker_sweep",
+  "mass_band"
+ ],
+ "seeds": {
+  "base": 890000,
+  "never_used_before": true,
+  "per_size": 9
+ },
+ "shadow_readers": [
+  0.4,
+  0.45,
+  0.5,
+  0.55,
+  0.6
+ ],
+ "single_question": "Does the SINK_FLOOR reversal between LAW_16 and LAW_29 belong to LOCAL_FLOOR_ALLOCATION, or is it explained by DOSE_THROTTLING or by AMOUNT_TIMING?",
+ "why_a_new_run_is_required": "No dose-matched contrast exists in the P08 artefacts. Under LAW_29 the closest PARENT-allocation arm delivers 1.49x (L=24, ONLINE_NORMALIZED) and 1.92x (L=32, SRC_CAP) the floor's delivered mass, and the block-level ranges do NOT overlap at either size ([0.210,0.263] vs [0.306,0.505]; [0.231,0.275] vs [0.449,0.520]). Every existing low-dose arm also carries a second difference (a headroom ceiling, or a trigger). A yoked contrast is therefore necessary."
+}
