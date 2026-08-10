@@ -1,0 +1,84 @@
+{
+ "ancestry_cluster_definition": "one per distinct generator seed; seed_state is drawn independently per seed, so two seeds share no pre-t0 state able to correlate their scored futures. Sharing only the LawSpec is NOT one cluster.",
+ "geometry_note": "canonical geometry id is a STRATIFICATION/SUPPORT axis, never an independence claim",
+ "roles": {
+  "TRAIN_SELECTION": [
+   [
+    64006,
+    "FAR"
+   ],
+   [
+    64002,
+    "FAR"
+   ],
+   [
+    64010,
+    "FAR"
+   ],
+   [
+    64009,
+    "NEAR"
+   ],
+   [
+    64005,
+    "NEAR"
+   ],
+   [
+    64001,
+    "NEAR"
+   ]
+  ],
+  "LOCKED_DEV_EVALUATION": [
+   [
+    64000,
+    "FAR"
+   ],
+   [
+    64004,
+    "FAR"
+   ],
+   [
+    64008,
+    "FAR"
+   ],
+   [
+    64007,
+    "NEAR"
+   ],
+   [
+    64003,
+    "NEAR"
+   ],
+   [
+    64011,
+    "NEAR"
+   ]
+  ],
+  "EXPOSED_FORMULATION": "all WSCPL00/WSCCRP00 cells (61000-61003 and their arms); outside locked evaluation by construction"
+ },
+ "train_ancestry_clusters": 6,
+ "locked_ancestry_clusters": 6,
+ "train_geometry_classes": [
+  "FAR",
+  "NEAR"
+ ],
+ "locked_geometry_classes": [
+  "FAR",
+  "NEAR"
+ ],
+ "requirements_met": {
+  "min_train_ancestry_6": true,
+  "min_locked_ancestry_6": true,
+  "two_geometry_classes_per_role": true
+ },
+ "crossed_roles": {
+  "FIT_AND_SELECTION": "TRAIN founders x TRAIN superfamilies (executed)",
+  "QUARANTINED_CROSS_1": "TRAIN founders x LOCKED superfamily (never opened)",
+  "QUARANTINED_CROSS_2": "LOCKED founders x TRAIN superfamilies (never opened)",
+  "FINAL_SCORE": "LOCKED founders x LOCKED superfamily (never opened)"
+ },
+ "LOCKED_FEATURE_BLINDNESS": "NOT_REACHED - the disposition fixed at Q2 before locked features were scheduled to open",
+ "project_primary_access": false,
+ "project_held_out_access": false,
+ "held_out_seed_namespace_62000_62009": "NOT USED, NOT READ. The NEAR geometry CLASS is used with fresh 64xxx seeds; the reserved held-out SEEDS are untouched."
+}

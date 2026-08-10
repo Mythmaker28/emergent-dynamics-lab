@@ -1,0 +1,141 @@
+{
+ "programme": "WARPED_SCALE_FIXED_SUPPORT_CAUSAL_RESPONSE_PILOT_00",
+ "parent_commit": "e912a1004c5b9732d12a8fcc417002bfd1135622",
+ "parent_bundle_sha256": "f8cc3df772e55c83b9179f1281f0eb0ba30845c14aa02b2139899293f019e62b",
+ "grandparent_commit": "7cc1ffa0a782a34774a57094189ed19f6bd2b761",
+ "candidate_queue": [
+  [
+   64000,
+   "FAR"
+  ],
+  [
+   64001,
+   "NEAR"
+  ],
+  [
+   64002,
+   "FAR"
+  ],
+  [
+   64003,
+   "NEAR"
+  ],
+  [
+   64004,
+   "FAR"
+  ],
+  [
+   64005,
+   "NEAR"
+  ],
+  [
+   64006,
+   "FAR"
+  ],
+  [
+   64007,
+   "NEAR"
+  ],
+  [
+   64008,
+   "FAR"
+  ],
+  [
+   64009,
+   "NEAR"
+  ],
+  [
+   64010,
+   "FAR"
+  ],
+  [
+   64011,
+   "NEAR"
+  ],
+  [
+   64012,
+   "FAR"
+  ],
+  [
+   64013,
+   "NEAR"
+  ],
+  [
+   64014,
+   "FAR"
+  ],
+  [
+   64015,
+   "NEAR"
+  ]
+ ],
+ "queue_len": 16,
+ "max_used": 12,
+ "namespace_note": "64000+ is disjoint from 61000-61009 (exposed DEV), 62000-62009 (project held-out, never touched) and 63xxx (reserved).",
+ "geometry_classes": [
+  "FAR",
+  "NEAR"
+ ],
+ "geometry_note": "NEAR is used as a GEOMETRY CLASS with fresh seeds. The project held-out SEEDS 62000-62009 are not used and not read.",
+ "admissibility": "exactly two components of {rho > 0.30} with at least 12 sites, on the periodic 4-connected lattice, at t0. Zero, one or more than two -> reject and take the next queue entry. Never select the convenient largest pair.",
+ "ancestry_cluster": "one per distinct generator seed: seed_state(...) is drawn independently per seed, so two seeds share no pre-t0 state that could correlate their scored futures. Sharing only the LawSpec is NOT one cluster.",
+ "role_allocation": "deterministic balanced hash rule on the OPAQUE founder id; roles are assigned without inspecting any candidate's state beyond admissibility, ancestry id and canonical geometry id.",
+ "alloc_salt": "WSFSCRP00-balanced-role-allocation-v1",
+ "endpoint": "two-channel fixed-t0-support integrated-rho response; see the endpoint spec",
+ "H_grid_native_steps": [
+  40,
+  80,
+  120,
+  160,
+  200,
+  240,
+  280,
+  320,
+  360,
+  400
+ ],
+ "physical_times": [
+  "4",
+  "8",
+  "12",
+  "16",
+  "20",
+  "24",
+  "28",
+  "32",
+  "36",
+  "40"
+ ],
+ "trapezoid_weights": [
+  "1/18",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/18"
+ ],
+ "detector": {
+  "threshold": 0.3,
+  "strict": ">",
+  "min_sites": 12,
+  "connectivity": "4-connected, periodic",
+  "pair": "unordered, canonicalised by sorted immutable site-id lists"
+ },
+ "superfamilies": {
+  "TRAIN_SUPERFAMILY_1": "CONSERVATIVE_CARRIER_REDISTRIBUTION",
+  "TRAIN_SUPERFAMILY_2": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+  "LOCKED_SUPERFAMILY_1": "ENVIRONMENTAL_FIELD_PERTURBATION"
+ },
+ "family_evidence_level": "RESPONSE_INFORMED_HELD_OUT_SINGLE_SUPERFAMILY_TRANSFER",
+ "STRICT_PROSPECTIVE_OUT_OF_FAMILY": false,
+ "FULL_MULTI_SUPERFAMILY_TRANSFER_PASS_ELIGIBLE": false,
+ "budget": {
+  "qualification": 48,
+  "post_gate": 144,
+  "total": 192
+ }
+}

@@ -1,0 +1,26 @@
+{
+ "strict_dependency_separation": {
+  "forbidden_and_not_used": [
+   "ETCMNFC TappedEngine or tap arithmetic",
+   "ETCMNFC component-bath or global-bath ledgers",
+   "ETCMNFC pre-step or exchange material-bath masks",
+   "ETCMNFC depth ratios",
+   "ETCMNFC 60/60 as an oracle or replication count"
+  ],
+  "verified_by": "wsfscrp_core.py imports only numpy, domc_core, ppai_core, ppai_engine and the sc_mcm config. The reader, connected-component labeller, endpoint, exact dyadic arithmetic, hashing, save/load and founder generator are separately implemented in this programme.",
+  "single_reused_object": {
+   "what": "the conservative Mf[0] byte transposition operator (eligible_edges, frozen_matching, transpose)",
+   "source": "ETCMNFC/etcmnfc_core.py",
+   "code_sha256": "b9c878acd70ab6d9734eb70e9fadc71b2db70cc919f9132656ce0ddc20ec1d02",
+   "precondition_recheck": "performed PER UNIT here: post-state domain (|Mf0|<=rho and the alive gate) and the declared touch-set were verified for every one of the 12 sentinel cells; touched fields = ['Mf'] in 12/12, rho untouched in 12/12",
+   "note": "inherited qualification is NOT assumed from the operator's name; it is re-established per unit"
+  }
+ },
+ "oracle": {
+  "implementation": "single-executor internal reference oracle",
+  "INDEPENDENT_REVIEW": "NOT_PERFORMED",
+  "ORACLE_CHECK": "SINGLE_EXECUTOR_INTERNAL",
+  "state_field_enumeration": "by dynamic inspection of vars(state), not by a trusted name list",
+  "reader_cross_check": "a second, deliberately different BFS implementation (reference_masks) agrees with the production labeller on the unordered pair in 12/12 admissible founders"
+ }
+}
