@@ -1,0 +1,461 @@
+{
+ "labels_decoded_after_raw_lock_commit": true,
+ "structural_zero_at_h0_32_of_32": true,
+ "energy_identity_and_reference_agreement_32_of_32": true,
+ "R0_certification": {
+  "n_assignments": 32768,
+  "float_gap_between_top_two": 6.6521701256315185e-06,
+  "float_error_scale": 2.974236091738172e-20,
+  "gap_exceeds_error_by": 223659787604282.88,
+  "exact_top8_recomputed": true,
+  "argmin_swapped": [
+   "65000_FAR_a1",
+   "65000_NEAR_a1",
+   "65001_FAR_a1",
+   "65001_NEAR_a1",
+   "65002_FAR_a1",
+   "65002_NEAR_a1",
+   "65003_FAR_a1"
+  ]
+ },
+ "gauge_oracle": {
+  "M2_exactly_invariant_by_construction": "M2^2 = U_ii + V_ii contains no eps; verified exactly against the raw response energy for all 32 rows",
+  "R0_min_invariant_under_all_2^16_descendant_flips": true,
+  "n_flip_assignments_enumerated_for_R0": 65536,
+  "n_swap_assignments_for_the_optimiser": 32768,
+  "argument": "flipping the DATA of descendant d is exactly conjugation M -> D M D with D = diag(+-1); the maximum of eps^T M eps over all eps is invariant under that conjugation, so every quotient quantity built from it is invariant."
+ },
+ "cell_materiality": {
+  "CARRIER_1_CELL_MATERIALITY": "PASS_16_OF_16",
+  "CARRIER_2_CELL_MATERIALITY": "PASS_16_OF_16",
+  "ALL_CELL_MATERIALITY": "PASS_32_OF_32",
+  "FRESH_CARRIER_MATERIAL_SIGNAL_GATE": "PASS",
+  "margin_min": 3.1389458222621,
+  "margin_max": 10.203836882527789,
+  "cells": [
+   {
+    "descendant": "65001_FAR_a0",
+    "block": "65001",
+    "geometry": "FAR",
+    "alloc": 0,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.0048304085603548584,
+    "TAU": 0.0011725116003190202,
+    "M2_over_TAU": 4.119710678376732
+   },
+   {
+    "descendant": "65000_FAR_a0",
+    "block": "65000",
+    "geometry": "FAR",
+    "alloc": 0,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007511207504305785,
+    "TAU": 0.0012333911736734442,
+    "M2_over_TAU": 6.089882646018084
+   },
+   {
+    "descendant": "65001_NEAR_a1",
+    "block": "65001",
+    "geometry": "NEAR",
+    "alloc": 1,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007398372713353964,
+    "TAU": 0.0009594466993799468,
+    "M2_over_TAU": 7.711082562622025
+   },
+   {
+    "descendant": "65003_FAR_a1",
+    "block": "65003",
+    "geometry": "FAR",
+    "alloc": 1,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007297284303020791,
+    "TAU": 0.0011895429384407624,
+    "M2_over_TAU": 6.134527865455599
+   },
+   {
+    "descendant": "65000_NEAR_a0",
+    "block": "65000",
+    "geometry": "NEAR",
+    "alloc": 0,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.003339771524288461,
+    "TAU": 0.0007572957828787891,
+    "M2_over_TAU": 4.410128248162999
+   },
+   {
+    "descendant": "65002_NEAR_a1",
+    "block": "65002",
+    "geometry": "NEAR",
+    "alloc": 1,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007796940500067858,
+    "TAU": 0.0009833769464097897,
+    "M2_over_TAU": 7.928740376245044
+   },
+   {
+    "descendant": "65003_FAR_a0",
+    "block": "65003",
+    "geometry": "FAR",
+    "alloc": 0,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007390593124845497,
+    "TAU": 0.001211568197344613,
+    "M2_over_TAU": 6.1000223850736734
+   },
+   {
+    "descendant": "65003_NEAR_a0",
+    "block": "65003",
+    "geometry": "NEAR",
+    "alloc": 0,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.0035305589187251715,
+    "TAU": 0.0007454572264543841,
+    "M2_over_TAU": 4.736098589475827
+   },
+   {
+    "descendant": "65002_NEAR_a0",
+    "block": "65002",
+    "geometry": "NEAR",
+    "alloc": 0,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.0035291714352843908,
+    "TAU": 0.000726181530025929,
+    "M2_over_TAU": 4.859902502833387
+   },
+   {
+    "descendant": "65001_NEAR_a1",
+    "block": "65001",
+    "geometry": "NEAR",
+    "alloc": 1,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.003648403698324503,
+    "TAU": 0.0009594466993799468,
+    "M2_over_TAU": 3.8026121729141646
+   },
+   {
+    "descendant": "65002_NEAR_a0",
+    "block": "65002",
+    "geometry": "NEAR",
+    "alloc": 0,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007409837879489035,
+    "TAU": 0.000726181530025929,
+    "M2_over_TAU": 10.203836882527789
+   },
+   {
+    "descendant": "65000_NEAR_a1",
+    "block": "65000",
+    "geometry": "NEAR",
+    "alloc": 1,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.00761941503954704,
+    "TAU": 0.0009709244049412504,
+    "M2_over_TAU": 7.847588340317888
+   },
+   {
+    "descendant": "65000_FAR_a0",
+    "block": "65000",
+    "geometry": "FAR",
+    "alloc": 0,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.004724116603319519,
+    "TAU": 0.0012333911736734442,
+    "M2_over_TAU": 3.8301851871126553
+   },
+   {
+    "descendant": "65002_FAR_a1",
+    "block": "65002",
+    "geometry": "FAR",
+    "alloc": 1,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.004765196374597527,
+    "TAU": 0.0012396634691111143,
+    "M2_over_TAU": 3.8439435325252855
+   },
+   {
+    "descendant": "65002_NEAR_a1",
+    "block": "65002",
+    "geometry": "NEAR",
+    "alloc": 1,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.0037565013132404845,
+    "TAU": 0.0009833769464097897,
+    "M2_over_TAU": 3.8200014012481103
+   },
+   {
+    "descendant": "65003_NEAR_a1",
+    "block": "65003",
+    "geometry": "NEAR",
+    "alloc": 1,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.003467917618900929,
+    "TAU": 0.0010265538024581075,
+    "M2_over_TAU": 3.378213212592382
+   },
+   {
+    "descendant": "65001_FAR_a1",
+    "block": "65001",
+    "geometry": "FAR",
+    "alloc": 1,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.003976040642592831,
+    "TAU": 0.001266680238439883,
+    "M2_over_TAU": 3.1389458222621
+   },
+   {
+    "descendant": "65001_NEAR_a0",
+    "block": "65001",
+    "geometry": "NEAR",
+    "alloc": 0,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.0035187390516662814,
+    "TAU": 0.0007486221758531916,
+    "M2_over_TAU": 4.700286960716914
+   },
+   {
+    "descendant": "65003_FAR_a1",
+    "block": "65003",
+    "geometry": "FAR",
+    "alloc": 1,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.003762032628338592,
+    "TAU": 0.0011895429384407624,
+    "M2_over_TAU": 3.162586659771875
+   },
+   {
+    "descendant": "65003_NEAR_a1",
+    "block": "65003",
+    "geometry": "NEAR",
+    "alloc": 1,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007539730740797442,
+    "TAU": 0.0010265538024581075,
+    "M2_over_TAU": 7.344701001295185
+   },
+   {
+    "descendant": "65000_NEAR_a1",
+    "block": "65000",
+    "geometry": "NEAR",
+    "alloc": 1,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.0038510785675816227,
+    "TAU": 0.0009709244049412504,
+    "M2_over_TAU": 3.9664041278421127
+   },
+   {
+    "descendant": "65003_FAR_a0",
+    "block": "65003",
+    "geometry": "FAR",
+    "alloc": 0,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.0041601690971628654,
+    "TAU": 0.001211568197344613,
+    "M2_over_TAU": 3.4337060895793434
+   },
+   {
+    "descendant": "65000_NEAR_a0",
+    "block": "65000",
+    "geometry": "NEAR",
+    "alloc": 0,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.0074348524430442086,
+    "TAU": 0.0007572957828787891,
+    "M2_over_TAU": 9.817633494248856
+   },
+   {
+    "descendant": "65000_FAR_a1",
+    "block": "65000",
+    "geometry": "FAR",
+    "alloc": 1,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.004415121456167021,
+    "TAU": 0.001182490998192364,
+    "M2_over_TAU": 3.733746356561086
+   },
+   {
+    "descendant": "65000_FAR_a1",
+    "block": "65000",
+    "geometry": "FAR",
+    "alloc": 1,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007453557425592572,
+    "TAU": 0.001182490998192364,
+    "M2_over_TAU": 6.303267793993007
+   },
+   {
+    "descendant": "65002_FAR_a0",
+    "block": "65002",
+    "geometry": "FAR",
+    "alloc": 0,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007602981761853679,
+    "TAU": 0.001184992318030258,
+    "M2_over_TAU": 6.41605995766425
+   },
+   {
+    "descendant": "65003_NEAR_a0",
+    "block": "65003",
+    "geometry": "NEAR",
+    "alloc": 0,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007464140881671935,
+    "TAU": 0.0007454572264543841,
+    "M2_over_TAU": 10.012835903642124
+   },
+   {
+    "descendant": "65001_FAR_a1",
+    "block": "65001",
+    "geometry": "FAR",
+    "alloc": 1,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007309151772564434,
+    "TAU": 0.001266680238439883,
+    "M2_over_TAU": 5.7703211519008235
+   },
+   {
+    "descendant": "65001_FAR_a0",
+    "block": "65001",
+    "geometry": "FAR",
+    "alloc": 0,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007659111805965158,
+    "TAU": 0.0011725116003190202,
+    "M2_over_TAU": 6.5322268913000485
+   },
+   {
+    "descendant": "65001_NEAR_a0",
+    "block": "65001",
+    "geometry": "NEAR",
+    "alloc": 0,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.0075501975267126,
+    "TAU": 0.0007486221758531916,
+    "M2_over_TAU": 10.085458019070531
+   },
+   {
+    "descendant": "65002_FAR_a1",
+    "block": "65002",
+    "geometry": "FAR",
+    "alloc": 1,
+    "arm": "CARRIER_2",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.007507731690151998,
+    "TAU": 0.0012396634691111143,
+    "M2_over_TAU": 6.056265976390614
+   },
+   {
+    "descendant": "65002_FAR_a0",
+    "block": "65002",
+    "geometry": "FAR",
+    "alloc": 0,
+    "arm": "CARRIER_1",
+    "verdict": "CELL_MATERIAL_PASS",
+    "M2": 0.0048545438298675525,
+    "TAU": 0.001184992318030258,
+    "M2_over_TAU": 4.096688017300374
+   }
+  ]
+ },
+ "quotient": {
+  "R0_exact": "8933793443540851674736880205085871274491310106197049900215813757243268729150660339928859016604116405357441687244200461876465756622733488017303650967159050997477150836769277396154062048182286425028674254308821080949458741224352930279973066043402095954493264157189718583680565828642029234196584236075009713074485570848066246319794098461697768764155085461593879742365567133803234338924990584740055667984056872783746019947219049259918791279353124377958410489756310938787556197040396218035312651654496109923599756902768647710800849564679653/2182507701698078597026833557333371950245341067531273148621170576361256518803937348059158394552482017547745569049399785014593724083341305858118456404814960864699870729694043125662015737891233614733654253936288987126622289391324031111441810093982229639496051824687528537693835724386833423372615426523081742594994996117308511803867685554763259852505163518984237574044142803548773842775471664872622940844474827119969488957855625161763034187064763840935867457690238319549188212744329153265623337044092415575379801013128702143384112834751024332800",
+  "R0_float": 4.093361703415749e-06,
+  "R1": 4.551840553975242e-07,
+  "R2": 9.307581312196887e-08,
+  "I1": 3.638177648018225e-06,
+  "I2": 3.621082422755553e-07,
+  "argmin_swapped": {
+   "0": [
+    "65000_FAR_a1",
+    "65000_NEAR_a1",
+    "65001_FAR_a1",
+    "65001_NEAR_a1",
+    "65002_FAR_a1",
+    "65002_NEAR_a1",
+    "65003_FAR_a1"
+   ],
+   "1": [
+    "65000_FAR_a1",
+    "65000_NEAR_a1",
+    "65001_FAR_a1",
+    "65001_NEAR_a1",
+    "65002_FAR_a1",
+    "65002_NEAR_a1",
+    "65003_FAR_a1"
+   ],
+   "2": [
+    "65000_FAR_a1",
+    "65000_NEAR_a1",
+    "65001_FAR_a1",
+    "65001_NEAR_a1",
+    "65002_FAR_a1",
+    "65002_NEAR_a1",
+    "65003_FAR_a1"
+   ]
+  },
+  "same_argmin_for_k012": true,
+  "error_bound": 3.6588265507020705e-16,
+  "runner_up_gaps": [
+   {
+    "gap_to_runner_up": 6.6521701256315295e-06
+   },
+   {
+    "gap_to_runner_up": 4.889471723920053e-07
+   },
+   {
+    "gap_to_runner_up": 2.1761190171297645e-07
+   }
+  ],
+  "gap_exceeds_error_bound_by": [
+   18181157355.91534,
+   1336349689.214385,
+   594758725.775673
+  ],
+  "Q_RATIO_SQ": 0.09953011570856128,
+  "Q_RATIO": 0.3154839389074526,
+  "second_share": 0.08846231252258754,
+  "E_TAU": 1.1139835306369292e-06,
+  "A_TAU": 0.0010554541821590027,
+  "QDIM0_total_scatter_material": true,
+  "QDIM1_second_absolute_material": false,
+  "QDIM2_ratio_sq_gt_0.01": true,
+  "QDIM3_share_ge_0.05": true,
+  "FRESH_QUOTIENT_AT_LEAST_TWO_PASS": false,
+  "one_family": {
+   "aggregate_R1_over_R0": 0.11120054575624015,
+   "cell_residual_max": 0.401099511430009,
+   "GATE": false
+  },
+  "FRESH_CARRIER_QUOTIENT_STRUCTURE": "RELATIVE_AT_LEAST_TWO__SECOND_BELOW_ABSOLUTE_MATERIALITY"
+ }
+}
