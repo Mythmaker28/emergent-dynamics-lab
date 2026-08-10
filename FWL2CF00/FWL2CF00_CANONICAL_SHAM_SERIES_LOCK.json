@@ -1,0 +1,18 @@
+{
+ "n_descendants": 16,
+ "starts_used": 16,
+ "cap": 16,
+ "retries": 0,
+ "reconstruction_disposition": "SHAM_REFERENCE_RECONSTRUCTION_PASS_16_OF_16",
+ "exact_match_against_locked_scalars": true,
+ "independent_disk_readback": true,
+ "identity_argument": "the original per-time series does not exist, so no byte-for-byte comparison with a prior archive is possible and none is claimed. Identity rests on: sealed input checkpoint bytes (hash-checked before and after every replay), engine determinism evidence inherited from the parent twin oracle (16/16 over the full horizon including terminal hashes), exact agreement with every locked aggregate scalar (B, RHO_MED, G2^2), and independent production/reference reader agreement rebuilt from persisted raw rho bytes in a separate process.",
+ "series_file": "sham_series.json",
+ "series_sha256": "58f90f1ebe6a35db7ddf8c38ec25b8928efb61b25b0680ec0912f14c16c21d16",
+ "raw_manifest_sha256": "fbe3c9478af981efcc99d77593de7f995b59d3e0e5c2ab7864681d875ddfca04",
+ "exact_oracle_sha256": "7c877b34c9b5685531e8d1a3233118df95328057ae15bdc3304c2ee0c44f0f82",
+ "readback_sha256": "78f9daf6b20d442550ce7159982c5faa5f3bef13d4392ef3f8470a5a24a205cb",
+ "reconstruction_lock_sha256": "bdd0365660f099861ee47b7e9a6a8017626c1b6432b0afc3341c0b10f2efd623",
+ "operative_threshold": "PARENT-LOCKED, unchanged; the replay recomputation is an oracle only",
+ "PARENT_THRESHOLDS_RECOMPUTED_OR_CHANGED": false
+}
