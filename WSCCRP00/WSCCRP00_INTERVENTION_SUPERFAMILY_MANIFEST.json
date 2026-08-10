@@ -1,0 +1,34 @@
+{
+ "superfamilies": {
+  "S1_CONSERVATIVE_CARRIER_REDISTRIBUTION": {
+   "role": "TRAIN",
+   "algebra": "raw-byte transposition of Mf[0] on the frozen maximum-support lexicographic cross-component matching; exactly content-conserving, byte-involutive",
+   "descendants": [
+    "matched_transposition"
+   ]
+  },
+  "S2_NONCONSERVATIVE_CARRIER_TRANSFORMATION": {
+   "role": "TRAIN",
+   "algebra": "carrier transformations that do NOT conserve the carrier content or its multiset: lattice reflection of the intensive field, lattice reflection of the extensive field, and total ablation. Cousins, not three superfamilies.",
+   "descendants": [
+    "intensive_reflection",
+    "extensive_reflection",
+    "total_ablation"
+   ]
+  },
+  "S3_ENVIRONMENTAL_FIELD_PERTURBATION": {
+   "role": "LOCKED_DEV_EVALUATION",
+   "algebra": "additive perturbation of the public nutrient field N; touches no carrier",
+   "descendants": [
+    "N_plus_0.5N0"
+   ],
+   "note": "LOCKED. Not executed in qualification. Q2 explicitly forbids the material signal from being carried only by this arm, so it is the one held out."
+  }
+ },
+ "total_admissible_superfamilies": 3,
+ "FULL_PILOT_PASS_ELIGIBLE": false,
+ "why": "full pass needs >=4 admissible superfamilies with >=2 in TRAIN and >=2 in LOCKED. The handoff itself rules that intensive reflection, extensive reflection and total ablation are COUSINS of one non-conservative carrier superfamily, not three. The five WSCPL00 families therefore collapse to three superfamilies.",
+ "ceiling_frozen_before_outcomes": "SINGLE_SUPERFAMILY_TRANSFER_CEILING (2 responsive TRAIN + 1 LOCKED)",
+ "no_fourth_family_invented": "no fourth superfamily was created, before or after qualification",
+ "evidence_level_if_it_had_run": "RESPONSE_INFORMED_HELD_OUT_FAMILY_TRANSFER - the environmental superfamily was displayed in WSCPL00, so STRICT_PROSPECTIVE_OUT_OF_FAMILY was never available and was never claimed"
+}

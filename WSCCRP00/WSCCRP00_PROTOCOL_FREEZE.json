@@ -1,0 +1,116 @@
+{
+ "programme": "WARPED_SCALE_CONTINUOUS_CAUSAL_RESPONSE_PILOT_00",
+ "parent_commit": "7cc1ffa0a782a34774a57094189ed19f6bd2b761",
+ "parent_bundle_sha256": "d7c16ce4231ec750ad767d572127c616441f60a73e60c5aea2faf103a2b6a572",
+ "parent_archive_sha256": "f23259abe0333a351090346cb90ddc7b76b28ee050f65e573f7760def9353c0e",
+ "inherited_reader": {
+  "source": "WSCPL00/wscpl_probe_responsive.py sha256 207fa600c6fb220bb846c8fdae2cfb096d054a4fd9528a14fc75d4468d66bbd3",
+  "mass_field": "st.rho summed over the cells returned by domc_core.read_sites",
+  "membership": "DYNAMICALLY REDETECTED at every scored time by the frozen detector (threshold 0.30, min_cells 12), NOT immutable t0 masks",
+  "identity_persistence": "frozen-site nearest-entity assignment inside read_sites",
+  "boundary": "periodic 64x64 lattice",
+  "intervention_time": "the founding checkpoint, step 390",
+  "h0_included": false,
+  "split_merge_disappear": "if either A or B is unreadable the unit is undefined and the stage is NOT_IDENTIFIABLE; no imputation"
+ },
+ "endpoint": {
+  "a": "abs(m_A - m_B) / (m_A + m_B), requires m_A>=0, m_B>=0, S>0",
+  "r": "r[b,u,h] = a(F^h(INT_u(x_b))) - a(F^h(SHAM(x_b)))",
+  "H_grid_native_steps": [
+   40,
+   80,
+   120,
+   160,
+   200,
+   240,
+   280,
+   320,
+   360,
+   400
+  ],
+  "physical_times": [
+   4.0,
+   8.0,
+   12.0,
+   16.0,
+   20.0,
+   24.0,
+   28.0,
+   32.0,
+   36.0,
+   40.0
+  ],
+  "quadrature": "trapezoidal in PHYSICAL time, normalised so sum_h w_h = 1",
+  "w": [
+   0.05555555555555555,
+   0.1111111111111111,
+   0.1111111111111111,
+   0.1111111111111111,
+   0.1111111111111111,
+   0.1111111111111111,
+   0.1111111111111111,
+   0.1111111111111111,
+   0.1111111111111111,
+   0.05555555555555555
+  ],
+  "ETA_ORACLE": 1e-12,
+  "strata_indices": [
+   [
+    0,
+    1,
+    2
+   ],
+   [
+    3,
+    4,
+    5,
+    6
+   ],
+   [
+    7,
+    8,
+    9
+   ]
+  ]
+ },
+ "superfamilies": {
+  "S1_CONSERVATIVE_CARRIER_REDISTRIBUTION": {
+   "role": "TRAIN",
+   "algebra": "raw-byte transposition of Mf[0] on the frozen maximum-support lexicographic cross-component matching; exactly content-conserving, byte-involutive",
+   "descendants": [
+    "matched_transposition"
+   ]
+  },
+  "S2_NONCONSERVATIVE_CARRIER_TRANSFORMATION": {
+   "role": "TRAIN",
+   "algebra": "carrier transformations that do NOT conserve the carrier content or its multiset: lattice reflection of the intensive field, lattice reflection of the extensive field, and total ablation. Cousins, not three superfamilies.",
+   "descendants": [
+    "intensive_reflection",
+    "extensive_reflection",
+    "total_ablation"
+   ]
+  },
+  "S3_ENVIRONMENTAL_FIELD_PERTURBATION": {
+   "role": "LOCKED_DEV_EVALUATION",
+   "algebra": "additive perturbation of the public nutrient field N; touches no carrier",
+   "descendants": [
+    "N_plus_0.5N0"
+   ],
+   "note": "LOCKED. Not executed in qualification. Q2 explicitly forbids the material signal from being carried only by this arm, so it is the one held out."
+  }
+ },
+ "train_selection_founders": [
+  61000,
+  61001,
+  61002,
+  61003
+ ],
+ "locked_dev_evaluation": "NOT YET CREATED; no founder and no outcome exists",
+ "gates": {
+  "Q2": "A_bu > ETA_b for >=2 TRAIN superfamilies in >=3 founders",
+  "Q3": "sigma_2/sigma_1 > 0.10 on the weighted response matrix",
+  "Q4": "median LOFO unexplained fraction >= 0.25 and every fold >= 0.10",
+  "Q5": "L_STATE <= 0.90 * L_NUIS in median grouped LOFO",
+  "membership_dominance": "stop if >50% of quadrature-weighted response energy is attributable to membership change"
+ }
+}
