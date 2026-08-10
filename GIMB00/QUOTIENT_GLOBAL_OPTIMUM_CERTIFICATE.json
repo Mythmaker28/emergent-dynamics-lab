@@ -1,0 +1,56 @@
+{
+ "objective": "R_k = min over linked founder swaps, affine mean and orthonormal k-dim model of sum_i alpha_i ||z_i - mu - B B^T (z_i - mu)||^2",
+ "gauge_founder_pinned_to_plus_one": 64001,
+ "n_assignments_enumerated": 32,
+ "enumeration": "exhaustive over all 2^(F-1) = 32 linked assignments; no heuristic, no solver selected after seeing the landscape",
+ "arithmetic": "Gram entries exactly rational (<z_i,z_j> = <u_i,u_j> + e_i e_j <v_i,v_j>, and sqrt(w)*sqrt(w) = w). Eigenvalues enclosed by exact Sylvester inertia, i.e. exact LDL^T of G - tI, bisected 34 times.",
+ "R0_exact_no_bisection_needed": [
+  3.790825719053383e-06,
+  3.790825719053383e-06
+ ],
+ "R1_certified_interval": [
+  4.431740342820472e-07,
+  4.4323224216361576e-07
+ ],
+ "R2_certified_interval": [
+  5.073649674677897e-08,
+  5.08529125099161e-08
+ ],
+ "L1": [
+  3.3475934768897674e-06,
+  3.347651684771336e-06
+ ],
+ "L2": [
+  3.923211217721311e-07,
+  3.924957454168368e-07
+ ],
+ "argmin_R0": [
+  [
+   64002,
+   64006,
+   64010
+  ]
+ ],
+ "argmin_R1": [
+  [
+   64002,
+   64006,
+   64010
+  ]
+ ],
+ "argmin_R2": [
+  [
+   64002,
+   64006,
+   64010
+  ]
+ ],
+ "n_cooptimal": {
+  "R0": 1,
+  "R1": 1,
+  "R2": 1
+ },
+ "unique_optimum_shared_across_k": true,
+ "consequence": "one assignment is simultaneously optimal for k=0,1,2, so on this panel the R_k are genuinely nested and L1, L2 equal the two leading eigenvalues of a single fixed exactly-rational matrix. Proved, not assumed.",
+ "VERDICT": "QUOTIENT_GLOBAL_OPTIMUM_CERTIFIED"
+}

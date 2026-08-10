@@ -1,0 +1,453 @@
+{
+ "n_founders": 12,
+ "arms_per_founder": {
+  "64000": 3,
+  "64001": 4,
+  "64002": 4,
+  "64003": 3,
+  "64004": 3,
+  "64005": 4,
+  "64006": 4,
+  "64007": 3,
+  "64008": 3,
+  "64009": 4,
+  "64010": 4,
+  "64011": 3
+ },
+ "arm_signatures": {
+  "64000": [
+   [
+    "CARRIER_LOCKED",
+    "CARRIER_1"
+   ],
+   [
+    "CARRIER_LOCKED",
+    "CARRIER_2"
+   ],
+   [
+    "ENV_LOCKED",
+    "ENV_PRIMARY"
+   ]
+  ],
+  "64001": [
+   [
+    "CARRIER_BASIS",
+    "CARRIER_1"
+   ],
+   [
+    "CARRIER_BASIS",
+    "CARRIER_2"
+   ],
+   [
+    "ENV_PROBE",
+    "ENV_PRIMARY"
+   ],
+   [
+    "ENV_DOSE_SECONDARY",
+    "ENV_SECONDARY"
+   ]
+  ],
+  "64002": [
+   [
+    "CARRIER_BASIS",
+    "CARRIER_1"
+   ],
+   [
+    "CARRIER_BASIS",
+    "CARRIER_2"
+   ],
+   [
+    "ENV_PROBE",
+    "ENV_PRIMARY"
+   ],
+   [
+    "ENV_DOSE_SECONDARY",
+    "ENV_SECONDARY"
+   ]
+  ],
+  "64003": [
+   [
+    "CARRIER_LOCKED",
+    "CARRIER_1"
+   ],
+   [
+    "CARRIER_LOCKED",
+    "CARRIER_2"
+   ],
+   [
+    "ENV_LOCKED",
+    "ENV_PRIMARY"
+   ]
+  ],
+  "64004": [
+   [
+    "CARRIER_LOCKED",
+    "CARRIER_1"
+   ],
+   [
+    "CARRIER_LOCKED",
+    "CARRIER_2"
+   ],
+   [
+    "ENV_LOCKED",
+    "ENV_PRIMARY"
+   ]
+  ],
+  "64005": [
+   [
+    "CARRIER_BASIS",
+    "CARRIER_1"
+   ],
+   [
+    "CARRIER_BASIS",
+    "CARRIER_2"
+   ],
+   [
+    "ENV_PROBE",
+    "ENV_PRIMARY"
+   ],
+   [
+    "ENV_DOSE_SECONDARY",
+    "ENV_SECONDARY"
+   ]
+  ],
+  "64006": [
+   [
+    "CARRIER_BASIS",
+    "CARRIER_1"
+   ],
+   [
+    "CARRIER_BASIS",
+    "CARRIER_2"
+   ],
+   [
+    "ENV_PROBE",
+    "ENV_PRIMARY"
+   ],
+   [
+    "ENV_DOSE_SECONDARY",
+    "ENV_SECONDARY"
+   ]
+  ],
+  "64007": [
+   [
+    "CARRIER_LOCKED",
+    "CARRIER_1"
+   ],
+   [
+    "CARRIER_LOCKED",
+    "CARRIER_2"
+   ],
+   [
+    "ENV_LOCKED",
+    "ENV_PRIMARY"
+   ]
+  ],
+  "64008": [
+   [
+    "CARRIER_LOCKED",
+    "CARRIER_1"
+   ],
+   [
+    "CARRIER_LOCKED",
+    "CARRIER_2"
+   ],
+   [
+    "ENV_LOCKED",
+    "ENV_PRIMARY"
+   ]
+  ],
+  "64009": [
+   [
+    "CARRIER_BASIS",
+    "CARRIER_1"
+   ],
+   [
+    "CARRIER_BASIS",
+    "CARRIER_2"
+   ],
+   [
+    "ENV_PROBE",
+    "ENV_PRIMARY"
+   ],
+   [
+    "ENV_DOSE_SECONDARY",
+    "ENV_SECONDARY"
+   ]
+  ],
+  "64010": [
+   [
+    "CARRIER_BASIS",
+    "CARRIER_1"
+   ],
+   [
+    "CARRIER_BASIS",
+    "CARRIER_2"
+   ],
+   [
+    "ENV_PROBE",
+    "ENV_PRIMARY"
+   ],
+   [
+    "ENV_DOSE_SECONDARY",
+    "ENV_SECONDARY"
+   ]
+  ],
+  "64011": [
+   [
+    "CARRIER_LOCKED",
+    "CARRIER_1"
+   ],
+   [
+    "CARRIER_LOCKED",
+    "CARRIER_2"
+   ],
+   [
+    "ENV_LOCKED",
+    "ENV_PRIMARY"
+   ]
+  ]
+ },
+ "n_within_role_pairs": 30,
+ "tests": {
+  "Q0C_u_invariant": true,
+  "Q0D_whole_block_vvT_invariant": true,
+  "Q0F_energy_identity": true,
+  "v_itself_changes_sign": true,
+  "Q0E_block_outer_product_is_exactly_rank_one": true,
+  "Q0E_block_determined_by_u_and_vvT_up_to_one_sign": true,
+  "Q0E_cross_arm_relative_sign_is_retained": true,
+  "Q0G_quotient_distance_invariant_over_all_2F_assignments": true,
+  "n_assignments_enumerated": 4096,
+  "n_founders_enumerated_exhaustively": 12
+ },
+ "negative_controls": {
+  "N1_per_row_swap_changes_block_vvT": true,
+  "N2_per_row_swap_changes_quotient_distance": true,
+  "N3_quotient_strictly_richer_than_u_only": true,
+  "N4_energy_identity_detects_a_corrupted_row": true
+ },
+ "all_tests_pass": true,
+ "all_negative_controls_fire": true,
+ "VERDICT": "GAUGE_ORACLE_PASS_WITH_NEGATIVE_CONTROLS",
+ "supersedes": "the Q0C..Q0G block of gimb_p0_freeze_oracle.py, which contained three self-comparing predicates that pass on arbitrary input",
+ "Q0A": {
+  "claim": "ONE_GLOBAL_SWAP_PER_FOUNDER_ACROSS_ALL_TIMES_AND_ARMS",
+  "evidence": [
+   "the two masks M_A0/M_B0 are per-founder .npz arrays loaded once and reused unchanged by every arm of that founder (wsfscrp_core.load + m_<seed>_<geom>.npz)",
+   "the reader q_channels(st,MA,MB,B) takes the same two masks at every scored time",
+   "B_b is computed from MA|MB, which is symmetric under the exchange",
+   "no arm re-derives, re-detects or re-orders the pair"
+  ],
+  "arms_per_founder": {
+   "64006": [
+    [
+     "CARRIER_BASIS",
+     "CARRIER_1"
+    ],
+    [
+     "CARRIER_BASIS",
+     "CARRIER_2"
+    ],
+    [
+     "ENV_DOSE_SECONDARY",
+     "ENV_SECONDARY"
+    ],
+    [
+     "ENV_PROBE",
+     "ENV_PRIMARY"
+    ]
+   ],
+   "64002": [
+    [
+     "CARRIER_BASIS",
+     "CARRIER_1"
+    ],
+    [
+     "CARRIER_BASIS",
+     "CARRIER_2"
+    ],
+    [
+     "ENV_DOSE_SECONDARY",
+     "ENV_SECONDARY"
+    ],
+    [
+     "ENV_PROBE",
+     "ENV_PRIMARY"
+    ]
+   ],
+   "64010": [
+    [
+     "CARRIER_BASIS",
+     "CARRIER_1"
+    ],
+    [
+     "CARRIER_BASIS",
+     "CARRIER_2"
+    ],
+    [
+     "ENV_DOSE_SECONDARY",
+     "ENV_SECONDARY"
+    ],
+    [
+     "ENV_PROBE",
+     "ENV_PRIMARY"
+    ]
+   ],
+   "64009": [
+    [
+     "CARRIER_BASIS",
+     "CARRIER_1"
+    ],
+    [
+     "CARRIER_BASIS",
+     "CARRIER_2"
+    ],
+    [
+     "ENV_DOSE_SECONDARY",
+     "ENV_SECONDARY"
+    ],
+    [
+     "ENV_PROBE",
+     "ENV_PRIMARY"
+    ]
+   ],
+   "64005": [
+    [
+     "CARRIER_BASIS",
+     "CARRIER_1"
+    ],
+    [
+     "CARRIER_BASIS",
+     "CARRIER_2"
+    ],
+    [
+     "ENV_DOSE_SECONDARY",
+     "ENV_SECONDARY"
+    ],
+    [
+     "ENV_PROBE",
+     "ENV_PRIMARY"
+    ]
+   ],
+   "64001": [
+    [
+     "CARRIER_BASIS",
+     "CARRIER_1"
+    ],
+    [
+     "CARRIER_BASIS",
+     "CARRIER_2"
+    ],
+    [
+     "ENV_DOSE_SECONDARY",
+     "ENV_SECONDARY"
+    ],
+    [
+     "ENV_PROBE",
+     "ENV_PRIMARY"
+    ]
+   ],
+   "64000": [
+    [
+     "CARRIER_LOCKED",
+     "CARRIER_1"
+    ],
+    [
+     "CARRIER_LOCKED",
+     "CARRIER_2"
+    ],
+    [
+     "ENV_LOCKED",
+     "ENV_PRIMARY"
+    ]
+   ],
+   "64004": [
+    [
+     "CARRIER_LOCKED",
+     "CARRIER_1"
+    ],
+    [
+     "CARRIER_LOCKED",
+     "CARRIER_2"
+    ],
+    [
+     "ENV_LOCKED",
+     "ENV_PRIMARY"
+    ]
+   ],
+   "64008": [
+    [
+     "CARRIER_LOCKED",
+     "CARRIER_1"
+    ],
+    [
+     "CARRIER_LOCKED",
+     "CARRIER_2"
+    ],
+    [
+     "ENV_LOCKED",
+     "ENV_PRIMARY"
+    ]
+   ],
+   "64007": [
+    [
+     "CARRIER_LOCKED",
+     "CARRIER_1"
+    ],
+    [
+     "CARRIER_LOCKED",
+     "CARRIER_2"
+    ],
+    [
+     "ENV_LOCKED",
+     "ENV_PRIMARY"
+    ]
+   ],
+   "64003": [
+    [
+     "CARRIER_LOCKED",
+     "CARRIER_1"
+    ],
+    [
+     "CARRIER_LOCKED",
+     "CARRIER_2"
+    ],
+    [
+     "ENV_LOCKED",
+     "ENV_PRIMARY"
+    ]
+   ],
+   "64011": [
+    [
+     "CARRIER_LOCKED",
+     "CARRIER_1"
+    ],
+    [
+     "CARRIER_LOCKED",
+     "CARRIER_2"
+    ],
+    [
+     "ENV_LOCKED",
+     "ENV_PRIMARY"
+    ]
+   ]
+  },
+  "PASS": true
+ },
+ "Q0B": {
+  "claim": "MASK_NAME_SWAP_ONLY_SWAPS_READER_CHANNELS",
+  "q_channels_source": "return (dsum(st.rho[np.nonzero(MA)])/B, dsum(st.rho[np.nonzero(MB)])/B)",
+  "q_channels_present": true,
+  "B_of_is_symmetric": true,
+  "run_arm_passes_masks_only_to_reader": true,
+  "operators_do_not_receive_masks": "the carrier sentinels receive explicit site lists built from the masks, and the environmental operator receives no mask at all; neither is defined by the serialized names A or B",
+  "PASS": true
+ },
+ "OPERATOR_EQUIVARIANCE": {
+  "CARRIER_1_matched_transposition": "acts on the unordered set of matched cross-support pairs (i in one region, j in the other) and swaps their Mf[0] bytes. Exchanging the region names exchanges the roles of I and J, and transposition is symmetric in its two arguments, so the produced state is identical. EQUIVARIANT.",
+  "CARRIER_2_intensive_reflection": "ppai_core.state_cross applies the lattice reflection x -> (L-x) mod L to the intensive carrier globally. It never reads the masks. EQUIVARIANT (in fact invariant).",
+  "ENV_PRIMARY_and_SECONDARY": "domc_core._perturb_N adds amp*N0 at every site. It never reads the masks. EQUIVARIANT.",
+  "VERDICT": "ALL_REQUIRED_OPERATORS_EXCHANGE_EQUIVARIANT"
+ }
+}
