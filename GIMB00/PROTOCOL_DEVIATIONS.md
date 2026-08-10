@@ -46,3 +46,21 @@ and bound by blob object id, as instructed. No engine was run to reconstruct any
 
 Engine starts: 0, asserted equal before and after Phase 1. No push, no PR, no workflow trigger.
 Tommy's checkout was not moved, checked out, merged or modified. No parent output was overwritten.
+
+## D6 — a delivery commit landed with an unchanged tree, and was replaced
+
+`GIT_PROVENANCE_AND_FRESH_CLONE_VERIFICATION.md` and the regenerated `SHA256SUMS` were transferred
+inside a tarball and extracted over the existing `GIMB00/` directory on the mounted repository. The
+mount does not permit `unlink`, so `tar` could not overwrite the twenty-four existing files and
+exited with an error; the new file never reached the disk. The commit built immediately afterwards
+(`4e548832052eca6826ca81808c43338570ebfc1b`) therefore carried a message describing a file that was
+not in its tree.
+
+Repair: the branch tip was moved back to `f65851c39496f379edac8b665dce87ba7cf1ebfb`, the changed
+files were transferred individually with an explicit overwrite instead of through `tar`, and the
+delivery commit was rebuilt with the correct tree. The bad commit was created and discarded inside
+this session, was never published, never bundled and never referenced by any deliverable, and it
+touched no parent. It is recorded here rather than left silently unreachable.
+
+Reset scope: only this programme's own branch tip, only forward of `f65851c`. No parent commit, no
+delivered artefact and no other ref was altered. `PUSH_AUTHORIZED` remained false throughout.
