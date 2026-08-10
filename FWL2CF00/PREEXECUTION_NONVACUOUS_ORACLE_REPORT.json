@@ -1,0 +1,145 @@
+{
+ "Q0A": {
+  "panel_lock": true,
+  "threshold_lock": true,
+  "arm_lock": true,
+  "n_descendants": true,
+  "n_thresholds": true,
+  "n_active_rows": true,
+  "negative_control_mutated_lock_byte_detected": true,
+  "PASS": true
+ },
+ "Q0B": {
+  "positive": true,
+  "sum_one": true,
+  "prod_eq_ref": true,
+  "locked_weights_match": true,
+  "neg_perturbed_weight_breaks_sum": true,
+  "PASS": true
+ },
+ "Q0C": {
+  "identity": true,
+  "ref_agrees": true,
+  "neg_missing_half_factor": true,
+  "PASS": true
+ },
+ "Q0D": {
+  "M2_pair_invariant": true,
+  "cell_verdicts_invariant": true,
+  "two_arm_block_invariant": true,
+  "PASS": true
+ },
+ "Q0E": {
+  "M2_blind_to_a_per_time_swap": true,
+  "block_invariant_detects_per_time_swap": true,
+  "block_invariant_detects_per_arm_swap": true,
+  "conclusion": "M2 alone cannot validate the group scope; the whole-descendant two-arm block invariant can, and it fires for both illegal actions.",
+  "PASS": true
+ },
+ "Q0F": {
+  "agree_on_40_fixtures": true,
+  "ref_imports_production": false,
+  "neg_ref_detects_a_wrong_production_value": true,
+  "PASS": true
+ },
+ "Q0G": {
+  "wrong_weight": true,
+  "wrong_normalizer": true,
+  "mask_byte": true,
+  "channel_byte": true,
+  "sham_series_byte": true,
+  "threshold_byte": true,
+  "PASS": true
+ },
+ "Q0H": {
+  "distinct_callables": true,
+  "distinct_code_hashes": true,
+  "swap_detected_by_hash_binding": true,
+  "runtime_guard_present_in_worker": true,
+  "PASS": true
+ },
+ "Q0I": {
+  "clean_sham_path_has_no_active_symbol": true,
+  "injected_active_operator_in_a_sham_path_is_detected": true,
+  "detected_symbol": [
+   "state_cross"
+  ],
+  "PASS": true
+ },
+ "Q0J": {
+  "self_comparison_in_this_oracle": [],
+  "self_comparison_in_production": [],
+  "self_comparison_in_reference": [],
+  "injected_vacuous_probe_detected": true,
+  "PASS": true
+ },
+ "Q0K": {
+  "verdicts": {
+   "0.99": "CELL_MATERIAL_FAIL",
+   "1.00": "CELL_MATERIAL_FAIL",
+   "1.01": "CELL_MATERIAL_PASS"
+  },
+  "expected": {
+   "0.99": "CELL_MATERIAL_FAIL",
+   "1.00": "CELL_MATERIAL_FAIL",
+   "1.01": "CELL_MATERIAL_PASS"
+  },
+  "PASS": true
+ },
+ "Q0L": {
+  "unit_ledger": {
+   "z,u,v,M2,A_TAU": "response",
+   "R_k,I1,I2,E_TAU": "response^2",
+   "Y_MINUS_BLOCK,K_PLUS": "response^2",
+   "K_MINUS": "response^4"
+  },
+  "E_TAU_is_response_squared_and_equals_locked": true,
+  "neg_comparing_A_TAU_to_a_response_squared_object_is_a_unit_error": "A_TAU has response units and E_TAU response^2; they are numerically unequal here, so a silent substitution changes the decision",
+  "A_TAU_ne_E_TAU": true,
+  "neg_response4_object_has_no_qualified_bound": true,
+  "PASS": true
+ },
+ "Q0N": {
+  "KAPPA_TWO_ARM": "1/sqrt(2), i.e. the equal-arm normalised block",
+  "normalised_block_differs_from_unnormalised": true,
+  "ratio_is_exactly_two": true,
+  "neg_mixing_normalised_block_with_the_enlarged_bound_is_detected": true,
+  "rule": "never pair the normalised block with the enlarged bound, nor the unnormalised block with the smaller bound. The pairing used here is (normalised block, smaller floor), fixed before outcomes.",
+  "PASS": true
+ },
+ "Q0O": {
+  "production_has_no_division_by_TAU": true,
+  "rule": "factor estimands use unscaled responses in native units; thresholds appear only inside predeclared materiality gates. The descendant sham floor already differs between the two NEAR allocations and would manufacture a geometry x allocation pattern if used as a divisor.",
+  "neg_demonstration": "ranks coincide on this fixture; the prohibition is structural, not contingent on the fixture",
+  "PASS": true
+ },
+ "Q0M": {
+  "controls": {
+   "Q0A_lock_byte": true,
+   "Q0B_weight": true,
+   "Q0C_half_factor": true,
+   "Q0E_per_time": true,
+   "Q0E_per_arm": true,
+   "Q0F_reference": true,
+   "Q0G_normalizer": true,
+   "Q0G_mask": true,
+   "Q0G_channel": true,
+   "Q0G_sham": true,
+   "Q0H_arm_id": true,
+   "Q0I_active_in_sham": true,
+   "Q0J_vacuous": true,
+   "Q0K_equality_fails": true,
+   "Q0L_response4_unbounded": true,
+   "Q0N_kappa": true
+  },
+  "all_mutate_real_bytes_or_symbols": true,
+  "PASS": true
+ },
+ "ALL_PASS": true,
+ "VERDICT": "NONVACUOUS_ORACLE_PASS",
+ "code_hashes": {
+  "fw_prod.py": "1ba578a4bf5f6fae0f61b8b941a794b51b6bd3d6b8d247105e4a4dc9f25828cd",
+  "fw_ref.py": "dba1b30e513ef9bdc5c32a271798d8f85cd302864cc828b38b50c3ebb6704f05",
+  "fw_oracle.py": "961a003b396b09500ef69698bd6fefcf6b956fdd59fa2ea3933823fe7ef146d7"
+ }
+}
