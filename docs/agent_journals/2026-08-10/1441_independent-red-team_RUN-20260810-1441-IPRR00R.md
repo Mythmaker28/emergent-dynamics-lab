@@ -97,3 +97,69 @@ denominator or absent falsifier would refute the dependent part.
   It also found that all four ratios labelled `component minimum / boundary median` in `probe_depth.json` disagree
   with direct division of the corresponding committed numerator and median in `probe_attribution.json`. This is now
   an open contradiction under investigation, not silently rounded away.
+
+## Integrated OBSERVED — completed audits
+
+- ETPC → EEFCA → ETNBFC → ETCMNFC is a direct-parent local scientific chain. The audit line branches independently
+  from ETNBFC. None of these scientific/audit commits or refs is on public `main`, a public branch, tag, release or PR.
+- ETCMNFC contains one scientific intervention operator, `transpose`, not three orientation operators.
+- The byte-transposition theorem is correct on finite, disjoint, equal-length, well-formed pair lists. An independent
+  exhaustive matching oracle passed 19,266 unique-ID cases. The API silently truncates unequal I/J lengths.
+- The ledger contains 60 stored true booleans. They are 44 block-labelled assertions over four DEV states plus 16
+  global/adversarial assertions, not histories or replications. All four rows reuse one A/B geometry and one pair
+  layout.
+- First-pass F2/F5/F6 are genuine fake passes. Replacement F2 is not biconditional; F5 accepts extra, duplicate and
+  unknown rows; phase-C2 O1 runs identical inputs; the identity hook is a no-op. The final verifier does not consume
+  the 60-row ledger after loading it, does not read the protocol or sums, and accepts malformed truthy values.
+- The committed pre-step summaries agree on one material region, 172 material–bath links per block and zero A/B
+  incidence. F10 and V6 reload the pre-step mask, while the retained exchange-time summaries have one additional
+  alive cell in both dynamic blocks. The actual mask/attribution array is absent from allowed evidence.
+- All four named depth ratios fail direct recomputation by 11.6%–15.1%. Distance wording also mixes 13 Euclidean
+  units and 14 graph steps.
+- No c/N target contrast, primary allocation, held-out result or causal effect was produced. The exact disposition is
+  `NOT_IDENTIFIABLE`, `ETCMNFC_PRIMARY_C_N = NOT_TESTED`, and
+  `STOP_REASON = JOINT_ENDPOINT_STRUCTURALLY_MISSPECIFIED`.
+- The sole active GitHub workflow triggers on unfiltered push and pull-request events and executes repository
+  scientific code. A push and draft PR are both ineligible. Local `gh` is installed but unauthenticated; this does
+  not alter the prior safety stop, which applies even though the structured GitHub connector reported write access.
+
+## Integrated INFERRED
+
+- The stop remains scientifically prudent, but not because a raw exchange-time support theorem was reproduced. It
+  is compelled by nonnative A/B ownership of a connected body's exterior and the absence of a target endpoint.
+- The strongest publishable content is a conditional software/operator lemma plus a corrective methods audit. The
+  package cannot support an effect, no-effect, transport, individuality or generality claim.
+- Reviewing the multiscale pilot protocol buys more orthogonal information than iterating the current one-body
+  transport endpoint. Only a newly founded two-body design literally retains the original component–bath question.
+
+## Updated HYPOTHESIS
+
+A rigorously guarded version of the byte-transposition operator can remain useful in a new, prospectively sealed
+programme, but no repair of its current oracles alone can make the current per-component exterior endpoint native.
+
+## WHAT WOULD FALSIFY THIS?
+
+- A kernel-native rule assigning every outer face to A or B without an observer construction would falsify the
+  attribution conclusion.
+- A retained exchange-time mask plus independently reconstructed faces showing valid A/B incidence would falsify
+  the realized-support indeterminacy.
+- A separately timestamped pre-result protocol commit and independently replayable raw DEV evidence would falsify
+  the temporal/raw provenance limitations.
+- A second/third separately implemented and evaluated operator in the exact target commit would falsify the
+  one-operator finding.
+
+## Decisions
+
+- Preserve the primary stop and narrow its rationale to `NOT_IDENTIFIABLE / NOT_TESTED`.
+- No push, no draft PR and no workflow mutation in IPRR00R.
+- Package through an audit-only archive and full Git bundle verified outside every scientific checkout.
+- `docs/PROJECT_STATE.md`, `docs/EXPERIMENT_INDEX.md` and `docs/DECISION_LOG.md` remain unchanged: no experiment,
+  scientific project-state transition or binding project decision occurred. `docs/RUN_INDEX.md` is updated because
+  this audit run and its three independent subaudits completed.
+
+## Remaining closeout
+
+- Run static/tooling validation and whitespace checks.
+- Commit the substantive audit package and its `SHA256SUMS`.
+- Create and independently verify the archive and Git bundle; append exact verification evidence.
+- Record ending Git state and one exact next authorized action.
