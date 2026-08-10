@@ -1,0 +1,439 @@
+{
+ "chain": [
+  "e912a1004c5b9732d12a8fcc417002bfd1135622",
+  "f81daf91dd70a05f34372fb85d2c3fba0dd5550b",
+  "f9e1e39170a746bc5d8c43a80bc878cf24180714",
+  "f65851c39496f379edac8b665dce87ba7cf1ebfb",
+  "0d92b612e051166b84d1a7d08d681ea78f5a512d",
+  "226b2c93bdc34e5bec2ebc28d0c6066dc3123b14",
+  "2c9fc97c5e05de2b15ccceeba0c9bc36e327e3b0",
+  "53c3ea7e8f9d4400fad2c998ee0eacc5ab917d2b",
+  "30403fc1b15890f70f2504d454ffb8ea8ef2160c",
+  "817c27886e97a90e2d54a410a65d9574654b1dc3",
+  "09c56ae7e37ef22b08675a57e9ca609474d9c63e",
+  "e9a06286354284fe06fa15742a128919e3b64fcf",
+  "96c7d295e72106cd949d810fa92807c2514e7449"
+ ],
+ "chain_labels": {
+  "e912a1004c5b9732d12a8fcc417002bfd1135622": "WSCCRP00",
+  "f81daf91dd70a05f34372fb85d2c3fba0dd5550b": "WSFSCRP00 closure",
+  "f9e1e39170a746bc5d8c43a80bc878cf24180714": "FSCMA00",
+  "f65851c39496f379edac8b665dce87ba7cf1ebfb": "GIMB00",
+  "0d92b612e051166b84d1a7d08d681ea78f5a512d": "GIMB00 delivery record",
+  "226b2c93bdc34e5bec2ebc28d0c6066dc3123b14": "WL2SMF00",
+  "2c9fc97c5e05de2b15ccceeba0c9bc36e327e3b0": "WL2SMF00 delivery record",
+  "53c3ea7e8f9d4400fad2c998ee0eacc5ab917d2b": "FWL2CF00 commit 1, pre-execution",
+  "30403fc1b15890f70f2504d454ffb8ea8ef2160c": "FWL2CF00 commit 2, sham reconstruction",
+  "817c27886e97a90e2d54a410a65d9574654b1dc3": "FWL2CF00 commit 3, raw only",
+  "09c56ae7e37ef22b08675a57e9ca609474d9c63e": "FWL2CF00 commit 4, decoded analysis",
+  "e9a06286354284fe06fa15742a128919e3b64fcf": "FWL2CF00 commit 5, delivery repair",
+  "96c7d295e72106cd949d810fa92807c2514e7449": "FWL2CF00 commit 6, provenance record"
+ },
+ "arrows_checked": 12,
+ "arrows_ok": 12,
+ "every_arrow_is_a_single_direct_parent": true,
+ "parent_commit": "96c7d295e72106cd949d810fa92807c2514e7449",
+ "parent_branch": "dev/fresh-weighted-l2-carrier-factorial-00",
+ "owner_main_untouched": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+ "subtrees": {
+  "FWL2CF00": "159577eeb703d5878b2efe37737b535fddc29046",
+  "WL2SMF00": "8b002dc2a86974af0beb442a1013895ef5b47e36",
+  "GIMB00": "bc56bfb17107114048416e27287ee27901f94a57",
+  "FSCMA00": "27a62919b9664ab8fdb114f17e51016cfc3ccb46"
+ },
+ "extraction": {
+  "method": "git archive <commit> FWL2CF00 extracted into a temporary directory that had never been written by hand, on the device, straight out of the object database",
+  "archive_sha256": "3314408308eea8b2a0bc8fa65a43c8cd2cf121d14aaac54b3c900c689c75b827",
+  "archive_bytes": 1003520,
+  "SHA256SUMS_entries": 198,
+  "files_in_extracted_tree": 199,
+  "verified_ok": 198,
+  "failed": 0,
+  "committed_SHA256SUMS_content_sha256": "051d3bdd2c502819d60535b30b48839bd65d490d7c10aea36605b31c5d363d95",
+  "cloud_SHA256SUMS_content_sha256": "051d3bdd2c502819d60535b30b48839bd65d490d7c10aea36605b31c5d363d95",
+  "cloud_container_verified_ok": 198,
+  "cloud_container_failed": 0,
+  "cross_implementation_subtree_id": {
+   "device_git_2.34.1_from_object_database": "159577eeb703d5878b2efe37737b535fddc29046",
+   "cloud_git_2.43.0_from_independently_held_bytes": "159577eeb703d5878b2efe37737b535fddc29046",
+   "agree": true,
+   "why_this_is_strong": "a git tree id is a pure content hash with no history dependence, so agreement across two implementations on separately transferred bytes certifies every blob id recursively, not just the 51 top-level entries bound explicitly above"
+  },
+  "full_clone_attempted": true,
+  "full_clone_outcome": "the device repository lives on a network mount; `git clone` and a depth-14 `git fetch` both exceeded the 45 s bridge call limit. The object-database extraction above plus the independent-container tree recomputation is substituted, and is strictly stronger on content while weaker only on object-graph traversal, which `git bundle verify` supplies separately. Recorded as deviation D1."
+ },
+ "bundle": {
+  "path": "FWL2CF00.bundle (beside the FSCMA00, GIMB00 and WL2SMF00 bundles)",
+  "git_bundle_verify": "ok",
+  "contains_ref": "96c7d295e72106cd949d810fa92807c2514e7449 refs/heads/dev/fresh-weighted-l2-carrier-factorial-00",
+  "requires_prerequisite": "2c9fc97c5e05de2b15ccceeba0c9bc36e327e3b0",
+  "sha256_on_disk_now": "012ccb1b85bf5bb276240a7328d50ab821c1f94729b32e51d0c091dcce502a6d",
+  "sha256_recorded_in_parent_commit_6_text": "ef96b306a0b0541e7e8d9fd617b113a419c6b31203374c083d39d7754a6a3fe7",
+  "digests_agree": false,
+  "INHERITED_DISCREPANCY": "PARENT_BUNDLE_DIGEST_RECORD_IS_STALE_BY_ONE_APPEND_ONLY_COMMIT",
+  "adjudication": "the digest recorded inside FWL2CF00 commit 6 was computed for the bundle as it stood before commit 6 existed, i.e. over tip e9a06286; the bundle was then rebuilt over the new tip 96c7d295 during delivery. The bundle now on disk verifies, carries the true branch tip and declares the correct single prerequisite, so provenance is sound. The parent record is NOT rewritten -- corrigenda are append-only -- and the discrepancy is carried forward here as an inherited, explained, non-blocking finding."
+ },
+ "blob_binding": {
+  "ACTIVE_ANALYSIS_PLAN.md": {
+   "committed": "11162a2e145805537cc662f851b8729a97b1f706",
+   "recomputed": "11162a2e145805537cc662f851b8729a97b1f706",
+   "match": true,
+   "sha256": "9232f0aa025cd9f20f9cbf760818c936c73664ddded25956bec6bd91fb6789a2",
+   "bytes": 4060
+  },
+  "ACTIVE_DISK_READBACK_CERTIFICATE.json": {
+   "committed": "4c86ee5bed3882a00ab566582a62f1df17dc0fe6",
+   "recomputed": "4c86ee5bed3882a00ab566582a62f1df17dc0fe6",
+   "match": true,
+   "sha256": "fa4d768716d39aece1e5f29fcda029119ec46a72829cfdc7a6131b3828cd38f3",
+   "bytes": 14464
+  },
+  "ACTIVE_EXECUTION_AND_ACCESS_LEDGER.json": {
+   "committed": "9c8005d83aacda1520b7294e16ae45bc97965139",
+   "recomputed": "9c8005d83aacda1520b7294e16ae45bc97965139",
+   "match": true,
+   "sha256": "4bb0e920ac5bc7ae6c458bdf9ca4f45259f834761a074b031517519d374e91e1",
+   "bytes": 445
+  },
+  "ACTIVE_PHYSICAL_RUNTIME_ORACLE.json": {
+   "committed": "d91045b9275612f60eead3d7bf0ad5ef03b508a0",
+   "recomputed": "d91045b9275612f60eead3d7bf0ad5ef03b508a0",
+   "match": true,
+   "sha256": "be447cdef62d6204a37471980669a7118fe22309244e99579f36de3ee7d8aab3",
+   "bytes": 6732
+  },
+  "CELL_WEIGHTED_L2_MATERIALITY_RESULTS.json": {
+   "committed": "c689ba560be1a95b917c77e9910297df4a2b312a",
+   "recomputed": "c689ba560be1a95b917c77e9910297df4a2b312a",
+   "match": true,
+   "sha256": "628dde3eff812920b88c4c067ff618e06fbf424d01ee9ec8b20cac3ee3e4879e",
+   "bytes": 8746
+  },
+  "EXACT_RESPONSE_AND_GAUGE_ORACLE.json": {
+   "committed": "53e37cc2d7b58657c6b882bb21a33fcfbd03c353",
+   "recomputed": "53e37cc2d7b58657c6b882bb21a33fcfbd03c353",
+   "match": true,
+   "sha256": "80af10b961972b89c29a945d7eb66078b4471dfb171bf58f375cf59341941fce",
+   "bytes": 665
+  },
+  "FRESH_ACTIVE_CARRIER_RAW_MANIFEST.json": {
+   "committed": "d9cbeb4b69d683289fe5281566add67cfeaacee1",
+   "recomputed": "d9cbeb4b69d683289fe5281566add67cfeaacee1",
+   "match": true,
+   "sha256": "c4a977367633bb8b8d64e67e89c9379e4ea5cf4800c576f3cd6e2917cf759e7f",
+   "bytes": 11230
+  },
+  "FRESH_QUOTIENT_CERTIFICATE.json": {
+   "committed": "1d6e797c015868872d1d286d6310c0a67dde9043",
+   "recomputed": "1d6e797c015868872d1d286d6310c0a67dde9043",
+   "match": true,
+   "sha256": "66af0b7f7ad8588589548dbabab35a69f6d34b31ea3552e7785f4c8423259ca8",
+   "bytes": 3621
+  },
+  "FROZEN_STRATUM_TRANSFER_REPORT.json": {
+   "committed": "850dd028b08743bf6fc1260f38b8a06e0fc666b2",
+   "recomputed": "850dd028b08743bf6fc1260f38b8a06e0fc666b2",
+   "match": true,
+   "sha256": "3628cf968c2778648d660046debd964b2be9f693b32720b5d233878f545c004b",
+   "bytes": 844
+  },
+  "FWL2CF00_ACTIVE_PANEL_LOCK.json": {
+   "committed": "cdfdfcf8135d9a5e569efc887a98a584edc6779a",
+   "recomputed": "cdfdfcf8135d9a5e569efc887a98a584edc6779a",
+   "match": true,
+   "sha256": "5ce7734c824e36df46f30d5b515fa523f061403988cdc4e4b566cf6886c478a0",
+   "bytes": 16749
+  },
+  "FWL2CF00_ACTIVE_RAW_PANEL_LOCK.json": {
+   "committed": "498bf97d2c639ae906a4daf6db1733a6bfbe782e",
+   "recomputed": "498bf97d2c639ae906a4daf6db1733a6bfbe782e",
+   "match": true,
+   "sha256": "9212f923342556a70f4bd65f912edb62257967e8fbfae9365f3bf71895d946d3",
+   "bytes": 7571
+  },
+  "FWL2CF00_CANONICAL_SHAM_SERIES_LOCK.json": {
+   "committed": "2ccccdb550a0b3f0a02edb7f159713cec59d3ba1",
+   "recomputed": "2ccccdb550a0b3f0a02edb7f159713cec59d3ba1",
+   "match": true,
+   "sha256": "00c17935ffa4320cd67e59ef715901148b9c365650dc77b894b0660943d5905c",
+   "bytes": 1428
+  },
+  "FWL2CF00_FINAL_DISPOSITION.json": {
+   "committed": "295ee9a3637214e77fe168462de2c8149482cf87",
+   "recomputed": "295ee9a3637214e77fe168462de2c8149482cf87",
+   "match": true,
+   "sha256": "44792dfd66ade56a9f2ef6a40b53a059d60192a775c4e8f425862bca4160771e",
+   "bytes": 3047
+  },
+  "FWL2CF00_FINAL_REPORT.md": {
+   "committed": "6d2c51dedc5b0a5709bd661dcb58c4f7c293c8e9",
+   "recomputed": "6d2c51dedc5b0a5709bd661dcb58c4f7c293c8e9",
+   "match": true,
+   "sha256": "5e81723b5fe84aeb2bd7d619b84f27d375872093c68bbd1321b78022ca905cbb",
+   "bytes": 9057
+  },
+  "FWL2CF00_MASTER_FREEZE.md": {
+   "committed": "e968d303b439b17c11c6d354529acb0e036ce7e6",
+   "recomputed": "e968d303b439b17c11c6d354529acb0e036ce7e6",
+   "match": true,
+   "sha256": "8ab0d7dc7f7d1d6c19fa2f30c9e8c727c876b9a5d9c64b347fccc75cf28caa04",
+   "bytes": 10145
+  },
+  "FWL2CF00_MASTER_FREEZE_HASHES.json": {
+   "committed": "6323cf93578855ea570c9da968b5cb93455255b7",
+   "recomputed": "6323cf93578855ea570c9da968b5cb93455255b7",
+   "match": true,
+   "sha256": "200905f1dbf5d25b81bf1aaec8296ea30c02a466a5664e05fc7dabc5f47ddca2",
+   "bytes": 346
+  },
+  "FWL2CF00_SHAM_RECONSTRUCTION_LOCK.json": {
+   "committed": "a6ff77fb090647a127106105be92c73181f1aece",
+   "recomputed": "a6ff77fb090647a127106105be92c73181f1aece",
+   "match": true,
+   "sha256": "bdd0365660f099861ee47b7e9a6a8017626c1b6432b0afc3341c0b10f2efd623",
+   "bytes": 18246
+  },
+  "G1_H3_FACTORIAL_ATTRIBUTION_REPORT.json": {
+   "committed": "58ad99b4b0ddc35b006434d920dcc4d01d6ed439",
+   "recomputed": "58ad99b4b0ddc35b006434d920dcc4d01d6ed439",
+   "match": true,
+   "sha256": "b640a39d1b7274b14978b0bf2939e18bcab969d59cff848783c318efbd89bc8a",
+   "bytes": 13430
+  },
+  "GIT_PROVENANCE_AND_FRESH_CLONE_VERIFICATION.md": {
+   "committed": "8060ad3750e01bb41f4d766b55ee4e3deef8c420",
+   "recomputed": "8060ad3750e01bb41f4d766b55ee4e3deef8c420",
+   "match": true,
+   "sha256": "5e19f25d6f12fa007f87dec63ca24fc1550ddd87ec2cbf3d1aff4cbfa6d366f0",
+   "bytes": 3264
+  },
+  "INDEPENDENT_UNIT_AND_RANDOMIZATION_REPORT.md": {
+   "committed": "33ba9e7595c623d6ab4d4c77b3a4e5033d27673f",
+   "recomputed": "33ba9e7595c623d6ab4d4c77b3a4e5033d27673f",
+   "match": true,
+   "sha256": "8318e98e922d6ce3bae7815cf63642e61fde88a0a12ba7514814ddf59c65ed9d",
+   "bytes": 975
+  },
+  "PARENT_AND_FWL2CF00_CLAIM_LEDGER.md": {
+   "committed": "602ab774b38b9af09cef502b1e553e9aa489fa34",
+   "recomputed": "602ab774b38b9af09cef502b1e553e9aa489fa34",
+   "match": true,
+   "sha256": "6bfc42bc3c7a638e3de2ee318aca4ba7a95ddf321fd95f1bc821c52d122730ed",
+   "bytes": 4116
+  },
+  "PARENT_LOCK_AND_ARM_BINDING_MANIFEST.json": {
+   "committed": "fc34c75394c832d05cb346d3c7e4cb9af3bbb53d",
+   "recomputed": "fc34c75394c832d05cb346d3c7e4cb9af3bbb53d",
+   "match": true,
+   "sha256": "35b92d0715fda52953e7858cc186dfa866139acb0aaed655c2e1aeef4072d91e",
+   "bytes": 24566
+  },
+  "PREEXECUTION_NONVACUOUS_ORACLE_REPORT.json": {
+   "committed": "fced1f2acaac9041c7c5f0ed4be90e0e458c3ea3",
+   "recomputed": "fced1f2acaac9041c7c5f0ed4be90e0e458c3ea3",
+   "match": true,
+   "sha256": "12ee8b99717b38662fc8b2c751e30bd6e9a77c0dfdfa4544bf3a28960f7e9b5b",
+   "bytes": 4388
+  },
+  "PROTOCOL_DEVIATIONS.md": {
+   "committed": "ba9d61c23b22fc668c6b69e7811e66827d4f26db",
+   "recomputed": "ba9d61c23b22fc668c6b69e7811e66827d4f26db",
+   "match": true,
+   "sha256": "4f231861e47d0956536dd0ab1dc811d615b670157c98215ce53aa4b983815ac6",
+   "bytes": 4146
+  },
+  "SHA256SUMS": {
+   "committed": "2e54dbe0d7892cb5bd880d22fcd5521b149ad5b7",
+   "recomputed": "2e54dbe0d7892cb5bd880d22fcd5521b149ad5b7",
+   "match": true,
+   "sha256": "051d3bdd2c502819d60535b30b48839bd65d490d7c10aea36605b31c5d363d95",
+   "bytes": 19435
+  },
+  "SHAM_0_RECONSTRUCTED_RAW_MANIFEST.json": {
+   "committed": "82dbe10614419fd56b0b6114f0bb16d5cbbfcd88",
+   "recomputed": "82dbe10614419fd56b0b6114f0bb16d5cbbfcd88",
+   "match": true,
+   "sha256": "4043ce4d86b4753763b06d8052585253be0826ede77bd4095d6e88ceb57acec3",
+   "bytes": 5940
+  },
+  "SHAM_DISK_READBACK_CERTIFICATE.json": {
+   "committed": "fc8a4f02ee596f91d5ebaae22aa0293a07ce83ef",
+   "recomputed": "fc8a4f02ee596f91d5ebaae22aa0293a07ce83ef",
+   "match": true,
+   "sha256": "78f9daf6b20d442550ce7159982c5faa5f3bef13d4392ef3f8470a5a24a205cb",
+   "bytes": 8062
+  },
+  "SHAM_RECONSTRUCTION_EXACT_ORACLE.json": {
+   "committed": "e9960ce8fe37336e5f73908ecad060a78c66e0ec",
+   "recomputed": "e9960ce8fe37336e5f73908ecad060a78c66e0ec",
+   "match": true,
+   "sha256": "7c877b34c9b5685531e8d1a3233118df95328057ae15bdc3304c2ee0c44f0f82",
+   "bytes": 11170
+  },
+  "UNCOMMITTED_FULL_FIELD_ARCHIVE_DIGESTS.json": {
+   "committed": "75166752ce940d1801d93101d4deba2c728f2572",
+   "recomputed": "75166752ce940d1801d93101d4deba2c728f2572",
+   "match": true,
+   "sha256": "41235c25600f6fdc84edff67e9c9b5d876e510c1b408ee17b59b8bba0665d20a",
+   "bytes": 7735
+  },
+  "_analysis_core.json": {
+   "committed": "b5298b9e9e7163c69de80accfdffd45ffbac2e85",
+   "recomputed": "b5298b9e9e7163c69de80accfdffd45ffbac2e85",
+   "match": true,
+   "sha256": "14ec50ef5e29be791aee1e0adddb1ebe7ad70eb61bf7ca85bffa3d0b5d08df05",
+   "bytes": 12833
+  },
+  "_device_blobs.json": {
+   "committed": "8587394423f7a6652005127d1a3c20a2aa2a6dc8",
+   "recomputed": "8587394423f7a6652005127d1a3c20a2aa2a6dc8",
+   "match": true,
+   "sha256": "34255a6a4e9156b952ac367036f2eef0d4e804ef83cab53b3ca0b1cadd04809e",
+   "bytes": 2370
+  },
+  "_eps.npy": {
+   "committed": "cc36f0a35caed17eb0f7d725365b7197ce64ca29",
+   "recomputed": "cc36f0a35caed17eb0f7d725365b7197ce64ca29",
+   "match": true,
+   "sha256": "168cae2ef898b4b30313ad3170fc0aa53866a418a77fcebb21867164e3cb16f9",
+   "bytes": 256
+  },
+  "_factor.json": {
+   "committed": "4edc3989d3224a5b9351183e48bace7e2cb38c12",
+   "recomputed": "4edc3989d3224a5b9351183e48bace7e2cb38c12",
+   "match": true,
+   "sha256": "7b98bf36d871cf257fee1a00bd0750b364dc8cd7ba38accb3f074fff998d5a8f",
+   "bytes": 13638
+  },
+  "_provenance_raw.json": {
+   "committed": "5d942eec8e8dd122c3e2abd74cc4323fff641270",
+   "recomputed": "5d942eec8e8dd122c3e2abd74cc4323fff641270",
+   "match": true,
+   "sha256": "13dd56207cbd3272236a2bda052adc249e5844afe0468e7547fed19366e0bc9b",
+   "bytes": 11006
+  },
+  "_rows.json": {
+   "committed": "a6b848616eff2f975d7c3d485e93da95fee00135",
+   "recomputed": "a6b848616eff2f975d7c3d485e93da95fee00135",
+   "match": true,
+   "sha256": "b2da85fb0e4eb1add2302e9a1f9c92bf74925876757b51a17adc5bbf4a40b1c5",
+   "bytes": 40320
+  },
+  "active_series.json": {
+   "committed": "e6c534ddfba665b14e2cecf84e8a128573c67887",
+   "recomputed": "e6c534ddfba665b14e2cecf84e8a128573c67887",
+   "match": true,
+   "sha256": "94709e3f6dc498f763af42f7463a6c6a6b6e7f23e31b4f3e996f7be0e2e4e12a",
+   "bytes": 38707
+  },
+  "fw_active_driver.py": {
+   "committed": "73f8912495d6cefaef68568c8c9c0a7ecb038b80",
+   "recomputed": "73f8912495d6cefaef68568c8c9c0a7ecb038b80",
+   "match": true,
+   "sha256": "c6821c9d778f5d969abd3ae1f416bb22b4c7352c3a2e4abbcd7579cc89b338e9",
+   "bytes": 2495
+  },
+  "fw_analysis.py": {
+   "committed": "8edc15b7321cb5be5536de1c2699548e09aa68b3",
+   "recomputed": "8edc15b7321cb5be5536de1c2699548e09aa68b3",
+   "match": true,
+   "sha256": "03a1973e4a842005e7cf26b2d6b6403590e8f4958d021b0a5d17cf9edcf5df85",
+   "bytes": 12699
+  },
+  "fw_compact.py": {
+   "committed": "0110e20d7d98632812b32b01e0b37065851d0380",
+   "recomputed": "0110e20d7d98632812b32b01e0b37065851d0380",
+   "match": true,
+   "sha256": "42fcf38dda66e99195e570240ba2f036ef1e96b2d258c0bd485ee5801e376b7f",
+   "bytes": 4071
+  },
+  "fw_factor.py": {
+   "committed": "da3a45d4ffe9f3d8bb0570f1425ba198f1bd6526",
+   "recomputed": "da3a45d4ffe9f3d8bb0570f1425ba198f1bd6526",
+   "match": true,
+   "sha256": "ba3959d960cff7b2f665a1dfb7b35703520a338ba9860e7c5b737e386816476b",
+   "bytes": 12458
+  },
+  "fw_locks2.py": {
+   "committed": "978d3223c2e97743ed112a2f39dfddcaaff41001",
+   "recomputed": "978d3223c2e97743ed112a2f39dfddcaaff41001",
+   "match": true,
+   "sha256": "ee3469e24f84fb3d2c8c615374c3cce8d19807a353012fc491dea277d2be6891",
+   "bytes": 6144
+  },
+  "fw_oracle.py": {
+   "committed": "0e407573387582309a66dea91c4a4d5d9a176f78",
+   "recomputed": "0e407573387582309a66dea91c4a4d5d9a176f78",
+   "match": true,
+   "sha256": "961a003b396b09500ef69698bd6fefcf6b956fdd59fa2ea3933823fe7ef146d7",
+   "bytes": 16462
+  },
+  "fw_p0.py": {
+   "committed": "9ef9d3fbdddac824a92180f1c82c0ac461858aad",
+   "recomputed": "9ef9d3fbdddac824a92180f1c82c0ac461858aad",
+   "match": true,
+   "sha256": "e03de84ad42ea43160e39fe4c58645a159e13c51827dc67d9e17a914b840e447",
+   "bytes": 19984
+  },
+  "fw_prod.py": {
+   "committed": "d99e943c2a95c45f88989b6d216835728f827281",
+   "recomputed": "d99e943c2a95c45f88989b6d216835728f827281",
+   "match": true,
+   "sha256": "1ba578a4bf5f6fae0f61b8b941a794b51b6bd3d6b8d247105e4a4dc9f25828cd",
+   "bytes": 1400
+  },
+  "fw_readback.py": {
+   "committed": "ac865e353c6268b73fce10415d94cfcdbd495fa1",
+   "recomputed": "ac865e353c6268b73fce10415d94cfcdbd495fa1",
+   "match": true,
+   "sha256": "10768cde72bdde26fd7825a97b17346c134bd42bf352cf7f555fa0c4ac0afc85",
+   "bytes": 3533
+  },
+  "fw_ref.py": {
+   "committed": "7b1ad8410c35d5ca6b552aec2c528505b4d89ceb",
+   "recomputed": "7b1ad8410c35d5ca6b552aec2c528505b4d89ceb",
+   "match": true,
+   "sha256": "dba1b30e513ef9bdc5c32a271798d8f85cd302864cc828b38b50c3ebb6704f05",
+   "bytes": 1475
+  },
+  "fw_sham_driver.py": {
+   "committed": "e7c254acfbff39548156b272a00dd339e26fa40f",
+   "recomputed": "e7c254acfbff39548156b272a00dd339e26fa40f",
+   "match": true,
+   "sha256": "c0f86e61ce8759981c113798b02434e46289882ee69e994938e2bd62bae246a9",
+   "bytes": 2032
+  },
+  "fw_sham_oracle.py": {
+   "committed": "3737b44dc3c32f3e7981986af664cbadc7e5099b",
+   "recomputed": "3737b44dc3c32f3e7981986af664cbadc7e5099b",
+   "match": true,
+   "sha256": "f71055dffdcbd6e2322bc4eef4cf512e933d8edd103999e29b5e922151df662f",
+   "bytes": 3871
+  },
+  "fw_shamlock.py": {
+   "committed": "a9dfdb39e976d8a7de1f184cabbc48ab84a0c0c1",
+   "recomputed": "a9dfdb39e976d8a7de1f184cabbc48ab84a0c0c1",
+   "match": true,
+   "sha256": "3fe07bb6249d3a5238c0d97d27ab31cc406ce9610260b4cb09711a781abc31ff",
+   "bytes": 5200
+  },
+  "fw_worker.py": {
+   "committed": "e640455ed7c0ef3fa4e34db7ea086997d33e28ab",
+   "recomputed": "e640455ed7c0ef3fa4e34db7ea086997d33e28ab",
+   "match": true,
+   "sha256": "a10a8af5156498517a16400ff29089091373137c032fc7e13e18c7d51b0e69e5",
+   "bytes": 4269
+  },
+  "sham_series.json": {
+   "committed": "21c07776509366e295a2a1a31f9665b8226ae838",
+   "recomputed": "21c07776509366e295a2a1a31f9665b8226ae838",
+   "match": true,
+   "sha256": "58f90f1ebe6a35db7ddf8c38ec25b8928efb61b25b0680ec0912f14c16c21d16",
+   "bytes": 19152
+  }
+ },
+ "n_bound": 51,
+ "n_mismatch": 0,
+ "mismatches": [],
+ "support_restricted_sufficiency_certificate": "DEFERRED_TO_SECTION_2 -- verifying it requires reading the committed raw npz, which is a parent numeric load and is therefore forbidden until this freeze is committed."
+}

@@ -1,0 +1,108 @@
+{
+ "frozen_before_any_parent_numeric_load": true,
+ "hashes": {
+  "SQDT00_MASTER_FREEZE.md": "dbe0045f1058534b7839486fe4e1943fe5931a446b3dbe675ca0274574b9d756"
+ },
+ "inherited_code_sha256": {
+  "WSFSCRP00/wsfscrp_core.py": "510d95073a706f061e3ac10307bd41a935abb4ee28de22155e323092a77d6bf6",
+  "ETCMNFC/etcmnfc_core.py": "b9c878acd70ab6d9734eb70e9fadc71b2db70cc919f9132656ce0ddc20ec1d02",
+  "PPAI/ppai_core.py": "88945808a458afab89676e73473a54fb243a85608beca85ca5a26ef5dad2394d",
+  "PPAI/ppai_engine.py": "9c7d0c133007fd04339ad519df8caacbe8262997bb9a1bd150bcc11bd3c0f7f8",
+  "DOMC/domc_core.py": "b32a32498e0c9aef3301b8ce745468c4a8cc50a4757c4062f3a85c2c35cc1390",
+  "FWL2CF00/fw_prod.py": "1ba578a4bf5f6fae0f61b8b941a794b51b6bd3d6b8d247105e4a4dc9f25828cd",
+  "FWL2CF00/fw_ref.py": "dba1b30e513ef9bdc5c32a271798d8f85cd302864cc828b38b50c3ebb6704f05",
+  "FWL2CF00/fw_analysis.py": "03a1973e4a842005e7cf26b2d6b6403590e8f4958d021b0a5d17cf9edcf5df85",
+  "FWL2CF00/fw_worker.py": "a10a8af5156498517a16400ff29089091373137c032fc7e13e18c7d51b0e69e5"
+ },
+ "H_GRID": [
+  40,
+  80,
+  120,
+  160,
+  200,
+  240,
+  280,
+  320,
+  360,
+  400
+ ],
+ "dt": "1/10",
+ "weights": [
+  "1/18",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/18"
+ ],
+ "W_POST": "1",
+ "materiality_coefficient": "0.01",
+ "gauge": "exactly one A/B exchange per descendant, shared across all scored times, all arms and all doses",
+ "gamma_low": 1,
+ "gamma_high": 2,
+ "third_dose_or_arm": false,
+ "seed_namespace": {
+  "queue": {
+   "NEAR_a0": [
+    66000,
+    66001,
+    66008,
+    66009
+   ],
+   "NEAR_a1": [
+    66002,
+    66003,
+    66010,
+    66011
+   ],
+   "FAR_a0": [
+    66004,
+    66005,
+    66012,
+    66013
+   ],
+   "FAR_a1": [
+    66006,
+    66007,
+    66014,
+    66015
+   ]
+  },
+  "disjoint_from": [
+   "61000-61009",
+   "62000-62009 RESERVED_AND_UNREAD",
+   "63xxx",
+   "64000-64011",
+   "65000-65007"
+  ],
+  "never_generated_or_opened": "62000-62009"
+ },
+ "start_budget": {
+  "panel": 16,
+  "sham": 16,
+  "active": 32,
+  "total": 64,
+  "other_or_diagnostic": 0,
+  "retries_or_replacements_after_panel_lock": 0
+ },
+ "forbidden_aliases": [
+  "GIMB00_STRATUM_AXIS",
+  "PARENT_FOUNDER_STRATUM",
+  "RECOVERED_PARENT_MODE",
+  "HISTORICAL_SECOND_MODE"
+ ],
+ "stop_precedence": [
+  "S1 PARENT_PROVENANCE_UNRESOLVED",
+  "S2 OFFLINE_REDERIVATION_MISMATCH",
+  "S3 NO_P2_TRANSFER_LICENSE",
+  "S4 PARENT_DOSE_MULTIPLIER_NOT_BELOW_2__NO_FRESH_PANEL_LICENSE",
+  "S5 DOSE_2X_STATICALLY_INADMISSIBLE_OR_UNRESOLVED",
+  "S6 VACUOUS_ORACLE",
+  "S7 INSUFFICIENT_JOINTLY_ELIGIBLE_TARGET_BLOCKS"
+ ],
+ "engine_starts_spent_at_freeze_time": 0
+}
