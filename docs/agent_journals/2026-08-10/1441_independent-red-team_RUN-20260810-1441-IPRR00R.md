@@ -163,3 +163,17 @@ programme, but no repair of its current oracles alone can make the current per-c
 - Commit the substantive audit package and its `SHA256SUMS`.
 - Create and independently verify the archive and Git bundle; append exact verification evidence.
 - Record ending Git state and one exact next authorized action.
+
+## Package-verification infrastructure pause
+
+- Substantive audit commit `e0561989db5de1b278b3b27d1e035afe6f3c6e75` was created after the static,
+  document-contract, checksum and expected-finding checks passed.
+- Lead verification of its archive and bundle passed. The independent GitHub verifier reproduced both package
+  hashes and the bundle checks, then stopped before extracting
+  `INDEPENDENT_AUDIT_FREEZE_01R_AMENDMENT_1.md`: that ordinary L0 audit filename was absent from the exact external
+  allowlist.
+- Freeze amendment 2 adds only the exact names of amendments 1 and 2. Corrected allowlist SHA-256:
+  `556CE44B1BD4156F045F86E3FAF0956282346166889FBA1E4BA029336CB8CC27`. Both positive amendment probes passed;
+  the held-out path and repository-runner probes remained denied.
+- No archive entry denied by the sentinel was opened before this correction. Independent extraction remains paused
+  until amendment 2 is committed.
