@@ -110,3 +110,77 @@ change the workflow now.
 - This agent should be recalled after packaging to append independent bundle/archive verification. Until then the
   package line in the deliverable remains `PENDING`.
 - No other agent should describe the local scientific chain or IPRR00R audit as public.
+
+## Recall checkpoint: independent P1 package verification
+
+- Recall interval: 2026-08-10 15:15-15:22:41 +02:00
+- Package target: substantive audit commit `e0561989db5de1b278b3b27d1e035afe6f3c6e75`
+- Ending branch state before this append: `audit/chatgpt-independent-red-team-roadmap-01r` at amendment-2 commit
+  `e49cb988825e00cc6c19af621cb974c475e89f95`
+- Fresh verification root: `C:/Users/tommy/Documents/IPRR00R_VERIFY_GH_E056_20260810_1505`
+- Repository mutations by this agent: none; only this journal and the assigned GitHub deliverable were appended,
+  without staging, commit, push, or PR.
+
+### Reproducible package checks
+
+```powershell
+Get-FileHash -Algorithm SHA256 -LiteralPath <exact-package>
+git -C <fresh-bare-repo> bundle verify <exact-bundle>
+git bundle list-heads <exact-bundle> refs/heads/audit/chatgpt-independent-red-team-roadmap-01r
+git -C <fresh-bare-repo> fetch --no-tags <exact-bundle> `
+  refs/heads/audit/chatgpt-independent-red-team-roadmap-01r:refs/heads/verified-iprr00r
+git -C <fresh-bare-repo> fsck --full --strict --no-dangling
+git -C <fresh-bare-repo> rev-parse '<commit>:<allowed-archive-path>'
+git hash-object --no-filters -- <freshly-extracted-file>
+```
+
+### OBSERVED
+
+- ZIP: 71,788 bytes; SHA-256
+  `908fb9a88798edfeb7998376023ad9d35487f565d7a4b7e6b7a4d54e68f6c976`.
+- Bundle: 618,754,826 bytes; SHA-256
+  `a95449da74ed7890e5a32d40b0e1b9640370503ac8d50fae7a6d9bd8aabe5392`.
+- Bundle verification reported complete history and exactly the expected audit ref at `e0561989...`.
+- Fresh bare fetch produced the expected commit; full strict fsck returned exit 0 with no output.
+- Archive enumeration found 15 files and one directory entry; there were no duplicate, traversal, absolute, or
+  symlink entries.
+- After amendment-2 path closure, all 15 archive paths passed the sentinel and all 15 extracted files matched their
+  `e0561989...` Git blobs byte for byte.
+- `SHA256SUMS` had 14 unique entries covering exactly the 14 other files; 14/14 hashes matched.
+- GitHub CLI version 2.97.0 is installed; `gh auth status` returned exit 1 and no authenticated host.
+
+### INFERRED
+
+- P1 is a valid, complete local carrier for the substantive audit commit `e0561989...`.
+- P1 cannot certify later amendment 2 or this attestation because they postdate its payload commit.
+- Credential availability would not make a push eligible while the unconditional scientific workflow remains active.
+
+### WHAT WOULD FALSIFY THIS?
+
+- Any size/hash mismatch on the preserved P1 package bytes.
+- Failure to advertise/fetch `e0561989...`, a bundle prerequisite, or a strict fsck diagnostic.
+- Any archive path not allowlisted, any traversal/duplicate/symlink, any file differing from its commit blob, or any
+  missing/incorrect `SHA256SUMS` entry.
+
+### Failures and dead ends preserved
+
+- The first ZIP file-count check treated a directory entry ending in a Windows separator as a file and reported 16;
+  using `ZipArchiveEntry.Name` correctly distinguished 15 files plus one directory. No content had been extracted.
+- The corrected enumeration then found amendment 1 absent from the allowlist. The verifier stopped before opening or
+  extracting it and reported the blocker.
+- Amendment 2 added only the two literal audit-amendment paths and requalified the sentinel. Verification resumed
+  after commit `e49cb98...`.
+- A later script assumed `.NET` exposed `System.IO.Path.GetRelativePath`; this host does not. The final check used an
+  absolute-root prefix proof plus relative substring and completed successfully.
+
+### Decision and handoff
+
+- `P1_BUNDLE = PASS`
+- `P1_ARCHIVE = PASS`
+- `P1_SHA256SUMS = PASS`
+- `FINAL_P2_REPACKAGE = REQUIRED`
+- `NO_PUSH = UNCHANGED`
+- `NO_DRAFT_PR = UNCHANGED`
+
+Parent should commit this attestation, create final P2 packages containing amendment 2 and the attestation, and run
+the same package-verification protocol on P2 before calling the final wrappers verified.

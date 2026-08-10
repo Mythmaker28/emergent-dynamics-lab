@@ -177,3 +177,46 @@ programme, but no repair of its current oracles alone can make the current per-c
   the held-out path and repository-runner probes remained denied.
 - No archive entry denied by the sentinel was opened before this correction. Independent extraction remains paused
   until amendment 2 is committed.
+
+## Validation and package attestation
+
+- Python AST parse of `audit_tools/iprr00r_integrity_audit.py`: `PASS`.
+- Expected-finding check: `PASS` with zero engine starts/imports, 60 stored rows, effective geometry n=1 and exactly
+  the four preserved ratio contradictions.
+- Document contract: `PASS` for seven roadmap routes with every required field and 53 claim-ledger rows, each carrying
+  exactly one mission-defined evidence level.
+- `SHA256SUMS`: `PASS` before substantive commit; refreshed after each append-only infrastructure/attestation change.
+- `git diff --cached --check`: `PASS` before each commit. No scientific test suite was invoked because that would
+  import or execute repository code outside the zero-engine/static-audit mission.
+- Substantive P1 ZIP: 71,788 bytes, SHA-256
+  `908fb9a88798edfeb7998376023ad9d35487f565d7a4b7e6b7a4d54e68f6c976`, independently `PASS`.
+- Substantive P1 bundle: 618,754,826 bytes, SHA-256
+  `a95449da74ed7890e5a32d40b0e1b9640370503ac8d50fae7a6d9bd8aabe5392`, independently `PASS`.
+- Independent P1 checks: complete bundle history, sole expected ref at `e0561989...`, fresh bare fetch, strict full
+  fsck, 15/15 archive files identical to commit and 14/14 checksum entries correct.
+
+## Final failures and dead ends preserved
+
+- One orchestration attempt for parallel validation had a JavaScript quoting error; each check was rerun separately.
+- The first archive comparison normalized Windows separators incorrectly and failed on path spelling before byte
+  comparison; `.as_posix()` fixed the verifier and the exact-set/byte checks then passed.
+- Independent archive verification stopped on the omitted amendment-1 allowlist entry. Amendment 2 and its negative
+  requalification preserve this failure rather than rewriting it away.
+- The final P2 wrapper necessarily postdates the commit it contains. Its wrapper SHA-256 and independent verification
+  are therefore recorded in an external sidecar beside the packages, avoiding a circular self-hash commit.
+
+## Ending state and handoff
+
+- End: 2026-08-10 15:24:25 +02:00
+- Substantive audit commit: `e0561989db5de1b278b3b27d1e035afe6f3c6e75`.
+- Infrastructure amendment-2 commit: `e49cb988825e00cc6c19af621cb974c475e89f95`.
+- Ending Git state represented by this journal: one final local attestation commit on
+  `audit/chatgpt-independent-red-team-roadmap-01r` will contain this append, the GitHub verifier append and refreshed
+  sums. Its exact hash is recorded by the verified external P2 bundle/sidecar because a commit cannot contain its own
+  hash prospectively.
+- Remote state: deliberately unchanged; no push, PR, merge, rebase, force-push or workflow mutation.
+- Experiment state: unchanged; zero engine, trajectory, founding, primary allocation and held-out content access.
+- Scientific handoff: `ETCMNFC_PRIMARY_C_N = NOT_TESTED`; do not relaunch ETCMNFC under this endpoint.
+- Exact next authorized action: independent **protocol review without execution** of
+  `WARPED-SCALE-GEOMETRY-00`. If the owner instead insists on the literal component–bath question, draft a new
+  two-disconnected-body protocol and split; do not launch it under this mandate.

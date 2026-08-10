@@ -117,3 +117,53 @@ After the final audit commit, append a package-verification record to this file.
 - proof that the verification directory is outside every scientific checkout.
 
 Until that append exists, bundle/archive integrity is `PENDING`, not `PASS`.
+
+## Independent package verification — P1 substantive audit at `e0561989`
+
+Verification time: 2026-08-10 15:16-15:22 +02:00. Verification root:
+`C:/Users/tommy/Documents/IPRR00R_VERIFY_GH_E056_20260810_1505`, outside every scientific checkout.
+
+| P1 object | Independently observed bytes | Independently recomputed SHA-256 | Verdict |
+|---|---:|---|---|
+| `IPRR00R_AUDIT_ONLY_e0561989db5de1b278b3b27d1e035afe6f3c6e75.zip` | 71,788 | `908fb9a88798edfeb7998376023ad9d35487f565d7a4b7e6b7a4d54e68f6c976` | `PASS` |
+| `IPRR00R_FULL_e0561989db5de1b278b3b27d1e035afe6f3c6e75.bundle` | 618,754,826 | `a95449da74ed7890e5a32d40b0e1b9640370503ac8d50fae7a6d9bd8aabe5392` | `PASS` |
+
+### Bundle verification: `PASS`
+
+- `git bundle verify` returned exit 0 and reported a complete history using Git's SHA-1 object format.
+- The bundle advertised exactly one ref, `refs/heads/audit/chatgpt-independent-red-team-roadmap-01r`, at exactly
+  `e0561989db5de1b278b3b27d1e035afe6f3c6e75`.
+- A fresh bare repository successfully fetched that ref. The fetched ref resolved to the same object and
+  `git cat-file -t` classified it as a commit.
+- `git fsck --full --strict --no-dangling` returned exit 0 with no diagnostic output.
+
+The SHA-1 statement above describes Git's internal object format; the independent SHA-256 in the table binds the
+618,754,826-byte bundle wrapper.
+
+### Archive and manifest verification: `PASS`
+
+- The ZIP contains exactly 15 true file entries and one directory entry.
+- Every filename passed the corrected external sentinel before content access. No absolute path, `..` traversal,
+  case-insensitive duplicate, exact duplicate, or symbolic-link entry was present.
+- All 15 files were freshly extracted under the verification root.
+- For every extracted file, `git hash-object --no-filters` and byte size matched the exact blob at
+  `e0561989db5de1b278b3b27d1e035afe6f3c6e75`: 15/15 exact byte matches.
+- The extracted `SHA256SUMS` contains exactly 14 unique, well-formed entries. Its path set is exactly the other 14
+  ZIP files, and every independently recomputed SHA-256 matched: 14/14.
+
+The first attempt stopped closed before opening or extracting `INDEPENDENT_AUDIT_FREEZE_01R_AMENDMENT_1.md`, whose
+ordinary L0 audit filename was absent from the original allowlist. Amendment 2, committed at
+`e49cb988825e00cc6c19af621cb974c475e89f95`, added exactly the amendment 1 and amendment 2 audit-document paths and
+requalified positive and negative sentinel probes. Full extraction resumed only after that closure. No scientific,
+held-out, checkpoint, trajectory, engine, runner, or primary-allocation content was opened or executed.
+
+### Scope of this `PASS`
+
+This is a conclusive verification of **P1**, whose payload/ref is the substantive audit commit `e0561989...`. It is
+not a claim that P1 contains the later amendment 2 or this post-package attestation. A final P2 repackage from the
+post-attestation commit remains required; P2 must receive the same independent size, SHA-256, bundle-ref/fetch/fsck,
+archive-byte, and manifest checks before it inherits `PASS`.
+
+Local GitHub CLI 2.97.0 remains unauthenticated (`gh auth status` exit 1). That is not the reason publication is
+withheld: the unconditional scientific `push` and `pull_request` workflow independently compels `NO_PUSH` and
+`NO_DRAFT_PR`, even if credentials later become available.
