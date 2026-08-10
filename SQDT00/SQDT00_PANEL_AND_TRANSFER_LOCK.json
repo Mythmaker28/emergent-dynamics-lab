@@ -1,0 +1,78 @@
+{
+ "FRESH_PANEL_CONSTRUCTED": false,
+ "reason": "DOSE_2X_STATICALLY_INADMISSIBLE_OR_UNRESOLVED (stop rule S5)",
+ "frozen_design_that_was_not_executed": {
+  "queue": {
+   "NEAR_a0": [
+    66000,
+    66001,
+    66008,
+    66009
+   ],
+   "NEAR_a1": [
+    66002,
+    66003,
+    66010,
+    66011
+   ],
+   "FAR_a0": [
+    66004,
+    66005,
+    66012,
+    66013
+   ],
+   "FAR_a1": [
+    66006,
+    66007,
+    66014,
+    66015
+   ]
+  },
+  "disjoint_from": [
+   "61000-61009",
+   "62000-62009 RESERVED_AND_UNREAD",
+   "63xxx",
+   "64000-64011",
+   "65000-65007"
+  ],
+  "never_generated_or_opened": "62000-62009"
+ },
+ "parity_deconfounding_rule": "each cell-specific subqueue holds two even and two odd seeds; accept first qualifier, then the next qualifier of opposite parity, to break the FSCMA00 parity/geometry/history collapse.",
+ "transfer_object": {
+  "name": "FWL2_RELATIVE_QUOTIENT_BASIS_V1",
+  "npz_sha256": "81ca57906d470263b5210cd2ce03ea65360b960093ef5f4b7966257d77efb601",
+  "json_sha256": "2c7f878b1fc6c98af64d5fdbc1f14bf96b08091399d9e9bd5320032398ccc540",
+  "P2_TRANSFER_LICENSE": true,
+  "E2_AXIS_TRANSFER_LICENSE": true,
+  "usable_by": "a future OWNER-AUTHORIZED programme that has a legitimate dose axis or a fresh active panel; it can project fresh weighted-L2 responses onto P2/e2 WITHOUT refitting, exactly the operation the parent could not perform because GIMB00 serialized only scalars."
+ },
+ "certified_multipliers": {
+  "E_TAU_exact_digits": 1079,
+  "A_TAU_enclosure": [
+   "527727091079501340594057647/500000000000000000000000000000",
+   "211090836431800536237623059/200000000000000000000000000000"
+  ],
+  "sqrt_I2_enclosure": [
+   "300877151955559459674803131/500000000000000000000000000000",
+   "150438575977779738256919663/250000000000000000000000000000"
+  ],
+  "ENERGY_MULTIPLIER_REQUIRED": [
+   3.0763826960591953,
+   3.076382696059196
+  ],
+  "AMPLITUDE_MULTIPLIER_REQUIRED": [
+   1.7539619996052354,
+   1.7539619996052354
+  ],
+  "AMPLITUDE_MULTIPLIER_STRICTLY_BELOW_2": true,
+  "parent_reported_ratio_sqrtI2_over_A_TAU_for_reference": 0.570137779624114,
+  "reading": "a doubled dose, IF one existed and the response were linear, would raise sqrt(I2) by exactly x2; since the required amplitude multiplier is below 2, such a dose would lift the second mode above the absolute floor. This is a statement about arithmetic, not about physics, and it does NOT assert that a doubled dose can be constructed -- see the static dose-axis audit."
+ },
+ "scaling_predictions_frozen": {
+  "Rk_2x": "4 * Rk_1x",
+  "I2_2x": "4 * I2_1x",
+  "sqrt_I2_ratio": "exactly 2",
+  "TAU_E_TAU_A_TAU": "unchanged (null quantities carry no dose)"
+ },
+ "engine_starts_spent": 0
+}

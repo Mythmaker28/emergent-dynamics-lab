@@ -1,0 +1,215 @@
+{
+ "engine_starts": 0,
+ "engine_advances_performed": 0,
+ "method": "static evaluation of committed descendant states and frozen predicates; no engine step is taken and no start is spent",
+ "A_committed_arm_lock_dose_declaration": {
+  "CARRIER_1": {
+   "superfamily": "CONSERVATIVE_CARRIER_REDISTRIBUTION",
+   "instance": "matched_transposition",
+   "callable": "etcmnfc_core.transpose(st, I, J)",
+   "code_sha256": "b9c878acd70ab6d9734eb70e9fadc71b2db70cc919f9132656ce0ddc20ec1d02",
+   "application_time": "the exact descendant checkpoint t0",
+   "declared_touch_set": [
+    "Mf"
+   ],
+   "dose": "none (a permutation)",
+   "worker_expect_callable": "etcmnfc_core.transpose(st, I, J)",
+   "EXPECT_STRUCTURAL_ZERO_AT_H0": true
+  },
+  "CARRIER_2": {
+   "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+   "instance": "intensive_reflection",
+   "callable": "ppai_core.state_cross(st)",
+   "code_sha256": "88945808a458afab89676e73473a54fb243a85608beca85ca5a26ef5dad2394d",
+   "application_time": "the exact descendant checkpoint t0",
+   "declared_touch_set": [
+    "Mf"
+   ],
+   "dose": "none (a reflection)",
+   "worker_expect_callable": "ppai_core.state_cross(st)",
+   "EXPECT_STRUCTURAL_ZERO_AT_H0": true
+  },
+  "reading": "the parent LOCKED both arms with an explicit dose field. Any dose introduced now is applied against a standing lock."
+ },
+ "B_callable_signatures": {
+  "CARRIER_1_etcmnfc_core.transpose": "(st, I, J, identity=False)",
+  "CARRIER_2_ppai_core.state_cross": "(st)",
+  "scalar_amplitude_argument_present": {
+   "CARRIER_1": false,
+   "CARRIER_2": false
+  },
+  "note": "transpose exposes only I, J (which sites) and identity (a boolean OFF switch, i.e. zero dose). Neither exposes a magnitude. state_cross takes only the state."
+ },
+ "C_involution": {
+  "CARRIER_1_all_op_squared_identity_bitwise": true,
+  "CARRIER_1_all_op_nontrivial": true,
+  "CARRIER_2_all_op_nontrivial": true,
+  "CARRIER_2_op_squared_max_residual_over_panel": 1.1102230246251565e-16,
+  "CARRIER_2_residual_source": "the 1e-12 rho-floor in state_cross (m = Mf / max(rho,1e-12)); it is a regularisation artifact of magnitude ~1e-12, not a tunable dose. state_cross is an involution up to this floor.",
+  "consequence": "each carrier is a 2-cycle: op^1 != identity, op^2 = identity. The orbit of repetitions is {op, identity}. 'Twice the dose' by repeating the operator lands on the IDENTITY (zero intervention), which is not a larger dose. There is therefore no positive-integer dose ladder."
+ },
+ "D_cardinality_axis_carrier_1": {
+  "per_descendant": [
+   {
+    "did": "65000_FAR_a0",
+    "matching_cardinality": 21,
+    "n_A": 21,
+    "n_B": 21,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65000_FAR_a1",
+    "matching_cardinality": 20,
+    "n_A": 20,
+    "n_B": 21,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65000_NEAR_a0",
+    "matching_cardinality": 17,
+    "n_A": 23,
+    "n_B": 17,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65000_NEAR_a1",
+    "matching_cardinality": 17,
+    "n_A": 17,
+    "n_B": 21,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65001_FAR_a0",
+    "matching_cardinality": 21,
+    "n_A": 21,
+    "n_B": 21,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65001_FAR_a1",
+    "matching_cardinality": 19,
+    "n_A": 19,
+    "n_B": 21,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65001_NEAR_a0",
+    "matching_cardinality": 17,
+    "n_A": 23,
+    "n_B": 17,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65001_NEAR_a1",
+    "matching_cardinality": 17,
+    "n_A": 17,
+    "n_B": 22,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65002_FAR_a0",
+    "matching_cardinality": 21,
+    "n_A": 21,
+    "n_B": 21,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65002_FAR_a1",
+    "matching_cardinality": 21,
+    "n_A": 21,
+    "n_B": 21,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65002_NEAR_a0",
+    "matching_cardinality": 17,
+    "n_A": 22,
+    "n_B": 17,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65002_NEAR_a1",
+    "matching_cardinality": 17,
+    "n_A": 17,
+    "n_B": 23,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65003_FAR_a0",
+    "matching_cardinality": 19,
+    "n_A": 21,
+    "n_B": 19,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65003_FAR_a1",
+    "matching_cardinality": 18,
+    "n_A": 18,
+    "n_B": 21,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65003_NEAR_a0",
+    "matching_cardinality": 17,
+    "n_A": 22,
+    "n_B": 17,
+    "is_perfect_and_maximum": true
+   },
+   {
+    "did": "65003_NEAR_a1",
+    "matching_cardinality": 17,
+    "n_A": 23,
+    "n_B": 17,
+    "is_perfect_and_maximum": true
+   }
+  ],
+  "all_matchings_are_maximum": true,
+  "reading": "frozen_matching already returns a MAXIMUM-cardinality matching; on this panel it is perfect (every eligible A and B site is matched). There is no larger disjoint matched set to 'double' into, and a different matching would be a different, unlocked operator. The cardinality route yields no 2x."
+ },
+ "E_amplitude_axis": {
+  "CARRIER_1_gamma2_domain_violations_total": 586,
+  "CARRIER_1_gamma1_domain_violations_total": 0,
+  "CARRIER_2_gamma2_domain_violations_total": 15604,
+  "CARRIER_2_gamma1_domain_violations_total": 727,
+  "reading": "an amplitude family Mf + gamma*(P(Mf)-Mf) is not what either locked callable computes; realising gamma=2 requires a NEW executable (forbidden: NEW_OPERATOR_EXECUTABLE=false, OPERATOR_SHOPPING=false, DOSE_SHOPPING=false). Independently, the gamma=2 blend VIOLATES the frozen domain predicate C1 (|Mf[0]|<=rho) on the real states, while gamma=1 does not -- so even as a bare object the doubled amplitude is statically inadmissible."
+ },
+ "F_firing_negative_controls": {
+  "NC1_predicate_discriminates_on_signature": {
+   "toy_has_gamma_argument": true,
+   "carrier1_has_amplitude_argument": false,
+   "carrier2_has_amplitude_argument": false,
+   "FIRES": true
+  },
+  "NC2_toy_is_not_an_involution": {
+   "toy_squared_equals_scale_by_4": true,
+   "toy_squared_is_identity": false,
+   "FIRES": true
+  },
+  "NC3_domain_predicate_discriminates": {
+   "violations_at_scale_1": 0,
+   "violations_at_scale_8": 1547,
+   "FIRES": true
+  },
+  "NC4_locked_op_exposes_no_dose_parameter": {
+   "carrier1_signature": "(st, I, J, identity=False)",
+   "toy_family_signature": "(st, gamma)",
+   "same_action": false,
+   "FIRES": true
+  }
+ },
+ "F_all_controls_fire": true,
+ "VERDICT": {
+  "DOSE_AXIS_EXISTS_WITHOUT_NEW_EXECUTABLE": false,
+  "supporting": {
+   "involution_no_repetition_dose": true,
+   "no_scalar_amplitude_in_signatures": true,
+   "cardinality_axis_is_maximal": true,
+   "gamma2_blend_violates_domain": true,
+   "all_negative_controls_fire": true
+  },
+  "DISPOSITION": "DOSE_2X_STATICALLY_INADMISSIBLE_OR_UNRESOLVED",
+  "consequence": "stop rule S5 fires: NO fresh panel is built, NO twin shams are run, NO active arms are executed. Engine starts spent = 0 of 64. Q2..Q6 are NOT_LICENSED.",
+  "distinct_from_S4": "S4 (would a 2x be ENOUGH?) PASSED -- the certified amplitude multiplier 1.754 is strictly below 2, so a doubled dose, if it existed and the response were linear, would lift the second mode above the absolute floor. S5 (does a 2x EXIST?) FAILS. The programme stops on existence, not on sufficiency.",
+  "why_not_manufacture_one": "introducing a gamma-parameterised executable now, with full knowledge that 1x fell short by a factor near 1.75, is exactly the operator/dose shopping the constraint block forbids. The honest scientific act is to stop."
+ }
+}

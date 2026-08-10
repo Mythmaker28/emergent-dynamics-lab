@@ -1,0 +1,174 @@
+{
+ "gates": [
+  {
+   "n": 1,
+   "gate": "PARENT_PROVENANCE_RESOLVED_FROM_COMMITTED_BRANCH",
+   "status": "PASS",
+   "note": "12/12 arrows single-direct-parent; 198/198 content verified twice; subtree ids agree across git 2.34.1 and 2.43.0; bundle verifies."
+  },
+  {
+   "n": 2,
+   "gate": "MASTER_FREEZE_BEFORE_ANY_PARENT_NUMERIC_LOAD",
+   "status": "PASS",
+   "note": "SQDT00_MASTER_FREEZE.md hashed and committed in commit 1 before any npz/series/score."
+  },
+  {
+   "n": 3,
+   "gate": "OWNER_MAIN_UNTOUCHED",
+   "status": "PASS",
+   "note": "main stays at f3921a4d; separate GIT_INDEX_FILE used."
+  },
+  {
+   "n": 4,
+   "gate": "RESERVED_NAMESPACE_62000_62009_UNREAD",
+   "status": "PASS",
+   "note": "never generated or opened; fresh design uses 66000-66015, disjoint from all prior use."
+  },
+  {
+   "n": 5,
+   "gate": "APPEND_ONLY_NO_PARENT_OUTPUT_REWRITTEN",
+   "status": "PASS",
+   "note": "the stale parent bundle-digest record is carried forward, not repaired."
+  },
+  {
+   "n": 6,
+   "gate": "SUPPORT_RESTRICTED_SUFFICIENCY_CERTIFICATE",
+   "status": "PASS",
+   "note": "reader rebuilt from raw rho bytes equals the committed series string-for-string, 48/48 (16 sham + 32 active)."
+  },
+  {
+   "n": 7,
+   "gate": "OFFLINE_REDERIVATION_REPRODUCES_PARENT_R0_EXACTLY",
+   "status": "PASS",
+   "note": "R0 exact equals the committed 1077-digit rational bit-for-bit."
+  },
+  {
+   "n": 8,
+   "gate": "CERTIFIED_ENCLOSURES_FOR_R1_R2_I1_I2",
+   "status": "PASS",
+   "note": "exact rational enclosures by Bareiss leading-minor inertia + Weyl slack; widths ~5e-23; parent floats agree within the parent's own backward-stability bound."
+  },
+  {
+   "n": 9,
+   "gate": "GAUGE_ARGMIN_EXACT_AND_SHARED_FOR_K012",
+   "status": "PASS",
+   "note": "eps* is the exact argmin of R0 and attains R1, R2 as well."
+  },
+  {
+   "n": 10,
+   "gate": "BASIS_SERIALIZED_AS_REAL_MACHINE_READABLE_ARRAYS",
+   "status": "PASS",
+   "note": "FWL2_RELATIVE_QUOTIENT_BASIS_V1.npz/.json carry mu, e1, e2, P1, P2, per-row scores, sign canonicalisation and gauge; not a scalar summary."
+  },
+  {
+   "n": 11,
+   "gate": "BASIS_STABILITY_S0_THROUGH_S7",
+   "status": "PASS",
+   "note": "{\"BASIS_S0_only_committed_bytes\": true, \"BASIS_S1_eps_star_exact_argmin_of_R0\": true, \"BASIS_S2_same_eps_attains_R1_R2\": true, \"BASIS_S3_disjoint_exact_eigenvalue_enclosures\": true, \"BASIS_S4_orthonormal_within_residual\": true, \"BASIS_S5_LOO_principal_angle_below_30deg\": true, \"BASIS_S6_reconstruction_identity\": true, \"BASIS_S7_round_trip_bit_for_bit\": true}"
+  },
+  {
+   "n": 12,
+   "gate": "P2_TRANSFER_LICENSE",
+   "status": "GRANTED",
+   "note": "the 2-plane transfers: all S-gates pass."
+  },
+  {
+   "n": 13,
+   "gate": "E2_AXIS_TRANSFER_LICENSE",
+   "status": "GRANTED",
+   "note": "the individual axis e2 also transfers: lambda2 is certifiably separated from lambda3."
+  },
+  {
+   "n": 14,
+   "gate": "DUPLICATION_INVARIANCE",
+   "status": "PASS",
+   "note": "R0 exact and I2 unchanged under exact row duplication (proof + numeric); licenses comparing an 8-descendant panel to the 32-row parent."
+  },
+  {
+   "n": 15,
+   "gate": "CERTIFIED_MULTIPLIERS_FROM_INTERVALS_NOT_ROUNDED_0.570",
+   "status": "PASS",
+   "note": "ENERGY 3.07638, AMPLITUDE 1.75396, both as certified intervals."
+  },
+  {
+   "n": 16,
+   "gate": "S4_AMPLITUDE_MULTIPLIER_STRICTLY_BELOW_2",
+   "status": "PASS_DOES_NOT_STOP",
+   "note": "1.754 < 2: a doubled dose, if it existed and were linear, WOULD lift the second mode above the absolute floor. Sufficiency holds; this is not a stop."
+  },
+  {
+   "n": 17,
+   "gate": "PREEXECUTION_ORACLE_NONVACUOUS",
+   "status": "PASS",
+   "note": "17/17 groups: every positive identity holds and every negative control fires."
+  },
+  {
+   "n": 18,
+   "gate": "S5_STATIC_DOSE_AXIS_EXISTS",
+   "status": "FAIL__STOP",
+   "note": "no legitimate 2x exists without a new executable: both carriers are involutions with no amplitude parameter, the matching cardinality is maximal, and the gamma=2 blend violates the frozen domain predicate. DISPOSITION token DOSE_2X_STATICALLY_INADMISSIBLE_OR_UNRESOLVED."
+  },
+  {
+   "n": 19,
+   "gate": "FRESH_PANEL_CONSTRUCTED",
+   "status": "NOT_LICENSED__BLOCKED_BY_STATIC_DOSE_INADMISSIBILITY",
+   "note": "design frozen (66000-66015) but not built; 0 starts."
+  },
+  {
+   "n": 20,
+   "gate": "TWIN_SHAMS_RUN",
+   "status": "NOT_LICENSED__BLOCKED_BY_STATIC_DOSE_INADMISSIBILITY",
+   "note": "0 of 16 sham starts."
+  },
+  {
+   "n": 21,
+   "gate": "ACTIVE_CONTINUATIONS_RUN",
+   "status": "NOT_LICENSED__BLOCKED_BY_STATIC_DOSE_INADMISSIBILITY",
+   "note": "0 of 32 active starts."
+  },
+  {
+   "n": 22,
+   "gate": "CELL_MATERIALITY_1X_AND_2X",
+   "status": "NOT_EVALUABLE__NO_FRESH_ROWS",
+   "note": "no fresh rows exist to score."
+  },
+  {
+   "n": 23,
+   "gate": "PAIRED_DOSE_INCREMENT_AND_LINEARITY",
+   "status": "NOT_EVALUABLE__NO_FRESH_ROWS",
+   "note": "frozen predictions recorded (Rk_2x = 4 Rk_1x, sqrt(I2) ratio = 2); no data to test."
+  },
+  {
+   "n": 24,
+   "gate": "FRESH_QUOTIENT_AT_EACH_DOSE",
+   "status": "NOT_EVALUABLE__NO_FRESH_ROWS",
+   "note": "not evaluable without fresh rows."
+  },
+  {
+   "n": 25,
+   "gate": "FROZEN_BASIS_TRANSFER_T0_T7",
+   "status": "MACHINERY_READY__NO_FRESH_ROWS",
+   "note": "the serialized basis is transfer-ready (P2 and E2 licensed); there are no fresh active rows to project onto it, so the transfer gates cannot be exercised in this programme."
+  },
+  {
+   "n": 26,
+   "gate": "GEOMETRY_AND_ALLOCATION",
+   "status": "NOT_TESTED_IN_THIS_DESIGN",
+   "note": "the design spans them to widen the null, never to estimate their effects."
+  },
+  {
+   "n": 27,
+   "gate": "NO_PUSH_NO_PR_NO_WORKFLOW_TRIGGER",
+   "status": "PASS",
+   "note": "PUSH/DRAFT_PR/WORKFLOW all false; delivery is a local branch + a thin bundle."
+  },
+  {
+   "n": 28,
+   "gate": "TOTAL_ENGINE_STARTS_WITHIN_BUDGET",
+   "status": "PASS",
+   "note": "0 of 64."
+  }
+ ],
+ "precedence": "resolved top to bottom; item 18 (S5) is the binding stop",
+ "n_items": 28
+}

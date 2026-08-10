@@ -1,0 +1,15 @@
+{
+ "MAX_PANEL_CONSTRUCTION_STARTS": 16,
+ "panel_construction_starts_spent": 0,
+ "MAX_TWIN_SHAM_STARTS": 16,
+ "twin_sham_starts_spent": 0,
+ "MAX_ACTIVE_STARTS": 32,
+ "active_starts_spent": 0,
+ "MAX_OTHER_OR_DIAGNOSTIC_ENGINE_STARTS": 0,
+ "other_or_diagnostic_starts_spent": 0,
+ "MAX_TOTAL_ENGINE_STARTS": 64,
+ "total_engine_starts_spent": 0,
+ "engine_advances_performed": 0,
+ "why_zero": "the static 2x dose-axis audit fired stop rule S5 (DOSE_2X_STATICALLY_INADMISSIBLE_OR_UNRESOLVED) BEFORE any fresh panel. All delivered work is offline and consumes zero starts: provenance, exact rederivation, basis serialization, stability, duplication invariance, certified multipliers, the static dose audit and the non-vacuous oracle.",
+ "static_operator_evaluations_are_not_starts": "applying transpose/state_cross at t0 with no engine advance is a pure array transform; it instantiates no engine and steps nothing, so it is not an engine start (consistent with the inherited '1 constructed descendant state = 1 start' convention)."
+}
