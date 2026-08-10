@@ -1,0 +1,133 @@
+{
+ "AST_AUDIT": {
+  "self_comparisons_in_oracle": [],
+  "self_comparisons_in_production": [],
+  "self_comparisons_in_reference": [],
+  "reference_imports": [
+   "__future__",
+   "fractions"
+  ],
+  "reference_imports_production": false,
+  "injected_vacuous_probe_detected": true,
+  "PASS": true
+ },
+ "Q0A": {
+  "all_positive": true,
+  "sum_exactly_one": true,
+  "production_equals_reference": true,
+  "W_POST_exact": "1",
+  "negative_control_unnormalized_detected": true,
+  "PASS": true
+ },
+ "Q0B": {
+  "identity_exact": true,
+  "value": "3187/54000000",
+  "reference_agrees": true,
+  "negative_control_missing_half_factor_detected": true,
+  "PASS": true
+ },
+ "Q0C": {
+  "M2_invariant": true,
+  "TAU_DYNAMIC_invariant": true,
+  "TAU_SITE_invariant": true,
+  "B_invariant": true,
+  "PASS": true
+ },
+ "Q0D": {
+  "M2_is_blind_to_a_per_time_swap": true,
+  "block_invariant_DETECTS_the_per_time_swap": true,
+  "u_changes_under_a_per_time_swap": false,
+  "conclusion": "M2 alone cannot validate the group scope; the whole-descendant block invariant (u, v OUTER v) does, and it fires here.",
+  "PASS": true
+ },
+ "Q0E": {
+  "agree_on_40_independent_fixtures": true,
+  "negative_control_reference_detects_a_wrong_production_value": true,
+  "PASS": true
+ },
+ "Q0F": {
+  "A_bu": "1/1800",
+  "M2": "1/180000",
+  "L1_and_L2_differ_on_a_spike": true,
+  "verdict_under_L2": "CELL_MATERIAL_PASS",
+  "verdict_if_L1_substituted": "CELL_MATERIAL_FAIL",
+  "substitution_flips_the_decision": true,
+  "PASS": true
+ },
+ "Q0G": {
+  "perturbed_weight_changes_M2": true,
+  "shape_preserved": true,
+  "perturbed_weight_breaks_normalisation": true,
+  "PASS": true
+ },
+ "Q0H": {
+  "wrong_B_changes_X": true,
+  "wrong_B_changes_TAU_SITE": true,
+  "PASS": true
+ },
+ "Q0I": {
+  "channel_value_perturbation_detected": true,
+  "mask_byte_perturbation_detected": true,
+  "sham_trajectory_perturbation_detected": true,
+  "PASS": true
+ },
+ "Q0J": {
+  "split_preserves_norm": true,
+  "split_preserves_weight_sum": true,
+  "negative_control_duplication_without_halving_inflates": true,
+  "PASS": true
+ },
+ "Q0K": {
+  "verdicts": {
+   "0.99": "CELL_MATERIAL_FAIL",
+   "1.00": "CELL_MATERIAL_FAIL",
+   "1.01": "CELL_MATERIAL_PASS"
+  },
+  "expected": {
+   "0.99": "CELL_MATERIAL_FAIL",
+   "1.00": "CELL_MATERIAL_FAIL",
+   "1.01": "CELL_MATERIAL_PASS"
+  },
+  "equality_is_failure": true,
+  "PASS": true
+ },
+ "ETA_ORACLE_L2_CERTIFICATE": {
+  "reader_is_exact_rational": true,
+  "summation_order_independent": true,
+  "subtraction_is_exact": true,
+  "reload_is_bit_exact_on_adversarial_values": true,
+  "float64_path_differs_on_the_same_input": true,
+  "eps_INT": "0",
+  "eps_SHAM": "0",
+  "eps_SUBTRACTION": "0",
+  "eps_RELOAD": "0",
+  "ETA_ORACLE_L2": "0",
+  "scope": "bounds the reader, subtraction and reload arithmetic on serialized states. It is NOT a stability bound on engine dynamics.",
+  "why_zero": "wsfscrp_core.dsum accumulates Fraction(float(v)); every float64 is exactly a dyadic rational, Fraction addition is exact and order independent, B is an exact Fraction, the quotient is exact, the difference of two exact rationals is exact, and npz stores raw IEEE754 bytes. No rounding occurs anywhere on the scoring path.",
+  "PASS": true
+ },
+ "Q0L": {
+  "controls": {
+   "Q0A_unnormalized_weight": true,
+   "Q0B_missing_half_factor": true,
+   "Q0D_per_time_swap_caught_by_block_invariant": true,
+   "Q0E_reference_catches_a_wrong_value": true,
+   "Q0F_L1_substitution_flips_a_decision": true,
+   "Q0G_perturbed_weight": true,
+   "Q0H_wrong_normalizer": true,
+   "Q0I_corrupted_bytes": true,
+   "Q0J_duplication_without_halving_inflates": true,
+   "Q0K_equality_is_failure": true,
+   "AST_vacuous_probe_rejected": true,
+   "ETA_float64_path_is_distinguishable": true
+  },
+  "PASS": true
+ },
+ "ALL_PASS": true,
+ "VERDICT": "NONVACUOUS_ORACLE_PASS",
+ "code_hashes": {
+  "wl2_prod.py": "31dbe73b8a3a1ea990a6b5054cc3a808d4b98e7873b92075fb07a931043f1d10",
+  "wl2_ref.py": "a4f8c056ad4b847ba4cd098495f67b82f928e9da34fd96e19f96733805f2bd07",
+  "wl2_oracle.py": "458e0e14c2374ef8b75c4dff3c0dfa0c53b3a0c895b5fac20209565b5aa557da"
+ }
+}

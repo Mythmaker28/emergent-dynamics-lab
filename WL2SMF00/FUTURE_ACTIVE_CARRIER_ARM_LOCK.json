@@ -1,0 +1,27 @@
+{
+ "FUTURE_ACTIVE_EXECUTION_AUTHORIZED_IN_WL2SMF00": false,
+ "CARRIER_1": {
+  "superfamily": "CONSERVATIVE_CARRIER_REDISTRIBUTION",
+  "instance": "matched_transposition",
+  "callable": "etcmnfc_core.transpose(st, I, J)",
+  "code_sha256": "b9c878acd70ab6d9734eb70e9fadc71b2db70cc919f9132656ce0ddc20ec1d02",
+  "application_time": "the exact descendant checkpoint t0",
+  "declared_touch_set": [
+   "Mf"
+  ],
+  "dose": "none (a permutation)"
+ },
+ "CARRIER_2": {
+  "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+  "instance": "intensive_reflection",
+  "callable": "ppai_core.state_cross(st)",
+  "code_sha256": "88945808a458afab89676e73473a54fb243a85608beca85ca5a26ef5dad2394d",
+  "application_time": "the exact descendant checkpoint t0",
+  "declared_touch_set": [
+   "Mf"
+  ],
+  "dose": "none (a reflection)"
+ },
+ "proof_neither_arm_changes_the_reader_or_the_sham": "both operate on Mf only and never receive the masks, the normalizer or the scored times; the reader q_channels depends on rho and the immutable masks alone. The sham is the identity copy in both cases, so the two future sentinels share the SAME canonical sham.",
+ "bound_here_only_to_prevent_arm_shopping_after_thresholds_are_known": true
+}

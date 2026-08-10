@@ -1,0 +1,73 @@
+{
+ "setting": "rows i with frozen nonnegative alpha_i summing to 1, z_i in the weighted product Hilbert space H, TAU_i the per-row material scale, E_TAU = sum alpha_i TAU_i^2, A_TAU = sqrt(E_TAU). The NULL is: every row is individually immaterial, ||z_i|| <= TAU_i.",
+ "lemma_1_swap_is_an_isometry": {
+  "statement": "for any linked whole-descendant swap eps, ||z_i(eps)|| = ||z_i||",
+  "proof": "the swap acts as u -> u, v -> -v inside each row; that is an orthogonal map on the weighted product space, hence norm preserving."
+ },
+ "lemma_2_centering_is_contractive": {
+  "statement": "sum_i alpha_i ||z_i - mu||^2 <= sum_i alpha_i ||z_i - c||^2 for every c in H, with mu the alpha-weighted mean",
+  "proof": "expand: sum alpha_i ||z_i - c||^2 = sum alpha_i ||z_i - mu||^2 + ||mu - c||^2, since the cross term vanishes by definition of mu. Take c = 0."
+ },
+ "lemma_3_projection_is_contractive": {
+  "statement": "for a fixed orthonormal k-dimensional B, ||d - B B^T d||^2 <= ||d||^2, hence R_k(eps) <= R_{k-1}(eps) pointwise in eps and R_k <= R_{k-1} after minimising",
+  "proof": "B B^T is an orthogonal projection; Pythagoras."
+ },
+ "theorem_total": {
+  "statement": "under the null, R0 <= E_TAU",
+  "proof": "R0 = min_eps sum_i alpha_i ||z_i(eps) - mu(eps)||^2 <= sum_i alpha_i ||z_i(eps)||^2 (Lemma 2 with c = 0) = sum_i alpha_i ||z_i||^2 (Lemma 1) <= sum_i alpha_i TAU_i^2 = E_TAU.",
+  "consequence": "QDIM_TOTAL_SCATTER_MATERIAL (lower(R0) > upper(E_TAU)) implies at least one row is material. The gate is therefore conservative in the right direction."
+ },
+ "theorem_modal": {
+  "statement": "under the null, sqrt(L2) <= A_TAU",
+  "proof": "L2 = R1 - R2 <= R1 (R2 >= 0) <= R0 (Lemma 3, pointwise then after minimisation) <= E_TAU (theorem_total). Take square roots.",
+  "consequence": "QDIM_SECOND_INCREMENT_MATERIAL is valid, and it STRICTLY IMPLIES the total gate, because L2 <= R0 always. The two gates are nested, not independent."
+ },
+ "conservatism_declared": {
+  "statement": "because L2 <= R0, passing the modal gate requires L2 > E_TAU, i.e. the second increment ALONE must exceed the whole immateriality budget. Combined with the inherited relative gate L2/R0 >= 0.05, a passing panel needs R0 > 20 * E_TAU in the worst case.",
+  "numbers_for_this_sealed_panel": {
+   "E_TAU": 1.1139835306369292e-06,
+   "A_TAU": 0.0010554541821590027,
+   "R0_required_for_the_modal_gate_at_share_0.05": 2.2279670612738583e-05,
+   "R0_required_for_the_total_gate": 1.1139835306369292e-06
+  },
+  "why_it_is_not_weakened": "weakening the rule after seeing that it is demanding would be response-adaptive. It is declared, not adjusted."
+ },
+ "theorem_contrast": {
+  "statement": "for a normalised gauge-valid linear contrast X = sum_i c_i z_i, under the null ||X|| <= sum_i |c_i| TAU_i = TAU_CONTRAST(c)",
+  "proof": "triangle inequality then the null bound on each ||z_i||.",
+  "gauge_caveat": "a signed linear contrast of raw z = (u,v) is NOT automatically invariant, because each descendant may send v -> -v. Under H3 the signed contrast is NOT_DEFINED_UNDER_GAUGE and the primary object is the unordered quotient distance between allocations."
+ },
+ "theorem_quotient_pair": {
+  "statement": "D_Q([i],[j]) <= TAU_i + TAU_j under the null",
+  "proof": "D_Q([i],[j]) = min_eps ||z_i - z_j(eps)|| <= ||z_i|| + ||z_j|| <= TAU_i + TAU_j."
+ },
+ "numerical_perturbation": {
+  "statement": "|sqrt(R_k(Z_hat)) - sqrt(R_k(Z_true))| <= A_ETA_ORACLE",
+  "proof": "sqrt(R_k) is the distance from the weighted row cloud to the frozen model class in the product norm; distance to a set is 1-Lipschitz, centering is contractive and each swap is an isometry, so the whole functional is 1-Lipschitz in the weighted perturbation norm, which is bounded by A_ETA_ORACLE.",
+  "A_ETA_ORACLE_on_this_panel": 0.0,
+  "what_is_NOT_asserted": "|sqrt(L2_hat) - sqrt(L2_true)| <= A_ETA_ORACLE. R1 and R2 are separately optimised, so that does not follow. L2 intervals are built by certified interval subtraction of the R_k intervals."
+ },
+ "quadratic_objects": {
+  "v_outer_v_and_projectors": "shape and sector diagnostics only. Naming A_TAU does not create a materiality rule for a fourth-order object. Original quotient-space materiality is always required first.",
+  "PROJECTIVE_EMBEDDING_BOUND": "NOT_AVAILABLE",
+  "H3_K_BOUND": "NOT_AVAILABLE"
+ },
+ "boundary_and_degeneracy_rules": {
+  "TOTAL": "PASS iff lower(R0) > upper(E_TAU); FAIL iff upper(R0) <= lower(E_TAU); else UNRESOLVED",
+  "MODAL": "PASS iff lower(sqrt(L2)) > upper(A_TAU); FAIL iff upper(sqrt(L2)) <= lower(A_TAU); else UNRESOLVED",
+  "RATIO": "PASS iff lower(sqrt(L2/L1)) > 0.10; FAIL iff upper <= 0.10; else UNRESOLVED",
+  "SHARE": "PASS iff lower(L2/R0) >= 0.05; FAIL iff upper < 0.05; else UNRESOLVED",
+  "zero_precedence": [
+   "upper(L2)<=0 -> NO_SECOND_INCREMENT/MODAL_FAIL",
+   "L2 interval touches 0 with positive upper -> MODAL and RATIO UNRESOLVED",
+   "upper(L1)<=0 -> DEGENERATE_FIRST_INCREMENT",
+   "L1 interval touches 0 -> RATIO_UNRESOLVED",
+   "upper(R0)<=0 -> DEGENERATE_TOTAL_SCATTER",
+   "R0 interval touches 0 -> SHARE_UNRESOLVED",
+   "never divide by or take a square root of an interval touching zero"
+  ]
+ },
+ "MODAL_MATERIALITY_RULE": "QUALIFIED_FOR_FUTURE_EXACT_PANEL",
+ "CELL_MATERIALITY_RULE": "QUALIFIED_FOR_FUTURE_EXACT_PANEL",
+ "GAUGE_VALID_FACTOR_OBJECT_RULE": "QUALIFIED_FOR_SELECTED_ROUTE"
+}

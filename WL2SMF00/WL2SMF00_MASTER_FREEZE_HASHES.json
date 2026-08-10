@@ -1,0 +1,155 @@
+{
+ "frozen_before_any_fresh_numeric_array": true,
+ "hashes": {
+  "WL2SMF00_MASTER_FREEZE.md": "b9830a62cccfcd0d43c7f1642c8bd9aa27c478b6ed45b9752720c76da3702672",
+  "MATERIALITY_SEMANTICS_AND_UNITS.md": "7255155b8dcc59220b4904ab4d136403fcd5ecab43f91f57188e813cf3876467",
+  "WEIGHTED_L2_ESTIMAND_AND_GAUGE_SPEC.md": "eba6fc44e33c3969e3727db32798337c6232cb1400bbb08ac8f2b607f3ae9657"
+ },
+ "weights": [
+  "1/18",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/18"
+ ],
+ "W_POST": "1",
+ "H_GRID": [
+  40,
+  80,
+  120,
+  160,
+  200,
+  240,
+  280,
+  320,
+  360,
+  400
+ ],
+ "physical_times": [
+  "4",
+  "8",
+  "12",
+  "16",
+  "20",
+  "24",
+  "28",
+  "32",
+  "36",
+  "40"
+ ],
+ "namespace_queue": [
+  65000,
+  65001,
+  65002,
+  65003,
+  65004,
+  65005,
+  65006,
+  65007
+ ],
+ "coefficient": "0.01 inherited, not fitted",
+ "start_convention": "one constructed descendant state = 1 start (inherited)",
+ "C_SETUP": 2,
+ "C_ATTEMPT_MAX": 4,
+ "N_ATTEMPT_MAX": 7,
+ "provenance": {
+  "reported_chain": [
+   "e912a1004c5b9732d12a8fcc417002bfd1135622",
+   "f81daf91dd70a05f34372fb85d2c3fba0dd5550b",
+   "f9e1e39170a746bc5d8c43a80bc878cf24180714",
+   "f65851c39496f379edac8b665dce87ba7cf1ebfb",
+   "0d92b612e051166b84d1a7d08d681ea78f5a512d"
+  ],
+  "blob_binding": {
+   "GIMB00/gimb_oracle_v2.py": {
+    "recomputed_from_local_bytes": "7fa03e400b7ac91d6084e91ee46f5c18eaed92e3",
+    "committed_blob_oid": "7fa03e400b7ac91d6084e91ee46f5c18eaed92e3",
+    "match": true,
+    "sha256": "8f86fc6d0d0cd278ec7190e55fd2a1d9f2104f5c92e7c2b5534886f91639d97e"
+   },
+   "GIMB00/GAUGE_ORACLE_TESTS.json": {
+    "recomputed_from_local_bytes": "2156599b56d8e32455e4b22a1e7f323a026f88b2",
+    "committed_blob_oid": "2156599b56d8e32455e4b22a1e7f323a026f88b2",
+    "match": true,
+    "sha256": "0b1820a2be6f3017ef3b5d6a7836766223d729c82145df15b7fef56c320fbb1c"
+   },
+   "GIMB00/GIMB00_FREEZE.md": {
+    "recomputed_from_local_bytes": "202e4d00a46e4f2ceec6c23c42919d71c2e73604",
+    "committed_blob_oid": "202e4d00a46e4f2ceec6c23c42919d71c2e73604",
+    "match": true,
+    "sha256": "aeb4d12dcb38e51f911049c4e8563e78624e681bfe54ef70ff0557b8a6944cb2"
+   },
+   "GIMB00/MATERIALITY_BOUND_PROPAGATION.md": {
+    "recomputed_from_local_bytes": "4900884551320c33dbf542bdb396382f8411a766",
+    "committed_blob_oid": "4900884551320c33dbf542bdb396382f8411a766",
+    "match": true,
+    "sha256": "1010e67c7e58586e8a8773ea040164e622806e0595836bb55d7481c337ae620e"
+   },
+   "GIMB00/OFFLINE_GI_SCORES_AND_CERTIFIED_INTERVALS.json": {
+    "recomputed_from_local_bytes": "fb9eb12a0e3ac890adc1d3cd78329614083544cf",
+    "committed_blob_oid": "fb9eb12a0e3ac890adc1d3cd78329614083544cf",
+    "match": true,
+    "sha256": "fb9c935b92715dea20cd53eefdd6466b5559e17a979768748c8190ac84698bf6"
+   },
+   "WSFSCRP00/wsfscrp_core.py": {
+    "recomputed_from_local_bytes": "132b65759c57cd73c4c002db19333ca225b95066",
+    "committed_blob_oid": "132b65759c57cd73c4c002db19333ca225b95066",
+    "match": true,
+    "sha256": "510d95073a706f061e3ac10307bd41a935abb4ee28de22155e323092a77d6bf6"
+   }
+  },
+  "manifest_verification": {
+   "WSFSCRP00": {
+    "entries": 49,
+    "failures": 0,
+    "failed": []
+   },
+   "FSCMA00": {
+    "entries": 35,
+    "failures": 0,
+    "failed": []
+   },
+   "GIMB00": {
+    "entries": 25,
+    "failures": 0,
+    "failed": []
+   }
+  },
+  "corrected_gauge_oracle": {
+   "file": "GIMB00/gimb_oracle_v2.py",
+   "sha256": "8f86fc6d0d0cd278ec7190e55fd2a1d9f2104f5c92e7c2b5534886f91639d97e",
+   "supersedes": "the Q0C..Q0G block of gimb_p0_freeze_oracle.py, which contained three self-comparing predicates that pass on arbitrary input",
+   "self_comparing_predicates_found": [],
+   "declares_real_swaps": true,
+   "negative_controls": {
+    "N1_per_row_swap_changes_block_vvT": true,
+    "N2_per_row_swap_changes_quotient_distance": true,
+    "N3_quotient_strictly_richer_than_u_only": true,
+    "N4_energy_identity_detects_a_corrupted_row": true
+   },
+   "all_negative_controls_fire": true,
+   "verdict_in_parent": "GAUGE_ORACLE_PASS_WITH_NEGATIVE_CONTROLS",
+   "BOUND": true,
+   "note": "the vacuous FIRST-pass oracle is explicitly NOT inherited; only gimb_oracle_v2.py, which applies real region exchanges and carries firing negative controls, is bound."
+  },
+  "inherited_reader_binding": {
+   "file": "WSFSCRP00/wsfscrp_core.py",
+   "sha256": "510d95073a706f061e3ac10307bd41a935abb4ee28de22155e323092a77d6bf6",
+   "H_GRID": "[40, 80, ..., 400]",
+   "H_GRID_present": true,
+   "dt": "C.SPEC.dt = 0.1",
+   "physical_times": "4.0 .. 40.0",
+   "weights": "trapezoidal in physical time, normalised to sum 1, computed in exact Fraction",
+   "normalizer": "B_of(st,MA,MB) = dsum(st.rho[nonzero(MA|MB)]), exact rational",
+   "raw_reader": "q_channels(st,MA,MB,B) = (dsum(rho[MA])/B, dsum(rho[MB])/B) -- RAW X, NOT a difference. The dA/dB stored in parent files are ALREADY differenced arm minus sham; never subtract a sham twice.",
+   "detector": "rho > 0.30 strict, >= 12 sites, 4-connected periodic, exactly two eligible",
+   "dsum_is_exact": true
+  },
+  "VERDICT": "PROVENANCE_BOUND"
+ }
+}

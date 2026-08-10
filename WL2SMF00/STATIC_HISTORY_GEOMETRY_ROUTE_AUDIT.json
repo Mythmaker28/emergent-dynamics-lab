@@ -1,0 +1,95 @@
+{
+ "G_route": {
+  "upstream_rng_precursor_is_geometry_independent": true,
+  "evidence": "domc_core.found(seed) = C.seed_state(SPEC,TRACER,seed,'random') * _blob(); the RNG draw takes no geometry argument, and geometry enters only through the multiplicative blob mask built from SITE_A/SITE_B. Hashing the seed_state under both geometry settings gives the same digest.",
+  "geometry_is_an_explicit_constructor_argument": true,
+  "route": "G1",
+  "geometry_definition": "the inherited exchange-invariant frozen geometry classes FAR = ((32,16),(32,48)) and NEAR = ((32,24),(32,40)), both symmetric about x = L/2 so the same reflection exchanges the two sites in both. Geometry is ASSIGNED here, not classified, so no threshold is tuned."
+ },
+ "H_route": {
+  "H1_global_temporal_order": {
+   "eligible": false,
+   "why": "apply_dual_history delivers hA to HALF_A and hB to HALF_B IN LOCKSTEP; its own docstring proves the GLOBAL forcing time series is identical between the two assignments. There is no H-then-L versus L-then-H global sequence to contrast."
+  },
+  "H2_prehistory_physical_anchor": {
+   "eligible": false,
+   "why": "no anchor formula was uniquely designated in committed pre-outcome artifacts before FSCMA00 outcomes. Seed parity, serialized A/B, site id, queue position and filename are excluded by rule, and nominating a new state feature now would be response-informed."
+  },
+  "H3_complementary_allocation_orbit": {
+   "eligible": true,
+   "why": "both allocations are executable from IDENTICAL precursor bytes: apply_dual_history(eng, f, hA, hB) takes the two histories as arguments and the precursor f is the same object for both branches.",
+   "branch_names": "neutral a = 0, 1; the serializer is scientifically meaningless",
+   "signed_contrast": "NOT_DEFINED"
+  },
+  "selected": "H3",
+  "lockstep_assert_present": true,
+  "half_planes": "HALF_A = x in [0,32), HALF_B = x in [32,64); geometry-independent"
+ },
+ "HISTORY_FACTOR_ROUTE": "H3",
+ "TARGET_PANEL_ROUTE": "G1",
+ "EXPLICIT_FACTOR_REFACTOR": {
+  "checks": [
+   {
+    "seed": 64000,
+    "geometry": "FAR",
+    "legacy_alloc": 0,
+    "recomputed_full_sha": "48e42b42add30982ecf47d92d4cdecb5b02b88fd59a2d646489976afacdf4a45",
+    "committed_checkpoint_sha": "48e42b42add30982ecf47d92d4cdecb5b02b88fd59a2d646489976afacdf4a45",
+    "byte_identical": true
+   },
+   {
+    "seed": 64001,
+    "geometry": "NEAR",
+    "legacy_alloc": 1,
+    "recomputed_full_sha": "e04286b12840b753d0d021020704172626b5a8f94f3710e3221e3d50d1d71c08",
+    "committed_checkpoint_sha": "e04286b12840b753d0d021020704172626b5a8f94f3710e3221e3d50d1d71c08",
+    "byte_identical": true
+   }
+  ],
+  "both_parity_branches_covered": true,
+  "SEMANTICS_PRESERVING": true,
+  "note": "the refactor only exposes geometry and allocation as explicit arguments. It changes no equation, history value, duration, state, detector, checkpoint, reader or horizon. Re-running the two old descendants is an equivalence replay, not a reuse of an exposed seed in a fresh role."
+ },
+ "budget": {
+  "C_SETUP": 2,
+  "C_ATTEMPT_MAX": 4,
+  "N_ATTEMPT_MAX": 7,
+  "G1_MINIMUM": 4,
+  "sufficient": true
+ },
+ "reader_geometry_confound": {
+  "FAR": {
+   "support_sizes": [
+    39,
+    40,
+    40,
+    41,
+    42,
+    42,
+    42,
+    42
+   ],
+   "B_range": [
+    25.48408520893931,
+    26.500034230883774
+   ]
+  },
+  "NEAR": {
+   "support_sizes": [
+    38,
+    39,
+    39,
+    39,
+    40,
+    40,
+    40,
+    40
+   ],
+   "B_range": [
+    25.38757061487993,
+    26.311369075079536
+   ]
+  },
+  "status": "RECORDED_NOT_ADJUDICATED -- this programme makes no geometry claim. The support sizes and normalizers are logged so a future active programme can test whether a geometry contrast could be a mechanical reader difference rather than a response difference."
+ }
+}
