@@ -1,0 +1,1515 @@
+{
+ "rows": [
+  {
+   "gate": "O0_CANONICAL_SEMANTICS",
+   "fixture": "Mf[0] is constructed as an amount (rho * intensive)",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O0_CANONICAL_SEMANTICS",
+   "fixture": "Mf is transported in telescoping divergence form",
+   "PASS": true,
+   "detail": "conserves the PLAIN sum; would not conserve a weighted sum under varying weights"
+  },
+  {
+   "gate": "O0_CANONICAL_SEMANTICS",
+   "fixture": "no grid spacing or cell area exists anywhere in the substrate",
+   "PASS": true,
+   "detail": "therefore w_i is a compile-time constant 1.0 at every site; there are no stored or source weight bits to read, because no such quantity exists"
+  },
+  {
+   "gate": "O0_CANONICAL_SEMANTICS",
+   "fixture": "the complete joint domain holds exactly in every checkpoint",
+   "PASS": true,
+   "detail": "C1 |Mf0|<=rho, C2 Mf0==0 exactly where rho<=1e-4, finiteness; violations=[]"
+  },
+  {
+   "gate": "O0_CANONICAL_SEMANTICS",
+   "fixture": "the writer updates each memory component independently",
+   "PASS": true,
+   "detail": "dm_k reads Psi (from N, c, uptake), _tmean(m_k), lap(m_k) and m_k only -- never m_j"
+  },
+  {
+   "gate": "O2_EQUAL_WEIGHT_SUPPORT",
+   "fixture": "equal w bits, UNEQUAL rho allowed [seed 61000]",
+   "PASS": true,
+   "detail": "21 pairs, 21 of them have DIFFERENT rho -- equal rho is not required"
+  },
+  {
+   "gate": "O3_DOMAIN_ADMISSIBLE",
+   "fixture": "complete post-state passes the joint domain, no clip [seed 61000]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O4_MANIFEST_2_CYCLES",
+   "fixture": "unique disjoint cross-component 2-cycles [seed 61000]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O5_BYTE_TRANSPOSITION",
+   "fixture": "every target byte equals its committed source byte [seed 61000]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O6_UNMATCHED_IDENTITY",
+   "fixture": "all unmatched state byte-identical [seed 61000]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O7_EXACT_GLOBAL_CONTENT",
+   "fixture": "multiset AND exact rational content preserved [seed 61000]",
+   "PASS": true,
+   "detail": "proved by sorted-byte multiset identity and by Fraction accumulation, not by np.sum or a tolerance"
+  },
+  {
+   "gate": "O8_RECIPROCAL_NONTRIVIALITY",
+   "fixture": "exact dQ_A = -dQ_B != 0 [seed 61000]",
+   "PASS": true,
+   "detail": "dQ_A = +14.400968929 (exact rational), dQ_B = -14.400968929"
+  },
+  {
+   "gate": "O9_FULL_STATE_INVOLUTION",
+   "fixture": "applying the manifest twice restores the whole state [seed 61000]",
+   "PASS": true,
+   "detail": "every canonical field, bit for bit; the engine holds no cache, integrator, event queue, RNG or scheduler state (A1 schema audit)"
+  },
+  {
+   "gate": "O10_TOUCHSET",
+   "fixture": "only Mf[0] changed [seed 61000]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O11_T0_PUBLIC_IDENTITY",
+   "fixture": "public projection bit-identical at t0 [seed 61000]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O1_MATCHING_PROSPECTIVE",
+   "fixture": "identity hook is bit-identical to no hook [seed 61000]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O2_EQUAL_WEIGHT_SUPPORT",
+   "fixture": "equal w bits, UNEQUAL rho allowed [seed 61001]",
+   "PASS": true,
+   "detail": "21 pairs, 21 of them have DIFFERENT rho -- equal rho is not required"
+  },
+  {
+   "gate": "O3_DOMAIN_ADMISSIBLE",
+   "fixture": "complete post-state passes the joint domain, no clip [seed 61001]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O4_MANIFEST_2_CYCLES",
+   "fixture": "unique disjoint cross-component 2-cycles [seed 61001]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O5_BYTE_TRANSPOSITION",
+   "fixture": "every target byte equals its committed source byte [seed 61001]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O6_UNMATCHED_IDENTITY",
+   "fixture": "all unmatched state byte-identical [seed 61001]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O7_EXACT_GLOBAL_CONTENT",
+   "fixture": "multiset AND exact rational content preserved [seed 61001]",
+   "PASS": true,
+   "detail": "proved by sorted-byte multiset identity and by Fraction accumulation, not by np.sum or a tolerance"
+  },
+  {
+   "gate": "O8_RECIPROCAL_NONTRIVIALITY",
+   "fixture": "exact dQ_A = -dQ_B != 0 [seed 61001]",
+   "PASS": true,
+   "detail": "dQ_A = -14.448081928 (exact rational), dQ_B = +14.448081928"
+  },
+  {
+   "gate": "O9_FULL_STATE_INVOLUTION",
+   "fixture": "applying the manifest twice restores the whole state [seed 61001]",
+   "PASS": true,
+   "detail": "every canonical field, bit for bit; the engine holds no cache, integrator, event queue, RNG or scheduler state (A1 schema audit)"
+  },
+  {
+   "gate": "O10_TOUCHSET",
+   "fixture": "only Mf[0] changed [seed 61001]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O11_T0_PUBLIC_IDENTITY",
+   "fixture": "public projection bit-identical at t0 [seed 61001]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O1_MATCHING_PROSPECTIVE",
+   "fixture": "identity hook is bit-identical to no hook [seed 61001]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O2_EQUAL_WEIGHT_SUPPORT",
+   "fixture": "equal w bits, UNEQUAL rho allowed [seed 61002]",
+   "PASS": true,
+   "detail": "21 pairs, 21 of them have DIFFERENT rho -- equal rho is not required"
+  },
+  {
+   "gate": "O3_DOMAIN_ADMISSIBLE",
+   "fixture": "complete post-state passes the joint domain, no clip [seed 61002]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O4_MANIFEST_2_CYCLES",
+   "fixture": "unique disjoint cross-component 2-cycles [seed 61002]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O5_BYTE_TRANSPOSITION",
+   "fixture": "every target byte equals its committed source byte [seed 61002]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O6_UNMATCHED_IDENTITY",
+   "fixture": "all unmatched state byte-identical [seed 61002]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O7_EXACT_GLOBAL_CONTENT",
+   "fixture": "multiset AND exact rational content preserved [seed 61002]",
+   "PASS": true,
+   "detail": "proved by sorted-byte multiset identity and by Fraction accumulation, not by np.sum or a tolerance"
+  },
+  {
+   "gate": "O8_RECIPROCAL_NONTRIVIALITY",
+   "fixture": "exact dQ_A = -dQ_B != 0 [seed 61002]",
+   "PASS": true,
+   "detail": "dQ_A = +14.498907623 (exact rational), dQ_B = -14.498907623"
+  },
+  {
+   "gate": "O9_FULL_STATE_INVOLUTION",
+   "fixture": "applying the manifest twice restores the whole state [seed 61002]",
+   "PASS": true,
+   "detail": "every canonical field, bit for bit; the engine holds no cache, integrator, event queue, RNG or scheduler state (A1 schema audit)"
+  },
+  {
+   "gate": "O10_TOUCHSET",
+   "fixture": "only Mf[0] changed [seed 61002]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O11_T0_PUBLIC_IDENTITY",
+   "fixture": "public projection bit-identical at t0 [seed 61002]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O1_MATCHING_PROSPECTIVE",
+   "fixture": "identity hook is bit-identical to no hook [seed 61002]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O2_EQUAL_WEIGHT_SUPPORT",
+   "fixture": "equal w bits, UNEQUAL rho allowed [seed 61003]",
+   "PASS": true,
+   "detail": "21 pairs, 21 of them have DIFFERENT rho -- equal rho is not required"
+  },
+  {
+   "gate": "O3_DOMAIN_ADMISSIBLE",
+   "fixture": "complete post-state passes the joint domain, no clip [seed 61003]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O4_MANIFEST_2_CYCLES",
+   "fixture": "unique disjoint cross-component 2-cycles [seed 61003]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O5_BYTE_TRANSPOSITION",
+   "fixture": "every target byte equals its committed source byte [seed 61003]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O6_UNMATCHED_IDENTITY",
+   "fixture": "all unmatched state byte-identical [seed 61003]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O7_EXACT_GLOBAL_CONTENT",
+   "fixture": "multiset AND exact rational content preserved [seed 61003]",
+   "PASS": true,
+   "detail": "proved by sorted-byte multiset identity and by Fraction accumulation, not by np.sum or a tolerance"
+  },
+  {
+   "gate": "O8_RECIPROCAL_NONTRIVIALITY",
+   "fixture": "exact dQ_A = -dQ_B != 0 [seed 61003]",
+   "PASS": true,
+   "detail": "dQ_A = -14.341734441 (exact rational), dQ_B = +14.341734441"
+  },
+  {
+   "gate": "O9_FULL_STATE_INVOLUTION",
+   "fixture": "applying the manifest twice restores the whole state [seed 61003]",
+   "PASS": true,
+   "detail": "every canonical field, bit for bit; the engine holds no cache, integrator, event queue, RNG or scheduler state (A1 schema audit)"
+  },
+  {
+   "gate": "O10_TOUCHSET",
+   "fixture": "only Mf[0] changed [seed 61003]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O11_T0_PUBLIC_IDENTITY",
+   "fixture": "public projection bit-identical at t0 [seed 61003]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O1_MATCHING_PROSPECTIVE",
+   "fixture": "identity hook is bit-identical to no hook [seed 61003]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O1_MATCHING_PROSPECTIVE",
+   "fixture": "the matching objective reads no field value at all",
+   "PASS": true,
+   "detail": "docstrings stripped, executable statements only; frozen_matching/_max_matching see only the boolean eligibility matrix and immutable ids; forbidden symbols found = []"
+  },
+  {
+   "gate": "O1_MATCHING_PROSPECTIVE",
+   "fixture": "matching is invariant under enumeration reversal",
+   "PASS": true,
+   "detail": "the lexicographically-smallest maximum matching is unique, so search order cannot matter"
+  },
+  {
+   "gate": "O3_DOMAIN_ADMISSIBLE",
+   "fixture": "adversarial: unequal rho, equal weights",
+   "PASS": true,
+   "detail": "rho_i=0.5 x_i=0.4 rho_j=0.9 x_j=-0.2 -> eligible=True"
+  },
+  {
+   "gate": "O3_DOMAIN_ADMISSIBLE",
+   "fixture": "adversarial: swap would break C1 on i",
+   "PASS": true,
+   "detail": "rho_i=0.3 x_i=0.1 rho_j=0.9 x_j=0.85 -> eligible=False"
+  },
+  {
+   "gate": "O3_DOMAIN_ADMISSIBLE",
+   "fixture": "adversarial: swap would break C1 on j",
+   "PASS": true,
+   "detail": "rho_i=0.9 x_i=0.85 rho_j=0.3 x_j=0.1 -> eligible=False"
+  },
+  {
+   "gate": "O3_DOMAIN_ADMISSIBLE",
+   "fixture": "adversarial: signed zero source",
+   "PASS": true,
+   "detail": "rho_i=0.5 x_i=-0.0 rho_j=0.7 x_j=0.3 -> eligible=True"
+  },
+  {
+   "gate": "O3_DOMAIN_ADMISSIBLE",
+   "fixture": "adversarial: subnormal carrier value",
+   "PASS": true,
+   "detail": "rho_i=0.5 x_i=5e-324 rho_j=0.7 x_j=0.3 -> eligible=True"
+  },
+  {
+   "gate": "O3_DOMAIN_ADMISSIBLE",
+   "fixture": "adversarial: bound value |x| == rho on both",
+   "PASS": true,
+   "detail": "rho_i=0.5 x_i=0.5 rho_j=0.5 x_j=-0.5 -> eligible=True"
+  },
+  {
+   "gate": "O3_DOMAIN_ADMISSIBLE",
+   "fixture": "adversarial: bound value that just fits after swap",
+   "PASS": true,
+   "detail": "rho_i=0.6 x_i=0.4 rho_j=0.4 x_j=-0.4 -> eligible=True"
+  },
+  {
+   "gate": "O3_DOMAIN_ADMISSIBLE",
+   "fixture": "adversarial: bound value that just fails after swap",
+   "PASS": true,
+   "detail": "rho_i=0.6 x_i=0.55 rho_j=0.5 x_j=-0.5 -> eligible=False"
+  },
+  {
+   "gate": "O7_EXACT_GLOBAL_CONTENT",
+   "fixture": "adversarial: signed zero and subnormal preserve the exact sum",
+   "PASS": true,
+   "detail": ""
+  }
+ ],
+ "engine_starts": {
+  "n": 0,
+  "log": []
+ },
+ "A1": {
+  "w_i": 1.0,
+  "content": "Q = exact_sum_i Mf[0]_i",
+  "z": "Mf[0]/max(rho,EPS)",
+  "domain": [
+   "C1 |Mf0_i| <= rho_i",
+   "C2 Mf0_i == 0.0 exactly where rho_i <= 1e-4",
+   "C3 Mf[1] independent",
+   "C4 no occupancy variable"
+  ]
+ },
+ "MANIFESTS": {
+  "61000": {
+   "max_cardinality": 21,
+   "n_pairs": 21,
+   "eligible_edge_fraction": 0.5895691609977324,
+   "pairs_by_immutable_id": [
+    [
+     1935,
+     1967
+    ],
+    [
+     1936,
+     1968
+    ],
+    [
+     1937,
+     1969
+    ],
+    [
+     1998,
+     2030
+    ],
+    [
+     1999,
+     2031
+    ],
+    [
+     2000,
+     2032
+    ],
+    [
+     2001,
+     2033
+    ],
+    [
+     2002,
+     2034
+    ],
+    [
+     2062,
+     2094
+    ],
+    [
+     2063,
+     2095
+    ],
+    [
+     2064,
+     2096
+    ],
+    [
+     2065,
+     2097
+    ],
+    [
+     2066,
+     2098
+    ],
+    [
+     2126,
+     2158
+    ],
+    [
+     2127,
+     2159
+    ],
+    [
+     2128,
+     2160
+    ],
+    [
+     2129,
+     2161
+    ],
+    [
+     2130,
+     2162
+    ],
+    [
+     2191,
+     2223
+    ],
+    [
+     2192,
+     2224
+    ],
+    [
+     2193,
+     2225
+    ]
+   ],
+   "sites_A": [
+    [
+     30,
+     15
+    ],
+    [
+     30,
+     16
+    ],
+    [
+     30,
+     17
+    ],
+    [
+     31,
+     14
+    ],
+    [
+     31,
+     15
+    ],
+    [
+     31,
+     16
+    ],
+    [
+     31,
+     17
+    ],
+    [
+     31,
+     18
+    ],
+    [
+     32,
+     14
+    ],
+    [
+     32,
+     15
+    ],
+    [
+     32,
+     16
+    ],
+    [
+     32,
+     17
+    ],
+    [
+     32,
+     18
+    ],
+    [
+     33,
+     14
+    ],
+    [
+     33,
+     15
+    ],
+    [
+     33,
+     16
+    ],
+    [
+     33,
+     17
+    ],
+    [
+     33,
+     18
+    ],
+    [
+     34,
+     15
+    ],
+    [
+     34,
+     16
+    ],
+    [
+     34,
+     17
+    ]
+   ],
+   "sites_B": [
+    [
+     30,
+     47
+    ],
+    [
+     30,
+     48
+    ],
+    [
+     30,
+     49
+    ],
+    [
+     31,
+     46
+    ],
+    [
+     31,
+     47
+    ],
+    [
+     31,
+     48
+    ],
+    [
+     31,
+     49
+    ],
+    [
+     31,
+     50
+    ],
+    [
+     32,
+     46
+    ],
+    [
+     32,
+     47
+    ],
+    [
+     32,
+     48
+    ],
+    [
+     32,
+     49
+    ],
+    [
+     32,
+     50
+    ],
+    [
+     33,
+     46
+    ],
+    [
+     33,
+     47
+    ],
+    [
+     33,
+     48
+    ],
+    [
+     33,
+     49
+    ],
+    [
+     33,
+     50
+    ],
+    [
+     34,
+     47
+    ],
+    [
+     34,
+     48
+    ],
+    [
+     34,
+     49
+    ]
+   ],
+   "n_sites_A": 21,
+   "n_sites_B": 21,
+   "hash": "c1dc8ba2492e5454854f2b6b785aaa56b5576a8f3be236b8f68e944b9bea3599",
+   "n_unequal_rho_pairs": 21,
+   "delta_Q_A": 14.400968928959461,
+   "delta_Q_B": -14.400968928959461,
+   "net_reciprocal_component_shift": 14.400968928959461,
+   "gross_canonical_displacement": 14.400968928959461,
+   "paired_site_count": 21,
+   "paired_storage_weight_fraction": 1.0
+  },
+  "61001": {
+   "max_cardinality": 21,
+   "n_pairs": 21,
+   "eligible_edge_fraction": 0.6122448979591837,
+   "pairs_by_immutable_id": [
+    [
+     1935,
+     1967
+    ],
+    [
+     1936,
+     1968
+    ],
+    [
+     1937,
+     1969
+    ],
+    [
+     1998,
+     2030
+    ],
+    [
+     1999,
+     2031
+    ],
+    [
+     2000,
+     2032
+    ],
+    [
+     2001,
+     2033
+    ],
+    [
+     2002,
+     2034
+    ],
+    [
+     2062,
+     2094
+    ],
+    [
+     2063,
+     2095
+    ],
+    [
+     2064,
+     2096
+    ],
+    [
+     2065,
+     2097
+    ],
+    [
+     2066,
+     2098
+    ],
+    [
+     2126,
+     2158
+    ],
+    [
+     2127,
+     2159
+    ],
+    [
+     2128,
+     2160
+    ],
+    [
+     2129,
+     2161
+    ],
+    [
+     2130,
+     2162
+    ],
+    [
+     2191,
+     2223
+    ],
+    [
+     2192,
+     2224
+    ],
+    [
+     2193,
+     2225
+    ]
+   ],
+   "sites_A": [
+    [
+     30,
+     15
+    ],
+    [
+     30,
+     16
+    ],
+    [
+     30,
+     17
+    ],
+    [
+     31,
+     14
+    ],
+    [
+     31,
+     15
+    ],
+    [
+     31,
+     16
+    ],
+    [
+     31,
+     17
+    ],
+    [
+     31,
+     18
+    ],
+    [
+     32,
+     14
+    ],
+    [
+     32,
+     15
+    ],
+    [
+     32,
+     16
+    ],
+    [
+     32,
+     17
+    ],
+    [
+     32,
+     18
+    ],
+    [
+     33,
+     14
+    ],
+    [
+     33,
+     15
+    ],
+    [
+     33,
+     16
+    ],
+    [
+     33,
+     17
+    ],
+    [
+     33,
+     18
+    ],
+    [
+     34,
+     15
+    ],
+    [
+     34,
+     16
+    ],
+    [
+     34,
+     17
+    ]
+   ],
+   "sites_B": [
+    [
+     30,
+     47
+    ],
+    [
+     30,
+     48
+    ],
+    [
+     30,
+     49
+    ],
+    [
+     31,
+     46
+    ],
+    [
+     31,
+     47
+    ],
+    [
+     31,
+     48
+    ],
+    [
+     31,
+     49
+    ],
+    [
+     31,
+     50
+    ],
+    [
+     32,
+     46
+    ],
+    [
+     32,
+     47
+    ],
+    [
+     32,
+     48
+    ],
+    [
+     32,
+     49
+    ],
+    [
+     32,
+     50
+    ],
+    [
+     33,
+     46
+    ],
+    [
+     33,
+     47
+    ],
+    [
+     33,
+     48
+    ],
+    [
+     33,
+     49
+    ],
+    [
+     33,
+     50
+    ],
+    [
+     34,
+     47
+    ],
+    [
+     34,
+     48
+    ],
+    [
+     34,
+     49
+    ]
+   ],
+   "n_sites_A": 21,
+   "n_sites_B": 21,
+   "hash": "4439660778f93a74611ce9f2dd8ff2c44cff9ae86138bfb4b087c7ddc14dab70",
+   "n_unequal_rho_pairs": 21,
+   "delta_Q_A": -14.448081927831904,
+   "delta_Q_B": 14.448081927831904,
+   "net_reciprocal_component_shift": 14.448081927831904,
+   "gross_canonical_displacement": 14.448081927831904,
+   "paired_site_count": 21,
+   "paired_storage_weight_fraction": 1.0
+  },
+  "61002": {
+   "max_cardinality": 21,
+   "n_pairs": 21,
+   "eligible_edge_fraction": 0.6009070294784581,
+   "pairs_by_immutable_id": [
+    [
+     1935,
+     1967
+    ],
+    [
+     1936,
+     1968
+    ],
+    [
+     1937,
+     1969
+    ],
+    [
+     1998,
+     2030
+    ],
+    [
+     1999,
+     2031
+    ],
+    [
+     2000,
+     2032
+    ],
+    [
+     2001,
+     2033
+    ],
+    [
+     2002,
+     2034
+    ],
+    [
+     2062,
+     2094
+    ],
+    [
+     2063,
+     2095
+    ],
+    [
+     2064,
+     2096
+    ],
+    [
+     2065,
+     2097
+    ],
+    [
+     2066,
+     2098
+    ],
+    [
+     2126,
+     2158
+    ],
+    [
+     2127,
+     2159
+    ],
+    [
+     2128,
+     2160
+    ],
+    [
+     2129,
+     2161
+    ],
+    [
+     2130,
+     2162
+    ],
+    [
+     2191,
+     2223
+    ],
+    [
+     2192,
+     2224
+    ],
+    [
+     2193,
+     2225
+    ]
+   ],
+   "sites_A": [
+    [
+     30,
+     15
+    ],
+    [
+     30,
+     16
+    ],
+    [
+     30,
+     17
+    ],
+    [
+     31,
+     14
+    ],
+    [
+     31,
+     15
+    ],
+    [
+     31,
+     16
+    ],
+    [
+     31,
+     17
+    ],
+    [
+     31,
+     18
+    ],
+    [
+     32,
+     14
+    ],
+    [
+     32,
+     15
+    ],
+    [
+     32,
+     16
+    ],
+    [
+     32,
+     17
+    ],
+    [
+     32,
+     18
+    ],
+    [
+     33,
+     14
+    ],
+    [
+     33,
+     15
+    ],
+    [
+     33,
+     16
+    ],
+    [
+     33,
+     17
+    ],
+    [
+     33,
+     18
+    ],
+    [
+     34,
+     15
+    ],
+    [
+     34,
+     16
+    ],
+    [
+     34,
+     17
+    ]
+   ],
+   "sites_B": [
+    [
+     30,
+     47
+    ],
+    [
+     30,
+     48
+    ],
+    [
+     30,
+     49
+    ],
+    [
+     31,
+     46
+    ],
+    [
+     31,
+     47
+    ],
+    [
+     31,
+     48
+    ],
+    [
+     31,
+     49
+    ],
+    [
+     31,
+     50
+    ],
+    [
+     32,
+     46
+    ],
+    [
+     32,
+     47
+    ],
+    [
+     32,
+     48
+    ],
+    [
+     32,
+     49
+    ],
+    [
+     32,
+     50
+    ],
+    [
+     33,
+     46
+    ],
+    [
+     33,
+     47
+    ],
+    [
+     33,
+     48
+    ],
+    [
+     33,
+     49
+    ],
+    [
+     33,
+     50
+    ],
+    [
+     34,
+     47
+    ],
+    [
+     34,
+     48
+    ],
+    [
+     34,
+     49
+    ]
+   ],
+   "n_sites_A": 21,
+   "n_sites_B": 21,
+   "hash": "d08123d6f6030c6e6eda67f96fab81f4224a8f5c07f0e33bcb56c9093cb8d45d",
+   "n_unequal_rho_pairs": 21,
+   "delta_Q_A": 14.498907623338054,
+   "delta_Q_B": -14.498907623338054,
+   "net_reciprocal_component_shift": 14.498907623338054,
+   "gross_canonical_displacement": 14.498907623338054,
+   "paired_site_count": 21,
+   "paired_storage_weight_fraction": 1.0
+  },
+  "61003": {
+   "max_cardinality": 21,
+   "n_pairs": 21,
+   "eligible_edge_fraction": 0.5759637188208617,
+   "pairs_by_immutable_id": [
+    [
+     1935,
+     1967
+    ],
+    [
+     1936,
+     1968
+    ],
+    [
+     1937,
+     1969
+    ],
+    [
+     1998,
+     2030
+    ],
+    [
+     1999,
+     2031
+    ],
+    [
+     2000,
+     2032
+    ],
+    [
+     2001,
+     2033
+    ],
+    [
+     2002,
+     2034
+    ],
+    [
+     2062,
+     2094
+    ],
+    [
+     2063,
+     2095
+    ],
+    [
+     2064,
+     2096
+    ],
+    [
+     2065,
+     2097
+    ],
+    [
+     2066,
+     2098
+    ],
+    [
+     2126,
+     2158
+    ],
+    [
+     2127,
+     2159
+    ],
+    [
+     2128,
+     2160
+    ],
+    [
+     2129,
+     2161
+    ],
+    [
+     2130,
+     2162
+    ],
+    [
+     2191,
+     2223
+    ],
+    [
+     2192,
+     2224
+    ],
+    [
+     2193,
+     2225
+    ]
+   ],
+   "sites_A": [
+    [
+     30,
+     15
+    ],
+    [
+     30,
+     16
+    ],
+    [
+     30,
+     17
+    ],
+    [
+     31,
+     14
+    ],
+    [
+     31,
+     15
+    ],
+    [
+     31,
+     16
+    ],
+    [
+     31,
+     17
+    ],
+    [
+     31,
+     18
+    ],
+    [
+     32,
+     14
+    ],
+    [
+     32,
+     15
+    ],
+    [
+     32,
+     16
+    ],
+    [
+     32,
+     17
+    ],
+    [
+     32,
+     18
+    ],
+    [
+     33,
+     14
+    ],
+    [
+     33,
+     15
+    ],
+    [
+     33,
+     16
+    ],
+    [
+     33,
+     17
+    ],
+    [
+     33,
+     18
+    ],
+    [
+     34,
+     15
+    ],
+    [
+     34,
+     16
+    ],
+    [
+     34,
+     17
+    ]
+   ],
+   "sites_B": [
+    [
+     30,
+     47
+    ],
+    [
+     30,
+     48
+    ],
+    [
+     30,
+     49
+    ],
+    [
+     31,
+     46
+    ],
+    [
+     31,
+     47
+    ],
+    [
+     31,
+     48
+    ],
+    [
+     31,
+     49
+    ],
+    [
+     31,
+     50
+    ],
+    [
+     32,
+     46
+    ],
+    [
+     32,
+     47
+    ],
+    [
+     32,
+     48
+    ],
+    [
+     32,
+     49
+    ],
+    [
+     32,
+     50
+    ],
+    [
+     33,
+     46
+    ],
+    [
+     33,
+     47
+    ],
+    [
+     33,
+     48
+    ],
+    [
+     33,
+     49
+    ],
+    [
+     33,
+     50
+    ],
+    [
+     34,
+     47
+    ],
+    [
+     34,
+     48
+    ],
+    [
+     34,
+     49
+    ]
+   ],
+   "n_sites_A": 21,
+   "n_sites_B": 21,
+   "hash": "26bfef59f8fb506c0ee499e63900dc0a52783de9effa3a81dcd25399516f4b93",
+   "n_unequal_rho_pairs": 21,
+   "delta_Q_A": -14.341734440941666,
+   "delta_Q_B": 14.341734440941666,
+   "net_reciprocal_component_shift": 14.341734440941666,
+   "gross_canonical_displacement": 14.341734440941664,
+   "paired_site_count": 21,
+   "paired_storage_weight_fraction": 1.0
+  }
+ },
+ "ADVERSARIAL": [
+  {
+   "case": "unequal rho, equal weights",
+   "expected_eligible": true,
+   "got": true
+  },
+  {
+   "case": "swap would break C1 on i",
+   "expected_eligible": false,
+   "got": false
+  },
+  {
+   "case": "swap would break C1 on j",
+   "expected_eligible": false,
+   "got": false
+  },
+  {
+   "case": "signed zero source",
+   "expected_eligible": true,
+   "got": true
+  },
+  {
+   "case": "subnormal carrier value",
+   "expected_eligible": true,
+   "got": true
+  },
+  {
+   "case": "bound value |x| == rho on both",
+   "expected_eligible": true,
+   "got": true
+  },
+  {
+   "case": "bound value that just fits after swap",
+   "expected_eligible": true,
+   "got": true
+  },
+  {
+   "case": "bound value that just fails after swap",
+   "expected_eligible": false,
+   "got": false
+  }
+ ]
+}

@@ -1,0 +1,140 @@
+{
+ "rows": [
+  {
+   "gate": "F4_OBSERVER_PASSIVE_BIT_EXACT",
+   "fixture": "tap on == tap off, complete state [seed 61000]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "F5_LEDGER_EQUALS_NATIVE_RETURN",
+   "fixture": "the ledger reproduces the array the kernel ACTUALLY returned [seed 61000]",
+   "PASS": true,
+   "detail": "compared against the captured return value, not against a second evaluation. negative control (one ulp on one face) is rejected: True"
+  },
+  {
+   "gate": "F5_STATE_BUFFER_REPRODUCED",
+   "fixture": "c after the window is rebuilt from the ledger alone, bit for bit [seed 61000]",
+   "PASS": true,
+   "detail": "c_out = c_in + dt*(D_c*div(ledger) + s*rho_in - delta*c_in), compared with the engine's own c. Nothing here is a second evaluation of the same expression."
+  },
+  {
+   "gate": "F6_PAIRWISE_DEBIT_CREDIT",
+   "fixture": "changing ONE face moves exactly two cells, by equal and opposite amounts [seed 61000]",
+   "PASS": true,
+   "detail": "cells changed = 2, sum of changes = 0.0, partners are the face's own two endpoints = True. This is a statement about the kernel's stencil, not about np.roll."
+  },
+  {
+   "gate": "F2_MASK_CROSS_CHECK_VIA_KAPPA",
+   "fixture": "the recorded alive mask agrees with the kernel's own kappa field [seed 61000]",
+   "PASS": true,
+   "detail": "kappa == 1.0 exactly at every non-alive cell (z = newm*alive = 0 there): True; kappa varies inside: True; c and N received the SAME kappa array: True; a mask corrupted at one cell is rejected: True"
+  },
+  {
+   "gate": "F4_OBSERVER_PASSIVE_BIT_EXACT",
+   "fixture": "tap on == tap off, complete state [seed 61001]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "F5_LEDGER_EQUALS_NATIVE_RETURN",
+   "fixture": "the ledger reproduces the array the kernel ACTUALLY returned [seed 61001]",
+   "PASS": true,
+   "detail": "compared against the captured return value, not against a second evaluation. negative control (one ulp on one face) is rejected: True"
+  },
+  {
+   "gate": "F5_STATE_BUFFER_REPRODUCED",
+   "fixture": "c after the window is rebuilt from the ledger alone, bit for bit [seed 61001]",
+   "PASS": true,
+   "detail": "c_out = c_in + dt*(D_c*div(ledger) + s*rho_in - delta*c_in), compared with the engine's own c. Nothing here is a second evaluation of the same expression."
+  },
+  {
+   "gate": "F6_PAIRWISE_DEBIT_CREDIT",
+   "fixture": "changing ONE face moves exactly two cells, by equal and opposite amounts [seed 61001]",
+   "PASS": true,
+   "detail": "cells changed = 2, sum of changes = 0.0, partners are the face's own two endpoints = True. This is a statement about the kernel's stencil, not about np.roll."
+  },
+  {
+   "gate": "F2_MASK_CROSS_CHECK_VIA_KAPPA",
+   "fixture": "the recorded alive mask agrees with the kernel's own kappa field [seed 61001]",
+   "PASS": true,
+   "detail": "kappa == 1.0 exactly at every non-alive cell (z = newm*alive = 0 there): True; kappa varies inside: True; c and N received the SAME kappa array: True; a mask corrupted at one cell is rejected: True"
+  },
+  {
+   "gate": "O0_CANONICAL_SEMANTICS",
+   "fixture": "w == 1 is load-bearing and is verified by consequence, not by a substring search",
+   "PASS": true,
+   "detail": "with the true uniform weights the exact rational content is preserved; with a deliberately non-uniform weight field the SAME permutation breaks it. The claim is therefore tested, not asserted from the absence of the token 'dx' in one file."
+  },
+  {
+   "gate": "O1_MATCHING_PROSPECTIVE",
+   "fixture": "the eligibility object handed to the matcher is boolean",
+   "PASS": true,
+   "detail": "dtype = bool; a float matrix could smuggle a value"
+  },
+  {
+   "gate": "O1_MATCHING_PROSPECTIVE",
+   "fixture": "given the eligibility matrix, the matching is value-blind",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "O7_EXACT_GLOBAL_CONTENT",
+   "fixture": "Q is preserved by the OPERATOR but not by the DYNAMICS",
+   "PASS": true,
+   "detail": "Q(t0) = 0.184192 -> Q(t0+1) = 0.152807; stated so that 'conservative' is not misread"
+  }
+ ],
+ "engine_starts": {
+  "n": 5,
+  "log": [
+   "DEV2_TAP_61000",
+   "DEV2_PLAIN_61000",
+   "DEV2_TAP_61001",
+   "DEV2_PLAIN_61001",
+   "DEV2_Q_DRIFT"
+  ]
+ },
+ "SUPERSEDED_VACUOUS_ORACLES": [
+  {
+   "gate": "F5 (first pass)",
+   "why_vacuous": "it compared `recon` with `direct`, which were the same expression evaluated twice on the same input. Reviewer 1 showed it passes on random noise. It said nothing about the engine.",
+   "replaced_by": "F5_LEDGER_EQUALS_NATIVE_RETURN + F5_STATE_BUFFER_REPRODUCED"
+  },
+  {
+   "gate": "F6 (first pass)",
+   "why_vacuous": "exact_sum(f) - exact_sum(roll(f,1,ax)) is identically zero for EVERY finite array, because roll is a permutation and Fraction addition is commutative. It was a property of np.roll, not a conservation result.",
+   "replaced_by": "F6_PAIRWISE_DEBIT_CREDIT (single-face perturbation)"
+  },
+  {
+   "gate": "F2 (first pass)",
+   "why_vacuous": "it compared (out.rho > eps) against (tapped.rho > eps) where `tapped` IS `out`. It could not fail.",
+   "replaced_by": "F2_MASK_CROSS_CHECK_VIA_KAPPA"
+  }
+ ],
+ "PER_BLOCK": {
+  "61000": {
+   "faces_recorded": 4,
+   "alive_cells": 1663,
+   "kappa_min": 0.8374313414352087,
+   "kappa_max": 1.1859335177030066
+  },
+  "61001": {
+   "faces_recorded": 4,
+   "alive_cells": 1664,
+   "kappa_min": 0.8373714471509729,
+   "kappa_max": 1.1867258671343768
+  }
+ },
+ "O1_SCOPE_CORRECTION": {
+  "claim_as_first_written": "the matching reads no field value",
+  "correction": "the MATCHING OBJECTIVE reads no field value; the ELIGIBILITY PREDICATE does read baseline rho and Mf[0], because a post-swap domain check cannot be performed otherwise. The handoff authorises exactly this: 'the domain check may read the baseline canonical values required to determine whether the proposed post-state is legal'.",
+  "reviewer_counterexample": "Reviewer 1 changed ONE baseline Mf[0] value at one A-site, leaving rho, ids, membership and geometry untouched, and the chosen pairs changed at the same cardinality 21. The manifest IS a function of the baseline carrier values. Published.",
+  "consequence": "the estimand is explicitly conditional on one neutral maximum-support immutable-id policy applied to a state-dependent eligibility set. It is not 'the same intervention' across blocks, and must not be described as such."
+ },
+ "Q_IS_NOT_A_DYNAMICAL_INVARIANT": {
+  "Q_at_t0": 0.18419152162414512,
+  "Q_after_one_native_step": 0.15280688683845722,
+  "note": "the operator preserves Q AT t0. Q itself is not conserved by the dynamics: the death factor keep = 1 - dt*k and the writer's rebuild Mf = rho*newm both change it. 'Conservative operator' must never be read as 'conserved quantity'."
+ }
+}

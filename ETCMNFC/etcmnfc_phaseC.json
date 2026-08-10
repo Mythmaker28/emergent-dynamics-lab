@@ -1,0 +1,239 @@
+{
+ "rows": [
+  {
+   "gate": "F0_NATIVE_PATH_ENUMERATED",
+   "fixture": "exactly two native c/N exchange calls per step",
+   "PASS": true,
+   "detail": "one _face_transport(c, kap) and one _face_transport(N, kap); therefore the shortest scheduler window containing exactly one complete c-and-N exchange, and no second exchange for either species, is EXACTLY ONE STEP: W = [t0, t0+1)"
+  },
+  {
+   "gate": "F7_ONE_CYCLE_WINDOW_FROZEN",
+   "fixture": "the frozen window is one native step",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "F3_SIGN_UNITS_WEIGHTS_DT_FROZEN",
+   "fixture": "no limiter or clamp acts on the transport terms",
+   "PASS": true,
+   "detail": "the only clip in the step, np.clip(g, 0, max(N,0)), acts on the GROWTH uptake earlier in the step, never on the transport increment. q_applied = dt * D_X * fl_e is therefore the accepted transfer with no post-limiter modification"
+  },
+  {
+   "gate": "C3_STRUCTURAL_REACHABILITY",
+   "fixture": "c is DIRECT_KAPPA_DEPENDENCE",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "C3_STRUCTURAL_REACHABILITY",
+   "fixture": "N is DIRECT_KAPPA_DEPENDENCE, not order-mediated",
+   "PASS": true,
+   "detail": "the N update reads only N and the SAME kap array; it never reads the already-updated c, so there is no within-cycle cross-species order mediation"
+  },
+  {
+   "gate": "F4_OBSERVER_PASSIVE_BIT_EXACT",
+   "fixture": "tap ON and tap OFF give the identical state [seed 61000]",
+   "PASS": true,
+   "detail": "every canonical field bit for bit after the frozen window"
+  },
+  {
+   "gate": "F5_NATIVE_BUFFER_RECONSTRUCTION_BIT_EXACT",
+   "fixture": "the face ledger reconstructs its own divergence bit for bit [seed 61000]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "F6_DEBIT_CREDIT_CONSERVATION",
+   "fixture": "every face transfer is an exact pairwise debit/credit [seed 61000]",
+   "PASS": true,
+   "detail": "the exact rational sum of the reconstructed divergence is identically zero for both species: what one cell gains, its face partner loses, with no residual"
+  },
+  {
+   "gate": "F2_NATIVE_BOUNDARY_EXACT",
+   "fixture": "the alive mask read from the returned state IS the kernel's exchange-time mask [seed 61000]",
+   "PASS": true,
+   "detail": "rho is not modified after the writer, so the returned rho is exactly the rho the kernel used to build z and therefore alive"
+  },
+  {
+   "gate": "F4_OBSERVER_PASSIVE_BIT_EXACT",
+   "fixture": "tap ON and tap OFF give the identical state [seed 61001]",
+   "PASS": true,
+   "detail": "every canonical field bit for bit after the frozen window"
+  },
+  {
+   "gate": "F5_NATIVE_BUFFER_RECONSTRUCTION_BIT_EXACT",
+   "fixture": "the face ledger reconstructs its own divergence bit for bit [seed 61001]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "F6_DEBIT_CREDIT_CONSERVATION",
+   "fixture": "every face transfer is an exact pairwise debit/credit [seed 61001]",
+   "PASS": true,
+   "detail": "the exact rational sum of the reconstructed divergence is identically zero for both species: what one cell gains, its face partner loses, with no residual"
+  },
+  {
+   "gate": "F2_NATIVE_BOUNDARY_EXACT",
+   "fixture": "the alive mask read from the returned state IS the kernel's exchange-time mask [seed 61001]",
+   "PASS": true,
+   "detail": "rho is not modified after the writer, so the returned rho is exactly the rho the kernel used to build z and therefore alive"
+  },
+  {
+   "gate": "F10_ON_SUPPORT_AND_ATTRIBUTION_IDENTITY",
+   "fixture": "every native material-bath event maps to exactly one frozen component",
+   "PASS": false,
+   "detail": "measured: seed 61000: 0/172 links attributable; seed 61001: 0/172 links attributable; seed 61002: 0/172 links attributable; seed 61003: 0/172 links attributable"
+  },
+  {
+   "gate": "T5_OFF_STRUCTURAL_EXCLUSION",
+   "fixture": "at native gain zero the transport ignores kappa entirely",
+   "PASS": true,
+   "detail": "_face_transport returns lap(X) without reading kap; the branch tests the PARAMETER self.par.gain, never a state value, so control flow cannot depend on Mf[0] either"
+  },
+  {
+   "gate": "T5_OFF_STRUCTURAL_EXCLUSION",
+   "fixture": "OFF_SWAP and OFF_SHAM public projections are bit-identical after the window [seed 61000]",
+   "PASS": true,
+   "detail": "per field: {'rho': True, 'U': True, 'V': True, 'c': True, 'N': True, 'C': True, 'uptake': True, 'Mf[1]': True}"
+  },
+  {
+   "gate": "T5_OFF_STRUCTURAL_EXCLUSION",
+   "fixture": "the test is not vacuous: Mf[0] really differed [seed 61000]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "T5_OFF_STRUCTURAL_EXCLUSION",
+   "fixture": "OFF_SWAP and OFF_SHAM public projections are bit-identical after the window [seed 61001]",
+   "PASS": true,
+   "detail": "per field: {'rho': True, 'U': True, 'V': True, 'c': True, 'N': True, 'C': True, 'uptake': True, 'Mf[1]': True}"
+  },
+  {
+   "gate": "T5_OFF_STRUCTURAL_EXCLUSION",
+   "fixture": "the test is not vacuous: Mf[0] really differed [seed 61001]",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "T2_EXACT_TWIN_INFRASTRUCTURE",
+   "fixture": "executing the OFF pair in the reverse order gives the identical public projection",
+   "PASS": true,
+   "detail": "branch execution order is not readable by the engine and does not affect any output"
+  },
+  {
+   "gate": "T2_EXACT_TWIN_INFRASTRUCTURE",
+   "fixture": "save/reload/resume reproduces the window bit for bit",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "gate": "T2_EXACT_TWIN_INFRASTRUCTURE",
+   "fixture": "fork by independent reload is bit-identical to the source",
+   "PASS": true,
+   "detail": ""
+  }
+ ],
+ "engine_starts": {
+  "n": 12,
+  "log": [
+   "DEV_TAP_OFF_61000",
+   "DEV_TAP_ON_61000",
+   "DEV_TAP_OFF_61001",
+   "DEV_TAP_ON_61001",
+   "DEV_OFF_SHAM_61000",
+   "DEV_OFF_SWAP_61000",
+   "DEV_OFF_SHAM_61001",
+   "DEV_OFF_SWAP_61001",
+   "DEV_OFF_REVERSED_61000_swap_first",
+   "DEV_OFF_REVERSED_61000_sham_second",
+   "DEV_ON_RESUME_61000",
+   "DEV_ON_RESUME_RELOAD_61000"
+  ]
+ },
+ "C3": {
+  "c": "DIRECT_KAPPA_DEPENDENCE",
+  "N": "DIRECT_KAPPA_DEPENDENCE",
+  "window": "one native step",
+  "co_primary": true
+ },
+ "ON_LEDGER": {
+  "61000": {
+   "n_faces_recorded": 4,
+   "alive_cells": 1663
+  },
+  "61001": {
+   "n_faces_recorded": 4,
+   "alive_cells": 1664
+  }
+ },
+ "ATTRIBUTION": [
+  {
+   "seed": 61000,
+   "native_material_bath_links": 172,
+   "links_with_material_endpoint_in_A_or_B": 0,
+   "component_cells_adjacent_to_bath": 0,
+   "rho_at_material_endpoints_median": 0.00013189354412718838,
+   "rho_min_inside_A_or_B": 0.3120530141707633,
+   "alive_cells": 1662
+  },
+  {
+   "seed": 61001,
+   "native_material_bath_links": 172,
+   "links_with_material_endpoint_in_A_or_B": 0,
+   "component_cells_adjacent_to_bath": 0,
+   "rho_at_material_endpoints_median": 0.00013023665521017162,
+   "rho_min_inside_A_or_B": 0.30049965699134606,
+   "alive_cells": 1663
+  },
+  {
+   "seed": 61002,
+   "native_material_bath_links": 172,
+   "links_with_material_endpoint_in_A_or_B": 0,
+   "component_cells_adjacent_to_bath": 0,
+   "rho_at_material_endpoints_median": 0.0001314502880411799,
+   "rho_min_inside_A_or_B": 0.3242302713774074,
+   "alive_cells": 1660
+  },
+  {
+   "seed": 61003,
+   "native_material_bath_links": 172,
+   "links_with_material_endpoint_in_A_or_B": 0,
+   "component_cells_adjacent_to_bath": 0,
+   "rho_at_material_endpoints_median": 0.00013339809509597307,
+   "rho_min_inside_A_or_B": 0.3214678661018613,
+   "alive_cells": 1664
+  }
+ ],
+ "OFF_EXCLUSION": [
+  {
+   "seed": 61000,
+   "public_identical": true,
+   "per_field": {
+    "rho": true,
+    "U": true,
+    "V": true,
+    "c": true,
+    "N": true,
+    "C": true,
+    "uptake": true,
+    "Mf[1]": true
+   },
+   "carrier_really_differed": true
+  },
+  {
+   "seed": 61001,
+   "public_identical": true,
+   "per_field": {
+    "rho": true,
+    "U": true,
+    "V": true,
+    "c": true,
+    "N": true,
+    "C": true,
+    "uptake": true,
+    "Mf[1]": true
+   },
+   "carrier_really_differed": true
+  }
+ ]
+}

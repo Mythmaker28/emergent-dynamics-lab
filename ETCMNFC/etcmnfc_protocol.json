@@ -1,0 +1,102 @@
+{
+  "programme": "EXACT_TWIN_CANONICAL_MF0_NATIVE_FLUX_CONFIRMATION_00",
+  "short_name": "ETCMNFC",
+  "branch": "confirm/exact-twin-canonical-mf0-native-flux-00",
+  "parent_commit_reported": "d86d24864e0f88c6483d11bcde601d1f13221a82",
+  "parent_commit_resolved": "d86d24864e0f88c6483d11bcde601d1f13221a82",
+  "parent_branch": "confirm/exact-twin-native-boundary-flux-00",
+  "parent_bundle_sha256": "d13b38d992798f9212195e73c970afa19c1fa90853e0b2c4d8eb0b0995ef5937",
+  "grandparent_commit": "de1524b22ff917dff1da6553f778a4f8019ac273",
+  "grandparent_bundle_sha256": "c752d185b3e79594ebbff91e1553113a377b4c986cba4ae44d94788239406ae6",
+  "ancestry_verified": "git merge-base --is-ancestor de1524b -> d86d248 OK; exactly one commit between",
+  "authorization": "THIS_HANDOFF_WHEN_SENT_BY_TOMMY",
+  "authorization_scope": "QUALIFICATION_PLUS_FIXED_PRIMARY_PLUS_CONDITIONAL_HELD_OUT",
+  "NEW_PHYSICS": false,
+  "NEW_LAWSPEC": false,
+  "NEW_HISTORY": false,
+  "MIRROR_FOUNDATION": "forbidden \u2014 not attempted",
+  "OFF_KERNEL_REWRITE": "forbidden \u2014 not attempted",
+  "TEST_LATERALITY": "TWO_SIDED_ONLY",
+  "C_AND_N": "CO_PRIMARY",
+  "A1_canonical_semantics": {
+    "carrier": "x_i = Mf[0]_i, an AMOUNT",
+    "intensive": "z_i = Mf[0]_i / max(rho_i, EPS)",
+    "w_i": 1.0,
+    "w_i_evidence": "tested BY CONSEQUENCE: a deliberately non-uniform weight field breaks exact conservation under the same permutation; not asserted from a substring search",
+    "content": "Q = exact_sum_i w_i * Mf[0]_i, accumulated as Fractions",
+    "Q_is_not_a_dynamical_invariant": "the operator preserves Q at t0 only; one native step takes Q from 0.184192 to 0.152807",
+    "joint_domain": [
+      "C1 |Mf0_i| <= rho_i",
+      "C2 Mf0_i == 0.0 exactly where rho_i <= 1e-4",
+      "C3 Mf[1] independent",
+      "C4 no occupancy variable"
+    ]
+  },
+  "B0_eligible_edge": "equal raw w bits AND complete post-swap joint domain admissible; rho_i == rho_j NOT required. The predicate may read baseline canonical values (authorised); the matching objective may not.",
+  "B1_matching": "maximum cardinality, then the unique maximum matching whose sorted list of (immutable_A_id, immutable_B_id) pairs is lexicographically smallest. No tolerance, no binning, no value-based cost.",
+  "B1_scope_correction": "the manifest IS a function of baseline carrier values through the eligibility predicate; a reviewer's counterexample is published. The estimand is conditional on one neutral maximum-support immutable-id policy.",
+  "B2_operator": "out-of-place raw-byte transposition of Mf[0] on the committed 2-cycles; disjointness enforced by a guard that raises",
+  "C0_window": "exactly ONE native step: the step contains exactly two _face_transport calls (c then N) and no limiter acts on the transport terms",
+  "C3_reachability": {
+    "c": "DIRECT_KAPPA_DEPENDENCE",
+    "N": "DIRECT_KAPPA_DEPENDENCE, not order-mediated"
+  },
+  "C2_off_gate": "structural path exclusion, NOT a flux endpoint; near-tautological at g=0 by construction; its real value is excluding implementation leakage",
+  "vacuous_oracle_incident": {
+    "gates": [
+      "F5 (first pass)",
+      "F6 (first pass)",
+      "F2 (first pass)"
+    ],
+    "found_by": "the two mandated independent reviews",
+    "handling": "first-pass results retained and declared superseded; replaced in etcmnfc_phaseC2.py by oracles each carrying a negative control"
+  },
+  "block_roles": {
+    "61000-61009 FAR": "DEVELOPMENT_ONLY forever",
+    "61000-61003 FAR": "this programme's qualification blocks",
+    "62000-62009 NEAR": "HELD_OUT_UNSEEN; identity commitment VERIFIED in the sealed code_sha256 of ETPC/etpc_protocol.json at commit 3f8dae8b",
+    "primary IDs": "NOT ALLOCATED - stopped upstream of the freeze"
+  },
+  "engine_starts": {
+    "offline_phase_B": 0,
+    "phase_C_first_pass": 12,
+    "phase_C_second_pass": 5,
+    "programme_total": 17,
+    "qualification_cap": 20,
+    "target_contrasts_reduced_to_an_endpoint": 0,
+    "primary": 0,
+    "held_out": 0,
+    "parent_ETNBFC_reported_separately": 8,
+    "independent_review_starts": "NOT INDIVIDUALLY COUNTED - declared accounting gap; development blocks only; verified an already-fired stop; selected nothing"
+  },
+  "terminal_stops_fired": [
+    "PRIMARY_ESTIMAND_NOT_IDENTIFIABLE"
+  ],
+  "final_classifications": {
+    "COUNTERFACTUAL_INFRASTRUCTURE": "VALID",
+    "CANONICAL_CARRIER_OPERATOR": "EXACT_CONSERVATIVE_BYTE_INVOLUTION",
+    "ON_NATIVE_FLUX_OBSERVER": "VALID_PASSIVE_EXACT",
+    "GAIN_ZERO_PUBLIC_PATH_EXCLUSION": "PASS_BIT_EXACT (frozen one-cycle window, development blocks)",
+    "PRIMARY_NATIVE_BOUNDARY_FLUX": "NOT_IDENTIFIABLE",
+    "REPLICATION": "NOT_REACHED",
+    "ETCMNFC_DISPOSITION": "NOT_IDENTIFIABLE"
+  },
+  "stop_evidence": {
+    "native_material_regions": 1,
+    "A_and_B_in_the_same_region": true,
+    "material_bath_links": 172,
+    "links_attributable_to_A_or_B": 0,
+    "component_cells_adjacent_to_bath": 0,
+    "burial_depth_lattice_cells": 13,
+    "density_ratio_component_min_over_boundary_median": "about 2000",
+    "generality_limit": "the four development blocks share IDENTICAL A and B cell sets, so the topology result is n=1 in geometry"
+  },
+  "no_repair_under_this_id": "no mirror world, OFF refactor, gain change, approximate endpoint, longer window, new operator, normalisation, subgroup, one-sided rescue or block replacement was attempted, and none may be.",
+  "code_sha256": {
+    "etcmnfc_core.py": "b9c878acd70ab6d9734eb70e9fadc71b2db70cc919f9132656ce0ddc20ec1d02",
+    "etcmnfc_gates.py": "ff6e59f610cc2e87e3716dc43d859824d2fe1d5933cceb98e65bed2a1d9d291e",
+    "etcmnfc_phaseC.py": "c5cabcbc57574d651a349a5504ce89a9307cadd76357a935e7dee61401364906",
+    "etcmnfc_phaseC2.py": "039a0967d79153636baa61f322924d56510df8025e0824164f828a64f023d662",
+    "etcmnfc_verify.py": "1c8d3ad24a6b5c934e48e0bc9cdc7e665d35fad0a7440dccc227dcb6363d1f25"
+  }
+}
