@@ -50,3 +50,20 @@ enumeration.
 Zero retries, zero replacements, zero omitted rows, zero top-ups. No historical active row was
 loaded or refitted. No threshold, panel member, arm, coefficient, bound, route or code was changed
 after any lock. No push, no PR, no workflow trigger. Tommy's checkout untouched.
+
+### N4 — SHA256SUMS initially over-claimed, caught by my own committed-tree verification
+
+The first `SHA256SUMS` listed all 244 workspace files, including the 48 full-field `.npz` archives
+and their meta files under `sham/` and `active/`. Only the compact archives were shipped, so
+verifying the manifest **from the committed tree** reported 97 failures. The check did exactly what
+it exists for.
+
+Repair, in a new append-only descendant commit: `SHA256SUMS` now covers exactly the committed set,
+and `UNCOMMITTED_FULL_FIELD_ARCHIVE_DIGESTS.json` records the sha256 and byte length of every
+full-field archive that stayed in the session workspace, so those files remain auditable even
+though the bridge could not carry them.
+
+Impact on the science: none. No decision in this programme reads a full-field archive; the decision
+path reads the compact archives, which are committed and were proved to reproduce the reader series
+string-for-string in exact rational form for all 48 continuations. This is a delivery-integrity
+repair, not a scientific one, and no disposition changes.
