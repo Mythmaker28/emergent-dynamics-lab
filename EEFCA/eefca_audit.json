@@ -1,0 +1,1424 @@
+{
+ "programme": "EXACT_ENDPOINT_FUNCTIONAL_CONGRUENCE_AUDIT_00",
+ "scope": "AUDIT_ONLY",
+ "NEW_ENGINE_STARTS": 0,
+ "NEW_TRAJECTORIES": 0,
+ "A_PROVENANCE": {
+  "PARENT_COMMIT": "3f8dae8bbe2937c43661ba8adfe8aed63bf6b6ee",
+  "PARENT_BUNDLE_SHA256": "846e3c2ba5c2adb01b5beed3c83f8b0a2007f7fe4a6b5c2d027ba1a100499a5b",
+  "PARENT_ARCHIVE_SHA256_RESOLVED": "1f9271f48dbad16be82ae83e18ef84aa4580db920a87d2411ea8a7e9cf456685",
+  "PARENT_PROTOCOL_SHA256_RESOLVED": "df26647833dbe5a5f45195ee3c72058420872367345ec5425892634b91f03071",
+  "AUTHORIZATION_HANDOFF_SHA256_AS_GIVEN": "3461bfe067b22b394c85a253e5208c3596e05b2630c538b2095f423332684266",
+  "AUTHORIZATION_HANDOFF_VERIFIABLE": false,
+  "why_not_verifiable": "the canonical byte stream of the handoff text is not an artefact in the repository, so its hash is RECORDED, not verified. Declared rather than asserted.",
+  "code_seal_intact": {
+   "etpc_core.py": true,
+   "etpc_gates.py": true,
+   "etpc_phaseA.py": true,
+   "etpc_run.py": true
+  }
+ },
+ "A_RAW_INVENTORY": {
+  "committed": [
+   "etpc_PRIMARY.pkl (10 blocks)",
+   "etpc_gates.json",
+   "etpc_analysis_PRIMARY.json",
+   "etpc_phaseA.json",
+   "etpc_verify.json",
+   "etpc_protocol.json + .sha256"
+  ],
+  "per_block_keys": [
+   "arms",
+   "checkpoint_logical_hash",
+   "geometry",
+   "ledger_after",
+   "ledger_before",
+   "lineage_valid",
+   "n_components",
+   "operator",
+   "orientation",
+   "seed",
+   "touchset"
+  ],
+  "per_arm_keys": [
+   "R",
+   "Y",
+   "gain",
+   "geom_end",
+   "public_hash_end",
+   "public_hash_t0",
+   "series",
+   "swap",
+   "z_t0"
+  ],
+  "series_fields": [
+   "N",
+   "c",
+   "t"
+  ],
+  "RAW_SPATIAL_FIELDS_RETAINED": false,
+  "why": "etpc_run.py wrote every checkpoint .npz into tempfile.mkdtemp(), which was never committed. The committed records hold halo-support MEANS of c and N, public hashes, the response vectors and geometry summaries -- no c, N, rho or Mf array.",
+  "consequence": "no body/boundary/shell spatial decomposition is possible. Phase F is AUDIT_DATA_INSUFFICIENT. No previously unopened raw spatial field is opened by this audit, because none exists.",
+  "held_out": "etpc_HELDOUT.pkl does not exist; the held-out geometry was never run and is not read here."
+ },
+ "A_DISCLOSURE_OF_KNOWN_OUTCOMES": [
+  "the four aggregate endpoint values, their CIs and p-values are already known and are quoted in the parent report; this audit is therefore fully RETROSPECTIVE with respect to them",
+  "the ETPC author and this auditor are the same agent; every finding below is adversarial against the agent's own prior work and is stated as such"
+ ],
+ "B1_ENGINE_START_LEDGER": {
+  "qualification": {
+   "R2 founder": 1,
+   "R3 uninterrupted + resume": 2,
+   "R5 twin pair + two forks": 4,
+   "R8 OFF pair": 2,
+   "R9 order pair + in-process ref + separate process": 4,
+   "R10 two founders + two replays": 4,
+   "subtotal": 17
+  },
+  "primary": {
+   "10 blocks x (1 founder + 4 arms)": 50,
+   "subtotal": 50
+  },
+  "reruns_crashes_abandoned": 0,
+  "total": 67,
+  "reconciles_with_reported": 67,
+  "cap": {
+   "qualification_cap": 24,
+   "planned_total": 124,
+   "absolute": 160
+  }
+ },
+ "C_OPERATOR_PER_BLOCK": [
+  {
+   "seed": 61000,
+   "M_A": 12.727875120322285,
+   "M_B": 13.7404784195621,
+   "zbar_A": -0.4890442775439389,
+   "zbar_B": 0.5950647558553172,
+   "a": 1.0,
+   "b": 0.9263050915462894,
+   "m_star": 12.727875120322285,
+   "a_hex": "0x1.0000000000000p+0",
+   "b_hex": "0x1.da44a9349e83cp-1",
+   "contrast_delta": -1.084109033399256,
+   "sum_rho_z_before": 0.1841915216241452,
+   "sum_rho_z_after": 0.1841915216241448,
+   "sum_rho_z_drift": -4.163336342344337e-16,
+   "sum_rho_z_before_hex": "0x1.7939678c9c048p-3",
+   "sum_rho_z_after_hex": "0x1.7939678c9c039p-3",
+   "sum_z_before": 285.5884548858618,
+   "sum_z_after": 287.26621452123595,
+   "raw_z_multiset_sha_before": "f7a28d12cb40ea1f36cffcb6a7827f3705bb473d153aa5c6eeb441cef5122c90",
+   "raw_z_multiset_sha_after": "f295b60324856ccdce9e6b207eaf741e07906fc2c96f62f655bf17c37b17e7b9",
+   "rho_z_cov_before": -0.0036679906501573545,
+   "rho_z_cov_after": -0.003690190625602777,
+   "z_hist_identical": false,
+   "boundary_z_exposure_before": 17.154742186923016,
+   "boundary_z_exposure_after": 17.154742186923016
+  },
+  {
+   "seed": 61001,
+   "M_A": 13.621459872123824,
+   "M_B": 12.819250442408396,
+   "zbar_A": 0.600250468945978,
+   "zbar_B": -0.4892481257026175,
+   "a": 0.9411069417487959,
+   "b": 1.0,
+   "m_star": 12.819250442408396,
+   "a_hex": "0x1.e1d8c4e1b3061p-1",
+   "b_hex": "0x1.0000000000000p+0",
+   "contrast_delta": 1.0894985946485956,
+   "sum_rho_z_before": 0.055043502673472244,
+   "sum_rho_z_after": 0.055043502673471564,
+   "sum_rho_z_drift": -6.800116025829084e-16,
+   "sum_rho_z_before_hex": "0x1.c2ea977ae0110p-5",
+   "sum_rho_z_after_hex": "0x1.c2ea977ae00aep-5",
+   "sum_z_before": 286.30709493509903,
+   "sum_z_after": 287.65453692328316,
+   "raw_z_multiset_sha_before": "15e4ebdadb99c545e230e68d3c35324a27454ac015e18cea1051640c74a335aa",
+   "raw_z_multiset_sha_after": "b76fbc2f3e1a7f106a71e3440367857708cc463e34bb6b5476d6969ba10150ca",
+   "rho_z_cov_before": -0.003769988216300074,
+   "rho_z_cov_after": -0.003787886711364454,
+   "z_hist_identical": false,
+   "boundary_z_exposure_before": 17.319004059372453,
+   "boundary_z_exposure_after": 17.319004059372453
+  },
+  {
+   "seed": 61002,
+   "M_A": 12.870381101803343,
+   "M_B": 13.810448123784864,
+   "zbar_A": -0.4894021274168296,
+   "zbar_B": 0.5937617416865418,
+   "a": 1.0,
+   "b": 0.9319307372537389,
+   "m_star": 12.870381101803343,
+   "a_hex": "0x1.0000000000000p+0",
+   "b_hex": "0x1.dd26068d48b14p-1",
+   "contrast_delta": -1.0831638691033714,
+   "sum_rho_z_before": 0.09298114999281015,
+   "sum_rho_z_after": 0.0929811499928092,
+   "sum_rho_z_drift": -9.575673587391975e-16,
+   "sum_rho_z_before_hex": "0x1.7cd9cd65d1440p-4",
+   "sum_rho_z_after_hex": "0x1.7cd9cd65d13fbp-4",
+   "sum_z_before": 285.8987720497995,
+   "sum_z_after": 287.4471055358679,
+   "raw_z_multiset_sha_before": "348d1d0dfa532226cd9a0d3ce3175ed4e1d9bd781f34af12fda5ac829b0e7c90",
+   "raw_z_multiset_sha_after": "c41afa26ef7237c1d49faa70add5c72b1572d56fb683178fba0e4a312c668a01",
+   "rho_z_cov_before": -0.0037714345010377262,
+   "rho_z_cov_after": -0.0037921628762062082,
+   "z_hist_identical": false,
+   "boundary_z_exposure_before": 16.375040988705962,
+   "boundary_z_exposure_after": 16.375040988705962
+  },
+  {
+   "seed": 61003,
+   "M_A": 13.809231728178508,
+   "M_B": 12.548752706737698,
+   "zbar_A": 0.5933668110784284,
+   "zbar_B": -0.48991280572836887,
+   "a": 0.9087220023349502,
+   "b": 1.0,
+   "m_star": 12.548752706737698,
+   "a_hex": "0x1.d14402a25e559p-1",
+   "b_hex": "0x1.0000000000000p+0",
+   "contrast_delta": 1.0832796168067973,
+   "sum_rho_z_before": 0.3275046002957737,
+   "sum_rho_z_after": 0.32750460029577333,
+   "sum_rho_z_drift": -3.885780586188048e-16,
+   "sum_rho_z_before_hex": "0x1.4f5d5dae3d567p-2",
+   "sum_rho_z_after_hex": "0x1.4f5d5dae3d560p-2",
+   "sum_z_before": 286.62926844714787,
+   "sum_z_after": 288.70573992815105,
+   "raw_z_multiset_sha_before": "1876e91f485b17daeb19605e67178c2b2d3133d9ec27b4fb2f9e460df4f10ca4",
+   "raw_z_multiset_sha_after": "96ba4157d49c5be2de860987a3d6be381950a59ca622fc7c80555c8326e14e87",
+   "rho_z_cov_before": -0.003563023281471938,
+   "rho_z_cov_after": -0.003590262119642,
+   "z_hist_identical": false,
+   "boundary_z_exposure_before": 17.01017396854995,
+   "boundary_z_exposure_after": 17.01017396854995
+  },
+  {
+   "seed": 61004,
+   "M_A": 12.721194289160874,
+   "M_B": 13.642201765973985,
+   "zbar_A": -0.4909970486778306,
+   "zbar_B": 0.5994470239812983,
+   "a": 1.0,
+   "b": 0.9324883554273282,
+   "m_star": 12.721194289160874,
+   "a_hex": "0x1.0000000000000p+0",
+   "b_hex": "0x1.dd6f1d1cec224p-1",
+   "contrast_delta": -1.090444072659129,
+   "sum_rho_z_before": 0.15768841584924903,
+   "sum_rho_z_after": 0.15768841584925072,
+   "sum_rho_z_drift": 1.6930901125533637e-15,
+   "sum_rho_z_before_hex": "0x1.42f224e83e9cep-3",
+   "sum_rho_z_after_hex": "0x1.42f224e83ea0bp-3",
+   "sum_z_before": 285.3223477273829,
+   "sum_z_after": 286.86831885323744,
+   "raw_z_multiset_sha_before": "89875763d46c0f514c5cd95f820d3c3f333e4e8cec88419bc17b28946949180d",
+   "raw_z_multiset_sha_after": "ad95ac7cba683db668663bb4e787914dd4406b0fbf7f78949a3a18b0a2b4f7bd",
+   "rho_z_cov_before": -0.003647880440467082,
+   "rho_z_cov_after": -0.0036681590247972136,
+   "z_hist_identical": false,
+   "boundary_z_exposure_before": 16.924230734069887,
+   "boundary_z_exposure_after": 16.924230734069887
+  },
+  {
+   "seed": 61005,
+   "M_A": 13.028587640909938,
+   "M_B": 12.699010023226183,
+   "zbar_A": 0.6041109250697264,
+   "zbar_B": -0.4900878384008655,
+   "a": 0.9747035038050573,
+   "b": 1.0,
+   "m_star": 12.699010023226183,
+   "a_hex": "0x1.f30c56704756ap-1",
+   "b_hex": "0x1.0000000000000p+0",
+   "contrast_delta": 1.0941987634705919,
+   "sum_rho_z_before": 0.14427622579022753,
+   "sum_rho_z_after": 0.1442762257902294,
+   "sum_rho_z_drift": 1.8596235662471372e-15,
+   "sum_rho_z_before_hex": "0x1.277a4b3adfed2p-3",
+   "sum_rho_z_after_hex": "0x1.277a4b3adff15p-3",
+   "sum_z_before": 288.38030182959955,
+   "sum_z_after": 291.09460785881697,
+   "raw_z_multiset_sha_before": "b1326cbc4b3b5a9d7d9fc6b43465f648d0b712dc4ca5dbbc3b646bf2ad32a500",
+   "raw_z_multiset_sha_after": "672990cdef633fcce943a8731a6f88ae7c117465348131382202edc340f9e516",
+   "rho_z_cov_before": -0.0037331795507377914,
+   "rho_z_cov_after": -0.0037691361878728854,
+   "z_hist_identical": false,
+   "boundary_z_exposure_before": 17.59309822110693,
+   "boundary_z_exposure_after": 17.59309822110693
+  },
+  {
+   "seed": 61006,
+   "M_A": 12.75165252224729,
+   "M_B": 13.68625597881613,
+   "zbar_A": -0.4906719598885604,
+   "zbar_B": 0.5979823370440834,
+   "a": 1.0,
+   "b": 0.9317122624320752,
+   "m_star": 12.75165252224729,
+   "a_hex": "0x1.0000000000000p+0",
+   "b_hex": "0x1.dd0963c0db19fp-1",
+   "contrast_delta": -1.0886542969326438,
+   "sum_rho_z_before": 0.134593243144766,
+   "sum_rho_z_after": 0.13459324314476506,
+   "sum_rho_z_drift": -9.43689570931383e-16,
+   "sum_rho_z_before_hex": "0x1.13a59f4c8e056p-3",
+   "sum_rho_z_after_hex": "0x1.13a59f4c8e034p-3",
+   "sum_z_before": 284.3630272886826,
+   "sum_z_after": 285.9242038062364,
+   "raw_z_multiset_sha_before": "ad8d9383137c7f5f3266ad3611dab9af6d4af85d71c4dfcc7b8f369a5bd64831",
+   "raw_z_multiset_sha_after": "2d3de241d75d4a8547c20efdeaee166e469f9c83d1bdb6907390bb07b1c677b7",
+   "rho_z_cov_before": -0.003672907045891002,
+   "rho_z_cov_after": -0.0036935156763996052,
+   "z_hist_identical": false,
+   "boundary_z_exposure_before": 17.154204690467502,
+   "boundary_z_exposure_after": 17.154204690467502
+  },
+  {
+   "seed": 61007,
+   "M_A": 13.748615148158265,
+   "M_B": 12.654071451803743,
+   "zbar_A": 0.5947460492169003,
+   "zbar_B": -0.48904734445666775,
+   "a": 0.9203888039224704,
+   "b": 1.0,
+   "m_star": 12.654071451803743,
+   "a_hex": "0x1.d73d3388e733cp-1",
+   "b_hex": "0x1.0000000000000p+0",
+   "contrast_delta": 1.083793393673568,
+   "sum_rho_z_before": 0.199922249705687,
+   "sum_rho_z_after": 0.19992224970568911,
+   "sum_rho_z_drift": 2.1094237467877974e-15,
+   "sum_rho_z_before_hex": "0x1.9970d621d451ap-3",
+   "sum_rho_z_after_hex": "0x1.9970d621d4566p-3",
+   "sum_z_before": 283.1095408922814,
+   "sum_z_after": 284.9214647480783,
+   "raw_z_multiset_sha_before": "294b91c3690b34e8f5e1f9bc20c89d655253cd2e5218fbda767c68aa46b0ffec",
+   "raw_z_multiset_sha_after": "2c606e9fb513c64392efa99fa593e678665de3828b0951c5366b601924c79d33",
+   "rho_z_cov_before": -0.00360428992964057,
+   "rho_z_cov_after": -0.003628125232968773,
+   "z_hist_identical": false,
+   "boundary_z_exposure_before": 16.26309404239297,
+   "boundary_z_exposure_after": 16.26309404239297
+  },
+  {
+   "seed": 61008,
+   "M_A": 12.874278981433246,
+   "M_B": 13.689329674532319,
+   "zbar_A": -0.4912624864654128,
+   "zbar_B": 0.5983006501223208,
+   "a": 1.0,
+   "b": 0.9404608762826864,
+   "m_star": 12.874278981433246,
+   "a_hex": "0x1.0000000000000p+0",
+   "b_hex": "0x1.e18416859a709p-1",
+   "contrast_delta": -1.0895631365877336,
+   "sum_rho_z_before": 0.028739825081801174,
+   "sum_rho_z_after": 0.028739825081802367,
+   "sum_rho_z_drift": 1.1934897514720433e-15,
+   "sum_rho_z_before_hex": "0x1.d6df90346c140p-6",
+   "sum_rho_z_after_hex": "0x1.d6df90346c298p-6",
+   "sum_z_before": 285.57611646000987,
+   "sum_z_after": 286.9384207821395,
+   "raw_z_multiset_sha_before": "95fed03da54249e062c8460a9474759d8c909cf687453cd7d9e9b54f62ee3d12",
+   "raw_z_multiset_sha_after": "bdb15aafd7db891d56ffad9c74cb952136ed9036d8ba3851043419e33460d289",
+   "rho_z_cov_before": -0.0037807617568464944,
+   "rho_z_cov_after": -0.003798879838198285,
+   "z_hist_identical": false,
+   "boundary_z_exposure_before": 17.552253345196704,
+   "boundary_z_exposure_after": 17.552253345196704
+  },
+  {
+   "seed": 61009,
+   "M_A": 13.302411814660628,
+   "M_B": 12.608013080896011,
+   "zbar_A": 0.6023523092424706,
+   "zbar_B": -0.48993857980741884,
+   "a": 0.9477990349840683,
+   "b": 1.0,
+   "m_star": 12.608013080896011,
+   "a_hex": "0x1.e545ea44dfb5bp-1",
+   "b_hex": "0x1.0000000000000p+0",
+   "contrast_delta": 1.0922908890498895,
+   "sum_rho_z_before": 0.26110791835854963,
+   "sum_rho_z_after": 0.26110791835855063,
+   "sum_rho_z_drift": 9.992007221626409e-16,
+   "sum_rho_z_before_hex": "0x1.0b5fdfc84e728p-2",
+   "sum_rho_z_after_hex": "0x1.0b5fdfc84e73ap-2",
+   "sum_z_before": 284.98424172016814,
+   "sum_z_after": 287.21690537894824,
+   "raw_z_multiset_sha_before": "52c4712fb8d78f9b8f60dc47e08b6effe3079601f8d2245cd4dd8366179efb5c",
+   "raw_z_multiset_sha_after": "97e70bd143d18318de6e09f945cfa1c236376c18d81db78780f16ff30713836b",
+   "rho_z_cov_before": -0.0035616756757217106,
+   "rho_z_cov_after": -0.003590809127815874,
+   "z_hist_identical": false,
+   "boundary_z_exposure_before": 17.538926110171133,
+   "boundary_z_exposure_after": 17.538926110171133
+  }
+ ],
+ "C_MEAN_MAP_ALGEBRA": [
+  {
+   "seed": 61000,
+   "P": [
+    [
+     0.0,
+     1.0
+    ],
+    [
+     0.9263050915462894,
+     0.07369490845371063
+    ]
+   ],
+   "det": -0.9263050915462894,
+   "trace": 0.07369490845371063,
+   "eigenvalues": [
+    -0.9263050915462894,
+    1.0
+   ],
+   "P_squared": [
+    [
+     0.9263050915462894,
+     0.07369490845371063
+    ],
+    [
+     0.06826396892170984,
+     0.9317360310782902
+    ]
+   ],
+   "P_squared_is_identity": false,
+   "contrast_factor_delta_prime_over_delta": -0.9263050915462894,
+   "contrast_factor_after_two_applications": 0.8580411226245795,
+   "inverse_exists": true,
+   "inverse": [
+    [
+     -0.07955792225074684,
+     1.0795579222507468
+    ],
+    [
+     1.0,
+     -0.0
+    ]
+   ]
+  },
+  {
+   "seed": 61001,
+   "P": [
+    [
+     0.058893058251204056,
+     0.9411069417487959
+    ],
+    [
+     1.0,
+     0.0
+    ]
+   ],
+   "det": -0.9411069417487959,
+   "trace": 0.058893058251204056,
+   "eigenvalues": [
+    -0.9411069417487958,
+    1.0
+   ],
+   "P_squared": [
+    [
+     0.9445753340589756,
+     0.05542466594102434
+    ],
+    [
+     0.058893058251204056,
+     0.9411069417487959
+    ]
+   ],
+   "P_squared_is_identity": false,
+   "contrast_factor_delta_prime_over_delta": -0.9411069417487959,
+   "contrast_factor_after_two_applications": 0.8856822758077716,
+   "inverse_exists": true,
+   "inverse": [
+    [
+     -0.0,
+     1.0
+    ],
+    [
+     1.0625784973403416,
+     -0.06257849734034161
+    ]
+   ]
+  },
+  {
+   "seed": 61002,
+   "P": [
+    [
+     0.0,
+     1.0
+    ],
+    [
+     0.9319307372537389,
+     0.06806926274626113
+    ]
+   ],
+   "det": -0.9319307372537389,
+   "trace": 0.06806926274626113,
+   "eigenvalues": [
+    -0.9319307372537389,
+    1.0
+   ],
+   "P_squared": [
+    [
+     0.9319307372537389,
+     0.06806926274626113
+    ],
+    [
+     0.06343583821544159,
+     0.9365641617845584
+    ]
+   ],
+   "P_squared_is_identity": false,
+   "contrast_factor_delta_prime_over_delta": -0.9319307372537389,
+   "contrast_factor_after_two_applications": 0.8684948990382972,
+   "inverse_exists": true,
+   "inverse": [
+    [
+     -0.07304111778397943,
+     1.0730411177839794
+    ],
+    [
+     1.0,
+     -0.0
+    ]
+   ]
+  },
+  {
+   "seed": 61003,
+   "P": [
+    [
+     0.09127799766504985,
+     0.9087220023349502
+    ],
+    [
+     1.0,
+     0.0
+    ]
+   ],
+   "det": -0.9087220023349502,
+   "trace": 0.09127799766504985,
+   "eigenvalues": [
+    -0.90872200233495,
+    1.0
+   ],
+   "P_squared": [
+    [
+     0.917053675192691,
+     0.082946324807309
+    ],
+    [
+     0.09127799766504985,
+     0.9087220023349502
+    ]
+   ],
+   "P_squared_is_identity": false,
+   "contrast_factor_delta_prime_over_delta": -0.9087220023349502,
+   "contrast_factor_after_two_applications": 0.8257756775276411,
+   "inverse_exists": true,
+   "inverse": [
+    [
+     -0.0,
+     1.0
+    ],
+    [
+     1.1004465583869567,
+     -0.10044655838695678
+    ]
+   ]
+  },
+  {
+   "seed": 61004,
+   "P": [
+    [
+     0.0,
+     1.0
+    ],
+    [
+     0.9324883554273282,
+     0.06751164457267178
+    ]
+   ],
+   "det": -0.9324883554273282,
+   "trace": 0.06751164457267178,
+   "eigenvalues": [
+    -0.9324883554273282,
+    1.0
+   ],
+   "P_squared": [
+    [
+     0.9324883554273282,
+     0.06751164457267178
+    ],
+    [
+     0.06295382241976502,
+     0.937046177580235
+    ]
+   ],
+   "P_squared_is_identity": false,
+   "contrast_factor_delta_prime_over_delta": -0.9324883554273282,
+   "contrast_factor_after_two_applications": 0.8695345330075632,
+   "inverse_exists": true,
+   "inverse": [
+    [
+     -0.07239945054513142,
+     1.0723994505451315
+    ],
+    [
+     1.0,
+     -0.0
+    ]
+   ]
+  },
+  {
+   "seed": 61005,
+   "P": [
+    [
+     0.025296496194942675,
+     0.9747035038050573
+    ],
+    [
+     1.0,
+     0.0
+    ]
+   ],
+   "det": -0.9747035038050573,
+   "trace": 0.025296496194942675,
+   "eigenvalues": [
+    -0.9747035038050573,
+    1.0
+   ],
+   "P_squared": [
+    [
+     0.9753434165247981,
+     0.024656583475201926
+    ],
+    [
+     0.025296496194942675,
+     0.9747035038050573
+    ]
+   ],
+   "P_squared_is_identity": false,
+   "contrast_factor_delta_prime_over_delta": -0.9747035038050573,
+   "contrast_factor_after_two_applications": 0.9500469203298554,
+   "inverse_exists": true,
+   "inverse": [
+    [
+     -0.0,
+     1.0
+    ],
+    [
+     1.0259530165801087,
+     -0.02595301658010868
+    ]
+   ]
+  },
+  {
+   "seed": 61006,
+   "P": [
+    [
+     0.0,
+     1.0
+    ],
+    [
+     0.9317122624320752,
+     0.06828773756792483
+    ]
+   ],
+   "det": -0.9317122624320752,
+   "trace": 0.06828773756792483,
+   "eigenvalues": [
+    -0.9317122624320751,
+    1.0
+   ],
+   "P_squared": [
+    [
+     0.9317122624320752,
+     0.06828773756792483
+    ],
+    [
+     0.06362452246577906,
+     0.9363754775342209
+    ]
+   ],
+   "P_squared_is_identity": false,
+   "contrast_factor_delta_prime_over_delta": -0.9317122624320752,
+   "contrast_factor_after_two_applications": 0.8680877399662961,
+   "inverse_exists": true,
+   "inverse": [
+    [
+     -0.07329273244689449,
+     1.0732927324468946
+    ],
+    [
+     1.0,
+     -0.0
+    ]
+   ]
+  },
+  {
+   "seed": 61007,
+   "P": [
+    [
+     0.07961119607752964,
+     0.9203888039224704
+    ],
+    [
+     1.0,
+     0.0
+    ]
+   ],
+   "det": -0.9203888039224704,
+   "trace": 0.07961119607752964,
+   "eigenvalues": [
+    -0.9203888039224704,
+    1.0
+   ],
+   "P_squared": [
+    [
+     0.9267267464633653,
+     0.07327325353663477
+    ],
+    [
+     0.07961119607752964,
+     0.9203888039224704
+    ]
+   ],
+   "P_squared_is_identity": false,
+   "contrast_factor_delta_prime_over_delta": -0.9203888039224704,
+   "contrast_factor_after_two_applications": 0.8471155503858356,
+   "inverse_exists": true,
+   "inverse": [
+    [
+     -0.0,
+     1.0
+    ],
+    [
+     1.086497353877238,
+     -0.0864973538772379
+    ]
+   ]
+  },
+  {
+   "seed": 61008,
+   "P": [
+    [
+     0.0,
+     1.0
+    ],
+    [
+     0.9404608762826864,
+     0.059539123717313625
+    ]
+   ],
+   "det": -0.9404608762826864,
+   "trace": 0.059539123717313625,
+   "eigenvalues": [
+    -0.9404608762826863,
+    1.0
+   ],
+   "P_squared": [
+    [
+     0.9404608762826864,
+     0.059539123717313625
+    ],
+    [
+     0.055994216464288045,
+     0.944005783535712
+    ]
+   ],
+   "P_squared_is_identity": false,
+   "contrast_factor_delta_prime_over_delta": -0.9404608762826864,
+   "contrast_factor_after_two_applications": 0.8844666598183983,
+   "inverse_exists": true,
+   "inverse": [
+    [
+     -0.06330845356656516,
+     1.0633084535665651
+    ],
+    [
+     1.0,
+     -0.0
+    ]
+   ]
+  },
+  {
+   "seed": 61009,
+   "P": [
+    [
+     0.052200965015931744,
+     0.9477990349840683
+    ],
+    [
+     1.0,
+     0.0
+    ]
+   ],
+   "det": -0.9477990349840683,
+   "trace": 0.052200965015931744,
+   "eigenvalues": [
+    -0.9477990349840684,
+    1.0
+   ],
+   "P_squared": [
+    [
+     0.9505239757326628,
+     0.049476024267337215
+    ],
+    [
+     0.052200965015931744,
+     0.9477990349840683
+    ]
+   ],
+   "P_squared_is_identity": false,
+   "contrast_factor_delta_prime_over_delta": -0.9477990349840683,
+   "contrast_factor_after_two_applications": 0.898323010716731,
+   "inverse_exists": true,
+   "inverse": [
+    [
+     -0.0,
+     1.0
+    ],
+    [
+     1.0550759845591204,
+     -0.05507598455912038
+    ]
+   ]
+  }
+ ],
+ "C_MEAN_MAP_SUMMARY": {
+  "a_range": [
+   0.9087220023349502,
+   1.0
+  ],
+  "b_range": [
+   0.9263050915462894,
+   1.0
+  ],
+  "det_range": [
+   -0.9747035038050573,
+   -0.9087220023349502
+  ],
+  "contrast_factor_range": [
+   -0.9747035038050573,
+   -0.9087220023349502
+  ],
+  "P_squared_is_identity_in_any_block": false,
+  "conclusion": "P(P(z)) != z for every activated primary block. The contrast is multiplied by (1-a-b) at each application, so two applications multiply it by (1-a-b)^2, which is not 1 for any observed (a,b). An exact stored inverse is NOT evidence of involution."
+ },
+ "C_CONSERVATIVE_INVOLUTION_EXISTENCE": {
+  "per_block": [
+   {
+    "M_A": 12.727875120322285,
+    "M_B": 13.7404784195621,
+    "P": [
+     [
+      0.0,
+      1.0795579222507468
+     ],
+     [
+      0.9263050915462894,
+      -0.0
+     ]
+    ],
+    "conservation_residual_A": 0.0,
+    "conservation_residual_B": -1.7763568394002505e-15,
+    "P_squared": [
+     [
+      0.9999999999999999,
+      0.0
+     ],
+     [
+      0.0,
+      0.9999999999999999
+     ]
+    ],
+    "is_involution": true,
+    "conserves_sum_rho_z": true
+   },
+   {
+    "M_A": 13.621459872123824,
+    "M_B": 12.819250442408396,
+    "P": [
+     [
+      0.0,
+      0.9411069417487959
+     ],
+     [
+      1.0625784973403416,
+      -0.0
+     ]
+    ],
+    "conservation_residual_A": 0.0,
+    "conservation_residual_B": 0.0,
+    "P_squared": [
+     [
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "is_involution": true,
+    "conserves_sum_rho_z": true
+   },
+   {
+    "M_A": 12.870381101803343,
+    "M_B": 13.810448123784864,
+    "P": [
+     [
+      0.0,
+      1.0730411177839794
+     ],
+     [
+      0.9319307372537389,
+      -0.0
+     ]
+    ],
+    "conservation_residual_A": 0.0,
+    "conservation_residual_B": -1.7763568394002505e-15,
+    "P_squared": [
+     [
+      0.9999999999999999,
+      0.0
+     ],
+     [
+      0.0,
+      0.9999999999999999
+     ]
+    ],
+    "is_involution": true,
+    "conserves_sum_rho_z": true
+   },
+   {
+    "M_A": 13.809231728178508,
+    "M_B": 12.548752706737698,
+    "P": [
+     [
+      0.0,
+      0.9087220023349502
+     ],
+     [
+      1.1004465583869567,
+      -0.0
+     ]
+    ],
+    "conservation_residual_A": -1.7763568394002505e-15,
+    "conservation_residual_B": 0.0,
+    "P_squared": [
+     [
+      0.9999999999999999,
+      0.0
+     ],
+     [
+      0.0,
+      0.9999999999999999
+     ]
+    ],
+    "is_involution": true,
+    "conserves_sum_rho_z": true
+   },
+   {
+    "M_A": 12.721194289160874,
+    "M_B": 13.642201765973985,
+    "P": [
+     [
+      0.0,
+      1.0723994505451315
+     ],
+     [
+      0.9324883554273282,
+      -0.0
+     ]
+    ],
+    "conservation_residual_A": 0.0,
+    "conservation_residual_B": 1.7763568394002505e-15,
+    "P_squared": [
+     [
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "is_involution": true,
+    "conserves_sum_rho_z": true
+   },
+   {
+    "M_A": 13.028587640909938,
+    "M_B": 12.699010023226183,
+    "P": [
+     [
+      0.0,
+      0.9747035038050573
+     ],
+     [
+      1.0259530165801087,
+      -0.0
+     ]
+    ],
+    "conservation_residual_A": 0.0,
+    "conservation_residual_B": 0.0,
+    "P_squared": [
+     [
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "is_involution": true,
+    "conserves_sum_rho_z": true
+   },
+   {
+    "M_A": 12.75165252224729,
+    "M_B": 13.68625597881613,
+    "P": [
+     [
+      0.0,
+      1.0732927324468946
+     ],
+     [
+      0.9317122624320752,
+      -0.0
+     ]
+    ],
+    "conservation_residual_A": 0.0,
+    "conservation_residual_B": 0.0,
+    "P_squared": [
+     [
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "is_involution": true,
+    "conserves_sum_rho_z": true
+   },
+   {
+    "M_A": 13.748615148158265,
+    "M_B": 12.654071451803743,
+    "P": [
+     [
+      0.0,
+      0.9203888039224704
+     ],
+     [
+      1.086497353877238,
+      -0.0
+     ]
+    ],
+    "conservation_residual_A": 1.7763568394002505e-15,
+    "conservation_residual_B": 0.0,
+    "P_squared": [
+     [
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "is_involution": true,
+    "conserves_sum_rho_z": true
+   },
+   {
+    "M_A": 12.874278981433246,
+    "M_B": 13.689329674532319,
+    "P": [
+     [
+      0.0,
+      1.0633084535665651
+     ],
+     [
+      0.9404608762826864,
+      -0.0
+     ]
+    ],
+    "conservation_residual_A": 0.0,
+    "conservation_residual_B": 0.0,
+    "P_squared": [
+     [
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "is_involution": true,
+    "conserves_sum_rho_z": true
+   },
+   {
+    "M_A": 13.302411814660628,
+    "M_B": 12.608013080896011,
+    "P": [
+     [
+      0.0,
+      0.9477990349840683
+     ],
+     [
+      1.0550759845591204,
+      -0.0
+     ]
+    ],
+    "conservation_residual_A": 0.0,
+    "conservation_residual_B": 0.0,
+    "P_squared": [
+     [
+      1.0,
+      0.0
+     ],
+     [
+      0.0,
+      1.0
+     ]
+    ],
+    "is_involution": true,
+    "conserves_sum_rho_z": true
+   }
+  ],
+  "exists_in_every_block": true,
+  "general_theorem": "For any component masses M_A, M_B > 0 and any p, the map P = [[p, M_B(1+p)/M_A], [M_A(1-p)/M_B, -p]] is BOTH an exact involution (trace 0, det -1) AND exactly Sigma-rho-z conserving. The conservation condition and the involution condition are compatible identically, not only for equal masses. Taking p = 0 gives the mass-rescaled mean exchange [[0, M_B/M_A], [M_A/M_B, 0]].",
+  "consequence": "REPRESENTATION_PERMITS_CONSERVATIVE_INVOLUTION = YES. The sealed ETPC justification -- 'exact involution OR exact Sigma rho z conservation, not both, when M_A != M_B' -- is FALSE. A conservative involution existed algebraically and was not used."
+ },
+ "C_INVARIANT_INVENTORY": {
+  "sum_rho_z": {
+   "max_abs_drift": 2.1094237467877974e-15,
+   "bitwise_identical_in_any_block": false,
+   "classification": "FLOAT_IMPLEMENTATION_CONSERVATION, not bitwise"
+  },
+  "sum_z": {
+   "max_abs_drift": 2.7143060292174255,
+   "conserved": false
+  },
+  "raw_z_multiset": {
+   "identical_in_any_block": false,
+   "conserved": false
+  },
+  "z_histogram": {
+   "identical_in_any_block": false,
+   "conserved": false
+  },
+  "rho_z_covariance": {
+   "max_abs_change": 3.5956637135094e-05,
+   "conserved": false
+  },
+  "boundary_z_exposure": {
+   "max_abs_change": 0.0,
+   "bitwise_identical_in_every_block": true,
+   "conserved": true,
+   "conserved_but": "VACUOUSLY. See BOUNDARY_MASK_DISJOINTNESS_PROOF below: the ledger's material-bath boundary mask contains no intervened cell, so this quantity is not merely conserved -- it is BLIND to the intervention. It carries no information about the operator."
+  },
+  "BOUNDARY_MASK_DISJOINTNESS_PROOF": {
+   "claim": "the ledger mask {alive & not-rolled-alive}, alive = rho > 1e-4, is DISJOINT from the intervened set A u B in all ten blocks",
+   "argument": "the exposure change would be n_A^bnd * dzbar_A + n_B^bnd * dzbar_B with integer counts. In block 0, dzbar_A = +1.085064 and dzbar_B = -1.005159; these are incommensurate at double precision, so an EXACTLY zero float change forces n_A^bnd = n_B^bnd = 0. The change is bitwise zero in every block.",
+   "corroboration": "n_boundary_cells = 128 in every block while the whole detected material is 42 cells (Mf[0] sites changed = 42, gate R6). The rho > 1e-4 super-level set is a diffuse halo whose rim lies far outside the detected bodies.",
+   "why_it_matters": "of the seven ledger quantities, this is the one whose NAME is closest to the AUTHORIZED endpoint (material-bath boundary). Its stability was available to be read as reassurance. It is not reassurance: at the instant of intervention the mask and the intervention do not meet.",
+   "status": "AUDIT_FINDING, derived from committed scalars only, no engine, no new field"
+  },
+  "sum_z_change_reconstruction": {
+   "identity": "d(sum z) must equal n_A * dzbar_A + n_B * dzbar_B exactly (uniform shift on each component's cells)",
+   "max_abs_residual": 8.171241461241152e-14,
+   "note": "PASS: the observed change in Sigma z is reproduced from the component cell counts and the mean shifts alone, confirming that the operator applied a uniform additive shift to each component and touched nothing else."
+  },
+  "verdict": "the executed map conserves ONLY Sigma rho z among the quantities that respond to it, and only to float precision. It changes the raw z multiset, Sigma z, the histogram and the rho-z covariance. The boundary z exposure is unchanged, but vacuously, because its mask never meets the intervened cells. Calling the map a PERMUTATION or an EXACT SWAP is wrong. The accurate name is BIJECTIVE_NONINVOLUTIVE_MASS_CONSERVING_AFFINE_MEAN_TRANSFER."
+ },
+ "C_ORACLE_AUDIT": {
+  "test_swap_then_inverse": {
+   "what_it_tested": "P_inverse(P(x)) == x to 1e-12",
+   "what_it_did_NOT_test": "P(P(x)) == x",
+   "verdict": "ANALYTIC_INVERSE verified numerically; INVOLUTION not tested"
+  },
+  "test_swap_bijection_and_involution": {
+   "located_in_ast": true,
+   "asserted_condition_source": "True",
+   "condition_is_compile_time_constant": true,
+   "constant_value": true,
+   "what_it_tested": "NOTHING. The oracle was handed the literal True; the measured P(P(x)) residual (1.958e+00) was only PRINTED into the detail string, never compared with anything.",
+   "mitigation_on_the_record": "the detail string did say 'involutive only when the two masses are equal ... DECLARED, not asserted', so the non-involution was disclosed in the ledger text. What was wrong is the PASS verdict attached to a gate whose name asserts involution.",
+   "verdict": "A NAMED GATE THAT DID NOT TEST ITS NAMED PROPERTY. This is the most serious single finding of the audit."
+  },
+  "test_swap_declared_invariants": {
+   "what_it_tested": "|Sigma rho z after - before| < 1e-9",
+   "verdict": "float conservation of ONE invariant; the other six were computed into the ledger but never asserted"
+  }
+ },
+ "C_ADJUDICATION": {
+  "OPERATOR_CONSERVATION": "PASS (Sigma rho z only, float precision, max drift 2.109e-15)",
+  "OPERATOR_BIJECTION": "PASS (REAL_ARITHMETIC_BIJECTION; det != 0 in every block)",
+  "OPERATOR_INVERSE": "PASS as ANALYTIC_INVERSE (residual 2.78e-17); NOT a BITWISE_INVERSE",
+  "OPERATOR_INVOLUTION": "FAIL",
+  "REPRESENTATION_PERMITS_CONSERVATIVE_INVOLUTION": "YES",
+  "ETPC_OPERATOR_PROTOCOL_CONFORMANCE": "PROSPECTIVELY_AMENDED_BUT_AUTHORIZATION_DEVIATION",
+  "R7_PERMUTATION_OVERALL": "FAIL_NONINVOLUTIVE",
+  "T3_CAUSAL_COHERENCE": "VALID_AS_IMPLEMENTED",
+  "T3_HANDOFF_CONFORMANCE": "FAIL_NONINVOLUTIVE",
+  "T3_OVERALL": "FAIL",
+  "when_amended": "the non-involution was written into etpc_protocol.json, which was sealed BEFORE the primary run. The amendment is therefore PROSPECTIVE with respect to outcomes, but it is OUTSIDE the authorization, which required involution 'whenever the representation permits' -- and the representation did permit it.",
+  "stop": "PROSPECTIVE_PROTOCOL_DEVIATION_NONINVOLUTIVE"
+ },
+ "D_ENDPOINT_REGISTRY": {
+  "EARLY_PUBLIC_FLUX_EFFECT": {
+   "authorization_wording": "prespecified early integrated changes in realized c AND N boundary flux after ON_SWAP relative to ON_SHAM",
+   "sealed_etpc_wording": "sum over t = 1..40 of (mean c in the frozen halo support)[ON_SWAP] - [ON_SHAM], oriented by q",
+   "executed_code": "etpc_analyse.py, series_c(): reads r['c'][k], written by etpc_run.py as float(cur.c[sup[k]].mean()) where sup[k] is a DISC of radius 8 around the frozen site",
+   "dynamic_variable_actually_read": "c only. N is NEVER read by this endpoint.",
+   "object_class": "DISC-MEAN FIELD LEVEL, time-integrated. NOT a face flux, not a boundary flux, not a flux of any kind.",
+   "spatial_support": "disc of radius 8 centred on the frozen site; area 197 cells against a body of roughly 21 cells, so about 89 percent of the support is bath, not material-bath boundary",
+   "temporal": "t = 1..40 inclusive, unit weights, difference against the ON_SHAM twin",
+   "verdict": "MATERIAL DIFFERENCE FROM THE AUTHORIZED ENDPOINT. Calling it a flux was wrong; dropping N was wrong."
+  },
+  "DELAYED_PUBLIC_MEDIATOR_EFFECT": {
+   "sealed_and_executed": "(mean c in the same disc at t = 200)[ON_SWAP] - [ON_SHAM], oriented by q",
+   "object_class": "DISC-MEAN FIELD LEVEL at a single time",
+   "verdict": "internally consistent with its own sealed wording; it is a mediator LEVEL, not a flux"
+  },
+  "TWIN_PAIRED_DELAYED_RESPONSE_EFFECT": {
+   "sealed_and_executed": "tau_on = 0.5 * sum_k q_k (Y_k[ON_SWAP] - Y_k[ON_SHAM]) with Y = mean of the frozen 20-dim response vector, challenge at t0 + 200",
+   "object_class": "mean of a 20-component perturbed-minus-control difference vector",
+   "verdict": "conforming to its sealed definition"
+  },
+  "COUPLING_OFF_ABOLITION": {
+   "sealed_and_executed": "tau_off with g = 0, required BITWISE zero",
+   "verdict": "conforming; observed exactly 0.0"
+  }
+ },
+ "D_SCALAR_RECONSTRUCTION": {
+  "early_reconstructed_mean": 2.8766475846180027e-05,
+  "early_committed_mean": 2.8766475846180027e-05,
+  "early_max_abs_block_residual": 0.0,
+  "mediator_reconstructed_mean": 0.0006653643634300669,
+  "mediator_committed_mean": 0.0006653643634300669,
+  "mediator_max_abs_block_residual": 0.0,
+  "per_block": [
+   {
+    "seed": 61000,
+    "early": 3.343298429300812e-05,
+    "mediator": 0.0006831136681749589
+   },
+   {
+    "seed": 61001,
+    "early": 2.8726960009675673e-05,
+    "mediator": 0.000680400259387981
+   },
+   {
+    "seed": 61002,
+    "early": 3.126158623113773e-05,
+    "mediator": 0.000685257677924142
+   },
+   {
+    "seed": 61003,
+    "early": 2.6054205948769504e-05,
+    "mediator": 0.0006500278204766285
+   },
+   {
+    "seed": 61004,
+    "early": 2.387492467123553e-05,
+    "mediator": 0.0006579014516132908
+   },
+   {
+    "seed": 61005,
+    "early": 3.071869057333365e-05,
+    "mediator": 0.0006392190083697319
+   },
+   {
+    "seed": 61006,
+    "early": 2.6382256039778063e-05,
+    "mediator": 0.0006649661367688214
+   },
+   {
+    "seed": 61007,
+    "early": 3.25800226700923e-05,
+    "mediator": 0.0006748986760292119
+   },
+   {
+    "seed": 61008,
+    "early": 2.4064409318569346e-05,
+    "mediator": 0.0006684857949134787
+   },
+   {
+    "seed": 61009,
+    "early": 3.056871870620037e-05,
+    "mediator": 0.000649373140642423
+   }
+  ],
+  "verdict": "PASS -- both committed scalars reconstruct exactly from the committed arrays"
+ },
+ "D_ADJUDICATION": {
+  "T6_AUTHORIZED_ENDPOINT": "REALIZED_BOUNDARY_FLUX (c AND N, on material-bath bonds)",
+  "T6_SEALED_ENDPOINT": "time-integrated DISC-MEAN of c over a radius-8 support, c only",
+  "T6_EXECUTED_ENDPOINT": "identical to the sealed one",
+  "T6_SCALAR_RECONSTRUCTED": "PASS",
+  "ENDPOINT_PROTOCOL_CONFORMANCE": "PROSPECTIVELY_AMENDED_BUT_AUTHORIZATION_DEVIATION",
+  "consequence": "T6 was NOT_TESTED_AS_AUTHORIZED. Its confidence interval is clean, but it belongs to a different mathematical object from the one Tommy authorized. Renaming a disc mean 'flux' does not repair the substitution.",
+  "stop": "MATERIAL_ENDPOINT_SUBSTITUTION (relative to the authorization; the sealed protocol and the executed code agree with each other)"
+ },
+ "E_FUNCTIONAL_CHAIN": [
+  {
+   "arrow": "P(z) -> z",
+   "class": "STRUCTURAL_IDENTITY",
+   "note": "affine, exactly known from the checkpoint"
+  },
+  {
+   "arrow": "z -> kappa(z) = 1 + g tanh z",
+   "class": "MONOTONE_FOR_ALL_ADMISSIBLE_STATES",
+   "note": "strictly increasing in z for g > 0; sign of dkappa is the sign of dz"
+  },
+  {
+   "arrow": "kappa -> face coefficient 0.5(kappa_i + kappa_j)",
+   "class": "MONOTONE_FOR_ALL_ADMISSIBLE_STATES"
+  },
+  {
+   "arrow": "face coefficient -> realized c update",
+   "class": "STATE_CONDITIONAL_SIGN",
+   "note": "the update is div(D kappa grad c). Raising kappa accelerates transport TOWARD the local gradient. Whether that raises or lowers c at a given cell depends on the sign of the local Laplacian there, which is positive in the ring and negative at the peak. NO SIGN THEOREM at the field level."
+  },
+  {
+   "arrow": "field -> disc mean over radius 8",
+   "class": "NO_SIGN_THEOREM",
+   "note": "the disc integrates a region whose Laplacian changes sign inside it, so the aggregate sign is not determined by dkappa. This is the exact arrow at which the sealed derivation broke."
+  },
+  {
+   "arrow": "disc mean -> delayed mediator at t = 200",
+   "class": "EMPIRICAL_ONLY"
+  },
+  {
+   "arrow": "mediator -> frozen 20-dim response reader",
+   "class": "NO_SIGN_THEOREM",
+   "note": "the reader is a perturbed-minus-control difference of five heterogeneous features scaled by RESP_SCALE; no monotone map from a c level to its mean exists"
+  },
+  {
+   "arrow": "response -> tau",
+   "class": "STRUCTURAL_IDENTITY"
+  }
+ ],
+ "E_DERIVATIVE_LADDER": {
+  "LOCAL_KAPPA_DERIVATIVE": "dkappa/dz = g sech^2(z) > 0. DERIVABLE, and it was derived.",
+  "FACE_FLUX_DERIVATIVE": "d(flux)/dkappa = D grad c on the face. Sign depends on the local gradient orientation. STATE_CONDITIONAL, computable from a checkpoint.",
+  "SPATIALLY_WEIGHTED_ENDPOINT_DERIVATIVE": "the disc mean integrates div(D kappa grad c) over a support containing both signs of the Laplacian. NOT DERIVABLE without the actual field.",
+  "TEMPORALLY_INTEGRATED_ENDPOINT_DERIVATIVE": "adds 40 steps of redistribution on top. NOT DERIVABLE.",
+  "DELAYED_RESPONSE_DERIVATIVE": "NOT DERIVABLE; the reader is a non-monotone aggregate.",
+  "verdict": "the sealed one-sided direction was derived at rung 1 and applied at rung 4. No sign propagated legitimately past rung 2. The parent sentence that credited the local kappa derivative and attributed the mismatch to the reader is WITHDRAWN and replaced by this explicit ladder."
+ },
+ "E_ADJUDICATION": {
+  "EXACT_ENDPOINT_DIRECTION": "NOT_DERIVABLE",
+  "FUTURE_TEST_LATERALITY": "TWO_SIDED_ONLY",
+  "EXACT_FUNCTIONAL_MAP": "COMPLETE"
+ },
+ "F_DECOMPOSITION": {
+  "attempted": false,
+  "reason": "no raw spatial field was retained by ETPC (checkpoints went to an uncommitted temporary directory). A body / boundary / shell / remaining-support decomposition with exhaustive weights that sum exactly to the committed whole is impossible.",
+  "what_can_be_said": "the disc-mean endpoint aggregates a support whose Laplacian changes sign inside it; the sealed derivation concerned the peak. That remains a hypothesis, not a decomposition.",
+  "OPPOSITE_SIGN_MECHANISM": "AUDIT_DATA_INSUFFICIENT",
+  "stop": "ENDPOINT_AUDIT_DATA_INSUFFICIENT (for Phase F only; the scalar reconstruction of Phase D PASSED)"
+ },
+ "G_CANDIDATES": [
+  {
+   "name": "REALIZED_MATERIAL_BATH_BOUNDARY_FLUX of c and N",
+   "scientific_meaning": "the quantity Tommy actually authorized: the integrated realized exchange across material-bath faces",
+   "code_provenance": "the face-flux form exists in ppai_engine._face_transport, sealed in PPAI before any ETPC outcome; it was never read as an endpoint",
+   "exact_functional": "sum over material-bath faces f and over t of D kappa_f (X_j - X_i), for X in {c, N}",
+   "position": "the FIRST public arrow, immediately downstream of kappa",
+   "constitutive_or_downstream": "constitutive-adjacent but genuinely realized, not a level",
+   "direction_derivable": "the sign of each face term is the sign of the local gradient times dkappa; summed over the closed material-bath boundary it is a divergence-theorem object. STATE_CONDITIONAL but computable from a checkpoint BEFORE any future evolution.",
+   "inspected_in_primary": "NO -- it was never computed",
+   "selection_post_hoc": "NO -- it is the authorized endpoint, named before any outcome",
+   "measurable_in_held_out": "yes, with no change to the LawSpec, gain, operator or reader"
+  },
+  {
+   "name": "TWIN_PAIRED_DELAYED_RESPONSE (tau_on)",
+   "scientific_meaning": "the externally readable delayed response",
+   "code_provenance": "frozen DOMC/PPAI reader, long predates ETPC",
+   "position": "the LAST arrow",
+   "constitutive_or_downstream": "downstream",
+   "direction_derivable": "NO",
+   "inspected_in_primary": "YES (mean, CI and p are known)",
+   "selection_post_hoc": "NO as an endpoint, but its primary values are now development data",
+   "measurable_in_held_out": "yes, two-sided only"
+  }
+ ],
+ "G_INELIGIBLE": [
+  "any peak, annulus, radius, lag or normalisation chosen because it reverses the observed sign",
+  "stronger or negative gain",
+  "a new memory state, history, operator or LawSpec",
+  "extending the horizon because p = 0.098 looked suggestive",
+  "re-using the failed one-sided test as a two-sided confirmatory success",
+  "any held-out peek before a new frozen protocol"
+ ],
+ "G_ADJUDICATION": {
+  "EXACT_FUNCTIONAL_MAP": "COMPLETE",
+  "EXACT_ENDPOINT_DIRECTION": "NOT_DERIVABLE",
+  "NATIVE_DOWNSTREAM_ENDPOINT": "ELIGIBLE",
+  "HELD_OUT_INTEGRITY": "PRESERVED",
+  "FUTURE_CONFIRMATORY_PROGRAM": "ELIGIBLE_IN_PRINCIPLE",
+  "condition": "eligible ONLY under branch B: a two-sided test of the authorized realized material-bath boundary flux, with the operator repaired to the conservative involution proved to exist in Phase C, and with the ten primary blocks relabelled DEVELOPMENT DATA forever."
+ },
+ "B_CORRECTED_DISPOSITIONS": {
+  "DESCRIPTIVE_PRIMARY_PUBLIC_PATTERN": "DELAYED_PUBLIC_MEDIATOR_ONLY__OPPOSITE_FROZEN_DIRECTION",
+  "PREREGISTERED_PUBLIC_PATH_DISPOSITION": "NOT_ESTABLISHED",
+  "DELAYED_RESPONSE_EFFECT": "NOT_ESTABLISHED",
+  "DELAYED_RESPONSE_NULL": "NOT_ESTABLISHED",
+  "delayed_response_numbers": {
+   "tau_on_mean": 0.00912180386733481,
+   "ci95": [
+    -0.0022947527034114876,
+    0.020538360438081105
+   ],
+   "two_sided_randomisation_p": 0.09765625,
+   "min_attainable_p_with_10_blocks": 0.001953125,
+   "note": "p = 0.098 is neither an effect nor a null. No retrospective equivalence margin is added."
+  },
+  "T9_GAIN_ZERO_PUBLIC_FIELD_EXCLUSION": "PASS_BIT_EXACT",
+  "T9_GAIN_ZERO_DELAYED_RESPONSE_EXCLUSION": "PASS_BIT_EXACT (tau_off exactly 0.0)",
+  "T9_ON_PATH_DELAYED_RESPONSE": "NOT_ESTABLISHED",
+  "T9_OVERALL": "NOT_ESTABLISHED",
+  "reproducibility_layers": {
+   "BITWISE_COMPUTATIONAL_REPRODUCIBILITY": "ESTABLISHED (R3, R9, R10)",
+   "COHERENCE_ACROSS_10_PRIMARY_BLOCKS": "ESTABLISHED (all ten blocks same sign, tight CI)",
+   "INFERENCE_OVER_FOUNDING_BLOCK_DISTRIBUTION": "NOT_ESTABLISHED for the frozen one-sided hypotheses",
+   "HELD_OUT_GEOMETRY_REPLICATION": "NOT_REACHED"
+  },
+  "withdrawn_wording": [
+   "'real and reproducible' without naming which layer",
+   "the parent sentence that credited the local kappa derivative while attributing the mismatch to the reader (see E_DERIVATIVE_LADDER)",
+   "'clean preregistered failure'",
+   "'PHYSICALLY_CONSERVATIVE_RECIPROCAL' as an unqualified operator name",
+   "'permutation' and 'exact swap' for the executed operator"
+  ]
+ },
+ "B7_VALIDITY_SPLIT": {
+  "EXACT_TWIN_INFRASTRUCTURE_VALIDITY": "VALID (R3, R5, R8, R9, R10 all bit-exact and unaffected by the operator and endpoint deviations)",
+  "APPLIED_INTERVENTION_CAUSAL_INTERPRETABILITY": "VALID AS IMPLEMENTED -- the applied map is a well-defined, bijective, Sigma-rho-z conserving reciprocal mean transfer, and the ON/OFF contrast remains a legitimate deterministic causal comparison",
+  "ETPC_PROTOCOL_CONFORMANCE": "MATERIAL_DEVIATION (operator non-involution + endpoint substitution relative to the authorization)",
+  "ETPC_CONFIRMATORY_VALIDITY": "INVALID AS A TEST OF THE AUTHORIZED HYPOTHESES",
+  "consequence": "ETPC must NOT be described as a completely conformant preregistered failure. Its infrastructure and its observed deterministic contrasts survive; its confirmatory execution does not."
+ },
+ "TERMINAL_STOPS_FIRED": [
+  "PROSPECTIVE_PROTOCOL_DEVIATION_NONINVOLUTIVE",
+  "MATERIAL_ENDPOINT_SUBSTITUTION",
+  "ENDPOINT_AUDIT_DATA_INSUFFICIENT (Phase F only)"
+ ],
+ "SENTINEL": {
+  "NEW_ENGINE_STARTS": 0,
+  "forbidden_import_attempts": [],
+  "sentinel": "fails closed on any runtime/engine import"
+ }
+}

@@ -1,0 +1,68 @@
+{
+  "programme": "EXACT_ENDPOINT_FUNCTIONAL_CONGRUENCE_AUDIT_00",
+  "branch": "audit/exact-endpoint-functional-congruence-00",
+  "parent_commit": "3f8dae8bbe2937c43661ba8adfe8aed63bf6b6ee",
+  "parent_bundle_sha256": "846e3c2ba5c2adb01b5beed3c83f8b0a2007f7fe4a6b5c2d027ba1a100499a5b",
+  "parent_archive_sha256": "1f9271f48dbad16be82ae83e18ef84aa4580db920a87d2411ea8a7e9cf456685",
+  "parent_protocol_sha256": "df26647833dbe5a5f45195ee3c72058420872367345ec5425892634b91f03071",
+  "authorization_handoff_sha256_as_given": "3461bfe067b22b394c85a253e5208c3596e05b2630c538b2095f423332684266",
+  "authorization_handoff_verifiable": false,
+  "authorization_handoff_note": "the canonical byte stream of the handoff is not an artefact in the repository. Its hash is RECORDED as given, never asserted as verified.",
+  "AUTHORIZATION_SCOPE": "AUDIT_ONLY",
+  "NEW_ENGINE_STARTS": 0,
+  "NEW_TRAJECTORIES": 0,
+  "NEW_LAWSPEC": false,
+  "MODEL_MUTATION": false,
+  "NEW_READER": false,
+  "NEW_ENDPOINT_SELECTION": false,
+  "HELD_OUT_OPENING": false,
+  "ETPC_REOPENED": false,
+  "what_this_audit_may_do": [
+    "read code, hashes, checkpoint manifests and already-committed primary raw outputs",
+    "run pure parsers (AST), symbolic algebra on 2x2 maps, and offline reductions over already-stored arrays"
+  ],
+  "what_this_audit_may_not_do": [
+    "call the simulation runner or advance the model by one step",
+    "create a new physical state or generate a trajectory",
+    "numerically scan new radii, windows, lags or readers",
+    "inspect any held-out outcome"
+  ],
+  "engine_start_definition": "if a command would import the runtime and advance dynamical state, it is an engine start and is forbidden. Any engine start terminates the programme as AUDIT_SCOPE_VIOLATION.",
+  "enforcement": "eefca_sentinel.py installs a fail-closed import guard BEFORE any other import in eefca_audit.py and in eefca_verify.py. Every runtime module (edlab, ppai_engine, ppai_core, domc_core, chmr_core, etpc_core, etpc_run, etpc_gates) raises RuntimeError('AUDIT_SCOPE_VIOLATION') on import.",
+  "retrospective_status": "FULLY RETROSPECTIVE with respect to the four ETPC endpoint values, their confidence intervals and their p-values, which were already known and quoted in the parent report before this audit began. This is declared, not concealed. The only element still genuinely sealed is the held-out geometry, which is not touched.",
+  "self_audit_declaration": "the author of ETPC and the author of this audit are the same agent. Every finding below is adversarial against the agent's own prior work.",
+  "questions": {
+    "Q1": "did the executed z operator have the algebraic properties the parent claimed for it?",
+    "Q2": "was the executed endpoint the endpoint that was authorized?",
+    "Q3": "is the sign of the executed endpoint derivable from the model, or was it asserted?",
+    "Q4": "is a further confirmatory programme scientifically eligible, and under what exact conditions?"
+  },
+  "phases": {
+    "A": "provenance, raw inventory, disclosure of already-known outcomes, engine-start sentinel",
+    "B": "mandatory ETPC corrigendum B1-B7: exact start ledger, corrected R and T tables, corrected claim ledger, validity split",
+    "C": "operator conformance audit: the 2x2 mean map, its square, its inverse, the invariant inventory, the oracle audit",
+    "D": "exact endpoint reconstruction: code-to-equation registry and scalar reconstruction against the committed analysis",
+    "E": "exact functional congruence: arrow-by-arrow chain and derivative ladder",
+    "F": "frozen retrospective spatial decomposition, IF the data permit",
+    "G": "future eligibility, without launching anything"
+  },
+  "forbidden_moves": [
+    "rewriting a parent output or a parent freeze (corrigenda are append-only)",
+    "opening the held-out geometry's outputs, or running it under any endpoint",
+    "selecting a reader, radius, annulus, lag, normalisation, sign or threshold because it makes the existing effect look favourable",
+    "converting the failed one-sided primary hypothesis into a confirmatory pass via a post-hoc two-sided test",
+    "opening ownership, individuality, closure, turnover persistence, autonomy, metabolism, organismality, reproduction, heredity, life, consciousness or AGI"
+  ],
+  "terminal_stops_available": [
+    "AUDIT_SCOPE_VIOLATION",
+    "PROSPECTIVE_PROTOCOL_DEVIATION_NONINVOLUTIVE",
+    "MATERIAL_ENDPOINT_SUBSTITUTION",
+    "ENDPOINT_AUDIT_DATA_INSUFFICIENT"
+  ],
+  "code_sha256": {
+    "eefca_sentinel.py": "8b074788b67b8fb378ce707163588622baaca0960903102192d50902a3ade0c9",
+    "eefca_audit.py": "421a1576be55ee2ecbda88a06a41035ce182f68a4ef8b239f05490e9c049d734",
+    "eefca_verify.py": "538d5f4b88afda11ee25bf991f9a7f79b8354c74b65b5da8f224f927783f107a"
+  },
+  "note_on_code_sha256": "frozen after the audit and the verifier were final; re-checked by SHA256SUMS"
+}

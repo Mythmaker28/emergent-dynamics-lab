@@ -1,0 +1,185 @@
+{
+ "rows": [
+  {
+   "check": "V1 sentinel raises AUDIT_SCOPE_VIOLATION on a runtime import",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V1b audit recorded zero engine starts and zero trajectories",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V2 parent code seal intact (4/4)",
+   "PASS": true,
+   "detail": "mismatched = []"
+  },
+  {
+   "check": "V2b parent protocol sha256 matches the value recorded in the audit",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V3 start ledger sums to its own total",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V3b qualification subtotal equals the gates file's recorded starts",
+   "PASS": true,
+   "detail": "gates=17"
+  },
+  {
+   "check": "V3c primary = 10 blocks x 5 starts",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V4 P(P(x)) != x in every one of the 10 blocks",
+   "PASS": true,
+   "detail": "contrast factor after two applications ranges 0.8258 .. 0.9500"
+  },
+  {
+   "check": "V4b the audit reports the same",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V5 an exactly conservative exact involution exists in every block",
+   "PASS": true,
+   "detail": "P = [[0, M_B/M_A], [M_A/M_B, 0]] is involutive AND conserves M_A z_A + M_B z_B"
+  },
+  {
+   "check": "V5b the audit reports the same",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V6 Sigma rho z conserved to float precision only, never bitwise",
+   "PASS": true,
+   "detail": "max drift = 2.109e-15, bitwise identical in any block = False"
+  },
+  {
+   "check": "V6b Sigma z is NOT conserved",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V6c the raw z multiset is NOT preserved",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V7 boundary z exposure is bitwise identical before/after in every block",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V7b the boundary mask is far larger than the intervened set, so the equality is vacuous",
+   "PASS": true,
+   "detail": "n_boundary_cells = [128], Mf[0] sites changed = [40, 41, 42]"
+  },
+  {
+   "check": "V8 d(Sigma z) = n_A dzbar_A + n_B dzbar_B (uniform additive shift, nothing else touched)",
+   "PASS": true,
+   "detail": "max residual = 8.171e-14"
+  },
+  {
+   "check": "V9 early endpoint reconstructs exactly from the committed arrays",
+   "PASS": true,
+   "detail": "max block residual = 0.000e+00"
+  },
+  {
+   "check": "V9b delayed mediator reconstructs exactly",
+   "PASS": true,
+   "detail": "max block residual = 0.000e+00"
+  },
+  {
+   "check": "V9c means agree with the committed analysis",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V10 the involution gate's asserted condition is a compile-time constant (it tested nothing)",
+   "PASS": true,
+   "detail": "asserted condition source = True"
+  },
+  {
+   "check": "V10b that gate was nevertheless recorded PASS",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V10c its own detail string reports a non-zero P(P(x)) residual",
+   "PASS": true,
+   "detail": " equal: a = 1.000000, b = 0.926359, P(P(x)) residual = 1.958e+00 -- DECLARED, not asserted"
+  },
+  {
+   "check": "V11 the executed endpoint reads c",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V11b the executed endpoint never reads N, although the authorization named c AND N",
+   "PASS": true,
+   "detail": "no subscript on 'N' anywhere in etpc_analyse.py"
+  },
+  {
+   "check": "V12 no held-out artefact exists and none is read",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V12b the audit records HELD_OUT_INTEGRITY = PRESERVED",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V13 no forbidden phrasing appears in any deliverable",
+   "PASS": true,
+   "detail": "hits = []"
+  },
+  {
+   "check": "V14 tau_on is neither an effect nor a null under its own frozen two-sided test",
+   "PASS": true,
+   "detail": "p = 0.09765625, CI = [-0.0022947527034114876, 0.020538360438081105]"
+  },
+  {
+   "check": "V14b the one-sided public gates failed at their floor",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V14c tau_off is exactly zero in every block",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V14d the audit quotes tau_on exactly as committed",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V15 AUDIT_SCOPE_VIOLATION is NOT among the stops fired",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V15b the two conformance stops did fire",
+   "PASS": true,
+   "detail": ""
+  }
+ ],
+ "n": 34,
+ "n_pass": 34,
+ "ALL_PASS": true,
+ "sentinel": {
+  "NEW_ENGINE_STARTS": 0,
+  "forbidden_import_attempts": [
+   "edlab"
+  ],
+  "sentinel": "fails closed on any runtime/engine import",
+  "note_on_forbidden_import_attempts": "the single entry 'edlab' is check V1 DELIBERATELY probing the sentinel to prove it fires. The import was refused; no runtime module was ever loaded and no state was advanced. NEW_ENGINE_STARTS remains 0."
+ }
+}
