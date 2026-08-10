@@ -1,0 +1,188 @@
+{
+ "phase": "B0_B1",
+ "engine_starts": {
+  "n": 4,
+  "log": [
+   "DEV_FOUNDER_61000",
+   "DEV_FOUNDER_61001",
+   "DEV_FOUNDER_61002",
+   "DEV_FOUNDER_61003"
+  ]
+ },
+ "B0_REPRESENTATION": {
+  "array": "Mf, shape (n_comp, L, L), float64, C-contiguous",
+  "target_coordinate": "Mf[0]",
+  "derived_intensive": "z_i = Mf[0]_i / max(rho_i, EPS), with EPS = 1e-12",
+  "is_Mf0_an_amount_or_a_density": "AN AMOUNT (extensive content per cell)",
+  "proof_1_construction": {
+   "code": "Mf = rho * newm  (end of the writer)",
+   "found": true,
+   "reading": "Mf[0] is literally the product of a cell density and a bounded intensive concentration, i.e. a per-cell content."
+  },
+  "proof_2_transport_is_divergence_form": {
+   "code": "mdon = donor-cell value of fM = Mf/rho ; gm = fl * mdon ; dM += -(gm - np.roll(gm, 1, axis))",
+   "found": true,
+   "reading": "the transport update is an exact telescoping divergence of a face quantity. A divergence-form update conserves the PLAIN SUM of the array. It would NOT conserve a volume-weighted sum unless the weights were uniform. This is the executable-derived reason for w_i, not an assumption about units."
+  },
+  "proof_3_uniform_measure": {
+   "code": "lap(X) = roll(X,1,-2)+roll(X,-1,-2)+roll(X,1,-1)+roll(X,-1,-1)-4X",
+   "no_grid_spacing_symbol_anywhere": true,
+   "reading": "the stencil carries no dx and no per-cell area. Every cell of the 64x64 periodic lattice has the identical unit measure. There are NO stored or source bits for a varying cell volume or integration weight, because no such quantity exists in the model."
+  },
+  "w_i": 1.0,
+  "w_i_status": "CONSTANT AND EXACTLY 1.0 for every cell, established from the executable (uniform stencil, divergence-form transport), not assumed from w_i = 1 looking natural.",
+  "exact_physical_content": "Q = exact_sum_i Mf[0]_i  (unweighted, because w_i == 1 exactly)",
+  "state_increment_to_content_map": "an increment dMf0_i adds exactly dMf0_i to Q. The map is the identity; there is no capacity or storage weight between the state variable and the content."
+ },
+ "B0_DOMAIN_CONSTRAINTS": {
+  "C1_bounded_intensive": {
+   "constraint": "|Mf[0]_i| <= rho_i, i.e. |z_i| <= 1",
+   "enforced_by": "np.clip(mk, -1.0, 1.0) applied to the INTENSIVE m before Mf = rho * newm",
+   "found_in_source": true,
+   "joint": "YES -- it couples Mf[0] to rho. It is NOT a standalone box on Mf[0]."
+  },
+  "C2_alive_gate": {
+   "constraint": "Mf[0]_i == 0.0 EXACTLY wherever alive_i is False, alive = rho > 1e-4",
+   "enforced_by": "newm[kk] = np.clip(...) * alive, then Mf = rho * newm",
+   "joint": "YES -- a second, independent coupling of Mf[0] to rho, with a threshold that is NOT the same as rho > 0."
+  },
+  "C3_second_component": {
+   "constraint": "Mf[1] obeys the same two constraints with the same rho",
+   "coupling_to_Mf0": "NONE. The writer updates each component independently; no term in dm_k reads m_j for j != k. Mf[1] therefore imposes no additional constraint on an exchange of Mf[0].",
+   "verified": "eta_d is indexed per component; Psi is common but is a function of N, c and uptake only, never of m."
+  },
+  "C4_occupancy": {
+   "constraint": "none. There is no occupancy variable distinct from rho.",
+   "note": "rho itself is bounded above by the growth term's (1 - rho/rho_max) factor, but that bounds rho, not Mf[0]."
+  },
+  "conclusion": "The complete joint admissibility set for a modification of Mf[0] at site i, holding every other field fixed, is:  |Mf[0]_i| <= rho_i AND (Mf[0]_i == 0 if rho_i <= 1e-4).  '|z| <= 1' alone is NOT the full statement: the alive gate is a separate, exact, joint condition.",
+  "consequence_for_pairing": "two sites are exchange-compatible for Mf[0] if and only if they have BIT-IDENTICAL rho. Equal rho gives an identical bound and an identical alive flag, so the transposition is admissible by construction and needs no clip. Nothing else in the schema binds Mf[0]."
+ },
+ "B0_PAIR_KEY": {
+  "pair_key_i": "bytes(rho_i)",
+  "why_no_other_field": "w_i is a compile-time constant 1.0 identical at every site, so it contributes no discriminating bits; C3 and C4 add no constraint. rho is the ONLY non-target field in the joint domain.",
+  "explicitly_excluded_from_the_key": [
+   "Mf[0]",
+   "z",
+   "kappa",
+   "boundary exposure",
+   "c",
+   "N",
+   "uptake",
+   "any endpoint",
+   "any future value"
+  ],
+  "hash_basis": "raw float64 little-endian bytes, no rounding, no tolerance"
+ },
+ "B1_EXACT_SUPPORT_FEASIBILITY": {
+  "blocks": [
+   {
+    "seed": 61000,
+    "lineage_valid": true,
+    "n_components": 2,
+    "n_A": 21,
+    "n_B": 21,
+    "distinct_rho_A": 21,
+    "distinct_rho_B": 21,
+    "exact_common_support_pairs": 0,
+    "coverage_sites_A": 0.0,
+    "coverage_sites_B": 0.0,
+    "min_relative_gap": 0.007192174195963661,
+    "median_relative_gap": 0.16356374600157514,
+    "min_ulp_distance": 46223278704105,
+    "median_ulp_distance": 1093428258013718.0,
+    "rho_range_A": [
+     0.4185832102541555,
+     0.8684905216639154
+    ],
+    "rho_range_B": [
+     0.3120530141707633,
+     0.9737260588267648
+    ],
+    "mass_A": 12.727875120322285,
+    "mass_B": 13.7404784195621
+   },
+   {
+    "seed": 61001,
+    "lineage_valid": true,
+    "n_components": 2,
+    "n_A": 21,
+    "n_B": 21,
+    "distinct_rho_A": 21,
+    "distinct_rho_B": 21,
+    "exact_common_support_pairs": 0,
+    "coverage_sites_A": 0.0,
+    "coverage_sites_B": 0.0,
+    "min_relative_gap": 0.001886195184489019,
+    "median_relative_gap": 0.08720651592014224,
+    "min_ulp_distance": 12246773818863,
+    "median_ulp_distance": 747572741497917.0,
+    "rho_range_A": [
+     0.30049965699134606,
+     0.9736818284960292
+    ],
+    "rho_range_B": [
+     0.41686577670175734,
+     0.8687349273897289
+    ],
+    "mass_A": 13.621459872123824,
+    "mass_B": 12.819250442408396
+   },
+   {
+    "seed": 61002,
+    "lineage_valid": true,
+    "n_components": 2,
+    "n_A": 21,
+    "n_B": 21,
+    "distinct_rho_A": 21,
+    "distinct_rho_B": 21,
+    "exact_common_support_pairs": 0,
+    "coverage_sites_A": 0.0,
+    "coverage_sites_B": 0.0,
+    "min_relative_gap": 0.0233774065911406,
+    "median_relative_gap": 0.2008387652027966,
+    "min_ulp_distance": 158598087603901,
+    "median_ulp_distance": 1210957767047753.0,
+    "rho_range_A": [
+     0.4320309953331543,
+     0.87030884069057
+    ],
+    "rho_range_B": [
+     0.3242302713774074,
+     0.9737886984932489
+    ],
+    "mass_A": 12.870381101803343,
+    "mass_B": 13.810448123784864
+   },
+   {
+    "seed": 61003,
+    "lineage_valid": true,
+    "n_components": 2,
+    "n_A": 21,
+    "n_B": 21,
+    "distinct_rho_A": 21,
+    "distinct_rho_B": 21,
+    "exact_common_support_pairs": 0,
+    "coverage_sites_A": 0.0,
+    "coverage_sites_B": 0.0,
+    "min_relative_gap": 0.012790431542443189,
+    "median_relative_gap": 0.09202169900391538,
+    "min_ulp_distance": 98407879646682,
+    "median_ulp_distance": 789730741631466.0,
+    "rho_range_A": [
+     0.3214678661018613,
+     0.9738647692360664
+    ],
+    "rho_range_B": [
+     0.40555072122084856,
+     0.8651163027822354
+    ],
+    "mass_A": 13.809231728178508,
+    "mass_B": 12.548752706737698
+   }
+  ],
+  "role_of_these_blocks": "DEVELOPMENT_EXPOSED (ETPC primary seeds, development-only forever)",
+  "what_was_read": "component membership, rho bytes, cell counts. NO endpoint, NO c/N series, NO swap-sham contrast.",
+  "total_exact_pairs_over_all_dev_blocks": 0
+ }
+}

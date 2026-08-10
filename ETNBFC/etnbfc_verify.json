@@ -1,0 +1,113 @@
+{
+ "rows": [
+  {
+   "check": "V1 every development checkpoint is a committed file with a committed hash manifest",
+   "PASS": true,
+   "detail": "no tempfile.mkdtemp() path is relied on"
+  },
+  {
+   "check": "V1b each checkpoint archive matches its recorded sha256",
+   "PASS": true,
+   "detail": "mismatched = []"
+  },
+  {
+   "check": "V2 replayed founding checkpoints hash bit-identically to ETPC's committed hashes",
+   "PASS": true,
+   "detail": "seeds differing = []"
+  },
+  {
+   "check": "V3 Mf is built as rho * intensive",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V3b Mf transport is written in telescoping divergence form",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V3c the stencil carries no grid spacing, so every cell has unit measure",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V3d the intensive coordinate is clipped to [-1, 1] before Mf is rebuilt",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V3e the two joint domain constraints hold exactly in every committed checkpoint",
+   "PASS": true,
+   "detail": "C1: |Mf[0]| <= rho ; C2: Mf[0] == 0 exactly where rho <= 1e-4; violations = []"
+  },
+  {
+   "check": "V4 the exact byte-matched A-B common support is EMPTY in every development block",
+   "PASS": true,
+   "detail": "[{'seed': 61000, 'n_A': 21, 'n_B': 21, 'exact_pairs': 0}, {'seed': 61001, 'n_A': 21, 'n_B': 21, 'exact_pairs': 0}, {'seed': 61002, 'n_A': 21, 'n_B': 21, 'exact_pairs': 0}, {'seed': 61003, 'n_A': 21, 'n_B': 21, 'exact_pairs': 0}]"
+  },
+  {
+   "check": "V4b rho takes a distinct float64 value at EVERY cell of every grid",
+   "PASS": true,
+   "detail": "(seed, cells, distinct values, cells sharing a repeat) = [(61000, 4096, 4096, 0), (61001, 4096, 4096, 0), (61002, 4096, 4096, 0), (61003, 4096, 4096, 0)]"
+  },
+  {
+   "check": "V5 the nearest A-B rho pair is astronomically far in ULPs (not a near miss)",
+   "PASS": true,
+   "detail": "minimum ULP distance per block = [46223278704105, 12246773818863, 158598087603901, 98407879646682]"
+  },
+  {
+   "check": "V6 EEFCA's boundary-mask conclusion holds under an EXACT inventory (not the withdrawn incommensurability argument)",
+   "PASS": true,
+   "detail": "(seed, boundary cells, component cells, intersection) = [(61000, 128, 42, 0), (61001, 128, 42, 0), (61002, 128, 42, 0), (61003, 128, 42, 0)]"
+  },
+  {
+   "check": "V6b the corrigendum records the withdrawal of the incommensurability argument",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V7 the executable returns the fused lap() stencil at native gain zero",
+   "PASS": true,
+   "detail": "established by AST, not by reading"
+  },
+  {
+   "check": "V7b a kappa==1 face ledger does NOT reproduce lap() bit for bit, so an OFF-arm ledger would have to be reconstructed",
+   "PASS": true,
+   "detail": "cells differing = 3307/4096, max |diff| = 1.110e-15"
+  },
+  {
+   "check": "V7c in the ON arms the face ledger DOES reconstruct its own divergence bit for bit",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V8 no held-out artefact was created or read",
+   "PASS": true,
+   "detail": "checkpoint dir contains only ['dev_FAR_61000.npz', 'dev_FAR_61000.npz.hash.json', 'dev_FAR_61001.npz', 'dev_FAR_61001.npz.hash.json'] ..."
+  },
+  {
+   "check": "V8b total engine starts are within the qualification cap of 24",
+   "PASS": true,
+   "detail": "total = 8 (B0 4 + C0 4)"
+  },
+  {
+   "check": "V8c only development-exposed seeds were advanced",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V8d the report does not claim an effect or an absence of effect",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "V9 the inequality-admissible alternative was measured but NOT used as the operator",
+   "PASS": true,
+   "detail": "admissible fraction per block = [0.59, 0.612, 0.601, 0.576]"
+  }
+ ],
+ "n": 21,
+ "n_pass": 21,
+ "ALL_PASS": true,
+ "engine_starts_this_programme": 8
+}

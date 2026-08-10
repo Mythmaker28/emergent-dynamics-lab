@@ -1,0 +1,107 @@
+{
+  "programme": "EXACT_TWIN_NATIVE_BOUNDARY_FLUX_CONFIRMATION_00",
+  "short_name": "ETNBFC",
+  "branch": "confirm/exact-twin-native-boundary-flux-00",
+  "parent_commit_reported_abbreviated": "de1524b",
+  "parent_commit_resolved": "de1524b22ff917dff1da6553f778a4f8019ac273",
+  "parent_commit_resolution_method": "git rev-parse + git rev-parse --disambiguate on the repository; a single object matched. The abbreviation was NEVER expanded by guessing.",
+  "parent_branch": "audit/exact-endpoint-functional-congruence-00",
+  "parent_bundle_sha256": "c752d185b3e79594ebbff91e1553113a377b4c986cba4ae44d94788239406ae6",
+  "grandparent_commit": "3f8dae8bbe2937c43661ba8adfe8aed63bf6b6ee",
+  "grandparent_branch": "dev/exact-twin-public-path-counterfactual-00",
+  "grandparent_bundle_sha256": "846e3c2ba5c2adb01b5beed3c83f8b0a2007f7fe4a6b5c2d027ba1a100499a5b",
+  "grandparent_archive_sha256": "1f9271f48dbad16be82ae83e18ef84aa4580db920a87d2411ea8a7e9cf456685",
+  "authorized_by_tommy": true,
+  "authorization_date": "2026-08-10",
+  "authorization_wording": "oui_go",
+  "authorization_scope": "QUALIFICATION_PLUS_FIXED_PRIMARY_PLUS_CONDITIONAL_HELD_OUT",
+  "NEW_PHYSICS": false,
+  "NEW_LAWSPEC": false,
+  "ADAPTIVE_GAIN_TUNING": false,
+  "NEW_MEMORY_STATE": false,
+  "NEW_HISTORY": false,
+  "NEW_RESPONSE_READER": false,
+  "OFF_ARM_MECHANISTIC_ABLATION": "native_gain_zero_only",
+  "TEST_LATERALITY": "TWO_SIDED_ONLY",
+  "canonical_semantics_B0": {
+    "target_coordinate": "Mf[0]",
+    "derived_intensive": "z_i = Mf[0]_i / max(rho_i, 1e-12)",
+    "Mf0_is": "AN AMOUNT (extensive per-cell content)",
+    "evidence": [
+      "constructed as Mf = rho * newm with newm bounded and intensive",
+      "transported in telescoping divergence form: dM += -(gm - roll(gm,1,axis)), which conserves the PLAIN sum and would not conserve a weighted sum under varying weights",
+      "the 5-point stencil carries no dx and no cell area anywhere in the substrate, so the lattice measure is uniform"
+    ],
+    "w_i": 1.0,
+    "w_i_status": "constant and exactly 1.0; no stored or source bits describe a varying cell volume because no such quantity exists in the model",
+    "exact_physical_content": "Q = exact unweighted sum of Mf[0]",
+    "increment_to_content_map": "identity; no capacity or storage weight intervenes",
+    "joint_domain_constraints": [
+      "C1: |Mf[0]_i| <= rho_i, enforced by np.clip(mk,-1,1) on the intensive before Mf = rho*newm",
+      "C2: Mf[0]_i == 0.0 EXACTLY wherever rho_i <= 1e-4 (the alive gate) -- a SECOND joint condition, distinct from C1 and from rho > 0",
+      "C3: Mf[1] obeys the same bounds with the same rho but imposes no constraint on Mf[0]; the writer updates components independently and Psi never reads m",
+      "C4: no occupancy variable distinct from rho exists"
+    ],
+    "note": "'|z| <= 1' alone is NOT a complete domain proof for this schema; the alive gate is separate and exact."
+  },
+  "pair_key_B1": {
+    "definition": "pair_key_i = bytes(rho_i)",
+    "why": "w_i is a compile-time constant identical at every site and carries no discriminating bits; C3 and C4 add no constraint; rho is the only non-target field in the joint domain.",
+    "forbidden_in_the_key": [
+      "Mf[0]",
+      "z",
+      "kappa",
+      "boundary exposure",
+      "c",
+      "N",
+      "uptake",
+      "any endpoint",
+      "any future value",
+      "any branch or arm label"
+    ],
+    "matching_rule": "exact float64 bytes only. No rounding, no tolerance, no ULP window, no approximate or favourable subset.",
+    "ordering_declaration": "this key was derived from the handoff wording plus a static reading of the executable, and was written and executed BEFORE the feasibility measurement in the same file, top to bottom. There was no independent sealing ceremony; this is declared rather than dressed up."
+  },
+  "authorized_operator_B2": "out-of-place raw-byte transposition of canonical Mf[0] on committed exact A-B pairs; unmatched excess byte-identical; applied through a buffer; never reconstructed from rho*z; no averaging, interpolation, rescaling, mean reflection, clipping, projection or tolerance match; the audit's algebraic matrix is NOT used.",
+  "block_roles": {
+    "61000-61009 FAR": "DEVELOPMENT_EXPOSED (ETPC primary; development-only forever)",
+    "61000-61003 FAR": "QUALIFICATION_ONLY for this programme; no endpoint computed",
+    "62000-62009 NEAR": "HELD_OUT_UNSEEN; never run, never opened, never listed for content",
+    "new primary IDs": "NOT ALLOCATED -- the programme terminated in qualification, upstream of the manifest freeze"
+  },
+  "engine_start_budget": {
+    "technical_qualification_max": 24,
+    "primary_confirmation": 50,
+    "held_out_replication": 50,
+    "planned_total_max": 124,
+    "absolute_total_max": 160,
+    "used_by_this_programme": 8,
+    "used_on_target_contrasts": 0
+  },
+  "terminal_stops_fired": [
+    "CONSERVATIVE_SWAP_UNAVAILABLE",
+    "REALIZED_BOUNDARY_FLUX_NOT_DEFINED"
+  ],
+  "terminal_stops_not_fired": [
+    "TARGET_OPENED_BEFORE_FREEZE",
+    "HELD_OUT_PEEK_BEFORE_PRIMARY_PASS",
+    "PRIMARY_BLOCK_REPLACEMENT",
+    "BLOCK_ROLE_COLLISION",
+    "QUALIFICATION_BUDGET_EXHAUSTED"
+  ],
+  "final_classifications": {
+    "COUNTERFACTUAL_IMPLEMENTATION": "NOT_TESTED",
+    "STATE_OPERATOR": "CONSERVATIVE_SWAP_UNAVAILABLE",
+    "NATIVE_FLUX_OBSERVER": "NOT_AVAILABLE (defined in ON arms only; absent at native gain zero)",
+    "PRIMARY_NATIVE_BOUNDARY_FLUX": "NOT_TESTED",
+    "GAIN_ZERO_EXCLUSION": "NOT_TESTED at the ledger level required here; the public-state version remains BIT_EXACT in 10 development blocks from ETPC",
+    "REPLICATION": "NOT_REACHED",
+    "ETNBFC_DISPOSITION": "NOT_TESTED"
+  },
+  "no_repair_under_this_id": "no gain change, matrix operator, approximate mass match, new endpoint, longer window, top-up, seed replacement, subgroup, normalisation or one-sided rescue was attempted, and none may be.",
+  "code_sha256": {
+    "etnbfc_b0.py": "5a7b4d592813e2429f24d4885c6e0662ca1992f947f7e2ae3dabe7d82728bde9",
+    "etnbfc_c0.py": "41326c8e447a053a46ac96458b56f29560010b86466dd99c211b62cca90f2657",
+    "etnbfc_verify.py": "9423852f4468e16936d8d892e0a33e8872441f2f61bc1466f9c4fac997e2af15"
+  }
+}

@@ -1,0 +1,139 @@
+{
+ "phase": "C0",
+ "engine_starts": {
+  "n": 4,
+  "log": [
+   "DEV_FOUNDER_61000",
+   "DEV_FOUNDER_61001",
+   "DEV_FOUNDER_61002",
+   "DEV_FOUNDER_61003"
+  ]
+ },
+ "EXACT_REPRESENTATION_INVENTORY": {
+  "blocks": [
+   {
+    "seed": 61000,
+    "checkpoint": "dev_FAR_61000.npz",
+    "logical_hash": "13177fe1564a049f621a1199b4743d57dca1c8516c5ba6624e91ef565db5e2f5",
+    "grid_cells": 4096,
+    "distinct_rho_values_on_whole_grid": 4096,
+    "rho_values_appearing_more_than_once": 0,
+    "cells_sharing_a_repeated_value": 0,
+    "the_repeated_values": [],
+    "alive_cells_rho_gt_1e-4": 1662,
+    "distinct_rho_among_alive": 1662,
+    "component_sites_A": 21,
+    "component_sites_B": 21,
+    "distinct_rho_A": 21,
+    "distinct_rho_B": 21,
+    "exact_A_B_common_support": 0
+   },
+   {
+    "seed": 61001,
+    "checkpoint": "dev_FAR_61001.npz",
+    "logical_hash": "e7854bb1bd6a828e8b740a922f7392fc9564669feeb8d9669fa9787f11bb5215",
+    "grid_cells": 4096,
+    "distinct_rho_values_on_whole_grid": 4096,
+    "rho_values_appearing_more_than_once": 0,
+    "cells_sharing_a_repeated_value": 0,
+    "the_repeated_values": [],
+    "alive_cells_rho_gt_1e-4": 1663,
+    "distinct_rho_among_alive": 1663,
+    "component_sites_A": 21,
+    "component_sites_B": 21,
+    "distinct_rho_A": 21,
+    "distinct_rho_B": 21,
+    "exact_A_B_common_support": 0
+   },
+   {
+    "seed": 61002,
+    "checkpoint": "dev_FAR_61002.npz",
+    "logical_hash": "4cbf38619d1a8ae5cd6e75c21b8efa6c5425c45eb8dd0055666f81e2f68fe14e",
+    "grid_cells": 4096,
+    "distinct_rho_values_on_whole_grid": 4096,
+    "rho_values_appearing_more_than_once": 0,
+    "cells_sharing_a_repeated_value": 0,
+    "the_repeated_values": [],
+    "alive_cells_rho_gt_1e-4": 1660,
+    "distinct_rho_among_alive": 1660,
+    "component_sites_A": 21,
+    "component_sites_B": 21,
+    "distinct_rho_A": 21,
+    "distinct_rho_B": 21,
+    "exact_A_B_common_support": 0
+   },
+   {
+    "seed": 61003,
+    "checkpoint": "dev_FAR_61003.npz",
+    "logical_hash": "ab0826bc71ccd1b6d6d1fc37957cb304d325401c336ec2c33e139baed9332983",
+    "grid_cells": 4096,
+    "distinct_rho_values_on_whole_grid": 4096,
+    "rho_values_appearing_more_than_once": 0,
+    "cells_sharing_a_repeated_value": 0,
+    "the_repeated_values": [],
+    "alive_cells_rho_gt_1e-4": 1664,
+    "distinct_rho_among_alive": 1664,
+    "component_sites_A": 21,
+    "component_sites_B": 21,
+    "distinct_rho_A": 21,
+    "distinct_rho_B": 21,
+    "exact_A_B_common_support": 0
+   }
+  ],
+  "finding": "outside the exactly-zero background, rho takes a DISTINCT float64 value at every cell. The only repeated bit pattern on the grid is the value that the far bath sits at, and those cells are not component sites. Between the two components there is no repeated value at all.",
+  "method": "exact byte inventory of the float64 representation, per Tommy's corrigendum item 2. No tolerance, no ULP window, no 'incommensurability' argument."
+ },
+ "C0_EXCHANGE_PATH_INVENTORY": {
+  "c": [
+   {
+    "term": "sp.D_c * self._face_transport(c, kap)",
+    "class": "TRANSPORT",
+    "pairwise": "YES when gain != 0 (explicit per-face fl), NO when gain == 0 (fused lap)"
+   },
+   {
+    "term": "+ sp.s * st.rho",
+    "class": "UNILATERAL SOURCE",
+    "pairwise": "NO -- production from material, not an exchange across a link"
+   },
+   {
+    "term": "- sp.delta * c",
+    "class": "UNILATERAL SINK",
+    "pairwise": "NO -- first-order decay to nothing, not to a reservoir cell"
+   }
+  ],
+  "N": [
+   {
+    "term": "sp.D_N * self._face_transport(N, kap)",
+    "class": "TRANSPORT",
+    "pairwise": "YES when gain != 0, NO when gain == 0"
+   },
+   {
+    "term": "+ sp.F * (sp.N0 - N)",
+    "class": "UNILATERAL RESERVOIR RELAXATION",
+    "pairwise": "NO -- every cell relaxes to N0 independently; there is no link"
+   },
+   {
+    "term": "N = N - g   (growth uptake, earlier in the step)",
+    "class": "REACTION SINK",
+    "pairwise": "NO -- consumed into rho, clipped by np.clip(g, 0, max(N,0))"
+   }
+  ],
+  "separability": "the three c terms and the three N terms are written as ONE fused expression each: c = c + dt*(D_c*T + s*rho - delta*c). The transport contribution is algebraically separable but is never materialised as its own array in the executed code; the accepted increment applied to the state is the fused sum.",
+  "material_bath_predicate": "alive = rho > 1e-4, the SAME predicate the kernel uses to build z (z = newm[z_index] * alive). It is native, not reconstructed.",
+  "boundary_links": "faces (i,j) of the periodic 64x64 lattice with alive_i XOR alive_j. Well defined and native."
+ },
+ "C0_GAIN_ZERO_LEDGER_TEST": {
+  "question": "at native gain zero the engine returns lap(X). Is that bitwise equal to the per-face form with kappa == 1, i.e. can one canonical face ledger describe both arms?",
+  "face_form_equals_lap_bitwise": false,
+  "cells_differing": 3307,
+  "max_abs_difference": 1.1102230246251565e-15,
+  "verdict": "NOT bitwise identical. lap(X) is a fused 5-term stencil sum; the face form is a different summation order. At native gain zero the executed solver does NOT materialise any per-face transfer, and any ledger for the OFF arm would have to be RECONSTRUCTED -- which C0 forbids.",
+  "on_arm_face_ledger_reconstructs_its_own_divergence_bitwise": true
+ },
+ "C0_ADJUDICATION": {
+  "F1_UNIQUE_REALIZED_TRANSFER_EXISTS__ON_ARMS": "PASS -- with gain != 0 the kernel materialises fl per face and applies it as an exact telescoping debit/credit; the ledger reconstructs the divergence bit for bit.",
+  "F1_UNIQUE_REALIZED_TRANSFER_EXISTS__OFF_ARMS": "FAIL -- with gain == 0 the kernel returns the fused lap(X) stencil. No per-face quantity is computed, and the fused form is not bitwise equal to the face form.",
+  "SEPARABILITY_OF_TRANSPORT_FROM_SOURCE_AND_SINK": "the source (s*rho, F*(N0-N)) and sink (delta*c, growth uptake) terms are fused into the same applied increment as transport. They are algebraically separable and are NOT boundary exchanges, so they must be inventoried separately and excluded from the ledger; that is possible for the ON arms.",
+  "REALIZED_BOUNDARY_FLUX_STATUS": "DEFINED_IN_ON_ARMS_ONLY. The design requires a canonical event stream in the OFF arms too (gate F10 / T6), and at native gain zero the executable does not provide one."
+ }
+}
