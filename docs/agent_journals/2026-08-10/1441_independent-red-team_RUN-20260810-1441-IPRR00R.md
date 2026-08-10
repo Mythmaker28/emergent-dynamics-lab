@@ -83,3 +83,17 @@ denominator or absent falsifier would refute the dependent part.
 - Produce the six remaining required deliverables, hashes, archive and bundle.
 - Finalize this journal, indexes/state only if the audit branch's durable state genuinely changes, commit, and
   publish only if workflow-safe.
+
+## Post-freeze events — first audit pass
+
+- Access classification changed at L1: the ETCMNFC commit message and then its allowlisted protocol disclosed the
+  held-out allocation. No held-out content, content hash, size, result, timestamp or internal result manifest was
+  opened. The dependent held-out audit is `NOT_AUDITABLE`; all code/DEV/provenance/GitHub work continues.
+- The GitHub reviewer found a sentinel normalization bug before opening a workflow. Amendment 1 corrects exact
+  leading-`./` handling and adds a traversal denial without changing the frozen allowlist. Corrected sentinel hash:
+  `A0E618F6BA638BE1457BD420DF19FCC80A590D8000F6699AE3E2F3CC9C5052BF`.
+- An independent offline Git-blob consistency script reproduced 60 stored offline PASS rows, 14 second-pass rows,
+  19 verifier rows, the protocol seal, all 18 listed artefact hashes, the shared geometry and empty endpoint support.
+  It also found that all four ratios labelled `component minimum / boundary median` in `probe_depth.json` disagree
+  with direct division of the corresponding committed numerator and median in `probe_attribution.json`. This is now
+  an open contradiction under investigation, not silently rounded away.
