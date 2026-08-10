@@ -1,0 +1,66 @@
+{
+ "policy": "families were INVENTORIED from operators that already exist in the sealed code base; none was invented for this pilot, and none was chosen because its results looked useful",
+ "families": [
+  {
+   "id": "F1_CARRIER_TRANSPOSITION",
+   "operator": "etcmnfc_core.transpose on the frozen maximum-support lexicographic manifest",
+   "target": "Mf[0] at matched cross-component site pairs",
+   "amplitude": "fixed by the manifest; 21 pairs per block",
+   "conservation": "exact Mf[0] multiset and exact rational content Q at t0; byte-involutive",
+   "domain": "post-swap |Mf0|<=rho and the alive gate, checked pair by pair",
+   "cost": "paired_site_count = 21",
+   "sham": "identity hook, bit-identical to no hook",
+   "provenance": "ETCMNFC, qualified 60/60"
+  },
+  {
+   "id": "F2_INTENSIVE_REFLECTION",
+   "operator": "ppai_core.state_cross",
+   "target": "the intensive m = Mf/rho, reflected x -> (L-x) mod L, then Mf rebuilt from local rho",
+   "amplitude": "whole lattice",
+   "conservation": "multiset of intensive values over the lattice",
+   "domain": "|m|<=1 preserved by reflection",
+   "cost": "lattice-wide",
+   "sham": "ppai_core.sham",
+   "provenance": "PPAI, sealed"
+  },
+  {
+   "id": "F3_EXTENSIVE_REFLECTION",
+   "operator": "domc_core.reciprocal_cross",
+   "target": "Mf itself, reflected",
+   "amplitude": "whole lattice",
+   "conservation": "sum(Mf) exactly, by permutation; involutive",
+   "domain": "inherited",
+   "cost": "lattice-wide",
+   "sham": "domc_core.erase_sham",
+   "provenance": "DOMC, sealed"
+  },
+  {
+   "id": "F4_TOTAL_CARRIER_ABLATION",
+   "operator": "ppai_core.erase_all / chmr_core.core_erase",
+   "target": "Mf <- 0 everywhere",
+   "amplitude": "MAXIMAL: this is the largest possible intervention on the carrier",
+   "conservation": "NONE - deliberately non-conservative",
+   "domain": "0 <= rho always, and 0 satisfies the alive gate",
+   "cost": "total",
+   "sham": "identity",
+   "provenance": "CHMR/PPAI, sealed"
+  },
+  {
+   "id": "F5_ENVIRONMENT_PERTURBATION",
+   "operator": "domc_core._perturb_N(st, amp)",
+   "target": "N, the public nutrient - NOT the carrier",
+   "amplitude": "+0.5*N0 lattice-wide",
+   "conservation": "none; clipped at 0",
+   "domain": "N>=0",
+   "cost": "lattice-wide",
+   "sham": "identity",
+   "provenance": "DOMC, sealed",
+   "note": "structurally distinct: it does not touch Mf at all"
+  }
+ ],
+ "count": 5,
+ "minimum_required": 3,
+ "sufficient": true,
+ "out_of_family_reservation": "F4 and F5 were designated for out-of-family evaluation. The freeze never reached model comparison, so no family was ever used for fitting either.",
+ "scrambled_control": "NOT CONSTRUCTED - the pilot stopped before model comparison, so a dose-preserving spatial scramble was never needed"
+}

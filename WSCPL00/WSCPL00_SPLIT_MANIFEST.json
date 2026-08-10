@@ -1,0 +1,31 @@
+{
+ "policy": "split first by independent founding block and by WHOLE intervention family; never by timepoint, cell, arm or nearby sample. No trajectory straddles roles.",
+ "roles": {
+  "FORMULATION_TRAIN": {
+   "blocks": [
+    61000,
+    61001,
+    61002
+   ],
+   "used_for": "the branch-endpoint feasibility probe and the intervention-responsiveness probe",
+   "families": "F1-F5, all used only to test responsiveness, never to fit a model"
+  },
+  "MODEL_SELECTION_VALIDATION": {
+   "blocks": [],
+   "used_for": "never opened - the stop fired before model selection"
+  },
+  "UNTOUCHED_PILOT_EVALUATION": {
+   "blocks": [],
+   "used_for": "NEVER OPENED, NEVER ALLOCATED",
+   "reason": "the endpoint failed its feasibility gate, so allocating and locking an evaluation set would have burned independent blocks for nothing"
+  }
+ },
+ "independent_block_requirement": {
+  "required_in_untouched_evaluation": 6,
+  "available_cap": 12,
+  "allocated": 0
+ },
+ "all_WSCPL00_outputs": "DEVELOPMENT FOREVER",
+ "current_primary_access": false,
+ "current_held_out_access": false
+}
