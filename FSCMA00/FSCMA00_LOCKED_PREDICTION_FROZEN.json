@@ -1,0 +1,18 @@
+{
+ "frozen_before": "the first LOCKED engine start of this programme",
+ "mechanism": "make_founder assigns (HIST_H, HIST_L) on even seeds and (HIST_L, HIST_H) on odd seeds; the frozen queue makes even seeds FAR and odd seeds NEAR; both geometries are symmetric about x = L/2 so the canonical smaller-site-id channel is always the half-A site. Geometry class, history order and channel label are therefore one axis, not three.",
+ "P3_orientation": {
+  "statement": "aligned against the BASIS gauge founder 64001 (odd/NEAR), every LOCKED EVEN seed will require a swap and every LOCKED ODD seed will not",
+  "predicted_swap": [
+   64000,
+   64004,
+   64008
+  ],
+  "predicted_no_swap": [
+   64003,
+   64007,
+   64011
+  ],
+  "falsifier": "any LOCKED founder whose sign alignment disagrees with its seed parity"
+ }
+}

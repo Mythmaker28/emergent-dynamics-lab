@@ -1,0 +1,532 @@
+{
+ "E_inherited_domain_violation": {
+  "finding": "WSFSCRP00 recorded domain_ok=False in 6 of its 12 TRAIN cells (every S2 = intensive reflection cell) and did not act on it. This audit determines which constraint failed, by how much, and whether the dynamics repair it.",
+  "constraints": {
+   "C1": "|Mf[0]_i| <= rho_i",
+   "C2": "Mf[0]_i == 0.0 exactly where rho_i <= 1e-4"
+  },
+  "per_cell": [
+   {
+    "seed": 64006,
+    "operator": "S1_matched_transposition",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": false,
+    "C2_n_sites": 0,
+    "C2_n_dead_sites_total": 2432,
+    "C2_max_abs_Mf0_on_dead": 0.0,
+    "C2_offgate_abs_content": "0",
+    "C2_offgate_share_of_total_abs_content": 0.0,
+    "n_sites_in_AuB": 42
+   },
+   {
+    "seed": 64006,
+    "operator": "S2a_intensive_reflection",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": true,
+    "C2_n_sites": 32,
+    "C2_n_dead_sites_total": 2432,
+    "C2_max_abs_Mf0_on_dead": 1.6451688454123946e-05,
+    "C2_offgate_abs_content": "98015632065664037677/604462909807314587353088",
+    "C2_offgate_share_of_total_abs_content": 8.428783311779985e-06,
+    "n_sites_in_AuB": 42
+   },
+   {
+    "seed": 64006,
+    "operator": "S2b_extensive_reflection",
+    "C1_violated": true,
+    "C1_n_sites": 249,
+    "C1_max_excess": 0.04359912782589798,
+    "C2_violated": true,
+    "C2_n_sites": 32,
+    "C2_n_dead_sites_total": 2432,
+    "C2_max_abs_Mf0_on_dead": 2.9018094891307447e-05,
+    "C2_offgate_abs_content": "155963426980773774267/604462909807314587353088",
+    "C2_offgate_share_of_total_abs_content": 1.4016387524434247e-05,
+    "n_sites_in_AuB": 42
+   },
+   {
+    "seed": 64006,
+    "operator": "S2c_total_ablation",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": false,
+    "C2_n_sites": 0,
+    "C2_n_dead_sites_total": 2432,
+    "C2_max_abs_Mf0_on_dead": 0.0,
+    "C2_offgate_abs_content": "0",
+    "C2_offgate_share_of_total_abs_content": 0.0,
+    "n_sites_in_AuB": 42
+   },
+   {
+    "seed": 64002,
+    "operator": "S1_matched_transposition",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": false,
+    "C2_n_sites": 0,
+    "C2_n_dead_sites_total": 2437,
+    "C2_max_abs_Mf0_on_dead": 0.0,
+    "C2_offgate_abs_content": "0",
+    "C2_offgate_share_of_total_abs_content": 0.0,
+    "n_sites_in_AuB": 41
+   },
+   {
+    "seed": 64002,
+    "operator": "S2a_intensive_reflection",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": true,
+    "C2_n_sites": 33,
+    "C2_n_dead_sites_total": 2437,
+    "C2_max_abs_Mf0_on_dead": 1.6382411696026876e-05,
+    "C2_offgate_abs_content": "12192653206549923227/75557863725914323419136",
+    "C2_offgate_share_of_total_abs_content": 8.445008406409727e-06,
+    "n_sites_in_AuB": 41
+   },
+   {
+    "seed": 64002,
+    "operator": "S2b_extensive_reflection",
+    "C1_violated": true,
+    "C1_n_sites": 245,
+    "C1_max_excess": 0.04286190743504663,
+    "C2_violated": true,
+    "C2_n_sites": 33,
+    "C2_n_dead_sites_total": 2437,
+    "C2_max_abs_Mf0_on_dead": 3.140021825288595e-05,
+    "C2_offgate_abs_content": "78403075382175193769/302231454903657293676544",
+    "C2_offgate_share_of_total_abs_content": 1.4175697494103057e-05,
+    "n_sites_in_AuB": 41
+   },
+   {
+    "seed": 64002,
+    "operator": "S2c_total_ablation",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": false,
+    "C2_n_sites": 0,
+    "C2_n_dead_sites_total": 2437,
+    "C2_max_abs_Mf0_on_dead": 0.0,
+    "C2_offgate_abs_content": "0",
+    "C2_offgate_share_of_total_abs_content": 0.0,
+    "n_sites_in_AuB": 41
+   },
+   {
+    "seed": 64010,
+    "operator": "S1_matched_transposition",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": false,
+    "C2_n_sites": 0,
+    "C2_n_dead_sites_total": 2429,
+    "C2_max_abs_Mf0_on_dead": 0.0,
+    "C2_offgate_abs_content": "0",
+    "C2_offgate_share_of_total_abs_content": 0.0,
+    "n_sites_in_AuB": 42
+   },
+   {
+    "seed": 64010,
+    "operator": "S2a_intensive_reflection",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": true,
+    "C2_n_sites": 31,
+    "C2_n_dead_sites_total": 2429,
+    "C2_max_abs_Mf0_on_dead": 1.694119710974942e-05,
+    "C2_offgate_abs_content": "210107017064925774461/1208925819614629174706176",
+    "C2_offgate_share_of_total_abs_content": 9.035743811320564e-06,
+    "n_sites_in_AuB": 42
+   },
+   {
+    "seed": 64010,
+    "operator": "S2b_extensive_reflection",
+    "C1_violated": true,
+    "C1_n_sites": 250,
+    "C1_max_excess": 0.03865428816873269,
+    "C2_violated": true,
+    "C2_n_sites": 31,
+    "C2_n_dead_sites_total": 2429,
+    "C2_max_abs_Mf0_on_dead": 3.039881415807348e-05,
+    "C2_offgate_abs_content": "170278345497210749733/604462909807314587353088",
+    "C2_offgate_share_of_total_abs_content": 1.5325338140753272e-05,
+    "n_sites_in_AuB": 42
+   },
+   {
+    "seed": 64010,
+    "operator": "S2c_total_ablation",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": false,
+    "C2_n_sites": 0,
+    "C2_n_dead_sites_total": 2429,
+    "C2_max_abs_Mf0_on_dead": 0.0,
+    "C2_offgate_abs_content": "0",
+    "C2_offgate_share_of_total_abs_content": 0.0,
+    "n_sites_in_AuB": 42
+   },
+   {
+    "seed": 64009,
+    "operator": "S1_matched_transposition",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": false,
+    "C2_n_sites": 0,
+    "C2_n_dead_sites_total": 2880,
+    "C2_max_abs_Mf0_on_dead": 0.0,
+    "C2_offgate_abs_content": "0",
+    "C2_offgate_share_of_total_abs_content": 0.0,
+    "n_sites_in_AuB": 39
+   },
+   {
+    "seed": 64009,
+    "operator": "S2a_intensive_reflection",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": true,
+    "C2_n_sites": 67,
+    "C2_n_dead_sites_total": 2880,
+    "C2_max_abs_Mf0_on_dead": 2.590503519104791e-05,
+    "C2_offgate_abs_content": "4346913717787007765/9444732965739290427392",
+    "C2_offgate_share_of_total_abs_content": 2.4893021498348187e-05,
+    "n_sites_in_AuB": 39
+   },
+   {
+    "seed": 64009,
+    "operator": "S2b_extensive_reflection",
+    "C1_violated": true,
+    "C1_n_sites": 244,
+    "C1_max_excess": 0.05701741002476057,
+    "C2_violated": true,
+    "C2_n_sites": 67,
+    "C2_n_dead_sites_total": 2880,
+    "C2_max_abs_Mf0_on_dead": 0.0002799945427943954,
+    "C2_offgate_abs_content": "16343934917903546101/4722366482869645213696",
+    "C2_offgate_share_of_total_abs_content": 0.0001990555724977116,
+    "n_sites_in_AuB": 39
+   },
+   {
+    "seed": 64009,
+    "operator": "S2c_total_ablation",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": false,
+    "C2_n_sites": 0,
+    "C2_n_dead_sites_total": 2880,
+    "C2_max_abs_Mf0_on_dead": 0.0,
+    "C2_offgate_abs_content": "0",
+    "C2_offgate_share_of_total_abs_content": 0.0,
+    "n_sites_in_AuB": 39
+   },
+   {
+    "seed": 64005,
+    "operator": "S1_matched_transposition",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": false,
+    "C2_n_sites": 0,
+    "C2_n_dead_sites_total": 2881,
+    "C2_max_abs_Mf0_on_dead": 0.0,
+    "C2_offgate_abs_content": "0",
+    "C2_offgate_share_of_total_abs_content": 0.0,
+    "n_sites_in_AuB": 39
+   },
+   {
+    "seed": 64005,
+    "operator": "S2a_intensive_reflection",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": true,
+    "C2_n_sites": 64,
+    "C2_n_dead_sites_total": 2881,
+    "C2_max_abs_Mf0_on_dead": 2.5211238272462812e-05,
+    "C2_offgate_abs_content": "8319275410193092317/18889465931478580854784",
+    "C2_offgate_share_of_total_abs_content": 2.37996004325786e-05,
+    "n_sites_in_AuB": 39
+   },
+   {
+    "seed": 64005,
+    "operator": "S2b_extensive_reflection",
+    "C1_violated": true,
+    "C1_n_sites": 241,
+    "C1_max_excess": 0.057700226743729106,
+    "C2_violated": true,
+    "C2_n_sites": 64,
+    "C2_n_dead_sites_total": 2881,
+    "C2_max_abs_Mf0_on_dead": 0.0002792165484690229,
+    "C2_offgate_abs_content": "15635926156710442465/4722366482869645213696",
+    "C2_offgate_share_of_total_abs_content": 0.0001902574597457921,
+    "n_sites_in_AuB": 39
+   },
+   {
+    "seed": 64005,
+    "operator": "S2c_total_ablation",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": false,
+    "C2_n_sites": 0,
+    "C2_n_dead_sites_total": 2881,
+    "C2_max_abs_Mf0_on_dead": 0.0,
+    "C2_offgate_abs_content": "0",
+    "C2_offgate_share_of_total_abs_content": 0.0,
+    "n_sites_in_AuB": 39
+   },
+   {
+    "seed": 64001,
+    "operator": "S1_matched_transposition",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": false,
+    "C2_n_sites": 0,
+    "C2_n_dead_sites_total": 2881,
+    "C2_max_abs_Mf0_on_dead": 0.0,
+    "C2_offgate_abs_content": "0",
+    "C2_offgate_share_of_total_abs_content": 0.0,
+    "n_sites_in_AuB": 38
+   },
+   {
+    "seed": 64001,
+    "operator": "S2a_intensive_reflection",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": true,
+    "C2_n_sites": 64,
+    "C2_n_dead_sites_total": 2881,
+    "C2_max_abs_Mf0_on_dead": 2.427099080410211e-05,
+    "C2_offgate_abs_content": "16574200080180993471/37778931862957161709568",
+    "C2_offgate_share_of_total_abs_content": 2.3887198275566464e-05,
+    "n_sites_in_AuB": 38
+   },
+   {
+    "seed": 64001,
+    "operator": "S2b_extensive_reflection",
+    "C1_violated": true,
+    "C1_n_sites": 242,
+    "C1_max_excess": 0.05868080915019645,
+    "C2_violated": true,
+    "C2_n_sites": 64,
+    "C2_n_dead_sites_total": 2881,
+    "C2_max_abs_Mf0_on_dead": 0.00028383436485595606,
+    "C2_offgate_abs_content": "7368748801294072075/2361183241434822606848",
+    "C2_offgate_share_of_total_abs_content": 0.00018066123369752892,
+    "n_sites_in_AuB": 38
+   },
+   {
+    "seed": 64001,
+    "operator": "S2c_total_ablation",
+    "C1_violated": false,
+    "C1_n_sites": 0,
+    "C1_max_excess": 0.0,
+    "C2_violated": false,
+    "C2_n_sites": 0,
+    "C2_n_dead_sites_total": 2881,
+    "C2_max_abs_Mf0_on_dead": 0.0,
+    "C2_offgate_abs_content": "0",
+    "C2_offgate_share_of_total_abs_content": 0.0,
+    "n_sites_in_AuB": 38
+   }
+  ],
+  "engine_repair_argument": "The writer ends every step with newm[kk] = clip(mk,-1,1) * alive and Mf = rho * newm, with alive = rho > 1e-4. Therefore Mf is exactly 0 off the alive gate at the END of every step, for every step, unconditionally. A C2 violation introduced at t0 survives strictly less than one step. It is NOT inert, however: within that first step the carrier transport term dM reads fM = Mf/max(rho,EPS), so off-gate carrier can be advected onto live neighbours before the gate is re-applied.",
+  "scope_of_the_correction": "This is a defect in the parent's DOMAIN DECLARATION or in its choice of S2 instance, not a defect in the Q2 rank arithmetic, which is confirmed exactly elsewhere in this programme. It is recorded, not repaired: the parent's outputs are append-only."
+ },
+ "F_rank_ceiling_algebra": {
+  "channel_decomposition": {
+   "definition": "s = dA + dB (common mode, net matter in the two windows), d = dA - dB (differential mode, redistribution between the windows). Energy is the quadrature-weighted sum of squares over the scored grid.",
+   "per_cell": [
+    {
+     "seed": 64006,
+     "superfamily": "S1",
+     "E_sum": "100447173093072233797964557772911/16582510636860352131453886905397164552",
+     "E_diff": "667289719081034818178600340652055/16582510636860352131453886905397164552",
+     "sum_share": 0.13083541264849477,
+     "diff_share": 0.8691645873515053,
+     "antisymmetry_ratio_dB_over_dA": 1.1403788588134205
+    },
+    {
+     "seed": 64006,
+     "superfamily": "S2",
+     "E_sum": "247555268436578491480742340203405/16582510636860352131453886905397164552",
+     "E_diff": "1628996812319619340963575866336813/16582510636860352131453886905397164552",
+     "sum_share": 0.13192027600791162,
+     "diff_share": 0.8680797239920883,
+     "antisymmetry_ratio_dB_over_dA": 0.8001550196185279
+    },
+    {
+     "seed": 64002,
+     "superfamily": "S1",
+     "E_sum": "3565927105215268249069003101039/887424236916128036781479682804348484",
+     "E_diff": "278968892088424547529249916448191/7986818132245152331033317145239136356",
+     "sum_share": 0.10317338535202004,
+     "diff_share": 0.89682661464798,
+     "antisymmetry_ratio_dB_over_dA": 1.064362539814641
+    },
+    {
+     "seed": 64002,
+     "superfamily": "S2",
+     "E_sum": "107520137135651466029947098807185/7986818132245152331033317145239136356",
+     "E_diff": "261477284100996213498775249494931/2662272710748384110344439048413045452",
+     "sum_share": 0.12054475847216896,
+     "diff_share": 0.879455241527831,
+     "antisymmetry_ratio_dB_over_dA": 0.7468038130622449
+    },
+    {
+     "seed": 64010,
+     "superfamily": "S1",
+     "E_sum": "111376824087535257457104140215781/16476415196551066406300664972145825800",
+     "E_diff": "652901608920224030897428666039381/16476415196551066406300664972145825800",
+     "sum_share": 0.14572807405963334,
+     "diff_share": 0.8542719259403667,
+     "antisymmetry_ratio_dB_over_dA": 1.1846473666390918
+    },
+    {
+     "seed": 64010,
+     "superfamily": "S2",
+     "E_sum": "262334139956934158374202464284913/16476415196551066406300664972145825800",
+     "E_diff": "1624931210734153488067413156505369/16476415196551066406300664972145825800",
+     "sum_share": 0.13900225522652201,
+     "diff_share": 0.860997744773478,
+     "antisymmetry_ratio_dB_over_dA": 0.8032806140161748
+    },
+    {
+     "seed": 64009,
+     "superfamily": "S1",
+     "E_sum": "39717763476574593088272146780839/30884667762569470454944916566551576576",
+     "E_diff": "808526375135137795509917949545111/30884667762569470454944916566551576576",
+     "sum_share": 0.04682350477726741,
+     "diff_share": 0.9531764952227326,
+     "antisymmetry_ratio_dB_over_dA": 0.9317837066312045
+    },
+    {
+     "seed": 64009,
+     "superfamily": "S2",
+     "E_sum": "421396699523475817016522268905891/61769335525138940909889833133103153152",
+     "E_diff": "2220611313635170980611252522105561/20589778508379646969963277711034384384",
+     "sum_share": 0.05949216126300729,
+     "diff_share": 0.9405078387369927,
+     "antisymmetry_ratio_dB_over_dA": 1.2919591694115102
+    },
+    {
+     "seed": 64005,
+     "superfamily": "S1",
+     "E_sum": "60858643603213129158801998265905/61679572197306036722866969494363842688",
+     "E_diff": "546213729862060580756656449046355/20559857399102012240955656498121280896",
+     "sum_share": 0.035809737909183396,
+     "diff_share": 0.9641902620908166,
+     "antisymmetry_ratio_dB_over_dA": 0.9880758910463159
+    },
+    {
+     "seed": 64005,
+     "superfamily": "S2",
+     "E_sum": "18466517353849812396687075197117/2937122485586001748707950928303040128",
+     "E_diff": "6742780186181231342770151033996833/61679572197306036722866969494363842688",
+     "sum_share": 0.054385060518707694,
+     "diff_share": 0.9456149394812923,
+     "antisymmetry_ratio_dB_over_dA": 1.3072165553399482
+    },
+    {
+     "seed": 64001,
+     "superfamily": "S1",
+     "E_sum": "483082129921935254294434276295/309716630836248837814896393014701464",
+     "E_diff": "26197599895287143992079738253377/929149892508746513444689179044104392",
+     "sum_share": 0.05241995324976106,
+     "diff_share": 0.947580046750239,
+     "antisymmetry_ratio_dB_over_dA": 0.9729388444840772
+    },
+    {
+     "seed": 64001,
+     "superfamily": "S2",
+     "E_sum": "61299957862239389391517965691799/7433199140069972107557513432352835136",
+     "E_diff": "9891516842658675711686725179727/91767890618147803797006338671022656",
+     "sum_share": 0.07107135835005819,
+     "diff_share": 0.9289286416499418,
+     "antisymmetry_ratio_dB_over_dA": 1.2608724234594229
+    }
+   ],
+   "carrier_sum_share_min": 0.035809737909183396,
+   "carrier_sum_share_max": 0.14572807405963334,
+   "carrier_sum_share_median": 0.08712237185103912
+  },
+  "exact_gram_spectra": {
+   "full_two_channel": {
+    "lambda": [
+     0.00040418952842385063,
+     5.783691365490671e-06,
+     3.613152082024517e-06
+    ],
+    "trace": 0.0004138433263857453,
+    "lam2_over_lam1": 0.014309354792154939,
+    "sigma2_over_sigma1": 0.11962171538711079,
+    "lam1_share": 0.9766728195276095
+   },
+   "sum_channel_only": {
+    "lambda": [
+     1.4101405188972487e-05,
+     2.0931995182856194e-06,
+     4.272497739178908e-08
+    ],
+    "trace": 1.6251138384274733e-05,
+    "share_of_full_trace": 0.039268818289767395
+   },
+   "diff_channel_only": {
+    "lambda": [
+     0.0008043547005592485,
+     6.899140719945263e-06,
+     1.7813750063588883e-07
+    ],
+    "trace": 0.0008114355143872159,
+    "share_of_full_trace": 1.9607311817102326
+   }
+  },
+  "superfamily_subspaces": {
+   "principal_cosines_S1_vs_S2_leading_2d": [
+    0.9935144051800158,
+    0.9370099048913496
+   ],
+   "principal_angles_deg": [
+    6.529013068705486,
+    20.444676488358294
+   ],
+   "interpretation": "cosines near 1 mean the two TRAIN superfamilies excite the same response directions and differ essentially in amplitude; that is what a rank-one response matrix looks like from the operator side."
+  }
+ },
+ "G_preregistered_prediction": {
+  "frozen_before": "any environmental engine start of this programme (probe start count = 0 at the moment this file is written)",
+  "mechanism": [
+   "Every carrier operator leaves N bit-identical, so it changes the total nutrient budget by exactly zero, and by the one-step dependency matrix it cannot reach rho at all within one step. It acts as a multiplicative transport-coefficient perturbation.",
+   "The environmental operator adds +amp*N0 at all 4096 sites, changing the nutrient budget by exactly amp*N0*L^2, and reaches rho within one step through the growth term. It acts as an additive source perturbation that INJECTS matter into both scored windows."
+  ],
+  "P1_common_mode": {
+   "statement": "the environmental response will load on the common mode s = dA + dB more heavily than any carrier cell does",
+   "threshold": "env sum_share > 0.14572807405963334 (the maximum over all 12 carrier cells)",
+   "carrier_sum_share_max": 0.14572807405963334,
+   "falsifier": "if the environmental sum_share lands inside the carrier range, the budget-injection mechanism above is not what drives the endpoint and P1 is recorded as refuted."
+  },
+  "P2_off_family": {
+   "statement": "the environmental response will fall outside the affine 1-D family S1 fitted on the carrier BASIS",
+   "threshold": "OFF1 > 0.10 for the environmental cells, the same tube gate the carrier cells must satisfy from the inside",
+   "falsifier": "OFF1 <= 0.10 for the environmental cells supports H1 instead."
+  },
+  "relation_to_the_hypotheses": {
+   "H1_supported_if": "P1 and P2 both refuted: one affine family absorbs the environmental operator too",
+   "H2_supported_if": "P2 confirmed: the environmental operator adds a mode the carrier repertoire cannot reach",
+   "note": "P1 and P2 are logically independent. P1 confirmed with P2 refuted would mean the environmental operator moves further along the SAME direction, which is an amplitude effect, not a second mode."
+  }
+ }
+}

@@ -1,0 +1,443 @@
+{
+ "gauge_orientation": {
+  "64001": "no_swap",
+  "64002": "swap",
+  "64005": "no_swap",
+  "64006": "swap",
+  "64009": "no_swap",
+  "64010": "swap"
+ },
+ "carrier_reference": {
+  "n_cells": 12,
+  "singular_values": [
+   0.006338090706997308,
+   0.002169985185592264,
+   0.0006841042218872168,
+   0.0003549196250265342,
+   0.00010125037520367361,
+   7.23155910354979e-05,
+   1.3712643843457795e-05,
+   4.780227978640813e-06,
+   3.830342290930904e-06,
+   2.234630083835214e-06,
+   9.22351383937608e-07,
+   1.6705676619263217e-18
+  ]
+ },
+ "P1_common_mode": {
+  "threshold_env_sum_share_gt": 0.14572807405963334,
+  "carrier_sum_share": {
+   "min": 0.035809737909183396,
+   "max": 0.14572807405963334,
+   "median": 0.08712237185103912
+  },
+  "env_per_cell": [
+   {
+    "seed": 64006,
+    "arm": "ENV_PRIMARY",
+    "sum_share": 0.9932910605232519
+   },
+   {
+    "seed": 64006,
+    "arm": "ENV_SECONDARY",
+    "sum_share": 0.9857112928945747
+   },
+   {
+    "seed": 64002,
+    "arm": "ENV_PRIMARY",
+    "sum_share": 0.9838621279633456
+   },
+   {
+    "seed": 64002,
+    "arm": "ENV_SECONDARY",
+    "sum_share": 0.9751012072444065
+   },
+   {
+    "seed": 64010,
+    "arm": "ENV_PRIMARY",
+    "sum_share": 0.9923649478854617
+   },
+   {
+    "seed": 64010,
+    "arm": "ENV_SECONDARY",
+    "sum_share": 0.9841337332321851
+   },
+   {
+    "seed": 64009,
+    "arm": "ENV_PRIMARY",
+    "sum_share": 0.9741623569410167
+   },
+   {
+    "seed": 64009,
+    "arm": "ENV_SECONDARY",
+    "sum_share": 0.9686506621377309
+   },
+   {
+    "seed": 64005,
+    "arm": "ENV_PRIMARY",
+    "sum_share": 0.9750171611475331
+   },
+   {
+    "seed": 64005,
+    "arm": "ENV_SECONDARY",
+    "sum_share": 0.9696070588853805
+   },
+   {
+    "seed": 64001,
+    "arm": "ENV_PRIMARY",
+    "sum_share": 0.9806347090094606
+   },
+   {
+    "seed": 64001,
+    "arm": "ENV_SECONDARY",
+    "sum_share": 0.974609752624241
+   }
+  ],
+  "env_sum_share_min": 0.9686506621377309,
+  "env_sum_share_max": 0.9932910605232519,
+  "all_env_above_carrier_max": true,
+  "separation_factor": 6.646973607441965,
+  "VERDICT": "P1_CONFIRMED"
+ },
+ "P2_off_family": {
+  "threshold_OFF_gt": 0.1,
+  "per_k": {
+   "1": {
+    "carrier_OFF_max": 0.5252177429431949,
+    "carrier_OFF_min": 0.1942726978474818,
+    "carrier_O_energy": 0.11691636626340428,
+    "env_OFF_min": 0.9990994595322389,
+    "env_OFF_max": 0.9999934783115916,
+    "env_per_cell": [
+     {
+      "seed": 64006,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.9999921878331787
+     },
+     {
+      "seed": 64006,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.9997154688926074
+     },
+     {
+      "seed": 64002,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.9993236472899926
+     },
+     {
+      "seed": 64002,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.999989154289377
+     },
+     {
+      "seed": 64010,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.999963543366903
+     },
+     {
+      "seed": 64010,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.9998418152928965
+     },
+     {
+      "seed": 64009,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.999143687632904
+     },
+     {
+      "seed": 64009,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.9999934643586809
+     },
+     {
+      "seed": 64005,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.9990994595322389
+     },
+     {
+      "seed": 64005,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.9999934783115916
+     },
+     {
+      "seed": 64001,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.9992586450008749
+     },
+     {
+      "seed": 64001,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.999991619548621
+     }
+    ],
+    "all_env_above_0.10": true,
+    "carrier_tube_holds_at_this_k": false
+   },
+   "2": {
+    "carrier_OFF_max": 0.18947689912196142,
+    "carrier_OFF_min": 0.06181735468862082,
+    "carrier_O_energy": 0.013402513462979123,
+    "env_OFF_min": 0.9025894223364495,
+    "env_OFF_max": 0.9223266666940454,
+    "env_per_cell": [
+     {
+      "seed": 64006,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.9025894223364495
+     },
+     {
+      "seed": 64006,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.9069837378193571
+     },
+     {
+      "seed": 64002,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.9122045654526847
+     },
+     {
+      "seed": 64002,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.9159553165100996
+     },
+     {
+      "seed": 64010,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.9031699862384329
+     },
+     {
+      "seed": 64010,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.9079094745353818
+     },
+     {
+      "seed": 64009,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.9207643010401917
+     },
+     {
+      "seed": 64009,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.9223266666940454
+     },
+     {
+      "seed": 64005,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.9203588483635494
+     },
+     {
+      "seed": 64005,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.921932214136957
+     },
+     {
+      "seed": 64001,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.9155954060613426
+     },
+     {
+      "seed": 64001,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.9179505041095077
+     }
+    ],
+    "all_env_above_0.10": true,
+    "carrier_tube_holds_at_this_k": false
+   },
+   "3": {
+    "carrier_OFF_max": 0.11953612048472036,
+    "carrier_OFF_min": 0.012051813146564255,
+    "carrier_O_energy": 0.003114548494211072,
+    "env_OFF_min": 0.8180582467341221,
+    "env_OFF_max": 0.8307254569545663,
+    "env_per_cell": [
+     {
+      "seed": 64006,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.8230177871930303
+     },
+     {
+      "seed": 64006,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.8261326038639053
+     },
+     {
+      "seed": 64002,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.8230262944241863
+     },
+     {
+      "seed": 64002,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.8273115449999091
+     },
+     {
+      "seed": 64010,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.8220770613018243
+     },
+     {
+      "seed": 64010,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.8255169588229144
+     },
+     {
+      "seed": 64009,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.8180582467341221
+     },
+     {
+      "seed": 64009,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.824761752177706
+     },
+     {
+      "seed": 64005,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.8205731788150377
+     },
+     {
+      "seed": 64005,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.826709574808075
+     },
+     {
+      "seed": 64001,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.8245711171378054
+     },
+     {
+      "seed": 64001,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.8307254569545663
+     }
+    ],
+    "all_env_above_0.10": true,
+    "carrier_tube_holds_at_this_k": false
+   },
+   "4": {
+    "carrier_OFF_max": 0.031923397303688546,
+    "carrier_OFF_min": 0.00231572772250756,
+    "carrier_O_energy": 0.00034540817218224547,
+    "env_OFF_min": 0.14560567670127175,
+    "env_OFF_max": 0.16544482296305674,
+    "env_per_cell": [
+     {
+      "seed": 64006,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.16544482296305674
+     },
+     {
+      "seed": 64006,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.1542557278779521
+     },
+     {
+      "seed": 64002,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.1598425591968374
+     },
+     {
+      "seed": 64002,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.1504890849242244
+     },
+     {
+      "seed": 64010,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.16449484229456468
+     },
+     {
+      "seed": 64010,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.1533757877523647
+     },
+     {
+      "seed": 64009,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.1514411770069886
+     },
+     {
+      "seed": 64009,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.14560567670127175
+     },
+     {
+      "seed": 64005,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.15250356490563616
+     },
+     {
+      "seed": 64005,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.14648066330167814
+     },
+     {
+      "seed": 64001,
+      "arm": "ENV_PRIMARY",
+      "OFF": 0.1573070632918956
+     },
+     {
+      "seed": 64001,
+      "arm": "ENV_SECONDARY",
+      "OFF": 0.150875092418729
+     }
+    ],
+    "all_env_above_0.10": true,
+    "carrier_tube_holds_at_this_k": true
+   }
+  },
+  "VERDICT_at_k1": "P2_CONFIRMED",
+  "smallest_k_with_carrier_tube": 4,
+  "VERDICT_at_carrier_tube_k": "P2_CONFIRMED"
+ },
+ "dose": {
+  "per_founder": [
+   {
+    "seed": 64006,
+    "norm_ratio_0.50_over_0.25": 1.9236703106642843,
+    "cosine": 0.9992531057965778
+   },
+   {
+    "seed": 64002,
+    "norm_ratio_0.50_over_0.25": 1.9242183859853639,
+    "cosine": 0.9995019716902536
+   },
+   {
+    "seed": 64010,
+    "norm_ratio_0.50_over_0.25": 1.920137091192843,
+    "cosine": 0.9992158234116826
+   },
+   {
+    "seed": 64009,
+    "norm_ratio_0.50_over_0.25": 1.9182676523383566,
+    "cosine": 0.9998478567311222
+   },
+   {
+    "seed": 64005,
+    "norm_ratio_0.50_over_0.25": 1.923469974676405,
+    "cosine": 0.9998542353638211
+   },
+   {
+    "seed": 64001,
+    "norm_ratio_0.50_over_0.25": 1.912487960631185,
+    "cosine": 0.9997747624467743
+   }
+  ],
+  "median_norm_ratio": 1.9218035329346241,
+  "min_cosine": 0.9992158234116826,
+  "reading": "a ratio near 2 with cosine near 1 means the environmental response is an amplitude family along ONE direction: linear in dose, one mode."
+ },
+ "amplitude": {
+  "carrier_A_bu_range": [
+   0.004750086633695904,
+   0.009699641170837969
+  ],
+  "env_A_bu_range": [
+   0.05876281354749303,
+   0.12212985078687003
+  ],
+  "env_over_carrier_median": 11.243250185497564
+ },
+ "BRANCH": "H2_SECOND_MODE_CANDIDATE"
+}

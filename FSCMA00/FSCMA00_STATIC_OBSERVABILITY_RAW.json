@@ -1,0 +1,1465 @@
+{
+ "A_coordinate_frame": {
+  "question": "are the fixed t0 grid-index masks correctly described as EULERIAN?",
+  "criterion": "the time-stepping must never re-index the lattice: neighbour access only by literal unit offsets, no index-permuting call, no fancy indexing, and no state field rebound to a permuted copy of itself.",
+  "modules": [
+   {
+    "file": "/home/claude/sweep/edlab/substrates/scaffold/engine.py",
+    "sha256": "dee42f1879c9a42ec52833406cc3d89e859c154157eab34c1f570919b93b1df5",
+    "n_roll_calls": 12,
+    "all_roll_shifts_literal_and_unit": true,
+    "roll_shift_values": [
+     -1,
+     1
+    ],
+    "other_index_permuting_calls": [],
+    "spatial_reindexing_in_time_stepping": [],
+    "benign_non_spatial_subscripts": [
+     {
+      "line": 140,
+      "kind": "leading_axis_or_boolean_read",
+      "src": "C[self.tracer.active_feed_cohort(st.step)]"
+     },
+     {
+      "line": 120,
+      "kind": "tuple_slice_leading_axis",
+      "src": "donor_i[None, ...]"
+     },
+     {
+      "line": 121,
+      "kind": "tuple_slice_leading_axis",
+      "src": "fl[None, ...]"
+     }
+    ],
+    "state_field_rebound_to_permuted_self": []
+   },
+   {
+    "file": "/home/claude/sweep/PPAI/ppai_engine.py",
+    "sha256": "9c7d0c133007fd04339ad519df8caacbe8262997bb9a1bd150bcc11bd3c0f7f8",
+    "n_roll_calls": 15,
+    "all_roll_shifts_literal_and_unit": true,
+    "roll_shift_values": [
+     -1,
+     1
+    ],
+    "other_index_permuting_calls": [],
+    "spatial_reindexing_in_time_stepping": [],
+    "benign_non_spatial_subscripts": [
+     {
+      "line": 160,
+      "kind": "leading_axis_or_boolean_read",
+      "src": "C[self.tracer.active_feed_cohort(st.step)]"
+     },
+     {
+      "line": 202,
+      "kind": "tuple_slice_leading_axis",
+      "src": "np.maximum(st.rho, EPS)[None, :, :]"
+     },
+     {
+      "line": 203,
+      "kind": "leading_axis_or_boolean_read",
+      "src": "m[par.z_index]"
+     },
+     {
+      "line": 120,
+      "kind": "tuple_slice_leading_axis",
+      "src": "r_safe[None, :, :]"
+     },
+     {
+      "line": 180,
+      "kind": "tuple_slice_leading_axis",
+      "src": "np.maximum(rho, EPS)[None, :, :]"
+     },
+     {
+      "line": 185,
+      "kind": "leading_axis_or_boolean_read",
+      "src": "m[kk]"
+     },
+     {
+      "line": 189,
+      "kind": "leading_axis_or_boolean_read",
+      "src": "newm[kk]"
+     },
+     {
+      "line": 193,
+      "kind": "leading_axis_or_boolean_read",
+      "src": "newm[mp.z_index]"
+     },
+     {
+      "line": 135,
+      "kind": "tuple_slice_leading_axis",
+      "src": "donor_i[None, ...]"
+     },
+     {
+      "line": 136,
+      "kind": "tuple_slice_leading_axis",
+      "src": "fl[None, ...]"
+     },
+     {
+      "line": 138,
+      "kind": "tuple_slice_leading_axis",
+      "src": "donor_i[None, ...]"
+     },
+     {
+      "line": 139,
+      "kind": "tuple_slice_leading_axis",
+      "src": "fl[None, ...]"
+     },
+     {
+      "line": 181,
+      "kind": "leading_axis_or_boolean_read",
+      "src": "uptake[alive]"
+     },
+     {
+      "line": 186,
+      "kind": "leading_axis_or_boolean_read",
+      "src": "mp.eta_d[kk]"
+     }
+    ],
+    "state_field_rebound_to_permuted_self": []
+   }
+  ],
+  "VERDICT": "EULERIAN_FIXED_INDEX_FRAME_CONFIRMED",
+  "scope_caveat": "Eulerian means the control region is fixed in the lattice frame and material flows through it. It does NOT mean the region follows the material that occupied it at t0. q_A(t) is the density integrated over a fixed spatial window, not the fate of the initial material. Any sentence that reads the endpoint as 'what happened to component A' is a Lagrangian reading and is not licensed by this design.",
+  "interventions_are_not_frame_motion": "state_cross and reciprocal_cross DO permute lattice indices, but they are applied once at t0 as interventions on the CONTENTS. They are not part of the time-stepping and therefore do not move the frame. The audit above deliberately covers the engine modules only."
+ },
+ "B_one_step_dependency_matrix": {
+  "method": "def-use reachability over the AST of PPAIEngine.step; loops iterated to a fixed point, branches unioned. Sound over-approximation: a field listed as a dependency may be spurious, a field NOT listed is provably unreachable in one step.",
+  "matrix_output_field_to_input_fields": {
+   "rho": [
+    "N",
+    "U",
+    "V",
+    "c",
+    "rho"
+   ],
+   "U": [
+    "N",
+    "U",
+    "V",
+    "c",
+    "rho"
+   ],
+   "V": [
+    "N",
+    "U",
+    "V",
+    "c",
+    "rho"
+   ],
+   "c": [
+    "Mf",
+    "N",
+    "U",
+    "V",
+    "c",
+    "rho"
+   ],
+   "N": [
+    "Mf",
+    "N",
+    "U",
+    "V",
+    "c",
+    "rho"
+   ],
+   "C": [
+    "C",
+    "N",
+    "U",
+    "V",
+    "c",
+    "rho"
+   ],
+   "uptake": [
+    "N",
+    "U",
+    "V",
+    "c",
+    "rho"
+   ],
+   "Mf": [
+    "Mf",
+    "N",
+    "U",
+    "V",
+    "c",
+    "rho"
+   ]
+  },
+  "rho_depends_on_N_in_one_step": true,
+  "rho_depends_on_Mf_in_one_step": false,
+  "causal_order_to_rho": {
+   "N": "FIRST order: N enters the growth term g = dt*g0*rho*N*qq*(1+beta*sig) and rho <- rho+g inside the SAME step.",
+   "Mf": "SECOND order: Mf reaches nothing but z = newm[0] -> kappa(z) -> the face permeability of c and N, which are updated at the END of the step. rho only sees it on the NEXT step, through the chemotactic flux _face_flux(rho, c) and through g's dependence on N.",
+   "scored_grid_caveat": "the earliest scored time is native step 40 (physical 4.0). The order difference above governs steps 1-2 and is NOT directly observable on the scored grid. It is reported as a mechanism, not as a prediction."
+  }
+ },
+ "C_operator_static_audit": {
+  "basis_founders": [
+   [
+    64006,
+    "FAR"
+   ],
+   [
+    64002,
+    "FAR"
+   ],
+   [
+    64010,
+    "FAR"
+   ],
+   [
+    64009,
+    "NEAR"
+   ],
+   [
+    64005,
+    "NEAR"
+   ],
+   [
+    64001,
+    "NEAR"
+   ]
+  ],
+  "per_operator": {
+   "S1_matched_transposition": {
+    "superfamily": "CONSERVATIVE_CARRIER_REDISTRIBUTION",
+    "touched_fields_consistent_across_founders": true,
+    "touched_fields": [
+     "Mf"
+    ],
+    "n_founders": 6,
+    "all_no_alias_no_cache": true,
+    "all_step_counter_unchanged": true,
+    "all_domain_ok": true,
+    "all_finite": true,
+    "exact_sum_preserved_per_touched_field": {
+     "Mf": true
+    },
+    "support": {
+     "Mf": {
+      "subset_of_AuB": true,
+      "global": false,
+      "n_sites_changed_range": [
+       34,
+       42
+      ]
+     }
+    }
+   },
+   "S2a_intensive_reflection": {
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields_consistent_across_founders": true,
+    "touched_fields": [
+     "Mf"
+    ],
+    "n_founders": 6,
+    "all_no_alias_no_cache": true,
+    "all_step_counter_unchanged": true,
+    "all_domain_ok": false,
+    "all_finite": true,
+    "exact_sum_preserved_per_touched_field": {
+     "Mf": false
+    },
+    "support": {
+     "Mf": {
+      "subset_of_AuB": false,
+      "global": false,
+      "n_sites_changed_range": [
+       2728,
+       3504
+      ]
+     }
+    }
+   },
+   "S2b_extensive_reflection": {
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields_consistent_across_founders": true,
+    "touched_fields": [
+     "Mf"
+    ],
+    "n_founders": 6,
+    "all_no_alias_no_cache": true,
+    "all_step_counter_unchanged": true,
+    "all_domain_ok": false,
+    "all_finite": true,
+    "exact_sum_preserved_per_touched_field": {
+     "Mf": true
+    },
+    "support": {
+     "Mf": {
+      "subset_of_AuB": false,
+      "global": false,
+      "n_sites_changed_range": [
+       2728,
+       3504
+      ]
+     }
+    }
+   },
+   "S2c_total_ablation": {
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields_consistent_across_founders": true,
+    "touched_fields": [
+     "Mf"
+    ],
+    "n_founders": 6,
+    "all_no_alias_no_cache": true,
+    "all_step_counter_unchanged": true,
+    "all_domain_ok": true,
+    "all_finite": true,
+    "exact_sum_preserved_per_touched_field": {
+     "Mf": false
+    },
+    "support": {
+     "Mf": {
+      "subset_of_AuB": false,
+      "global": false,
+      "n_sites_changed_range": [
+       2542,
+       3428
+      ]
+     }
+    }
+   },
+   "ENV_primary_N_plus_0.50_N0": {
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields_consistent_across_founders": true,
+    "touched_fields": [
+     "N"
+    ],
+    "n_founders": 6,
+    "all_no_alias_no_cache": true,
+    "all_step_counter_unchanged": true,
+    "all_domain_ok": true,
+    "all_finite": true,
+    "exact_sum_preserved_per_touched_field": {
+     "N": false
+    },
+    "support": {
+     "N": {
+      "subset_of_AuB": false,
+      "global": true,
+      "n_sites_changed_range": [
+       4096,
+       4096
+      ]
+     }
+    }
+   },
+   "ENV_secondary_N_plus_0.25_N0": {
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields_consistent_across_founders": true,
+    "touched_fields": [
+     "N"
+    ],
+    "n_founders": 6,
+    "all_no_alias_no_cache": true,
+    "all_step_counter_unchanged": true,
+    "all_domain_ok": true,
+    "all_finite": true,
+    "exact_sum_preserved_per_touched_field": {
+     "N": false
+    },
+    "support": {
+     "N": {
+      "subset_of_AuB": false,
+      "global": true,
+      "n_sites_changed_range": [
+       4096,
+       4096
+      ]
+     }
+    }
+   }
+  },
+  "per_cell": [
+   {
+    "seed": 64006,
+    "geometry": "FAR",
+    "operator": "S1_matched_transposition",
+    "superfamily": "CONSERVATIVE_CARRIER_REDISTRIBUTION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 42,
+      "changed_inside_AuB": 42,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": true,
+      "delta_exact_sum": "0"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64006,
+    "geometry": "FAR",
+    "operator": "S2a_intensive_reflection",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 3502,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 2,
+      "support_subset_of_AuB": false,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "45140638123025219909602677/4835703278458516698824704"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": false,
+    "finite": true
+   },
+   {
+    "seed": 64006,
+    "geometry": "FAR",
+    "operator": "S2b_extensive_reflection",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 3502,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 2,
+      "support_subset_of_AuB": false,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": true,
+      "delta_exact_sum": "0"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": false,
+    "domain_C2_zero_off_alive_gate": false,
+    "finite": true
+   },
+   {
+    "seed": 64006,
+    "geometry": "FAR",
+    "operator": "S2c_total_ablation",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 3423,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 1,
+      "support_subset_of_AuB": false,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "-5472126132899468431460669/1208925819614629174706176"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64006,
+    "geometry": "FAR",
+    "operator": "ENV_primary_N_plus_0.50_N0",
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields": [
+     "N"
+    ],
+    "delta_support": {
+     "N": {
+      "n_sites_changed": 4096,
+      "changed_inside_AuB": 42,
+      "changed_outside_AuB": 4054,
+      "support_subset_of_AuB": false,
+      "support_is_global": true
+     }
+    },
+    "conservation": {
+     "N": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "9223372036854775813/4503599627370496"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64006,
+    "geometry": "FAR",
+    "operator": "ENV_secondary_N_plus_0.25_N0",
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields": [
+     "N"
+    ],
+    "delta_support": {
+     "N": {
+      "n_sites_changed": 4096,
+      "changed_inside_AuB": 42,
+      "changed_outside_AuB": 4054,
+      "support_subset_of_AuB": false,
+      "support_is_global": true
+     }
+    },
+    "conservation": {
+     "N": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "4611686018427387909/4503599627370496"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64002,
+    "geometry": "FAR",
+    "operator": "S1_matched_transposition",
+    "superfamily": "CONSERVATIVE_CARRIER_REDISTRIBUTION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 40,
+      "changed_inside_AuB": 40,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": true,
+      "delta_exact_sum": "0"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64002,
+    "geometry": "FAR",
+    "operator": "S2a_intensive_reflection",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 3490,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 2,
+      "support_subset_of_AuB": false,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "10711494197080214615981987/1208925819614629174706176"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": false,
+    "finite": true
+   },
+   {
+    "seed": 64002,
+    "geometry": "FAR",
+    "operator": "S2b_extensive_reflection",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 3490,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 2,
+      "support_subset_of_AuB": false,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": true,
+      "delta_exact_sum": "0"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": false,
+    "domain_C2_zero_off_alive_gate": false,
+    "finite": true
+   },
+   {
+    "seed": 64002,
+    "geometry": "FAR",
+    "operator": "S2c_total_ablation",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 3411,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 1,
+      "support_subset_of_AuB": false,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "-2849268338555867362974285/604462909807314587353088"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64002,
+    "geometry": "FAR",
+    "operator": "ENV_primary_N_plus_0.50_N0",
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields": [
+     "N"
+    ],
+    "delta_support": {
+     "N": {
+      "n_sites_changed": 4096,
+      "changed_inside_AuB": 41,
+      "changed_outside_AuB": 4055,
+      "support_subset_of_AuB": false,
+      "support_is_global": true
+     }
+    },
+    "conservation": {
+     "N": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "18446744073709551569/9007199254740992"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64002,
+    "geometry": "FAR",
+    "operator": "ENV_secondary_N_plus_0.25_N0",
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields": [
+     "N"
+    ],
+    "delta_support": {
+     "N": {
+      "n_sites_changed": 4096,
+      "changed_inside_AuB": 41,
+      "changed_outside_AuB": 4055,
+      "support_subset_of_AuB": false,
+      "support_is_global": true
+     }
+    },
+    "conservation": {
+     "N": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "9223372036854775761/9007199254740992"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64010,
+    "geometry": "FAR",
+    "operator": "S1_matched_transposition",
+    "superfamily": "CONSERVATIVE_CARRIER_REDISTRIBUTION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 42,
+      "changed_inside_AuB": 42,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": true,
+      "delta_exact_sum": "0"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64010,
+    "geometry": "FAR",
+    "operator": "S2a_intensive_reflection",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 3504,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "11337041447610227123547081/1208925819614629174706176"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": false,
+    "finite": true
+   },
+   {
+    "seed": 64010,
+    "geometry": "FAR",
+    "operator": "S2b_extensive_reflection",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 3504,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": true,
+      "delta_exact_sum": "0"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": false,
+    "domain_C2_zero_off_alive_gate": false,
+    "finite": true
+   },
+   {
+    "seed": 64010,
+    "geometry": "FAR",
+    "operator": "S2c_total_ablation",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 3428,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "-681301807965525680474007/151115727451828646838272"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64010,
+    "geometry": "FAR",
+    "operator": "ENV_primary_N_plus_0.50_N0",
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields": [
+     "N"
+    ],
+    "delta_support": {
+     "N": {
+      "n_sites_changed": 4096,
+      "changed_inside_AuB": 42,
+      "changed_outside_AuB": 4054,
+      "support_subset_of_AuB": false,
+      "support_is_global": true
+     }
+    },
+    "conservation": {
+     "N": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "9223372036854775837/4503599627370496"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64010,
+    "geometry": "FAR",
+    "operator": "ENV_secondary_N_plus_0.25_N0",
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields": [
+     "N"
+    ],
+    "delta_support": {
+     "N": {
+      "n_sites_changed": 4096,
+      "changed_inside_AuB": 42,
+      "changed_outside_AuB": 4054,
+      "support_subset_of_AuB": false,
+      "support_is_global": true
+     }
+    },
+    "conservation": {
+     "N": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "4611686018427387933/4503599627370496"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64009,
+    "geometry": "NEAR",
+    "operator": "S1_matched_transposition",
+    "superfamily": "CONSERVATIVE_CARRIER_REDISTRIBUTION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 34,
+      "changed_inside_AuB": 34,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": true,
+      "delta_exact_sum": "0"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64009,
+    "geometry": "NEAR",
+    "operator": "S2a_intensive_reflection",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 2740,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "476621929296275264961303/37778931862957161709568"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": false,
+    "finite": true
+   },
+   {
+    "seed": 64009,
+    "geometry": "NEAR",
+    "operator": "S2b_extensive_reflection",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 2740,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": true,
+      "delta_exact_sum": "0"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": false,
+    "domain_C2_zero_off_alive_gate": false,
+    "finite": true
+   },
+   {
+    "seed": 64009,
+    "geometry": "NEAR",
+    "operator": "S2c_total_ablation",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 2546,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "-2308935090741848975953/1180591620717411303424"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64009,
+    "geometry": "NEAR",
+    "operator": "ENV_primary_N_plus_0.50_N0",
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields": [
+     "N"
+    ],
+    "delta_support": {
+     "N": {
+      "n_sites_changed": 4096,
+      "changed_inside_AuB": 39,
+      "changed_outside_AuB": 4057,
+      "support_subset_of_AuB": false,
+      "support_is_global": true
+     }
+    },
+    "conservation": {
+     "N": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "9223372036854775793/4503599627370496"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64009,
+    "geometry": "NEAR",
+    "operator": "ENV_secondary_N_plus_0.25_N0",
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields": [
+     "N"
+    ],
+    "delta_support": {
+     "N": {
+      "n_sites_changed": 4096,
+      "changed_inside_AuB": 39,
+      "changed_outside_AuB": 4057,
+      "support_subset_of_AuB": false,
+      "support_is_global": true
+     }
+    },
+    "conservation": {
+     "N": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "4611686018427387889/4503599627370496"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64005,
+    "geometry": "NEAR",
+    "operator": "S1_matched_transposition",
+    "superfamily": "CONSERVATIVE_CARRIER_REDISTRIBUTION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 34,
+      "changed_inside_AuB": 34,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": true,
+      "delta_exact_sum": "0"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64005,
+    "geometry": "NEAR",
+    "operator": "S2a_intensive_reflection",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 2728,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "492967877806768733221887/37778931862957161709568"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": false,
+    "finite": true
+   },
+   {
+    "seed": 64005,
+    "geometry": "NEAR",
+    "operator": "S2b_extensive_reflection",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 2728,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": true,
+      "delta_exact_sum": "0"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": false,
+    "domain_C2_zero_off_alive_gate": false,
+    "finite": true
+   },
+   {
+    "seed": 64005,
+    "geometry": "NEAR",
+    "operator": "S2c_total_ablation",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 2542,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "-35198890273670959125125/18889465931478580854784"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64005,
+    "geometry": "NEAR",
+    "operator": "ENV_primary_N_plus_0.50_N0",
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields": [
+     "N"
+    ],
+    "delta_support": {
+     "N": {
+      "n_sites_changed": 4096,
+      "changed_inside_AuB": 39,
+      "changed_outside_AuB": 4057,
+      "support_subset_of_AuB": false,
+      "support_is_global": true
+     }
+    },
+    "conservation": {
+     "N": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "18446744073709551597/9007199254740992"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64005,
+    "geometry": "NEAR",
+    "operator": "ENV_secondary_N_plus_0.25_N0",
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields": [
+     "N"
+    ],
+    "delta_support": {
+     "N": {
+      "n_sites_changed": 4096,
+      "changed_inside_AuB": 39,
+      "changed_outside_AuB": 4057,
+      "support_subset_of_AuB": false,
+      "support_is_global": true
+     }
+    },
+    "conservation": {
+     "N": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "9223372036854775789/9007199254740992"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64001,
+    "geometry": "NEAR",
+    "operator": "S1_matched_transposition",
+    "superfamily": "CONSERVATIVE_CARRIER_REDISTRIBUTION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 34,
+      "changed_inside_AuB": 34,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": true,
+      "delta_exact_sum": "0"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64001,
+    "geometry": "NEAR",
+    "operator": "S2a_intensive_reflection",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 2732,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "1877960272623076657353815/151115727451828646838272"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": false,
+    "finite": true
+   },
+   {
+    "seed": 64001,
+    "geometry": "NEAR",
+    "operator": "S2b_extensive_reflection",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 2732,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": true,
+      "delta_exact_sum": "0"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": false,
+    "domain_C2_zero_off_alive_gate": false,
+    "finite": true
+   },
+   {
+    "seed": 64001,
+    "geometry": "NEAR",
+    "operator": "S2c_total_ablation",
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "touched_fields": [
+     "Mf"
+    ],
+    "delta_support": {
+     "Mf": {
+      "n_sites_changed": 2544,
+      "changed_inside_AuB": 0,
+      "changed_outside_AuB": 0,
+      "support_subset_of_AuB": true,
+      "support_is_global": false
+     }
+    },
+    "conservation": {
+     "Mf": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "-20020316121219536799855/9444732965739290427392"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64001,
+    "geometry": "NEAR",
+    "operator": "ENV_primary_N_plus_0.50_N0",
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields": [
+     "N"
+    ],
+    "delta_support": {
+     "N": {
+      "n_sites_changed": 4096,
+      "changed_inside_AuB": 38,
+      "changed_outside_AuB": 4058,
+      "support_subset_of_AuB": false,
+      "support_is_global": true
+     }
+    },
+    "conservation": {
+     "N": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "9223372036854775797/4503599627370496"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   },
+   {
+    "seed": 64001,
+    "geometry": "NEAR",
+    "operator": "ENV_secondary_N_plus_0.25_N0",
+    "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+    "touched_fields": [
+     "N"
+    ],
+    "delta_support": {
+     "N": {
+      "n_sites_changed": 4096,
+      "changed_inside_AuB": 38,
+      "changed_outside_AuB": 4058,
+      "support_subset_of_AuB": false,
+      "support_is_global": true
+     }
+    },
+    "conservation": {
+     "N": {
+      "exact_sum_preserved": false,
+      "delta_exact_sum": "4611686018427387893/4503599627370496"
+     }
+    },
+    "no_alias_no_cache": true,
+    "step_counter_unchanged": true,
+    "domain_C1_absMf0_le_rho": true,
+    "domain_C2_zero_off_alive_gate": true,
+    "finite": true
+   }
+  ]
+ },
+ "D_intervention_input_span": {
+  "native_input_blocks": {
+   "Mf": [
+    "S1_matched_transposition",
+    "S2a_intensive_reflection",
+    "S2b_extensive_reflection",
+    "S2c_total_ablation"
+   ],
+   "N": [
+    "ENV_primary_N_plus_0.50_N0",
+    "ENV_secondary_N_plus_0.25_N0"
+   ]
+  },
+  "n_distinct_native_blocks": 2,
+  "carrier_block": [
+   "Mf"
+  ],
+  "environmental_block": [
+   "N"
+  ],
+  "blocks_are_disjoint": true,
+  "distinctness_proof": [
+   "Every carrier operator perturbs Mf and nothing else, on every BASIS founder (measured bytewise above). Every environmental operator perturbs N and nothing else.",
+   "The two blocks are therefore disjoint at t0 as SETS OF PERTURBED FIELDS.",
+   "They are also distinct DYNAMICALLY, not just nominally: by the one-step dependency matrix, rho depends on N within a single step (growth) but not on Mf. Mf's only exit is z = newm[0] -> kappa(z) -> the face permeability of c and N. A carrier perturbation is a multiplicative TRANSPORT-COEFFICIENT perturbation; an environmental perturbation is an additive SOURCE perturbation.",
+   "Budget asymmetry, which is the sharpest of the three: every carrier operator leaves the nutrient field bit-identical, so it changes the total nutrient budget by exactly zero. The environmental operator adds +amp*N0 at every one of the 4096 sites, so it changes the budget by exactly amp*N0*L^2 > 0. Growth converts N into rho. The environmental operator therefore INJECTS matter into the scored channels; no carrier operator can."
+  ],
+  "VERDICT": "INTERVENTION_INPUT_SPAN_SUFFICIENT",
+  "ENV_SECONDARY_static_admissibility": {
+   "operator": "domc_core._perturb_N(st, 0.25)",
+   "same_code_path_as_primary": true,
+   "touched_fields": [
+    "N"
+   ],
+   "identical_touch_set_to_primary": true,
+   "domain_ok_on_all_basis_founders": true,
+   "clip_is_inactive": "np.clip(N + amp*N0, 0.0, None) with amp>0 and N>=0 never clips; the operator is exactly additive.",
+   "STATICALLY_ADMISSIBLE": true,
+   "EXECUTION_DECISION": "DEFERRED_TO_FROZEN_START_BUDGET (Section 7). Statically admissible is not the same as affordable."
+  }
+ }
+}

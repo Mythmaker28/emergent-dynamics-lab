@@ -1,0 +1,170 @@
+{
+ "model": "S1 = { mu + a * phi1 }, one free scalar a per cell, fitted on the 12 oriented carrier BASIS cells in the sqrt(w)-weighted two-channel coordinate.",
+ "definitions": {
+  "OFF1_centered": "||r - mu - a*phi1||_w / ||r - mu||_w  -- the STRICT reading, and the one the gate uses. It asks what fraction of a cell's DEVIATION from the common response is unexplained by the single mode.",
+  "OFF1_uncentered": "||r - mu - a*phi1||_w / ||r||_w -- reported only because it is the flattering reading; it is not gated on.",
+  "O_BASIS": "total unexplained centered energy fraction = 1 - lambda_1/trace(G)"
+ },
+ "gates_on_the_ORIENTED_basis": {
+  "O_BASIS_lt_0.05": false,
+  "all_OFF1_lt_0.10": false,
+  "O_BASIS": 0.11691636626340428,
+  "OFF1_max": 0.5252177429431949,
+  "OFF1_min": 0.1942726978474818
+ },
+ "BASIS_TUBE_PASS_at_k1": false,
+ "cells": [
+  {
+   "seed": 64006,
+   "superfamily": "S1",
+   "a": 0.0014428151307567748,
+   "OFF1_centered": 0.5151765427178624,
+   "OFF1_uncentered": 0.1802508295690565
+  },
+  {
+   "seed": 64006,
+   "superfamily": "S2",
+   "a": -0.0017162932415516786,
+   "OFF1_centered": 0.3503664747809124,
+   "OFF1_uncentered": 0.08535202447800469
+  },
+  {
+   "seed": 64002,
+   "superfamily": "S1",
+   "a": 0.0016783345323158115,
+   "OFF1_centered": 0.25517561530334193,
+   "OFF1_uncentered": 0.10037296694903255
+  },
+  {
+   "seed": 64002,
+   "superfamily": "S2",
+   "a": -0.0017736733976006077,
+   "OFF1_centered": 0.1942726978474818,
+   "OFF1_uncentered": 0.04700789323239014
+  },
+  {
+   "seed": 64010,
+   "superfamily": "S1",
+   "a": 0.0014559670238710803,
+   "OFF1_centered": 0.5252177429431949,
+   "OFF1_uncentered": 0.18659427824167044
+  },
+  {
+   "seed": 64010,
+   "superfamily": "S2",
+   "a": -0.0017616186298582601,
+   "OFF1_centered": 0.36555550080013127,
+   "OFF1_uncentered": 0.09142050165165823
+  },
+  {
+   "seed": 64009,
+   "superfamily": "S1",
+   "a": 0.0021671389483196805,
+   "OFF1_centered": 0.2836507208795352,
+   "OFF1_uncentered": 0.1729859502340694
+  },
+  {
+   "seed": 64009,
+   "superfamily": "S2",
+   "a": -0.0018488175115221786,
+   "OFF1_centered": 0.3163687586912542,
+   "OFF1_uncentered": 0.08142798227912873
+  },
+  {
+   "seed": 64005,
+   "superfamily": "S1",
+   "a": 0.0021470055474673636,
+   "OFF1_centered": 0.284665734746068,
+   "OFF1_uncentered": 0.17176864402341385
+  },
+  {
+   "seed": 64005,
+   "superfamily": "S2",
+   "a": -0.0018734610970012687,
+   "OFF1_centered": 0.357106529453398,
+   "OFF1_uncentered": 0.09420833504869153
+  },
+  {
+   "seed": 64001,
+   "superfamily": "S1",
+   "a": 0.0020060701893450197,
+   "OFF1_centered": 0.3044498549321974,
+   "OFF1_uncentered": 0.166233698656092
+  },
+  {
+   "seed": 64001,
+   "superfamily": "S2",
+   "a": -0.0019234674945417369,
+   "OFF1_centered": 0.3215745233563629,
+   "OFF1_uncentered": 0.0857609700253858
+  }
+ ],
+ "dimension_sweep_oriented": {
+  "1": {
+   "carrier_OFF_max": 0.5252177429431949,
+   "carrier_O_energy": 0.11691636626340428,
+   "tube_holds": false
+  },
+  "2": {
+   "carrier_OFF_max": 0.18947689912196142,
+   "carrier_O_energy": 0.013402513462979123,
+   "tube_holds": false
+  },
+  "3": {
+   "carrier_OFF_max": 0.11953612048472036,
+   "carrier_O_energy": 0.003114548494211072,
+   "tube_holds": false
+  },
+  "4": {
+   "carrier_OFF_max": 0.031923397303688546,
+   "carrier_O_energy": 0.00034540817218224547,
+   "tube_holds": true
+  }
+ },
+ "smallest_k_with_a_valid_carrier_tube": 4,
+ "phi1": [
+  -0.08832948206770422,
+  -0.12001003076282488,
+  -0.0502861944234547,
+  0.027018117641374705,
+  0.09304624930196367,
+  0.1443985958707932,
+  0.1821522627714939,
+  0.2084859881045133,
+  0.22565581872676382,
+  0.1666369537251253,
+  0.1735048985922485,
+  0.44476302163720044,
+  0.3462980254520369,
+  0.1376213273632414,
+  -0.0432112343335715,
+  -0.17381262083793642,
+  -0.2648684081707623,
+  -0.3273116734257684,
+  -0.36864912992532234,
+  -0.27864943491420124
+ ],
+ "mu": [
+  0.0007135830221210119,
+  0.0005665443107458658,
+  -0.00011974750237471612,
+  -0.0006940073022981395,
+  -0.0011161692031680266,
+  -0.0014077724418055772,
+  -0.001599000980427398,
+  -0.0017150878376748252,
+  -0.0017754802217071432,
+  -0.0012691027143310778,
+  -0.0013828671971556252,
+  -0.002277251312504156,
+  -0.0011399354334632828,
+  -3.7698887873403296e-05,
+  0.0006750251760960694,
+  0.0011166157526318117,
+  0.0013996848238790902,
+  0.0015825897274715374,
+  0.0016954478162910867,
+  0.0012417626418410026
+ ],
+ "FINDING": "the one-mode affine family FAILS its own BASIS tube gate once the channel gauge is fixed. H1 as posed is refuted on the carrier repertoire alone, before any environmental data is used."
+}

@@ -1,0 +1,28 @@
+--- prefix
++++ postfix
+@@ -64,6 +64,8 @@
+     f = []
+     for name in ("rho", "U", "V", "c", "N", "C", "uptake"):
+         a = np.asarray(getattr(st, name))
++        if a.ndim == 3:
++            a = a.sum(0)
+         for m in (MA, MB, MA | MB, ~(MA | MB)):
+             v = a[m]
+             f += [float(v.mean()), float(v.var())]
+@@ -74,6 +76,8 @@
+             f += [float(v.mean()), float(v.var())]
+     for name in ("rho", "c", "N"):
+         a = np.asarray(getattr(st, name))
++        if a.ndim == 3:
++            a = a.sum(0)
+         for sc in (1, 2, 4, 8, 16):
+             b = a.reshape(Z.L // sc, sc, Z.L // sc, sc).mean((1, 3)) if sc > 1 else a
+             gx = np.roll(b, -1, 0) - b
+@@ -90,6 +94,7 @@
+     "family_lookup": np.array([[1.0 if u["superfamily"] == f else 0.0
+                                 for f in sorted(set(FAM))] for u in U]),
+     "pre_state_summary": np.array([state_feats(u)[:16] for u in U]),
++    "time_template_only": np.ones((len(U), 1)),
+ }
+ 
+ 

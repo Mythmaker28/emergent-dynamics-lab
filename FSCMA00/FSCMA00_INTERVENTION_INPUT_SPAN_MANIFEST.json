@@ -1,0 +1,255 @@
+{
+ "native_input_blocks": {
+  "Mf": [
+   "S1_matched_transposition",
+   "S2a_intensive_reflection",
+   "S2b_extensive_reflection",
+   "S2c_total_ablation"
+  ],
+  "N": [
+   "ENV_primary_N_plus_0.50_N0",
+   "ENV_secondary_N_plus_0.25_N0"
+  ]
+ },
+ "n_distinct_native_blocks": 2,
+ "carrier_block": [
+  "Mf"
+ ],
+ "environmental_block": [
+  "N"
+ ],
+ "blocks_are_disjoint": true,
+ "distinctness_proof": [
+  "Every carrier operator perturbs Mf and nothing else, on every BASIS founder (measured bytewise above). Every environmental operator perturbs N and nothing else.",
+  "The two blocks are therefore disjoint at t0 as SETS OF PERTURBED FIELDS.",
+  "They are also distinct DYNAMICALLY, not just nominally: by the one-step dependency matrix, rho depends on N within a single step (growth) but not on Mf. Mf's only exit is z = newm[0] -> kappa(z) -> the face permeability of c and N. A carrier perturbation is a multiplicative TRANSPORT-COEFFICIENT perturbation; an environmental perturbation is an additive SOURCE perturbation.",
+  "Budget asymmetry, which is the sharpest of the three: every carrier operator leaves the nutrient field bit-identical, so it changes the total nutrient budget by exactly zero. The environmental operator adds +amp*N0 at every one of the 4096 sites, so it changes the budget by exactly amp*N0*L^2 > 0. Growth converts N into rho. The environmental operator therefore INJECTS matter into the scored channels; no carrier operator can."
+ ],
+ "one_step_dependency_matrix": {
+  "rho": [
+   "N",
+   "U",
+   "V",
+   "c",
+   "rho"
+  ],
+  "U": [
+   "N",
+   "U",
+   "V",
+   "c",
+   "rho"
+  ],
+  "V": [
+   "N",
+   "U",
+   "V",
+   "c",
+   "rho"
+  ],
+  "c": [
+   "Mf",
+   "N",
+   "U",
+   "V",
+   "c",
+   "rho"
+  ],
+  "N": [
+   "Mf",
+   "N",
+   "U",
+   "V",
+   "c",
+   "rho"
+  ],
+  "C": [
+   "C",
+   "N",
+   "U",
+   "V",
+   "c",
+   "rho"
+  ],
+  "uptake": [
+   "N",
+   "U",
+   "V",
+   "c",
+   "rho"
+  ],
+  "Mf": [
+   "Mf",
+   "N",
+   "U",
+   "V",
+   "c",
+   "rho"
+  ]
+ },
+ "ENV_SECONDARY_static_admissibility": {
+  "operator": "domc_core._perturb_N(st, 0.25)",
+  "same_code_path_as_primary": true,
+  "touched_fields": [
+   "N"
+  ],
+  "identical_touch_set_to_primary": true,
+  "domain_ok_on_all_basis_founders": true,
+  "clip_is_inactive": "np.clip(N + amp*N0, 0.0, None) with amp>0 and N>=0 never clips; the operator is exactly additive.",
+  "STATICALLY_ADMISSIBLE": true,
+  "EXECUTION_DECISION": "DEFERRED_TO_FROZEN_START_BUDGET (Section 7). Statically admissible is not the same as affordable."
+ },
+ "VERDICT": "INTERVENTION_INPUT_SPAN_SUFFICIENT",
+ "per_operator_static_audit": {
+  "S1_matched_transposition": {
+   "superfamily": "CONSERVATIVE_CARRIER_REDISTRIBUTION",
+   "touched_fields_consistent_across_founders": true,
+   "touched_fields": [
+    "Mf"
+   ],
+   "n_founders": 6,
+   "all_no_alias_no_cache": true,
+   "all_step_counter_unchanged": true,
+   "all_domain_ok": true,
+   "all_finite": true,
+   "exact_sum_preserved_per_touched_field": {
+    "Mf": true
+   },
+   "support": {
+    "Mf": {
+     "subset_of_AuB": true,
+     "global": false,
+     "n_sites_changed_range": [
+      34,
+      42
+     ]
+    }
+   }
+  },
+  "S2a_intensive_reflection": {
+   "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+   "touched_fields_consistent_across_founders": true,
+   "touched_fields": [
+    "Mf"
+   ],
+   "n_founders": 6,
+   "all_no_alias_no_cache": true,
+   "all_step_counter_unchanged": true,
+   "all_domain_ok": false,
+   "all_finite": true,
+   "exact_sum_preserved_per_touched_field": {
+    "Mf": false
+   },
+   "support": {
+    "Mf": {
+     "subset_of_AuB": false,
+     "global": false,
+     "n_sites_changed_range": [
+      2728,
+      3504
+     ]
+    }
+   }
+  },
+  "S2b_extensive_reflection": {
+   "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+   "touched_fields_consistent_across_founders": true,
+   "touched_fields": [
+    "Mf"
+   ],
+   "n_founders": 6,
+   "all_no_alias_no_cache": true,
+   "all_step_counter_unchanged": true,
+   "all_domain_ok": false,
+   "all_finite": true,
+   "exact_sum_preserved_per_touched_field": {
+    "Mf": true
+   },
+   "support": {
+    "Mf": {
+     "subset_of_AuB": false,
+     "global": false,
+     "n_sites_changed_range": [
+      2728,
+      3504
+     ]
+    }
+   }
+  },
+  "S2c_total_ablation": {
+   "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+   "touched_fields_consistent_across_founders": true,
+   "touched_fields": [
+    "Mf"
+   ],
+   "n_founders": 6,
+   "all_no_alias_no_cache": true,
+   "all_step_counter_unchanged": true,
+   "all_domain_ok": true,
+   "all_finite": true,
+   "exact_sum_preserved_per_touched_field": {
+    "Mf": false
+   },
+   "support": {
+    "Mf": {
+     "subset_of_AuB": false,
+     "global": false,
+     "n_sites_changed_range": [
+      2542,
+      3428
+     ]
+    }
+   }
+  },
+  "ENV_primary_N_plus_0.50_N0": {
+   "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+   "touched_fields_consistent_across_founders": true,
+   "touched_fields": [
+    "N"
+   ],
+   "n_founders": 6,
+   "all_no_alias_no_cache": true,
+   "all_step_counter_unchanged": true,
+   "all_domain_ok": true,
+   "all_finite": true,
+   "exact_sum_preserved_per_touched_field": {
+    "N": false
+   },
+   "support": {
+    "N": {
+     "subset_of_AuB": false,
+     "global": true,
+     "n_sites_changed_range": [
+      4096,
+      4096
+     ]
+    }
+   }
+  },
+  "ENV_secondary_N_plus_0.25_N0": {
+   "superfamily": "ENVIRONMENTAL_FIELD_PERTURBATION",
+   "touched_fields_consistent_across_founders": true,
+   "touched_fields": [
+    "N"
+   ],
+   "n_founders": 6,
+   "all_no_alias_no_cache": true,
+   "all_step_counter_unchanged": true,
+   "all_domain_ok": true,
+   "all_finite": true,
+   "exact_sum_preserved_per_touched_field": {
+    "N": false
+   },
+   "support": {
+    "N": {
+     "subset_of_AuB": false,
+     "global": true,
+     "n_sites_changed_range": [
+      4096,
+      4096
+     ]
+    }
+   }
+  }
+ }
+}

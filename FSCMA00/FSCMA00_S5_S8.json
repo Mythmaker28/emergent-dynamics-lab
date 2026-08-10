@@ -1,0 +1,365 @@
+{
+ "S5_AB_quotient": {
+  "why": "the endpoint pair is unordered and canonicalised per founder by sorted site-id lists; channel A of one founder has no a-priori relation to channel A of another. Fitting one affine family across founders requires an orientation first.",
+  "gauge": {
+   "fixed_founder": 64001,
+   "fixed_to": "no_swap",
+   "reason": "lexicographically first BASIS founder; fixing one founder removes the global sign degeneracy, which is not identifiable and never will be."
+  },
+  "enumeration": {
+   "n_free_founders": 5,
+   "n_configurations": 32,
+   "objective": "exact weighted residual of the one-mode model, trace(G) - lambda_1(G)"
+  },
+  "winner": {
+   "swapped": [
+    64002,
+    64006,
+    64010
+   ],
+   "residual": 5.318514818514945e-06,
+   "lam1_share": 0.8830836337365956
+  },
+  "runner_up": {
+   "swapped": [],
+   "residual": 9.653797961873428e-06,
+   "lam1_share": 0.9766728195276608
+  },
+  "exact_certificate": {
+   "winner_residual_upper_bound": "2865534780456985544584487246983549012565260510427756290864429413378006248850953420402006817308996413063035997314618078090999101431380313388848081682726571501575739571213447342162853971385068989480372890797449238087341701898551/538784769477640246813369305013767052758889338116176463884695873436437006340571718604578682310511833613389310996976178831362913491606049454594426356358301437729215864386808431703039398907226773167395564050556125965442081440451788800",
+   "runner_up_residual_lower_bound": "20062231622247949356235008525777071583914419235138803592870310718855320484185701342194978369881614936018378406908170837007392452637345603199877243699930486018050517599568909345911248293894204655605033060192903335881483429299379/2078169825128040951994424462195958632070001732733823503555255511826257024456490914617660631769117072508787342416908118349542666324766190753435644517382019831241261191206261093711723395785017553645668604195002200152419456984599756800",
+   "strictly_separated": true,
+   "relative_gap": 0.8151304060047745
+  },
+  "VERDICT": "AB_QUOTIENT_IDENTIFIED",
+  "orientation": {
+   "64001": "no_swap",
+   "64002": "swap",
+   "64005": "no_swap",
+   "64006": "swap",
+   "64009": "no_swap",
+   "64010": "swap"
+  }
+ },
+ "S8_affine_family": {
+  "model": "S1 = { mu + a * phi1 }, one free scalar a per cell, fitted on the 12 oriented carrier BASIS cells in the sqrt(w)-weighted two-channel coordinate.",
+  "definitions": {
+   "OFF1_centered": "||r - mu - a*phi1||_w / ||r - mu||_w  -- the STRICT reading, and the one the gate uses. It asks what fraction of a cell's DEVIATION from the common response is unexplained by the single mode.",
+   "OFF1_uncentered": "||r - mu - a*phi1||_w / ||r||_w -- reported only because it is the flattering reading; it is not gated on.",
+   "O_BASIS": "total unexplained centered energy fraction = 1 - lambda_1/trace(G)"
+  },
+  "gates": {
+   "O_BASIS_lt_0.05": false,
+   "all_OFF1_lt_0.10": false,
+   "O_BASIS": 0.11691636626340428,
+   "OFF1_max": 0.5252177429431949,
+   "OFF1_min": 0.1942726978474818
+  },
+  "cells": [
+   {
+    "seed": 64006,
+    "superfamily": "S1",
+    "a": 0.0014428151307567748,
+    "OFF1_centered": 0.5151765427178624,
+    "OFF1_uncentered": 0.1802508295690565
+   },
+   {
+    "seed": 64006,
+    "superfamily": "S2",
+    "a": -0.0017162932415516786,
+    "OFF1_centered": 0.3503664747809124,
+    "OFF1_uncentered": 0.08535202447800469
+   },
+   {
+    "seed": 64002,
+    "superfamily": "S1",
+    "a": 0.0016783345323158115,
+    "OFF1_centered": 0.25517561530334193,
+    "OFF1_uncentered": 0.10037296694903255
+   },
+   {
+    "seed": 64002,
+    "superfamily": "S2",
+    "a": -0.0017736733976006077,
+    "OFF1_centered": 0.1942726978474818,
+    "OFF1_uncentered": 0.04700789323239014
+   },
+   {
+    "seed": 64010,
+    "superfamily": "S1",
+    "a": 0.0014559670238710803,
+    "OFF1_centered": 0.5252177429431949,
+    "OFF1_uncentered": 0.18659427824167044
+   },
+   {
+    "seed": 64010,
+    "superfamily": "S2",
+    "a": -0.0017616186298582601,
+    "OFF1_centered": 0.36555550080013127,
+    "OFF1_uncentered": 0.09142050165165823
+   },
+   {
+    "seed": 64009,
+    "superfamily": "S1",
+    "a": 0.0021671389483196805,
+    "OFF1_centered": 0.2836507208795352,
+    "OFF1_uncentered": 0.1729859502340694
+   },
+   {
+    "seed": 64009,
+    "superfamily": "S2",
+    "a": -0.0018488175115221786,
+    "OFF1_centered": 0.3163687586912542,
+    "OFF1_uncentered": 0.08142798227912873
+   },
+   {
+    "seed": 64005,
+    "superfamily": "S1",
+    "a": 0.0021470055474673636,
+    "OFF1_centered": 0.284665734746068,
+    "OFF1_uncentered": 0.17176864402341385
+   },
+   {
+    "seed": 64005,
+    "superfamily": "S2",
+    "a": -0.0018734610970012687,
+    "OFF1_centered": 0.357106529453398,
+    "OFF1_uncentered": 0.09420833504869153
+   },
+   {
+    "seed": 64001,
+    "superfamily": "S1",
+    "a": 0.0020060701893450197,
+    "OFF1_centered": 0.3044498549321974,
+    "OFF1_uncentered": 0.166233698656092
+   },
+   {
+    "seed": 64001,
+    "superfamily": "S2",
+    "a": -0.0019234674945417369,
+    "OFF1_centered": 0.3215745233563629,
+    "OFF1_uncentered": 0.0857609700253858
+   }
+  ],
+  "mu": [
+   0.0007135830221210119,
+   0.0005665443107458658,
+   -0.00011974750237471612,
+   -0.0006940073022981395,
+   -0.0011161692031680266,
+   -0.0014077724418055772,
+   -0.001599000980427398,
+   -0.0017150878376748252,
+   -0.0017754802217071432,
+   -0.0012691027143310778,
+   -0.0013828671971556252,
+   -0.002277251312504156,
+   -0.0011399354334632828,
+   -3.7698887873403296e-05,
+   0.0006750251760960694,
+   0.0011166157526318117,
+   0.0013996848238790902,
+   0.0015825897274715374,
+   0.0016954478162910867,
+   0.0012417626418410026
+  ],
+  "phi1": [
+   -0.08832948206770422,
+   -0.12001003076282488,
+   -0.0502861944234547,
+   0.027018117641374705,
+   0.09304624930196367,
+   0.1443985958707932,
+   0.1821522627714939,
+   0.2084859881045133,
+   0.22565581872676382,
+   0.1666369537251253,
+   0.1735048985922485,
+   0.44476302163720044,
+   0.3462980254520369,
+   0.1376213273632414,
+   -0.0432112343335715,
+   -0.17381262083793642,
+   -0.2648684081707623,
+   -0.3273116734257684,
+   -0.36864912992532234,
+   -0.27864943491420124
+  ],
+  "singular_values": [
+   0.006338090706997308,
+   0.002169985185592264,
+   0.0006841042218872168,
+   0.0003549196250265342,
+   0.00010125037520367361,
+   7.23155910354979e-05,
+   1.3712643843457795e-05,
+   4.780227978640813e-06,
+   3.830342290930904e-06,
+   2.234630083835214e-06,
+   9.22351383937608e-07,
+   1.6705676619263217e-18
+  ],
+  "BASIS_TUBE_PASS": false
+ },
+ "S6_protocol_freeze": {
+  "carrier_sentinels": {
+   "CARRIER_1": {
+    "superfamily": "CONSERVATIVE_CARRIER_REDISTRIBUTION",
+    "instance": "matched_transposition",
+    "callable": "etcmnfc_core.transpose(st, I, J)"
+   },
+   "CARRIER_2": {
+    "superfamily": "NONCONSERVATIVE_CARRIER_TRANSFORMATION",
+    "instance": "intensive_reflection",
+    "callable": "ppai_core.state_cross(st)"
+   },
+   "uniqueness_proof": [
+    "The parent manifest names exactly one canonical_sentinel_instance per TRAIN superfamily, and no other instance appears anywhere in the parent's scored path.",
+    "The parent's executable make_ops() constructs exactly two operators and no more.",
+    "The parent's 12 scored cells are exactly 6 founders x these 2 sentinels."
+   ],
+   "VERDICT": "PARENT_CARRIER_SENTINEL_IDENTITY_RESOLVED"
+  },
+  "environmental_operators": {
+   "ENV_PRIMARY": {
+    "callable": "domc_core._perturb_N(st, 0.5)",
+    "amp": 0.5,
+    "algebra": "N <- clip(N + 0.5*N0, 0, None); additive, global, exact"
+   },
+   "ENV_SECONDARY": {
+    "callable": "domc_core._perturb_N(st, 0.25)",
+    "amp": 0.25,
+    "status": "statically admissible; execution decided by the frozen start-accounting matrix below"
+   }
+  },
+  "sham": "identity copy, st.copy()",
+  "endpoint": "inherited unchanged from WSFSCRP00: fixed t0 supports, B from raw baseline bytes, q_A/q_B, delta vs sham, trapezoid weights over physical time 4.0..40.0",
+  "no_change_declarations": {
+   "NEW_LAWSPEC": false,
+   "ENGINE_EQUATION_CHANGE": false,
+   "NEW_STATE_VARIABLE_OR_TRACER": false,
+   "CHECKPOINT_TIME_CHANGE": false,
+   "HORIZON_CHANGE": false,
+   "FIXED_SUPPORT_READER_CHANGE": false,
+   "DIRECT_RHO_INTERVENTION": false,
+   "DYNAMIC_COMPONENT_REDETECTION": false
+  }
+ },
+ "S7_panel": {
+  "reuse_conditions": {
+   "allocation_made_before_any_outcome": "roles were assigned in wsfscrp_gen.py by a salted hash of an OPAQUE founder id, in the same file that froze the queue, before any Q0/Q1 outcome existed",
+   "locked_founders_never_scored": true,
+   "locked_ancestry_clusters": 6,
+   "locked_geometry_classes": [
+    "FAR",
+    "NEAR"
+   ],
+   "parent_engine_starts_accounted": 36
+  },
+  "panel": {
+   "BASIS": [
+    [
+     64006,
+     "FAR"
+    ],
+    [
+     64002,
+     "FAR"
+    ],
+    [
+     64010,
+     "FAR"
+    ],
+    [
+     64009,
+     "NEAR"
+    ],
+    [
+     64005,
+     "NEAR"
+    ],
+    [
+     64001,
+     "NEAR"
+    ]
+   ],
+   "LOCKED": [
+    [
+     64000,
+     "FAR"
+    ],
+    [
+     64004,
+     "FAR"
+    ],
+    [
+     64008,
+     "FAR"
+    ],
+    [
+     64007,
+     "NEAR"
+    ],
+    [
+     64003,
+     "NEAR"
+    ],
+    [
+     64011,
+     "NEAR"
+    ]
+   ]
+  },
+  "LABEL": "OUTCOME_UNSEEN_FEATURE_EXPOSED_FIXED_PANEL",
+  "label_justification": "outcome-unseen: no scored quantity has ever been computed on a LOCKED founder. feature-exposed: their checkpoints, masks, support sizes and B values WERE computed and hashed by the parent during generation, so they are not naive states. The weaker of the two labels is the one that governs."
+ },
+ "S7_contamination_ledger": {
+  "read_by_this_programme_so_far": [
+   "parent archive + SHA256SUMS (49 entries, all verified)",
+   "parent wsfscrp_q01.json: the FULL 12-cell TRAIN outcome matrix (BASIS; permitted)",
+   "parent wsfscrp_q234.json: Q2/Q3/Q4 summaries (BASIS; permitted)",
+   "parent ledgers and manifests (identifiers, roles, hashes)",
+   "BASIS founder checkpoints and masks (6 founders)",
+   "LOCKED founder IDENTIFIERS ONLY, from the role ledger"
+  ],
+  "not_read": [
+   "LOCKED founder checkpoint or mask arrays -- no LOCKED .npz has been opened",
+   "any project primary or held-out namespace; 62000-62009 remains unopened and unread"
+  ],
+  "orientation_was_fitted_on": "BASIS carrier cells only",
+  "affine_family_was_fitted_on": "BASIS carrier cells only",
+  "prediction_frozen_before": "any environmental engine start"
+ },
+ "S7_frozen_start_accounting": {
+  "frozen_before": "the first environmental outcome of this programme",
+  "caps": {
+   "MAX_PROBE_ENGINE_STARTS": 24,
+   "MAX_LOCKED_ENGINE_STARTS": 60,
+   "MAX_TOTAL": 84
+  },
+  "PROBE": {
+   "SHAM_per_BASIS_founder": 1,
+   "n_BASIS": 6,
+   "sham": 6,
+   "ENV_PRIMARY": 6,
+   "ENV_SECONDARY": 6,
+   "SHAM_REPLICATE_determinism_recheck_on_64001": 1,
+   "total": 19,
+   "headroom": 5
+  },
+  "LOCKED": {
+   "SHAM": 6,
+   "CARRIER_1": 6,
+   "CARRIER_2": 6,
+   "ENV_PRIMARY": 6,
+   "total": 24,
+   "headroom": 36
+  },
+  "GRAND_TOTAL": 43,
+  "grand_headroom": 41,
+  "audit_starts": 0,
+  "audit_note": "Phase 1 spent ZERO engine starts. The coordinate frame and the one-step dependency matrix were established by parsing the engine source, which is a statement about ALL states rather than about the one state a probe would have tested. The operator audit applied operators to checkpoint bytes and diffed them without stepping.",
+  "worst_case_note": "these are worst-case counts: every listed arm is assumed to run. No retry of a scored arm is budgeted, because MAX_POST_SCORED_OUTPUT_RETRIES is 0. The headroom is reserved for pre-outcome infrastructure failures.",
+  "VERDICT": "FROZEN_START_BUDGET_SUFFICIENT"
+ }
+}

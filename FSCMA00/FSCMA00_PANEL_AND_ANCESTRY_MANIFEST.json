@@ -1,0 +1,132 @@
+{
+ "panel": {
+  "reuse_conditions": {
+   "allocation_made_before_any_outcome": "roles were assigned in wsfscrp_gen.py by a salted hash of an OPAQUE founder id, in the same file that froze the queue, before any Q0/Q1 outcome existed",
+   "locked_founders_never_scored": true,
+   "locked_ancestry_clusters": 6,
+   "locked_geometry_classes": [
+    "FAR",
+    "NEAR"
+   ],
+   "parent_engine_starts_accounted": 36
+  },
+  "panel": {
+   "BASIS": [
+    [
+     64006,
+     "FAR"
+    ],
+    [
+     64002,
+     "FAR"
+    ],
+    [
+     64010,
+     "FAR"
+    ],
+    [
+     64009,
+     "NEAR"
+    ],
+    [
+     64005,
+     "NEAR"
+    ],
+    [
+     64001,
+     "NEAR"
+    ]
+   ],
+   "LOCKED": [
+    [
+     64000,
+     "FAR"
+    ],
+    [
+     64004,
+     "FAR"
+    ],
+    [
+     64008,
+     "FAR"
+    ],
+    [
+     64007,
+     "NEAR"
+    ],
+    [
+     64003,
+     "NEAR"
+    ],
+    [
+     64011,
+     "NEAR"
+    ]
+   ]
+  },
+  "LABEL": "OUTCOME_UNSEEN_FEATURE_EXPOSED_FIXED_PANEL",
+  "label_justification": "outcome-unseen: no scored quantity has ever been computed on a LOCKED founder. feature-exposed: their checkpoints, masks, support sizes and B values WERE computed and hashed by the parent during generation, so they are not naive states. The weaker of the two labels is the one that governs."
+ },
+ "contamination": {
+  "read_by_this_programme_so_far": [
+   "parent archive + SHA256SUMS (49 entries, all verified)",
+   "parent wsfscrp_q01.json: the FULL 12-cell TRAIN outcome matrix (BASIS; permitted)",
+   "parent wsfscrp_q234.json: Q2/Q3/Q4 summaries (BASIS; permitted)",
+   "parent ledgers and manifests (identifiers, roles, hashes)",
+   "BASIS founder checkpoints and masks (6 founders)",
+   "LOCKED founder IDENTIFIERS ONLY, from the role ledger"
+  ],
+  "not_read": [
+   "LOCKED founder checkpoint or mask arrays -- no LOCKED .npz has been opened",
+   "any project primary or held-out namespace; 62000-62009 remains unopened and unread"
+  ],
+  "orientation_was_fitted_on": "BASIS carrier cells only",
+  "affine_family_was_fitted_on": "BASIS carrier cells only",
+  "prediction_frozen_before": "any environmental engine start"
+ },
+ "start_accounting_frozen": {
+  "frozen_before": "the first environmental outcome of this programme",
+  "caps": {
+   "MAX_PROBE_ENGINE_STARTS": 24,
+   "MAX_LOCKED_ENGINE_STARTS": 60,
+   "MAX_TOTAL": 84
+  },
+  "PROBE": {
+   "SHAM_per_BASIS_founder": 1,
+   "n_BASIS": 6,
+   "sham": 6,
+   "ENV_PRIMARY": 6,
+   "ENV_SECONDARY": 6,
+   "SHAM_REPLICATE_determinism_recheck_on_64001": 1,
+   "total": 19,
+   "headroom": 5
+  },
+  "LOCKED": {
+   "SHAM": 6,
+   "CARRIER_1": 6,
+   "CARRIER_2": 6,
+   "ENV_PRIMARY": 6,
+   "total": 24,
+   "headroom": 36
+  },
+  "GRAND_TOTAL": 43,
+  "grand_headroom": 41,
+  "audit_starts": 0,
+  "audit_note": "Phase 1 spent ZERO engine starts. The coordinate frame and the one-step dependency matrix were established by parsing the engine source, which is a statement about ALL states rather than about the one state a probe would have tested. The operator audit applied operators to checkpoint bytes and diffed them without stepping.",
+  "worst_case_note": "these are worst-case counts: every listed arm is assumed to run. No retry of a scored arm is budgeted, because MAX_POST_SCORED_OUTPUT_RETRIES is 0. The headroom is reserved for pre-outcome infrastructure failures.",
+  "VERDICT": "FROZEN_START_BUDGET_SUFFICIENT"
+ },
+ "actual_starts": {
+  "PROBE_scored": 19,
+  "PROBE_discarded_pre_outcome": 1,
+  "LOCKED": 30,
+  "TOTAL_CONSUMED": 50,
+  "CAP": 84
+ },
+ "deviation_disclosed": "the LOCKED sham line cost 12 rather than the 6 budgeted, because stage A of the seal did not persist its sham forks and stage B re-derived them. Within cap; disclosed rather than smoothed.",
+ "ADDITIONAL_INHERITED_CONFOUND": {
+  "finding": "geometry class, history order and canonical channel label are ONE axis, not three: make_founder assigns (HIST_H, HIST_L) on even seeds and (HIST_L, HIST_H) on odd seeds, while the frozen queue makes even seeds FAR and odd seeds NEAR.",
+  "consequence": "WSFSCRP00's claim of two independent geometry classes per role as a diversity axis does not hold. The strata are perfectly confounded.",
+  "status": "recorded against the parent, append-only; the gauge fixing in Section 5 neutralises it for this programme's estimates."
+ }
+}
