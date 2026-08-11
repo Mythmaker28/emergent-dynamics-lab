@@ -1,0 +1,154 @@
+{
+ "artifact": "FCDDH01R_WAL_GENERATION_ADJUDICATION",
+ "programme": "FCDDH01R",
+ "generated_at": "2026-08-11T17:15:05Z",
+ "base_commit": "ffbda326703f93aa5a34c03e5f259e976771f793",
+ "scope": "cross-generation adjudication of the three committed phase ledgers. Complements FCDDH01R_WAL_MONOTONICITY_ADJUDICATION.json (which covers DISCOVERY_CONSTRUCTION only) and does not modify it.",
+ "method": "direct enumeration of every committed WAL record file; no ledger was edited, rewritten, compacted or replayed.",
+ "PER_PHASE": {
+  "DISCOVERY_construct": {
+   "records": 624,
+   "rows": 48,
+   "per_row": 13,
+   "START_GATE": 48,
+   "ENGINE_OPENED": 48,
+   "ADVANCE_STARTED": 48,
+   "ENGINE_EXIT_OK": 48,
+   "RAW_SEALED": 96,
+   "RAW_PUBLISHED": 96,
+   "VERIFIED": 144,
+   "DISPATCH_INTENT": 48,
+   "WRAPPER_ACK": 48,
+   "first_START_GATE": "2026-08-11T13:10:32Z",
+   "last_START_GATE": "2026-08-11T13:11:57Z",
+   "wal_monotone_violations_reported": 48,
+   "publication_contract_generation": 1
+  },
+  "DISCOVERY_sham": {
+   "records": 1056,
+   "rows": 96,
+   "per_row": 11,
+   "START_GATE": 96,
+   "ENGINE_OPENED": 96,
+   "ADVANCE_STARTED": 96,
+   "ENGINE_EXIT_OK": 96,
+   "RAW_SEALED": 192,
+   "RAW_PUBLISHED": 192,
+   "VERIFIED": 96,
+   "DISPATCH_INTENT": 96,
+   "WRAPPER_ACK": 96,
+   "first_START_GATE": "2026-08-11T13:44:00Z",
+   "last_START_GATE": "2026-08-11T13:46:59Z",
+   "wal_monotone_violations_reported": 0,
+   "publication_contract_generation": 2
+  },
+  "DISCOVERY_active": {
+   "records": 1056,
+   "rows": 96,
+   "per_row": 11,
+   "START_GATE": 96,
+   "ENGINE_OPENED": 96,
+   "ADVANCE_STARTED": 96,
+   "ENGINE_EXIT_OK": 96,
+   "RAW_SEALED": 192,
+   "RAW_PUBLISHED": 192,
+   "VERIFIED": 96,
+   "DISPATCH_INTENT": 96,
+   "WRAPPER_ACK": 96,
+   "first_START_GATE": "2026-08-11T13:52:06Z",
+   "last_START_GATE": "2026-08-11T13:54:53Z",
+   "wal_monotone_violations_reported": 0,
+   "publication_contract_generation": 2
+  }
+ },
+ "GENERATION_1_CONTRACT": {
+  "phases": [
+   "DISCOVERY_CONSTRUCTION"
+  ],
+  "rows": 48,
+  "observed_record_pattern": [
+   "DISPATCH_INTENT",
+   "WRAPPER_ACK",
+   "START_GATE",
+   "ENGINE_OPENED",
+   "ADVANCE_STARTED",
+   "ENGINE_EXIT_OK",
+   "RAW_SEALED",
+   "RAW_PUBLISHED",
+   "VERIFIED",
+   "RAW_SEALED",
+   "RAW_PUBLISHED",
+   "VERIFIED",
+   "VERIFIED"
+  ],
+  "distinct_patterns": 1,
+  "were_both_outputs_sealed_and_published": "YES -- RAW_SEALED 96 and RAW_PUBLISHED 96 over 48 rows, exactly two of each per row",
+  "did_any_recovery_happen_between_them": "NO -- idempotent_recovery_events = 0, supervisor restarts = 0, os.replace on a final path = 0",
+  "was_any_row_skipped_or_duplicated": "NO -- 48 distinct run_ids, 48 START_GATE files, gate set equals run_id set, exactly one ENGINE_OPENED and one ADVANCE_STARTED per row",
+  "were_repeated_mask_bytes_distinguished_from_distinct_precursor_bytes": "YES -- G1_PRECURSOR_MASK_IDENTITY_48_OF_48 requires the mask pair to be byte-identical WITHIN a quartet by construction, while PRECURSOR_DISTINCT_ACROSS_ANCESTRIES gives 12 distinct precursors with max multiplicity 1; the panel verification checks the two separately and both PASS",
+  "reported_monotonicity_alerts": 48,
+  "alert_root_cause": "PhaseLedger.publish_raw emitted the row-terminal state VERIFIED once per DECLARED OUTPUT; every construction row declares two (d_<did>.npz and m_<did>.npz). verify_monotone folds all records of a run_id into one sequence, so output 2's RAW_SEALED appears to move the row backwards from output 1's VERIFIED.",
+  "CONCLUSION": "LATENT_RECOVERY_WEAKNESS_WITHOUT_OBSERVED_RAW_CORRUPTION",
+  "explicitly_not": [
+   "proven data corruption",
+   "a harmless conformant implementation"
+  ],
+  "why_the_weakness_is_real": "PhaseLedger.decide reads VERIFIED as 'row finished', so a row killed between output 1's VERIFIED and output 2's publication would have been SKIPPED as complete on resume, leaving a charged row with an unpublished declared output. That window never opened in this phase, but the defect is exactly the line-resumability class FCDDH01R existed to eliminate.",
+  "why_it_was_missed_prestart": "every DEX row built by mkrows declared exactly ONE output; with one output, per-output VERIFIED and row-terminal VERIFIED are indistinguishable. The harness was blind to row ARITY, and the real phases are the only place arity is 2."
+ },
+ "GENERATION_2_CONTRACT": {
+  "phases": [
+   "DISCOVERY_SHAM",
+   "DISCOVERY_ACTIVE"
+  ],
+  "rows": 192,
+  "observed_record_pattern": [
+   "DISPATCH_INTENT",
+   "WRAPPER_ACK",
+   "START_GATE",
+   "ENGINE_OPENED",
+   "ADVANCE_STARTED",
+   "ENGINE_EXIT_OK",
+   "RAW_SEALED",
+   "RAW_PUBLISHED",
+   "RAW_SEALED",
+   "RAW_PUBLISHED",
+   "VERIFIED"
+  ],
+  "exactly_one_row_terminal_VERIFIED_per_row": true,
+  "reported_monotonicity_alerts": 0,
+  "remedy": "publish_raw split into seal_output (RAW_SEALED) and publish_sealed (RAW_PUBLISHED); neither is terminal. _publish_all seals every declared output, then publishes every declared output, then emits exactly one row-terminal VERIFIED. os.replace is still never used on a final path."
+ },
+ "INVARIANTS_ACROSS_ALL_THREE_PHASES": {
+  "EXACTLY_ONCE_LAUNCH_AUTHORIZATION": "HOLDS -- 240 START_GATE records for 240 rows",
+  "AT_MOST_ONCE_ENGINE_ADVANCE": "HOLDS -- exactly one ENGINE_OPENED and one ADVANCE_STARTED per row, 240 of each",
+  "EXACTLY_ONCE_OPAQUE_RAW_PUBLICATION": "HOLDS -- 480 declared outputs, each published once by a non-overwriting os.link",
+  "NO_REPLAY_AFTER_UNCERTAIN_OR_INCOMPLETE_BILLED_LAUNCH": "HOLDS -- no row replayed, no row replaced, no idempotent runner recovery",
+  "NO_BILLED_INCOMPLETE_ROW": "HOLDS -- 240 charged starts produced 240 completed rows, all three status/PHASE_COMPLETE present",
+  "IDEMPOTENT_PUBLICATION_FROM_ALREADY_SEALED_BYTES": "0 occurrences; reported separately and NOT counted as a simulation replay"
+ },
+ "COMPLETENESS_CHECKLIST": {
+  "48_complete_construction_rows": "PASS",
+  "96_complete_sham_rows": "PASS",
+  "48_of_48_sham_twins_bit_identical_over_the_full_horizon": "PASS (twin_identity_all = true; terminal hash, per-time hashes and touch set all identical; 11 scored times)",
+  "48_positive_finite_TAU_independently_reproduced": "PASS (tau_positive_finite and reference_agrees_tau true for all 48; TAU range [7.055947846741251e-04, 1.264018583853733e-03])",
+  "96_complete_sealed_published_and_verified_active_rows": "PASS",
+  "no_billed_incomplete_row": "PASS",
+  "no_simulation_row_replay_replacement_or_idempotent_runner_recovery": "PASS",
+  "threshold_lock_predates_every_active_row": "PASS -- fc1b41f8 committed 2026-08-11T13:51:52Z, first active START_GATE 2026-08-11T13:52:06Z",
+  "opaque_active_raw_lock_predates_the_first_target_response_decoding": "PASS -- ffbda326 committed 2026-08-11T14:00:20Z, FIRST_TARGET_RESPONSE_ACCESS 2026-08-11T14:01:00Z",
+  "zero_holdout_byte_lock_axis_object_row_score_or_numerical_access": "PASS"
+ },
+ "STALE_PHASE_LOCK_FILES": {
+  "observed": [
+   "FCDDH01R/_ledger/DISCOVERY_active/phase.lock",
+   "FCDDH01R/_ledger/DISCOVERY_sham/phase.lock"
+  ],
+  "content": "PHASE_LOCK records naming cwd /home/claude/sweep/FCDDH01R and pids 649 / 28294 on host 'vm'",
+  "interpretation": "exclusive flock markers left by supervisor processes of the PRIOR EXECUTION ENVIRONMENT, which this workspace cannot observe",
+  "CURRENT_WORKSPACE_CAMPAIGN_STATUS": "COMPLETE",
+  "basis": "all three phases carry status/PHASE_COMPLETE and status/PHASE_RESULT.json; every declared row is charged, completed, sealed and published; no phase is mid-flight in this workspace",
+  "PRIOR_ENVIRONMENT_PROCESS_STATUS": "NOT_OBSERVED",
+  "action": "the two stale locks are PRESERVED and INVENTORIED, not committed into the closure subtree and not deleted"
+ }
+}

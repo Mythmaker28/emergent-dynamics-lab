@@ -1,0 +1,158 @@
+{
+ "artifact": "FCDDH01R_SCIENTIFIC_DEPENDENCY_AND_PAYLOAD_IDENTITY_AUDIT",
+ "programme": "FCDDH01R",
+ "generated_at": "2026-08-11T17:15:05Z",
+ "base_commit": "ffbda326703f93aa5a34c03e5f259e976771f793",
+ "VERDICT": "PASS",
+ "method": "read-only re-verification of committed identity manifests and direct sha256 of committed blobs at C7 and C4. Nothing was executed.",
+ "SCIENTIFIC_OBJECT_IDENTITY": {
+  "status": "PASS",
+  "byte_identical_modules": 13,
+  "byte_identical_expected": 13,
+  "single_permitted_delta_lines": 1,
+  "declared_delta": "_work/DISCOVERY_AXIS_TRAINER_V1.py differs from the committed FCDDH00 object by exactly one line, its firewall root ALLOWED_ROOT. Required, not merely permitted: keeping the FCDDH00 root would ADMIT dead-panel paths and fail DEX9.",
+  "child_trainer_sha256": "f92354ce608caab797e5899f20efb35e3c05990876951fe4191f985ff3d53310",
+  "carrier_executable": {
+   "path": "FWL2CF00/fw_worker.py",
+   "sha256": "a10a8af5156498517a16400ff29089091373137c032fc7e13e18c7d51b0e69e5",
+   "unchanged": true
+  },
+  "parent_basis": {
+   "path": "SQDT00/FWL2_RELATIVE_QUOTIENT_BASIS_V1.npz",
+   "sha256": "81ca57906d470263b5210cd2ce03ea65360b960093ef5f4b7966257d77efb601"
+  }
+ },
+ "REAL_PHASE_COMMAND_PAYLOAD_IDENTITY": {
+  "status": "PASS",
+  "frozen_invariants": {
+   "interpreter": "/usr/bin/python3",
+   "dt": "1/10",
+   "H_GRID": [
+    40,
+    80,
+    120,
+    160,
+    200,
+    240,
+    280,
+    320,
+    360,
+    400
+   ],
+   "weights": [
+    "1/18",
+    "1/9",
+    "1/9",
+    "1/9",
+    "1/9",
+    "1/9",
+    "1/9",
+    "1/9",
+    "1/9",
+    "1/18"
+   ],
+   "mask_rule": "rho>0.30, >=12 sites, periodic 4-connected, exactly two eligible",
+   "settle": "T_FOUND 150 + 2x60 dual history + SETTLE 120 = 390 steps",
+   "carriers": [
+    "etcmnfc_core.transpose(st, I, J)",
+    "ppai_core.state_cross(st)"
+   ],
+   "dose": "exact historical 1x",
+   "frozen_env": {
+    "PYTHONHASHSEED": "0",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8"
+   }
+  },
+  "permitted_per_row_deltas": [
+   "upstream_seed",
+   "descendant_id",
+   "checkpoint_path",
+   "mask_path",
+   "idempotency_token",
+   "geometry_slot",
+   "allocation_slot",
+   "carrier_order",
+   "run_order",
+   "retry_root",
+   "sid_pgid",
+   "log_redirection"
+  ],
+  "mutation_test": "a mutated carrier, a redeclared scored-time grid and a changed environment whitelist are each REJECTED (DEX10)",
+  "unaffected_by_the_post_start_change": true,
+  "why": "REAL_PHASE_COMMAND_PAYLOAD_IDENTITY_REPORT.json was committed at C3 and is byte-identical at C7; it does not appear in the C4..C5 diff."
+ },
+ "DEPENDENCY_FIREWALL": {
+  "status": "PASS",
+  "modules_audited": 21,
+  "violations": 0,
+  "banned_constructs": "none, except one inherited declared allowlist entry: a single setattr inside an oracle negative control that REQUIRES a PermissionError",
+  "direction_of_dependence": "fh_ref imports nothing from fh_core; the hold-out scorer imports neither the trainer nor any historical direction and contains no eig/svd/pca/lstsq/pinv; the trainer accepts only twelve ascending discovery ancestries and only paths under the CHILD work root, so every FCDDH00 path is rejected (DEX9)",
+  "DOCUMENTATION_STALENESS_FOUND": {
+   "file": "FCDDH01R/FCDDH01R_DEPENDENCY_FIREWALL_REPORT.md",
+   "issue": "committed at C3 and never re-issued; its 'Module hashes' list still carries the GENERATION-1 sha256 of the four engineering modules changed at C5",
+   "stale_entries": {
+    "DURABLE_PHASE_SUPERVISOR.py": {
+     "listed": "138334612d4ce75b1794f36a775e5338f86ced75426c22b1e481f9f70285d1af",
+     "actual_at_C7": "310aa162a26fa93ff96d0db1a6c91191bdeeedbdcb25c24f43250f188324cc3b"
+    },
+    "EXACT_ONCE_PHASE_STATE_MACHINE.py": {
+     "listed": "a9cd877a8468ea2167eb16712285c7ee13631f8570104cacb2721ddc9847788d",
+     "actual_at_C7": "cfcb8b3dfa8d0371d3b5b19c97b0b0b4936f4ec875afb21d6e870dbb3379352f"
+    },
+    "fr_dex.py": {
+     "listed": "fb93b168387cd06a672efe133a88fbe8c6f3f1a21b38cf6b608045c61143c03c",
+     "actual_at_C7": "7ee5e9d0eedd3a10a334c10e0989b1983321aedbfa000e1eadd68b77aa14c440"
+    },
+    "fr_dummy.py": {
+     "listed": "e46279fae1935e3f96ac624dc8a2cc532a06dc1f1d47851b5b14f584310ab859",
+     "actual_at_C7": "677b10c416cdc8997c02d897ec55729ff887c748f6c1d47f3c8ac3a799b29f19"
+    }
+   },
+   "scientific_hashes_in_that_file": "UNAFFECTED -- all 16 scientific module hashes listed there are byte-identical at C7",
+   "classification": "DOCUMENTATION_STALENESS__NO_SCIENTIFIC_CONSEQUENCE",
+   "action": "recorded here and in FCDDH01R_PROTOCOL_CONFORMITY_CORRIGENDUM.md. The C3 file is NOT edited: this record is append-only."
+  }
+ },
+ "FRESHNESS_FIREWALL": {
+  "namespace": "N = 73000; discovery 73000-73023 (12 used: 73000-73011), hold-out 73024-73055 (0 used)",
+  "seed_71000_series_tokens_in_scientific_objects": 0,
+  "objects_checked": [
+   "FCDDH01R_DISCOVERY_PANEL_LOCK.json",
+   "FCDDH01R_DISCOVERY_ACTIVE_RAW_LOCK.json",
+   "_work/DISCOVERY_ACTIVE_RAW_MANIFEST.json",
+   "_work/DISCOVERY_SHAM_RAW_MANIFEST.json",
+   "_plans/DISCOVERY_construct.json",
+   "_plans/DISCOVERY_sham.json",
+   "_plans/DISCOVERY_active.json"
+  ],
+  "panel_upstream_seeds": [
+   73000,
+   73001,
+   73002,
+   73003,
+   73004,
+   73005,
+   73006,
+   73007,
+   73008,
+   73009,
+   73010,
+   73011
+  ],
+  "verdict": "no 71000-series scientific byte entered the panel in any role"
+ },
+ "HOLDOUT_OBJECTS_PRESENT": {
+  "_work/HOLDOUT_FIXED_AXIS_SCORER_V1.py": "FROZEN CODE, never executed on hold-out data",
+  "_work/DISCOVERY_HOLDOUT_ROLE_QUEUES.json": "DESIGN ONLY -- candidate queues and attempt counts, no outcome",
+  "holdout_outcome_artifacts": "ABSENT",
+  "holdout_axis_object": "ABSENT",
+  "holdout_raw_bytes": "ABSENT",
+  "HOLDOUT_BYTES_TOUCHED": 0
+ }
+}

@@ -1,0 +1,174 @@
+{
+ "artifact": "FCDDH01R_INDEPENDENT_SEMANTIC_VERIFICATION",
+ "programme": "FCDDH01R",
+ "role": "DISCOVERY",
+ "generated_at": "2026-08-11T17:15:05Z",
+ "base_commit": "ffbda326703f93aa5a34c03e5f259e976771f793",
+ "VERDICT": "PASS",
+ "METHOD": {
+  "what": "exact-rational re-derivation of the discovery gate ladder from the committed and prepared certified enclosures",
+  "arithmetic": "Python fractions.Fraction on the committed numerator/denominator strings; no floating-point comparison decides any verdict",
+  "decodes_performed": 0,
+  "decodes_authorized": 1,
+  "engine_starts": 0,
+  "raw_bytes_read": 0,
+  "npz_files_opened": 0,
+  "modules_imported": [
+   "json",
+   "os",
+   "sys",
+   "fractions"
+  ],
+  "forbidden_modules_imported": [],
+  "separation_proof": "the verifier imports only json, os, sys and fractions and reads only JSON evidence files. It has no path to fh_core, fh_ref, fh_runner, fh_cworker, fh_aworker, fh_decode, fh_disc, fh_hold, fh_oracle, fh_rand, the trainer, the hold-out scorer, the exact enumerator, numpy or edlab, and it therefore provably cannot import, construct or advance the simulation runner.",
+  "ledger_integrity": "start and raw-advance ledgers hashed before and after: 2736 WAL records, 240 charged starts, 240 raw advance sequences, byte identity preserved, totals unchanged."
+ },
+ "GATE_LADDER_AGREEMENT": {
+  "independently_rederived": {
+   "D1": true,
+   "D2": true,
+   "D3": true,
+   "D4": false,
+   "D5": false,
+   "D6": true,
+   "D7": true,
+   "D8": false,
+   "D9": true,
+   "D10": true
+  },
+  "committed": {
+   "D1": true,
+   "D2": true,
+   "D3": true,
+   "D4": false,
+   "D5": false,
+   "D6": true,
+   "D7": true,
+   "D8": false,
+   "D9": true,
+   "D10": true
+  },
+  "agreement": true,
+  "not_independently_rederivable": {
+   "D0": "structural anchor, True by construction",
+   "D11": "AST dependency audit of the trainer source; re-running it would require parsing the trainer, which is source inspection rather than numeric re-derivation. Its committed verdict (PASS, forbidden imports = []) is accepted from the committed report."
+  }
+ },
+ "EXACT_ANCHORS": {
+  "norm_X_BAR_D": {
+   "certified_interval_float": [
+    0.0005695567518165154,
+    0.0005695567518165154
+   ],
+   "interval_width_exact": "1/1606938044258990275541962092341162602522202993782792835301376",
+   "reported": "5.695568e-04",
+   "verified": true,
+   "exact_value_float": 0.0005695567518165154
+  },
+  "A_X_BAR_DISCOVERY": {
+   "certified_interval_float": [
+    0.002924046708945949,
+    0.002924046708945949
+   ],
+   "interval_width_exact": "731/411376139330301510538742295639337626245683966408394965837152256",
+   "reported": "2.924047e-03",
+   "verified": true,
+   "exact_value_float": 0.002924046708945949
+  },
+  "RATIO": {
+   "reported": 0.194784,
+   "unrounded": 0.194783739,
+   "bounds_from_unrounded_committed_values": [
+    0.1947837392863767,
+    0.1947837392863767
+   ],
+   "verified": true
+  },
+  "FLOOR_OVER_SIGNAL": {
+   "stated": "about 5.13",
+   "computed": 5.133899,
+   "verified": true
+  },
+  "ENERGY_RATIO": {
+   "stated": "about 0.03794",
+   "computed": 0.037940705,
+   "verified": true
+  },
+  "MAX_PROJECTED_LEVERAGE": {
+   "reported": 0.1386,
+   "computed": 0.1386169981190795,
+   "argmax_ancestry": "73008",
+   "verified": true
+  },
+  "MIN_FULL_VS_LOAO_ALIGNMENT_SQUARED": {
+   "reported_as": ">= 0.999278",
+   "computed": 0.9992776839495647,
+   "reported_claim_literally_true": false,
+   "CORRECTION": "the exact minimum is 0.9992776839495647, which is BELOW 0.999278 by 3.16e-07. The correct certified statement is 'min alignment^2 = 0.9992776839495647 >= 0.999277'.",
+   "gate_impact": "NONE -- D6's threshold is 0.80",
+   "status": "REPORTED_VALUE_CORRECTED_DOWNWARD_AT_THE_SIXTH_DECIMAL"
+  },
+  "D5_COUNT": {
+   "reported_rule": "sum_b J[b; v_D[-b]] with predeclared criterion 10 of 12",
+   "computed": 0,
+   "criterion": 10,
+   "verified": true
+  },
+  "FAILED_DISCOVERY_GATES": {
+   "reported": [
+    "D4",
+    "D5",
+    "D8"
+   ],
+   "computed": [
+    "D4",
+    "D5",
+    "D8"
+   ],
+   "verified": true
+  }
+ },
+ "D4_INTERVAL_ADJUDICATION": {
+  "rule": "D4 is a certified strict failure ONLY when upper(norm(X_BAR_D)) < lower(A_X_BAR[DISCOVERY]); overlapping certified intervals would imply D4 = UNRESOLVED regardless of rounded point values",
+  "upper_norm_X_BAR_D": 0.0005695567518165154,
+  "lower_A_X_BAR": 0.002924046708945949,
+  "intervals_disjoint": true,
+  "verdict": "CERTIFIED_STRICT_FAILURE",
+  "UNRESOLVED": false,
+  "margin": "the floor exceeds the signal by a factor of 5.13; the enclosures are one-ulp-tight (widths 2^-200 and 731/2^~198), so no rounding ambiguity is possible"
+ },
+ "SIGN_VERSUS_MATERIALITY": {
+  "full_axis_pairs_total": 48,
+  "pairs_with_sign_reversal": 0,
+  "pairs_failing_material_margin": 48,
+  "D5_omitted_scores_all_positive": true,
+  "D8_clause1_sign_pass": "12 of 12",
+  "D8_clause2_material_pass": "0 of 12",
+  "CONCLUSION": "signs do NOT reverse anywhere; material margins fail everywhere. The candidate pattern is directionally coherent and sub-material."
+ },
+ "SUPPORTING_COMPLETENESS": {
+  "TAU_count": 48,
+  "TAU_all_positive_finite": true,
+  "TAU_all_reference_agree": true,
+  "TAU_range": [
+   0.0007055947846741251,
+   0.001264018583853733
+  ],
+  "twin_shams": 48,
+  "twin_identity_all": true,
+  "twin_full_horizon_all": true,
+  "twin_per_time_all": true,
+  "production_reference": {
+   "rows_M2sq": "96/96",
+   "gauge": "96/96",
+   "tau": "48/48"
+  },
+  "panel_verification_checks": "15/15 PASS (block count 12, 4 descendants per block, complete within-ancestry factorial crossing, 12 distinct precursors, fresh-namespace seeds, G1 precursor-mask identity 48/48, production-reference mask agreement 48/48, rho finite 48/48, single global NEAR and FAR geometry blob, both H3 orbit members per block, engine steps uniform at 390, carrier masks non-degenerate with B_exact strictly positive, 96 published artifacts, on-disk checkpoint and mask digests match the lock)"
+ },
+ "WHAT_THIS_VERIFICATION_DOES_NOT_CLAIM": [
+  "it does not re-decode the raw archive; it re-derives the ladder from the committed certified enclosures",
+  "it does not replicate the axis on independent data -- the LOAO folds overlap heavily and share 11 of 12 ancestries",
+  "it does not license an axis, open a hold-out, or convert a descriptive calculation into a confirmation",
+  "it does not, and cannot, restore prospective protocol conformity"
+ ]
+}

@@ -1,0 +1,542 @@
+{
+ "artifact": "FCDDH01R_D5_D8_ANATOMY",
+ "programme": "FCDDH01R",
+ "role": "DISCOVERY",
+ "generated_at": "2026-08-11T17:15:05Z",
+ "execution_class": "OFFLINE_RECORD_REVIEW__ZERO_ENGINE__ZERO_DECODE",
+ "base_commit": "ffbda326703f93aa5a34c03e5f259e976771f793",
+ "derived_only_from": [
+  "FCDDH01R_DISCOVERY_LOAO_AXIS_ARBITRATION.json",
+  "FCDDH01R_DISCOVERY_INTERACTION_AND_ORBIT_TABLE.json",
+  "FCDDH01R_DISCOVERY_MATERIALITY_AND_LEVERAGE_REPORT.json"
+ ],
+ "HEADLINE": "D5 and D8 both fail on RESPONSE MATERIALITY, not on SIGN. No allocation pairing score and no deletion-mean score changes sign anywhere in the panel; every material margin is negative.",
+ "D5": {
+  "rule": "J[b; v_D[-b]] is scored with the FOLD-TRAINED axis of the fold that omits b; D5 requires sum_b J >= 10 of 12",
+  "count_sum_b_J": 0,
+  "criterion": "10 of 12",
+  "verdict": "FAIL",
+  "criterion_nature": "internal stability guard, predeclared. NOT a p-value, NOT a population result, NOT a hold-out.",
+  "per_omitted_ancestry": [
+   {
+    "omitted_ancestry": 73000,
+    "J_omitted_fold_axis": 0,
+    "worst_pair_material_margin_fold_axis": -0.0026654836207415274,
+    "omitted_block_signed_score_fold_axis": 0.0005986498394993644,
+    "omitted_block_signed_score_is_positive": true,
+    "full_vs_fold_alignment_squared": 0.9992776839495647
+   },
+   {
+    "omitted_ancestry": 73001,
+    "J_omitted_fold_axis": 0,
+    "worst_pair_material_margin_fold_axis": -0.002535439108944555,
+    "omitted_block_signed_score_fold_axis": 0.000671513588126967,
+    "omitted_block_signed_score_is_positive": true,
+    "full_vs_fold_alignment_squared": 0.9999973145050034
+   },
+   {
+    "omitted_ancestry": 73002,
+    "J_omitted_fold_axis": 0,
+    "worst_pair_material_margin_fold_axis": -0.0028408309410835686,
+    "omitted_block_signed_score_fold_axis": 0.0005004667442843766,
+    "omitted_block_signed_score_is_positive": true,
+    "full_vs_fold_alignment_squared": 0.9999522437508016
+   },
+   {
+    "omitted_ancestry": 73003,
+    "J_omitted_fold_axis": 0,
+    "worst_pair_material_margin_fold_axis": -0.0025676819784828954,
+    "omitted_block_signed_score_fold_axis": 0.0005043024032861555,
+    "omitted_block_signed_score_is_positive": true,
+    "full_vs_fold_alignment_squared": 0.999930394875372
+   },
+   {
+    "omitted_ancestry": 73004,
+    "J_omitted_fold_axis": 0,
+    "worst_pair_material_margin_fold_axis": -0.0025469673359570654,
+    "omitted_block_signed_score_fold_axis": 0.000584465519894553,
+    "omitted_block_signed_score_is_positive": true,
+    "full_vs_fold_alignment_squared": 0.9999268135496592
+   },
+   {
+    "omitted_ancestry": 73005,
+    "J_omitted_fold_axis": 0,
+    "worst_pair_material_margin_fold_axis": -0.0027352214745761856,
+    "omitted_block_signed_score_fold_axis": 0.0003995434616996512,
+    "omitted_block_signed_score_is_positive": true,
+    "full_vs_fold_alignment_squared": 0.9997752403581299
+   },
+   {
+    "omitted_ancestry": 73006,
+    "J_omitted_fold_axis": 0,
+    "worst_pair_material_margin_fold_axis": -0.00277551743913055,
+    "omitted_block_signed_score_fold_axis": 0.0005686206440203084,
+    "omitted_block_signed_score_is_positive": true,
+    "full_vs_fold_alignment_squared": 0.9998620461844899
+   },
+   {
+    "omitted_ancestry": 73007,
+    "J_omitted_fold_axis": 0,
+    "worst_pair_material_margin_fold_axis": -0.0024980671115179143,
+    "omitted_block_signed_score_fold_axis": 0.0005734652536270894,
+    "omitted_block_signed_score_is_positive": true,
+    "full_vs_fold_alignment_squared": 0.9997584884701124
+   },
+   {
+    "omitted_ancestry": 73008,
+    "J_omitted_fold_axis": 0,
+    "worst_pair_material_margin_fold_axis": -0.0023666443464738355,
+    "omitted_block_signed_score_fold_axis": 0.0007409074589541842,
+    "omitted_block_signed_score_is_positive": true,
+    "full_vs_fold_alignment_squared": 0.9997736309439089
+   },
+   {
+    "omitted_ancestry": 73009,
+    "J_omitted_fold_axis": 0,
+    "worst_pair_material_margin_fold_axis": -0.002509846691704058,
+    "omitted_block_signed_score_fold_axis": 0.0005823893117206484,
+    "omitted_block_signed_score_is_positive": true,
+    "full_vs_fold_alignment_squared": 0.9994665842675068
+   },
+   {
+    "omitted_ancestry": 73010,
+    "J_omitted_fold_axis": 0,
+    "worst_pair_material_margin_fold_axis": -0.002828945466393694,
+    "omitted_block_signed_score_fold_axis": 0.0005092499621109122,
+    "omitted_block_signed_score_is_positive": true,
+    "full_vs_fold_alignment_squared": 0.9998859666756568
+   },
+   {
+    "omitted_ancestry": 73011,
+    "J_omitted_fold_axis": 0,
+    "worst_pair_material_margin_fold_axis": -0.002712868531840356,
+    "omitted_block_signed_score_fold_axis": 0.0005853513894918118,
+    "omitted_block_signed_score_is_positive": true,
+    "full_vs_fold_alignment_squared": 0.9999869045902977
+   }
+  ],
+  "sign_only_behaviour": "12 of 12 omitted-block signed scores are strictly positive on their own fold axis",
+  "EVIDENCE_LIMITATION": {
+   "what_is_missing": "the FOUR per-pair scores p[(aN,aF)] and their A_PAIR bounds computed on each FOLD-TRAINED axis",
+   "why": "fh_disc.py computed them in memory and persisted only the fold-axis summary (J and the worst margin). The four pairing scores and A_PAIR bounds are persisted for the FULL-discovery axis only.",
+   "status": "PERSISTED_AS_SUMMARY_ONLY__FOLD_AXIS_PAIR_BREAKDOWN_NOT_RECOVERABLE_WITHOUT_A_DECODE",
+   "action_taken": "none. Recomputing them would require re-running the trainer over the raw archive, which is outside this review's scope (ANALYSIS_CHANGE_SCOPE = NONE, at most one decode, none spent)."
+  }
+ },
+ "D8": {
+  "rule": "for every deleted ancestry b: (1) signed deletion-mean dot(v_D, mean_{j != b} x[j]) > 0 AND (2) mean over retained blocks of the worst-pair material margin > 0, both with the FIXED full-discovery axis v_D and no reorientation",
+  "verdict": "FAIL",
+  "clause_1_sign_pass_count": "12 of 12",
+  "clause_2_material_margin_pass_count": "0 of 12",
+  "min_signed_deletion_mean_lower_bound": 0.00055384638787,
+  "min_mean_worst_pair_material_margin": -0.002654179,
+  "max_mean_worst_pair_material_margin": -0.0026111602,
+  "failing_deletions": [
+   73000,
+   73001,
+   73002,
+   73003,
+   73004,
+   73005,
+   73006,
+   73007,
+   73008,
+   73009,
+   73010,
+   73011
+  ],
+  "failing_clause": "clause 2 only",
+  "per_deletion": [
+   {
+    "deleted_ancestry": 73000,
+    "signed_deletion_mean_positive": true,
+    "mean_worst_pair_material_margin": -0.002627549132941203,
+    "mean_worst_pair_material_margin_positive": false
+   },
+   {
+    "deleted_ancestry": 73001,
+    "signed_deletion_mean_positive": true,
+    "mean_worst_pair_material_margin": -0.0026387899973061607,
+    "mean_worst_pair_material_margin_positive": false
+   },
+   {
+    "deleted_ancestry": 73002,
+    "signed_deletion_mean_positive": true,
+    "mean_worst_pair_material_margin": -0.0026111602030136597,
+    "mean_worst_pair_material_margin_positive": false
+   },
+   {
+    "deleted_ancestry": 73003,
+    "signed_deletion_mean_positive": true,
+    "mean_worst_pair_material_margin": -0.0026358993986637415,
+    "mean_worst_pair_material_margin_positive": false
+   },
+   {
+    "deleted_ancestry": 73004,
+    "signed_deletion_mean_positive": true,
+    "mean_worst_pair_material_margin": -0.0026378136808830406,
+    "mean_worst_pair_material_margin_positive": false
+   },
+   {
+    "deleted_ancestry": 73005,
+    "signed_deletion_mean_positive": true,
+    "mean_worst_pair_material_margin": -0.002620651775188047,
+    "mean_worst_pair_material_margin_positive": false
+   },
+   {
+    "deleted_ancestry": 73006,
+    "signed_deletion_mean_positive": true,
+    "mean_worst_pair_material_margin": -0.002617186206123662,
+    "mean_worst_pair_material_margin_positive": false
+   },
+   {
+    "deleted_ancestry": 73007,
+    "signed_deletion_mean_positive": true,
+    "mean_worst_pair_material_margin": -0.0026424185379298353,
+    "mean_worst_pair_material_margin_positive": false
+   },
+   {
+    "deleted_ancestry": 73008,
+    "signed_deletion_mean_positive": true,
+    "mean_worst_pair_material_margin": -0.0026541790237101658,
+    "mean_worst_pair_material_margin_positive": false
+   },
+   {
+    "deleted_ancestry": 73009,
+    "signed_deletion_mean_positive": true,
+    "mean_worst_pair_material_margin": -0.00264167678952428,
+    "mean_worst_pair_material_margin_positive": false
+   },
+   {
+    "deleted_ancestry": 73010,
+    "signed_deletion_mean_positive": true,
+    "mean_worst_pair_material_margin": -0.002612182328772469,
+    "mean_worst_pair_material_margin_positive": false
+   },
+   {
+    "deleted_ancestry": 73011,
+    "signed_deletion_mean_positive": true,
+    "mean_worst_pair_material_margin": -0.0026226845070268195,
+    "mean_worst_pair_material_margin_positive": false
+   }
+  ]
+ },
+ "FULL_AXIS_PAIR_ANATOMY": {
+  "note": "four pairing scores p[(aN,aF)] and their A_PAIR floors, on the FIXED full-discovery axis v_D, for all 12 ancestries (48 pairs)",
+  "pairs_total": 48,
+  "pairs_with_negative_score_sign_reversal": 0,
+  "pairs_failing_material_margin_p_minus_A_PAIR": 48,
+  "per_ancestry": [
+   {
+    "ancestry": 73000,
+    "A_X": 0.0029356972691878896,
+    "J_full_axis": 0,
+    "worst_pair_material_margin_full_axis": -0.0026591511187298517,
+    "pair_scores_p": {
+     "aN0_aF0": 0.0006525394172013649,
+     "aN0_aF1": 0.0006762587565729124,
+     "aN1_aF0": 0.0005304820295282764,
+     "aN1_aF1": 0.0005542013688998239
+    },
+    "pair_floors_A_PAIR": {
+     "aN0_aF0": 0.0028470784134554746,
+     "aN0_aF1": 0.002681761390117651,
+     "aN1_aF0": 0.0031896331482581283,
+     "aN1_aF1": 0.0030243161249203046
+    },
+    "pair_material_margins_p_minus_A_PAIR": {
+     "aN0_aF0": -0.00219453899625411,
+     "aN0_aF1": -0.0020055026335447385,
+     "aN1_aF0": -0.0026591511187298517,
+     "aN1_aF1": -0.0024701147560204804
+    }
+   },
+   {
+    "ancestry": 73001,
+    "A_X": 0.002926922426619726,
+    "J_full_axis": 0,
+    "worst_pair_material_margin_full_axis": -0.002535501610715316,
+    "pair_scores_p": {
+     "aN0_aF0": 0.0007146495515548138,
+     "aN0_aF1": 0.0008083839977032065,
+     "aN1_aF0": 0.0005346780842065114,
+     "aN1_aF1": 0.000628412530354904
+    },
+    "pair_floors_A_PAIR": {
+     "aN0_aF0": 0.0028331795249589625,
+     "aN0_aF1": 0.002783665158317625,
+     "aN1_aF0": 0.0030701796949218273,
+     "aN1_aF1": 0.0030206653282804897
+    },
+    "pair_material_margins_p_minus_A_PAIR": {
+     "aN0_aF0": -0.0021185299734041486,
+     "aN0_aF1": -0.001975281160614418,
+     "aN1_aF0": -0.002535501610715316,
+     "aN1_aF1": -0.0023922527979255855
+    }
+   },
+   {
+    "ancestry": 73002,
+    "A_X": 0.0029495843370118935,
+    "J_full_axis": 0,
+    "worst_pair_material_margin_full_axis": -0.002839429347932829,
+    "pair_scores_p": {
+     "aN0_aF0": 0.0007063263175909835,
+     "aN0_aF1": 0.0006759188776332273,
+     "aN1_aF0": 0.0003256435076957505,
+     "aN1_aF1": 0.0002952360677379944
+    },
+    "pair_floors_A_PAIR": {
+     "aN0_aF0": 0.002821189127749402,
+     "aN0_aF1": 0.002734095818395208,
+     "aN1_aF0": 0.0031650728556285794,
+     "aN1_aF1": 0.003077979546274385
+    },
+    "pair_material_margins_p_minus_A_PAIR": {
+     "aN0_aF0": -0.0021148628101584186,
+     "aN0_aF1": -0.0020581769407619806,
+     "aN1_aF0": -0.002839429347932829,
+     "aN1_aF1": -0.0027827434785363905
+    }
+   },
+   {
+    "ancestry": 73003,
+    "A_X": 0.002915486773750733,
+    "J_full_axis": 0,
+    "worst_pair_material_margin_full_axis": -0.0025672981957819254,
+    "pair_scores_p": {
+     "aN0_aF0": 0.000460092136851043,
+     "aN0_aF1": 0.0004315425287843565,
+     "aN1_aF0": 0.0005779786327941088,
+     "aN1_aF1": 0.0005494290247274224
+    },
+    "pair_floors_A_PAIR": {
+     "aN0_aF0": 0.0027142463269921183,
+     "aN0_aF1": 0.0028356395338758433,
+     "aN1_aF0": 0.0029953340136256224,
+     "aN1_aF1": 0.0031167272205093475
+    },
+    "pair_material_margins_p_minus_A_PAIR": {
+     "aN0_aF0": -0.002254154190141075,
+     "aN0_aF1": -0.0024040970050914867,
+     "aN1_aF0": -0.0024173553808315134,
+     "aN1_aF1": -0.002567298195781925
+    }
+   },
+   {
+    "ancestry": 73004,
+    "A_X": 0.0029128025188173163,
+    "J_full_axis": 0,
+    "worst_pair_material_margin_full_axis": -0.0025462410913696344,
+    "pair_scores_p": {
+     "aN0_aF0": 0.00061749909104986,
+     "aN0_aF1": 0.0005260385041047449,
+     "aN1_aF0": 0.0006438501720313452,
+     "aN1_aF1": 0.0005523895850862299
+    },
+    "pair_floors_A_PAIR": {
+     "aN0_aF0": 0.0027269743611787684,
+     "aN0_aF1": 0.0027470514868515117,
+     "aN1_aF0": 0.0030785535507831213,
+     "aN1_aF1": 0.0030986306764558646
+    },
+    "pair_material_margins_p_minus_A_PAIR": {
+     "aN0_aF0": -0.0021094752701289084,
+     "aN0_aF1": -0.002221012982746767,
+     "aN1_aF0": -0.0024347033787517763,
+     "aN1_aF1": -0.002546241091369635
+    }
+   },
+   {
+    "ancestry": 73005,
+    "A_X": 0.002941299094147101,
+    "J_full_axis": 0,
+    "worst_pair_material_margin_full_axis": -0.0027350220540145703,
+    "pair_scores_p": {
+     "aN0_aF0": 0.000450664429223206,
+     "aN0_aF1": 0.0004538098615646337,
+     "aN1_aF0": 0.0003482595764603289,
+     "aN1_aF1": 0.00035140500880175663
+    },
+    "pair_floors_A_PAIR": {
+     "aN0_aF0": 0.0028015868358594767,
+     "aN0_aF1": 0.002799316557819303,
+     "aN1_aF0": 0.003083281630474899,
+     "aN1_aF1": 0.0030810113524347253
+    },
+    "pair_material_margins_p_minus_A_PAIR": {
+     "aN0_aF0": -0.0023509224066362707,
+     "aN0_aF1": -0.002345506696254669,
+     "aN1_aF0": -0.0027350220540145703,
+     "aN1_aF1": -0.0027296063436329687
+    }
+   },
+   {
+    "ancestry": 73006,
+    "A_X": 0.002931604970556633,
+    "J_full_axis": 0,
+    "worst_pair_material_margin_full_axis": -0.0027731433137228,
+    "pair_scores_p": {
+     "aN0_aF0": 0.0007339481014968032,
+     "aN0_aF1": 0.0007661504368280347,
+     "aN1_aF0": 0.0003728981457690894,
+     "aN1_aF1": 0.00040510048110032097
+    },
+    "pair_floors_A_PAIR": {
+     "aN0_aF0": 0.002795520139251387,
+     "aN0_aF1": 0.002717168481621376,
+     "aN1_aF0": 0.0031460414594918894,
+     "aN1_aF1": 0.0030676898018618783
+    },
+    "pair_material_margins_p_minus_A_PAIR": {
+     "aN0_aF0": -0.002061572037754584,
+     "aN0_aF1": -0.001951018044793341,
+     "aN1_aF0": -0.0027731433137228,
+     "aN1_aF1": -0.0026625893207615574
+    }
+   },
+   {
+    "ancestry": 73007,
+    "A_X": 0.0028973931153175353,
+    "J_full_axis": 0,
+    "worst_pair_material_margin_full_axis": -0.002495587663854896,
+    "pair_scores_p": {
+     "aN0_aF0": 0.0005798339844836826,
+     "aN0_aF1": 0.0005717883472010117,
+     "aN1_aF0": 0.0005783049617589122,
+     "aN1_aF1": 0.0005702593244762414
+    },
+    "pair_floors_A_PAIR": {
+     "aN0_aF0": 0.0027289392423039335,
+     "aN0_aF1": 0.0027755951545840834,
+     "aN1_aF0": 0.0030191910760509876,
+     "aN1_aF1": 0.0030658469883311375
+    },
+    "pair_material_margins_p_minus_A_PAIR": {
+     "aN0_aF0": -0.002149105257820251,
+     "aN0_aF1": -0.002203806807383072,
+     "aN1_aF0": -0.0024408861142920756,
+     "aN1_aF1": -0.002495587663854896
+    }
+   },
+   {
+    "ancestry": 73008,
+    "A_X": 0.002863847545645122,
+    "J_full_axis": 0,
+    "worst_pair_material_margin_full_axis": -0.0023662223202712616,
+    "pair_scores_p": {
+     "aN0_aF0": 0.0008338492718564463,
+     "aN0_aF1": 0.0008299850946091546,
+     "aN1_aF0": 0.0006547564158676086,
+     "aN1_aF1": 0.0006508922386203169
+    },
+    "pair_floors_A_PAIR": {
+     "aN0_aF0": 0.0027944244571545766,
+     "aN0_aF1": 0.002706716355151374,
+     "aN1_aF0": 0.0030209787361388705,
+     "aN1_aF1": 0.002933270634135668
+    },
+    "pair_material_margins_p_minus_A_PAIR": {
+     "aN0_aF0": -0.00196057518529813,
+     "aN0_aF1": -0.0018767312605422195,
+     "aN1_aF0": -0.002366222320271262,
+     "aN1_aF1": -0.002282378395515351
+    }
+   },
+   {
+    "ancestry": 73009,
+    "A_X": 0.0029419724631577974,
+    "J_full_axis": 0,
+    "worst_pair_material_margin_full_axis": -0.0025037468963160065,
+    "pair_scores_p": {
+     "aN0_aF0": 0.0006072166576244207,
+     "aN0_aF1": 0.0006087617645643782,
+     "aN1_aF0": 0.0005629976145846072,
+     "aN1_aF1": 0.0005645427215245646
+    },
+    "pair_floors_A_PAIR": {
+     "aN0_aF0": 0.002815655308475024,
+     "aN0_aF1": 0.002837477162489743,
+     "aN1_aF0": 0.003046467763825852,
+     "aN1_aF1": 0.0030682896178405713
+    },
+    "pair_material_margins_p_minus_A_PAIR": {
+     "aN0_aF0": -0.0022084386508506035,
+     "aN0_aF1": -0.002228715397925365,
+     "aN1_aF0": -0.002483470149241245,
+     "aN1_aF1": -0.002503746896316007
+    }
+   },
+   {
+    "ancestry": 73010,
+    "A_X": 0.0029275205684905427,
+    "J_full_axis": 0,
+    "worst_pair_material_margin_full_axis": -0.002828185964585923,
+    "pair_scores_p": {
+     "aN0_aF0": 0.0006749750267636687,
+     "aN0_aF1": 0.0006652842008055669,
+     "aN1_aF0": 0.0003547164130900168,
+     "aN1_aF1": 0.00034502558713191497
+    },
+    "pair_floors_A_PAIR": {
+     "aN0_aF0": 0.0026818295852632477,
+     "aN0_aF1": 0.002776681161576332,
+     "aN1_aF0": 0.0030783599754047536,
+     "aN1_aF1": 0.003173211551717838
+    },
+    "pair_material_margins_p_minus_A_PAIR": {
+     "aN0_aF0": -0.002006854558499579,
+     "aN0_aF1": -0.0021113969607707652,
+     "aN1_aF0": -0.002723643562314737,
+     "aN1_aF1": -0.0028281859645859233
+    }
+   },
+   {
+    "ancestry": 73011,
+    "A_X": 0.0029444294246490934,
+    "J_full_axis": 0,
+    "worst_pair_material_margin_full_axis": -0.0027126620037880704,
+    "pair_scores_p": {
+     "aN0_aF0": 0.0008097496555355823,
+     "aN0_aF1": 0.0007390891141650364,
+     "aN1_aF0": 0.00043178500527355266,
+     "aN1_aF1": 0.0003611244639030068
+    },
+    "pair_floors_A_PAIR": {
+     "aN0_aF0": 0.0028417543915037913,
+     "aN0_aF1": 0.002744411840236564,
+     "aN1_aF0": 0.0031444470090616233,
+     "aN1_aF1": 0.003047104457794396
+    },
+    "pair_material_margins_p_minus_A_PAIR": {
+     "aN0_aF0": -0.002032004735968209,
+     "aN0_aF1": -0.0020053227260715275,
+     "aN1_aF0": -0.002712662003788071,
+     "aN1_aF1": -0.002685979993891389
+    }
+   }
+  ]
+ },
+ "INTERVAL_STATUS": {
+  "D4": "CERTIFIED_STRICT_FAILURE (disjoint certified intervals: upper(norm X_BAR_D) < lower(A_X_BAR))",
+  "D5": "STRICT_FAILURE (integer count 0 < 10; no interval ambiguity)",
+  "D8_clause_1": "CERTIFIED_STRICT_PASS on all 12 deletions",
+  "D8_clause_2": "STRICT_FAILURE on all 12 deletions",
+  "unresolved_intervals": "none"
+ },
+ "CO_OPTIMAL_GAUGE_INVARIANCE": {
+  "cooptimal_gauge_descendants": 0,
+  "enumeration_cap": 12,
+  "allocation_exchange_invariance": "12 of 12 blocks: x[b] byte-identical enclosure under neutral allocation-member exchange"
+ },
+ "PRODUCTION_REFERENCE_AGREEMENT": {
+  "rows_M2sq": "96/96",
+  "gauge": "96/96",
+  "tau": "48/48",
+  "bound_relative": 1e-09,
+  "bound_absolute": 1e-30,
+  "D10": true
+ },
+ "NON_INDEPENDENCE_STATEMENT": "D4, D5 and D8 reuse the same inherited TAU-propagated bounds (A_X_BAR, A_PAIR, A_X). They are three views of one fact -- the interaction amplitude lies below its inherited operational floor -- and MUST NOT be presented as three independent negative results.",
+ "D5_DOES_NOT_ESTABLISH_ALLOCATION_FRAGILITY": "D5 failing alone does not establish allocation fragility. Here the signs do not reverse; only the material margins fail. The allocation orbit is behaviourally stable and sub-material, not fragile."
+}

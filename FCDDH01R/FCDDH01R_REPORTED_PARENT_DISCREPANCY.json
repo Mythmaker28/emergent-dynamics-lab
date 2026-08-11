@@ -1,0 +1,65 @@
+{
+ "artifact": "FCDDH01R_REPORTED_PARENT_DISCREPANCY",
+ "programme": "FCDDH01R",
+ "generated_at": "2026-08-11T17:15:05Z",
+ "base_commit": "ffbda326703f93aa5a34c03e5f259e976771f793",
+ "CLAIM_UNDER_REVIEW": "The earlier executor wrote: 'All owner-reported parent values verify except one.' This file identifies that one from exact committed evidence. The final report MUST NOT replace this with 'all parent values matched'.",
+ "THE_ONE_DISCREPANCY": {
+  "field": "ORIGINAL_FCDDH00_OWNER_AUTHORIZATION_SHA256",
+  "reported_by_owner": "f4312234273d85ef43307964b20b7105ac5e8b147dc7d064a484b7cadaddfe3f",
+  "committed_value": "9dcdd47aaaf4482a349ee95a0f89f061516e8a199cb77911c0345e9eff011169",
+  "source_object": "FCDDH01R/FCDDH01R_OWNER_REAUTHORIZATION_BINDING.json at commit e77ef550a04cbf90ba2f90e5083719913bc005a4 (FCDDH01R commit 1), fields REPORTED_ORIGINAL_FCDDH00_AUTHORIZATION_SHA256 / COMMITTED_ORIGINAL_FCDDH00_AUTHORIZATION_SHA256",
+  "reconciliation_recorded": "REPORTED_DIGEST_NOT_REPRODUCIBLE__COMMITTED_DIGEST_IS_CONTROLLING__IDENTITY_ESTABLISHED_BY_CONTENT",
+  "reconciliation_effort": "22 declared serializations of the committed verbatim text (LF, CRLF, CR, BOM, trailing-newline, per-line and whole-text whitespace normalisation, blank-line collapse, UTF-16LE/BE, latin-1, ascii lossy) were hashed; none reproduces the reported digest.",
+  "cause_of_record": "the FCDDH00 binding, written long before this reauthorization existed, already records that the stored text is the handoff message AS RECEIVED BY THE EXECUTOR including its line-join artefacts. Characters were lost in delivery, so no serialization transform can recover the owner's source bytes and the two digests cannot agree.",
+  "identity_resolution": "by content, not by digest: the committed text is titled FCDDH00, names parent 334b7c2b, the same branch, workdir, 96/96/96 and 128/128/128 budgets, D0-D11, H0-H9 and 2517/65536 -- each independently restated by the reauthorization."
+ },
+ "IMPACT_CLASSIFICATION": {
+  "affects_a_normative_hash": "NO. The digest is a transport receipt for a prose authorization message, not a normative scientific hash.",
+  "affects_a_formula": "NO",
+  "affects_a_gate": "NO",
+  "affects_a_code_lock": "NO",
+  "affects_a_seed_role": "NO",
+  "affects_a_budget": "NO",
+  "affects_a_scientific_claim": "NO",
+  "affects_provenance_completeness": "YES, partially: the owner's original authorization BYTES are not recoverable; only the executor-received text is.",
+  "SHOULD_THE_PROGRAMME_HAVE_STOPPED_BECAUSE_OF_IT": "NO. The master freeze stop is 'unverifiable parent or scientific lock'. The parent tip, tree, subtree, bundle and all 1392 execution-tree paths verify byte-identical, and the authorization's identity is established by content. A non-reproducible transport digest of a prose message is not an unverifiable parent or scientific lock. It is recorded, not adopted, and not claimed verified."
+ },
+ "ALL_OTHER_REPORTED_PARENT_VALUES": {
+  "FCDDH00_tip": {
+   "reported": "93f13f45e6b6550a7ff709768b7b574161ed6a4f",
+   "resolved": "93f13f45e6b6550a7ff709768b7b574161ed6a4f",
+   "status": "VERIFIED"
+  },
+  "FCDDH00_subtree": {
+   "reported": "16ac1696...",
+   "resolved": "16ac169618e92e194008b6140021ee48ae575dbe",
+   "status": "VERIFIED"
+  },
+  "FCRA00_scientific_estimand_parent": {
+   "reported": "334b7c2ba6d97dadb403c7a1ea9700a1c61ad512",
+   "status": "VERIFIED (FCDDH00_PROVENANCE_STATUS = PASS)"
+  },
+  "tommy_main": {
+   "reported": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+   "resolved": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+   "status": "VERIFIED_EXACT_MATCH",
+   "unchanged": true
+  },
+  "execution_tree_parent_identity": {
+   "paths_checked": 1392,
+   "byte_identical": 1392,
+   "mismatches": 0,
+   "status": "VERIFIED 1392/1392 -- no correction required"
+  },
+  "carrier_executable_FWL2CF00_fw_worker_py": {
+   "sha256": "a10a8af5156498517a16400ff29089091373137c032fc7e13e18c7d51b0e69e5",
+   "unchanged": true
+  },
+  "parent_basis_SQDT00": {
+   "sha256": "81ca57906d470263b5210cd2ce03ea65360b960093ef5f4b7966257d77efb601",
+   "status": "VERIFIED"
+  }
+ },
+ "SUMMARY": "Exactly one owner-reported parent value does not verify: the FCDDH00 owner-authorization SHA-256. It is a transport digest of prose, it is recorded as UNRESOLVED-BY-DIGEST and RESOLVED-BY-CONTENT, it touches no normative hash, formula, gate, code lock, seed role, budget or claim, and it did not require the programme to stop."
+}

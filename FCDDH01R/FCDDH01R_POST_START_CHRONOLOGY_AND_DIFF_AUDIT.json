@@ -1,0 +1,142 @@
+{
+ "artifact": "FCDDH01R_POST_START_CHRONOLOGY_AND_DIFF_AUDIT",
+ "programme": "FCDDH01R",
+ "generated_at": "2026-08-11T17:15:05Z",
+ "base_commit": "ffbda326703f93aa5a34c03e5f259e976771f793",
+ "method": "read-only git object and WAL inspection. The simulation runner was not imported, constructed or advanced.",
+ "CHRONOLOGY": [
+  {
+   "step": 1,
+   "what": "DEX0-DEX16 and the initial engineering contract proved with dummy fixtures only",
+   "evidence": "commit 7dd098ea779ddbc241414fb3d7cad8d0d42279b8 (C3) at 2026-08-11T13:09:28Z; DURABLE_EXECUTOR_PREFLIGHT_REPORT.json",
+   "engine_starts": 0,
+   "DEX0_note": "the launch template kept PID, start identity and heartbeat across a deliberate expiry at the same 120-second bounded-call boundary that killed FCDDH00, and completed all ten dummy rows afterwards; a second trial killed the whole launcher process group with the same result"
+  },
+  {
+   "step": 2,
+   "what": "prestart gate race found and repaired BEFORE the first billed start",
+   "evidence": "DEX13 atomic_start_gate_race; FCDDH01R_ENGINEERING_DELTA.md section 'What the campaign caught before any billed start'",
+   "defect": "concurrent wrappers raced on the START_GATE's TEMPORARY file, not merely on its exclusive publication",
+   "remedy": "the temporary is now unique per claimant; eight simultaneous wrappers for one RUN_ID yield exactly one gate winner and exactly one charge",
+   "timing": "PRE_FIRST_BILLED_START",
+   "conformity": "PERMITTED -- this is the class of repair the protocol allows"
+  },
+  {
+   "step": 3,
+   "what": "48 construction starts, panel constructed and sealed",
+   "first_billed_START_GATE": "2026-08-11T13:10:32Z",
+   "last_START_GATE": "2026-08-11T13:11:57Z",
+   "committed_as": "b52b1eae820c69be601eaee7d7fa0d4d827eb463 (C4) at 2026-08-11T13:24:01Z",
+   "charged_starts": 48
+  },
+  {
+   "step": 4,
+   "what": "real two-output rows exposed the publication terminal-state defect",
+   "evidence": "FCDDH01R_WAL_MONOTONICITY_ADJUDICATION.json; 48 reporter entries (run_id, VERIFIED, RAW_SEALED) in DISCOVERY_construct PHASE_RESULT.json",
+   "timing": "POST_FIRST_BILLED_START"
+  },
+  {
+   "step": 5,
+   "what": "the already-frozen executor / publication contract was CHANGED, DEX assertions adjusted, DEX17-DEX19 added",
+   "committed_as": "2b152a2ad4f6abf4dc2c932fabff61a368fe1eed (C5) at 2026-08-11T13:43:27Z",
+   "timing": "POST_FIRST_BILLED_START",
+   "conformity": "NOT PERMITTED by the master freeze"
+  },
+  {
+   "step": 6,
+   "what": "96 shams then 96 active rows acquired under the generation-2 contract",
+   "sham_START_GATE_window": [
+    "2026-08-11T13:44:00Z",
+    "2026-08-11T13:46:59Z"
+   ],
+   "active_START_GATE_window": [
+    "2026-08-11T13:52:06Z",
+    "2026-08-11T13:54:53Z"
+   ],
+   "charged_starts": 192,
+   "timing": "POST_STOP"
+  }
+ ],
+ "EXACT_DIFF_C4_TO_C5": {
+  "commit_range": "b52b1eae820c69be601eaee7d7fa0d4d827eb463 .. 2b152a2ad4f6abf4dc2c932fabff61a368fe1eed",
+  "added_827": "FCDDH01R/DEX_FAILURE_INJECTION_EVIDENCE_GEN2/** (generation-2 campaign evidence, committed alongside rather than over generation 1)",
+  "added_1": "FCDDH01R/FCDDH01R_EXECUTOR_CODE_SUPERSESSION.json",
+  "modified_6": {
+   "FCDDH01R/DURABLE_PHASE_SUPERVISOR.py": {
+    "gen1_sha256": "138334612d4ce75b1794f36a775e5338f86ced75426c22b1e481f9f70285d1af",
+    "gen2_sha256": "310aa162a26fa93ff96d0db1a6c91191bdeeedbdcb25c24f43250f188324cc3b",
+    "class": "ENGINEERING"
+   },
+   "FCDDH01R/EXACT_ONCE_PHASE_STATE_MACHINE.py": {
+    "gen1_sha256": "a9cd877a8468ea2167eb16712285c7ee13631f8570104cacb2721ddc9847788d",
+    "gen2_sha256": "cfcb8b3dfa8d0371d3b5b19c97b0b0b4936f4ec875afb21d6e870dbb3379352f",
+    "class": "ENGINEERING"
+   },
+   "FCDDH01R/fr_dex.py": {
+    "gen1_sha256": "fb93b168387cd06a672efe133a88fbe8c6f3f1a21b38cf6b608045c61143c03c",
+    "gen2_sha256": "7ee5e9d0eedd3a10a334c10e0989b1983321aedbfa000e1eadd68b77aa14c440",
+    "class": "TEST_HARNESS"
+   },
+   "FCDDH01R/fr_dummy.py": {
+    "gen1_sha256": "e46279fae1935e3f96ac624dc8a2cc532a06dc1f1d47851b5b14f584310ab859",
+    "gen2_sha256": "677b10c416cdc8997c02d897ec55729ff887c748f6c1d47f3c8ac3a799b29f19",
+    "class": "TEST_FIXTURE"
+   },
+   "FCDDH01R/DURABLE_EXECUTOR_PREFLIGHT_REPORT.json": {
+    "class": "REPORT"
+   },
+   "FCDDH01R/FCDDH01R_ENGINEERING_DELTA.md": {
+    "class": "DOCUMENTATION"
+   }
+  },
+  "TOUCHED_SCIENTIFIC_PATHS": [],
+  "PATHS_PROVEN_UNTOUCHED_BY_C5": [
+   "FCDDH01R/_work/** (all 13 scientific modules, the trainer, the enumerator, the hold-out scorer, the canonical schema, every lock, manifest, archive and panel file)",
+   "FCDDH01R/_plans/** (row schedules for all three phases)",
+   "FCDDH01R/_ledger/** (write-ahead ledgers, gates, status)",
+   "FCDDH01R/FCDDH01R_DISCOVERY_PANEL_LOCK.json",
+   "FCDDH01R/FCDDH01R_RANDOMIZATION_SEED_AND_ASSIGNMENT_MANIFEST.json",
+   "FCDDH01R/_fcddh01r_randomization_seed.bin",
+   "FCDDH01R/FCDDH01R_SCIENTIFIC_OBJECT_IDENTITY_MANIFEST.json",
+   "FCDDH01R/REAL_PHASE_COMMAND_PAYLOAD_IDENTITY_REPORT.json"
+  ]
+ },
+ "DID_ANY_OF_THESE_CHANGE": {
+  "simulation_equations": "NO",
+  "scientific_runner": "NO",
+  "carrier_definitions": "NO",
+  "reader": "NO",
+  "masks": "NO",
+  "horizons": "NO",
+  "weights": "NO",
+  "randomization": "NO",
+  "row_schedule": "NO",
+  "checkpoints": "NO",
+  "thresholds": "NO",
+  "analyzers": "NO",
+  "executor_publication_contract": "YES",
+  "DEX_harness_and_fixtures": "YES",
+  "engineering_documentation": "YES"
+ },
+ "RUN_ID_IMPACT": "NONE. PhaseLedger.run_id is a function of (programme, phase, execution_class, ordinal, operator_hash, input_hashes, schedule_position). The executor code hash is recorded in the plan for audit but does not enter any run_id, so no already-charged row changed identity and no completed phase could be silently re-entered.",
+ "CONFORMITY_FINDING": {
+  "PROTOCOL_CONFORMITY_STATUS": "NONCONFORMANT",
+  "PRIMARY_DEVIATION": "POST_FIRST_BILLED_START_EXECUTOR_PUBLICATION_CONTRACT_CHANGE",
+  "VIOLATED_RULES": "SECTION_4_SOURCE_FREEZE_AND_STRICT_STOPS_5_AND_OR_11",
+  "master_freeze_section_7_stop_5": {
+   "text": "DEX or Q0A-Q0W failed, skipped, vacuous or repaired after the first billed start",
+   "status": "TRIGGERED",
+   "why": "DEX12's assertion was replaced, DEX4's fixed-3s sleep assertion was replaced, and DEX17-DEX19 were added, all after the 48 billed construction starts. The committed clause reads 'repaired after the first billed start' and is satisfied on its literal text, independently of DEX0-DEX16 remaining PASS."
+  },
+  "master_freeze_section_7_stop_11": {
+   "text": "post-first-start changes to frozen source, config, queues, schedules or command templates",
+   "status": "TRIGGERED",
+   "why": "DURABLE_PHASE_SUPERVISOR.py and EXACT_ONCE_PHASE_STATE_MACHINE.py are frozen source under the section-6 durable-execution gate and were changed at C5, after 48 billed starts."
+  },
+  "POST_STOP_SHAM_AND_ACTIVE_STARTS": 192,
+  "RETROACTIVE_REPAIR_STATUS": "NOT_POSSIBLE",
+  "PROSPECTIVE_STATUS": "This is not a clean compliant preregistered experiment. The historical programme should have stopped after construction.",
+  "MECHANICAL_INTEGRITY_STATUS": "Scientific dependencies, randomization, raw outputs, locks and analyzers remained identical across the change, so the discovery panel supports a DETERMINISTIC DESCRIPTIVE calculation.",
+  "DEX17_DEX19_STATUS": "useful evidence for a FUTURE executor design; they do not restore the historical campaign's confirmatory status."
+ }
+}

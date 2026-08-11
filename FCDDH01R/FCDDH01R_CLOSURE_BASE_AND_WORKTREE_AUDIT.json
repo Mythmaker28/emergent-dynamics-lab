@@ -1,0 +1,136 @@
+{
+ "artifact": "FCDDH01R_CLOSURE_BASE_AND_WORKTREE_AUDIT",
+ "programme": "FCDDH01R",
+ "generated_at": "2026-08-11T17:15:05Z",
+ "purpose": "records the exact repository state observed BEFORE the first write of this closure, and the identity of every prepared file adopted into it.",
+ "REPOSITORY_STATE_BEFORE_FIRST_WRITE": {
+  "checked_out_branch": "main",
+  "checked_out_HEAD": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+  "task_branch": "dev/fresh-crossed-differential-discovery-holdout-01r",
+  "task_branch_tip": "ffbda326703f93aa5a34c03e5f259e976771f793",
+  "task_branch_tip_tree": "41e03f878d448fe4b978286e20cc3d04d3bd63d3",
+  "task_branch_FCDDH01R_subtree": "5cf19c530d1f0c5964a05998332785cb4d837021",
+  "parent": "93f13f45e6b6550a7ff709768b7b574161ed6a4f",
+  "parent_FCDDH00_subtree": "16ac169618e92e194008b6140021ee48ae575dbe",
+  "main": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+  "main_tree": "8672babd1bc11d5912cf4820b06fa5947ebcd04b",
+  "origin_main_remote_tracking_ref": "e17f431c7c1aab8ad9bfeb3420a8c5022e311553",
+  "note_on_origin_main": "a stale remote-tracking ref only. REMOTE_REPOSITORY_SCOPE = NONE: no fetch, push, PR or any other remote operation was performed or attempted.",
+  "main_contains_FCDDH01R": false,
+  "descendants_of_C7_in_any_ref_before_this_closure": "none (C7 was the tip of every ref containing it)",
+  "chain_linear_and_merge_free": true,
+  "merge_commits_between_parent_and_C7": 0,
+  "worktree_note": "the working tree carries the FCDDH01R subtree while HEAD is on main, so FCDDH01R/ appears as untracked from main's point of view. The closure commits are built from a TEMPORARY index seeded by `git read-tree ffbda326703f93aa5a34c03e5f259e976771f793`, so every pre-existing blob is carried over from the commit object itself and no worktree copy of an existing path can enter the new commits."
+ },
+ "RECORD_STATE_CLASSIFICATION": {
+  "state": "SP",
+  "definition": "C7 is present with verified but uncommitted prepared closure files",
+  "evidence": "C7 present and verified; no descendant commit existed; 19 worktree items overlap the FCDDH01R subtree without being committed"
+ },
+ "COMMITTED_SUBTREE_DRIFT_CHECK": {
+  "paths_in_C7_FCDDH01R_subtree": 6307,
+  "paths_present_on_disk": 6307,
+  "paths_missing_on_disk": 0,
+  "re_hashed_with": "git hash-object (applies the same clean filters git would apply when committing)",
+  "byte_identical_to_C7_blob": 6307,
+  "mismatches": 0,
+  "false_positive_note": "an initial `git diff-index` against a freshly `read-tree`-populated index reported every path as modified. That is a stat-cache artefact of an index with no stat information, NOT content drift; the direct blob re-hash above is the controlling evidence."
+ },
+ "PREPARED_FILES_ADOPTED_INTO_THE_CLOSURE": {
+  "count": 9,
+  "base_commit_verified_against": "ffbda326703f93aa5a34c03e5f259e976771f793",
+  "files": [
+   {
+    "path": "FCDDH01R/FCDDH01R_DISCOVERY_ALL_ROWS_AND_CONTRASTS.json",
+    "sha256": "98762a684cef24e8f1efb0815864dc1d4c772359747a5d198236931833f99d4a",
+    "duplicate_of": "FCDDH01R/_work/DISCOVERY_ALL_ROWS_AND_CONTRASTS.json",
+    "duplicate_byte_identical": true
+   },
+   {
+    "path": "FCDDH01R/FCDDH01R_DISCOVERY_CONTRASTS.json",
+    "sha256": "76cbd9ad2fa1b70c51446f11ee14ffedd2a92377ccd23f2f820ca3aca4ab4293",
+    "duplicate_of": "FCDDH01R/_work/DISCOVERY_CONTRASTS.json",
+    "duplicate_byte_identical": true
+   },
+   {
+    "path": "FCDDH01R/FCDDH01R_DISCOVERY_COOPTIMAL_GAUGE_REPORT.json",
+    "sha256": "e4dcbfeff20e23753742c872fe7dc38c01510968ee5af3a39262cb89c0e71e8c",
+    "duplicate_of": "FCDDH01R/_work/DISCOVERY_COOPTIMAL_GAUGE_REPORT.json",
+    "duplicate_byte_identical": true
+   },
+   {
+    "path": "FCDDH01R/FCDDH01R_DISCOVERY_GATE_LADDER.json",
+    "sha256": "e975212d7f5a77a8c25140bc81c0141808e0782512890c6d4d2b705378ead294",
+    "duplicate_of": "FCDDH01R/_work/DISCOVERY_GATE_LADDER.json",
+    "duplicate_byte_identical": true
+   },
+   {
+    "path": "FCDDH01R/FCDDH01R_DISCOVERY_INTERACTION_AND_ORBIT_TABLE.json",
+    "sha256": "279a2394fc5c70c784bb2cc940d47732140a9a3c4489de21ba92d10d09334dc9",
+    "duplicate_of": "FCDDH01R/_work/DISCOVERY_INTERACTION_AND_ORBIT_TABLE.json",
+    "duplicate_byte_identical": true
+   },
+   {
+    "path": "FCDDH01R/FCDDH01R_DISCOVERY_LOAO_AXIS_ARBITRATION.json",
+    "sha256": "0fb8184aa3eec453ab2bf02beefb6b697e404b6f1b4b6bf518873946fc691bf6",
+    "duplicate_of": "FCDDH01R/_work/DISCOVERY_LOAO_AXIS_ARBITRATION.json",
+    "duplicate_byte_identical": true
+   },
+   {
+    "path": "FCDDH01R/FCDDH01R_DISCOVERY_MATERIALITY_AND_LEVERAGE_REPORT.json",
+    "sha256": "343a9aed7311e6f8d936a136a3448b48de0af9d4825f010a6964fefebd57ec03",
+    "duplicate_of": "FCDDH01R/_work/DISCOVERY_MATERIALITY_AND_LEVERAGE_REPORT.json",
+    "duplicate_byte_identical": true
+   },
+   {
+    "path": "FCDDH01R/FCDDH01R_DISCOVERY_PRODUCTION_REFERENCE_RECOMPUTATION.json",
+    "sha256": "369d8fc662eb28e4c386905aca453511c5d67954e0fa8677b60942de9cb2e898",
+    "duplicate_of": "FCDDH01R/_work/DISCOVERY_PRODUCTION_REFERENCE_RECOMPUTATION.json",
+    "duplicate_byte_identical": true
+   },
+   {
+    "path": "FCDDH01R/PRE_NUMERICAL_ACCESS_LEDGER.jsonl",
+    "sha256": "649d645468c9e8ca8077149d5b4b9e19abc14dc6cb88151703de1381d05467fa",
+    "duplicate_of": null,
+    "duplicate_byte_identical": null
+   }
+  ],
+  "convention": "the eight analysis reports exist as a top-level canonical copy and a byte-identical _work/ executor copy. This is the SAME convention C7 already uses for the panel lock, the raw locks and the raw manifests, so both copies are committed and no file is duplicated under a NEW name.",
+  "overlap_with_new_closure_artifacts": "none -- every artifact created by this review carries a name absent from both C7 and the worktree, so no path is ambiguous and nothing is overwritten."
+ },
+ "PREPARED_FILES_PRESERVED_BUT_NOT_ADOPTED": {
+  "count": 2,
+  "files": [
+   {
+    "path": "FCDDH01R/_ledger/DISCOVERY_active/phase.lock",
+    "sha256": "3eb05c0a5851557336af39dc56240cca2469bf7287bb7ae889aa93e965fc685a"
+   },
+   {
+    "path": "FCDDH01R/_ledger/DISCOVERY_sham/phase.lock",
+    "sha256": "5522996c0a1c6a75b593cb1f734807cf8c835fee798225bdf90a6840893d81ef"
+   }
+  ],
+  "reason": "stale exclusive-flock PHASE_LOCK markers from supervisor processes of the prior, unobservable execution environment (cwd /home/claude/sweep/FCDDH01R). They are process artefacts, not scientific or semantic-phase artefacts, and are outside the closure allowlist. They are left on disk untouched: preserved, inventoried, neither committed nor deleted.",
+  "note": "the corresponding DISCOVERY_construct/phase.lock IS already committed at C7; that asymmetry is inherited from the original execution and is not repaired here."
+ },
+ "PRIOR_ENVIRONMENT": {
+  "HISTORICAL_REPORTED_PATH": "/home/claude/sweep/FCDDH01R",
+  "PRIOR_ENVIRONMENT_MAIN_STATUS": "NOT_OBSERVED",
+  "PRIOR_ENVIRONMENT_PROCESS_STATUS": "NOT_OBSERVED",
+  "reason": "the historical execution path is evidence from the earlier report, not a location reachable from this workspace. No claim is made about it beyond what the committed objects record."
+ },
+ "CLOSURE_COPY_MAIN_STATUS": "EXACT_MATCH",
+ "CLOSURE_COPY_MAIN_EVIDENCE": "local refs/heads/main = f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77 = the committed audit value in FCDDH01R/_work/PARENT_PROVENANCE_BINDING.json (tommy_main_tip, tommy_main_unchanged = true) and in FCDDH01R_MASTER_FREEZE.md (TOMMY_MAIN, unchanged, never checked out).",
+ "HANDOFF_DOCUMENT_STATUS": {
+  "expected_file": "HANDOFF_FCDDH01R_FINAL_RECORD_REVIEW.md",
+  "expected_sha256": "6d140449e2e00de23c27b10c5b09d5abb1954f982f23175b5a1eee7129ab23e9",
+  "found_in_workspace": false,
+  "searched": [
+   "the session upload directory",
+   "the whole working tree excluding .git",
+   "every tree object reachable from every ref"
+  ],
+  "status": "ABSENT__DIGEST_NOT_VERIFIABLE",
+  "consequence": "the handoff's requirements were taken from the task text itself, which reproduces them in full. The declared SHA-256 could not be checked against any file and is NOT claimed verified."
+ }
+}

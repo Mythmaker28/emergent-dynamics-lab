@@ -1,0 +1,101 @@
+{
+ "artifact": "FCDDH01R_DEX_EVIDENCE_VERIFICATION",
+ "programme": "FCDDH01R",
+ "generated_at": "2026-08-11T17:15:05Z",
+ "base_commit": "ffbda326703f93aa5a34c03e5f259e976771f793",
+ "scope": "verification of EXISTING committed DEX17-DEX19 and generation-2 evidence. No new failure-injection campaign and no simulator test was run.",
+ "GEN2_CAMPAIGN": {
+  "FCDDH01R_DEX_CAMPAIGN_STATUS": "PASS",
+  "tests": 20,
+  "all_pass": true,
+  "REAL_ENGINE_CONSTRUCTOR_COUNT": 0,
+  "REAL_ENGINE_ADVANCE_COUNT": 0,
+  "charged_starts_in_the_672_child_ledger": 0,
+  "dummy_is_engine_free": true,
+  "dummy_imports": [
+   "__future__",
+   "hashlib",
+   "json",
+   "os",
+   "sys",
+   "time"
+  ],
+  "execution_class": "DEX_DUMMY (domain separated: own RUN_ID domain, locks, ledger root, output root and manifests; no dummy gate or VERIFIED row can satisfy a real row)",
+  "committed_evidence_root": "FCDDH01R/DEX_FAILURE_INJECTION_EVIDENCE_GEN2/ (827 files, added at C5, committed ALONGSIDE the generation-1 directory rather than overwriting it)",
+  "cases": [
+   "DEX0b_explicit_launcher_process_group_kill",
+   "DEX1_safe_between_row_kill_and_resume",
+   "DEX2_midrow_kill_is_charged_and_never_replayed",
+   "DEX3_uncertain_launch_is_conservative",
+   "DEX4_duplicate_supervisor_exclusion",
+   "DEX5_partial_publication_exclusion",
+   "DEX6_stale_pid_and_pid_reuse_defense",
+   "DEX7_fsync_restart_and_ledger_monotonicity",
+   "DEX8_phase_barrier",
+   "DEX9_old_panel_firewall",
+   "DEX10_scientific_payload_identity",
+   "DEX11_supervisor_death_while_worker_lives",
+   "DEX12_publication_boundary_recovery",
+   "DEX13_atomic_start_gate_race",
+   "DEX14_disk_full_boundary",
+   "DEX15_control_poll_independence",
+   "DEX16_construction_candidate_failure_policy",
+   "DEX17_kill_inside_the_publication_window",
+   "DEX18_multi_output_wal_is_monotone",
+   "DEX19_kill_after_seal_all_before_publish_all"
+  ]
+ },
+ "NEW_CASES_ADDED_POST_START": {
+  "DEX17": {
+   "injection": "SIGKILL after output 1 is published, before the row is terminal",
+   "required": "resume publishes output 2; one gate, one advance, one terminal record",
+   "result": "PASS"
+  },
+  "DEX18": {
+   "injection": "two-output happy path, three rows",
+   "required": "verify_monotone returns empty; exactly one VERIFIED per row, last",
+   "result": "PASS"
+  },
+  "DEX19": {
+   "injection": "SIGKILL after seal-all, before publish-all",
+   "required": "resume publishes both; one gate, one advance, one terminal record",
+   "result": "PASS"
+  }
+ },
+ "ASSERTIONS_CHANGED_AFTER_OBSERVING_A_FAILURE": {
+  "declared_by_the_executor": true,
+  "DEX12": "expectation encoded the old contract and was replaced by a strictly stronger one: publication alone no longer terminates a row; SKIP_VERIFIED requires the row-terminal record",
+  "DEX4": "fixed three-second sleep replaced by a bounded 45 s poll after the refusal marker was found on disk, written after the old window closed; the invariant held, the assertion was load-dependent",
+  "REVIEW_NOTE": "Both are test-integrity events occurring AFTER the first billed start. They are part of why strict stop 5 is triggered on its literal text. They are recorded, not excused."
+ },
+ "PREANALYSIS_ORACLE_AFTER_THE_CHANGE": {
+  "status": "PASS",
+  "groups": 23,
+  "all_groups_pass": true,
+  "non_vacuous": true,
+  "engine_starts": 0,
+  "negative_controls_that_must_fire": 11,
+  "negative_controls_firing": 11,
+  "controls": [
+   "one weight perturbed",
+   "one scored time perturbed",
+   "one reader coefficient perturbed",
+   "one P2 coefficient perturbed",
+   "one carrier label swapped",
+   "one geometry label corrupted",
+   "one ancestry role corrupted",
+   "one TAU inflated",
+   "one raw hash corrupted",
+   "one unpaired allocation membership edge corrupted",
+   "one mask byte perturbed"
+  ]
+ },
+ "GENERALIZED_DUMMY_PUBLICATION_TESTS": {
+  "included": true,
+  "reason": "DEX17, DEX18 and DEX19 were completed and committed at C5, before the earlier workspace interruption; their ledgers, plans and outputs are present in the committed tree"
+ },
+ "WHAT_THIS_EVIDENCE_DOES_AND_DOES_NOT_ESTABLISH": {
+  "does": "the generation-2 publication repair works: a two-output row is now atomic with respect to resume, and the campaign proves it with zero engine starts",
+  "does_not": "it CANNOT retroactively satisfy the original prestart engineering gate and CANNOT restore FCDDH01R's protocol conformity. It is forward-looking evidence for a future executor design only."
+ }
+}
