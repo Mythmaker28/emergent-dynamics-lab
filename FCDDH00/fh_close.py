@@ -53,7 +53,9 @@ def decision_matrix():
     m["RAW_EVIDENCE_COMPLETENESS_STATUS"] = dev.get("RAW_EVIDENCE_COMPLETENESS_STATUS", "UNRESOLVED")
     m["ENGINE_START_LEDGER_STATUS"] = dev.get("ENGINE_START_LEDGER_STATUS", "UNRESOLVED")
     m["DISCOVERY_CONSTRUCTION_STATUS"] = dpl.get("DISCOVERY_CONSTRUCTION_STATUS", NR)
-    m["DISCOVERY_SHAM_STATUS"] = dth.get("DISCOVERY_SHAM_STATUS", NR)
+    dsm = jload("DISCOVERY_SHAM_RAW_MANIFEST.json", {})
+    m["DISCOVERY_SHAM_STATUS"] = dth.get("DISCOVERY_SHAM_STATUS",
+                                         dsm.get("DISCOVERY_SHAM_STATUS", NR))
     m["DISCOVERY_RAW_ACTIVE_STATUS"] = ("COMPLETE_96_OF_96" if draw.get("COMPLETE") else
                                         (f"INCOMPLETE_{draw.get('rows')}_OF_96" if draw else NR))
     m["DISCOVERY_PANEL_STATUS"] = ("SEALED_12_BLOCKS_48_DESCENDANTS" if dpl.get("PANEL_COMPLETE")
