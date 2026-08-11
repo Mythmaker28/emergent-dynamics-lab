@@ -1,0 +1,10 @@
+{
+ "FSQBT00_ORIGINAL_TIP_DELIVERY_STATUS": "INCOMPLETE_MISSING_FULL_CHECKPOINT_BYTES",
+ "CHECKPOINT_BYTES_STATUS": "RECOVERED_EXACT_BYTES_AND_COMMITTED",
+ "MASK_EVIDENCE_STATUS": "ORIGINAL_EXACT_BYTES_ALREADY_COMMITTED",
+ "FCRA00_RECOVERY_STATUS": "RECOVERED_EXACT_BYTES_AND_COMMITTED",
+ "CURRENT_CHAIN_EVIDENCE_STATUS": "COMPLETE_AFTER_APPEND_ONLY_CHILD_RECOVERY",
+ "note": "Appending the recovered bytes to the FCRA00 child branch does NOT make the historical FSQBT00 tip self-contained retroactively; the original tip remains incomplete on full-checkpoint evidence. The child chain now carries the exact bytes.",
+ "reader_level_reproducibility": "EVALUABLE (support-restricted sufficiency re-proved in commit 4)",
+ "full_field_end_to_end_reproducibility": "DELIVERED_ON_CHILD (12/12 exact checkpoints recovered and committed; masks already committed)"
+}
