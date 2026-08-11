@@ -1,0 +1,156 @@
+{
+ "n_groups": 19,
+ "all_nonvacuous": true,
+ "groups": [
+  {
+   "group": "Q0A_parent_binding",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0B_block_map",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0C_linked_swap",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0D_energy_identity",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0E_mu_vs_P2_distinct",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0F_projector_check",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0G_tube_containment",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0H_exact_squares",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0I_direct_contrast_bar",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0J_sign_vs_magnitude",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0K_cooptimal",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0L_nesting",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0M_anatomy_identity",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0N_channel_time_sum",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0O_2x2_map",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0P_true_lobo",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0Q_fold_label_blind",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0R_recovery_status",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0S_no_engine_in_graph",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  }
+ ],
+ "dependency_firewall": {
+  "production_reference_agree_on_synthetic_fixtures": true,
+  "reference_imports_production": false,
+  "no_engine_runner_constructor_advance_in_analysis_graph": true,
+  "no_seed_state_or_candidate_generation": true,
+  "no_reader_mask_horizon_normalizer_change": true,
+  "no_function_rewrites_parent_mu_P1_P2_e1_e2_tube": true,
+  "no_group_specific_gauge_optimizer": true,
+  "no_hidden_result_based_threshold_or_direction_library": true,
+  "resolved_module_hashes": {
+   "sq_exact.py": "c7e5a1fac0c63d82e647ed56a55b82e8b9cc04d5625f5908d975914d4c1f3300",
+   "basis_npz": "81ca57906d470263b5210cd2ce03ea65360b960093ef5f4b7966257d77efb601"
+  },
+  "allowlist": [
+   "numpy",
+   "fractions",
+   "json",
+   "hashlib",
+   "math",
+   "itertools",
+   "sq_exact (enclosures)"
+  ],
+  "denylist": [
+   "advance",
+   "apply_dual_history",
+   "domc_core",
+   "engine",
+   "etcmnfc_core",
+   "found",
+   "ppai_core",
+   "ppai_engine",
+   "seed_state",
+   "step",
+   "wsfscrp_core"
+  ]
+ }
+}

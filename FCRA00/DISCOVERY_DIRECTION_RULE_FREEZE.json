@@ -1,0 +1,48 @@
+{
+ "coordinates": {
+  "c": "(q1+q2)/sqrt2 carrier-common",
+  "d": "(q2-q1)/sqrt2 carrier-differential"
+ },
+ "DELTA_X": "mean_NEAR(x) - mean_FAR(x)",
+ "GEOMETRY_ENERGY_X": "||DELTA_X||^2 / 8",
+ "A_DELTA_TAU": "(sqrt2/6) sum_b TAU_b",
+ "E_DELTA_TAU": "(sum_b TAU_b)^2 / 144",
+ "axis_sign_canonical": "toward the full-panel NEAR-minus-FAR contrast",
+ "gates": {
+  "DX0": "primary recompute + residual identities pass",
+  "DX1": "||DELTA_X|| certifiably nonzero",
+  "DX2": "lower(||DELTA_X||) > upper(A_DELTA_TAU)",
+  "DX3": "allocation projected contrasts AND energy shifts positive for h=0,1",
+  "DX4": ">=10/12 resolved fold predictions correct (unresolved never correct)",
+  "DX5": "both cross-allocation predictions positive",
+  "DX6": "min full-vs-fold squared alignment >= 0.80 AND max leverage fraction < 0.50",
+  "DX7": "no allocation sign reverses under single-block deletion",
+  "DX8": "co-optimal axes unique or equivalent within ETA_AXIS_SERIALIZATION",
+  "DX9": "production == reference"
+ },
+ "decision": {
+  "CfDf": "M0_NO_UNIQUE_DIRECTION_LICENSED",
+  "CpDf": "M1_COMMON_SERIALIZED",
+  "CfDp": "M2_DIFFERENTIAL_SERIALIZED",
+  "CpDp": "MULTICOMPONENT__NONE_SERIALIZED",
+  "unresolved": "NUMERICALLY_OR_GAUGE_UNRESOLVED"
+ },
+ "ETA_AXIS_SERIALIZATION": {
+  "value": 1e-12,
+  "derivation": "conservative relative float64 coefficient/reader arithmetic bound on the axis unit-vector construction; NOT a fitted tolerance and NOT the 0.80 jackknife guardrail"
+ },
+ "cooptimal_gauge_lexicographic_tiebreak": "encode +1->0, -1->1 over blocks sorted by ancestry id; pick the lexicographically smallest bitstring; reproducibility only, not a proof of gauge invariance",
+ "forbidden": [
+  "P3",
+  "fresh PCA",
+  "conditional plane",
+  "cell intercept",
+  "nonlinear model",
+  "dose",
+  "third carrier",
+  "response/TAU ratio",
+  "selected subset",
+  "V2 label"
+ ],
+ "serialized_object_if_qualified": "FSQBT00_RESIDUAL_DIRECTION_DISCOVERY_V1 (VALIDATION_STATUS=NOT_VALIDATED, TRANSFER_STATUS=NOT_TESTED, PHYSICAL_DIMENSION_STATUS=NOT_CLAIMED)"
+}
