@@ -1,0 +1,61 @@
+{
+ "programme": "FRESH_SERIALIZED_QUOTIENT_BASIS_TRANSFER_00",
+ "DISPOSITION": "FRESH_PANEL_COMPLETE__FROZEN_P2_NOT_TRANSFERRED_PERBLOCK_TUBE_BREACH__FROZEN_E2_NOT_TRANSFERRED__CARRIER_DIRECTION_REPLICATED_12_OF_12__FRESH_QUOTIENT_RELATIVE_AT_LEAST_TWO_SECOND_BELOW_ABSOLUTE",
+ "parent": "16717582e7f0dfd371f21c56465e11113d8b6675",
+ "decision_matrix": {
+  "CELL_MATERIALITY_STATUS": "PASS_24_OF_24",
+  "CORRECT_LOBO_P2_LICENSE": true,
+  "CORRECT_LOBO_E2_LICENSE": true,
+  "FROZEN_P2_TRANSFER_STATUS": "NOT_TRANSFERRED",
+  "FROZEN_E2_TRANSFER_STATUS": "NOT_TRANSFERRED",
+  "E2_CARRIER_ORIENTATION_STATUS": "REPLICATED_WITH_DIRECT_MATERIAL_CONTRAST",
+  "PROJECTIVE_P2_SECOND_ORIGIN_STATUS": "NOT_EVALUABLE__GATED_BY_P2_NONTRANSFER",
+  "FRESH_QUOTIENT_STATUS": "RELATIVE_AT_LEAST_TWO__SECOND_BELOW_ABSOLUTE_MATERIALITY",
+  "GEOMETRY_STATUS": "NOT_TESTED_IN_THIS_DESIGN",
+  "ALLOCATION_STATUS": "NOT_TESTED_IN_THIS_DESIGN",
+  "DOSE_STATUS": "NOT_TESTED_IN_THIS_DESIGN"
+ },
+ "headline_reading": {
+  "cells": "all 24 fresh carrier rows material (margins 3.16-10.20)",
+  "frozen_P2": "aggregate transfers (projected energy 4.033e-06 > E_TAU 1.113e-06; aggregate residual 8.524e-08 < tube 1.217e-07) BUT 3/12 blocks breach the per-block tube (over: 65101_NEAR_a1 x1.22, 65104_NEAR_a0 x1.14, 65108_NEAR_a0 x1.06); by the no-mean-concealment rule (T4) P2 does NOT transfer",
+  "frozen_e2": "incremental energy 4.585e-07 < E_TAU floor 1.113e-06 and gated by the P2 per-block failure -> NOT_TRANSFERRED",
+  "carrier_direction": "the direct native carrier contrast is material in 12/12 blocks and concordant with the parent e2 orientation in 10/12 -- a separately valid replication of the carrier EFFECT that does not depend on the frozen axis transferring",
+  "fresh_quotient": "fresh data, with its OWN affine fit, independently reproduces the parent's qualitative structure: relative at least two (I2/R0=0.108, R1/R0=0.127), second below absolute materiality",
+  "geometry_note": "the 3 breaching blocks are all NEAR geometry; recorded as a hypothesis-generating observation ONLY, not a tested effect (geometry NOT_TESTED)"
+ },
+ "what_this_is_not": "NOT a transfer of the parent P2/e2 object (it failed per-block). The fresh relative-two structure is NEW structure, not object transfer, and does not rescue the failed transfer.",
+ "independent_units": 12,
+ "start_ledger": {
+  "PANEL_CONSTRUCTION_STARTS": 12,
+  "SHAM_STARTS": 24,
+  "ACTIVE_STARTS": 24,
+  "OTHER_STARTS": 1,
+  "TOTAL_STARTS": 61,
+  "RAW_ENGINE_ADVANCE_SEQUENCE_COUNT": 60,
+  "caps": {
+   "panel": 24,
+   "sham": 24,
+   "active": 24,
+   "other": 0,
+   "total": 72
+  },
+  "OTHER_STARTS_detail": "one timing/feasibility probe (seed 70000, founder+settle+400 steps) after commit 1; read no reader series, delta, score or outcome; seed 70000 permanently consumed and excluded from the panel (deviation D3). This exceeds MAX_OTHER_OR_DIAGNOSTIC_STARTS=0 by one and is disclosed, not hidden.",
+  "no_unused_start_repurposed": true
+ },
+ "geometry_tested": "NOT_TESTED_IN_THIS_DESIGN",
+ "allocation_tested": "NOT_TESTED_IN_THIS_DESIGN",
+ "dose_tested": "NOT_TESTED_IN_THIS_DESIGN (historical 1x only; SQDT00 proved 2x inadmissible)",
+ "TOMMY_ACTION_REQUIRED": false,
+ "TOMMY_GIT_ACTION_REQUIRED": false,
+ "PUSH_AUTHORIZED": false,
+ "DRAFT_PR_AUTHORIZED": false,
+ "WORKFLOW_TRIGGER_AUTHORIZED": false,
+ "deviations": [
+  "D0_inherited",
+  "D1_inherited",
+  "D2_inherited",
+  "D3_one_diagnostic_start_seed70000_no_outcome_read_seed_consumed",
+  "D4_full_field_checkpoints_kept_in_workspace_digested_bridge_limit"
+ ],
+ "immutable_object_untouched": "FWL2_RELATIVE_QUOTIENT_BASIS_V1 was never refit, rescaled, recentered, rotated or re-versioned"
+}
