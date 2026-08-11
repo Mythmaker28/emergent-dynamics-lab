@@ -1,0 +1,119 @@
+{
+ "programme": "A_X_MATERIALITY_SEMANTICS_AND_SHARPNESS_AUDIT_00",
+ "short_name": "AXMAT00",
+ "generated_at": "2026-08-11T19:40:00Z",
+ "root_commit": "7da296e57bd44e223691725b557a12bf9584ae7e",
+ "root_subtree": "de55a961a904a708e07c841a5282f8071499f2ac",
+ "analysis_freeze_sha256": "4479dd61c34c658fbf6852f0830c6d3d444809adb2a158dd01904049a649acca",
+ "review_code_sha256": {
+  "axmat00_invariance.py": "c240ce0a0e59da7a38b004fd7cf0133552bef06e908260da30fcdca5b1cd72b9",
+  "axmat00_rederive.py": "fa631af37e9bd55c221d33517528eef27362277827c7708827d89bd54d1f715c",
+  "axmat00_review.py": "75d98e0841a006cccf238dd8ff0d5c3431a6e9b3657ea3fbf374c898e3ff03d0"
+ },
+ "artifact": "AXMAT00_DOMINANCE_AND_SCALING_REPORT",
+ "dominance": {
+  "counts": {
+   "TAU_DYNAMIC_L2": 48
+  },
+  "ties": 0,
+  "agrees_with_committed_dominant_term": "48/48",
+  "ETA_ORACLE_L2_ever_dominant": false,
+  "TAU_SITE_L2_ever_dominant": false,
+  "ETA_ORACLE_L2_value": "0 exactly, for all 48 descendants, as the committed ledger declares ('eta_oracle = 0 exactly on the exact rational scoring path')",
+  "consequence": "TAU_MATERIAL is TAU_DYNAMIC on every descendant. The numerical-error component never binds, so A_X carries no numerical-uncertainty content at all in this record."
+ },
+ "summaries": {
+  "TAU_MATERIAL_L2": {
+   "min": 0.0007055947846741251,
+   "median": 0.0010789379847770987,
+   "max": 0.001264018583853733,
+   "max_over_min": 1.7914227986216094,
+   "mean": 0.0010338066282009437
+  },
+  "TAU_DYNAMIC_L2": {
+   "min": 0.0007055947846741251,
+   "median": 0.0010789379847770987,
+   "max": 0.001264018583853733
+  },
+  "TAU_SITE_L2": {
+   "min": 0.00025140193429849176,
+   "median": 0.0002644417365643969,
+   "max": 0.0002743164786271389
+  },
+  "ratio_dynamic_over_site": {
+   "min": 2.7016800322910792,
+   "median": 4.1409224126722375,
+   "max": 4.802587301715847
+  },
+  "ancestry_balanced": {
+   "per_ancestry_mean_TAU": {
+    "73000": 0.001037925723276793,
+    "73001": 0.0010348233479348966,
+    "73002": 0.0010428355431913684,
+    "73003": 0.0010307802340894165,
+    "73004": 0.0010298312066564902,
+    "73005": 0.0010399062674846323,
+    "73006": 0.001036478877220392,
+    "73007": 0.0010243831598021227,
+    "73008": 0.0010125230099050583,
+    "73009": 0.0010401443393814845,
+    "73010": 0.0010350348230213798,
+    "73011": 0.0010410130064472892
+   },
+   "mean_of_means": 0.0010338066282009437,
+   "min": 0.0010125230099050583,
+   "max": 0.0010428355431913684,
+   "spread_relative": 0.029321279685603018
+  },
+  "rho_med_over_B": {
+   "min": 0.025140193429849175,
+   "max": 0.02743164786271389
+  }
+ },
+ "does_geometry_mechanically_change_the_scale": {
+  "verdict": "YES",
+  "evidence": "FAR > NEAR in 24/24 descendant pairs; FAR/NEAR ratio min 1.1461, median 1.4058, max 1.6876",
+  "means": {
+   "FAR": {
+    "n": 24,
+    "mean": 0.0012013043818518074
+   },
+   "NEAR": {
+    "n": 24,
+    "mean": 0.0008663088745500799
+   }
+  },
+  "reading": "the FAR arm drifts more on its own sham, so it buys a systematically larger TAU. A_X[b] sums both arms, so the per-ancestry gate is set predominantly by the noisier arm. This is a mechanical property of the rule, not an outcome."
+ },
+ "does_allocation_mechanically_change_the_scale": {
+  "verdict": "PARTIALLY, AND ONLY WITHIN NEAR",
+  "evidence": "within NEAR, TAU(a=1) > TAU(a=0) in 12/12 ancestries; within FAR the ordering flips (5/12), i.e. no consistent direction",
+  "means": {
+   "0": {
+    "n": 24,
+    "mean": 0.0009841269912261319
+   },
+   "1": {
+    "n": 24,
+    "mean": 0.0010834862651757555
+   }
+  },
+  "why_it_does_not_threaten_the_rule": "A_X[b] is a symmetric sum over both allocation members, so A_X and A_X_BAR are exactly invariant under allocation exchange (proved separately). The per-descendant asymmetry is descriptive only."
+ },
+ "scaling_with_contrast_arity": {
+  "A_X[b]": "a SUM of the four cell TAU values, scaled by 1/sqrt(2). It GROWS LINEARLY with the number of cells entering the contrast: adding cells raises the gate, it does not lower it.",
+  "identity_check": "(4/sqrt(2)) * mean_TAU_over_48 = 2.924046709e-03 = A_X_BAR, exactly as expected",
+  "A_X_BAR": "a MEAN over ancestries of per-ancestry gates. It is INVARIANT in the number of independent ancestries: adding ancestries does not shrink it.",
+  "value_if_it_were_a_standard_error": "a sampling envelope would shrink as 1/sqrt(12) to 8.440995773e-04; the realized A_X_BAR is 2.924046709e-03, i.e. it does not shrink at all",
+  "consistency_verdict": "CONSISTENT WITH A MINIMUM-EFFECT GATE, NOT WITH A SAMPLING UNCERTAINTY. A sampling standard error shrinks with n; a declared minimum-effect scale does not. The record's aggregation across ancestries is itself a worst-case L1 step, so the conservatism is applied twice: once over the eight rows of one ancestry, once over the twelve ancestries."
+ },
+ "origin_of_the_0.01_coefficient": {
+  "exact_parent_source": "FCDDH01R/_work/FROZEN_ESTIMAND_AND_UNIT_LEDGER.md section 3, which states the rule verbatim and marks it '(inherited, unchanged)'; the same (1/100) appears in the threshold lock's own symbolic_to_numeric_map",
+  "what_it_multiplies": "tau_dynamic = 1% of the descendant's OWN weighted-L2 sham drift away from its t0 checkpoint; tau_site = 1% of the median support density divided by B",
+  "classification": "INHERITED_CONVENTION expressing a DECLARED PHYSICAL MINIMUM-EFFECT SCALE",
+  "not_a_physical_constant": "no committed derivation ties 1/100 to any property of the lattice, the LawSpec, the carriers or the reader",
+  "not_a_fitted_coefficient": "no committed record shows it being estimated, tuned or scanned; it is inherited unchanged from the parent and predates every active row",
+  "supporting_parent_declaration": "FCRA00_FACT_AND_CLAIM_BINDER: 'DX2 uses the conservative triangle-inequality floor A_DELTA_TAU; it is an exploratory materiality guard, NOT a sampling-error calibration.'",
+  "defended_without_reference_to_the_active_result": true
+ }
+}

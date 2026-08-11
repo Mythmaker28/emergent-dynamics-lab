@@ -1,0 +1,79 @@
+{
+ "programme": "A_X_MATERIALITY_SEMANTICS_AND_SHARPNESS_AUDIT_00",
+ "short_name": "AXMAT00",
+ "generated_at": "2026-08-11T19:40:00Z",
+ "root_commit": "7da296e57bd44e223691725b557a12bf9584ae7e",
+ "root_subtree": "de55a961a904a708e07c841a5282f8071499f2ac",
+ "analysis_freeze_sha256": "4479dd61c34c658fbf6852f0830c6d3d444809adb2a158dd01904049a649acca",
+ "review_code_sha256": {
+  "axmat00_invariance.py": "c240ce0a0e59da7a38b004fd7cf0133552bef06e908260da30fcdca5b1cd72b9",
+  "axmat00_rederive.py": "fa631af37e9bd55c221d33517528eef27362277827c7708827d89bd54d1f715c",
+  "axmat00_review.py": "75d98e0841a006cccf238dd8ff0d5c3431a6e9b3657ea3fbf374c898e3ff03d0"
+ },
+ "creation_order": [
+  "AXMAT00_ANALYSIS_FREEZE",
+  "review code",
+  "AXMAT00_EVIDENCE_INDEX",
+  "AXMAT00_INPUT_SCOPE_VALIDATION",
+  "AXMAT00_FORMULA_REDERIVATION",
+  "AXMAT00_COMPONENT_TABLE",
+  "AXMAT00_DOMINANCE_AND_SCALING_REPORT",
+  "AXMAT00_TRIANGLE_SHARPNESS_PROOF",
+  "AXMAT00_SEMANTIC_CLASSIFICATION",
+  "AXMAT00_ROUTE_ARBITRATION",
+  "AXMAT00_FINAL_REPORT",
+  "AXMAT00_MANIFEST",
+  "AXMAT00_SHA256SUMS"
+ ],
+ "artifact": "AXMAT00_INPUT_SCOPE_VALIDATION",
+ "ACTIVE_DATA_DEPENDENCY": "ZERO",
+ "mechanism": "every scientific input passes Validator.load(); denial by exact basename, by path fragment (ACTIVE_RAW_ARCHIVE, DISCOVERY_PANEL/, FULL_FIELD, _ACTIVE_) and by numeric-array suffix (.npz, .npy); acceptance requires membership of an explicit allowlist.",
+ "negative_fixtures": {
+  "FCDDH01R_DISCOVERY_MATERIALITY_AND_LEVERAGE_REPORT.json": "REFUSED (DENY_BASENAME:FCDDH01R_DISCOVERY_MATERIALITY_AND_LEVERAGE_REPORT.json)",
+  "FCDDH01R_DISCOVERY_LOAO_AXIS_ARBITRATION.json": "REFUSED (DENY_BASENAME:FCDDH01R_DISCOVERY_LOAO_AXIS_ARBITRATION.json)",
+  "FCDDH01R_DISCOVERY_INTERACTION_AND_ORBIT_TABLE.json": "REFUSED (DENY_BASENAME:FCDDH01R_DISCOVERY_INTERACTION_AND_ORBIT_TABLE.json)",
+  "FCDDH01R_DISCOVERY_GATE_LADDER.json": "REFUSED (DENY_BASENAME:FCDDH01R_DISCOVERY_GATE_LADDER.json)",
+  "_work/DISCOVERY_ACTIVE_RAW_ARCHIVE/CARRIER_1_73000_NEAR_a0.npz": "REFUSED (DENY_PATH_FRAGMENT)",
+  "_work/DISCOVERY_PANEL/d_73000_NEAR_a0.npz": "REFUSED (DENY_PATH_FRAGMENT)"
+ },
+ "negative_fixtures_all_refused": true,
+ "accepted_inputs": [
+  {
+   "path": "/mnt/user-data/uploads/ising v3/FCDDH01R/FCDDH01R_DISCOVERY_THRESHOLD_LOCK.json",
+   "sha256": "b5d9a749d7c93995017c7939d16067b4e42a66fdcb7faff517f1c6250da0f332",
+   "bytes": 146087
+  },
+  {
+   "path": "/mnt/user-data/uploads/ising v3/FCDDH01R/_work/EXACT_INTERACTION_COEFFICIENT_MAP.json",
+   "sha256": "a2d8ea28b1de7ad94249a7d9558fbab43a6946587824ec09085d23c5fec2123a",
+   "bytes": 5962
+  },
+  {
+   "path": "/mnt/user-data/uploads/ising v3/FCDDH01R/_work/EXACT_TAU_PROPAGATION_CERTIFICATE.json",
+   "sha256": "c067a5dd3eedd1c953a372d64530f609a009d56fb28e1bb5ded5114e2120e0bb",
+   "bytes": 1471
+  }
+ ],
+ "imports_used_by_review_code": [
+  "json",
+  "os",
+  "sys",
+  "hashlib",
+  "random",
+  "statistics",
+  "fractions",
+  "math.isqrt"
+ ],
+ "simulator_imports": 0,
+ "engine_starts": 0,
+ "new_scientific_data": 0,
+ "active_response_arrays_opened": 0,
+ "full_field_values_opened": 0,
+ "remote_operations": 0,
+ "narrative_only_scalars": [
+  "5.695567518165154e-04",
+  "0.194784"
+ ],
+ "narrative_scalars_entered_review_code": false,
+ "narrative_scalars_entered_formula_selection_or_route_selection": false
+}

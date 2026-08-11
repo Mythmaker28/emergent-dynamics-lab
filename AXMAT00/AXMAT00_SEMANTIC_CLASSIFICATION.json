@@ -1,0 +1,44 @@
+{
+ "programme": "A_X_MATERIALITY_SEMANTICS_AND_SHARPNESS_AUDIT_00",
+ "short_name": "AXMAT00",
+ "generated_at": "2026-08-11T19:40:00Z",
+ "root_commit": "7da296e57bd44e223691725b557a12bf9584ae7e",
+ "root_subtree": "de55a961a904a708e07c841a5282f8071499f2ac",
+ "analysis_freeze_sha256": "4479dd61c34c658fbf6852f0830c6d3d444809adb2a158dd01904049a649acca",
+ "review_code_sha256": {
+  "axmat00_invariance.py": "c240ce0a0e59da7a38b004fd7cf0133552bef06e908260da30fcdca5b1cd72b9",
+  "axmat00_rederive.py": "fa631af37e9bd55c221d33517528eef27362277827c7708827d89bd54d1f715c",
+  "axmat00_review.py": "75d98e0841a006cccf238dd8ff0d5c3431a6e9b3657ea3fbf374c898e3ff03d0"
+ },
+ "artifact": "AXMAT00_SEMANTIC_CLASSIFICATION",
+ "DECLARED_RULE_INTENT": "MIXED_OPERATIONAL_RULE",
+ "DECLARED_RULE_INTENT_basis": "the rule is a max() over one numerical-error bound and two declared physical minimum-effect scales, so its DECLARED intent is mixed by construction. In this record the numerical branch is identically zero, so the REALIZED rule is purely a declared physical minimum-effect scale. Both facts are reported; neither replaces the other.",
+ "CONSTRUCTION_CLASS": "MIXED_NUMERICAL_AND_PHYSICAL_MAX",
+ "ETA_SEMANTICS": "DETERMINISTIC_NUMERICAL_ERROR_BOUND",
+ "ETA_realized": "0 exactly on all 48 descendants; never dominant; contributes nothing",
+ "DYNAMIC_SEMANTICS": "DECLARED_PHYSICAL_MINIMUM_SCALE",
+ "DYNAMIC_meaning": "1% of the descendant's own weighted-L2 sham drift away from its t0 checkpoint: an intervention must move the response by at least one hundredth of what the untouched system moves by itself over the same scored window",
+ "SITE_SEMANTICS": "DECLARED_PHYSICAL_MINIMUM_SCALE",
+ "SITE_meaning": "1% of the median support density divided by B: a per-site floor; never dominant here",
+ "PROBABILISTIC_UNCERTAINTY_INTERPRETATION": "NOT_LICENSED",
+ "PROBABILISTIC_basis": "the committed propagation certificate states 'RSS is FORBIDDEN because no parent certificate proves the required error independence'. No stochastic model, no variance, no distribution and no confidence level is defined anywhere for TAU. A_X_BAR does not shrink with the number of ancestries, which is inconsistent with a sampling envelope.",
+ "TRIANGLE_BOUND_VALIDITY": "VALID",
+ "SHARPNESS_UNDER_ADMITTED_SET": "SHARP_FOR_CARTESIAN_PRODUCT_OF_BALLS",
+ "SHARPNESS_consequence": "the propagation step is tight, so the strength of A_X is NOT an artifact of a loose inequality. It comes from the admitted set: independent per-row balls whose radii are set at a declared 1% physical scale, aggregated worst-case a second time across ancestries.",
+ "JOINT_CONSTRAINT_STATUS": "NO_PREEXISTING_JOINT_CONSTRAINT",
+ "NECESSARY_VS_SUFFICIENT_STATUS": "SUFFICIENT_NOT_NECESSARY",
+ "NECESSARY_VS_SUFFICIENT_basis": "clearing A_X is SUFFICIENT for the interaction to exceed every admissible worst-case error configuration under the declared admitted set. Nothing in the committed record proves the converse: no certificate states that an interaction below A_X is physically negligible. The record itself calls the object a 'floor', a 'guard' and a 'conservative' bound, never a necessary boundary.",
+ "plain_language_verdict": {
+  "1_necessary_physical_boundary": "NO. Nothing licenses reading 'below A_X' as 'physically negligible'.",
+  "2_sufficient_deliberately_strong_gate": "YES. This is the primary correct description.",
+  "3_deterministic_uncertainty_bound": "PARTLY BY CONSTRUCTION, NOT IN EFFECT. The max() includes a deterministic numerical bound, but it is exactly zero throughout and never binds.",
+  "4_convention_mixing_numerical_protection_with_declared_physical_scales": "YES. This is the accurate description of how the rule is BUILT.",
+  "5_not_classifiable": "NO. The committed record classifies it adequately."
+ },
+ "one_sentence": "A_X is a deliberately strong SUFFICIENT gate built as a mixed convention - a max over an exactly-zero numerical bound and two declared 1% physical minimum-effect scales - propagated worst-case; it is NOT a necessary boundary of physical relevance and NOT a probabilistic uncertainty envelope.",
+ "forbidden_readings_restated": [
+  "LOAO stability is never independent replication",
+  "a nonzero descriptive norm is never proof of a nonzero population effect",
+  "exact sham twins prove determinism; they do not estimate stochastic noise and do not set a declared physical minimum-effect scale to zero"
+ ]
+}

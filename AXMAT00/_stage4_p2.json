@@ -1,0 +1,20 @@
+{
+ "marginal_coverage_one_fresh": "4/5",
+ "expected_exceedances_twelve_fresh": "12/5",
+ "P_K_ge_1": "3/4",
+ "P_K_ge_2": "11/20",
+ "P_K_ge_3": "11/28",
+ "P_K_ge_4": "99/364",
+ "P_K_ge_3_equals_11_28": true,
+ "pmf_sums_to_one": true,
+ "E_K_from_pmf_equals_12_over_5": true,
+ "note_on_earlier_truncation": "a first pass summed k*P(K=k) only to k=11 and returned 1089/455; including k=12 restores E[K] = 12/5 exactly, as linearity of expectation requires. Recorded rather than silently corrected.",
+ "derivation": "K >= k iff the top k of the 16 combined order statistics are all fresh, so P(K>=k) = prod_{i=0}^{k-1} (12-i)/(16-i). k=3 gives (12/16)(11/15)(10/14) = 165/420 = 11/28.",
+ "assumptions": [
+  "all 16 scores exchangeable",
+  "continuous marginals, ties have probability zero",
+  "tube = max of the 4 calibration scores",
+  "no selection of the calibration set using outcomes"
+ ],
+ "what_this_does_NOT_establish": "three historical exceedances among twelve are entirely ordinary under exchangeability: E[K] = 2.4 and P(K >= 3) = 11/28 ~ 0.393. They therefore do not by themselves establish population non-transfer, and they reclassify no frozen gate."
+}

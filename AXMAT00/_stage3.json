@@ -1,0 +1,39 @@
+{
+ "gauge_channel_swap_A_X_BAR_identical": true,
+ "gauge_argument": "tau_dynamic^2 sums (XA[h]-XA[0])^2 + (XB[h]-XB[0])^2, which is symmetric under the channel swap that the gauge sign induces; tau_site^2 depends only on median(rho_0) and B, both gauge-free; eta_oracle = 0. The committed isometry ||z(s)||^2 = M2^2 holds for either s in {+1,-1}. Hence TAU, A_X and A_X_BAR are exactly gauge-invariant.",
+ "allocation_exchange_A_X_BAR_identical": true,
+ "allocation_argument": "A_X[b] = (1/sqrt2) sum_{g,a} TAU[b,g,a] is a symmetric sum over the neutral allocation members, so exchanging a=0 with a=1 within either geometry leaves A_X[b] and A_X_BAR exactly unchanged, even though the per-descendant TAU values differ.",
+ "serializer_order_invariant_200_permutations": true,
+ "order_argument": "all accumulation is exact Fraction addition, which is associative and commutative without rounding; 200 random permutations of the 48 descendant records reproduce the identical rational enclosure.",
+ "triangle_validity": {
+  "statement": "||sum_i c_i e_i|| <= sum_i |c_i| ||e_i|| <= sum_i |c_i| tau_i",
+  "why_valid": "norm triangle inequality plus absolute homogeneity; then ||e_i|| <= tau_i per row.",
+  "post_projection": "x is built from r = Q(z-mu) with Q = I - P2 an ORTHOGONAL projector, so ||Q w|| <= ||w||: the bound computed pre-projection remains valid after it.",
+  "sum_abs_coeff_units_of_inv_sqrt2": "2",
+  "verdict": "VALID"
+ },
+ "sharpness": {
+  "admitted_set": "Cartesian product of per-row balls {e_i : ||e_i|| <= tau_i}, independently, as implied by summing |coeff|*TAU over the eight rows with no coupling term.",
+  "attaining_configuration": "pick any unit vector u in range(Q) and set e_i = sign(c_i) * tau_i * u. Each ||e_i|| = tau_i exactly, so the configuration is admissible; then Q(sum_i c_i e_i) = (sum_i |c_i| tau_i) u, whose norm equals the bound.",
+  "range_Q_nonempty": "Q = I - P2 with P2 the immutable low-rank parent residual projector on R^20; range(Q) has dimension 20 - rank(P2) >= 1, so such a u exists.",
+  "verdict": "SHARP_FOR_CARTESIAN_PRODUCT_OF_BALLS",
+  "consequence": "the conservatism of A_X does NOT live in the propagation step, which is tight. It lives entirely in the CHOICE of admitted set: independent per-row balls with no joint constraint, and per-row radii fixed at a declared 1% physical scale."
+ },
+ "joint_constraint_search": {
+  "searched": [
+   "FROZEN_ESTIMAND_AND_UNIT_LEDGER.md",
+   "P2_GAUGE_AND_COOPTIMALITY_SPEC.md",
+   "EXACT_TAU_PROPAGATION_CERTIFICATE.json",
+   "EXACT_FACTOR_AND_ANCESTRY_GRAPH_SPEC.json",
+   "EXACT_INTERACTION_COEFFICIENT_MAP.json"
+  ],
+  "decisive_committed_statement": "EXACT_TAU_PROPAGATION_CERTIFICATE.propagation_rule: 'triangle inequality on the exact coefficient map; RSS is FORBIDDEN because no parent certificate proves the required error independence'",
+  "structural_facts_found_that_do_NOT_couple_the_error_budget": [
+   "h=0 is a structural zero asserted per row, but h=0 is the reference index and is already outside the 10-node weighted sum, so it cannot tighten the budget",
+   "mu cancels exactly in d = (r_C2 - r_C1)/sqrt(2): already exploited in the construction, not an error-budget coupling",
+   "the gauge sign s is shared across both carriers and every scored time: a gauge invariance, not a coupling of row errors",
+   "both carriers of one descendant share the same canonical sham and the same TAU: this fixes the RADIUS of two balls to a common value; the committed record nowhere proves that the two row DEVIATIONS are common-mode, and this review does not infer it"
+  ],
+  "verdict": "NO_PREEXISTING_JOINT_CONSTRAINT"
+ }
+}

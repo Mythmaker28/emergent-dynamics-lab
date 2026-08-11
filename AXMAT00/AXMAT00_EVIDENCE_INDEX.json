@@ -1,0 +1,85 @@
+{
+ "programme": "A_X_MATERIALITY_SEMANTICS_AND_SHARPNESS_AUDIT_00",
+ "short_name": "AXMAT00",
+ "generated_at": "2026-08-11T19:40:00Z",
+ "root_commit": "7da296e57bd44e223691725b557a12bf9584ae7e",
+ "root_subtree": "de55a961a904a708e07c841a5282f8071499f2ac",
+ "analysis_freeze_sha256": "4479dd61c34c658fbf6852f0830c6d3d444809adb2a158dd01904049a649acca",
+ "review_code_sha256": {
+  "axmat00_invariance.py": "c240ce0a0e59da7a38b004fd7cf0133552bef06e908260da30fcdca5b1cd72b9",
+  "axmat00_rederive.py": "fa631af37e9bd55c221d33517528eef27362277827c7708827d89bd54d1f715c",
+  "axmat00_review.py": "75d98e0841a006cccf238dd8ff0d5c3431a6e9b3657ea3fbf374c898e3ff03d0"
+ },
+ "creation_order": [
+  "AXMAT00_ANALYSIS_FREEZE",
+  "review code",
+  "AXMAT00_EVIDENCE_INDEX",
+  "AXMAT00_INPUT_SCOPE_VALIDATION",
+  "AXMAT00_FORMULA_REDERIVATION",
+  "AXMAT00_COMPONENT_TABLE",
+  "AXMAT00_DOMINANCE_AND_SCALING_REPORT",
+  "AXMAT00_TRIANGLE_SHARPNESS_PROOF",
+  "AXMAT00_SEMANTIC_CLASSIFICATION",
+  "AXMAT00_ROUTE_ARBITRATION",
+  "AXMAT00_FINAL_REPORT",
+  "AXMAT00_MANIFEST",
+  "AXMAT00_SHA256SUMS"
+ ],
+ "artifact": "AXMAT00_EVIDENCE_INDEX",
+ "resolved_historical_identities": {
+  "FCDDH00_PARENT": "93f13f45e6b6550a7ff709768b7b574161ed6a4f",
+  "FCDDH01R_THRESHOLD_LOCK": "fc1b41f87cadcc94407e5ca70d0fb43a7fcbc968",
+  "FCDDH01R_OPAQUE_ACTIVE_RAW_LOCK": "ffbda326703f93aa5a34c03e5f259e976771f793",
+  "FCDDH01R_FINAL_RECORDED_TIP": "7da296e57bd44e223691725b557a12bf9584ae7e",
+  "FCDDH01R_FINAL_SUBTREE": "de55a961a904a708e07c841a5282f8071499f2ac",
+  "FCDDH01R_MAIN_REPORTED": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+  "all_resolved_uniquely_from_local_objects": true,
+  "none_invented_from_a_prefix": true
+ },
+ "frozen_status_carried_forward": {
+  "FCDDH01R_SCIENTIFIC_STATUS": "DESCRIPTIVE_DETERMINISTIC",
+  "FCDDH01R_PROTOCOL_STATUS": "NONCONFORMANT_POSTSTART_SOFTWARE_CHANGE",
+  "HISTORICAL_EXACT_PROTOCOL_LABEL": "NONCONFORMANT_POSTSTART_EXECUTOR_REPAIR",
+  "FCDDH01R_FAILED_GATES": [
+   "D4",
+   "D5",
+   "D8"
+  ],
+  "FCDDH01R_AXIS_STATUS": "NOT_LICENSED",
+  "FCDDH01R_HOLDOUT_STATUS": "ZERO_STARTS__NOT_REACHED",
+  "FCDDH01R_RECLASSIFICATION_ALLOWED": false,
+  "AXMAT00_adds_no_FCDDH01R_correction": true
+ },
+ "scientific_inputs_used_by_review_code": [
+  {
+   "path": "/mnt/user-data/uploads/ising v3/FCDDH01R/FCDDH01R_DISCOVERY_THRESHOLD_LOCK.json",
+   "sha256": "b5d9a749d7c93995017c7939d16067b4e42a66fdcb7faff517f1c6250da0f332",
+   "bytes": 146087
+  },
+  {
+   "path": "/mnt/user-data/uploads/ising v3/FCDDH01R/_work/EXACT_INTERACTION_COEFFICIENT_MAP.json",
+   "sha256": "a2d8ea28b1de7ad94249a7d9558fbab43a6946587824ec09085d23c5fec2123a",
+   "bytes": 5962
+  },
+  {
+   "path": "/mnt/user-data/uploads/ising v3/FCDDH01R/_work/EXACT_TAU_PROPAGATION_CERTIFICATE.json",
+   "sha256": "c067a5dd3eedd1c953a372d64530f609a009d56fb28e1bb5ded5114e2120e0bb",
+   "bytes": 1471
+  }
+ ],
+ "n_inputs": 3,
+ "declared_archival_limitations_of_the_frozen_record_carried_forward": [
+  "full git fsck did not finish on the slow mount",
+  "the local bundle has a documented prerequisite",
+  "detailed LOAO D5 values were persisted only as a summary",
+  "the generation-1 144 VERIFIED count is not fully narrated",
+  "one handoff hash was attributed to the wrong filename in prose"
+ ],
+ "these_limitations_do_not_alter": [
+  "raw counts",
+  "D4/D5/D8",
+  "the materiality ratio",
+  "the compliance downgrade",
+  "zero hold-out"
+ ]
+}

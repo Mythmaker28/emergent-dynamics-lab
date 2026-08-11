@@ -1,0 +1,120 @@
+{
+ "programme": "A_X_MATERIALITY_SEMANTICS_AND_SHARPNESS_AUDIT_00",
+ "short_name": "AXMAT00",
+ "generated_at": "2026-08-11T19:40:00Z",
+ "root_commit": "7da296e57bd44e223691725b557a12bf9584ae7e",
+ "root_subtree": "de55a961a904a708e07c841a5282f8071499f2ac",
+ "analysis_freeze_sha256": "4479dd61c34c658fbf6852f0830c6d3d444809adb2a158dd01904049a649acca",
+ "review_code_sha256": {
+  "axmat00_invariance.py": "c240ce0a0e59da7a38b004fd7cf0133552bef06e908260da30fcdca5b1cd72b9",
+  "axmat00_rederive.py": "fa631af37e9bd55c221d33517528eef27362277827c7708827d89bd54d1f715c",
+  "axmat00_review.py": "75d98e0841a006cccf238dd8ff0d5c3431a6e9b3657ea3fbf374c898e3ff03d0"
+ },
+ "creation_order": [
+  "AXMAT00_ANALYSIS_FREEZE",
+  "review code",
+  "AXMAT00_EVIDENCE_INDEX",
+  "AXMAT00_INPUT_SCOPE_VALIDATION",
+  "AXMAT00_FORMULA_REDERIVATION",
+  "AXMAT00_COMPONENT_TABLE",
+  "AXMAT00_DOMINANCE_AND_SCALING_REPORT",
+  "AXMAT00_TRIANGLE_SHARPNESS_PROOF",
+  "AXMAT00_SEMANTIC_CLASSIFICATION",
+  "AXMAT00_ROUTE_ARBITRATION",
+  "AXMAT00_FINAL_REPORT",
+  "AXMAT00_MANIFEST",
+  "AXMAT00_SHA256SUMS"
+ ],
+ "artifact": "AXMAT00_FORMULA_REDERIVATION",
+ "serialized_symbol_resolution": {
+  "TAU^2": "threshold lock symbolic_to_numeric_map: max(0, (1/100)^2 sum_h W[h]((XA_s[h]-XA_s[0])^2+(XB_s[h]-XB_s[0])^2), ((1/100) median(rho0|supp)/B)^2 sum_h W[h])",
+  "A_X[b]": "(1/sqrt 2) sum_{g,a} TAU[b,g,a]",
+  "A_PAIR[b,aN,aF]": "sqrt(2) (TAU[b,NEAR,aN] + TAU[b,FAR,aF])",
+  "G2[d]": "sqrt( sum_h W[h] ((XA_s[h]-XA_s[0])^2 + (XB_s[h]-XB_s[0])^2) )  == the descendant's own weighted-L2 sham drift away from its t0 checkpoint",
+  "W_POST": "sum_h W[h] = 1 exactly (trapezoid 1/18 + 8*(1/9) + 1/18 over 10 scored nodes), so sqrt(W_POST) = 1 and TAU_SITE_L2 = 0.01 * RHO_MED / B",
+  "dimensional_equivalence": "VERIFIED - the frozen task definitions and the committed serialized names denote the same quantities, with G2 and sqrt(W_POST) made explicit"
+ },
+ "coefficient_derivation": {
+  "A_eight_rows": 8,
+  "A_each_absolute_coefficient_declared": [
+   "1/(2*sqrt(2))"
+  ],
+  "A_each_signed_rational_x_inv_sqrt2": [
+   "-1/4",
+   "1/4",
+   "-1/4",
+   "1/4",
+   "1/4",
+   "-1/4",
+   "1/4",
+   "-1/4"
+  ],
+  "A_sum_abs_rational_in_units_of_inv_sqrt2": "2",
+  "A_absolute_coefficient_per_row": "1/(2*sqrt(2))  <-  |1/4| * (1/sqrt(2))",
+  "A_rows_per_descendant": 2,
+  "A_derivation": "x[b] = 1/2 * sum_a ( d[b,NEAR,a] - d[b,FAR,a] ) and d = (r_C2 - r_C1)/sqrt(2), so every one of the 8 carrier rows enters x with |coeff| = 1/2 * 1/sqrt(2) = 1/(2*sqrt(2)). The two carrier rows of one descendant share that descendant's single TAU, hence sum_rows |coeff| * TAU_row = (1/(2*sqrt(2))) * 2 * sum_{g,a} TAU[b,g,a] = (1/sqrt(2)) * sum_{g,a} TAU[b,g,a].  Equivalently 8 * (1/(2*sqrt(2))) * mean_rows(TAU) = (1/sqrt(2)) * sum_{g,a} TAU.",
+  "A_coefficient_matches_certificate": true,
+  "A_certificate_A_X_text": "A_X[b] = sum over the eight rows of |coeff| * TAU = 8 * (1/(2 sqrt 2)) * mean(TAU) = (1/sqrt(2)) * sum_{g,a} TAU[b,g,a]   (each descendant TAU appears twice, once per carrier)",
+  "A_certificate_A_PAIR_text": "A_PAIR[b,aN,aF] = 4 rows * (1/sqrt(2)) * TAU = sqrt(2) * (TAU[b,NEAR,aN] + TAU[b,FAR,aF])",
+  "A_pair_rows_per_pairing": {
+   "aN=0,aF=0": 4,
+   "aN=0,aF=1": 4,
+   "aN=1,aF=0": 4,
+   "aN=1,aF=1": 4
+  },
+  "A_pair_abs_coefficient_declared": [
+   "1/sqrt(2)"
+  ],
+  "A_pair_derivation": "4 rows at |coeff| = 1/sqrt(2), two per descendant sharing one TAU, gives 2*(1/sqrt(2))*TAU_N + 2*(1/sqrt(2))*TAU_F = sqrt(2)*(TAU_N+TAU_F)."
+ },
+ "weights_and_isometry": {
+  "B_W": [
+   "1/18",
+   "1/9",
+   "1/9",
+   "1/9",
+   "1/9",
+   "1/9",
+   "1/9",
+   "1/9",
+   "1/9",
+   "1/18"
+  ],
+  "B_W_sum_exact": "1",
+  "B_W_sum_declared": "1",
+  "B_W_sum_is_one": true,
+  "B_isometry": "||z||^2 = sum_h W[h](delta_A[h]^2 + delta_B[h]^2) = M2^2, for either gauge sign",
+  "B_coordinate_space": "parent weighted-L2 R^20: coords 0..9 = u (common channel), 10..19 = v (differential channel)",
+  "B_scored_native_steps": [
+   40,
+   80,
+   120,
+   160,
+   200,
+   240,
+   280,
+   320,
+   360,
+   400
+  ],
+  "B_dt": "1/10",
+  "B_trapezoid_check": "endpoints 1/18, interior 1/9, 10 nodes: 1/18 + 8*(1/9) + 1/18 = 1 exactly"
+ },
+ "reference_path_independence": "stage-2 code re-implements TAU from the raw sham series XA, XB and the committed weights over exact Fractions; it imports no production analysis function.",
+ "reproduction": {
+  "dynamic_component_rebuilt_from_sham_matches_lock": "48/48",
+  "material_max_matches_lock": "48/48",
+  "tau_enclosure_consistent_with_lock": "48/48",
+  "A_X_per_block_consistent_with_lock": "12/12",
+  "A_X_BAR_reproduced": 0.002924046708945949,
+  "A_X_BAR_reported": 0.002924046708945949,
+  "bit_identical_as_IEEE754_doubles": true,
+  "certified_interval_width": 2.112621515805918e-154,
+  "certified_interval_width_relative": 7.225e-152,
+  "double_ulp_at_that_magnitude": 6.493e-19,
+  "note_on_target_inside_interval": "the literal double 2.924046708945949e-03 does NOT lie inside the 2.1e-154-wide certified enclosure, because the published decimal is a correctly rounded rendering of the exact value, not the exact value. The reproduction criterion met is the correct one: the correctly-rounded double of the certified enclosure is bit-identical to the published value. Recorded explicitly rather than papered over.",
+  "equality_policy": "certified enclosures; a verdict is asserted only when the enclosures are strictly separated. Equality of enclosures is never read as equality of values.",
+  "verdict": "REPRODUCED_FROM_THE_PRE_ACTIVE_THRESHOLD_LOCK_ALONE"
+ },
+ "production_reference_agreement_is_an_oracle_not_a_semantic_proof": true
+}
