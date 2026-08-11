@@ -129,8 +129,6 @@ def walk_files():
             rel = os.path.relpath(os.path.join(dp, f), HERE)
             if rel in EXCLUDE_FROM_SUMS or rel.startswith("_marks/") or "__pycache__" in rel:
                 continue
-            if rel.startswith("_") and rel.endswith(".txt") and "parent_tip_blobs" in rel:
-                continue
             out.append(rel)
     return sorted(out)
 
