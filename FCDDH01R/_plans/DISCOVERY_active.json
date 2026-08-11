@@ -1,0 +1,5511 @@
+{
+ "code_sha256": "5c6ca886dbc8a19b995f5f143124a521a026603e0a9d27d5a51960e4f34039c5",
+ "env_whitelist": [
+  "PATH",
+  "HOME",
+  "LANG",
+  "LC_ALL",
+  "PYTHONHASHSEED",
+  "OMP_NUM_THREADS",
+  "OPENBLAS_NUM_THREADS",
+  "MKL_NUM_THREADS",
+  "NUMEXPR_NUM_THREADS",
+  "PYTHONDONTWRITEBYTECODE"
+ ],
+ "execution_class": "REAL",
+ "frozen_env": {
+  "HOME": "/root",
+  "LANG": "C.UTF-8",
+  "LC_ALL": "C.UTF-8",
+  "MKL_NUM_THREADS": "1",
+  "NUMEXPR_NUM_THREADS": "1",
+  "OMP_NUM_THREADS": "1",
+  "OPENBLAS_NUM_THREADS": "1",
+  "PATH": "/usr/local/bin:/usr/bin:/bin",
+  "PYTHONDONTWRITEBYTECODE": "1",
+  "PYTHONHASHSEED": "0"
+ },
+ "ledger_root": "/home/claude/sweep/FCDDH01R/_ledger/DISCOVERY_active",
+ "phase": "DISCOVERY_ACTIVE",
+ "phase_max_charged_starts": 96,
+ "plan_sha256": "884a7f01b79d36d00d26295ae379e8ea8645698aa22e464a0dd59dd3635c4804",
+ "programme": "FCDDH01R",
+ "required_prior_artifact": {
+  "path": "/home/claude/sweep/FCDDH01R/_work/FCDDH00_DISCOVERY_THRESHOLD_LOCK.json",
+  "sha256": "b5d9a749d7c93995017c7939d16067b4e42a66fdcb7faff517f1c6250da0f332"
+ },
+ "rows": [
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73000_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73000_NEAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73000_NEAR_a1.npz",
+    "0ad9a0710a88842c50f016a74538d2bce28d6406df09fa52ee7549c9024972d5",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:0ad9a0710a88842c50f016a74538d2bce28d6406df09fa52ee7549c9024972d5",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 0,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73000_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73000_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73000_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73000_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "0.0.CARRIER_2",
+   "tag": "A_CARRIER_2_73000_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73000_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73000_NEAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73000_NEAR_a1.npz",
+    "0ad9a0710a88842c50f016a74538d2bce28d6406df09fa52ee7549c9024972d5",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:0ad9a0710a88842c50f016a74538d2bce28d6406df09fa52ee7549c9024972d5",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 1,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73000_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73000_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73000_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73000_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "0.0.CARRIER_1",
+   "tag": "A_CARRIER_1_73000_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73000_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73000_NEAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73000_NEAR_a0.npz",
+    "2ca5b4f3ba344c88b875933480bb78fcdc2a8cf294d21ef1b6c032e59869a51c",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:2ca5b4f3ba344c88b875933480bb78fcdc2a8cf294d21ef1b6c032e59869a51c",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 2,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73000_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73000_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73000_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73000_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "0.1.CARRIER_1",
+   "tag": "A_CARRIER_1_73000_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73000_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73000_NEAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73000_NEAR_a0.npz",
+    "2ca5b4f3ba344c88b875933480bb78fcdc2a8cf294d21ef1b6c032e59869a51c",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:2ca5b4f3ba344c88b875933480bb78fcdc2a8cf294d21ef1b6c032e59869a51c",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 3,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73000_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73000_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73000_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73000_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "0.1.CARRIER_2",
+   "tag": "A_CARRIER_2_73000_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73000_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73000_FAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73000_FAR_a1.npz",
+    "ebafea987b6374665f5694c962308f8caf08fbc6094454908b7a94e52c934fca",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:ebafea987b6374665f5694c962308f8caf08fbc6094454908b7a94e52c934fca",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 4,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73000_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73000_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73000_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73000_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "0.2.CARRIER_1",
+   "tag": "A_CARRIER_1_73000_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73000_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73000_FAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73000_FAR_a1.npz",
+    "ebafea987b6374665f5694c962308f8caf08fbc6094454908b7a94e52c934fca",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:ebafea987b6374665f5694c962308f8caf08fbc6094454908b7a94e52c934fca",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 5,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73000_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73000_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73000_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73000_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "0.2.CARRIER_2",
+   "tag": "A_CARRIER_2_73000_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73000_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73000_FAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73000_FAR_a0.npz",
+    "b9856c9c8bcac28866236d0b14784828bd25e9158de224fe2f4332ca3af6d06d",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:b9856c9c8bcac28866236d0b14784828bd25e9158de224fe2f4332ca3af6d06d",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 6,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73000_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73000_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73000_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73000_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "0.3.CARRIER_1",
+   "tag": "A_CARRIER_1_73000_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73000_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73000_FAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73000_FAR_a0.npz",
+    "b9856c9c8bcac28866236d0b14784828bd25e9158de224fe2f4332ca3af6d06d",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:b9856c9c8bcac28866236d0b14784828bd25e9158de224fe2f4332ca3af6d06d",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 7,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73000_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73000_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73000_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73000_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "0.3.CARRIER_2",
+   "tag": "A_CARRIER_2_73000_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73001_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73001_FAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73001_FAR_a0.npz",
+    "ac43159309e807c582b1e5ad2a8fddcef6227bea31083123f7d377ba1d1e1381",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:ac43159309e807c582b1e5ad2a8fddcef6227bea31083123f7d377ba1d1e1381",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 8,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73001_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73001_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73001_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73001_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "1.0.CARRIER_2",
+   "tag": "A_CARRIER_2_73001_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73001_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73001_FAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73001_FAR_a0.npz",
+    "ac43159309e807c582b1e5ad2a8fddcef6227bea31083123f7d377ba1d1e1381",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:ac43159309e807c582b1e5ad2a8fddcef6227bea31083123f7d377ba1d1e1381",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 9,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73001_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73001_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73001_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73001_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "1.0.CARRIER_1",
+   "tag": "A_CARRIER_1_73001_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73001_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73001_FAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73001_FAR_a1.npz",
+    "f093aa51b23581fbd76008bd144327b400b3588e0796f8f0d0416faf78f098e8",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:f093aa51b23581fbd76008bd144327b400b3588e0796f8f0d0416faf78f098e8",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 10,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73001_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73001_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73001_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73001_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "1.1.CARRIER_2",
+   "tag": "A_CARRIER_2_73001_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73001_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73001_FAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73001_FAR_a1.npz",
+    "f093aa51b23581fbd76008bd144327b400b3588e0796f8f0d0416faf78f098e8",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:f093aa51b23581fbd76008bd144327b400b3588e0796f8f0d0416faf78f098e8",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 11,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73001_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73001_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73001_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73001_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "1.1.CARRIER_1",
+   "tag": "A_CARRIER_1_73001_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73001_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73001_NEAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73001_NEAR_a1.npz",
+    "baf501a977a901b9dc37f6d127fa5caba4d2af8bc2a66f59112f40b9c13c384c",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:baf501a977a901b9dc37f6d127fa5caba4d2af8bc2a66f59112f40b9c13c384c",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 12,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73001_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73001_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73001_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73001_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "1.2.CARRIER_2",
+   "tag": "A_CARRIER_2_73001_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73001_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73001_NEAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73001_NEAR_a1.npz",
+    "baf501a977a901b9dc37f6d127fa5caba4d2af8bc2a66f59112f40b9c13c384c",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:baf501a977a901b9dc37f6d127fa5caba4d2af8bc2a66f59112f40b9c13c384c",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 13,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73001_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73001_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73001_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73001_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "1.2.CARRIER_1",
+   "tag": "A_CARRIER_1_73001_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73001_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73001_NEAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73001_NEAR_a0.npz",
+    "87742fc4bdb63c65d9525ae58bf3833c4042f7d7c36ea2fefbcd0793df4bec78",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:87742fc4bdb63c65d9525ae58bf3833c4042f7d7c36ea2fefbcd0793df4bec78",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 14,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73001_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73001_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73001_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73001_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "1.3.CARRIER_1",
+   "tag": "A_CARRIER_1_73001_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73001_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73001_NEAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73001_NEAR_a0.npz",
+    "87742fc4bdb63c65d9525ae58bf3833c4042f7d7c36ea2fefbcd0793df4bec78",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:87742fc4bdb63c65d9525ae58bf3833c4042f7d7c36ea2fefbcd0793df4bec78",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 15,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73001_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73001_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73001_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73001_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "1.3.CARRIER_2",
+   "tag": "A_CARRIER_2_73001_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73002_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73002_NEAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73002_NEAR_a1.npz",
+    "3ace601248dcaa0819cca27c1169d133deb8204caa7d29419e16165580886f5e",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:3ace601248dcaa0819cca27c1169d133deb8204caa7d29419e16165580886f5e",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 16,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73002_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73002_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73002_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73002_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "2.0.CARRIER_2",
+   "tag": "A_CARRIER_2_73002_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73002_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73002_NEAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73002_NEAR_a1.npz",
+    "3ace601248dcaa0819cca27c1169d133deb8204caa7d29419e16165580886f5e",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:3ace601248dcaa0819cca27c1169d133deb8204caa7d29419e16165580886f5e",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 17,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73002_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73002_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73002_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73002_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "2.0.CARRIER_1",
+   "tag": "A_CARRIER_1_73002_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73002_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73002_NEAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73002_NEAR_a0.npz",
+    "54933fbde498ee0d09396bd56fb5ee6aa4cc4968e3c866fe8ad71b7b1aae9ae6",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:54933fbde498ee0d09396bd56fb5ee6aa4cc4968e3c866fe8ad71b7b1aae9ae6",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 18,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73002_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73002_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73002_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73002_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "2.1.CARRIER_2",
+   "tag": "A_CARRIER_2_73002_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73002_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73002_NEAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73002_NEAR_a0.npz",
+    "54933fbde498ee0d09396bd56fb5ee6aa4cc4968e3c866fe8ad71b7b1aae9ae6",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:54933fbde498ee0d09396bd56fb5ee6aa4cc4968e3c866fe8ad71b7b1aae9ae6",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 19,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73002_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73002_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73002_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73002_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "2.1.CARRIER_1",
+   "tag": "A_CARRIER_1_73002_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73002_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73002_FAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73002_FAR_a0.npz",
+    "16e52b8a74f6f9ada61bedde9c5e4e0ad1f9a879166edfae0d38c93eaf5e6baa",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:16e52b8a74f6f9ada61bedde9c5e4e0ad1f9a879166edfae0d38c93eaf5e6baa",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 20,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73002_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73002_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73002_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73002_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "2.2.CARRIER_1",
+   "tag": "A_CARRIER_1_73002_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73002_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73002_FAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73002_FAR_a0.npz",
+    "16e52b8a74f6f9ada61bedde9c5e4e0ad1f9a879166edfae0d38c93eaf5e6baa",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:16e52b8a74f6f9ada61bedde9c5e4e0ad1f9a879166edfae0d38c93eaf5e6baa",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 21,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73002_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73002_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73002_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73002_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "2.2.CARRIER_2",
+   "tag": "A_CARRIER_2_73002_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73002_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73002_FAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73002_FAR_a1.npz",
+    "41fcc3a13a9d36be1c06039b76de7a7be12d3efeffe6f12edb9d44973d2bd740",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:41fcc3a13a9d36be1c06039b76de7a7be12d3efeffe6f12edb9d44973d2bd740",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 22,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73002_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73002_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73002_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73002_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "2.3.CARRIER_2",
+   "tag": "A_CARRIER_2_73002_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73002_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73002_FAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73002_FAR_a1.npz",
+    "41fcc3a13a9d36be1c06039b76de7a7be12d3efeffe6f12edb9d44973d2bd740",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:41fcc3a13a9d36be1c06039b76de7a7be12d3efeffe6f12edb9d44973d2bd740",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 23,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73002_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73002_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73002_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73002_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "2.3.CARRIER_1",
+   "tag": "A_CARRIER_1_73002_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73003_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73003_FAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73003_FAR_a1.npz",
+    "1ddde6477545e95c7731d429e63d41f7693e9f3251dff1d04166dcd36081fbcb",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:1ddde6477545e95c7731d429e63d41f7693e9f3251dff1d04166dcd36081fbcb",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 24,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73003_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73003_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73003_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73003_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "3.0.CARRIER_2",
+   "tag": "A_CARRIER_2_73003_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73003_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73003_FAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73003_FAR_a1.npz",
+    "1ddde6477545e95c7731d429e63d41f7693e9f3251dff1d04166dcd36081fbcb",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:1ddde6477545e95c7731d429e63d41f7693e9f3251dff1d04166dcd36081fbcb",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 25,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73003_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73003_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73003_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73003_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "3.0.CARRIER_1",
+   "tag": "A_CARRIER_1_73003_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73003_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73003_FAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73003_FAR_a0.npz",
+    "6f53834594a1602157b49da76e95e6c96d39ffa1c0c86827ad8e3008bba3631c",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:6f53834594a1602157b49da76e95e6c96d39ffa1c0c86827ad8e3008bba3631c",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 26,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73003_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73003_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73003_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73003_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "3.1.CARRIER_1",
+   "tag": "A_CARRIER_1_73003_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73003_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73003_FAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73003_FAR_a0.npz",
+    "6f53834594a1602157b49da76e95e6c96d39ffa1c0c86827ad8e3008bba3631c",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:6f53834594a1602157b49da76e95e6c96d39ffa1c0c86827ad8e3008bba3631c",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 27,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73003_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73003_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73003_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73003_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "3.1.CARRIER_2",
+   "tag": "A_CARRIER_2_73003_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73003_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73003_NEAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73003_NEAR_a0.npz",
+    "a06c6e2adde452e13ba973a71ee23d4a44bcb494259fcd7453a9beb913c20259",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:a06c6e2adde452e13ba973a71ee23d4a44bcb494259fcd7453a9beb913c20259",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 28,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73003_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73003_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73003_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73003_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "3.2.CARRIER_2",
+   "tag": "A_CARRIER_2_73003_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73003_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73003_NEAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73003_NEAR_a0.npz",
+    "a06c6e2adde452e13ba973a71ee23d4a44bcb494259fcd7453a9beb913c20259",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:a06c6e2adde452e13ba973a71ee23d4a44bcb494259fcd7453a9beb913c20259",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 29,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73003_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73003_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73003_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73003_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "3.2.CARRIER_1",
+   "tag": "A_CARRIER_1_73003_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73003_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73003_NEAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73003_NEAR_a1.npz",
+    "45c917dba00516edc730325608a54ad1c8d19d130c04cbc6119f018325a72674",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:45c917dba00516edc730325608a54ad1c8d19d130c04cbc6119f018325a72674",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 30,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73003_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73003_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73003_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73003_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "3.3.CARRIER_1",
+   "tag": "A_CARRIER_1_73003_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73003_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73003_NEAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73003_NEAR_a1.npz",
+    "45c917dba00516edc730325608a54ad1c8d19d130c04cbc6119f018325a72674",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:45c917dba00516edc730325608a54ad1c8d19d130c04cbc6119f018325a72674",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 31,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73003_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73003_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73003_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73003_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "3.3.CARRIER_2",
+   "tag": "A_CARRIER_2_73003_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73004_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73004_FAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73004_FAR_a0.npz",
+    "759bff3bf1e7578805a513564a00d0c3ddefe8b49050038a34b5fd3ca042b7a3",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:759bff3bf1e7578805a513564a00d0c3ddefe8b49050038a34b5fd3ca042b7a3",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 32,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73004_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73004_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73004_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73004_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "4.0.CARRIER_1",
+   "tag": "A_CARRIER_1_73004_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73004_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73004_FAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73004_FAR_a0.npz",
+    "759bff3bf1e7578805a513564a00d0c3ddefe8b49050038a34b5fd3ca042b7a3",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:759bff3bf1e7578805a513564a00d0c3ddefe8b49050038a34b5fd3ca042b7a3",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 33,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73004_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73004_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73004_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73004_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "4.0.CARRIER_2",
+   "tag": "A_CARRIER_2_73004_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73004_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73004_FAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73004_FAR_a1.npz",
+    "f367a6870da92740b9d0d9be54561eedea2276f21f590e7e5d5fa7437b1b0dee",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:f367a6870da92740b9d0d9be54561eedea2276f21f590e7e5d5fa7437b1b0dee",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 34,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73004_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73004_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73004_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73004_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "4.1.CARRIER_1",
+   "tag": "A_CARRIER_1_73004_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73004_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73004_FAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73004_FAR_a1.npz",
+    "f367a6870da92740b9d0d9be54561eedea2276f21f590e7e5d5fa7437b1b0dee",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:f367a6870da92740b9d0d9be54561eedea2276f21f590e7e5d5fa7437b1b0dee",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 35,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73004_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73004_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73004_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73004_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "4.1.CARRIER_2",
+   "tag": "A_CARRIER_2_73004_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73004_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73004_NEAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73004_NEAR_a0.npz",
+    "08bd4a5d44e1c61ef03f0ef3bf5f6936bd8e1f93798f0ce94d24248a70679585",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:08bd4a5d44e1c61ef03f0ef3bf5f6936bd8e1f93798f0ce94d24248a70679585",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 36,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73004_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73004_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73004_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73004_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "4.2.CARRIER_1",
+   "tag": "A_CARRIER_1_73004_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73004_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73004_NEAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73004_NEAR_a0.npz",
+    "08bd4a5d44e1c61ef03f0ef3bf5f6936bd8e1f93798f0ce94d24248a70679585",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:08bd4a5d44e1c61ef03f0ef3bf5f6936bd8e1f93798f0ce94d24248a70679585",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 37,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73004_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73004_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73004_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73004_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "4.2.CARRIER_2",
+   "tag": "A_CARRIER_2_73004_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73004_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73004_NEAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73004_NEAR_a1.npz",
+    "7ee7bc6e5a3ba1de0f6c98aefe1f9a284138c0a14f89018a3fdef5290a493f29",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:7ee7bc6e5a3ba1de0f6c98aefe1f9a284138c0a14f89018a3fdef5290a493f29",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 38,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73004_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73004_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73004_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73004_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "4.3.CARRIER_2",
+   "tag": "A_CARRIER_2_73004_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73004_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73004_NEAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73004_NEAR_a1.npz",
+    "7ee7bc6e5a3ba1de0f6c98aefe1f9a284138c0a14f89018a3fdef5290a493f29",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:7ee7bc6e5a3ba1de0f6c98aefe1f9a284138c0a14f89018a3fdef5290a493f29",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 39,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73004_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73004_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73004_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73004_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "4.3.CARRIER_1",
+   "tag": "A_CARRIER_1_73004_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73005_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73005_NEAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73005_NEAR_a0.npz",
+    "85a86fb58c79fc7831fca9cbfa237837ee695e84e1936f1fedd9cd2c3f2bdb68",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:85a86fb58c79fc7831fca9cbfa237837ee695e84e1936f1fedd9cd2c3f2bdb68",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 40,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73005_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73005_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73005_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73005_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "5.0.CARRIER_1",
+   "tag": "A_CARRIER_1_73005_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73005_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73005_NEAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73005_NEAR_a0.npz",
+    "85a86fb58c79fc7831fca9cbfa237837ee695e84e1936f1fedd9cd2c3f2bdb68",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:85a86fb58c79fc7831fca9cbfa237837ee695e84e1936f1fedd9cd2c3f2bdb68",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 41,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73005_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73005_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73005_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73005_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "5.0.CARRIER_2",
+   "tag": "A_CARRIER_2_73005_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73005_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73005_NEAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73005_NEAR_a1.npz",
+    "4040e823d0bac7883bf7ca735c877a952a5dd854e9305d1717266c44b2440c08",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:4040e823d0bac7883bf7ca735c877a952a5dd854e9305d1717266c44b2440c08",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 42,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73005_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73005_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73005_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73005_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "5.1.CARRIER_1",
+   "tag": "A_CARRIER_1_73005_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73005_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73005_NEAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73005_NEAR_a1.npz",
+    "4040e823d0bac7883bf7ca735c877a952a5dd854e9305d1717266c44b2440c08",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:4040e823d0bac7883bf7ca735c877a952a5dd854e9305d1717266c44b2440c08",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 43,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73005_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73005_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73005_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73005_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "5.1.CARRIER_2",
+   "tag": "A_CARRIER_2_73005_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73005_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73005_FAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73005_FAR_a0.npz",
+    "9b4157b0d2b0aef8ce0afa6d2252e6a411a36f2aaa0880e8b86ea9b0cca9f7c3",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:9b4157b0d2b0aef8ce0afa6d2252e6a411a36f2aaa0880e8b86ea9b0cca9f7c3",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 44,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73005_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73005_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73005_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73005_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "5.2.CARRIER_1",
+   "tag": "A_CARRIER_1_73005_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73005_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73005_FAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73005_FAR_a0.npz",
+    "9b4157b0d2b0aef8ce0afa6d2252e6a411a36f2aaa0880e8b86ea9b0cca9f7c3",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:9b4157b0d2b0aef8ce0afa6d2252e6a411a36f2aaa0880e8b86ea9b0cca9f7c3",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 45,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73005_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73005_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73005_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73005_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "5.2.CARRIER_2",
+   "tag": "A_CARRIER_2_73005_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73005_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73005_FAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73005_FAR_a1.npz",
+    "5033bbdb0eb705d42b807523b66ad024e08d69593d4a2761621a69241a765895",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:5033bbdb0eb705d42b807523b66ad024e08d69593d4a2761621a69241a765895",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 46,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73005_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73005_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73005_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73005_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "5.3.CARRIER_1",
+   "tag": "A_CARRIER_1_73005_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73005_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73005_FAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73005_FAR_a1.npz",
+    "5033bbdb0eb705d42b807523b66ad024e08d69593d4a2761621a69241a765895",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:5033bbdb0eb705d42b807523b66ad024e08d69593d4a2761621a69241a765895",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 47,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73005_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73005_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73005_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73005_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "5.3.CARRIER_2",
+   "tag": "A_CARRIER_2_73005_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73006_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73006_NEAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73006_NEAR_a1.npz",
+    "b438a9e5c313e87e5fd5066c33cb163ce2094dbc064dbc30abe1ee895e8823de",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:b438a9e5c313e87e5fd5066c33cb163ce2094dbc064dbc30abe1ee895e8823de",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 48,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73006_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73006_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73006_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73006_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "6.0.CARRIER_2",
+   "tag": "A_CARRIER_2_73006_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73006_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73006_NEAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73006_NEAR_a1.npz",
+    "b438a9e5c313e87e5fd5066c33cb163ce2094dbc064dbc30abe1ee895e8823de",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:b438a9e5c313e87e5fd5066c33cb163ce2094dbc064dbc30abe1ee895e8823de",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 49,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73006_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73006_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73006_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73006_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "6.0.CARRIER_1",
+   "tag": "A_CARRIER_1_73006_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73006_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73006_NEAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73006_NEAR_a0.npz",
+    "019da7d3fbbc4be41d10f509252a67abc14d2938bbee00e5ca819bce313f0b74",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:019da7d3fbbc4be41d10f509252a67abc14d2938bbee00e5ca819bce313f0b74",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 50,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73006_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73006_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73006_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73006_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "6.1.CARRIER_1",
+   "tag": "A_CARRIER_1_73006_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73006_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73006_NEAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73006_NEAR_a0.npz",
+    "019da7d3fbbc4be41d10f509252a67abc14d2938bbee00e5ca819bce313f0b74",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:019da7d3fbbc4be41d10f509252a67abc14d2938bbee00e5ca819bce313f0b74",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 51,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73006_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73006_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73006_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73006_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "6.1.CARRIER_2",
+   "tag": "A_CARRIER_2_73006_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73006_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73006_FAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73006_FAR_a1.npz",
+    "a4a83ac87dba5c89c5927e87006296a6b3d3b5faf8a1aa29de842970d84feae3",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:a4a83ac87dba5c89c5927e87006296a6b3d3b5faf8a1aa29de842970d84feae3",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 52,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73006_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73006_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73006_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73006_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "6.2.CARRIER_2",
+   "tag": "A_CARRIER_2_73006_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73006_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73006_FAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73006_FAR_a1.npz",
+    "a4a83ac87dba5c89c5927e87006296a6b3d3b5faf8a1aa29de842970d84feae3",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:a4a83ac87dba5c89c5927e87006296a6b3d3b5faf8a1aa29de842970d84feae3",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 53,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73006_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73006_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73006_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73006_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "6.2.CARRIER_1",
+   "tag": "A_CARRIER_1_73006_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73006_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73006_FAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73006_FAR_a0.npz",
+    "b5c01aabc2b7646f4330f25f09ac239cc86469b965b1654a00741dbdc2345b82",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:b5c01aabc2b7646f4330f25f09ac239cc86469b965b1654a00741dbdc2345b82",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 54,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73006_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73006_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73006_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73006_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "6.3.CARRIER_2",
+   "tag": "A_CARRIER_2_73006_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73006_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73006_FAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73006_FAR_a0.npz",
+    "b5c01aabc2b7646f4330f25f09ac239cc86469b965b1654a00741dbdc2345b82",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:b5c01aabc2b7646f4330f25f09ac239cc86469b965b1654a00741dbdc2345b82",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 55,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73006_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73006_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73006_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73006_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "6.3.CARRIER_1",
+   "tag": "A_CARRIER_1_73006_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73007_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73007_NEAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73007_NEAR_a0.npz",
+    "00044b5900aabe4e65e7efe0dbfd60f97c62a5fe0ff7feff869cd7a832c86f3d",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:00044b5900aabe4e65e7efe0dbfd60f97c62a5fe0ff7feff869cd7a832c86f3d",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 56,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73007_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73007_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73007_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73007_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "7.0.CARRIER_1",
+   "tag": "A_CARRIER_1_73007_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73007_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73007_NEAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73007_NEAR_a0.npz",
+    "00044b5900aabe4e65e7efe0dbfd60f97c62a5fe0ff7feff869cd7a832c86f3d",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:00044b5900aabe4e65e7efe0dbfd60f97c62a5fe0ff7feff869cd7a832c86f3d",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 57,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73007_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73007_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73007_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73007_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "7.0.CARRIER_2",
+   "tag": "A_CARRIER_2_73007_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73007_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73007_NEAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73007_NEAR_a1.npz",
+    "d26431d6527ba4222d60b843042c36b67fe0d0682fabb58aa5861cd295328d72",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:d26431d6527ba4222d60b843042c36b67fe0d0682fabb58aa5861cd295328d72",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 58,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73007_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73007_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73007_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73007_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "7.1.CARRIER_2",
+   "tag": "A_CARRIER_2_73007_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73007_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73007_NEAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73007_NEAR_a1.npz",
+    "d26431d6527ba4222d60b843042c36b67fe0d0682fabb58aa5861cd295328d72",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:d26431d6527ba4222d60b843042c36b67fe0d0682fabb58aa5861cd295328d72",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 59,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73007_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73007_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73007_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73007_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "7.1.CARRIER_1",
+   "tag": "A_CARRIER_1_73007_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73007_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73007_FAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73007_FAR_a1.npz",
+    "dbf48ddd95cb23bf5fc09d756defd21d5dd1ac3564025dad8f39bea78ea72590",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:dbf48ddd95cb23bf5fc09d756defd21d5dd1ac3564025dad8f39bea78ea72590",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 60,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73007_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73007_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73007_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73007_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "7.2.CARRIER_2",
+   "tag": "A_CARRIER_2_73007_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73007_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73007_FAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73007_FAR_a1.npz",
+    "dbf48ddd95cb23bf5fc09d756defd21d5dd1ac3564025dad8f39bea78ea72590",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:dbf48ddd95cb23bf5fc09d756defd21d5dd1ac3564025dad8f39bea78ea72590",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 61,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73007_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73007_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73007_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73007_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "7.2.CARRIER_1",
+   "tag": "A_CARRIER_1_73007_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73007_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73007_FAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73007_FAR_a0.npz",
+    "1556afe44d0bad311f3a291e81d318d4518909acad254592a3e48c058f005da8",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:1556afe44d0bad311f3a291e81d318d4518909acad254592a3e48c058f005da8",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 62,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73007_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73007_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73007_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73007_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "7.3.CARRIER_1",
+   "tag": "A_CARRIER_1_73007_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73007_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73007_FAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73007_FAR_a0.npz",
+    "1556afe44d0bad311f3a291e81d318d4518909acad254592a3e48c058f005da8",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:1556afe44d0bad311f3a291e81d318d4518909acad254592a3e48c058f005da8",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 63,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73007_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73007_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73007_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73007_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "7.3.CARRIER_2",
+   "tag": "A_CARRIER_2_73007_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73008_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73008_FAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73008_FAR_a0.npz",
+    "7a740e3fcb29c768d00b5425eba7800893c9b209e1d86c935f64f0f23482feae",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:7a740e3fcb29c768d00b5425eba7800893c9b209e1d86c935f64f0f23482feae",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 64,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73008_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73008_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73008_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73008_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "8.0.CARRIER_2",
+   "tag": "A_CARRIER_2_73008_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73008_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73008_FAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73008_FAR_a0.npz",
+    "7a740e3fcb29c768d00b5425eba7800893c9b209e1d86c935f64f0f23482feae",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:7a740e3fcb29c768d00b5425eba7800893c9b209e1d86c935f64f0f23482feae",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 65,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73008_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73008_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73008_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73008_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "8.0.CARRIER_1",
+   "tag": "A_CARRIER_1_73008_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73008_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73008_FAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73008_FAR_a1.npz",
+    "d49ee57f3e1af21884561e2a0b441d24780b37d7c6ea46bc3ab40db12efa9d17",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:d49ee57f3e1af21884561e2a0b441d24780b37d7c6ea46bc3ab40db12efa9d17",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 66,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73008_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73008_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73008_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73008_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "8.1.CARRIER_2",
+   "tag": "A_CARRIER_2_73008_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73008_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73008_FAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73008_FAR_a1.npz",
+    "d49ee57f3e1af21884561e2a0b441d24780b37d7c6ea46bc3ab40db12efa9d17",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:d49ee57f3e1af21884561e2a0b441d24780b37d7c6ea46bc3ab40db12efa9d17",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 67,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73008_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73008_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73008_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73008_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "8.1.CARRIER_1",
+   "tag": "A_CARRIER_1_73008_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73008_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73008_NEAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73008_NEAR_a0.npz",
+    "29f0094078aac730d937384e96f8bdb8331637d504b37ce69b14f4470a5d7243",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:29f0094078aac730d937384e96f8bdb8331637d504b37ce69b14f4470a5d7243",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 68,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73008_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73008_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73008_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73008_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "8.2.CARRIER_1",
+   "tag": "A_CARRIER_1_73008_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73008_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73008_NEAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73008_NEAR_a0.npz",
+    "29f0094078aac730d937384e96f8bdb8331637d504b37ce69b14f4470a5d7243",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:29f0094078aac730d937384e96f8bdb8331637d504b37ce69b14f4470a5d7243",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 69,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73008_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73008_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73008_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73008_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "8.2.CARRIER_2",
+   "tag": "A_CARRIER_2_73008_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73008_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73008_NEAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73008_NEAR_a1.npz",
+    "9e35b9ba8a2942a225c249d8bcb4f91028a7f20fc24fc6f7fa8931bcf3395785",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:9e35b9ba8a2942a225c249d8bcb4f91028a7f20fc24fc6f7fa8931bcf3395785",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 70,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73008_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73008_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73008_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73008_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "8.3.CARRIER_2",
+   "tag": "A_CARRIER_2_73008_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73008_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73008_NEAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73008_NEAR_a1.npz",
+    "9e35b9ba8a2942a225c249d8bcb4f91028a7f20fc24fc6f7fa8931bcf3395785",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:9e35b9ba8a2942a225c249d8bcb4f91028a7f20fc24fc6f7fa8931bcf3395785",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 71,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73008_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73008_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73008_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73008_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "8.3.CARRIER_1",
+   "tag": "A_CARRIER_1_73008_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73009_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73009_FAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73009_FAR_a0.npz",
+    "a54fbc59c34b5e551c6599ed4cc84bde361b3dad385c20627c7886c7fab6e488",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:a54fbc59c34b5e551c6599ed4cc84bde361b3dad385c20627c7886c7fab6e488",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 72,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73009_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73009_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73009_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73009_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "9.0.CARRIER_1",
+   "tag": "A_CARRIER_1_73009_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73009_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73009_FAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73009_FAR_a0.npz",
+    "a54fbc59c34b5e551c6599ed4cc84bde361b3dad385c20627c7886c7fab6e488",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:a54fbc59c34b5e551c6599ed4cc84bde361b3dad385c20627c7886c7fab6e488",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 73,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73009_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73009_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73009_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73009_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "9.0.CARRIER_2",
+   "tag": "A_CARRIER_2_73009_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73009_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73009_FAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73009_FAR_a1.npz",
+    "28fe093705a33ff0de49cd3f5a6e39a560f363d6c499b8534153a7f29379c790",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:28fe093705a33ff0de49cd3f5a6e39a560f363d6c499b8534153a7f29379c790",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 74,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73009_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73009_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73009_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73009_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "9.1.CARRIER_2",
+   "tag": "A_CARRIER_2_73009_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73009_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73009_FAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73009_FAR_a1.npz",
+    "28fe093705a33ff0de49cd3f5a6e39a560f363d6c499b8534153a7f29379c790",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:28fe093705a33ff0de49cd3f5a6e39a560f363d6c499b8534153a7f29379c790",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 75,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73009_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73009_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73009_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73009_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "9.1.CARRIER_1",
+   "tag": "A_CARRIER_1_73009_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73009_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73009_NEAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73009_NEAR_a0.npz",
+    "698bfdcf0f4c45c0b1229059a2bc7515fd634fefe448bad9415c35a9858cecc9",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:698bfdcf0f4c45c0b1229059a2bc7515fd634fefe448bad9415c35a9858cecc9",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 76,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73009_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73009_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73009_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73009_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "9.2.CARRIER_2",
+   "tag": "A_CARRIER_2_73009_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73009_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73009_NEAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73009_NEAR_a0.npz",
+    "698bfdcf0f4c45c0b1229059a2bc7515fd634fefe448bad9415c35a9858cecc9",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:698bfdcf0f4c45c0b1229059a2bc7515fd634fefe448bad9415c35a9858cecc9",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 77,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73009_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73009_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73009_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73009_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "9.2.CARRIER_1",
+   "tag": "A_CARRIER_1_73009_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73009_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73009_NEAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73009_NEAR_a1.npz",
+    "4ee96fdf8b62c3a9621b650e0436d49edb9566bc6606ed6ec2923432dedfca41",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:4ee96fdf8b62c3a9621b650e0436d49edb9566bc6606ed6ec2923432dedfca41",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 78,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73009_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73009_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73009_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73009_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "9.3.CARRIER_2",
+   "tag": "A_CARRIER_2_73009_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73009_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73009_NEAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73009_NEAR_a1.npz",
+    "4ee96fdf8b62c3a9621b650e0436d49edb9566bc6606ed6ec2923432dedfca41",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:4ee96fdf8b62c3a9621b650e0436d49edb9566bc6606ed6ec2923432dedfca41",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 79,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73009_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73009_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73009_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73009_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "9.3.CARRIER_1",
+   "tag": "A_CARRIER_1_73009_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73010_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73010_NEAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73010_NEAR_a0.npz",
+    "b1ccaf06587131bed62e638c2d73624a62e30030014dd9f8b2d0d0c9a9802fbe",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:b1ccaf06587131bed62e638c2d73624a62e30030014dd9f8b2d0d0c9a9802fbe",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 80,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73010_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73010_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73010_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73010_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "10.0.CARRIER_2",
+   "tag": "A_CARRIER_2_73010_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73010_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73010_NEAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73010_NEAR_a0.npz",
+    "b1ccaf06587131bed62e638c2d73624a62e30030014dd9f8b2d0d0c9a9802fbe",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:b1ccaf06587131bed62e638c2d73624a62e30030014dd9f8b2d0d0c9a9802fbe",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 81,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73010_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73010_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73010_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73010_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "10.0.CARRIER_1",
+   "tag": "A_CARRIER_1_73010_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73010_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73010_NEAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73010_NEAR_a1.npz",
+    "7b186d3dca1cdeacd3cdc277def48e73f0913b7bebb99110e9d917a9d05b22ef",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:7b186d3dca1cdeacd3cdc277def48e73f0913b7bebb99110e9d917a9d05b22ef",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 82,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73010_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73010_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73010_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73010_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "10.1.CARRIER_2",
+   "tag": "A_CARRIER_2_73010_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73010_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73010_NEAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73010_NEAR_a1.npz",
+    "7b186d3dca1cdeacd3cdc277def48e73f0913b7bebb99110e9d917a9d05b22ef",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:7b186d3dca1cdeacd3cdc277def48e73f0913b7bebb99110e9d917a9d05b22ef",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 83,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73010_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73010_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73010_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73010_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "10.1.CARRIER_1",
+   "tag": "A_CARRIER_1_73010_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73010_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73010_FAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73010_FAR_a1.npz",
+    "d3ed3cfedd308a0482f63426a41d881cd47b61b8ed779d83e6d25a4dda12476e",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:d3ed3cfedd308a0482f63426a41d881cd47b61b8ed779d83e6d25a4dda12476e",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 84,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73010_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73010_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73010_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73010_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "10.2.CARRIER_2",
+   "tag": "A_CARRIER_2_73010_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73010_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73010_FAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73010_FAR_a1.npz",
+    "d3ed3cfedd308a0482f63426a41d881cd47b61b8ed779d83e6d25a4dda12476e",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:d3ed3cfedd308a0482f63426a41d881cd47b61b8ed779d83e6d25a4dda12476e",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 85,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73010_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73010_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73010_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73010_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "10.2.CARRIER_1",
+   "tag": "A_CARRIER_1_73010_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73010_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73010_FAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73010_FAR_a0.npz",
+    "dbbad18f390c0dc4a8ae453c0d489ab08453f8341e8591dea6770481fe135f98",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:dbbad18f390c0dc4a8ae453c0d489ab08453f8341e8591dea6770481fe135f98",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 86,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73010_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73010_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73010_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73010_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "10.3.CARRIER_1",
+   "tag": "A_CARRIER_1_73010_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73010_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73010_FAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73010_FAR_a0.npz",
+    "dbbad18f390c0dc4a8ae453c0d489ab08453f8341e8591dea6770481fe135f98",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:dbbad18f390c0dc4a8ae453c0d489ab08453f8341e8591dea6770481fe135f98",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 87,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73010_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73010_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73010_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73010_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "10.3.CARRIER_2",
+   "tag": "A_CARRIER_2_73010_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73011_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73011_NEAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73011_NEAR_a0.npz",
+    "43e1d17251cdf22b5789474f5acd48d6902e11f8ad46d492eb6d8c345e525018",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:43e1d17251cdf22b5789474f5acd48d6902e11f8ad46d492eb6d8c345e525018",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 88,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73011_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73011_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73011_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73011_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "11.0.CARRIER_2",
+   "tag": "A_CARRIER_2_73011_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73011_NEAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73011_NEAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73011_NEAR_a0.npz",
+    "43e1d17251cdf22b5789474f5acd48d6902e11f8ad46d492eb6d8c345e525018",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:43e1d17251cdf22b5789474f5acd48d6902e11f8ad46d492eb6d8c345e525018",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 89,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73011_NEAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73011_NEAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73011_NEAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73011_NEAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "11.0.CARRIER_1",
+   "tag": "A_CARRIER_1_73011_NEAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73011_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73011_NEAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73011_NEAR_a1.npz",
+    "948bfc020f64db58d9e559ce8940dbcb74e576fa293de58c6c6fecee75f1dd1f",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:948bfc020f64db58d9e559ce8940dbcb74e576fa293de58c6c6fecee75f1dd1f",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 90,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73011_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73011_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73011_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73011_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "11.1.CARRIER_1",
+   "tag": "A_CARRIER_1_73011_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73011_NEAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73011_NEAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73011_NEAR_a1.npz",
+    "948bfc020f64db58d9e559ce8940dbcb74e576fa293de58c6c6fecee75f1dd1f",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:948bfc020f64db58d9e559ce8940dbcb74e576fa293de58c6c6fecee75f1dd1f",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 91,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73011_NEAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73011_NEAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73011_NEAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73011_NEAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "11.1.CARRIER_2",
+   "tag": "A_CARRIER_2_73011_NEAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73011_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73011_FAR_a0.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73011_FAR_a0.npz",
+    "4d5f020a99db343eb907eb99ee43e25c55f10baa0463f9fd346417dbf113ffd1",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:4d5f020a99db343eb907eb99ee43e25c55f10baa0463f9fd346417dbf113ffd1",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 92,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73011_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73011_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73011_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73011_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "11.2.CARRIER_2",
+   "tag": "A_CARRIER_2_73011_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73011_FAR_a0.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73011_FAR_a0.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73011_FAR_a0.npz",
+    "4d5f020a99db343eb907eb99ee43e25c55f10baa0463f9fd346417dbf113ffd1",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:4d5f020a99db343eb907eb99ee43e25c55f10baa0463f9fd346417dbf113ffd1",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 93,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73011_FAR_a0.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73011_FAR_a0.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73011_FAR_a0.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73011_FAR_a0.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "11.2.CARRIER_1",
+   "tag": "A_CARRIER_1_73011_FAR_a0"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73011_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73011_FAR_a1.npz",
+    "CARRIER_2",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73011_FAR_a1.npz",
+    "b33cb8002ad9307cb7d795f08b2651321140db11cfc7bb21123bea04a97e6c9e",
+    "ppai_core.state_cross(st)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:b33cb8002ad9307cb7d795f08b2651321140db11cfc7bb21123bea04a97e6c9e",
+    "op:CARRIER_2"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 94,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73011_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73011_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_2_73011_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_2_73011_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "11.3.CARRIER_2",
+   "tag": "A_CARRIER_2_73011_FAR_a1"
+  },
+  {
+   "argv": [
+    "/home/claude/sweep/FCDDH01R/_work/fh_aworker.py",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/d_73011_FAR_a1.npz",
+    "/home/claude/sweep/FCDDH01R/_work/DISCOVERY_PANEL/m_73011_FAR_a1.npz",
+    "CARRIER_1",
+    "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73011_FAR_a1.npz",
+    "b33cb8002ad9307cb7d795f08b2651321140db11cfc7bb21123bea04a97e6c9e",
+    "etcmnfc_core.transpose(st, I, J)"
+   ],
+   "candidate": null,
+   "cwd": "/home/claude/sweep/FCDDH01R/_work",
+   "env": {
+    "HOME": "/root",
+    "LANG": "C.UTF-8",
+    "LC_ALL": "C.UTF-8",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PATH": "/usr/local/bin:/usr/bin:/bin",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONHASHSEED": "0"
+   },
+   "env_whitelist": [
+    "PATH",
+    "HOME",
+    "LANG",
+    "LC_ALL",
+    "PYTHONHASHSEED",
+    "OMP_NUM_THREADS",
+    "OPENBLAS_NUM_THREADS",
+    "MKL_NUM_THREADS",
+    "NUMEXPR_NUM_THREADS",
+    "PYTHONDONTWRITEBYTECODE"
+   ],
+   "input_hashes": [
+    "ckpt:b33cb8002ad9307cb7d795f08b2651321140db11cfc7bb21123bea04a97e6c9e",
+    "op:CARRIER_1"
+   ],
+   "interpreter": "/usr/bin/python3",
+   "operator_hash": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "ordinal": 95,
+   "outputs": [
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73011_FAR_a1.npz",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73011_FAR_a1.npz"
+    ],
+    [
+     "/home/claude/sweep/FCDDH01R/_tmp/DISCOVERY_active/CARRIER_1_73011_FAR_a1.npz.meta.json",
+     "/home/claude/sweep/FCDDH01R/_full/DISCOVERY_active/CARRIER_1_73011_FAR_a1.npz.meta.json"
+    ]
+   ],
+   "required_free_bytes": 67108864,
+   "schedule_position": "11.3.CARRIER_1",
+   "tag": "A_CARRIER_1_73011_FAR_a1"
+  }
+ ]
+}
