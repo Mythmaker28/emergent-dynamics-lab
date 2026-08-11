@@ -1,0 +1,123 @@
+{
+ "programme": "FSQBT00 Section 4 oracle + dependency firewall",
+ "engine_starts": 0,
+ "n_groups": 18,
+ "all_nonvacuous": true,
+ "groups": [
+  {
+   "group": "Q0A_hashes_bound",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0B_descendant_is_not_block",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0C_block_rowmap_roundtrip",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0D_weight_mutation",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0E_object_mutation",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0F_tube_substitution",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0G_frozen_vs_refit",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0H_recenter_detected",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0I_linked_swap",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0J_partial_gauge_rejected",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0K_energy_identity",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0L_reader_mask_mutation",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0M_materiality_boundary",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0N_weight_factors",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0O_z_over_tau_rejected",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0P_no_active_in_construction",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0Q_leakage_detected",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  },
+  {
+   "group": "Q0R_all_controls_fire",
+   "positive": true,
+   "control_fires": true,
+   "nonvacuous": true
+  }
+ ],
+ "dependency_firewall": {
+  "production_and_reference_agree_on_fixtures": "inherited from FWL2CF00 fw_prod/fw_ref and WL2 wl2_prod/wl2_ref, plus SQDT00 sq_offline vs the independent reader rebuild here",
+  "reference_does_not_import_production": true,
+  "resolved_symbol_ast_used": true,
+  "no_eval_no_getattr_dispatch_no_string_to_call": true,
+  "active_carrier_absent_from_construction_and_sham": true
+ }
+}

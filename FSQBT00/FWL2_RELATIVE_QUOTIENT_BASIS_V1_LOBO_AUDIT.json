@@ -1,0 +1,295 @@
+{
+ "programme": "FSQBT00 Section 3 correct-unit LOBO audit",
+ "engine_starts": 0,
+ "sqdt00_stability_unit": "INCORRECT_LODO",
+ "sqdt00_evidence": "sq_offline.py: 'for dleft in range(16): keep=[i for i if D_OF[i]!=dleft]' removes one DESCENDANT (2 rows) per fold; D_OF maps rows to descendants. The 3.14 deg was over 16 descendant folds, not 4 block folds.",
+ "correct_unit": "leave-one-ANCESTRY-BLOCK-out, 4 folds, each removing 4 descendants / 8 rows",
+ "panel_structure": {
+  "blocks": [
+   "65000",
+   "65001",
+   "65002",
+   "65003"
+  ],
+  "descendants_per_block": 4,
+  "rows_per_block": 8
+ },
+ "serialized_cross_check": {
+  "e1_proj_align": 1.0000000000000004,
+  "e2_proj_align": 1.0000000000000004,
+  "mu_max_abs_diff": 0.0
+ },
+ "full_object_gates": {
+  "BASIS_S0": true,
+  "BASIS_S1": true,
+  "BASIS_S2": true,
+  "BASIS_S3_all_folds": true,
+  "BASIS_S4_minAlignP2_sq": 0.996213331697554,
+  "BASIS_S4_pass": true,
+  "BASIS_S5_minAligne2_sq": 0.9961579179639252,
+  "BASIS_S5_pass": true,
+  "BASIS_S6_maxBlockI2frac": 0.3528522342006583,
+  "BASIS_S6_pass": true,
+  "BASIS_S7": true
+ },
+ "folds": [
+  {
+   "omitted_block": "65000",
+   "kept_blocks": [
+    "65001",
+    "65002",
+    "65003"
+   ],
+   "n_kept_rows": 24,
+   "n_omitted_rows": 8,
+   "omitted_descendants": [
+    "65000_FAR_a0",
+    "65000_FAR_a1",
+    "65000_NEAR_a0",
+    "65000_NEAR_a1"
+   ],
+   "kept_descendants": [
+    "65001_FAR_a0",
+    "65001_FAR_a1",
+    "65001_NEAR_a0",
+    "65001_NEAR_a1",
+    "65002_FAR_a0",
+    "65002_FAR_a1",
+    "65002_NEAR_a0",
+    "65002_NEAR_a1",
+    "65003_FAR_a0",
+    "65003_FAR_a1",
+    "65003_NEAR_a0",
+    "65003_NEAR_a1"
+   ],
+   "fold_gauge": {
+    "65001_FAR_a0": 1,
+    "65001_FAR_a1": -1,
+    "65001_NEAR_a0": 1,
+    "65001_NEAR_a1": -1,
+    "65002_FAR_a0": 1,
+    "65002_FAR_a1": -1,
+    "65002_NEAR_a0": 1,
+    "65002_NEAR_a1": -1,
+    "65003_FAR_a0": 1,
+    "65003_FAR_a1": -1,
+    "65003_NEAR_a0": 1,
+    "65003_NEAR_a1": 1
+   },
+   "R0_train_float": 4.130423140216463e-06,
+   "I1_train": [
+    3.6641057286585294e-06,
+    3.66410572865853e-06
+   ],
+   "I2_train": [
+    3.7901133205512005e-07,
+    3.7901133205512005e-07
+   ],
+   "same_common_argmin_k012": true,
+   "relative_gates_ok": true,
+   "fold_S3": true,
+   "align_P2_squared": 0.9986039694700001,
+   "align_e2_squared": 0.9985889028889152,
+   "oos_mean_per_line_residual": 1.216651001775737e-07
+  },
+  {
+   "omitted_block": "65001",
+   "kept_blocks": [
+    "65000",
+    "65002",
+    "65003"
+   ],
+   "n_kept_rows": 24,
+   "n_omitted_rows": 8,
+   "omitted_descendants": [
+    "65001_FAR_a0",
+    "65001_FAR_a1",
+    "65001_NEAR_a0",
+    "65001_NEAR_a1"
+   ],
+   "kept_descendants": [
+    "65000_FAR_a0",
+    "65000_FAR_a1",
+    "65000_NEAR_a0",
+    "65000_NEAR_a1",
+    "65002_FAR_a0",
+    "65002_FAR_a1",
+    "65002_NEAR_a0",
+    "65002_NEAR_a1",
+    "65003_FAR_a0",
+    "65003_FAR_a1",
+    "65003_NEAR_a0",
+    "65003_NEAR_a1"
+   ],
+   "fold_gauge": {
+    "65000_FAR_a0": 1,
+    "65000_FAR_a1": -1,
+    "65000_NEAR_a0": 1,
+    "65000_NEAR_a1": -1,
+    "65002_FAR_a0": 1,
+    "65002_FAR_a1": -1,
+    "65002_NEAR_a0": 1,
+    "65002_NEAR_a1": -1,
+    "65003_FAR_a0": 1,
+    "65003_FAR_a1": -1,
+    "65003_NEAR_a0": 1,
+    "65003_NEAR_a1": 1
+   },
+   "R0_train_float": 4.092162876579831e-06,
+   "I1_train": [
+    3.642597152980231e-06,
+    3.6425971529802313e-06
+   ],
+   "I2_train": [
+    3.520805721207195e-07,
+    3.5208057212071953e-07
+   ],
+   "same_common_argmin_k012": true,
+   "relative_gates_ok": true,
+   "fold_S3": true,
+   "align_P2_squared": 0.9996941877693204,
+   "align_e2_squared": 0.9996935609421013,
+   "oos_mean_per_line_residual": 8.142201476866385e-08
+  },
+  {
+   "omitted_block": "65002",
+   "kept_blocks": [
+    "65000",
+    "65001",
+    "65003"
+   ],
+   "n_kept_rows": 24,
+   "n_omitted_rows": 8,
+   "omitted_descendants": [
+    "65002_FAR_a0",
+    "65002_FAR_a1",
+    "65002_NEAR_a0",
+    "65002_NEAR_a1"
+   ],
+   "kept_descendants": [
+    "65000_FAR_a0",
+    "65000_FAR_a1",
+    "65000_NEAR_a0",
+    "65000_NEAR_a1",
+    "65001_FAR_a0",
+    "65001_FAR_a1",
+    "65001_NEAR_a0",
+    "65001_NEAR_a1",
+    "65003_FAR_a0",
+    "65003_FAR_a1",
+    "65003_NEAR_a0",
+    "65003_NEAR_a1"
+   ],
+   "fold_gauge": {
+    "65000_FAR_a0": 1,
+    "65000_FAR_a1": -1,
+    "65000_NEAR_a0": 1,
+    "65000_NEAR_a1": -1,
+    "65001_FAR_a0": 1,
+    "65001_FAR_a1": -1,
+    "65001_NEAR_a0": 1,
+    "65001_NEAR_a1": -1,
+    "65003_FAR_a0": 1,
+    "65003_FAR_a1": -1,
+    "65003_NEAR_a0": 1,
+    "65003_NEAR_a1": 1
+   },
+   "R0_train_float": 4.0929323140661875e-06,
+   "I1_train": [
+    3.6949796375381394e-06,
+    3.6949796375381394e-06
+   ],
+   "I2_train": [
+    3.057402363661866e-07,
+    3.0574023636618663e-07
+   ],
+   "same_common_argmin_k012": true,
+   "relative_gates_ok": true,
+   "fold_S3": true,
+   "align_P2_squared": 0.9988808242754745,
+   "align_e2_squared": 0.998879514939074,
+   "oos_mean_per_line_residual": 1.0153970233719918e-07
+  },
+  {
+   "omitted_block": "65003",
+   "kept_blocks": [
+    "65000",
+    "65001",
+    "65002"
+   ],
+   "n_kept_rows": 24,
+   "n_omitted_rows": 8,
+   "omitted_descendants": [
+    "65003_FAR_a0",
+    "65003_FAR_a1",
+    "65003_NEAR_a0",
+    "65003_NEAR_a1"
+   ],
+   "kept_descendants": [
+    "65000_FAR_a0",
+    "65000_FAR_a1",
+    "65000_NEAR_a0",
+    "65000_NEAR_a1",
+    "65001_FAR_a0",
+    "65001_FAR_a1",
+    "65001_NEAR_a0",
+    "65001_NEAR_a1",
+    "65002_FAR_a0",
+    "65002_FAR_a1",
+    "65002_NEAR_a0",
+    "65002_NEAR_a1"
+   ],
+   "fold_gauge": {
+    "65000_FAR_a0": 1,
+    "65000_FAR_a1": -1,
+    "65000_NEAR_a0": 1,
+    "65000_NEAR_a1": -1,
+    "65001_FAR_a0": 1,
+    "65001_FAR_a1": -1,
+    "65001_NEAR_a0": 1,
+    "65001_NEAR_a1": -1,
+    "65002_FAR_a0": 1,
+    "65002_FAR_a1": -1,
+    "65002_NEAR_a0": 1,
+    "65002_NEAR_a1": -1
+   },
+   "R0_train_float": 4.026556449941429e-06,
+   "I1_train": [
+    3.5500901636756423e-06,
+    3.5500901636756423e-06
+   ],
+   "I2_train": [
+    3.8847492726048716e-07,
+    3.884749272604872e-07
+   ],
+   "same_common_argmin_k012": true,
+   "relative_gates_ok": true,
+   "fold_S3": true,
+   "align_P2_squared": 0.996213331697554,
+   "align_e2_squared": 0.9961579179639252,
+   "oos_mean_per_line_residual": 1.2039074999886916e-07
+  }
+ ],
+ "per_block_I2_fraction": {
+  "65000": 0.20995805860349392,
+  "65001": 0.27056586994628423,
+  "65002": 0.3528522342006583,
+  "65003": 0.16662383724956356
+ },
+ "TUBE_P2_LOBO": 1.2166510017869535e-07,
+ "tube_residual_per_fold": {
+  "65000": 1.216651001775737e-07,
+  "65001": 8.142201476866385e-08,
+  "65002": 1.0153970233719918e-07,
+  "65003": 1.2039074999886916e-07
+ },
+ "tube_units": "mean-per-line (per-row) out-of-sample squared residual to (I-P2_minus_b) about mu_minus_b, minimised over the omitted block's legal linked swaps; + certified float propagation bound",
+ "P2_TRANSFER_LICENSE_CORRECTED": true,
+ "E2_AXIS_TRANSFER_LICENSE_CORRECTED": true,
+ "license_formula": {
+  "P2": "S0&S1&S2&S4&S6&S7",
+  "E2": "P2&S3&S5&S6"
+ },
+ "consequence": "FRESH_PANEL_LICENSE=YES",
+ "transfer_target": "FROZEN_P2_AND_e2"
+}
