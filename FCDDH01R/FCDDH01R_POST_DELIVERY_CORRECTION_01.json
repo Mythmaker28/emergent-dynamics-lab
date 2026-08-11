@@ -1,0 +1,141 @@
+{
+ "artifact": "FCDDH01R_POST_DELIVERY_CORRECTION_01",
+ "programme": "FCDDH01R",
+ "generated_at": "2026-08-11T18:15:00Z",
+ "class": "METADATA_ONLY__APPEND_ONLY_CORRECTION",
+ "corrects": "VERIFICATION_REPORT.md section 8, which listed nine post-commit verification steps. Eight completed. This file records exactly what each produced, and downgrades one step from 'performed' to 'bounded and incomplete' rather than letting the list imply otherwise.",
+ "changes_no_scientific_value": true,
+ "final_delivery_commit": "16e043275fdbe54377a40d9aa47f8b39569d8752",
+ "semantic_closure_commit": "da87601abc3e41ea5c1a3956209f883e7136582a",
+ "base_commit": "ffbda326703f93aa5a34c03e5f259e976771f793",
+ "final_subtree": "c1135a86c8963d190626a47a24e029d478e7e01c",
+ "STEP_1_scoped_blobs_reread_through_independent_git_object_reads": {
+  "status": "PASS",
+  "checked": 6343,
+  "mismatch": 0,
+  "missing": 0,
+  "method": "each scoped path resolved to its blob id in the FINAL tip's tree, then the object read out of the object database with `git cat-file --batch` and SHA-256'd in a separate process. git inflates and validates every object it serves, so a corrupt object would have errored rather than mismatched."
+ },
+ "STEP_2_every_checksum_rechecked": {
+  "status": "PASS",
+  "lines": 6343,
+  "mismatch": 0,
+  "cross_checks": [
+   "SHA256SUMS path list is identical, in order, to SHA256SUMS_SCOPE.json's scope list",
+   "0 duplicate paths",
+   "all 6343 digests are 64 hex characters",
+   "SHA256SUMS excludes itself, as required",
+   "the local bundle is absent from the scope, as required",
+   "SHA256SUMS_SCOPE.json is inside its own scope and its recorded digest 4b23805dbb8a3faba250b2e00f1c29d28d98a690f4b32280b8690d6fd23423a5 equals its own content digest"
+  ]
+ },
+ "STEP_3_repository_object_integrity": {
+  "status": "BOUNDED__NOT_COMPLETED",
+  "what_was_attempted": "`git fsck --strict --no-dangling` and then `git fsck --connectivity-only --no-dangling` over the whole repository",
+  "why_incomplete": "the repository is reached through a FUSE mount whose sustained read throughput is roughly 0.7 MB/s. A full fsck must stat every loose object and inflate 102 MB of pack data; neither run produced output within the review window. This is a throughput limit of the workspace, NOT an error return and NOT a reported corruption.",
+  "honest_status": "no fsck verdict is claimed in either direction",
+  "integrity_evidence_actually_obtained_instead": [
+   "6343 of 6343 scoped blobs read out of the object database and SHA-256 verified: 0 mismatches, 0 missing",
+   "36 of 36 objects newly reachable from the final tip (29 blobs, 5 trees, 2 commits) parse with correct type and size: 0 missing, 0 bad",
+   "all 185 tree objects of the final FCDDH01R subtree reconstructed independently by a second Git implementation and matching entry for entry",
+   "the full commit chain from the FCDDH00 parent to the final tip walks cleanly: 9 commits, 0 merges",
+   "`git bundle verify` reports the bundle 'is okay', which validates the pack's trailing checksum and its prerequisite list"
+  ]
+ },
+ "STEP_4_exact_final_tip_and_child_subtree_identity": {
+  "status": "PASS",
+  "final_tip": "16e043275fdbe54377a40d9aa47f8b39569d8752",
+  "final_subtree": "c1135a86c8963d190626a47a24e029d478e7e01c",
+  "semantic_tip": "da87601abc3e41ea5c1a3956209f883e7136582a",
+  "semantic_subtree": "41633ac861dc0d8b2bc33b9bb22c2936d55a3f0a"
+ },
+ "STEP_5_subtree_under_both_local_git_implementations": {
+  "status": "PASS",
+  "implementation_A": "git 2.34.1 (repository host)",
+  "implementation_B": "git 2.43.0 (review container)",
+  "method": "the full recursive entry listing (`git ls-tree -r -t`) of the final subtree was exported from implementation A, and implementation B rebuilt every tree object bottom-up with `git mktree --missing`, substituting its OWN recomputed id for each nested tree rather than trusting the reported one.",
+  "trees_rebuilt": 185,
+  "blob_entries": 6344,
+  "tree_entries": 184,
+  "subtree_ids_differing": 0,
+  "recomputed_root": "c1135a86c8963d190626a47a24e029d478e7e01c",
+  "scope_of_this_check": "tree construction and hashing. Blob CONTENT was verified separately and independently by SHA-256 over all 6343 scoped objects (step 1); the two together cover the subtree identity.",
+  "why_not_a_full_re_add": "materialising 41 MB of blobs across the FUSE mount for a second `git add` was not achievable within the workspace's throughput. Recorded as a method note, not as a gap in the identity check."
+ },
+ "STEP_6_all_task_branch_changes_inside_the_child_subtree": {
+  "status": "PASS",
+  "paths_changed_outside_FCDDH01R_since_base_commit": 0,
+  "paths_changed_outside_FCDDH01R_since_FCDDH00_parent": 0,
+  "paths_changed_inside_FCDDH01R_since_base_commit": 37,
+  "main_after": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+  "FCDDH00_parent_after": "93f13f45e6b6550a7ff709768b7b574161ed6a4f",
+  "base_commit_tree_after": "41e03f878d448fe4b978286e20cc3d04d3bd63d3",
+  "note": "main, the parent, and the base commit are byte-identical to their pre-closure values."
+ },
+ "STEP_7_local_bundle_from_the_final_tip": {
+  "status": "PASS",
+  "range": "ffbda326703f93aa5a34c03e5f259e976771f793..refs/heads/dev/fresh-crossed-differential-discovery-holdout-01r",
+  "contains_ref": "refs/heads/dev/fresh-crossed-differential-discovery-holdout-01r -> 16e043275fdbe54377a40d9aa47f8b39569d8752",
+  "documented_prerequisite": "ffbda326703f93aa5a34c03e5f259e976771f793",
+  "git_bundle_verify": "is okay"
+ },
+ "STEP_8_bundle_read_from_a_fresh_temporary_repository": {
+  "status": "PASS_WITH_DECLARED_METHOD",
+  "negative_case": {
+   "repository": "fully isolated `git init` with no objects at all",
+   "result": "REFUSED, exactly as designed: 'Repository lacks these prerequisite commits: ffbda326703f93aa5a34c03e5f259e976771f793'",
+   "reproduced_under": [
+    "git 2.34.1",
+    "git 2.43.0"
+   ],
+   "establishes": "the documented prerequisite chain is genuinely enforced; the bundle is not self-contained and does not pretend to be"
+  },
+  "positive_case": {
+   "repository": "a separate bare repository created by `git clone --shared --bare`, then stripped of ALL refs so it carried no branch of its own",
+   "how_the_prerequisite_was_supplied": "through the shared object store (objects/info/alternates), because materialising C7's ~100 MB object closure across the FUSE mount did not complete",
+   "result": "`git fetch <bundle> <branch>:refs/heads/fromfile` created the ref and yielded tip 16e043275fdbe54377a40d9aa47f8b39569d8752 and subtree c1135a86c8963d190626a47a24e029d478e7e01c; FCDDH01R/SHA256SUMS present at 951429 bytes",
+   "declared_limitation": "because the prerequisite arrived via a shared object store, this positive case demonstrates that the bundle is well-formed, names the right ref, and resolves to the expected tip and subtree. It does NOT additionally demonstrate transport into a machine that has never seen the objects. The negative case above is what establishes that the prerequisite is required.",
+   "why_declared": "stating it as an unqualified fresh-repository readback would overstate what was run."
+  }
+ },
+ "STEP_9_bundle_sha256_and_byte_size": {
+  "status": "PASS",
+  "path": "local only, outside the repository tree and outside the checksum scope",
+  "filename": "fcddh01r_tip_16e04327.bundle",
+  "sha256": "fc098bd585c9c7dcd8fa982d6f54b4359a836275dc83df458352fc6e6a8a9206",
+  "bytes": 449781,
+  "recomputed_independently_in_a_second_environment": true
+ },
+ "UNREACHABLE_OBJECT_INVENTORY": {
+  "what": "stray `tmp_obj_*` files under .git/objects",
+  "count_probe": "approximately 8954 (bounded directory probe; an exact recount exceeded the call budget on this mount)",
+  "origin": "git writes a loose object to `tmp_obj_XXXXXX`, links it to its final path, then unlinks the temporary. The mount refuses `unlink` (EPERM), so the link succeeds and the temporary survives. The great majority predate this review and are consistent with the interrupted transfer whose partial files `.fcddh01r_xfer.part00` and `.fcddh01r_xfer.part01` are still in the working tree; 13 were produced by this closure's own object writes.",
+  "consequence_for_the_real_objects": "NONE. Every object this closure wrote is present at its correct path and was read back and verified (steps 1 and 4).",
+  "classification": "UNREACHABLE_OBJECTS_FROM_AN_INTERRUPTED_TRANSFER",
+  "explicitly_not": "reachable-history corruption. Their existence is not evidence of damage to any reachable object.",
+  "action": "INVENTORIED_NOT_DELETED, as required. They are also not deletable from this workspace: the mount refuses unlink.",
+  "effect_on_fsck": "a full `git fsck` must stat every one of them, which is part of why the whole-repository run could not complete over this mount."
+ },
+ "STAGING_FILES_LEFT_ON_DISK": {
+  "note": "outside the repository's tracked content and outside the checksum scope; recorded so nothing is unexplained.",
+  "paths": [
+   "_to_delete/fcddh01r_closure_transfer.tgz  (the artifact transfer package, sha256 6a772bd9869615d0e954b11b9277ff0524187c74ceaf7ae21fc4616c8d85328f)",
+   "_to_delete/fcddh01r_xcheck/subtree_listing.txt  (entry listing exported for the second-implementation check)",
+   "_to_delete/fcddh01r_xcheck/SHA256SUMS",
+   "_to_delete/fcddh01r_xcheck/SHA256SUMS_SCOPE.json",
+   "_to_delete/fcddh01r_xcheck/fcddh01r_tip_16e04327.bundle"
+  ],
+  "why_under__to_delete": "the repository already uses `_to_delete/` for material the owner may remove; this workspace cannot delete files on the mount.",
+  "safe_to_delete": true,
+  "none_are_committed": true
+ },
+ "WHAT_THIS_CORRECTION_DOES_NOT_CHANGE": [
+  "no scientific value, gate verdict, threshold, count or claim",
+  "no commit is amended or rebased; this is a new commit on top of the final delivery",
+  "the disposition is unchanged: DISCOVERY_ANALYSIS_COMPUTED__AXIS_NOT_LICENSED_D4_D5_D8__ZERO_HOLDOUT_STARTS__PROTOCOL_NONCONFORMANT_POSTSTART_EXECUTOR_REPAIR",
+  "PROTOCOL_CONFORMITY_STATUS remains NONCONFORMANT",
+  "SHA256SUMS and SHA256SUMS_SCOPE.json are NOT regenerated: their scope was finalised at the semantic-closure commit and this file is deliberately outside it, exactly as a post-delivery correction must be"
+ ],
+ "DELIVERY_STATUS": "COMPLETE",
+ "TOMMY_TECHNICAL_ACTION_REQUIRED": false
+}
