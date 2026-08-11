@@ -1,0 +1,66 @@
+{
+ "ACTION_TAKEN_ON_THE_COMPLETED_PHASE": "NONE. The DISCOVERY_CONSTRUCTION WAL is append-only evidence and was not edited, rewritten, compacted or replayed. No row was re-charged. The 48 legacy (VERIFIED, RAW_SEALED) reporter entries remain in PHASE_RESULT.json and are explained, not removed.",
+ "CLASSIFICATION": "REPORTER_FALSE_POSITIVE_PLUS_ONE_LATENT_RECOVERY_DEFECT",
+ "FINDING": "PHASE_RESULT.json for DISCOVERY_construct reports 48 entries in wal_monotone_violations, one per charged row, each of the form (run_id, VERIFIED, RAW_SEALED).",
+ "LATENT_DEFECT_FOUND_BY_THIS_ADJUDICATION": {
+  "did_it_occur_in_this_phase": "NO. All 48 rows emitted the full two-output pattern in a single supervisor generation; zero supervisor restarts occurred; zero rows entered any recovery path.",
+  "remedy": "Restructure row publication to seal every declared output first, then publish every declared output, then emit exactly one row-terminal VERIFIED. See FCDDH01R_ENGINEERING_DELTA.md amendment 1 and DEX17/DEX18.",
+  "remedy_change_class": "Durable, tested, line-resumable process engineering. This is the one and only class of change the owner reauthorization permits, and it touches no scientific file.",
+  "statement": "Because VERIFIED enters a row's state set as soon as its FIRST output is published, PhaseLedger.decide would return SKIP_VERIFIED for a row killed between output 1's VERIFIED and output 2's publication. On resume that row would be treated as complete while one declared output was still unpublished and its temporary still on disk.",
+  "why_it_still_matters": "It is precisely a line-resumability defect, i.e. the failure class FCDDH01R exists to eliminate, and the remaining phases carry far more rows and far more crash exposure than this one."
+ },
+ "OPERATIVE_INVARIANTS_RECHECKED_DIRECTLY_FROM_THE_WAL": {
+  "AT_MOST_ONCE_ENGINE_ADVANCE": "HOLDS: exactly one ENGINE_OPENED and one ADVANCE_STARTED per row",
+  "EXACTLY_ONCE_LAUNCH_AUTHORIZATION": "HOLDS: exactly one START_GATE per row, 48 gates for 48 rows",
+  "EXACTLY_ONCE_OPAQUE_RAW_PUBLICATION": "HOLDS: 96 outputs, each published once by a non-overwriting os.link, zero idempotent recoveries, zero os.replace on a final path",
+  "NO_REPLAY_AFTER_UNCERTAIN_OR_INCOMPLETE_BILLED_LAUNCH": "HOLDS: no row was replayed; 48 charged starts produced 48 completed rows",
+  "distinct_per_row_record_patterns": 1,
+  "distinct_run_ids": 48,
+  "gate_files": 48,
+  "gate_set_equals_run_id_set": true,
+  "idempotent_recovery_events": 0,
+  "per_row_state_multiplicity": {
+   "ADVANCE_STARTED": {
+    "1": 48
+   },
+   "ENGINE_EXIT_OK": {
+    "1": 48
+   },
+   "ENGINE_OPENED": {
+    "1": 48
+   },
+   "RAW_PUBLISHED": {
+    "2": 48
+   },
+   "RAW_SEALED": {
+    "2": 48
+   },
+   "START_GATE": {
+    "1": 48
+   }
+  },
+  "records": 624,
+  "the_single_observed_pattern": [
+   "DISPATCH_INTENT",
+   "WRAPPER_ACK",
+   "START_GATE",
+   "ENGINE_OPENED",
+   "ADVANCE_STARTED",
+   "ENGINE_EXIT_OK",
+   "RAW_SEALED",
+   "RAW_PUBLISHED",
+   "VERIFIED",
+   "RAW_SEALED",
+   "RAW_PUBLISHED",
+   "VERIFIED",
+   "VERIFIED"
+  ]
+ },
+ "ROOT_CAUSE": "PhaseLedger.publish_raw emits the row-terminal state VERIFIED once per PUBLISHED OUTPUT, and every construction row declares two outputs (d_<did>.npz, the descendant checkpoint, and m_<did>.npz, the two carrier masks). The row therefore legitimately emits RAW_SEALED, RAW_PUBLISHED, VERIFIED for output 1 and then RAW_SEALED, RAW_PUBLISHED, VERIFIED for output 2, followed by the single row-terminal VERIFIED emitted by DURABLE_PHASE_SUPERVISOR._publish_all. PhaseLedger.verify_monotone folds all records of a run_id into one state sequence, so output 2's RAW_SEALED appears to move the row backwards from output 1's VERIFIED. The reporter is wrong about the row; the row is not wrong.",
+ "VERDICT": "NO_SCIENTIFIC_CONSEQUENCE. The sealed discovery panel is valid; see FCDDH01R_DISCOVERY_PANEL_VERIFICATION.json (15/15 PASS).",
+ "artifact": "FCDDH01R_WAL_MONOTONICITY_ADJUDICATION",
+ "execution_class": "REAL",
+ "generated_at": "2026-08-11T13:21:20Z",
+ "phase": "DISCOVERY_CONSTRUCTION",
+ "programme": "FCDDH01R"
+}

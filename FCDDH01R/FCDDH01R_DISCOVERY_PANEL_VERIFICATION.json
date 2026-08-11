@@ -1,0 +1,160 @@
+{
+ "NOTE_TARGET_RESPONSE_NOT_READ": "This verification touches design and identity fields only. No estimand, no residual, no gauge statistic and no target response was computed or read.",
+ "OVERALL": "PASS",
+ "SELF_CORRECTION_DECLARED": "One check in this file was mis-specified by the executor (CARRIER_COUNTS_TWO_AND_TWO) and was corrected to CARRIER_MASKS_NON_DEGENERATE_AND_B_EXACT_POSITIVE. The correction changed no datum, no artifact and no engine start; it changed only an executor assertion about field semantics.",
+ "artifact": "FCDDH01R_DISCOVERY_PANEL_VERIFICATION",
+ "charged_starts_this_phase": 48,
+ "checks": [
+  {
+   "check": "BLOCK_COUNT_EQUALS_TWELVE",
+   "detail": {
+    "blocks": 12
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "DESCENDANTS_PER_BLOCK_EQUALS_FOUR",
+   "detail": {
+    "sizes": [
+     4
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "WITHIN_ANCESTRY_COMPLETE_FACTORIAL_CROSSING",
+   "detail": {
+    "distinct_patterns": 1,
+    "required_cells": [
+     "FAR/0",
+     "FAR/1",
+     "NEAR/0",
+     "NEAR/1"
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "PRECURSOR_DISTINCT_ACROSS_ANCESTRIES",
+   "detail": {
+    "distinct_precursors": 12,
+    "max_multiplicity": 1
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "UPSTREAM_SEEDS_DISTINCT_AND_IN_FRESH_NAMESPACE",
+   "detail": {
+    "seeds": [
+     73000,
+     73001,
+     73002,
+     73003,
+     73004,
+     73005,
+     73006,
+     73007,
+     73008,
+     73009,
+     73010,
+     73011
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "G1_PRECURSOR_MASK_IDENTITY_48_OF_48",
+   "detail": {
+    "of": 48,
+    "true": 48
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "PRODUCTION_REFERENCE_MASK_AGREEMENT_48_OF_48",
+   "detail": {
+    "of": 48
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "RHO_FINITE_48_OF_48",
+   "detail": {
+    "of": 48
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "GEOMETRY_IS_A_SINGLE_GLOBAL_CONTRAST",
+   "detail": {
+    "FAR_blob_sha256": "7a1a5c5e4dd6b6038f51075a120ee113fe5597651b11cd49675305a124fc69dc",
+    "NEAR_blob_sha256": "096a794d25b1cbc2f1f27809574281610246bf597e02c588d20b4c844aa22892",
+    "distinct_FAR_blobs": 1,
+    "distinct_NEAR_blobs": 1
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "BOTH_H3_ORBIT_MEMBERS_PRESENT_IN_EVERY_BLOCK",
+   "detail": {
+    "members": [
+     0,
+     1
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "ENGINE_STEPS_UNIFORM",
+   "detail": {
+    "engine_steps": [
+     390
+    ]
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "CARRIER_MASKS_NON_DEGENERATE_AND_B_EXACT_POSITIVE",
+   "detail": {
+    "B_exact_strictly_positive_48_of_48": true,
+    "n_A_range": [
+     17,
+     23
+    ],
+    "n_B_range": [
+     17,
+     23
+    ],
+    "note": "n_A and n_B are the cardinalities of the two carrier masks returned by t0_masks; they are per-descendant draws and are NOT design constants. An earlier draft of this file asserted n_A=n_B=2, which confused the two carrier CONDITIONS (C1,C2) with the carrier mask SIZES. Corrected here before any target-response access; no response was read at any point."
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "PUBLISHED_ARTIFACT_COUNT_96",
+   "detail": {
+    "files": 96
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "ON_DISK_CHECKPOINT_DIGESTS_MATCH_THE_LOCK",
+   "detail": {
+    "mismatched": []
+   },
+   "verdict": "PASS"
+  },
+  {
+   "check": "ON_DISK_MASK_DIGESTS_MATCH_THE_LOCK",
+   "detail": {
+    "mismatched": []
+   },
+   "verdict": "PASS"
+  }
+ ],
+ "engine_advances_this_phase": 48,
+ "generated_at": "2026-08-11T13:20:18Z",
+ "independent_of_driver": true,
+ "method": "re-derived from FCDDH01R_DISCOVERY_PANEL_LOCK.json and the published artifacts, not from DISCOVERY_AXIS_TRAINER_V1 or any construction driver",
+ "programme": "FCDDH01R",
+ "role": "DISCOVERY"
+}
