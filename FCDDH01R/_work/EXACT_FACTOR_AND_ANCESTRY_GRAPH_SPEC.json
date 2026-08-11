@@ -1,0 +1,84 @@
+{
+ "route": "G1_WITHIN_ANCESTRY_COMPLETE_FACTORIAL",
+ "independent_unit": "one upstream ancestry block",
+ "descendants_per_block": 4,
+ "active_rows_per_block": 8,
+ "cells": [
+  {
+   "geometry": "NEAR",
+   "allocation": 0
+  },
+  {
+   "geometry": "NEAR",
+   "allocation": 1
+  },
+  {
+   "geometry": "FAR",
+   "allocation": 0
+  },
+  {
+   "geometry": "FAR",
+   "allocation": 1
+  }
+ ],
+ "common_upstream_precursor": true,
+ "precursor": "edlab.experiments.sc_mcm.config.seed_state(SPEC, TRACER, S, 'random')",
+ "precursor_engine_advances": 0,
+ "descendant_construction": [
+  "domc_core.set_geometry(g)",
+  "e = wsfscrp_core.engine()",
+  "f0 = domc_core.found(S)",
+  "f = domc_core.advance(e, f0, domc_core.T_FOUND)",
+  "(hA,hB) = (ppai_core.HIST_H, ppai_core.HIST_L) if a == 0 else (ppai_core.HIST_L, ppai_core.HIST_H)",
+  "st = domc_core.advance(e, domc_core.apply_dual_history(e, f, hA, hB), domc_core.SETTLE)"
+ ],
+ "engine_steps_per_descendant": 390,
+ "H3_orbit": {
+  "HIST_H": "cc",
+  "HIST_L": "00",
+  "members": "a = 0 -> (half A: cc, half B: 00); a = 1 -> (half A: 00, half B: cc)",
+  "unordered": true,
+  "no_physical_sign": true,
+  "global_forcing_trace_identical_across_members": true
+ },
+ "geometry": {
+  "NEAR": [
+   [
+    32,
+    24
+   ],
+   [
+    32,
+    40
+   ]
+  ],
+  "FAR": [
+   [
+    32,
+    16
+   ],
+   [
+    32,
+    48
+   ]
+  ],
+  "separation": {
+   "NEAR": 16,
+   "FAR": 32
+  },
+  "set_by": "explicit argument to domc_core.set_geometry"
+ },
+ "carriers": {
+  "CARRIER_1": "etcmnfc_core.transpose(st, I, J)",
+  "CARRIER_2": "ppai_core.state_cross(st)",
+  "dose": "exact historical 1x"
+ },
+ "admissibility": [
+  "exactly two eligible components (rho > 0.30, >= 12 sites, periodic 4-connected)",
+  "production and independent reference mask agreement on the unordered pair",
+  "B_of > 0",
+  "rho finite",
+  "G1 precursor-mask identity"
+ ],
+ "whole_block_rejection": true
+}

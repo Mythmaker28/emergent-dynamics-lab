@@ -1,0 +1,434 @@
+{
+ "FCDDH01R_DEX_CAMPAIGN_STATUS": "PASS",
+ "REAL_ENGINE_ADVANCE_COUNT": 0,
+ "REAL_ENGINE_CONSTRUCTOR_COUNT": 0,
+ "all_pass": true,
+ "charged_starts_in_the_672_child_ledger": 0,
+ "dummy_imports": [
+  "__future__",
+  "hashlib",
+  "json",
+  "os",
+  "sys",
+  "time"
+ ],
+ "dummy_is_engine_free": true,
+ "execution_class": "DEX_DUMMY (domain separated: own RUN_ID domain, locks, ledger root, output root and manifests; no dummy gate or VERIFIED row can satisfy a real row)",
+ "results": {
+  "DEX0b_explicit_launcher_process_group_kill": {
+   "PASS": true,
+   "detail": {
+    "phase_completed_after_kill": true,
+    "supervisor_pid": 10690,
+    "survived_launcher_pgid_kill": true
+   },
+   "mutations": [
+    {
+     "mutation": "supervisor claimed dead while its identity still matches",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 1,
+   "positive_fixture": true
+  },
+  "DEX10_scientific_payload_identity": {
+   "PASS": true,
+   "detail": {
+    "allowed_per_row_deltas": [
+     "allocation_slot",
+     "carrier_order",
+     "checkpoint_path",
+     "descendant_id",
+     "geometry_slot",
+     "idempotency_token",
+     "log_redirection",
+     "mask_path",
+     "pgid",
+     "retry_root",
+     "run_order",
+     "sid",
+     "upstream_seed"
+    ],
+    "invariants": [
+     "H_GRID",
+     "carrier_1",
+     "carrier_2",
+     "dt",
+     "engine_executable",
+     "env",
+     "interpreter",
+     "mask_rule",
+     "settle",
+     "weights"
+    ]
+   },
+   "mutations": [
+    {
+     "mutation": "a mutated carrier executable accepted",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "the scored-time grid declared a permitted per-row delta",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a changed environment whitelist accepted",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 3,
+   "positive_fixture": true
+  },
+  "DEX11_supervisor_death_while_worker_lives": {
+   "PASS": true,
+   "detail": {
+    "charged_after_orphan": 1,
+    "charged_final": 1,
+    "note": "the orphaned worker is not this supervisor's child, so no exit status may be invented for it; the conservative matrix bills it and refuses replay",
+    "recovery_outcomes": [
+     "BILLED_INCOMPLETE_FATAL"
+    ],
+    "worker_survived_supervisor": true
+   },
+   "mutations": [
+    {
+     "mutation": "recovery invented an exit status and re-advanced the orphaned row",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a second engine advance charged for the same row",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "positive_fixture": true
+  },
+  "DEX12_publication_boundary_recovery": {
+   "PASS": true,
+   "detail": {
+    "after_publish": "SKIP_VERIFIED",
+    "after_seal": "FINISH_PUBLICATION",
+    "different_hash_fatal": true,
+    "idempotent_same_hash_recovery": true
+   },
+   "mutations": [
+    {
+     "mutation": "a different-hash destination silently overwritten",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a sealed-but-unpublished row offered for re-advance",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "positive_fixture": true
+  },
+  "DEX13_atomic_start_gate_race": {
+   "PASS": true,
+   "detail": {
+    "charged_rows": 1,
+    "concurrent_wrappers": 8,
+    "gate_winners": 1
+   },
+   "mutations": [
+    {
+     "mutation": "more than one wrapper authorized for one RUN_ID",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "more than one charge recorded for one RUN_ID",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "positive_fixture": true
+  },
+  "DEX14_disk_full_boundary": {
+   "PASS": true,
+   "detail": {
+    "post_gate_charged": 1,
+    "post_gate_decision": "BILLED_INCOMPLETE_FATAL",
+    "pre_gate_charged": 0
+   },
+   "mutations": [
+    {
+     "mutation": "a pre-gate space refusal charged the row",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a post-gate space failure replayed",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "positive_fixture": true
+  },
+  "DEX15_control_poll_independence": {
+   "PASS": true,
+   "detail": {
+    "charged": 3,
+    "expired_polls": 3,
+    "supervisor_identity_stable": true
+   },
+   "mutations": [
+    {
+     "mutation": "a poll timeout created a second wrapper or token",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a poll timeout changed the durable worker identity",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "positive_fixture": true
+  },
+  "DEX16_construction_candidate_failure_policy": {
+   "PASS": true,
+   "detail": {
+    "accepted": 3,
+    "charged": 15,
+    "log": [
+     {
+      "action": "ACCEPTED",
+      "candidate": 0
+     },
+     {
+      "action": "CANDIDATE_REJECTED_WHOLE",
+      "candidate": 1,
+      "charged_for_candidate": 3,
+      "failed_descendant": 2
+     },
+     {
+      "action": "ACCEPTED",
+      "candidate": 2
+     },
+     {
+      "action": "ACCEPTED",
+      "candidate": 3
+     }
+    ],
+    "rejected_candidates": 1
+   },
+   "mutations": [
+    {
+     "mutation": "a failed candidate resumed or recycled",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a hold-out candidate promoted into discovery",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "the queue advanced when the target was no longer attainable",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 3,
+   "positive_fixture": true
+  },
+  "DEX1_safe_between_row_kill_and_resume": {
+   "PASS": true,
+   "detail": {
+    "charged_before_kill": 1,
+    "charged_total": 4,
+    "restart_ceiling_refused": true,
+    "row00_hash_stable": true,
+    "rows_skipped_on_resume": 1
+   },
+   "mutations": [
+    {
+     "mutation": "a fifth supervisor restart permitted past the frozen ceiling of 4",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a completed row re-executed instead of skipped",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "positive_fixture": true
+  },
+  "DEX2_midrow_kill_is_charged_and_never_replayed": {
+   "PASS": true,
+   "detail": {
+    "charged": 1,
+    "decision": "BILLED_INCOMPLETE_FATAL"
+   },
+   "mutations": [
+    {
+     "mutation": "a charged mid-row loss offered for redispatch",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a charged row left uncharged in the gate directory",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "positive_fixture": true
+  },
+  "DEX3_uncertain_launch_is_conservative": {
+   "PASS": true,
+   "detail": {
+    "decision": "BILLED_INCOMPLETE_FATAL"
+   },
+   "mutations": [
+    {
+     "mutation": "absence of output used as proof that no engine ran",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "uncertain launch left uncharged",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "positive_fixture": true
+  },
+  "DEX4_duplicate_supervisor_exclusion": {
+   "PASS": true,
+   "detail": {
+    "charged": 3,
+    "second_supervisor_refused": true
+   },
+   "mutations": [
+    {
+     "mutation": "two concurrent supervisors admitted for one phase",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 1,
+   "positive_fixture": true
+  },
+  "DEX5_partial_publication_exclusion": {
+   "PASS": true,
+   "detail": {
+    "final_never_created": true,
+    "offsets_tested": [
+     1,
+     17,
+     511,
+     4096
+    ]
+   },
+   "mutations": [
+    {
+     "mutation": "a temporary path treated as a completed archive",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a manifest claiming completeness from a temporary",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "positive_fixture": true
+  },
+  "DEX6_stale_pid_and_pid_reuse_defense": {
+   "PASS": true,
+   "detail": {
+    "adopt_dead_pid": false,
+    "adopt_with_correct_identity": true,
+    "adopt_with_wrong_start_ticks": false
+   },
+   "mutations": [
+    {
+     "mutation": "live PID adopted despite a mismatched start time",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "nonexistent PID adopted",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "positive_fixture": true
+  },
+  "DEX7_fsync_restart_and_ledger_monotonicity": {
+   "PASS": true,
+   "detail": {
+    "all_monotone": true,
+    "orphan_tmp_ignored": true,
+    "second_claim_refused": true,
+    "truncation_points": 40
+   },
+   "mutations": [
+    {
+     "mutation": "state moved backwards after truncation",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "an orphan temporary gate authorized an engine",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a second gate claim for the same RUN_ID succeeded",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 3,
+   "positive_fixture": true
+  },
+  "DEX8_phase_barrier": {
+   "PASS": true,
+   "detail": {
+    "charged_while_barred": 0,
+    "ran_once_lock_present": true,
+    "refused_without_lock": true
+   },
+   "mutations": [
+    {
+     "mutation": "a phase opened without its required prior lock",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a wrong-hash prior lock accepted",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "positive_fixture": true
+  },
+  "DEX9_old_panel_firewall": {
+   "PASS": true,
+   "detail": {
+    "blacklist_size": 56,
+    "declared_blacklist_excluded_from_scan": true,
+    "new_queue_clean": true,
+    "operative_fields_scanned": [
+     "N",
+     "DISCOVERY_CANDIDATE_QUEUE",
+     "HOLDOUT_CANDIDATE_QUEUE",
+     "interval"
+    ]
+   },
+   "mutations": [
+    {
+     "mutation": "a 71000-series upstream identifier",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "an old FCDDH00 checkpoint path",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "the old interrupted sham row",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "the old randomization seed file",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "an old panel lock",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 5,
+   "positive_fixture": true
+  }
+ },
+ "tests": 17
+}

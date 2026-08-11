@@ -1,0 +1,461 @@
+{
+ "FCDDH00_PREANALYSIS_ORACLE_STATUS": "PASS",
+ "groups": 23,
+ "all_groups_pass": true,
+ "non_vacuous": true,
+ "engine_starts": 0,
+ "results": {
+  "Q0A_parent_tip_tree_bundle_and_role_manifest_binding": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "one byte appended to the founder-generator blob",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "wrong parent tip asserted",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "1392/1392 execution-tree paths byte-identical to the parent tree object"
+  },
+  "Q0B_discovery_holdout_namespace_separation_and_leakage_rejection": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "trainer given a hold-out archive path",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "trainer given an FSQBT00 path",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "trainer given a path outside the discovery root",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 3,
+   "vacuous": false,
+   "PASS": true,
+   "note": "roles are disjoint ascending intervals assigned before construction"
+  },
+  "Q0C_complete_G1_four_cell_ancestry_graph": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "one cell removed from the quartet",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "duplicate cell accepted",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "exactly one descendant per (geometry x allocation) cell from one common precursor"
+  },
+  "Q0D_whole_descendant_linked_AB_gauge_action": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "A/B exchange applied to one carrier only",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "residual minimisation reversed",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "the gauge is chosen once per descendant and shared by both carriers"
+  },
+  "Q0E_parent_P2_projector_idempotence_symmetry_orthogonality": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "one P2 coefficient perturbed by 1e-3",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "symmetry claim on a non-symmetric matrix",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "P1 and P2 asserted mutually orthogonal (they are NESTED, P1 subset P2)",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "complementarity P2(I-P2)=0 claimed for the perturbed projector",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 4,
+   "vacuous": false,
+   "PASS": true,
+   "note": "sym=0.000e+00 idem=8.327e-17 P2(I-P2)=5.898e-17 P2P1-P1=5.551e-17 e1.e2=8.483e-17 trP2=2.000000 trP1=1.000000 ; the parent basis is NESTED: P1 = e1 e1^T and P2 = P1 + e2 e2^T, so P1 P2 = P1 = 0.173890 and P1 is NOT orthogonal to P2"
+  },
+  "Q0F_common_differential_sqrt2_isometry": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "one trapezoid weight perturbed",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "one scored time perturbed",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "reference u/v route disagrees",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 3,
+   "vacuous": false,
+   "PASS": true,
+   "note": "||z||^2 = sum_h W[h](dA^2 + dB^2) exactly, for either gauge sign"
+  },
+  "Q0G_carrier_identity_and_C2_minus_C1_sign": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "carrier labels exchanged without a sign flip",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "expected callable string altered",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "d = (r[CARRIER_2] - r[CARRIER_1]) / sqrt(2); the physical carrier sign is frozen"
+  },
+  "Q0H_NEAR_minus_FAR_block_sign_and_geometry_slot_swap": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "geometry labels exchanged without a sign flip",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "one geometry label corrupted in a single cell",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "the joint block-level NEAR/FAR slot swap maps x -> -x exactly"
+  },
+  "Q0I_invariance_to_every_neutral_allocation_member_exchange": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "a single unpaired membership edge corrupted",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "x claimed to change under a valid paired exchange",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "x is exactly invariant under either allocation-member exchange; the four cross-orbit pairings are permuted, not altered"
+  },
+  "Q0J_exact_response_unit_coefficient_and_TAU_propagation": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "one TAU inflated tenfold",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "root-sum-of-squares substituted for the triangle bound",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "one reader coefficient (a weight) perturbed",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 3,
+   "vacuous": false,
+   "PASS": true,
+   "note": "A_X = (1/sqrt2) sum TAU ; A_PAIR = sqrt2 (TAU_N + TAU_F)"
+  },
+  "Q0K_discovery_trainer_uses_all_and_only_twelve_discovery_ancestries": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "eleven ancestries offered",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "thirteen ancestries offered",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "a duplicated ancestry id offered",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 3,
+   "vacuous": false,
+   "PASS": true,
+   "note": ""
+  },
+  "Q0L_leave_one_ancestry_out_excludes_all_four_descendants_and_eight_rows": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "the omitted ancestry left inside its own fold mean",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "fold order corrupted",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "a fold omits the complete ancestry: 4 descendants, 8 carrier rows and their shams"
+  },
+  "Q0M_axis_disk_round_trip_canonical_sign_rank1_projector": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "axis npz hash corrupted",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "axis sign flipped between npz and json",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "axis SOURCE relabelled to the historical panel",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 3,
+   "vacuous": false,
+   "PASS": true,
+   "note": "unit norm, rank-1 projector trace 1, canonical sign <v, X_BAR> > 0"
+  },
+  "Q0N_holdout_scorer_cannot_import_trainer_or_fit": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "scorer asked to center hold-out outcomes",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "scorer asked to rescale",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "scorer asked to reorient",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "frozen axis mutated in place",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 4,
+   "vacuous": false,
+   "PASS": true,
+   "note": "imports: __future__,fh_core,hashlib,json,numpy"
+  },
+  "Q0O_exact_2pow16_randomization_tail_on_analytic_scores": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "Monte-Carlo style plus-one patch applied",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "one block score sign corrupted",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "design reference misreported",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 3,
+   "vacuous": false,
+   "PASS": true,
+   "note": "P(K>=12|p<=1/2) = 2517/65536 = 0.0384063720703125 reproduced exactly"
+  },
+  "Q0P_equality_tie_and_zero_score_boundary_conventions": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "equality treated as a pass",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "a straddling interval silently resolved",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "equality is FAILURE everywhere; a straddling enclosure is UNRESOLVED, never resolved"
+  },
+  "Q0Q_cooptimal_gauge_orbit_detected_not_averaged": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "a co-optimal descendant silently assigned a unique sign",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "co-optimal orbit averaged instead of enumerated",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "an exactly-zero or undecided gauge statistic yields the complete two-element orbit"
+  },
+  "Q0R_raw_only_archives_cannot_be_decoded_before_their_lock_commit": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "decode attempted with no raw-only lock present",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "hold-out decode attempted with no raw-only lock present",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "fh_disc.main and fh_hold.main both call require_raw_lock as their first statement"
+  },
+  "Q0S_write_ahead_ledger_charges_crash_or_uncertain_launch_exactly_once": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "a failure that never advanced state charged as a start",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "a start launched past the hard budget",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "an advanced start left uncharged",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 3,
+   "vacuous": false,
+   "PASS": true,
+   "note": "ack without advance -> not charged, retry permitted; advance -> charged, never replayed"
+  },
+  "Q0U_complete_block_admission_identical_under_both_geometry_coins": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "admission evaluated on a single favoured cell instead of the quartet",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "coin value claimed to change the unordered quartet",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "the constructor is a pure function of (S,g,a); the coin only labels the two neutral branch slots, so the unordered quartet, its checkpoint/mask hashes and the accept decision are identical under both coin values"
+  },
+  "Q0V_response_only_T_never_imports_TAU_and_K_is_labelled": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "TAU reachable from the T statistic",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "K tail reported as an inferential p-value",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "T is threshold free; the K tail carries its noninferential label in its own payload"
+  },
+  "Q0W_canonical_field_schema_exactly": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "a renamed field accepted",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "a duplicated field accepted",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "a missing canonical field unnoticed",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 3,
+   "vacuous": false,
+   "PASS": true,
+   "note": "44 canonical fields"
+  },
+  "Q0T_every_negative_control_fires_for_the_expected_reason": {
+   "positive_identity": true,
+   "mutations": [
+    {
+     "mutation": "a vacuous self-comparison accepted as a control",
+     "fired_as_required": true
+    },
+    {
+     "mutation": "a control silently skipped",
+     "fired_as_required": true
+    }
+   ],
+   "n_mutations": 2,
+   "vacuous": false,
+   "PASS": true,
+   "note": "{\"one weight perturbed\": true, \"one scored time perturbed\": true, \"one reader coefficient perturbed\": true, \"one P2 coefficient perturbed\": true, \"one carrier label swapped\": true, \"one geometry label corrupted\": true, \"one ancestry role corrupted\": true, \"one TAU inflated\": true, \"one raw hash corrupted\": true, \"one unpaired allocation membership edge corrupted\": true, \"one mask byte perturbed\": true}"
+  }
+ },
+ "negative_controls": {
+  "one weight perturbed": true,
+  "one scored time perturbed": true,
+  "one reader coefficient perturbed": true,
+  "one P2 coefficient perturbed": true,
+  "one carrier label swapped": true,
+  "one geometry label corrupted": true,
+  "one ancestry role corrupted": true,
+  "one TAU inflated": true,
+  "one raw hash corrupted": true,
+  "one unpaired allocation membership edge corrupted": true,
+  "one mask byte perturbed": true
+ }
+}

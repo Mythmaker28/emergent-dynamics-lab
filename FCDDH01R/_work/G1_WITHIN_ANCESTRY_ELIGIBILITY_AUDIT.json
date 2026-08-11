@@ -1,0 +1,189 @@
+{
+ "precursor_is_pure_seeded_draw": {
+  "function": "edlab.experiments.exp_sc_00.seed_state",
+  "calls": [
+   "?.default_rng",
+   "SCState",
+   "np.arange",
+   "np.clip",
+   "np.full",
+   "np.ones",
+   "np.where",
+   "np.zeros",
+   "range",
+   "rng.standard_normal"
+  ],
+  "no_engine_step": true,
+  "no_advance": true,
+  "depends_only_on": [
+   "sp",
+   "tr",
+   "seed",
+   "internal"
+  ],
+  "reads_geometry": false,
+  "verdict": "PURE_FUNCTION_OF_SEED__ZERO_ENGINE_ADVANCES"
+ },
+ "found_is_precursor_times_explicit_geometry_mask": {
+  "function": "domc_core.found",
+  "calls": [
+   "?.copy",
+   "C.seed_state",
+   "IOMState",
+   "_blob",
+   "np.zeros"
+  ],
+  "calls_seed_state": true,
+  "calls_blob": true,
+  "no_engine_step": true,
+  "verdict": "ZERO_ENGINE_ADVANCES"
+ },
+ "set_geometry_is_explicit_argument": {
+  "function": "domc_core.set_geometry",
+  "assigns": [
+   "GEOMETRY",
+   "SITE_A",
+   "SITE_B",
+   "name"
+  ],
+  "verdict": "SETS_ONLY_THE_TWO_FROZEN_SITE_POSITIONS_FROM_AN_EXPLICIT_NAME"
+ },
+ "label_blindness": {
+  "WSFSCRP00/wsfscrp_core.py:t0_masks": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WSFSCRP00/wsfscrp_core.py:reference_masks": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WSFSCRP00/wsfscrp_core.py:B_of": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WSFSCRP00/wsfscrp_core.py:q_channels": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_prod.py:normalizer": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_prod.py:X_channels": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_prod.py:M2sq": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_prod.py:tau_dynamic_sq": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_prod.py:tau_site_sq": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_prod.py:tau_material_sq": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_prod.py:cell_verdict": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_ref.py:normalizer": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_ref.py:X_channels": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_ref.py:M2sq": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_ref.py:tau_dynamic_sq": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_ref.py:tau_site_sq": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "WL2SMF00/wl2_ref.py:tau_material_sq": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "FCDDH00/fh_core.py:gauge_statistic": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "FCDDH00/fh_core.py:gauge_sign": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "FCDDH00/fh_core.py:residual_r": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "FCDDH00/fh_core.py:differential_d": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "FCDDH00/fh_core.py:interaction_x": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "FCDDH00/fh_core.py:A_X_block": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "FCDDH00/fh_core.py:A_PAIR": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "FCDDH00/fh_core.py:tau_material_sq": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "FCDDH00/fh_core.py:tau_site_sq": {
+   "leaked_label_tokens": [],
+   "clean": true
+  },
+  "FCDDH00/fh_core.py:tau_dynamic_sq": {
+   "leaked_label_tokens": [],
+   "clean": true
+  }
+ },
+ "explicit_form_equivalence": {
+  "historical_parity_route": "wsfscrp_core.make_founder  (a := seed % 2 == 0 ? 0 : 1)",
+  "historical_explicit_route": "FSQBT00.fq_construct.construct(seed, geom, alloc)",
+  "FCDDH00_route": "FCDDH00.fh_cworker  (S common to the four cells, (g,a) crossed)",
+  "operation_sequence": [
+   "domc_core.set_geometry(g)",
+   "e = wsfscrp_core.engine()",
+   "f0 = domc_core.found(S)                       # zero advances",
+   "f  = domc_core.advance(e, f0, domc_core.T_FOUND)      # 150 steps",
+   "(hA,hB) = (HIST_H,HIST_L) if a == 0 else (HIST_L,HIST_H)",
+   "st = domc_core.advance(e, domc_core.apply_dual_history(e,f,hA,hB), domc_core.SETTLE)  # 120+120"
+  ],
+  "identical_in_all_three_routes": true,
+  "only_difference": "the guard that selects (hA,hB): 'seed % 2 == 0' in the historical parity route versus 'a == 0' in the explicit route. Under the substitution a := 0 if seed % 2 == 0 else 1 the two guards are the same Boolean, so every historical parity-selected branch is reproduced byte-for-byte by the explicit form.",
+  "engine_identity": "wsfscrp_core.engine() is the single callable used by all three routes",
+  "physics_instantiated_for_this_proof": false,
+  "make_founder_statement_count": 6
+ },
+ "requirements": {
+  "same_upstream_precursor_bytes_for_all_four_descendants": "PROVED_BY_CONSTRUCTION: PRECURSOR(S) = seed_state(SPEC,TRACER,S,'random') is a pure function of S with zero engine advances; each worker recomputes it and reports its sha256, and the driver requires the four to be equal.",
+  "one_and_only_one_descendant_per_cell": "ENFORCED_BY_THE_CONSTRUCTOR_DRIVER",
+  "geometry_independent_of_allocation_construction_order": "PROVED: geometry enters only through set_geometry -> _blob, before any history; allocation enters only through apply_dual_history, after the founding advance.",
+  "reader_compatible_masks_and_support_in_every_cell": "ENFORCED_BY_ADMISSION_PER_DESCENDANT",
+  "no_label_in_admission_reader_gauge_or_threshold_formula": "PROVED_BY_AST_ABOVE",
+  "no_seed_parity_fallback": "The FCDDH00 route never reads seed bits; (g,a) are explicit arguments.",
+  "no_G2_observational_substitute": "No observational route exists in the FCDDH00 code path."
+ },
+ "FCDDH00_G1_STATIC_ELIGIBILITY": "PASS"
+}

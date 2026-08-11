@@ -1,0 +1,462 @@
+{
+ "modules": {
+  "fh_core.py": {
+   "present": true,
+   "sha256": "fdc80f984689a01ecfac482bfa7b8efee1dc47c407918052dd4ff0849545f4e6",
+   "git_blob": "5e24f66d867b83f12b62c7f1be4166fded95433b",
+   "bytes": 12787,
+   "imports": [
+    "__future__",
+    "fractions"
+   ],
+   "defs": [
+    "A_PAIR",
+    "A_X_block",
+    "Iv",
+    "Parent",
+    "__add__",
+    "__init__",
+    "__mul__",
+    "__neg__",
+    "__repr__",
+    "__sub__",
+    "__truediv__",
+    "_dceil",
+    "_dfloor",
+    "_isqrt",
+    "_sq",
+    "_weights",
+    "as_pair",
+    "certified_verdict",
+    "contains_zero",
+    "deltas",
+    "differential_d",
+    "dot_float",
+    "dot_iv",
+    "esum",
+    "exact",
+    "exact_median",
+    "fl",
+    "gauge_sign",
+    "gauge_statistic",
+    "gt",
+    "gt0",
+    "interaction_x",
+    "isqrt_iv",
+    "m2sq",
+    "mat_vec",
+    "mid",
+    "norm_iv",
+    "read_series",
+    "residual_r",
+    "round_out",
+    "tau_dynamic_sq",
+    "tau_material_sq",
+    "tau_site_sq",
+    "uv_energy",
+    "uv_vectors",
+    "vec_add",
+    "vec_scale",
+    "vec_sub",
+    "width",
+    "z_of"
+   ]
+  },
+  "fh_ref.py": {
+   "present": true,
+   "sha256": "a8eff74a6028b48ff0a0447ab0440406b3d3a7122211108c42c6605de12258e9",
+   "git_blob": "251a79bbd25d3fc6d201e492c9d2b8cd60a77cb6",
+   "bytes": 4651,
+   "imports": [
+    "__future__",
+    "math",
+    "numpy"
+   ],
+   "defs": [
+    "A_PAIR",
+    "A_X_block",
+    "_trapz_matrix",
+    "differential_d",
+    "gauge_sign",
+    "interaction_x",
+    "interaction_x_from_r",
+    "m2sq",
+    "read_series",
+    "residual_r",
+    "rot",
+    "rsum",
+    "tau_material_sq",
+    "weights",
+    "z_of"
+   ]
+  },
+  "fh_rand.py": {
+   "present": true,
+   "sha256": "d3b031c8709f01a30024f11a373b3b78e6fb399a259fd0f38c6103625d2ff01f",
+   "git_blob": "19a94b0b4e297ccdf61c82f3126177689179a982",
+   "bytes": 5663,
+   "imports": [
+    "__future__",
+    "hashlib"
+   ],
+   "defs": [
+    "_Stream",
+    "__init__",
+    "_need",
+    "_shake",
+    "allocation_bit",
+    "below",
+    "block_assignment",
+    "bytes",
+    "geometry_bit",
+    "known_answer_fixtures",
+    "run_order"
+   ]
+  },
+  "fh_runner.py": {
+   "present": true,
+   "sha256": "f1144e17c3dd4d2a5f55726b9cddb71430f17ccd51ae1155d588cc15b6e4a5b0",
+   "git_blob": "a7d3ea0dd0b0f2d4dbb58306c369d26087a2f775",
+   "bytes": 7398,
+   "imports": [
+    "__future__",
+    "hashlib",
+    "json",
+    "os",
+    "subprocess",
+    "sys",
+    "time"
+   ],
+   "defs": [
+    "StartLedger",
+    "__init__",
+    "_emit",
+    "child_ack",
+    "child_advance",
+    "counts",
+    "run",
+    "token"
+   ]
+  },
+  "fh_cworker.py": {
+   "present": true,
+   "sha256": "226b7301548ab997d0576c5fe1bb43eb713567a94e47088a0fe1ac1a696f1a05",
+   "git_blob": "c40b92f68a28e75467958240411ebd184f20a09a",
+   "bytes": 6309,
+   "imports": [
+    "__future__",
+    "domc_core",
+    "edlab",
+    "fh_runner",
+    "hashlib",
+    "json",
+    "numpy",
+    "os",
+    "ppai_core",
+    "sys",
+    "wsfscrp_core"
+   ],
+   "defs": [
+    "_hash_state"
+   ]
+  },
+  "fh_aworker.py": {
+   "present": true,
+   "sha256": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "git_blob": "5de2266db2970a7195fcb4ad90f6d63052fb1055",
+   "bytes": 2112,
+   "imports": [
+    "__future__",
+    "fh_runner",
+    "hashlib",
+    "os",
+    "sys"
+   ],
+   "defs": []
+  },
+  "fh_construct.py": {
+   "present": false
+  },
+  "fh_acquire.py": {
+   "present": false
+  },
+  "fh_decode.py": {
+   "present": true,
+   "sha256": "d2fe65b200f47d5eed8e9c24960075e853de7d739830026a7ecf18d1de704967",
+   "git_blob": "5524f8ff10040466c49d12f131166dcf9a051481",
+   "bytes": 12612,
+   "imports": [
+    "__future__",
+    "fh_core",
+    "fh_ref",
+    "fractions",
+    "hashlib",
+    "json",
+    "numpy",
+    "os",
+    "sys"
+   ],
+   "defs": [
+    "agree",
+    "block_x",
+    "contrast_material",
+    "decode",
+    "load_parent",
+    "read_compact",
+    "require_raw_lock",
+    "series",
+    "thresholds"
+   ]
+  },
+  "DISCOVERY_AXIS_TRAINER_V1.py": {
+   "present": true,
+   "sha256": "f92354ce608caab797e5899f20efb35e3c05990876951fe4191f985ff3d53310",
+   "git_blob": "7c6911b2549731b2ce4db216a816525de553db45",
+   "bytes": 4970,
+   "imports": [
+    "__future__",
+    "fh_core",
+    "math"
+   ],
+   "defs": [
+    "assert_discovery_only",
+    "canonical_unit",
+    "fit",
+    "leverage",
+    "loao",
+    "mean_x"
+   ]
+  },
+  "HOLDOUT_FIXED_AXIS_SCORER_V1.py": {
+   "present": true,
+   "sha256": "3355378fe23517e8533763b4c66f32c0aa8417d049aad5f53af5cccf6e7cb4fe",
+   "git_blob": "ccccf3d87d4275b00e91d16770f83ab605ee3428",
+   "bytes": 4531,
+   "imports": [
+    "__future__",
+    "fh_core",
+    "hashlib",
+    "json",
+    "numpy"
+   ],
+   "defs": [
+    "FrozenAxis",
+    "__init__",
+    "__setattr__",
+    "block_success",
+    "enumerate_linked_gauge",
+    "load_axis",
+    "pair_margins",
+    "score_block"
+   ]
+  },
+  "EXACT_RANDOMIZATION_ENUMERATOR_V1.py": {
+   "present": true,
+   "sha256": "894cf81fd1fb75035e2cf4dd66f9648b5ea26e8caa6d7994e7b821ae5a73f0d1",
+   "git_blob": "3753397f5c3fde490ed6fffa9981de3c1cc0de34",
+   "bytes": 4743,
+   "imports": [
+    "__future__",
+    "fractions",
+    "math"
+   ],
+   "defs": [
+    "_binom_tail_ge",
+    "_to_grid",
+    "clopper_pearson",
+    "design_reference_K_ge_12_of_16",
+    "enumerate_K",
+    "enumerate_T"
+   ]
+  },
+  "fh_oracle.py": {
+   "present": true,
+   "sha256": "e06bbbe784e8d4f89de676923010a2e9459a4e3f04b66014ba0b089fbc4f3615",
+   "git_blob": "c006843ad8432694c74c85b9217e070a74c9c93d",
+   "bytes": 32272,
+   "imports": [
+    "DISCOVERY_AXIS_TRAINER_V1",
+    "EXACT_RANDOMIZATION_ENUMERATOR_V1",
+    "HOLDOUT_FIXED_AXIS_SCORER_V1",
+    "__future__",
+    "ast",
+    "fh_core",
+    "fh_decode",
+    "fh_rand",
+    "fh_ref",
+    "fh_runner",
+    "fractions",
+    "hashlib",
+    "json",
+    "numpy",
+    "os",
+    "subprocess",
+    "sys",
+    "tempfile"
+   ],
+   "defs": [
+    "fires",
+    "fixture_parent",
+    "fixture_row",
+    "group",
+    "mutA",
+    "mutC",
+    "mutD",
+    "mutF",
+    "mutF2",
+    "mutG",
+    "mutI",
+    "mutJ",
+    "mutJ2",
+    "mutL",
+    "run",
+    "schema_check"
+   ]
+  },
+  "fh_disc.py": {
+   "present": true,
+   "sha256": "e2da7cbe9c8873c00932a5d2d8e6bd04c86c08e47af508006486c022f6887c3d",
+   "git_blob": "cfe0c5af67b19ec4e5ed7cdb6fda78a13ed443ab",
+   "bytes": 18621,
+   "imports": [
+    "DISCOVERY_AXIS_TRAINER_V1",
+    "HOLDOUT_FIXED_AXIS_SCORER_V1",
+    "__future__",
+    "ast",
+    "fh_core",
+    "fh_decode",
+    "fh_ref",
+    "fractions",
+    "hashlib",
+    "itertools",
+    "json",
+    "numpy",
+    "os",
+    "sys"
+   ],
+   "defs": [
+    "main"
+   ]
+  },
+  "fh_hold.py": {
+   "present": true,
+   "sha256": "0d96888c0715f50b4a6f1aaa786a52981915323046453b9bd1f9c2981f9f2270",
+   "git_blob": "6eefe81e5f4be865b8949557ae6aa76fb33ef127",
+   "bytes": 14466,
+   "imports": [
+    "EXACT_RANDOMIZATION_ENUMERATOR_V1",
+    "HOLDOUT_FIXED_AXIS_SCORER_V1",
+    "__future__",
+    "fh_core",
+    "fh_decode",
+    "fractions",
+    "hashlib",
+    "json",
+    "numpy",
+    "os",
+    "sys"
+   ],
+   "defs": [
+    "main"
+   ]
+  },
+  "fh_p0.py": {
+   "present": true,
+   "sha256": "7fe1c6bb59692122b584167e67813d26bbe24bae38a364d10f5914a16209433c",
+   "git_blob": "5b929ed5b5dc00abdde37d34eee62fe5e58fcd67",
+   "bytes": 40561,
+   "imports": [
+    "EXACT_RANDOMIZATION_ENUMERATOR_V1",
+    "__future__",
+    "ast",
+    "fh_core",
+    "fh_rand",
+    "fh_ref",
+    "fh_runner",
+    "fractions",
+    "hashlib",
+    "json",
+    "numpy",
+    "os",
+    "subprocess",
+    "sys"
+   ],
+   "defs": [
+    "_calls",
+    "_fn_src",
+    "_names",
+    "_w",
+    "basis_certificate",
+    "build",
+    "canon",
+    "code_audit",
+    "coefficient_map",
+    "fcra_binder",
+    "g1_audit",
+    "parent_binding",
+    "randomization",
+    "role_queues",
+    "runner_audit",
+    "tau_certificate"
+   ]
+  },
+  "fh_close.py": {
+   "present": false
+  }
+ },
+ "banned_constructs": {
+  "fh_core.py": [],
+  "fh_ref.py": [],
+  "fh_rand.py": [],
+  "fh_runner.py": [],
+  "fh_cworker.py": [],
+  "fh_aworker.py": [],
+  "fh_decode.py": [],
+  "DISCOVERY_AXIS_TRAINER_V1.py": [],
+  "HOLDOUT_FIXED_AXIS_SCORER_V1.py": [],
+  "EXACT_RANDOMIZATION_ENUMERATOR_V1.py": [],
+  "fh_oracle.py": [],
+  "fh_disc.py": [],
+  "fh_hold.py": [],
+  "fh_p0.py": []
+ },
+ "dynamic_import": {
+  "fh_core.py": [],
+  "fh_ref.py": [],
+  "fh_rand.py": [],
+  "fh_runner.py": [],
+  "fh_cworker.py": [],
+  "fh_aworker.py": [],
+  "fh_decode.py": [],
+  "DISCOVERY_AXIS_TRAINER_V1.py": [],
+  "HOLDOUT_FIXED_AXIS_SCORER_V1.py": [],
+  "EXACT_RANDOMIZATION_ENUMERATOR_V1.py": [],
+  "fh_oracle.py": [],
+  "fh_disc.py": [],
+  "fh_hold.py": [],
+  "fh_p0.py": []
+ },
+ "getattr_uses": {
+  "fh_core.py": [],
+  "fh_ref.py": [],
+  "fh_rand.py": [],
+  "fh_runner.py": [],
+  "fh_cworker.py": [],
+  "fh_aworker.py": [],
+  "fh_decode.py": [],
+  "DISCOVERY_AXIS_TRAINER_V1.py": [],
+  "HOLDOUT_FIXED_AXIS_SCORER_V1.py": [],
+  "EXACT_RANDOMIZATION_ENUMERATOR_V1.py": [],
+  "fh_oracle.py": [],
+  "fh_disc.py": [],
+  "fh_hold.py": [],
+  "fh_p0.py": []
+ },
+ "banned_allowlist": {
+  "fh_oracle.py": [
+   "setattr"
+  ]
+ },
+ "banned_allowlist_reason": "fh_oracle.py contains exactly one setattr, inside a negative control that REQUIRES a PermissionError; it is unreachable from any construction, acquisition or scoring path",
+ "clean": true
+}

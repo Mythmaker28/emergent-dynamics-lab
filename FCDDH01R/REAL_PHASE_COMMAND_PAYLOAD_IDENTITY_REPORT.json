@@ -1,0 +1,106 @@
+{
+ "REAL_PHASE_COMMAND_PAYLOAD_IDENTITY": "PASS",
+ "invariants_required_identical": {
+  "engine_scientific_executables": {
+   "fh_core.py": "fdc80f984689a01ecfac482bfa7b8efee1dc47c407918052dd4ff0849545f4e6",
+   "fh_ref.py": "a8eff74a6028b48ff0a0447ab0440406b3d3a7122211108c42c6605de12258e9",
+   "fh_rand.py": "d3b031c8709f01a30024f11a373b3b78e6fb399a259fd0f38c6103625d2ff01f",
+   "fh_runner.py": "f1144e17c3dd4d2a5f55726b9cddb71430f17ccd51ae1155d588cc15b6e4a5b0",
+   "fh_cworker.py": "226b7301548ab997d0576c5fe1bb43eb713567a94e47088a0fe1ac1a696f1a05",
+   "fh_aworker.py": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "fh_decode.py": "d2fe65b200f47d5eed8e9c24960075e853de7d739830026a7ecf18d1de704967",
+   "fh_disc.py": "e2da7cbe9c8873c00932a5d2d8e6bd04c86c08e47af508006486c022f6887c3d",
+   "fh_hold.py": "0d96888c0715f50b4a6f1aaa786a52981915323046453b9bd1f9c2981f9f2270",
+   "fh_oracle.py": "e06bbbe784e8d4f89de676923010a2e9459a4e3f04b66014ba0b089fbc4f3615",
+   "HOLDOUT_FIXED_AXIS_SCORER_V1.py": "3355378fe23517e8533763b4c66f32c0aa8417d049aad5f53af5cccf6e7cb4fe",
+   "EXACT_RANDOMIZATION_ENUMERATOR_V1.py": "894cf81fd1fb75035e2cf4dd66f9648b5ea26e8caa6d7994e7b821ae5a73f0d1",
+   "CANONICAL_FIELD_SCHEMA.txt": "ce73fa311ca19192c69553f55888fde8d72bb3ada707e385aa1d008209f2f66f",
+   "DISCOVERY_AXIS_TRAINER_V1.py": "f92354ce608caab797e5899f20efb35e3c05990876951fe4191f985ff3d53310"
+  },
+  "carrier_executable": {
+   "path": "FWL2CF00/fw_worker.py",
+   "sha256": "a10a8af5156498517a16400ff29089091373137c032fc7e13e18c7d51b0e69e5",
+   "unchanged": true
+  },
+  "parent_basis": {
+   "path": "SQDT00/FWL2_RELATIVE_QUOTIENT_BASIS_V1.npz",
+   "sha256": "81ca57906d470263b5210cd2ce03ea65360b960093ef5f4b7966257d77efb601"
+  },
+  "interpreter": "/usr/bin/python3",
+  "cwd_semantics": "absolute, per-row frozen",
+  "env_whitelist": [
+   "PATH",
+   "HOME",
+   "LANG",
+   "LC_ALL",
+   "PYTHONHASHSEED",
+   "OMP_NUM_THREADS",
+   "OPENBLAS_NUM_THREADS",
+   "MKL_NUM_THREADS",
+   "NUMEXPR_NUM_THREADS",
+   "PYTHONDONTWRITEBYTECODE"
+  ],
+  "frozen_env": {
+   "PYTHONHASHSEED": "0",
+   "OMP_NUM_THREADS": "1",
+   "OPENBLAS_NUM_THREADS": "1",
+   "MKL_NUM_THREADS": "1",
+   "NUMEXPR_NUM_THREADS": "1",
+   "PYTHONDONTWRITEBYTECODE": "1",
+   "PATH": "/usr/local/bin:/usr/bin:/bin",
+   "LANG": "C.UTF-8",
+   "LC_ALL": "C.UTF-8",
+   "HOME": "/root"
+  },
+  "H_GRID": [
+   40,
+   80,
+   120,
+   160,
+   200,
+   240,
+   280,
+   320,
+   360,
+   400
+  ],
+  "dt": "1/10",
+  "weights": [
+   "1/18",
+   "1/9",
+   "1/9",
+   "1/9",
+   "1/9",
+   "1/9",
+   "1/9",
+   "1/9",
+   "1/9",
+   "1/18"
+  ],
+  "mask_rule": "rho>0.30, >=12 sites, periodic 4-connected, exactly two eligible",
+  "settle": "T_FOUND 150 + 2x60 dual history + SETTLE 120 = 390 steps",
+  "carriers": [
+   "etcmnfc_core.transpose(st, I, J)",
+   "ppai_core.state_cross(st)"
+  ],
+  "dose": "exact historical 1x"
+ },
+ "permitted_per_row_deltas": [
+  "upstream_seed",
+  "descendant_id",
+  "checkpoint_path",
+  "mask_path",
+  "idempotency_token",
+  "geometry_slot",
+  "allocation_slot",
+  "carrier_order",
+  "run_order",
+  "retry_root",
+  "sid_pgid",
+  "log_redirection"
+ ],
+ "every_block_has_the_unordered_complete_quartet": true,
+ "both_fixed_1x_carriers_per_descendant": true,
+ "mutation_test": "a mutated carrier, a redeclared scored-time grid and a changed environment whitelist are each REJECTED (DEX10)",
+ "dry_trace_executed_without_instantiating_physics": true
+}
