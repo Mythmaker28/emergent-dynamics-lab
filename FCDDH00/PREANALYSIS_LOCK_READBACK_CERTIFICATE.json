@@ -1,0 +1,156 @@
+{
+ "PREANALYSIS_LOCK_READBACK_STATUS": "PASS",
+ "method": "read back from the COMMITTED TREE by an independent path -- git cat-file -p <branch>:FCDDH00/<file> piped to sha256sum on the device (git 2.34.1), compared against the sha256 of the execution copy in the cloud container (python hashlib). Neither side reads the other's working file.",
+ "branch": "dev/fresh-crossed-differential-discovery-holdout-00",
+ "commit_1": "2c1495c3a0b06863548984d989d6e9e34c97d685",
+ "commit_2": "13f6df87b0876c24d0f38bc429a0600ade0df602",
+ "commit_3": "808a979f8b0b4106ed349687320601a837cf0aac",
+ "commit_3_tree": "129fb65d7299bc553ed3a0f4d8289e47337daf50",
+ "tommy_main_reverified": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+ "files_checked": 23,
+ "all_identical": true,
+ "files": [
+  {
+   "file": "fh_core.py",
+   "committed_tree_sha256": "fdc80f984689a01ecfac482bfa7b8efee1dc47c407918052dd4ff0849545f4e6",
+   "execution_copy_sha256": "fdc80f984689a01ecfac482bfa7b8efee1dc47c407918052dd4ff0849545f4e6",
+   "identical": true
+  },
+  {
+   "file": "fh_ref.py",
+   "committed_tree_sha256": "a8eff74a6028b48ff0a0447ab0440406b3d3a7122211108c42c6605de12258e9",
+   "execution_copy_sha256": "a8eff74a6028b48ff0a0447ab0440406b3d3a7122211108c42c6605de12258e9",
+   "identical": true
+  },
+  {
+   "file": "fh_decode.py",
+   "committed_tree_sha256": "d2fe65b200f47d5eed8e9c24960075e853de7d739830026a7ecf18d1de704967",
+   "execution_copy_sha256": "d2fe65b200f47d5eed8e9c24960075e853de7d739830026a7ecf18d1de704967",
+   "identical": true
+  },
+  {
+   "file": "DISCOVERY_AXIS_TRAINER_V1.py",
+   "committed_tree_sha256": "1d832394f465aadcb2b31bcd07f67652e3ba54f59f29fe2427c80cf7722db548",
+   "execution_copy_sha256": "1d832394f465aadcb2b31bcd07f67652e3ba54f59f29fe2427c80cf7722db548",
+   "identical": true
+  },
+  {
+   "file": "HOLDOUT_FIXED_AXIS_SCORER_V1.py",
+   "committed_tree_sha256": "3355378fe23517e8533763b4c66f32c0aa8417d049aad5f53af5cccf6e7cb4fe",
+   "execution_copy_sha256": "3355378fe23517e8533763b4c66f32c0aa8417d049aad5f53af5cccf6e7cb4fe",
+   "identical": true
+  },
+  {
+   "file": "EXACT_RANDOMIZATION_ENUMERATOR_V1.py",
+   "committed_tree_sha256": "894cf81fd1fb75035e2cf4dd66f9648b5ea26e8caa6d7994e7b821ae5a73f0d1",
+   "execution_copy_sha256": "894cf81fd1fb75035e2cf4dd66f9648b5ea26e8caa6d7994e7b821ae5a73f0d1",
+   "identical": true
+  },
+  {
+   "file": "fh_runner.py",
+   "committed_tree_sha256": "f1144e17c3dd4d2a5f55726b9cddb71430f17ccd51ae1155d588cc15b6e4a5b0",
+   "execution_copy_sha256": "f1144e17c3dd4d2a5f55726b9cddb71430f17ccd51ae1155d588cc15b6e4a5b0",
+   "identical": true
+  },
+  {
+   "file": "fh_cworker.py",
+   "committed_tree_sha256": "226b7301548ab997d0576c5fe1bb43eb713567a94e47088a0fe1ac1a696f1a05",
+   "execution_copy_sha256": "226b7301548ab997d0576c5fe1bb43eb713567a94e47088a0fe1ac1a696f1a05",
+   "identical": true
+  },
+  {
+   "file": "fh_aworker.py",
+   "committed_tree_sha256": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "execution_copy_sha256": "308d80bfdca331cdbd953db0ae7ba896df13942f0592810bb5ffb2bbea7c6d08",
+   "identical": true
+  },
+  {
+   "file": "fh_construct.py",
+   "committed_tree_sha256": "43b82ed1538d561cd6ae8ac0c5892422e754b35e00ae7a40d58d89e9894c30b1",
+   "execution_copy_sha256": "43b82ed1538d561cd6ae8ac0c5892422e754b35e00ae7a40d58d89e9894c30b1",
+   "identical": true
+  },
+  {
+   "file": "fh_acquire.py",
+   "committed_tree_sha256": "3b3fda7febcf84c82672fd10e6109bf525e289c852baeecb0ca65d123c4f69fb",
+   "execution_copy_sha256": "3b3fda7febcf84c82672fd10e6109bf525e289c852baeecb0ca65d123c4f69fb",
+   "identical": true
+  },
+  {
+   "file": "fh_disc.py",
+   "committed_tree_sha256": "e2da7cbe9c8873c00932a5d2d8e6bd04c86c08e47af508006486c022f6887c3d",
+   "execution_copy_sha256": "e2da7cbe9c8873c00932a5d2d8e6bd04c86c08e47af508006486c022f6887c3d",
+   "identical": true
+  },
+  {
+   "file": "fh_hold.py",
+   "committed_tree_sha256": "0d96888c0715f50b4a6f1aaa786a52981915323046453b9bd1f9c2981f9f2270",
+   "execution_copy_sha256": "0d96888c0715f50b4a6f1aaa786a52981915323046453b9bd1f9c2981f9f2270",
+   "identical": true
+  },
+  {
+   "file": "fh_close.py",
+   "committed_tree_sha256": "cf9af32d8901a9692386256f7a662b382788a26c366b0bdb9edf47ccfa7a0d89",
+   "execution_copy_sha256": "cf9af32d8901a9692386256f7a662b382788a26c366b0bdb9edf47ccfa7a0d89",
+   "identical": true
+  },
+  {
+   "file": "fh_rand.py",
+   "committed_tree_sha256": "d3b031c8709f01a30024f11a373b3b78e6fb399a259fd0f38c6103625d2ff01f",
+   "execution_copy_sha256": "d3b031c8709f01a30024f11a373b3b78e6fb399a259fd0f38c6103625d2ff01f",
+   "identical": true
+  },
+  {
+   "file": "fh_oracle.py",
+   "committed_tree_sha256": "e06bbbe784e8d4f89de676923010a2e9459a4e3f04b66014ba0b089fbc4f3615",
+   "execution_copy_sha256": "e06bbbe784e8d4f89de676923010a2e9459a4e3f04b66014ba0b089fbc4f3615",
+   "identical": true
+  },
+  {
+   "file": "fh_p0.py",
+   "committed_tree_sha256": "7fe1c6bb59692122b584167e67813d26bbe24bae38a364d10f5914a16209433c",
+   "execution_copy_sha256": "7fe1c6bb59692122b584167e67813d26bbe24bae38a364d10f5914a16209433c",
+   "identical": true
+  },
+  {
+   "file": "PREANALYSIS_ORACLE_REPORT.json",
+   "committed_tree_sha256": "8540c8b74bad5c9e4e43f177bca0029cc98300ec555f962d70703ea288d1fd1e",
+   "execution_copy_sha256": "8540c8b74bad5c9e4e43f177bca0029cc98300ec555f962d70703ea288d1fd1e",
+   "identical": true
+  },
+  {
+   "file": "DEPENDENCY_FIREWALL_REPORT.md",
+   "committed_tree_sha256": "e3a721bdf85b54a2bd639f7c0d49e68b5c3d33ca2b9d9d071e2fd441433c1f67",
+   "execution_copy_sha256": "e3a721bdf85b54a2bd639f7c0d49e68b5c3d33ca2b9d9d071e2fd441433c1f67",
+   "identical": true
+  },
+  {
+   "file": "FCDDH00_MASTER_FREEZE.md",
+   "committed_tree_sha256": "780cf2867e9101088c0d579bd97a522d0a1b3da222ce32fb3699301ffc0b9d75",
+   "execution_copy_sha256": "780cf2867e9101088c0d579bd97a522d0a1b3da222ce32fb3699301ffc0b9d75",
+   "identical": true
+  },
+  {
+   "file": "RANDOMIZATION_SEED_AND_ASSIGNMENT_MANIFEST.json",
+   "committed_tree_sha256": "8321e7654c138fa8a4585a430e41f65b05a10367211b124573c9bd889e3454dd",
+   "execution_copy_sha256": "8321e7654c138fa8a4585a430e41f65b05a10367211b124573c9bd889e3454dd",
+   "identical": true
+  },
+  {
+   "file": "_randomization_seed.bin",
+   "committed_tree_sha256": "2e4d46d2cd7df0386b37c72370bbbaecd7c9617824e75134e42d7993a60a3475",
+   "execution_copy_sha256": "2e4d46d2cd7df0386b37c72370bbbaecd7c9617824e75134e42d7993a60a3475",
+   "identical": true
+  },
+  {
+   "file": "CANONICAL_FIELD_SCHEMA.txt",
+   "committed_tree_sha256": "ce73fa311ca19192c69553f55888fde8d72bb3ada707e385aa1d008209f2f66f",
+   "execution_copy_sha256": "ce73fa311ca19192c69553f55888fde8d72bb3ada707e385aa1d008209f2f66f",
+   "identical": true
+  }
+ ],
+ "master_freeze_hash_verified_before_any_later_phase": true,
+ "engine_starts_at_this_point": 0,
+ "raw_advance_sequences_at_this_point": 0,
+ "next_phase_authorized": "discovery construction, hard maximum 96 charged starts"
+}
