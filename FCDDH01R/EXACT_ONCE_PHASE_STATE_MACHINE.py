@@ -211,8 +211,8 @@ class PhaseLedger:
         return sorted(n[:-5] for n in os.listdir(self.gates) if n.endswith(".gate"))
 
     # -- opaque publication ---------------------------------------------------------------
-    def publish_raw(self, run_id, tmp_path, final_path, expect_sha256=None):
-        """Seal, publish without overwrite, verify. os.replace is never used on a final raw path."""
+    def seal_output(self, run_id, tmp_path, expect_sha256=None):
+        """Durably seal ONE declared output and record its digest. Emits RAW_SEALED only."""
         with open(tmp_path, "rb") as f:
             os.fsync(f.fileno())
         digest = hashlib.sha256(open(tmp_path, "rb").read()).hexdigest()
@@ -221,11 +221,26 @@ class PhaseLedger:
             raise RuntimeError("sealed digest mismatch")
         self.emit(run_id, "RAW_SEALED", {"sha256": digest, "bytes": size,
                                          "tmp": os.path.basename(tmp_path)})
+        return digest, size
+
+    def publish_sealed(self, run_id, tmp_path, final_path, digest):
+        """Publish ONE already-sealed output without overwrite, then re-read and verify.
+        os.replace is never used on a final raw path.
+
+        This method emits RAW_PUBLISHED and NOTHING ELSE. VERIFIED is row-terminal and belongs to
+        the caller, which must emit it exactly once, after EVERY declared output of the row has
+        been published. Emitting VERIFIED here, once per output, was the latent defect exposed by
+        FCDDH01R_WAL_MONOTONICITY_ADJUDICATION.json: with more than one declared output it both
+        made verify_monotone report false backwards transitions and, far worse, made decide()
+        return SKIP_VERIFIED for a row killed while one of its declared outputs was still
+        unpublished.
+        """
         if os.path.exists(final_path):
             have = hashlib.sha256(open(final_path, "rb").read()).hexdigest()
             if have != digest:
                 raise RuntimeError("destination exists with a DIFFERENT hash: fatal")
-            os.unlink(tmp_path)
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
             self.emit(run_id, "RAW_PUBLISHED", {"sha256": digest, "idempotent_recovery": True})
         else:
             publish_exclusive(tmp_path, final_path)
@@ -233,8 +248,12 @@ class PhaseLedger:
         again = hashlib.sha256(open(final_path, "rb").read()).hexdigest()
         if again != digest:
             raise RuntimeError("published digest mismatch")
-        self.emit(run_id, "VERIFIED", {"sha256": again, "bytes": size})
         return digest
+
+    def publish_raw(self, run_id, tmp_path, final_path, expect_sha256=None):
+        """Single-output convenience: seal then publish. Emits no VERIFIED, by construction."""
+        digest, _ = self.seal_output(run_id, tmp_path, expect_sha256)
+        return self.publish_sealed(run_id, tmp_path, final_path, digest)
 
     # -- recovery -------------------------------------------------------------------------
     def decide(self, run_id, worker_identity_getter):

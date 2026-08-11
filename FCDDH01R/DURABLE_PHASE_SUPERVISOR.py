@@ -184,9 +184,28 @@ class Supervisor:
             return "BILLED_INCOMPLETE_FATAL", rid
         return "VERIFIED", rid
 
+    def _dex_publish_hold(self, key):
+        """DEX-only deterministic INTRA-row barrier. Refused outright in a REAL phase, so it can
+        never influence scientific execution."""
+        h = self.plan.get("dex_publish_hold")
+        if not h or h.get("after_output") != key:
+            return
+        assert self.cls == SM.EXECUTION_CLASS_DUMMY, "dex_publish_hold is forbidden in a REAL phase"
+        SM.write_fsync(os.path.join(self.status, "PUBLISH_HOLDING"), b"{}")
+        while not os.path.exists(h["release_file"]):
+            time.sleep(0.2)
+
     def _publish_all(self, rid, row):
-        """Seal then publish every declared output without overwrite, then verify."""
+        """Seal EVERY declared output, then publish EVERY declared output, then emit exactly one
+        row-terminal VERIFIED.
+
+        Two ordered passes, never one interleaved pass. A row must never carry a terminal state
+        while one of its own declared outputs is still unpublished, because decide() reads
+        VERIFIED as 'this row is finished' and would skip the remainder on resume. Outputs already
+        final from an earlier generation are adopted idempotently by digest.
+        """
         digests = {}
+        pending = []
         for tmp, fin in row["outputs"]:
             if os.path.exists(fin) and not os.path.exists(tmp):
                 digests[os.path.basename(fin)] = SM.hashlib.sha256(
@@ -194,7 +213,12 @@ class Supervisor:
                 continue
             if not os.path.exists(tmp):
                 raise RuntimeError("declared output missing: %s" % tmp)
-            digests[os.path.basename(fin)] = self.led.publish_raw(rid, tmp, fin)
+            d, _ = self.led.seal_output(rid, tmp)
+            pending.append((tmp, fin, d))
+        self._dex_publish_hold("SEALED_ALL")
+        for tmp, fin, d in pending:
+            digests[os.path.basename(fin)] = self.led.publish_sealed(rid, tmp, fin, d)
+            self._dex_publish_hold(os.path.basename(fin))
         self.led.emit(rid, "VERIFIED", {"outputs": digests})
         return digests
 

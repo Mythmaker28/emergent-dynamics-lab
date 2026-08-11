@@ -1,0 +1,35 @@
+{
+ "CHANGE_CLASS": "Durable, tested, line-resumable process engineering \u2014 the one and only class of change permitted by the owner reauthorization. No scientific file was touched; FCDDH01R_SCIENTIFIC_OBJECT_IDENTITY_MANIFEST.json re-verified with zero drift (13 byte-identical modules + 1 declared trainer line).",
+ "ENGINE_STARTS_CONSUMED_BY_THIS_CHANGE": 0,
+ "EVIDENCE_PATH_NOTE": "The generation-2 campaign is committed under DEX_FAILURE_INJECTION_EVIDENCE_GEN2/ rather than overwriting the generation-1 directory. Git here is append-only and the device mount refuses deletions, so merging two campaigns into one path would have produced a directory that is neither campaign. fr_dex.py still writes to DEX_FAILURE_INJECTION_EVIDENCE/ at run time; the GEN2 suffix exists only in the committed tree.",
+ "REASON": "Remedy of the latent line-resumability defect recorded in FCDDH01R_WAL_MONOTONICITY_ADJUDICATION.json.",
+ "TEST_EVIDENCE": {
+  "dex_campaign": "20/20 PASS, zero engine starts, dummy engine-free",
+  "preanalysis_oracle": "Q0A-Q0W 23/23 PASS after the change",
+  "scientific_object_identity": "PASS, zero drift"
+ },
+ "artifact": "FCDDH01R_EXECUTOR_CODE_SUPERSESSION",
+ "executor_code_sha256_generation_1": "d531210ee03626ea3a92abcb24d3fee7639bc76be58c7c021a254e4342c5458e",
+ "executor_code_sha256_generation_2": "5c6ca886dbc8a19b995f5f143124a521a026603e0a9d27d5a51960e4f34039c5",
+ "files_changed": {
+  "DURABLE_PHASE_SUPERVISOR.py": "310aa162a26fa93ff96d0db1a6c91191bdeeedbdcb25c24f43250f188324cc3b",
+  "EXACT_ONCE_PHASE_STATE_MACHINE.py": "cfcb8b3dfa8d0371d3b5b19c97b0b0b4936f4ec875afb21d6e870dbb3379352f",
+  "fr_dex.py": "7ee5e9d0eedd3a10a334c10e0989b1983321aedbfa000e1eadd68b77aa14c440",
+  "fr_dummy.py": "677b10c416cdc8997c02d897ec55729ff887c748f6c1d47f3c8ac3a799b29f19"
+ },
+ "generated_at": "2026-08-11T13:37:01Z",
+ "generation_1_governed_phases": [
+  "DISCOVERY_CONSTRUCTION"
+ ],
+ "generation_2_governs": "every phase from DISCOVERY_SHAM onward",
+ "programme": "FCDDH01R",
+ "run_id_impact": "NONE. PhaseLedger.run_id is a function of (programme, phase, execution_class, ordinal, operator_hash, input_hashes, schedule_position). The executor code hash is recorded in the plan for audit but does not enter any run_id, so no already-charged row changes identity and no completed phase can be silently re-entered under a new identity.",
+ "substantive_changes": [
+  "PhaseLedger.publish_raw split into seal_output (emits RAW_SEALED) and publish_sealed (emits RAW_PUBLISHED). Neither emits the row-terminal VERIFIED.",
+  "DURABLE_PHASE_SUPERVISOR._publish_all now seals EVERY declared output, then publishes EVERY declared output, then emits exactly one row-terminal VERIFIED. A row can no longer carry a terminal state while one of its own declared outputs is unpublished.",
+  "fr_dummy.py gained an optional --second output so multi-output rows can be exercised without an engine. Its import set is unchanged: hashlib, json, os, sys, time.",
+  "New DEX cases 17, 18, 19 covering the publication window, multi-output monotonicity, and the seal-all/publish-all boundary.",
+  "DEX12 assertion tightened to the corrected contract: publication alone no longer terminates a row; SKIP_VERIFIED requires the row-terminal record.",
+  "DEX4 fixed-3s sleep replaced by a bounded 45 s poll. The invariant always held; the assertion was load-dependent. Confirmed by the refusal marker written after the old window closed."
+ ]
+}

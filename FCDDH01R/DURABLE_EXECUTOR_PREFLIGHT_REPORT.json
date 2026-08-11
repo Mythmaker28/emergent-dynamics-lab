@@ -19,7 +19,7 @@
    "PASS": true,
    "detail": {
     "phase_completed_after_kill": true,
-    "supervisor_pid": 10690,
+    "supervisor_pid": 23816,
     "survived_launcher_pgid_kill": true
    },
    "mutations": [
@@ -106,7 +106,8 @@
   "DEX12_publication_boundary_recovery": {
    "PASS": true,
    "detail": {
-    "after_publish": "SKIP_VERIFIED",
+    "after_publish_before_terminal": "FINISH_PUBLICATION",
+    "after_row_terminal": "SKIP_VERIFIED",
     "after_seal": "FINISH_PUBLICATION",
     "different_hash_fatal": true,
     "idempotent_same_hash_recovery": true
@@ -119,9 +120,17 @@
     {
      "mutation": "a sealed-but-unpublished row offered for re-advance",
      "refused_as_required": true
+    },
+    {
+     "mutation": "a published but not yet row-terminal row treated as finished",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a row-terminal row offered for re-advance",
+     "refused_as_required": true
     }
    ],
-   "n_mutations": 2,
+   "n_mutations": 4,
    "positive_fixture": true
   },
   "DEX13_atomic_start_gate_race": {
@@ -226,6 +235,158 @@
     }
    ],
    "n_mutations": 3,
+   "positive_fixture": true
+  },
+  "DEX17_kill_inside_the_publication_window": {
+   "PASS": true,
+   "detail": {
+    "charged_rows_total": 2,
+    "first_output_published_at_kill": true,
+    "resume_outcome_is_publication": true,
+    "second_output_published_at_kill": false,
+    "states_at_end": [
+     "DISPATCH_INTENT",
+     "WRAPPER_ACK",
+     "START_GATE",
+     "ENGINE_OPENED",
+     "ADVANCE_STARTED",
+     "ENGINE_EXIT_OK",
+     "RAW_SEALED",
+     "RAW_SEALED",
+     "RAW_PUBLISHED",
+     "RAW_SEALED",
+     "RAW_PUBLISHED",
+     "VERIFIED"
+    ],
+    "states_at_kill": [
+     "DISPATCH_INTENT",
+     "WRAPPER_ACK",
+     "START_GATE",
+     "ENGINE_OPENED",
+     "ADVANCE_STARTED",
+     "ENGINE_EXIT_OK",
+     "RAW_SEALED",
+     "RAW_SEALED",
+     "RAW_PUBLISHED"
+    ]
+   },
+   "mutations": [
+    {
+     "mutation": "the row was reported terminal while a declared output was still unpublished",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "the resumed row was charged a second start",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "the resumed row advanced the engine a second time",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "the resumed row emitted more than one terminal VERIFIED",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "the missing second output was never published",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 5,
+   "positive_fixture": true
+  },
+  "DEX18_multi_output_wal_is_monotone": {
+   "PASS": true,
+   "detail": {
+    "monotone_violations": [],
+    "per_row_pattern": [
+     "DISPATCH_INTENT",
+     "WRAPPER_ACK",
+     "START_GATE",
+     "ENGINE_OPENED",
+     "ADVANCE_STARTED",
+     "ENGINE_EXIT_OK",
+     "RAW_SEALED",
+     "RAW_SEALED",
+     "RAW_PUBLISHED",
+     "RAW_PUBLISHED",
+     "VERIFIED"
+    ],
+    "rows": 3
+   },
+   "mutations": [
+    {
+     "mutation": "the WAL reported a backwards state transition on a two-output row",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a row emitted more than one terminal VERIFIED",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a terminal VERIFIED preceded one of the row's own publications",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 3,
+   "positive_fixture": true
+  },
+  "DEX19_kill_after_seal_all_before_publish_all": {
+   "PASS": true,
+   "detail": {
+    "published_digests": {
+     "row00_a.bin": "3bc94cf80728e7dcc74d9fb60c5cdbf6f3822cb0d42f402d17cf045b4fdc8b49",
+     "row00_b.bin": "598bd0dede9f543ddb21208d5177a6ebeeeed311b278cf51958bd7390f76595f"
+    },
+    "states_at_end": [
+     "DISPATCH_INTENT",
+     "WRAPPER_ACK",
+     "START_GATE",
+     "ENGINE_OPENED",
+     "ADVANCE_STARTED",
+     "ENGINE_EXIT_OK",
+     "RAW_SEALED",
+     "RAW_SEALED",
+     "RAW_SEALED",
+     "RAW_SEALED",
+     "RAW_PUBLISHED",
+     "RAW_PUBLISHED",
+     "VERIFIED"
+    ],
+    "states_at_kill": [
+     "DISPATCH_INTENT",
+     "WRAPPER_ACK",
+     "START_GATE",
+     "ENGINE_OPENED",
+     "ADVANCE_STARTED",
+     "ENGINE_EXIT_OK",
+     "RAW_SEALED",
+     "RAW_SEALED"
+    ]
+   },
+   "mutations": [
+    {
+     "mutation": "a sealed-but-unpublished row was reported terminal",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "a sealed output was published before the kill",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "the resumed row was charged a second start",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "the resumed row advanced the engine a second time",
+     "refused_as_required": true
+    },
+    {
+     "mutation": "the resumed row emitted more than one terminal VERIFIED",
+     "refused_as_required": true
+    }
+   ],
+   "n_mutations": 5,
    "positive_fixture": true
   },
   "DEX1_safe_between_row_kill_and_resume": {
@@ -352,7 +513,7 @@
     "all_monotone": true,
     "orphan_tmp_ignored": true,
     "second_claim_refused": true,
-    "truncation_points": 40
+    "truncation_points": 36
    },
    "mutations": [
     {
@@ -430,5 +591,5 @@
    "positive_fixture": true
   }
  },
- "tests": 17
+ "tests": 20
 }

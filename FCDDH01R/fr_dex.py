@@ -53,6 +53,33 @@ def mkrows(out, n, secs="0.4", extra=(), tag="row"):
                         OPH, ["in_%d" % i], i) for i in range(n)]
 
 
+def mkrows2(out, n, secs="0.4", tag="row"):
+    """Rows declaring TWO outputs, as every real construction row does."""
+    rows = []
+    for i in range(n):
+        t1, t2 = "%s/tmp_a_%02d.bin" % (out, i), "%s/tmp_b_%02d.bin" % (out, i)
+        f1, f2 = "%s/%s%02d_a.bin" % (out, tag, i), "%s/%s%02d_b.bin" % (out, tag, i)
+        rows.append(fr_plan.row("%s%02d" % (tag, i), i,
+                                [DUMMY, "%s%02d" % (tag, i), t1, secs, "--second", t2],
+                                [[t1, f1], [t2, f2]], OPH, ["in_%d" % i], i))
+    return rows
+
+
+def with_hold(plan, key, rel):
+    pl = json.load(open(plan))
+    pl["dex_publish_hold"] = {"after_output": key, "release_file": rel}
+    pl["plan_sha256"] = hashlib.sha256(json.dumps(
+        {k: v for k, v in pl.items() if k != "plan_sha256"}, sort_keys=True).encode()).hexdigest()
+    SM.write_fsync(plan, json.dumps(pl, sort_keys=True, indent=1).encode())
+    if os.path.exists(rel):
+        os.unlink(rel)
+
+
+def row_states(led, rows):
+    return [led.states_of(led.run_id(r["ordinal"], r["operator_hash"], r["input_hashes"],
+                                     r["schedule_position"])) for r in rows]
+
+
 def launch(plan, logd):
     subprocess.run([os.path.join(H, "fr_launch.sh"), plan, logd], check=True,
                    capture_output=True, text=True)
@@ -185,8 +212,9 @@ def run():
     launch(plan, os.path.join(EV, "DEX4_logs"))
     wait_file(os.path.join(root, "status", "READY"), 30)
     launch(plan, os.path.join(EV, "DEX4_logs"))            # second, must be refused
-    time.sleep(3)
-    refused = os.path.exists(os.path.join(root, "status", "REFUSED_DUPLICATE_SUPERVISOR"))
+    # Bounded poll, not a fixed sleep: the refusal is asynchronous (setsid + interpreter start),
+    # and a fixed 3 s window made this assertion load-dependent while the invariant itself held.
+    refused = wait_file(os.path.join(root, "status", "REFUSED_DUPLICATE_SUPERVISOR"), 45)
     nsup = len([p for p in sup_pids()])
     wait_file(os.path.join(root, "status", "PHASE_COMPLETE"), 120)
     led = SM.PhaseLedger(root, "FCDDH01R", "DEX4_DUP", "DEX_DUMMY")
@@ -384,7 +412,14 @@ def run():
     led.emit(rid, "RAW_SEALED", {"sha256": hashlib.sha256(b"payload-bytes").hexdigest()})
     d1 = led.decide(rid, lambda r: None)                    # killed after RAW_SEALED
     led.publish_raw(rid, tmp, fin)
+    # Corrected contract (see FCDDH01R_WAL_MONOTONICITY_ADJUDICATION.json): publishing an output
+    # does NOT make the row terminal. Only the caller's row-terminal VERIFIED does, and it may be
+    # emitted only once EVERY declared output is published. The assertion below is strictly
+    # stronger than the one it replaces: it now requires a published-but-not-yet-terminal row to
+    # stay in FINISH_PUBLICATION, and SKIP_VERIFIED to appear only after the terminal record.
     d2 = led.decide(rid, lambda r: None)
+    led.emit(rid, "VERIFIED", {"outputs": {"f.bin": hashlib.sha256(b"payload-bytes").hexdigest()}})
+    d3 = led.decide(rid, lambda r: None)
     same_hash_replay = True
     try:
         SM.write_fsync(tmp, b"payload-bytes")
@@ -398,10 +433,14 @@ def run():
     except Exception:
         diff_fatal = True
     rec("DEX12_publication_boundary_recovery",
-        d1 == "FINISH_PUBLICATION" and d2 == "SKIP_VERIFIED" and same_hash_replay,
+        d1 == "FINISH_PUBLICATION" and d2 == "FINISH_PUBLICATION" and d3 == "SKIP_VERIFIED"
+        and same_hash_replay,
         [("a different-hash destination silently overwritten", diff_fatal),
-         ("a sealed-but-unpublished row offered for re-advance", d1 == "FINISH_PUBLICATION")],
-        {"after_seal": d1, "after_publish": d2,
+         ("a sealed-but-unpublished row offered for re-advance", d1 == "FINISH_PUBLICATION"),
+         ("a published but not yet row-terminal row treated as finished",
+          d2 == "FINISH_PUBLICATION"),
+         ("a row-terminal row offered for re-advance", d3 == "SKIP_VERIFIED")],
+        {"after_seal": d1, "after_publish_before_terminal": d2, "after_row_terminal": d3,
          "idempotent_same_hash_recovery": same_hash_replay, "different_hash_fatal": diff_fatal})
 
     # ---------------------------------------------------------------- DEX13 atomic gate race
@@ -507,6 +546,115 @@ def run():
           or accepted == NEED)],
         {"accepted": accepted, "rejected_candidates": rejected,
          "charged": charged, "log": log})
+
+    # ------------------------------------------- DEX17 kill inside the publication window
+    # The exact latent defect exposed by the DISCOVERY_CONSTRUCTION monotonicity adjudication:
+    # a multi-output row killed after its FIRST output is published and before the row is done.
+    root, out = fresh("DEX17")
+    plan = os.path.join(EV, "DEX17_plan.json")
+    rel = os.path.join(EV, "DEX17_release")
+    rows = mkrows2(out, 2, "0.4")
+    fr_plan.build(plan, "FCDDH01R", "DEX17_PUBLICATION_WINDOW_KILL", root, rows, 10,
+                  execution_class="DEX_DUMMY")
+    with_hold(plan, "row00_a.bin", rel)
+    led = SM.PhaseLedger(root, "FCDDH01R", "DEX17_PUBLICATION_WINDOW_KILL", "DEX_DUMMY")
+    rid0 = led.run_id(rows[0]["ordinal"], OPH, rows[0]["input_hashes"], rows[0]["schedule_position"])
+    launch(plan, os.path.join(EV, "DEX17_logs"))
+    held = wait_file(os.path.join(root, "status", "PUBLISH_HOLDING"), 60)
+    for p in sup_pids():
+        os.kill(p, signal.SIGKILL)
+    time.sleep(1)
+    st_kill = led.states_of(rid0)
+    a_pub = os.path.exists(os.path.join(out, "row00_a.bin"))
+    b_pub = os.path.exists(os.path.join(out, "row00_b.bin"))
+    no_verified_at_kill = "VERIFIED" not in st_kill
+    gates_before = len(led.charged_rows())
+    SM.write_fsync(rel, b"release")
+    launch(plan, os.path.join(EV, "DEX17_logs"))
+    done = wait_file(os.path.join(root, "status", "PHASE_COMPLETE"), 120)
+    st_end = led.states_of(rid0)
+    both = (os.path.exists(os.path.join(out, "row00_a.bin"))
+            and os.path.exists(os.path.join(out, "row00_b.bin")))
+    one_gate = len(led.charged_rows()) == 2 and st_end.count("START_GATE") == 1
+    one_adv = st_end.count("ADVANCE_STARTED") == 1 and st_end.count("ENGINE_OPENED") == 1
+    one_verified = st_end.count("VERIFIED") == 1
+    res = json.load(open(os.path.join(root, "status", "PHASE_RESULT.json")))
+    finished = any(x["run_id"] == rid0 and x["outcome"] in ("FINISHED_PUBLICATION", "SKIP_VERIFIED")
+                   for x in res["results"])
+    rec("DEX17_kill_inside_the_publication_window",
+        held and a_pub and not b_pub and no_verified_at_kill and done and both
+        and one_gate and one_adv and one_verified and finished and gates_before == 1,
+        [("the row was reported terminal while a declared output was still unpublished",
+          no_verified_at_kill),
+         ("the resumed row was charged a second start", one_gate),
+         ("the resumed row advanced the engine a second time", one_adv),
+         ("the resumed row emitted more than one terminal VERIFIED", one_verified),
+         ("the missing second output was never published", both)],
+        {"states_at_kill": st_kill, "states_at_end": st_end,
+         "first_output_published_at_kill": a_pub, "second_output_published_at_kill": b_pub,
+         "charged_rows_total": len(led.charged_rows()), "resume_outcome_is_publication": finished})
+
+    # ------------------------------------------- DEX18 multi-output WAL is strictly monotone
+    root, out = fresh("DEX18")
+    plan = os.path.join(EV, "DEX18_plan.json")
+    rows = mkrows2(out, 3, "0.3")
+    fr_plan.build(plan, "FCDDH01R", "DEX18_MULTI_OUTPUT_MONOTONE", root, rows, 10,
+                  execution_class="DEX_DUMMY")
+    launch(plan, os.path.join(EV, "DEX18_logs"))
+    done = wait_file(os.path.join(root, "status", "PHASE_COMPLETE"), 120)
+    led = SM.PhaseLedger(root, "FCDDH01R", "DEX18_MULTI_OUTPUT_MONOTONE", "DEX_DUMMY")
+    sts = row_states(led, rows)
+    viol = led.verify_monotone()
+    one_each = all(s.count("VERIFIED") == 1 for s in sts)
+    two_pub = all(s.count("RAW_SEALED") == 2 and s.count("RAW_PUBLISHED") == 2 for s in sts)
+    terminal_last = all(s[-1] == "VERIFIED" for s in sts)
+    rec("DEX18_multi_output_wal_is_monotone",
+        done and not viol and one_each and two_pub and terminal_last,
+        [("the WAL reported a backwards state transition on a two-output row", not viol),
+         ("a row emitted more than one terminal VERIFIED", one_each),
+         ("a terminal VERIFIED preceded one of the row's own publications", terminal_last)],
+        {"monotone_violations": viol, "per_row_pattern": sts[0] if sts else [],
+         "rows": len(sts)})
+
+    # ------------------------------------------- DEX19 kill after seal-all, before publish-all
+    root, out = fresh("DEX19")
+    plan = os.path.join(EV, "DEX19_plan.json")
+    rel = os.path.join(EV, "DEX19_release")
+    rows = mkrows2(out, 2, "0.4")
+    fr_plan.build(plan, "FCDDH01R", "DEX19_SEALED_NOT_PUBLISHED_KILL", root, rows, 10,
+                  execution_class="DEX_DUMMY")
+    with_hold(plan, "SEALED_ALL", rel)
+    led = SM.PhaseLedger(root, "FCDDH01R", "DEX19_SEALED_NOT_PUBLISHED_KILL", "DEX_DUMMY")
+    rid0 = led.run_id(rows[0]["ordinal"], OPH, rows[0]["input_hashes"], rows[0]["schedule_position"])
+    launch(plan, os.path.join(EV, "DEX19_logs"))
+    held = wait_file(os.path.join(root, "status", "PUBLISH_HOLDING"), 60)
+    for p in sup_pids():
+        os.kill(p, signal.SIGKILL)
+    time.sleep(1)
+    st_kill = led.states_of(rid0)
+    sealed_only = (st_kill.count("RAW_SEALED") == 2 and "RAW_PUBLISHED" not in st_kill
+                   and "VERIFIED" not in st_kill)
+    none_final = not any(os.path.exists(f) for _, f in rows[0]["outputs"])
+    SM.write_fsync(rel, b"release")
+    launch(plan, os.path.join(EV, "DEX19_logs"))
+    done = wait_file(os.path.join(root, "status", "PHASE_COMPLETE"), 120)
+    st_end = led.states_of(rid0)
+    both = all(os.path.exists(f) for _, f in rows[0]["outputs"])
+    exp = {os.path.basename(f): hashlib.sha256(open(f, "rb").read()).hexdigest()
+           for _, f in rows[0]["outputs"]} if both else {}
+    one_gate = st_end.count("START_GATE") == 1 and len(led.charged_rows()) == 2
+    one_adv = st_end.count("ADVANCE_STARTED") == 1
+    one_verified = st_end.count("VERIFIED") == 1
+    rec("DEX19_kill_after_seal_all_before_publish_all",
+        held and sealed_only and none_final and done and both and one_gate and one_adv
+        and one_verified,
+        [("a sealed-but-unpublished row was reported terminal", "VERIFIED" not in st_kill),
+         ("a sealed output was published before the kill", none_final),
+         ("the resumed row was charged a second start", one_gate),
+         ("the resumed row advanced the engine a second time", one_adv),
+         ("the resumed row emitted more than one terminal VERIFIED", one_verified)],
+        {"states_at_kill": st_kill, "states_at_end": st_end,
+         "published_digests": exp})
 
     # ---------------------------------------------------------------- dependency audit
     tree = ast.parse(open(DUMMY).read())

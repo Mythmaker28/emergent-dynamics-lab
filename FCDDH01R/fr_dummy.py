@@ -53,5 +53,8 @@ if STALL:
 time.sleep(SLEEP)
 body = hashlib.sha256(("FCDDH01R|DEX_DUMMY|" + TAG).encode()).digest() * 64
 _fsync_write(TMP, body)
+if "--second" in A:                      # multi-output rows, for the publication-window DEX cases
+    _fsync_write(A[A.index("--second") + 1],
+                 hashlib.sha256(("FCDDH01R|DEX_DUMMY|SECOND|" + TAG).encode()).digest() * 32)
 print(json.dumps({"ok": True, "tag": TAG, "execution_class": "DEX_DUMMY",
                   "sha256": hashlib.sha256(body).hexdigest(), "bytes": len(body)}))
