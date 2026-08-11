@@ -1,0 +1,263 @@
+{
+ "source_files": {
+  "FSQBT00/CELL_MATERIALITY_REPORT.json": "83c7dcf22adcc13b78208397dd60d3c4131ba4c18a01b9c32febc7c7ec2c7f09",
+  "FSQBT00/FROZEN_E2_OR_PROJECTIVE_P2_REPORT.json": "fbc1443c2ae7679833a14a34780be97d0c0364f71b082a6c7719d83de145b9f9",
+  "FSQBT00/FROZEN_P2_TRANSFER_REPORT.json": "8a152afdb9c85cb3a3ce446f588a3469dfc29868eb6a65f6ee61ad8907eb1485",
+  "FCRA00/CARRIER_COMMON_DIFFERENTIAL_ANATOMY.json": "a24047ee8aadcb56bb54adf43e13a5d4f387463f82dc959dedbabb1439ac2e3c",
+  "FCRA00/DISCOVERY_DIRECTION_LOBO_ARBITRATION.json": "28ce6a5367be71f0053182e7245b44cb747ef3ea1ffe6667d6b308ab79c06c85",
+  "FCRA00/FCRA00_FINAL_DISPOSITION.json": "13fbccbf520b6d1b4880f637986e77fb56a54426de18d9c5e66360d779364eb5"
+ },
+ "checks": {
+  "FSQBT00_CELL_MATERIALITY": {
+   "owner_reported": "24_OF_24",
+   "from_bytes": "PASS_24_OF_24",
+   "n_pass": 24,
+   "agrees": true
+  },
+  "FSQBT00_DIRECT_CARRIER_CONTRAST_MAGNITUDE": {
+   "owner_reported": "12_OF_12",
+   "from_bytes": 12,
+   "agrees": true
+  },
+  "FSQBT00_PARENT_E2_SIGN_CONCORDANCE": {
+   "owner_reported": "10_OF_12",
+   "from_bytes": 10,
+   "agrees": true
+  },
+  "FROZEN_P2_TRANSFER_AS_FROZEN": {
+   "owner_reported": "NOT_TRANSFERRED",
+   "from_bytes": "NOT_TRANSFERRED",
+   "agrees": true,
+   "blocks_exceeding_tube": 3,
+   "owner_reported_exceeding": 3,
+   "exceed_agrees": true,
+   "TUBE_P2_LOBO": 1.2166510017869535e-07
+  },
+  "OUTSIDE_P2_ANATOMY": {
+   "from_bytes": {
+    "gauge": "frozen residual-optimal g* (matches committed)",
+    "identities_max_abs_error": {
+     "total=intercept+centered": 1.3234889800848443e-23,
+     "total=common+diff": 2.6469779601696886e-23,
+     "common=intercept+common_centered": 6.617444900424222e-24,
+     "intercept two ways": 4.1359030627651384e-25,
+     "exclusive three-way": 2.6469779601696886e-23,
+     "channel-time sum": 0.0
+    },
+    "E_OUT_TOTAL": 8.523579356706969e-08,
+    "exclusive_three_way": {
+     "INTERCEPT": 2.3596319633515767e-09,
+     "COMMON_CENTERED": 2.636134715098647e-08,
+     "DIFFERENTIAL": 5.651481445273161e-08
+    },
+    "exclusive_fractions": {
+     "INTERCEPT": 0.027683580625020493,
+     "COMMON_CENTERED": 0.30927555253232264,
+     "DIFFERENTIAL": 0.6630408668426565
+    },
+    "E_COMMON_TOTAL": 2.8720979114338052e-08,
+    "E_DIFFERENTIAL_TOTAL": 5.651481445273161e-08,
+    "E_COMMON_TOTAL_fraction": 0.3369591331573432,
+    "E_DIFFERENTIAL_TOTAL_fraction": 0.6630408668426565,
+    "reading": "INTERCEPT is a transported-mean failure, not a new dimension; common dominance is not carrier specificity; a 12/12 direct contrast does not imply a material outside-P2 differential component.",
+    "leave_one_ancestry_influence_E_OUT_TOTAL_range": [
+     7.946752007260212e-08,
+     9.010121373426439e-08
+    ],
+    "ancestry_influence": {
+     "65100_NEAR_a0": {
+      "E_OUT_TOTAL_minus": 8.602709971586832e-08,
+      "INTERCEPT_minus": 2.4136143223886587e-09,
+      "DIFFERENTIAL_minus": 5.52298306417116e-08
+     },
+     "65101_NEAR_a1": {
+      "E_OUT_TOTAL_minus": 7.946752007260212e-08,
+      "INTERCEPT_minus": 6.200006173427682e-10,
+      "DIFFERENTIAL_minus": 5.9134895191684876e-08
+     },
+     "65102_FAR_a0": {
+      "E_OUT_TOTAL_minus": 8.210427282992451e-08,
+      "INTERCEPT_minus": 4.34850417626801e-09,
+      "DIFFERENTIAL_minus": 5.783996122130278e-08
+     },
+     "65103_FAR_a1": {
+      "E_OUT_TOTAL_minus": 8.673384036847387e-08,
+      "INTERCEPT_minus": 3.3059893301681156e-09,
+      "DIFFERENTIAL_minus": 5.570583051238841e-08
+     },
+     "65104_NEAR_a0": {
+      "E_OUT_TOTAL_minus": 8.040367512055462e-08,
+      "INTERCEPT_minus": 1.0966648278486226e-09,
+      "DIFFERENTIAL_minus": 5.422365205306181e-08
+     },
+     "65105_NEAR_a1": {
+      "E_OUT_TOTAL_minus": 8.785147135926164e-08,
+      "INTERCEPT_minus": 1.7817734816251691e-09,
+      "DIFFERENTIAL_minus": 5.839417381757242e-08
+     },
+     "65106_FAR_a0": {
+      "E_OUT_TOTAL_minus": 8.690504471239142e-08,
+      "INTERCEPT_minus": 3.534252266849039e-09,
+      "DIFFERENTIAL_minus": 5.6486923411835135e-08
+     },
+     "65107_FAR_a1": {
+      "E_OUT_TOTAL_minus": 8.698163262458667e-08,
+      "INTERCEPT_minus": 2.5526699648403428e-09,
+      "DIFFERENTIAL_minus": 5.585603140085758e-08
+     },
+     "65108_NEAR_a0": {
+      "E_OUT_TOTAL_minus": 8.128204907435413e-08,
+      "INTERCEPT_minus": 1.6006184594107405e-09,
+      "DIFFERENTIAL_minus": 5.293104862743463e-08
+     },
+     "65109_NEAR_a1": {
+      "E_OUT_TOTAL_minus": 9.010121373426439e-08,
+      "INTERCEPT_minus": 3.37546483933642e-09,
+      "DIFFERENTIAL_minus": 5.966782170784918e-08
+     },
+     "65110_FAR_a0": {
+      "E_OUT_TOTAL_minus": 8.743941612043376e-08,
+      "INTERCEPT_minus": 3.2125569459639064e-09,
+      "DIFFERENTIAL_minus": 5.6377544034951786e-08
+     },
+     "65111_FAR_a1": {
+      "E_OUT_TOTAL_minus": 8.753228707212087e-08,
+      "INTERCEPT_minus": 3.0878228059609136e-09,
+      "DIFFERENTIAL_minus": 5.633006081212918e-08
+     }
+    }
+   }
+  },
+  "FCRA00_DIRECTION_ARBITRATION": {
+   "from_bytes": {
+    "A_DELTA_TAU": 0.0029273597834819794,
+    "E_DELTA_TAU": 1.0711794127434574e-06,
+    "sum_TAU": 0.012419735723237346,
+    "C_common": {
+     "norm": 0.0002665046688232157,
+     "GEOMETRY_ENERGY": 8.878092313071487e-09,
+     "AXIS": [
+      -0.12303405230406433,
+      -0.23708809013099585,
+      -0.07460017376575193,
+      0.1268260778221712,
+      0.2449844790859135,
+      0.30712223383943926,
+      0.34911483525886894,
+      0.38640491919428893,
+      0.42389634333660575,
+      0.3264194140120519,
+      0.28459560708040565,
+      0.2528876788050528,
+      0.1533993050483497,
+      0.1299401134582749,
+      0.08480971133626929,
+      0.03222076489447406,
+      -0.008523813959600588,
+      -0.029179121811602586,
+      -0.02673194797390293,
+      -0.0007270250139109142
+     ],
+     "DX1": true,
+     "DX2": false,
+     "DX3": false,
+     "DX4": false,
+     "DX4_correct": "2",
+     "DX4_resolved": 12,
+     "DX5": true,
+     "DX6": true,
+     "min_full_vs_fold_align": 0.9333969593248138,
+     "max_leverage": 0.4589039153560986,
+     "DX7": false,
+     "DX8": true
+    },
+    "D_differential": {
+     "norm": 0.0006057362800760426,
+     "GEOMETRY_ENERGY": 4.586455512504524e-08,
+     "AXIS": [
+      0.010495546489091831,
+      0.19123675104671012,
+      0.33357740938056274,
+      0.3139397186800001,
+      0.24286104111069787,
+      0.17211990678121,
+      0.1063650754728337,
+      0.044905829010846325,
+      -0.0123934760639047,
+      -0.046237626376208305,
+      -0.12831585914260343,
+      0.12305443351503005,
+      0.3798227845653645,
+      0.4116683981027915,
+      0.356203954635297,
+      0.2885932764686005,
+      0.22463439104663838,
+      0.16671138408769406,
+      0.11479527093316656,
+      0.04812307010789331
+     ],
+     "DX1": true,
+     "DX2": false,
+     "DX3": false,
+     "DX4": true,
+     "DX4_correct": "12",
+     "DX4_resolved": 12,
+     "DX5": true,
+     "DX6": true,
+     "min_full_vs_fold_align": 0.9948496834942774,
+     "max_leverage": 0.14358784612984501,
+     "DX7": false,
+     "DX8": true
+    },
+    "C_qualifies": false,
+    "D_qualifies": false,
+    "DISCOVERY_DIRECTION_STATUS": "M0_NO_UNIQUE_DIRECTION_LICENSED",
+    "note": "DX2 uses the conservative triangle-inequality floor A_DELTA_TAU; it is an exploratory materiality guard, not a sampling-error calibration. The order-statistic diagnostic (P(K>=3)=11/28) remains a separate field and is never inferred from a failed direction."
+   }
+  },
+  "FCRA00_FINAL_DISPOSITION": {
+   "from_bytes": {
+    "programme": "FSQBT00_CORRECTIVE_RESIDUAL_AUTOPSY_00",
+    "DISPOSITION": "FSQBT00_RECORD_CORRECTED__PROTOCOL_NONCONFORMANT__READER_LEVEL_PRIMARY_REPRODUCED__FULL_BYTES_RECOVERED_ON_CHILD__RESIDUAL_AUTOPSY_COMPLETE__NO_UNIQUE_DIRECTION__ZERO_STARTS",
+    "decision_matrix": {
+     "FCRA00_PROVENANCE_STATUS": "RESOLVED__CHAIN_7_OF_7__MAIN_UNCHANGED",
+     "FSQBT00_DIAGNOSTIC_START_STATUS": "ONE_UNAUTHORIZED_START__NO_SCIENTIFIC_OUTCOME_OPENED_PROVEN",
+     "FSQBT00_PROTOCOL_CONFORMITY_STATUS": "NONCONFORMANT__ONE_UNAUTHORIZED_DIAGNOSTIC_START__NO_OUTCOME_OPENED_PROVEN",
+     "FSQBT00_ORIGINAL_TIP_DELIVERY_STATUS": "INCOMPLETE_MISSING_FULL_CHECKPOINT_BYTES",
+     "FSQBT00_CHECKPOINT_BYTES_STATUS": "RECOVERED_EXACT_BYTES_AND_COMMITTED",
+     "FSQBT00_MASK_EVIDENCE_STATUS": "ORIGINAL_EXACT_BYTES_ALREADY_COMMITTED",
+     "FCRA00_RECOVERY_STATUS": "RECOVERED_EXACT_BYTES_AND_COMMITTED",
+     "CURRENT_CHAIN_EVIDENCE_STATUS": "COMPLETE_AFTER_APPEND_ONLY_CHILD_RECOVERY",
+     "FSQBT00_READER_LEVEL_REPRODUCIBILITY": "EVALUABLE_AND_REPRODUCED",
+     "FULL_FIELD_END_TO_END_REPRODUCIBILITY": "DELIVERED_ON_CHILD",
+     "FSQBT00_PRIMARY_RECOMPUTATION_STATUS": "PASS",
+     "FSQBT00_CELL_MATERIALITY_STATUS": "PASS_24_OF_24",
+     "FSQBT00_DIRECT_CONTRAST_STATUS": "MATERIAL_12_OF_12",
+     "FSQBT00_PARENT_E2_SIGN_STATUS": "CONCORDANT_10_OF_12__P_VALUE_NOT_LICENSED",
+     "FSQBT00_FROZEN_P2_TRANSFER_AS_FROZEN": "NOT_TRANSFERRED",
+     "FSQBT00_FROZEN_E2_TRANSFER_AS_FROZEN": "NOT_TRANSFERRED",
+     "FSQBT00_FRESH_QUOTIENT_STATUS": "RELATIVE_AT_LEAST_TWO__SECOND_BELOW_ABSOLUTE_MATERIALITY",
+     "P2_POPULATION_TRANSFER_INTERPRETATION": "STRICT_FAIL_3_OF_12__POPULATION_NONTRANSFER_NOT_ESTABLISHED",
+     "FOUR_VS_TWELVE_ORDER_STATISTIC_INTERPRETATION": "P_Kge3=11/28=0.393__INCONCLUSIVE_FROM_THIS_GATE_ALONE",
+     "FCRA00_INTERCEPT_ANATOMY_STATUS": "INTERCEPT_2.8pct__TRANSPORTED_MEAN_MINOR",
+     "FCRA00_COMMON_VS_DIFFERENTIAL_STATUS": "DIFFERENTIAL_DOMINATED_66.3pct__COMMON_CENTERED_30.9pct",
+     "FCRA00_NEAR_DESCRIPTIVE_STATUS": "POST_OUTCOME_DISCOVERY__2x2_1_OVER_11",
+     "FCRA00_GAUGE_COOPTIMAL_AXIS_STATUS": "UNIQUE",
+     "FCRA00_DISCOVERY_DIRECTION_STATUS": "M0_NO_UNIQUE_DIRECTION_LICENSED",
+     "ENGINE_STARTS": 0
+    },
+    "parent_tip": "b3f45ac7781e0dd48f34886b7c63840af520d502",
+    "engine_starts": 0,
+    "FCRA00_RAW_ENGINE_ADVANCE_SEQUENCE_COUNT": 0,
+    "TOMMY_ACTION_REQUIRED": false,
+    "TOMMY_GIT_ACTION_REQUIRED": false,
+    "PUSH_AUTHORIZED": false,
+    "DRAFT_PR_AUTHORIZED": false,
+    "WORKFLOW_TRIGGER_AUTHORIZED": false,
+    "immutable_object_untouched": "FWL2_RELATIVE_QUOTIENT_BASIS_V1 never refit/rescaled/recentered/rotated/re-versioned; tube unchanged"
+   }
+  }
+ },
+ "owner_reported_facts_are_bound_not_amended": true,
+ "no_parent_artefact_modified": true
+}

@@ -1,0 +1,84 @@
+{
+ "derivation": "static, from the committed code; no physics instantiated, no timing probe",
+ "C_PRECURSOR_ADVANCE": 0,
+ "C_PRECURSOR_ADVANCE_reason": "PRECURSOR(S) = seed_state(SPEC,TRACER,S,'random') draws from numpy.random.default_rng(S) and performs zero engine steps; domc_core.found(S) only multiplies it by the explicit geometry mask. A pure read/draw costs zero.",
+ "C_NEAR_A0_DESCENDANT_ADVANCE": 1,
+ "C_NEAR_A1_DESCENDANT_ADVANCE": 1,
+ "C_FAR_A0_DESCENDANT_ADVANCE": 1,
+ "C_FAR_A1_DESCENDANT_ADVANCE": 1,
+ "engine_steps_per_descendant_advance_sequence": 390,
+ "qualification_operations_that_advance_state": 0,
+ "qualification_operations": [
+  "wsfscrp_core.t0_masks",
+  "wsfscrp_core.reference_masks",
+  "wsfscrp_core.B_of",
+  "np.isfinite",
+  "wsfscrp_core.save",
+  "hashlib.sha256"
+ ],
+ "qualification_cost": 0,
+ "C_BLOCK_ACTUAL_formula": "0 + 1 + 1 + 1 + 1 + 0",
+ "C_BLOCK_MAX": 4,
+ "C_SETUP_D": 0,
+ "C_SETUP_H": 0,
+ "C_SETUP_reason": "no setup operation of either phase instantiates and advances physics",
+ "N_D_ATTEMPT": 24,
+ "N_H_ATTEMPT": 32,
+ "charged_process_starts_per_block": 4,
+ "raw_advance_sequences_per_block": 4,
+ "budget_uses": "max(process starts, raw advance sequences) = 4 per attempted block",
+ "sham_starts_per_descendant": 2,
+ "active_starts_per_descendant": 2,
+ "worked_examples": {
+  "pre_launch_transport_failure": {
+   "sequence": [
+    "INTENDED written and fsynced",
+    "process control failed before exec",
+    "ack marker ABSENT",
+    "advance marker ABSENT",
+    "no output file"
+   ],
+   "charged_process_starts": 0,
+   "raw_advance_sequences": 0,
+   "retry_permitted": true,
+   "why": "the idempotency record proves no engine was instantiated and no state advanced"
+  },
+  "uncertain_launch": {
+   "sequence": [
+    "INTENDED written and fsynced",
+    "subprocess raised or timed out",
+    "ack marker present or unreadable",
+    "advance marker unreadable"
+   ],
+   "charged_process_starts": 1,
+   "raw_advance_sequences": 1,
+   "retry_permitted": false,
+   "why": "an uncertain launch is charged and never replayed"
+  },
+  "complete_block": {
+   "sequence": [
+    "4 descendant workers, each INTENDED -> ack -> advance -> published output"
+   ],
+   "charged_process_starts": 4,
+   "raw_advance_sequences": 4,
+   "retry_permitted": false,
+   "why": "C_PRECURSOR_ADVANCE = 0 (the precursor is a pure seeded draw with zero engine steps); each of the four descendants is one fresh process and one raw advance sequence of 150 + 120 + 120 = 390 engine steps; admissibility is a pure read"
+  },
+  "candidate_failing_on_the_fourth_descendant": {
+   "sequence": [
+    "precursor (0 advances)",
+    "descendant 1 ok",
+    "descendant 2 ok",
+    "descendant 3 ok",
+    "descendant 4 rejected on admissibility"
+   ],
+   "charged_process_starts": 4,
+   "raw_advance_sequences": 4,
+   "retry_permitted": false,
+   "why": "the precursor plus the advances actually performed are charged; the block is rejected whole and never resumed"
+  }
+ },
+ "N_D_ATTEMPT_ge_12": true,
+ "N_H_ATTEMPT_ge_16": true,
+ "ENGINE_START_LEDGER_STATUS": "BUDGET_FEASIBLE"
+}

@@ -1,0 +1,3223 @@
+{
+ "seed_hex": "3d481397e66dc043007214b9b3701919a1364a7c9ff0302c21fd78e5c45977d2",
+ "seed_bits": 256,
+ "seed_source": "os.urandom(32), drawn exactly once, fsynced before any derivation",
+ "scheduler": "SHAKE256, domain separated; first bit = most significant bit of the first output byte (digest[0] >> 7); Fisher-Yates with rejection sampling",
+ "no_redraw_permitted": true,
+ "known_answer_fixtures": {
+  "shake256_geometry_DISCOVERY_0_first8": "57b2e8b45d4e36dc",
+  "shake256_allocation_DISCOVERY_0_NEAR_first8": "2dbb17ef7ea673b1",
+  "shake256_run_order_DISCOVERY_0_first8": "e0e067f1e7146534",
+  "shake256_geometry_HOLDOUT_0_first8": "ca367d29187a7580",
+  "empty_domain_zero_seed_check": "2516f18a7242ed59"
+ },
+ "implementation_sha256": "d3b031c8709f01a30024f11a373b3b78e6fb399a259fd0f38c6103625d2ff01f",
+ "DISCOVERY": {
+  "0": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    1,
+    2,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 1
+   }
+  },
+  "1": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    3,
+    1,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 0
+   }
+  },
+  "2": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    2,
+    0,
+    3
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 1
+   }
+  },
+  "3": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    2,
+    0,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 0,
+    "NEAR": 0
+   }
+  },
+  "4": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    2,
+    0,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 0,
+    "NEAR": 0
+   }
+  },
+  "5": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    1,
+    3,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 0
+   }
+  },
+  "6": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    0,
+    3,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 1
+   }
+  },
+  "7": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    1,
+    3,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 0,
+    "NEAR": 0
+   }
+  },
+  "8": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    1,
+    2,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 0
+   }
+  },
+  "9": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    2,
+    0,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 0
+   }
+  },
+  "10": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    2,
+    0,
+    3
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 0,
+    "NEAR": 0
+   }
+  },
+  "11": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 1
+   }
+  },
+  "12": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    3,
+    1,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 0
+   }
+  },
+  "13": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    1,
+    3,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 0
+   }
+  },
+  "14": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    0,
+    3,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 0
+   }
+  },
+  "15": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    3,
+    0,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 1
+   }
+  },
+  "16": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    0,
+    2,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 0
+   }
+  },
+  "17": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    0,
+    3,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 0
+   }
+  },
+  "18": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    1,
+    3,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 0
+   }
+  },
+  "19": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    2,
+    1,
+    3
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 0
+   }
+  },
+  "20": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    3,
+    0,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 1
+   }
+  },
+  "21": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    0,
+    2,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 1
+   }
+  },
+  "22": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    3,
+    1,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 0,
+    "NEAR": 0
+   }
+  },
+  "23": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    2,
+    3,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 1
+   }
+  }
+ },
+ "HOLDOUT": {
+  "0": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    2,
+    0,
+    3
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 0,
+    "NEAR": 1
+   }
+  },
+  "1": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    3,
+    0,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 1
+   }
+  },
+  "2": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    0,
+    2,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 0
+   }
+  },
+  "3": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    3,
+    1,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 0
+   }
+  },
+  "4": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    1,
+    0,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 1
+   }
+  },
+  "5": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    1,
+    0,
+    3
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 0
+   }
+  },
+  "6": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    3,
+    2,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 0
+   }
+  },
+  "7": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 1
+   }
+  },
+  "8": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    3,
+    2,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 1
+   }
+  },
+  "9": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    0,
+    2,
+    3
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 0
+   }
+  },
+  "10": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    1,
+    3,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 1
+   }
+  },
+  "11": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    0,
+    1,
+    3
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 0
+   }
+  },
+  "12": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    3,
+    1,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 0,
+    "NEAR": 1
+   }
+  },
+  "13": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    0,
+    3,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 1
+   }
+  },
+  "14": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    3,
+    2,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 1
+   }
+  },
+  "15": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    1,
+    3,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 0
+   }
+  },
+  "16": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    3,
+    2,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 0
+   }
+  },
+  "17": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    1,
+    3,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 1
+   }
+  },
+  "18": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    1,
+    0,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 0,
+    "NEAR": 0
+   }
+  },
+  "19": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    1,
+    0,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 0,
+    "NEAR": 1
+   }
+  },
+  "20": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    1,
+    3,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 0
+   }
+  },
+  "21": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    1,
+    2,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 1
+   }
+  },
+  "22": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    2,
+    0,
+    3
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 1
+   }
+  },
+  "23": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    3,
+    2,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 1
+   }
+  },
+  "24": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    3,
+    1,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 1,
+    "NEAR": 0
+   }
+  },
+  "25": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    1,
+    3,
+    0
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 0,
+    "NEAR": 0
+   }
+  },
+  "26": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    3,
+    1,
+    0,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 1
+   }
+  },
+  "27": {
+   "geometry_coin": 1,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    0,
+    3,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "FAR": 0,
+    "NEAR": 0
+   }
+  },
+  "28": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    0,
+    2,
+    1,
+    3
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 1
+   }
+  },
+  "29": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    0,
+    3,
+    2
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "3": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 1,
+    "FAR": 1
+   }
+  },
+  "30": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 1
+    }
+   ],
+   "descendant_run_order": [
+    1,
+    0,
+    2,
+    3
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "1": [
+     "CARRIER_1",
+     "CARRIER_2"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 0
+   }
+  },
+  "31": {
+   "geometry_coin": 0,
+   "cells": [
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 0,
+     "allocation": 0
+    },
+    {
+     "slot": "SLOT_0",
+     "geometry": "NEAR",
+     "serializer_member": 1,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 0,
+     "allocation": 1
+    },
+    {
+     "slot": "SLOT_1",
+     "geometry": "FAR",
+     "serializer_member": 1,
+     "allocation": 0
+    }
+   ],
+   "descendant_run_order": [
+    2,
+    3,
+    0,
+    1
+   ],
+   "carrier_run_order": {
+    "0": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "1": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "2": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ],
+    "3": [
+     "CARRIER_2",
+     "CARRIER_1"
+    ]
+   },
+   "allocation_serializer_swap": {
+    "NEAR": 0,
+    "FAR": 1
+   }
+  }
+ },
+ "geometry_coin_counts": {
+  "DISCOVERY": {
+   "0": 13,
+   "1": 11
+  },
+  "HOLDOUT": {
+   "0": 18,
+   "1": 14
+  }
+ },
+ "one_fair_block_level_geometry_coin_per_ancestry": true,
+ "geometry_bit_used_directly_once": true
+}

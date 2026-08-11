@@ -1,0 +1,244 @@
+{
+ "coordinate_space": "parent weighted-L2 R^20: coords 0..9 = u (common channel), 10..19 = v (differential channel)",
+ "u_h": "sqrt(W[h]/2) * (delta_A[h] + delta_B[h])",
+ "v_h": "sqrt(W[h]/2) * (delta_A[h] - delta_B[h])",
+ "isometry": "||z||^2 = sum_h W[h](delta_A[h]^2 + delta_B[h]^2) = M2^2, for either gauge sign",
+ "W": [
+  "1/18",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/18"
+ ],
+ "W_sum": "1",
+ "sqrt_W_over_2": [
+  "1/6",
+  "sqrt(2)/6",
+  "sqrt(2)/6",
+  "sqrt(2)/6",
+  "sqrt(2)/6",
+  "sqrt(2)/6",
+  "sqrt(2)/6",
+  "sqrt(2)/6",
+  "sqrt(2)/6",
+  "1/6"
+ ],
+ "scored_native_steps": [
+  40,
+  80,
+  120,
+  160,
+  200,
+  240,
+  280,
+  320,
+  360,
+  400
+ ],
+ "dt": "1/10",
+ "d": "d[b,g,a] = (r[.,CARRIER_2] - r[.,CARRIER_1]) / sqrt(2), coefficient 1/sqrt(2) per row",
+ "x": "x[b] = 1/2 * sum_a ( d[b,NEAR,a] - d[b,FAR,a] )",
+ "x_row_coefficients": [
+  {
+   "geometry": "NEAR",
+   "allocation": 0,
+   "carrier": "CARRIER_1",
+   "coefficient_in_x": "-1/4 / sqrt(2)",
+   "signed_rational_times_inv_sqrt2": "-1/4",
+   "absolute_coefficient": "1/(2*sqrt(2))"
+  },
+  {
+   "geometry": "NEAR",
+   "allocation": 0,
+   "carrier": "CARRIER_2",
+   "coefficient_in_x": "1/4 / sqrt(2)",
+   "signed_rational_times_inv_sqrt2": "1/4",
+   "absolute_coefficient": "1/(2*sqrt(2))"
+  },
+  {
+   "geometry": "NEAR",
+   "allocation": 1,
+   "carrier": "CARRIER_1",
+   "coefficient_in_x": "-1/4 / sqrt(2)",
+   "signed_rational_times_inv_sqrt2": "-1/4",
+   "absolute_coefficient": "1/(2*sqrt(2))"
+  },
+  {
+   "geometry": "NEAR",
+   "allocation": 1,
+   "carrier": "CARRIER_2",
+   "coefficient_in_x": "1/4 / sqrt(2)",
+   "signed_rational_times_inv_sqrt2": "1/4",
+   "absolute_coefficient": "1/(2*sqrt(2))"
+  },
+  {
+   "geometry": "FAR",
+   "allocation": 0,
+   "carrier": "CARRIER_1",
+   "coefficient_in_x": "1/4 / sqrt(2)",
+   "signed_rational_times_inv_sqrt2": "1/4",
+   "absolute_coefficient": "1/(2*sqrt(2))"
+  },
+  {
+   "geometry": "FAR",
+   "allocation": 0,
+   "carrier": "CARRIER_2",
+   "coefficient_in_x": "-1/4 / sqrt(2)",
+   "signed_rational_times_inv_sqrt2": "-1/4",
+   "absolute_coefficient": "1/(2*sqrt(2))"
+  },
+  {
+   "geometry": "FAR",
+   "allocation": 1,
+   "carrier": "CARRIER_1",
+   "coefficient_in_x": "1/4 / sqrt(2)",
+   "signed_rational_times_inv_sqrt2": "1/4",
+   "absolute_coefficient": "1/(2*sqrt(2))"
+  },
+  {
+   "geometry": "FAR",
+   "allocation": 1,
+   "carrier": "CARRIER_2",
+   "coefficient_in_x": "-1/4 / sqrt(2)",
+   "signed_rational_times_inv_sqrt2": "-1/4",
+   "absolute_coefficient": "1/(2*sqrt(2))"
+  }
+ ],
+ "pair_contrast_row_coefficients": [
+  {
+   "pairing": "aN=0,aF=0",
+   "geometry": "NEAR",
+   "allocation": 0,
+   "carrier": "CARRIER_2",
+   "signed_rational_times_inv_sqrt2": "1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=0,aF=0",
+   "geometry": "NEAR",
+   "allocation": 0,
+   "carrier": "CARRIER_1",
+   "signed_rational_times_inv_sqrt2": "-1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=0,aF=0",
+   "geometry": "FAR",
+   "allocation": 0,
+   "carrier": "CARRIER_2",
+   "signed_rational_times_inv_sqrt2": "-1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=0,aF=0",
+   "geometry": "FAR",
+   "allocation": 0,
+   "carrier": "CARRIER_1",
+   "signed_rational_times_inv_sqrt2": "1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=0,aF=1",
+   "geometry": "NEAR",
+   "allocation": 0,
+   "carrier": "CARRIER_2",
+   "signed_rational_times_inv_sqrt2": "1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=0,aF=1",
+   "geometry": "NEAR",
+   "allocation": 0,
+   "carrier": "CARRIER_1",
+   "signed_rational_times_inv_sqrt2": "-1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=0,aF=1",
+   "geometry": "FAR",
+   "allocation": 1,
+   "carrier": "CARRIER_2",
+   "signed_rational_times_inv_sqrt2": "-1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=0,aF=1",
+   "geometry": "FAR",
+   "allocation": 1,
+   "carrier": "CARRIER_1",
+   "signed_rational_times_inv_sqrt2": "1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=1,aF=0",
+   "geometry": "NEAR",
+   "allocation": 1,
+   "carrier": "CARRIER_2",
+   "signed_rational_times_inv_sqrt2": "1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=1,aF=0",
+   "geometry": "NEAR",
+   "allocation": 1,
+   "carrier": "CARRIER_1",
+   "signed_rational_times_inv_sqrt2": "-1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=1,aF=0",
+   "geometry": "FAR",
+   "allocation": 0,
+   "carrier": "CARRIER_2",
+   "signed_rational_times_inv_sqrt2": "-1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=1,aF=0",
+   "geometry": "FAR",
+   "allocation": 0,
+   "carrier": "CARRIER_1",
+   "signed_rational_times_inv_sqrt2": "1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=1,aF=1",
+   "geometry": "NEAR",
+   "allocation": 1,
+   "carrier": "CARRIER_2",
+   "signed_rational_times_inv_sqrt2": "1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=1,aF=1",
+   "geometry": "NEAR",
+   "allocation": 1,
+   "carrier": "CARRIER_1",
+   "signed_rational_times_inv_sqrt2": "-1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=1,aF=1",
+   "geometry": "FAR",
+   "allocation": 1,
+   "carrier": "CARRIER_2",
+   "signed_rational_times_inv_sqrt2": "-1",
+   "absolute_coefficient": "1/sqrt(2)"
+  },
+  {
+   "pairing": "aN=1,aF=1",
+   "geometry": "FAR",
+   "allocation": 1,
+   "carrier": "CARRIER_1",
+   "signed_rational_times_inv_sqrt2": "1",
+   "absolute_coefficient": "1/sqrt(2)"
+  }
+ ],
+ "derivation_of_1_over_2sqrt2": "x = (1/2) * sum_{g,a} sigma_g * d[b,g,a] with sigma_NEAR = +1, sigma_FAR = -1, and d carries 1/sqrt(2) per carrier row; hence |coefficient| = (1/2)*(1/sqrt(2)) = 1/(2 sqrt 2) on each of the eight rows.",
+ "derivation_of_pair_coefficient": "p = <v, d[NEAR,aN] - d[FAR,aF]> contains four rows, each with |coefficient| = 1/sqrt(2)."
+}

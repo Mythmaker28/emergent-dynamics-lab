@@ -1,0 +1,21 @@
+{
+ "TAU_definition": "TAU[b,g,a]^2 = max(eta_oracle^2, tau_dynamic^2, tau_site^2), inherited unchanged",
+ "eta_oracle": "0 exact on the exact rational scoring path",
+ "tau_dynamic_sq": "(1/100)^2 * sum_h W[h] ((XA_sham[h]-XA_sham[0])^2 + (XB_sham[h]-XB_sham[0])^2)",
+ "tau_site_sq": "((1/100) * median(rho_0 on support) / B)^2 * sum_h W[h]",
+ "both_carriers_of_a_descendant_share": [
+  "the canonical sham",
+  "TAU"
+ ],
+ "propagation_rule": "triangle inequality on the exact coefficient map; RSS is FORBIDDEN because no parent certificate proves the required error independence",
+ "A_X": "A_X[b] = sum over the eight rows of |coeff| * TAU = 8 * (1/(2 sqrt 2)) * mean(TAU) = (1/sqrt(2)) * sum_{g,a} TAU[b,g,a]   (each descendant TAU appears twice, once per carrier)",
+ "A_X_verified_symbolically": true,
+ "E_X": "A_X^2",
+ "A_PAIR": "A_PAIR[b,aN,aF] = 4 rows * (1/sqrt(2)) * TAU = sqrt(2) * (TAU[b,NEAR,aN] + TAU[b,FAR,aF])",
+ "A_PAIR_verified_symbolically": true,
+ "projector_contraction": "Q = I - P2 is an orthogonal projector, so ||Q w|| <= ||w||; the triangle floors therefore remain conservative after projection",
+ "cauchy_schwarz_step": "|<v,w>| <= ||v|| ||w||; A_PAIR is inflated by the certified upper bound on ||v_D|| so float64 unit-norm rounding cannot break rigour",
+ "no_normalisation_by_TAU": true,
+ "equality_is_failure_everywhere": true,
+ "direct_carrier_contrast_bound": "||z2 - z1|| > 2 * TAU  (inherited committed form: contrast_norm_sq > 4 * TAU^2)"
+}

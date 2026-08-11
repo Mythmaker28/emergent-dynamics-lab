@@ -1,0 +1,123 @@
+{
+ "npz_sha256": "81ca57906d470263b5210cd2ce03ea65360b960093ef5f4b7966257d77efb601",
+ "json_sha256": "2c7f878b1fc6c98af64d5fdbc1f14bf96b08091399d9e9bd5320032398ccc540",
+ "shapes": {
+  "mu": [
+   20
+  ],
+  "e1": [
+   20
+  ],
+  "e2": [
+   20
+  ],
+  "P1": [
+   20,
+   20
+  ],
+  "P2": [
+   20,
+   20
+  ],
+  "scores": [
+   32,
+   2
+  ],
+  "eps16": [
+   16
+  ],
+  "descendant_index": [
+   16
+  ],
+  "coord_layout": [
+   20
+  ],
+  "coord_htime": [
+   20
+  ]
+ },
+ "coord_layout": [
+  "u",
+  "u",
+  "u",
+  "u",
+  "u",
+  "u",
+  "u",
+  "u",
+  "u",
+  "u",
+  "v",
+  "v",
+  "v",
+  "v",
+  "v",
+  "v",
+  "v",
+  "v",
+  "v",
+  "v"
+ ],
+ "coord_htime": [
+  40,
+  80,
+  120,
+  160,
+  200,
+  240,
+  280,
+  320,
+  360,
+  400,
+  40,
+  80,
+  120,
+  160,
+  200,
+  240,
+  280,
+  320,
+  360,
+  400
+ ],
+ "P2_symmetry_max_abs": 0.0,
+ "P2_idempotence_max_abs": 8.326672684688674e-17,
+ "P2_rank_numeric": 2,
+ "P1_symmetry_max_abs": 0.0,
+ "P1_idempotence_max_abs": 5.551115123125783e-17,
+ "P1_P2_product_max_abs": 0.17388999226442853,
+ "basis_structure": "NESTED: P1 = e1 e1^T (rank 1) and P2 = P1 + e2 e2^T (rank 2); P1 is a SUBSPACE of P2, so P1 P2 = P1 and the two are NOT mutually orthogonal",
+ "P2_P1_minus_P1_max_abs": 5.551115123125783e-17,
+ "P2_minus_P1_minus_e2e2T_max_abs": 1.3877787807814457e-17,
+ "P2_complementarity_P2_I_minus_P2_max_abs": 5.898059818321144e-17,
+ "trace_P1": 1.0,
+ "trace_P2": 2.0000000000000004,
+ "Q_idempotence_max_abs": 2.220446049250313e-16,
+ "e1_unit_norm_err": 0.0,
+ "e2_unit_norm_err": 0.0,
+ "e1_e2_orthogonality": 8.482931648739818e-17,
+ "P2_e2_alignment": 2.308225429895226e-16,
+ "mu_norm": 0.005673039634278951,
+ "json_declares": {
+  "name": "FWL2_RELATIVE_QUOTIENT_BASIS_V1",
+  "coordinate_space": "R^20 = (u_h1..u_h10, v_h1..v_h10)",
+  "dt": "1/10",
+  "H_GRID": [
+   40,
+   80,
+   120,
+   160,
+   200,
+   240,
+   280,
+   320,
+   360,
+   400
+  ],
+  "sign_canonicalisation": "for each e_k the largest-magnitude coordinate is made positive; ties by smallest coordinate index; the global gauge sign is pinned by eps_1 = +1"
+ },
+ "weights_from_json_match_frozen": true,
+ "layout_matches_frozen_u_then_v": true,
+ "coord_htime_matches_H_GRID_twice": true,
+ "TUBE_P2_LOBO_parent": "1.2166510017869535e-07"
+}

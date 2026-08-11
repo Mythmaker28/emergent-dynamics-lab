@@ -1,0 +1,18 @@
+{
+ "FCDDH00_RANDOMIZATION_LICENSE": true,
+ "conditions": {
+  "counterfactual_admission_invariance": "PROVED: the constructor is a pure function of (S,g,a) and admission is evaluated on the complete unordered quartet, so both coin values give the same four descendants, the same checkpoint and mask hashes and the same accept/reject decision",
+  "neutral_branch_slots_identical_before_intervention": "PROVED: all four branches start from byte-identical PRECURSOR(S)",
+  "one_consistent_implementation_of_each_named_treatment": "PROVED: one call site per treatment; the carrier executables are the committed parent blobs, hash-checked at every launch",
+  "no_interference_or_shared_mutable_state": "PROVED: one fresh process per descendant and per acquisition row; no shared state",
+  "process_rng_cache_and_file_isolation": "PROVED: separate processes, PYTHONDONTWRITEBYTECODE, distinct output paths, overwrite forbidden",
+  "outcome_invariance_to_execution_order": "PROVED: the engine is deterministic and each row is a fresh process from a byte-identical checkpoint; run order changes no byte",
+  "assignment_cannot_alter_reader_masks_gauge_or_analysis": "PROVED BY AST: no geometry/allocation label appears in any admission, reader, gauge or threshold formula",
+  "complete_assignment_and_launch_chronology_from_committed_ledgers": "the schedule is committed before construction and every launch is written ahead",
+  "thresholds_are_geometry_specific_pre_active_measurements": "acknowledged: TAU is NOT assumed invariant under reassignment, which is exactly why the K tail is reported as noninferential under the response-only sharp null"
+ },
+ "reason": "",
+ "sharp_null": "within every neutral branch slot and allocation orbit, the outside-P2 carrier-differential response would be unchanged if the explicit geometry assignment were switched between NEAR and FAR",
+ "scope_caveat": "this licenses an EXACT FINITE-PANEL randomization distribution inside one frozen engine, LawSpec, lattice and generator. It is not evidence about ungenerated laws or lattices, and the two geometry branches are deterministic functions of the treatment, so the slot is defined pre-intervention as an unlabelled branch of the common precursor.",
+ "final_confirmation_deferred_to": "the committed construction and acquisition ledgers"
+}
