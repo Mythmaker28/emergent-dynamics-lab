@@ -1,0 +1,88 @@
+{
+ "N": 73000,
+ "N_D_ATTEMPT": 24,
+ "N_H_ATTEMPT": 32,
+ "DISCOVERY_CANDIDATE_QUEUE": [
+  73000,
+  73001,
+  73002,
+  73003,
+  73004,
+  73005,
+  73006,
+  73007,
+  73008,
+  73009,
+  73010,
+  73011,
+  73012,
+  73013,
+  73014,
+  73015,
+  73016,
+  73017,
+  73018,
+  73019,
+  73020,
+  73021,
+  73022,
+  73023
+ ],
+ "HOLDOUT_CANDIDATE_QUEUE": [
+  73024,
+  73025,
+  73026,
+  73027,
+  73028,
+  73029,
+  73030,
+  73031,
+  73032,
+  73033,
+  73034,
+  73035,
+  73036,
+  73037,
+  73038,
+  73039,
+  73040,
+  73041,
+  73042,
+  73043,
+  73044,
+  73045,
+  73046,
+  73047,
+  73048,
+  73049,
+  73050,
+  73051,
+  73052,
+  73053,
+  73054,
+  73055
+ ],
+ "interval": [
+  73000,
+  73055
+ ],
+ "blacklist": {
+  "FCDDH00_consumed": [
+   71000,
+   71055
+  ],
+  "earlier_chain": [
+   "30000-33999",
+   "54001-54096",
+   "60000-66015",
+   "65100-65111 (FSQBT00)"
+  ],
+  "derived_rng_domains": [
+   "FCDDH00|geometry|*",
+   "FCDDH00|allocation|*",
+   "FCDDH00|run_order|*"
+  ]
+ },
+ "selection": "smallest N >= 72000 divisible by 1000 whose whole 56-seed interval is absent from every used, reserved, generated, opened and exposed namespace. 72000 was REJECTED because the FCDDH00 closure report itself exposed 'N >= 72000' as the recommended next namespace; N was increased by exactly 1000 as the rule prescribes. 73000-73055 occurs in no seed-declaring context and in no filename across any branch tip.",
+ "role_immutability": "assigned before construction; no promotion in either direction"
+}
