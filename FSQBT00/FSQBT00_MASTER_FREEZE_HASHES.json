@@ -1,0 +1,89 @@
+{
+ "frozen_before_any_parent_numeric_load": true,
+ "hashes": {
+  "FSQBT00_MASTER_FREEZE.md": "a70af71530d31f801fa646c53cf2c3d1cc7106ec81d03c61c81771f83ea888fa"
+ },
+ "inherited_code_sha256": {
+  "WSFSCRP00/wsfscrp_core.py": "510d95073a706f061e3ac10307bd41a935abb4ee28de22155e323092a77d6bf6",
+  "ETCMNFC/etcmnfc_core.py": "b9c878acd70ab6d9734eb70e9fadc71b2db70cc919f9132656ce0ddc20ec1d02",
+  "PPAI/ppai_core.py": "88945808a458afab89676e73473a54fb243a85608beca85ca5a26ef5dad2394d",
+  "PPAI/ppai_engine.py": "9c7d0c133007fd04339ad519df8caacbe8262997bb9a1bd150bcc11bd3c0f7f8",
+  "DOMC/domc_core.py": "b32a32498e0c9aef3301b8ce745468c4a8cc50a4757c4062f3a85c2c35cc1390",
+  "SQDT00/sq_exact.py": "c7e5a1fac0c63d82e647ed56a55b82e8b9cc04d5625f5908d975914d4c1f3300"
+ },
+ "H_GRID": [
+  40,
+  80,
+  120,
+  160,
+  200,
+  240,
+  280,
+  320,
+  360,
+  400
+ ],
+ "dt": "1/10",
+ "weights": [
+  "1/18",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/9",
+  "1/18"
+ ],
+ "W_POST": "1",
+ "materiality_coefficient": "0.01",
+ "gauge": "one optional A/B exchange per ancestry block, shared across carriers, all scored times and all transfer/quotient calculations",
+ "alpha_fresh": "1/24",
+ "E_TAU_FRESH": "sum_b TAU_b^2 / 12",
+ "corrected_lobo": {
+  "folds": 4,
+  "removed_unit": "one complete ancestry block (4 descendants, 8 rows)",
+  "blocks": [
+   65000,
+   65001,
+   65002,
+   65003
+  ],
+  "gates": [
+   "S0",
+   "S1",
+   "S2",
+   "S3",
+   "S4>0.80",
+   "S5>0.64",
+   "S6<0.50",
+   "S7"
+  ],
+  "P2_license": "S0&S1&S2&S4&S6&S7",
+  "E2_license": "P2&S3&S5&S6"
+ },
+ "fresh_seed_namespace_rule": "smallest N>=65000 div 100 with N..N+23 disjoint from all prior use and not in 62000-62009 or 64000-64011",
+ "start_budget": {
+  "panel": 24,
+  "sham": 24,
+  "active": 24,
+  "other": 0,
+  "total": 72,
+  "retries_after_panel_lock": 0,
+  "unused_repurposable": false
+ },
+ "stop_precedence": [
+  "parent_provenance",
+  "freeze_before_load",
+  "block_map",
+  "S4_P2_license",
+  "oracle_firewall",
+  "panel_incomplete",
+  "sham_threshold",
+  "preactive_lock",
+  "active_incomplete",
+  "runtime_readback",
+  "delivery"
+ ]
+}

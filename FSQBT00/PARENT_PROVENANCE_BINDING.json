@@ -1,0 +1,75 @@
+{
+ "chain": [
+  "16717582e7f0dfd371f21c56465e11113d8b6675",
+  "0ebab0d8f3ca049325aaf74f76a9112b4c280460",
+  "740c025d39ab7f4718bd956e59a57f2a2b483c00",
+  "96c7d295e72106cd949d810fa92807c2514e7449"
+ ],
+ "chain_labels": {
+  "16717582e7f0dfd371f21c56465e11113d8b6675": "SQDT00 commit 3 (provenance)",
+  "0ebab0d8f3ca049325aaf74f76a9112b4c280460": "SQDT00 commit 2 (offline programme)",
+  "740c025d39ab7f4718bd956e59a57f2a2b483c00": "SQDT00 commit 1 (master freeze)",
+  "96c7d295e72106cd949d810fa92807c2514e7449": "FWL2CF00 commit 6 (science parent)"
+ },
+ "arrows_single_direct_parent_verified_on_device": 3,
+ "parent_tip": "16717582e7f0dfd371f21c56465e11113d8b6675",
+ "parent_branch": "dev/serialized-quotient-dose-transfer-00",
+ "science_parent_FWL2CF00": "96c7d295e72106cd949d810fa92807c2514e7449",
+ "owner_main": "f3921a4d2eb4f3c5d8c88855048d32bcd0c02a77",
+ "owner_main_untouched": true,
+ "SQDT00_subtree": "2a68162bcbd2881267afbb7adbf19a03b7c028ba",
+ "SQDT00_bundle": {
+  "name": "SQDT00_tip_16717582.bundle",
+  "verify": "okay",
+  "requires_prerequisite": "96c7d295e72106cd949d810fa92807c2514e7449"
+ },
+ "SQDT00_SHA256SUMS_from_committed_tree": "25 of 25 verified (24 entries + SHA256SUMS itself), cross-version subtree id 2a68162b agrees git 2.34.1/2.43.0",
+ "FWL2CF00_subtree": "159577eeb703d5878b2efe37737b535fddc29046",
+ "FWL2CF00_SHA256SUMS": "198 of 198 verified from the committed tree (inherited)",
+ "serialized_basis_blob_binding": {
+  "SQDT00/FWL2_RELATIVE_QUOTIENT_BASIS_V1.json": {
+   "committed": "07c9cf7e4eb3646bfbd32799de2618435f6e0353",
+   "recomputed": "07c9cf7e4eb3646bfbd32799de2618435f6e0353",
+   "match": true
+  },
+  "SQDT00/FWL2_RELATIVE_QUOTIENT_BASIS_V1.npz": {
+   "committed": "8f848411cd5a8ab4a483c217cd6b22c752ae8479",
+   "recomputed": "8f848411cd5a8ab4a483c217cd6b22c752ae8479",
+   "match": true
+  },
+  "SQDT00/sq_exact.py": {
+   "committed": "2b87da5341539b03fbad36e017d4bd6eb01a37da",
+   "recomputed": "2b87da5341539b03fbad36e017d4bd6eb01a37da",
+   "match": true
+  },
+  "SQDT00/sq_offline.py": {
+   "committed": "3b8f9c2d42bda488262043ecdf03786a521af32f",
+   "recomputed": "3b8f9c2d42bda488262043ecdf03786a521af32f",
+   "match": true
+  },
+  "SQDT00/SQDT00_OFFLINE_REDERIVATION_AND_BASIS_CERTIFICATE.json": {
+   "committed": "1ad53803e1f66aee6394daa3ae9aab96fe3df2a7",
+   "recomputed": "1ad53803e1f66aee6394daa3ae9aab96fe3df2a7",
+   "match": true
+  },
+  "SQDT00/SQDT00_MASTER_FREEZE.md": {
+   "committed": "4fd5e9e35831f13616a0362d740fb6b66db3a168",
+   "recomputed": "4fd5e9e35831f13616a0362d740fb6b66db3a168",
+   "match": true
+  }
+ },
+ "n_mismatch": 0,
+ "mismatches": [],
+ "reserved_namespaces": {
+  "62000-62009": "RESERVED_AND_UNREAD__NEVER_GENERATED_OR_OPENED",
+  "64000-64011": "EXPOSED__UNAVAILABLE_FOR_A_FRESH_ROLE",
+  "65000-65007": "HISTORICAL__UNAVAILABLE",
+  "66000-66015": "SQDT00 frozen (never constructed)__UNAVAILABLE"
+ },
+ "inherited_deviations": [
+  "D0",
+  "D1",
+  "D2"
+ ],
+ "sqdt00_lobo_finding": "SQDT00 stability used leave-one-DESCENDANT-out (dleft in range(16), D_OF maps rows to descendants); the correct unit is the ancestry block. Corrected here without mutating the V1 object."
+}
