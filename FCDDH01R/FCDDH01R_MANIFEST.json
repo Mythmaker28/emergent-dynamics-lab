@@ -1,0 +1,164 @@
+{
+ "artifact": "FCDDH01R_MANIFEST",
+ "programme": "FRESH_CROSSED_DIFFERENTIAL_DISCOVERY_HOLDOUT_01R",
+ "short_name": "FCDDH01R",
+ "branch": "dev/fresh-crossed-differential-discovery-holdout-01r",
+ "generated_at": "2026-08-11T17:15:05Z",
+ "closure_base_commit": "ffbda326703f93aa5a34c03e5f259e976771f793",
+ "DISPOSITION": "DISCOVERY_ANALYSIS_COMPUTED__AXIS_NOT_LICENSED_D4_D5_D8__ZERO_HOLDOUT_STARTS__PROTOCOL_NONCONFORMANT_POSTSTART_EXECUTOR_REPAIR",
+ "PROTOCOL_CONFORMITY_STATUS": "NONCONFORMANT",
+ "self_reference_note": "Final tip, child-subtree id, bundle digest and bundle size are deliberately ABSENT from this manifest and from every committed artifact: they depend on commits that do not exist when these files are written. They are reported out of band.",
+ "SEMANTIC_CLOSURE_PHASE": {
+  "new_artifacts": [
+   "FCDDH01R_D5_D8_ANATOMY.json",
+   "FCDDH01R_REPORTED_PARENT_DISCREPANCY.json",
+   "FCDDH01R_POST_START_CHRONOLOGY_AND_DIFF_AUDIT.json",
+   "FCDDH01R_SCIENTIFIC_DEPENDENCY_AND_PAYLOAD_IDENTITY_AUDIT.json",
+   "FCDDH01R_WAL_GENERATION_ADJUDICATION.json",
+   "FCDDH01R_DEX_EVIDENCE_VERIFICATION.json",
+   "FCDDH01R_PROTOCOL_CONFORMITY_CORRIGENDUM.md",
+   "FCDDH01R_INDEPENDENT_SEMANTIC_VERIFICATION.json",
+   "FCDDH01R_VERIFICATION_ACCESS_LEDGER.jsonl",
+   "FCDDH01R_CLOSURE_BASE_AND_WORKTREE_AUDIT.json"
+  ],
+  "adopted_prepared_artifacts": [
+   "PRE_NUMERICAL_ACCESS_LEDGER.jsonl",
+   "FCDDH01R_DISCOVERY_GATE_LADDER.json",
+   "FCDDH01R_DISCOVERY_MATERIALITY_AND_LEVERAGE_REPORT.json",
+   "FCDDH01R_DISCOVERY_LOAO_AXIS_ARBITRATION.json",
+   "FCDDH01R_DISCOVERY_INTERACTION_AND_ORBIT_TABLE.json",
+   "FCDDH01R_DISCOVERY_CONTRASTS.json",
+   "FCDDH01R_DISCOVERY_ALL_ROWS_AND_CONTRASTS.json",
+   "FCDDH01R_DISCOVERY_COOPTIMAL_GAUGE_REPORT.json",
+   "FCDDH01R_DISCOVERY_PRODUCTION_REFERENCE_RECOMPUTATION.json",
+   "_work/DISCOVERY_GATE_LADDER.json",
+   "_work/DISCOVERY_MATERIALITY_AND_LEVERAGE_REPORT.json",
+   "_work/DISCOVERY_LOAO_AXIS_ARBITRATION.json",
+   "_work/DISCOVERY_INTERACTION_AND_ORBIT_TABLE.json",
+   "_work/DISCOVERY_CONTRASTS.json",
+   "_work/DISCOVERY_ALL_ROWS_AND_CONTRASTS.json",
+   "_work/DISCOVERY_COOPTIMAL_GAUGE_REPORT.json",
+   "_work/DISCOVERY_PRODUCTION_REFERENCE_RECOMPUTATION.json"
+  ],
+  "allowlist_conformance": "every path is either a semantic-phase closure artifact created by this review or a prepared analysis/access artifact verified against base commit ffbda326703f93aa5a34c03e5f259e976771f793. Nothing else."
+ },
+ "FINAL_DELIVERY_PHASE": {
+  "artifacts": [
+   "FCDDH01R_REPORT.md",
+   "FCDDH01R_REPORT_FR.md",
+   "FCDDH01R_INDEPENDENT_UNIT_REPORT.md",
+   "FCDDH01R_START_AND_ACCESS_LEDGER.jsonl",
+   "FCDDH01R_PROTOCOL_DEVIATIONS.md",
+   "FCDDH01R_DECISION_MATRIX.json",
+   "FCDDH01R_MANIFEST.json",
+   "SHA256SUMS_SCOPE.json",
+   "SHA256SUMS",
+   "VERIFICATION_REPORT.md"
+  ]
+ },
+ "ELIGIBLE_DISCOVERY_DELIVERABLES": {
+  "gate_ladder": "PRESENT_NON_PLACEHOLDER",
+  "materiality_and_leverage": "PRESENT_NON_PLACEHOLDER",
+  "loao_axis_arbitration": "PRESENT_NON_PLACEHOLDER",
+  "interaction_and_orbit_table": "PRESENT_NON_PLACEHOLDER",
+  "contrasts": "PRESENT_NON_PLACEHOLDER",
+  "all_rows_and_contrasts": "PRESENT_NON_PLACEHOLDER",
+  "cooptimal_gauge_report": "PRESENT_NON_PLACEHOLDER",
+  "production_reference_recomputation": "PRESENT_NON_PLACEHOLDER",
+  "D5_D8_anatomy": "PRESENT_NON_PLACEHOLDER",
+  "original_first_target_access_event": "PRESENT_NON_PLACEHOLDER",
+  "protocol_conformity_corrigendum": "PRESENT_NON_PLACEHOLDER",
+  "independent_semantic_verification": "PRESENT_NON_PLACEHOLDER"
+ },
+ "NOT_GENERATED_BY_PREDECLARED_STOP": {
+  "official_axis_object": "NOT_GENERATED_BY_PREDECLARED_STOP",
+  "canonical_axis_loader_entry": "NOT_GENERATED_BY_PREDECLARED_STOP",
+  "holdout_panel": "NOT_GENERATED_BY_PREDECLARED_STOP",
+  "holdout_sham": "NOT_GENERATED_BY_PREDECLARED_STOP",
+  "holdout_active_raw": "NOT_GENERATED_BY_PREDECLARED_STOP",
+  "holdout_fixed_axis_scores": "NOT_GENERATED_BY_PREDECLARED_STOP",
+  "holdout_randomization_tail": "NOT_GENERATED_BY_PREDECLARED_STOP",
+  "exact_2pow16_confirmatory_T": "NOT_GENERATED_BY_PREDECLARED_STOP",
+  "reason": "D4, D5 and D8 failed, so DISCOVERY_AXIS_SERIALIZATION_STATUS = NOT_LICENSED and the predeclared stop forbids opening the hold-out. Zero hold-out starts is the correct outcome."
+ },
+ "DOCUMENTATION_TRADE_OFFS_INVENTORY": [
+  {
+   "id": "D-6",
+   "item": "FCDDH01R_RANDOMIZATION_LICENSE",
+   "status": "NOT_REBUILT_AT_CLOSURE__NO_CONSUMER",
+   "trade_off": "master freeze section 5 requires a closure rebuild; the original execution stopped before closure and this review may not perform an analysis change. No exact-T p-value was computed and the axis is not licensed, so nothing depends on it."
+  },
+  {
+   "id": "D-7",
+   "item": "FCDDH01R_DEPENDENCY_FIREWALL_REPORT.md engineering hashes",
+   "status": "STALE_GEN1__CORRECTED_APPEND_ONLY",
+   "trade_off": "the C3 file is not edited (append-only). Corrected digests live in FCDDH01R_SCIENTIFIC_DEPENDENCY_AND_PAYLOAD_IDENTITY_AUDIT.json. Scientific hashes in the C3 file remain byte-correct."
+  },
+  {
+   "id": "D-8",
+   "item": "MIN_FULL_VS_LOAO_ALIGNMENT_SQUARED",
+   "status": "REPORTED_VALUE_CORRECTED_DOWNWARD",
+   "trade_off": "reported as >= 0.999278; the exact minimum 0.9992776839495647 is below that. Correct statement: >= 0.999277. No gate depends on it (D6 threshold 0.80)."
+  },
+  {
+   "id": "D-9",
+   "item": "two stale phase.lock files",
+   "status": "PRESERVED_NOT_COMMITTED",
+   "trade_off": "process artefacts of the prior unobservable environment, outside the closure allowlist. Left on disk untouched. The DISCOVERY_construct counterpart is already committed at C7; that asymmetry is inherited, not repaired."
+  },
+  {
+   "id": "D-10",
+   "item": "fold-axis four-pair breakdown",
+   "status": "PERSISTED_AS_SUMMARY_ONLY",
+   "trade_off": "recovering it needs a trainer re-run over the raw archive: an analysis change, out of scope. Full-axis pair anatomy IS persisted and reported."
+  },
+  {
+   "id": "D-11",
+   "item": "HANDOFF_FCDDH01R_FINAL_RECORD_REVIEW.md",
+   "status": "ABSENT__DIGEST_NOT_VERIFIABLE",
+   "trade_off": "absent from uploads, from the working tree and from every reachable tree object. Declared SHA-256 6d140449... is NOT claimed verified. Requirements taken from the task text, which reproduces them in full."
+  },
+  {
+   "id": "INFO",
+   "item": "FCDDH01R_DISCOVERY_ACTIVE_RAW_LOCK.json artifact label",
+   "status": "INHERITED_FCDDH00_FIELD_NAME",
+   "trade_off": "the file carries artifact = FCDDH00_DISCOVERY_ACTIVE_RAW_LOCK while programme = FCDDH01R, consistent with incorporation of FCDDH00 objects by committed identity. No scientific consequence; recorded so the label is never read as provenance."
+  }
+ ],
+ "MANDATORY_ARTIFACT_CHECK": {
+  "missing_mandatory_artifacts": [],
+  "DELIVERY_STATUS": "COMPLETE_SUBJECT_TO_POST_COMMIT_VERIFICATION",
+  "note": "a missing mandatory artifact would yield DELIVERY_INCOMPLETE. None is missing; every ineligible artifact above is explicitly marked, none is silently absent."
+ },
+ "SCOPE_INVARIANTS": {
+  "all_changes_inside_child_subtree": "FCDDH01R/",
+  "raw_data_modified": false,
+  "scientific_code_modified": false,
+  "historical_executor_code_modified": false,
+  "parent_commits_modified": false,
+  "main_modified": false,
+  "existing_commits_amended_or_rebased": false,
+  "remote_repository_operations": 0,
+  "engine_starts": 0,
+  "new_scientific_rows": 0,
+  "verification_decodes_performed": 0,
+  "holdout_starts": 0
+ },
+ "START_ACCOUNTING_KEPT_SEPARATE": {
+  "FCDDH01R_CONSTRUCTION_STARTS": 48,
+  "FCDDH01R_SHAM_STARTS": 96,
+  "FCDDH01R_ACTIVE_STARTS": 96,
+  "FCDDH01R_TOTAL_CHARGED_STARTS": 240,
+  "FCDDH01R_TOTAL_RAW_ADVANCE_SEQUENCES": 240,
+  "FCDDH01R_CHILD_MAXIMUM_CHARGED_STARTS": 672,
+  "FCDDH01R_UNUSED_STARTS": 432,
+  "HOLDOUT_CONSTRUCTION_STARTS": 0,
+  "HOLDOUT_SHAM_STARTS": 0,
+  "HOLDOUT_ACTIVE_STARTS": 0,
+  "OTHER_STARTS": 0,
+  "HISTORICAL_FCDDH00_CHARGED_STARTS": 108,
+  "CUMULATIVE_LINEAGE_CHARGED_STARTS": 348,
+  "FCDDH00_PLUS_FCDDH01R_LINEAGE_MAXIMUM": 780
+ },
+ "TOMMY_TECHNICAL_ACTION_REQUIRED": false
+}
