@@ -1,0 +1,124 @@
+{
+ "criticality": {
+  "saturated_regime": {
+   "kX": 1.0,
+   "births_law_independent_of_nX": true,
+   "SCALAR_CRITICALITY": "NOT_VALID"
+  },
+  "linear_regime": {
+   "kX": 0.1,
+   "E_births_nX1": 0.2,
+   "E_births_nX2": 0.4,
+   "linear": true,
+   "SCALAR_CRITICALITY": "APPROXIMATE"
+  },
+  "verdict": {
+   "CRITICALITY_STATUS": "NOT_VALID",
+   "reason": "the configuration actually used by MTW01 and MCM01 has kX = 1, where the birth probability saturates at n_X >= 1 and no linear low-density operator exists. A scalar multiplier is therefore not a criticality criterion for the population; it is the expected offspring number of a SINGLE body molecule in a FROZEN environment.",
+   "retained_diagnostic": "the drift balance E[dN_X | state] = E[births] - muX*N_X, logged exactly step by step (accepted births and deaths are read from the field, not modelled), whose zero gives the quasi-stationary level N* = E[births]/muX; and the realised persistence over the declared window.",
+   "MTW01_supercritical_qualification": "BY_PREVIOUS_MEAN_FIELD_CRITERION_ONLY"
+  }
+ },
+ "repairs": {
+  "candidates": {
+   "R0_ADDITIVE_LEGACY": {
+    "description": "the inherited rule, unchanged; the negative control",
+    "operators_modified": 0,
+    "new_operator_ast_nodes": 0,
+    "occupancy_conserved_exactly": false,
+    "occupancy_drift": "E[dO] = add - out, add unconditional and positive: the ratchet",
+    "removes_body_directly": false,
+    "outcome_feedback": false,
+    "legacy_preserved": true,
+    "physical_reading": "an unbounded source of matter with no matching sink",
+    "removes_the_ratchet": false,
+    "new_tautological_maintenance": false,
+    "admissible": false
+   },
+   "R1_REPLACEMENT_FEED_KEEP_OUTFLOW": {
+    "description": "the feed becomes a swap (one unit in, one out of the same cell), the waste outflow omega is kept",
+    "operators_modified": 1,
+    "new_operator_ast_nodes": 400,
+    "occupancy_conserved_exactly": false,
+    "occupancy_drift": "E[dO] = 0 - out <= 0, strictly negative whenever waste exists: the lattice DRAINS. The up-ratchet is removed and replaced by a down-drain.",
+    "removes_body_directly": false,
+    "outcome_feedback": false,
+    "legacy_preserved": true,
+    "physical_reading": "a closed medium with an open waste port: not a chemostat",
+    "removes_the_ratchet": true,
+    "new_tautological_maintenance": false,
+    "admissible": false
+   },
+   "R2_BALANCED_EXCHANGE": {
+    "description": "feed and outflow are replaced by ONE exchange operator: every unit the reservoir inserts displaces one unit drawn uniformly without replacement from the cell's exchangeable pool {SX, SY, WX, WY}",
+    "operators_modified": 1,
+    "new_operator_ast_nodes": 400,
+    "occupancy_conserved_exactly": true,
+    "occupancy_drift": "E[dO] = 0 exactly, cell by cell and step by step",
+    "removes_body_directly": false,
+    "outcome_feedback": false,
+    "legacy_preserved": true,
+    "physical_reading": "a chemostat at equal in and out flow: the medium is renewed, the biomass is not exchanged, waste leaves in the outflow",
+    "removes_the_ratchet": true,
+    "new_tautological_maintenance": false,
+    "admissible": true
+   },
+   "R2b_EXCHANGE_POOL_INCLUDES_BODY": {
+    "description": "as R2 but the exchangeable pool also contains X, so body molecules are washed out",
+    "operators_modified": 1,
+    "new_operator_ast_nodes": 400,
+    "occupancy_conserved_exactly": true,
+    "occupancy_drift": "E[dO] = 0 exactly",
+    "removes_body_directly": true,
+    "outcome_feedback": false,
+    "legacy_preserved": true,
+    "physical_reading": "a chemostat that also washes out biomass; this ADDS an effective death term to X and is therefore a second change, not a smaller one",
+    "removes_the_ratchet": true,
+    "new_tautological_maintenance": false,
+    "admissible": false
+   },
+   "R3_RESERVOIR_BOUNDARY": {
+    "description": "a designated source region exchanges with an external reservoir; the bulk has no feed at all",
+    "operators_modified": 2,
+    "new_operator_ast_nodes": 440,
+    "occupancy_conserved_exactly": true,
+    "occupancy_drift": "E[dO] = 0 in the source region, 0 elsewhere",
+    "removes_body_directly": false,
+    "outcome_feedback": false,
+    "legacy_preserved": true,
+    "physical_reading": "an open boundary; physically sound but it introduces a geometry (where the source is) and breaks translation invariance, so it adds a parameter and a spatial gradient artefact the present question does not need",
+    "removes_the_ratchet": true,
+    "new_tautological_maintenance": false,
+    "admissible": false
+   }
+  },
+  "selection_rule": "admissible first; then fewest operators modified; then smallest new operator by AST node count; then alphabetical. Computed before any run and from structure only, never from an outcome.",
+  "ranking": [
+   "R2_BALANCED_EXCHANGE",
+   "R0_ADDITIVE_LEGACY",
+   "R1_REPLACEMENT_FEED_KEEP_OUTFLOW",
+   "R2b_EXCHANGE_POOL_INCLUDES_BODY",
+   "R3_RESERVOIR_BOUNDARY"
+  ],
+  "selected": "R2_BALANCED_EXCHANGE",
+  "ast_nodes_v1_feed": 165,
+  "ast_nodes_v2_exchange": 400
+ },
+ "checks": [
+  {
+   "check": "EXACT: at kX = 1 the birth law does not depend on n_X once n_X >= 1",
+   "outcome": "PASS",
+   "detail": "with CAP = 10 the free capacity is not binding, so cand_X = 2 in BOTH states. births distribution from n_X = 1: {2: 1.0} ; from n_X = 2: {2: 1.0}. p_X = min(1, kX*nX*nY) saturates at n_X >= 1, so the low-density map is a STEP, not a linear operator: there is no linearisation about n_X = 0 and no branching multiplier."
+  },
+  {
+   "check": "EXACT: at small kX the mean birth rate IS linear in n_X",
+   "outcome": "PASS",
+   "detail": "E[births | n_X=1] = 0.2000000000, E[births | n_X=2] = 0.4000000000, ratio 2.0000000000. In this sub-regime the low-density dynamics are a LINEAR operator whose coefficients (cand_X, n_Y) are themselves random and endogenous, so the growth rate is the top Lyapunov exponent of a product of random operators, not a scalar. The mean-field product c_X*G(0) is its annealed approximation."
+  },
+  {
+   "check": "the frozen selection rule picks exactly one repair, on structure alone",
+   "outcome": "PASS",
+   "detail": "rule: keep only candidates that conserve occupancy exactly, carry no outcome feedback, remove no body molecule directly and preserve a legacy mode; among those take the fewest engine operators modified, then the smallest new operator by AST node count, then alphabetical. Ranking: ['R2_BALANCED_EXCHANGE', 'R0_ADDITIVE_LEGACY', 'R1_REPLACEMENT_FEED_KEEP_OUTFLOW', 'R2b_EXCHANGE_POOL_INCLUDES_BODY', 'R3_RESERVOIR_BOUNDARY']. Selected: R2_BALANCED_EXCHANGE (1 operator modified, 400 AST nodes against 165 for the inherited operator)."
+  }
+ ]
+}

@@ -1,0 +1,45 @@
+{
+ "propositions": [],
+ "checks": [
+  {
+   "check": "the exact enumerator reproduces the engine's one-step kernel",
+   "outcome": "PASS",
+   "detail": "kernel mass 1.000000000000 over 18 successors; worst |exact - empirical| = 0.0058 on 40000 samples"
+  },
+  {
+   "check": "Proposition 1, EXACT on a two-cell ring, started at the protocol initial condition: the additive feed drives the resource far ABOVE its own set-point",
+   "outcome": "PASS",
+   "detail": "exact limiting mean resource per cell = 2.500000000 with S0 = 1 and CAP = 4, i.e. 2.50x the set-point; P(both cells full) = 0.000000; P(no room anywhere) = 1.000000000. 25 states, exact rational kernel, no sampling. The chain is ABSORBING with many no-room classes, so the limit is an absorption law and depends on the start; the start used is the one the protocol uses."
+  },
+  {
+   "check": "Proposition 1, counterfactual: with an occupancy-CONSERVING feed the SAME chain does not ratchet at all",
+   "outcome": "PASS",
+   "detail": "exact limiting mean = 1.000000000000, exactly the conserved initial mass 1. Diffusion, capacity, the set-point and the rate are unchanged; only the additivity of the feed is removed. The ratchet is therefore a property of the ADDITIVITY, and of nothing else in the rule."
+  },
+  {
+   "check": "Proposition 1, SCOPE: on a single cell the same additive feed stops exactly at S0",
+   "outcome": "PASS",
+   "detail": "exact stationary mean = 1.000000000 = S0. The ratchet therefore requires at least two coupled cells: diffusion must keep pushing cells below the set-point for the feed to keep adding. It is a property of (additive feed) AND (transport), not of either alone."
+  },
+  {
+   "check": "Proposition 2, exact: the FULL state is absorbing only on a sub-space",
+   "outcome": "PASS",
+   "detail": "of 56 states with occupancy = CAP, 10 are absorbing and 46 are NOT. Non-absorbing full states include [(0, 0, 0, 0, 0, 3), (0, 0, 0, 0, 1, 2), (0, 0, 0, 0, 2, 1)]. Every full state carrying waste or a body molecule re-opens capacity: waste leaves through the outflow, and a body molecule decays to waste which then leaves. The absorbing full states are exactly those with no waste and no body molecule: [(0, 0, 0, 3, 0, 0), (0, 0, 1, 2, 0, 0), (0, 0, 2, 1, 0, 0), (0, 0, 3, 0, 0, 0)]"
+  },
+  {
+   "check": "Proposition 2, the re-opening cycle exists and is exhibited",
+   "outcome": "PASS",
+   "detail": "explicit two-step cycle in (X,Y,SX,SY,WX,WY): (0, 0, 0, 0, 0, 3) -> (0, 0, 0, 0, 0, 2) (occupancy 2, capacity re-opened) -> (0, 0, 0, 1, 0, 2) (occupancy 3 again)"
+  },
+  {
+   "check": "Proposition 3, exact: n_X = 0 is invariant and reachable from EVERY state",
+   "outcome": "PASS",
+   "detail": "invariant: True. reachable from 84 of 84 states. On a finite lattice this gives extinction of the body with probability 1 and in a.s. finite time, for the additive LawSpec AND for any repair of it: eternal maintenance is not available in this model class, only a quasi-stationary level and a persistence time."
+  },
+  {
+   "check": "the exact stationarity identity of the occupancy",
+   "outcome": "PASS",
+   "detail": "O(t+1)-O(t) = add - out with add the feed and out the waste outflow, both non-negative. Stationarity of the non-waste occupancy M = N_X+N_Y+N_SX+N_SY gives E[add] = E[deaths], hence  phi * E[R] = muX*N_X + muY*N_Y  with R the total room min(max(S0-n,0), free). The room the system can hold at stationarity is therefore proportional to the body's own death flux, which is itself bounded by the conversion flux, bounded by cand_X <= 7 per organiser cell. Everything else fills."
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "artefact": "ORR01_offline_repo.tar.gz",
+ "form": "gzipped BARE git repository, shallow-rooted at f3921a4d, no remotes, no promisor",
+ "why_not_a_bundle": "git 2.43 bundle format v2/v3 does not carry the shallow boundary. A bundle produced from a shallow clone verifies as prerequisite-free but fails to clone: 'Failed to traverse parents of commit f3921a4d... remote did not send all necessary objects'. Reproduced and recorded. A full-history bundle would be self-contained but the repository carries ~544 MiB of tracked binary caches, so a shallow bare repository is the smallest artefact that gives a genuine offline checkout with unaltered commit hashes.",
+ "inherited_repo_was_blobless": true,
+ "missing_objects_before_repair": 392,
+ "missing_objects_in_the_ORR_range_before_repair": 0,
+ "repair": "remote.origin.partialclonefilter unset, then git fetch --refetch; the remote is readable (git ls-remote succeeds), only push is refused by the proxy",
+ "missing_objects_after_repair": 0,
+ "sha256": "4183e9421a9bcadcc4881c06e06cac8a5890f49be797df06f9bd39b1e8d37e30",
+ "bytes": 35734171,
+ "offline_readback": {
+  "method": "extract the tarball, git clone the bare repo with GIT_NO_LAZY_FETCH=1 and no network, check out the exact commit",
+  "HEAD": "506272af6815466ca2a25d299281acc8643f94f0",
+  "tree_hash": "4c00ff607cd0cd60532881b80680438e70b40275",
+  "tree_hash_live": "4c00ff607cd0cd60532881b80680438e70b40275",
+  "tracked_files": 1243,
+  "missing_objects": 0,
+  "remotes": 0,
+  "promisor": false,
+  "fsck": "clean",
+  "mcm01_tests_from_the_offline_clone": "ALL_PASS = True",
+  "tree_hash_matches_live": true
+ },
+ "PROVENANCE_STATUS": "SELF_CONTAINED_OFFLINE_READBACK_PASS"
+}
