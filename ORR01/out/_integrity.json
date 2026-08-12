@@ -1,0 +1,370 @@
+{
+ "tests": [
+  {
+   "test": "LEGACY IDENTITY: v2 in v1 mode is the inherited engine, state for state",
+   "outcome": "PASS",
+   "detail": "300 steps, identical state hash at every step: b03054b92a0b4bd5"
+  },
+  {
+   "test": "the legacy path is the INHERITED code, not a copy",
+   "outcome": "PASS",
+   "detail": "WorldV2._feed_and_outflow delegates to K.World._feed_and_outflow in v1 legacy mode"
+  },
+  {
+   "test": "v2 conserves total occupancy EXACTLY at every step",
+   "outcome": "PASS",
+   "detail": "400 steps, max |dO| = 0, O(0) = 2405 = O(T) = 2405"
+  },
+  {
+   "test": "v2 conserves occupancy CELL BY CELL",
+   "outcome": "PASS",
+   "detail": "max cell occupancy 14 of CAP 16"
+  },
+  {
+   "test": "v2 material balance dN_X = births - deaths, exactly",
+   "outcome": "PASS",
+   "detail": "max residual 0 over 400 steps"
+  },
+  {
+   "test": "v2 shows NO monotone occupancy rise",
+   "outcome": "PASS",
+   "detail": "occupancy standard deviation over the run = 0.0 (the additive control's rises)"
+  },
+  {
+   "test": "v2 records a non-zero balanced flux",
+   "outcome": "PASS",
+   "detail": "flux in = out = 36395 units exchanged"
+  },
+  {
+   "test": "the additive control DOES ratchet under the same seed and parameters",
+   "outcome": "PASS",
+   "detail": "O: 2443 -> 5643 (+131.0%) in 400 steps"
+  },
+  {
+   "test": "exchange with an EMPTY exchangeable pool is a no-op",
+   "outcome": "PASS",
+   "detail": "occupancy unchanged at 800; no body molecule was removed"
+  },
+  {
+   "test": "exchange on an EMPTY source cell inserts nothing it cannot displace",
+   "outcome": "PASS",
+   "detail": "occupancy unchanged at 0"
+  },
+  {
+   "test": "exchange on a FULL cell still conserves occupancy exactly",
+   "outcome": "PASS",
+   "detail": "every cell at CAP = 16, occupancy unchanged at 6400"
+  },
+  {
+   "test": "with the declared pool the exchange never removes X or Y",
+   "outcome": "PASS",
+   "detail": "units displaced by species: {'SX': 9419, 'SY': 9364, 'WX': 41}"
+  },
+  {
+   "test": "the declared washout control DOES remove body molecules, as specified",
+   "outcome": "PASS",
+   "detail": "X units washed out: 100"
+  },
+  {
+   "test": "two organisers: occupancy still conserved exactly",
+   "outcome": "PASS",
+   "detail": "N_Y = 2, occupancy 2406"
+  },
+  {
+   "test": "v2 is deterministic under a fixed seed",
+   "outcome": "PASS",
+   "detail": "faea6c6787ac5bce"
+  },
+  {
+   "test": "paired arms share the main stream for one step before the states diverge",
+   "outcome": "PASS",
+   "detail": "split_feed_stream draws the feed or exchange from a second generator, so diffusion, reaction and decay consume the first stream identically"
+  },
+  {
+   "test": "the exchange operator reads no outcome, score or success variable",
+   "outcome": "PASS",
+   "detail": "forbidden identifiers found: none"
+  },
+  {
+   "test": "the exchange operator indexes only declared species fields",
+   "outcome": "PASS",
+   "detail": "species fields indexed directly: ['SX', 'SY'] (the rest go through the declared exchangeable pool)"
+  },
+  {
+   "test": "gate agreement: clean maintenance",
+   "outcome": "PASS",
+   "detail": "runtime=MAINTENANCE_ACHIEVED posthoc=MAINTENANCE_ACHIEVED PASS=True"
+  },
+  {
+   "test": "gate agreement: c_X intermittent, median 0 but mean positive",
+   "outcome": "PASS",
+   "detail": "runtime=MAINTENANCE_ACHIEVED posthoc=MAINTENANCE_ACHIEVED PASS=True"
+  },
+  {
+   "test": "gate agreement: c_X intermittent but mean too small",
+   "outcome": "PASS",
+   "detail": "runtime=MATERIAL_COLLAPSE posthoc=MATERIAL_COLLAPSE PASS=False"
+  },
+  {
+   "test": "gate agreement: temporary dip below the threshold",
+   "outcome": "PASS",
+   "detail": "runtime=MAINTENANCE_ACHIEVED posthoc=MAINTENANCE_ACHIEVED PASS=True"
+  },
+  {
+   "test": "gate agreement: long dip below the threshold",
+   "outcome": "PASS",
+   "detail": "runtime=TRANSIENT_FORMATION posthoc=TRANSIENT_FORMATION PASS=False"
+  },
+  {
+   "test": "gate agreement: disappearance then reappearance",
+   "outcome": "PASS",
+   "detail": "runtime=MATERIAL_COLLAPSE posthoc=MATERIAL_COLLAPSE PASS=False"
+  },
+  {
+   "test": "gate agreement: a second organiser appears at the evaluated instant",
+   "outcome": "PASS",
+   "detail": "runtime=MAINTENANCE_ACHIEVED posthoc=MAINTENANCE_ACHIEVED PASS=True"
+  },
+  {
+   "test": "gate agreement: local saturation but not global",
+   "outcome": "PASS",
+   "detail": "runtime=OCCUPANCY_RATCHET posthoc=OCCUPANCY_RATCHET PASS=False"
+  },
+  {
+   "test": "gate agreement: global saturation with a death re-opening a place",
+   "outcome": "PASS",
+   "detail": "runtime=OCCUPANCY_RATCHET posthoc=OCCUPANCY_RATCHET PASS=False"
+  },
+  {
+   "test": "gate agreement: the cluster wraps onto its own image",
+   "outcome": "PASS",
+   "detail": "runtime=BOUNDARY_ARTEFACT posthoc=BOUNDARY_ARTEFACT PASS=False"
+  },
+  {
+   "test": "gate agreement: a uniformly dense lattice",
+   "outcome": "PASS",
+   "detail": "runtime=OCCUPANCY_RATCHET posthoc=OCCUPANCY_RATCHET PASS=False"
+  },
+  {
+   "test": "gate agreement: component fusion then separation",
+   "outcome": "PASS",
+   "detail": "runtime=MAINTENANCE_ACHIEVED posthoc=MAINTENANCE_ACHIEVED PASS=True"
+  },
+  {
+   "test": "gate agreement: N_X = 0 throughout",
+   "outcome": "PASS",
+   "detail": "runtime=NO_FORMATION posthoc=NO_FORMATION PASS=False"
+  },
+  {
+   "test": "gate agreement: no formation at all",
+   "outcome": "PASS",
+   "detail": "runtime=NO_FORMATION posthoc=NO_FORMATION PASS=False"
+  },
+  {
+   "test": "gate agreement on an exhaustive small grid of traces",
+   "outcome": "PASS",
+   "detail": "108 traces, 0 disagreements"
+  },
+  {
+   "test": "gate agreement on the eight historical MCM01 arms",
+   "outcome": "PASS",
+   "detail": "8 arms, 0 disagreements; classifications: ['OCCUPANCY_RATCHET']"
+  },
+  {
+   "test": "the harness consumed no outcome-informative start",
+   "outcome": "PASS",
+   "detail": "starts=0, test steps 2232 of 8000"
+  }
+ ],
+ "gate_audit": [
+  {
+   "case": "clean maintenance",
+   "AGREE": true,
+   "runtime": "MAINTENANCE_ACHIEVED",
+   "posthoc": "MAINTENANCE_ACHIEVED",
+   "PASS": true
+  },
+  {
+   "case": "c_X intermittent, median 0 but mean positive",
+   "AGREE": true,
+   "runtime": "MAINTENANCE_ACHIEVED",
+   "posthoc": "MAINTENANCE_ACHIEVED",
+   "PASS": true
+  },
+  {
+   "case": "c_X intermittent but mean too small",
+   "AGREE": true,
+   "runtime": "MATERIAL_COLLAPSE",
+   "posthoc": "MATERIAL_COLLAPSE",
+   "PASS": false
+  },
+  {
+   "case": "temporary dip below the threshold",
+   "AGREE": true,
+   "runtime": "MAINTENANCE_ACHIEVED",
+   "posthoc": "MAINTENANCE_ACHIEVED",
+   "PASS": true
+  },
+  {
+   "case": "long dip below the threshold",
+   "AGREE": true,
+   "runtime": "TRANSIENT_FORMATION",
+   "posthoc": "TRANSIENT_FORMATION",
+   "PASS": false
+  },
+  {
+   "case": "disappearance then reappearance",
+   "AGREE": true,
+   "runtime": "MATERIAL_COLLAPSE",
+   "posthoc": "MATERIAL_COLLAPSE",
+   "PASS": false
+  },
+  {
+   "case": "a second organiser appears at the evaluated instant",
+   "AGREE": true,
+   "runtime": "MAINTENANCE_ACHIEVED",
+   "posthoc": "MAINTENANCE_ACHIEVED",
+   "PASS": true
+  },
+  {
+   "case": "local saturation but not global",
+   "AGREE": true,
+   "runtime": "OCCUPANCY_RATCHET",
+   "posthoc": "OCCUPANCY_RATCHET",
+   "PASS": false
+  },
+  {
+   "case": "global saturation with a death re-opening a place",
+   "AGREE": true,
+   "runtime": "OCCUPANCY_RATCHET",
+   "posthoc": "OCCUPANCY_RATCHET",
+   "PASS": false
+  },
+  {
+   "case": "the cluster wraps onto its own image",
+   "AGREE": true,
+   "runtime": "BOUNDARY_ARTEFACT",
+   "posthoc": "BOUNDARY_ARTEFACT",
+   "PASS": false
+  },
+  {
+   "case": "a uniformly dense lattice",
+   "AGREE": true,
+   "runtime": "OCCUPANCY_RATCHET",
+   "posthoc": "OCCUPANCY_RATCHET",
+   "PASS": false
+  },
+  {
+   "case": "component fusion then separation",
+   "AGREE": true,
+   "runtime": "MAINTENANCE_ACHIEVED",
+   "posthoc": "MAINTENANCE_ACHIEVED",
+   "PASS": true
+  },
+  {
+   "case": "N_X = 0 throughout",
+   "AGREE": true,
+   "runtime": "NO_FORMATION",
+   "posthoc": "NO_FORMATION",
+   "PASS": false
+  },
+  {
+   "case": "no formation at all",
+   "AGREE": true,
+   "runtime": "NO_FORMATION",
+   "posthoc": "NO_FORMATION",
+   "PASS": false
+  },
+  {
+   "case": "historical cal__p0_mu0.004_phi0.2_ell2.5__see",
+   "AGREE": true,
+   "runtime": "OCCUPANCY_RATCHET",
+   "posthoc": "OCCUPANCY_RATCHET"
+  },
+  {
+   "case": "historical cal__p0_mu0.004_phi0.2_ell2.5__see",
+   "AGREE": true,
+   "runtime": "OCCUPANCY_RATCHET",
+   "posthoc": "OCCUPANCY_RATCHET"
+  },
+  {
+   "case": "historical cal__p1_mu0.004_phi0.4_ell2.5__see",
+   "AGREE": true,
+   "runtime": "OCCUPANCY_RATCHET",
+   "posthoc": "OCCUPANCY_RATCHET"
+  },
+  {
+   "case": "historical cal__p1_mu0.004_phi0.4_ell2.5__see",
+   "AGREE": true,
+   "runtime": "OCCUPANCY_RATCHET",
+   "posthoc": "OCCUPANCY_RATCHET"
+  },
+  {
+   "case": "historical cal__p2_mu0.004_phi0.4_ell3__seed1",
+   "AGREE": true,
+   "runtime": "OCCUPANCY_RATCHET",
+   "posthoc": "OCCUPANCY_RATCHET"
+  },
+  {
+   "case": "historical cal__p2_mu0.004_phi0.4_ell3__seed1",
+   "AGREE": true,
+   "runtime": "OCCUPANCY_RATCHET",
+   "posthoc": "OCCUPANCY_RATCHET"
+  },
+  {
+   "case": "historical cal__p3_mu0.002_phi0.1_ell2.5__see",
+   "AGREE": true,
+   "runtime": "OCCUPANCY_RATCHET",
+   "posthoc": "OCCUPANCY_RATCHET"
+  },
+  {
+   "case": "historical cal__p3_mu0.002_phi0.1_ell2.5__see",
+   "AGREE": true,
+   "runtime": "OCCUPANCY_RATCHET",
+   "posthoc": "OCCUPANCY_RATCHET"
+  }
+ ],
+ "mutations": [
+  {
+   "mutation": "a confirmation start beyond its class cap",
+   "outcome": "DETECTED",
+   "detail": ""
+  },
+  {
+   "mutation": "an undeclared start class",
+   "outcome": "DETECTED",
+   "detail": ""
+  },
+  {
+   "mutation": "a start opened in TEST mode",
+   "outcome": "DETECTED",
+   "detail": ""
+  },
+  {
+   "mutation": "an advance in STATIC mode",
+   "outcome": "DETECTED",
+   "detail": ""
+  }
+ ],
+ "ledger_after_harness": {
+  "by_class": {
+   "cost_probe": 0,
+   "confirmation": 0,
+   "control": 0
+  },
+  "caps": {
+   "cost_probe": 2,
+   "confirmation": 12,
+   "control": 8
+  },
+  "total": 0,
+  "valid": 0,
+  "invalid": 0,
+  "sequence_consistent": true,
+  "test_steps_used": 2232,
+  "max_test_steps": 8000,
+  "log": []
+ },
+ "PROTOCOL_ADVERSARIAL_AUDIT": "PASS",
+ "ALL_PASS": true
+}

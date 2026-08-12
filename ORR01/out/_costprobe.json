@@ -1,0 +1,54 @@
+{
+ "note": "timing on n[Y] == 0, where both birth probabilities are identically zero, so no information about maintenance can be extracted",
+ "measurements": [
+  {
+   "lawspec": "v1_additive",
+   "steps": 300,
+   "ms_per_step": 2.723337014516195,
+   "N_Y_end": 0
+  },
+  {
+   "lawspec": "v2_exchange",
+   "steps": 300,
+   "ms_per_step": 3.232013384501139,
+   "N_Y_end": 0
+  }
+ ],
+ "projection_seconds_worst_case": 662.5627438227335,
+ "ledger": {
+  "by_class": {
+   "cost_probe": 2,
+   "confirmation": 0,
+   "control": 0
+  },
+  "caps": {
+   "cost_probe": 2,
+   "confirmation": 12,
+   "control": 8
+  },
+  "total": 2,
+  "valid": 2,
+  "invalid": 0,
+  "sequence_consistent": true,
+  "test_steps_used": 0,
+  "max_test_steps": 8000,
+  "log": [
+   {
+    "n": 1,
+    "class": "cost_probe",
+    "tag": "cost_probe/v1_additive",
+    "planned_steps": 300,
+    "steps_used": 300,
+    "valid": true
+   },
+   {
+    "n": 2,
+    "class": "cost_probe",
+    "tag": "cost_probe/v2_exchange",
+    "planned_steps": 300,
+    "steps_used": 300,
+    "valid": true
+   }
+  ]
+ }
+}

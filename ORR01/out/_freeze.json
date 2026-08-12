@@ -1,0 +1,263 @@
+{
+ "FREEZE": 1,
+ "frozen_before": "the first confirmation start",
+ "code_sha256": {
+  "exact_chain.py": "43222d8b2b973222b1ca8b7e3422d09015be74684bb037e35f311b8000cfc69d",
+  "kinetics.py": "d6b9e24daefd9a9ddd42780fa24da444a344a2773bb7836a8e168e44f026c4c4",
+  "lattice.py": "211ead5c20127d1195580e73c6879402ab17370ba8769e017a39436fd3a1c93c",
+  "lawspec_v2.py": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94",
+  "guard.py": "7c7aafb41d9826bb479ce1afd0fb43d3ccbef72c49c4492c773c3ee33389e719",
+  "observe.py": "55840f35f44ccd424c4b71c80d591614d01c9143ca21e9c14e87e0faeeec2fbd",
+  "gates.py": "990c8261ec5ff28e9839a2d0b010bd678526b5767cd97c0bb276aa1246be08b6",
+  "analysis.py": "adbbebea715b2ac02a247e68c919b6d6ee79673dc3a897e0176fa8549c12d5c0",
+  "run_theorem.py": "cff1bbf9ef534e788a407fa718c23a5fa02147296a3f50b814e16a439690429b",
+  "protocol.py": "58ce7c49dd3d6708fb9a822fb7733796ea9fe43f07ef80bab27cfa4c7dc1afc1",
+  "tests_orr.py": "706616fb965591c815e5b1a60dc497e01d82955ce3c2d60c53de5c0a9c2ff9af",
+  "costprobe.py": "cfaecc87978bb311d1c0444ef562fe9b232b28a65c0cc9db7327c02f777e4640"
+ },
+ "doc_sha256": {
+  "_provenance.json": "3b0f074eda4260694d8853fe6df131e0e3adc8f94e3d24e6ef82b0ff02fd0500",
+  "_theorem.json": "5bf07b11f96a30e4eeeafd703ffed6af9c096d7ce24eb13e1c16456dba31032b",
+  "_analysis.json": "74b8c90855f993a579ba73097646cc2f08483cc30489fff7f26ab4a8eecb7d8b",
+  "_integrity.json": "81c5ae037473a22748854b27948b25f47cda959cbe9ecd7283cfb874bf1a7f21",
+  "_costprobe.json": "9fae7350efdb2f018beccb17758aa3277416bbcdca37afab67beb9cb99c9a0d4",
+  "ORR01_PREFREEZE_PLAN.md": "4fc0fbbb39f6e6ccf86c307acebd256d067b183b0f93040ecb92d1dd9abcacd2"
+ },
+ "METHODS_CORE_HASH": "1cfdb1925f8720b21baff94d68f1ffc03d37042733e174de7920b3a3b949a84d",
+ "protocol": {
+  "POINT": {
+   "L": 36,
+   "CAP": 16,
+   "S0": 3,
+   "phi": 0.2,
+   "omega": 0.05,
+   "muX": 0.004,
+   "muY": 0.0,
+   "kX": 1.0,
+   "kY": 0.0,
+   "p_hop_X": 0.10263340389897246,
+   "p_hop_Y": 0.10263340389897246
+  },
+  "POINT_PROVENANCE": "the analytic winner of the MCM01 frozen selection rule (muX = 0.004, phi = 0.20, ell_X = 2.5). It is reused unchanged so that the additive control reproduces a configuration already measured, and because the repair introduces NO new parameter: the exchange reuses phi as its rate and S0 as its set-point. No calibration block is therefore run and none is needed.",
+  "G0_relative_walk": 9.811362106333473,
+  "X_SEED": 4,
+  "T_FORM_MAX": 1250,
+  "T_MAINT": 9000,
+  "HORIZON": 10250,
+  "gate_thresholds": {
+   "T_FORM_MAX": 1250,
+   "T_MAINT": 9000,
+   "N_FORM": 30,
+   "U_FORM": 3.0,
+   "K_FORM": 50,
+   "N_KEEP": 50,
+   "FRAC_MIN": 0.95,
+   "RUN_MAX": 250,
+   "G0": 9.811362106333473,
+   "FREE_MIN": 0.5,
+   "OCC_TOL": 0.05
+  },
+  "SAMPLE_EVERY": 100,
+  "SEEDS_confirmation": [
+   5001,
+   5002,
+   5003,
+   5004,
+   5005,
+   5006
+  ],
+  "SEEDS_control": [
+   7001,
+   7002
+  ],
+  "CONFIRM_REQUIRED": 5,
+  "arms": {
+   "ADDITIVE_CONTROL": {
+    "lawspec": "LAWSPEC_V1_ADDITIVE",
+    "rng_mode": "split_feed_stream",
+    "exchangeable": [
+     "SX",
+     "SY",
+     "WX",
+     "WY"
+    ],
+    "insert_mode": "reservoir",
+    "organiser": true,
+    "predicted": "OCCUPANCY_RATCHET"
+   },
+   "REPAIRED": {
+    "lawspec": "LAWSPEC_V2_EXCHANGE",
+    "rng_mode": "split_feed_stream",
+    "exchangeable": [
+     "SX",
+     "SY",
+     "WX",
+     "WY"
+    ],
+    "insert_mode": "reservoir",
+    "organiser": true,
+    "predicted": "MAINTENANCE_ACHIEVED"
+   }
+  },
+  "controls": {
+   "NO_ORGANISER_V2": {
+    "lawspec": "LAWSPEC_V2_EXCHANGE",
+    "rng_mode": "split_feed_stream",
+    "exchangeable": [
+     "SX",
+     "SY",
+     "WX",
+     "WY"
+    ],
+    "insert_mode": "reservoir",
+    "organiser": false,
+    "predicted": "NO_FORMATION",
+    "rationale": "n_X = 0 is an exact invariant manifold; nothing may appear"
+   },
+   "WASHOUT_POOL_INCLUDES_BODY": {
+    "lawspec": "LAWSPEC_V2_EXCHANGE",
+    "rng_mode": "split_feed_stream",
+    "exchangeable": [
+     "SX",
+     "SY",
+     "WX",
+     "WY",
+     "X"
+    ],
+    "insert_mode": "reservoir",
+    "organiser": true,
+    "predicted": null,
+    "rationale": "the exclusion of the body from the exchangeable pool is the one modelling choice the repair makes; this control removes it, adding a washout death term, so the result cannot rest on the exclusion"
+   },
+   "SHAM_REINSERT": {
+    "lawspec": "LAWSPEC_V2_EXCHANGE",
+    "rng_mode": "split_feed_stream",
+    "exchangeable": [
+     "SX",
+     "SY",
+     "WX",
+     "WY"
+    ],
+    "insert_mode": "sham_reinsert",
+    "organiser": true,
+    "predicted": "MATERIAL_COLLAPSE",
+    "rationale": "occupancy is conserved exactly, as in the repair, but nothing is renewed. Isolates renewal from the mere conservation of occupancy"
+   },
+   "NO_EXCHANGE_AT_ALL": {
+    "lawspec": "LAWSPEC_V2_EXCHANGE",
+    "rng_mode": "split_feed_stream",
+    "exchangeable": [
+     "SX",
+     "SY",
+     "WX",
+     "WY"
+    ],
+    "insert_mode": "reservoir",
+    "organiser": true,
+    "phi": 0.0,
+    "predicted": "MATERIAL_COLLAPSE",
+    "rationale": "phi = 0 switches the exchange off entirely; the resource is consumed and never renewed"
+   }
+  },
+  "start_caps": {
+   "cost_probe": 2,
+   "confirmation": 12,
+   "control": 8
+  },
+  "no_calibration_block": "the repair introduces no new parameter; the point is the MCM01 analytic winner, reused unchanged",
+  "pairing": "each confirmation seed is run in BOTH arms with the same seed and the same initial condition, and both arms draw the feed or exchange from a second RNG stream so that diffusion, reaction and decay consume the first stream identically until the states diverge",
+  "sequential_stopping_rule": [
+   "1 provenance not self-contained -> STOP",
+   "2 closure indeterminate -> STOP",
+   "3 no admissible repair -> STOP",
+   "4 v2 fails an invariance test -> STOP",
+   "5 the two gate implementations disagree anywhere -> STOP",
+   "6 the additive control does not reproduce the ratchet on the first paired seed -> STOP",
+   "7 the repair does not remove the ratchet on the first paired seed -> STOP",
+   "8 no cloud forms in the repaired arm on the first two seeds -> STOP",
+   "9 all repaired clouds collapse over the first three seeds -> STOP",
+   "10 any logging defect or ledger divergence -> STOP",
+   "11 controls run only if at least three confirmation pairs were executed"
+  ],
+  "success_criterion": "at least 5 of 6 repaired seeds MAINTENANCE_ACHIEVED AND at least 5 of 6 additive control seeds NOT MAINTENANCE_ACHIEVED",
+  "raw_variables": [
+   "step",
+   "N_X",
+   "N_Y",
+   "N_SX",
+   "N_SY",
+   "N_WX",
+   "N_WY",
+   "n_org_cells",
+   "c_X_total",
+   "c_X_per_org",
+   "u_nX_at_org",
+   "nSX_at_org",
+   "nSY_at_org",
+   "nW_at_org",
+   "free_at_org",
+   "p_X_at_org",
+   "expected_births_X",
+   "accepted_births_X",
+   "deaths_X",
+   "cand_Y_at_org",
+   "Q",
+   "source_on",
+   "O_total",
+   "free_total",
+   "flux_in",
+   "flux_out",
+   "occ_delta",
+   "free_at_source_mean",
+   "displaced_total",
+   "final fields of all six species",
+   "per-component id, cells, N_X, N_Y, mass, density, circular centre of mass, radius of gyration, extent, gap to the periodic image, wrap flag",
+   "escapees",
+   "initial and final RNG state",
+   "seed",
+   "full LawSpec",
+   "displaced species counts",
+   "flux in and out"
+  ]
+ },
+ "PROVENANCE_STATUS": "SELF_CONTAINED_OFFLINE_READBACK_PASS",
+ "theorem_checks": {
+  "the exact enumerator reproduces the engine's one-step kernel": "PASS",
+  "Proposition 1, EXACT on a two-cell ring, started at the protocol initial condition: the additive feed drives the resource far ABOVE its own set-point": "PASS",
+  "Proposition 1, counterfactual: with an occupancy-CONSERVING feed the SAME chain does not ratchet at all": "PASS",
+  "Proposition 1, SCOPE: on a single cell the same additive feed stops exactly at S0": "PASS",
+  "Proposition 2, exact: the FULL state is absorbing only on a sub-space": "PASS",
+  "Proposition 2, the re-opening cycle exists and is exhibited": "PASS",
+  "Proposition 3, exact: n_X = 0 is invariant and reachable from EVERY state": "PASS",
+  "the exact stationarity identity of the occupancy": "PASS"
+ },
+ "criticality": {
+  "CRITICALITY_STATUS": "NOT_VALID",
+  "reason": "the configuration actually used by MTW01 and MCM01 has kX = 1, where the birth probability saturates at n_X >= 1 and no linear low-density operator exists. A scalar multiplier is therefore not a criticality criterion for the population; it is the expected offspring number of a SINGLE body molecule in a FROZEN environment.",
+  "retained_diagnostic": "the drift balance E[dN_X | state] = E[births] - muX*N_X, logged exactly step by step (accepted births and deaths are read from the field, not modelled), whose zero gives the quasi-stationary level N* = E[births]/muX; and the realised persistence over the declared window.",
+  "MTW01_supercritical_qualification": "BY_PREVIOUS_MEAN_FIELD_CRITERION_ONLY"
+ },
+ "repair_selected": "R2_BALANCED_EXCHANGE",
+ "repair_ranking": [
+  "R2_BALANCED_EXCHANGE",
+  "R0_ADDITIVE_LEGACY",
+  "R1_REPLACEMENT_FEED_KEEP_OUTFLOW",
+  "R2b_EXCHANGE_POOL_INCLUDES_BODY",
+  "R3_RESERVOIR_BOUNDARY"
+ ],
+ "PROTOCOL_ADVERSARIAL_AUDIT": "PASS",
+ "integrity": {
+  "ALL_PASS": true,
+  "tests": 35,
+  "gate_audit_cases": 22,
+  "mutations": 4,
+  "test_steps": 2232,
+  "starts_consumed_by_the_harness": 0
+ },
+ "starts_before_this_freeze": {
+  "cost_probe": 2,
+  "confirmation": 0,
+  "control": 0,
+  "note": "the only engine advances before this freeze are the bounded score-blind harness steps and two cost probes on the manifold n[Y] == 0"
+ }
+}
