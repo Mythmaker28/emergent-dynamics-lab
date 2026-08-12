@@ -1,0 +1,193 @@
+{
+ "tests": [
+  {
+   "test": "kinetics.py is byte-identical to the frozen MTW01 engine",
+   "outcome": "PASS",
+   "detail": "d6b9e24daefd9a9d"
+  },
+  {
+   "test": "p_hop <-> D_eff inversion is exact",
+   "outcome": "PASS",
+   "detail": "max error 1.11e-16"
+  },
+  {
+   "test": "u* solves u = A(1-exp(-u))",
+   "outcome": "PASS",
+   "detail": "residual > 1e-10 at none"
+  },
+  {
+   "test": "the Green quadrature carries a convergence certificate",
+   "outcome": "PASS",
+   "detail": "n=1024 delta=1.78e-15 G0=13.92272"
+  },
+  {
+   "test": "G(0) -> 1/muX in the immobile limit",
+   "outcome": "PASS",
+   "detail": "G0=99.990 vs 1/muX=100"
+  },
+  {
+   "test": "the exact cand_X cap is recomputed",
+   "outcome": "PASS",
+   "detail": "cand_X_max = 7"
+  },
+  {
+   "test": "the recorder does not change the law of the process",
+   "outcome": "PASS",
+   "detail": "identical state hash after 250 steps: cc13a958745d5b58"
+  },
+  {
+   "test": "the recorder produced one row per step",
+   "outcome": "PASS",
+   "detail": "250 rows"
+  },
+  {
+   "test": "recorded c_X equals min(n[SX], free) at the organiser cell, independently computed",
+   "outcome": "PASS",
+   "detail": "recorded 5.0, independent 5"
+  },
+  {
+   "test": "accepted births and deaths are read from the field, not modelled",
+   "outcome": "PASS",
+   "detail": "births=5 deaths=0 (muX = 0 in this fixture)"
+  },
+  {
+   "test": "no start may be opened in TEST mode",
+   "outcome": "PASS",
+   "detail": ""
+  },
+  {
+   "test": "the TEST step budget is enforced",
+   "outcome": "PASS",
+   "detail": ""
+  },
+  {
+   "test": "advance() is impossible in STATIC mode",
+   "outcome": "PASS",
+   "detail": ""
+  },
+  {
+   "test": "the persistence gate does NOT fail merely because a second organiser appears",
+   "outcome": "PASS",
+   "detail": "checks: {\"never_extinct\": true, \"organiser_present_throughout\": true, \"fraction_of_steps_at_or_above_N_KEEP\": 1.0, \"fraction_ok\": true, \"longest_consecutive_excursion\": 0, \"excursion_ok\": true, \"fraction_of_steps_with_cX_G0_above_1\": 1.0, \"criticality_ok\": true, \"main_component_carries_the_mass\": true, \"no_wrap_around_contact\": true, \"n_component_samples\": 8}"
+  },
+  {
+   "test": "the persistence gate DOES fail when the organiser is lost",
+   "outcome": "PASS",
+   "detail": ""
+  },
+  {
+   "test": "formation requires K consecutive steps, an oscillating record does not qualify",
+   "outcome": "PASS",
+   "detail": ""
+  },
+  {
+   "test": "formation is detected at the K-th consecutive qualifying step",
+   "outcome": "PASS",
+   "detail": ""
+  },
+  {
+   "test": "a long consecutive excursion fails even when the time average is comfortable",
+   "outcome": "PASS",
+   "detail": "longest=60 frac=0.940"
+  },
+  {
+   "test": "components wrap across the seam and lone molecules are escapees",
+   "outcome": "PASS",
+   "detail": "n=1 escapees=1 main N_X=35"
+  },
+  {
+   "test": "the circular centre of mass is correct across the seam",
+   "outcome": "PASS",
+   "detail": "com_y = 35.584 on a torus of 36"
+  },
+  {
+   "test": "the end classification returns the declared label in each canonical case",
+   "outcome": "PASS",
+   "detail": "{\"NO_FORMATION\": \"NO_FORMATION\", \"TRANSIENT_FORMATION\": \"TRANSIENT_FORMATION\", \"MAINTENANCE_ACHIEVED\": \"MAINTENANCE_ACHIEVED\"}"
+  },
+  {
+   "test": "every classification label is declared",
+   "outcome": "PASS",
+   "detail": ""
+  },
+  {
+   "test": "a clean maintenance record passes the persistence gate",
+   "outcome": "PASS",
+   "detail": ""
+  },
+  {
+   "test": "the harness consumed no outcome-informative start",
+   "outcome": "PASS",
+   "detail": "starts=0, test steps 501 of 6000"
+  }
+ ],
+ "mutations": [
+  {
+   "mutation": "a single step at N_X = 0 inside the window",
+   "outcome": "DETECTED",
+   "detail": ""
+  },
+  {
+   "mutation": "c_X collapsed so that c_X*G(0) < 1",
+   "outcome": "DETECTED",
+   "detail": ""
+  },
+  {
+   "mutation": "the main component wraps around the torus",
+   "outcome": "DETECTED",
+   "detail": ""
+  },
+  {
+   "mutation": "the main component no longer carries the mass",
+   "outcome": "DETECTED",
+   "detail": ""
+  },
+  {
+   "mutation": "the maintenance window is truncated",
+   "outcome": "DETECTED",
+   "detail": ""
+  },
+  {
+   "mutation": "a selection that ignores the frozen ordering",
+   "outcome": "DETECTED",
+   "detail": "the winner is the argmin of the frozen key over 8 candidates"
+  },
+  {
+   "mutation": "a measured c_X too small to satisfy the frozen criticality threshold",
+   "outcome": "DETECTED",
+   "detail": "the point is eliminated when its measured c_X is a tenth of the certified bound"
+  },
+  {
+   "mutation": "a calibration start beyond its own class cap",
+   "outcome": "DETECTED",
+   "detail": ""
+  },
+  {
+   "mutation": "an undeclared start class",
+   "outcome": "DETECTED",
+   "detail": ""
+  }
+ ],
+ "ledger_after_harness": {
+  "by_class": {
+   "cost_probe": 0,
+   "calibration": 0,
+   "confirmation": 0,
+   "control": 0
+  },
+  "caps": {
+   "cost_probe": 2,
+   "calibration": 8,
+   "confirmation": 6,
+   "control": 10
+  },
+  "total": 0,
+  "valid": 0,
+  "invalid": 0,
+  "sequence_consistent": true,
+  "test_steps_used": 501,
+  "max_test_steps": 6000,
+  "log": []
+ },
+ "ALL_PASS": true
+}

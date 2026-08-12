@@ -1,0 +1,263 @@
+{
+ "FREEZE": 1,
+ "frozen_before": "the first calibration start",
+ "code_sha256": {
+  "lattice.py": "211ead5c20127d1195580e73c6879402ab17370ba8769e017a39436fd3a1c93c",
+  "audit.py": "df96401bc561a6155a470823efc5e6d3fd3b6e767f4773f2b9409b7c125b8424",
+  "kinetics.py": "d6b9e24daefd9a9ddd42780fa24da444a344a2773bb7836a8e168e44f026c4c4",
+  "guard.py": "4cfade15cff8f00c0793e4b4b4412f301aa0deea2d9b9703badac6064e36c98d",
+  "mcm.py": "7186dd0bef95e20aa4bfe71b8f02b1c60b281425c365b070e7963837d1d50af3",
+  "region.py": "98310a1f4c6f08fdee8732ad014d30d54da014abf3d72e9f32414fd350f82f7b",
+  "protocol.py": "2003250dba6fca53fe944b04e782caada23697a53e9c348059e6a9341889975d",
+  "tests_mcm.py": "c6bb386a97edf9c00f4d0df3086608b2ac9cfaef093eededf03f0cc54214a94d",
+  "costprobe.py": "c10f75ef80952ea4b10c35dc8741cf9327fab068c6a1bc90054149ed62dd4152"
+ },
+ "doc_sha256": {
+  "MCM01_PREFREEZE_ANALYSIS_PLAN.md": "b0b2eea0a527c7459b35c0f5c6697b7609083351daf1a17a68a6d8858bf26d62",
+  "_audit.json": "671382e3513631f9438385fd33c3f365b92a652b57338efa7f7115c4bbed5ae1",
+  "_region.json": "e3bdae45a15eeb9fe49f0d402fd12d504b1238d2524668447dd5ab4b6d84b988",
+  "_integrity.json": "a5f8618ed638c0f977c695fe09f86a4d4a4f0eba073f6f25a332708feead5bb7",
+  "_costprobe.json": "eb3ae35b4d798afb5fddb3444deb41d444160e2d5023790801d0d47c81957cc0"
+ },
+ "METHODS_CORE_HASH": "0ad009794f7297df289f8e28e65f8518135539a0013c6403eae0d49f7cfd2813",
+ "protocol": {
+  "X_SEED": 4,
+  "N_FORM": 30,
+  "U_FORM": 3.0,
+  "K_FORM": 50,
+  "FORM_LIFETIMES": 5.0,
+  "MAINT_LIFETIMES": 20.0,
+  "FRAC_MIN": 0.95,
+  "CRIT_FRAC": 0.9,
+  "N_KEEP_FRACTION": 0.25,
+  "N_KEEP_FLOOR": 20,
+  "RUN_MAX_LIFETIMES": 1.0,
+  "SAMPLE_EVERY": 50,
+  "CAL_LIFETIMES": 5.0,
+  "N_CANDIDATES": 4,
+  "CONFIRM_REQUIRED": 5,
+  "SEEDS": {
+   "calibration": [
+    1001,
+    1002
+   ],
+   "confirmation": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006
+   ],
+   "control": [
+    3001
+   ]
+  },
+  "PRIMARY_ORGANISER": {
+   "kY": 0.0,
+   "muY": 0.0
+  },
+  "start_caps": {
+   "cost_probe": 2,
+   "calibration": 8,
+   "confirmation": 6,
+   "control": 10
+  },
+  "c_X_pooling": "min over calibration seeds of the median over the measurement window; conservative, chosen because the certified transport value is an UPPER bound and the gate must not be flattered",
+  "selection_rule": "among points passing every analytic constraint AND the measured criticality and population thresholds, take the minimum predicted T_run; ties broken by the ascending lexicographic order ('muX', 'phi', 'ell_X', 'rho_Y')",
+  "sequential_stopping_rule": [
+   "1 no analytically admissible point -> STOP, FAIL (region empty)",
+   "2 no calibration arm forms a cloud -> STOP, CX_UNRESOLVED",
+   "3 no point survives the frozen rule with the MEASURED c_X -> STOP, FAIL",
+   "4 the first two confirmation seeds both fail to form -> STOP, FAIL",
+   "5 the first three confirmation seeds all fail maintenance -> STOP, FAIL",
+   "6 any protocol or logging defect -> STOP, AUDIT_INVALID",
+   "7 controls run only if at least three confirmation seeds were executed"
+  ],
+  "success_criterion": "at least 5 of 6 confirmation seeds classified MAINTENANCE_ACHIEVED",
+  "raw_variables_saved": [
+   "step",
+   "N_X",
+   "N_Y",
+   "N_SX",
+   "N_SY",
+   "N_WX",
+   "N_WY",
+   "n_org_cells",
+   "c_X_total",
+   "c_X_per_org",
+   "u_nX_at_org",
+   "nSX_at_org",
+   "nSY_at_org",
+   "nW_at_org",
+   "free_at_org",
+   "p_X_at_org",
+   "expected_births_X",
+   "accepted_births_X",
+   "deaths_X",
+   "cand_Y_at_org",
+   "Q",
+   "source_on",
+   "final n[X], n[Y], n[SX], n[SY], n[WX], n[WY] fields",
+   "per-component: id, cells, N_X, N_Y, mass, density, circular centre of mass, radius of gyration, extent, gap to the periodic image, wrap flag",
+   "escapee list",
+   "initial and final RNG state",
+   "seed",
+   "full LawSpec",
+   "step index of every sample"
+  ]
+ },
+ "region": {
+  "n_grid": 40,
+  "n_admissible": 8,
+  "thresholds": {
+   "CRIT_MIN": 8.0,
+   "N_MIN": 200.0,
+   "TAU_SEP_MAX": 2000.0,
+   "T_RUN_MAX": 20000,
+   "Q_MAX_EXACT": 28
+  },
+  "pinned": {
+   "S0": 3,
+   "CAP": 16,
+   "omega": 0.05,
+   "L": 36
+  },
+  "tie_break": [
+   "muX",
+   "phi",
+   "ell_X",
+   "rho_Y"
+  ]
+ },
+ "calibration_points_in_frozen_order": [
+  {
+   "muX": 0.004,
+   "phi": 0.2,
+   "ell_X": 2.5,
+   "rho_Y": 1.0,
+   "p_hop_X": 0.10263340389897246,
+   "p_hop_Y": 0.10263340389897246,
+   "G0_relative": 9.811362106333473,
+   "c_X_certified": 0.8178469511089296,
+   "criticality_A": 8.024192584890516,
+   "u_star": 8.021558177776031,
+   "N_X_predicted": 204.4617377772324,
+   "tau_sep": 125.00000000000001,
+   "T_run": 6250.0,
+   "kY_future": 3.7628755592080812e-06,
+   "muY_future": 3.762875559208081e-07
+  },
+  {
+   "muX": 0.004,
+   "phi": 0.4,
+   "ell_X": 2.5,
+   "rho_Y": 1.0,
+   "p_hop_X": 0.10263340389897246,
+   "p_hop_Y": 0.10263340389897246,
+   "G0_relative": 9.811362106333473,
+   "c_X_certified": 1.3701293290724998,
+   "criticality_A": 13.442834980038029,
+   "u_star": 13.442815465858807,
+   "N_X_predicted": 342.53233226812495,
+   "tau_sep": 125.00000000000001,
+   "T_run": 6250.0,
+   "kY_future": 3.7628755592080812e-06,
+   "muY_future": 3.762875559208081e-07
+  },
+  {
+   "muX": 0.004,
+   "phi": 0.4,
+   "ell_X": 3.0,
+   "rho_Y": 1.0,
+   "p_hop_X": 0.14959463900473957,
+   "p_hop_Y": 0.14959463900473957,
+   "G0_relative": 7.343238150511278,
+   "c_X_certified": 1.439691068092121,
+   "criticality_A": 10.571994376164394,
+   "u_star": 10.57172340955162,
+   "N_X_predicted": 359.92276702303025,
+   "tau_sep": 125.00000000000001,
+   "T_run": 6250.0,
+   "kY_future": 3.7628755592080812e-06,
+   "muY_future": 3.762875559208081e-07
+  },
+  {
+   "muX": 0.002,
+   "phi": 0.1,
+   "ell_X": 2.5,
+   "rho_Y": 1.0,
+   "p_hop_X": 0.05064113103820733,
+   "p_hop_Y": 0.05064113103820733,
+   "G0_relative": 19.26071356679317,
+   "c_X_certified": 0.422948188340303,
+   "criticality_A": 8.146283909216667,
+   "u_star": 8.143917438486914,
+   "N_X_predicted": 211.4740941701515,
+   "tau_sep": 250.0,
+   "T_run": 12500.0,
+   "kY_future": 1.8814377796040408e-06,
+   "muY_future": 1.8814377796040408e-07
+  }
+ ],
+ "analytic_winner_before_calibration": {
+  "muX": 0.004,
+  "phi": 0.2,
+  "ell_X": 2.5,
+  "rho_Y": 1.0,
+  "criticality_A": 8.024192584890516,
+  "N_X_predicted": 204.4617377772324,
+  "T_run": 6250.0
+ },
+ "integrity": {
+  "ALL_PASS": true,
+  "tests": 24,
+  "mutations": 9,
+  "test_steps": 501,
+  "starts_consumed_by_harness": 0
+ },
+ "audit_summary": {
+  "REPRODUCED": 8,
+  "REPRODUCED_CORRECTED": 7
+ },
+ "divergence_1519_vs_190": {
+  "claim": "resolution of 1519 versus 190",
+  "status": "REPRODUCED",
+  "detail": "both numbers are the same quantity, the left-hand side of the window non-emptiness condition at the FROZEN MINCORE point, under two different conventions for the separation time. With tau = Delta^2/D_Y (the convention used in the first evaluation of MTW01) it is 1518.6. With the exact two-dimensional first-passage time tau = Delta^2/(8*D_Y) it is 189.8. The ratio is exactly 8.0000 = 8, the first-passage correction and nothing else. The final MTW01 report quotes the corrected value; the 1519 appeared only in an intermediate console evaluation and is superseded. Under the corrected D_eff the value becomes 180.4. In every convention the window at the frozen MINCORE point is EMPTY by two to three orders of magnitude, so the conclusion is unaffected.",
+  "table": {
+   "naive_delta|D=naive": {
+    "tau_sep": 80000.00000000001,
+    "emptiness_lhs": 1518.595452964785
+   },
+   "naive_delta|D=eff": {
+    "tau_sep": 76038.01900950473,
+    "emptiness_lhs": 1443.387374003547
+   },
+   "kk_scaling|D=naive": {
+    "tau_sep": 20000.000000000004,
+    "emptiness_lhs": 379.64886324119624
+   },
+   "kk_scaling|D=eff": {
+    "tau_sep": 19009.504752376182,
+    "emptiness_lhs": 360.84684350088673
+   },
+   "first_passage_2d|D=naive": {
+    "tau_sep": 10000.000000000002,
+    "emptiness_lhs": 189.82443162059812
+   },
+   "first_passage_2d|D=eff": {
+    "tau_sep": 9504.752376188091,
+    "emptiness_lhs": 180.42342175044337
+   }
+  },
+  "ratio": 8.0,
+  "traceable_final_value": 180.42342175044337
+ },
+ "starts_before_this_freeze": {
+  "cost_probe": 0,
+  "calibration": 0,
+  "confirmation": 0,
+  "control": 0,
+  "note": "the only engine advances before this freeze are the bounded score-blind harness steps and the cost probes on the manifold n[Y] == 0, where both birth probabilities are identically zero"
+ }
+}

@@ -1,0 +1,226 @@
+{
+ "claims": [
+  {
+   "claim": "MTW01 manifest",
+   "status": "REPRODUCED",
+   "detail": "20 files verified, 0 mismatched"
+  },
+  {
+   "claim": "MINCORE manifest",
+   "status": "REPRODUCED",
+   "detail": "12 files verified, 0 mismatched"
+  },
+  {
+   "claim": "effective diffusion constant of _diffuse",
+   "status": "REPRODUCED_CORRECTED",
+   "detail": "the four sequential direction attempts let a particle move and move back within one step, so <r^2> = 4*q*(1-q) and D_eff = q*(1-q), not p_hop/4. Error at p_hop=1 is -25.0%, at p_hop=0.2 it is -5.0%. MINCORE and MTW01 both used p_hop/4.",
+   "table": [
+    {
+     "p_hop": 0.002,
+     "D_naive_p_over_4": 0.0005,
+     "D_eff_q_1_minus_q": 0.0004997500000000001,
+     "relative_error": -0.0004999999999998339
+    },
+    {
+     "p_hop": 0.05,
+     "D_naive_p_over_4": 0.0125,
+     "D_eff_q_1_minus_q": 0.01234375,
+     "relative_error": -0.012499999999999956
+    },
+    {
+     "p_hop": 0.2,
+     "D_naive_p_over_4": 0.05,
+     "D_eff_q_1_minus_q": 0.0475,
+     "relative_error": -0.050000000000000044
+    },
+    {
+     "p_hop": 0.5,
+     "D_naive_p_over_4": 0.125,
+     "D_eff_q_1_minus_q": 0.109375,
+     "relative_error": -0.125
+    },
+    {
+     "p_hop": 1.0,
+     "D_naive_p_over_4": 0.25,
+     "D_eff_q_1_minus_q": 0.1875,
+     "relative_error": -0.25
+    }
+   ],
+   "worst_relative_error": -0.25
+  },
+  {
+   "claim": "exact hard cap on cand_X at an organiser cell",
+   "status": "REPRODUCED_CORRECTED",
+   "detail": "exhaustive integer search gives max cand_X = 7 at {'nSX': 7, 'nSY': 0, 'nX': 0, 'nWaste': 0, 'nY': 1, 'free': 8}. MTW01 asserted cand_X <= S0 = 3, which is false: `_diffuse` accepts min(movers, dest_free) and is capped by free capacity, NOT by S0, so a cell can hold more than S0 resource units.",
+   "argmax": {
+    "nSX": 7,
+    "nSY": 0,
+    "nX": 0,
+    "nWaste": 0,
+    "nY": 1,
+    "free": 8
+   },
+   "value": 7
+  },
+  {
+   "claim": "Q_max exhaustive search",
+   "status": "REPRODUCED_CORRECTED",
+   "detail": "with the MTW01 restriction n[SY] <= S0 = 3 the maximum is 27 at {'nX': 9, 'nY': 1, 'nSX': 0, 'nSY': 3, 'nWaste': 0, 'free': 3, 'c_Y': 3}, reproducing the published 27. Without that unsound restriction the exact maximum is 28 at {'nX': 7, 'nY': 1, 'nSX': 0, 'nSY': 4, 'nWaste': 0, 'free': 4, 'c_Y': 4}. Search space: all integer (nX, nSY, nSX, nWaste) with nY = 1 and total occupancy <= CAP; 17^4 candidates before the occupancy filter",
+   "Q_max_mtw01": 27,
+   "Q_max_exact": 28
+  },
+  {
+   "claim": "N_X <= S0/muX",
+   "status": "REPRODUCED_CORRECTED",
+   "detail": "the statement holds only while n[SX] <= S0. The exact per-organiser bound implied by the transition rule is N_X <= max(cand_X)/muX = 7/muX, i.e. 175 at muX = 0.04 instead of the 75 published. Neither bound is the operative one: the SUSTAINABLE supply is transport limited, see A5.",
+   "exact_bound_numerator": 7,
+   "mtw01_bound_numerator": 3
+  },
+  {
+   "claim": "N_X = 0 is absorbing",
+   "status": "REPRODUCED",
+   "detail": "both birth probabilities are min(1, k*pair) with pair = nX*nY, so nX == 0 everywhere forces p_X = p_Y = 0 and births = Binomial(cand, 0) = 0 for BOTH species. The only statements that increase n['X'] are inside _react (writers at [('_diffuse', 111), ('_react', 132), ('_react', 133), ('_decay', 141), ('_decay', 142), ('_feed_and_outflow', 148), ('_feed_and_outflow', 151)]). Diffusion, decay and feed can only move, remove or create resources. Hence nX == 0 is invariant, and so is the pair (nX == 0, no further Y birth).",
+   "n_field_writers": [
+    [
+     "_diffuse",
+     111
+    ],
+    [
+     "_react",
+     132
+    ],
+    [
+     "_react",
+     133
+    ],
+    [
+     "_decay",
+     141
+    ],
+    [
+     "_decay",
+     142
+    ],
+    [
+     "_feed_and_outflow",
+     148
+    ],
+    [
+     "_feed_and_outflow",
+     151
+    ]
+   ]
+  },
+  {
+   "claim": "N_X = 0 absorbing, synthetic confirmation",
+   "status": "REPRODUCED",
+   "detail": "300 bounded steps from a state with 4 organisers and zero body molecules: N_X = 0, N_Y = 4. Steps used through the guard: score-blind, no start opened."
+  },
+  {
+   "claim": "G(0) definition",
+   "status": "REPRODUCED_CORRECTED",
+   "detail": "G(0) is the expected number of steps a body molecule spends in the cell where it was created, counting returns, before decay: G(0) = (2pi)^-2 INT dk /(1 - (1-muX)*phi(k)). MTW01 used the walk of X ALONE (G(0) = 2.3301). The organiser also moves, and what the source needs is co-location with the ORGANISER, so the correct walk is the relative one, whose characteristic function is the product: G(0) = 1.8827. Using the X-only walk OVERSTATES G(0) by 23.8%.",
+   "G0_relative": 1.882704008678028,
+   "G0_X_only": 2.3301433515894394,
+   "quadrature": {
+    "G0": 1.882704008678028,
+    "n": 1024,
+    "delta": 0.0,
+    "converged": true
+   }
+  },
+  {
+   "claim": "c_X, certified transport bound",
+   "status": "REPRODUCED_CORRECTED",
+   "detail": "the sustainable supply to one absorbing cell in a field fed at rate phi toward S0 is J = S0/G_S(0) with G_S(0) = 2.2361, i.e. c_X <= 1.3416 per step at the MTW01 design point. MTW01 bracketed c_X only in [phi*S0, S0] = [0.15, 3]; the transport bound 1.3416 lies inside that bracket and is far tighter.",
+   "c_X_transport": 1.3416016978800436,
+   "G_S0": 2.236133127097636,
+   "quadrature": {
+    "G0": 2.236133127097636,
+    "n": 1024,
+    "delta": 0.0,
+    "converged": true
+   }
+  },
+  {
+   "claim": "the transport bound predicts the MTW01 observation",
+   "status": "REPRODUCED",
+   "detail": "N_X* = c_X/muX = 33.5 predicted with no free parameter. The one MTW01 arm whose cloud established recorded N_X = 35 at the gate. Recorded N_X at the gate across the four arms: [0, 0, 1, 35]. This is a post hoc consistency check on an OUTCOME_INFORMED quantity, not an input to any choice made below.",
+   "N_X_predicted": 33.54004244700109,
+   "N_X_recorded": [
+    0,
+    0,
+    1,
+    35
+   ],
+   "label": "OUTCOME_INFORMED"
+  },
+  {
+   "claim": "status of the condition c_X*G(0) > 1",
+   "status": "REPRODUCED_CORRECTED",
+   "detail": "at the MTW01 design point c_X*G(0) = 2.526 > 1, so that point was SUPERCRITICAL and the condition was NOT what failed. Classification: the condition is NECESSARY AND SUFFICIENT for supercriticality of the LINEARISATION about the absorbing state N_X = 0 (a lone body molecule at the organiser triggers c_X births per step for G(0) steps, so the mean offspring number is exactly c_X*G(0)); it is NECESSARY but NOT SUFFICIENT for long persistence, because the source SATURATES at cand_X once nX >= 1, which bounds the quasi-stationary population at N_X* = c_X/muX, and extinction from a finite population beside an absorbing state is certain in finite time. It is local, linearised, and rests on a Poisson closure and on ignoring volume exclusion; ignoring exclusion makes particles more mobile, so the computed G(0) is a LOWER bound and the test is conservative.",
+   "c_X_times_G0_at_mtw01_design": 2.5258388946480066,
+   "classification": {
+    "necessary": true,
+    "sufficient_for_supercriticality_of_linearisation": true,
+    "sufficient_for_persistence": false,
+    "local": true,
+    "linearised": true,
+    "asymptotic_closure": "Poisson",
+    "heuristic_only": false
+   }
+  },
+  {
+   "claim": "resolution of 1519 versus 190",
+   "status": "REPRODUCED",
+   "detail": "both numbers are the same quantity, the left-hand side of the window non-emptiness condition at the FROZEN MINCORE point, under two different conventions for the separation time. With tau = Delta^2/D_Y (the convention used in the first evaluation of MTW01) it is 1518.6. With the exact two-dimensional first-passage time tau = Delta^2/(8*D_Y) it is 189.8. The ratio is exactly 8.0000 = 8, the first-passage correction and nothing else. The final MTW01 report quotes the corrected value; the 1519 appeared only in an intermediate console evaluation and is superseded. Under the corrected D_eff the value becomes 180.4. In every convention the window at the frozen MINCORE point is EMPTY by two to three orders of magnitude, so the conclusion is unaffected.",
+   "table": {
+    "naive_delta|D=naive": {
+     "tau_sep": 80000.00000000001,
+     "emptiness_lhs": 1518.595452964785
+    },
+    "naive_delta|D=eff": {
+     "tau_sep": 76038.01900950473,
+     "emptiness_lhs": 1443.387374003547
+    },
+    "kk_scaling|D=naive": {
+     "tau_sep": 20000.000000000004,
+     "emptiness_lhs": 379.64886324119624
+    },
+    "kk_scaling|D=eff": {
+     "tau_sep": 19009.504752376182,
+     "emptiness_lhs": 360.84684350088673
+    },
+    "first_passage_2d|D=naive": {
+     "tau_sep": 10000.000000000002,
+     "emptiness_lhs": 189.82443162059812
+    },
+    "first_passage_2d|D=eff": {
+     "tau_sep": 9504.752376188091,
+     "emptiness_lhs": 180.42342175044337
+    }
+   },
+   "ratio": 8.0,
+   "traceable_final_value": 180.42342175044337
+  },
+  {
+   "claim": "convention of the margins 10 and 2",
+   "status": "REPRODUCED",
+   "detail": "both are LINEAR ratios, not logarithmic: margin_lower = R_Y(Q_min)/a_Y = 10.0000 and margin_upper = upper_edge/R_Y(Q_max) = 2.0000, recomputed from the frozen _window.json fields. No decibel or log convention is involved.",
+   "margin_lower": 10.0,
+   "margin_upper": 2.0
+  },
+  {
+   "claim": "the x30 cost estimate",
+   "status": "REPRODUCED",
+   "detail": "MTW01 predicted T_div = 3417 steps at its design point and up to 97624 steps at the remediation points of its feasibility scan, a ratio of 28.6. The published 'about thirty times' is that ratio. It applies to a FUTURE window mission, whose cost is set by the organiser duplication time. The present mission measures MAINTENANCE, whose cost is set by the body-molecule lifetime, and is far cheaper.",
+   "ratio": 28.571428571428577
+  }
+ ],
+ "notes": [],
+ "summary": {
+  "REPRODUCED": 8,
+  "REPRODUCED_CORRECTED": 7
+ },
+ "all_reproduced": true
+}

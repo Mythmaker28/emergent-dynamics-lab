@@ -1,0 +1,67 @@
+{
+ "note": "Cost estimate on the REAL engine, on the provably non-scientific manifold n[Y] == 0.\n\nWith no organiser anywhere, `pair = nX*nY == 0`, so both birth probabilities are identically\nzero and no body molecule and no organiser can ever be created (audit A4). The X, Y dynamics\nare therefore exactly null and no information about cloud maintenance can be extracted. The\nresource, waste and diffusion code paths all run at realistic occupancy, so the per-step cost is\nrepresentative. Declared and counted as its own start class.",
+ "measurements": [
+  {
+   "L": 36,
+   "steps": 400,
+   "seconds": 0.6508545875549316,
+   "ms_per_step": 1.627136468887329,
+   "N_X_end": 525,
+   "N_Y_end": 0
+  },
+  {
+   "L": 52,
+   "steps": 400,
+   "seconds": 1.099315881729126,
+   "ms_per_step": 2.748289704322815,
+   "N_X_end": 1054,
+   "N_Y_end": 0
+  }
+ ],
+ "projection": {
+  "per_confirmation_arm_steps": 6250,
+  "per_calibration_arm_steps": 2500,
+  "calibration_seconds": 32.54272937774658,
+  "confirmation_seconds": 61.01761758327484,
+  "control_seconds": 101.69602930545807,
+  "total_seconds_worst_case": 195.2563762664795
+ },
+ "ledger": {
+  "by_class": {
+   "cost_probe": 2,
+   "calibration": 0,
+   "confirmation": 0,
+   "control": 0
+  },
+  "caps": {
+   "cost_probe": 2,
+   "calibration": 8,
+   "confirmation": 6,
+   "control": 10
+  },
+  "total": 2,
+  "valid": 2,
+  "invalid": 0,
+  "sequence_consistent": true,
+  "test_steps_used": 0,
+  "max_test_steps": 6000,
+  "log": [
+   {
+    "n": 1,
+    "class": "cost_probe",
+    "tag": "cost_probe/L36",
+    "planned_steps": 400,
+    "steps_used": 400,
+    "valid": true
+   },
+   {
+    "n": 2,
+    "class": "cost_probe",
+    "tag": "cost_probe/L52",
+    "planned_steps": 400,
+    "steps_used": 400,
+    "valid": true
+   }
+  ]
+ }
+}
