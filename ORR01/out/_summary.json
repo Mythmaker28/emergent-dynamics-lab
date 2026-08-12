@@ -1,0 +1,367 @@
+{
+ "pairs": [
+  {
+   "seed": 5001,
+   "cls": "ORGANISATION_LOST",
+   "drift": 0.0,
+   "winmean": 113.89122222222223,
+   "fails": [
+    "main_component_carries_the_mass"
+   ],
+   "free": 9.170111111111112,
+   "cx": 6.853781506946505,
+   "frac": 1.0,
+   "exc": 0,
+   "formed": 1075
+  },
+  {
+   "seed": 5002,
+   "cls": "TRANSIENT_FORMATION",
+   "drift": 0.0,
+   "winmean": 123.57155555555556,
+   "fails": [],
+   "free": null,
+   "cx": null,
+   "frac": null,
+   "exc": null,
+   "formed": null
+  },
+  {
+   "seed": 5003,
+   "cls": "BOUNDARY_ARTEFACT",
+   "drift": 0.0,
+   "winmean": 110.23077777777777,
+   "fails": [
+    "excursion_ok",
+    "main_component_carries_the_mass",
+    "no_wrap_around_contact"
+   ],
+   "free": 9.053333333333333,
+   "cx": 8.276429012364858,
+   "frac": 0.9537777777777777,
+   "exc": 416,
+   "formed": 435
+  },
+  {
+   "seed": 5004,
+   "cls": "TRANSIENT_FORMATION",
+   "drift": 0.0,
+   "winmean": 118.57455555555556,
+   "fails": [],
+   "free": null,
+   "cx": null,
+   "frac": null,
+   "exc": null,
+   "formed": null
+  },
+  {
+   "seed": 5005,
+   "cls": "MATERIAL_COLLAPSE",
+   "drift": 0.0,
+   "winmean": 63.28988888888889,
+   "fails": [
+    "never_extinct",
+    "fraction_ok",
+    "excursion_ok",
+    "main_component_carries_the_mass"
+   ],
+   "free": 9.02111111111111,
+   "cx": 15.656753619017925,
+   "frac": 0.6267777777777778,
+   "exc": 3359,
+   "formed": 380
+  },
+  {
+   "seed": 5006,
+   "cls": "BOUNDARY_ARTEFACT",
+   "drift": 0.0,
+   "winmean": 121.52122222222222,
+   "fails": [
+    "no_wrap_around_contact"
+   ],
+   "free": 8.956222222222221,
+   "cx": 6.631390632536279,
+   "frac": 1.0,
+   "exc": 0,
+   "formed": 785
+  }
+ ],
+ "ledger": {
+  "per_process": {
+   "harness": {
+    "by_class": {
+     "cost_probe": 0,
+     "confirmation": 0,
+     "control": 0
+    },
+    "caps": {
+     "cost_probe": 2,
+     "confirmation": 12,
+     "control": 8
+    },
+    "total": 0,
+    "valid": 0,
+    "invalid": 0,
+    "sequence_consistent": true,
+    "test_steps_used": 2232,
+    "max_test_steps": 8000,
+    "log": []
+   },
+   "costprobe": {
+    "by_class": {
+     "cost_probe": 2,
+     "confirmation": 0,
+     "control": 0
+    },
+    "caps": {
+     "cost_probe": 2,
+     "confirmation": 12,
+     "control": 8
+    },
+    "total": 2,
+    "valid": 2,
+    "invalid": 0,
+    "sequence_consistent": true,
+    "test_steps_used": 0,
+    "max_test_steps": 8000,
+    "log": [
+     {
+      "n": 1,
+      "class": "cost_probe",
+      "tag": "cost_probe/v1_additive",
+      "planned_steps": 300,
+      "steps_used": 300,
+      "valid": true
+     },
+     {
+      "n": 2,
+      "class": "cost_probe",
+      "tag": "cost_probe/v2_exchange",
+      "planned_steps": 300,
+      "steps_used": 300,
+      "valid": true
+     }
+    ]
+   },
+   "run": {
+    "by_class": {
+     "cost_probe": 0,
+     "confirmation": 6,
+     "control": 0
+    },
+    "caps": {
+     "cost_probe": 2,
+     "confirmation": 12,
+     "control": 8
+    },
+    "total": 6,
+    "valid": 6,
+    "invalid": 0,
+    "sequence_consistent": true,
+    "test_steps_used": 0,
+    "max_test_steps": 8000,
+    "log": [
+     {
+      "n": 1,
+      "class": "confirmation",
+      "tag": "conf/ADDITIVE_CONTROL/seed5001",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 2,
+      "class": "confirmation",
+      "tag": "conf/REPAIRED/seed5001",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 3,
+      "class": "confirmation",
+      "tag": "conf/ADDITIVE_CONTROL/seed5002",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 4,
+      "class": "confirmation",
+      "tag": "conf/REPAIRED/seed5002",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 5,
+      "class": "confirmation",
+      "tag": "conf/ADDITIVE_CONTROL/seed5003",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 6,
+      "class": "confirmation",
+      "tag": "conf/REPAIRED/seed5003",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     }
+    ]
+   },
+   "run2": {
+    "by_class": {
+     "cost_probe": 0,
+     "confirmation": 6,
+     "control": 8
+    },
+    "caps": {
+     "cost_probe": 2,
+     "confirmation": 12,
+     "control": 8
+    },
+    "total": 14,
+    "valid": 14,
+    "invalid": 0,
+    "sequence_consistent": true,
+    "test_steps_used": 0,
+    "max_test_steps": 8000,
+    "log": [
+     {
+      "n": 1,
+      "class": "confirmation",
+      "tag": "conf/ADDITIVE_CONTROL/seed5004",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 2,
+      "class": "confirmation",
+      "tag": "conf/REPAIRED/seed5004",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 3,
+      "class": "confirmation",
+      "tag": "conf/ADDITIVE_CONTROL/seed5005",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 4,
+      "class": "confirmation",
+      "tag": "conf/REPAIRED/seed5005",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 5,
+      "class": "confirmation",
+      "tag": "conf/ADDITIVE_CONTROL/seed5006",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 6,
+      "class": "confirmation",
+      "tag": "conf/REPAIRED/seed5006",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 7,
+      "class": "control",
+      "tag": "ctrl/NO_ORGANISER_V2/seed7001",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 8,
+      "class": "control",
+      "tag": "ctrl/NO_ORGANISER_V2/seed7002",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 9,
+      "class": "control",
+      "tag": "ctrl/WASHOUT_POOL_INCLUDES_BODY/seed7001",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 10,
+      "class": "control",
+      "tag": "ctrl/WASHOUT_POOL_INCLUDES_BODY/seed7002",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 11,
+      "class": "control",
+      "tag": "ctrl/SHAM_REINSERT/seed7001",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 12,
+      "class": "control",
+      "tag": "ctrl/SHAM_REINSERT/seed7002",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 13,
+      "class": "control",
+      "tag": "ctrl/NO_EXCHANGE_AT_ALL/seed7001",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     },
+     {
+      "n": 14,
+      "class": "control",
+      "tag": "ctrl/NO_EXCHANGE_AT_ALL/seed7002",
+      "planned_steps": 10250,
+      "steps_used": 10250,
+      "valid": true
+     }
+    ]
+   }
+  },
+  "consolidated_by_class": {
+   "cost_probe": 2,
+   "confirmation": 12,
+   "control": 8
+  },
+  "caps": {
+   "cost_probe": 2,
+   "confirmation": 12,
+   "control": 8
+  },
+  "total_starts": 22,
+  "invalid": 0,
+  "harness_starts": 0,
+  "cross_check": {
+   "confirmation_arms_on_disk": 12,
+   "controls_on_disk": 8,
+   "costprobes": 2
+  },
+  "consistent": true
+ }
+}
