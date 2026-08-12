@@ -1,0 +1,137 @@
+{
+ "FREEZE_2": "NOT_TAKEN",
+ "reason": "the frozen sequential stopping rule fired at item 3 (no point survives the frozen selection rule with the MEASURED c_X), so no point was selected, no confirmation seed was run, and no second freeze was possible",
+ "disposition": "MINCORE_CLOUD_MAINTENANCE_FAIL",
+ "scope": "not local: closes the family under the frozen thresholds",
+ "survivors_frozen_rule": 0,
+ "survivors_mean_variant": 0,
+ "family_closed_by_scope_scan": true,
+ "n_scope_scan_points": 72,
+ "ledger": {
+  "by_class": {
+   "cost_probe": 0,
+   "calibration": 8,
+   "confirmation": 0,
+   "control": 0
+  },
+  "caps": {
+   "cost_probe": 2,
+   "calibration": 8,
+   "confirmation": 6,
+   "control": 10
+  },
+  "total": 8,
+  "valid": 8,
+  "invalid": 0,
+  "sequence_consistent": true,
+  "test_steps_used": 0,
+  "max_test_steps": 6000,
+  "log": [
+   {
+    "n": 1,
+    "class": "calibration",
+    "tag": "cal/p0_mu0.004_phi0.2_ell2.5/seed1001",
+    "planned_steps": 2500,
+    "steps_used": 2500,
+    "valid": true
+   },
+   {
+    "n": 2,
+    "class": "calibration",
+    "tag": "cal/p0_mu0.004_phi0.2_ell2.5/seed1002",
+    "planned_steps": 2500,
+    "steps_used": 2500,
+    "valid": true
+   },
+   {
+    "n": 3,
+    "class": "calibration",
+    "tag": "cal/p1_mu0.004_phi0.4_ell2.5/seed1001",
+    "planned_steps": 2500,
+    "steps_used": 2500,
+    "valid": true
+   },
+   {
+    "n": 4,
+    "class": "calibration",
+    "tag": "cal/p1_mu0.004_phi0.4_ell2.5/seed1002",
+    "planned_steps": 2500,
+    "steps_used": 2500,
+    "valid": true
+   },
+   {
+    "n": 5,
+    "class": "calibration",
+    "tag": "cal/p2_mu0.004_phi0.4_ell3/seed1001",
+    "planned_steps": 2500,
+    "steps_used": 2500,
+    "valid": true
+   },
+   {
+    "n": 6,
+    "class": "calibration",
+    "tag": "cal/p2_mu0.004_phi0.4_ell3/seed1002",
+    "planned_steps": 2500,
+    "steps_used": 2500,
+    "valid": true
+   },
+   {
+    "n": 7,
+    "class": "calibration",
+    "tag": "cal/p3_mu0.002_phi0.1_ell2.5/seed1001",
+    "planned_steps": 5000,
+    "steps_used": 5000,
+    "valid": true
+   },
+   {
+    "n": 8,
+    "class": "calibration",
+    "tag": "cal/p3_mu0.002_phi0.1_ell2.5/seed1002",
+    "planned_steps": 5000,
+    "steps_used": 5000,
+    "valid": true
+   }
+  ]
+ },
+ "file_sha256": {
+  "code/apply_rule.py": "32c61c2aabeb100c2b9a1e541472215a157e7023f65e33b745064a48d69a0f80",
+  "code/audit.py": "df96401bc561a6155a470823efc5e6d3fd3b6e767f4773f2b9409b7c125b8424",
+  "code/costprobe.py": "c10f75ef80952ea4b10c35dc8741cf9327fab068c6a1bc90054149ed62dd4152",
+  "code/figure.py": "0d34e1bf12175612b06de0fc1223a2b7cb50a0d85ad27579cf350872e17ebb07",
+  "code/freeze1.py": "9f8b18fb90f567aa176e7d83de771fb88c56b466ca76a1fa778cb9ffb9ebfd1f",
+  "code/freeze2.py": "2e2998b97e33b7adff381c89f6758a6f5a82219ee8bcd5a6daa0b9f712e7a858",
+  "code/guard.py": "4cfade15cff8f00c0793e4b4b4412f301aa0deea2d9b9703badac6064e36c98d",
+  "code/guard_mtw01_reference.py": "967a609e88f3f2752b55e6e07e94eb00fbfda6c132932ea4e70338301aff5f31",
+  "code/kinetics.py": "d6b9e24daefd9a9ddd42780fa24da444a344a2773bb7836a8e168e44f026c4c4",
+  "code/lattice.py": "211ead5c20127d1195580e73c6879402ab17370ba8769e017a39436fd3a1c93c",
+  "code/mcm.py": "7186dd0bef95e20aa4bfe71b8f02b1c60b281425c365b070e7963837d1d50af3",
+  "code/protocol.py": "2003250dba6fca53fe944b04e782caada23697a53e9c348059e6a9341889975d",
+  "code/ratchet.py": "e11ff1e41ee939c820ed54f49a4b9b4d99e16da6f5ef2d203051423de84418eb",
+  "code/region.py": "98310a1f4c6f08fdee8732ad014d30d54da014abf3d72e9f32414fd350f82f7b",
+  "code/run_calibration.py": "75744c0af9645835e8b9ef035abaa751427c890b8a2f2870f35fac6db5dc2f24",
+  "code/tests_mcm.py": "c6bb386a97edf9c00f4d0df3086608b2ac9cfaef093eededf03f0cc54214a94d",
+  "out/MCM01_APPEND_ONLY_CORRECTIONS.md": "cfa64d3b43bf73d5cc84622adcbd2c4fde231d7cf32fce0a2720f45267064733",
+  "out/MCM01_FINAL_REPORT.md": "f6c36be1bf710382b6e195eea599b448148b2acd728056c749412a27006150ad",
+  "out/MCM01_PREFREEZE_ANALYSIS_PLAN.md": "b0b2eea0a527c7459b35c0f5c6697b7609083351daf1a17a68a6d8858bf26d62",
+  "out/_audit.json": "671382e3513631f9438385fd33c3f365b92a652b57338efa7f7115c4bbed5ae1",
+  "out/_calibration.json": "f8362b865eddfcf647643bc34664c19700ff2ab1e5c7e24e25dbe84570444064",
+  "out/_chronology.json": "e7f4688747bf1dd132c0fa7fc0b04d7328bfbe7a6370335c1eb1f6eed30f9be2",
+  "out/_costprobe.json": "eb3ae35b4d798afb5fddb3444deb41d444160e2d5023790801d0d47c81957cc0",
+  "out/_figure_facts.json": "f74d0953053a15220a2d5c2479db1ff535bc33d7aca386b134b41c2d894259de",
+  "out/_freeze1.json": "5d3509eaf35d51ae81b559d105eff04244dc619c6bcce3246a72a568ff4ad71d",
+  "out/_integrity.json": "a5f8618ed638c0f977c695fe09f86a4d4a4f0eba073f6f25a332708feead5bb7",
+  "out/_ratchet.json": "61016e782cdc49e6994d94d7840dabd776fe00173b87b653a7213a3c300e07d1",
+  "out/_region.json": "e3bdae45a15eeb9fe49f0d402fd12d504b1238d2524668447dd5ab4b6d84b988",
+  "out/_selection.json": "be1cf93eb31aed639cfe5cd6fb8179228d59cf91a9f3d76aa17b4b3de88a2b6f",
+  "out/mcm01_ratchet.png": "c1f47b033954f3299f3c700abfefd19ab06f97f0da1fffdd3baf6c909eb08250",
+  "raw/cal__p0_mu0.004_phi0.2_ell2.5__seed1001.npz": "10fce6404bd23d647029f29965a8cd84b01bf056212a0c8f25f374c7e3efd318",
+  "raw/cal__p0_mu0.004_phi0.2_ell2.5__seed1002.npz": "95cb5cc3457ecfcd70e835ede13ae37e5e5ba8f68c971ce9eebbf88a329b53c3",
+  "raw/cal__p1_mu0.004_phi0.4_ell2.5__seed1001.npz": "85b64f6219de5dea5c0cbead6998dd63700d2c0249b8eb11aca9388445f1c66f",
+  "raw/cal__p1_mu0.004_phi0.4_ell2.5__seed1002.npz": "a4daad03f7e57206b86b8e33f5c40140a22ca786d4a02ba86ca1b4cee20018ea",
+  "raw/cal__p2_mu0.004_phi0.4_ell3__seed1001.npz": "815ccec0f215509f39d4af1a668befa25b857fd9bc74f548c33c97f81c736fcf",
+  "raw/cal__p2_mu0.004_phi0.4_ell3__seed1002.npz": "ab10cabc656aefb8e1cf85ee0aa1c7e707722110e9ba94f181db642642c715ad",
+  "raw/cal__p3_mu0.002_phi0.1_ell2.5__seed1001.npz": "e105db72ae640787eaaec2dbab2ede71934ecfb92906fbd55f9039cffffb40af",
+  "raw/cal__p3_mu0.002_phi0.1_ell2.5__seed1002.npz": "1035e17811893f0f2f21babab2fb35f50a9094570e00c146829c0072f93a962e"
+ },
+ "n_files": 38
+}

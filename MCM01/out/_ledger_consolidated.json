@@ -1,0 +1,172 @@
+{
+ "note": "guard.LEDGER is per PROCESS. Three processes opened starts or advanced worlds: the integrity harness (TEST/STATIC, 0 starts), costprobe.py, run_calibration.py. The per-process ledgers are summed here and cross-checked against the per-arm records, so no start can be lost between processes. This consolidation is the mechanical answer to the MINCORE ledger defect, where a hard-coded constant under-counted by one.",
+ "per_process": {
+  "integrity_harness": {
+   "by_class": {
+    "cost_probe": 0,
+    "calibration": 0,
+    "confirmation": 0,
+    "control": 0
+   },
+   "caps": {
+    "cost_probe": 2,
+    "calibration": 8,
+    "confirmation": 6,
+    "control": 10
+   },
+   "total": 0,
+   "valid": 0,
+   "invalid": 0,
+   "sequence_consistent": true,
+   "test_steps_used": 501,
+   "max_test_steps": 6000,
+   "log": []
+  },
+  "costprobe": {
+   "by_class": {
+    "cost_probe": 2,
+    "calibration": 0,
+    "confirmation": 0,
+    "control": 0
+   },
+   "caps": {
+    "cost_probe": 2,
+    "calibration": 8,
+    "confirmation": 6,
+    "control": 10
+   },
+   "total": 2,
+   "valid": 2,
+   "invalid": 0,
+   "sequence_consistent": true,
+   "test_steps_used": 0,
+   "max_test_steps": 6000,
+   "log": [
+    {
+     "n": 1,
+     "class": "cost_probe",
+     "tag": "cost_probe/L36",
+     "planned_steps": 400,
+     "steps_used": 400,
+     "valid": true
+    },
+    {
+     "n": 2,
+     "class": "cost_probe",
+     "tag": "cost_probe/L52",
+     "planned_steps": 400,
+     "steps_used": 400,
+     "valid": true
+    }
+   ]
+  },
+  "calibration": {
+   "by_class": {
+    "cost_probe": 0,
+    "calibration": 8,
+    "confirmation": 0,
+    "control": 0
+   },
+   "caps": {
+    "cost_probe": 2,
+    "calibration": 8,
+    "confirmation": 6,
+    "control": 10
+   },
+   "total": 8,
+   "valid": 8,
+   "invalid": 0,
+   "sequence_consistent": true,
+   "test_steps_used": 0,
+   "max_test_steps": 6000,
+   "log": [
+    {
+     "n": 1,
+     "class": "calibration",
+     "tag": "cal/p0_mu0.004_phi0.2_ell2.5/seed1001",
+     "planned_steps": 2500,
+     "steps_used": 2500,
+     "valid": true
+    },
+    {
+     "n": 2,
+     "class": "calibration",
+     "tag": "cal/p0_mu0.004_phi0.2_ell2.5/seed1002",
+     "planned_steps": 2500,
+     "steps_used": 2500,
+     "valid": true
+    },
+    {
+     "n": 3,
+     "class": "calibration",
+     "tag": "cal/p1_mu0.004_phi0.4_ell2.5/seed1001",
+     "planned_steps": 2500,
+     "steps_used": 2500,
+     "valid": true
+    },
+    {
+     "n": 4,
+     "class": "calibration",
+     "tag": "cal/p1_mu0.004_phi0.4_ell2.5/seed1002",
+     "planned_steps": 2500,
+     "steps_used": 2500,
+     "valid": true
+    },
+    {
+     "n": 5,
+     "class": "calibration",
+     "tag": "cal/p2_mu0.004_phi0.4_ell3/seed1001",
+     "planned_steps": 2500,
+     "steps_used": 2500,
+     "valid": true
+    },
+    {
+     "n": 6,
+     "class": "calibration",
+     "tag": "cal/p2_mu0.004_phi0.4_ell3/seed1002",
+     "planned_steps": 2500,
+     "steps_used": 2500,
+     "valid": true
+    },
+    {
+     "n": 7,
+     "class": "calibration",
+     "tag": "cal/p3_mu0.002_phi0.1_ell2.5/seed1001",
+     "planned_steps": 5000,
+     "steps_used": 5000,
+     "valid": true
+    },
+    {
+     "n": 8,
+     "class": "calibration",
+     "tag": "cal/p3_mu0.002_phi0.1_ell2.5/seed1002",
+     "planned_steps": 5000,
+     "steps_used": 5000,
+     "valid": true
+    }
+   ]
+  }
+ },
+ "consolidated_by_class": {
+  "cost_probe": 2,
+  "calibration": 8,
+  "confirmation": 0,
+  "control": 0
+ },
+ "caps": {
+  "cost_probe": 2,
+  "calibration": 8,
+  "confirmation": 6,
+  "control": 10
+ },
+ "total_starts": 10,
+ "cross_check_arm_records": {
+  "calibration_arms_on_disk": 8,
+  "costprobe_measurements": 2
+ },
+ "invalid_runs": 0,
+ "synthetic_test_steps": 501,
+ "synthetic_test_cap": 6000,
+ "starts_consumed_by_the_harness": 0,
+ "consistent": true
+}
