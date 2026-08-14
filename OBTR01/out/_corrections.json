@@ -1,0 +1,233 @@
+{
+ "SECTION": "OBTR01 \u00a76",
+ "C1_DIFFUSION_CONVENTION": {
+  "CLAIM_CORRECTED": "D = p_hop/4  ->  D_eff = q(1-q), q = p_hop/4",
+  "RECORDED_ERRORS": {
+   "at p_hop = 0.2": "-5 %",
+   "at p_hop = 1": "-25 %"
+  },
+  "REPRODUCED": {
+   "at p_hop = 0.2": "-5.26 %",
+   "at p_hop = 1.0": "-33.33 %"
+  },
+  "note": "the recorded '-5 %' and '-25 %' are the error of the CORRECTED value relative to the historical one, i.e. D_eff/D_hist - 1 = -q. At q = 0.05 that is exactly -5 %, at q = 0.25 exactly -25 %. Both reproduce as identities, not approximations.",
+  "IDENTITY": "D_eff / D_hist - 1 = -q, exactly",
+  "IDENTITY_HOLDS": true,
+  "TABLE": [
+   {
+    "p_hop": 0.2,
+    "context": "MTW01 frozen MINCORE point, p_hop_X",
+    "q": 0.05,
+    "D_historical_p_hop_over_4": 0.05,
+    "D_corrected_q_1_minus_q": 0.0475,
+    "correction_D_eff_over_D_hist_minus_1": -0.050000000000000044,
+    "overstatement_D_hist_over_D_eff_minus_1": 0.05263157894736836
+   },
+   {
+    "p_hop": 1.0,
+    "context": "MTW01 design point, p_hop_X",
+    "q": 0.25,
+    "D_historical_p_hop_over_4": 0.25,
+    "D_corrected_q_1_minus_q": 0.1875,
+    "correction_D_eff_over_D_hist_minus_1": -0.25,
+    "overstatement_D_hist_over_D_eff_minus_1": 0.33333333333333326
+   },
+   {
+    "p_hop": 0.002,
+    "context": "MTW01 frozen MINCORE point, p_hop_Y",
+    "q": 0.0005,
+    "D_historical_p_hop_over_4": 0.0005,
+    "D_corrected_q_1_minus_q": 0.0004997500000000001,
+    "correction_D_eff_over_D_hist_minus_1": -0.0004999999999998339,
+    "overstatement_D_hist_over_D_eff_minus_1": 0.0005002501250623848
+   },
+   {
+    "p_hop": 0.5,
+    "context": "MTW01 design point, p_hop_Y",
+    "q": 0.125,
+    "D_historical_p_hop_over_4": 0.125,
+    "D_corrected_q_1_minus_q": 0.109375,
+    "correction_D_eff_over_D_hist_minus_1": -0.125,
+    "overstatement_D_hist_over_D_eff_minus_1": 0.1428571428571428
+   },
+   {
+    "p_hop": 0.10263340389897246,
+    "context": "the qualified point, p_hop",
+    "q": 0.025658350974743116,
+    "D_historical_p_hop_over_4": 0.025658350974743116,
+    "D_corrected_q_1_minus_q": 0.025000000000000015,
+    "correction_D_eff_over_D_hist_minus_1": -0.025658350974743116,
+    "overstatement_D_hist_over_D_eff_minus_1": 0.026334038989723974
+   }
+  ],
+  "STATUS": "REPRODUCED"
+ },
+ "C2_FIRST_PASSAGE": {
+  "LATTICE_CORRECTION_TO_THE_CONTINUUM_LAW": {
+   "fitted_slope_of_log_excess_on_log_radius": -1.0817095476982999,
+   "fitted_amplitude": 1.2229666797625067,
+   "INTERPRETATION": "a slope of about -1 identifies an O(1/radius) boundary-layer correction: the walk overshoots the absorbing boundary by about one lattice step, which matters proportionally more for a small disc. It is a property of the discrete problem, not an error in the solve.",
+   "IS_A_BOUNDARY_LAYER": true,
+   "excess_at_the_design_Delta": 0.21546380213755767,
+   "CONSEQUENCE": "at the MTW01 design separation Delta = 5 the continuum first-passage law UNDERSTATES the true lattice exit time by about 22 %. The factor 8 is right; the law it corrects to is itself only accurate to O(1/Delta), and at Delta = 5 that is not negligible. This is recorded as a NEW limitation, not as a correction of the recorded factor."
+  },
+  "CLAIM_CORRECTED": "tau_sep = Delta^2 / D_Y   ->   tau_sep = Delta^2 / (8 D_Y)",
+  "WHERE_THE_8_COMES_FROM": {
+   "factor_4": "the mean exit time of an isotropic 2D walk from a disc of radius Delta started at the centre is Delta^2/(4 D), not Delta^2/D",
+   "factor_2": "the separating object is the RELATIVE coordinate of two organisers, whose diffusion constant is D_rel = 2 D_Y, not D_Y",
+   "product": 8
+  },
+  "DISCRETE_POISSON_CHECK": {
+   "method": "(I - P) T = 1 on the interior sites of the disc, P built from the exact relative one-step kernel; the continuum law is never used as an input",
+   "q_Y": 0.125,
+   "a_relative_per_axis": 0.4375,
+   "D_relative": 0.21875,
+   "D_relative_equals_twice_D_Y_corrected": true,
+   "by_radius": [
+    {
+     "radius": 5.0,
+     "interior_sites": 81,
+     "mean_exit_time_discrete_Poisson": 34.72753720393022,
+     "continuum_Delta2_over_4_D_rel": 28.571428571428573,
+     "ratio_discrete_over_continuum": 1.2154638021375577
+    },
+    {
+     "radius": 10.0,
+     "interior_sites": 317,
+     "mean_exit_time_discrete_Poisson": 125.92939316025733,
+     "continuum_Delta2_over_4_D_rel": 114.28571428571429,
+     "ratio_discrete_over_continuum": 1.1018821901522515
+    },
+    {
+     "radius": 20.0,
+     "interior_sites": 1257,
+     "mean_exit_time_discrete_Poisson": 478.48396390534066,
+     "continuum_Delta2_over_4_D_rel": 457.14285714285717,
+     "ratio_discrete_over_continuum": 1.0466836710429326
+    },
+    {
+     "radius": 40.0,
+     "interior_sites": 5025,
+     "mean_exit_time_discrete_Poisson": 1870.5512517331651,
+     "continuum_Delta2_over_4_D_rel": 1828.5714285714287,
+     "ratio_discrete_over_continuum": 1.0229577157915746
+    }
+   ],
+   "CONVERGES_TO_THE_CONTINUUM_LAW": true,
+   "exit_time_at_the_design_Delta": {
+    "Delta": 5.0,
+    "discrete": 34.72753720393022,
+    "continuum": 28.571428571428573
+   }
+  },
+  "EMPTINESS_LHS_AT_THE_FROZEN_MINCORE_POINT": {
+   "what_it_is": "the left-hand side of the window non-emptiness condition, 2 * safety * a_Y * tau_sep / H3_max, which must be < 1",
+   "convention_Delta2_over_D_Y": 1518.595452964785,
+   "convention_Delta2_over_8_D_Y": 189.82443162059812,
+   "ratio": 8.0,
+   "RATIO_IS_EXACTLY_8": true,
+   "with_the_corrected_D_eff": 180.42342175044337,
+   "recorded_values": {
+    "kk": 1518.6,
+    "fp": 189.8,
+    "corrected": 180.4
+   },
+   "reproduces_1518_6": true,
+   "reproduces_189_8": true,
+   "reproduces_180_4": true,
+   "recorded_in_the_frozen_window_json": 189.8244316205981,
+   "reproduces_the_frozen_artefact": true,
+   "CONCLUSION_UNCHANGED_IN_EVERY_CONVENTION": true,
+   "intermediate": {
+    "ell_X": 3.1622776601683795,
+    "Delta": 6.324555320336759,
+    "tau_sep": 10000.000000000002,
+    "ell_X_corrected": 3.082207001484488,
+    "Delta_corrected": 6.164414002968976,
+    "tau_sep_corrected": 9504.752376188091
+   }
+  },
+  "STATUS": "REPRODUCED"
+ },
+ "C3_Q_MAX": {
+  "CLAIM_CORRECTED": "Q_max = 27  ->  Q_max = 28",
+  "WHY_27_WAS_WRONG": "it assumes n_SY <= S0. `_diffuse` is applied to SY as well as to X and Y, and its acceptance is capped by the destination's free capacity, not by S0, so resource units can pile up above S0.",
+  "UNDER_THE_UNSOUND_RESTRICTION_nSY_le_S0": {
+   "Q_max": 27,
+   "argmax": {
+    "nX": 9,
+    "nY": 1,
+    "nSX": 0,
+    "nSY": 3,
+    "nWaste": 0,
+    "free": 3,
+    "c_Y": 3
+   },
+   "occupancy_vectors_visited": 2511
+  },
+  "EXACT_over_the_full_capacity_space": {
+   "Q_max": 28,
+   "argmax": {
+    "nX": 7,
+    "nY": 1,
+    "nSX": 0,
+    "nSY": 4,
+    "nWaste": 0,
+    "free": 4,
+    "c_Y": 4
+   },
+   "occupancy_vectors_visited": 3876
+  },
+  "SEARCH_SPACE": "all integer (n_X, n_SX, n_SY, n_W) with n_Y = 1 and total occupancy <= CAP = 16; the waste species are pooled into n_W because only the occupancy they consume matters",
+  "INDEPENDENT_ROUTE_max_x_times_min_s_free": {
+   "Q_max": 28,
+   "nX": 7,
+   "nSY": 4
+  },
+  "RECORDED_ARGMAX": {
+   "nX": 7,
+   "nSY": 4,
+   "free": 4
+  },
+  "REPRODUCES_28": true,
+  "REPRODUCES_THE_RECORDED_ARGMAX": true,
+  "REPRODUCES_27_UNDER_THE_OLD_RESTRICTION": true,
+  "STATUS": "REPRODUCED"
+ },
+ "C4_SCALAR_CRITICALITY": {
+  "CLAIM_CORRECTED": "c_X G(0) reported as a criticality statement  ->  NOT_VALID_AS_PRIMARY_CRITICALITY at the qualified point",
+  "ENGINE_RULE": "births ~ Binomial(min(n_SX, free), min(1, k_X n_X n_Y))",
+  "k_X_at_the_qualified_point": 1.0,
+  "n_X_at_which_the_birth_probability_saturates": 1,
+  "CONSEQUENCE": "with k_X = 1 the probability is exactly 1 whenever the organiser cell holds at least one X and one Y, so the number born is exactly min(n_SX, free) and does NOT depend on n_X. The birth term is not proportional to the population; it is an additive point source. A branching ratio per particle therefore has no referent, and the scalar criticality condition c_X G(0) > 1 is neither necessary nor sufficient for the cloud to exist.",
+  "SECOND_REASON": "G(0) is not a single number either: it depends on which walk is used. On the relative walk it is 9.6472, on the X walk alone 16.7975, a ratio of 1.741 at the qualified point. A criterion whose value moves by that much with a modelling choice cannot carry a primary decision.",
+  "THIRD_REASON": "cand = min(n_SX, free) also caps the source by the local free capacity, so the linearisation that G(0) belongs to is violated exactly where the source acts.",
+  "G0_relative_walk": 9.647156058565027,
+  "G0_X_walk_alone": 16.797503896997675,
+  "G0_ratio_X_over_relative": 1.7411871224042612,
+  "recorded_MTW01_overstatement_at_its_design_point": "24 %",
+  "S0": 3,
+  "CAP": 16,
+  "SCALAR_CRITICALITY_STATUS": "NOT_VALID_AS_PRIMARY_CRITICALITY",
+  "STATUS": "REPRODUCED"
+ },
+ "C5_SOURCE_CLASSIFICATION": {
+  "CLAIM_RECLASSIFIED": "multiplicative branching (c_X per X per step)  ->  additive point immigration of intensity B_t at the organiser cell",
+  "LAWSPEC_TAGS": [
+   "BALANCED_CHEMOSTAT",
+   "NO_ADDED_COHESION",
+   "NO_C3_PROTECTION",
+   "ORGANIZER_BOUND_SOURCE"
+  ],
+  "BALANCE_EQUATION": "N_X(t+1) = N_X(t) + B_t - Binomial(N_X(t), mu_X)",
+  "STATIONARY_POPULATION": "N_X* = E[B] / mu_X",
+  "WHY_NOT_c_X_over_mu": "c_X/mu_X is the fixed point of a branching process whose birth term is proportional to the population. Here the birth term is capped at min(n_SX, free) at ONE cell and is independent of N_X, so the same algebra does not apply.",
+  "mu_X": 0.004,
+  "frozen_prediction_N_X_at_L36": 121.45530555555555,
+  "implied_mean_accepted_births_per_step": 0.48582122222222224,
+  "CHECK": "B is a property of the chemostat's local supply at the organiser cell, so it is MEASURED and not predicted; \u00a712 audits how often capacity refusal bites it. The prediction above is therefore a consistency relation, not a free parameter fit.",
+  "SOURCE_CLASSIFICATION": "ADDITIVE_POINT_SOURCE_UNDER_A_BALANCED_CHEMOSTAT",
+  "STATUS": "REPRODUCED"
+ },
+ "ALL_REPRODUCED": true
+}
