@@ -1,0 +1,595 @@
+{
+ "SECTION": "OBDI02 \u00a74-\u00a75",
+ "DOMAIN_SIZES": [
+  36,
+  72,
+  96
+ ],
+ "SEEDS_PER_SIZE": 5,
+ "OUTCOME_VECTOR": {
+  "invariance de R_g": {
+   "COMPONENT": "A_shape_invariance",
+   "STATISTIC_KEY": "Rg",
+   "ESTIMAND": "beta = d log(observed / predicted) / d log L, the log-log slope of the arm-level median of Rg after dividing out the operator's exact finite-size prediction at that L",
+   "ESTIMATOR": "weighted least squares slope of y_L = log(mean over arms at L) - log(pred_L) on log L, over the 3 domain sizes; weights w_L = (mean_L / se_L)^2 with se_L = max(sd_realised, sd_prereg) / sqrt(n_L)",
+   "NULL_HYPOTHESIS": "H0 : |beta| >= margin  (NOT equivalent to a constant)",
+   "ALTERNATIVE_HYPOTHESIS": "H1 : |beta| < margin  (equivalent to a constant)",
+   "EQUIVALENCE_MARGIN": 0.25,
+   "CONFIDENCE_LEVEL": {
+    "critical_value_c": 2.799625219301098,
+    "two_sided_per_test_alpha": 0.005116196891823743,
+    "implied_two_sided_interval": "99.4884 %",
+    "family_alpha": 0.05,
+    "multiplicity_correction": "Sidak",
+    "K": 10
+   },
+   "UNIT_OF_ANALYSIS": "the seed (one arm = one seed); frames are reduced first",
+   "AGGREGATION_RULE": "within a seed: median over the 180 in-window frames; across seeds at one L: arithmetic mean of the arm medians; across L: weighted least squares on log L",
+   "RESULT": {
+    "beta": 0.007651742287392993,
+    "se": 0.015616942845486731,
+    "abs_beta_plus_c_se": 0.0513733293260015,
+    "per_L": {
+     "36": {
+      "n_arms": 5,
+      "mean": 5.722927135588677,
+      "sd_realised": 0.1161824052081207,
+      "sd_used": 0.13860642909777995,
+      "se_of_mean": 0.06198667951622816,
+      "predicted": 5.829762149757589,
+      "log_ratio": -0.018495790399933654,
+      "relative_deviation": -0.018325792961099596
+     },
+     "72": {
+      "n_arms": 4,
+      "mean": 6.132954211294684,
+      "sd_realised": 0.23412340645881083,
+      "sd_used": 0.23412340645881083,
+      "se_of_mean": 0.11706170322940541,
+      "predicted": 6.0302793632428076,
+      "log_ratio": 0.016883222098506012,
+      "relative_deviation": 0.017026549164160576
+     },
+     "96": {
+      "n_arms": 5,
+      "mean": 5.962552339751288,
+      "sd_realised": 0.14832429570505293,
+      "sd_used": 0.14832429570505293,
+      "se_of_mean": 0.06633264158225569,
+      "predicted": 6.052618391892713,
+      "log_ratio": -0.014992336132382711,
+      "relative_deviation": -0.014880510600513874
+     }
+    },
+    "arm_counts": {
+     "36": {
+      "arms_run": 5,
+      "arms_analysable": 5
+     },
+     "72": {
+      "arms_run": 5,
+      "arms_analysable": 4
+     },
+     "96": {
+      "arms_run": 5,
+      "arms_analysable": 5
+     }
+    }
+   },
+   "PASS_OR_FAIL": "PASS"
+  },
+  "invariance de r80": {
+   "COMPONENT": "A_shape_invariance",
+   "STATISTIC_KEY": "r80",
+   "ESTIMAND": "beta = d log(observed / predicted) / d log L, the log-log slope of the arm-level median of r80 after dividing out the operator's exact finite-size prediction at that L",
+   "ESTIMATOR": "weighted least squares slope of y_L = log(mean over arms at L) - log(pred_L) on log L, over the 3 domain sizes; weights w_L = (mean_L / se_L)^2 with se_L = max(sd_realised, sd_prereg) / sqrt(n_L)",
+   "NULL_HYPOTHESIS": "H0 : |beta| >= margin  (NOT equivalent to a constant)",
+   "ALTERNATIVE_HYPOTHESIS": "H1 : |beta| < margin  (equivalent to a constant)",
+   "EQUIVALENCE_MARGIN": 0.25,
+   "CONFIDENCE_LEVEL": {
+    "critical_value_c": 2.799625219301098,
+    "two_sided_per_test_alpha": 0.005116196891823743,
+    "implied_two_sided_interval": "99.4884 %",
+    "family_alpha": 0.05,
+    "multiplicity_correction": "Sidak",
+    "K": 10
+   },
+   "UNIT_OF_ANALYSIS": "the seed (one arm = one seed); frames are reduced first",
+   "AGGREGATION_RULE": "within a seed: median over the 180 in-window frames; across seeds at one L: arithmetic mean of the arm medians; across L: weighted least squares on log L",
+   "RESULT": {
+    "beta": 0.03512998700489639,
+    "se": 0.018249497319429757,
+    "abs_beta_plus_c_se": 0.08622173993993973,
+    "per_L": {
+     "36": {
+      "n_arms": 5,
+      "mean": 6.853349484245811,
+      "sd_realised": 0.1987487320326497,
+      "sd_used": 0.20003239942875348,
+      "se_of_mean": 0.08945720856501657,
+      "predicted": 7.01368655102396,
+      "log_ratio": -0.023125953105615604,
+      "relative_deviation": -0.022860597720144815
+     },
+     "72": {
+      "n_arms": 4,
+      "mean": 7.050369211555201,
+      "sd_realised": 0.2374699440757422,
+      "sd_used": 0.2374699440757422,
+      "se_of_mean": 0.1187349720378711,
+      "predicted": 6.977525057347302,
+      "log_ratio": 0.010385708300293173,
+      "relative_deviation": 0.01043982696001855
+     },
+     "96": {
+      "n_arms": 5,
+      "mean": 7.05685424949238,
+      "sd_realised": 0.031782491668673876,
+      "sd_used": 0.20003239942875348,
+      "se_of_mean": 0.08945720856501657,
+      "predicted": 6.989543020110033,
+      "log_ratio": 0.009584200608835802,
+      "relative_deviation": 0.009630276140898175
+     }
+    },
+    "arm_counts": {
+     "36": {
+      "arms_run": 5,
+      "arms_analysable": 5
+     },
+     "72": {
+      "arms_run": 5,
+      "arms_analysable": 4
+     },
+     "96": {
+      "arms_run": 5,
+      "arms_analysable": 5
+     }
+    }
+   },
+   "PASS_OR_FAIL": "PASS"
+  },
+  "invariance de |C - Y|": {
+   "COMPONENT": "A_shape_invariance",
+   "STATISTIC_KEY": "organiser_to_core",
+   "ESTIMAND": "beta = d log(observed / predicted) / d log L, the log-log slope of the arm-level median of organiser_to_core after dividing out the operator's exact finite-size prediction at that L",
+   "ESTIMATOR": "weighted least squares slope of y_L = log(mean over arms at L) - log(pred_L) on log L, over the 3 domain sizes; weights w_L = (mean_L / se_L)^2 with se_L = max(sd_realised, sd_prereg) / sqrt(n_L)",
+   "NULL_HYPOTHESIS": "H0 : |beta| >= margin  (NOT equivalent to a constant)",
+   "ALTERNATIVE_HYPOTHESIS": "H1 : |beta| < margin  (equivalent to a constant)",
+   "EQUIVALENCE_MARGIN": 0.25,
+   "CONFIDENCE_LEVEL": {
+    "critical_value_c": 2.799625219301098,
+    "two_sided_per_test_alpha": 0.005116196891823743,
+    "implied_two_sided_interval": "99.4884 %",
+    "family_alpha": 0.05,
+    "multiplicity_correction": "Sidak",
+    "K": 10
+   },
+   "UNIT_OF_ANALYSIS": "the seed (one arm = one seed); frames are reduced first",
+   "AGGREGATION_RULE": "within a seed: median over the 180 in-window frames; across seeds at one L: arithmetic mean of the arm medians; across L: weighted least squares on log L",
+   "RESULT": {
+    "beta": 0.07082140404597843,
+    "se": 0.0789484327027999,
+    "abs_beta_plus_c_se": 0.2918474272650326,
+    "per_L": {
+     "36": {
+      "n_arms": 5,
+      "mean": 2.778584445398434,
+      "sd_realised": 0.3151755062458793,
+      "sd_used": 0.3604813980377424,
+      "se_of_mean": 0.16121218212731026,
+      "predicted": 3.0797721639738773,
+      "log_ratio": -0.10291401579621162,
+      "relative_deviation": -0.09779545451401706
+     },
+     "72": {
+      "n_arms": 4,
+      "mean": 3.078815026312832,
+      "sd_realised": 0.16692526771109462,
+      "sd_used": 0.3604813980377424,
+      "se_of_mean": 0.1802406990188712,
+      "predicted": 3.1716933972891153,
+      "log_ratio": -0.029720848745770523,
+      "relative_deviation": -0.029283527548932597
+     },
+     "96": {
+      "n_arms": 5,
+      "mean": 3.03059648901659,
+      "sd_realised": 0.12674539864106898,
+      "sd_used": 0.3604813980377424,
+      "se_of_mean": 0.16121218212731026,
+      "predicted": 3.151055402378097,
+      "log_ratio": -0.03897798388710583,
+      "relative_deviation": -0.03822811660835823
+     }
+    },
+    "arm_counts": {
+     "36": {
+      "arms_run": 5,
+      "arms_analysable": 5
+     },
+     "72": {
+      "arms_run": 5,
+      "arms_analysable": 4
+     },
+     "96": {
+      "arms_run": 5,
+      "arms_analysable": 5
+     }
+    }
+   },
+   "PASS_OR_FAIL": "FAIL"
+  },
+  "exposant de densite": {
+   "COMPONENT": "B_density_exponent",
+   "STATISTIC_KEY": "density",
+   "ESTIMAND": "gamma = d log(N_X / L^2) / d log L",
+   "ESTIMATOR": "weighted least squares slope of log(mean density at L) on log L",
+   "NULL_HYPOTHESIS": "H0 : |gamma + 2| >= margin",
+   "ALTERNATIVE_HYPOTHESIS": "H1 : |gamma + 2| < margin",
+   "EQUIVALENCE_MARGIN": 0.25,
+   "CONFIDENCE_LEVEL": {
+    "critical_value_c": 2.799625219301098,
+    "two_sided_per_test_alpha": 0.005116196891823743
+   },
+   "UNIT_OF_ANALYSIS": "the seed",
+   "AGGREGATION_RULE": "within a seed: mean N_X over the in-window frames divided by L^2; across seeds: arithmetic mean; across L: WLS on log L. NOTE: the extinct arm entered this mean with density 0.",
+   "RESULT": {
+    "gamma": -2.048534323392157,
+    "se": 0.021134594194500863,
+    "abs_dev_plus_c_se": 0.10770326629877633,
+    "per_L": {
+     "36": {
+      "n_arms": 5,
+      "mean_density": 0.09373713991769547,
+      "sd": 0.0031055804446764104,
+      "predicted_density": 0.09371551354595337,
+      "mean_N_X": 121.48333333333333
+     },
+     "72": {
+      "n_arms": 5,
+      "mean_density": 0.01857874657064472,
+      "sd": 0.01039294821993406,
+      "predicted_density": 0.02342887838648834,
+      "mean_N_X": 96.31222222222223
+     },
+     "96": {
+      "n_arms": 5,
+      "mean_density": 0.012572337962962962,
+      "sd": 0.00040767459050211006,
+      "predicted_density": 0.013178744092399691,
+      "mean_N_X": 115.86666666666666
+     }
+    }
+   },
+   "PASS_OR_FAIL": "PASS"
+  },
+  "winding veritable": {
+   "COMPONENT": "C_no_true_winding",
+   "STATISTIC_KEY": "any_winding",
+   "ESTIMAND": "the probability that the cloud's support carries a non-contractible cycle on the torus, at each L",
+   "ESTIMATOR": "pooled fraction of in-window frames flagged by the 5x5 tiling lift, over all arms at that L",
+   "NULL_HYPOTHESIS": "H0 : the winding frequency exceeds the tolerance",
+   "ALTERNATIVE_HYPOTHESIS": "H1 : it does not",
+   "EQUIVALENCE_MARGIN": 0.01,
+   "CONFIDENCE_LEVEL": "none: a deterministic threshold on a pooled frequency",
+   "UNIT_OF_ANALYSIS": "the FRAME, pooled across seeds \u2014 the one place where OBDI01 did not use the seed as the unit. It is defensible only because the observed count is exactly zero, for which no variance model is needed; it would NOT be defensible for a non-zero count.",
+   "AGGREGATION_RULE": "sum of flagged frames / sum of frames, per L",
+   "RESULT": {
+    "36": {
+     "frames_with_winding": 0,
+     "frames": 900,
+     "fraction": 0.0,
+     "tolerance": 0.01,
+     "PASS": true
+    },
+    "72": {
+     "frames_with_winding": 0,
+     "frames": 900,
+     "fraction": 0.0,
+     "tolerance": 0.01,
+     "PASS": true
+    },
+    "96": {
+     "frames_with_winding": 0,
+     "frames": 900,
+     "fraction": 0.0,
+     "tolerance": 0.01,
+     "PASS": true
+    }
+   },
+   "PASS_OR_FAIL": "PASS"
+  },
+  "compatibilite du profil radial": {
+   "COMPONENT": "D_profile_compatibility",
+   "STATISTIC_KEY": "profile_TV",
+   "ESTIMAND": "the total-variation distance between the pooled empirical radial mass distribution about the organiser and the exact predicted radial distribution of the operator, at each L",
+   "ESTIMATOR": "per arm, TV between the window-pooled empirical radial histogram (16 integer-distance bins) and the DFT-exact relative profile",
+   "NULL_HYPOTHESIS": "H0 : the arm's profile is incompatible with the exact kernel",
+   "ALTERNATIVE_HYPOTHESIS": "H1 : it is compatible",
+   "EQUIVALENCE_MARGIN": {
+    "36": 0.05588346987231099,
+    "72": 0.05431270152620542,
+    "96": 0.05445260326458561
+   },
+   "CONFIDENCE_LEVEL": "the q99 of an envelope generated from n_eff = 27 independent draws of the exact kernel",
+   "UNIT_OF_ANALYSIS": "the seed",
+   "AGGREGATION_RULE": "at each L, at least 4 of the 5 arms must be within the envelope",
+   "RESULT": {
+    "36": {
+     "threshold": 0.05588346987231099,
+     "arms_within": 5,
+     "arms_required": 4,
+     "TV_by_arm": [
+      0.01479960701106297,
+      0.018444878482965405,
+      0.03587247127825621,
+      0.01758873791375936,
+      0.01585984277318907
+     ],
+     "PASS": true
+    },
+    "72": {
+     "threshold": 0.05431270152620542,
+     "arms_within": 4,
+     "arms_required": 4,
+     "TV_by_arm": [
+      0.01060744565091696,
+      0.01709293736866738,
+      0.029989778242746387,
+      NaN,
+      0.016163882759253213
+     ],
+     "PASS": true
+    },
+    "96": {
+     "threshold": 0.05445260326458561,
+     "arms_within": 5,
+     "arms_required": 4,
+     "TV_by_arm": [
+      0.008464792252015858,
+      0.014139297576311317,
+      0.013626550428438347,
+      0.016109560230343357,
+      0.019011240984953524
+     ],
+     "PASS": true
+    }
+   },
+   "PASS_OR_FAIL": "PASS"
+  },
+  "endpoint historique frac_localized >= 0.95": {
+   "COMPONENT": "SECONDARY (locked, not part of the region)",
+   "STATISTIC_KEY": "RELATIVE_LOCALIZATION",
+   "ESTIMAND": "the probability that a frame has r80 measured from the organiser at or below min(12.8, 0.35 L)",
+   "ESTIMATOR": "per arm, the fraction of in-window frames satisfying it",
+   "NULL_HYPOTHESIS": "H0 : the fraction is below 0.95",
+   "ALTERNATIVE_HYPOTHESIS": "H1 : it is at least 0.95",
+   "EQUIVALENCE_MARGIN": "not an equivalence test: a one-sided threshold at 0.95",
+   "CONFIDENCE_LEVEL": "none: a deterministic per-arm threshold",
+   "UNIT_OF_ANALYSIS": "the seed, judged one arm at a time",
+   "AGGREGATION_RULE": "reported per arm and counted per L; never aggregated into a verdict",
+   "RESULT": {
+    "per_arm": [
+     {
+      "tag": "L36/seed771010",
+      "L": 36,
+      "bound": 12.6,
+      "fraction": 0.9444444444444444,
+      "frames": 180,
+      "PASS": false
+     },
+     {
+      "tag": "L36/seed771011",
+      "L": 36,
+      "bound": 12.6,
+      "fraction": 0.9777777777777777,
+      "frames": 180,
+      "PASS": true
+     },
+     {
+      "tag": "L36/seed771012",
+      "L": 36,
+      "bound": 12.6,
+      "fraction": 1.0,
+      "frames": 180,
+      "PASS": true
+     },
+     {
+      "tag": "L36/seed771013",
+      "L": 36,
+      "bound": 12.6,
+      "fraction": 0.9888888888888889,
+      "frames": 180,
+      "PASS": true
+     },
+     {
+      "tag": "L36/seed771014",
+      "L": 36,
+      "bound": 12.6,
+      "fraction": 0.9888888888888889,
+      "frames": 180,
+      "PASS": true
+     },
+     {
+      "tag": "L72/seed771110",
+      "L": 72,
+      "bound": 12.8,
+      "fraction": 0.95,
+      "frames": 180,
+      "PASS": true
+     },
+     {
+      "tag": "L72/seed771111",
+      "L": 72,
+      "bound": 12.8,
+      "fraction": 0.9666666666666667,
+      "frames": 180,
+      "PASS": true
+     },
+     {
+      "tag": "L72/seed771112",
+      "L": 72,
+      "bound": 12.8,
+      "fraction": 0.9388888888888889,
+      "frames": 180,
+      "PASS": false
+     },
+     {
+      "tag": "L72/seed771113",
+      "L": 72,
+      "bound": 12.8,
+      "fraction": 0.0,
+      "frames": 0,
+      "PASS": false
+     },
+     {
+      "tag": "L72/seed771114",
+      "L": 72,
+      "bound": 12.8,
+      "fraction": 0.9944444444444445,
+      "frames": 180,
+      "PASS": true
+     },
+     {
+      "tag": "L96/seed771210",
+      "L": 96,
+      "bound": 12.8,
+      "fraction": 0.9611111111111111,
+      "frames": 180,
+      "PASS": true
+     },
+     {
+      "tag": "L96/seed771211",
+      "L": 96,
+      "bound": 12.8,
+      "fraction": 0.9222222222222223,
+      "frames": 180,
+      "PASS": false
+     },
+     {
+      "tag": "L96/seed771212",
+      "L": 96,
+      "bound": 12.8,
+      "fraction": 0.9888888888888889,
+      "frames": 180,
+      "PASS": true
+     },
+     {
+      "tag": "L96/seed771213",
+      "L": 96,
+      "bound": 12.8,
+      "fraction": 0.9611111111111111,
+      "frames": 180,
+      "PASS": true
+     },
+     {
+      "tag": "L96/seed771214",
+      "L": 96,
+      "bound": 12.8,
+      "fraction": 0.9666666666666667,
+      "frames": 180,
+      "PASS": true
+     }
+    ],
+    "passing_by_L": {
+     "36": 4,
+     "72": 3,
+     "96": 4
+    },
+    "arms_by_L": {
+     "36": 5,
+     "72": 5,
+     "96": 5
+    },
+    "cross_check_against_the_OBTC02_condition": true
+   },
+   "PASS_OR_FAIL": "NOT_PRIMARY \u2014 reported, never decisive"
+  }
+ },
+ "AMBIGUITY_1_FOUR_COMPONENTS": {
+  "QUESTION": "which are the four components, and which one failed?",
+  "THE_FOUR_COMPONENTS": {
+   "A_shape_invariance": {
+    "contains": [
+     "Rg",
+     "r80",
+     "organiser_to_core"
+    ],
+    "PASS": false,
+    "note": "a SINGLE component carrying THREE statistics; it passes only if all three pass"
+   },
+   "B_density_exponent": {
+    "contains": [
+     "density"
+    ],
+    "PASS": true
+   },
+   "C_no_true_winding": {
+    "contains": [
+     "any_winding"
+    ],
+    "PASS": true
+   },
+   "D_profile_compatibility": {
+    "contains": [
+     "profile_TV"
+    ],
+    "PASS": true
+   }
+  },
+  "FAILING_COMPONENT": "A_shape_invariance",
+  "FAILING_STATISTIC_WITHIN_IT": "organiser_to_core",
+  "STATISTICS_THAT_PASSED_INSIDE_THE_FAILING_COMPONENT": [
+   "Rg",
+   "r80"
+  ],
+  "RESOLUTION": "'three components out of four' is exact at the COMPONENT level: B, C and D passed, A failed. At the STATISTIC level it is five out of six: Rg, r80, density, winding and profile passed, |C - Y| failed. Both statements are true of the same result; the report used the first."
+ },
+ "AMBIGUITY_2_NOTATION": {
+  "QUESTION": "what does the notation 5/4, 4/4, 5/4 mean?",
+  "SOURCE": "OBDI01/code/run_obdi01.py prints '%d/%d' % (v['arms_within'], v['arms_required']) for the D component",
+  "ANSWER": "PASSING_ARMS / REQUIRED_PASSING_ARMS \u2014 NOT passing over total",
+  "IS_IT_A_TRANSCRIPTION_ERROR": false,
+  "IS_IT_A_COUNT_OF_STATISTICS": false,
+  "WHY_IT_LOOKED_WRONG": "a numerator larger than a denominator reads as impossible when the denominator is assumed to be the total. Here the denominator is the REQUIREMENT, so 5/4 means five arms passed where four were required.",
+  "UNAMBIGUOUS_RESTATEMENT": {
+   "36": {
+    "PASSING_ARMS_OVER_TOTAL": "5/5",
+    "REQUIRED_PASSING_ARMS_OVER_TOTAL": "4/5",
+    "sentence": "L=36 : 5/5 bras passent ; seuil requis : 4/5",
+    "PASS": true
+   },
+   "72": {
+    "PASSING_ARMS_OVER_TOTAL": "4/5",
+    "REQUIRED_PASSING_ARMS_OVER_TOTAL": "4/5",
+    "sentence": "L=72 : 4/5 bras passent ; seuil requis : 4/5",
+    "PASS": true
+   },
+   "96": {
+    "PASSING_ARMS_OVER_TOTAL": "5/5",
+    "REQUIRED_PASSING_ARMS_OVER_TOTAL": "4/5",
+    "sentence": "L=96 : 5/5 bras passent ; seuil requis : 4/5",
+    "PASS": true
+   }
+  },
+  "CAVEAT_AT_L_72": "at L = 72 one arm went extinct, so its TV is undefined and it was counted as NOT within the envelope. The component therefore passed exactly at its threshold, 4 of 5 where 4 were required."
+ },
+ "PRIMARY_ESTIMAND_RECOVERED": {
+  "RECOVERED_FROM": "OBDI01/code/obdi01_protocol.yaml, principal_outcome.components.A_shape_invariance, statistic organiser_to_core",
+  "NAME": "beta_CY",
+  "DEFINITION": "log d_CY(L) = alpha + beta_CY * log L + eps, where d_CY(L) is the arm-level median of |C - Y| DIVIDED BY the operator's exact finite-size prediction at that L. The division is part of the frozen estimand, not a later adjustment.",
+  "FROZEN_CONSTRUCTION": "per arm y = log(observed) - log(predicted at that L); the predicted value already contains the exact periodic-image correction, so under H_bound y has NO trend in L, whatever L-independent bias the capacity cap introduces",
+  "FROZEN_RULE": "accept iff |beta| + c * se(beta) <= margin",
+  "FROZEN_MARGIN": 0.25,
+  "OBDI01_RESULT": {
+   "beta": 0.07082140404597843,
+   "se": 0.0789484327027999,
+   "abs_beta_plus_c_se": 0.2918474272650326,
+   "excess_over_the_frozen_margin": 0.0418474272650326
+  },
+  "C_DEFINITION": "C is the toroidal Frechet centre of the X field: the separable exact minimiser of the sum of squared toroidal distances, computed axis by axis, rounded to a lattice site",
+  "Y_DEFINITION": "Y is the organiser: the single cell carrying n_Y > 0. With one organiser its position is exact, not an estimate.",
+  "METRIC": "|C - Y| is the toroidal Euclidean distance hypot(wdist1(dy, L), wdist1(dx, L)) with wdist1 the wrapped one-dimensional distance"
+ }
+}

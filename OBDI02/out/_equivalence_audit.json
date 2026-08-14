@@ -1,0 +1,140 @@
+{
+ "SECTION": "OBDI02 \u00a76",
+ "MARGIN_DISCREPANCY": {
+  "MANDATE_STATES_THE_FROZEN_MARGIN_IS": 0.042,
+  "THE_FROZEN_PROTOCOL_STATES": 0.25,
+  "protocol_path": "principal_outcome.components.A_shape_invariance.margin",
+  "protocol_justification": "0.25 is half the exponent of the SLOWEST unbounded alternative under consideration (H_sublinear, alpha = 0.5). Accepting therefore excludes every alternative in the family, not merely H_linear.",
+  "spec_sha256_of_the_file_read": null,
+  "WHERE_0_042_COMES_FROM": {
+   "abs_beta_plus_c_se": 0.2918474272650326,
+   "margin": 0.25,
+   "excess": 0.0418474272650326,
+   "rounded": 0.042,
+   "identity": "0.2918 - 0.2500 = 0.0418 ~ 0.042"
+  },
+  "THE_AMBIGUOUS_SENTENCE": "son intervalle d'equivalence deborde la marge gelee de 0.042",
+  "READING_A": "exceeds the frozen margin BY 0.042  -> margin = 0.25   (arithmetically true)",
+  "READING_B": "exceeds the frozen margin OF 0.042   -> margin = 0.042  (what the mandate read)",
+  "WHICH_IS_CORRECT": "READING_A",
+  "PROOF": "0.042 cannot be the margin under which OBDI01 was evaluated: with a margin of 0.042 the R_g component (|beta| + c.se = 0.0514) and the r80 component (0.0862) would ALSO have failed, and OBDI01 reported them as passing. Only a margin of 0.25 reproduces the reported verdict pattern PASS/PASS/FAIL.",
+  "verdict_pattern_under_0_25": {
+   "Rg": true,
+   "r80": true,
+   "organiser_to_core": false
+  },
+  "verdict_pattern_under_0_042": {
+   "Rg": false,
+   "r80": false,
+   "organiser_to_core": false
+  },
+  "DEFECT_OWNER": "the OBDI01 report. Its French phrasing invited the misreading. This is recorded as a reporting defect of OBDI01, not as an error of the OBDI02 mandate."
+ },
+ "NINE_CHECKS": {
+  "was_it_a_TOST": {
+   "answer": "NO \u2014 not in form, YES in logic",
+   "detail": "the frozen rule is |beta| + c.se(beta) <= delta, i.e. 'the whole two-sided interval of half-width c.se lies inside +-delta'. That is the confidence-interval formulation of a TOST, and it is exactly equivalent to a TOST whose one-sided level is the tail beyond c. It is not implemented as two one-sided t tests, and no p-value is produced."
+  },
+  "interval_level": {
+   "critical_value": 2.799625219301098,
+   "two_sided_tail": 0.005116196891823743,
+   "implied_interval": "99.49 %",
+   "a_standard_TOST_at_alpha_0.05_uses": "a 90 pct two-sided interval, c = 1.6449",
+   "ratio_of_half_widths": 1.7020512788665862,
+   "answer": "the interval used was 99.49 pct, not 90 pct. The half-width is 1.70 times that of a standard TOST at alpha = 0.05."
+  },
+  "nominal_alpha": {
+   "family_alpha": 0.05,
+   "per_test_alpha": 0.005116196891823743,
+   "answer": "nominal alpha = 0.05 FAMILY-WISE across K = 10 tests, Sidak-corrected to 0.005116 per test. OBDI01 itself recorded that an intersection-union equivalence claim does NOT need that correction \u2014 and then applied it anyway to the acceptance side."
+  },
+  "was_the_seed_the_independent_unit": {
+   "answer": "YES",
+   "detail": "each arm contributes exactly one number (the median of its 180 frames) and the standard error at each L is sd(arm medians)/sqrt(n_arms). No frame count enters any variance."
+  },
+  "were_frames_used_as_independent_observations": {
+   "answer": "NO for the primary statistic",
+   "detail": "the only place a frame count enters a decision is component C, where the observed count is exactly zero and no variance model is invoked. Component D uses an envelope explicitly deflated to n_eff = 27 independent frames precisely to avoid this error."
+  },
+  "heteroscedasticity_between_sizes": {
+   "answer": "ADDRESSED, THEN NEUTRALISED",
+   "detail": "weights w_L = (mean_L/se_L)^2 do model unequal variance, but the frozen rule se_L = max(sd_realised, sd_prereg)/sqrt(n_L) replaced every realised sd by the same pre-registered floor 0.3605, so the weights became nearly equal and the modelling had no effect.",
+   "sd_realised_by_L": {
+    "36": 0.3151755062458793,
+    "72": 0.16692526771109462,
+    "96": 0.12674539864106898
+   },
+   "sd_used_by_L": {
+    "36": 0.3604813980377424,
+    "72": 0.3604813980377424,
+    "96": 0.3604813980377424
+   },
+   "floor_binding_everywhere": true,
+   "inflation_factor_by_L": {
+    "36": 1.1437481368127584,
+    "72": 2.159537636097397,
+    "96": 2.844137948223207
+   }
+  },
+  "raw_or_log_scale": {
+   "answer": "LOG",
+   "detail": "y = log(observed mean) - log(predicted), slope taken against log L"
+  },
+  "extinction_handling": {
+   "answer": "NO PRE-SPECIFIED RULE",
+   "detail": "the gate filtered non-finite values with numpy.isfinite, which silently dropped the extinct arm from the shape statistics while ADMITTING it into the density statistic with the value 0. Two different implicit treatments of the same event, neither of them declared.",
+   "n_by_L": {
+    "36": 5,
+    "72": 4,
+    "96": 5
+   },
+   "planned_n": 5
+  },
+  "balance_between_sizes": {
+   "answer": "PLANNED BALANCED, REALISED UNBALANCED",
+   "planned": "5 / 5 / 5",
+   "realised": "5 / 4 / 5"
+  }
+ },
+ "DIAGNOSTIC_RECOMPUTATIONS": {
+  "LABEL": "DIAGNOSTIC ONLY \u2014 these do not revise the OBDI01 verdict",
+  "frozen_estimator_frozen_interval": {
+   "beta": 0.07082140404597843,
+   "se": 0.0789484327027999,
+   "c": 2.799625219301098,
+   "abs_beta_plus_c_se": 0.2918474272650326,
+   "margin": 0.25,
+   "PASS": false
+  },
+  "frozen_estimator_TOST90_interval": {
+   "beta": 0.07082140404597843,
+   "se": 0.0789484327027999,
+   "c": 1.6448536269514733,
+   "abs_beta_plus_c_se": 0.20068001991931317,
+   "PASS_at_0.25": true,
+   "PASS_at_0.042": false
+  },
+  "realised_variance_TOST90_interval": {
+   "beta": 0.05236989906506388,
+   "se": 0.05293126189010024,
+   "c": 1.6448536269514733,
+   "abs_beta_plus_c_se": 0.13943407716411355,
+   "PASS_at_0.25": true,
+   "PASS_at_0.042": false
+  },
+  "arm_level_regression_HC0_TOST90": {
+   "n_arms_used": 14,
+   "df": 12,
+   "beta": 0.07689877734175987,
+   "se_HC0": 0.05549093953374255,
+   "c": 1.6448536269514733,
+   "abs_beta_plus_c_se": 0.16817325049678122,
+   "PASS_at_0.25": true,
+   "PASS_at_0.042": false
+  },
+  "reading": "the frozen rule was conservative on three independent counts at once: a 99.49 %% interval instead of 90 %%, a variance floor that inflated every standard error, and a multiplicity correction that an intersection-union equivalence claim does not require. None of this makes the OBDI01 verdict wrong \u2014 a conservative test that fails to establish equivalence has failed to establish it. It makes the verdict UNINFORMATIVE about the physics, which is exactly what DOMAIN_TEST_UNDERPOWERED records."
+ },
+ "OBDI01_EQUIVALENCE_METHOD": "VALID_BUT_OVERCONSERVATIVE",
+ "VERDICT_REASONING": "the estimand is well defined and recoverable, the independent unit is the seed, the scale is logarithmic and the interval logic is a genuine equivalence rule. Nothing about it is MISALIGNED and nothing is UNRESOLVED. But the interval was built at 99.49 %% with a variance floor and a multiplicity correction that the claim did not need, so it could not have established equivalence at any plausible sample size. VALID_BUT_OVERCONSERVATIVE is the only one of the four allowed verdicts that fits.",
+ "CONSEQUENCE_PER_MANDATE_SS6": "the mandate provides that under this verdict the old endpoint stays SECONDARY and a correctly specified TOST may become primary on entirely fresh seeds, provided it is frozen before any run and presented as a targeted methodological redesign. OBDI02 takes that route."
+}

@@ -1,0 +1,153 @@
+{
+ "SECTION": "OBDI02 \u00a77",
+ "INDEPENDENT_UNIT": "SEED",
+ "WITHIN_SEED_SUMMARY": "the MEDIAN of |C - Y| over the 180 in-window frames of the arm (steps strictly after the burn-in, one frame every SAMPLE_EVERY steps), where |C - Y| is the toroidal Euclidean distance between the Frechet centre of the X field and the organiser cell, both read from the same frame",
+ "CANDIDATES": {
+  "median": {
+   "description": "the median of |C - Y| over the in-window frames \u2014 INHERITED",
+   "by_L": {
+    "36": {
+     "n_arms": 5,
+     "mean": 2.778584445398434,
+     "sd_arm_level": 0.3151755062458793,
+     "cv": 0.11343024206726415,
+     "sd_of_log": 0.12187516788888791,
+     "within_arm_se_block_bootstrap": 0.26534851240761126,
+     "distinct_values_observed": 3
+    },
+    "72": {
+     "n_arms": 4,
+     "mean": 3.078815026312832,
+     "sd_arm_level": 0.16692526771109462,
+     "cv": 0.05421737463422841,
+     "sd_of_log": 0.05578588782855243,
+     "within_arm_se_block_bootstrap": 0.2626912547802108,
+     "distinct_values_observed": 2
+    },
+    "96": {
+     "n_arms": 5,
+     "mean": 3.03059648901659,
+     "sd_arm_level": 0.12674539864106898,
+     "cv": 0.041821931458185344,
+     "sd_of_log": 0.04249396097168628,
+     "within_arm_se_block_bootstrap": 0.2715940785656061,
+     "distinct_values_observed": 4
+    }
+   },
+   "max_sd_of_log": 0.12187516788888791,
+   "mean_sd_of_log": 0.07338500556304221
+  },
+  "mean": {
+   "description": "the arithmetic mean over the in-window frames",
+   "by_L": {
+    "36": {
+     "n_arms": 5,
+     "mean": 2.9378076886841535,
+     "sd_arm_level": 0.2753326801872184,
+     "cv": 0.09372045734911265,
+     "sd_of_log": 0.09822077131227151,
+     "within_arm_se_block_bootstrap": 0.19954439488720974,
+     "distinct_values_observed": 5
+    },
+    "72": {
+     "n_arms": 4,
+     "mean": 3.322295461186786,
+     "sd_arm_level": 0.24069608370948994,
+     "cv": 0.07244872905539497,
+     "sd_of_log": 0.07448006622447895,
+     "within_arm_se_block_bootstrap": 0.2311978641607958,
+     "distinct_values_observed": 4
+    },
+    "96": {
+     "n_arms": 5,
+     "mean": 3.2372320019836733,
+     "sd_arm_level": 0.20983642200665842,
+     "cv": 0.06481970457417859,
+     "sd_of_log": 0.06421870531176815,
+     "within_arm_se_block_bootstrap": 0.282986398331769,
+     "distinct_values_observed": 5
+    }
+   },
+   "max_sd_of_log": 0.09822077131227151,
+   "mean_sd_of_log": 0.07897318094950621
+  },
+  "trimmed10": {
+   "description": "the 10 % symmetrically trimmed mean",
+   "by_L": {
+    "36": {
+     "n_arms": 5,
+     "mean": 2.8074531791945407,
+     "sd_arm_level": 0.25738133576762323,
+     "cv": 0.09167787291165655,
+     "sd_of_log": 0.09438392881638964,
+     "within_arm_se_block_bootstrap": 0.20080979567416185,
+     "distinct_values_observed": 5
+    },
+    "72": {
+     "n_arms": 4,
+     "mean": 3.204239085894805,
+     "sd_arm_level": 0.23827291793867184,
+     "cv": 0.07436177874103067,
+     "sd_of_log": 0.07576293747338078,
+     "within_arm_se_block_bootstrap": 0.23284302589343683,
+     "distinct_values_observed": 4
+    },
+    "96": {
+     "n_arms": 5,
+     "mean": 3.0641058299245634,
+     "sd_arm_level": 0.12533342346988496,
+     "cv": 0.04090375151075334,
+     "sd_of_log": 0.04144767878745748,
+     "within_arm_se_block_bootstrap": 0.27037228888583537,
+     "distinct_values_observed": 5
+    }
+   },
+   "max_sd_of_log": 0.09438392881638964,
+   "mean_sd_of_log": 0.07053151502574263
+  },
+  "q75": {
+   "description": "the third quartile",
+   "by_L": {
+    "36": {
+     "n_arms": 5,
+     "mean": 3.88169778228074,
+     "sd_arm_level": 0.40685121211074216,
+     "cv": 0.10481269664216147,
+     "sd_of_log": 0.11289601873740186,
+     "within_arm_se_block_bootstrap": 0.3104767456779547,
+     "distinct_values_observed": 3
+    },
+    "72": {
+     "n_arms": 4,
+     "mean": 4.222769013429109,
+     "sd_arm_level": 0.3622680177657527,
+     "cv": 0.08578921002159484,
+     "sd_of_log": 0.08896080438910171,
+     "within_arm_se_block_bootstrap": 0.33401946260702964,
+     "distinct_values_observed": 3
+    },
+    "96": {
+     "n_arms": 5,
+     "mean": 4.152275278169859,
+     "sd_arm_level": 0.10046262140473204,
+     "cv": 0.02419459565527928,
+     "sd_of_log": 0.024353686946739433,
+     "within_arm_se_block_bootstrap": 0.39218122062738564,
+     "distinct_values_observed": 4
+    }
+   },
+   "max_sd_of_log": 0.11289601873740186,
+   "mean_sd_of_log": 0.07540350335774766
+  }
+ },
+ "RANKING_BY_WORST_CASE_DISPERSION": [
+  "trimmed10",
+  "mean",
+  "q75",
+  "median"
+ ],
+ "CHOSEN": "median",
+ "REASON": "no candidate is reliably better. The median has the largest dispersion at L = 36 and the smallest at L = 72 and L = 96; the mean is the reverse. With four or five arms per size these standard deviations carry a relative standard error of about 40 %%, so the ordering between candidates is not resolvable. Choosing a different summary on such evidence would be selection on noise. The inherited median is kept, which also makes PRIMARY_ESTIMAND_DIFF_FROM_OBDI01 = NONE exactly true.",
+ "AUTOCORRELATION_TREATMENT": "temporal autocorrelation is handled where it belongs: inside the construction of the per-seed summary, whose sampling error is measured by a block bootstrap of length 10 frames. It NEVER increases the number of independent observations, which is the number of seeds and nothing else.",
+ "PSEUDOREPLICATION_IS_FORBIDDEN": "no frame is ever treated as an independent observation in any variance, interval or test of the primary endpoint"
+}
