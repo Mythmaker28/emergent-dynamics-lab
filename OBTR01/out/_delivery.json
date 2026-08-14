@@ -2,8 +2,8 @@
  "SECTION": "OBTR01 \u00a729 \u2014 delivery record",
  "BRANCH": "codex/organizer-bound-timescale-rederivation-01",
  "BASE": "ad8f6bfb939ddb9a5b3b5c66155a3fdf118b2b29",
- "HEAD": "12f694b7f4b8f763a57393a7952af18b7fd9cea2",
- "TREE": "deafb9a47bbaf01268752ae31d243b63d5803785",
+ "HEAD": "3c24cb453fda757cc08b1ab3c16d77a70077845c",
+ "TREE": "1c00a0591790315b2312be781624cfde97318b4b",
  "COMMITS": [
   {
    "commit": "ec5687ccd44c27efe23bb1922585628f7147d96d",
@@ -52,24 +52,30 @@
   {
    "commit": "12f694b7f4b8f763a57393a7952af18b7fd9cea2",
    "subject": "OBTR01 \u00a728-\u00a730: the mission figure, the French final report, and SHA256SUMS"
+  },
+  {
+   "commit": "3c24cb453fda757cc08b1ab3c16d77a70077845c",
+   "subject": "OBTR01 \u00a729: delivery record, one push attempt refused 403, split self-contained archive"
   }
  ],
- "n_commits": 12,
+ "n_commits": 13,
  "MANDATED_SEPARATION_AT_LEAST_EIGHT": true,
  "PUSH_ATTEMPT": {
   "attempts": 1,
   "returncode": 128,
   "stdout": "",
   "stderr": "remote: access denied by the git proxy: Mythmaker28/emergent-dynamics-lab is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources.\nfatal: unable to access 'https://github.com/Mythmaker28/emergent-dynamics-lab.git/': The requested URL returned error: 403",
-  "action_taken": "one attempt only, response recorded verbatim, split delivery instead"
+  "action_taken": "one attempt only, response recorded verbatim, split delivery instead",
+  "note": "recorded on the first and only attempt; not retried on this rebuild"
  },
  "ARTEFACT": {
-  "whole_sha256": "b4d2e49d08a3d4fc04cf9bff988a72ce9da32b17bb3a40fc317c01311d83cd70",
+  "whole_sha256": "2f6d8d8a3fd0db0e98e529d6b857db875f25e6f73494e179d5cb670b92e3d80d",
   "parts": 6,
   "part_bytes": 19000000,
   "bare_shallow_boundary": "ad8f6bfb939ddb9a5b3b5c66155a3fdf118b2b29",
   "boundary_is_the_OBDCA01_head": true
  },
+ "SELF_REFERENCE_NOTE": "this record cannot list the commit that carries it. It enumerates every commit up to the one before, and the readback in _readback.json counts the branch from the base independently, so the two together cover the whole branch.",
  "NO_INHERITED_COMMIT_REWRITTEN": true,
  "NO_REBASE": true,
  "SCIENTIFIC_RUNS_USED": 0,
