@@ -1,0 +1,597 @@
+{
+ "SECTION": "OBDI01 \u00a713-\u00a714",
+ "ARMS_USED": {
+  "36": [
+   "P__seed9102",
+   "P__seed9103",
+   "P__seed9104",
+   "P__seed9105",
+   "P__seed9106"
+  ],
+  "72": [
+   "D__seed9501",
+   "D__seed9502",
+   "D__seed9503"
+  ]
+ },
+ "ARMS_EXCLUDED_WITH_REASON": {
+  "P__seed9101": "extinct: no cloud to measure",
+  "S__*": "p_hop_Y = 0 is a different law; its variance is not this design's",
+  "R__*": "the source is removed at step 4000; the window is not stationary",
+  "N__*": "no organiser and no cloud"
+ },
+ "NOTE_ON_ARM_SELECTION": "two of the three L=72 arms FAILED the legacy D gate and are nevertheless included: the mandate requires all relevant arms, not only the passing ones, precisely so that the variance is not underestimated by conditioning on success",
+ "per_arm": {
+  "P__seed9102": {
+   "L": 36,
+   "n_frames": 180,
+   "Rg": {
+    "median": 5.753002460283422,
+    "mean": 5.807281569622233,
+    "sd_within": 0.574499197149692,
+    "rho1": 0.8773198297701593,
+    "n_eff": 11.762742976019638,
+    "se_of_arm_mean": 0.16750783378626988,
+    "se_of_arm_median": 0.10399212062410446
+   },
+   "r80": {
+    "median": 7.0710678118654755,
+    "mean": 6.997414218257126,
+    "sd_within": 0.8273095874156331,
+    "rho1": 0.7206190518298748,
+    "n_eff": 29.227021877469472,
+    "se_of_arm_mean": 0.15302971693634154,
+    "se_of_arm_median": 0.1659569813205036
+   },
+   "r80_organiser": {
+    "median": 8.06225774829855,
+    "mean": 8.40793059979009,
+    "sd_within": 1.7243030253209102,
+    "rho1": 0.7209763673340738,
+    "n_eff": 29.183581386226702,
+    "se_of_arm_mean": 0.31918633981851413,
+    "se_of_arm_median": 0.2269912031691775
+   },
+   "organiser_to_core": {
+    "median": 3.0,
+    "mean": 3.0904184821214153,
+    "sd_within": 1.6844282702362525,
+    "rho1": 0.5871911170593261,
+    "n_eff": 46.815785528708886,
+    "se_of_arm_mean": 0.2461820389186272,
+    "se_of_arm_median": 0.36307879158207784
+   },
+   "N_X": {
+    "mean": 118.93333333333334,
+    "sd_within": 14.48312445070982,
+    "rho1": 0.8604319073799725
+   },
+   "winding_frames": 0
+  },
+  "P__seed9103": {
+   "L": 36,
+   "n_frames": 180,
+   "Rg": {
+    "median": 5.892384786938671,
+    "mean": 5.881384714118457,
+    "sd_within": 0.513912451056717,
+    "rho1": 0.8608528296407282,
+    "n_eff": 13.459683788913395,
+    "se_of_arm_mean": 0.14007857380261804,
+    "se_of_arm_median": 0.14492447506369857
+   },
+   "r80": {
+    "median": 7.0710678118654755,
+    "mean": 6.98815102526733,
+    "sd_within": 0.704471530800994,
+    "rho1": 0.7012173432138628,
+    "n_eff": 31.613173023444674,
+    "se_of_arm_mean": 0.12529374860548015,
+    "se_of_arm_median": 0.10452879990763408
+   },
+   "r80_organiser": {
+    "median": 8.48528137423857,
+    "mean": 8.644423650776973,
+    "sd_within": 1.463349556066159,
+    "rho1": 0.6738401265889022,
+    "n_eff": 35.07430386057208,
+    "se_of_arm_mean": 0.24708907871378633,
+    "se_of_arm_median": 0.2762196602955825
+   },
+   "organiser_to_core": {
+    "median": 3.1622776601683795,
+    "mean": 3.403521472259706,
+    "sd_within": 1.531580929701046,
+    "rho1": 0.5768472302363652,
+    "n_eff": 48.303663853369585,
+    "se_of_arm_mean": 0.22036870190500718,
+    "se_of_arm_median": 0.23440711701228267
+   },
+   "N_X": {
+    "mean": 128.67222222222222,
+    "sd_within": 12.309250986092108,
+    "rho1": 0.8015490312055252
+   },
+   "winding_frames": 0
+  },
+  "P__seed9104": {
+   "L": 36,
+   "n_frames": 180,
+   "Rg": {
+    "median": 5.791324037312661,
+    "mean": 5.797527125300665,
+    "sd_within": 0.5695581402126201,
+    "rho1": 0.9059113135840717,
+    "n_eff": 8.886018690459924,
+    "se_of_arm_mean": 0.19106645771248593,
+    "se_of_arm_median": 0.20202515796648193
+   },
+   "r80": {
+    "median": 7.0710678118654755,
+    "mean": 7.051796802679037,
+    "sd_within": 0.8389576322880968,
+    "rho1": 0.7530652948915774,
+    "n_eff": 25.354587218763626,
+    "se_of_arm_mean": 0.16661410213221256,
+    "se_of_arm_median": 0.1930826576853951
+   },
+   "r80_organiser": {
+    "median": 8.246211251235321,
+    "mean": 8.60643872540022,
+    "sd_within": 1.7048374221995934,
+    "rho1": 0.753285654065057,
+    "n_eff": 25.32877752425956,
+    "se_of_arm_mean": 0.338747309993533,
+    "se_of_arm_median": 0.31858173870174467
+   },
+   "organiser_to_core": {
+    "median": 3.0,
+    "mean": 3.1681350207270915,
+    "sd_within": 1.6634850814141615,
+    "rho1": 0.528722824380792,
+    "n_eff": 55.49069475417672,
+    "se_of_arm_mean": 0.2233103381532615,
+    "se_of_arm_median": 0.40128635901599996
+   },
+   "N_X": {
+    "mean": 125.11666666666666,
+    "sd_within": 14.128806897878599,
+    "rho1": 0.8058107342027103
+   },
+   "winding_frames": 0
+  },
+  "P__seed9105": {
+   "L": 36,
+   "n_frames": 180,
+   "Rg": {
+    "median": 5.6129384199379375,
+    "mean": 5.578249557247037,
+    "sd_within": 0.4501834532604424,
+    "rho1": 0.8382002085456368,
+    "n_eff": 15.84373798152701,
+    "se_of_arm_mean": 0.11309950455110473,
+    "se_of_arm_median": 0.09065340939950331
+   },
+   "r80": {
+    "median": 6.708203932499369,
+    "mean": 6.7749407167451405,
+    "sd_within": 0.638749175844798,
+    "rho1": 0.6612619851893985,
+    "n_eff": 36.70272552402795,
+    "se_of_arm_mean": 0.10543412418958052,
+    "se_of_arm_median": 0.1639351949682902
+   },
+   "r80_organiser": {
+    "median": 7.280109889280518,
+    "mean": 7.882799729503883,
+    "sd_within": 1.4494543693420103,
+    "rho1": 0.7141551981246482,
+    "n_eff": 30.01598944707799,
+    "se_of_arm_mean": 0.26456245732260286,
+    "se_of_arm_median": 0.24211014581441684
+   },
+   "organiser_to_core": {
+    "median": 2.23606797749979,
+    "mean": 2.6006456864624075,
+    "sd_within": 1.718443433689005,
+    "rho1": 0.5981621834176996,
+    "n_eff": 45.25874015497808,
+    "se_of_arm_mean": 0.25543712100315336,
+    "se_of_arm_median": 0.28026463815949343
+   },
+   "N_X": {
+    "mean": 119.16111111111111,
+    "sd_within": 14.624218028615383,
+    "rho1": 0.8339307444485854
+   },
+   "winding_frames": 0
+  },
+  "P__seed9106": {
+   "L": 36,
+   "n_frames": 180,
+   "Rg": {
+    "median": 5.764369574217182,
+    "mean": 5.768013494852254,
+    "sd_within": 0.5023031210447002,
+    "rho1": 0.89118575187985,
+    "n_eff": 10.356764078916006,
+    "se_of_arm_mean": 0.15608236427190014,
+    "se_of_arm_median": 0.10768221396978339
+   },
+   "r80": {
+    "median": 7.035533905932738,
+    "mean": 6.95739219089486,
+    "sd_within": 0.7131835244290016,
+    "rho1": 0.6622049955916018,
+    "n_eff": 36.579784656387105,
+    "se_of_arm_mean": 0.11791816970203044,
+    "se_of_arm_median": 0.11734926048455792
+   },
+   "r80_organiser": {
+    "median": 8.06225774829855,
+    "mean": 8.269222125814078,
+    "sd_within": 1.3548872391400673,
+    "rho1": 0.7378128458012655,
+    "n_eff": 27.156944932129495,
+    "se_of_arm_mean": 0.25999362340959115,
+    "se_of_arm_median": 0.2234969236694589
+   },
+   "organiser_to_core": {
+    "median": 2.8284271247461903,
+    "mean": 2.8835879786052274,
+    "sd_within": 1.4935347942931674,
+    "rho1": 0.5772027461487136,
+    "n_eff": 48.252202121169645,
+    "se_of_arm_mean": 0.2150090674134245,
+    "se_of_arm_median": 0.3486099389413932
+   },
+   "N_X": {
+    "mean": 122.35555555555555,
+    "sd_within": 12.381560547405773,
+    "rho1": 0.7838798671771128
+   },
+   "winding_frames": 0
+  },
+  "D__seed9501": {
+   "L": 72,
+   "n_frames": 180,
+   "Rg": {
+    "median": 6.023734035948635,
+    "mean": 6.187311437517421,
+    "sd_within": 0.6974377226261383,
+    "rho1": 0.8879112819429034,
+    "n_eff": 10.686926575020902,
+    "se_of_arm_mean": 0.21334330603660975,
+    "se_of_arm_median": 0.17593925680411432
+   },
+   "r80": {
+    "median": 7.0710678118654755,
+    "mean": 7.0532707574657225,
+    "sd_within": 0.791882319914601,
+    "rho1": 0.7564299896430329,
+    "n_eff": 24.96120091479673,
+    "se_of_arm_mean": 0.15849950445559552,
+    "se_of_arm_median": 0.15335872631238429
+   },
+   "r80_organiser": {
+    "median": 8.48528137423857,
+    "mean": 8.51871277774209,
+    "sd_within": 1.3976753842237846,
+    "rho1": 0.6319681403729784,
+    "n_eff": 40.592541664277675,
+    "se_of_arm_mean": 0.2193730098486754,
+    "se_of_arm_median": 0.23680365052810573
+   },
+   "organiser_to_core": {
+    "median": 3.605551275463989,
+    "mean": 3.352555941671863,
+    "sd_within": 1.505792091773502,
+    "rho1": 0.5755790185023438,
+    "n_eff": 48.48742955602164,
+    "se_of_arm_mean": 0.21624716925794635,
+    "se_of_arm_median": 0.2655964004625344
+   },
+   "N_X": {
+    "mean": 122.38333333333334,
+    "sd_within": 19.56975062857993,
+    "rho1": 0.9136033771565968
+   },
+   "winding_frames": 0
+  },
+  "D__seed9502": {
+   "L": 72,
+   "n_frames": 180,
+   "Rg": {
+    "median": 5.7648008430010425,
+    "mean": 5.885156009914764,
+    "sd_within": 0.7590400610484942,
+    "rho1": 0.8792261581831926,
+    "n_eff": 11.568214625131947,
+    "se_of_arm_mean": 0.22316779848125592,
+    "se_of_arm_median": 0.09879663105020658
+   },
+   "r80": {
+    "median": 6.708203932499369,
+    "mean": 6.933076724646822,
+    "sd_within": 1.0645125918757106,
+    "rho1": 0.8068318661937631,
+    "n_eff": 19.24377399783689,
+    "se_of_arm_mean": 0.24266418268953752,
+    "se_of_arm_median": 0.17687656709357316
+   },
+   "r80_organiser": {
+    "median": 8.06225774829855,
+    "mean": 8.481065991992217,
+    "sd_within": 2.1019723845986573,
+    "rho1": 0.8045149110331625,
+    "n_eff": 19.49959836789849,
+    "se_of_arm_mean": 0.4760079135754701,
+    "se_of_arm_median": 0.2744223790659106
+   },
+   "organiser_to_core": {
+    "median": 3.0,
+    "mean": 3.2836438995028123,
+    "sd_within": 1.9707113728883459,
+    "rho1": 0.682984621064051,
+    "n_eff": 33.905697945352244,
+    "se_of_arm_mean": 0.33844389034265554,
+    "se_of_arm_median": 0.23306798954036004
+   },
+   "N_X": {
+    "mean": 108.9,
+    "sd_within": 20.36485635357333,
+    "rho1": 0.915378498569151
+   },
+   "winding_frames": 0
+  },
+  "D__seed9503": {
+   "L": 72,
+   "n_frames": 180,
+   "Rg": {
+    "median": 5.980002075149035,
+    "mean": 6.062624999927748,
+    "sd_within": 0.8162200889734444,
+    "rho1": 0.9269215224225522,
+    "n_eff": 6.8264980233357155,
+    "se_of_arm_mean": 0.31239803617173073,
+    "se_of_arm_median": 0.15963445515878888
+   },
+   "r80": {
+    "median": 7.035533905932738,
+    "mean": 7.025045458794517,
+    "sd_within": 0.9937585510308351,
+    "rho1": 0.813280316279963,
+    "n_eff": 18.535216407443475,
+    "se_of_arm_mean": 0.23082457690073346,
+    "se_of_arm_median": 0.19387432880804845
+   },
+   "r80_organiser": {
+    "median": 8.06225774829855,
+    "mean": 8.543181087312407,
+    "sd_within": 2.2689675299347356,
+    "rho1": 0.8537849349634806,
+    "n_eff": 14.197284275099562,
+    "se_of_arm_mean": 0.6021790493988551,
+    "se_of_arm_median": 0.27452671465846995
+   },
+   "organiser_to_core": {
+    "median": 3.0,
+    "mean": 3.2472046428605004,
+    "sd_within": 1.9648008148571556,
+    "rho1": 0.7211960233013687,
+    "n_eff": 29.156885750581743,
+    "se_of_arm_mean": 0.3638714337639835,
+    "se_of_arm_median": 0.30606441604429585
+   },
+   "N_X": {
+    "mean": 126.32777777777778,
+    "sd_within": 14.617212840868726,
+    "rho1": 0.8524807184922173
+   },
+   "winding_frames": 0
+  }
+ },
+ "variance_decomposition": {
+  "Rg": {
+   "by_L": {
+    "36": {
+     "arm_summary": "median over the 180 in-window frames",
+     "arm_values": [
+      5.753002460283422,
+      5.892384786938671,
+      5.791324037312661,
+      5.6129384199379375,
+      5.764369574217182
+     ],
+     "n_arms": 5,
+     "variance_of_arm_summaries": 0.010040696540660117,
+     "mean_within_arm_sampling_variance": 0.018489025783391407,
+     "between_seed_variance": 0.0,
+     "between_seed_sd": 0.0,
+     "total_sd_of_one_arm": 0.10020327609744163,
+     "reading": "a between-seed variance of 0 means NOT RESOLVABLE at this arm count \u2014 the arm-to-arm scatter is already accounted for by the within-arm sampling error \u2014 it does not mean the seeds are identical"
+    },
+    "72": {
+     "arm_summary": "median over the 180 in-window frames",
+     "arm_values": [
+      6.023734035948635,
+      5.7648008430010425,
+      5.980002075149035
+     ],
+     "n_arms": 3,
+     "variance_of_arm_summaries": 0.0192117421872379,
+     "mean_within_arm_sampling_variance": 0.022066185221832704,
+     "between_seed_variance": 0.0,
+     "between_seed_sd": 0.0,
+     "total_sd_of_one_arm": 0.13860642909777995,
+     "reading": "a between-seed variance of 0 means NOT RESOLVABLE at this arm count \u2014 the arm-to-arm scatter is already accounted for by the within-arm sampling error \u2014 it does not mean the seeds are identical"
+    }
+   },
+   "pooled_sd_used": 0.13860642909777995,
+   "rule": "the LARGER of the observed per-L arm-level sd is used, so the power calculation is conservative"
+  },
+  "r80": {
+   "by_L": {
+    "36": {
+     "arm_summary": "median over the 180 in-window frames",
+     "arm_values": [
+      7.0710678118654755,
+      7.0710678118654755,
+      7.0710678118654755,
+      6.708203932499369,
+      7.035533905932738
+     ],
+     "n_arms": 5,
+     "variance_of_arm_summaries": 0.02529717358831298,
+     "mean_within_arm_sampling_variance": 0.023278899888712717,
+     "between_seed_variance": 0.002018273699600264,
+     "between_seed_sd": 0.04492520116371505,
+     "total_sd_of_one_arm": 0.15905085220869764,
+     "reading": "a between-seed variance of 0 means NOT RESOLVABLE at this arm count \u2014 the arm-to-arm scatter is already accounted for by the within-arm sampling error \u2014 it does not mean the seeds are identical"
+    },
+    "72": {
+     "arm_summary": "median over the 180 in-window frames",
+     "arm_values": [
+      7.0710678118654755,
+      6.708203932499369,
+      7.035533905932738
+     ],
+     "n_arms": 3,
+     "variance_of_arm_summaries": 0.04001296082122437,
+     "mean_within_arm_sampling_variance": 0.030797158097911784,
+     "between_seed_variance": 0.009215802723312589,
+     "between_seed_sd": 0.09599897251175446,
+     "total_sd_of_one_arm": 0.20003239942875348,
+     "reading": "a between-seed variance of 0 means NOT RESOLVABLE at this arm count \u2014 the arm-to-arm scatter is already accounted for by the within-arm sampling error \u2014 it does not mean the seeds are identical"
+    }
+   },
+   "pooled_sd_used": 0.20003239942875348,
+   "rule": "the LARGER of the observed per-L arm-level sd is used, so the power calculation is conservative"
+  },
+  "r80_organiser": {
+   "by_L": {
+    "36": {
+     "arm_summary": "median over the 180 in-window frames",
+     "arm_values": [
+      8.06225774829855,
+      8.48528137423857,
+      8.246211251235321,
+      7.280109889280518,
+      8.06225774829855
+     ],
+     "n_arms": 5,
+     "variance_of_arm_summaries": 0.20460154894324953,
+     "mean_within_arm_sampling_variance": 0.06757696577604293,
+     "between_seed_variance": 0.13702458316720662,
+     "between_seed_sd": 0.37016831734659117,
+     "total_sd_of_one_arm": 0.45232902730562136,
+     "reading": "a between-seed variance of 0 means NOT RESOLVABLE at this arm count \u2014 the arm-to-arm scatter is already accounted for by the within-arm sampling error \u2014 it does not mean the seeds are identical"
+    },
+    "72": {
+     "arm_summary": "median over the 180 in-window frames",
+     "arm_values": [
+      8.48528137423857,
+      8.06225774829855,
+      8.06225774829855
+     ],
+     "n_arms": 3,
+     "variance_of_arm_summaries": 0.059649662701147424,
+     "mean_within_arm_sampling_variance": 0.06891617603226818,
+     "between_seed_variance": 0.0,
+     "between_seed_sd": 0.0,
+     "total_sd_of_one_arm": 0.24423280431004232,
+     "reading": "a between-seed variance of 0 means NOT RESOLVABLE at this arm count \u2014 the arm-to-arm scatter is already accounted for by the within-arm sampling error \u2014 it does not mean the seeds are identical"
+    }
+   },
+   "pooled_sd_used": 0.45232902730562136,
+   "rule": "the LARGER of the observed per-L arm-level sd is used, so the power calculation is conservative"
+  },
+  "organiser_to_core": {
+   "by_L": {
+    "36": {
+     "arm_summary": "median over the 180 in-window frames",
+     "arm_values": [
+      3.0,
+      3.1622776601683795,
+      3.0,
+      2.23606797749979,
+      2.8284271247461903
+     ],
+     "n_arms": 5,
+     "variance_of_arm_summaries": 0.12994683833124526,
+     "mean_within_arm_sampling_variance": 0.10957616085328473,
+     "between_seed_variance": 0.020370677477960536,
+     "between_seed_sd": 0.14272588229876365,
+     "total_sd_of_one_arm": 0.3604813980377424,
+     "reading": "a between-seed variance of 0 means NOT RESOLVABLE at this arm count \u2014 the arm-to-arm scatter is already accounted for by the within-arm sampling error \u2014 it does not mean the seeds are identical"
+    },
+    "72": {
+     "arm_summary": "median over the 180 in-window frames",
+     "arm_values": [
+      3.605551275463989,
+      3.0,
+      3.0
+     ],
+     "n_arms": 3,
+     "variance_of_arm_summaries": 0.12223078240535469,
+     "mean_within_arm_sampling_variance": 0.07284585415185872,
+     "between_seed_variance": 0.04938492825349597,
+     "between_seed_sd": 0.2222271996257343,
+     "total_sd_of_one_arm": 0.3496151918972554,
+     "reading": "a between-seed variance of 0 means NOT RESOLVABLE at this arm count \u2014 the arm-to-arm scatter is already accounted for by the within-arm sampling error \u2014 it does not mean the seeds are identical"
+    }
+   },
+   "pooled_sd_used": 0.3604813980377424,
+   "rule": "the LARGER of the observed per-L arm-level sd is used, so the power calculation is conservative"
+  }
+ },
+ "POWER_RULE": "smallest n per domain size giving >= 80 % power against H_linear at a family-wise level of 5 % under H_bound; if no n <= 20 achieves it, DOMAIN_TEST_UNDERPOWERED",
+ "n_from_power": 1,
+ "ESTIMABILITY_FLOOR_RULE": "the between-seed sd must itself be estimable with a relative standard error <= 40 pct, i.e. 1/sqrt(2(n-1)) <= 0.40; this is a SEPARATE requirement, stated openly, because the power rule alone would allow n = 1",
+ "n_from_estimability": 5,
+ "SEEDS_PER_DOMAIN_SIZE": 5,
+ "DOMAIN_TEST_UNDERPOWERED": false,
+ "THIRD_DOMAIN_RULE": "the SMALLEST candidate in {96, 108, 144} that simultaneously (a) reaches >= 80 % power against H_linear, (b) has a second-moment periodic-image deficit <= 1e-03, and (c) costs under one hour of engine time in total",
+ "third_domain_evaluation": {
+  "96": {
+   "power_vs_H_linear": 1.0,
+   "power_vs_H_sublinear": 1.0,
+   "m2_deficit": 3.4831329908037127e-05,
+   "torus_correction_negligible": true,
+   "estimated_cost_seconds": 397.95192346637407,
+   "cost_affordable": true,
+   "L_over_ell_relative": 27.152900397563418,
+   "L_over_r80_predicted": 11.392283520487545,
+   "ELIGIBLE": true
+  },
+  "108": {
+   "power_vs_H_linear": 1.0,
+   "power_vs_H_sublinear": 1.0,
+   "m2_deficit": 7.196312510439535e-06,
+   "torus_correction_negligible": true,
+   "estimated_cost_seconds": 453.0001886366986,
+   "cost_affordable": true,
+   "L_over_ell_relative": 30.547012947258843,
+   "L_over_r80_predicted": 12.867266925424074,
+   "ELIGIBLE": true
+  },
+  "144": {
+   "power_vs_H_linear": 1.0,
+   "power_vs_H_sublinear": 1.0,
+   "m2_deficit": 6.02129988043562e-08,
+   "torus_correction_negligible": true,
+   "estimated_cost_seconds": 621.62860827105,
+   "cost_affordable": true,
+   "L_over_ell_relative": 40.72935059634513,
+   "L_over_r80_predicted": 17.075718239095686,
+   "ELIGIBLE": true
+  }
+ },
+ "THIRD_DOMAIN_SIZE": 96,
+ "DOMAIN_SIZES": [
+  36,
+  72,
+  96
+ ],
+ "TOTAL_CONFIRMATORY_ARMS": 15
+}
