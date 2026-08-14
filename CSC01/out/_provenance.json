@@ -1,0 +1,69 @@
+{
+  "mission": "CHEMOSTAT-SPATIAL-COHESION-01",
+  "short": "CSC01",
+  "date_utc": "2026-08-14",
+  "section": "CSC01 §3 — delivery lock",
+  "PROVENANCE_STATUS": "SELF_CONTAINED_SPLIT_DELIVERY_PASS",
+  "inherited_artefact": {
+    "path": "/home/claude/ORR01_offline_repo.tar.gz",
+    "bytes": 38826938,
+    "sha256": "f06e8b7888b3742400ae5a05159caac3261520c0c5280e9b0d9d5e5f73267f95",
+    "modified_by_this_mission": false,
+    "note": "left byte-identical; the split operated on a copy, which was then deleted"
+  },
+  "why_split": {
+    "delivery_limit_bytes": 30000000,
+    "artefact_bytes": 38826938,
+    "recompression_attempted": {
+      "zstd": "unavailable in this environment",
+      "xz -9e": {"in": 38952960, "out": 38817244, "gain_fraction": 0.0035,
+                  "reason": "payload is already-compressed git packfiles"}
+    },
+    "decision": "split the existing .tar.gz rather than recompress"
+  },
+  "parts": [
+    {"name": "ORR01_OFFLINE_REPO.tar.gz.part000", "bytes": 19000000,
+     "sha256": "0e2ade147e500242e27e91d7e886645d4a52edef21b544444484e8e92f997943"},
+    {"name": "ORR01_OFFLINE_REPO.tar.gz.part001", "bytes": 19000000,
+     "sha256": "0b8ff48eae312e8550bf6f462988dfa13d2a9b7aa73ffadd84ae00950e771851"},
+    {"name": "ORR01_OFFLINE_REPO.tar.gz.part002", "bytes": 826938,
+     "sha256": "4640a1ebf89e0be5bb46e1f7214c77e2cad7ea727dc42ba75a5e70410330ec26"}
+  ],
+  "max_part_bytes": 19000000,
+  "under_29MB_limit": true,
+  "reassembled_whole_sha256": "f06e8b7888b3742400ae5a05159caac3261520c0c5280e9b0d9d5e5f73267f95",
+  "scripts": [
+    "reassemble_and_verify.sh", "reassemble_and_verify.ps1", "offline_readback.sh",
+    "ORR01_OFFLINE_REPO.SHA256SUMS"
+  ],
+  "verification_executed": {
+    "fresh_directory": "/home/claude/CSC01/verify/orr01_offline",
+    "part_checksums": "OK (3/3)",
+    "reassembled_sha256": "OK",
+    "extraction": "OK, bare repository at <dir>/bare4",
+    "network_isolation": {
+      "method": "unshare -rn (unprivileged network namespace)",
+      "control_inside_namespace": {"dns": "NO_NETWORK", "tcp_443_to_140.82.121.4": "NO_TCP"},
+      "control_outside_namespace": {"tcp_443_to_140.82.121.4": "TCP_OK"},
+      "env": "GIT_NO_LAZY_FETCH=1 GIT_TERMINAL_PROMPT=0"
+    },
+    "clone": "OK (offline)",
+    "HEAD": {"expected": "d89c2217697c33cfb66a6878b885442f13b19c57",
+             "observed": "d89c2217697c33cfb66a6878b885442f13b19c57", "match": true},
+    "tree": {"expected": "b1cb4ae8f5d0c829eee752d11dd407310fd6c477",
+             "observed": "b1cb4ae8f5d0c829eee752d11dd407310fd6c477", "match": true},
+    "files_tracked": 1292,
+    "missing_objects": 0,
+    "fsck": "clean",
+    "ORR01_tests_from_reconstructed_state": {
+      "PROTOCOL_ADVERSARIAL_AUDIT": "PASS",
+      "ALL_PASS": true
+    }
+  },
+  "naming_deviation": {
+    "spec_named": "parts of the CSC01 artefact",
+    "delivered": "parts of the inherited ORR01 self-contained artefact, named ORR01_OFFLINE_REPO.tar.gz.partNNN",
+    "reason": "§3 requires the currently undeliverable 37 MB artefact to become deliverable; that artefact is the ORR01 offline repository. The CSC01 artefact will be split under the same scheme at the end of the mission."
+  },
+  "TOMMY_ACTION_REQUIRED": "NONE"
+}
