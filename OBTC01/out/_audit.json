@@ -1,0 +1,105 @@
+{
+ "cases": [
+  {
+   "case": "C00 SATISFIABILITY: one synthetic arm satisfies ALL twelve per-arm conditions at once",
+   "PASS": true,
+   "detail": "ORGANIZER_BOUND_CLOUD_ARM_PASS"
+  },
+  {
+   "case": "C01 each of the ten per-arm conditions can be broken, and breaking it makes exactly that condition fail",
+   "PASS": true,
+   "detail": "[]"
+  },
+  {
+   "case": "C02 no condition is vacuous: every one has a reachable passing state and a reachable failing state",
+   "PASS": true,
+   "detail": "passing 10/10, failing-when-broken 10/10"
+  },
+  {
+   "case": "C03 the eleven states the mandate lists are classified as declared",
+   "PASS": true,
+   "detail": "[]"
+  },
+  {
+   "case": "C04 the streaming and array implementations agree field by field on 20 random synthetic arms",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "C05 moving any threshold in the yaml moves the verdict: no number is written in the code",
+   "PASS": true,
+   "detail": "[True, True, True, True, True]"
+  },
+  {
+   "case": "C06 TOPOLOGICAL_WINDING_TESTS: the six declared configurations are distinguished",
+   "PASS": true,
+   "detail": "{}"
+  },
+  {
+   "case": "C07 the tiling winding test agrees with an independent BFS universal-cover lift on 40 random masks",
+   "PASS": true,
+   "detail": "0 disagreements"
+  },
+  {
+   "case": "C08 LEGACY_EXTENT_PROXY still fires on a compact non-winding component, and appears in no gate condition",
+   "PASS": true,
+   "detail": "proxy=True extent=20.24 true winding=(False,False) present in gate code=False"
+  },
+  {
+   "case": "C09 every shared metric agrees with the CSC01 implementation on 25 random states",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "C10 the molecular tracker changes NOTHING: identical state hash with and without it, and the labelled positions reproduce the counts exactly",
+   "PASS": true,
+   "detail": "5cf33f46cf28c16e vs 5cf33f46cf28c16e, tracker consistent=True"
+  },
+  {
+   "case": "C11 the instrumented engine is state-for-state the frozen engine over 1500 steps",
+   "PASS": true,
+   "detail": "b47905e56658d832 vs b47905e56658d832"
+  },
+  {
+   "case": "C12 the two interventions do what they say: p_hop_Y = 0 keeps the organiser in its cell, and the removal conserves occupancy exactly",
+   "PASS": true,
+   "detail": "organiser still at its seed cell=True, removed=True, occupancy 7781 -> 7781, N_X before 5"
+  },
+  {
+   "case": "C13 the shape statistics are shown to depend on N_X under the null, and the gate therefore compares against the null at the arm's own N_X",
+   "PASS": true,
+   "detail": "r80 drift 0.052, main-fraction drift 1.026, band narrows with N_X = True"
+  }
+ ],
+ "n_cases": 14,
+ "GATE_SATISFIABILITY": "PASS",
+ "TOPOLOGICAL_WINDING_TESTS": "PASS",
+ "ONLINE_POSTHOC_AGREEMENT": "PASS",
+ "PROTOCOL_ADVERSARIAL_AUDIT": "PASS",
+ "spec_sha256": "4008a92bc73f440a84143ee12b7dedbe05950a6aebbcf0200cc4ab3a59de3091",
+ "ledger": {
+  "by_class": {
+   "calibration": 0,
+   "confirmation": 0,
+   "control": 0,
+   "cost_probe": 0
+  },
+  "caps": {
+   "calibration": 4,
+   "confirmation": 24,
+   "control": 8,
+   "cost_probe": 2
+  },
+  "total": 0,
+  "SCIENTIFIC_RUNS_USED": 0,
+  "non_scientific_classes": [
+   "cost_probe"
+  ],
+  "valid": 0,
+  "invalid": 0,
+  "sequence_consistent": true,
+  "test_steps_used": 7800,
+  "max_test_steps": 30000,
+  "log": []
+ }
+}

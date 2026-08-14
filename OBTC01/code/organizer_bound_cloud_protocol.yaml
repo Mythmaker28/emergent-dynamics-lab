@@ -1,0 +1,190 @@
+# OBTC01 — the single source of truth. Every numeric criterion, the sequential rule, the
+# conditions and the seeds live HERE and nowhere else. No threshold appears in the code and the
+# report quotes this file rather than restating it.
+version: 1
+mission: ORGANIZER-BOUND-TURNOVER-CLOUD-01
+short: OBTC01
+
+question: >
+  Does the balanced chemostat, with NO added cohesion, produce an X cloud that is bounded
+  relative to the organiser, maintained by a local birth-death flux, traversed by material
+  turnover, causally dependent on the organiser, quantitatively predicted by a
+  source-transport-decay operator, robust to seeds and to domain size, without global
+  saturation and without wall confinement?
+
+lawspec:
+  base: BALANCED_CHEMOSTAT
+  added_cohesion: NONE
+  C3_neighbour_protected_decay: FORBIDDEN
+  note: >
+    the engine is the frozen ORR01 kinetics with the LawSpec v2 exchange operator. OBTC01 adds
+    instrumentation, a molecular tracker drawing from a separate generator, and two declared
+    interventions. No rate is changed.
+
+point:                      # the frozen ORR01 design point, reused unchanged
+  L: 36
+  L_large: 72
+  CAP: 16
+  S0: 3
+  phi: 0.20
+  omega: 0.05
+  muX: 0.004
+  muY: 0.0
+  kX: 1.0
+  kY: 0.0
+  p_hop: 0.10263340389897246
+  X_SEED: 4
+
+window:
+  BURN_IN: 2000             # 8 / muX: eight mean lifetimes, so the initial condition is gone
+  T_WINDOW: 9000
+  HORIZON: 11000
+  SAMPLE_EVERY: 50
+  SOURCE_OFF_AT: 4000       # condition R only: burn-in plus 2000 steps of stationary regime
+
+analytic:                   # derived in source_operator.py from the Spec alone, no fit
+  a_X: 0.05
+  a_Y: 0.05
+  D_X: 0.025
+  D_relative: 0.05
+  ell_X_isolated: 2.5
+  ell_relative: 3.5355339059327386
+  core_radius_cells: 5.0    # 2 * ell_X_isolated, absolute, identical in every arm and every L
+  static_r80: 6.082762530298219
+  organiser_frame_r80: 8.54400374531753
+  core_to_organiser_mean_modulus: 3.1238776430613733
+  optimal_lag_steps: 249.0
+  source_off_e_folding_steps: 249.49966599830609
+  source_off_half_life_steps: 172.93999003737392
+
+gate:
+
+  POPULATION_STATIONARY:
+    never_zero: true
+    N_X_min: 20
+    fraction_above_N_X_min: 0.95
+    max_relative_drift_first_to_last_third: 0.20
+
+  RELATIVE_LOCALIZATION:
+    statistic: r80 of the X mass about the ORGANISER's cell
+    absolute_bound: 12.8              # 1.5 x the analytic organiser-frame r80
+    domain_fraction_bound: 0.35       # and at most this fraction of L
+    fraction_of_frames_required: 0.95
+
+  DOMAIN_SIZE_INVARIANCE:
+    scope: across arms
+    statistic: median r80 about the cloud's own centre
+    max_relative_difference_between_domains: 0.25
+    rejected_alternative: r80 proportional to L, which would give +100 % at L = 72
+
+  SOURCE_ATTACHMENT:
+    median_core_to_organiser_max: 7.81      # 2.5 x the analytic mean modulus
+    unwrapped_position_correlation_min: 0.50
+    fraction_of_frames_with_an_organiser: 0.99
+
+  CORE_CONTINUITY:
+    core_exists_fraction_min: 0.80          # core = at least half the X mass inside core_radius
+    max_median_step_displacement_over_N3: 0.25
+    reported_not_gated:
+      - connected-component identity coverage
+      - fusion and fission counts
+    why_not_gated: >
+      CSC01 correction D-5 established that a 4-adjacency identity chain breaks on a live core
+      whenever one bridging cell empties. Positional continuity is the physical property; the
+      component label is a measurement artefact and is reported, not gated.
+
+  MATERIAL_TURNOVER:
+    replacements_min: 10.0
+    fraction_of_initial_units_still_present_max: 0.05
+    fraction_of_final_units_born_in_window_min: 0.90
+
+  FREE_CAPACITY_PRESERVED:
+    mean_free_at_organiser_min: 0.5
+
+  NO_GLOBAL_FILLING:
+    mean_occupancy_fraction_max: 0.60
+    occupancy_drift_max: 0.05
+
+  NO_TRUE_WINDING:
+    frames_with_real_winding_max: 0
+    test: tiling lift, 5 x 5 copies, differentially verified against a BFS universal-cover lift
+    forbidden_test: LEGACY_EXTENT_PROXY
+
+  NO_KINETIC_FREEZE:
+    mean_births_per_step_min: 0.1
+    mean_deaths_per_step_min: 0.1
+
+  CAUSAL_SOURCE_DEPENDENCE:
+    scope: across arms
+    source_off_e_folding_window: [0.5, 2.0]   # multiples of the analytic 249.5 steps
+    source_off_residual_max: 0.05             # of the pre-removal level, after 5 e-foldings
+    no_source_control_must_not_maintain: true
+
+  MODEL_PREDICTION_COMPATIBILITY:
+    envelope: the N2 GENERATIVE null, evaluated at the arm's own N_X, pre-registered in the freeze
+    quantiles: [0.01, 0.99]
+    statistics: [r80, Rg, organiser_to_core, core_fraction, main_mass_fraction, n_eff_components]
+    min_statistics_inside_envelope: 5          # of 6
+    note: >
+      N2 conditions on NOTHING that was realised: the organiser's walk, the ages, the transport
+      and the deaths are generated from the frozen Spec. Only the sample size is matched, and
+      every shape statistic of the null is invariant to the birth intensity.
+
+nulls:
+  N0: {kind: CONDITIONAL_NULL, conditions_on: [N_X, domain], draws: 200}
+  N1: {kind: CONDITIONAL_NULL, conditions_on: [observed organiser trajectory, observed births],
+       draws: 200, instants: 9, quantile: 0.05}
+  N2: {kind: GENERATIVE_NULL, conditions_on: [nothing realised, sample size only], draws: 300}
+  N3: {kind: CONDITIONAL_NULL, conditions_on: [marginal distribution of core positions],
+       draws: 4000}
+  reading: >
+    a null that is handed the realised births and the realised organiser path cannot confirm the
+    generative mechanism; it can only bound the excess beyond it. Only N2 tests the mechanism.
+
+protocol:
+  conditions:
+    P: {name: mobile organiser, arms: 6, seeds: [8101, 8102, 8103, 8104, 8105, 8106],
+        L: 36, intervention: none, role: PRINCIPAL}
+    S: {name: organiser immobilised, arms: 3, seeds: [8201, 8202, 8203], L: 36,
+        intervention: "p_hop_Y = 0 in the Spec; nothing else changes",
+        role: static profile and relaxation time}
+    R: {name: source removed after burn-in, arms: 3, seeds: [8301, 8302, 8303], L: 36,
+        intervention: "at SOURCE_OFF_AT the organiser is decayed Y -> WY through the same
+                       channel a spontaneous decay uses; occupancy is conserved exactly; no X is
+                       moved, created or destroyed and no resource is touched",
+        role: causal dependence}
+    N: {name: no source, arms: 2, seeds: [8401, 8402], L: 36,
+        intervention: "no organiser is seeded", role: control}
+    D: {name: larger domain, arms: 3, seeds: [8501, 8502, 8503], L: 72,
+        intervention: none, role: domain-size invariance}
+    E: {name: exogenous frozen trajectory, arms: 0,
+        role: "opened ONLY if the analysis shows the organiser's motion is materially coupled to
+               X; the coupling is measured by the blocked-hop counters"}
+  forbidden_seeds:
+    reason: consumed by earlier missions, or used for discovery
+    values: [5001, 5002, 5003, 5004, 5005, 5006, 7001, 7002,
+             6101, 6102, 6103, 6104, 6105, 6106, 6201, 6202, 6301, 6302, 6303, 6304]
+  qualification_requires:
+    P_arms_passing_all_per_arm_conditions: 5    # of 6
+    D_arms_passing: 2                           # of 3
+    R_arms_showing_the_predicted_decay: 3       # of 3
+    N_arms_not_maintaining: 2                   # of 2
+
+sequential_rule:
+  - [provenance not verified, STOP]
+  - [gate certificate not PASS, STOP]
+  - [winding test disagrees with the independent implementation, STOP]
+  - [online and post hoc gates disagree anywhere, STOP]
+  - [the legacy extent proxy enters any gate condition, STOP]
+  - [the chemostat loses its exact occupancy balance in any arm, STOP]
+  - [a required raw field is missing from any arm, STOP]
+  - [the principal condition forms no cloud on the first two seeds, STOP]
+  - [the larger domain shows a radius proportional to L, STOP]
+  - [a control contradicts the mechanism, STOP]
+  - [the start ledger diverges from the arm records, STOP]
+  - [a bug is found after the results are opened, STOP and the disposition becomes AUDIT_INVALID]
+  - [no manual resumption after a stop is permitted in this mission, ABSOLUTE]
+
+budget:
+  caps: {calibration: 4, confirmation: 24, control: 8, cost_probe: 2}
+  non_scientific_classes: [cost_probe]
