@@ -1,0 +1,1398 @@
+{
+ "FREEZE": 1,
+ "frozen_before": "the first scientific start of OBTC02",
+ "OBTC01_METHODS_CORE_HASH": "f81b1c7ab92d1634b816c2b2f68ccf4fe3aadee4d9495822bbc71a11b7734eb5",
+ "OBTC02_METHODS_CORE_HASH": "747c1f5e68da95c7b63b81b09fcc531cc0dc7b0e13a3ceadb54d10103fc350f7",
+ "code_sha256": {
+  "obtc02_protocol.yaml": "65d577460f28d2cce96be73e61eb3667a9299e23601b122f34192c14de0352cd",
+  "gate_obtc02.py": "4857758f4aade1509ef5d7ca19566d2852197a2cc9dab6f24b81304acef3b7c7",
+  "protocol_obtc02.py": "0b39875cef0aea3fef2ba0beaab7516208d3f3e4d9bd351b880d30e2ada2c8fe",
+  "engine_obtc.py": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30",
+  "metrics_obtc.py": "8f7d4d5fd920653ced75ae65497e0470b67f074722e152605d62ebfbbb7e007c",
+  "nulls_obtc.py": "5609c4c711d857203e56f64396f4a9ce044116870489748161f30d41a60fc704",
+  "topology.py": "290e193ce2e6341159193e840d7a7ee23ab9573777485821951508cbe48bf074",
+  "source_operator.py": "537f1d4576c64af7c845a99a863c559e94efdf6cddba2eb9e5920fe64bae99cf",
+  "guard_obtc.py": "ae6f6f241fdf7ae481e8443f135dbb276a0dc0d20d1d67da28d1f6710b7b5c9d",
+  "audit_obtc02.py": "d5a66c95e1bcaf554f7b07cf5b7b6f76fa24a26fe83818ac94dee6a61ded77d2"
+ },
+ "spec_sha256": "65d577460f28d2cce96be73e61eb3667a9299e23601b122f34192c14de0352cd",
+ "spec": {
+  "version": 1,
+  "mission": "ORGANIZER-BOUND-TURNOVER-CLOUD-02",
+  "short": "OBTC02",
+  "question": "Does the balanced chemostat, with NO added cohesion, produce an X cloud that is bounded relative to the organiser, maintained by a local birth-death flux, traversed by material turnover, causally dependent on the organiser, quantitatively predicted by a source-transport-decay operator, robust to seeds and to domain size, without global saturation and without wall confinement?\n",
+  "lawspec": {
+   "base": "BALANCED_CHEMOSTAT",
+   "added_cohesion": "NONE",
+   "C3_neighbour_protected_decay": "FORBIDDEN",
+   "note": "the engine is the frozen ORR01 kinetics with the LawSpec v2 exchange operator. OBTC01 adds instrumentation, a molecular tracker drawing from a separate generator, and two declared interventions. No rate is changed.\n"
+  },
+  "point": {
+   "L": 36,
+   "L_large": 72,
+   "CAP": 16,
+   "S0": 3,
+   "phi": 0.2,
+   "omega": 0.05,
+   "muX": 0.004,
+   "muY": 0.0,
+   "kX": 1.0,
+   "kY": 0.0,
+   "p_hop": 0.10263340389897246,
+   "X_SEED": 4
+  },
+  "window": {
+   "BURN_IN": 2000,
+   "T_WINDOW": 9000,
+   "HORIZON": 11000,
+   "SAMPLE_EVERY": 50,
+   "SOURCE_OFF_AT": 4000
+  },
+  "analytic": {
+   "a_X": 0.05,
+   "a_Y": 0.05,
+   "D_X": 0.025,
+   "D_relative": 0.05,
+   "ell_X_isolated": 2.5,
+   "ell_relative": 3.5355339059327386,
+   "core_radius_cells": 5.0,
+   "static_r80": 6.082762530298219,
+   "organiser_frame_r80": 8.54400374531753,
+   "core_to_organiser_mean_modulus": 3.1238776430613733,
+   "optimal_lag_steps": 249.0,
+   "source_off_e_folding_steps": 249.49966599830609,
+   "source_off_half_life_steps": 172.93999003737392
+  },
+  "gate": {
+   "POPULATION_STATIONARY": {
+    "never_zero": true,
+    "N_X_min": 20,
+    "fraction_above_N_X_min": 0.95,
+    "max_relative_drift_first_to_last_third": 0.2
+   },
+   "RELATIVE_LOCALIZATION": {
+    "statistic": "r80 of the X mass about the ORGANISER's cell",
+    "absolute_bound": 12.8,
+    "domain_fraction_bound": 0.35,
+    "fraction_of_frames_required": 0.95
+   },
+   "DOMAIN_SIZE_INVARIANCE": {
+    "scope": "across arms",
+    "statistic": "median r80 about the cloud's own centre",
+    "max_relative_difference_between_domains": 0.25,
+    "rejected_alternative": "r80 proportional to L, which would give +100 % at L = 72"
+   },
+   "SOURCE_ATTACHMENT": {
+    "median_core_to_organiser_max": 7.81,
+    "unwrapped_position_correlation_min": 0.5,
+    "fraction_of_frames_with_an_organiser": 0.99
+   },
+   "CORE_CONTINUITY": {
+    "core_exists_fraction_min": 0.8,
+    "max_median_step_displacement_over_N3": 0.25,
+    "reported_not_gated": [
+     "connected-component identity coverage",
+     "fusion and fission counts"
+    ],
+    "why_not_gated": "CSC01 correction D-5 established that a 4-adjacency identity chain breaks on a live core whenever one bridging cell empties. Positional continuity is the physical property; the component label is a measurement artefact and is reported, not gated.\n"
+   },
+   "MATERIAL_TURNOVER": {
+    "replacements_min": 10.0,
+    "fraction_of_initial_units_still_present_max": 0.05,
+    "fraction_of_final_units_born_in_window_min": 0.9
+   },
+   "FREE_CAPACITY_PRESERVED": {
+    "mean_free_at_organiser_min": 0.5
+   },
+   "NO_GLOBAL_FILLING": {
+    "mean_occupancy_fraction_max": 0.6,
+    "occupancy_drift_max": 0.05
+   },
+   "NO_TRUE_WINDING": {
+    "frames_with_real_winding_max": 0,
+    "test": "tiling lift, 5 x 5 copies, differentially verified against a BFS universal-cover lift",
+    "forbidden_test": "LEGACY_EXTENT_PROXY"
+   },
+   "NO_KINETIC_FREEZE": {
+    "mean_births_per_step_min": 0.1,
+    "mean_deaths_per_step_min": 0.1
+   },
+   "CAUSAL_SOURCE_DEPENDENCE": {
+    "scope": "across arms",
+    "source_off_e_folding_window": [
+     0.5,
+     2.0
+    ],
+    "source_off_residual_max": 0.05,
+    "no_source_control_must_not_maintain": true
+   },
+   "MODEL_PREDICTION_COMPATIBILITY": {
+    "envelope": "the N2 GENERATIVE null, evaluated at the arm's own N_X, pre-registered in the freeze",
+    "quantiles": [
+     0.01,
+     0.99
+    ],
+    "statistics": [
+     "r80",
+     "Rg",
+     "organiser_to_core",
+     "core_fraction",
+     "main_mass_fraction",
+     "n_eff_components"
+    ],
+    "min_statistics_inside_envelope": 5,
+    "note": "N2 conditions on NOTHING that was realised: the organiser's walk, the ages, the transport and the deaths are generated from the frozen Spec. Only the sample size is matched, and every shape statistic of the null is invariant to the birth intensity.\n"
+   }
+  },
+  "nulls": {
+   "N0": {
+    "kind": "CONDITIONAL_NULL",
+    "conditions_on": [
+     "N_X",
+     "domain"
+    ],
+    "draws": 200
+   },
+   "N1": {
+    "kind": "CONDITIONAL_NULL",
+    "conditions_on": [
+     "observed organiser trajectory",
+     "observed births"
+    ],
+    "draws": 200,
+    "instants": 9,
+    "quantile": 0.05
+   },
+   "N2": {
+    "kind": "GENERATIVE_NULL",
+    "conditions_on": [
+     "nothing realised",
+     "sample size only"
+    ],
+    "draws": 300
+   },
+   "N3": {
+    "kind": "CONDITIONAL_NULL",
+    "conditions_on": [
+     "marginal distribution of core positions"
+    ],
+    "draws": 4000
+   },
+   "reading": "a null that is handed the realised births and the realised organiser path cannot confirm the generative mechanism; it can only bound the excess beyond it. Only N2 tests the mechanism.\n"
+  },
+  "protocol": {
+   "conditions": {
+    "P": {
+     "name": "mobile organiser",
+     "arms": 6,
+     "seeds": [
+      9101,
+      9102,
+      9103,
+      9104,
+      9105,
+      9106
+     ],
+     "L": 36,
+     "intervention": "none",
+     "role": "PRINCIPAL"
+    },
+    "S": {
+     "name": "organiser immobilised",
+     "arms": 3,
+     "seeds": [
+      9201,
+      9202,
+      9203
+     ],
+     "L": 36,
+     "intervention": "p_hop_Y = 0 in the Spec; nothing else changes",
+     "role": "static profile and relaxation time"
+    },
+    "R": {
+     "name": "source removed after burn-in",
+     "arms": 3,
+     "seeds": [
+      9301,
+      9302,
+      9303
+     ],
+     "L": 36,
+     "intervention": "at SOURCE_OFF_AT the organiser is decayed Y -> WY through the same channel a spontaneous decay uses; occupancy is conserved exactly; no X is moved, created or destroyed and no resource is touched",
+     "role": "causal dependence"
+    },
+    "N": {
+     "name": "no source",
+     "arms": 2,
+     "seeds": [
+      9401,
+      9402
+     ],
+     "L": 36,
+     "intervention": "no organiser is seeded",
+     "role": "control"
+    },
+    "D": {
+     "name": "larger domain",
+     "arms": 3,
+     "seeds": [
+      9501,
+      9502,
+      9503
+     ],
+     "L": 72,
+     "intervention": "none",
+     "role": "domain-size invariance"
+    },
+    "E": {
+     "name": "exogenous frozen trajectory",
+     "arms": 0,
+     "role": "opened ONLY if the analysis shows the organiser's motion is materially coupled to X; the coupling is measured by the blocked-hop counters"
+    }
+   },
+   "forbidden_seeds": {
+    "reason": "consumed by earlier missions, used for discovery, or inscribed in the frozen OBTC01 manifest. Seed 8101 was executed and opened; the rest of the OBTC01 families are retired as a methodological precaution even though they never ran.",
+    "values": [
+     5001,
+     5002,
+     5003,
+     5004,
+     5005,
+     5006,
+     6101,
+     6102,
+     6103,
+     6104,
+     6105,
+     6106,
+     6201,
+     6202,
+     6301,
+     6302,
+     6303,
+     6304,
+     7001,
+     7002,
+     8101,
+     8102,
+     8103,
+     8104,
+     8105,
+     8106,
+     8201,
+     8202,
+     8203,
+     8301,
+     8302,
+     8303,
+     8401,
+     8402,
+     8501,
+     8502,
+     8503
+    ]
+   },
+   "qualification_requires": {
+    "P_arms_passing_all_per_arm_conditions": 5,
+    "D_arms_passing": 2,
+    "R_arms_showing_the_predicted_decay": 3,
+    "N_arms_not_maintaining": 2
+   },
+   "seed_generation_rule": "the OBTC02 families are the OBTC01 families with the leading digit advanced from 8 to 9, condition by condition, preserving the arm counts exactly. The rule is frozen here, before any run, and produces a set provably disjoint from every seed used by MINCORE, MTW01, MCM01, ORR01, CSC01 and OBTC01."
+  },
+  "sequential_rule": [
+   [
+    "run technically invalid",
+    "STOP"
+   ],
+   [
+    "provenance not verified",
+    "STOP"
+   ],
+   [
+    "gate certificate not PASS",
+    "STOP"
+   ],
+   [
+    "winding test disagrees with the independent implementation",
+    "STOP"
+   ],
+   [
+    "online and post hoc gates disagree anywhere",
+    "STOP"
+   ],
+   [
+    "the legacy extent proxy enters any gate condition",
+    "STOP"
+   ],
+   [
+    "the chemostat loses its exact occupancy balance in any arm",
+    "STOP"
+   ],
+   [
+    "a required raw field is missing from any arm",
+    "STOP"
+   ],
+   [
+    "the principal condition forms no cloud on the first two seeds",
+    "STOP"
+   ],
+   [
+    "the larger domain shows a radius proportional to L",
+    "STOP"
+   ],
+   [
+    "a control contradicts the mechanism",
+    "STOP"
+   ],
+   [
+    "the start ledger diverges from the arm records",
+    "STOP"
+   ],
+   [
+    "a bug is found after the results are opened",
+    "STOP and the disposition becomes AUDIT_INVALID"
+   ],
+   [
+    "no manual resumption after a stop is permitted in this mission",
+    "ABSOLUTE"
+   ]
+  ],
+  "budget": {
+   "caps": {
+    "calibration": 4,
+    "confirmation": 24,
+    "control": 8,
+    "cost_probe": 2
+   },
+   "non_scientific_classes": [
+    "cost_probe"
+   ]
+  },
+  "replicates": {
+   "mission": "ORGANIZER-BOUND-TURNOVER-CLOUD-01",
+   "frozen_spec_sha256": "4008a92bc73f440a84143ee12b7dedbe05950a6aebbcf0200cc4ab3a59de3091",
+   "scientific_content": "IDENTICAL. Only the seed families change, and a technical validity layer is ADDED. No threshold, formula, intervention, window, domain size, null or LawSpec is touched."
+  },
+  "technical_validity": {
+   "purpose": "RUN_TECHNICALLY_VALID is evaluated BEFORE any scientific criterion. A technically invalid run consumes its start, counts as neither a scientific success nor a scientific failure, and fires the stop rule immediately.",
+   "checks": [
+    "zero spatial frames received",
+    "frame count differs from the expected count",
+    "frame indices differ between stream and table",
+    "frame index checksum differs",
+    "duplicated frame",
+    "missing frame",
+    "indices not strictly increasing",
+    "online and post hoc disagree",
+    "a required raw field is absent",
+    "start counter inconsistent",
+    "temporal boundary error",
+    "run ended incomplete",
+    "RNG state absent",
+    "file corruption"
+   ],
+   "frame_transport_invariants": [
+    "EXPECTED_FRAME_COUNT",
+    "STREAM_FRAME_COUNT",
+    "TABLE_FRAME_COUNT",
+    "STREAM_FRAME_INDEX_SHA256",
+    "TABLE_FRAME_INDEX_SHA256",
+    "STREAM_SPATIAL_PAYLOAD_SHA256",
+    "TABLE_SPATIAL_PAYLOAD_SHA256"
+   ],
+   "frame_call_contract": "online.frame() must be called exactly once per eligible frame, after the frame is fully built, before the index is updated, and with the same identifier as the saved row.",
+   "third_boundary_convention": "bucket(i) = min(2, i // (T_WINDOW // 3)) on the 0-based index of the post-burn-in step. This reproduces the array split n//3 EXACTLY for every horizon, not only for horizons divisible by three. The WRITTEN convention - three equal consecutive blocks - is unchanged."
+  }
+ },
+ "semantic_diff": {
+  "LAWSPEC_DIFF": "NONE",
+  "SCIENTIFIC_GATE_FORMULA_DIFF": "NONE",
+  "SCIENTIFIC_THRESHOLD_DIFF": "EMPTY",
+  "INTERVENTION_DIFF": "NONE",
+  "SEQUENTIAL_SCIENTIFIC_RULE_DIFF": "NONE",
+  "INSTRUMENTATION_DIFF": "online.frame call restored; frame-transport counters and checksums added; NO_TRUE_WINDING guarded against a zero-frame stream, a guard unreachable whenever RUN_TECHNICALLY_VALID is true; the two cross-arm conditions implemented from the already-frozen thresholds; the post-hoc aggregator rewritten independently of the streaming one",
+  "TEMPORAL_INDEXING_DIFF": "third boundaries corrected; the streaming index now reproduces the array split n//3 exactly for every horizon, not only for horizons divisible by three",
+  "TECHNICAL_VALIDITY_LAYER": "ADDED",
+  "SEED_FAMILY_DIFF": "OBTC01 families retired, OBTC02 families fresh and provably disjoint from 111 previously used seeds"
+ },
+ "N2_envelope": {
+  "grid_N_X": [
+   20,
+   40,
+   60,
+   80,
+   100,
+   120,
+   140,
+   160,
+   180,
+   200,
+   250,
+   300
+  ],
+  "draws": 200,
+  "seed": 20260814,
+  "by_L": {
+   "36": {
+    "20": {
+     "r50": [
+      2.23606797749979,
+      7.002801098892802
+     ],
+     "r80": [
+      4.121874569361484,
+      10.05233316631955
+     ],
+     "r90": [
+      5.09045572532805,
+      14.7648230602334
+     ],
+     "Rg": [
+      3.8104415726064,
+      8.182941840821345
+     ],
+     "main_mass_fraction": [
+      0.1,
+      0.5
+     ],
+     "n_eff_components": [
+      3.4476914085330215,
+      18.181818181818183
+     ],
+     "core_fraction": [
+      0.2,
+      0.8504999999999995
+     ],
+     "organiser_to_core": [
+      0.99,
+      8.002462112512351
+     ]
+    },
+    "40": {
+     "r50": [
+      2.23606797749979,
+      6.4031242374328485
+     ],
+     "r80": [
+      5.0,
+      10.198039027185569
+     ],
+     "r90": [
+      5.998309518948453,
+      14.22054369951637
+     ],
+     "Rg": [
+      4.432593992133695,
+      7.608576157099963
+     ],
+     "main_mass_fraction": [
+      0.1,
+      0.6
+     ],
+     "n_eff_components": [
+      2.675496098104794,
+      21.05263157894737
+     ],
+     "core_fraction": [
+      0.32425,
+      0.825
+     ],
+     "organiser_to_core": [
+      0.0,
+      8.002462112512351
+     ]
+    },
+    "60": {
+     "r50": [
+      2.23606797749979,
+      5.656854249492381
+     ],
+     "r80": [
+      5.0,
+      8.95331776891712
+     ],
+     "r90": [
+      6.4031242374328485,
+      12.043244189161708
+     ],
+     "Rg": [
+      4.450460953580079,
+      6.980377429023702
+     ],
+     "main_mass_fraction": [
+      0.13316666666666666,
+      0.6668333333333332
+     ],
+     "n_eff_components": [
+      2.191625744488536,
+      15.266832529933126
+     ],
+     "core_fraction": [
+      0.39966666666666667,
+      0.8
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.2196141029016765
+     ]
+    },
+    "80": {
+     "r50": [
+      2.8284271247461903,
+      5.833470001199828
+     ],
+     "r80": [
+      5.0990195135927845,
+      9.493945040971935
+     ],
+     "r90": [
+      7.067439173071814,
+      12.812350068767023
+     ],
+     "Rg": [
+      4.698394328085335,
+      7.441576291601775
+     ],
+     "main_mass_fraction": [
+      0.1625,
+      0.712625
+     ],
+     "n_eff_components": [
+      1.9411980216156806,
+      15.696951031721579
+     ],
+     "core_fraction": [
+      0.362375,
+      0.7875
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.814609291659937
+     ]
+    },
+    "100": {
+     "r50": [
+      3.0,
+      5.835887929100211
+     ],
+     "r80": [
+      5.385164807134504,
+      8.945383042280541
+     ],
+     "r90": [
+      7.0710678118654755,
+      12.370923348945865
+     ],
+     "Rg": [
+      4.758623622211554,
+      7.204981675329557
+     ],
+     "main_mass_fraction": [
+      0.2399,
+      0.7300999999999999
+     ],
+     "n_eff_components": [
+      1.8574440271358803,
+      11.394958165933637
+     ],
+     "core_fraction": [
+      0.4098,
+      0.77
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.810249675906654
+     ]
+    },
+    "120": {
+     "r50": [
+      3.160654883566696,
+      6.082762530298219
+     ],
+     "r80": [
+      5.385164807134504,
+      9.221688824040521
+     ],
+     "r90": [
+      7.0710678118654755,
+      13.455102511690326
+     ],
+     "Rg": [
+      4.7463093720456255,
+      7.530907638913954
+     ],
+     "main_mass_fraction": [
+      0.2833333333333333,
+      0.7666666666666667
+     ],
+     "n_eff_components": [
+      1.6912725372354325,
+      7.3709600562413575
+     ],
+     "core_fraction": [
+      0.36624999999999996,
+      0.7667499999999999
+     ],
+     "organiser_to_core": [
+      0.99,
+      7.211102550927978
+     ]
+    },
+    "140": {
+     "r50": [
+      3.0,
+      6.000827625302981
+     ],
+     "r80": [
+      5.385164807134504,
+      9.057026731328971
+     ],
+     "r90": [
+      7.2794198158969925,
+      12.375623708084445
+     ],
+     "Rg": [
+      4.721133879743979,
+      6.987430562988789
+     ],
+     "main_mass_fraction": [
+      0.3497142857142857,
+      0.7931428571428568
+     ],
+     "n_eff_components": [
+      1.5849449718624,
+      5.959241851045121
+     ],
+     "core_fraction": [
+      0.3642142857142857,
+      0.7572142857142856
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.225014778089112
+     ]
+    },
+    "160": {
+     "r50": [
+      3.0,
+      6.085180458198603
+     ],
+     "r80": [
+      5.829210918391771,
+      9.067787588165903
+     ],
+     "r90": [
+      7.280109889280518,
+      13.157431678673596
+     ],
+     "Rg": [
+      4.88099477248492,
+      7.416302900294191
+     ],
+     "main_mass_fraction": [
+      0.424625,
+      0.8
+     ],
+     "n_eff_components": [
+      1.5579338391600097,
+      5.074388811236777
+     ],
+     "core_fraction": [
+      0.34981249999999997,
+      0.7563124999999999
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.280109889280518
+     ]
+    },
+    "180": {
+     "r50": [
+      3.1622776601683795,
+      6.082762530298219
+     ],
+     "r80": [
+      5.385164807134504,
+      9.002195444572926
+     ],
+     "r90": [
+      7.2794198158969925,
+      12.534664445280248
+     ],
+     "Rg": [
+      4.744292817408083,
+      7.215289414638897
+     ],
+     "main_mass_fraction": [
+      0.4608888888888889,
+      0.8389444444444444
+     ],
+     "n_eff_components": [
+      1.4185042087018775,
+      4.072870454199292
+     ],
+     "core_fraction": [
+      0.3221111111111111,
+      0.7444999999999999
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.002801098892802
+     ]
+    },
+    "200": {
+     "r50": [
+      3.1622776601683795,
+      5.658595225945908
+     ],
+     "r80": [
+      5.830951894845301,
+      9.434509650541088
+     ],
+     "r90": [
+      7.612416473698075,
+      13.605455803648086
+     ],
+     "Rg": [
+      4.927031542056566,
+      7.325466923835504
+     ],
+     "main_mass_fraction": [
+      0.53435,
+      0.835
+     ],
+     "n_eff_components": [
+      1.4315265155476427,
+      3.3542702392836246
+     ],
+     "core_fraction": [
+      0.4149,
+      0.74505
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.0710678118654755
+     ]
+    },
+    "250": {
+     "r50": [
+      3.160654883566696,
+      6.0
+     ],
+     "r80": [
+      5.830951894845301,
+      9.000553851381374
+     ],
+     "r90": [
+      7.810249675906654,
+      13.006014705087349
+     ],
+     "Rg": [
+      4.918457279868517,
+      7.298702158609173
+     ],
+     "main_mass_fraction": [
+      0.5718399999999999,
+      0.8521199999999999
+     ],
+     "n_eff_components": [
+      1.3741694837287355,
+      2.983574570045635
+     ],
+     "core_fraction": [
+      0.38,
+      0.7441599999999998
+     ],
+     "organiser_to_core": [
+      0.0,
+      6.406175034383511
+     ]
+    },
+    "300": {
+     "r50": [
+      3.1622776601683795,
+      5.832642375896846
+     ],
+     "r80": [
+      5.998309518948453,
+      9.219544457292887
+     ],
+     "r90": [
+      7.810249675906654,
+      13.351425634117826
+     ],
+     "Rg": [
+      4.9261389050382824,
+      7.371769054744454
+     ],
+     "main_mass_fraction": [
+      0.6362000000000001,
+      0.8601333333333332
+     ],
+     "n_eff_components": [
+      1.3502946342158177,
+      2.428860495599893
+     ],
+     "core_fraction": [
+      0.3995,
+      0.7400333333333333
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.076514864805455
+     ]
+    }
+   },
+   "72": {
+    "20": {
+     "r50": [
+      2.23606797749979,
+      7.073158232639624
+     ],
+     "r80": [
+      4.121874569361484,
+      10.199014938323582
+     ],
+     "r90": [
+      5.0990195135927845,
+      14.218191930118705
+     ],
+     "Rg": [
+      3.8104415726064,
+      9.169550247377707
+     ],
+     "main_mass_fraction": [
+      0.1,
+      0.5
+     ],
+     "n_eff_components": [
+      3.4476914085330215,
+      18.181818181818183
+     ],
+     "core_fraction": [
+      0.2,
+      0.85
+     ],
+     "organiser_to_core": [
+      0.0,
+      8.002462112512351
+     ]
+    },
+    "40": {
+     "r50": [
+      2.8225035332737263,
+      6.325341009507719
+     ],
+     "r80": [
+      5.0,
+      10.051357255181536
+     ],
+     "r90": [
+      6.321309767133392,
+      13.92838827718412
+     ],
+     "Rg": [
+      4.432593992133695,
+      8.432098790993281
+     ],
+     "main_mass_fraction": [
+      0.1,
+      0.6
+     ],
+     "n_eff_components": [
+      2.675496098104794,
+      21.05263157894737
+     ],
+     "core_fraction": [
+      0.32425,
+      0.825
+     ],
+     "organiser_to_core": [
+      0.0,
+      8.246211251235321
+     ]
+    },
+    "60": {
+     "r50": [
+      2.8225035332737263,
+      5.658595225945908
+     ],
+     "r80": [
+      5.0,
+      9.063319864773996
+     ],
+     "r90": [
+      6.4031242374328485,
+      12.041594578792296
+     ],
+     "Rg": [
+      4.605990898270568,
+      7.819370066381153
+     ],
+     "main_mass_fraction": [
+      0.13316666666666666,
+      0.6668333333333332
+     ],
+     "n_eff_components": [
+      2.191625744488536,
+      15.266832529933126
+     ],
+     "core_fraction": [
+      0.3995,
+      0.8
+     ],
+     "organiser_to_core": [
+      0.99,
+      7.080979711229797
+     ]
+    },
+    "80": {
+     "r50": [
+      2.8284271247461903,
+      6.085180458198603
+     ],
+     "r80": [
+      5.0990195135927845,
+      9.492463406911291
+     ],
+     "r90": [
+      7.067439173071814,
+      12.650682019015438
+     ],
+     "Rg": [
+      4.711448427849591,
+      8.193750570315522
+     ],
+     "main_mass_fraction": [
+      0.1625,
+      0.712625
+     ],
+     "n_eff_components": [
+      1.9411980216156806,
+      16.330804573138153
+     ],
+     "core_fraction": [
+      0.349875,
+      0.7875
+     ],
+     "organiser_to_core": [
+      0.99,
+      8.24977239139339
+     ]
+    },
+    "100": {
+     "r50": [
+      3.0,
+      5.833470001199828
+     ],
+     "r80": [
+      5.385164807134504,
+      9.059171098076606
+     ],
+     "r90": [
+      7.0710678118654755,
+      12.36931687685298
+     ],
+     "Rg": [
+      4.758731272575339,
+      7.924304899126854
+     ],
+     "main_mass_fraction": [
+      0.2399,
+      0.7300999999999999
+     ],
+     "n_eff_components": [
+      1.8574440271358803,
+      11.394958165933637
+     ],
+     "core_fraction": [
+      0.3899,
+      0.77
+     ],
+     "organiser_to_core": [
+      0.0,
+      8.067658423485986
+     ]
+    },
+    "120": {
+     "r50": [
+      3.160654883566696,
+      6.406175034383511
+     ],
+     "r80": [
+      5.385164807134504,
+      9.221688824040521
+     ],
+     "r90": [
+      7.0710678118654755,
+      13.344262128572423
+     ],
+     "Rg": [
+      4.764368934625303,
+      8.69271785826731
+     ],
+     "main_mass_fraction": [
+      0.2833333333333333,
+      0.7666666666666667
+     ],
+     "n_eff_components": [
+      1.6912725372354325,
+      7.3709600562413575
+     ],
+     "core_fraction": [
+      0.31625,
+      0.7584166666666665
+     ],
+     "organiser_to_core": [
+      1.0,
+      7.622077487317617
+     ]
+    },
+    "140": {
+     "r50": [
+      3.0,
+      6.000827625302981
+     ],
+     "r80": [
+      5.385164807134504,
+      8.944829190899167
+     ],
+     "r90": [
+      7.2794198158969925,
+      12.08387076446459
+     ],
+     "Rg": [
+      4.7574238135473905,
+      7.697627581429966
+     ],
+     "main_mass_fraction": [
+      0.3497142857142857,
+      0.7931428571428568
+     ],
+     "n_eff_components": [
+      1.5849449718624,
+      5.959241851045121
+     ],
+     "core_fraction": [
+      0.3642142857142857,
+      0.7572142857142856
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.625638627475687
+     ]
+    },
+    "160": {
+     "r50": [
+      3.0,
+      6.324555320336759
+     ],
+     "r80": [
+      5.830951894845301,
+      9.222217342525008
+     ],
+     "r90": [
+      7.280109889280518,
+      12.653003582370832
+     ],
+     "Rg": [
+      4.9051303258840235,
+      8.055190786123141
+     ],
+     "main_mass_fraction": [
+      0.424625,
+      0.8
+     ],
+     "n_eff_components": [
+      1.5579338391600097,
+      5.074388811236777
+     ],
+     "core_fraction": [
+      0.3123125,
+      0.7563124999999999
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.287931367870692
+     ]
+    },
+    "180": {
+     "r50": [
+      3.1622776601683795,
+      6.0890169443202256
+     ],
+     "r80": [
+      5.385164807134504,
+      9.002195444572926
+     ],
+     "r90": [
+      7.2794198158969925,
+      12.085908682627155
+     ],
+     "Rg": [
+      4.984987323240823,
+      7.799826560613341
+     ],
+     "main_mass_fraction": [
+      0.4608888888888889,
+      0.8389444444444444
+     ],
+     "n_eff_components": [
+      1.4185042087018775,
+      4.072870454199292
+     ],
+     "core_fraction": [
+      0.31077777777777776,
+      0.7444999999999999
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.619615374805266
+     ]
+    },
+    "200": {
+     "r50": [
+      3.1622776601683795,
+      6.000827625302981
+     ],
+     "r80": [
+      5.830951894845301,
+      9.221688824040521
+     ],
+     "r90": [
+      7.612416473698075,
+      13.341664064126334
+     ],
+     "Rg": [
+      4.979289340770185,
+      8.46323996090675
+     ],
+     "main_mass_fraction": [
+      0.53435,
+      0.835
+     ],
+     "n_eff_components": [
+      1.4316279630341966,
+      3.3542702392836246
+     ],
+     "core_fraction": [
+      0.37495,
+      0.74005
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.0710678118654755
+     ]
+    },
+    "250": {
+     "r50": [
+      3.1622776601683795,
+      6.082762530298219
+     ],
+     "r80": [
+      5.830951894845301,
+      9.055385138137417
+     ],
+     "r90": [
+      7.810249675906654,
+      12.730642840744274
+     ],
+     "Rg": [
+      5.034700579621202,
+      8.442124539444373
+     ],
+     "main_mass_fraction": [
+      0.5718,
+      0.8521199999999999
+     ],
+     "n_eff_components": [
+      1.3741694837287355,
+      2.9839881193774382
+     ],
+     "core_fraction": [
+      0.35596,
+      0.7441599999999998
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.073158232639624
+     ]
+    },
+    "300": {
+     "r50": [
+      3.1622776601683795,
+      6.082762530298219
+     ],
+     "r80": [
+      5.830951894845301,
+      9.219544457292887
+     ],
+     "r90": [
+      7.810249675906654,
+      13.349668779722373
+     ],
+     "Rg": [
+      5.010963613855319,
+      7.892925800640607
+     ],
+     "main_mass_fraction": [
+      0.6362000000000001,
+      0.8601333333333332
+     ],
+     "n_eff_components": [
+      1.3502946342158177,
+      2.428860495599893
+     ],
+     "core_fraction": [
+      0.34976666666666667,
+      0.7268333333333332
+     ],
+     "organiser_to_core": [
+      0.0,
+      7.620237952288251
+     ]
+    }
+   }
+  },
+  "identical_to_OBTC01": true
+ },
+ "analytic_predictions": {
+  "36": {
+   "L": 36,
+   "constants": {
+    "q_X": 0.025658350974743116,
+    "q_Y": 0.025658350974743116,
+    "a_X": 0.05000000000000003,
+    "a_Y": 0.05000000000000003,
+    "D_X": 0.025000000000000015,
+    "D_Y": 0.025000000000000015,
+    "a_relative": 0.10000000000000006,
+    "D_relative": 0.05000000000000003,
+    "mu_X": 0.004,
+    "ell_X_isolated": 2.500000000000001,
+    "ell_relative": 3.5355339059327386
+   },
+   "static_source": {
+    "r50": 3.1622776601683795,
+    "r80": 6.082762530298219,
+    "r90": 8.06225774829855,
+    "second_moment_torus": 24.628174036313673,
+    "second_moment_infinite_lattice": 24.900000000000016,
+    "rms_radius": 4.962678111293707,
+    "relaxation_time_steps": 250.0
+   },
+   "mobile_source": {
+    "r50": 4.47213595499958,
+    "r80": 8.54400374531753,
+    "r90": 11.313708498984761,
+    "second_moment_torus": 46.68474845341292,
+    "second_moment_infinite_lattice": 49.80000000000003,
+    "rms_radius": 6.832623833741539
+   },
+   "core_to_organiser": {
+    "mean_age_steps": 249.0,
+    "E_min_age_steps": 124.25050100200401,
+    "second_moment": 12.425050100200409,
+    "rms": 3.5249184529858857,
+    "mean_modulus_rayleigh": 3.1238776430613733,
+    "optimal_lag_steps": 249.0
+   },
+   "source_off": {
+    "decay_law": "N_X(t) = N_X(0) (1 - mu)^t",
+    "e_folding_steps": 249.49966599830609,
+    "half_life_steps": 172.93999003737392
+   },
+   "population": {
+    "N_X_stationary": "B / mu, with B the mean accepted births per step",
+    "note": "B is set by the local resource and free capacity at the organiser and is measured, not predicted, because the chemostat's local supply is itself a stationary quantity of the coupled system"
+   },
+   "domain_condition": {
+    "requirement": "L must be large compared with the relative localisation length so that the periodic images do not overlap",
+    "ell_relative": 3.5355339059327386,
+    "L_over_ell_relative": 10.182337649086282,
+    "profile_mass_beyond_L_over_2": 0.011572619264803092
+   }
+  },
+  "72": {
+   "L": 72,
+   "constants": {
+    "q_X": 0.025658350974743116,
+    "q_Y": 0.025658350974743116,
+    "a_X": 0.05000000000000003,
+    "a_Y": 0.05000000000000003,
+    "D_X": 0.025000000000000015,
+    "D_Y": 0.025000000000000015,
+    "a_relative": 0.10000000000000006,
+    "D_relative": 0.05000000000000003,
+    "mu_X": 0.004,
+    "ell_X_isolated": 2.500000000000001,
+    "ell_relative": 3.5355339059327386
+   },
+   "static_source": {
+    "r50": 3.1622776601683795,
+    "r80": 6.082762530298219,
+    "r90": 8.06225774829855,
+    "second_moment_torus": 24.899580502506026,
+    "second_moment_infinite_lattice": 24.900000000000016,
+    "rms_radius": 4.989947945871382,
+    "relaxation_time_steps": 250.0
+   },
+   "mobile_source": {
+    "r50": 4.47213595499958,
+    "r80": 8.54400374531753,
+    "r90": 11.313708498984761,
+    "second_moment_torus": 49.7614208239059,
+    "second_moment_infinite_lattice": 49.80000000000003,
+    "rms_radius": 7.054177544115678
+   },
+   "core_to_organiser": {
+    "mean_age_steps": 249.0,
+    "E_min_age_steps": 124.25050100200401,
+    "second_moment": 12.425050100200409,
+    "rms": 3.5249184529858857,
+    "mean_modulus_rayleigh": 3.1238776430613733,
+    "optimal_lag_steps": 249.0
+   },
+   "source_off": {
+    "decay_law": "N_X(t) = N_X(0) (1 - mu)^t",
+    "e_folding_steps": 249.49966599830609,
+    "half_life_steps": 172.93999003737392
+   },
+   "population": {
+    "N_X_stationary": "B / mu, with B the mean accepted births per step",
+    "note": "B is set by the local resource and free capacity at the organiser and is measured, not predicted, because the chemostat's local supply is itself a stationary quantity of the coupled system"
+   },
+   "domain_condition": {
+    "requirement": "L must be large compared with the relative localisation length so that the periodic images do not overlap",
+    "ell_relative": 3.5355339059327386,
+    "L_over_ell_relative": 20.364675298172564,
+    "profile_mass_beyond_L_over_2": 0.00011222090640278577
+   }
+  }
+ },
+ "GATE_SATISFIABILITY": "PASS",
+ "FRAME_STREAM_TABLE_IDENTITY": "PASS",
+ "THIRD_BOUNDARY_TESTS": "PASS",
+ "ONLINE_POSTHOC_AGREEMENT": "PASS",
+ "ONLINE_POSTHOC_HISTORICAL_AGREEMENT": "PASS",
+ "ONLINE_POSTHOC_8101_AGREEMENT_AFTER_PATCH": "PASS",
+ "PROTOCOL_ADVERSARIAL_AUDIT": "PASS",
+ "starts_before_this_freeze": {
+  "calibration": 0,
+  "confirmation": 0,
+  "control": 0,
+  "cost_probe": 0
+ },
+ "budget_caps": {
+  "calibration": 4,
+  "confirmation": 24,
+  "control": 8,
+  "cost_probe": 2
+ },
+ "C3_reintroduced": false,
+ "added_cohesion": "NONE",
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED"
+}
