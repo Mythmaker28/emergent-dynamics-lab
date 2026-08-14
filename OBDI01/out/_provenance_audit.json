@@ -1,0 +1,61 @@
+{
+ "SECTION": "OBDI01 \u00a74-\u00a75",
+ "ARCHIVE": {
+  "path": "OBTC02_OFFLINE_REPO.tar.gz",
+  "bytes": 49061745,
+  "sha256": "e80722396f48ffd6d4ca1f35b86b9c4be857dbded94238acef6dbaa909d99db5"
+ },
+ "ARCHIVE_IS_SHALLOW": true,
+ "BRANCHES_PRESENT": [
+  "codex/organizer-bound-turnover-cloud-02"
+ ],
+ "BRANCH_TIPS": {
+  "codex/organizer-bound-turnover-cloud-02": "bb7fea748560ce8489d18ca64973f95e907ec382"
+ },
+ "BRANCH_TIPS_MATCH": true,
+ "TREE_HASHES": {
+  "codex/organizer-bound-turnover-cloud-02": "4a22920b8fcde77225d13f0d6ce7928e54619388"
+ },
+ "TREE_HASHES_MATCH": true,
+ "SHALLOW_BOUNDARY": [
+  "d65c0c5961520fda7b3eaccee18962b9f6d5db16"
+ ],
+ "DEPTH_CARRIED": 24,
+ "LINEAGE_NOTE": "the boundary commit is the tip of the previous mission's branch, so the delivered history is exactly this mission's own commits; the earlier missions are referenced by digest, not re-shipped. Their heads are recorded in the report and were verified in their own deliveries.",
+ "EXPECTED_BRANCH_TIPS_ALL_MISSIONS": {
+  "codex/chemostat-spatial-cohesion-01": "a84ae975e76233c88e8277bf018a06e1417d6838",
+  "codex/organizer-bound-turnover-cloud-01": "a0ed70cd05ada70f4cbe6555edf1e3d9f6a98922",
+  "codex/organizer-bound-turnover-cloud-02": "bb7fea748560ce8489d18ca64973f95e907ec382"
+ },
+ "NETWORK": "the readback is performed with the network namespace unshared and GIT_NO_LAZY_FETCH=1; no remote is reachable and none is configured",
+ "OBTC02_FREEZE_ARTIFACT_IDENTITY": "PASS",
+ "OBTC02_code_files_checked": 10,
+ "OBTC02_identical": 10,
+ "OBTC02_detail": {
+  "files_in_manifest": 10,
+  "identical": 10,
+  "differing": [],
+  "METHODS_CORE_HASH": "747c1f5e68da95c7b63b81b09fcc531cc0dc7b0e13a3ceadb54d10103fc350f7"
+ },
+ "OBTC01_FREEZE_ARTIFACT_RELATION": "EXACTLY_EXPLAINED_BY_TWO_DOCUMENTED_PATCHES",
+ "OBTC01_files_differing": [
+  "gate_obtc.py",
+  "protocol_obtc.py"
+ ],
+ "OBTC01_restored_by_reverting_two_edits": true,
+ "OBTC01_detail": {
+  "files_in_manifest": 10,
+  "identical": 8,
+  "differing": [
+   "gate_obtc.py",
+   "protocol_obtc.py"
+  ],
+  "documented_patches": {
+   "gate_obtc.py": "the third-boundary convention, replaced by the array split it must mirror",
+   "protocol_obtc.py": "the missing online.frame(fr) call in run_arm, the defect that forced AUDIT_INVALID"
+  },
+  "every_difference_is_documented": true,
+  "METHODS_CORE_HASH": null
+ },
+ "PROVENANCE_STATUS": "SELF_CONTAINED_SPLIT_DELIVERY_PASS"
+}
