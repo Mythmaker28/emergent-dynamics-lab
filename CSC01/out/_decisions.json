@@ -1,0 +1,62 @@
+{
+  "mission": "CHEMOSTAT-SPATIAL-COHESION-01",
+  "date_utc": "2026-08-14",
+
+  "section_6_C5_scope": {
+    "question": "does the ORR01 protocol violation C-5 (the coded sequential rule 9 was stricter than its written form) compromise the ORR01 confirmation, or is it adjudicatively invariant?",
+    "facts_established_here": {
+      "seed_set_fixed_in_advance": "protocol.py declares SEEDS_CONF = (5001..5006) and SEEDS_CTRL = (7001, 7002) as module constants, frozen before the first confirmation start (starts_before_this_freeze: confirmation 0, control 0)",
+      "arm_set_fixed_in_advance": "ARMS and CONTROLS are module constants of the same frozen file",
+      "continuation_used_the_same_code_path": "run2.py calls protocol.run_arm with the same ARMS/CONTROLS tables and P.SEEDS_CONF[3:]; it re-implements nothing",
+      "freeze_reverified_now": "12 of 12 frozen code files and 6 of 6 frozen doc files still hash to _freeze.json exactly; METHODS_CORE_HASH = 1cfdb1925f8720b21baff94d68f1ffc03d37042733e174de7920b3a3b949a84d",
+      "direction_of_the_divergence": "the coded rule stops strictly earlier than the written rule; it can only reduce the number of starts, never increase the number of successes",
+      "reachability": "with 0 of 3 repaired seeds MAINTENANCE_ACHIEVED, the frozen success criterion of 5 of 6 was already unreachable when the stop fired",
+      "continuation_was_mandated_not_chosen": "the written rule 9 ('all formed clouds collapse') had NOT fired: the clouds were maintained at N_X 110-124 with occupancy drift 0.00000. The written protocol therefore required the remaining pairs to be run; running them was compliance, not an outcome-dependent decision"
+    },
+    "residual_risk_considered": "an interim look followed by a decision to continue can inflate a type-I error when the continuation depends on the interim result. Here the continuation was forced by the written rule, the seed and arm sets could not be altered by it, and the success criterion was already unreachable in the direction that matters, so no positive result could have been manufactured.",
+    "C5_SCOPE": "C5_ADJUDICATIVELY_INVARIANT",
+    "consequence_for_CSC01": "ORR01 seeds 5001-5006 and control seeds 7001-7002 are used in CSC01 ONLY for the raw-only autopsy of Question A. They are forbidden in any CSC01 calibration, confirmation or control arm."
+  },
+
+  "section_7_intrinsic_mechanism": {
+    "question": "does the declared operator contain a spatial mechanism that holds the X population together?",
+    "operator_by_operator_analysis": {
+      "_diffuse": "per species, per direction, Binomial(n, p_hop/4) with acceptance min(movers, dest_free). The only state dependence is the DESTINATION's free capacity, which BLOCKS entry into dense cells. That is an exclusion, i.e. a repulsion; it can only spread the population, never gather it. It reads no X-X interaction of any kind.",
+      "_react": "births of X occur where p_X = min(1, kX*nX*nY) > 0, i.e. only where nY > 0. With one organiser this is a SINGLE CELL. X is therefore created at a point source and nowhere else.",
+      "_decay": "Binomial(n_X, muX) per cell, position independent and neighbour independent. A molecule's survival does not depend on where it is or on what is next to it.",
+      "_exchange": "removes and reinserts only {SX, SY, WX, WY}; X is not in the exchangeable pool, so the operator does not transport X at all.",
+      "conclusion": "no operator makes the transport, the birth or the death of an X molecule depend attractively on the local density of X. The only localising structure in the model is: births at one cell, plus a finite lifetime."
+    },
+    "predicted_profile_if_that_is_all_there_is": {
+      "form": "the lattice Green's function of the death-modified walk, n_hat(k) = 1 / (1 - (1-mu) phi(k)), phi(k) = [1 - a(1-cos k_y)][1 - a(1-cos k_x)], a = 2q(1-q), q = p_hop/4",
+      "D_X_effective": 0.025,
+      "ell_X": 2.5,
+      "second_moment_analytic": 24.9,
+      "second_moment_on_the_L36_torus": 24.6282,
+      "verified_by": "tests_csc.py T12"
+    },
+    "measurements": {
+      "vs_N1_complete_spatial_randomness": "observed quantile 0.000 for r50, r80, Rg and N_eff, and 1.000 for the main-mass and core fractions, in ALL SIX arms. The population is localised beyond any doubt.",
+      "vs_N4_label_permutation": "identical: quantile 0.000 / 1.000 in all six arms.",
+      "vs_N3_static_point_source": "observed quantile 0.73-1.00 for r50/r80/Rg, i.e. the observation is at or slightly ABOVE the no-interaction null: never more compact than it.",
+      "vs_N3b_wandering_point_source_with_the_recorded_birth_history": "observed quantile 0.33-0.82 for every observable in every arm. The observation sits inside the null, near its centre. This is the strongest available no-cohesion null: it uses the ACTUAL organiser trajectory and the ACTUAL recorded birth series, free diffusion, exponential lifetime, and NO interaction of any kind.",
+      "core_is_slaved_to_the_organiser": {
+        "mean_distance_core_centre_to_organiser": "2.61 - 3.27 cells, against ell_X = 2.5",
+        "correlation_of_the_unwrapped_core_and_organiser_trajectories": "y 0.895-0.943, x 0.567-0.974",
+        "organiser_net_displacement_over_the_window": "7.3 - 24.7 cells, matched by a core net displacement of 8.1 - 21.9 cells"
+      },
+      "core_motion_is_continuous_not_re-drawn": "the mean displacement of the core centre over 10 steps is 0.23-0.29 cells, against 8.1-11.9 cells for the N5 decorrelated-frames null: a separation factor of 32 to 49. The core is a genuinely continuous object in space - but the thing it continuously tracks is the organiser."
+    },
+    "INTRINSIC_LOCALIZATION_MECHANISM": "ABSENT_IN_DECLARED_OPERATOR",
+    "statement": "the X population is localised, durable and traversed by turnover, and its localisation is entirely accounted for, with no free parameter, by a point source that wanders and a finite lifetime. Nothing in the declared operator holds it together; remove the organiser and there is no cohesion left to hold anything."
+  },
+
+  "section_8_route": {
+    "route_A_not_available": "Route A would require a defendable localised core in the sense Question B needs, i.e. a cohesive object. Section 7 establishes ABSENT_IN_DECLARED_OPERATOR: the core is source-tethered, not cohesive.",
+    "route_C_required_as_a_prerequisite": "every ORR01 spatial classification is contaminated by the defects D-4, D-5 and D-6, and the CSC01 gate is new. A mechanism cannot be compared against a baseline that does not exist under the gate that will judge it.",
+    "route_B_is_the_substantive_answer": "Question B asks whether a minimal, physically interpretable, outcome-independent cohesion mechanism can produce a population that is compact, durable, traversed by turnover, not frozen, not wall-confined and not maintained by a success-reading controller.",
+    "ROUTE": "C_THEN_B",
+    "design": "one paired comparison on NEW seeds. Arm C0 is the unchanged balanced chemostat, which serves simultaneously as the Route C measurement of the inherited LawSpec under the corrected gate AND as the paired control of Route B. Arm C* is the selected cohesion mechanism. The C0 arms are explicitly NOT a confirmation of cohesion and are never reported as one.",
+    "seed_policy": "ORR01 seeds 5001-5006 and 7001-7002 are forbidden. CSC01 uses 6101-6106 for confirmation, 6201-6202 for controls, and 6301-6304 for the passive calibration assay, all declared before the freeze."
+  }
+}
