@@ -1,0 +1,137 @@
+{
+ "SECTION": "OBDI02 \u00a72 \u2014 append-only adjudication of OBDI01",
+ "APPEND_ONLY": true,
+ "THE_FROZEN_OBDI01_REPORT_IS_NOT_MODIFIED": true,
+ "obdi01_head": "5a37a7be73c3624e76b9c77ee75fd22172b6eb52",
+ "obdi01_methods_core_hash": "6de8d12b03f7b0cc623c4501d38ef4e9a909fa46a9e7b220379ac471bf467833",
+ "AUTHORISED_DISPOSITION_LIST": {
+  "frozen_protocol_contains_a_disposition_list": false,
+  "keys_searched": [
+   "mission",
+   "parent",
+   "design_status",
+   "route",
+   "window",
+   "point",
+   "identity_with_obtc02",
+   "domain",
+   "hypotheses",
+   "predictions",
+   "prediction_status_layers",
+   "power",
+   "principal_outcome",
+   "secondary_endpoint",
+   "stopping",
+   "forbidden_claims",
+   "unconditional_status"
+  ],
+  "where_the_list_actually_lives": "OBDI01/out/_evidence.json, written AFTER the runs",
+  "its_own_declared_provenance": "RECONSTRUCTED. The mandate's verbatim nine-item list did not survive this session's context compaction. The space above is rebuilt exhaustively from the mission's own terminal states \u2014 three pre-run stops named in the mandate summary, five hypothesis verdicts, one undecided \u2014 and is declared a reconstruction rather than quoted as the original.",
+  "self_authored_space": [
+   "AUDIT_INVALID",
+   "DOMAIN_INVARIANCE_ESTABLISHED",
+   "DOMAIN_INVARIANCE_NOT_DECIDED",
+   "DOMAIN_INVARIANCE_PARTIAL",
+   "DOMAIN_INVARIANCE_REFUTED__H_FILL",
+   "DOMAIN_INVARIANCE_REFUTED__H_LINEAR",
+   "DOMAIN_INVARIANCE_REFUTED__H_SUBLINEAR",
+   "DOMAIN_TEST_UNDERPOWERED",
+   "INHERITED_NON_DOMAIN_AXIS_NOT_CLOSED"
+  ],
+  "inherited_authorised_space": {
+   "INHERITED_NON_DOMAIN_AXIS_NOT_CLOSED": "named in the OBDI01 mandate \u00a73 as the stop if an axis other than D were unmet",
+   "DOMAIN_TEST_UNDERPOWERED": "named in the OBDI01 mandate \u00a714 as the outcome if the design could not reach the required power",
+   "AUDIT_INVALID": "the standing disposition of the mission chain for a defect of the instrument or of the protocol, used by OBTC01"
+  },
+  "FINDING": "the OBDI01 protocol froze NO disposition list. The nine-item space was authored by OBDI01 itself, after its results, and was explicitly declared a reconstruction in the same file and in \u00a731(d) and \u00a733 of its report. A disposition invented after the results cannot be the authorised disposition of those results."
+ },
+ "OBDI01_REPORTED_DISPOSITION": "DOMAIN_INVARIANCE_PARTIAL",
+ "WAS_IT_AUTHORISED": false,
+ "reported_disposition_in_self_authored_space": true,
+ "reported_disposition_in_inherited_space": false,
+ "EIGHT_FACTS": {
+  "1_all_runs_technically_valid": {
+   "value": "15/15",
+   "TRUE": true
+  },
+  "2_protocol_executed_in_full": {
+   "value": "15 planned arms, 15 run, halted = None",
+   "TRUE": true
+  },
+  "3_lawspec_unchanged": {
+   "value": "NONE",
+   "TRUE": true
+  },
+  "4_no_threshold_moved_after_the_results": {
+   "value": "spec_sha256 recorded at freeze 6d6cfed6d2b8cdef; the runner asserts it before the first arm",
+   "TRUE": true
+  },
+  "5_estimates_exclude_the_declared_unbounded_alternatives": {
+   "value": {
+    "Rg": {
+     "beta": 0.007651742287392993,
+     "excludes_H_sublinear": true,
+     "excludes_H_linear": true
+    },
+    "r80": {
+     "beta": 0.03512998700489639,
+     "excludes_H_sublinear": true,
+     "excludes_H_linear": true
+    },
+    "organiser_to_core": {
+     "beta": 0.07082140404597843,
+     "excludes_H_sublinear": true,
+     "excludes_H_linear": true
+    }
+   },
+   "TRUE": true
+  },
+  "6_the_equivalence_interval_is_still_too_wide": {
+   "value": {
+    "statistic": "organiser_to_core",
+    "beta": 0.07082140404597843,
+    "se": 0.0789484327027999,
+    "abs_beta_plus_c_se": 0.2918474272650326,
+    "frozen_margin": 0.25,
+    "excess": 0.0418474272650326
+   },
+   "TRUE": true
+  },
+  "7_the_power_analysis_used_the_wrong_sizing_metric": {
+   "value": "OBDI01 \u00a714 sized n against H_linear USING R_g. The frozen rule reads: smallest n per domain size giving >= 80 % power against H_linear at a family-wise level of 5 % under H_bound; if no n <= 20 achieves it, DOMAIN_TEST_UNDERPOWERED. Applied to R_g it returned n = 1, and the adopted n = 5 came from an estimability floor, not from the precision of the statistic that actually carried the claim.",
+   "TRUE": true
+  },
+  "8_about_eight_arms_per_size_would_have_been_needed": {
+   "value": 8,
+   "TRUE": true
+  }
+ },
+ "ALL_EIGHT_FACTS_HOLD": true,
+ "RULING_BY_CANDIDATE": {
+  "INHERITED_NON_DOMAIN_AXIS_NOT_CLOSED": {
+   "applies": false,
+   "why": "OBDI01 \u00a73 proved D was the only axis with an unmet frozen requirement, so this stop was not reached"
+  },
+  "AUDIT_INVALID": {
+   "applies": false,
+   "why": "15/15 arms technically valid, both evaluators agreeing on 15/15, no threshold moved after the freeze, no seed replaced, no early stop, no result opened before the freeze. Nothing in the instrument failed."
+  },
+  "DOMAIN_TEST_UNDERPOWERED": {
+   "applies": true,
+   "why": "the mission's claim was an EQUIVALENCE claim, and the design was never sized for it. Every fact above holds: the runs are valid, the protocol was executed, nothing moved, the unbounded alternatives are excluded, and the interval is nevertheless too wide. That is precisely the state the inherited taxonomy calls DOMAIN_TEST_UNDERPOWERED."
+  }
+ },
+ "OBDI01_ADJUDICATED_DISPOSITION": "DOMAIN_TEST_UNDERPOWERED",
+ "CAVEAT_ON_THE_FROZEN_RULE": "The frozen \u00a714 rule of OBDI01, READ LITERALLY, did not trigger: it asked for 80 % power against H_linear measured on R_g, and that was reached at n = 1. The rule was keyed to the wrong statistic and to the wrong kind of alternative \u2014 power against a distant alternative rather than precision for an equivalence interval \u2014 so it could not detect the very deficiency it was meant to guard against. That is not an argument against the adjudication; it is the mechanism that produced it, and OBDI01 itself recorded it as defect (b) of its own \u00a731.",
+ "WHAT_THIS_CHANGES": [
+  "the OBDI01 report keeps its text, its hash and its commit unchanged",
+  "the scientific content of OBDI01 is unchanged: no estimate, interval or verdict is revised here",
+  "what changes is the LABEL: the mission is recorded as underpowered for the claim it made, not as a partial success"
+ ],
+ "WHAT_THIS_DOES_NOT_CHANGE": [
+  "OBTC02 remains ORGANIZER_BOUND_CLOUD_PARTIAL",
+  "LEGACY_D_GATE_STATUS remains MISALIGNED_WITH_DOMAIN_INVARIANCE",
+  "H3_STATUS NOT_TESTED, REPRODUCTION_STATUS NOT_TESTED, AUTONOMOUS_COHESION_STATUS NOT_ESTABLISHED"
+ ],
+ "report_states_reconstruction": true
+}

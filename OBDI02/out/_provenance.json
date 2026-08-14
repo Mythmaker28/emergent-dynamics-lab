@@ -1,0 +1,206 @@
+{
+ "SECTION": "OBDI02 \u00a73",
+ "PARTS": {
+  "OBDI01_OFFLINE_REPO.tar.gz.part00": {
+   "sha256": "30e985dfce528da1216dec6be7b1e63dc344bdbab8379852e7ae90e78196637a",
+   "recorded": "30e985dfce528da1216dec6be7b1e63dc344bdbab8379852e7ae90e78196637a",
+   "MATCHES": true,
+   "bytes": 19000000
+  },
+  "OBDI01_OFFLINE_REPO.tar.gz.part01": {
+   "sha256": "21bfe61195865a4af0c04a9dd455e6df845d822dd16d02726315161f7ae8a3a5",
+   "recorded": "21bfe61195865a4af0c04a9dd455e6df845d822dd16d02726315161f7ae8a3a5",
+   "MATCHES": true,
+   "bytes": 19000000
+  },
+  "OBDI01_OFFLINE_REPO.tar.gz.part02": {
+   "sha256": "25629c01f89b28cca364df99c306400a39921ba9cad1791b884f502788e6467f",
+   "recorded": "25629c01f89b28cca364df99c306400a39921ba9cad1791b884f502788e6467f",
+   "MATCHES": true,
+   "bytes": 16811776
+  }
+ },
+ "N_PARTS": 3,
+ "ALL_PART_DIGESTS_MATCH": true,
+ "WHOLE_SHA256": "f162e4295591e48192e2d059c500d50bf2e75589bc27b64179d2762fbf2dd13e",
+ "WHOLE_SHA256_RECORDED": "f162e4295591e48192e2d059c500d50bf2e75589bc27b64179d2762fbf2dd13e",
+ "WHOLE_MATCHES": true,
+ "GIT": {
+  "rev_parse_HEAD": "5a37a7be73c3624e76b9c77ee75fd22172b6eb52",
+  "HEAD_expected": "5a37a7be73c3624e76b9c77ee75fd22172b6eb52",
+  "HEAD_MATCHES": true,
+  "rev_parse_HEAD_tree": "04eef05ebd74af0bab128051b9b823efebc69f5f",
+  "TREE_expected": "04eef05ebd74af0bab128051b9b823efebc69f5f",
+  "TREE_MATCHES": true,
+  "rev_list_missing_objects": [],
+  "ZERO_MISSING_OBJECTS": true,
+  "fsck_returncode": 0,
+  "fsck_stdout_lines": 0,
+  "fsck_stderr": "",
+  "FSCK_CLEAN": true,
+  "status_porcelain": "",
+  "PORCELAIN_EMPTY": true,
+  "working_copy_tree": "04eef05ebd74af0bab128051b9b823efebc69f5f",
+  "WORKING_COPY_TREE_MATCHES": true,
+  "branch": "codex/organizer-bound-domain-invariance-01",
+  "BRANCH_PRESENT": true,
+  "branch_tip": "5a37a7be73c3624e76b9c77ee75fd22172b6eb52",
+  "shallow_boundary": [
+   "bb7fea748560ce8489d18ca64973f95e907ec382"
+  ],
+  "BOUNDARY_IS_OBDI01_PARENT": true,
+  "n_files": 1491,
+  "remotes": "origin\tfile:///home/claude/edl (fetch)\norigin\tfile:///home/claude/edl (push)",
+  "NO_REMOTE_CONFIGURED": false,
+  "promisor_packs": [],
+  "NO_IMPLICIT_FETCH": true,
+  "network": "read back inside `unshare -rn` with GIT_NO_LAZY_FETCH=1"
+ },
+ "CONTENTS": {
+  "freeze_manifest": {
+   "path": "OBDI01/out/_freeze.json",
+   "present": true
+  },
+  "direct_test_specification": {
+   "path": "OBDI01/code/obdi01_protocol.yaml",
+   "present": true
+  },
+  "results_online_and_posthoc": {
+   "path": "OBDI01/out/_results.json",
+   "present": true
+  },
+  "per_arm_record": {
+   "path": "OBDI01/out/_arms.json",
+   "present": true
+  },
+  "seed_register": {
+   "path": "OBDI01/out/_seeds.json",
+   "present": true
+  },
+  "evidence_and_disposition": {
+   "path": "OBDI01/out/_evidence.json",
+   "present": true
+  },
+  "instrument_tests": {
+   "path": "OBDI01/out/_tests.json",
+   "present": true
+  },
+  "power_analysis": {
+   "path": "OBDI01/out/_power.json",
+   "present": true
+  },
+  "predictions": {
+   "path": "OBDI01/out/_predictions.json",
+   "present": true
+  },
+  "final_report": {
+   "path": "OBDI01/out/OBDI01_FINAL_REPORT.md",
+   "present": true
+  }
+ },
+ "ALL_MANDATED_FILES_PRESENT": true,
+ "RAW_TRAJECTORIES": {
+  "delivered": [
+   "L36__seed771010",
+   "L36__seed771011",
+   "L36__seed771012",
+   "L36__seed771013",
+   "L36__seed771014",
+   "L72__seed771110",
+   "L72__seed771111",
+   "L72__seed771112",
+   "L72__seed771113",
+   "L72__seed771114",
+   "L96__seed771210",
+   "L96__seed771211",
+   "L96__seed771212",
+   "L96__seed771213",
+   "L96__seed771214",
+   "probe__seed771999"
+  ],
+  "n_delivered": 16,
+  "confirmatory_expected": [
+   "L36__seed771010",
+   "L36__seed771011",
+   "L36__seed771012",
+   "L36__seed771013",
+   "L36__seed771014",
+   "L72__seed771110",
+   "L72__seed771111",
+   "L72__seed771112",
+   "L72__seed771113",
+   "L72__seed771114",
+   "L96__seed771210",
+   "L96__seed771211",
+   "L96__seed771212",
+   "L96__seed771213",
+   "L96__seed771214"
+  ],
+  "confirmatory_present": [
+   "L36__seed771010",
+   "L36__seed771011",
+   "L36__seed771012",
+   "L36__seed771013",
+   "L36__seed771014",
+   "L72__seed771110",
+   "L72__seed771111",
+   "L72__seed771112",
+   "L72__seed771113",
+   "L72__seed771114",
+   "L96__seed771210",
+   "L96__seed771211",
+   "L96__seed771212",
+   "L96__seed771213",
+   "L96__seed771214"
+  ],
+  "FIFTEEN_TRAJECTORIES_PRESENT": true,
+  "extra": [
+   "probe__seed771999"
+  ]
+ },
+ "ONLINE_AND_POSTHOC": {
+  "arms_recorded": 15,
+  "technically_valid": 15,
+  "gates_agree": 15,
+  "per_arm_has_both_classifications": true,
+  "BOTH_PRESENT": true
+ },
+ "LAWSPEC_IDENTITY_WITH_OBTC02": {
+  "files": {
+   "lawspec_v2.py": {
+    "obdi01_delivery": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94",
+    "obtc02_delivery": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94",
+    "BIT_IDENTICAL": true
+   },
+   "observe.py": {
+    "obdi01_delivery": "55840f35f44ccd424c4b71c80d591614d01c9143ca21e9c14e87e0faeeec2fbd",
+    "obtc02_delivery": "55840f35f44ccd424c4b71c80d591614d01c9143ca21e9c14e87e0faeeec2fbd",
+    "BIT_IDENTICAL": true
+   }
+  },
+  "ALL_BIT_IDENTICAL": true
+ },
+ "FREEZE_MANIFEST_CHECK": {
+  "OBDI01_METHODS_CORE_HASH": "6de8d12b03f7b0cc623c4501d38ef4e9a909fa46a9e7b220379ac471bf467833",
+  "files": 14,
+  "resolved_at": {
+   "obdi01_protocol.yaml": "OBDI01/code",
+   "gate_obdi01.py": "OBDI01/code",
+   "protocol_obdi01.py": "OBDI01/code",
+   "run_obdi01.py": "OBDI01/code",
+   "gate_obtc02.py": "OBTC02/code",
+   "protocol_obtc02.py": "OBTC02/code",
+   "engine_obtc.py": "OBTC02/code",
+   "metrics_obtc.py": "OBTC02/code",
+   "nulls_obtc.py": "OBTC02/code",
+   "topology.py": "OBTC02/code",
+   "source_operator.py": "OBTC02/code",
+   "guard_obtc.py": "OBTC02/code",
+   "obtc02_protocol.yaml": "OBTC02/code",
+   "n2_envelope.json": "OBDI01/code"
+  },
+  "not_matching": [],
+  "ALL_MATCH": true
+ },
+ "PROVENANCE_STATUS": "SELF_CONTAINED_SPLIT_DELIVERY_PASS"
+}
