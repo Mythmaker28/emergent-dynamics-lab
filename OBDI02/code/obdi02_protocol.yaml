@@ -1,0 +1,415 @@
+mission: ORGANIZER-BOUND-DOMAIN-INVARIANCE-02
+parent:
+  mission: ORGANIZER-BOUND-DOMAIN-INVARIANCE-01
+  head: 5a37a7be73c3624e76b9c77ee75fd22172b6eb52
+  reported_disposition: DOMAIN_INVARIANCE_PARTIAL
+  adjudicated_disposition: DOMAIN_TEST_UNDERPOWERED
+  METHODS_CORE_HASH: 6de8d12b03f7b0cc623c4501d38ef4e9a909fa46a9e7b220379ac471bf467833
+window:
+  BURN_IN: 2000
+  T_WINDOW: 9000
+  HORIZON: 11000
+  SAMPLE_EVERY: 50
+  SOURCE_OFF_AT: 4000
+point:
+  L: 36
+  L_large: 72
+  CAP: 16
+  S0: 3
+  phi: 0.2
+  omega: 0.05
+  muX: 0.004
+  muY: 0.0
+  kX: 1.0
+  kY: 0.0
+  p_hop: 0.10263340389897246
+  X_SEED: 4
+domain:
+  SIZES:
+  - 36
+  - 72
+  - 96
+  SEEDS_PER_SIZE: 46
+  SEEDS:
+    '36':
+    - 8100000
+    - 8100001
+    - 8100002
+    - 8100003
+    - 8100004
+    - 8100005
+    - 8100006
+    - 8100007
+    - 8100008
+    - 8100009
+    - 8100010
+    - 8100011
+    - 8100012
+    - 8100013
+    - 8100014
+    - 8100015
+    - 8100016
+    - 8100017
+    - 8100018
+    - 8100019
+    - 8100020
+    - 8100021
+    - 8100022
+    - 8100023
+    - 8100024
+    - 8100025
+    - 8100026
+    - 8100027
+    - 8100028
+    - 8100029
+    - 8100030
+    - 8100031
+    - 8100032
+    - 8100033
+    - 8100034
+    - 8100035
+    - 8100036
+    - 8100037
+    - 8100038
+    - 8100039
+    - 8100040
+    - 8100041
+    - 8100042
+    - 8100043
+    - 8100044
+    - 8100045
+    '72':
+    - 8101000
+    - 8101001
+    - 8101002
+    - 8101003
+    - 8101004
+    - 8101005
+    - 8101006
+    - 8101007
+    - 8101008
+    - 8101009
+    - 8101010
+    - 8101011
+    - 8101012
+    - 8101013
+    - 8101014
+    - 8101015
+    - 8101016
+    - 8101017
+    - 8101018
+    - 8101019
+    - 8101020
+    - 8101021
+    - 8101022
+    - 8101023
+    - 8101024
+    - 8101025
+    - 8101026
+    - 8101027
+    - 8101028
+    - 8101029
+    - 8101030
+    - 8101031
+    - 8101032
+    - 8101033
+    - 8101034
+    - 8101035
+    - 8101036
+    - 8101037
+    - 8101038
+    - 8101039
+    - 8101040
+    - 8101041
+    - 8101042
+    - 8101043
+    - 8101044
+    - 8101045
+    '96':
+    - 8102000
+    - 8102001
+    - 8102002
+    - 8102003
+    - 8102004
+    - 8102005
+    - 8102006
+    - 8102007
+    - 8102008
+    - 8102009
+    - 8102010
+    - 8102011
+    - 8102012
+    - 8102013
+    - 8102014
+    - 8102015
+    - 8102016
+    - 8102017
+    - 8102018
+    - 8102019
+    - 8102020
+    - 8102021
+    - 8102022
+    - 8102023
+    - 8102024
+    - 8102025
+    - 8102026
+    - 8102027
+    - 8102028
+    - 8102029
+    - 8102030
+    - 8102031
+    - 8102032
+    - 8102033
+    - 8102034
+    - 8102035
+    - 8102036
+    - 8102037
+    - 8102038
+    - 8102039
+    - 8102040
+    - 8102041
+    - 8102042
+    - 8102043
+    - 8102044
+    - 8102045
+  TOTAL_ARMS: 138
+predictions:
+  '36':
+    Rg: 5.829762149757589
+    r80: 7.01368655102396
+    organiser_to_core: 3.0797721639738773
+    r80_organiser: 8.441054387447242
+    density: 0.09371551354595337
+    N_X: 121.45530555555555
+    m2_periodic_image_deficit: 0.06255525269529158
+  '72':
+    Rg: 6.0302793632428076
+    r80: 6.977525057347302
+    organiser_to_core: 3.1716933972891153
+    r80_organiser: 8.418661142009215
+    density: 0.02342887838648834
+    N_X: 121.45530555555555
+    m2_periodic_image_deficit: 0.000774683056486628
+  '96':
+    Rg: 6.052618391892713
+    r80: 6.989543020110033
+    organiser_to_core: 3.151055402378097
+    r80_organiser: 8.426756569686528
+    density: 0.013178744092399691
+    N_X: 121.45530555555555
+    m2_periodic_image_deficit: 3.4831329908037127e-05
+profile_envelope:
+  '36':
+    n_effective_frames: 27
+    replicates: 800
+    quantile: 0.99
+    quantile_value: 0.05588346987231099
+    median: 0.03094540296816962
+    mean: 0.03243358226508453
+    q50: 0.03094540296816962
+    q95: 0.047301062118123856
+    max: 0.07281853254582957
+    N_X_used: 121
+  '72':
+    n_effective_frames: 27
+    replicates: 800
+    quantile: 0.99
+    quantile_value: 0.05431270152620542
+    median: 0.030592318395929363
+    mean: 0.031688585885208925
+    q50: 0.030592318395929363
+    q95: 0.046742058861410044
+    max: 0.08081678675164812
+    N_X_used: 121
+  '96':
+    n_effective_frames: 27
+    replicates: 800
+    quantile: 0.99
+    quantile_value: 0.05445260326458561
+    median: 0.03125299955818818
+    mean: 0.0321026022229692
+    q50: 0.03125299955818818
+    q95: 0.046222583731865115
+    max: 0.08582633194474629
+    N_X_used: 121
+identity_with_obdi01:
+  LAWSPEC_DIFF_FROM_OBDI01: NONE
+  CHEMOSTAT_DIFF_FROM_OBDI01: NONE
+  COHESION_DIFF_FROM_OBDI01: NONE
+  DOMAIN_SIZES_DIFF_FROM_OBDI01: NONE
+  PRIMARY_ESTIMAND_DIFF_FROM_OBDI01: NONE
+  PER_SEED_SUMMARY_DIFF_FROM_OBDI01: NONE
+  PREPARATION_DIFF_FROM_OBDI01: NONE
+  HORIZON_BURNIN_WINDOW_SAMPLING_DIFF_FROM_OBDI01: NONE
+  TECHNICAL_VALIDITY_LAYER_DIFF_FROM_OBDI01: NONE
+  EQUIVALENCE_MARGIN_DIFF_FROM_OBDI01: NONE
+  EQUIVALENCE_INTERVAL_LEVEL_DIFF_FROM_OBDI01: NON_EMPTY
+  what_changed_and_why: 'exactly one thing changed: the LEVEL of the interval. OBDI01 required a 99.49
+    %% two-sided interval to lie inside the margin — a Sidak correction across ten tests, applied to an
+    intersection-union equivalence claim that does not need it, on top of a variance floor. OBDI02 uses
+    the interval a TOST at alpha = 0.05 actually calls for, the 90 %% two-sided one. The estimand, the
+    margin, the per-seed summary, the sizes, the law, the preparation and the technical layer are all
+    unchanged. §6 of the mandate provides for exactly this under OBDI01_EQUIVALENCE_METHOD = VALID_BUT_OVERCONSERVATIVE.'
+  how_enforced: arms are produced by calling OBDI01's own run_one, which calls OBTC02's own run_arm, unmodified.
+    Only L, the seed and the output directory differ.
+primary_endpoint:
+  name: RELATIVE_CORE_ORGANIZER_SCALE_EQUIVALENCE
+  estimand: 'beta_CY : the slope of log d_CY on log L, where d_CY(L) is the arm-level median of |C - Y|
+    divided by the operator''s exact finite-size prediction at that L'
+  C_definition: 'the toroidal Frechet centre of the X field: the separable exact minimiser of the sum
+    of squared toroidal distances, per axis, on a lattice site'
+  Y_definition: the organiser cell, the unique cell with n_Y > 0
+  metric: '|C - Y| = hypot(wdist1(dy, L), wdist1(dx, L)), the toroidal distance'
+  independent_unit: SEED
+  within_seed_summary: the MEDIAN of |C - Y| over the 180 in-window frames of the arm (steps strictly
+    after the burn-in, one frame every SAMPLE_EVERY steps), where |C - Y| is the toroidal Euclidean distance
+    between the Frechet centre of the X field and the organiser cell, both read from the same frame
+  estimator: weighted least squares slope of y_L = mean_arms(log summary) - log(prediction_L) on log L,
+    weights w_L = n_L / sd_L(log summary)^2
+  null_hypothesis: 'H0 : |beta_CY| >= margin'
+  alternative_hypothesis: 'H1 : |beta_CY| <  margin'
+  method: 'TOST in confidence-interval form: the whole two-sided (1 - 2 alpha) interval for beta_CY must
+    lie strictly inside +- margin'
+  tost_alpha_one_sided: 0.05
+  two_sided_interval_level: 90 %
+  equivalence_margin: 0.25
+  margin_provenance: '0.25, read out of OBDI01''s frozen protocol at principal_outcome.components.A_shape_invariance.margin.
+    The figure 0.042 carried by the OBDI02 mandate is NOT a margin: it is the EXCESS of the OBDI01 interval
+    over that margin (0.2918 - 0.2500 = 0.0418). Proof: under a margin of 0.042 the R_g and r80 components
+    would also have failed, and OBDI01 reported them as passing. Adopting 0.25 is therefore not a widening
+    — it restores the inherited value, and it is what makes EQUIVALENCE_MARGIN_DIFF_FROM_OBDI01 = NONE
+    true.'
+  stringent_reference_margin: 0.042
+  stringent_reference_power: 0.314375
+  stringent_reference_status: reported, never decisive. Its power at the frozen sample size is 0.314,
+    and reaching 90 % would need about 200 arms per size, roughly 10.1 hours of engine time, far beyond
+    the declared budget cap of 49 arms per size. It is therefore PRE-DECLARED UNDERPOWERED before any
+    run.
+  achieved_equivalence_bound: '|beta| + c se, reported as a number: the smallest margin at which this
+    data set would have declared equivalence. This is the mission''s precision deliverable and is frozen
+    as a REPORTED quantity, not as a test.'
+  decision_rule: PASS if and only if the whole 90 % interval lies inside the margin. A point estimate
+    near zero does not qualify. Excluding H_linear does not qualify. Excluding H_sublinear does not qualify.
+population_support_gate:
+  rule: at every domain size, the number of ANALYSABLE arms must be at least ceil(5 n / 6) of the n arms
+    run
+  fraction_required: 0.8333333333333334
+  required_per_size: 39
+  analysable_definition: an arm is analysable if its per-seed summary is finite and strictly positive,
+    i.e. the cloud existed with an organiser present in the analysis window
+  historical_rate:
+    events:
+      OBTC02_P_L36:
+      - 1
+      - 6
+      OBDI01_L36:
+      - 0
+      - 5
+      OBDI01_L72:
+      - 1
+      - 5
+      OBDI01_L96:
+      - 0
+      - 5
+    extinct: 2
+    arms: 21
+    p: 0.09523809523809523
+  false_failure_probability_under_the_historical_rate: 0.06703624651855117
+  extinction_is: SCIENTIFIC_OUTCOME
+  extinction_is_not: TECHNICAL_INVALIDITY
+  seed_policy: an extinction consumes its seed and is never replaced, never rerun, and never deleted as
+    a missing observation
+  qualification: the global qualification requires BOTH the population support gate AND the conditional
+    equivalence test
+  sensitivity: a conservative imputation assigns every extinct arm the least favourable observed value
+    at its size, first the maximum then the minimum, and the primary test is re-run on the completed data
+secondary_endpoints:
+  list:
+  - scaling of R_g
+  - scaling of r80
+  - density exponent
+  - true winding
+  - radial profile compatibility
+  - legacy D gate frac_localized >= 0.95
+  - transport rejection
+  - population
+  - turnover
+  - free capacity
+  role: coherence guard-rails. They cannot create a pass and receive no multiplicity correction designed
+    to manufacture one. They can VETO a primary pass if a material contradiction appears.
+  profile_fraction_required: 0.8
+  winding_tolerance: 0.01
+  material_contradiction:
+    radius_scaling_beta_above: 0.5
+    density_exponent_above: -1.0
+    note: 'a contradiction means the fresh data positively support an unbounded alternative: a radius
+      growing like L, frequent winding, an extensive density, a rejected radial profile, or extinction
+      rising with L'
+  legacy_D_gate_status: SECONDARY_MISALIGNED_ENDPOINT
+technical_validity:
+  layer: inherited from OBDI01 unchanged
+  fields:
+  - EXPECTED_FRAME_COUNT
+  - STREAM_FRAME_COUNT
+  - TABLE_FRAME_COUNT
+  - STREAM_FRAME_INDEX_SHA256
+  - TABLE_FRAME_INDEX_SHA256
+  - STREAM_SPATIAL_PAYLOAD_SHA256
+  - TABLE_SPATIAL_PAYLOAD_SHA256
+  per_arm_requirements:
+  - FRAME_STREAM_TABLE_IDENTITY
+  - ONLINE_POSTHOC_AGREEMENT
+  - THIRD_BOUNDARY_TESTS
+  a_technically_invalid_arm: consumes its seed, is replaced by nothing, stops the mission, and forces
+    AUDIT_INVALID if the defect appears after the results are opened
+  an_extinction_is_never_a_technical_invalidity: true
+stopping:
+  EARLY_SCIENTIFIC_STOPPING: FORBIDDEN
+  rule: every frozen arm is run. No interim analysis may raise or lower the budget, replace a seed, move
+    a margin, change the model, change the extinction treatment or open a fourth domain size.
+  results_masked_until_the_last_valid_arm: true
+  budget_cap_arms_per_size: 49
+  hard_cap_total_arms: 138
+power:
+  target: 0.9
+  n_min_from_the_power_rule: 6
+  n_from_the_precision_rule: 46
+  adopted: 46
+  declared_deviation: §9 asks for the SMALLEST n reaching 90 % power. At the inherited margin that is
+    n = 6. n = 46 is adopted instead, because the mission's stated purpose is precision rather than a
+    pass at a wide margin. The larger n is fixed here, before any run, is bounded by a budget cap declared
+    on independent grounds, and is recorded as a deviation rather than presented as the rule's output.
+  expected_se_beta: 0.0183284066826071
+  expected_achieved_bound: 0.04477361474084838
+  simulated_power_at_the_margin: 1.0
+  budget_envelope_minutes: 75.0
+  estimated_wall_minutes: 69.38333333333334
+forbidden_claims:
+- self-bound
+- autonomous cohesion
+- cell
+- membrane
+- identity
+- reproduction
+- memory
+- H3 confirmed
+- global Kamimura-Kaneko validation
+- life
+- organism
+- autopoiesis
+- fresh matter
+- material lineage
+unconditional_status:
+  H3_STATUS: NOT_TESTED
+  REPRODUCTION_STATUS: NOT_TESTED
+  AUTONOMOUS_COHESION_STATUS: NOT_ESTABLISHED
+dispositions:
+- ORGANIZER_BOUND_TURNOVER_CLOUD_QUALIFIED_BY_DOMAIN_PRECISION_CLOSURE
+- DOMAIN_RELATIVE_ATTACHMENT_EQUIVALENCE_NOT_ESTABLISHED
+- DOMAIN_SIZE_INVARIANCE_FAIL
+- DOMAIN_INVARIANCE_NOT_QUALIFIED__EXTINCTION_DEPENDENCE
+- CUMULATIVE_CLOUD_QUALIFICATION_CONTRADICTED
+- DOMAIN_EQUIVALENCE_UNDERPOWERED_WITHIN_BUDGET
+- INHERITED_EQUIVALENCE_ESTIMAND_NOT_RECOVERABLE
+- PROVENANCE_FAIL
+- AUDIT_INVALID
