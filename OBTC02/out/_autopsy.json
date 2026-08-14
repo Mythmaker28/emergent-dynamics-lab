@@ -1,0 +1,440 @@
+{
+ "principal_defect": {
+  "name": "ONLINE_GATE_RECEIVED_ZERO_SPATIAL_FRAMES",
+  "call_chain": {
+   "FROZEN": {
+    "file": "OBTC01/code/protocol_obtc.py",
+    "function": "run_arm",
+    "callback": "per_step",
+    "online_calls_in_run_arm": [
+     {
+      "method": "aggregates",
+      "line_in_file": 141
+     },
+     {
+      "method": "step",
+      "line_in_file": 77
+     }
+    ],
+    "online_calls_in_per_step": [
+     {
+      "method": "step",
+      "line_in_file": 77
+     }
+    ],
+    "frame_call_present": false
+   },
+   "PATCHED": {
+    "file": "OBTC01/code/protocol_obtc.py",
+    "function": "run_arm",
+    "callback": "per_step",
+    "online_calls_in_run_arm": [
+     {
+      "method": "aggregates",
+      "line_in_file": 142
+     },
+     {
+      "method": "step",
+      "line_in_file": 77
+     },
+     {
+      "method": "frame",
+      "line_in_file": 89
+     }
+    ],
+    "online_calls_in_per_step": [
+     {
+      "method": "step",
+      "line_in_file": 77
+     },
+     {
+      "method": "frame",
+      "line_in_file": 89
+     }
+    ],
+    "frame_call_present": true
+   }
+  },
+  "counts": {
+   "EXPECTED_FRAME_COUNT_total": 220,
+   "EXPECTED_FRAME_COUNT_eligible_after_burn_in": 180,
+   "TABLE_FRAME_COUNT_observed": 220,
+   "STREAM_FRAME_COUNT_observed_FROZEN_code": 0,
+   "STREAM_FRAME_COUNT_observed_PATCHED_code": 180,
+   "frames_actually_saved_in_the_raw_npz": 220,
+   "divergent_fields_recorded_by_OBTC01": [
+    "core_exists_frac",
+    "disp_over_N3",
+    "drift_thirds",
+    "frac_r80_org_ok",
+    "frac_with_org",
+    "median_core_to_org",
+    "median_step_displacement",
+    "third_means"
+   ]
+  },
+  "empty_observables": {
+   "core_exists_frac": {
+    "online_default": 0.0,
+    "posthoc_true_value": 0.9555555555555556
+   },
+   "disp_over_N3": {
+    "online_default": NaN,
+    "posthoc_true_value": 0.12403473458920847
+   },
+   "drift_thirds": {
+    "online_default": 0.011401017637694258,
+    "posthoc_true_value": 0.011388637933783209
+   },
+   "frac_r80_org_ok": {
+    "online_default": 0.0,
+    "posthoc_true_value": 0.9777777777777777
+   },
+   "frac_with_org": {
+    "online_default": 0.0,
+    "posthoc_true_value": 1.0
+   },
+   "median_core_to_org": {
+    "online_default": NaN,
+    "posthoc_true_value": 2.8284271247461903
+   },
+   "median_step_displacement": {
+    "online_default": NaN,
+    "posthoc_true_value": 1.0
+   },
+   "third_means": {
+    "online_default": [
+     125.44714904968323,
+     119.86133333333333,
+     126.87737420859713
+    ],
+    "posthoc_true_value": [
+     125.44666666666667,
+     119.86433333333333,
+     126.87533333333333
+    ]
+   }
+  },
+  "bias": {
+   "frame_derived_conditions": {
+    "RELATIVE_LOCALIZATION": {
+     "aggregate": "frac_r80_org_ok",
+     "empty_value": 0.0,
+     "threshold": 0.95,
+     "comparison": "at_or_above",
+     "verdict_when_empty": false
+    },
+    "CORE_CONTINUITY": {
+     "aggregate": "core_exists_frac",
+     "empty_value": 0.0,
+     "threshold": 0.8,
+     "comparison": "at_or_above",
+     "verdict_when_empty": false,
+     "second_limb": "disp_over_N3 becomes NaN, and NaN <= threshold is False"
+    },
+    "SOURCE_ATTACHMENT": {
+     "aggregate": "frac_with_org and median_core_to_org",
+     "empty_value": "0.0 and NaN",
+     "threshold": 0.99,
+     "comparison": "at_or_above",
+     "verdict_when_empty": false
+    },
+    "NO_TRUE_WINDING": {
+     "aggregate": "n_winding",
+     "empty_value": 0,
+     "threshold": 0,
+     "comparison": "at_or_below",
+     "verdict_when_empty": true,
+     "WARNING": "this one becomes automatically TRUE, not False"
+    },
+    "MODEL_PREDICTION_COMPATIBILITY": {
+     "aggregate": "model medians",
+     "empty_value": "NaN for every statistic",
+     "verdict_when_empty": false,
+     "note": "a NaN is never inside an envelope, so the count of inside statistics is 0"
+    }
+   },
+   "made_automatically_FALSE": [
+    "RELATIVE_LOCALIZATION",
+    "CORE_CONTINUITY",
+    "SOURCE_ATTACHMENT",
+    "MODEL_PREDICTION_COMPATIBILITY"
+   ],
+   "made_automatically_TRUE": [
+    "NO_TRUE_WINDING"
+   ],
+   "DIRECTION": "FALSE_NEGATIVE_ONLY_FOR_THE_GATE_AS_A_WHOLE",
+   "narrower_statement": "four of the five frame-derived conditions become automatically FALSE when the stream is empty. The fifth, NO_TRUE_WINDING, becomes automatically TRUE, because its criterion is 'at most zero winding frames' and zero frames trivially satisfy it. The GATE is a conjunction, so an empty stream can only ever produce a global FAILURE \u2014 but the per-condition claim is NOT uniform, and NO_TRUE_WINDING would have been reported as satisfied on no evidence at all.",
+   "scope": "demonstrated for the OBTC01 configuration and its thresholds, as read from the frozen yaml. It is not claimed as a universal property of any gate.",
+   "why_the_sequential_rule_saw_it": "the two evaluators are compared field by field before any classification is used. The comparison found eight differing aggregates, so `GATES_AGREE` was False, and the frozen rule 'online and post hoc gates disagree anywhere -> STOP' fired on the first arm."
+  }
+ },
+ "secondary_defect": {
+  "name": "ONE_STEP_OFFSET_IN_THIRD_BOUNDARIES",
+  "analysis": {
+   "written_convention": "the window is split into three equal consecutive blocks of the post-burn-in steps, indexed from zero",
+   "frozen_coded_convention": "index = (t - BURN_IN) * 3 // T_WINDOW, with t running from BURN_IN + 1, so the first step gets index 1*3//T = 0 but the boundaries sit one step late",
+   "corrected_convention": "index = (t - BURN_IN - 1) * 3 // T_WINDOW",
+   "cases": [
+    {
+     "T_WINDOW": 9000,
+     "BURN_IN": 2000,
+     "divisible_by_three": true,
+     "array_bucket_sizes": [
+      3000,
+      3000,
+      3000
+     ],
+     "frozen_bucket_sizes": [
+      2999,
+      3000,
+      3001
+     ],
+     "corrected_bucket_sizes": [
+      3000,
+      3000,
+      3000
+     ],
+     "frozen_matches_array": false,
+     "corrected_matches_array": true,
+     "n_steps_misplaced_by_the_frozen_convention": 2,
+     "first_step_bucket": {
+      "array": 0,
+      "frozen": 0,
+      "corrected": 0
+     },
+     "last_step_bucket": {
+      "array": 2,
+      "frozen": 2,
+      "corrected": 2
+     }
+    },
+    {
+     "T_WINDOW": 9001,
+     "BURN_IN": 2000,
+     "divisible_by_three": false,
+     "array_bucket_sizes": [
+      3000,
+      3000,
+      3001
+     ],
+     "frozen_bucket_sizes": [
+      3000,
+      3000,
+      3001
+     ],
+     "corrected_bucket_sizes": [
+      3001,
+      3000,
+      3000
+     ],
+     "frozen_matches_array": true,
+     "corrected_matches_array": false,
+     "n_steps_misplaced_by_the_frozen_convention": 0,
+     "first_step_bucket": {
+      "array": 0,
+      "frozen": 0,
+      "corrected": 0
+     },
+     "last_step_bucket": {
+      "array": 2,
+      "frozen": 2,
+      "corrected": 2
+     }
+    },
+    {
+     "T_WINDOW": 8999,
+     "BURN_IN": 2000,
+     "divisible_by_three": false,
+     "array_bucket_sizes": [
+      2999,
+      2999,
+      3001
+     ],
+     "frozen_bucket_sizes": [
+      2999,
+      3000,
+      3000
+     ],
+     "corrected_bucket_sizes": [
+      3000,
+      3000,
+      2999
+     ],
+     "frozen_matches_array": false,
+     "corrected_matches_array": false,
+     "n_steps_misplaced_by_the_frozen_convention": 1,
+     "first_step_bucket": {
+      "array": 0,
+      "frozen": 0,
+      "corrected": 0
+     },
+     "last_step_bucket": {
+      "array": 2,
+      "frozen": 2,
+      "corrected": 2
+     }
+    },
+    {
+     "T_WINDOW": 3,
+     "BURN_IN": 0,
+     "divisible_by_three": true,
+     "array_bucket_sizes": [
+      1,
+      1,
+      1
+     ],
+     "frozen_bucket_sizes": [
+      0,
+      1,
+      2
+     ],
+     "corrected_bucket_sizes": [
+      1,
+      1,
+      1
+     ],
+     "frozen_matches_array": false,
+     "corrected_matches_array": true,
+     "n_steps_misplaced_by_the_frozen_convention": 2,
+     "first_step_bucket": {
+      "array": 0,
+      "frozen": 1,
+      "corrected": 0
+     },
+     "last_step_bucket": {
+      "array": 2,
+      "frozen": 2,
+      "corrected": 2
+     }
+    },
+    {
+     "T_WINDOW": 4,
+     "BURN_IN": 0,
+     "divisible_by_three": false,
+     "array_bucket_sizes": [
+      1,
+      1,
+      2
+     ],
+     "frozen_bucket_sizes": [
+      1,
+      1,
+      2
+     ],
+     "corrected_bucket_sizes": [
+      2,
+      1,
+      1
+     ],
+     "frozen_matches_array": true,
+     "corrected_matches_array": false,
+     "n_steps_misplaced_by_the_frozen_convention": 0,
+     "first_step_bucket": {
+      "array": 0,
+      "frozen": 0,
+      "corrected": 0
+     },
+     "last_step_bucket": {
+      "array": 2,
+      "frozen": 2,
+      "corrected": 2
+     }
+    },
+    {
+     "T_WINDOW": 1,
+     "BURN_IN": 0,
+     "divisible_by_three": false,
+     "array_bucket_sizes": [
+      0,
+      0,
+      1
+     ],
+     "frozen_bucket_sizes": [
+      0,
+      0,
+      1
+     ],
+     "corrected_bucket_sizes": [
+      1,
+      0,
+      0
+     ],
+     "frozen_matches_array": true,
+     "corrected_matches_array": false,
+     "n_steps_misplaced_by_the_frozen_convention": 0,
+     "first_step_bucket": {
+      "array": 2,
+      "frozen": 2,
+      "corrected": 0
+     },
+     "last_step_bucket": {
+      "array": 2,
+      "frozen": 2,
+      "corrected": 0
+     }
+    },
+    {
+     "T_WINDOW": 300,
+     "BURN_IN": 10,
+     "divisible_by_three": true,
+     "array_bucket_sizes": [
+      100,
+      100,
+      100
+     ],
+     "frozen_bucket_sizes": [
+      99,
+      100,
+      101
+     ],
+     "corrected_bucket_sizes": [
+      100,
+      100,
+      100
+     ],
+     "frozen_matches_array": false,
+     "corrected_matches_array": true,
+     "n_steps_misplaced_by_the_frozen_convention": 2,
+     "first_step_bucket": {
+      "array": 0,
+      "frozen": 0,
+      "corrected": 0
+     },
+     "last_step_bucket": {
+      "array": 2,
+      "frozen": 2,
+      "corrected": 2
+     }
+    }
+   ],
+   "observed_on_the_consumed_arm": {
+    "online_frozen": [
+     125.44714904968323,
+     119.86133333333333,
+     126.87737420859713
+    ],
+    "posthoc_array": [
+     125.44666666666667,
+     119.86433333333333,
+     126.87533333333333
+    ],
+    "max_absolute_difference": 0.0030000000000001137,
+    "max_relative_difference": 2.5028295878952986e-05
+   },
+   "effect_on_the_classification": {
+    "drift_computed_by_the_frozen_online_convention": 0.011401017637694258,
+    "drift_computed_by_the_array_convention": 0.011388637933783209,
+    "threshold": 0.2,
+    "verdict_would_have_differed": false,
+    "note": "on this arm the two drifts differ in the fifth decimal and both sit far below the threshold, so the classification could not have changed. The defect is nonetheless real: it is a boundary error, and a boundary error matters exactly when a run sits near the threshold."
+   }
+  }
+ },
+ "frozen_code_reconstruction": {
+  "method": "the two committed files were reverted by exactly the two documented edits",
+  "gate_obtc.py": "reverted hash equals the frozen hash b935b2a7847fce05...",
+  "protocol_obtc.py": "reverted hash equals the frozen hash f74a03814b10f4cf...",
+  "conclusion": "the committed code differs from the frozen code by those two edits and nothing else; 8 of 10 frozen code files and 5 of 5 frozen docs are byte-identical in the artefact"
+ }
+}
