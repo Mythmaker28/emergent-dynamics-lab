@@ -18,8 +18,8 @@ D = "/home/claude/OBDI01/deliver"
 V = "/home/claude/OBDI01/verify/obdi01"
 OUT = "/home/claude/OBDI01/out"
 BRANCH = "codex/organizer-bound-domain-invariance-01"
-HEAD = "7fb672d41cb896fa241688eae2809df4c40020ff"
-TREE = "0199786909fd6c15afae044969027d0baf49f333"
+HEAD = "b507cfc92aa13d9088eba7c10442c22c0a70b67c"
+TREE = "21f5d0a478fe7fd4d82eef19250797614810cd95"
 BOUNDARY = "bb7fea748560ce8489d18ca64973f95e907ec382"
 ENV = {**os.environ, "GIT_NO_LAZY_FETCH": "1", "GIT_TERMINAL_PROMPT": "0"}
 

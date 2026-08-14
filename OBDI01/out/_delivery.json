@@ -1,0 +1,64 @@
+{
+ "SECTION": "OBDI01 \u00a728 \u2014 delivery record",
+ "BRANCH": "codex/organizer-bound-domain-invariance-01",
+ "BASE": "bb7fea748560ce8489d18ca64973f95e907ec382",
+ "COMMITS": [
+  {
+   "commit": "1bb80f55417fc6c5112561ecb0f54c6889930192",
+   "subject": "OBDI01 \u00a73: the complete seventeen-start matrix of OBTC02; D is the only axis with an unmet frozen requirement"
+  },
+  {
+   "commit": "8af13ba1994b50f89672b65b15d5913211f2eb25",
+   "subject": "OBDI01 \u00a76: raw-only autopsy of the three D arms, exact numerators and a temporal map of every failing frame"
+  },
+  {
+   "commit": "29805694e4b6b2e33fe01fa0f3a37a3cd7429bbf",
+   "subject": "OBDI01 \u00a77-\u00a78: operating characteristics of the legacy D gate; LEGACY_D_GATE_STATUS = MISALIGNED_WITH_DOMAIN_INVARIANCE"
+  },
+  {
+   "commit": "dcb33ccd9c2ec156b4b0f523058e1c623e54c2ae",
+   "subject": "OBDI01 \u00a711-\u00a712: four scaling hypotheses and parameter-free finite-size predictions at L in {36,72,96,108,144}"
+  },
+  {
+   "commit": "7026616ddeda096bb039856fd47a647d09536e87",
+   "subject": "OBDI01 \u00a713-\u00a714, \u00a720: variance decomposition, power analysis, third domain size L=96, fresh disjoint seeds"
+  },
+  {
+   "commit": "fb6c9b874f63624ea9e1d2af5caefab741f75c64",
+   "subject": "OBDI01 \u00a79-\u00a710, \u00a715-\u00a717, \u00a721-\u00a722: Route B frozen, simultaneous acceptance region, instrument tests, METHODS_CORE_HASH"
+  },
+  {
+   "commit": "4a70bf29ca0fa61a3514dc8bf24de43742584074",
+   "subject": "OBDI01 \u00a718-\u00a721: fifteen fresh confirmatory arms at L in {36,72,96}, all technically valid, both evaluators agreeing, no early stopping"
+  },
+  {
+   "commit": "3e4e4a33b531274d04285058ceb5dca96a52ea9b",
+   "subject": "OBDI01 \u00a723-\u00a727: cumulative evidence matrix, post-hoc diagnostics, figures, DISPOSITION = DOMAIN_INVARIANCE_PARTIAL"
+  },
+  {
+   "commit": "7fb672d41cb896fa241688eae2809df4c40020ff",
+   "subject": "OBDI01 \u00a729: final report in French, 35 sections, DOMAIN_INVARIANCE_PARTIAL"
+  },
+  {
+   "commit": "b507cfc92aa13d9088eba7c10442c22c0a70b67c",
+   "subject": "OBDI01 \u00a728: split delivery, one push attempt refused 403, offline readback PASS, LawSpec bytes verified against the OBTC02 delivery"
+  }
+ ],
+ "n_commits": 10,
+ "PUSH_ATTEMPT": {
+  "attempts": 1,
+  "response": "remote: access denied by the git proxy: Mythmaker28/emergent-dynamics-lab is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources.\nfatal: unable to access 'https://github.com/Mythmaker28/emergent-dynamics-lab.git/': The requested URL returned error: 403",
+  "action_taken": "one attempt only, response recorded, self-contained split delivery instead"
+ },
+ "ARTEFACT": {
+  "form": "single-branch shallow bare repository, gzipped tar, split into 19 MB parts",
+  "boundary": "bb7fea74\u2026 (the OBTC02 head)",
+  "verification": "offline readback under unshare -rn with GIT_NO_LAZY_FETCH=1",
+  "digest_publication": "the digests of the FINAL artefact cannot be stored inside the commit they describe. They are published out of band, in deliver/DELIVERY_MANIFEST.txt and in the message accompanying this delivery. The readback committed here is that of the artefact built at the immediately preceding commit, and is complete for it."
+ },
+ "COMMIT_GROUPING_DEVIATION": {
+  "what": "the \u00a74-\u00a75 provenance artefacts were staged from the wrong working directory and landed inside the \u00a76 commit",
+  "commit": "8af13ba1994b50f89672b65b15d5913211f2eb25",
+  "action": "recorded; history was NOT rewritten and no rebase was performed"
+ }
+}
