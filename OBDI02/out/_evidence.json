@@ -1,0 +1,198 @@
+{
+ "SECTION": "OBDI02 \u00a718-\u00a719",
+ "DISPOSITION": "DOMAIN_RELATIVE_ATTACHMENT_EQUIVALENCE_NOT_ESTABLISHED",
+ "DISPOSITION_REASONS": [
+  "the frozen TOST passes at the inherited margin 0.25 \u2014 the whole 90 % interval [+0.00998, +0.15441] lies inside it \u2014 but the mandate's qualification bar is the interval being contained in [-0.042, +0.042], and the achieved bound is 0.15441, 3.7 times that figure. No guard-rail supports growth with L: R_g gives beta = -0.00304 +- 0.00843 and r80 gives +0.00373 +- 0.00727, both flat to about one percent."
+ ],
+ "QUALIFICATION_CONDITIONS_SS19": {
+  "obdi01_adjudication_closed": true,
+  "all_inherited_axes_verifiable": true,
+  "population_support_gate_passes": true,
+  "primary_interval_inside_[-0.042,+0.042]": false,
+  "no_spatial_guard_rail_contradicts_boundedness": true,
+  "three_sizes_complete": true,
+  "seeds_fresh": true,
+  "no_technical_or_protocol_defect": true
+ },
+ "TWO_LEVEL_STRUCTURE": "the frozen TEST uses the inherited margin 0.25 and it passes; the mandate's QUALIFICATION bar in \u00a719 is the stricter [-0.042, +0.042] and it is not met. Both are reported, and the stricter one governs the claim.",
+ "DISPOSITION_SPACE": [
+  "ORGANIZER_BOUND_TURNOVER_CLOUD_QUALIFIED_BY_DOMAIN_PRECISION_CLOSURE",
+  "DOMAIN_RELATIVE_ATTACHMENT_EQUIVALENCE_NOT_ESTABLISHED",
+  "DOMAIN_SIZE_INVARIANCE_FAIL",
+  "DOMAIN_INVARIANCE_NOT_QUALIFIED__EXTINCTION_DEPENDENCE",
+  "CUMULATIVE_CLOUD_QUALIFICATION_CONTRADICTED",
+  "DOMAIN_EQUIVALENCE_UNDERPOWERED_WITHIN_BUDGET",
+  "INHERITED_EQUIVALENCE_ESTIMAND_NOT_RECOVERABLE",
+  "PROVENANCE_FAIL",
+  "AUDIT_INVALID"
+ ],
+ "DISPOSITION_SPACE_IS_FROZEN_IN_THE_PROTOCOL": true,
+ "CASCADE_ORDER": [
+  "PROVENANCE_FAIL",
+  "INHERITED_EQUIVALENCE_ESTIMAND_NOT_RECOVERABLE",
+  "AUDIT_INVALID",
+  "DOMAIN_INVARIANCE_NOT_QUALIFIED__EXTINCTION_DEPENDENCE",
+  "CUMULATIVE_CLOUD_QUALIFICATION_CONTRADICTED",
+  "ORGANIZER_BOUND_TURNOVER_CLOUD_QUALIFIED_BY_DOMAIN_PRECISION_CLOSURE",
+  "DOMAIN_SIZE_INVARIANCE_FAIL",
+  "DOMAIN_RELATIVE_ATTACHMENT_EQUIVALENCE_NOT_ESTABLISHED"
+ ],
+ "EXTINCTION": {
+  "by_L": {
+   "36": 3,
+   "72": 4,
+   "96": 2
+  },
+  "arms_per_L": 46,
+  "rate_by_L": {
+   "36": 0.06521739130434782,
+   "72": 0.08695652173913043,
+   "96": 0.043478260869565216
+  },
+  "pooled_rate": 0.06521739130434782,
+  "historical_rate": 0.09523809523809523,
+  "trend_statistic_z": -0.24092861933330162,
+  "one_sided_p_for_a_rise_with_L": 0.5951947798211734,
+  "RISES_WITH_L": false,
+  "support_gate": true
+ },
+ "CUMULATIVE_EVIDENCE_MATRIX": [
+  {
+   "axe": "Population stationnaire",
+   "source": "OBTC02",
+   "protocole": "obtc02_protocol.yaml",
+   "seeds": "9101-9106",
+   "hash": "6de8d12b03f7b0cc (via OBDI01)",
+   "disposition": "PASS (5/5 bras P requis)",
+   "limitations": "un bras P eteint sur six"
+  },
+  {
+   "axe": "Source statique",
+   "source": "OBTC02",
+   "protocole": "obtc02_protocol.yaml",
+   "seeds": "9201-9203",
+   "hash": "-",
+   "disposition": "FAIL_ON_THE_PER_ARM_GATE__NO_FROZEN_REQUIREMENT",
+   "limitations": "echec structurel 0/0 = NaN, diagnostique et non repare"
+  },
+  {
+   "axe": "Retrait de source",
+   "source": "OBTC02",
+   "protocole": "obtc02_protocol.yaml",
+   "seeds": "9301-9303",
+   "hash": "-",
+   "disposition": "PASS",
+   "limitations": "decroissance comparee a la prediction analytique"
+  },
+  {
+   "axe": "Absence de source",
+   "source": "OBTC02",
+   "protocole": "obtc02_protocol.yaml",
+   "seeds": "9401-9402",
+   "hash": "-",
+   "disposition": "PASS",
+   "limitations": "-"
+  },
+  {
+   "axe": "Turnover",
+   "source": "OBTC02",
+   "protocole": "obtc02_protocol.yaml",
+   "seeds": "9102-9106",
+   "hash": "-",
+   "disposition": "PASS",
+   "limitations": "environ 36 renouvellements par fenetre"
+  },
+  {
+   "axe": "Causalite de la source",
+   "source": "OBTC02",
+   "protocole": "obtc02_protocol.yaml",
+   "seeds": "9301-9303, 9401-9402",
+   "hash": "-",
+   "disposition": "PASS",
+   "limitations": "-"
+  },
+  {
+   "axe": "Compatibilite operateur",
+   "source": "OBTC02",
+   "protocole": "N2 envelope",
+   "seeds": "9101-9503",
+   "hash": "-",
+   "disposition": "PASS",
+   "limitations": "APPROXIMATE_WITH_EMPIRICAL_ERROR pour l'operateur complet"
+  },
+  {
+   "axe": "Rg et r80 selon L",
+   "source": "OBDI01",
+   "protocole": "obdi01_protocol.yaml",
+   "seeds": "771010-771214",
+   "hash": "6de8d12b03f7b0cc",
+   "disposition": "PASS (beta = +0.0077 et +0.0351)",
+   "limitations": "intervalle a 99.49 %, surconservateur"
+  },
+  {
+   "axe": "Densite selon L",
+   "source": "OBDI01",
+   "protocole": "obdi01_protocol.yaml",
+   "seeds": "771010-771214",
+   "hash": "6de8d12b03f7b0cc",
+   "disposition": "PASS (gamma = -2.0485)",
+   "limitations": "un bras eteint entre avec une densite nulle"
+  },
+  {
+   "axe": "Winding selon L",
+   "source": "OBDI01",
+   "protocole": "obdi01_protocol.yaml",
+   "seeds": "771010-771214",
+   "hash": "6de8d12b03f7b0cc",
+   "disposition": "PASS (0 sur 2700 trames)",
+   "limitations": "unite = la trame, defendable seulement parce que le compte est nul"
+  },
+  {
+   "axe": "Profil radial selon L",
+   "source": "OBDI01",
+   "protocole": "obdi01_protocol.yaml",
+   "seeds": "771010-771214",
+   "hash": "6de8d12b03f7b0cc",
+   "disposition": "PASS (5/5, 4/5, 5/5 bras ; seuil 4/5)",
+   "limitations": "a L=72 le seuil est atteint exactement"
+  },
+  {
+   "axe": "Equivalence precise de |C-Y|",
+   "source": "OBDI02",
+   "protocole": "obdi02_protocol.yaml",
+   "seeds": "8100000-8102045",
+   "hash": "59b19169fa087caa",
+   "disposition": "PASS (beta = +0.08219, intervalle [+0.00998, +0.15441], borne atteinte 0.15441)",
+   "limitations": "la reference stringente 0.042 reste sous-puissante par construction (puissance 0.314 declaree avant les runs)"
+  }
+ ],
+ "SEED_USE_BY_MISSION": {
+  "OBTC02": "9101-9503 (17)",
+  "OBDI01": "771010-771214 (15)",
+  "OBDI02": "8100000-8102045 (138)"
+ },
+ "NO_SEED_COUNTED_TWICE": true,
+ "OBDI01_REPORTED_DISPOSITION": "DOMAIN_INVARIANCE_PARTIAL",
+ "OBDI01_ADJUDICATED_DISPOSITION": "DOMAIN_TEST_UNDERPOWERED",
+ "AUTHORISED_INTERPRETATION": {
+  "if_qualified": "Dans le LawSpec equilibre sans cohesion ajoutee, une source organisatrice mobile maintient causalement un nuage dissipatif materiellement renouvele dont l'echelle spatiale relative reste equivalente a une constante sur les tailles de domaine testees.",
+  "must_not_be_said": [
+   "self-bound",
+   "cohesion autonome",
+   "cellule",
+   "identite",
+   "reproduction",
+   "memoire",
+   "H3 confirme",
+   "validation globale de Kamimura-Kaneko"
+  ],
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+  "C3_STATUS": "NOT_QUALIFIED"
+ },
+ "NEXT_SCIENTIFIC_ELIGIBILITY": "NONE",
+ "ov_reference": "PASSING_ARMS / REQUIRED_PASSING_ARMS \u2014 NOT passing over total",
+ "seeds_disjoint": true,
+ "obdi01_matrix_reference": "no seed contributes to two axes. OBTC02's seeds (9101-9503) established the non-domain axes and are NOT reused here; OBDI01's seeds (771010-771214) address the domain axis only and contribute to nothing else."
+}

@@ -1,0 +1,99 @@
+{
+ "LABEL": "POST-HOC \u2014 DIAGNOSTIC ONLY, CHANGES NOTHING",
+ "frozen_result": {
+  "beta": 0.08219487763309226,
+  "se": 0.04390627491218356,
+  "achieved": 0.15441427316832587
+ },
+ "across_arm_median_of_summaries": {
+  "36": 3.0,
+  "72": 3.08113883008419,
+  "96": 3.0
+ },
+ "slope_using_the_across_arm_median": -0.019754232219438686,
+ "near_collapse_arms": {
+  "rule": "post-hoc: N_X_mean below half the typical value at that L",
+  "typical_N_X_by_L": {
+   "36": 120.37777777777778,
+   "72": 120.64166666666667,
+   "96": 119.42500000000001
+  },
+  "tags": [
+   "L36/seed8100014",
+   "L72/seed8101006",
+   "L96/seed8102008",
+   "L96/seed8102010",
+   "L96/seed8102020",
+   "L96/seed8102030"
+  ],
+  "detail": [
+   {
+    "tag": "L36/seed8100014",
+    "L": 36,
+    "N_X": 13.194444444444445,
+    "dCY": 5.0,
+    "Rg": 6.4814029968435225,
+    "main_mass_fraction": 0.3557692307692308,
+    "profile_TV": 0.1328684737440961
+   },
+   {
+    "tag": "L72/seed8101006",
+    "L": 72,
+    "N_X": 21.483333333333334,
+    "dCY": 7.810249675906654,
+    "Rg": 6.1697163082706155,
+    "main_mass_fraction": 0.4437088815789474,
+    "profile_TV": 0.06377271855879403
+   },
+   {
+    "tag": "L96/seed8102008",
+    "L": 96,
+    "N_X": 38.81666666666667,
+    "dCY": 3.605551275463989,
+    "Rg": 5.7909026740722425,
+    "main_mass_fraction": 0.5556368136813681,
+    "profile_TV": 0.03694170161530496
+   },
+   {
+    "tag": "L96/seed8102010",
+    "L": 96,
+    "N_X": 5.138888888888889,
+    "dCY": 14.725283506848955,
+    "Rg": 8.52581115519898,
+    "main_mass_fraction": 0.1846590909090909,
+    "profile_TV": 0.3834063138599293
+   },
+   {
+    "tag": "L96/seed8102020",
+    "L": 96,
+    "N_X": 14.272222222222222,
+    "dCY": 13.537036829011749,
+    "Rg": 6.178002436632465,
+    "main_mass_fraction": 0.5,
+    "profile_TV": 0.16007831247359278
+   },
+   {
+    "tag": "L96/seed8102030",
+    "L": 96,
+    "N_X": 26.66111111111111,
+    "dCY": 5.830951894845301,
+    "Rg": 6.6881673469971545,
+    "main_mass_fraction": 0.48275862068965514,
+    "profile_TV": 0.1107828506384248
+   }
+  ]
+ },
+ "slope_excluding_them": {
+  "beta": 0.041426102949419306,
+  "se": 0.024204150960666172,
+  "achieved": 0.08123838844435205,
+  "n_by_L": {
+   "36": 42,
+   "72": 41,
+   "96": 40
+  }
+ },
+ "log_population_vs_log_offset_correlation": -0.8455999004802089,
+ "READING": "the frozen estimator aggregates arms by the MEAN of the logs, which a heavy right tail moves. Three arms \u2014 one at L=72 and two at L=96 \u2014 kept a population five to twenty times below typical without going extinct before the end of the window. With so few molecules the Frechet centre is a noisy estimate of the cloud's position and drifts far from the organiser, so a POPULATION effect enters a SPATIAL statistic through the finite-sample noise of the centre. The across-arm MEDIAN of the same summaries is 3.00, 3.08, 3.00 at L = 36, 72, 96 \u2014 flat \u2014 and the slope computed from it is -0.01975. Removing the three arms post hoc gives beta = +0.04143. NEITHER of these is the frozen result and NEITHER is used: they say where the frozen number comes from.",
+ "DEFECT_RECORDED": "the frozen definition of an ANALYSABLE arm \u2014 a finite positive summary \u2014 admits an arm whose population has partly collapsed. A pre-registered floor on the in-window population would have separated 'the cloud exists' from 'the cloud is measurable'. This is a design defect of OBDI02 and it is recorded, not applied."
+}
