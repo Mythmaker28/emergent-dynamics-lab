@@ -1,0 +1,1044 @@
+{
+ "SECTION": "OBDI01 \u00a711-\u00a712",
+ "STATUS_LAYERS": {
+  "UNBLOCKED_DISCRETE_KERNEL": "EXACT",
+  "SAMPLED_CLOUD_STATISTICS": "EXACT_LAW__MONTE_CARLO_EVALUATION",
+  "FULL_CAPACITY_CONSTRAINED_OPERATOR": "APPROXIMATE_WITH_EMPIRICAL_ERROR"
+ },
+ "HYPOTHESES": {
+  "H_bound": {
+   "statement": "the cloud has an intrinsic size fixed by the operator; as L grows the radius converges to its infinite-lattice value and the population stays constant, so the DENSITY falls as 1/L^2",
+   "r_of_L": "r(L) -> r_inf, with a computable finite-L correction from the periodic images; exponent alpha = d log r / d log L -> 0",
+   "alpha": 0.0,
+   "density_exponent": -2.0,
+   "winding_frequency": "-> 0 super-exponentially in L",
+   "predicted_by": "the frozen source-transport-decay operator, no free parameter"
+  },
+  "H_linear": {
+   "statement": "the cloud is a fixed fraction of the domain: it has no intrinsic size and simply rescales with the box",
+   "r_of_L": "r(L) = c L, alpha = 1",
+   "alpha": 1.0,
+   "density_exponent": 0.0,
+   "winding_frequency": "bounded away from 0",
+   "predicted_by": "none: it is the alternative the domain axis must exclude"
+  },
+  "H_sublinear": {
+   "statement": "the cloud grows without bound but more slowly than the box",
+   "r_of_L": "r(L) = c L^alpha with 0 < alpha < 1; the reference sub-case is the diffusive alpha = 1/2",
+   "alpha": 0.5,
+   "density_exponent": -1.0,
+   "winding_frequency": "-> 0 but only polynomially",
+   "predicted_by": "none: an unbounded-but-slower alternative"
+  },
+  "H_fill": {
+   "statement": "the cloud occupies the whole torus: the population scales with the area, the density is constant and winding becomes typical",
+   "r_of_L": "r(L) -> the radius of a uniform distribution on the torus, alpha = 1",
+   "alpha": 1.0,
+   "density_exponent": 0.0,
+   "winding_frequency": "-> 1",
+   "predicted_by": "none: the failure mode the NO_GLOBAL_FILLING condition guards"
+  }
+ },
+ "constants": {
+  "ell_X": 2.500000000000001,
+  "ell_relative": 3.5355339059327386,
+  "a_X": 0.05000000000000003,
+  "a_Y": 0.05000000000000003,
+  "a_relative": 0.10000000000000006,
+  "mu_X": 0.004,
+  "q_X": 0.025658350974743116,
+  "q_Y": 0.025658350974743116
+ },
+ "infinite_lattice_reference": {
+  "m2r": 49.80000004015004,
+  "r80r": 8.54400374531753,
+  "r50r": 4.47213595499958,
+  "r90r": 11.313708498984761
+ },
+ "population_anchor": {
+  "STATUS": "MEASURED_ANCHOR__NOT_PREDICTED_BY_THE_OPERATOR",
+  "reason": "N_X_stationary = B / mu, and B is the mean accepted births per step at the organiser, set by the LOCAL resource concentration and the LOCAL free capacity. The chemostat holds the OCCUPANCY DENSITY constant, so B is expected to be independent of L; that expectation is a PREDICTION of this mission, not an input.",
+  "L36_healthy_P": {
+   "values": [
+    119.22944444444444,
+    128.58655555555555,
+    125.07388888888889,
+    118.74077777777778,
+    122.56222222222222
+   ],
+   "mean": 122.83857777777777,
+   "sd": 4.120984255858911
+  },
+  "L72_D": {
+   "values": [
+    122.40233333333333,
+    108.83822222222223,
+    126.209
+   ],
+   "mean": 119.14985185185185,
+   "sd": 9.130715031790746
+  },
+  "observed_ratio_L72_over_L36": 0.9699709489261668,
+  "H_bound_predicts_ratio": 1.0,
+  "H_fill_predicts_ratio": 4.0
+ },
+ "N_X_anchor_used": 121.45530555555555,
+ "capacity_error": {
+  "STATUS": "APPROXIMATE_WITH_EMPIRICAL_ERROR",
+  "transport_rejection_X": {
+   "min": 0.00033883822684482683,
+   "max": 0.0005584345961401001,
+   "mean": 0.0004275444490630181,
+   "n_arms": 8
+  },
+  "transport_rejection_Y": {
+   "min": 0.0,
+   "max": 0.0017937219730941704,
+   "mean": 0.0006743268654928899
+  },
+  "interpretation": "the exact kernel assumes transport is never refused. In OBTC02 the refusal rate for X was at most 5.58e-04 per offered hop. This is an OBSERVED rate on the domains actually run, not a bound, and it is NOT extrapolated to larger L: at larger L the occupancy density is held constant by the chemostat, so the rate is expected to be of the same order, and the new runs will measure it.",
+  "NOT_A_BOUND": true
+ },
+ "per_L": {
+  "36": {
+   "L": 36,
+   "EXACT_KERNEL": {
+    "STATUS": "EXACT",
+    "static_source": {
+     "r50": 3.1622776601683795,
+     "r80": 6.082762530298219,
+     "r90": 8.06225774829855,
+     "second_moment": 24.628174036313673,
+     "rms": 4.962678111293707
+    },
+    "organiser_frame": {
+     "r50": 4.47213595499958,
+     "r80": 8.54400374531753,
+     "r90": 11.313708498984761,
+     "second_moment": 46.68474845341292,
+     "rms": 6.832623833741539
+    },
+    "mass_beyond_L_over_2": 0.011572619264803092,
+    "mass_beyond_reference_radius_12.8": 0.06953819488318885,
+    "periodic_image_correction": {
+     "reference_L": 1024,
+     "second_moment_at_L": 46.68474845341292,
+     "second_moment_at_reference": 49.80000004015004,
+     "relative_deficit": 0.06255525269529158,
+     "r80_at_L": 8.54400374531753,
+     "r80_at_reference": 8.54400374531753,
+     "r80_relative_deficit": 0.0,
+     "meaning": "the torus truncates the tail of the exact profile; under H_bound the measured radius must therefore INCREASE slightly with L and saturate, not stay exactly constant. This correction is a prediction, not a nuisance.",
+     "caveat": "r80 of the EXACT profile is a quantile over lattice distances and is therefore quantised: it can be identical at two L although the underlying profile differs. The SECOND MOMENT is the sensitive finite-size probe and is the one used for the correction."
+    },
+    "L_over_ell_relative": 10.182337649086282
+   },
+   "SAMPLED": {
+    "STATUS": "EXACT_LAW__MONTE_CARLO_EVALUATION",
+    "draws": 3000,
+    "N_X_used": 121,
+    "Rg": {
+     "mean": 5.829762149757589,
+     "sd": 0.5744500300761682,
+     "mc_standard_error": 0.010487974654407949,
+     "median": 5.779182308578507,
+     "q025": 4.851098522005914,
+     "q975": 7.091604630610822,
+     "q005": 4.560941384217216,
+     "q995": 7.658989981300302
+    },
+    "r50": {
+     "mean": 4.094984649415801,
+     "sd": 0.6635114695358972,
+     "mc_standard_error": 0.012114006634273759,
+     "median": 4.123105625617661,
+     "q025": 3.1622776601683795,
+     "q975": 5.656854249492381,
+     "q005": 3.0,
+     "q995": 6.324948164922248
+    },
+    "r80": {
+     "mean": 7.01368655102396,
+     "sd": 0.812868100515231,
+     "mc_standard_error": 0.014840873164285624,
+     "median": 7.0710678118654755,
+     "q025": 5.830951894845301,
+     "q975": 8.94427190999916,
+     "q005": 5.385164807134504,
+     "q995": 9.848857801796104
+    },
+    "r90": {
+     "mean": 9.323272418388086,
+     "sd": 1.1969693637446266,
+     "mc_standard_error": 0.021853570705517942,
+     "median": 9.219544457292887,
+     "q025": 7.280109889280518,
+     "q975": 12.041594578792296,
+     "q005": 7.0710678118654755,
+     "q995": 13.601470508735444
+    },
+    "r80_organiser": {
+     "mean": 8.441054387447242,
+     "sd": 1.715784213310789,
+     "mc_standard_error": 0.03132579058138583,
+     "median": 8.06225774829855,
+     "q025": 6.082762530298219,
+     "q975": 12.806248474865697,
+     "q005": 5.830081406618536,
+     "q995": 14.317821063276353
+    },
+    "organiser_to_core": {
+     "mean": 3.0797721639738773,
+     "sd": 1.6287687723910649,
+     "mc_standard_error": 0.029737113253286127,
+     "median": 3.0,
+     "q025": 0.0,
+     "q975": 6.708203932499369,
+     "q005": 0.0,
+     "q995": 8.06225774829855
+    },
+    "any_winding": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "mc_standard_error": 0.0,
+     "median": 0.0,
+     "q025": 0.0,
+     "q975": 0.0,
+     "q005": 0.0,
+     "q995": 0.0
+    },
+    "core_fraction": {
+     "mean": 0.3311652892561983,
+     "sd": 0.09269393326438265,
+     "mc_standard_error": 0.0016923519397593618,
+     "median": 0.33884297520661155,
+     "q025": 0.1487603305785124,
+     "q975": 0.48760330578512395,
+     "q005": 0.09917355371900827,
+     "q995": 0.5289256198347108
+    },
+    "main_mass_fraction": {
+     "mean": 0.5898071625344352,
+     "sd": 0.10259266449305353,
+     "mc_standard_error": 0.0018730772192468242,
+     "median": 0.6033057851239669,
+     "q025": 0.34710743801652894,
+     "q975": 0.7520661157024794,
+     "q005": 0.256198347107438,
+     "q995": 0.7851239669421488
+    },
+    "n_eff_components": {
+     "mean": 3.0109867672147455,
+     "sd": 1.2185558944879011,
+     "mc_standard_error": 0.022247685033063617,
+     "median": 2.684944067485788,
+     "q025": 1.758245719742562,
+     "q975": 6.217914631724157,
+     "q005": 1.6147496930259917,
+     "q995": 9.076931730589028
+    },
+    "legacy_extent_proxy": {
+     "mean": 0.003,
+     "sd": 0.05469915294082851,
+     "mc_standard_error": 0.000998665331403894,
+     "median": 0.0,
+     "q025": 0.0,
+     "q975": 0.0,
+     "q005": 0.0,
+     "q995": 0.0
+    },
+    "geodesic_diameter": {
+     "mean": 14.165333333333333,
+     "sd": 2.952440322316637,
+     "mc_standard_error": 0.05390393880735485,
+     "median": 14.0,
+     "q025": 9.0,
+     "q975": 21.0,
+     "q005": 7.0,
+     "q995": 24.0
+    },
+    "n_components": {
+     "mean": 32.404666666666664,
+     "sd": 5.472314589325411,
+     "mc_standard_error": 0.09991033807793821,
+     "median": 32.0,
+     "q025": 22.0,
+     "q975": 44.0,
+     "q005": 20.0,
+     "q995": 48.0
+    },
+    "true_winding_frequency": {
+     "observed": 0.0,
+     "successes": 0,
+     "draws": 3000,
+     "upper_95_if_zero": 0.0009980790119965555,
+     "note": "if zero windings are drawn, only an upper bound is available at this Monte Carlo size; the bound is stated, not a point value"
+    }
+   },
+   "H_fill_reference": {
+    "r50": 14.317821063276353,
+    "r80": 18.35755975068582,
+    "r90": 20.0,
+    "note": "radii of a UNIFORM cloud on this torus: the H_fill target the observed radius must not approach"
+   },
+   "H_linear_reference_r80": 8.54400374531753,
+   "H_sublinear_reference_r80": 8.54400374531753,
+   "expected_population_under_H_bound": 121.45530555555555,
+   "expected_density_under_H_bound": 0.09371551354595337,
+   "L_over_ell_relative": 10.182337649086282,
+   "L_over_r80_predicted": 4.2134812990607005
+  },
+  "72": {
+   "L": 72,
+   "EXACT_KERNEL": {
+    "STATUS": "EXACT",
+    "static_source": {
+     "r50": 3.1622776601683795,
+     "r80": 6.082762530298219,
+     "r90": 8.06225774829855,
+     "second_moment": 24.899580502506026,
+     "rms": 4.989947945871382
+    },
+    "organiser_frame": {
+     "r50": 4.47213595499958,
+     "r80": 8.54400374531753,
+     "r90": 11.313708498984761,
+     "second_moment": 49.7614208239059,
+     "rms": 7.054177544115678
+    },
+    "mass_beyond_L_over_2": 0.00011222090640278577,
+    "mass_beyond_reference_radius_12.8": 0.07099699426292397,
+    "periodic_image_correction": {
+     "reference_L": 1024,
+     "second_moment_at_L": 49.7614208239059,
+     "second_moment_at_reference": 49.80000004015004,
+     "relative_deficit": 0.000774683056486628,
+     "r80_at_L": 8.54400374531753,
+     "r80_at_reference": 8.54400374531753,
+     "r80_relative_deficit": 0.0,
+     "meaning": "the torus truncates the tail of the exact profile; under H_bound the measured radius must therefore INCREASE slightly with L and saturate, not stay exactly constant. This correction is a prediction, not a nuisance.",
+     "caveat": "r80 of the EXACT profile is a quantile over lattice distances and is therefore quantised: it can be identical at two L although the underlying profile differs. The SECOND MOMENT is the sensitive finite-size probe and is the one used for the correction."
+    },
+    "L_over_ell_relative": 20.364675298172564
+   },
+   "SAMPLED": {
+    "STATUS": "EXACT_LAW__MONTE_CARLO_EVALUATION",
+    "draws": 3000,
+    "N_X_used": 121,
+    "Rg": {
+     "mean": 6.0302793632428076,
+     "sd": 0.7303432163877586,
+     "mc_standard_error": 0.013334181811215068,
+     "median": 5.9359730657529735,
+     "q025": 4.873050979865387,
+     "q975": 7.648607309162968,
+     "q005": 4.671511561709341,
+     "q995": 8.402522036231076
+    },
+    "r50": {
+     "mean": 4.1272138529698745,
+     "sd": 0.6922900887941252,
+     "mc_standard_error": 0.01263942993232656,
+     "median": 4.123105625617661,
+     "q025": 3.1622776601683795,
+     "q975": 5.830951894845301,
+     "q005": 3.0,
+     "q995": 6.324555320336759
+    },
+    "r80": {
+     "mean": 6.977525057347302,
+     "sd": 0.8041722276650547,
+     "mc_standard_error": 0.014682108973711014,
+     "median": 7.0710678118654755,
+     "q025": 5.656854249492381,
+     "q975": 8.602325267042627,
+     "q005": 5.0990195135927845,
+     "q995": 9.488643104611633
+    },
+    "r90": {
+     "mean": 9.225877786423446,
+     "sd": 1.1600119018854638,
+     "mc_standard_error": 0.021178822854571268,
+     "median": 9.055385138137417,
+     "q025": 7.280109889280518,
+     "q975": 12.041594578792296,
+     "q005": 7.0710678118654755,
+     "q995": 13.038404810405298
+    },
+    "r80_organiser": {
+     "mean": 8.418661142009215,
+     "sd": 1.687827251123161,
+     "mc_standard_error": 0.030815368620403065,
+     "median": 8.06225774829855,
+     "q025": 6.082762530298219,
+     "q975": 12.36931687685298,
+     "q005": 5.830951894845301,
+     "q995": 14.318342983469263
+    },
+    "organiser_to_core": {
+     "mean": 3.1716933972891153,
+     "sd": 1.6268302059830946,
+     "mc_standard_error": 0.02970172003492389,
+     "median": 3.0,
+     "q025": 1.0,
+     "q975": 7.0,
+     "q005": 0.0,
+     "q995": 8.06225774829855
+    },
+    "any_winding": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "mc_standard_error": 0.0,
+     "median": 0.0,
+     "q025": 0.0,
+     "q975": 0.0,
+     "q005": 0.0,
+     "q995": 0.0
+    },
+    "core_fraction": {
+     "mean": 0.3255702479338843,
+     "sd": 0.09417477052008306,
+     "mc_standard_error": 0.0017193882053907338,
+     "median": 0.3305785123966942,
+     "q025": 0.14049586776859505,
+     "q975": 0.48760330578512395,
+     "q005": 0.10739669421487605,
+     "q995": 0.5289256198347108
+    },
+    "main_mass_fraction": {
+     "mean": 0.5931129476584022,
+     "sd": 0.10049606405441101,
+     "mc_standard_error": 0.0018347987074361664,
+     "median": 0.6033057851239669,
+     "q025": 0.35537190082644626,
+     "q975": 0.7522727272727281,
+     "q005": 0.2644628099173554,
+     "q995": 0.7851239669421488
+    },
+    "n_eff_components": {
+     "mean": 2.9570746590467305,
+     "sd": 1.122926415976417,
+     "mc_standard_error": 0.0205017376149571,
+     "median": 2.6692798541476757,
+     "q025": 1.7479485942009578,
+     "q975": 6.033049237827236,
+     "q005": 1.6158242848808175,
+     "q995": 8.067436646078999
+    },
+    "legacy_extent_proxy": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "mc_standard_error": 0.0,
+     "median": 0.0,
+     "q025": 0.0,
+     "q975": 0.0,
+     "q005": 0.0,
+     "q995": 0.0
+    },
+    "geodesic_diameter": {
+     "mean": 14.073,
+     "sd": 2.87467544596601,
+     "mc_standard_error": 0.0524841529087269,
+     "median": 14.0,
+     "q025": 9.0,
+     "q975": 20.0,
+     "q005": 7.0,
+     "q995": 23.0
+    },
+    "n_components": {
+     "mean": 32.224,
+     "sd": 5.330850149939223,
+     "mc_standard_error": 0.09732756259338364,
+     "median": 32.0,
+     "q025": 22.0,
+     "q975": 44.0,
+     "q005": 19.0,
+     "q995": 47.00500000000011
+    },
+    "true_winding_frequency": {
+     "observed": 0.0,
+     "successes": 0,
+     "draws": 3000,
+     "upper_95_if_zero": 0.0009980790119965555,
+     "note": "if zero windings are drawn, only an upper bound is available at this Monte Carlo size; the bound is stated, not a point value"
+    }
+   },
+   "H_fill_reference": {
+    "r50": 28.653097563788805,
+    "r80": 36.40054944640259,
+    "r90": 40.22437072223753,
+    "note": "radii of a UNIFORM cloud on this torus: the H_fill target the observed radius must not approach"
+   },
+   "H_linear_reference_r80": 17.08800749063506,
+   "H_sublinear_reference_r80": 12.083045973594572,
+   "expected_population_under_H_bound": 121.45530555555555,
+   "expected_density_under_H_bound": 0.02342887838648834,
+   "L_over_ell_relative": 20.364675298172564,
+   "L_over_r80_predicted": 8.426962598121401
+  },
+  "96": {
+   "L": 96,
+   "EXACT_KERNEL": {
+    "STATUS": "EXACT",
+    "static_source": {
+     "r50": 3.1622776601683795,
+     "r80": 6.082762530298219,
+     "r90": 8.06225774829855,
+     "second_moment": 24.89999529450121,
+     "rms": 4.989989508456026
+    },
+    "organiser_frame": {
+     "r50": 4.47213595499958,
+     "r80": 8.54400374531753,
+     "r90": 11.313708498984761,
+     "second_moment": 49.79826543991922,
+     "rms": 7.056788606719009
+    },
+    "mass_beyond_L_over_2": 4.544814426064399e-06,
+    "mass_beyond_reference_radius_12.8": 0.07099703358372669,
+    "periodic_image_correction": {
+     "reference_L": 1024,
+     "second_moment_at_L": 49.79826543991922,
+     "second_moment_at_reference": 49.80000004015004,
+     "relative_deficit": 3.4831329908037127e-05,
+     "r80_at_L": 8.54400374531753,
+     "r80_at_reference": 8.54400374531753,
+     "r80_relative_deficit": 0.0,
+     "meaning": "the torus truncates the tail of the exact profile; under H_bound the measured radius must therefore INCREASE slightly with L and saturate, not stay exactly constant. This correction is a prediction, not a nuisance.",
+     "caveat": "r80 of the EXACT profile is a quantile over lattice distances and is therefore quantised: it can be identical at two L although the underlying profile differs. The SECOND MOMENT is the sensitive finite-size probe and is the one used for the correction."
+    },
+    "L_over_ell_relative": 27.152900397563418
+   },
+   "SAMPLED": {
+    "STATUS": "EXACT_LAW__MONTE_CARLO_EVALUATION",
+    "draws": 3000,
+    "N_X_used": 121,
+    "Rg": {
+     "mean": 6.052618391892713,
+     "sd": 0.7149846826070957,
+     "mc_standard_error": 0.013053774631152596,
+     "median": 5.978743390683071,
+     "q025": 4.8741819560831585,
+     "q975": 7.692601044760427,
+     "q005": 4.675246965338109,
+     "q995": 8.469018365800782
+    },
+    "r50": {
+     "mean": 4.12986968467823,
+     "sd": 0.6879928528923404,
+     "mc_standard_error": 0.012560973497715606,
+     "median": 4.123105625617661,
+     "q025": 3.1622776601683795,
+     "q975": 5.830951894845301,
+     "q005": 3.0,
+     "q995": 6.4031242374328485
+    },
+    "r80": {
+     "mean": 6.989543020110033,
+     "sd": 0.7910943770934947,
+     "mc_standard_error": 0.014443341181653507,
+     "median": 7.0710678118654755,
+     "q025": 5.656854249492381,
+     "q975": 8.602325267042627,
+     "q005": 5.385164807134504,
+     "q995": 9.488643104611633
+    },
+    "r90": {
+     "mean": 9.283959949933553,
+     "sd": 1.1466731303146982,
+     "mc_standard_error": 0.020935291318614036,
+     "median": 9.219544457292887,
+     "q025": 7.280109889280518,
+     "q975": 12.041594578792296,
+     "q005": 7.0710678118654755,
+     "q995": 13.152946437965905
+    },
+    "r80_organiser": {
+     "mean": 8.426756569686528,
+     "sd": 1.7349669791433595,
+     "mc_standard_error": 0.03167601836678043,
+     "median": 8.06225774829855,
+     "q025": 6.082762530298219,
+     "q975": 13.0,
+     "q005": 5.830951894845301,
+     "q995": 14.317821063276353
+    },
+    "organiser_to_core": {
+     "mean": 3.151055402378097,
+     "sd": 1.6744504907458833,
+     "mc_standard_error": 0.030571143506903854,
+     "median": 3.0,
+     "q025": 0.0,
+     "q975": 7.001776695296643,
+     "q005": 0.0,
+     "q995": 8.247700213705764
+    },
+    "any_winding": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "mc_standard_error": 0.0,
+     "median": 0.0,
+     "q025": 0.0,
+     "q975": 0.0,
+     "q005": 0.0,
+     "q995": 0.0
+    },
+    "core_fraction": {
+     "mean": 0.32568870523415977,
+     "sd": 0.09466183522475956,
+     "mc_standard_error": 0.001728280749581264,
+     "median": 0.3305785123966942,
+     "q025": 0.14049586776859505,
+     "q975": 0.48760330578512395,
+     "q005": 0.09913223140495869,
+     "q995": 0.5289256198347108
+    },
+    "main_mass_fraction": {
+     "mean": 0.5894407713498623,
+     "sd": 0.10301343432533644,
+     "mc_standard_error": 0.0018807593902021246,
+     "median": 0.6033057851239669,
+     "q025": 0.33884297520661155,
+     "q975": 0.7520661157024794,
+     "q005": 0.2561570247933884,
+     "q995": 0.7933884297520661
+    },
+    "n_eff_components": {
+     "mean": 3.011537084210145,
+     "sd": 1.2208411478018841,
+     "mc_standard_error": 0.022289407859386347,
+     "median": 2.6933407828299707,
+     "q025": 1.7540223648830815,
+     "q975": 6.190697674418605,
+     "q005": 1.5826397146254458,
+     "q995": 9.145782592913184
+    },
+    "legacy_extent_proxy": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "mc_standard_error": 0.0,
+     "median": 0.0,
+     "q025": 0.0,
+     "q975": 0.0,
+     "q005": 0.0,
+     "q995": 0.0
+    },
+    "geodesic_diameter": {
+     "mean": 14.029333333333334,
+     "sd": 2.920385095369668,
+     "mc_standard_error": 0.05331869311119477,
+     "median": 14.0,
+     "q025": 9.0,
+     "q975": 20.0,
+     "q005": 7.0,
+     "q995": 23.0
+    },
+    "n_components": {
+     "mean": 32.379333333333335,
+     "sd": 5.3147770577839735,
+     "mc_standard_error": 0.09703410942197399,
+     "median": 32.0,
+     "q025": 23.0,
+     "q975": 44.0,
+     "q005": 20.0,
+     "q995": 47.0
+    },
+    "true_winding_frequency": {
+     "observed": 0.0,
+     "successes": 0,
+     "draws": 3000,
+     "upper_95_if_zero": 0.0009980790119965555,
+     "note": "if zero windings are drawn, only an upper bound is available at this Monte Carlo size; the bound is stated, not a point value"
+    }
+   },
+   "H_fill_reference": {
+    "r50": 38.27531841800928,
+    "r80": 48.507731342539614,
+    "r90": 53.53503525729669,
+    "note": "radii of a UNIFORM cloud on this torus: the H_fill target the observed radius must not approach"
+   },
+   "H_linear_reference_r80": 22.784009987513414,
+   "H_sublinear_reference_r80": 13.952299690970898,
+   "expected_population_under_H_bound": 121.45530555555555,
+   "expected_density_under_H_bound": 0.013178744092399691,
+   "L_over_ell_relative": 27.152900397563418,
+   "L_over_r80_predicted": 11.235950130828535
+  },
+  "108": {
+   "L": 108,
+   "EXACT_KERNEL": {
+    "STATUS": "EXACT",
+    "static_source": {
+     "r50": 3.1622776601683795,
+     "r80": 6.082762530298219,
+     "r90": 8.06225774829855,
+     "second_moment": 24.899999514460625,
+     "rms": 4.989989931298521
+    },
+    "organiser_frame": {
+     "r50": 4.47213595499958,
+     "r80": 8.54400374531753,
+     "r90": 11.313708498984761,
+     "second_moment": 49.79964166378673,
+     "rms": 7.056886116679703
+    },
+    "mass_beyond_L_over_2": 8.838676041566945e-07,
+    "mass_beyond_reference_radius_12.8": 0.07099703362132498,
+    "periodic_image_correction": {
+     "reference_L": 1024,
+     "second_moment_at_L": 49.79964166378673,
+     "second_moment_at_reference": 49.80000004015004,
+     "relative_deficit": 7.196312510439535e-06,
+     "r80_at_L": 8.54400374531753,
+     "r80_at_reference": 8.54400374531753,
+     "r80_relative_deficit": 0.0,
+     "meaning": "the torus truncates the tail of the exact profile; under H_bound the measured radius must therefore INCREASE slightly with L and saturate, not stay exactly constant. This correction is a prediction, not a nuisance.",
+     "caveat": "r80 of the EXACT profile is a quantile over lattice distances and is therefore quantised: it can be identical at two L although the underlying profile differs. The SECOND MOMENT is the sensitive finite-size probe and is the one used for the correction."
+    },
+    "L_over_ell_relative": 30.547012947258843
+   },
+   "SAMPLED": {
+    "STATUS": "EXACT_LAW__MONTE_CARLO_EVALUATION",
+    "draws": 3000,
+    "N_X_used": 121,
+    "Rg": {
+     "mean": 6.035405650728363,
+     "sd": 0.7030569332181057,
+     "mc_standard_error": 0.012836004717798654,
+     "median": 5.958643289394681,
+     "q025": 4.8779928675833535,
+     "q975": 7.624921400700747,
+     "q005": 4.584875334489838,
+     "q995": 8.435843282992034
+    },
+    "r50": {
+     "mean": 4.122539117247488,
+     "sd": 0.6837351275695321,
+     "mc_standard_error": 0.012483238424283505,
+     "median": 4.123105625617661,
+     "q025": 3.1622776601683795,
+     "q975": 5.830951894845301,
+     "q005": 3.0,
+     "q995": 6.4031242374328485
+    },
+    "r80": {
+     "mean": 6.992332438373385,
+     "sd": 0.8079839214223593,
+     "mc_standard_error": 0.01475170066215026,
+     "median": 7.0710678118654755,
+     "q025": 5.656854249492381,
+     "q975": 8.602325267042627,
+     "q005": 5.0990195135927845,
+     "q995": 9.899494936611665
+    },
+    "r90": {
+     "mean": 9.254370549546058,
+     "sd": 1.1548753081409788,
+     "mc_standard_error": 0.021085041912484788,
+     "median": 9.219544457292887,
+     "q025": 7.280109889280518,
+     "q975": 12.041594578792296,
+     "q005": 7.070712472806148,
+     "q995": 13.152946437965905
+    },
+    "r80_organiser": {
+     "mean": 8.393390812978769,
+     "sd": 1.720264639742147,
+     "mc_standard_error": 0.03140759160217573,
+     "median": 8.06225774829855,
+     "q025": 6.082762530298219,
+     "q975": 12.649110640673518,
+     "q005": 5.656854249492381,
+     "q995": 14.560219778561036
+    },
+    "organiser_to_core": {
+     "mean": 3.117365542184058,
+     "sd": 1.6665206789780063,
+     "mc_standard_error": 0.030426365614169316,
+     "median": 3.0,
+     "q025": 1.0,
+     "q975": 7.0710678118654755,
+     "q005": 0.0,
+     "q995": 8.246211251235321
+    },
+    "any_winding": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "mc_standard_error": 0.0,
+     "median": 0.0,
+     "q025": 0.0,
+     "q975": 0.0,
+     "q005": 0.0,
+     "q995": 0.0
+    },
+    "core_fraction": {
+     "mean": 0.3263581267217631,
+     "sd": 0.09242915731858115,
+     "mc_standard_error": 0.0016875178144860202,
+     "median": 0.3305785123966942,
+     "q025": 0.14049586776859505,
+     "q975": 0.48760330578512395,
+     "q005": 0.09917355371900827,
+     "q995": 0.5289256198347108
+    },
+    "main_mass_fraction": {
+     "mean": 0.5893911845730028,
+     "sd": 0.10379526285412663,
+     "mc_standard_error": 0.0018950335609127734,
+     "median": 0.6033057851239669,
+     "q025": 0.33884297520661155,
+     "q975": 0.7520661157024794,
+     "q005": 0.2396694214876033,
+     "q995": 0.7851239669421488
+    },
+    "n_eff_components": {
+     "mean": 3.015692159328144,
+     "sd": 1.2489204466758148,
+     "mc_standard_error": 0.022802063372459058,
+     "median": 2.694827903552365,
+     "q025": 1.7544427366903728,
+     "q975": 6.185991249971123,
+     "q005": 1.6143882639910174,
+     "q995": 9.058915125533657
+    },
+    "legacy_extent_proxy": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "mc_standard_error": 0.0,
+     "median": 0.0,
+     "q025": 0.0,
+     "q975": 0.0,
+     "q005": 0.0,
+     "q995": 0.0
+    },
+    "geodesic_diameter": {
+     "mean": 14.031333333333333,
+     "sd": 2.9275487589678617,
+     "mc_standard_error": 0.05344948311609841,
+     "median": 14.0,
+     "q025": 9.0,
+     "q975": 20.0,
+     "q005": 7.0,
+     "q995": 23.0
+    },
+    "n_components": {
+     "mean": 32.336333333333336,
+     "sd": 5.530950222069311,
+     "mc_standard_error": 0.10098087336885231,
+     "median": 32.0,
+     "q025": 22.0,
+     "q975": 44.0,
+     "q005": 20.0,
+     "q995": 48.0
+    },
+    "true_winding_frequency": {
+     "observed": 0.0,
+     "successes": 0,
+     "draws": 3000,
+     "upper_95_if_zero": 0.0009980790119965555,
+     "note": "if zero windings are drawn, only an upper bound is available at this Monte Carlo size; the bound is stated, not a point value"
+    }
+   },
+   "H_fill_reference": {
+    "r50": 43.08131845707603,
+    "r80": 54.57105459856901,
+    "r90": 60.207972893961475,
+    "note": "radii of a UNIFORM cloud on this torus: the H_fill target the observed radius must not approach"
+   },
+   "H_linear_reference_r80": 25.63201123595259,
+   "H_sublinear_reference_r80": 14.79864858694874,
+   "expected_population_under_H_bound": 121.45530555555555,
+   "expected_density_under_H_bound": 0.010412834838439262,
+   "L_over_ell_relative": 30.547012947258843,
+   "L_over_r80_predicted": 12.640443897182102
+  },
+  "144": {
+   "L": 144,
+   "EXACT_KERNEL": {
+    "STATUS": "EXACT",
+    "static_source": {
+     "r50": 3.1622776601683795,
+     "r80": 6.082762530298219,
+     "r90": 8.06225774829855,
+     "second_moment": 24.899999999407164,
+     "rms": 4.989989979890457
+    },
+    "organiser_frame": {
+     "r50": 4.47213595499958,
+     "r80": 8.54400374531753,
+     "r90": 11.313708498984761,
+     "second_moment": 49.799997041542696,
+     "rms": 7.056911296136766
+    },
+    "mass_beyond_L_over_2": 6.660491565146765e-09,
+    "mass_beyond_reference_radius_12.8": 0.07099703362255316,
+    "periodic_image_correction": {
+     "reference_L": 1024,
+     "second_moment_at_L": 49.799997041542696,
+     "second_moment_at_reference": 49.80000004015004,
+     "relative_deficit": 6.02129988043562e-08,
+     "r80_at_L": 8.54400374531753,
+     "r80_at_reference": 8.54400374531753,
+     "r80_relative_deficit": 0.0,
+     "meaning": "the torus truncates the tail of the exact profile; under H_bound the measured radius must therefore INCREASE slightly with L and saturate, not stay exactly constant. This correction is a prediction, not a nuisance.",
+     "caveat": "r80 of the EXACT profile is a quantile over lattice distances and is therefore quantised: it can be identical at two L although the underlying profile differs. The SECOND MOMENT is the sensitive finite-size probe and is the one used for the correction."
+    },
+    "L_over_ell_relative": 40.72935059634513
+   },
+   "SAMPLED": {
+    "STATUS": "EXACT_LAW__MONTE_CARLO_EVALUATION",
+    "draws": 3000,
+    "N_X_used": 121,
+    "Rg": {
+     "mean": 6.045247992280848,
+     "sd": 0.7316896686727679,
+     "mc_standard_error": 0.0133587645541852,
+     "median": 5.944320796497587,
+     "q025": 4.881997681925393,
+     "q975": 7.800358179790952,
+     "q005": 4.585027209923945,
+     "q995": 8.518957042217275
+    },
+    "r50": {
+     "mean": 4.126958900611712,
+     "sd": 0.6882597376600849,
+     "mc_standard_error": 0.012565846124633878,
+     "median": 4.123105625617661,
+     "q025": 3.1622776601683795,
+     "q975": 5.830951894845301,
+     "q005": 3.0,
+     "q995": 6.324948164922248
+    },
+    "r80": {
+     "mean": 6.99449195862621,
+     "sd": 0.8026811361817816,
+     "mc_standard_error": 0.014654885492354598,
+     "median": 7.0710678118654755,
+     "q025": 5.656854249492381,
+     "q975": 8.94427190999916,
+     "q005": 5.0990195135927845,
+     "q995": 9.486832980505138
+    },
+    "r90": {
+     "mean": 9.289399076552519,
+     "sd": 1.1625469029874695,
+     "mc_standard_error": 0.021225105430800233,
+     "median": 9.219544457292887,
+     "q025": 7.280109889280518,
+     "q975": 12.041594578792296,
+     "q005": 7.0,
+     "q995": 13.038404810405298
+    },
+    "r80_organiser": {
+     "mean": 8.433027412592521,
+     "sd": 1.7394608071937134,
+     "mc_standard_error": 0.03175806406653804,
+     "median": 8.06225774829855,
+     "q025": 6.082762530298219,
+     "q975": 12.806248474865697,
+     "q005": 5.656854249492381,
+     "q995": 14.422895175239496
+    },
+    "organiser_to_core": {
+     "mean": 3.1527965462975964,
+     "sd": 1.685275641841301,
+     "mc_standard_error": 0.03076878282168259,
+     "median": 3.0,
+     "q025": 1.0,
+     "q975": 7.0710678118654755,
+     "q005": 0.0,
+     "q995": 8.06225774829855
+    },
+    "any_winding": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "mc_standard_error": 0.0,
+     "median": 0.0,
+     "q025": 0.0,
+     "q975": 0.0,
+     "q005": 0.0,
+     "q995": 0.0
+    },
+    "core_fraction": {
+     "mean": 0.3244159779614325,
+     "sd": 0.09658130892276837,
+     "mc_standard_error": 0.0017633253843458401,
+     "median": 0.3305785123966942,
+     "q025": 0.1322314049586777,
+     "q975": 0.48760330578512395,
+     "q005": 0.09090909090909091,
+     "q995": 0.520702479338844
+    },
+    "main_mass_fraction": {
+     "mean": 0.589694214876033,
+     "sd": 0.10335575366633885,
+     "mc_standard_error": 0.0018870092577000354,
+     "median": 0.6033057851239669,
+     "q025": 0.34710743801652894,
+     "q975": 0.7520661157024794,
+     "q005": 0.2727272727272727,
+     "q995": 0.7933884297520661
+    },
+    "n_eff_components": {
+     "mean": 3.013887680853989,
+     "sd": 1.20776441407147,
+     "mc_standard_error": 0.022050660457965134,
+     "median": 2.694827903552365,
+     "q025": 1.7565581514859316,
+     "q975": 6.286794930823193,
+     "q005": 1.5840078073495112,
+     "q995": 8.658293065873695
+    },
+    "legacy_extent_proxy": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "mc_standard_error": 0.0,
+     "median": 0.0,
+     "q025": 0.0,
+     "q975": 0.0,
+     "q005": 0.0,
+     "q995": 0.0
+    },
+    "geodesic_diameter": {
+     "mean": 14.03,
+     "sd": 2.907332831777534,
+     "mc_standard_error": 0.05308039247133093,
+     "median": 14.0,
+     "q025": 9.0,
+     "q975": 20.0,
+     "q005": 7.0,
+     "q995": 22.00500000000011
+    },
+    "n_components": {
+     "mean": 32.417,
+     "sd": 5.362837962342026,
+     "mc_standard_error": 0.09791157747399228,
+     "median": 32.0,
+     "q025": 22.0,
+     "q975": 44.0,
+     "q005": 20.0,
+     "q995": 48.0
+    },
+    "true_winding_frequency": {
+     "observed": 0.0,
+     "successes": 0,
+     "draws": 3000,
+     "upper_95_if_zero": 0.0009980790119965555,
+     "note": "if zero windings are drawn, only an upper bound is available at this Monte Carlo size; the bound is stated, not a point value"
+    }
+   },
+   "H_fill_reference": {
+    "r50": 57.42821606144492,
+    "r80": 72.80109889280519,
+    "r90": 80.26207074328447,
+    "note": "radii of a UNIFORM cloud on this torus: the H_fill target the observed radius must not approach"
+   },
+   "H_linear_reference_r80": 34.17601498127012,
+   "H_sublinear_reference_r80": 17.08800749063506,
+   "expected_population_under_H_bound": 121.45530555555555,
+   "expected_density_under_H_bound": 0.005857219596622085,
+   "L_over_ell_relative": 40.72935059634513,
+   "L_over_r80_predicted": 16.853925196242802
+  }
+ }
+}
