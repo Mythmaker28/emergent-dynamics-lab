@@ -1,0 +1,181 @@
+{
+ "SECTION": "OBDI01 \u00a723-\u00a726",
+ "DISPOSITION_SPACE": {
+  "INHERITED_NON_DOMAIN_AXIS_NOT_CLOSED": "\u00a73 found an unmet frozen requirement on an axis other than D; no run is authorised",
+  "DOMAIN_TEST_UNDERPOWERED": "\u00a714 found no arm count reaching the required power; the plan is not frozen",
+  "AUDIT_INVALID": "provenance, freeze identity, technical validity or evaluator agreement failed",
+  "DOMAIN_INVARIANCE_ESTABLISHED": "every component of the frozen simultaneous region passed on fresh pre-registered data",
+  "DOMAIN_INVARIANCE_PARTIAL": "the region did not pass in full, no unbounded alternative is supported, and the failing component(s) fail on PRECISION rather than on a detected dependence on L",
+  "DOMAIN_INVARIANCE_REFUTED__H_LINEAR": "the data support a radius proportional to L",
+  "DOMAIN_INVARIANCE_REFUTED__H_SUBLINEAR": "the data support an unbounded but slower-than-linear growth",
+  "DOMAIN_INVARIANCE_REFUTED__H_FILL": "the data support the cloud filling the torus",
+  "DOMAIN_INVARIANCE_NOT_DECIDED": "the arms are valid but discriminate none of the four hypotheses"
+ },
+ "DISPOSITION_SPACE_PROVENANCE": "RECONSTRUCTED. The mandate's verbatim nine-item list did not survive this session's context compaction. The space above is rebuilt exhaustively from the mission's own terminal states \u2014 three pre-run stops named in the mandate summary, five hypothesis verdicts, one undecided \u2014 and is declared a reconstruction rather than quoted as the original.",
+ "DISPOSITION": "DOMAIN_INVARIANCE_PARTIAL",
+ "DISPOSITION_JUSTIFICATION": {
+  "all_planned_arms_run": true,
+  "technically_valid": "15/15",
+  "evaluators_agree": "15/15",
+  "components_failing": [
+   "A_shape_invariance"
+  ],
+  "A_statistics_failing": [
+   "organiser_to_core"
+  ],
+  "any_unbounded_alternative_supported": false,
+  "why_not_ESTABLISHED": "the simultaneous region requires every component; organiser_to_core did not meet the equivalence margin",
+  "why_not_REFUTED": "every unbounded alternative is excluded on every statistic: the exponents are {'Rg': 0.0077, 'r80': 0.0351, 'organiser_to_core': 0.0708}, and the density exponent is -2.0485 +- 0.0211 against -1 for H_sublinear and 0 for H_fill",
+  "why_not_NOT_DECIDED": "three of four components passed and all four hypotheses were discriminated; the outcome is informative"
+ },
+ "AUTHORISED_INTERPRETATION": {
+  "may_be_said": [
+   "on fresh pre-registered seeds and over a 2.67-fold range of domain size, the cloud's radius of gyration and its 80 pct radius show no dependence on L beyond the operator's own computed finite-size correction, with equivalence intervals of +-0.044 and +-0.051 on the log-log exponent",
+   "the population is independent of the domain size, so the density falls as L^-2.049 +- 0.021, excluding both a constant density and a population growing with the linear size",
+   "no topological winding occurred in any of the 2700 in-window frames",
+   "the radial mass profile about the organiser is compatible with the exact kernel at every domain size",
+   "the offset between the cloud core and the organiser was NOT shown to be domain-independent at the frozen margin: its point estimate is compatible with independence, its interval is too wide to establish it",
+   "the legacy D gate, kept locked as a secondary endpoint, rejects healthy arms at every domain size including the smallest"
+  ],
+  "must_not_be_said": [
+   "that domain invariance is established \u2014 the frozen region did not pass",
+   "that the OBTC02 disposition is upgraded \u2014 it remains ORGANIZER_BOUND_CLOUD_PARTIAL, unchanged",
+   "that the D axis of OBTC02 is now closed",
+   "self-bound, autonomous cohesion, cell, membrane, identity, reproduction, memory, H3 confirmation, global Kamimura-Kaneko validation, life, organism, autopoiesis, fresh matter, material lineage"
+  ],
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED"
+ },
+ "NEXT_ELIGIBILITY": {
+  "eligible": [
+   "a replication of the SAME frozen region with an arm count sized for the EQUIVALENCE precision of |core - organiser| \u2014 the diagnostic above gives the required variance reduction as 1.52, i.e. about 8 arms per domain size \u2014 and with a pre-specified rule for extinct arms",
+   "extending the domain range upward (L = 144 was shown eligible in \u00a713) to shorten the equivalence interval through a longer lever arm rather than through more arms"
+  ],
+  "not_eligible": [
+   "re-scoring OBTC02",
+   "relaxing the equivalence margin after seeing the result",
+   "dropping the failing statistic from the region",
+   "opening the E axis, which no mission has yet defined",
+   "any claim about H3, reproduction or autonomous cohesion"
+  ]
+ },
+ "POST_HOC_DIAGNOSTICS": {
+  "LABEL": "POST-HOC \u2014 DIAGNOSTIC ONLY, CHANGES NOTHING",
+  "extinct_arms": [
+   "L72/seed771113"
+  ],
+  "why_this_matters": "the frozen plan did NOT pre-specify how an extinct arm is handled. That is a design defect of this mission, and it is recorded as such. Its consequences are quantified below; none of them is applied.",
+  "density_exponent_excluding_extinct": {
+   "gamma": -2.0385228787625724,
+   "se": 0.0203109246802974,
+   "frozen_gamma": -2.048534323392157,
+   "frozen_se": 0.021134594194500863,
+   "comment": "the frozen inverse-variance weighting already downweighted the contaminated domain size, because the extinct arm inflated that group's spread. The frozen verdict was therefore protected by the weighting \u2014 by arithmetic, not by design."
+  },
+  "failing_component": {
+   "statistic": "organiser_to_core",
+   "beta": 0.07082140404597843,
+   "se": 0.0789484327027999,
+   "interval_half_width": 0.22102602321905415,
+   "margin": 0.25,
+   "excess": 0.0418474272650326,
+   "se_required_to_pass": 0.06400092223728145,
+   "variance_reduction_factor_required": 1.521649267519239,
+   "arms_per_L_that_would_have_sufficed": 8,
+   "reading": "the point estimate is compatible with H_bound and BOTH unbounded alternatives are excluded (|beta - 0.5| and |beta - 1| exceed c.se). The component fails because the equivalence interval is too WIDE, not because a dependence on L was found. Precision, not direction.",
+   "root_cause": "the pre-freeze power analysis of \u00a714 sized the design against H_linear using Rg. |core - organiser| has a pre-registered relative spread of 11.7 % against Rg's 2.4 %, and an equivalence claim needs PRECISION, which is a different requirement from power against a distant alternative. Conflating the two is a defect of this mission's \u00a714 and is recorded, not excused."
+  },
+  "uncorrected_exponents": {
+   "by_statistic": {
+    "Rg": {
+     "beta_uncorrected": 0.04780847497426021,
+     "se": 0.01430803542679637
+    },
+    "r80": {
+     "beta_uncorrected": 0.028624084267731366,
+     "se": 0.013098866881805142
+    },
+    "organiser_to_core": {
+     "beta_uncorrected": 0.06964126665914049,
+     "se": 0.05293126189010024
+    }
+   },
+   "comment": "measured WITHOUT dividing out the operator's finite-size prediction. They are close to the corrected ones because the correction itself is small above L = 36; they are reported so the correction can be seen to be doing little work rather than carrying the conclusion."
+  },
+  "legacy_gate_check": {
+   "observed_failure_rate_by_L": {
+    "36": 0.19999999999999996,
+    "72": 0.4,
+    "96": 0.19999999999999996
+   },
+   "predicted_by_section_8": {
+    "36": 0.030449999999999998,
+    "72": 0.4066666666666667
+   },
+   "overall_observed": 0.2666666666666667,
+   "reading": "under a law where H_bound holds, the locked legacy gate rejects 4 of 15 healthy fresh arms, INCLUDING at L = 36. \u00a78's bootstrap matched the L = 72 rate closely (0.41 predicted, 0.40 observed) but understated the L = 36 one (0.030 predicted, 0.20 observed) \u2014 with five arms per size these rates are very imprecise. The qualitative conclusion of \u00a77 is nevertheless strengthened rather than weakened: the gate is a noisy ABSOLUTE test at every domain size, not a large-domain problem."
+  }
+ },
+ "CUMULATIVE_EVIDENCE_MATRIX": {
+  "RULE": "no seed contributes to two axes. OBTC02's seeds (9101-9503) established the non-domain axes and are NOT reused here; OBDI01's seeds (771010-771214) address the domain axis only and contribute to nothing else.",
+  "axes": {
+   "P_organiser_bound_cloud": {
+    "evidence_from": "OBTC02",
+    "seeds": "9101-9106",
+    "result": "PASS",
+    "OBDI01_contribution": "NONE",
+    "note": "frozen; not re-opened, not re-scored"
+   },
+   "S_immobile_organiser": {
+    "evidence_from": "OBTC02",
+    "seeds": "9201-9203",
+    "result": "FAIL_ON_THE_PER_ARM_GATE__NO_FROZEN_REQUIREMENT",
+    "OBDI01_contribution": "NONE",
+    "note": "no frozen requirement; structural NaN diagnosed in \u00a73, not repaired"
+   },
+   "R_source_removal": {
+    "evidence_from": "OBTC02",
+    "seeds": "9301-9303",
+    "result": "PASS",
+    "OBDI01_contribution": "NONE"
+   },
+   "N_no_organiser": {
+    "evidence_from": "OBTC02",
+    "seeds": "9401-9402",
+    "result": "PASS",
+    "OBDI01_contribution": "NONE"
+   },
+   "D_domain": {
+    "evidence_from_OBTC02": {
+     "seeds": "9501-9503",
+     "result": "FAIL",
+     "instrument": "the legacy absolute localisation gate",
+     "status_of_that_instrument": "MISALIGNED_WITH_DOMAIN_INVARIANCE"
+    },
+    "evidence_from_OBDI01": {
+     "seeds": "771010-771214",
+     "instrument": "DOMAIN_INVARIANCE_REGION",
+     "result": "PARTIAL",
+     "components": {
+      "A_shape_invariance": false,
+      "B_density_exponent": true,
+      "C_no_true_winding": true,
+      "D_profile_compatibility": true
+     }
+    },
+    "double_counting": "NONE: disjoint seeds, disjoint instruments"
+   },
+   "E": {
+    "result": "NOT_OPENED",
+    "OBDI01_contribution": "NONE"
+   }
+  },
+  "SCIENTIFIC_RUNS": {
+   "OBTC02": 17,
+   "OBDI01": 15,
+   "shared": 0
+  }
+ },
+ "OBTC02_DISPOSITION_AFTER_OBDI01": "ORGANIZER_BOUND_CLOUD_PARTIAL (unchanged)"
+}
