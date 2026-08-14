@@ -1,0 +1,121 @@
+{
+ "SECTION": "OBTR01 \u00a73",
+ "SCOPE": "append-only closure of the post-run adjudication deviation that OBDCA01 recorded against OBDI02. No OBDI02 or OBDCA01 artefact is modified.",
+ "CHECKS": {
+  "FREEZE": {
+   "recorded_METHODS_CORE_HASH": "59b19169fa087caa39f8b1139a946d8a1cbad23519bea3e604c8bd5bad525f1b",
+   "recomputed_from_the_recorded_file_digests": "59b19169fa087caa39f8b1139a946d8a1cbad23519bea3e604c8bd5bad525f1b",
+   "HASH_REPRODUCES": true,
+   "files_in_core": 16,
+   "files_resolved": 16,
+   "files_whose_bytes_still_match": 16,
+   "files_whose_bytes_changed": [],
+   "files_not_found": [],
+   "spec_sha256_recorded": "c65aaef49e07115df647afaaf0ddea088eb494eef7734e1b8db8177921046a51",
+   "spec_sha256_actual": "c65aaef49e07115df647afaaf0ddea088eb494eef7734e1b8db8177921046a51",
+   "frozen_margin_field": 0.25,
+   "VERDICT": "UNTOUCHED"
+  },
+  "TRAJECTORIES": {
+   "digest_authority": "git blob ids of the delivered branch, recomputed from the bytes",
+   "raw_files_on_disk": 138,
+   "raw_files_recorded_in_the_delivered_tree": 138,
+   "raw_files_whose_blob_id_was_recomputed": 138,
+   "raw_files_whose_blob_id_changed": [],
+   "arms_recorded_in__arms_json": 138,
+   "distinct_seeds_declared_at_freeze_FRESH_FLAT": 138,
+   "seeds_present_in_raw": 138,
+   "any_seed_appears_twice": false,
+   "seeds_declared_but_absent": [],
+   "seeds_present_but_not_declared": [],
+   "retired_seeds_declared_disjoint": true,
+   "VERDICT": "UNTOUCHED"
+  },
+  "GATE": {
+   "frozen_qualification_rule_verbatim": "the global qualification requires BOTH the population support gate AND the conditional equivalence test",
+   "conditions_that_rule_names": [
+    "population support gate",
+    "conditional equivalence test"
+   ],
+   "population_support_gate_PASS": true,
+   "conditional_equivalence_test_PASS": true,
+   "BOTH_FROZEN_CONDITIONS_SATISFIED": true,
+   "frozen_status_of_the_0p042_figure": "reported, never decisive. Its power at the frozen sample size is 0.314, and reaching 90 % would need about 200 arms per size, roughly 10.1 hours of engine time, far beyond the declared budget cap of 49 arms per size. It is therefore PRE-DECLARED UNDERPOWERED before any run.",
+   "ZERO_P_042_DECLARED_NON_DECISIVE_IN_THE_FREEZE": true,
+   "frozen_dispositions_are_a_flat_list_with_no_selection_rule": true,
+   "STRUCTURAL_GAP": "the frozen protocol enumerates nine admissible dispositions but freezes NO rule mapping the outcome vector onto them. That gap, not a moved threshold, is what let a post-run file choose the label. It is a defect of the OBDI02 protocol; it is inherited as a lesson about protocol design, not as a corrupted measurement.",
+   "technical_validity_reevaluated": {
+    "arms_checked": 138,
+    "requirements_declared": [
+     "FRAME_STREAM_TABLE_IDENTITY",
+     "ONLINE_POSTHOC_AGREEMENT",
+     "THIRD_BOUNDARY_TESTS"
+    ],
+    "declared_fields": [
+     "EXPECTED_FRAME_COUNT",
+     "STREAM_FRAME_COUNT",
+     "TABLE_FRAME_COUNT",
+     "STREAM_FRAME_INDEX_SHA256",
+     "TABLE_FRAME_INDEX_SHA256",
+     "STREAM_SPATIAL_PAYLOAD_SHA256",
+     "TABLE_SPATIAL_PAYLOAD_SHA256"
+    ],
+    "arms_failing_each_re_evaluated_requirement": {
+     "FRAME_STREAM_TABLE_IDENTITY": 0,
+     "ONLINE_POSTHOC_AGREEMENT": 0,
+     "DECLARED_FIELDS_PRESENT": 0
+    },
+    "failing_tags": {},
+    "THIRD_BOUNDARY_TESTS": "evaluated inside gate_obtc02.evaluate, whose bytes are covered by METHODS_CORE; the per-arm outcome it feeds is RUN_TECHNICALLY_VALID, true on every arm",
+    "arms_with_RUN_TECHNICALLY_VALID_false": []
+   },
+   "technical_validity_requirements_that_fail_on_re_evaluation": [],
+   "stopping_rule_early_stopping": "FORBIDDEN",
+   "planned_arms": 138,
+   "arms_run": 138,
+   "ALL_PLANNED_ARMS_RUN": true,
+   "hard_cap_total_arms": 138,
+   "VERDICT": "UNTOUCHED"
+  },
+  "OUTCOME": {
+   "OBDI02_own_PRIMARY": {
+    "beta": 0.08219487763309226,
+    "se": 0.04390627491218356,
+    "critical_value_c": 1.6448536269514733,
+    "equivalence_margin": 0.25,
+    "interval_inside_margin": true,
+    "PASS": true,
+    "achieved_equivalence_bound": 0.15441427316832587
+   },
+   "OBDCA01_independent_recomputation": {
+    "beta": 0.08219487763309226,
+    "se": 0.04390627491218356
+   },
+   "BIT_IDENTICAL_BETA": true,
+   "BIT_IDENTICAL_SE": true,
+   "margin_in_the_freeze": 0.25,
+   "margin_used_by_the_primary_test": 0.25,
+   "MARGINS_AGREE": true,
+   "the_frozen_primary_test_verdict": "PASS",
+   "what_the_deviation_added_after_the_results_were_open": "primary_interval_inside_[-0.042,+0.042]",
+   "reported_disposition": "DOMAIN_RELATIVE_ATTACHMENT_EQUIVALENCE_NOT_ESTABLISHED",
+   "conformant_disposition": "ORGANIZER_BOUND_TURNOVER_CLOUD_QUALIFIED_BY_DOMAIN_PRECISION_CLOSURE",
+   "direction": "0.042 < 0.25, so the added condition is STRICTLY stronger than the frozen one. A strictly stronger condition can only withhold a qualification, never grant one.",
+   "VERDICT": "LABEL_ONLY"
+  }
+ },
+ "WHAT_THE_DEVIATION_TOUCHED": {
+  "DATA": false,
+  "GATE": false,
+  "FREEZE": false,
+  "TRAJECTORIES": false
+ },
+ "BLOCKING_CATEGORIES": [],
+ "OBDI02_POSTRUN_ADJUDICATION_DEVIATION": "CONFIRMED",
+ "DEVIATION_DIRECTION": "CONSERVATIVE_FALSE_NONQUALIFICATION",
+ "FROZEN_EVIDENCE_STATUS": "UNAFFECTED",
+ "CUMULATIVE_CLOUD_EVIDENCE_STATUS": "VALID",
+ "OBDCA01_FORMAL_LIMITATION": "QUALIFICATION_SUPPORTED_DESPITE_RECORDED_POSTRUN_ADJUDICATION_DEVIATION",
+ "CLOSURE": "CLOSED_APPEND_ONLY",
+ "WHY": "the deviation is confined to the choice of a disposition LABEL after the results were open. The freeze reproduces bit for bit, every declared seed is present exactly once with an unchanged digest, no declared gate condition is missing, and the primary estimand recomputed by OBDCA01 agrees with the value OBDI02 recorded. The added condition was strictly stricter than the frozen margin, so its only possible effect was to withhold a qualification the freeze granted."
+}
