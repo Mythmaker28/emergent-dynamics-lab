@@ -1,0 +1,267 @@
+{
+ "DISPOSITION": "AUDIT_INVALID",
+ "why": "the frozen sequential rule fired on the first arm (online and post hoc gates disagree); one arm's result had been opened; code was corrected after the freeze. The mandate assigns AUDIT_INVALID to each of these and forbids resumption in this mission.",
+ "valid_without_starts": [
+  "the source-transport-decay operator and its analytic predictions",
+  "the exact discrete static and relative profiles",
+  "the N2 generative envelope",
+  "the metric-dependence audit",
+  "the gate satisfiability certificate",
+  "the topological winding tests",
+  "the provenance re-verification"
+ ],
+ "operator": {
+  "constants": {
+   "q_X": 0.025658350974743116,
+   "q_Y": 0.025658350974743116,
+   "a_X": 0.05000000000000003,
+   "a_Y": 0.05000000000000003,
+   "D_X": 0.025000000000000015,
+   "D_Y": 0.025000000000000015,
+   "a_relative": 0.10000000000000006,
+   "D_relative": 0.05000000000000003,
+   "mu_X": 0.004,
+   "ell_X_isolated": 2.500000000000001,
+   "ell_relative": 3.5355339059327386
+  },
+  "static_source": {
+   "r50": 3.1622776601683795,
+   "r80": 6.082762530298219,
+   "r90": 8.06225774829855,
+   "second_moment_torus": 24.628174036313673,
+   "second_moment_infinite_lattice": 24.900000000000016,
+   "rms_radius": 4.962678111293707,
+   "relaxation_time_steps": 250.0
+  },
+  "mobile_source": {
+   "r50": 4.47213595499958,
+   "r80": 8.54400374531753,
+   "r90": 11.313708498984761,
+   "second_moment_torus": 46.68474845341292,
+   "second_moment_infinite_lattice": 49.80000000000003,
+   "rms_radius": 6.832623833741539
+  },
+  "core_to_organiser": {
+   "mean_age_steps": 249.0,
+   "E_min_age_steps": 124.25050100200401,
+   "second_moment": 12.425050100200409,
+   "rms": 3.5249184529858857,
+   "mean_modulus_rayleigh": 3.1238776430613733,
+   "optimal_lag_steps": 249.0
+  },
+  "source_off": {
+   "decay_law": "N_X(t) = N_X(0) (1 - mu)^t",
+   "e_folding_steps": 249.49966599830609,
+   "half_life_steps": 172.93999003737392
+  },
+  "domain_condition": {
+   "requirement": "L must be large compared with the relative localisation length so that the periodic images do not overlap",
+   "ell_relative": 3.5355339059327386,
+   "L_over_ell_relative": 10.182337649086282,
+   "profile_mass_beyond_L_over_2": 0.011572619264803092
+  },
+  "blocked_hop_fraction_measured": {
+   "X": 0.0003435220511920946,
+   "Y": 0.00089126559714795,
+   "note": "the ONLY departure from the free-walk convolution. Measured over a full arm."
+  },
+  "SOURCE_RESPONSE_OPERATOR": "APPROXIMATE_WITH_BOUNDS",
+  "bound": "the fraction of transport events that violate the free-walk assumption is 3.44e-4 for X and 8.91e-4 for Y on the arm measured; the induced relative error on the accumulated second moment is bounded by the same order, i.e. below 0.1 %",
+  "condition_E_needed": false,
+  "condition_E_reason": "the organiser's motion IS weakly coupled to X, through the free-capacity acceptance of its own hops, at the 8.9e-4 level. But the confound condition E exists to avoid \u2014 conditioning a null on an outcome-derived trajectory \u2014 does not arise, because the GENERATIVE null N2 conditions on no realised trajectory at all. E is therefore not opened."
+ },
+ "metric_dependence": {
+  "rows": [
+   {
+    "N_X": 30,
+    "median_r80": 6.708203932499369,
+    "median_Rg": 5.740932186636478,
+    "median_core_fraction": 0.6333333333333333,
+    "median_main_fraction": 0.23333333333333334,
+    "median_n_eff": 9.678538390379279,
+    "q05_r80": 4.47213595499958,
+    "q95_r80": 9.002769256906872
+   },
+   {
+    "N_X": 60,
+    "median_r80": 7.0710678118654755,
+    "median_Rg": 5.749250016999566,
+    "median_core_fraction": 0.6333333333333333,
+    "median_main_fraction": 0.375,
+    "median_n_eff": 5.95120991540429,
+    "q05_r80": 5.370857542457418,
+    "q95_r80": 8.488217492792517
+   },
+   {
+    "N_X": 120,
+    "median_r80": 7.0,
+    "median_Rg": 5.785330204656559,
+    "median_core_fraction": 0.6416666666666667,
+    "median_main_fraction": 0.6291666666666667,
+    "median_n_eff": 2.4887105394499778,
+    "q05_r80": 6.0,
+    "q95_r80": 8.071455423445387
+   },
+   {
+    "N_X": 200,
+    "median_r80": 6.708203932499369,
+    "median_Rg": 5.799848867880632,
+    "median_core_fraction": 0.6425000000000001,
+    "median_main_fraction": 0.725,
+    "median_n_eff": 1.8866225955828346,
+    "q05_r80": 6.078624403783309,
+    "q95_r80": 8.491133568878771
+   },
+   {
+    "N_X": 320,
+    "median_r80": 7.0710678118654755,
+    "median_Rg": 5.700453036768501,
+    "median_core_fraction": 0.646875,
+    "median_main_fraction": 0.8,
+    "median_n_eff": 1.5578646390974606,
+    "q05_r80": 6.324555320336759,
+    "q95_r80": 8.06225774829855
+   }
+  ],
+  "r80_relative_drift_over_N_X": 0.052499880309545464,
+  "main_fraction_relative_drift_over_N_X": 1.0256410256410255,
+  "null_band_narrows_with_N_X": true,
+  "finding": "under the generative null, where there is NO cohesion, the shape statistics still move with N_X: the main-component mass fraction rises and the null band narrows. A statistic compared against a FIXED threshold would therefore reward a larger population as if it were cohesion. Every comparison in this mission is made against the null EVALUATED AT THE ARM'S OWN N_X."
+ },
+ "consumed_arm_DIAGNOSTIC_ONLY": {
+  "tag": "P/seed8101",
+  "seed": 8101,
+  "L": 36,
+  "status": "OPENED, and therefore burnt for any future confirmation. Reported as a diagnostic and never as evidence for or against the disposition.",
+  "N_X_mean": 124.06211111111111,
+  "N_X_min": 86.0,
+  "drift_over_thirds": 0.011388637933783209,
+  "turnover_replacements": 35.57089235768105,
+  "initial_units_still_present": 0.0,
+  "final_units_born_in_window": 1.0,
+  "molecular_ledger": {
+   "n_ids_created": 5394,
+   "n_alive_at_end": 150,
+   "n_dead_recorded": 5244,
+   "tracker_consistent_with_counts": true,
+   "replacements": 35.57089235768105,
+   "initial_still_present": 0.0,
+   "final_born_in_window": 1.0,
+   "median_lifetime_steps": 172.0,
+   "mean_lifetime_steps": 247.7480930587338,
+   "corr_y": 0.9183188197511784,
+   "corr_x": 0.9861607693064931,
+   "lag": {
+    "lag_steps": 50,
+    "r": 0.3746139145928748
+   }
+  },
+  "mean_molecular_lifetime_steps": 247.7480930587338,
+  "analytic_lifetime_steps": 250.0,
+  "real_winding_frames": 0,
+  "occupancy_exactly_constant": true,
+  "occupancy_fraction": 0.37524112654320996,
+  "observed_vs_frozen_envelope": {
+   "r80": {
+    "observed": 7.0710678118654755,
+    "envelope": [
+     5.385164807134504,
+     9.221688824040521
+    ],
+    "inside": true
+   },
+   "Rg": {
+    "observed": 5.8691492015681135,
+    "envelope": [
+     4.7463093720456255,
+     7.530907638913954
+    ],
+    "inside": true
+   },
+   "organiser_to_core": {
+    "observed": 2.8284271247461903,
+    "envelope": [
+     0.99,
+     7.211102550927978
+    ],
+    "inside": true
+   },
+   "core_fraction": {
+    "observed": 0.6334032278561443,
+    "envelope": [
+     0.36624999999999996,
+     0.7667499999999999
+    ],
+    "inside": true
+   },
+   "main_mass_fraction": {
+    "observed": 0.6042211566405116,
+    "envelope": [
+     0.2833333333333333,
+     0.7666666666666667
+    ],
+    "inside": true
+   },
+   "n_eff_components": {
+    "observed": 2.687523494022674,
+    "envelope": [
+     1.6912725372354325,
+     7.3709600562413575
+    ],
+    "inside": true
+   }
+  },
+  "statistics_inside_envelope": 6,
+  "Rg_observed": 5.8691492015681135,
+  "Rg_analytic": 5.853178482945187,
+  "core_to_organiser_observed": 2.8284271247461903,
+  "core_to_organiser_analytic_mean_modulus": 3.1238776430613733,
+  "unwrapped_position_correlation": {
+   "y": 0.9183188197511784,
+   "x": 0.9861607693064931
+  },
+  "median_core_step_displacement": 1.0,
+  "N3_decorrelated_median": 8.06225774829855,
+  "ratio_to_N3": 0.12403473458920847,
+  "per_condition": {
+   "POPULATION_STATIONARY": true,
+   "RELATIVE_LOCALIZATION": true,
+   "SOURCE_ATTACHMENT": true,
+   "CORE_CONTINUITY": true,
+   "MATERIAL_TURNOVER": true,
+   "FREE_CAPACITY_PRESERVED": true,
+   "NO_GLOBAL_FILLING": true,
+   "NO_TRUE_WINDING": true,
+   "NO_KINETIC_FREEZE": true,
+   "MODEL_PREDICTION_COMPATIBILITY": true
+  },
+  "birth_offsets_from_the_organiser": {
+   "n_events": 3916,
+   "all_at_the_organiser_cell": true,
+   "max_abs_dy": 0,
+   "max_abs_dx": 0
+  }
+ },
+ "seeds_burnt": [
+  8101
+ ],
+ "seed_families_not_to_reuse": [
+  8101,
+  8102,
+  8103,
+  8104,
+  8105,
+  8106,
+  8201,
+  8202,
+  8203,
+  8301,
+  8302,
+  8303,
+  8401,
+  8402,
+  8501,
+  8502,
+  8503
+ ]
+}
