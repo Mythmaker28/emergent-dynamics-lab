@@ -1,0 +1,300 @@
+{
+ "KERNELS": {
+  "SECTION": "OBTR01 \u00a76.1, \u00a77",
+  "ENGINE_RULE": "four sequential passes per step in the frozen order (+y, -y, +x, -x); movers ~ Binomial(n, p_hop/4) per pass; accepted = min(movers, dest_free) PER CELL",
+  "q": 0.025658350974743116,
+  "p_hop": 0.10263340389897246,
+  "HISTORICAL_CONVENTION_D_eq_p_hop_over_4": 0.025658350974743116,
+  "CORRECTED_a_per_axis": 0.05000000000000003,
+  "CORRECTED_D_eq_q_times_one_minus_q": 0.025000000000000015,
+  "RATIO_historical_over_corrected": 1.026334038989724,
+  "ONE_STEP_LAW": {
+   "(-1, -1)": 0.0006250000000000008,
+   "(-1, 0)": 0.023750000000000014,
+   "(-1, 1)": 0.0006250000000000008,
+   "(0, -1)": 0.023750000000000014,
+   "(0, 0)": 0.9025,
+   "(0, 1)": 0.023750000000000014,
+   "(1, -1)": 0.0006250000000000008,
+   "(1, 0)": 0.023750000000000014,
+   "(1, 1)": 0.0006250000000000008
+  },
+  "SUPPORT_SIZE": 9,
+  "HAS_DIAGONAL_SUPPORT": true,
+  "ALGEBRA_MATCHES_BRUTE_FORCE_ENUMERATION": true,
+  "MOMENTS": {
+   "mass": 1.0,
+   "mean_y": 0.0,
+   "mean_x": 0.0,
+   "var_y": 0.05000000000000003,
+   "var_x": 0.05000000000000003,
+   "cov": 0.0,
+   "second_moment_r2": 0.10000000000000006
+  },
+  "MASS_IS_ONE": true,
+  "AXES_INDEPENDENT_cov_zero": true,
+  "ENGINE_MONTE_CARLO": {
+   "draws": 4000,
+   "law": {
+    "(-1, -1)": 0.00125,
+    "(-1, 0)": 0.02475,
+    "(-1, 1)": 0.00025,
+    "(0, -1)": 0.024,
+    "(0, 0)": 0.90275,
+    "(0, 1)": 0.022,
+    "(1, -1)": 0.0005,
+    "(1, 0)": 0.02425,
+    "(1, 1)": 0.00025
+   },
+   "total_variation_vs_exact": 0.00262500000000003,
+   "one_sigma_of_a_cell": 0.007905694150420948,
+   "WITHIN_3_SIGMA": true
+  },
+  "CHARACTERISTIC_FUNCTION_CHECK": [
+   {
+    "k": [
+     0.0,
+     0.0
+    ],
+    "closed_form": 1.0,
+    "from_kernel": 1.0,
+    "abs_diff": 0.0
+   },
+   {
+    "k": [
+     0.3,
+     0.0
+    ],
+    "closed_form": 0.9977668244562803,
+    "from_kernel": 0.9977668244562803,
+    "abs_diff": 0.0
+   },
+   {
+    "k": [
+     0.0,
+     1.1
+    ],
+    "closed_form": 0.9726798060712788,
+    "from_kernel": 0.9726798060712789,
+    "abs_diff": 1.1102230246251565e-16
+   },
+   {
+    "k": [
+     0.7,
+     2.2
+    ],
+    "closed_form": 0.9097509246220318,
+    "from_kernel": 0.9097509246220319,
+    "abs_diff": 1.1102230246251565e-16
+   },
+   {
+    "k": [
+     3.141592653589793,
+     3.141592653589793
+    ],
+    "closed_form": 0.8099999999999998,
+    "from_kernel": 0.8099999999999999,
+    "abs_diff": 1.1102230246251565e-16
+   }
+  ],
+  "RELATIVE_KERNEL": {
+   "support_size": 25,
+   "moments": {
+    "mass": 0.9999999999999997,
+    "mean_y": -3.903127820947816e-18,
+    "mean_x": -2.6020852139652106e-18,
+    "var_y": 0.10000000000000006,
+    "var_x": 0.10000000000000006,
+    "cov": -1.0156271191104564e-35,
+    "second_moment_r2": 0.20000000000000012
+   },
+   "a_relative_closed_form": 0.10000000000000006,
+   "a_relative_from_kernel": 0.10000000000000006,
+   "MATCHES": true
+  },
+  "RELATIVE_KERNEL_STATIC_ORGANISER": {
+   "condition": "S: p_hop_Y = 0, the organiser is immobile",
+   "support_size": 25,
+   "moments": {
+    "mass": 1.0000000000000002,
+    "mean_y": -4.336808689942018e-19,
+    "mean_x": -2.168404344971009e-19,
+    "var_y": 0.05000000000000003,
+    "var_x": 0.05000000000000003,
+    "cov": -9.4039548065783e-38,
+    "second_moment_r2": 0.10000000000000006
+   },
+   "a_relative_closed_form": 0.05000000000000003,
+   "COLLAPSES_ONTO_K_X": true
+  },
+  "SYMMETRY_TESTS": {
+   "K_X": {
+    "reflection_y": 0.0,
+    "reflection_x": 0.0,
+    "axis_swap": 0.0,
+    "point_symmetry": 0.0,
+    "ALL_WITHIN_TOL": true
+   },
+   "K_relative": {
+    "reflection_y": 0.0,
+    "reflection_x": 0.0,
+    "axis_swap": 0.0,
+    "point_symmetry": 0.0,
+    "ALL_WITHIN_TOL": true
+   }
+  },
+  "DIFFUSION_CONVENTION_TEST": {
+   "steps": 400,
+   "walkers": 240,
+   "axis_samples": 480,
+   "msd_per_axis_measured": 21.25,
+   "msd_per_axis_predicted_a_t": 20.00000000000001,
+   "msd_per_axis_historical_p_hop_over_4_times_t": 10.263340389897246,
+   "relative_error_vs_corrected": 0.062499999999999334,
+   "relative_error_vs_historical": 1.0704760041786696,
+   "se_of_msd": 1.374535130743378,
+   "z_vs_corrected": 0.9170347988877448
+  },
+  "INDEPENDENT_IMPLEMENTATION": {
+   "source": "OBTC02/code/source_operator.py, frozen before this mission",
+   "a_X": {
+    "here": 0.05000000000000003,
+    "there": 0.05000000000000003,
+    "abs_diff": 0.0
+   },
+   "D_X": {
+    "here": 0.025000000000000015,
+    "there": 0.025000000000000015,
+    "abs_diff": 0.0
+   },
+   "a_relative_mobile": {
+    "here": 0.10000000000000006,
+    "there": 0.10000000000000006,
+    "abs_diff": 0.0
+   },
+   "a_relative_static": {
+    "here": 0.05000000000000003,
+    "there": 0.05000000000000003,
+    "abs_diff": 0.0
+   },
+   "p_hop_Y_mobile": 0.10263340389897246,
+   "p_hop_Y_static": 0.0,
+   "frozen_analytic_block": {
+    "a_X": 0.05,
+    "a_Y": 0.05,
+    "D_X": 0.025,
+    "D_relative": 0.05,
+    "ell_X_isolated": 2.5,
+    "ell_relative": 3.5355339059327386,
+    "core_radius_cells": 5.0,
+    "static_r80": 6.082762530298219,
+    "organiser_frame_r80": 8.54400374531753,
+    "core_to_organiser_mean_modulus": 3.1238776430613733,
+    "optimal_lag_steps": 249.0,
+    "source_off_e_folding_steps": 249.49966599830609,
+    "source_off_half_life_steps": 172.93999003737392
+   },
+   "AGREES_TO_MACHINE_PRECISION": true
+  },
+  "IMPORT_PROVENANCE": {
+   "lawspec_v2": {
+    "file": "/home/claude/OBTR01/verify/obdca01/wc/ORR01/code/lawspec_v2.py",
+    "sha256": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94",
+    "inside_verified_working_copy": true
+   },
+   "observe": {
+    "file": "/home/claude/OBTR01/verify/obdca01/wc/ORR01/code/observe.py",
+    "sha256": "55840f35f44ccd424c4b71c80d591614d01c9143ca21e9c14e87e0faeeec2fbd",
+    "inside_verified_working_copy": true
+   },
+   "engine_obtc": {
+    "file": "/home/claude/OBTR01/verify/obdca01/wc/OBTC02/code/engine_obtc.py",
+    "sha256": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30",
+    "inside_verified_working_copy": true
+   },
+   "guard_obtc": {
+    "file": "/home/claude/OBTR01/verify/obdca01/wc/OBTC02/code/guard_obtc.py",
+    "sha256": "ae6f6f241fdf7ae481e8443f135dbb276a0dc0d20d1d67da28d1f6710b7b5c9d",
+    "inside_verified_working_copy": true
+   },
+   "source_operator": {
+    "file": "/home/claude/OBTR01/verify/obdca01/wc/OBTC02/code/source_operator.py",
+    "sha256": "537f1d4576c64af7c845a99a863c559e94efdf6cddba2eb9e5920fe64bae99cf",
+    "inside_verified_working_copy": true
+   },
+   "protocol_obtc02": {
+    "file": "/home/claude/OBTR01/verify/obdca01/wc/OBTC02/code/protocol_obtc02.py",
+    "sha256": "0b39875cef0aea3fef2ba0beaab7516208d3f3e4d9bd351b880d30e2ada2c8fe",
+    "inside_verified_working_copy": true
+   },
+   "ALL_FROM_VERIFIED_WORKING_COPY": true
+  },
+  "X_KERNEL_STATUS": "CONDITIONAL_EXACT",
+  "ORGANIZER_KERNEL_STATUS": "CONDITIONAL_EXACT",
+  "RELATIVE_KERNEL_STATUS": "CONDITIONAL_EXACT",
+  "CONDITION": "exact conditionally on no capacity refusal. `accepted = min(movers, dest_free)` is a per-CELL truncation, so refusal is not a per-particle thinning and cannot be absorbed into an effective q.",
+  "INTRA_STEP_ORDER": [
+   "_diffuse X",
+   "_diffuse Y",
+   "_diffuse SX",
+   "_diffuse SY",
+   "_react",
+   "_decay",
+   "_exchange"
+  ],
+  "WHY_THE_RELATIVE_KERNEL_IS_A_CORRELATION": "X and Y diffuse in two consecutive calls that draw independent binomials; they interact only through `free()`, which is the capacity term. In the unblocked limit the two displacements are independent and the law of dX - dY is the correlation of the two kernels."
+ },
+ "OPERATOR": {
+  "SECTION": "OBTR01 \u00a78",
+  "EQUATION": "rho_{t+1} = (1 - mu_X) K_rel rho_t + B_t delta_0",
+  "LINEARITY": {
+   "is_B_t_exogenous": false,
+   "what_B_t_depends_on": "B_t = Binomial(cand, p) with cand = min(n_SX, free) at the organiser cell and p = min(1, kX n_X n_Y). At kX = 1 and n_X >= 1 the probability saturates at 1, so B_t is exactly min(n_SX, free) THERE. It depends on the local resource and on the local free capacity, and through free on n_X itself.",
+   "CLASSIFICATION": "CONDITIONALLY_LINEAR",
+   "why": "the transport and decay parts are linear in rho. The source is a point term whose intensity is a function of the local state, so the full process is not linear; conditionally on the realised birth sequence B_t it is."
+  },
+  "UNBLOCKED_LINEAR_OPERATOR": {
+   "spectrum": "lambda(k) = (1 - mu) [1 - a(1 - cos k_y)][1 - a(1 - cos k_x)]",
+   "a_relative": 0.10000000000000006,
+   "mu": 0.004,
+   "L": 36,
+   "lambda_max": 0.996,
+   "lambda_min": 0.6374399999999997,
+   "lambda_0_0": 0.996,
+   "spectral_radius_equals_one_minus_mu": true,
+   "resolvent": "n_hat(k) = 1 / (1 - lambda(k))",
+   "green_zero_relative_walk": 9.647156058565027,
+   "green_zero_X_walk_alone": 16.797503896997675,
+   "stationary_profile_r50_r80_r90": {
+    "0.5": 4.47213595499958,
+    "0.8": 8.54400374531753,
+    "0.9": 11.313708498984761
+   },
+   "stationary_second_moment": 46.68474845341292,
+   "stationary_rms": 6.832623833741539,
+   "impulse_response_mass": [
+    1.0,
+    0.9959999999999999,
+    0.992016,
+    0.988047936
+   ],
+   "impulse_mass_is_geometric": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "step_response_asymptote": 249.9999728635492,
+   "step_response_asymptote_closed_form": 250.0,
+   "mode_relaxation_time_max_finite": 249.49966599830609,
+   "SHAPE_MODE": {
+    "lambda_0": 0.996,
+    "lambda_1": 0.994486852200016,
+    "ratio": 0.9984807753012208,
+    "tau_shape": 657.7303515209832
+   }
+  },
+  "UNBLOCKED_SOURCE_RESPONSE_OPERATOR": "CONDITIONAL_EXACT",
+  "FULL_SOURCE_RESPONSE_OPERATOR": "APPROXIMATE_WITH_EMPIRICAL_ERROR"
+ }
+}
