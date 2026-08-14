@@ -1,0 +1,68 @@
+{
+ "mission": "CHEMOSTAT-SPATIAL-COHESION-01",
+ "section": "CSC01 \u00a73 and \u00a724 \u2014 delivery of the CSC01 artefact",
+ "date_utc": "2026-08-14",
+ "PROVENANCE_STATUS": "SELF_CONTAINED_SPLIT_DELIVERY_PASS",
+ "artefact": {
+  "kind": "gzipped bare shallow repository (git 2.43 bundles do not carry the shallow boundary \u2014 ORR01 C-1)",
+  "snapshot_commit": "bc9ce265cdb16f349946d552153d4a90a371a7b6",
+  "snapshot_tree": "b5ef7f1a7c5e10c10e24ea6dbcbcb15cfea2527b",
+  "branch": "codex/chemostat-spatial-cohesion-01",
+  "depth": 12,
+  "whole_bytes": 43480099,
+  "whole_sha256": "0af587f644761dcd2f1dea38f0932162e722710c7c81c266c433b3f5b4ed40f8"
+ },
+ "parts": [
+  {
+   "name": "CSC01_OFFLINE_REPO.tar.gz.part000",
+   "bytes": 19000000,
+   "sha256": "6a6a24f4cd0abab015e788a0cf5c17371c9265848317633514b21a702d4e573f"
+  },
+  {
+   "name": "CSC01_OFFLINE_REPO.tar.gz.part001",
+   "bytes": 19000000,
+   "sha256": "a12262623e8c81bf833fe9cefc240b0e4f3524c75f05bac9cef6445a5c75337d"
+  },
+  {
+   "name": "CSC01_OFFLINE_REPO.tar.gz.part002",
+   "bytes": 5480099,
+   "sha256": "be51838a262694e7bd927534ee493cddbc6112f170c3067abeef7461f5df2539"
+  }
+ ],
+ "max_part_bytes": 19000000,
+ "under_29MB_limit": true,
+ "scripts": [
+  "reassemble_and_verify_csc01.sh",
+  "reassemble_and_verify_csc01.ps1",
+  "offline_readback_csc01.sh",
+  "CSC01_OFFLINE_REPO.SHA256SUMS"
+ ],
+ "verification_executed": {
+  "fresh_directory": "/home/claude/CSC01/verify2/csc01_offline",
+  "part_checksums": "OK (3/3)",
+  "reassembled_sha256": "OK",
+  "extraction": "OK",
+  "network_isolation": {
+   "method": "unshare -rn",
+   "env": "GIT_NO_LAZY_FETCH=1 GIT_TERMINAL_PROMPT=0"
+  },
+  "HEAD": "bc9ce265cdb16f349946d552153d4a90a371a7b6 OK",
+  "tree": "b5ef7f1a7c5e10c10e24ea6dbcbcb15cfea2527b OK",
+  "files_tracked": 1362,
+  "missing_objects": 0,
+  "fsck": "clean",
+  "harnesses_from_the_reconstructed_state": {
+   "CSC01_stage_A": "12 tests, ALL_PASS = True",
+   "CSC01_adversarial_audit": "PROTOCOL_ADVERSARIAL_AUDIT = PASS",
+   "ORR01": "ALL_PASS = True"
+  }
+ },
+ "self_reference_note": "the artefact is a snapshot of commit bc9ce26, the report commit. This delivery record is the commit that FOLLOWS it and therefore cannot be inside the artefact it describes. The scripts shipped beside the parts pin bc9ce26 explicitly, so the readback is unambiguous.",
+ "push_status": {
+  "attempted": true,
+  "result": "403 \u2014 access denied by the git proxy: the repository is not in this session's authorized repository set",
+  "ls_remote": "succeeds; only push is refused",
+  "action_taken": "clean commits on a dedicated branch plus a self-contained, checksummed, split recovery artefact. Nothing is asked of Tommy."
+ },
+ "TOMMY_ACTION_REQUIRED": "NONE"
+}
