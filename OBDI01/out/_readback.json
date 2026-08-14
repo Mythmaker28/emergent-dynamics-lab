@@ -1,0 +1,110 @@
+{
+ "SECTION": "OBDI01 \u00a728 \u2014 offline readback",
+ "parts": {
+  "OBDI01_OFFLINE_REPO.tar.gz.part00": {
+   "sha256": "a0ccb3a5f6f7c320f96f00158b36ce3aa39f8701dcc588870ff2f2a69d3eb822",
+   "matches_recorded": true,
+   "bytes": 19000000
+  },
+  "OBDI01_OFFLINE_REPO.tar.gz.part01": {
+   "sha256": "5a4511191a3ff806e684bbf31e87d5890a5f2933af16ee6e80c7352c63f62794",
+   "matches_recorded": true,
+   "bytes": 19000000
+  },
+  "OBDI01_OFFLINE_REPO.tar.gz.part02": {
+   "sha256": "72b520f05507d2c7ec939ff7d40aac58808e88a30528b2d6950409774cd45031",
+   "matches_recorded": true,
+   "bytes": 16802420
+  }
+ },
+ "n_parts": 3,
+ "whole_sha256": "531345f2df0bdda7302b309f9c0ed7f743d1aee85abfe080968dd9691f256d2a",
+ "whole_recorded": "531345f2df0bdda7302b309f9c0ed7f743d1aee85abfe080968dd9691f256d2a",
+ "WHOLE_MATCHES": true,
+ "ALL_PARTS_MATCH": true,
+ "branch": "codex/organizer-bound-domain-invariance-01",
+ "tip": "7fb672d41cb896fa241688eae2809df4c40020ff",
+ "tip_expected": "7fb672d41cb896fa241688eae2809df4c40020ff",
+ "TIP_MATCHES": true,
+ "tree": "0199786909fd6c15afae044969027d0baf49f333",
+ "tree_expected": "0199786909fd6c15afae044969027d0baf49f333",
+ "TREE_MATCHES": true,
+ "working_copy_tree": "0199786909fd6c15afae044969027d0baf49f333",
+ "WORKING_COPY_TREE_MATCHES": true,
+ "shallow_boundary": [
+  "bb7fea748560ce8489d18ca64973f95e907ec382"
+ ],
+ "BOUNDARY_IS_OBTC02_HEAD": true,
+ "commits_carried": 10,
+ "fsck_clean": true,
+ "porcelain_empty": true,
+ "files_in_working_copy": 1488,
+ "remotes": "origin\tfile:///home/claude/edl (fetch)\norigin\tfile:///home/claude/edl (push)",
+ "promisor_packs": [],
+ "mandatory_artifacts_present": {
+  "OBDI01/out/OBDI01_FINAL_REPORT.md": true,
+  "OBDI01/out/_freeze.json": true,
+  "OBDI01/out/_results.json": true,
+  "OBDI01/out/_arms.json": true,
+  "OBDI01/out/_evidence.json": true,
+  "OBDI01/out/_tests.json": true,
+  "OBDI01/code/obdi01_protocol.yaml": true,
+  "OBDI01/out/obdi01_domain_invariance.png": true,
+  "OBDI01/out/obdi01_exponents.png": true
+ },
+ "ALL_MANDATORY_ARTIFACTS_PRESENT": true,
+ "raw_archives_delivered": [
+  "L36__seed771010.npz",
+  "L36__seed771011.npz",
+  "L36__seed771012.npz",
+  "L36__seed771013.npz",
+  "L36__seed771014.npz",
+  "L72__seed771110.npz",
+  "L72__seed771111.npz",
+  "L72__seed771112.npz",
+  "L72__seed771113.npz",
+  "L72__seed771114.npz",
+  "L96__seed771210.npz",
+  "L96__seed771211.npz",
+  "L96__seed771212.npz",
+  "L96__seed771213.npz",
+  "L96__seed771214.npz",
+  "probe__seed771999.npz"
+ ],
+ "n_raw": 16,
+ "freeze_still_describes_delivered_code": true,
+ "code_files_not_matching_freeze": [],
+ "methods_core_resolved_at": {
+  "obdi01_protocol.yaml": "OBDI01/code (own)",
+  "gate_obdi01.py": "OBDI01/code (own)",
+  "protocol_obdi01.py": "OBDI01/code (own)",
+  "run_obdi01.py": "OBDI01/code (own)",
+  "gate_obtc02.py": "OBTC02/code (inherited from OBTC02)",
+  "protocol_obtc02.py": "OBTC02/code (inherited from OBTC02)",
+  "engine_obtc.py": "OBTC02/code (inherited from OBTC02)",
+  "metrics_obtc.py": "OBTC02/code (inherited from OBTC02)",
+  "nulls_obtc.py": "OBTC02/code (inherited from OBTC02)",
+  "topology.py": "OBTC02/code (inherited from OBTC02)",
+  "source_operator.py": "OBTC02/code (inherited from OBTC02)",
+  "guard_obtc.py": "OBTC02/code (inherited from OBTC02)",
+  "obtc02_protocol.yaml": "OBTC02/code (inherited from OBTC02)",
+  "n2_envelope.json": "OBDI01/code (own)"
+ },
+ "LAWSPEC_COVERAGE_GAP": {
+  "files": {
+   "lawspec_v2.py": {
+    "delivered_sha256": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94",
+    "obtc02_delivery_sha256": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94",
+    "IDENTICAL": true
+   },
+   "observe.py": {
+    "delivered_sha256": "55840f35f44ccd424c4b71c80d591614d01c9143ca21e9c14e87e0faeeec2fbd",
+    "obtc02_delivery_sha256": "55840f35f44ccd424c4b71c80d591614d01c9143ca21e9c14e87e0faeeec2fbd",
+    "IDENTICAL": true
+   }
+  },
+  "note": "lawspec_v2.py and observe.py define the law and the recorder but appear in NO mission's freeze manifest - a coverage gap inherited from OBTC02 and not repairable after the fact. They are therefore verified here by comparison with the bytes OBTC02 itself delivered, which turns LAWSPEC_DIFF_FROM_OBTC02 = NONE from an assertion into a check.",
+  "ALL_IDENTICAL": true
+ },
+ "READBACK_STATUS": "SELF_CONTAINED_SPLIT_DELIVERY_PASS"
+}

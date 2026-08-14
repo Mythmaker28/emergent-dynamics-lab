@@ -606,7 +606,12 @@ qui a produit l'échec de la composante A.
 **(c) Un commit a groupé les artefacts §4–§5 dans le commit §6.** Signalé ici ; l'historique n'a
 pas été réécrit.
 
-**(d) L'espace des dispositions du §33 est une reconstruction.** La liste verbatim des neuf
+**(d) Le manifeste de gel ne couvre pas le module de LawSpec.** `lawspec_v2.py` et
+`observe.py` ne sont dans le manifeste d'aucune mission ; la lacune est héritée d'OBTC02 et n'a
+pas pu être réparée sans toucher au gel. Elle est contournée au §32bis par une comparaison
+d'octets avec la livraison d'OBTC02, et signalée ici.
+
+**(e) L'espace des dispositions du §33 est une reconstruction.** La liste verbatim des neuf
 dispositions du mandat n'a pas survécu à la compaction de contexte de cette session. Elle est
 reconstruite exhaustivement à partir des états terminaux de la mission et **déclarée comme
 reconstruction**, non citée comme l'original.
@@ -627,6 +632,44 @@ Règle : **aucune graine ne contribue à deux axes.**
 
 Recouvrement de graines entre missions : **zéro**. Instruments : disjoints. Runs scientifiques :
 OBTC02 17, OBDI01 15, partagés 0.
+
+## 32bis. Livraison scindée et relecture hors ligne
+
+Poussée tentée **une fois** vers `origin`. Réponse consignée telle quelle :
+
+```
+remote: access denied by the git proxy: Mythmaker28/emergent-dynamics-lab is not in this
+session's authorized repository set, so the proxy will not inject a credential for it.
+fatal: unable to access 'https://github.com/Mythmaker28/emergent-dynamics-lab.git/':
+       The requested URL returned error: 403
+```
+
+Livraison autonome à la place : dépôt **nu et superficiel** mono-branche, archivé puis scindé en
+morceaux de 19 Mo. Relecture sous `unshare -rn`, `GIT_NO_LAZY_FETCH=1`.
+
+```
+3 morceaux, empreintes des trois conformes, archive réassemblée conforme
+tête et arbre conformes, copie de travail conforme, 1488 fichiers
+frontière superficielle = bb7fea74… , c'est-à-dire la tête d'OBTC02
+10 commits portés, fsck propre, porcelain vide, aucun pack promisor, aucun distant
+16 archives brutes livrées, les neuf artefacts obligatoires présents
+READBACK_STATUS = SELF_CONTAINED_SPLIT_DELIVERY_PASS
+```
+
+Deux points méritent d'être dits explicitement.
+
+**(i) Les modules hérités sont vérifiés à leur emplacement canonique.** Neuf des quatorze
+fichiers du noyau gelé ne sont pas des fichiers d'OBDI01 : ce sont ceux d'OBTC02, et la relecture
+les résout dans `OBTC02/code/` où leurs empreintes correspondent **exactement** à celles du gel
+d'OBDI01. L'identité du code entre les deux missions est donc vérifiable *à l'intérieur* de la
+livraison, et non seulement affirmée.
+
+**(ii) Une lacune de couverture, héritée et non réparable.** `lawspec_v2.py` et `observe.py`
+définissent la loi et l'enregistreur, et ne figurent dans le manifeste de gel d'**aucune**
+mission — ni OBTC02 ni celle-ci. On ne peut pas les y ajouter après coup sans changer le gel.
+Ils sont donc vérifiés autrement : leurs octets livrés ici sont **identiques** à ceux livrés par
+OBTC02. Cela transforme `LAWSPEC_DIFF_FROM_OBTC02 = NONE` d'une affirmation en un contrôle.
+
 
 ## 33. Disposition
 
