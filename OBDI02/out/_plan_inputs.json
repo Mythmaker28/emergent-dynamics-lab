@@ -1,0 +1,43 @@
+{
+ "SECTION": "OBDI02 \u00a79 \u2014 budget and sample size, fixed before any run",
+ "THROUGHPUT_MEASURED": {
+  "workers": 2,
+  "seconds_per_arm": {
+   "36": 29.0,
+   "72": 60.0,
+   "96": 92.0
+  },
+  "seconds_per_triplet_serial": 181.0,
+  "evidence": "two concurrent arms at L=36 took 30.1 s wall against 29.2 s for one: the two available CPUs give essentially linear speed-up"
+ },
+ "WALL_CLOCK_ENVELOPE_MINUTES": 75.0,
+ "ENVELOPE_JUSTIFICATION": "declared BEFORE the required n was compared with it. The mandatory work after the engine phase \u2014 analysis, figures, report, split artefact, offline readback \u2014 needs roughly 45 minutes, and \u00a723 makes delivery mandatory; an engine phase longer than 75 minutes risks losing the container before the mission can be delivered.",
+ "BUDGET_CAP_ARMS_PER_SIZE": 49,
+ "BUDGET_CAP_TOTAL_ARMS": 147,
+ "N_MIN_FROM_THE_POWER_RULE": 6,
+ "POWER_RULE": "smallest n per size with simulated equivalence power >= 0.90 at the INHERITED margin 0.25 under beta = 0, with variance uncertainty and extinctions propagated",
+ "PRECISION_TARGET": 0.045,
+ "PRECISION_RULE": "expected achieved equivalence bound E[delta*] = (0.798 + c) * se(beta) <= 0.045 under beta = 0. 0.045 is the smallest round target reachable inside the declared cap, and it brings the achieved bound to the order of the 0.042 figure the mandate asks about.",
+ "N_FROM_THE_PRECISION_RULE": 46,
+ "SEEDS_PER_SIZE": 46,
+ "TOTAL_ARMS": 138,
+ "ESTIMATED_ENGINE_SECONDS": 8326.0,
+ "ESTIMATED_WALL_MINUTES": 69.38333333333334,
+ "se_beta_expected": 0.0183284066826071,
+ "expected_achieved_bound": 0.04477361474084838,
+ "SIMULATED_POWER_AT_THE_PRIMARY_MARGIN_0_25": 1.0,
+ "SIMULATED_POWER_AT_THE_MANDATE_FIGURE_0_042": 0.314375,
+ "DECLARED_DEVIATION_FROM_THE_LITERAL_SMALLEST_N_RULE": "\u00a79 asks for the SMALLEST n reaching 90 % power. At the inherited margin that is n = 6. n = 46 is adopted instead, because the mission's stated purpose is precision rather than a pass at a wide margin. The larger n is fixed here, before any run, is bounded by a budget cap declared on independent grounds, and is recorded as a deviation rather than presented as the rule's output.",
+ "cv_of_log_used": {
+  "36": 0.12187516788888791,
+  "72": 0.05578588782855243,
+  "96": 0.04249396097168628
+ },
+ "df_used": {
+  "36": 4,
+  "72": 3,
+  "96": 4
+ },
+ "extinction_probability_used": 0.09523809523809523,
+ "critical_value_c": 1.6448536269514733
+}
