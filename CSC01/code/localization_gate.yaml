@@ -1,0 +1,175 @@
+# CSC01 — the single source of truth for the "localised but live" gate.
+# Every consumer reads THIS file and nothing else: the online (streaming) gate, the post-hoc
+# (array) recomputer, the protocol table printed in the report, the integrity tests, and the
+# report's own numbers. No threshold appears anywhere in the code.
+version: 1
+mission: CHEMOSTAT-SPATIAL-COHESION-01
+name: localization_gate
+
+definition: >
+  A population is LOCALISED BUT LIVE when four independent things hold at once: it is spatially
+  compact AND more compact than it would be with no interaction at all; it is durable; it is
+  traversed by material turnover and is not a jammed lump; and it is not an artefact of the
+  boundary, of the occupancy budget, or of a controller reading a score.
+
+geometry:
+  L: 36
+  CAP: 16
+  ell_X_reference: 2.5          # sqrt(D_X/mu_X) of the REFERENCE arm, D_X = q(1-q), q = p_hop/4
+  core_radius_cells: 5.0        # = 2 * ell_X_reference, FIXED in absolute cells so that the
+                                # reference arm and the mechanism arm are measured identically
+  connectivity: 4
+  boundary: torus
+  centre: frechet               # the lattice site minimising sum_i w_i d(i,c)^2, exact on a torus
+  radius_of_gyration: pairwise  # centre-free form, exact on a torus
+
+window:
+  T_FORM_MAX: 2000              # raised from the inherited 1250: correction D-6 showed two of
+                                # six ORR01 arms satisfying formation at 1387 and 1784 with
+                                # N_X already above 118, so the inherited deadline censored
+                                # arms that had in fact formed
+  N_FORM: 30
+  U_FORM: 3.0
+  K_FORM: 50
+  T_MAINT: 9000
+  HORIZON: 11000
+  SAMPLE_EVERY: 50              # both the scalar sample cadence and the spatial frame cadence,
+                                # so that the two gate implementations see the same instants
+
+axes:
+
+  axis_1_compact_and_cohesive:
+    compact_vs_N1:
+      statistic: fraction of window frames with r80 below the 1st percentile of the N1 null
+      null: N1_complete_spatial_randomness
+      null_quantile: 0.01
+      threshold: 0.95
+      direction: at_or_above
+    cohesive_vs_N3b:
+      statistic: fraction of tested instants with r80 below the 5th percentile of the N3b null
+      null: N3b_wandering_point_source_with_the_recorded_birth_history
+      null_quantile: 0.05
+      threshold: 0.80
+      direction: at_or_above
+      note: >
+        this is the cohesion test proper. N3b contains a point source that follows the ACTUAL
+        recorded organiser trajectory, the ACTUAL recorded birth series, free diffusion and an
+        exponential lifetime, and NO interaction between molecules whatsoever. Being more
+        compact than N1 shows only that the population is localised; being more compact than
+        N3b is what shows that something holds it together.
+    n3b:
+      draws: 200
+      instants: 9
+      max_age: 4000
+      mu_source: observed_effective_death_rate
+      mu_source_definition: >
+        mu_eff = (cumulative X deaths over the window) / (sum of N_X over the steps of the
+        window), i.e. the arm's own realised per-molecule per-step death probability, read from
+        its own recorded series.
+      why: >
+        a mechanism that merely makes every molecule live longer is NOT cohesion: longer-lived
+        molecules diffuse further and the cloud gets BIGGER. Feeding the arm's own realised
+        death rate into the null makes the null reproduce the arm's own age structure and its
+        own population size, so that the only thing the test can detect is SPATIAL structure.
+        For an arm with no mechanism, mu_eff equals mu_X to the precision of the run, and the
+        null is unchanged.
+
+  axis_2_durable:
+    never_extinct: true
+    organiser_present_throughout: true
+    N_KEEP: 50
+    FRAC_MIN: 0.95              # fraction of window steps with N_X >= N_KEEP
+    RUN_MAX: 250                # longest consecutive excursion below N_KEEP
+    core_mass_fraction_min: 0.5 # a core EXISTS at an instant when at least this fraction of the
+                                # X mass lies inside the ball of radius core_radius_cells
+    core_exists_fraction_min: 0.90
+
+  axis_3_live_not_frozen:
+    material_turnover_min: 10.0 # cumulative X deaths over the window, divided by the mean
+                                # standing N_X: the number of complete replacements
+    core_free_capacity_min: 1.0 # mean free capacity per cell INSIDE the core ball, out of CAP.
+                                # A cluster held together by having nowhere to go is a jammed
+                                # lump, not a live population.
+    report_only:
+      - mean consecutive displacement of the core centre
+      - N5 separation factor (observed displacement against decorrelated frames)
+      - satellite lifetime distribution and halo fraction
+
+  axis_4_not_an_artefact:
+    no_true_winding: true       # exact winding test by lifting into the universal cover, at
+                                # every tracked frame. NOT an extent proxy: see correction D-4
+    occupancy_drift_max: 0.05
+    free_capacity_at_organiser_min: 0.5
+    no_score_reading: true      # static AST audit of the mechanism's operator: it may read the
+                                # species fields and the frozen Spec constants, and nothing else
+
+classes:
+  - NO_FORMATION
+  - TRANSIENT_FORMATION
+  - COHESION_ACHIEVED
+  - LOCALISED_BUT_NOT_COHESIVE
+  - DELOCALISED
+  - FROZEN_AGGREGATE
+  - MATERIAL_COLLAPSE
+  - ORGANISATION_LOST
+  - BOUNDARY_ARTEFACT
+  - OCCUPANCY_RATCHET
+  - PROTOCOL_VIOLATION
+  - UNCLASSIFIABLE
+
+classification_order:
+  - [no_formation,            NO_FORMATION]
+  - [transient_no_window,     TRANSIENT_FORMATION]
+  - [all_axes,                COHESION_ACHIEVED]
+  - [score_reading,           PROTOCOL_VIOLATION]
+  - [winding,                 BOUNDARY_ARTEFACT]
+  - [occupancy,               OCCUPANCY_RATCHET]
+  - [no_organiser,            ORGANISATION_LOST]
+  - [extinct,                 MATERIAL_COLLAPSE]
+  - [not_compact,             DELOCALISED]
+  - [not_durable,             TRANSIENT_FORMATION]
+  - [not_live,                FROZEN_AGGREGATE]
+  - [not_cohesive,            LOCALISED_BUT_NOT_COHESIVE]
+  - [otherwise,               UNCLASSIFIABLE]
+# ordering note, from the pre-freeze adversarial audit (case A07): `not_compact` is tested
+# BEFORE `not_durable`. A population spread over the whole lattice also fails "a core exists",
+# so with the reverse order it would have been reported as TRANSIENT_FORMATION and the class
+# DELOCALISED would have been unreachable. "Spread out" is the more informative description of
+# a spread-out but persistent population.
+
+protocol:
+  arms:
+    C0_NO_CHANGE: the balanced chemostat of ORR01 LawSpec v2, unchanged
+    C3_NEIGHBOUR_PROTECTED_DECAY: mu_X(cell) = mu_X * (1 - lambda) ** m(cell)
+  pairing: >
+    each confirmation seed is run in BOTH arms with the same seed and the same initial
+    condition, and both arms draw the exchange from a second RNG stream. The two arms diverge at
+    the first decay draw, because the decay operator is what differs; the pairing is therefore
+    at the level of the seed and the initial condition, exactly as in ORR01.
+  seeds_confirmation: [6101, 6102, 6103, 6104, 6105, 6106]
+  seeds_control: [6201, 6202]
+  seeds_calibration: [6301, 6302, 6303, 6304]
+  forbidden_seeds: [5001, 5002, 5003, 5004, 5005, 5006, 7001, 7002]
+  forbidden_seeds_reason: >
+    they were consumed by ORR01 and are used in CSC01 only for the raw-only autopsy of
+    question A. Reusing them in a confirmation would be reusing data already seen.
+  confirm_required: 5
+  success_criterion: >
+    at least 5 of 6 C3 seeds COHESION_ACHIEVED, AND at least 5 of 6 C0 seeds NOT
+    COHESION_ACHIEVED.
+  controls:
+    NO_ORGANISER: n_X = 0 is an exact invariant manifold; nothing may appear, with or without
+      the mechanism
+    LAMBDA_ZERO: the mechanism switched off by setting lambda = 0, which must reproduce the
+      reference arm state for state
+  sequential_stopping_rule:
+    - 1 provenance not self-contained -> STOP
+    - 2 the two gate implementations disagree anywhere -> STOP
+    - 3 the calibration assay yields m_star = 0 -> STOP with COHESION_CALIBRATION_FAIL
+    - 4 v3 with no mechanism is not state-for-state identical to v2 -> STOP
+    - 5 the reference arm C0 is COHESION_ACHIEVED on any seed -> STOP, the gate does not
+      discriminate
+    - 6 no C3 arm forms on the first two seeds -> STOP
+    - 7 every C3 arm of the first three seeds is MATERIAL_COLLAPSE or FROZEN_AGGREGATE -> STOP
+    - 8 any logging defect or ledger divergence -> STOP
+    - 9 controls run only if at least three confirmation pairs were executed
