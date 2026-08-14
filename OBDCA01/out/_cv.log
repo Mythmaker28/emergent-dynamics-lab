@@ -1,0 +1,22 @@
+10.1 finite-sample error of the centre ...
+10.2 synthetic assay conditioned on N_X ...
+10.3 raw-only downsampling ...
+10.4 null with the observed population distributions ...
+10.5 conditional diagnostics ...
+
+10.1  Rg^2 vs tr(Sigma) ratios: [0.9444, 0.968]
+      E|C-Y| by N : {3: 4.161, 5: 3.738, 10: 3.417, 20: 3.265, 40: 3.194, 60: 3.17, 80: 3.159, 100: 3.152, 121: 3.147, 160: 3.141}
+10.2  assay E|C-Y| at L=36/72/96 for N=5 : [3.685, 3.875, 3.967]  for N=110 : [3.002, 3.277, 3.169]
+      control max relative spread at fixed N: {3: 0.0364, 5: 0.0734, 8: 0.0607, 12: 0.0459, 20: 0.0846, 30: 0.0399, 50: 0.0279, 80: 0.0792, 110: 0.0873, 140: 0.0308}
+10.3  downsampling, 24 real arms:
+        N_sub=3    mean |C-Y| 3.807 (full 2.376)  inflation x253756038.992  mean centre displacement 1.977
+        N_sub=5    mean |C-Y| 3.325 (full 2.376)  inflation x194759040.714  mean centre displacement 1.499
+        N_sub=8    mean |C-Y| 3.034 (full 2.376)  inflation x159133698.861  mean centre displacement 1.202
+        N_sub=12   mean |C-Y| 2.861 (full 2.376)  inflation x129362947.910  mean centre displacement 0.965
+        N_sub=20   mean |C-Y| 2.703 (full 2.376)  inflation x107341384.142  mean centre displacement 0.763
+        N_sub=30   mean |C-Y| 2.609 (full 2.376)  inflation x81411189.148  mean centre displacement 0.617
+        N_sub=50   mean |C-Y| 2.554 (full 2.376)  inflation x63332739.248  mean centre displacement 0.442
+        N_sub=80   mean |C-Y| 2.496 (full 2.376)  inflation x42803103.465  mean centre displacement 0.290
+10.4  null beta: mean +0.04309 sd 0.10565  q95 +0.21443 q99 +0.29048   P(beta >= 0.0822) = 0.3568 -> typical
+10.5  beta_L alone +0.10730 ; with log N_X +0.05571 (t_logN = -18.03) ; band N>=60 +0.04143 ; from medians -0.01975 ; corr -0.846
+      most influential arm: L72/seed8101006 delta beta -0.03381
