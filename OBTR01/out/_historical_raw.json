@@ -1,0 +1,428 @@
+{
+ "SECTION": "OBTR01 \u00a715",
+ "CONSUMES_NO_SCIENTIFIC_RUN": true,
+ "SOURCE_OFF": {
+  "FROZEN_DEFINITION": "base = mean of N_X over the 200 steps before removal; e_folding = the first step after removal at which N_X <= base/e. A first-passage time below a threshold set by a noisy baseline, NOT a fitted rate.",
+  "analytic_prediction_minus_one_over_log": 249.49966599830609,
+  "frozen_acceptance_window": [
+   124.74983299915304,
+   498.99933199661217
+  ],
+  "RECORDED": [
+   233.0,
+   297.0,
+   245.0
+  ],
+  "RECOMPUTED": [
+   233.0,
+   297.0,
+   245.0
+  ],
+  "ALL_THREE_REPRODUCE": true,
+  "ALL_THREE_BASELINES_REPRODUCE": true,
+  "PER_ARM": [
+   {
+    "tag": "R/seed9301",
+    "recorded": {
+     "pre_removal_level": 116.64,
+     "e_folding_steps": 233.0,
+     "residual_after_5_e_foldings": 0.0,
+     "steps_available_after_removal": 7000,
+     "final_N_X": 0.0
+    },
+    "recomputed": {
+     "base": 116.64,
+     "threshold": 42.90945801823703,
+     "N_at_removal": 115.0,
+     "e_folding_steps": 233.0,
+     "steps_available_after_removal": 7000
+    },
+    "REPRODUCES_THE_RECORDED_VALUE": true,
+    "REPRODUCES_THE_RECORDED_BASELINE": true,
+    "estimator_law": {
+     "mean": 250.08785,
+     "sd": 30.54153846249535,
+     "q05": 202.0,
+     "q50": 249.0,
+     "q95": 302.0,
+     "replicates": 20000
+    },
+    "z_of_the_observed_value": -0.5594953908750759,
+    "second_estimator_log_slope": 277.4393811013384,
+    "second_estimator_law": {
+     "mean": 255.18417718469289,
+     "sd": 35.99924464175512,
+     "replicates": 4000
+    },
+    "z_of_the_second_estimator": 0.6182130802498
+   },
+   {
+    "tag": "R/seed9302",
+    "recorded": {
+     "pre_removal_level": 101.14,
+     "e_folding_steps": 297.0,
+     "residual_after_5_e_foldings": 0.0,
+     "steps_available_after_removal": 7000,
+     "final_N_X": 0.0
+    },
+    "recomputed": {
+     "base": 101.14,
+     "threshold": 37.20732668007968,
+     "N_at_removal": 111.0,
+     "e_folding_steps": 297.0,
+     "steps_available_after_removal": 7000
+    },
+    "REPRODUCES_THE_RECORDED_VALUE": true,
+    "REPRODUCES_THE_RECORDED_BASELINE": true,
+    "estimator_law": {
+     "mean": 272.66105,
+     "sd": 33.26742098453753,
+     "q05": 220.0,
+     "q50": 271.0,
+     "q95": 330.0,
+     "replicates": 20000
+    },
+    "z_of_the_observed_value": 0.7316151742364576,
+    "second_estimator_log_slope": 264.59888656708745,
+    "second_estimator_law": {
+     "mean": 255.20210008186427,
+     "sd": 36.50449368620401,
+     "replicates": 4000
+    },
+    "z_of_the_second_estimator": 0.25741451356643424
+   },
+   {
+    "tag": "R/seed9303",
+    "recorded": {
+     "pre_removal_level": 113.83,
+     "e_folding_steps": 245.0,
+     "residual_after_5_e_foldings": 0.0,
+     "steps_available_after_removal": 7000,
+     "final_N_X": 0.0
+    },
+    "recomputed": {
+     "base": 113.83,
+     "threshold": 41.87571678854528,
+     "N_at_removal": 112.0,
+     "e_folding_steps": 245.0,
+     "steps_available_after_removal": 7000
+    },
+    "REPRODUCES_THE_RECORDED_VALUE": true,
+    "REPRODUCES_THE_RECORDED_BASELINE": true,
+    "estimator_law": {
+     "mean": 249.55065,
+     "sd": 30.81683985191251,
+     "q05": 201.0,
+     "q50": 248.0,
+     "q95": 302.0,
+     "replicates": 20000
+    },
+    "z_of_the_observed_value": -0.14766763957199117,
+    "second_estimator_log_slope": 274.88978608927664,
+    "second_estimator_law": {
+     "mean": 255.14898153506883,
+     "sd": 36.404394025279466,
+     "replicates": 4000
+    },
+    "z_of_the_second_estimator": 0.5422643360166814
+   }
+  ],
+  "WHY_THE_SPREAD": "the estimator inherits two independent sources of dispersion: the baseline is a 200-step running mean while the decay starts from the instantaneous N at removal, and the decay itself is a Binomial thinning whose crossing of base/e fluctuates. Replaying the exact death process gives a predicted sd of about 32 steps per arm, against an observed spread of 34 steps across the three arms. The three values are therefore exactly where the analytic law puts them; they are not evidence of a rate different from 249.5.",
+  "MEAN_OF_THE_ESTIMATOR_LAW": 257.4331833333334,
+  "ESTIMATOR_IS_BIASED_RELATIVE_TO_TAU": 7.93351733502729,
+  "SECOND_ESTIMATOR_log_slope": {
+   "values": [
+    277.4393811013384,
+    264.59888656708745,
+    274.88978608927664
+   ],
+   "mean": 272.3093512525675,
+   "analytic": 249.49966599830609,
+   "null_law_mean": 255.17841960054201,
+   "null_law_sd": 36.30271078441286,
+   "z_values": [
+    0.6182130802498,
+    0.25741451356643424,
+    0.5422643360166814
+   ],
+   "note": "a least-squares slope of log N on t is tighter than the threshold crossing, but it is NOT unbiased either: truncating the path at N >= 5 censors the tail, so its null law is measured by replaying the same death process through the same estimator."
+  },
+  "MAX_ABS_Z": 0.7316151742364576,
+  "ALL_WITHIN_2_SIGMA": true
+ },
+ "STATIC_SOURCE": {
+  "WHY_IT_DISCRIMINATES": "condition S sets p_hop_Y = 0, so K_rel collapses onto K_X and a_rel = a_X instead of 2 a_X. The predicted radii differ by sqrt(2) between the two regimes, so the S and P arms test the relative-kernel derivation against each other with no free parameter.",
+  "PREDICTED_STATIC_r50_r80_r90": {
+   "0.5": 3.1622776601683795,
+   "0.8": 6.082762530298219,
+   "0.9": 8.06225774829855
+  },
+  "PREDICTED_MOBILE_r50_r80_r90": {
+   "0.5": 4.47213595499958,
+   "0.8": 8.54400374531753,
+   "0.9": 11.313708498984761
+  },
+  "RATIO_MOBILE_OVER_STATIC_r80": 1.404625563263382,
+  "SQRT_2": 1.4142135623730951,
+  "FROZEN_static_r80": 6.082762530298219,
+  "FROZEN_organiser_frame_r80": 8.54400374531753,
+  "REPRODUCES_THE_FROZEN_STATIC_r80": true,
+  "REPRODUCES_THE_FROZEN_MOBILE_r80": true,
+  "OBSERVED": {
+   "S_r80_organiser": {
+    "n": 3,
+    "mean": 5.971238141714507,
+    "min": 5.830951894845301,
+    "max": 6.082762530298219,
+    "values": [
+     5.830951894845301,
+     6.082762530298219,
+     6.0
+    ]
+   },
+   "P_r80_organiser": {
+    "n": 5,
+    "mean": 8.0272236022703,
+    "min": 7.280109889280518,
+    "max": 8.48528137423857,
+    "values": [
+     8.06225774829855,
+     8.48528137423857,
+     8.246211251235321,
+     7.280109889280518,
+     8.06225774829855
+    ]
+   },
+   "S_r80": {
+    "n": 3,
+    "mean": 5.971238141714507,
+    "min": 5.830951894845301,
+    "max": 6.082762530298219,
+    "values": [
+     5.830951894845301,
+     6.082762530298219,
+     6.0
+    ]
+   },
+   "P_r80": {
+    "n": 5,
+    "mean": 6.991388254805708,
+    "min": 6.708203932499369,
+    "max": 7.0710678118654755,
+    "values": [
+     7.0710678118654755,
+     7.0710678118654755,
+     7.0710678118654755,
+     6.708203932499369,
+     7.035533905932738
+    ]
+   },
+   "S_organiser_to_core": {
+    "n": 3,
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "values": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "P_organiser_to_core": {
+    "n": 5,
+    "mean": 2.845354552482872,
+    "min": 2.23606797749979,
+    "max": 3.1622776601683795,
+    "values": [
+     3.0,
+     3.1622776601683795,
+     3.0,
+     2.23606797749979,
+     2.8284271247461903
+    ]
+   },
+   "S_N_X": {
+    "n": 3,
+    "mean": 81.66666666666667,
+    "min": 79.0,
+    "max": 86.0,
+    "values": [
+     79.0,
+     86.0,
+     80.0
+    ]
+   },
+   "P_N_X": {
+    "n": 5,
+    "mean": 122.5,
+    "min": 118.0,
+    "max": 128.0,
+    "values": [
+     120.0,
+     128.0,
+     126.0,
+     118.0,
+     120.5
+    ]
+   }
+  },
+  "PER_ARM": [
+   {
+    "frames_in_window": 180,
+    "r50": 4.47213595499958,
+    "r80": 7.280109889280518,
+    "r90": 9.433981132056603,
+    "Rg": 5.994362275466273,
+    "r80_organiser": 9.899494936611665,
+    "organiser_to_core": 4.47213595499958,
+    "N_X": 0.0,
+    "tag": "P/seed9101",
+    "condition": "P",
+    "ANALYSABLE": false
+   },
+   {
+    "frames_in_window": 180,
+    "r50": 4.123105625617661,
+    "r80": 7.0710678118654755,
+    "r90": 9.055385138137417,
+    "Rg": 5.753002460283422,
+    "r80_organiser": 8.06225774829855,
+    "organiser_to_core": 3.0,
+    "N_X": 120.0,
+    "tag": "P/seed9102",
+    "condition": "P",
+    "ANALYSABLE": true
+   },
+   {
+    "frames_in_window": 180,
+    "r50": 4.123105625617661,
+    "r80": 7.0710678118654755,
+    "r90": 9.326762794674746,
+    "Rg": 5.892384786938671,
+    "r80_organiser": 8.48528137423857,
+    "organiser_to_core": 3.1622776601683795,
+    "N_X": 128.0,
+    "tag": "P/seed9103",
+    "condition": "P",
+    "ANALYSABLE": true
+   },
+   {
+    "frames_in_window": 180,
+    "r50": 4.123105625617661,
+    "r80": 7.0710678118654755,
+    "r90": 9.137464797715152,
+    "Rg": 5.791324037312661,
+    "r80_organiser": 8.246211251235321,
+    "organiser_to_core": 3.0,
+    "N_X": 126.0,
+    "tag": "P/seed9104",
+    "condition": "P",
+    "ANALYSABLE": true
+   },
+   {
+    "frames_in_window": 180,
+    "r50": 4.0,
+    "r80": 6.708203932499369,
+    "r90": 8.94427190999916,
+    "Rg": 5.6129384199379375,
+    "r80_organiser": 7.280109889280518,
+    "organiser_to_core": 2.23606797749979,
+    "N_X": 118.0,
+    "tag": "P/seed9105",
+    "condition": "P",
+    "ANALYSABLE": true
+   },
+   {
+    "frames_in_window": 180,
+    "r50": 4.123105625617661,
+    "r80": 7.035533905932738,
+    "r90": 9.219544457292887,
+    "Rg": 5.764369574217182,
+    "r80_organiser": 8.06225774829855,
+    "organiser_to_core": 2.8284271247461903,
+    "N_X": 120.5,
+    "tag": "P/seed9106",
+    "condition": "P",
+    "ANALYSABLE": true
+   },
+   {
+    "frames_in_window": 180,
+    "r50": 3.0,
+    "r80": 5.830951894845301,
+    "r90": 7.713011390885281,
+    "Rg": 4.814238974498976,
+    "r80_organiser": 5.830951894845301,
+    "organiser_to_core": 0.0,
+    "N_X": 79.0,
+    "tag": "S/seed9201",
+    "condition": "S",
+    "ANALYSABLE": true
+   },
+   {
+    "frames_in_window": 180,
+    "r50": 3.1622776601683795,
+    "r80": 6.082762530298219,
+    "r90": 8.246211251235321,
+    "Rg": 5.029164220220447,
+    "r80_organiser": 6.082762530298219,
+    "organiser_to_core": 0.0,
+    "N_X": 86.0,
+    "tag": "S/seed9202",
+    "condition": "S",
+    "ANALYSABLE": true
+   },
+   {
+    "frames_in_window": 180,
+    "r50": 3.1622776601683795,
+    "r80": 6.0,
+    "r90": 7.810249675906654,
+    "Rg": 4.853789007731496,
+    "r80_organiser": 6.0,
+    "organiser_to_core": 0.0,
+    "N_X": 80.0,
+    "tag": "S/seed9203",
+    "condition": "S",
+    "ANALYSABLE": true
+   }
+  ],
+  "WHAT_OBTC02_OMITTED": "the OBTC02 report gave the S arms as 'six statistics out of six inside the envelope' with the numbers withheld, and gave the core-organiser distance as 0.00, which is a consequence of the organiser being immobile rather than a measurement of attachment.",
+  "EXTINCT_ARMS_EXCLUDED_FROM_THE_PRIMARY_AGGREGATE": [
+   "P/seed9101"
+  ],
+  "INCLUDING_THE_EXTINCT_ARM": {
+   "P_r80_organiser": {
+    "n": 6,
+    "mean": 8.339268824660529,
+    "min": 7.280109889280518,
+    "max": 9.899494936611665,
+    "values": [
+     9.899494936611665,
+     8.06225774829855,
+     8.48528137423857,
+     8.246211251235321,
+     7.280109889280518,
+     8.06225774829855
+    ]
+   }
+  },
+  "DISCRIMINATION": {
+   "H_relative_kernel": "ratio = 1.4046  (a_rel = a_X + a_Y)",
+   "H_organiser_motion_irrelevant": "ratio = 1.0  (a_rel = a_X)",
+   "observed_ratio": 1.344314765507822,
+   "bootstrap_95_interval": [
+    1.2739932828368046,
+    1.404422422019108
+   ],
+   "worst_case_ratio_min_P_over_max_S": 1.196842693269434,
+   "EXCLUDES_RATIO_ONE": true,
+   "relative_deviation_from_the_predicted_ratio": -0.0429372776154231,
+   "AGREES_WITHIN_10_PERCENT": true,
+   "ALSO_OBSERVED": "both regimes sit slightly BELOW their absolute predictions (static 5.9712 against 6.0828, mobile 8.0272 against 8.5440). The ratio is the parameter-free discriminator and is reported as the primary comparison; the absolute deficit is recorded as an open residual, not explained away.",
+   "absolute_deficit_static": -0.018334496543011447,
+   "absolute_deficit_mobile": -0.0604845407904282
+  },
+  "OBSERVED_RATIO_P_OVER_S_r80_organiser": 1.344314765507822,
+  "PREDICTED_RATIO": 1.404625563263382,
+  "RATIO_AGREES_WITHIN_10_PERCENT": true
+ }
+}
