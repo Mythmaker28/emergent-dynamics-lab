@@ -1,0 +1,374 @@
+{
+ "FREEZE": 1,
+ "frozen_before": "the first confirmation start of CSC01",
+ "METHODS_CORE_HASH": "5570a5f6dbad488e67d4917f75efcf9ce1183c8861651655b72ad9c960a1f20f",
+ "code_sha256": {
+  "localization_gate.yaml": "4bf1a2e5f5e397dcff917b2d77ec9942bc9922413443c895d4d5bf7236d66a5e",
+  "gatelib.py": "1b1c4874d667019520db8a40dde92467d514b9049793c4e505b977e83022851f",
+  "lawspec_v3.py": "e81a424a495758d75b7a885a0ded4be3230bebc8c8cbd5e97b4a2d29b1216f40",
+  "protocol_csc.py": "57c8085a5db72eecf433eea5f45cdcaa2ed38e423983d9d40e20c7783d40f484",
+  "spatial.py": "fbd7ac6397a3bbc156b41e90a578ce5fc232dcba124b1f53da389ee7d805d2ed",
+  "nulls.py": "26d913a4801263235d3a42632d04eef4edbd51de707b573b03165022c2956d48",
+  "null_n3b.py": "90e5f3f12d1fc8a25a0a8df90bf18b6936b7606755fb871d39c99d4df5f3d8ca",
+  "mechanisms.py": "acd6cd8276a1cc9cdabd370e2dad74cf51f5e2ef13da4f113c77598f9c463c29",
+  "guard_csc.py": "eff1d8e2fc07db96d291c6d970419ed736c628b3bce67837fb7541b38b53a74e",
+  "calibrate.py": "74d30752ffe0cf28619c5887c0d150c282a9d406466ee83e2644bf737a141c82",
+  "audit_csc.py": "1fff58bb85cbb9fdeda53b92626f6f0e8dc8b005b60ac8df543950fd398fc5f3",
+  "replay.py": "0a66f0687f5eded162da5a78b779d7bf9c492bdcf06037d2c1d92381a7d80fab",
+  "autopsy.py": "e05db9ed39ab0eff823fa129de4e6fdd6654e2e58eb4ce662d238a9af01dfcf9",
+  "run_autopsy.py": "f4bdd00bf8f51fdb774e6f88dc7aaa169ad05f4f94f1852a6884f3ae71fca796",
+  "stage_a.py": "b92aaf55228be1e41209af2014962ff0d701b6f9ae0b69020f4d2d278bb64c20",
+  "tests_csc.py": "97ae47ef303f20714d90729cf70166557cd1b9a3cbf65886bf2cdfcdddd96ef2",
+  "_n1_table.json": "2012071c629ac5f986c91b964154bb8f5c1a9e25b7123123bdd79feb459db07b"
+ },
+ "doc_sha256": {
+  "_provenance.json": "cf312f961038aec81d38effff16db9a89187d64474b8b288045ebcfe44114115",
+  "_calibration.json": "d9674463e6fb07a537a012396a6b3b0c459ac663baf4b4ea3df94d9fa3e19e28",
+  "_audit.json": "1cd18db3cf0bb1ec402b359f4b04251168e59b74a7578dc63dc8a8eedfb19454",
+  "_stage_a.json": "08d9a814083b037e08bfa559f269ae209fe20f9abcf266d6c6499f8f4874777e",
+  "_decisions.json": "60e936683c558bd9138ac9207a5ca5c75a4f51f75d24b76411eb05a6d86a02a1",
+  "_null_n3b.json": "3dcd760cee8bd2db5ac32d1cde60eaaf7d4ef2b45dc57a1edf6a670214425b93",
+  "_tests_stage_a.json": "0eaf94ef497190c34e43797fed75eee2023b14c76a7ae869542837763a9dc5f3",
+  "CSC01_AUTOPSY_PREPLAN.md": "1decde8fc984ebca87451e809ad84a43042106e85a3d7cb58ca399dc781dd382",
+  "CSC01_APPEND_ONLY_CORRECTIONS.md": "05a4b9e792af6a0580e0ce1357cca2874f23f2f089d5bf112011487e200706aa",
+  "CSC01_INHERITANCE_NOTE.md": "cb9d42a4b9ef1d132f72de879acb93b198fb3a3d5d42422e215a486e1acbec68"
+ },
+ "gate_spec_sha256": "4bf1a2e5f5e397dcff917b2d77ec9942bc9922413443c895d4d5bf7236d66a5e",
+ "gate_spec": {
+  "version": 1,
+  "mission": "CHEMOSTAT-SPATIAL-COHESION-01",
+  "name": "localization_gate",
+  "definition": "A population is LOCALISED BUT LIVE when four independent things hold at once: it is spatially compact AND more compact than it would be with no interaction at all; it is durable; it is traversed by material turnover and is not a jammed lump; and it is not an artefact of the boundary, of the occupancy budget, or of a controller reading a score.\n",
+  "geometry": {
+   "L": 36,
+   "CAP": 16,
+   "ell_X_reference": 2.5,
+   "core_radius_cells": 5.0,
+   "connectivity": 4,
+   "boundary": "torus",
+   "centre": "frechet",
+   "radius_of_gyration": "pairwise"
+  },
+  "window": {
+   "T_FORM_MAX": 2000,
+   "N_FORM": 30,
+   "U_FORM": 3.0,
+   "K_FORM": 50,
+   "T_MAINT": 9000,
+   "HORIZON": 11000,
+   "SAMPLE_EVERY": 50
+  },
+  "axes": {
+   "axis_1_compact_and_cohesive": {
+    "compact_vs_N1": {
+     "statistic": "fraction of window frames with r80 below the 1st percentile of the N1 null",
+     "null": "N1_complete_spatial_randomness",
+     "null_quantile": 0.01,
+     "threshold": 0.95,
+     "direction": "at_or_above"
+    },
+    "cohesive_vs_N3b": {
+     "statistic": "fraction of tested instants with r80 below the 5th percentile of the N3b null",
+     "null": "N3b_wandering_point_source_with_the_recorded_birth_history",
+     "null_quantile": 0.05,
+     "threshold": 0.8,
+     "direction": "at_or_above",
+     "note": "this is the cohesion test proper. N3b contains a point source that follows the ACTUAL recorded organiser trajectory, the ACTUAL recorded birth series, free diffusion and an exponential lifetime, and NO interaction between molecules whatsoever. Being more compact than N1 shows only that the population is localised; being more compact than N3b is what shows that something holds it together.\n"
+    },
+    "n3b": {
+     "draws": 200,
+     "instants": 9,
+     "max_age": 4000,
+     "mu_source": "observed_effective_death_rate",
+     "mu_source_definition": "mu_eff = (cumulative X deaths over the window) / (sum of N_X over the steps of the window), i.e. the arm's own realised per-molecule per-step death probability, read from its own recorded series.\n",
+     "why": "a mechanism that merely makes every molecule live longer is NOT cohesion: longer-lived molecules diffuse further and the cloud gets BIGGER. Feeding the arm's own realised death rate into the null makes the null reproduce the arm's own age structure and its own population size, so that the only thing the test can detect is SPATIAL structure. For an arm with no mechanism, mu_eff equals mu_X to the precision of the run, and the null is unchanged.\n"
+    }
+   },
+   "axis_2_durable": {
+    "never_extinct": true,
+    "organiser_present_throughout": true,
+    "N_KEEP": 50,
+    "FRAC_MIN": 0.95,
+    "RUN_MAX": 250,
+    "core_mass_fraction_min": 0.5,
+    "core_exists_fraction_min": 0.9
+   },
+   "axis_3_live_not_frozen": {
+    "material_turnover_min": 10.0,
+    "core_free_capacity_min": 1.0,
+    "report_only": [
+     "mean consecutive displacement of the core centre",
+     "N5 separation factor (observed displacement against decorrelated frames)",
+     "satellite lifetime distribution and halo fraction"
+    ]
+   },
+   "axis_4_not_an_artefact": {
+    "no_true_winding": true,
+    "occupancy_drift_max": 0.05,
+    "free_capacity_at_organiser_min": 0.5,
+    "no_score_reading": true
+   }
+  },
+  "classes": [
+   "NO_FORMATION",
+   "TRANSIENT_FORMATION",
+   "COHESION_ACHIEVED",
+   "LOCALISED_BUT_NOT_COHESIVE",
+   "DELOCALISED",
+   "FROZEN_AGGREGATE",
+   "MATERIAL_COLLAPSE",
+   "ORGANISATION_LOST",
+   "BOUNDARY_ARTEFACT",
+   "OCCUPANCY_RATCHET",
+   "PROTOCOL_VIOLATION",
+   "UNCLASSIFIABLE"
+  ],
+  "classification_order": [
+   [
+    "no_formation",
+    "NO_FORMATION"
+   ],
+   [
+    "transient_no_window",
+    "TRANSIENT_FORMATION"
+   ],
+   [
+    "all_axes",
+    "COHESION_ACHIEVED"
+   ],
+   [
+    "score_reading",
+    "PROTOCOL_VIOLATION"
+   ],
+   [
+    "winding",
+    "BOUNDARY_ARTEFACT"
+   ],
+   [
+    "occupancy",
+    "OCCUPANCY_RATCHET"
+   ],
+   [
+    "no_organiser",
+    "ORGANISATION_LOST"
+   ],
+   [
+    "extinct",
+    "MATERIAL_COLLAPSE"
+   ],
+   [
+    "not_compact",
+    "DELOCALISED"
+   ],
+   [
+    "not_durable",
+    "TRANSIENT_FORMATION"
+   ],
+   [
+    "not_live",
+    "FROZEN_AGGREGATE"
+   ],
+   [
+    "not_cohesive",
+    "LOCALISED_BUT_NOT_COHESIVE"
+   ],
+   [
+    "otherwise",
+    "UNCLASSIFIABLE"
+   ]
+  ],
+  "protocol": {
+   "arms": {
+    "C0_NO_CHANGE": "the balanced chemostat of ORR01 LawSpec v2, unchanged",
+    "C3_NEIGHBOUR_PROTECTED_DECAY": "mu_X(cell) = mu_X * (1 - lambda) ** m(cell)"
+   },
+   "pairing": "each confirmation seed is run in BOTH arms with the same seed and the same initial condition, and both arms draw the exchange from a second RNG stream. The two arms diverge at the first decay draw, because the decay operator is what differs; the pairing is therefore at the level of the seed and the initial condition, exactly as in ORR01.\n",
+   "seeds_confirmation": [
+    6101,
+    6102,
+    6103,
+    6104,
+    6105,
+    6106
+   ],
+   "seeds_control": [
+    6201,
+    6202
+   ],
+   "seeds_calibration": [
+    6301,
+    6302,
+    6303,
+    6304
+   ],
+   "forbidden_seeds": [
+    5001,
+    5002,
+    5003,
+    5004,
+    5005,
+    5006,
+    7001,
+    7002
+   ],
+   "forbidden_seeds_reason": "they were consumed by ORR01 and are used in CSC01 only for the raw-only autopsy of question A. Reusing them in a confirmation would be reusing data already seen.\n",
+   "confirm_required": 5,
+   "success_criterion": "at least 5 of 6 C3 seeds COHESION_ACHIEVED, AND at least 5 of 6 C0 seeds NOT COHESION_ACHIEVED.\n",
+   "controls": {
+    "NO_ORGANISER": "n_X = 0 is an exact invariant manifold; nothing may appear, with or without the mechanism",
+    "LAMBDA_ZERO": "the mechanism switched off by setting lambda = 0, which must reproduce the reference arm state for state"
+   },
+   "sequential_stopping_rule": [
+    "1 provenance not self-contained -> STOP",
+    "2 the two gate implementations disagree anywhere -> STOP",
+    "3 the calibration assay yields m_star = 0 -> STOP with COHESION_CALIBRATION_FAIL",
+    "4 v3 with no mechanism is not state-for-state identical to v2 -> STOP",
+    "5 the reference arm C0 is COHESION_ACHIEVED on any seed -> STOP, the gate does not discriminate",
+    "6 no C3 arm forms on the first two seeds -> STOP",
+    "7 every C3 arm of the first three seeds is MATERIAL_COLLAPSE or FROZEN_AGGREGATE -> STOP",
+    "8 any logging defect or ledger divergence -> STOP",
+    "9 controls run only if at least three confirmation pairs were executed"
+   ]
+  }
+ },
+ "mechanism_selection": {
+  "winner": "C3_NEIGHBOUR_PROTECTED_DECAY",
+  "unique": true,
+  "table": [
+   {
+    "candidate": "C3_NEIGHBOUR_PROTECTED_DECAY",
+    "scores": {
+     "S1": 1,
+     "S2": 1,
+     "S3": 0,
+     "S4": 0,
+     "S5": 0,
+     "S6": 0
+    },
+    "vector": [
+     1,
+     1,
+     0,
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "candidate": "C2_LOCAL_AUTOCATALYSIS",
+    "scores": {
+     "S1": 1,
+     "S2": 1,
+     "S3": 0,
+     "S4": 1,
+     "S5": 1,
+     "S6": 0
+    },
+    "vector": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     0
+    ]
+   },
+   {
+    "candidate": "C1_ADHESIVE_TRANSPORT",
+    "scores": {
+     "S1": 1,
+     "S2": 1,
+     "S3": 1,
+     "S4": 0,
+     "S5": 0,
+     "S6": 0
+    },
+    "vector": [
+     1,
+     1,
+     1,
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "candidate": "C4_MATRIX_CONFINEMENT",
+    "scores": {
+     "S1": 1,
+     "S2": 1,
+     "S3": 1,
+     "S4": 0,
+     "S5": 0,
+     "S6": 0
+    },
+    "vector": [
+     1,
+     1,
+     1,
+     0,
+     0,
+     0
+    ]
+   }
+  ],
+  "rule": [
+   [
+    "S1",
+    "fewest NEW free parameters"
+   ],
+   [
+    "S2",
+    "fewest engine operators modified"
+   ],
+   [
+    "S3",
+    "does NOT modify transport, so that the inherited first-passage bounds and the MTW01 minority window survive unmodified"
+   ],
+   [
+    "S4",
+    "cannot create matter away from the declared source"
+   ],
+   [
+    "S5",
+    "preserves the meaning of every pre-declared control"
+   ],
+   [
+    "S6",
+    "admits an exact single-cell analysis"
+   ]
+  ]
+ },
+ "calibration": {
+  "m_star": 5,
+  "lambda": 0.12944943670387588,
+  "mu_eff_at_m_star": 0.0019999999999999996,
+  "ell_X_isolated": 2.500000000000001,
+  "ell_X_at_m_star": 3.535533905932739,
+  "STATUS": "CALIBRATED",
+  "seeds": [
+   6301,
+   6302,
+   6303,
+   6304
+  ]
+ },
+ "PROTOCOL_ADVERSARIAL_AUDIT": "PASS",
+ "GATE_SINGLE_SOURCE_OF_TRUTH": "PASS",
+ "ONLINE_POSTHOC_SYNTHETIC_AGREEMENT": "PASS",
+ "PROVENANCE_STATUS": "SELF_CONTAINED_SPLIT_DELIVERY_PASS",
+ "VERDICT_QUESTION_A": "ORR01_LOCALIZATION_GATE_INVALID",
+ "C5_SCOPE": "C5_ADJUDICATIVELY_INVARIANT",
+ "INTRINSIC_LOCALIZATION_MECHANISM": "ABSENT_IN_DECLARED_OPERATOR",
+ "ROUTE": "C_THEN_B",
+ "starts_before_this_freeze": {
+  "raw_replay": 0,
+  "calibration": 0,
+  "confirmation": 0,
+  "control": 0,
+  "cost_probe": 0
+ },
+ "starts_before_this_freeze_note": "the calibration assay is the only class consumed before the freeze; it is passive and reads one structural statistic. raw_replay is non-scientific by declaration.",
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED"
+}

@@ -1,0 +1,148 @@
+{
+ "cases": [
+  {
+   "case": "A01 a compact cluster with NO turnover is not COHESION_ACHIEVED",
+   "PASS": true,
+   "detail": "FROZEN_AGGREGATE turnover=0.000"
+  },
+  {
+   "case": "A02 a compact cluster with NO free capacity inside the core is a jammed lump",
+   "PASS": true,
+   "detail": "FROZEN_AGGREGATE core_free=0.00"
+  },
+  {
+   "case": "A03 a population that truly winds around the torus is a BOUNDARY_ARTEFACT",
+   "PASS": true,
+   "detail": "BOUNDARY_ARTEFACT"
+  },
+  {
+   "case": "A04 an occupancy drift above the declared tolerance is an OCCUPANCY_RATCHET",
+   "PASS": true,
+   "detail": "OCCUPANCY_RATCHET drift=0.408"
+  },
+  {
+   "case": "A05 extinction inside the window is MATERIAL_COLLAPSE",
+   "PASS": true,
+   "detail": "MATERIAL_COLLAPSE"
+  },
+  {
+   "case": "A06 the loss of the organiser is ORGANISATION_LOST",
+   "PASS": true,
+   "detail": "ORGANISATION_LOST"
+  },
+  {
+   "case": "A07 a population as spread as complete spatial randomness is DELOCALISED",
+   "PASS": true,
+   "detail": "DELOCALISED compact_frac=0.00 core_frac=0.00"
+  },
+  {
+   "case": "A08 a compact, durable, renewed, SOURCE-TETHERED halo is LOCALISED_BUT_NOT_COHESIVE, never COHESION_ACHIEVED",
+   "PASS": true,
+   "detail": "LOCALISED_BUT_NOT_COHESIVE cohesion_frac=0.00"
+  },
+  {
+   "case": "A09 a cloud far more compact than the no-interaction null IS COHESION_ACHIEVED, so the gate is not unpassable",
+   "PASS": true,
+   "detail": "COHESION_ACHIEVED cohesion_frac=1.00"
+  },
+  {
+   "case": "A10 an operator that reads a score is a PROTOCOL_VIOLATION even when every other axis passes",
+   "PASS": true,
+   "detail": "PROTOCOL_VIOLATION"
+  },
+  {
+   "case": "A11 the streaming gate and the array gate agree on 24 random synthetic traces, field by field",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "A12 moving a threshold in the yaml moves the verdict, for all four axes: no threshold is hard-coded",
+   "PASS": true,
+   "detail": "[True, True, True, True]"
+  },
+  {
+   "case": "A13 LawSpec v3 with no mechanism is state-for-state identical to v2 over 1500 steps",
+   "PASS": true,
+   "detail": "5f598f72fad71ce8 vs 5f598f72fad71ce8"
+  },
+  {
+   "case": "A14 the mechanism switched off by lambda = 0 reproduces the reference arm state for state",
+   "PASS": true,
+   "detail": "246d191997f657b3 vs 246d191997f657b3"
+  },
+  {
+   "case": "A15 the mechanism can only LOWER a death probability: mu_eff(m) is non-increasing, equals mu_X at m = 0 and never exceeds it",
+   "PASS": true,
+   "detail": "lambda=0.129449 mu(0)=0.004000 mu(5)=0.002000 mu(50)=3.906e-06"
+  },
+  {
+   "case": "A16 the neighbour count reads EXACTLY the four neighbouring cells and not the cell itself, and no global reduction enters it",
+   "PASS": true,
+   "detail": "nonzero cells = 4"
+  },
+  {
+   "case": "A17 under the mechanism, n_X = 0 stays 0 and n_Y = 0 still forbids every X birth: the pre-declared controls keep their meaning",
+   "PASS": true,
+   "detail": "n_X after 900 steps without an organiser: 0 and 0 from 40"
+  },
+  {
+   "case": "A18 an arm that never forms cannot pass, whatever its geometry looks like",
+   "PASS": true,
+   "detail": "NO_FORMATION"
+  }
+ ],
+ "n_cases": 18,
+ "ast_audit": {
+  "PASS": true,
+  "self_attributes_read": [
+   "cohesion",
+   "deaths_avoided_estimate",
+   "lam",
+   "n",
+   "rng",
+   "sp"
+  ],
+  "species_subscripts": [
+   "WX",
+   "WY",
+   "X",
+   "Y"
+  ],
+  "forbidden_tokens_found": [],
+  "undeclared_self_attributes": [],
+  "undeclared_species": [],
+  "audited": "WorldV3._decay_core"
+ },
+ "GATE_SINGLE_SOURCE_OF_TRUTH": true,
+ "ONLINE_POSTHOC_SYNTHETIC_AGREEMENT": true,
+ "PROTOCOL_ADVERSARIAL_AUDIT": "PASS",
+ "gate_spec_sha256": "4bf1a2e5f5e397dcff917b2d77ec9942bc9922413443c895d4d5bf7236d66a5e",
+ "ledger": {
+  "by_class": {
+   "raw_replay": 0,
+   "calibration": 0,
+   "confirmation": 0,
+   "control": 0,
+   "cost_probe": 0
+  },
+  "caps": {
+   "raw_replay": 40,
+   "calibration": 8,
+   "confirmation": 16,
+   "control": 12,
+   "cost_probe": 2
+  },
+  "total": 0,
+  "SCIENTIFIC_RUNS_USED": 0,
+  "non_scientific_classes": [
+   "raw_replay",
+   "cost_probe"
+  ],
+  "valid": 0,
+  "invalid": 0,
+  "sequence_consistent": true,
+  "test_steps_used": 7800,
+  "max_test_steps": 20000,
+  "log": []
+ }
+}
