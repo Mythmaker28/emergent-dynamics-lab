@@ -1,0 +1,138 @@
+{
+ "SECTION": "OBTR01 \u00a713-\u00a714",
+ "CONSUMES_NO_SCIENTIFIC_RUN": true,
+ "HISTORICAL_VALUES_FOR_REFERENCE": {
+  "design_point_tau_sep": 25.0,
+  "design_point_window_upper": 0.0010536051565782627,
+  "design_point_adjudication": "WINDOW_NON_EMPTY_WITH_MARGIN",
+  "note": "reference only; nothing below is inherited from these"
+ },
+ "MEASURED_SOURCE_INTENSITY": {
+  "arms": 129,
+  "mean": 0.46013953488372095,
+  "sd": 0.09253823584018203,
+  "min": 0.008222222222222223,
+  "max": 0.5261111111111111,
+  "definition": "mean of accepted_births_X over the in-window steps of each arm, then averaged over arms"
+ },
+ "REDERIVED_INEQUALITIES": [
+  {
+   "name": "lower_extinction_vs_division",
+   "historical": "a_Y < R_Y",
+   "rederived_in_the_qualified_LawSpec": "0 < R_Y",
+   "a_Y": 0.0,
+   "why": "mu_Y = 0 exactly, so the organiser never dies",
+   "AS_A_STATEMENT_ABOUT_R_Y": "satisfied by every strictly positive rate",
+   "AGAINST_THE_REACHABLE_BAND": "R_Y = 0 is the only reachable value and it is EXCLUDED by the strict inequality",
+   "REACHABLE_BAND_SATISFIES_IT": false,
+   "STATUS": "FAILS_ON_THE_REACHABLE_BAND"
+  },
+  {
+   "name": "upper_hazard_of_a_third_organiser",
+   "historical": "R_Y < H3_max / (2 safety tau_sep)",
+   "rederived_in_the_qualified_LawSpec": "R_Y < 0.000178676",
+   "why": "the bound itself is well defined and is recomputed here with the corrected D_eff, the exhaustive Q_max = 28 and a DISCRETE first passage; but the rate it bounds is identically zero, so the constraint is satisfied vacuously",
+   "AS_A_STATEMENT_ABOUT_R_Y": "R_Y must stay below 0.000178676",
+   "AGAINST_THE_REACHABLE_BAND": "0 < 0.000178676, satisfied VACUOUSLY",
+   "REACHABLE_BAND_SATISFIES_IT": true,
+   "STATUS": "VACUOUSLY_SATISFIED"
+  },
+  {
+   "name": "upper_packed_KK",
+   "historical": "R_Y < D_Y (a_X / R_X)^(2/d)",
+   "rederived_in_the_qualified_LawSpec": "R_Y < 0.000217325",
+   "why": "R_X is replaced by the OPERATIVE source intensity E[B] = 0.4601 measured from 129 delivered arms, because C4/C5 showed k_X Q_max is not the operative quantity once the birth probability saturates",
+   "AS_A_STATEMENT_ABOUT_R_Y": "R_Y must stay below 0.000217325",
+   "AGAINST_THE_REACHABLE_BAND": "0 < 0.000217325, satisfied VACUOUSLY",
+   "REACHABLE_BAND_SATISFIES_IT": true,
+   "STATUS": "VACUOUSLY_SATISFIED"
+  },
+  {
+   "name": "non_emptiness",
+   "historical": "2 safety a_Y tau_sep / H3_max < 1",
+   "rederived_in_the_qualified_LawSpec": "0 < 1",
+   "value": 0.0,
+   "why": "a_Y = 0, so the left-hand side is identically zero",
+   "AS_A_STATEMENT_ABOUT_R_Y": "the window, read as a SET of rates, is the non-empty interval (0, 0.000178676)",
+   "AGAINST_THE_REACHABLE_BAND": "the reachable set is the single point {0}, which the strict lower bound excludes; the intersection is EMPTY",
+   "REACHABLE_BAND_SATISFIES_IT": false,
+   "STATUS": "VACUOUSLY_SATISFIED_BUT_UNREACHABLE"
+  }
+ ],
+ "WINDOW_AS_A_SET_OF_RATES_IS_NON_EMPTY": true,
+ "REACHABLE_BAND_INTERSECTS_THE_WINDOW": false,
+ "WINDOW_STATUS": "NOT_PORTABLE",
+ "QUALIFIED_POINT_WINDOW_STATUS": "UNREACHABLE_AT_THE_QUALIFIED_POINT",
+ "SECTION_14": {
+  "CURRENT_QUALIFIED_POINT": {
+   "parameters": {
+    "L": 36,
+    "L_large": 72,
+    "CAP": 16,
+    "S0": 3,
+    "phi": 0.2,
+    "omega": 0.05,
+    "muX": 0.004,
+    "muY": 0.0,
+    "kX": 1.0,
+    "kY": 0.0,
+    "p_hop": 0.10263340389897246,
+    "X_SEED": 4
+   },
+   "reachable_R_Y_band": [
+    0.0,
+    0.0
+   ],
+   "window_interval": [
+    0.0,
+    0.00017867643255287994
+   ],
+   "WINDOW_STATUS": "NOT_PORTABLE",
+   "QUALIFIED_POINT_WINDOW_STATUS": "UNREACHABLE_AT_THE_QUALIFIED_POINT",
+   "statement": "the historical window is not a condition this point fails; it is a condition about a mechanism this point does not have. Both of its terms, a_Y and R_Y, are structurally zero.",
+   "WHAT_MUST_NOT_BE_SAID": "that the window is 'satisfied', 'non-empty' or 'passed' here. Two of the three inequalities are satisfied vacuously and the third fails, and a vacuous satisfaction is not a result."
+  },
+  "ANALYTICALLY_ADMISSIBLE_FAMILY": {
+   "what_it_is": "the set of (k_Y, mu_Y) that would satisfy the rederived inequalities if the OTHER parameters were held at the qualified point. It is a statement about a DIFFERENT LawSpec, because k_Y > 0 removes ORGANIZER_BOUND_SOURCE.",
+   "constraints": {
+    "lower": "mu_Y < k_Y Q_min = k_Y",
+    "upper": "k_Y Q_max < 0.000178676",
+    "with_the_declared_design_margins": "k_Y <= 3.19065e-06 and mu_Y <= 3.19065e-07"
+   },
+   "recomputed_inputs": {
+    "D_eff": 0.025000000000000015,
+    "ell_X": 2.500000000000001,
+    "rho_max": 9.25925925925926,
+    "E_B_measured": 0.46013953488372095,
+    "N_CX": 115.03488372093024,
+    "L_packed": 1.9886196218463925,
+    "L_C": 2.500000000000001,
+    "binding_cluster_bound": "diffusive",
+    "Delta": 5.000000000000002,
+    "Q_max": 28,
+    "tau_sep_discrete": 147.41803682845028,
+    "tau_sep_continuum_Delta2_over_8DY": 125.00000000000001,
+    "discrete_over_continuum": 1.179344294627602,
+    "tau_design": 294.83607365690057,
+    "H3_max": 0.10536051565782628,
+    "upper_from_the_hazard": 0.00017867643255287994,
+    "upper_from_the_packed_bound": 0.00021732538158293754,
+    "binding_upper": 0.00017867643255287994,
+    "which_binds": "hazard"
+   },
+   "IMPLIED_COST": {
+    "T_div_at_Q_typ": 22386.83604126798,
+    "frozen_HORIZON": 11000,
+    "horizons_needed_for_one_expected_division": 2.0351669128425436,
+    "READING": "one expected organiser division takes about 22387 steps, which is 2.0 times the frozen horizon. A future minority-window experiment is therefore ANALYTICALLY eligible but not free: it needs a horizon several times longer than anything run so far, and the cost scales with it."
+   },
+   "NO_POINT_IS_SELECTED": "\u00a718 forbids optimisation. The numbers above bound a family; they are not a design point and are not to be used as one."
+  },
+  "FUTURE_SELECTED_DESIGN_POINT": {
+   "value": null,
+   "status": "NOT_SELECTED_IN_THIS_MISSION",
+   "why": "\u00a718 forbids optimisation and \u00a716 forbids fresh runs unless the gate opens; selecting a point would also require a LawSpec this mission has not qualified."
+  },
+  "WHY_THE_FAMILY_DOES_NOT_INHERIT_THE_QUALIFICATION": "the cumulative cloud qualification was established under BALANCED_CHEMOSTAT, NO_ADDED_COHESION, NO_C3_PROTECTION and ORGANIZER_BOUND_SOURCE, and the last of those is exactly k_Y = 0. Any point with k_Y > 0 is outside the qualified LawSpec, so nothing established here transfers to it without a new qualification."
+ }
+}
