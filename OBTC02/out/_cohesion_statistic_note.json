@@ -1,0 +1,110 @@
+{
+ "OBTC01_claim": "0.233 -> 0.800 as N_X goes from 30 to 320, under a null with no cohesion",
+ "reverified_L36": {
+  "N_X=30": 0.23333333333333334,
+  "N_X=320": 0.8
+ },
+ "claim_reproduced": true,
+ "rows": [
+  {
+   "L": 36,
+   "N_X": 30,
+   "density": 0.023148148148148147,
+   "median_main_fraction": 0.23333333333333334,
+   "median_n_eff": 9.279336734693878,
+   "median_r80": 6.4031242374328485,
+   "median_core_fraction": 0.6499999999999999
+  },
+  {
+   "L": 36,
+   "N_X": 60,
+   "density": 0.046296296296296294,
+   "median_main_fraction": 0.38333333333333336,
+   "median_n_eff": 5.714516080265266,
+   "median_r80": 6.708203932499369,
+   "median_core_fraction": 0.65
+  },
+  {
+   "L": 36,
+   "N_X": 120,
+   "density": 0.09259259259259259,
+   "median_main_fraction": 0.6125,
+   "median_n_eff": 2.6218006085555756,
+   "median_r80": 7.0,
+   "median_core_fraction": 0.6416666666666667
+  },
+  {
+   "L": 36,
+   "N_X": 200,
+   "density": 0.15432098765432098,
+   "median_main_fraction": 0.73,
+   "median_n_eff": 1.8681986261868833,
+   "median_r80": 7.0710678118654755,
+   "median_core_fraction": 0.655
+  },
+  {
+   "L": 36,
+   "N_X": 320,
+   "density": 0.24691358024691357,
+   "median_main_fraction": 0.8,
+   "median_n_eff": 1.5582676807268956,
+   "median_r80": 7.0710678118654755,
+   "median_core_fraction": 0.6390625
+  },
+  {
+   "L": 72,
+   "N_X": 30,
+   "density": 0.005787037037037037,
+   "median_main_fraction": 0.23333333333333334,
+   "median_n_eff": 9.574468085106384,
+   "median_r80": 6.4031242374328485,
+   "median_core_fraction": 0.6666666666666666
+  },
+  {
+   "L": 72,
+   "N_X": 60,
+   "density": 0.011574074074074073,
+   "median_main_fraction": 0.4166666666666667,
+   "median_n_eff": 4.986302631276042,
+   "median_r80": 7.0,
+   "median_core_fraction": 0.65
+  },
+  {
+   "L": 72,
+   "N_X": 120,
+   "density": 0.023148148148148147,
+   "median_main_fraction": 0.5958333333333333,
+   "median_n_eff": 2.739227171225291,
+   "median_r80": 7.0710678118654755,
+   "median_core_fraction": 0.6333333333333333
+  },
+  {
+   "L": 72,
+   "N_X": 200,
+   "density": 0.038580246913580245,
+   "median_main_fraction": 0.7224999999999999,
+   "median_n_eff": 1.9051933987716512,
+   "median_r80": 7.0710678118654755,
+   "median_core_fraction": 0.635
+  },
+  {
+   "L": 72,
+   "N_X": 320,
+   "density": 0.06172839506172839,
+   "median_main_fraction": 0.7984375,
+   "median_n_eff": 1.5657023495769296,
+   "median_r80": 7.0710678118654755,
+   "median_core_fraction": 0.640625
+  }
+ ],
+ "dependence": {
+  "N_X": "strong and monotone, under a null containing NO interaction",
+  "density": "at equal N_X the L=72 rows have a quarter of the density and give a close value, so density is not the driver",
+  "domain_size": "weak; the driver is N_X",
+  "capacity": "absent from the null by construction; in the engine capacity blocks hops at the 1e-3 level only",
+  "neighbourhood_and_component_convention": "decisive. The statistic is 4-adjacency of occupied cells: more molecules fill the gaps and merge components. It is a property of the CONVENTION, not of any interaction"
+ },
+ "consequence": "the raw cohesion statistic of CSC01 is confounded by population size; its C3 arms carried N_X 172-180 against 115-128 for their controls",
+ "C3_not_reopened": true,
+ "not_the_primary_outcome_of_OBTC02": true
+}

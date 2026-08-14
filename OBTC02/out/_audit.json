@@ -1,0 +1,94 @@
+{
+ "cases": [
+  {
+   "case": "T01 FRAME_STREAM_TABLE_IDENTITY on a clean run: counts, index checksum and payload checksum all match",
+   "PASS": true,
+   "detail": "expected 180, stream 180, table 180"
+  },
+  {
+   "case": "T02 every declared transport fault is caught by the technical layer",
+   "PASS": true,
+   "detail": "[]"
+  },
+  {
+   "case": "T03 THIRD_BOUNDARY_TESTS: the streaming bucket index reproduces the array split n//3 EXACTLY, for horizons divisible and not divisible by three, down to the minimum window",
+   "PASS": true,
+   "detail": "[]"
+  },
+  {
+   "case": "T04 ONLINE_POSTHOC_SYNTHETIC_AGREEMENT on 24 random arms, with the two aggregators written independently",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "T05 ONLINE_POSTHOC_HISTORICAL_AGREEMENT on 8 stored ORR01 and CSC01 series",
+   "PASS": true,
+   "detail": "[]"
+  },
+  {
+   "case": "T06 ONLINE_POSTHOC_8101_AGREEMENT_AFTER_PATCH, on the stored raw of the burnt seed; the reclassification stays DIAGNOSTIC_ONLY",
+   "PASS": true,
+   "detail": "stream 180 frames, table 180 frames"
+  },
+  {
+   "case": "T07 GATE_SATISFIABILITY: one arm satisfies all ten per-arm conditions at once, and breaking each one in turn breaks exactly that one",
+   "PASS": true,
+   "detail": "joint pass = True"
+  },
+  {
+   "case": "T08 the two CROSS-ARM conditions each pass on a good set and each fail alone when broken",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "T09 moving any threshold in the yaml moves the verdict",
+   "PASS": true,
+   "detail": "[True, True, True, True, True]"
+  },
+  {
+   "case": "T10 the engine is still state-for-state the frozen engine",
+   "PASS": true,
+   "detail": "0338ab80a66d64d2 vs 0338ab80a66d64d2"
+  },
+  {
+   "case": "T11 the topological winding test is unchanged and LEGACY_EXTENT_PROXY enters no gate condition",
+   "PASS": true,
+   "detail": ""
+  }
+ ],
+ "n_cases": 11,
+ "FRAME_STREAM_TABLE_IDENTITY": "PASS",
+ "THIRD_BOUNDARY_TESTS": "PASS",
+ "ONLINE_POSTHOC_SYNTHETIC_AGREEMENT": "PASS",
+ "ONLINE_POSTHOC_HISTORICAL_AGREEMENT": "PASS",
+ "ONLINE_POSTHOC_8101_AGREEMENT_AFTER_PATCH": "PASS",
+ "GATE_SATISFIABILITY": "PASS",
+ "PROTOCOL_ADVERSARIAL_AUDIT": "PASS",
+ "grouping_convention": "OBTC01 declared twelve gate conditions: ten evaluated PER ARM and two evaluated ACROSS ARMS, because a single arm cannot exhibit either domain-size invariance or the response to removing the source. T07 certifies the ten; T08 certifies the two.",
+ "spec_sha256": "65d577460f28d2cce96be73e61eb3667a9299e23601b122f34192c14de0352cd",
+ "ledger": {
+  "by_class": {
+   "calibration": 0,
+   "confirmation": 0,
+   "control": 0,
+   "cost_probe": 0
+  },
+  "caps": {
+   "calibration": 4,
+   "confirmation": 24,
+   "control": 8,
+   "cost_probe": 2
+  },
+  "total": 0,
+  "SCIENTIFIC_RUNS_USED": 0,
+  "non_scientific_classes": [
+   "cost_probe"
+  ],
+  "valid": 0,
+  "invalid": 0,
+  "sequence_consistent": true,
+  "test_steps_used": 2400,
+  "max_test_steps": 30000,
+  "log": []
+ }
+}
