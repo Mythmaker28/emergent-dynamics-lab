@@ -484,7 +484,11 @@ question doit être **gelée d'avance**, pas décidée après avoir vu ces résu
 ## 25. Fichiers et reproduction
 
 ```
-branche          codex/chemostat-spatial-cohesion-01, depuis d89c221, 11 commits séparés
+branche          codex/chemostat-spatial-cohesion-01, depuis d89c221 ; commits séparés
+                 par étape, bien au-delà des 7 exigés, la liste exacte étant le journal de la
+                 branche. Les derniers commits sont ceux de la livraison, qui par construction
+                 ne peuvent pas figurer dans l'artefact qu'ils décrivent : le manifeste livré à
+                 côté des parts épingle le HEAD exact de l'artefact
 code             CSC01/code/    17 fichiers gelés, hachés dans _freeze.json
 données brutes   CSC01/raw/     16 bras, série complète 29 champs x 11 000 pas + champs finaux
 sorties          CSC01/out/     _provenance, _calibration, _audit, _freeze, _results, _analysis,
