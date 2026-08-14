@@ -1,0 +1,332 @@
+{
+ "SECTION": "OBTR01 \u00a712",
+ "CONSUMES_NO_SCIENTIFIC_RUN": true,
+ "ARMS_AUDITED": {
+  "total": 170,
+  "by_mission": {
+   "OBTC02": 17,
+   "OBDI01": 15,
+   "OBDI02": 138
+  }
+ },
+ "BY_SPECIES": {
+  "X": {
+   "n": 170,
+   "mean": 0.00035541465411388754,
+   "median": 0.00036116625786833455,
+   "min": 0.0,
+   "max": 0.0010444955086693127,
+   "sd": 0.0001256456803696369
+  },
+  "Y": {
+   "n": 170,
+   "mean": 0.000337157843104779,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 0.002702702702702703,
+   "sd": 0.0005861051888977607
+  },
+  "SX": {
+   "n": 170,
+   "mean": 0.00034814450666150463,
+   "median": 0.00034802710161304317,
+   "min": 0.00032724824523839907,
+   "max": 0.0003747878804704282,
+   "sd": 7.757143361038046e-06
+  },
+  "SY": {
+   "n": 170,
+   "mean": 0.00035141435408546335,
+   "median": 0.00035046045244626776,
+   "min": 0.00031875720391280843,
+   "max": 0.00037716659779310133,
+   "sd": 8.344355159448726e-06
+  }
+ },
+ "BY_SIZE": {
+  "36": {
+   "n": 65,
+   "mean": 0.0003645618774864079,
+   "median": 0.00036773984208818543,
+   "min": 0.0,
+   "max": 0.0010444955086693127,
+   "sd": 0.0001452843988005019
+  },
+  "72": {
+   "n": 54,
+   "mean": 0.0003408316836826555,
+   "median": 0.0003544216739066505,
+   "min": 0.0,
+   "max": 0.0005584345961401001,
+   "sd": 0.00012404594315128343
+  },
+  "96": {
+   "n": 51,
+   "mean": 0.00035919722046825434,
+   "median": 0.00036072173204146856,
+   "min": 0.0,
+   "max": 0.0005220187509135328,
+   "sd": 9.837760756484274e-05
+  }
+ },
+ "BY_MISSION": {
+  "OBTC02": {
+   "n": 17,
+   "mean": 0.0003383997437772717,
+   "median": 0.0003606700789637258,
+   "min": 0.0,
+   "max": 0.0005584345961401001,
+   "sd": 0.00016157774297016137
+  },
+  "OBDI01": {
+   "n": 15,
+   "mean": 0.0003037555776198281,
+   "median": 0.00030793468920080206,
+   "min": 0.0,
+   "max": 0.0004687285917229742,
+   "sd": 0.00010113790068792114
+  },
+  "OBDI02": {
+   "n": 138,
+   "mean": 0.00036312581080325977,
+   "median": 0.00036868773454687745,
+   "min": 0.0,
+   "max": 0.0010444955086693127,
+   "sd": 0.0001224415862040375
+  }
+ },
+ "BY_CONDITION": {
+  "D": {
+   "n": 3,
+   "mean": 0.00043667706829488164,
+   "median": 0.0004003144287877023,
+   "min": 0.00035128217995684247,
+   "max": 0.0005584345961401001,
+   "sd": 0.00010825761888471037
+  },
+  "N": {
+   "n": 2,
+   "mean": 0.0,
+   "median": 0.0,
+   "min": 0.0,
+   "max": 0.0,
+   "sd": 0.0
+  },
+  "P": {
+   "n": 159,
+   "mean": 0.00035844278681725734,
+   "median": 0.0003616107836952006,
+   "min": 0.0,
+   "max": 0.0010444955086693127,
+   "sd": 0.00012075074974095993
+  },
+  "R": {
+   "n": 3,
+   "mean": 0.0003630467168789627,
+   "median": 0.000396163469557965,
+   "min": 0.00024797329518359563,
+   "max": 0.0004450033858953275,
+   "sd": 0.00010260484219796829
+  },
+  "S": {
+   "n": 3,
+   "mean": 0.00034297224663180914,
+   "median": 0.00034018831069069204,
+   "min": 0.00019409051468237659,
+   "max": 0.0004946379145223587,
+   "sd": 0.0001502930391340088
+  }
+ },
+ "BY_SEED": {
+  "note": "the per-arm spread IS the seed dimension",
+  "X": {
+   "n": 170,
+   "mean": 0.00035541465411388754,
+   "median": 0.00036116625786833455,
+   "min": 0.0,
+   "max": 0.0010444955086693127,
+   "sd": 0.0001256456803696369
+  },
+  "coefficient_of_variation": 0.3535185702539309
+ },
+ "BY_POPULATION": {
+  "n_arms": 144,
+  "log_log_slope_of_eps_on_N_X": 0.046572924263361036,
+  "correlation": 0.10639860483579795,
+  "READING": "a slope near +1 would say refusal is proportional to the population, i.e. driven by crowding; a slope near 0 would say it is a property of the lattice occupancy set by the chemostat and not by the cloud."
+ },
+ "BY_POSITION": {
+  "arms_used": 142,
+  "LIMITATION": "only the FINAL field of each arm is stored, so this profile rests on one frame per arm. The bins are therefore thin and the shape is indicative, not a measured law. The certified bound below does not depend on it.",
+  "method": "exact expected refusal E[max(0, Binomial(n, q) - free)] per cell and direction, from the recorded final occupancy; nothing is simulated",
+  "by_distance_to_the_organiser": [
+   {
+    "r": 0,
+    "offered": 67.32751295772593,
+    "refused": 0.0009383952519414183,
+    "fraction": 1.3937767945336471e-05
+   },
+   {
+    "r": 1,
+    "offered": 219.3275841321042,
+    "refused": 0.00958683114339641,
+    "fraction": 4.3710102317190175e-05
+   },
+   {
+    "r": 2,
+    "offered": 198.39036973671372,
+    "refused": 0.1283588924953716,
+    "fraction": 0.0006470016294929953
+   },
+   {
+    "r": 3,
+    "offered": 176.52945470623257,
+    "refused": 0.0026165228195944635,
+    "fraction": 1.482201836485979e-05
+   },
+   {
+    "r": 4,
+    "offered": 235.44102854424258,
+    "refused": 0.4167833923274333,
+    "fraction": 0.0017702241402208026
+   },
+   {
+    "r": 5,
+    "offered": 134.86029272324978,
+    "refused": 0.02699194512460384,
+    "fraction": 0.00020014746060202236
+   },
+   {
+    "r": 6,
+    "offered": 135.2708263388457,
+    "refused": 0.001975052924229303,
+    "fraction": 1.4600730827812853e-05
+   },
+   {
+    "r": 7,
+    "offered": 98.73333455081153,
+    "refused": 0.0,
+    "fraction": 0.0
+   },
+   {
+    "r": 8,
+    "offered": 83.85149098546053,
+    "refused": 0.0,
+    "fraction": 0.0
+   },
+   {
+    "r": 9,
+    "offered": 84.05675779325847,
+    "refused": 0.0,
+    "fraction": 0.0
+   },
+   {
+    "r": 10,
+    "offered": 47.827166216921185,
+    "refused": 0.0,
+    "fraction": 0.0
+   },
+   {
+    "r": 11,
+    "offered": 45.46659792724484,
+    "refused": 0.0,
+    "fraction": 0.0
+   },
+   {
+    "r": 12,
+    "offered": 31.405821593085577,
+    "refused": 0.025658350974743116,
+    "fraction": 0.0008169934640522875
+   },
+   {
+    "r": 13,
+    "offered": 29.866320534601,
+    "refused": 0.025658350974743116,
+    "fraction": 0.0008591065292096215
+   },
+   {
+    "r": 14,
+    "offered": 96.57803306893302,
+    "refused": 0.05131670194948623,
+    "fraction": 0.0005313496280552608
+   }
+  ]
+ },
+ "BY_PHASE": {
+  "note": "hops_blocked is accumulated over a whole run, so the phase dimension is resolved BETWEEN arms rather than within one: the frozen OBTC02 conditions differ precisely in whether the source is on throughout, switched off part-way, or immobile.",
+  "by_condition": {
+   "D": {
+    "n": 3,
+    "mean": 0.00043667706829488164,
+    "median": 0.0004003144287877023,
+    "min": 0.00035128217995684247,
+    "max": 0.0005584345961401001,
+    "sd": 0.00010825761888471037
+   },
+   "N": {
+    "n": 2,
+    "mean": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "sd": 0.0
+   },
+   "P": {
+    "n": 6,
+    "mean": 0.0003874512581327764,
+    "median": 0.0004122936063581796,
+    "min": 0.00021438316117715844,
+    "max": 0.0004784487004488975,
+    "sd": 0.000103654643399272
+   },
+   "R": {
+    "n": 3,
+    "mean": 0.0003630467168789627,
+    "median": 0.000396163469557965,
+    "min": 0.00024797329518359563,
+    "max": 0.0004450033858953275,
+    "sd": 0.00010260484219796829
+   },
+   "S": {
+    "n": 3,
+    "mean": 0.00034297224663180914,
+    "median": 0.00034018831069069204,
+    "min": 0.00019409051468237659,
+    "max": 0.0004946379145223587,
+    "sd": 0.0001502930391340088
+   }
+  },
+  "conditions_present": [
+   "D",
+   "N",
+   "P",
+   "R",
+   "S"
+  ],
+  "source_off_arms": 3
+ },
+ "CERTIFIED_BOUND": {
+  "ARGUMENT": "a molecule offers Binomial(4, q) hops per step, so p_hop on average, and lives (1-mu)/mu steps; a fraction eps of offered hops is refused, and by exchangeability within a cell each offered hop is refused with probability eps on average. E[R] = p_hop * eps * (1-mu)/mu, and Markov gives P(R >= 1) <= E[R]. No distributional assumption is used.",
+  "hops_offered_per_molecule_per_lifetime": 25.555717570844145,
+  "AT_THE_MEAN_MEASURED_EPS": {
+   "eps": 0.00035541465411388754,
+   "expected_refusals_per_molecule_lifetime": 0.00908287652107377,
+   "P_at_least_one_refusal_upper_bound": 0.00908287652107377,
+   "fraction_of_molecules_certified_unblocked_lower_bound": 0.9909171234789262,
+   "additive_error_on_a_probability_observable": 0.00908287652107377,
+   "additive_error_on_M2_upper_bound": 5.885703985655803
+  },
+  "AT_THE_WORST_ARM": {
+   "eps": 0.0010444955086693127,
+   "expected_refusals_per_molecule_lifetime": 0.026692832223568146,
+   "P_at_least_one_refusal_upper_bound": 0.026692832223568146,
+   "fraction_of_molecules_certified_unblocked_lower_bound": 0.9733071677764319,
+   "additive_error_on_a_probability_observable": 0.026692832223568146,
+   "additive_error_on_M2_upper_bound": 17.296955280872158
+  },
+  "SCOPE": "valid for PER-PARTICLE observables of a single molecule's trajectory, which is exactly the class \u00a79 registered. For a joint observable of all N molecules the union bound gives N * E[R] > 1 and is vacuous, so no certified statement is made there.",
+  "WHY_IT_IS_NOT_A_PER_PARTICLE_THINNING": "acceptance is min(movers, dest_free) per CELL, so when the cap bites it truncates a whole batch. The refused hops are not an independent thinning of individual molecules and cannot be absorbed into an effective q; that is why the kernel status is CONDITIONAL_EXACT and not EXACT."
+ },
+ "FULL_OPERATOR_ERROR": "CERTIFIED_FOR_PER_PARTICLE_BOUNDED_OBSERVABLES__EMPIRICALLY_CHARACTERIZED_OTHERWISE",
+ "UNBLOCKED_SOURCE_RESPONSE_OPERATOR": "CONDITIONAL_EXACT"
+}
