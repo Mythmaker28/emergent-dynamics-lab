@@ -1,0 +1,96 @@
+{
+ "note": "block bootstrap, block length 10 frames, over all healthy P and D arms of OBTC02, passing or not; the truth is H-bound by construction since the data come from the frozen LawSpec",
+ "draws": 4000,
+ "block_length": 10,
+ "arms_used": [
+  "P__seed9102",
+  "P__seed9103",
+  "P__seed9104",
+  "P__seed9105",
+  "P__seed9106",
+  "D__seed9501",
+  "D__seed9502",
+  "D__seed9503"
+ ],
+ "lag1_autocorrelation": {
+  "per_arm": {
+   "P__seed9102": 0.7209763673340738,
+   "P__seed9103": 0.6738401265889022,
+   "P__seed9104": 0.753285654065057,
+   "P__seed9105": 0.7141551981246482,
+   "P__seed9106": 0.7378128458012655,
+   "D__seed9501": 0.6319681403729784,
+   "D__seed9502": 0.8045149110331625,
+   "D__seed9503": 0.8537849349634806
+  },
+  "mean": 0.736292272285446,
+  "min": 0.6319681403729784,
+  "max": 0.8537849349634806
+ },
+ "by_L": {
+  "36": {
+   "bound": 12.6,
+   "binding_term": "domain_fraction",
+   "n_frames": 180,
+   "n_arms": 5,
+   "median_bootstrap_fraction": 0.9888888888888889,
+   "q05_bootstrap_fraction": 0.9555555555555556,
+   "false_negative_rate": 0.030449999999999998,
+   "false_negative_rate_per_arm": {
+    "P__seed9102": 0.059,
+    "P__seed9103": 0.004,
+    "P__seed9104": 0.08925,
+    "P__seed9105": 0.0,
+    "P__seed9106": 0.0
+   }
+  },
+  "72": {
+   "bound": 12.8,
+   "binding_term": "absolute",
+   "n_frames": 180,
+   "n_arms": 3,
+   "median_bootstrap_fraction": 0.9611111111111111,
+   "q05_bootstrap_fraction": 0.8722222222222222,
+   "false_negative_rate": 0.4066666666666667,
+   "false_negative_rate_per_arm": {
+    "D__seed9501": 0.0,
+    "D__seed9502": 0.591,
+    "D__seed9503": 0.629
+   }
+  }
+ },
+ "frame_count_dependence": {
+  "36": {
+   "60": 0.0623,
+   "180": 0.0312,
+   "540": 0.0043,
+   "1800": 0.0001
+  },
+  "72": {
+   "60": 0.29916666666666664,
+   "180": 0.41100000000000003,
+   "540": 0.5073333333333333,
+   "1800": 0.6163333333333333
+  }
+ },
+ "autocorrelation_destroyed": {
+  "36": 0.0123,
+  "72": 0.5106666666666667
+ },
+ "bound_L36": 12.6,
+ "bound_L72": 12.8,
+ "bound_ratio": 1.015873015873016,
+ "median_r80_L36": 7.0,
+ "median_r80_L72": 7.0,
+ "relative_difference": 0.0,
+ "median_of_arm_medians": {
+  "L36": 7.0710678118654755,
+  "L72": 7.035533905932738,
+  "relative_difference": 0.005025253169416751
+ },
+ "legacy_gate_OC": {
+  "note": "block bootstrap, block length 10 frames, over all healthy P and D arms of OBTC02, passing or not; the truth is H-bound by construction since the data come from the frozen LawSpec",
+  "L36_false_negative_rate": 0.030449999999999998,
+  "L72_false_negative_rate": 0.4066666666666667
+ }
+}
