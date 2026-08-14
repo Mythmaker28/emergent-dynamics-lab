@@ -1,0 +1,135 @@
+{
+ "SECTION": "OBDI01 instrument tests",
+ "results": [
+  {
+   "test": "T1a observer leaves the engine state hash identical",
+   "PASS": true,
+   "detail": "3800f293614bc6a5 vs 3800f293614bc6a5"
+  },
+  {
+   "test": "T1b observer leaves the frame payload checksum identical",
+   "PASS": true,
+   "detail": "6e78ab8f9f80189a vs 6e78ab8f9f80189a"
+  },
+  {
+   "test": "T1c observer leaves the population identical",
+   "PASS": true,
+   "detail": "119 vs 119"
+  },
+  {
+   "test": "T1d observer saw exactly one row per frame",
+   "PASS": true,
+   "detail": "12 rows, 12 frames"
+  },
+  {
+   "test": "T2a empirical radial matches a brute-force recomputation",
+   "PASS": true,
+   "detail": "max |diff| = 0.000e+00"
+  },
+  {
+   "test": "T2b empirical radial is a probability vector",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "test": "T3a predicted radial is a probability vector",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "test": "T3b total variation of a distribution with itself is zero",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "test": "T3c total variation is the half L1 distance",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "test": "T4 wls slope recovers +0.0 exactly",
+   "PASS": true,
+   "detail": "beta = +0.000000000000  se = 1.4025"
+  },
+  {
+   "test": "T4 wls slope recovers +0.5 exactly",
+   "PASS": true,
+   "detail": "beta = +0.500000000000  se = 1.4025"
+  },
+  {
+   "test": "T4 wls slope recovers +1.0 exactly",
+   "PASS": true,
+   "detail": "beta = +1.000000000000  se = 1.4025"
+  },
+  {
+   "test": "T4 wls slope recovers -2.0 exactly",
+   "PASS": true,
+   "detail": "beta = -2.000000000000  se = 1.4025"
+  },
+  {
+   "test": "T5 the region H_bound      -> PASS",
+   "PASS": true,
+   "detail": "A=True B=True C=True D=True"
+  },
+  {
+   "test": "T5 the region H_linear     -> FAIL",
+   "PASS": true,
+   "detail": "A=False B=False C=False D=False"
+  },
+  {
+   "test": "T5 the region H_sublinear  -> FAIL",
+   "PASS": true,
+   "detail": "A=False B=False C=True D=False"
+  },
+  {
+   "test": "T5 the region H_fill       -> FAIL",
+   "PASS": true,
+   "detail": "A=False B=False C=False D=False"
+  },
+  {
+   "test": "T5 component A_shape_invariance       can be broken alone",
+   "PASS": true,
+   "detail": "region PASS = False"
+  },
+  {
+   "test": "T5 component B_density_exponent       can be broken alone",
+   "PASS": true,
+   "detail": "region PASS = False"
+  },
+  {
+   "test": "T5 component C_no_true_winding        can be broken alone",
+   "PASS": true,
+   "detail": "region PASS = False"
+  },
+  {
+   "test": "T5 component D_profile_compatibility  can be broken alone",
+   "PASS": true,
+   "detail": "region PASS = False"
+  },
+  {
+   "test": "T6a the critical value matches the per-test level",
+   "PASS": true,
+   "detail": "0.005116197 vs 0.005116197"
+  },
+  {
+   "test": "T6b the Sidak level reproduces the family level",
+   "PASS": true,
+   "detail": "K = 10"
+  },
+  {
+   "test": "T7a the secondary endpoint reproduces OBTC02's verdicts",
+   "PASS": true,
+   "detail": "{'D/seed9501': True, 'D/seed9502': False, 'D/seed9503': False}"
+  },
+  {
+   "test": "T7b it reproduces OBTC02's exact fractions",
+   "PASS": true,
+   "detail": "{'D/seed9501': 1.0, 'D/seed9502': 0.9333, 'D/seed9503': 0.9333}"
+  }
+ ],
+ "passed": 25,
+ "total": 25,
+ "ALL_PASS": true,
+ "ledger_untouched": true,
+ "mode": "TEST"
+}

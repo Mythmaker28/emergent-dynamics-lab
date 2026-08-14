@@ -1,0 +1,64 @@
+{
+ "SECTION": "OBDI01 pipeline probe (NON-SCIENTIFIC)",
+ "seed": 771999,
+ "L": 36,
+ "wall_seconds": 29.24275827407837,
+ "RUN_TECHNICALLY_VALID": true,
+ "technical_reasons": [],
+ "GATES_AGREE": true,
+ "window_frames": 180,
+ "summary": {
+  "Rg": 5.829436966581748,
+  "r80": 7.0710678118654755,
+  "r50": 4.123105625617661,
+  "r90": 9.219544457292887,
+  "organiser_to_core": 3.1622776601683795,
+  "r80_organiser": 8.246211251235321,
+  "core_fraction": 0.6367003367003368,
+  "main_mass_fraction": 0.6190476190476191,
+  "N_X_mean": 125.22222222222223,
+  "density": 0.09662208504801098
+ },
+ "winding_frames": 0,
+ "profile_TV": 0.025827415900990497,
+ "radial_observed_sums_to_one": true,
+ "all_summaries_finite": true,
+ "ledger": {
+  "by_class": {
+   "calibration": 0,
+   "confirmation": 0,
+   "control": 0,
+   "cost_probe": 1
+  },
+  "caps": {
+   "calibration": 4,
+   "confirmation": 24,
+   "control": 8,
+   "cost_probe": 2
+  },
+  "total": 1,
+  "SCIENTIFIC_RUNS_USED": 0,
+  "non_scientific_classes": [
+   "cost_probe"
+  ],
+  "valid": 1,
+  "invalid": 0,
+  "sequence_consistent": true,
+  "test_steps_used": 0,
+  "max_test_steps": 30000,
+  "log": [
+   {
+    "n": 1,
+    "class": "cost_probe",
+    "tag": "probe/seed771999",
+    "planned_steps": 11000,
+    "steps_used": 11000,
+    "valid": true,
+    "scientific": false,
+    "reclassified": "opened as `confirmation` by OBTC02's run_arm, reclassified as a non-scientific pipeline probe"
+   }
+  ]
+ },
+ "SCIENTIFIC_RUNS_USED": 0,
+ "NOT_EVIDENCE": "this arm is a pipeline check. It is not compared with any threshold, it does not enter the principal outcome, and its seed is not a confirmatory seed."
+}
