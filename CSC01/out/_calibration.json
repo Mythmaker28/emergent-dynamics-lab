@@ -1,0 +1,102 @@
+{
+ "rule": {
+  "parameter": "lambda",
+  "target": "a molecule sitting at the MEDIAN neighbour count observed in the C0 reference must have exactly HALF the death rate of an isolated molecule",
+  "equation": "(1 - lambda) ** m_star = 1/2   =>   lambda = 1 - 2 ** (-1 / m_star)",
+  "m_star": "the median number of X molecules in the four neighbouring cells, over the X molecules of the main component, measured in the PASSIVE ASSAY",
+  "passive_assay": "arms run under C0 \u2014 the unchanged balanced chemostat \u2014 on their own seeds, from which ONLY the structural statistic m_star is read. No gate verdict, no PASS, no classification and no compactness statistic of the assay enters the choice of lambda.",
+  "why_this_is_outcome_independent": "m_star is a property of the reference state's geometry, fixed before any arm of the mechanism is run. The factor 1/2 is declared here, in advance, and is not tuned.",
+  "failure_mode": "if m_star == 0 the equation has no solution and the mission stops with COHESION_CALIBRATION_FAIL.",
+  "assay_seeds": [
+   6301,
+   6302,
+   6303,
+   6304
+  ]
+ },
+ "assay_horizon": 4000,
+ "assay_measured_from": 2000,
+ "sample_every": 50,
+ "core_radius_cells": 5.0,
+ "per_arm_median": {
+  "6301": 5.0,
+  "6302": 4.5,
+  "6303": 5.0,
+  "6304": 5.0
+ },
+ "n_frames_pooled": 164,
+ "m_star_raw_median": 5.0,
+ "m_star": 5,
+ "rounding": "to the nearest integer, declared with the rule",
+ "lambda": 0.12944943670387588,
+ "mu_eff_at_m_star": 0.0019999999999999996,
+ "mu_X_isolated": 0.004,
+ "ell_X_isolated": 2.500000000000001,
+ "ell_X_at_m_star": 3.535533905932739,
+ "STATUS": "CALIBRATED",
+ "ledger": {
+  "by_class": {
+   "raw_replay": 0,
+   "calibration": 4,
+   "confirmation": 0,
+   "control": 0,
+   "cost_probe": 0
+  },
+  "caps": {
+   "raw_replay": 40,
+   "calibration": 8,
+   "confirmation": 16,
+   "control": 12,
+   "cost_probe": 2
+  },
+  "total": 4,
+  "SCIENTIFIC_RUNS_USED": 4,
+  "non_scientific_classes": [
+   "raw_replay",
+   "cost_probe"
+  ],
+  "valid": 4,
+  "invalid": 0,
+  "sequence_consistent": true,
+  "test_steps_used": 0,
+  "max_test_steps": 20000,
+  "log": [
+   {
+    "n": 1,
+    "class": "calibration",
+    "tag": "assay/C0/seed6301",
+    "planned_steps": 4000,
+    "steps_used": 4000,
+    "valid": true,
+    "scientific": true
+   },
+   {
+    "n": 2,
+    "class": "calibration",
+    "tag": "assay/C0/seed6302",
+    "planned_steps": 4000,
+    "steps_used": 4000,
+    "valid": true,
+    "scientific": true
+   },
+   {
+    "n": 3,
+    "class": "calibration",
+    "tag": "assay/C0/seed6303",
+    "planned_steps": 4000,
+    "steps_used": 4000,
+    "valid": true,
+    "scientific": true
+   },
+   {
+    "n": 4,
+    "class": "calibration",
+    "tag": "assay/C0/seed6304",
+    "planned_steps": 4000,
+    "steps_used": 4000,
+    "valid": true,
+    "scientific": true
+   }
+  ]
+ }
+}
