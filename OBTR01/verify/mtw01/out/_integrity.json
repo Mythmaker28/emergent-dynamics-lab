@@ -1,0 +1,218 @@
+{
+ "tests": [
+  {
+   "test": "no lattice-wide reduction enters any rate",
+   "outcome": "PASS",
+   "detail": "offending tokens: none"
+  },
+  {
+   "test": "the diagnostic accumulators are write-only in every operator",
+   "outcome": "PASS",
+   "detail": "declared write-only: ['H3_exact', 'H3_kk', 'removed_waste'] ; reads found: none"
+  },
+  {
+   "test": "every .any() is only a branch guard, never a rate",
+   "outcome": "PASS",
+   "detail": "any() sites: ['_diffuse:109', '_react:125', '_react:130', '_decay:139'] ; offenders: none"
+  },
+  {
+   "test": "no clone, child or division operator is defined",
+   "outcome": "PASS",
+   "detail": "definitions: 18 ; offenders: none"
+  },
+  {
+   "test": "World exposes no public advance()",
+   "outcome": "PASS",
+   "detail": "methods: ['__init__', '_decay', '_diffuse', '_feed_and_outflow', '_one_step', '_react', 'free', 'occ', 'state_hash']"
+  },
+  {
+   "test": "the frozen update order is unchanged",
+   "outcome": "PASS",
+   "detail": "order = ['_diffuse(X)', '_diffuse(Y)', '_diffuse(SX)', '_diffuse(SY)', '_react', '_decay', '_feed_and_outflow']"
+  },
+  {
+   "test": "determinism conditional on the RNG seed",
+   "outcome": "PASS",
+   "detail": "fb1920e46497a6b9"
+  },
+  {
+   "test": "local capacity is never exceeded",
+   "outcome": "PASS",
+   "detail": "max occupancy 16 against CAP 16"
+  },
+  {
+   "test": "the X = 0 axis is invariant",
+   "outcome": "PASS",
+   "detail": "N_X=0 N_Y=3"
+  },
+  {
+   "test": "the Y = 0 axis is invariant",
+   "outcome": "PASS",
+   "detail": "N_X=0 N_Y=0"
+  },
+  {
+   "test": "the empty organiser state is exact and absorbing",
+   "outcome": "PASS",
+   "detail": "N_X=0 N_Y=0"
+  },
+  {
+   "test": "diffusion on the torus conserves particles exactly and wraps",
+   "outcome": "PASS",
+   "detail": "N_X=12, mass on the opposite edge: True"
+  },
+  {
+   "test": "the cumulative hazard H3 equals -sum cand*ln(1-p) exactly",
+   "outcome": "PASS",
+   "detail": "H3=0.00081952778582404344 expected=0.00081952778582404344"
+  },
+  {
+   "test": "the test-mode step budget is enforced",
+   "outcome": "PASS",
+   "detail": "an over-budget advance raises ProtocolError"
+  },
+  {
+   "test": "no start may be opened in TEST mode",
+   "outcome": "PASS",
+   "detail": ""
+  },
+  {
+   "test": "gate_X cannot be called in TEST mode",
+   "outcome": "PASS",
+   "detail": ""
+  },
+  {
+   "test": "arm_verdict cannot be called in TEST mode",
+   "outcome": "PASS",
+   "detail": ""
+  },
+  {
+   "test": "advance() is impossible in STATIC mode",
+   "outcome": "PASS",
+   "detail": ""
+  },
+  {
+   "test": "torus distance wraps",
+   "outcome": "PASS",
+   "detail": "d((0,0),(35,0)) = 1.0"
+  },
+  {
+   "test": "organiser separation uses the wrapped distance",
+   "outcome": "PASS",
+   "detail": "separation = 2.000 (naive would be 34)"
+  },
+  {
+   "test": "contact components wrap across the torus seam",
+   "outcome": "PASS",
+   "detail": "1 component(s), 6 cells"
+  },
+  {
+   "test": "a lone body molecule is classified as an escapee, not a cluster",
+   "outcome": "PASS",
+   "detail": "{\"n_components_raw\": 2, \"n_components_excluding_escapees\": 1, \"n_escapees\": 1}"
+  },
+  {
+   "test": "the organiser disc wraps and counts exactly",
+   "outcome": "PASS",
+   "detail": "N_X in disc = 12 (expected 12), disc cells = 21"
+  },
+  {
+   "test": "realised Q reads the engine's own candidate rule",
+   "outcome": "PASS",
+   "detail": "Q = 15.0, independently computed 15"
+  },
+  {
+   "test": "a correct separation record passes the verdict",
+   "outcome": "PASS",
+   "detail": "PASS"
+  },
+  {
+   "test": "the harness consumed no outcome-informative start",
+   "outcome": "PASS",
+   "detail": "starts=0, test steps used=721 of 3000"
+  }
+ ],
+ "mutations": [
+  {
+   "mutation": "both organisers end inside one disc",
+   "outcome": "DETECTED",
+   "detail": "FAIL:disc0_organiser_count_2"
+  },
+  {
+   "mutation": "one organiser carries fewer body molecules than the minimum",
+   "outcome": "DETECTED",
+   "detail": "FAIL:disc1_body_1_below_3;disc1_minority_0.500_above_0.25"
+  },
+  {
+   "mutation": "a component in which the organiser is not a minority",
+   "outcome": "DETECTED",
+   "detail": "FAIL:disc1_body_2_below_3;disc1_minority_0.333_above_0.25"
+  },
+  {
+   "mutation": "a third organiser present at separation",
+   "outcome": "DETECTED",
+   "detail": "FAIL:organiser_count_3"
+  },
+  {
+   "mutation": "a censored arm scored as a separation",
+   "outcome": "DETECTED",
+   "detail": "CENSORED_NO_SEPARATION"
+  },
+  {
+   "mutation": "three organisers are present when the window opens",
+   "outcome": "DETECTED",
+   "detail": "['organiser_count_one_or_two', 'cloud_colocated_with_organiser']"
+  },
+  {
+   "mutation": "no organiser is present when the window opens",
+   "outcome": "DETECTED",
+   "detail": "['organiser_count_one_or_two', 'cloud_colocated_with_organiser']"
+  },
+  {
+   "mutation": "no body cloud around the organiser",
+   "outcome": "DETECTED",
+   "detail": "['body_cloud_present']"
+  },
+  {
+   "mutation": "the body cloud is not co-located with its organiser",
+   "outcome": "DETECTED",
+   "detail": "['cloud_colocated_with_organiser']"
+  },
+  {
+   "mutation": "the material fills the torus",
+   "outcome": "DETECTED",
+   "detail": "['cloud_colocated_with_organiser', 'does_not_fill_torus']"
+  },
+  {
+   "mutation": "the core is too weak to adjudicate (Q below the floor)",
+   "outcome": "DETECTED",
+   "detail": "['core_strength_sufficient']"
+  },
+  {
+   "mutation": "two organisers closer than Delta_sep declared separated",
+   "outcome": "DETECTED",
+   "detail": "separation = 4.000 < 5.0"
+  },
+  {
+   "mutation": "a start beyond the declared budget",
+   "outcome": "DETECTED",
+   "detail": "the 17th start raises"
+  }
+ ],
+ "ast": [
+  {
+   "check": "reductions",
+   "offenders": []
+  }
+ ],
+ "ledger_after_harness": {
+  "count": 0,
+  "log_entries": 0,
+  "consistent": true,
+  "max_starts": 16,
+  "technical_reserve": 0,
+  "test_steps_used": 721,
+  "max_test_steps": 3000,
+  "log": []
+ },
+ "ALL_PASS": true
+}

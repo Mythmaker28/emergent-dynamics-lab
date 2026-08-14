@@ -1,0 +1,276 @@
+{
+ "labels": {
+  "DERIVED_FROM_SOURCE": "exact consequence of the frozen rate semantics",
+  "OUTCOME_INFORMED": "uses a number measured in the four arms; may not select a parameter inside this mission"
+ },
+ "design_c_X_upper": {
+  "tag": "MTW01 design, c_X = S0 = 3",
+  "spec": {
+   "p_hop_X": 1.0,
+   "p_hop_Y": 0.5,
+   "muX": 0.04,
+   "muY": 1.951120660330116e-06,
+   "kX": 1.0,
+   "kY": 1.9511206603301162e-05
+  },
+  "D_X": 0.25,
+  "ell_X": 2.5,
+  "G0": 2.0934294949419874,
+  "G0_residence": 1.4628571428571429,
+  "G0_returns": 0.6305723520848443,
+  "c_X_assumed": 3.0,
+  "fixed_point": {
+   "c_X_G0": 6.280288484825962,
+   "supercritical": true,
+   "u": 6.268385542148926,
+   "S": 2.9943141420784434,
+   "N_X": 74.85785355196109
+  },
+  "N_X_hard_cap_per_organiser": 75.0,
+  "N_X_predicted": 74.85785355196109
+ },
+ "design_c_X_lower": {
+  "tag": "MTW01 design, c_X = phi*S0 = 0.15",
+  "spec": {
+   "p_hop_X": 1.0,
+   "p_hop_Y": 0.5,
+   "muX": 0.04,
+   "muY": 1.951120660330116e-06,
+   "kX": 1.0,
+   "kY": 1.9511206603301162e-05
+  },
+  "D_X": 0.25,
+  "ell_X": 2.5,
+  "G0": 2.0934294949419874,
+  "G0_residence": 1.4628571428571429,
+  "G0_returns": 0.6305723520848443,
+  "c_X_assumed": 0.15000000000000002,
+  "fixed_point": {
+   "c_X_G0": 0.31401442424129816,
+   "supercritical": false,
+   "u": 0.0,
+   "S": 0.0,
+   "N_X": 0.0
+  },
+  "N_X_hard_cap_per_organiser": 75.0,
+  "N_X_predicted": 0.0
+ },
+ "frozen_c_X_upper": {
+  "tag": "MINCORE frozen, c_X = S0 = 3",
+  "spec": {
+   "p_hop_X": 0.2,
+   "p_hop_Y": 0.002,
+   "muX": 0.005,
+   "muY": 0.0005,
+   "kX": 0.02,
+   "kY": 0.0008
+  },
+  "D_X": 0.05,
+  "ell_X": 3.1622776601683795,
+  "G0": 9.207386074386731,
+  "G0_residence": 5.391017217561235,
+  "G0_returns": 3.816368856825495,
+  "c_X_assumed": 3.0,
+  "fixed_point": {
+   "c_X_G0": 27.62215822316019,
+   "supercritical": true,
+   "u": 27.622158223132324,
+   "S": 2.999999999996973,
+   "N_X": 599.9999999993946
+  },
+  "N_X_hard_cap_per_organiser": 600.0,
+  "N_X_predicted": 599.9999999993946
+ },
+ "frozen_c_X_lower": {
+  "tag": "MINCORE frozen, c_X = phi*S0 = 0.15",
+  "spec": {
+   "p_hop_X": 0.2,
+   "p_hop_Y": 0.002,
+   "muX": 0.005,
+   "muY": 0.0005,
+   "kX": 0.02,
+   "kY": 0.0008
+  },
+  "D_X": 0.05,
+  "ell_X": 3.1622776601683795,
+  "G0": 9.207386074386731,
+  "G0_residence": 5.391017217561235,
+  "G0_returns": 3.816368856825495,
+  "c_X_assumed": 0.15000000000000002,
+  "fixed_point": {
+   "c_X_G0": 1.3811079111580098,
+   "supercritical": true,
+   "u": 0.6846868732053084,
+   "S": 0.07436278523282329,
+   "N_X": 14.872557046564658
+  },
+  "N_X_hard_cap_per_organiser": 600.0,
+  "N_X_predicted": 14.872557046564658
+ },
+ "observed": [
+  {
+   "seed": 101,
+   "outcome": "GATE_FAIL:body_cloud_present,cloud_colocated_with_organiser,core_strength_sufficient",
+   "steps": 100,
+   "N_X_at_gate": 0,
+   "Q_at_gate": 0.0,
+   "Rg_at_gate": null,
+   "Q_time_average_over_the_run": null,
+   "Q_max_over_the_run": null,
+   "N_X_at_end": 0,
+   "N_Y_at_end": 1,
+   "H3_exact": 0.0
+  },
+  {
+   "seed": 202,
+   "outcome": "GATE_FAIL:body_cloud_present,cloud_colocated_with_organiser,core_strength_sufficient",
+   "steps": 100,
+   "N_X_at_gate": 0,
+   "Q_at_gate": 0.0,
+   "Rg_at_gate": null,
+   "Q_time_average_over_the_run": null,
+   "Q_max_over_the_run": null,
+   "N_X_at_end": 0,
+   "N_Y_at_end": 1,
+   "H3_exact": 0.0
+  },
+  {
+   "seed": 303,
+   "outcome": "GATE_FAIL:body_cloud_present,cloud_colocated_with_organiser,core_strength_sufficient",
+   "steps": 100,
+   "N_X_at_gate": 1,
+   "Q_at_gate": 0.0,
+   "Rg_at_gate": 16.1245154965971,
+   "Q_time_average_over_the_run": null,
+   "Q_max_over_the_run": null,
+   "N_X_at_end": 1,
+   "N_Y_at_end": 1,
+   "H3_exact": 0.0
+  },
+  {
+   "seed": 404,
+   "outcome": "CENSORED_NO_DUPLICATION",
+   "steps": 40000,
+   "N_X_at_gate": 35,
+   "Q_at_gate": 7.04,
+   "Rg_at_gate": 4.58257569495584,
+   "Q_time_average_over_the_run": 0.06077694235588972,
+   "Q_max_over_the_run": 25.0,
+   "N_X_at_end": 0,
+   "N_Y_at_end": 1,
+   "H3_exact": 0.0
+  }
+ ],
+ "observed_summary": {
+  "arms": 4,
+  "arms_whose_body_cloud_never_established": 3,
+  "arms_whose_body_cloud_established_then_collapsed": 1,
+  "arms_in_which_a_second_organiser_appeared": 0,
+  "total_H3_accumulated_across_all_arms": 0.0
+ },
+ "missing_condition": {
+  "label": "DERIVED_FROM_SOURCE",
+  "statement": "cand_X = min(n[SX], free) and n[SX] <= S0, so ONE organiser cell can convert at most S0 resource units per step. The body cloud it maintains therefore obeys the exact bound N_X <= S0/muX, and N_X = 0 is an absorbing state because every birth probability carries the factor nX*nY.",
+  "N_X_hard_cap_at_the_design_point": 75.0,
+  "N_X_hard_cap_at_the_frozen_MINCORE_point": 600.0,
+  "consequence": "a body cloud of a few tens of molecules around a single organiser is a small population next to an absorbing state. Neither Kamimura and Kaneko, whose molecules are conserved and held by an attractive potential, nor the MTW01 preplan, which gated the cloud only at one instant, contains this condition.",
+  "required_form_of_the_missing_gate": "muX <= S0/N_ROBUST for a declared robust cloud size N_ROBUST, evaluated jointly with ell_X = sqrt(D_X/muX) and with the two Kamimura-Kaneko timescale inequalities"
+ },
+ "feasibility_scan": {
+  "label": "DERIVED_FROM_SOURCE for the inequalities; the choice of which point to test next would be OUTCOME_INFORMED and is NOT made here",
+  "rows": [
+   {
+    "N_ROBUST": 100,
+    "ell_X": 2.5,
+    "muX": 0.03,
+    "D_X": 0.1875,
+    "p_hop_X": 0.75,
+    "G0": 2.613203974517453,
+    "self_maintenance_c_X_G0_at_the_pessimistic_c_X": 0.391980596177618,
+    "supercritical_even_at_the_pessimistic_c_X": false,
+    "N_X_at_that_fixed_point": 0.0,
+    "D_Y": 0.09375,
+    "tau_sep": 33.333333333333336,
+    "window_upper_R_Y": 0.0007902038674336971,
+    "k_Y": 1.4633404952475871e-05,
+    "T_div_at_Q_7": 9762.399340487902,
+    "feasible": false
+   },
+   {
+    "N_ROBUST": 100,
+    "ell_X": 3.0,
+    "feasible": false,
+    "reason": "p_hop_X = 1.080 exceeds 1"
+   },
+   {
+    "N_ROBUST": 300,
+    "ell_X": 2.5,
+    "muX": 0.01,
+    "D_X": 0.0625,
+    "p_hop_X": 0.25,
+    "G0": 6.917433932516159,
+    "self_maintenance_c_X_G0_at_the_pessimistic_c_X": 1.0376150898774241,
+    "supercritical_even_at_the_pessimistic_c_X": true,
+    "N_X_at_that_fixed_point": 1.074787250660378,
+    "D_Y": 0.03125,
+    "tau_sep": 100.0,
+    "window_upper_R_Y": 0.0002634012891445657,
+    "k_Y": 4.8778016508252904e-06,
+    "T_div_at_Q_7": 29287.19802146371,
+    "feasible": true
+   },
+   {
+    "N_ROBUST": 300,
+    "ell_X": 3.0,
+    "muX": 0.01,
+    "D_X": 0.09,
+    "p_hop_X": 0.36,
+    "G0": 5.218108063028126,
+    "self_maintenance_c_X_G0_at_the_pessimistic_c_X": 0.7827162094542189,
+    "supercritical_even_at_the_pessimistic_c_X": false,
+    "N_X_at_that_fixed_point": 0.0,
+    "D_Y": 0.045,
+    "tau_sep": 100.0,
+    "window_upper_R_Y": 0.0002634012891445657,
+    "k_Y": 4.8778016508252904e-06,
+    "T_div_at_Q_7": 29287.19802146371,
+    "feasible": false
+   },
+   {
+    "N_ROBUST": 1000,
+    "ell_X": 2.5,
+    "muX": 0.003,
+    "D_X": 0.01875,
+    "p_hop_X": 0.075,
+    "G0": 22.121879097205785,
+    "self_maintenance_c_X_G0_at_the_pessimistic_c_X": 3.318281864580868,
+    "supercritical_even_at_the_pessimistic_c_X": true,
+    "N_X_at_that_fixed_point": 47.921414070995915,
+    "D_Y": 0.009375,
+    "tau_sep": 333.33333333333337,
+    "window_upper_R_Y": 7.90203867433697e-05,
+    "k_Y": 1.463340495247587e-06,
+    "T_div_at_Q_7": 97623.99340487905,
+    "feasible": true
+   },
+   {
+    "N_ROBUST": 1000,
+    "ell_X": 3.0,
+    "muX": 0.003,
+    "D_X": 0.027,
+    "p_hop_X": 0.108,
+    "G0": 16.429251673505927,
+    "self_maintenance_c_X_G0_at_the_pessimistic_c_X": 2.4643877510258894,
+    "supercritical_even_at_the_pessimistic_c_X": true,
+    "N_X_at_that_fixed_point": 44.3931868870745,
+    "D_Y": 0.0135,
+    "tau_sep": 333.3333333333333,
+    "window_upper_R_Y": 7.902038674336971e-05,
+    "k_Y": 1.4633404952475872e-06,
+    "T_div_at_Q_7": 97623.99340487902,
+    "feasible": true
+   }
+  ],
+  "region_non_empty": true
+ }
+}

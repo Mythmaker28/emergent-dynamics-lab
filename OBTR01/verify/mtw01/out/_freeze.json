@@ -1,0 +1,250 @@
+{
+ "PRE_RESULT_FREEZE": true,
+ "frozen_before": "the first arm of block 1",
+ "code_sha256": {
+  "window.py": "67aed42037873add6a80671aa380a4d65450259ba328eb9b1862eef9deffe4bc",
+  "mtw.py": "d6b9e24daefd9a9ddd42780fa24da444a344a2773bb7836a8e168e44f026c4c4",
+  "guard.py": "967a609e88f3f2752b55e6e07e94eb00fbfda6c132932ea4e70338301aff5f31",
+  "observe.py": "1bb673ebfb445a1d0549c0177fc332dea503ea0b52cd1fad9e8c558bd6a5e2cd",
+  "blocks.py": "de1079190ac8aac6c690225cb3af9c5397f595468f07c2f1d3c5652453f24430",
+  "tests_mtw.py": "72b65fe0994a3a73fa3bd773199127bf8d2a49b30935f7b40382365da6e4f7a4",
+  "withdrawal_counterexample.py": "aa351dd470da412f957cc0f5db4e2c22b580b72872b7e8a76e297a2f96c95025",
+  "bench_primitives.py": "7edc7d9a64ffdf9db37dd493bef016ac9ca17287a0950adbb76b94482d74fb62"
+ },
+ "doc_sha256": {
+  "MINCORE_SCOPE_CORRECTION_ADDENDUM.md": "80f0c18f1df1280a6cc79fd40406c632e8c036a70e953678deee68e702699a2a",
+  "MINCORE_TIMESCALE_WINDOW_PREPLAN.md": "c011baaa82b0f7b18c28aa361dab460f93d766dc53845151516f729de809febd",
+  "_window.json": "3a1b7ae50a6ea82730d7b33f15aeacca31c457a3ae6b77483b71895964216342",
+  "_integrity.json": "00f75c34a7549de7b6532bfa1dd90bd596ebb266b138faef0d9d9812db5e697f",
+  "_withdrawal_counterexample.json": "442ba043106caf71b4d03bab8eb4d8d7be769b242e32a2950ed50a37429b320d"
+ },
+ "METHODS_CORE_HASH": "2d48ecadbd779a657a301220e7ceb7c136f6f8f1e3a66a17f81a19a2995a647e",
+ "adjudication": "WINDOW_NON_EMPTY_WITH_MARGIN",
+ "window_design_point": {
+  "D_X": 0.25,
+  "D_Y": 0.125,
+  "a_X": 0.04,
+  "a_Y": 1.951120660330116e-06,
+  "cluster": {
+   "ell_X": 2.5,
+   "ell_S": 2.23606797749979,
+   "R_X_kinetic_cap": 27.0,
+   "R_X_resource_cap": 4.012732867747377,
+   "R_X": 4.012732867747377,
+   "N_CX": 100.31832169368442,
+   "rho_max": 5.555555555555556,
+   "L_packed": 2.3974604148731644,
+   "L_C": 2.5,
+   "binding": "diffusive"
+  },
+  "Delta_sep": 5.0,
+  "tau_sep": 25.0,
+  "tau_sep_kk_convention": 50.0,
+  "tau_sep_design": 50.0,
+  "window_lower_R_Y": 1.951120660330116e-06,
+  "window_upper_R_Y_diffusive": 0.0010536051565782627,
+  "window_upper_R_Y_KK_packed": 0.0012460336047255605,
+  "window_upper_R_Y_binding": 0.0010536051565782627,
+  "emptiness_lhs": 0.0018518518518518515,
+  "window_non_empty": true,
+  "R_Y_at_Q_min": 1.9511206603301162e-05,
+  "R_Y_at_Q_max": 0.0005268025782891314,
+  "margin_lower": 10.0,
+  "margin_upper": 2.0,
+  "whole_reachable_band_inside": true,
+  "coherence_chi": 1.4142135623730951,
+  "power": {
+   "p_gate_assumed": 0.98,
+   "p_duplication_within_horizon_assumed": 0.99,
+   "p_arm_conservative": 0.9204125357686084,
+   "p_arm_optimistic": 0.9449784347818229,
+   "P_all_four_conservative": 0.7176787711401034,
+   "P_all_four_optimistic": 0.7974208568223372
+  }
+ },
+ "window_frozen_mincore_point": {
+  "cluster": {
+   "ell_X": 3.1622776601683795,
+   "ell_S": 1.0,
+   "R_X_kinetic_cap": 0.54,
+   "R_X_resource_cap": 1.359708042548158,
+   "R_X": 0.54,
+   "N_CX": 108.0,
+   "rho_max": 9.09090909090909,
+   "L_packed": 1.9446134443285723,
+   "L_C": 3.1622776601683795,
+   "binding": "diffusive"
+  },
+  "tau_sep": 10000.000000000002,
+  "window_lower_R_Y": 0.0005,
+  "window_upper_R_Y_diffusive": 2.6340128914456566e-06,
+  "window_upper_R_Y_KK_packed": 4.6296296296296296e-06,
+  "emptiness_lhs": 189.8244316205981,
+  "window_non_empty": false,
+  "R_Y_at_Q_min": 0.0008,
+  "R_Y_at_Q_max": 0.0216
+ },
+ "protocol": {
+  "L_C": 2.5,
+  "DELTA_SEP": 5.0,
+  "TAU_SEP": 25.0,
+  "X_SEED": 4,
+  "T_X": 100,
+  "T_Q": 50,
+  "N_X_MIN": 10,
+  "RG_MAX_ELL": 3.0,
+  "FILL_MAX_FRAC": 0.25,
+  "Q_FLOOR": 6.0,
+  "SEEDS": [
+   101,
+   202,
+   303,
+   404
+  ],
+  "Q_TYP": 15.0,
+  "R_Y_TYP": 0.00029266809904951745,
+  "ESCAPEE_MAX_MASS": 2,
+  "MINORITY_MAX": 0.25,
+  "MIN_BODY_PER_ORGANISER": 3,
+  "design_spec": {
+   "L": 36,
+   "CAP": 16,
+   "S0": 3,
+   "phi": 0.05,
+   "omega": 0.05,
+   "p_hop_X": 1.0,
+   "p_hop_Y": 0.5,
+   "muX": 0.04,
+   "muY": 1.951120660330116e-06,
+   "kX": 1.0,
+   "kY": 1.9511206603301162e-05
+  },
+  "blocks": [
+   {
+    "name": "ONE_Y_FIXED_CORE",
+    "override": {},
+    "horizon": 40000,
+    "predicted": [
+     "SEPARATED"
+    ],
+    "requirement": "ALL_FOUR_MUST_PASS",
+    "rationale": "the design point. For every reachable Q the per-organiser replication rate R_Y = k_Y*Q lies inside the window with a factor 10 below the upper edge at Q_min and a factor 2 at Q_max, so the two organisers reach separation Delta_sep before a third appears. Predicted P(no third) = 0.974 at Q_max."
+   },
+   {
+    "name": "WINDOW_UPPER_VIOLATED",
+    "override": {
+     "kY": 0.0058533619809903485
+    },
+    "horizon": 5000,
+    "predicted": [
+     "EXPLOSION"
+    ],
+    "requirement": "AT_LEAST_3_OF_4_PREDICTED",
+    "rationale": "R_Y is pushed 300x above the design point at the gate and nowhere else. The cumulative hazard over one separation window becomes H3 = 2*R_Y*tau_sep = 4.39, so P(no third organiser) = 0.0124."
+   },
+   {
+    "name": "WINDOW_LOWER_VIOLATED",
+    "override": {
+     "muY": 0.0029266809904951747
+    },
+    "horizon": 5000,
+    "predicted": [
+     "EXTINCTION",
+     "ORGANISER_LOST_IN_WINDOW"
+    ],
+    "requirement": "AT_LEAST_3_OF_4_PREDICTED",
+    "rationale": "a_Y is set to 10 x R_Y at the typical Q, violating the KK lower boundary a_Y < R_Y. P(the organiser duplicates before it decays) = R_Y/(R_Y+a_Y) = 1/11 = 0.091, so 91 percent of arms should lose the organiser."
+   },
+   {
+    "name": "SLOW_ORGANISER_MINCORE_MOBILITY",
+    "override": {
+     "p_hop_Y": 0.002
+    },
+    "horizon": 40000,
+    "predicted": [
+     "EXPLOSION"
+    ],
+    "requirement": "AT_LEAST_3_OF_4_PREDICTED",
+    "rationale": "p_hop_Y is returned to the literal MINCORE value 0.002, i.e. D_Y = 5e-4. The upper edge of the window is proportional to D_Y, so it collapses by 250x while R_Y is untouched: H3 = 2*R_Y*tau_sep = 3.66 and P(no third) = 0.0257. This block tests the specific design defect named in the scope-correction addendum and changes nothing else. At MINCORE's RATIO D_Y = D_X/100 the prediction would be P = 0.48, which is why the literal value is used."
+   }
+  ],
+  "predictions": {
+   "ONE_Y_FIXED_CORE": {
+    "tau_sep": 25.0,
+    "R_Y_at_Q_typ": 0.00029266809904951745,
+    "R_Y_at_Q_max": 0.0005268025782891314,
+    "H3_at_Q_typ": 0.014633404952475872,
+    "H3_at_Q_max": 0.026340128914456567,
+    "P_no_third_at_Q_typ": 0.9854731429650146,
+    "P_no_third_at_Q_max": 0.9740037464252967,
+    "T_div_at_Q_typ": 3416.839769170766,
+    "P_duplicate_before_decay_at_Q_typ": 0.9933774834437086,
+    "predicted_outcome": [
+     "SEPARATED"
+    ],
+    "horizon": 40000
+   },
+   "WINDOW_UPPER_VIOLATED": {
+    "tau_sep": 25.0,
+    "R_Y_at_Q_typ": 0.08780042971485523,
+    "R_Y_at_Q_max": 0.15804077348673942,
+    "H3_at_Q_typ": 4.3900214857427615,
+    "H3_at_Q_max": 7.902038674336971,
+    "P_no_third_at_Q_typ": 0.012400462784427616,
+    "P_no_third_at_Q_max": 0.0003699884850351275,
+    "T_div_at_Q_typ": 11.389465897235887,
+    "P_duplicate_before_decay_at_Q_typ": 0.999977778271594,
+    "predicted_outcome": [
+     "EXPLOSION"
+    ],
+    "horizon": 5000
+   },
+   "WINDOW_LOWER_VIOLATED": {
+    "tau_sep": 25.0,
+    "R_Y_at_Q_typ": 0.00029266809904951745,
+    "R_Y_at_Q_max": 0.0005268025782891314,
+    "H3_at_Q_typ": 0.014633404952475872,
+    "H3_at_Q_max": 0.026340128914456567,
+    "P_no_third_at_Q_typ": 0.9854731429650146,
+    "P_no_third_at_Q_max": 0.9740037464252967,
+    "T_div_at_Q_typ": 3416.839769170766,
+    "P_duplicate_before_decay_at_Q_typ": 0.0909090909090909,
+    "predicted_outcome": [
+     "EXTINCTION",
+     "ORGANISER_LOST_IN_WINDOW"
+    ],
+    "horizon": 5000
+   },
+   "SLOW_ORGANISER_MINCORE_MOBILITY": {
+    "tau_sep": 6250.0,
+    "R_Y_at_Q_typ": 0.00029266809904951745,
+    "R_Y_at_Q_max": 0.0005268025782891314,
+    "H3_at_Q_typ": 3.6583512381189682,
+    "H3_at_Q_max": 6.585032228614142,
+    "P_no_third_at_Q_typ": 0.02577497450751035,
+    "P_no_third_at_Q_max": 0.0013808828629423909,
+    "T_div_at_Q_typ": 3416.839769170766,
+    "P_duplicate_before_decay_at_Q_typ": 0.9933774834437086,
+    "predicted_outcome": [
+     "EXPLOSION"
+    ],
+    "horizon": 40000
+   }
+  }
+ },
+ "integrity_all_pass": true,
+ "integrity_counts": {
+  "tests": 26,
+  "mutations": 13,
+  "test_steps_used": 721,
+  "max_test_steps": 3000,
+  "starts_consumed_by_harness": 0
+ },
+ "declared_out_of_plan_outcome_informative_starts": {
+  "count": 0,
+  "items": [],
+  "note": "no engine trajectory of any kind has been produced before this freeze. The only advances so far are the 721 bounded, score-blind steps of the integrity harness, which guard.py caps at 3000 and in which no start can be opened and no scoring function can be called. A primitive-level microbenchmark (bench_primitives.py) timed numpy Generator calls on bare arrays; it builds no World and advances nothing."
+ },
+ "start_formula": "4 blocks x 4 arms = 16 <= MAX_NEW_OUTCOME_INFORMATIVE_STARTS = 16; TECHNICAL_RESERVE = 0",
+ "prohibition": "no stochastic probe of any kind was used to establish the window; the adjudication in code/window.py is closed-form algebra"
+}
