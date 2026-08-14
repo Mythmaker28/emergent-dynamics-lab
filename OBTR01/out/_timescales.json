@@ -1,0 +1,251 @@
+{
+ "SECTION": "OBTR01 \u00a710-\u00a711",
+ "QUALIFIED_CONSTANTS": {
+  "L": 36,
+  "mu_X": 0.004,
+  "q": 0.025658350974743116,
+  "a_X": 0.05000000000000003,
+  "D_X": 0.025000000000000015,
+  "a_relative": 0.10000000000000006,
+  "D_relative": 0.05000000000000003,
+  "D_Y": 0.025000000000000015,
+  "ell_X": 2.500000000000001,
+  "ell_relative": 3.5355339059327386,
+  "core_radius_cells": 5.0
+ },
+ "EIGHT_TIMESCALES": {
+  "TAU_LIFETIME": {
+   "value": 249.0,
+   "closed_form": "(1 - mu_X) / mu_X",
+   "derivation": "_decay draws Binomial(n, mu) per step, so the age of a molecule is Geometric on {0, 1, ...} with success probability mu and mean (1 - mu)/mu. Independent of position and of the neighbourhood.",
+   "driven_by": "mu_X"
+  },
+  "TAU_MASS_ON": {
+   "value": 249.49966599830609,
+   "closed_form": "-1 / ln(1 - mu_X)",
+   "derivation": "with a source of constant mean intensity B switched on at t = 0, N(t) = (B/mu)(1 - (1-mu)^t); the approach to N* is geometric with ratio (1 - mu), whose e-folding is -1/ln(1 - mu).",
+   "driven_by": "mu_X"
+  },
+  "TAU_SHAPE": {
+   "value": 250.0,
+   "closed_form": "ell_rel^2 / D_rel = 1 / mu_X",
+   "derivation": "the time for a molecule to diffuse one localisation length of the relative walk. NOTE that ell_rel is DEFINED as sqrt(D_rel/mu), so this is 1/mu identically; see the relations table.",
+   "driven_by": "mu_X (through the definition of ell_rel)",
+   "TORUS_VARIANT": {
+    "value": 657.7303515209832,
+    "L": 36,
+    "closed_form": "-1 / ln(lambda_1 / lambda_0), lambda_k the operator spectrum",
+    "lambda_1_over_lambda_0": 0.9984807753012208,
+    "meaning": "relaxation of the SLOWEST non-uniform mode of the torus, which is a property of the finite domain and not of the cloud",
+    "driven_by": "L and a_rel"
+   }
+  },
+  "TAU_FOLLOW": {
+   "value": 249.0,
+   "closed_form": "(1 - mu_X) / mu_X",
+   "derivation": "a molecule alive at t was born at t - S at the organiser's position then, so the cloud's mean offset from the current organiser is the organiser's own displacement over a Geometric(mu) lag. The optimal tracking lag is therefore E[S].",
+   "driven_by": "mu_X"
+  },
+  "TAU_SOURCE_OFF": {
+   "value": 249.49966599830609,
+   "closed_form": "-1 / ln(1 - mu_X)",
+   "derivation": "after the source is removed, N(t) = N(0)(1 - mu)^t exactly; no transport term enters because decay is per particle and uniform.",
+   "driven_by": "mu_X",
+   "frozen_analytic_value": 249.49966599830609
+  },
+  "TAU_TURNOVER": {
+   "value": 250.0,
+   "closed_form": "N_X* / E[B] = 1 / mu_X",
+   "derivation": "at stationarity E[B] = mu N*, so the time to replace the standing population once is N*/E[B] = 1/mu, whatever B is. The chemostat's supply cancels.",
+   "driven_by": "mu_X"
+  },
+  "TAU_FP_RELATIVE": {
+   "value": 147.41803682845028,
+   "at_radius": 5.0,
+   "interior_sites": 81,
+   "closed_form": "exact discrete solve of (I - P_rel) T = 1 on the disc",
+   "continuum_comparison": 124.99999999999993,
+   "excess_over_the_continuum_law": 0.17934429462760293,
+   "at_ell_rel": {
+    "radius": 3.5355339059327386,
+    "value": 73.57272363840231
+   },
+   "survival_to_that_radius": 0.5947942463988227,
+   "survival_to_ell_rel": 0.7596732438164773,
+   "derivation": "mean first passage of the molecule-organiser relative coordinate from co-location to the core radius, with no mortality; the survival figures give the fraction that get there before dying.",
+   "driven_by": "D_rel and the chosen radius. At the qualified point the radius is itself a multiple of ell_X, so this too reduces to a multiple of 1/mu_X: see TIMESCALE_COLLAPSE."
+  },
+  "TAU_SOURCE_SEPARATION": {
+   "value": 145.58982954183458,
+   "at_radius": 3.5355339059327386,
+   "interior_sites": 37,
+   "closed_form": "exact discrete solve for the ORGANISER's own walk",
+   "continuum_comparison": 125.0,
+   "derivation": "the time for the SOURCE itself to move one cloud radius away from where it was. In the qualified LawSpec there is never a second organiser, so the historical reading of this name -- the time for two organisers to separate -- has no referent and is recorded in \u00a75 as INVALID_IN_QUALIFIED_LAWSPEC. What is defined here is the single-organiser analogue, and it is a different quantity.",
+   "HISTORICAL_READING": "INVALID_IN_QUALIFIED_LAWSPEC",
+   "driven_by": "D_Y and the chosen radius. Same caveat as TAU_FP_RELATIVE: the radius is a multiple of ell_X, so this also reduces to 1/(2 mu_X)."
+  }
+ },
+ "RELATIONS": [
+  {
+   "left": "TAU_LIFETIME",
+   "right": "TAU_FOLLOW",
+   "value_left": 249.0,
+   "value_right": 249.0,
+   "ratio": 1.0,
+   "CLASSIFICATION": "EXACT_IDENTITY",
+   "reason": "both are E[S] for the same Geometric(mu_X) age. Not two facts about the system: one fact, written twice. The cloud follows the source with exactly the lag that its material survives.",
+   "exact_factor": 1.0,
+   "ratio_matches_the_exact_factor": true
+  },
+  {
+   "left": "TAU_MASS_ON",
+   "right": "TAU_SOURCE_OFF",
+   "value_left": 249.49966599830609,
+   "value_right": 249.49966599830609,
+   "ratio": 1.0,
+   "CLASSIFICATION": "EXACT_IDENTITY",
+   "reason": "both are the e-folding of the same geometric factor (1 - mu_X). Switching the source on and switching it off relax at the same rate because the operator is linear in the mass and the decay term is the same in both directions.",
+   "exact_factor": 1.0,
+   "ratio_matches_the_exact_factor": true
+  },
+  {
+   "left": "TAU_SHAPE",
+   "right": "TAU_TURNOVER",
+   "value_left": 250.0,
+   "value_right": 250.0,
+   "ratio": 1.0,
+   "CLASSIFICATION": "EXACT_IDENTITY",
+   "reason": "ell_rel is DEFINED as sqrt(D_rel/mu_X), so ell_rel^2/D_rel is 1/mu_X identically. This has a consequence that must not be missed: 'the cloud radius agrees with the diffusion-decay prediction' is NOT an independent check on the lifetime, because the radius is constructed from it.",
+   "exact_factor": 1.0,
+   "ratio_matches_the_exact_factor": true
+  },
+  {
+   "left": "TAU_TURNOVER",
+   "right": "TAU_LIFETIME",
+   "value_left": 250.0,
+   "value_right": 249.0,
+   "ratio": 1.0040160642570282,
+   "CLASSIFICATION": "NOT_EQUAL",
+   "reason": "1/mu against (1 - mu)/mu: an exact factor (1 - mu_X), one step of difference. They are not the same quantity even though they differ by 0.4 % here.",
+   "exact_factor": 1.0040160642570282,
+   "ratio_matches_the_exact_factor": true
+  },
+  {
+   "left": "TAU_MASS_ON",
+   "right": "TAU_TURNOVER",
+   "value_left": 249.49966599830609,
+   "value_right": 250.0,
+   "ratio": 0.9979986639932243,
+   "CLASSIFICATION": "ASYMPTOTIC_IDENTITY",
+   "reason": "-1/ln(1 - mu) = 1/mu - 1/2 + O(mu). The two agree to leading order in mu_X and differ by half a step here, which is why -1/ln(1-mu) = 249.4997 sits between (1-mu)/mu = 249.0 and 1/mu = 250.0."
+  },
+  {
+   "left": "TAU_LIFETIME",
+   "right": "TAU_MASS_ON",
+   "value_left": 249.0,
+   "value_right": 249.49966599830609,
+   "ratio": 0.9979973279871666,
+   "CLASSIFICATION": "ASYMPTOTIC_IDENTITY",
+   "reason": "same expansion; the gap is O(1) steps against a scale of O(1/mu)."
+  },
+  {
+   "left": "TAU_FP_RELATIVE",
+   "right": "TAU_SHAPE",
+   "value_left": 147.41803682845028,
+   "value_right": 250.0,
+   "ratio": 0.5896721473138011,
+   "CLASSIFICATION": "NOT_EQUAL",
+   "reason": "the exact continuum factor is 1/2, not 1: core_R^2/(4 D_rel) = 1/(2 mu_X) against ell_rel^2/D_rel = 1/mu_X. The measured ratio 0.5897 exceeds 1/2 by the lattice boundary layer at radius 5.0. They are different quantities, but -- contrary to the naive reading -- they are not INDEPENDENT quantities: both are rational multiples of 1/mu_X once the radius is measured in cloud radii.",
+   "exact_factor": 0.5,
+   "ratio_matches_the_exact_factor": false
+  },
+  {
+   "left": "TAU_SOURCE_SEPARATION",
+   "right": "TAU_SHAPE",
+   "value_left": 145.58982954183458,
+   "value_right": 250.0,
+   "ratio": 0.5823593181673383,
+   "CLASSIFICATION": "NOT_EQUAL",
+   "reason": "the ratio is the coherence number chi^2/4. It is the physically decisive comparison of this section: see COHERENCE below."
+  },
+  {
+   "left": "TAU_FP_RELATIVE",
+   "right": "TAU_SOURCE_SEPARATION",
+   "value_left": 147.41803682845028,
+   "value_right": 145.58982954183458,
+   "ratio": 1.0125572458760959,
+   "CLASSIFICATION": "ASYMPTOTIC_IDENTITY",
+   "reason": "not a coincidence, and not two independent numbers. The frozen core radius is core_R = 2 ell_X EXACTLY (5.0 = 2 x 2.5) and ell_rel = sqrt(2) ell_X, while D_rel = 2 D_X = 2 D_Y. Substituting, BOTH continuum first passages reduce to the same expression: core_R^2/(4 D_rel) = ell_X^2/(2 D_X) = 1/(2 mu_X) = 125.0, and ell_rel^2/(4 D_Y) = ell_X^2/(2 D_X) = 1/(2 mu_X) = 125.0. The 1.26 % gap between the discrete values is the lattice boundary layer alone, which is larger at the smaller radius."
+  }
+ ],
+ "COHERENCE": {
+  "chi": 2.0,
+  "definition": "sqrt(4 D_Y / mu_X) / ell_X, the organiser's wander over one body-molecule lifetime measured in cloud radii",
+  "TAU_SOURCE_SEPARATION_over_TAU_SHAPE": 0.5823593181673383,
+  "READING": "the source moves one cloud radius in about 146 steps while the cloud needs about 250 steps to relax its shape. The source is therefore NOT quasi-static on the cloud's own timescale: chi = 2.00 cloud radii per molecule lifetime. This is why the relative kernel, with a_rel = a_X + a_Y, is the correct transport operator and why a static-source profile would misdescribe the cloud.",
+  "STATUS": "SOURCE_IS_NOT_QUASI_STATIC"
+ },
+ "TIMESCALE_COLLAPSE": {
+  "TIMESCALES_DRIVEN_BY_mu_X_ALONE": [
+   "TAU_LIFETIME",
+   "TAU_MASS_ON",
+   "TAU_SHAPE",
+   "TAU_FOLLOW",
+   "TAU_SOURCE_OFF",
+   "TAU_TURNOVER"
+  ],
+  "values": {
+   "TAU_LIFETIME": 249.0,
+   "TAU_MASS_ON": 249.49966599830609,
+   "TAU_SHAPE": 250.0,
+   "TAU_FOLLOW": 249.0,
+   "TAU_SOURCE_OFF": 249.49966599830609,
+   "TAU_TURNOVER": 250.0
+  },
+  "spread_max_over_min": 1.0040160642570282,
+  "ALL_EIGHT_IN_UNITS_OF_ONE_OVER_mu": {
+   "TAU_LIFETIME": 0.996,
+   "TAU_MASS_ON": 0.9979986639932243,
+   "TAU_SHAPE": 1.0,
+   "TAU_FOLLOW": 0.996,
+   "TAU_SOURCE_OFF": 0.9979986639932243,
+   "TAU_TURNOVER": 1.0,
+   "TAU_FP_RELATIVE": 0.5896721473138011,
+   "TAU_SOURCE_SEPARATION": 0.5823593181673383,
+   "TAU_SHAPE.TORUS_VARIANT": 2.6309214060839325
+  },
+  "THE_STRONGER_STATEMENT": "it is not six of eight. Every radius that appears naturally in this system is a multiple of the localisation length, and ell^2 = D/mu_X by definition, so every natural first passage r^2/(4D) is itself a multiple of 1/mu_X. At the qualified point core_R = 2 ell_X exactly and both first passages reduce to 1/(2 mu_X). SEVEN of the eight timescales are therefore fixed rational multiples of 1/mu_X, and the eighth -- the torus mode -- is a property of the domain, not of the cloud. The qualified point has ONE timescale.",
+  "SEVEN_ARE_MULTIPLES_OF_ONE_OVER_mu": {
+   "TAU_LIFETIME": 0.996,
+   "TAU_MASS_ON": 0.997999,
+   "TAU_SHAPE": 1.0,
+   "TAU_FOLLOW": 0.996,
+   "TAU_SOURCE_OFF": 0.997999,
+   "TAU_TURNOVER": 1.0,
+   "TAU_FP_RELATIVE": 0.589672,
+   "TAU_SOURCE_SEPARATION": 0.582359
+  },
+  "THE_ONLY_ESCAPE": "a radius fixed in LATTICE units rather than in cloud radii. Since ell_X = 2.5 sites, the discrete corrections are O(1/r) and reach 16 % at r = ell_rel, so the lattice is the one source of a genuinely independent number here -- and it is a geometric artefact, not a dynamical scale.",
+  "GENUINELY_INDEPENDENT_DIMENSIONLESS_NUMBERS": {
+   "ell_X_in_lattice_sites": 2.500000000000001,
+   "L_over_ell_relative": 10.182337649086282,
+   "chi": 2.0,
+   "note": "all three are geometry or a ratio of transport constants; none is a time"
+  },
+  "DEGREES_OF_FREEDOM_AS_TIMESCALES": 1,
+  "WHY_THIS_MATTERS": "an experiment that observes these timescales agreeing has learned nothing: at fixed mu_X the agreement cannot fail, because it is arithmetic. Any claim that formation, relaxation, turnover and first passage 'separate' or 'coincide' in this LawSpec is a statement about the choice of parameters, not about the system.",
+  "CONSEQUENCE_FOR_ANY_FUTURE_DESIGN": "separating the timescales requires moving mu_X and p_hop INDEPENDENTLY, so that ell_X changes in lattice units. Moving along the curve ell = sqrt(D/mu) = const changes nothing this section can distinguish, and neither does changing L, which moves only the torus mode."
+ },
+ "FROZEN_CROSS_CHECK": {
+  "frozen_source_off_e_folding": 249.49966599830609,
+  "rederived_here": 249.49966599830609,
+  "MATCHES": true,
+  "frozen_optimal_lag": 249.0,
+  "rederived_TAU_FOLLOW": 249.0,
+  "LAG_MATCHES": true,
+  "frozen_ell_relative": 3.5355339059327386,
+  "rederived_ell_relative": 3.5355339059327386,
+  "ELL_MATCHES": true
+ }
+}
