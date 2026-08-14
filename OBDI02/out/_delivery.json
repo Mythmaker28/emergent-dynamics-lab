@@ -1,0 +1,54 @@
+{
+ "SECTION": "OBDI02 \u00a723 \u2014 delivery record",
+ "BRANCH": "codex/organizer-bound-domain-invariance-02",
+ "BASE": "5a37a7be73c3624e76b9c77ee75fd22172b6eb52",
+ "COMMITS": [
+  {
+   "commit": "f9ed18c82039ddb7eeca95cb90a57c188d62f33d",
+   "subject": "OBDI02 \u00a72-\u00a73: offline provenance PASS, and the append-only adjudication of OBDI01 as DOMAIN_TEST_UNDERPOWERED"
+  },
+  {
+   "commit": "ccff147ca332ab08ef22525845c468490673d5b8",
+   "subject": "OBDI02 \u00a74-\u00a77: exact outcome vector, both ambiguities resolved, equivalence method VALID_BUT_OVERCONSERVATIVE, margin discrepancy proved"
+  },
+  {
+   "commit": "cdd363e6285bb4e32cc91f1917550fb1f297cf8e",
+   "subject": "OBDI02 \u00a78-\u00a713: power centred on |C-Y|, budget cap, n=46 per size, fresh disjoint seeds, protocol and gate"
+  },
+  {
+   "commit": "2bffe759cc6e24be12a64905e8a62bccf7b8551b",
+   "subject": "OBDI02 \u00a717: freeze, METHODS_CORE_HASH 59b19169, no run before this commit"
+  },
+  {
+   "commit": "80e7f88d2d6c8efcafa76d15b69d0d3f84a20bd3",
+   "subject": "OBDI02 \u00a716: 138 fresh confirmatory arms at L in {36,72,96}, all technically valid, both evaluators agreeing, no early stopping"
+  },
+  {
+   "commit": "dbec92a7db7eb50e236bc0e24b270c6e789e5ae9",
+   "subject": "OBDI02 \u00a718-\u00a724: cumulative matrix, post-hoc diagnostic, figures, report, DISPOSITION = DOMAIN_RELATIVE_ATTACHMENT_EQUIVALENCE_NOT_ESTABLISHED"
+  }
+ ],
+ "n_commits": 6,
+ "MANDATED_SEPARATION": {
+  "1_provenance_and_append_only_adjudication": "f9ed18c82039ddb7eeca95cb90a57c188d62f33d",
+  "2_estimand_reconstruction_and_statistical_audit": "ccff147ca332ab08ef22525845c468490673d5b8",
+  "3_power_analysis_and_protocol": "cdd363e6285bb4e32cc91f1917550fb1f297cf8e",
+  "4_freeze": "2bffe759cc6e24be12a64905e8a62bccf7b8551b",
+  "5_results": "80e7f88d2d6c8efcafa76d15b69d0d3f84a20bd3",
+  "6_cumulative_adjudication": "dbec92a7db7eb50e236bc0e24b270c6e789e5ae9",
+  "7_self_contained_delivery": "this commit"
+ },
+ "PUSH_ATTEMPT": {
+  "attempts": 1,
+  "response": "remote: access denied by the git proxy: Mythmaker28/emergent-dynamics-lab is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources.\nfatal: unable to access 'https://github.com/Mythmaker28/emergent-dynamics-lab.git/': The requested URL returned error: 403",
+  "action_taken": "one attempt only, response recorded, self-contained split delivery instead"
+ },
+ "NO_INHERITED_COMMIT_REWRITTEN": true,
+ "NO_REBASE": true,
+ "ARTEFACT": {
+  "form": "single-branch shallow bare repository, gzipped tar, split into 19 MB parts",
+  "boundary": "5a37a7be\u2026 (the OBDI01 head)",
+  "verification": "offline readback under unshare -rn with GIT_NO_LAZY_FETCH=1",
+  "digest_publication": "the digests of the FINAL artefact cannot live inside the commit they describe; they are published out of band in deliver/DELIVERY_MANIFEST.txt and in the message accompanying this delivery"
+ }
+}
