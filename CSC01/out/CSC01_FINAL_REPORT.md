@@ -446,11 +446,21 @@ unique doit être re-dérivé sous ce mécanisme. Aucun énoncé de ce type n'es
 ## 23. Ce qui n'a pas été testé, et ne doit pas être lu entre les lignes
 
 Rien dans cette mission ne teste la reproduction, l'hérédité, l'évolution, l'individualité, la
-propriété matérielle ou H3. Aucune molécule n'est suivie individuellement ; le « renouvellement »
-est un flux compté, pas une lignée. Aucune structure appelée ici cœur, halo ou composante n'est
-une membrane, une cellule, ni un individu. La population est nommée `X_POPULATION`, `X_CLOUD`,
-`MAIN_COMPONENT` ou `SPATIAL_CORE`, jamais `BODY`. Aucun résultat de cette mission n'est fusionné
-avec MINCORE ni MTW01 : le LawSpec diffère.
+propriété matérielle, l'autopoïèse, ni H3, et rien n'y est affirmé de tel. Aucune molécule n'est
+suivie individuellement ; le « renouvellement » est un flux compté, pas une lignée matérielle, et
+la matière entrante n'est pas caractérisée comme fraîche ni comme biologique. Aucune structure
+appelée ici cœur, halo ou composante n'est une membrane, une cellule, un organisme ni un
+individu. La population est nommée `X_POPULATION`, `X_CLOUD`, `MAIN_COMPONENT` ou `SPATIAL_CORE`,
+jamais `BODY`.
+
+Le mot **vivant** n'apparaît dans ce rapport qu'en deux emplois techniques, tous deux étroits :
+comme nom de l'axe 3 du gate — « vivant, non figé », c'est-à-dire *traversé par le renouvellement
+et non coincé faute de place* — et au sens de « qui subsiste encore » pour une composante
+satellite. Il ne porte aucune affirmation sur la vie.
+
+Aucun résultat de cette mission n'est fusionné avec MINCORE ni MTW01 : le LawSpec diffère. La
+fenêtre KK n'est ni validée ni invalidée globalement ici ; seule est établie l'absence d'effet de
+`C3` sur les grandeurs de transport dont elle dépend (§22).
 
 ```
 H3_STATUS = NOT_TESTED          REPRODUCTION_STATUS = NOT_TESTED
