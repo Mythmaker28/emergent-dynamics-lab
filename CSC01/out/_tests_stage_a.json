@@ -1,0 +1,66 @@
+{
+ "results": [
+  {
+   "test": "T1 torus labeller agrees with the ORR01 pure-python labeller on 60 random masks",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "test": "T2 winding: full row wraps in x, full column in y, a blob never, a blob across the seam is ONE component and does not wrap",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "test": "T3 Frechet centre exact on a seam-straddling mass, on a point mass, and defined on an antipodal pair",
+   "PASS": true,
+   "detail": "centre=(3, 12) angular_x=30.369"
+  },
+  {
+   "test": "T4 Rg_pairwise: exact on uniform mass, equals the centred form on a compact blob, exactly 3 for two masses 6 apart",
+   "PASS": true,
+   "detail": "uniform got=10.400320508 exact=10.400320508 blob centred=2.8284 pair=2.8284"
+  },
+  {
+   "test": "T5 geodesic diameter counts EDGES: bar of 10 cells -> 9, L-path of 11 cells -> 10, full ring -> L/2",
+   "PASS": true,
+   "detail": "9 10 18"
+  },
+  {
+   "test": "T6 radii of a point mass are 0, of a ring of radius 5 are ~5; N_eff is 4, 2 and ~1 on the declared cases",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "test": "T7 guard: STATIC forbids advance, undeclared classes are refused, raw_replay is non-scientific and calibration/confirmation are not",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "test": "T8 every frame observable is invariant under rigid translation of the torus",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "test": "T9 a compact block gives one component, r90 <= 1.5; a spread field gives N_eff > 40 and r80 > 10",
+   "PASS": true,
+   "detail": "block r90=1.41 Rg=1.15 ; spread N_eff=81.4 r80=17.89 Rg=10.33"
+  },
+  {
+   "test": "T10 CONSTRUCTIVE: the ORR01 `wraps` flag fires on a compact non-winding component (extent proxy), while the exact winding test says no wrap",
+   "PASS": true,
+   "detail": "ORR01 wraps=True extent=20.24 Rg=2.63 true winding=(False,False) r80=2.83"
+  },
+  {
+   "test": "T11 CONSTRUCTIVE: a compact core of 48 molecules, entirely inside 2*ell_X, fails the ORR01 all-or-nothing criterion main_N_X >= 25 because one empty column splits it",
+   "PASS": true,
+   "detail": "ORR01 main_N_X=24 threshold=25 | core fraction within 2*ell_X=1.000 r80=2.24 N_X=48"
+  },
+  {
+   "test": "T12 the exact point-source null reproduces <r^2> = 2a(1-mu)/mu and ell_X = sqrt(D/mu) = 2.5 exactly",
+   "PASS": true,
+   "detail": "<r^2> torus=24.6282 analytic=24.9000 D=0.025000 ell_X=2.500000"
+  }
+ ],
+ "ALL_PASS": true,
+ "SCIENTIFIC_RUNS_USED": 0
+}
