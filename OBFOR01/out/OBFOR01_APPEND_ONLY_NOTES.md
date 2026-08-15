@@ -90,3 +90,33 @@ DELIVERY_SELF_CONTAINED    = TRUE sans le paquet
 ```
 
 ---
+
+## B-3 — 2026-08-15 — erratum sur le `METHODS_CORE_HASH` cité dans un message de commit
+
+**Concerne** le message du commit `OBFOR01 §16-§17, §19-§22`. Il cite
+`61434fbb4e466c4e3d2b7943c0b5c9fe194bfb6927c64eba455234b2a5046cfb`. Cette valeur était celle
+d'une exécution antérieure de `freeze_obfor01.py`, faite avant une correction de
+`run_obfor01.py` — le pilote appelait `rec.observe(w)` et `rec.table()`, deux méthodes qui
+n'existent pas : le monde alimente lui-même l'enregistreur via `close_step`, et la table
+s'obtient par `rec.array()`. La correction a été faite **avant tout run**, le gel a été
+relancé, et le fichier `_freeze.json` livré porte la valeur correcte :
+
+```
+OBFOR01_METHODS_CORE_HASH = 6676a35fb79d554d99da2b48e69b43f2d3c70f5a0f5cbacb2d258d56a83dd76c
+```
+
+**L'artefact fait foi, pas le message de commit.** Le message n'est pas réécrit : cette mission
+n'amende aucun commit, hérité ou non, et un erratum daté vaut mieux qu'une histoire retouchée.
+
+Ce qui n'est **pas** en cause : le gel précède toujours le premier run — aucun bras n'avait été
+lancé au moment de la correction, et le registre des starts le confirme. La chronologie exacte
+est : gel v1 → correction du pilote → gel v2 → commit → premier run.
+
+```
+FREEZE_PRECEDES_ANY_RUN   = TRUE
+COMMIT_MESSAGE_HASH       = STALE, corrigé ici
+ARTEFACT_HASH             = AUTHORITATIVE
+HISTORY_REWRITTEN         = NONE
+```
+
+---
