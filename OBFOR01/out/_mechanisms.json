@@ -1,0 +1,223 @@
+{
+ "SECTION": "OBFOR01 \u00a78-\u00a713",
+ "CONSUMES_NO_SCIENTIFIC_RUN": true,
+ "S8_CONDITIONAL_OPERATOR": {
+  "EQUATION": "E[n_X(t+1) | S_t] = T(S_t) n_X(t) + b(S_t)",
+  "READ_OFF_THE_ENGINE": {
+   "transport": "_diffuse moves min(movers, dest_free) per cell with movers ~ Binomial(n, q). The min is NOT linear in n, so T depends on the occupancy through `free`. Conditionally on no refusal, E[accepted] = n q and T is exactly the frozen kernel.",
+   "birth": "_react gives b(S) = min(n_SX, free) at the organiser cell whenever k_X n_X n_Y >= 1, which at k_X = 1 holds as soon as the cell has one X and one Y. So b depends on the resource and on the free capacity, and NOT on n_X except through `free`.",
+   "decay": "_decay gives an exactly linear factor (1 - mu_X), with no state dependence at all."
+  },
+  "IS_THE_FORM_EXACT": true,
+  "IS_T_STATE_DEPENDENT": true,
+  "IS_b_STATE_DEPENDENT": true,
+  "IS_IT_LINEAR_CONDITIONALLY_ON_THE_STATE": true,
+  "MEASURED_COUPLINGS": {
+   "arms": 57,
+   "corr(births, N_X)": 0.10858974900099874,
+   "se": 0.011034346602730402,
+   "corr(free_at_org, N_X)": -0.11995043312353222,
+   "corr(births, free_at_org)": -0.25773224750762985,
+   "corr(births, nSX_at_org)": 0.5649519843840413,
+   "fraction_of_steps_where_births_equal_min(nSX, free)": 0.8666627680311891,
+   "fraction_of_steps_with_zero_free_capacity_at_the_organiser": 0.00104093567251462
+  },
+  "WHY_THE_MARGINAL_DOES_NOT_CLOSE": "E[n_X(t+1)] = E[T(S) n_X] + E[b(S)]. T and n_X are both functions of the occupancy and are correlated, so E[T n] is not E[T] E[n]; and b depends on n_SX and on free, which are themselves correlated with n_X. The measured correlation between the birth flux and the free capacity at the organiser is -0.258 and between the birth flux and the local resource +0.565, both far from zero. Closing the marginal would require the joint law of (n_X, n_SX, free, organiser position), which is not tracked.",
+  "FULL_ONE_STEP_CONDITIONAL_OPERATOR": "CONDITIONAL_EXACT",
+  "MARGINAL_DENSITY_CLOSURE": "NOT_CLOSED",
+  "STATIONARY_PROFILE_CLOSURE": "APPROXIMATE_WITH_CERTIFIED_BOUNDS",
+  "WHY_THE_PROFILE_STILL_CLOSES": "the unblocked limit IS a closed linear operator, and OBTR01 \u00a712 certified, by a Markov bound with no distributional assumption, that at most 0.9 % of molecules ever meet a refusal over a whole lifetime. So the closed operator predicts any bounded per-particle observable to within that bound, which is why the radial profile matches at every radius while the marginal equation does not close."
+ },
+ "S9_INTRA_STEP_ORDER": {
+  "ORDER_READ_FROM_kinetics_py": [
+   "_diffuse(\"X\"",
+   "_diffuse(\"Y\"",
+   "_diffuse(\"SX\"",
+   "_diffuse(\"SY\"",
+   "_react()",
+   "_decay()",
+   "_feed_and_outflow()"
+  ],
+  "CONSEQUENCE_FOR_A_NEWBORN": "_react runs AFTER _diffuse X and AFTER _diffuse Y, so a molecule born in step t appears at the organiser's POST-MOVE cell and cannot diffuse during that step. Its first relative increment happens one full step later. _decay runs after _react, so a newborn can die at age 0.",
+  "DO_NEWBORNS_NEED_THEIR_OWN_KERNEL": false,
+  "WHY_NOT": "every molecule of age a has taken exactly a relative increments, each drawn from the same K_rel. The age enters only as the number of convolutions, so K_rel(a) = K_rel^{*a} and no age-dependent kernel is required. What WOULD require one is a model that let newborns move in their birth step.",
+  "BIRTH_POSITION_CHECK": {
+   "arms": 40,
+   "max_abs_dy": 0,
+   "max_abs_dx": 0,
+   "ALL_BIRTHS_AT_THE_ORGANISER_CELL": true,
+   "total_birth_records": 141009
+  },
+  "SIZE_OF_GETTING_IT_WRONG": {
+   "if_newborns_diffused_in_their_birth_step": "every molecule would carry one extra diffusion step out of E[a] = 249, so M2 would rise by about 0.40 % and r80 by about 0.20 %",
+   "if_newborns_were_exempt_from_decay_in_their_birth_step": "the stationary population would be B/mu instead of B(1-mu)/mu, a 0.40 % change in N_X and none at all in the shape"
+  },
+  "INTRA_STEP_ORDER_CORRECTION": "NEGLIGIBLE",
+  "MAGNITUDE_percent_on_r80": 0.2008032128514056
+ },
+ "S10_FINITE_TIME": {
+  "PROTOCOL": {
+   "BURN_IN": 2000,
+   "HORIZON": 11000,
+   "SAMPLE_EVERY": 50,
+   "analysis_window": [
+    2000,
+    11000
+   ]
+  },
+  "RELAXATION": {
+   "mass_e_folding": 249.49966599830609,
+   "burn_in_in_mass_e_foldings": 8.016042795077643,
+   "residual_mass_deficit_at_the_start_of_the_window": 0.0003301238090000623,
+   "slowest_torus_shape_mode": 657.7303515209832,
+   "burn_in_in_shape_e_foldings": 3.040759781535177,
+   "residual_shape_deficit_at_the_start_of_the_window": 0.04779855923170244
+  },
+  "FINITE_TIME_PREDICTION_IS_ALREADY_IN_M6": "the M6 simulator starts from an EMPTY lattice and burns in for exactly 2000 steps before sampling, so its numbers are finite-time predictions, not stationary ones. The stationary-versus-finite-time gap is therefore already inside every M6 figure.",
+  "M6_WITH_THE_PROTOCOL_BURN_IN": {
+   "mean_summary_residual_percent": -1.2962250592754798,
+   "median_summary_residual_percent": -5.023038258941859
+  },
+  "READING": "the mass relaxes in 249.5 steps and the burn-in is 8.0 e-foldings of it, leaving a deficit of 3.3e-04. The slowest SHAPE mode of the torus is 658 steps, only 3.04 e-foldings, but that mode is a property of the whole domain rather than of the cloud: the cloud itself is localised on a scale of a few lattice sites and equilibrates on 1/mu. The M6 simulator settles the question empirically by carrying the same burn-in.",
+  "STATIONARY_TO_FINITE_TIME_CORRECTION_percent_on_r80": -1.2962250592754798,
+  "FINITE_TIME_CORRECTION": "NEGLIGIBLE"
+ },
+ "S11_TORUS_AND_LATTICE": {
+  "mobile": {
+   "localisation_length": 3.5355339059327386,
+   "continuum_r80_same_ell": 10.586478685643414,
+   "by_size": {
+    "36": {
+     "r80": 8.54400374531753,
+     "M2": 46.68474845341292
+    },
+    "72": {
+     "r80": 8.54400374531753,
+     "M2": 49.7614208239059
+    },
+    "96": {
+     "r80": 8.54400374531753,
+     "M2": 49.79826543991922
+    },
+    "192": {
+     "r80": 8.54400374531753,
+     "M2": 49.79999999547522
+    },
+    "384": {
+     "r80": 8.54400374531753,
+     "M2": 49.80000000206023
+    }
+   },
+   "CONTINUUM_TO_DISCRETE_CORRECTION_percent": -19.293241888785307,
+   "INFINITE_TO_FINITE_TORUS_CORRECTION_percent": {
+    "36": 0.0,
+    "72": 0.0,
+    "96": 0.0
+   },
+   "M2_finite_torus_correction_percent": {
+    "36": -6.255525197828171,
+    "72": -0.07746822922235497,
+    "96": -0.0034830565079135845
+   }
+  },
+  "static": {
+   "localisation_length": 2.500000000000001,
+   "continuum_r80_same_ell": 7.485770867505307,
+   "by_size": {
+    "36": {
+     "r80": 6.082762530298219,
+     "M2": 24.62817403631368
+    },
+    "72": {
+     "r80": 6.082762530298219,
+     "M2": 24.899580502506026
+    },
+    "96": {
+     "r80": 6.082762530298219,
+     "M2": 24.89999529450121
+    },
+    "192": {
+     "r80": 6.082762530298219,
+     "M2": 24.900000000206866
+    },
+    "384": {
+     "r80": 6.082762530298219,
+     "M2": 24.90000000298381
+    }
+   },
+   "CONTINUUM_TO_DISCRETE_CORRECTION_percent": -18.74233612061722,
+   "INFINITE_TO_FINITE_TORUS_CORRECTION_percent": {
+    "36": 0.0,
+    "72": 0.0,
+    "96": 0.0
+   },
+   "M2_finite_torus_correction_percent": {
+    "36": -1.091670548745205,
+    "72": -0.0016847408744302683,
+    "96": -1.8909568666458654e-05
+   }
+  },
+  "WHY_r80_SHOWS_NO_TORUS_EFFECT": "r80 is quantised to the achievable lattice radii, whose spacing near these values is 2 to 4 %. The finite-torus correction is smaller than one quantisation step, so r80 cannot resolve it. M2 is continuous and does resolve it; the M2 figures below are the ones to read for this correction.",
+  "FINITE_TORUS_CORRECTION": "NEGLIGIBLE",
+  "NOTE": "the first-passage lattice correction of 21.5 % that OBTR01 measured at radius 5 belongs to a MEAN EXIT TIME, not to a stationary radius, and is not transferable to these quantities. It is quoted here only to say that it is not used."
+ },
+ "S12_CAPACITY": {
+  "INHERITED_MEASUREMENT": {
+   "eps_X_mean": 0.00035541465411388754,
+   "eps_X_max": 0.0010444955086693127,
+   "source": "OBTR01 \u00a712, 170 arms"
+  },
+  "PER_LIFETIME": {
+   "offered_hops": 25.555717570844145,
+   "expected_refusals": 0.00908287652107377,
+   "certified_fraction_never_refused": 0.9909171234789262
+  },
+  "SHADOW_REPLAY_ANALYTIC": {
+   "what_it_computes": "a refusal removes exactly one accepted move from a molecule's history; the displacement variance is carried one unit per accepted move, so the fractional change in M2 equals the fraction of offered moves refused",
+   "fraction_of_moves_removed": 0.00035541465411388754,
+   "implied_change_in_M2_percent": 0.03554146541138875,
+   "implied_change_in_r80_percent": 0.017770732705694375
+  },
+  "SHADOW_REPLAY_ON_REAL_FIELDS": {
+   "arms": 30,
+   "offered": 361.3722151282983,
+   "refused": 0.26643301808267456,
+   "refused_fraction": 0.0007372814149202993,
+   "mean_squared_radius_of_the_refused_hops": 18.597941492054453,
+   "NOTE": "computed from the recorded final occupancy with the exact binomial law; no engine state is advanced and no counterfactual trajectory is run"
+  },
+  "IS_IT_SPATIALLY_CONCENTRATED": true,
+  "DOES_IT_MATTER": "even concentrating every refusal on outward moves, removing 0.0355 % of moves changes M2 by that same fraction, which is two orders of magnitude below the 5.1 % residual under study",
+  "CAPACITY_REJECTION_CORRECTION": "NEGLIGIBLE"
+ },
+ "S13_BIRTH_FLUX": {
+  "arms": 52,
+  "mean_B": 0.48338034188034196,
+  "variance_over_mean": 1.2853655936680608,
+  "POISSON_WOULD_GIVE": 1.0,
+  "OVER_DISPERSED": true,
+  "autocorrelation_at_lags_1_2_5_10_50": [
+   0.06739199599807046,
+   0.04505822155390465,
+   0.020957075488312518,
+   0.012602851154483372,
+   0.004107976537718211
+  ],
+  "corr_with_N_X": 0.08508305627866687,
+  "AGE_DISTRIBUTION": {
+   "E_age_measured": 247.61960592737339,
+   "E_age_unweighted_over_arms": 248.56885803833876,
+   "molecules": 6141,
+   "E_age_nominal_geometric": 249.0,
+   "ratio": 0.9944562487043108,
+   "READING": "the age distribution of the standing population is the geometric one to within 0.17 %, so the endogenous source does NOT reshape it"
+  },
+  "POPULATION_CHECK": {
+   "N_X_star_predicted_as_B_over_mu": 120.84508547008546,
+   "N_X_observed": 120.56904487179486,
+   "ratio": 1.0022894815048433
+  },
+  "WHAT_IT_DOES_TO_THE_RESIDUAL": "the flux is over-dispersed relative to Poisson (variance/mean 1.285) and weakly autocorrelated. \u00a715 measures the consequence directly: replacing the measured flux by a Poisson source of the same mean moves the mobile median residual from -5.69 % to -4.42 %, so the endogeneity is MATERIAL but secondary to the shared source trajectory.",
+  "ENDOGENOUS_SOURCE_CORRECTION": "PARTIAL"
+ }
+}
