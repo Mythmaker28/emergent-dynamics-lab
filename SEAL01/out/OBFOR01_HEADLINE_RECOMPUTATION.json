@@ -1,6 +1,19 @@
 {
  "SECTION": "SEAL \u00a74",
  "HISTORICAL": {
+  "STATUS_OF_THIS_BLOCK": "REPRODUCTION_OF_THE_MISSION_PIPELINE__NOT_AN_INDEPENDENT_CHECK",
+  "WHY": "this function re-implements the mission's own arm-inclusion conditions (nY_final >= 1, nX_final >= 40, at least 50 in-window frames) byte for byte. Re-executing a filter can only confirm that the filter was executed. It is structurally incapable of detecting that the filter itself selects on an outcome. The rule is varied, not merely repeated, in OBFOR01_SEAL_REPAIR_EVIDENCE.json section R5.",
+  "INCLUSION_RULE_IS_OUTCOME_DEPENDENT": {
+   "rule": "nX_final >= 40",
+   "nX_final_is": "the TERMINAL population of the arm, an outcome, not a design variable",
+   "sensitivity_of_the_headline_mobile_median_residual_percent": {
+    "with the rule (n=116)": -5.101,
+    "population threshold dropped (n=126)": -4.348,
+    "no outcome-dependent threshold (n=129)": -2.144
+   },
+   "DIRECTION": "the excluded arms carry higher residuals; the rule pushes the headline downward",
+   "DISCLOSED_HERE_BECAUSE": "the headline -5.10 % is a property of the observable AND of the inclusion rule, and was reported as though it were a property of the observable alone"
+  },
   "COMPOSITION_OF_THE_116_ARMS": {
    "OBDI02_mobile_arms_meeting_the_filter": 116,
    "by_size": {
@@ -434,6 +447,7 @@
     "NAME": "static",
     "n_independent_units": 14,
     "prediction": 6.007630361527475,
+    "PREDICTION_MONTE_CARLO_SD_percent": 0.315,
     "observed": 5.999119238860436,
     "absolute_error": -0.008511122667039572,
     "relative_error_percent": -0.14167187651131785,
@@ -443,14 +457,19 @@
      0.765810250055485
     ],
     "margin_percent": 2.9,
+    "CRITERION_OF_RECORD": "POINT_INSIDE (the frozen rule)",
     "POINT_INSIDE": true,
     "WHOLE_INTERVAL_INSIDE": true,
-    "TOST_style_p": 1.280642702994328e-09
+    "WHOLE_INTERVAL_IS_POST_FREEZE": true,
+    "TOST_p_t_13_df": 2.38264163577993e-05,
+    "TOST_p_NORMAL_AS_ORIGINALLY_REPORTED__WRONG": 1.280642702994328e-09,
+    "TOST_NOTE": "the standard error rests on 13 degrees of freedom; the originally reported p used a normal tail and was optimistic by up to four orders of magnitude"
    },
    "mobile": {
     "NAME": "mobile",
     "n_independent_units": 14,
     "prediction": 8.057449850229872,
+    "PREDICTION_MONTE_CARLO_SD_percent": 0.563,
     "observed": 8.077146148389195,
     "absolute_error": 0.019696298159322723,
     "relative_error_percent": 0.24444828730469936,
@@ -460,9 +479,13 @@
      1.666111385103371
     ],
     "margin_percent": 2.9,
+    "CRITERION_OF_RECORD": "POINT_INSIDE (the frozen rule)",
     "POINT_INSIDE": true,
     "WHOLE_INTERVAL_INSIDE": true,
-    "TOST_style_p": 0.00012555680741432873
+    "WHOLE_INTERVAL_IS_POST_FREEZE": true,
+    "TOST_p_t_13_df": 0.0014378070987574193,
+    "TOST_p_NORMAL_AS_ORIGINALLY_REPORTED__WRONG": 0.00012555680741499486,
+    "TOST_NOTE": "the standard error rests on 13 degrees of freedom; the originally reported p used a normal tail and was optimistic by up to four orders of magnitude"
    },
    "ratio": {
     "NAME": "ratio",
@@ -470,6 +493,7 @@
     "n_mobile": 14,
     "prediction": 1.3412026648359268,
     "observed": 1.3463886658674735,
+    "PREDICTION_MONTE_CARLO_SD_percent": 0.645,
     "relative_error_percent": 0.38666796357589295,
     "se_relative_percent": 0.8593786201100329,
     "ci95_relative_percent": [
@@ -477,12 +501,24 @@
      2.071050058991557
     ],
     "margin_percent": 2.9,
+    "CRITERION_OF_RECORD": "POINT_INSIDE (the frozen rule)",
     "POINT_INSIDE": true,
     "WHOLE_INTERVAL_INSIDE": true,
+    "WHOLE_INTERVAL_IS_POST_FREEZE": true,
+    "WHOLE_INTERVAL_WITH_THE_PREDICTION_SD_PROPAGATED_percent": 2.595308799437411,
+    "MARGIN_RECIPE_APPLIED_TO_THE_RATIO_WOULD_HAVE_GIVEN_percent": 3.15,
+    "MARGIN_NOTE": "delta = 2.9 was sized on the two ABSOLUTE endpoints. Applying the same recipe to the ratio, whose sampling error is the quadrature sum of the two, would have given about 3.15 %. The ratio was therefore judged against a margin slightly TIGHTER than its own recipe, which is the conservative direction.",
     "DEPENDENCE_TREATMENT": "the static and mobile arms are DISJOINT seed sets drawn from a single frozen register and executed in one batch, so the two means are independent and the delta-method variance is the sum of the two relative variances. Treating them as paired would be wrong: there is no pairing.",
     "INDEPENDENT_BY_CONSTRUCTION": true
    }
   },
+  "THE_FROZEN_CRITERION": {
+   "text": "the observed value must lie within +-2.9 % of the M6 point prediction, relatively",
+   "form": "POINT rule: |observed / predicted - 1| <= 2.9 %",
+   "it_names_no_interval_no_confidence_level_and_no_quantile": true
+  },
+  "ALL_THREE_POINTS_INSIDE__THE_CRITERION_OF_RECORD": true,
+  "WHOLE_INTERVAL_CRITERION_PROVENANCE": "the whole-interval criterion, the 1.96 factor, the delta-method variance of the ratio and the TOST-style p ALL first appear in adjudicate_obfor01.py, committed at cb1aaa2, i.e. AFTER the 28 arms ran at 0148acc. They are POST-FREEZE. Mitigating: the interval criterion is STRICTER than the frozen point rule, so applying it could only make passing harder. Aggravating: delta = 2.9 was itself sized as roughly two sampling standard errors of this very experiment, so a criterion that then adds 1.96 standard errors is close to consuming the whole margin, and it passed comfortably only because the fresh arms turned out less dispersed than assumed (2.71 % against the 4.15 % historical figure used to size the margin).",
   "ALL_THREE_WHOLE_INTERVALS_INSIDE": true
  },
  "ABLATIONS": {
@@ -514,6 +550,7 @@
    4.5,
    24
   ],
+  "THE_POISSON_FACTOR_OF_4p5_IS_NOT_A_REJECTION": "the Poisson-source variant sits 4.5 times further from the observation than the full model, but its own residual is -4.42 %% against an observation of -5.17 %%, i.e. it PASSES the primary +-2.9 %% endpoint on its own. Reporting it through a distance ratio makes a passing model look rejected. It is not rejected, and the repair round shows the underlying difference does not even replicate.",
   "SEQUENTIAL": {
    "ORDER": "physically ordered: start from the discrete kernel on the finite torus with a Poisson point source and frames treated as independent draws, then add the shared organiser trajectory, then the measured birth flux",
    "step_0_baseline_M2_level": -0.6563165225781153,
@@ -533,6 +570,15 @@
    "main_effect_birth_flux": -1.298673772890935,
    "interaction": 0.055434466613978994,
    "WARNING": "the two main effects and the interaction sum to the total by construction; no single mechanism is credited with the whole residual, and the ordering-dependent sequential table is reported beside this one because attribution is not order-free"
+  },
+  "WHICH_DECOMPOSITION_TERMS_SURVIVE_REPLICATION": {
+   "shared_trajectory_main_effect_pp": -3.7396923099114794,
+   "shared_trajectory_SURVIVES": true,
+   "why": "about six times the measured replicate standard deviation of a 30-arm M6 point prediction (0.563 pp), and independently confirmed by the fresh ablation endpoint, where the no-shared-trajectory model misses the fresh mobile observation by -3.55 %, outside the margin",
+   "birth_flux_main_effect_pp": -1.298673772890935,
+   "birth_flux_SURVIVES": false,
+   "why_not": "replication over 16 x 30 arms per side gives +0.41 +- 0.20 pp, an order of magnitude smaller and of the opposite sign; see OBFOR01_SEAL_REPAIR_EVIDENCE.json R1",
+   "interaction_SURVIVES": false
   },
   "WHAT_WAS_FROZEN_BEFORE_THE_FRESH_RUNS": {
    "the ablation predictions themselves": true,

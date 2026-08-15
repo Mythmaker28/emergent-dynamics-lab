@@ -104,14 +104,19 @@
    "SIMULATED_EX_ANTE": false,
    "INJECTED_FROM_THE_ENGINE": true,
    "source": "accepted_births_X per step, from up to 40 HISTORICAL OBDI02 / OBTC02 arms",
-   "why": "this is a MEASURED birth flux taken from delivered engine output. It is non-target with respect to the fresh arms and it was frozen before them, but it is category B and it is load-bearing: the frozen ablation shows that replacing it by a Poisson source of the same mean moves the mobile prediction by 1.27 points.",
-   "load_bearing": true
+   "why": "this is a MEASURED birth flux taken from delivered engine output. It is non-target with respect to the fresh arms and it was frozen before them. M6 cannot be started without it: the simulator does not derive the source from the chemostat, it is handed the source. That derivational fact is what makes the prediction conditional.",
+   "load_bearing": false,
+   "NUMERICALLY_LOAD_BEARING": false,
+   "WITHDRAWN_JUSTIFICATION": "the mission asserted that this input is load-bearing because replacing it by a Poisson source of the same mean moved the mobile prediction by 1.27 points. The repair round replicated that ablation sixteen times per side and obtained +0.41 +- 0.20 pp, an order of magnitude smaller and of the OPPOSITE sign; doubling the source intensity moved the prediction by +0.01 +- 0.23 pp with the dose verified delivered (117 -> 237 particles). The 1.27 pp figure is withdrawn. See OBFOR01_SEAL_REPAIR_EVIDENCE.json, R1 and R2.",
+   "WHY_THE_CONCLUSION_IS_UNCHANGED": "conditionality is a property of the DERIVATION, not of the sensitivity. An input measured on the system being predicted makes the prediction conditional on that measurement whatever its numerical influence turns out to be. The measured insensitivity is a robustness result and is reported as one.",
+   "PROVENANCE_CONDITIONING": true
   },
   {
    "input": "N_X of historical arms",
    "category": "B",
    "role": "used ONLY to skip extinct historical arms when estimating the birth flux",
-   "load_bearing": false
+   "load_bearing": false,
+   "PROVENANCE_CONDITIONING": false
   },
   {
    "input": "capacity refusals",
@@ -142,9 +147,13 @@
    "why": "the sampling term of the +-2.9 % margin is sized on the historical arm-to-arm relative standard deviation. That is a dispersion, not a mean, it cannot move the point comparison, and it was frozen before the fresh arms. It is disclosed rather than hidden."
   }
  ],
- "LOAD_BEARING_CATEGORY_B_INPUTS": [
+ "LOAD_BEARING_CATEGORY_B_INPUTS": [],
+ "PROVENANCE_CONDITIONING_INPUTS": [
   "empirical birth-flux distribution"
  ],
+ "CLASSIFIER_RULE": "CONDITIONAL as soon as any input to the prediction is a measurement taken from delivered engine output, regardless of its numerical influence",
+ "WHAT_A_SENSITIVITY_BASED_CLASSIFIER_WOULD_EMIT": "UNCONDITIONAL",
+ "WHY_THAT_CLASSIFIER_IS_REJECTED": "it would upgrade the claim on the strength of a null result. 'The input barely matters' is not 'the operator does not need the input'. M6 does not run without a birth-flux law and does not derive one.",
  "ANY_CATEGORY_C_INPUT_IN_THE_PREDICTION": false,
  "SOURCE_PATH_TREATMENT": "SIMULATED_EX_ANTE__SHARED_BY_CONSTRUCTION",
  "BIRTH_FLUX_TREATMENT": "MEASURED_FROM_HISTORICAL_ARMS_AND_INJECTED_AS_A_LAW",
@@ -154,7 +163,7 @@
  "STATIC_PREDICTION_MODE": "CONDITIONAL",
  "MOBILE_PREDICTION_MODE": "CONDITIONAL",
  "RATIO_PREDICTION_MODE": "CONDITIONAL",
- "WHY_NOT_UNCONDITIONAL": "the predictions are conditional on a birth-flux law measured from delivered engine output. Nothing target-derived enters, and the organiser trajectory is simulated rather than injected, so the predictions are genuinely predictive of the fresh clouds; but a model that must be told the source intensity is not an unconditional first-principles operator.",
+ "WHY_NOT_UNCONDITIONAL": "the predictions are conditional on a birth-flux law measured from delivered engine output. Nothing target-derived enters, and the organiser trajectory is simulated rather than injected, so the predictions are genuinely predictive of the fresh clouds; but a model that must be TOLD the source, because it does not derive it from the chemostat, is not an unconditional first-principles operator. The conditioning is derivational. It is also, as the repair round measured, numerically weak: the mobile prediction is invariant to a doubling of the source intensity (+0.01 +- 0.23 pp) and moves by +0.41 +- 0.20 pp when the flux shape is replaced by a Poisson law of the same mean. Weak conditioning is still conditioning.",
  "FROZEN_PREDICTION_VALUES": {
   "static_median_r80": 6.007630361527475,
   "mobile_median_r80": 8.057449850229872,

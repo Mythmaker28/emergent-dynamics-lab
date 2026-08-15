@@ -1,0 +1,280 @@
+{
+ "SECTION": "SEAL repair round (the single permitted one)",
+ "NO_ENGINE_START": true,
+ "WHAT_WAS_SIMULATED": "m6_obfor01.simulate_arm, the delivered ideal-process predictor. 16 replicates x 30 arms in each of four conditions. Seeds in the 900000 block, disjoint from every scientific register.",
+ "R1_BIRTH_FLUX_ABLATION_REPLICATED": {
+  "THE_CLAIM_UNDER_TEST": "the frozen ablation reported that replacing the measured birth flux by a Poisson source of the same mean moves the mobile prediction by 1.27 percentage points. That single comparison was one 30-arm run against one other 30-arm run.",
+  "mobile_empirical_percent_mean": -4.803296104989181,
+  "mobile_empirical_percent_sd_over_replicates": 0.5626702876946909,
+  "mobile_poisson_percent_mean": -5.217720120392402,
+  "mobile_poisson_percent_sd_over_replicates": 0.5476457013343764,
+  "difference_pp": 0.4144240154032204,
+  "se_pp": 0.19629596067616353,
+  "t": 2.111220291929035,
+  "df_welch_approx": 30,
+  "ORIGINAL_SINGLE_RUN_DIFFERENCE_pp": -1.2709565395839455,
+  "WHERE_THE_TWO_FROZEN_RUNS_SIT_IN_THEIR_OWN_REPLICATE_DISTRIBUTIONS": {
+   "frozen_empirical_run_percent": -5.69468260538053,
+   "z_against_the_replicated_empirical_mean": -1.584207518835652,
+   "frozen_poisson_run_percent": -4.4237260657965845,
+   "z_against_the_replicated_poisson_mean": 1.4498316204458397
+  },
+  "VERDICT": "the 1.27 pp effect does not replicate, and it does not even replicate in sign. Sixteen independent 30-arm replicates per side give empirical -4.803 % and Poisson -5.218 %, a difference of +0.414 +- 0.196 pp (t = 2.11 on 30 df). The frozen single runs sit -1.58 and 1.45 replicate standard deviations from their own means, in OPPOSITE directions: the 1.27 pp was two ordinary Monte-Carlo excursions read as one mechanism. The static side of the same ablation had already come out at 0.068 pp, nineteen times smaller, which should have raised the alarm at the time and did not.",
+  "HONEST_RESIDUAL_EFFECT": "a shape effect of at most a few tenths of a percentage point may exist; its sign is not established by this evidence and it is an order of magnitude below what was claimed.",
+  "CONSEQUENCE": "the sentence 'the shape of the birth flux is load-bearing (1.27 points)' is withdrawn. The 2x2 factorial main effect of -1.30 pp rests on the same two runs and is withdrawn with it. The shared-trajectory main effect of -3.74 pp is NOT withdrawn: it is six times the replicate sd and it is confirmed independently by the fresh ablation endpoint."
+ },
+ "R2_SOURCE_INTENSITY_SENSITIVITY": {
+  "DESIGN": "Poisson source at the measured mean B = 0.47002 versus Poisson at 2B, everything else frozen. If the prediction depends on the source at all in the tested regime, this is where it must show.",
+  "poisson_B_percent": -5.217720120392402,
+  "poisson_2B_percent": -5.207730059416036,
+  "effect_per_doubling_pp": 0.009990060976365456,
+  "se_pp": 0.23034100350886041,
+  "t": 0.043370745217671036,
+  "CONTROL__mean_in_window_population": {
+   "at_B": 115.24444444444445,
+   "at_2B": 235.63518518518518,
+   "REALISED_RATIO": 2.0446554827098598,
+   "why": "without this control a null dose response could just mean the dose was never delivered. It was: the cloud really doubles."
+  },
+  "READING": "doubling the source intensity doubles the cloud (115.2 -> 235.6 particles) and moves the mobile prediction by +0.01 +- 0.23 pp, i.e. not at all. In the tested regime the median-summarised r80 residual is INTENSITY-INVARIANT: the finite-population bias is already saturated at N ~ 117, and the residual is carried by the shared organiser trajectory, not by the source strength.",
+  "CONSEQUENCE_FOR_THE_CONDITIONALITY": "this REMOVES the numerical argument for CONDITIONAL as well. What remains is derivational and it is sufficient: M6 cannot be started without being handed a birth-flux law measured from delivered engine output, because it does not derive the source from the chemostat. A prediction whose inputs include a measurement of the system it predicts is conditional on that measurement whatever its sensitivity happens to be. The measured insensitivity is reported as a ROBUSTNESS result, not as a licence to upgrade the claim."
+ },
+ "R3_PREDICTION_MONTE_CARLO_SD": {
+  "WHAT_IT_IS": "the standard deviation, across independent replicates of the frozen 30-arm design, of the M6 POINT PREDICTION itself. The frozen artefact reported only the within-replicate standard error of the mean (0.275 static, 0.602 mobile); this is the directly measured dispersion of the quantity that was frozen.",
+  "static_percent": 0.3149614424197004,
+  "mobile_percent": 0.5626702876946909,
+  "frozen_within_replicate_se_static_percent": 0.2754187763598051,
+  "frozen_within_replicate_se_mobile_percent": 0.6024122758550969,
+  "OBLIGATION": "every frozen prediction must from now on be quoted with this sd beside it. A point prediction carrying an unstated +-0.56 % Monte-Carlo sd is not a point.",
+  "CONSEQUENCE_FOR_THE_MOBILE_PREDICTION": "the frozen mobile prediction 8.0574 (-5.69 %) is itself -1.58 replicate sd below the replicated M6 mean of -4.80 %. Scored against that replicated mean the fresh mobile observation would be off by -0.69 % instead of +0.24 % -- still far inside the margin, so the conclusion survives, but the apparent precision of the original agreement was partly luck."
+ },
+ "R3_HISTORICAL_ARMS_BEHIND_THE_BIRTH_FLUX": 40,
+ "R5_INCLUSION_RULE_SENSITIVITY": {
+  "WHAT_THE_RULE_IS": "residual_obfor01.py keeps an arm only if nY_final >= 1 AND nX_final >= 40 AND at least 50 in-window frames carry a finite r80. nX_final is the terminal population: an OUTCOME of the arm, not a design variable. Conditioning on it is outcome-dependent selection.",
+  "LEVELS": {
+   "A_mission_rule__nX_final_ge_40_and_ge_50_frames": {
+    "n": 116,
+    "percent": -5.100648800559171,
+    "se_percent": 0.3077840904855805
+   },
+   "B_drop_the_population_threshold__keep_ge_50_frames": {
+    "n": 126,
+    "percent": -4.347644780628923,
+    "se_percent": 0.4783969124594989
+   },
+   "C_no_outcome_dependent_threshold_at_all": {
+    "n": 129,
+    "percent": -2.1439939634253946,
+    "se_percent": 1.5385589413344598
+   }
+  },
+  "BAND_percent": [
+   -2.1439939634253946,
+   -5.100648800559171
+  ],
+  "ARMS_EXCLUDED_BY_THE_POPULATION_THRESHOLD": [
+   {
+    "file": "L72__seed8101006.npz",
+    "L": 72,
+    "nX_final": 0,
+    "n_frames": 62,
+    "residual_percent": 33.44743975843896
+   },
+   {
+    "file": "L96__seed8102030.npz",
+    "L": 96,
+    "nX_final": 0,
+    "n_frames": 72,
+    "residual_percent": 19.930127485044437
+   },
+   {
+    "file": "L96__seed8102025.npz",
+    "L": 96,
+    "nX_final": 30,
+    "n_frames": 180,
+    "residual_percent": 5.010908497280142
+   },
+   {
+    "file": "L72__seed8101008.npz",
+    "L": 72,
+    "nX_final": 0,
+    "n_frames": 128,
+    "residual_percent": 4.6847845180427505
+   },
+   {
+    "file": "L96__seed8102038.npz",
+    "L": 96,
+    "nX_final": 0,
+    "n_frames": 179,
+    "residual_percent": 4.6847845180427505
+   },
+   {
+    "file": "L72__seed8101032.npz",
+    "L": 72,
+    "nX_final": 0,
+    "n_frames": 179,
+    "residual_percent": -3.4853975133778636
+   },
+   {
+    "file": "L96__seed8102008.npz",
+    "L": 96,
+    "nX_final": 0,
+    "n_frames": 78,
+    "residual_percent": -3.4853975133778636
+   },
+   {
+    "file": "L36__seed8100020.npz",
+    "L": 36,
+    "nX_final": 0,
+    "n_frames": 167,
+    "residual_percent": -5.6384104148245235
+   },
+   {
+    "file": "L72__seed8101011.npz",
+    "L": 72,
+    "nX_final": 1,
+    "n_frames": 180,
+    "residual_percent": -5.6384104148245235
+   },
+   {
+    "file": "L72__seed8101020.npz",
+    "L": 72,
+    "nX_final": 0,
+    "n_frames": 149,
+    "residual_percent": -5.6384104148245235
+   }
+  ],
+  "DIRECTION": "the excluded arms carry systematically HIGHER residuals, so the rule pushes the headline downward. The magnitude of the headline residual is therefore partly a property of the inclusion rule.",
+  "WHY_THE_SEAL_DID_NOT_CATCH_IT_ALONE": "seal_flow_and_numbers.historical() re-implements the same three conditions byte-for-byte. Re-executing a filter is a REPRODUCTION of the pipeline, not an independent check of it. Only varying the rule exposes it."
+ },
+ "R6_FRESH_STATISTICS_RESTATED": {
+  "static": {
+   "NAME": "static",
+   "n": 14,
+   "df": 13,
+   "prediction": 6.007630361527475,
+   "PREDICTION_MONTE_CARLO_SD_percent": 0.3149614424197004,
+   "observed": 5.999119238860436,
+   "relative_error_percent": -0.14167187651131785,
+   "se_relative_percent": 0.46300108498306264,
+   "FROZEN_POINT_RULE_percent": 2.9,
+   "POINT_INSIDE__THE_CRITERION_OF_RECORD": true,
+   "POST_FREEZE_whole_interval_normal_1p96": 1.0491540030781206,
+   "POST_FREEZE_whole_interval_t_13_df": 1.1419394205087263,
+   "POST_FREEZE_whole_interval_t_with_prediction_sd_propagated": 1.3514393863390806,
+   "TOST_p_NORMAL_as_originally_reported": 1.280642702994328e-09,
+   "TOST_p_t_13_df__CORRECTED": 2.38264163577993e-05
+  },
+  "mobile": {
+   "NAME": "mobile",
+   "n": 14,
+   "df": 13,
+   "prediction": 8.057449850229872,
+   "PREDICTION_MONTE_CARLO_SD_percent": 0.5626702876946909,
+   "observed": 8.077146148389195,
+   "relative_error_percent": 0.24444828730469936,
+   "se_relative_percent": 0.725338315203404,
+   "FROZEN_POINT_RULE_percent": 2.9,
+   "POINT_INSIDE__THE_CRITERION_OF_RECORD": true,
+   "POST_FREEZE_whole_interval_normal_1p96": 1.666111385103371,
+   "POST_FREEZE_whole_interval_t_13_df": 1.8114691834701335,
+   "POST_FREEZE_whole_interval_t_with_prediction_sd_propagated": 2.227683160462353,
+   "TOST_p_NORMAL_as_originally_reported": 0.00012555680741499486,
+   "TOST_p_t_13_df__CORRECTED": 0.0014378070987574193
+  },
+  "ratio": {
+   "NAME": "ratio",
+   "n_static": 14,
+   "n_mobile": 14,
+   "prediction": 1.3412026648359268,
+   "PREDICTION_MONTE_CARLO_SD_percent": 0.6448244434460627,
+   "observed": 1.3463886658674735,
+   "relative_error_percent": 0.38666796357589295,
+   "se_relative_percent": 0.8593786201100329,
+   "FROZEN_POINT_RULE_percent": 2.9,
+   "POINT_INSIDE__THE_CRITERION_OF_RECORD": true,
+   "POST_FREEZE_whole_interval_normal_1p96": 2.071050058991557,
+   "POST_FREEZE_whole_interval_t_26_df": 2.1531207172120657,
+   "POST_FREEZE_whole_interval_t_with_prediction_sd_propagated": 2.5950922042439597
+  }
+ },
+ "R4_DISCRIMINATING_POWER": {
+  "NULL_BASELINE": {
+   "predicted_static_r80_median": 5.971238141714507,
+   "n_historical_static_arms": 3,
+   "predicted_mobile_r80_median": 8.10214309189128,
+   "n_historical_mobile_L36_arms": 41,
+   "predicted_ratio": 1.3568614916378015,
+   "AVAILABILITY": "both numbers are means over arms delivered by OBDI02 and OBTC02, both present in the tree at OBTR01's tip 062d3735, i.e. before OBFOR01 opened. No information from the 28 fresh arms enters.",
+   "PHYSICS_CONTENT": "none: no kernel, no operator, no simulation, no mechanism"
+  },
+  "NULL_SCORED_ON_THE_THREE_FROZEN_ENDPOINTS": {
+   "static": {
+    "predicted": 5.971238141714507,
+    "observed": 5.999119238860436,
+    "relative_error_percent": 0.46692321565864336,
+    "se_percent": 0.4658228845593743,
+    "t_against_the_prediction": 1.0023621233214204,
+    "whole_interval_width_percent": 1.3799360693950171,
+    "POINT_INSIDE_THE_2p9_MARGIN": true,
+    "WHOLE_INTERVAL_INSIDE_THE_2p9_MARGIN": true
+   },
+   "mobile": {
+    "predicted": 8.10214309189128,
+    "observed": 8.077146148389195,
+    "relative_error_percent": -0.30852261208645926,
+    "se_percent": 0.7213371860897861,
+    "t_against_the_prediction": -0.4277092849723914,
+    "whole_interval_width_percent": 1.72234349682244,
+    "POINT_INSIDE_THE_2p9_MARGIN": true,
+    "WHOLE_INTERVAL_INSIDE_THE_2p9_MARGIN": true
+   },
+   "ratio": {
+    "predicted": 1.3568614916378015,
+    "observed": 1.3463886658674735,
+    "relative_error_percent": -0.7718419186387715,
+    "se_percent": 0.8593786201100329,
+    "t_against_the_prediction": -0.8981395401015988,
+    "whole_interval_width_percent": 2.4562240140544356,
+    "POINT_INSIDE_THE_2p9_MARGIN": true,
+    "WHOLE_INTERVAL_INSIDE_THE_2p9_MARGIN": true
+   }
+  },
+  "WHAT_THE_TEST_DOES_REJECT": {
+   "the uncorrected ideal operator": {
+    "static": {
+     "predicted": 6.082762530298219,
+     "observed": 5.999119238860436,
+     "relative_error_percent": -1.3750872407258474,
+     "se_percent": 0.4572822564927649,
+     "t_against_the_prediction": -3.007086369964158,
+     "whole_interval_width_percent": 2.2713604634516664,
+     "POINT_INSIDE_THE_2p9_MARGIN": true,
+     "WHOLE_INTERVAL_INSIDE_THE_2p9_MARGIN": true
+    },
+    "mobile": {
+     "predicted": 8.54400374531753,
+     "observed": 8.077146148389195,
+     "relative_error_percent": -5.464154872172111,
+     "se_percent": 0.6840326003373556,
+     "t_against_the_prediction": -7.988149789172716,
+     "whole_interval_width_percent": 6.804858768833328,
+     "POINT_INSIDE_THE_2p9_MARGIN": false,
+     "WHOLE_INTERVAL_INSIDE_THE_2p9_MARGIN": false
+    }
+   },
+   "the model with the shared trajectory removed": {
+    "predicted": 8.374601139800212,
+    "observed": 8.077146148389195,
+    "relative_error_percent": -3.5518705481669466,
+    "se_percent": 0.6978693076409703,
+    "t_against_the_prediction": -5.089592720696439,
+    "whole_interval_width_percent": 4.919694391143248,
+    "POINT_INSIDE_THE_2p9_MARGIN": false,
+    "WHOLE_INTERVAL_INSIDE_THE_2p9_MARGIN": false
+   }
+  },
+  "VERDICT": "a zero-physics predictor that simply copies the historical arms passes all three frozen endpoints. The fresh test therefore does NOT discriminate M6 from 'the fresh arms resemble the old ones'. It DOES reject the uncorrected ideal operator and the model without the shared organiser trajectory. The correct statement is: the prediction was not falsified, and the shared-trajectory mechanism is required. It is not: the operator predicts prospectively where nothing else could.",
+  "WAS_THE_NULL_AVAILABLE_BEFORE_THE_RUN": true
+ }
+}

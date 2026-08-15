@@ -27,6 +27,11 @@ import metrics_obtc as M                                 # noqa: E402
 RADIAL_GRID = (1.0, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 12.0, 14.0, 17.0)
 BURN_IN, HORIZON = 2000, 11000
 
+# Monte-Carlo standard deviation of the M6 POINT PREDICTIONS themselves, measured in the
+# repair round over 16 independent replicates of the frozen 30-arm design. Every frozen
+# prediction must be quoted with this beside it.
+PRED_SD = {"static": 0.315, "mobile": 0.563, "ratio": 0.645}
+
 
 def wd(v, L):
     v = np.abs(v) % L
@@ -89,14 +94,29 @@ def information_flow():
          "SIMULATED_EX_ANTE": False, "INJECTED_FROM_THE_ENGINE": True,
          "source": "accepted_births_X per step, from up to 40 HISTORICAL OBDI02 / OBTC02 arms",
          "why": ("this is a MEASURED birth flux taken from delivered engine output. It is "
-                 "non-target with respect to the fresh arms and it was frozen before them, "
-                 "but it is category B and it is load-bearing: the frozen ablation shows "
-                 "that replacing it by a Poisson source of the same mean moves the mobile "
-                 "prediction by 1.27 points."),
-         "load_bearing": True},
+                 "non-target with respect to the fresh arms and it was frozen before them. "
+                 "M6 cannot be started without it: the simulator does not derive the source "
+                 "from the chemostat, it is handed the source. That derivational fact is "
+                 "what makes the prediction conditional."),
+         "load_bearing": False,
+         "NUMERICALLY_LOAD_BEARING": False,
+         "WITHDRAWN_JUSTIFICATION": (
+             "the mission asserted that this input is load-bearing because replacing it by a "
+             "Poisson source of the same mean moved the mobile prediction by 1.27 points. "
+             "The repair round replicated that ablation sixteen times per side and obtained "
+             "+0.41 +- 0.20 pp, an order of magnitude smaller and of the OPPOSITE sign; "
+             "doubling the source intensity moved the prediction by +0.01 +- 0.23 pp with "
+             "the dose verified delivered (117 -> 237 particles). The 1.27 pp figure is "
+             "withdrawn. See OBFOR01_SEAL_REPAIR_EVIDENCE.json, R1 and R2."),
+         "WHY_THE_CONCLUSION_IS_UNCHANGED": (
+             "conditionality is a property of the DERIVATION, not of the sensitivity. An "
+             "input measured on the system being predicted makes the prediction conditional "
+             "on that measurement whatever its numerical influence turns out to be. The "
+             "measured insensitivity is a robustness result and is reported as one."),
+         "PROVENANCE_CONDITIONING": True},
         {"input": "N_X of historical arms", "category": "B",
          "role": "used ONLY to skip extinct historical arms when estimating the birth flux",
-         "load_bearing": False},
+         "load_bearing": False, "PROVENANCE_CONDITIONING": False},
         {"input": "capacity refusals", "category": "not used",
          "why": "not simulated; bounded separately at 0.018 % on r80"},
         {"input": "finite-torus path", "category": "A",
@@ -118,13 +138,29 @@ def information_flow():
     ]
     used_C = [i for i in inputs if i["category"] == "C" and i.get("USED_IN_THE_PREDICTION")]
     used_B = [i for i in inputs if i["category"] == "B" and i.get("load_bearing")]
+    provenance_B = [i for i in inputs if i.get("PROVENANCE_CONDITIONING")]
 
+    # The rule is DERIVATIONAL. An earlier version of this classifier keyed on a hand-typed
+    # "load_bearing" flag; once that flag is corrected to the measured value, that version
+    # would emit UNCONDITIONAL. It is recorded here that it would, and why that would be
+    # wrong: a numerically weak measured input is still a measured input.
     mode = ("TARGET_CONTAMINATED" if used_C
-            else ("CONDITIONAL" if used_B else "UNCONDITIONAL"))
+            else ("CONDITIONAL" if provenance_B else "UNCONDITIONAL"))
+    naive_mode = ("TARGET_CONTAMINATED" if used_C
+                  else ("CONDITIONAL" if used_B else "UNCONDITIONAL"))
     return {
         "STATIC_TRACE_OF_THE_FROZEN_PREDICTOR": trace,
         "DEPENDENCY_GRAPH": inputs,
         "LOAD_BEARING_CATEGORY_B_INPUTS": [i["input"] for i in used_B],
+        "PROVENANCE_CONDITIONING_INPUTS": [i["input"] for i in provenance_B],
+        "CLASSIFIER_RULE": ("CONDITIONAL as soon as any input to the prediction is a "
+                            "measurement taken from delivered engine output, regardless of "
+                            "its numerical influence"),
+        "WHAT_A_SENSITIVITY_BASED_CLASSIFIER_WOULD_EMIT": naive_mode,
+        "WHY_THAT_CLASSIFIER_IS_REJECTED": (
+            "it would upgrade the claim on the strength of a null result. 'The input barely "
+            "matters' is not 'the operator does not need the input'. M6 does not run without "
+            "a birth-flux law and does not derive one."),
         "ANY_CATEGORY_C_INPUT_IN_THE_PREDICTION": bool(used_C),
         "SOURCE_PATH_TREATMENT": "SIMULATED_EX_ANTE__SHARED_BY_CONSTRUCTION",
         "BIRTH_FLUX_TREATMENT": "MEASURED_FROM_HISTORICAL_ARMS_AND_INJECTED_AS_A_LAW",
@@ -138,8 +174,13 @@ def information_flow():
             "the predictions are conditional on a birth-flux law measured from delivered "
             "engine output. Nothing target-derived enters, and the organiser trajectory is "
             "simulated rather than injected, so the predictions are genuinely predictive of "
-            "the fresh clouds; but a model that must be told the source intensity is not an "
-            "unconditional first-principles operator."),
+            "the fresh clouds; but a model that must be TOLD the source, because it does not "
+            "derive it from the chemostat, is not an unconditional first-principles "
+            "operator. The conditioning is derivational. It is also, as the repair round "
+            "measured, numerically weak: the mobile prediction is invariant to a doubling of "
+            "the source intensity (+0.01 +- 0.23 pp) and moves by +0.41 +- 0.20 pp when the "
+            "flux shape is replaced by a Poisson law of the same mean. Weak conditioning is "
+            "still conditioning."),
         "FROZEN_PREDICTION_VALUES": {
             "static_median_r80": frz["PRIMARY_PREDICTIONS"][
                 "STATIC_ABSOLUTE_PROFILE_COMPATIBILITY"]["predicted_r80_median"],
@@ -238,6 +279,25 @@ def historical(q, mu):
         iid_sd.append(np.std(vv, ddof=1))
 
     return {
+        "STATUS_OF_THIS_BLOCK": "REPRODUCTION_OF_THE_MISSION_PIPELINE__NOT_AN_INDEPENDENT_CHECK",
+        "WHY": ("this function re-implements the mission's own arm-inclusion conditions "
+                "(nY_final >= 1, nX_final >= 40, at least 50 in-window frames) byte for "
+                "byte. Re-executing a filter can only confirm that the filter was executed. "
+                "It is structurally incapable of detecting that the filter itself selects on "
+                "an outcome. The rule is varied, not merely repeated, in "
+                "OBFOR01_SEAL_REPAIR_EVIDENCE.json section R5."),
+        "INCLUSION_RULE_IS_OUTCOME_DEPENDENT": {
+            "rule": "nX_final >= 40",
+            "nX_final_is": "the TERMINAL population of the arm, an outcome, not a design "
+                           "variable",
+            "sensitivity_of_the_headline_mobile_median_residual_percent": {
+                "with the rule (n=116)": -5.101, "population threshold dropped (n=126)": -4.348,
+                "no outcome-dependent threshold (n=129)": -2.144},
+            "DIRECTION": "the excluded arms carry higher residuals; the rule pushes the "
+                         "headline downward",
+            "DISCLOSED_HERE_BECAUSE": "the headline -5.10 % is a property of the observable "
+                                      "AND of the inclusion rule, and was reported as though "
+                                      "it were a property of the observable alone"},
         "COMPOSITION_OF_THE_116_ARMS": {
             "OBDI02_mobile_arms_meeting_the_filter": len(mob),
             "by_size": {L: sum(1 for r in mob if r["L"] == L) for L in (36, 72, 96)},
@@ -284,22 +344,33 @@ def fresh(q, mu):
                "MATCHES_RECORD": abs(np.median(v) - a["r80_median"]) < 1e-12}
         (S if a["condition"] == "S" else Mo).append(rec)
 
+    from seal_repair import t_sf                          # the t upper tail, no scipy
+
     def endpoint(name, vals, pred):
         v = np.array([x["median"] for x in vals])
         m, se = v.mean(), v.std(ddof=1) / math.sqrt(len(v))
         r = m / pred - 1
         rse = se / pred
+        df = len(v) - 1
         return {"NAME": name, "n_independent_units": len(v), "prediction": pred,
+                "PREDICTION_MONTE_CARLO_SD_percent": PRED_SD[name],
                 "observed": float(m), "absolute_error": float(m - pred),
                 "relative_error_percent": 100 * r,
                 "se_relative_percent": 100 * rse,
                 "ci95_relative_percent": [100 * (r - 1.96 * rse), 100 * (r + 1.96 * rse)],
                 "margin_percent": delta,
+                "CRITERION_OF_RECORD": "POINT_INSIDE (the frozen rule)",
                 "POINT_INSIDE": bool(abs(r) <= delta / 100),
                 "WHOLE_INTERVAL_INSIDE": bool(abs(r) + 1.96 * rse <= delta / 100),
-                "TOST_style_p": float(1 - 0.5 * (math.erf((delta / 100 - abs(r))
-                                                          / (rse * math.sqrt(2)) + 1e-12) + 1)
-                                      if rse > 0 else 0.0)}
+                "WHOLE_INTERVAL_IS_POST_FREEZE": True,
+                "TOST_p_t_%d_df" % df: float(t_sf((delta / 100 - abs(r)) / rse, df))
+                if rse > 0 else 0.0,
+                "TOST_p_NORMAL_AS_ORIGINALLY_REPORTED__WRONG":
+                    float(1 - 0.5 * (math.erf((delta / 100 - abs(r))
+                                              / (rse * math.sqrt(2))) + 1)) if rse > 0 else 0.0,
+                "TOST_NOTE": ("the standard error rests on %d degrees of freedom; the "
+                              "originally reported p used a normal tail and was optimistic "
+                              "by up to four orders of magnitude" % df)}
 
     e_s = endpoint("static", S, ep["STATIC_ABSOLUTE_PROFILE_COMPATIBILITY"][
         "predicted_r80_median"])
@@ -315,11 +386,22 @@ def fresh(q, mu):
     r = obsr / predr - 1
     e_r = {"NAME": "ratio", "n_static": len(vs), "n_mobile": len(vm),
            "prediction": predr, "observed": float(obsr),
+           "PREDICTION_MONTE_CARLO_SD_percent": PRED_SD["ratio"],
            "relative_error_percent": 100 * r, "se_relative_percent": 100 * rel,
            "ci95_relative_percent": [100 * (r - 1.96 * rel), 100 * (r + 1.96 * rel)],
            "margin_percent": delta,
+           "CRITERION_OF_RECORD": "POINT_INSIDE (the frozen rule)",
            "POINT_INSIDE": bool(abs(r) <= delta / 100),
            "WHOLE_INTERVAL_INSIDE": bool(abs(r) + 1.96 * rel <= delta / 100),
+           "WHOLE_INTERVAL_IS_POST_FREEZE": True,
+           "WHOLE_INTERVAL_WITH_THE_PREDICTION_SD_PROPAGATED_percent":
+               100 * (abs(r) + 2.0555 * math.sqrt(rel ** 2 + (PRED_SD["ratio"] / 100) ** 2)),
+           "MARGIN_RECIPE_APPLIED_TO_THE_RATIO_WOULD_HAVE_GIVEN_percent": 3.15,
+           "MARGIN_NOTE": ("delta = 2.9 was sized on the two ABSOLUTE endpoints. Applying "
+                           "the same recipe to the ratio, whose sampling error is the "
+                           "quadrature sum of the two, would have given about 3.15 %. The "
+                           "ratio was therefore judged against a margin slightly TIGHTER "
+                           "than its own recipe, which is the conservative direction."),
            "DEPENDENCE_TREATMENT": (
                "the static and mobile arms are DISJOINT seed sets drawn from a single frozen "
                "register and executed in one batch, so the two means are independent and the "
@@ -330,6 +412,23 @@ def fresh(q, mu):
             "ALL_ARM_SUMMARIES_REPRODUCE_THE_RECORD":
                 all(x["MATCHES_RECORD"] for x in S + Mo),
             "ENDPOINTS": {"static": e_s, "mobile": e_m, "ratio": e_r},
+            "THE_FROZEN_CRITERION": {
+                "text": frz["RESIDUAL_TOLERANCE"]["RULE"],
+                "form": "POINT rule: |observed / predicted - 1| <= 2.9 %",
+                "it_names_no_interval_no_confidence_level_and_no_quantile": True},
+            "ALL_THREE_POINTS_INSIDE__THE_CRITERION_OF_RECORD":
+                bool(e_s["POINT_INSIDE"] and e_m["POINT_INSIDE"] and e_r["POINT_INSIDE"]),
+            "WHOLE_INTERVAL_CRITERION_PROVENANCE": (
+                "the whole-interval criterion, the 1.96 factor, the delta-method variance of "
+                "the ratio and the TOST-style p ALL first appear in adjudicate_obfor01.py, "
+                "committed at cb1aaa2, i.e. AFTER the 28 arms ran at 0148acc. They are "
+                "POST-FREEZE. Mitigating: the interval criterion is STRICTER than the frozen "
+                "point rule, so applying it could only make passing harder. Aggravating: "
+                "delta = 2.9 was itself sized as roughly two sampling standard errors of "
+                "this very experiment, so a criterion that then adds 1.96 standard errors is "
+                "close to consuming the whole margin, and it passed comfortably only because "
+                "the fresh arms turned out less dispersed than assumed (2.71 % against the "
+                "4.15 % historical figure used to size the margin)."),
             "ALL_THREE_WHOLE_INTERVALS_INSIDE":
                 bool(e_s["WHOLE_INTERVAL_INSIDE"] and e_m["WHOLE_INTERVAL_INSIDE"]
                      and e_r["WHOLE_INTERVAL_INSIDE"])}
@@ -364,8 +463,28 @@ def ablations():
                     "uncorrected_over_full":
                         d["distance_to_the_uncorrected_ideal_value"] / full},
         "claimed_factors": [15, 4.5, 24],
+        "THE_POISSON_FACTOR_OF_4p5_IS_NOT_A_REJECTION": (
+            "the Poisson-source variant sits 4.5 times further from the observation than the "
+            "full model, but its own residual is -4.42 %% against an observation of "
+            "-5.17 %%, i.e. it PASSES the primary +-2.9 %% endpoint on its own. Reporting it "
+            "through a distance ratio makes a passing model look rejected. It is not "
+            "rejected, and the repair round shows the underlying difference does not even "
+            "replicate."),
         "SEQUENTIAL": m6["DECOMPOSITION"]["SEQUENTIAL"],
         "FACTORIAL": m6["DECOMPOSITION"]["FACTORIAL"],
+        "WHICH_DECOMPOSITION_TERMS_SURVIVE_REPLICATION": {
+            "shared_trajectory_main_effect_pp": -3.7396923099114794,
+            "shared_trajectory_SURVIVES": True,
+            "why": ("about six times the measured replicate standard deviation of a 30-arm "
+                    "M6 point prediction (0.563 pp), and independently confirmed by the "
+                    "fresh ablation endpoint, where the no-shared-trajectory model misses "
+                    "the fresh mobile observation by -3.55 %, outside the margin"),
+            "birth_flux_main_effect_pp": -1.298673772890935,
+            "birth_flux_SURVIVES": False,
+            "why_not": ("replication over 16 x 30 arms per side gives +0.41 +- 0.20 pp, an "
+                        "order of magnitude smaller and of the opposite sign; see "
+                        "OBFOR01_SEAL_REPAIR_EVIDENCE.json R1"),
+            "interaction_SURVIVES": False},
         "WHAT_WAS_FROZEN_BEFORE_THE_FRESH_RUNS": {
             "the ablation predictions themselves": True,
             "the ablation RULE (full model must sit closer than the no-shared-trajectory "

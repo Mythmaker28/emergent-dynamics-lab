@@ -1,0 +1,86 @@
+{
+ "SECTION": "SEAL delivery",
+ "PUSH": {
+  "ATTEMPTS_IN_THIS_SESSION": 1,
+  "MADE_BY": "OBFOR01 \u00a728",
+  "RETRIED_BY_THE_SEAL": false,
+  "returncode": 128,
+  "stderr": "remote: access denied by the git proxy: Mythmaker28/emergent-dynamics-lab is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources.\nfatal: unable to access 'https://github.com/Mythmaker28/emergent-dynamics-lab.git/': The requested URL returned error: 403",
+  "READING": "a 403 from the git proxy is a session authorization boundary. Retrying cannot change it and the mandate permits one attempt. The recorded response is reused verbatim."
+ },
+ "ARCHIVE": {
+  "whole_sha256": "6901132f4e18387c0a240499548415bfbb53c70134c83afdebe58a135c1d791e",
+  "parts": 7,
+  "part_digests": [
+   {
+    "name": "SEAL01_OFFLINE_REPO.tar.gz.part00",
+    "sha256": "842f58086796c8fee31065c86ec5e5fbfc68c142046d151e300624f0e8f12814"
+   },
+   {
+    "name": "SEAL01_OFFLINE_REPO.tar.gz.part01",
+    "sha256": "0d066eb8ac090b7a51788790fdd8f5cc11fd82d6b77691cdd36708765b143329"
+   },
+   {
+    "name": "SEAL01_OFFLINE_REPO.tar.gz.part02",
+    "sha256": "8ed883ad8ca89bb0e15f4466d2b6376c24f8a7490514d15d28da38dca73f54ef"
+   },
+   {
+    "name": "SEAL01_OFFLINE_REPO.tar.gz.part03",
+    "sha256": "cffe6a248eeef67e694ab4bfe551d759a6897ace1514472c4150ff015e455e9a"
+   },
+   {
+    "name": "SEAL01_OFFLINE_REPO.tar.gz.part04",
+    "sha256": "bc937ff33ddcd64331dc06688574d8bca081bf18539f339c585fe9daa3fed014"
+   },
+   {
+    "name": "SEAL01_OFFLINE_REPO.tar.gz.part05",
+    "sha256": "0cfe43019ca39189c535c71ab9ebd985eb19d7cae95f9bd43785957433027e47"
+   },
+   {
+    "name": "SEAL01_OFFLINE_REPO.tar.gz.part06",
+    "sha256": "d0ed1322962b67d1a0ea5eab10050ea9ffa0b66a673e8213eab1c826a041e994"
+   }
+  ],
+  "bytes": 116478205
+ },
+ "BRANCH": {
+  "head": "0d79a016eb0d4c972440e6c328a1fcbd477fba09",
+  "tree": "92b23f485d765967d9ac408efce8006783348daa",
+  "base": "062d3735b726bb9c7325aef063c803823e46218d",
+  "commits_over_the_base": 14,
+  "seal_commits": [
+   {
+    "commit": "4861a9f5001bdf20d3b7c61473fe51148efe1631",
+    "subject": "SEAL 1: offline provenance recovery and the chronological evidence table"
+   },
+   {
+    "commit": "4d154fedf0ce0b9fb9903ed5e0ea00fcba31dc08",
+    "subject": "SEAL 2: information flow of the predictions, and every headline number recomputed"
+   },
+   {
+    "commit": "d8d57d362c150f648871fd483db0a087f9d4a3f1",
+    "subject": "SEAL 3: adjudication, claim narrowed to CONDITIONAL, and the next handoff written not run"
+   },
+   {
+    "commit": "0d79a016eb0d4c972440e6c328a1fcbd477fba09",
+    "subject": "SEAL 4 (final): adversarial review applied, six confirmed defects repaired"
+   }
+  ]
+ },
+ "OFFLINE_READBACK": {
+  "RAN_UNDER": "unshare -rn (no network namespace at all)",
+  "FSCK_OUTPUT": [],
+  "FSCK_CLEAN": true,
+  "REMOTES": "REMOTES:[]",
+  "PROMISOR_PACKS": "PROMISOR:[]",
+  "COMMITS_REACHABLE": "COMMITS:15",
+  "HEAD": "HEAD:0d79a016eb0d4c972440e6c328a1fcbd477fba09",
+  "DELIVERABLES_PRESENT": 11,
+  "DELIVERABLES_MISSING": [],
+  "SHA256SUMS_VERIFIED_OFFLINE": "SUMS_OK:13",
+  "ALL_NEEDED_PRESENT": true
+ },
+ "PRESERVED_EXACTLY_ONCE": true,
+ "FIXED_POINT_NOTE": "a delivery record cannot contain the hash of the commit that carries it. The seal's commit budget is four intentional checkpoints, all spent, so this record and its script were folded into the fourth by amending that single unpushed commit -- no inherited commit is rewritten -- and the archive was then rebuilt once at the resulting head. The head named in deliver/MANIFEST.txt is the authoritative one; the head named in the copy of this JSON inside the tree is necessarily its predecessor. The PUSH is not repeated by any of this: the single recorded 403 is reused verbatim.",
+ "HEAD_AT_THE_TIME_THIS_RECORD_WAS_WRITTEN": "0d79a016eb0d4c972440e6c328a1fcbd477fba09"
+}

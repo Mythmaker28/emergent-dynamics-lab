@@ -2,7 +2,8 @@
 ## PROSPECTIVE-MINORITY-CHANNEL-REACHABILITY-01
 ## PMCR01 — atteignabilité exécutable d'un canal minoritaire, zéro run
 
-> Produit par `OBFOR01-CONFIRMATORY-PROVENANCE-AND-CLAIM-SEAL-01`.
+> Produit par `OBFOR01-CONFIRMATORY-PROVENANCE-AND-CLAIM-SEAL-01`, après revue adverse et
+> tour de réparation.
 > **Ne pas exécuter dans la session du sceau.**
 
 ```
@@ -19,12 +20,34 @@ RETUNE               = forbidden
 TOMMY_ACTION_REQUIRED = NONE
 ```
 
-## 1. Pourquoi cette mission est éligible, et à quoi elle ne l'est pas
+## 0. Verser ce texte dans le dépôt avant toute autre action
 
-Le sceau a établi que l'opérateur source–transport–décroissance prédit **prospectivement** trois
-observables de réponse de source sur graines fraîches, à ±2,9 %, **conditionnellement** à une loi
-de flux de naissance mesurée et gelée. C'est cette capacité prédictive — et rien d'autre — qui
-autorise à *concevoir* un second temps indépendant.
+Le sceau n'a pas pu certifier la conformité de budget d'OBFOR01 parce que le mandat qui la
+gouvernait n'était nulle part dans l'arbre. **Premier commit de PMCR01** : ce fichier, ou son
+SHA-256, versé dans le dépôt. Sans cela, la même invérifiabilité se reproduira.
+
+## 1. Sur quoi exactement cette mission est éligible
+
+Ce que le sceau a établi, dans ces termes et pas d'autres :
+
+- L'opérateur source–transport–décroissance a **énoncé à l'avance** trois prédictions ponctuelles
+  que 28 graines fraîches **n'ont pas falsifiées**, dans une marge gelée de ±2,9 %.
+- À l'intérieur de ce même test, la **trajectoire organisatrice partagée est requise** : la
+  retirer manque l'observation mobile de −3,55 %, l'idéal non corrigé la manque de −5,46 %.
+- La prédiction est **conditionnelle** à une loi de flux de naissance mesurée, sur fondement
+  dérivationnel : le modèle ne dérive pas la source, on la lui remet.
+
+Ce que le sceau a **explicitement refusé** d'établir, et qu'il ne faut donc pas hériter :
+
+- que l'opérateur « prédit prospectivement » au sens d'un pouvoir discriminant — un **témoin sans
+  physique** (« les bras frais ressembleront aux bras historiques ») passe les trois mêmes
+  critères ;
+- que la prédiction est sans paramètre ajusté ;
+- que le critère statique discrimine quoi que ce soit ;
+- que la conformité de budget de la mission parente soit vérifiable.
+
+C'est la partie **mécanistique** — la trajectoire partagée est requise — qui autorise à
+*concevoir* un second temps indépendant. Pas la partie prédictive.
 
 Ce qui reste interdit et le demeure : réutiliser la fenêtre `Y` historique, revendiquer une
 reproduction, une hérédité ou une cohésion autonome, retuner un paramètre, ou tester H3.
@@ -59,6 +82,8 @@ constructeur → ordonnanceur** plutôt que des champs inertes.
 
 ## 4. Points d'attention hérités, à ne pas réapprendre à ses dépens
 
+**Sur la physique**
+
 - **La règle de résumé est un mécanisme, pas un détail.** Une médiane intra-graine d'un quantile
   de premier franchissement biaise de plusieurs pour cent, et le biais dépend de la condition.
   Toute observable primaire de PMCR01 doit être une moyenne par particule ou une fonction
@@ -66,9 +91,29 @@ constructeur → ordonnanceur** plutôt que des champs inertes.
 - **La densité marginale ne se ferme pas.** Le flux de naissance vaut `min(n_SX, free)` local à
   86,7 % des pas. Prédire des observables ne veut pas dire disposer d'une équation d'évolution.
 - **La prédiction héritée est conditionnelle** à une loi de flux mesurée. Si PMCR01 veut une
-  prédiction inconditionnelle, il devra dériver le flux depuis le chémostat, pas le mesurer.
+  prédiction inconditionnelle, il devra **dériver** le flux depuis le chémostat, pas le mesurer.
+  Note utile : le résidu mobile s'est révélé **invariant** à un doublement de l'intensité de la
+  source (+0,01 ± 0,23 pt, nuage vérifié doublé). La dépendance à la source est dérivationnelle,
+  pas numérique.
 - **Un zéro structurel n'est pas un petit nombre.** `k_Y = 0` retire un canal ; il ne le rend pas
   faible.
+
+**Sur la méthode — cinq règles issues des six défauts corrigés dans le sceau**
+
+1. **Une ablation n'est un mécanisme que si elle est répliquée.** Une différence unique entre
+   deux runs de 30 bras dont l'écart-type de réplique vaut 0,56 point ne soutient pas un effet de
+   1,27 point. Répliquer avant d'interpréter, toujours.
+2. **Toute prédiction se publie avec son σ Monte-Carlo.** Une prédiction ponctuelle assortie d'un
+   σ non déclaré n'est pas un point.
+3. **Aucune règle d'inclusion ne doit conditionner sur un résultat.** `nX_final ≥ 40` sélectionne
+   sur la population terminale et déplace la valeur de tête de plusieurs points. Les critères
+   d'inclusion de PMCR01 doivent être fixés sur des variables de conception, gelés, et leur
+   sensibilité publiée.
+4. **Le critère de décision se gèle en entier, forme comprise** : point ou intervalle, niveau de
+   confiance, loi de référence et degrés de liberté. Écrire le code qui l'évalue **avant** les
+   bras, pas après. Une erreur-type à 13 ddl se lit sur une loi de Student.
+5. **Toute revendication doit être opposée à un témoin sans physique** construit avant les runs.
+   Si le témoin passe, le plan ne discrimine pas et la revendication doit le dire.
 
 ## 5. Dispositions terminales admissibles
 

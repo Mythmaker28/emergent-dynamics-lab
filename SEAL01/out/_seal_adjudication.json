@@ -14,8 +14,25 @@
   "WHAT_THE_OBFOR01_MANDATE_ITSELF_SAID": "its \u00a716 requires a raw-only phase BEFORE any new start, \u00a717 states the criterion for OPENING a fresh validation, \u00a718 specifies conditions S, M and E, \u00a719 fixes the validation statistics and \u00a720 fixes a run budget and fresh seeds. A mandate that budgets runs is not a mandate that forbids them.",
   "THE_LATER_HANDOFF": "a subsequent handoff, ORGANIZER-BOUND-FULL-OPERATOR-RECONSTRUCTION-01, does carry NEW_ENGINE_STARTS = 0. It arrived AFTER OBFOR01 was delivered and cannot bind it retroactively. It is named here so that nothing is concealed.",
   "REAL_DEFECT_FOUND": "OBTR01's headline eligibility string is easy to misread as a blanket zero-run authorisation, because the scope qualifier FOR_THIS_QUESTION sits inside the token. That ambiguity is a reporting defect and is the likely origin of the seal's premise. Future eligibility strings should name the question they close.",
-  "ORIGINAL_ZERO_RUN_MISSION_COMPLIANCE": "PASS",
-  "CONFIDENCE": "the classification rests on the frozen text of both the parent artefact and the governing mandate, not on the outcome"
+  "WHAT_IS_ACTUALLY_IN_EVIDENCE": {
+   "pillar_1__OBTR01_eligibility": {
+    "READ_FROM_THE_TREE": true,
+    "path": "OBTR01/out/_freeze.json -> NEXT_ELIGIBILITY",
+    "status": "VERIFIED: the absolute radial deficit is listed ELIGIBLE_AT_THE_QUALIFIED_POINT"
+   },
+   "pillar_2__the_OBFOR01_mandate_sections_16_to_20": {
+    "READ_FROM_THE_TREE": false,
+    "status": "NOT IN THE DELIVERY. The handoff text was never committed. The description above is unverifiable prose about an absent document."
+   },
+   "pillar_3__the_later_RECONSTRUCTION_handoff": {
+    "READ_FROM_THE_TREE": false,
+    "status": "NOT IN THE DELIVERY. Its NEW_ENGINE_STARTS = 0 and its arrival date are asserted, not shown."
+   }
+  },
+  "ORIGINAL_ZERO_RUN_MISSION_COMPLIANCE": "NOT_DETERMINABLE_FROM_THE_DELIVERED_EVIDENCE",
+  "WHY_NOT_PASS": "the earlier verdict PASS was a hardcoded string, not a computed one, and two of its three pillars are prose about documents that are not in the delivery. A seal whose founding instruction is 'do not accept prose claims as evidence' cannot itself certify compliance from prose. Only pillar 1 is evidence: it shows the QUESTION was open. It does not show what run budget the governing mandate set, because that mandate is not in the tree.",
+  "WHAT_WOULD_SETTLE_IT": "commit the governing handoff texts, or their hashes, into the repository at the moment a mission opens. Until then run-budget compliance is not a verifiable property of the delivery.",
+  "NOT_A_FINDING_OF_VIOLATION": "this is a finding of UNVERIFIABILITY, not of breach. No evidence of a run-budget breach was found either."
  },
  "PROSPECTIVITY": {
   "freeze_commit": "050e666ed40dbcc18cc26d87e2e4b17b7c096ed6",
@@ -47,7 +64,7 @@
   "2_all_28_arms_accounted_for": true,
   "3_unchanged_lawspec_and_analysis_path": true,
   "4_correct_independent_units": true,
-  "5_all_three_intervals_inside_the_margin": true,
+  "5_all_three_points_inside_the_frozen_margin": true,
   "6_no_target_derived_information_in_the_prediction": true,
   "7_claim_restricted_to_the_tested_source_response_observables": true,
   "8_no_marginal_density_closure_claim": true,
@@ -55,11 +72,19 @@
  },
  "ALL_NINE_MET": true,
  "PREDICTION_MODE": "CONDITIONAL",
- "WHY_NOT_UNCONDITIONAL": "the predictions are conditional on a birth-flux law measured from delivered engine output. Nothing target-derived enters, and the organiser trajectory is simulated rather than injected, so the predictions are genuinely predictive of the fresh clouds; but a model that must be told the source intensity is not an unconditional first-principles operator.",
+ "WHY_NOT_UNCONDITIONAL": "the predictions are conditional on a birth-flux law measured from delivered engine output. Nothing target-derived enters, and the organiser trajectory is simulated rather than injected, so the predictions are genuinely predictive of the fresh clouds; but a model that must be TOLD the source, because it does not derive it from the chemostat, is not an unconditional first-principles operator. The conditioning is derivational. It is also, as the repair round measured, numerically weak: the mobile prediction is invariant to a doubling of the source intensity (+0.01 +- 0.23 pp) and moves by +0.41 +- 0.20 pp when the flux shape is replaced by a Poisson law of the same mean. Weak conditioning is still conditioning.",
  "FINAL_DISPOSITION": "CONDITIONAL_FULL_CAPACITY_SOURCE_RESPONSE_OPERATOR_QUALIFIED",
  "TARGET_REPORTED_DISPOSITION": "FULL_CAPACITY_SOURCE_RESPONSE_OPERATOR_QUALIFIED",
  "CLAIM_CHANGE": "the reported disposition is narrowed by one qualifier: CONDITIONAL. Everything it asserted about the three endpoints survives; what it did not say is that the operator must be told the source intensity.",
- "MAXIMAL_AUTHORIZED_CLAIM": "In the qualified LawSpec at the frozen point, a discrete source-transport-decay operator -- given (i) the exact one-step kernels, the intra-step order, the finite torus and the finite horizon, all known before the run, and (ii) a BIRTH-FLUX LAW measured on historical arms and frozen before the fresh ones -- predicts prospectively, with no fitted parameter and within +-2.9 %, three source-response observables on fresh seeds: the absolute median-summarised r80 under a static source, the same under a mobile source, and their ratio. The prediction is CONDITIONAL on that birth-flux law. Nothing beyond those three observables is claimed: not a closed marginal density, not a full-state theory, not an exactly zero M2 residual, and no statement about reproduction, heredity or autonomous cohesion.",
+ "MAXIMAL_AUTHORIZED_CLAIM": "In the qualified LawSpec at the frozen point, a discrete source-transport-decay operator -- given (i) the exact one-step kernels, the intra-step order, the finite torus and the finite horizon, all known before the run, and (ii) a BIRTH-FLUX LAW measured on historical arms and frozen before the fresh ones -- stated three point predictions in advance which the fresh seeds DID NOT FALSIFY, each within the frozen +-2.9 % margin: the absolute median-summarised r80 under a static source, the same under a mobile source, and their ratio. Within the same test, the SHARED ORGANISER TRAJECTORY is REQUIRED: removing it misses the fresh mobile observation by -3.55 %, and the uncorrected ideal operator misses it by -5.46 %, both outside the margin. The prediction is CONDITIONAL on the birth-flux law, on derivational grounds: M6 does not derive the source, it is handed it. Nothing beyond those three observables is claimed: not a closed marginal density, not a full-state theory, not an exactly zero M2 residual, and no statement about reproduction, heredity or autonomous cohesion.",
+ "LIMITS_THAT_TRAVEL_WITH_THE_CLAIM": {
+  "THE_TEST_HAS_LIMITED_DISCRIMINATING_POWER": "a zero-physics baseline -- 'the fresh arms will look like the historical arms', computable from OBDI02 and OBTC02 before OBFOR01 opened -- also passes all three endpoints (static +0.47 %, mobile -0.31 %, ratio -0.77 %). The fresh arms therefore do NOT separate the operator from mere historical resemblance. What they DO separate is the shared-trajectory mechanism from its absence.",
+  "THE_PREDICTIONS_ARE_NOT_POINTS": "the M6 point predictions carry a Monte-Carlo standard deviation of 0.315 % (static) and 0.563 % (mobile), measured over 16 replicates of the frozen 30-arm design. The frozen mobile prediction itself lies -1.58 such sd from the replicated mean.",
+  "NO_FITTED_PARAMETER_IS_WITHDRAWN": "the phrase 'with no fitted parameter' is retired. The birth-flux law is an empirical distribution of about 360000 samples estimated IN SAMPLE on the same historical L=36 arms that set the developmental baseline. It is a non-parametric estimate, not the absence of an estimate.",
+  "THE_HISTORICAL_HEADLINE_DEPENDS_ON_AN_OUTCOME_DEPENDENT_FILTER": "the -5.10 %% historical mobile residual becomes -4.35 %% without the nX_final >= 40 rule and -2.14 %% with no population threshold at all. The magnitude of the developmental residual is a joint property of the observable and of the inclusion rule.",
+  "THE_STATIC_BRANCH_RESTS_ON_THREE_HISTORICAL_ARMS": true,
+  "THE_STATIC_ENDPOINT_IS_NOT_DISCRIMINATING": "even the uncorrected ideal operator passes the static endpoint at -1.38 %. Only the mobile endpoint and the ratio carry information about the mechanism."
+ },
  "OVERBROAD_PHRASES_TO_RETIRE": [
   {
    "phrase": "M2 matches",
@@ -70,6 +95,26 @@
    "phrase": "the operator predicts the ABSOLUTE values of the profile",
    "why": "true only for the median-summarised r80 and its ratio, and only conditionally on the measured birth flux",
    "replacement": "the operator predicts the three tested source-response observables, conditionally on a frozen birth-flux law"
+  },
+  {
+   "phrase": "with no fitted parameter",
+   "why": "the birth-flux law is a ~360000-sample empirical distribution estimated in sample on the same historical arms",
+   "replacement": "with no free parameter tuned to the fresh arms"
+  },
+  {
+   "phrase": "predicts prospectively",
+   "why": "a zero-physics historical-copy baseline also passes all three endpoints",
+   "replacement": "stated three predictions in advance which the fresh seeds did not falsify, and within which the shared-trajectory mechanism is required"
+  },
+  {
+   "phrase": "the shape of the birth flux is load-bearing (1.27 points)",
+   "why": "replication over 16 x 30 arms per side gives +0.41 +- 0.20 pp, of the opposite sign; and doubling the source intensity moves the prediction by +0.01 +- 0.23 pp",
+   "replacement": "the birth-flux law is a measured INPUT, which is why the prediction is conditional; its numerical influence is small"
+  },
+  {
+   "phrase": "the Poisson-source model is rejected by a factor 4.5",
+   "why": "that model's own residual is -4.42 % and it passes the +-2.9 % endpoint",
+   "replacement": "the Poisson-source variant is further from the observation but is not rejected"
   }
  ],
  "NEXT_SCIENTIFIC_ELIGIBILITY": "PROSPECTIVE_MINORITY_CHANNEL_REACHABILITY_01",
