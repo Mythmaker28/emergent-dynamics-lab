@@ -1,0 +1,477 @@
+{
+ "SECTION": "OBFOR01 \u00a75-\u00a76",
+ "CONSUMES_NO_SCIENTIFIC_RUN": true,
+ "EXACT_DEFINITIONS": {
+  "residual_bearing_observable": "r80_organiser",
+  "source": "OBTC02/code/protocol_obtc02.py line 99, calling metrics_obtc.radii",
+  "formula": "r_q = d[ searchsorted( cumsum(w_sorted_by_d)/N , q, side='left') ], with d the toroidal distance field centred on the ORGANISER cell and w the X occupancy",
+  "what_it_is": "the smallest achievable lattice distance at which the EMPIRICAL cumulative mass of about 120 particles first reaches 0.8",
+  "three_properties": [
+   "an empirical quantile, not a population quantity",
+   "a FIRST CROSSING, i.e. a minimum over d, and minima of noisy crossings are biased downward",
+   "supported on the discrete set of achievable toroidal distances, whose spacing near these radii is a few percent"
+  ],
+  "within_seed_summary": "median over the in-window frames (step > BURN_IN)",
+  "across_seed_summary": "arithmetic mean over analysable arms",
+  "UNIT_OF_ANALYSIS": "SEED",
+  "NORMALIZATION": "none; both prediction and observation are absolute lengths",
+  "second_observable_added_here": "M2 = mean per-particle squared toroidal distance to the organiser, a per-particle mean and therefore unbiased at every N"
+ },
+ "PREDICTION_STATUS": {
+  "where_the_predictions_live": "OBTC02/code/obtc02_protocol.yaml, block `analytic`",
+  "static_r80_frozen": 6.082762530298219,
+  "static_r80_recomputed": 6.082762530298219,
+  "STATIC_REPRODUCES": true,
+  "mobile_r80_frozen": 8.54400374531753,
+  "mobile_r80_recomputed": 8.54400374531753,
+  "MOBILE_REPRODUCES": true,
+  "STATUS": "PRE_RUN",
+  "why": "both figures sit inside the protocol yaml that OBTC02 froze and hashed into METHODS_CORE before any arm was run, so they are predictions and not fits. They are recomputed here from the resolvent by an independent route.",
+  "M2_static_predicted": 24.62817403631368,
+  "M2_mobile_predicted": 46.68474845341292,
+  "M2_IS_NOT_IN_THE_FROZEN_BLOCK": true,
+  "M2_prediction_status": "DERIVED_IN_THIS_MISSION_FROM_THE_SAME_FROZEN_OPERATOR \u2014 it is a new reduction of an already-frozen law, not a new law"
+ },
+ "PREDICTED": {
+  "static_r50_r80_r90": {
+   "0.5": 3.1622776601683795,
+   "0.8": 6.082762530298219,
+   "0.9": 8.06225774829855
+  },
+  "mobile_r50_r80_r90": {
+   "0.5": 4.47213595499958,
+   "0.8": 8.54400374531753,
+   "0.9": 11.313708498984761
+  },
+  "static_M2": 24.62817403631368,
+  "mobile_M2": 46.68474845341292,
+  "static_rms": 4.962678111293708,
+  "mobile_rms": 6.832623833741539
+ },
+ "OBSERVED": {
+  "S_r80_organiser": {
+   "n": 3,
+   "mean": 5.971238141714507,
+   "sd": 0.128345558555124,
+   "se": 0.07410034278109372,
+   "min": 5.830951894845301,
+   "max": 6.082762530298219,
+   "values": [
+    5.830951894845301,
+    6.082762530298219,
+    6.0
+   ]
+  },
+  "P_r80_organiser": {
+   "n": 5,
+   "mean": 8.0272236022703,
+   "sd": 0.45232902730562136,
+   "se": 0.20228769065034558,
+   "min": 7.280109889280518,
+   "max": 8.48528137423857,
+   "values": [
+    8.06225774829855,
+    8.48528137423857,
+    8.246211251235321,
+    7.280109889280518,
+    8.06225774829855
+   ]
+  },
+  "S_M2_final_frame": {
+   "n": 3,
+   "mean": 25.6182146850151,
+   "sd": 5.261241111253961,
+   "se": 3.0375789718540003,
+   "min": 21.42105263157895,
+   "max": 31.52054794520548,
+   "values": [
+    23.91304347826087,
+    31.52054794520548,
+    21.42105263157895
+   ]
+  },
+  "P_M2_final_frame": {
+   "n": 5,
+   "mean": 56.493916488280355,
+   "sd": 24.20524276032652,
+   "se": 10.824913644794949,
+   "min": 34.642857142857146,
+   "max": 89.23456790123457,
+   "values": [
+    89.23456790123457,
+    74.00763358778626,
+    34.642857142857146,
+    35.80952380952381,
+    48.775
+   ]
+  },
+  "OBDI02_L36_M2_final_frame": {
+   "n": 41,
+   "mean": 42.63977467428947,
+   "sd": 10.733141498940233,
+   "se": 1.6762350847722083,
+   "min": 24.689320388349515,
+   "max": 71.48113207547169,
+   "values": [
+    51.8099173553719,
+    34.330935251798564,
+    44.38095238095238,
+    41.854838709677416,
+    34.40495867768595,
+    58.11363636363637,
+    32.408,
+    31.475524475524477,
+    48.1,
+    35.28947368421053,
+    35.39393939393939,
+    41.18518518518518,
+    52.982142857142854,
+    42.146067415730336,
+    32.664,
+    28.3206106870229,
+    24.689320388349515,
+    41.59349593495935,
+    36.495652173913044,
+    41.22115384615385,
+    45.245098039215684,
+    52.85294117647059,
+    51.45454545454545,
+    36.16,
+    43.324074074074076,
+    32.07142857142857,
+    35.483870967741936,
+    71.48113207547169,
+    48.03030303030303,
+    33.53508771929825,
+    61.6890756302521,
+    53.55102040816327,
+    48.13084112149533,
+    30.59124087591241,
+    27.08695652173913,
+    31.80188679245283,
+    43.935483870967744,
+    51.89719626168224,
+    63.33064516129032,
+    54.054263565891475,
+    43.66386554621849
+   ]
+  },
+  "OBDI02_L36_r80_organiser": {
+   "n": 41,
+   "mean": 8.10214309189128,
+   "sd": 0.3547449199751161,
+   "se": 0.0554018486633864,
+   "min": 7.280109889280518,
+   "max": 8.94427190999916,
+   "values": [
+    8.54400374531753,
+    7.810249675906654,
+    8.06225774829855,
+    8.48528137423857,
+    8.0,
+    7.615773105863909,
+    8.0,
+    8.0,
+    7.810249675906654,
+    8.94427190999916,
+    8.54400374531753,
+    7.615773105863909,
+    8.54400374531753,
+    8.06225774829855,
+    8.0,
+    8.06225774829855,
+    7.810249675906654,
+    8.0,
+    8.246211251235321,
+    7.810249675906654,
+    8.0,
+    8.246211251235321,
+    8.54400374531753,
+    8.06225774829855,
+    8.06225774829855,
+    8.06225774829855,
+    7.810249675906654,
+    8.602325267042627,
+    8.246211251235321,
+    8.54400374531753,
+    8.154234499766936,
+    8.06225774829855,
+    7.905124837953327,
+    7.280109889280518,
+    7.810249675906654,
+    8.365746312736945,
+    7.280109889280518,
+    8.54400374531753,
+    8.06225774829855,
+    8.06225774829855,
+    8.51464255977805
+   ]
+  }
+ },
+ "RESIDUALS": {
+  "STATIC_r80": {
+   "observed_mean": 5.971238141714507,
+   "predicted": 6.082762530298219,
+   "residual": -0.018334496543011447,
+   "residual_percent": -1.8334496543011447,
+   "n": 3,
+   "se_of_the_ratio": 0.01218202131219165,
+   "z": -1.5050455152842706,
+   "ci95": [
+    5.826001469863564,
+    6.116474813565451
+   ]
+  },
+  "MOBILE_r80_OBTC02": {
+   "observed_mean": 8.0272236022703,
+   "predicted": 8.54400374531753,
+   "residual": -0.0604845407904282,
+   "residual_percent": -6.04845407904282,
+   "n": 5,
+   "se_of_the_ratio": 0.023675983377372423,
+   "z": -2.5546791373504005,
+   "ci95": [
+    7.630739728595623,
+    8.423707475944978
+   ]
+  },
+  "MOBILE_r80_OBDI02_L36": {
+   "observed_mean": 8.10214309189128,
+   "predicted": 8.54400374531753,
+   "residual": -0.05171587777784015,
+   "residual_percent": -5.171587777784015,
+   "n": 41,
+   "se_of_the_ratio": 0.006484295924349157,
+   "z": -7.975557929680852,
+   "ci95": [
+    7.993555468511043,
+    8.210730715271518
+   ]
+  },
+  "STATIC_M2": {
+   "observed_mean": 25.6182146850151,
+   "predicted": 24.62817403631368,
+   "residual": 0.04019951488249296,
+   "residual_percent": 4.019951488249296,
+   "n": 3,
+   "se_of_the_ratio": 0.12333756320607282,
+   "z": 0.32593083435033876,
+   "ci95": [
+    19.66455990018126,
+    31.57186946984894
+   ]
+  },
+  "MOBILE_M2_OBTC02": {
+   "observed_mean": 56.493916488280355,
+   "predicted": 46.68474845341292,
+   "residual": 0.2101150452734275,
+   "residual_percent": 21.01150452734275,
+   "n": 5,
+   "se_of_the_ratio": 0.2318725923006143,
+   "z": 0.9061659387540769,
+   "ci95": [
+    35.27708574448226,
+    77.71074723207846
+   ]
+  },
+  "MOBILE_M2_OBDI02_L36": {
+   "observed_mean": 42.63977467428947,
+   "predicted": 46.68474845341292,
+   "residual": -0.08664443770453134,
+   "residual_percent": -8.664443770453135,
+   "n": 41,
+   "se_of_the_ratio": 0.03590541108826872,
+   "z": -2.4131303633184262,
+   "ci95": [
+    39.35435390813594,
+    45.925195440443
+   ]
+  }
+ },
+ "RADIUS_VERSUS_VARIANCE": {
+  "WHY_IT_MATTERS": "r80 is a LENGTH and M2 is a SQUARED length. If the whole profile were rescaled by a factor (1 + e), r80 would move by e and M2 by about 2e. A -1.8 % deficit on a radius is a -3.6 % deficit on the variance, and the two must never be quoted as the same number.",
+  "static_r80_residual_percent": -1.8334496543011447,
+  "static_implied_variance_residual_percent": -3.633283932253717,
+  "static_M2_residual_percent": 4.019951488249296,
+  "mobile_r80_residual_percent": -6.04845407904282,
+  "mobile_implied_variance_residual_percent": -11.731070190622738,
+  "mobile_M2_residual_percent": 21.01150452734275
+ },
+ "RATIO": {
+  "PREDICTED_STATIC_VALUE": 6.082762530298219,
+  "PREDICTED_MOBILE_VALUE": 8.54400374531753,
+  "PREDICTED_MOBILE_STATIC_RATIO": 1.404625563263382,
+  "OBSERVED_STATIC_VALUE": 5.971238141714507,
+  "OBSERVED_MOBILE_VALUE": 8.0272236022703,
+  "OBSERVED_MOBILE_STATIC_RATIO": 1.344314765507822,
+  "UNROUNDED": true,
+  "the_reported_pair_1p3443_over_1p4046": 0.957069628363947,
+  "unrounded_equivalent": 0.9570627223845769,
+  "relative_deviation_percent": -4.29372776154231,
+  "bootstrap_ci95_over_arms": [
+   1.2739932828368046,
+   1.404422422019108
+  ],
+  "delta_method_ci95_t4": [
+   1.2394880649047626,
+   1.4491414661108815
+  ],
+  "worst_case_min_P_over_max_S": 1.196842693269434,
+  "n_static_arms": 3,
+  "n_mobile_arms": 5,
+  "UNIT_OF_ANALYSIS": "the seed; one arm is one seed, frames are reduced first",
+  "PREDICTED_RATIO_INSIDE_THE_BOOTSTRAP_CI": false,
+  "PREDICTED_RATIO_INSIDE_THE_DELTA_CI": true,
+  "RATIO_ONE_INSIDE_THE_BOOTSTRAP_CI": false,
+  "RATIO_ONE_INSIDE_THE_DELTA_CI": false,
+  "MOBILE_BROADENING_HYPOTHESIS": "SUPPORTED",
+  "NO_MOBILE_BROADENING_RATIO_1": "REJECTED",
+  "interval_relative_width": 0.1559555891115435,
+  "EXACT_RATIO_PREDICTION": "EQUIVALENCE_NOT_ESTABLISHED",
+  "WHY": "the predicted ratio 1.404626 sits inside the delta-method interval, but that interval is 15.6 % wide relative to the point estimate. Containing a value inside a wide interval is not equivalence; with 3 static and 5 mobile arms the design cannot distinguish 1.3443 from 1.4046, and saying the ratio is 'exact' would overstate what 8 arms can show."
+ },
+ "PER_ARM": [
+  {
+   "r80_organiser": 9.899494936611665,
+   "n_frames_used": 72,
+   "Rg": 5.994362275466273,
+   "organiser_to_core": 4.47213595499958,
+   "N_X": 0.0,
+   "frames_in_window": 180,
+   "tag": "P/seed9101",
+   "condition": "P",
+   "L": 36,
+   "seed": 9101,
+   "ANALYSABLE": false
+  },
+  {
+   "r80_organiser": 8.06225774829855,
+   "n_frames_used": 180,
+   "Rg": 5.753002460283422,
+   "organiser_to_core": 3.0,
+   "N_X": 120.0,
+   "frames_in_window": 180,
+   "tag": "P/seed9102",
+   "condition": "P",
+   "L": 36,
+   "seed": 9102,
+   "M2_final_frame": 89.23456790123457,
+   "N_final": 81,
+   "r80_final_frame": 11.180339887498949,
+   "ANALYSABLE": true
+  },
+  {
+   "r80_organiser": 8.48528137423857,
+   "n_frames_used": 180,
+   "Rg": 5.892384786938671,
+   "organiser_to_core": 3.1622776601683795,
+   "N_X": 128.0,
+   "frames_in_window": 180,
+   "tag": "P/seed9103",
+   "condition": "P",
+   "L": 36,
+   "seed": 9103,
+   "M2_final_frame": 74.00763358778626,
+   "N_final": 131,
+   "r80_final_frame": 10.295630140987,
+   "ANALYSABLE": true
+  },
+  {
+   "r80_organiser": 8.246211251235321,
+   "n_frames_used": 180,
+   "Rg": 5.791324037312661,
+   "organiser_to_core": 3.0,
+   "N_X": 126.0,
+   "frames_in_window": 180,
+   "tag": "P/seed9104",
+   "condition": "P",
+   "L": 36,
+   "seed": 9104,
+   "M2_final_frame": 34.642857142857146,
+   "N_final": 126,
+   "r80_final_frame": 7.810249675906654,
+   "ANALYSABLE": true
+  },
+  {
+   "r80_organiser": 7.280109889280518,
+   "n_frames_used": 180,
+   "Rg": 5.6129384199379375,
+   "organiser_to_core": 2.23606797749979,
+   "N_X": 118.0,
+   "frames_in_window": 180,
+   "tag": "P/seed9105",
+   "condition": "P",
+   "L": 36,
+   "seed": 9105,
+   "M2_final_frame": 35.80952380952381,
+   "N_final": 126,
+   "r80_final_frame": 7.211102550927978,
+   "ANALYSABLE": true
+  },
+  {
+   "r80_organiser": 8.06225774829855,
+   "n_frames_used": 180,
+   "Rg": 5.764369574217182,
+   "organiser_to_core": 2.8284271247461903,
+   "N_X": 120.5,
+   "frames_in_window": 180,
+   "tag": "P/seed9106",
+   "condition": "P",
+   "L": 36,
+   "seed": 9106,
+   "M2_final_frame": 48.775,
+   "N_final": 120,
+   "r80_final_frame": 7.0710678118654755,
+   "ANALYSABLE": true
+  },
+  {
+   "r80_organiser": 5.830951894845301,
+   "n_frames_used": 180,
+   "Rg": 4.814238974498976,
+   "organiser_to_core": 0.0,
+   "N_X": 79.0,
+   "frames_in_window": 180,
+   "tag": "S/seed9201",
+   "condition": "S",
+   "L": 36,
+   "seed": 9201,
+   "M2_final_frame": 23.91304347826087,
+   "N_final": 92,
+   "r80_final_frame": 6.082762530298219,
+   "ANALYSABLE": true
+  },
+  {
+   "r80_organiser": 6.082762530298219,
+   "n_frames_used": 180,
+   "Rg": 5.029164220220447,
+   "organiser_to_core": 0.0,
+   "N_X": 86.0,
+   "frames_in_window": 180,
+   "tag": "S/seed9202",
+   "condition": "S",
+   "L": 36,
+   "seed": 9202,
+   "M2_final_frame": 31.52054794520548,
+   "N_final": 73,
+   "r80_final_frame": 7.810249675906654,
+   "ANALYSABLE": true
+  },
+  {
+   "r80_organiser": 6.0,
+   "n_frames_used": 180,
+   "Rg": 4.853789007731496,
+   "organiser_to_core": 0.0,
+   "N_X": 80.0,
+   "frames_in_window": 180,
+   "tag": "S/seed9203",
+   "condition": "S",
+   "L": 36,
+   "seed": 9203,
+   "M2_final_frame": 21.42105263157895,
+   "N_final": 76,
+   "r80_final_frame": 5.385164807134504,
+   "ANALYSABLE": true
+  }
+ ],
+ "OBDI02_L36_ARMS": 41
+}
