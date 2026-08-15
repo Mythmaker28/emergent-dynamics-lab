@@ -1,0 +1,72 @@
+{
+ "SECTION": "PMCR01 delivery",
+ "PUSH": {
+  "ATTEMPTS": 1,
+  "returncode": 128,
+  "stderr": "remote: access denied by the git proxy: Mythmaker28/emergent-dynamics-lab is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources.\nfatal: unable to access 'https://github.com/Mythmaker28/emergent-dynamics-lab.git/': The requested URL returned error: 403",
+  "RETRIED": false,
+  "action": "one attempt only; the proxy 403 is a session authorization boundary, recorded verbatim; split delivery instead"
+ },
+ "ARCHIVE": {
+  "whole_sha256": "f722a0b353fe5da7ebc774efccba7edda3d2593bdc56eb0caf9c8bf355b12c5b",
+  "parts": 7,
+  "bytes": 116575659,
+  "part_digests": [
+   {
+    "name": "PMCR01_OFFLINE_REPO.tar.gz.part00",
+    "sha256": "8a7e95ce9944acb16ca3212f325aade1d4e0853e5dbb5f8b67775db3f2705361"
+   },
+   {
+    "name": "PMCR01_OFFLINE_REPO.tar.gz.part01",
+    "sha256": "e94d53b905858334e4311a3d3bfc68d892b9d6e2b2a7decf589a340cc1d01f7f"
+   },
+   {
+    "name": "PMCR01_OFFLINE_REPO.tar.gz.part02",
+    "sha256": "e7f1c6e353bdb8ab8b3baeb870500378734e166da4c8802e0bf0abb8f300ab58"
+   },
+   {
+    "name": "PMCR01_OFFLINE_REPO.tar.gz.part03",
+    "sha256": "7aeda24235e1e9e97c89d0c1a629ddb6890f094d0c0e606fd21f9c340a796ead"
+   },
+   {
+    "name": "PMCR01_OFFLINE_REPO.tar.gz.part04",
+    "sha256": "e45366262f850d79cb9d6c283aa062501b8db5d81965a15031962f74abfdd061"
+   },
+   {
+    "name": "PMCR01_OFFLINE_REPO.tar.gz.part05",
+    "sha256": "41c04eb89abd752e3d8a8ac62b164eb46d14e15e6ed11c8e9281895600963eaf"
+   },
+   {
+    "name": "PMCR01_OFFLINE_REPO.tar.gz.part06",
+    "sha256": "f38902907e49eeea9cfc2f62ccb3cacd7a0b2fd79a7c529144d61439b4eb1bf7"
+   }
+  ]
+ },
+ "BRANCH": {
+  "head": "33ac5ab63efc1094802d048bc5cf06862a68aa88",
+  "tree": "cc63eb4d096df063da26aabc931e22a586b15b49",
+  "base": "f9d9b61cc29db6a0afe0d0a7ec04f3edf9b4a0e2",
+  "commits_over_base": 4,
+  "subjects": [
+   "PMCR01 1/5: seal binding, engine sentinel, Gate 0 channel discovery and mutation oracles",
+   "PMCR01 2/5: exact discrete K_Y, the three nested regions, and the independence gates",
+   "PMCR01 3/5: adversarial review applied, six confirmed defects repaired; final report",
+   "PMCR01 4/5: one push attempt refused 403, self-contained split delivery, offline readback"
+  ]
+ },
+ "OFFLINE_READBACK": {
+  "RAN_UNDER": "unshare -rn (no network namespace)",
+  "FSCK_CLEAN": true,
+  "REMOTES": "REMOTES:[]",
+  "PROMISOR_PACKS": "PROMISOR:[]",
+  "COMMITS_REACHABLE": "COMMITS:5",
+  "HEAD": "HEAD:33ac5ab63efc1094802d048bc5cf06862a68aa88",
+  "DELIVERABLES_PRESENT": 15,
+  "DELIVERABLES_MISSING": [],
+  "SHA256SUMS_VERIFIED_OFFLINE": "SUMS_OK:22",
+  "ALL_NEEDED_PRESENT": true
+ },
+ "PRESERVED_EXACTLY_ONCE": true,
+ "FIXED_POINT_NOTE": "a delivery record cannot contain the hash of the commit that carries it. This record is folded into the final commit by amending it once; the head named here is the predecessor, and MANIFEST.txt carries the authoritative head. The push is not repeated by any of this.",
+ "HEAD_WHEN_WRITTEN": "33ac5ab63efc1094802d048bc5cf06862a68aa88"
+}
