@@ -1,0 +1,152 @@
+{
+ "SECTION": "PMCR01 \u00a710-\u00a711",
+ "PARENT_BINDING": {
+  "FINAL_SEAL_DISPOSITION": "CONDITIONAL_FULL_CAPACITY_SOURCE_RESPONSE_OPERATOR_QUALIFIED",
+  "ORIGINAL_ZERO_RUN_MISSION_COMPLIANCE": "NOT_DETERMINABLE_FROM_THE_DELIVERED_EVIDENCE",
+  "FRESH_SUBSTUDY_PROSPECTIVITY": "PASS",
+  "PREDICTION_MODE": "CONDITIONAL",
+  "NEXT_SCIENTIFIC_ELIGIBILITY": "PROSPECTIVE_MINORITY_CHANNEL_REACHABILITY_01",
+  "OBFOR01_FINAL_TIP": "55e8812eee7ca48a8eb16cb439e3812a69bfc971",
+  "SEAL01_FINAL_TIP": "f9d9b61cc29db6a0afe0d0a7ec04f3edf9b4a0e2"
+ },
+ "FOUR_PROPOSITIONS": {
+  "ABSTRACT_INTERVAL_EXISTS": true,
+  "EXECUTABLE_CHANNEL_EXISTS": true,
+  "PARAMETER_IS_REACHABLE": true,
+  "ROBUST_NONEMPTY_REGION_EXISTS": false,
+  "WHY_THEY_ARE_NOT_INTERCHANGEABLE": "the first three are established by the mutation oracles and the admissible-state enumeration. The fourth is a separate question and it is answered negatively, on three independent grounds."
+ },
+ "K_Y_PATH": "ACTIVE_CONSTRUCTOR_TO_SCHEDULER (rate zero at the qualified point) = DORMANT_BUT_REACHABLE_CHANNEL",
+ "MU_Y_PATH": "ACTIVE_CONSTRUCTOR_TO_SCHEDULER (rate zero at the qualified point) = DORMANT_BUT_REACHABLE_CHANNEL",
+ "POSITIVE_DISPOSITION_CHECKLIST": {
+  "EXACT_PARENT_AND_SEAL_BOUND": true,
+  "TRUE_EXECUTABLE_Y_EVENT_FOUND": true,
+  "CONSTRUCTOR_TO_SCHEDULER_PATH_VERIFIED": true,
+  "MUTATION_ORACLE_PASS": true,
+  "ADMISSIBLE_NONZERO_CONTROL_RANGE": true,
+  "NO_TARGET_DERIVED_INPUT": true,
+  "EXACT_DISCRETE_OPERATOR_DERIVED": true,
+  "INDEPENDENCE_OR_ALIAS_STATUS_RESOLVED": true,
+  "ROBUST_REGION_POSITIVE_WIDTH": false,
+  "NO_SCIENTIFIC_RUN": true
+ },
+ "ALL_TEN_MET": false,
+ "INDEPENDENCE_GATES": {
+  "Y_BIRTH_CONTROL_IS_ACTIVE": true,
+  "Y_DEATH_OR_SURVIVAL_CONTROL_IS_ACTIVE": true,
+  "CONTROLS_ARE_NOT_ALIASES": true,
+  "CONTROLS_DO_NOT_ONLY_RESCALE_X": "PARTIAL",
+  "PARAMETER_VALUES_ARE_ADMISSIBLE": true,
+  "OPERATOR_IS_IDENTIFIABLE_FROM_EXECUTABLE_SEMANTICS": false,
+  "ROBUST_REGION_HAS_POSITIVE_WIDTH": false
+ },
+ "TIMESCALE_COLLAPSE": true,
+ "THREE_INDEPENDENT_LEGS": {
+  "LEG_1_SINGLE_SOURCE_FRAMING_IS_EXACTLY_EMPTY": {
+   "statement": "if the qualified single-organiser environment is to be preserved, the region is empty at every one of 25599 grid points, for every candidate count c in {1,4,7}",
+   "closed_form_ceiling": {
+    "muY_lower_bound_forced_by_C3_and_C5": 0.005529831326785639,
+    "epsilon_upper_bound_forced_by_C2": 0.00020932591754491326,
+    "SURVIVAL_CEILING": 0.03785394258428303,
+    "REQUIRED_BY_C1": 0.5,
+    "C1_CAN_BE_MET": false,
+    "APPROXIMATE_FORM": "survival <= ln(N*) * tau_sep / (T * ln(1/gamma))",
+    "approximate_value": 0.0377491828964473,
+    "READING": "the same muY has to be LARGE, so that a newborn dies before it can separate into a second source, and SMALL, so that the lineage itself survives the horizon. There is one muY. The ceiling is set by the ratio of the separation time to the horizon and does not depend on kY at all."
+   },
+   "mechanism": "a minority window needs newborns removed FAST, so that a second source never separates, and the lineage removed SLOWLY, so that it survives the horizon. Those are two requirements on one number.",
+   "empty_triples": {
+    "C1_SURVIVES & C3_SINGLE_SOURCE & C4_BIRTH_CONTROL_ACTIVE": 0,
+    "C1_SURVIVES & C3_SINGLE_SOURCE & C5_DEATH_CONTROL_ACTIVE": 0
+   },
+   "shortfall_factor": 13.24531980921517
+  },
+  "LEG_2_THE_DIVISION_FRAMING_DOES_NOT_TRANSPORT_TO_THE_ACTUAL_PARAMETERS": {
+   "statement": "under the inherited handoff's own framing \u2014 one division allowed, no third centre before separation \u2014 the region in (beta, muY) IS non-empty: 87 points, beta in [0.0001, 0.000398], muY in [2.64e-05, 0.000212]. That is reported as a positive finding and is not concealed.",
+   "but": "beta is not a LawSpec parameter. beta = kY * E[Q] with Q = nX * min(nSY, free) at the organiser's own cell. The upper boundary transports (beta <= 28 kY gives kY <= 1.422e-05). The lower boundary does not: the infimum of Q over the admissible cell-state set is 0, so no finite kY guarantees beta >= beta_min.",
+   "predeclared_bounds_were_tried": {
+    "E_Q_IS_STRICTLY_POSITIVE": true,
+    "basis": "P(nX_org >= 1) >= 0.00625 from a frozen predeclared threshold",
+    "E_Q_IS_NUMERICALLY_LOCATED": false,
+    "CONSEQUENCE_FOR_THE_REGION": "the lower boundary of the (kY, muY) region is known to be strictly positive and is NOT located. Condition 2 asks the next-generation criterion to exceed the persistence boundary WITH NUMERICAL MARGIN. A margin is a number. This one does not exist without measuring the realized cloud, which is precisely the measurement that made the parent's own prediction CONDITIONAL."
+   }
+  },
+  "LEG_3_SUCCESS_LEAVES_THE_QUALIFIED_ENVIRONMENT": {
+   "THE_PARENT_QUALIFIED": "a CONDITIONAL source-transport-decay operator for three observables of an ORGANIZER_BOUND_SOURCE cloud, with exactly one organiser",
+   "OBSERVABLE_LAYER": "metrics_obtc.frame resolves the organiser as oy[0], ox[0] from np.nonzero(nY). With two organisers it silently reports one of them, chosen by row-major order, and r80_organiser is measured about that arbitrary centre.",
+   "FROZEN_GATES_AFFECTED": [
+    "SOURCE_ATTACHMENT (median core-to-organiser, unwrapped position correlation)",
+    "RELATIVE_LOCALIZATION (r80 about THE organiser's cell)",
+    "CORE_CONTINUITY",
+    "MODEL_PREDICTION_COMPATIBILITY"
+   ],
+   "X_SOURCE_MULTIPLICITY": "p_X = min(1, kX nX nY) = 1 exactly at kX = 1.0 for any nX nY >= 1, so every separated organiser is a full-strength X source. Two organisers is not a perturbation of one; it is a two-source problem.",
+   "CONSEQUENCE": "any parameter region that succeeds in producing a persisting Y lineage produces a state for which the parent's qualification, the inherited observables and every frozen gate are undefined. The qualification chain does not extend to it."
+  }
+ },
+ "FINAL_DISPOSITION": "STOP__ARCHITECTURE_CHANGE_REQUIRED",
+ "WHY_NOT_THE_OTHER_TERMINAL_DISPOSITIONS": {
+  "REACHABLE_NONEMPTY_Y_WINDOW_DERIVED": "refused: ROBUST_REGION_POSITIVE_WIDTH fails, and the positive-disposition checklist requires all ten items",
+  "NO_MINIMAL_REACHABLE_Y_CHANNEL": "REFUSED AS FALSE. kY and muY both pass the mutation oracles: the hazard argument changes at the point of use, the state delta matches a deterministic expectation, and the reversal is bit-exact. Choosing this disposition would be the easier negative and it would misdescribe the architecture."
+ },
+ "ARCHITECTURE_CHANGE_BOUNDARY": {
+  "WHY_EXISTING_ARCHITECTURE_CANNOT_EXPRESS_IT": [
+   "ONE removal clock, TWO roles. _decay_core draws Binomial(n['Y'], muY) over the whole Y field and reads no age, no position, no contact and no lineage label. A minority window needs newborns removed fast, so that no further centre separates, and the lineage removed slowly, so that it survives the horizon.",
+   "THE BIRTH INTENSITY IS NOT A LAWSPEC QUANTITY. beta = kY * E[nX min(nSY, free)] at the organiser's own cell, and that cell state is produced BY the lineage, since _react creates X only where nX nY >= 1. The infimum over admissible cell states is 0, so no lower boundary exists without measuring the realized cloud.",
+   "THE X SOURCE IS SATURATED. p_X = min(1, kX nX nY) = 1 exactly at kX = 1.0 for any nX nY >= 1, so one organiser already drives the source at full strength and a second changes the system only by adding a source cell. Y count is not a minority variable in the causal sense.",
+   "THE OBSERVABLE LAYER IS SINGLE-ORGANISER. metrics_obtc.frame resolves the organiser as oy[0], ox[0] from np.nonzero(nY); with two organisers it silently reports one, chosen by row-major order."
+  ],
+  "MINIMAL_NEW_STATE_OR_EVENT": {
+   "chosen": "a LOCAL, FINITE, CONSERVED Y-PRECURSOR SPECIES bound to the organiser, with its own replenishment rate rho, consumed by Y birth",
+   "why_this_one": "it is the single smallest addition that repairs two of the three blockers at once. The pool size makes the TOTAL number of Y births a LawSpec quantity, which supplies the upper bound without loading muY; and a full pool makes the birth intensity bounded BELOW by design rather than by the realized cloud, which supplies the lower boundary. muY is then free to be small, so the lineage can persist.",
+   "rejected_alternatives": {
+    "an independently controllable Y birth hazard": "already exists \u2014 kY",
+    "an independently controllable Y decay hazard": "already exists \u2014 muY; what is missing is a SECOND one",
+    "organiser-bound production rather than global": "Y production is ALREADY organiser-bound: p_Y needs nY >= 1 in the same cell",
+    "local capacity or substrate coupling": "already exists \u2014 cand = min(nSY, free)",
+    "a membrane, a genome, a saturation layer, new memories": "not evaluated. None of them is implied by any blocker found here."
+   }
+  },
+  "CONSERVATION_OR_ACCOUNTING_REQUIREMENT": "the pool must be an occupancy-carrying species, so that the invariant sum(species) <= CAP still holds cell by cell and _exchange still removes exactly what it inserts. Adding a seventh species changes ALL_OCC, the free() computation and the exchangeable pool, and every one of those has to be re-derived, not assumed.",
+  "EXPECTED_NEW_DEGREE_OF_FREEDOM": "a second Y timescale 1/rho, independent of 1/muY. That is exactly the degree of freedom the present architecture lacks.",
+  "NEW_FAILURE_MODES": [
+   "a new absorbing state: pool empty AND nY = 1, from which no division is possible",
+   "the pool competes with SX and SY for CAP, so it perturbs the X baseline \u2014 the very thing this mission is forbidden to move",
+   "if the pool is replenished by the chemostat, rho becomes aliased to phi and S0 exactly as the SY supply already is, and the new degree of freedom evaporates",
+   "a pool bound to the organiser must follow it, which introduces a transport rule for the pool and a fresh question about what happens at CAP"
+  ],
+  "SMALLEST_STATIC_QUALIFICATION_NEEDED": [
+   "re-derive the occupancy invariant with seven species and prove _exchange still conserves occupancy exactly",
+   "re-enumerate Q_max under the new admissible-state set",
+   "re-run the three mutation oracles plus one for rho",
+   "prove the X baseline is unchanged: same captured hazard arguments on the X branch for the same seed, with the pool present and empty",
+   "extend metrics_obtc to resolve MULTIPLE organisers before any observable that mentions 'the organiser' can be used again"
+  ],
+  "NOT_IMPLEMENTED": true,
+  "NO_CODE_WRITTEN": true
+ },
+ "NEXT_SCIENTIFIC_ELIGIBILITY": "MINIMAL_Y_CHANNEL_ARCHITECTURE_DESIGN_01 (inert, zero-run)",
+ "STATUSES_REPORTED_UNCONDITIONALLY": {
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+  "HISTORICAL_WINDOW_STATUS": "NOT_PORTABLE",
+  "X_LAWSPEC_BASELINE": "UNCHANGED",
+  "SCIENTIFIC_RUNS_USED": 0,
+  "TOMMY_ACTION_REQUIRED": "NONE"
+ },
+ "SENTINEL": {
+  "ENGINE_CONSTRUCT_CALLS": 0,
+  "ENGINE_ADVANCE_CALLS": 0,
+  "SCIENTIFIC_WORLD_STARTS": 0,
+  "SCIENTIFIC_SEEDS_OPENED": 0,
+  "FIXTURE_CONSTRUCTIONS": 89,
+  "FIXTURE_STEPS": 95,
+  "ALL_FOUR_ZERO": true
+ },
+ "INDEPENDENT_WITNESS": {
+  "scientific_runs_used": 0,
+  "total_starts_logged": 0,
+  "AGREES_WITH_THE_SENTINEL": true
+ }
+}

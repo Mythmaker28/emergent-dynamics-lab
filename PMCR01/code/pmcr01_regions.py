@@ -244,6 +244,147 @@ def threshold_sensitivity():
     }
 
 
+# ------------------------------------------------------------------ the mission's OWN framing
+def evaluate_division_framing(beta, m, c, T=T_HORIZON, tau=TAU_SEP):
+    """The inherited handoff does NOT ask for a single source held forever. Its §3.5 names
+
+        LOWER_BOUND_FOR_MINOR_Y_PERSISTENCE
+        UPPER_BOUND_PREVENTING_PREMATURE_THIRD_CENTER
+        SEPARATION_OR_REORGANIZATION_TIMESCALE
+
+    i.e. one division is ALLOWED and a THIRD centre must not appear before the first two have
+    separated. Evaluating only the stricter single-source framing would be judging the mission
+    against a question it never asked, so both are computed and both are reported."""
+    p = beta / c
+    if p > 1.0:
+        return None
+    R = (1.0 - m) * (1.0 + beta)
+    log_pow = T * math.log(R) if R > 0 else -math.inf
+    if log_pow > 300 * math.log(10):
+        nT, cum = math.inf, math.inf
+    elif abs(R - 1.0) < 1e-15:
+        nT, cum = 1.0, float(T)
+    else:
+        nT = math.exp(log_pow)
+        cum = (nT - 1.0) / (R - 1.0)
+    births = beta * cum
+    deaths = m * cum
+    surv = 1.0 - extinction_by(T, c, p, m)
+    newborn_reaches_separation = (1.0 - m) ** tau
+    third_before_separation = 2.0 * beta * tau * newborn_reaches_separation
+    return {"beta": beta, "muY": m, "c": c, "R": R, "epsilon": R - 1.0,
+            "E_nY_at_T": nT, "E_births": births, "E_deaths": deaths,
+            "survival_to_T": surv,
+            "P_newborn_survives_to_separate": newborn_reaches_separation,
+            "E_third_centre_before_separation": third_before_separation,
+            "D1_PERSISTS": surv >= 1.0 - ALPHA_SURVIVAL,
+            "D2_DIVIDES_AT_LEAST_ONCE": births >= MIN_EVENTS,
+            "D3_NO_THIRD_BEFORE_SEPARATION": third_before_separation <= GAMMA_SEP,
+            "D4_STILL_A_MINORITY_AT_T": nT <= N_STAR,
+            "D5_DEATH_CONTROL_ACTIVE": deaths >= MIN_EVENTS,
+            "D6_ADMISSIBLE": 0.0 < m < 1.0 and beta > 0.0 and p <= 1.0}
+
+
+def scan_division_framing(c=4):
+    keys = ("D1_PERSISTS", "D2_DIVIDES_AT_LEAST_ONCE", "D3_NO_THIRD_BEFORE_SEPARATION",
+            "D4_STILL_A_MINORITY_AT_T", "D5_DEATH_CONTROL_ACTIVE", "D6_ADMISSIBLE")
+    betas = np.logspace(-8, 0, 161)
+    mus = np.logspace(-8, -0.05, 159)
+    inside, n = [], 0
+    counts = {k: 0 for k in keys}
+    for b in betas:
+        for m in mus:
+            r = evaluate_division_framing(float(b), float(m), c)
+            if r is None:
+                continue
+            n += 1
+            for k in keys:
+                counts[k] += int(r[k])
+            if all(r[k] for k in keys):
+                inside.append(r)
+    box = None
+    if inside:
+        box = {"beta_min": min(r["beta"] for r in inside),
+               "beta_max": max(r["beta"] for r in inside),
+               "muY_min": min(r["muY"] for r in inside),
+               "muY_max": max(r["muY"] for r in inside)}
+        box["beta_decades"] = math.log10(box["beta_max"] / box["beta_min"])
+        box["muY_decades"] = math.log10(box["muY_max"] / box["muY_min"])
+    return {"c": c, "grid_points": n, "n_inside": len(inside),
+            "per_condition_satisfied": counts, "NONEMPTY": bool(inside),
+            "BOUNDING_BOX": box, "examples": inside[:4],
+            "WHAT_IT_WOULD_PRODUCE": (
+                "a state with two or more spatially separated organisers" if inside else None)}
+
+
+def qualified_environment_check():
+    """Even a non-empty division region has to be checked against the environment the parent
+    actually qualified. That environment is single-organiser BY CONSTRUCTION."""
+    return {
+        "THE_PARENT_QUALIFIED": ("a CONDITIONAL source-transport-decay operator for three "
+                                 "observables of an ORGANIZER_BOUND_SOURCE cloud, with "
+                                 "exactly one organiser"),
+        "OBSERVABLE_LAYER": ("metrics_obtc.frame resolves the organiser as oy[0], ox[0] from "
+                             "np.nonzero(nY). With two organisers it silently reports one of "
+                             "them, chosen by row-major order, and r80_organiser is measured "
+                             "about that arbitrary centre."),
+        "FROZEN_GATES_AFFECTED": ["SOURCE_ATTACHMENT (median core-to-organiser, unwrapped "
+                                  "position correlation)",
+                                  "RELATIVE_LOCALIZATION (r80 about THE organiser's cell)",
+                                  "CORE_CONTINUITY", "MODEL_PREDICTION_COMPATIBILITY"],
+        "X_SOURCE_MULTIPLICITY": ("p_X = min(1, kX nX nY) = 1 exactly at kX = 1.0 for any "
+                                  "nX nY >= 1, so every separated organiser is a full-strength "
+                                  "X source. Two organisers is not a perturbation of one; it "
+                                  "is a two-source problem."),
+        "CONSEQUENCE": ("any parameter region that succeeds in producing a persisting Y "
+                        "lineage produces a state for which the parent's qualification, the "
+                        "inherited observables and every frozen gate are undefined. The "
+                        "qualification chain does not extend to it."),
+    }
+
+
+def predeclared_category_B_bounds():
+    """The launcher allows 'a rigorously predeclared distribution or bound over category B'.
+    Such bounds exist, frozen in obtc02_protocol.yaml before any of the runs now inherited.
+    This asks, honestly, how far they get."""
+    return {
+        "AVAILABLE_PREDECLARED_BOUNDS": {
+            "gate.FREE_CAPACITY_PRESERVED.mean_free_at_organiser_min": 0.5,
+            "gate.NO_KINETIC_FREEZE.mean_births_per_step_min": 0.1,
+            "gate.NO_KINETIC_FREEZE.mean_deaths_per_step_min": 0.1,
+            "gate.POPULATION_STATIONARY.N_X_min": 20,
+        },
+        "WHAT_THEY_LEGITIMATELY_GIVE": {
+            "E_free_at_the_organiser_cell_geq": 0.5,
+            "E_min_nSX_free_at_the_organiser_cell_geq": 0.1,
+            "P_nX_at_the_organiser_cell_geq_1": 0.1 / CAP,
+            "E_N_X_geq": 25.0,
+            "why_the_births_bound_reads_that_way": (
+                "p_X = min(1, kX nX nY) = 1 exactly at kX = 1.0 whenever nX nY >= 1, so the "
+                "mean accepted X births per step IS E[min(nSX, free)] on the steps where the "
+                "organiser cell holds at least one X; and since at most CAP births can occur "
+                "in a cell, 0.1 <= CAP * P(nX_org >= 1)"),
+        },
+        "WHAT_THEY_DO_NOT_GIVE": (
+            "a numerical lower bound on E[Q] = E[nX * min(nSY, free)] AT THE ORGANISER'S OWN "
+            "CELL. They locate the global X population, the free capacity at the organiser and "
+            "the X-substrate candidate count; none locates the product of the co-located X "
+            "count with the Y-substrate candidate count."),
+        "THEREFORE": {
+            "E_Q_IS_STRICTLY_POSITIVE": True,
+            "basis": "P(nX_org >= 1) >= %.5f from a frozen predeclared threshold" % (0.1 / CAP),
+            "E_Q_IS_NUMERICALLY_LOCATED": False,
+            "CONSEQUENCE_FOR_THE_REGION": (
+                "the lower boundary of the (kY, muY) region is known to be strictly positive "
+                "and is NOT located. Condition 2 asks the next-generation criterion to exceed "
+                "the persistence boundary WITH NUMERICAL MARGIN. A margin is a number. This "
+                "one does not exist without measuring the realized cloud, which is precisely "
+                "the measurement that made the parent's own prediction CONDITIONAL."),
+        },
+        "UPPER_BOUNDARY_IS_UNAFFECTED": "beta <= Q_max kY = 28 kY needs no measurement at all",
+    }
+
+
 def regions():
     A = {
         "NAME": "ABSTRACT_Y_INTERVAL",
@@ -389,6 +530,22 @@ def main():
         "NONEMPTY": any(s["REGION_NONEMPTY"] for s in scans.values()),
         "WIDTH": 0.0 if not any(s["REGION_NONEMPTY"] for s in scans.values()) else None,
         "WITHOUT_THE_ACTIVITY_CONDITIONS": region_without_activity_conditions(),
+        "DIVISION_FRAMING_THE_MISSIONS_OWN": {
+            "WHY_IT_IS_COMPUTED": ("the inherited handoff names an upper bound preventing a "
+                                   "PREMATURE THIRD centre, so one division is allowed. "
+                                   "Judging the mission only against the stricter "
+                                   "single-source framing would answer a question it never "
+                                   "asked."),
+            "SCAN": scan_division_framing(4),
+            "TRANSPORT_TO_THE_ACTUAL_PARAMETERS": {
+                "the_scan_is_in_beta_and_muY": True,
+                "beta_equals_kY_times_Q_bar": True,
+                "upper_boundary_in_kY_certifiable": "kY <= beta_max / 28",
+                "lower_boundary_in_kY_certifiable": False,
+                "why": ("no finite kY guarantees beta >= beta_min, because the infimum of Q "
+                        "over the admissible cell-state set is 0"),
+                "PREDECLARED_BOUNDS": predeclared_category_B_bounds()},
+            "QUALIFIED_ENVIRONMENT_CHECK": qualified_environment_check()},
         "THRESHOLD_AND_GEOMETRY_SENSITIVITY": threshold_sensitivity(),
     }
 
@@ -453,6 +610,16 @@ def main():
           % (any(r["OPENS"] for r in nd),
              min(r["required_tau_sep_over_T"] / r["actual_tau_sep_over_T"] for r in nd)))
     print("   the only rows that open have gamma -> 1, i.e. they accept a second centre")
+    d = C["DIVISION_FRAMING_THE_MISSIONS_OWN"]["SCAN"]
+    print("\nMISSION'S OWN DIVISION FRAMING (one division allowed, no third before separation):")
+    for k, v in d["per_condition_satisfied"].items():
+        print("   %-34s %6d / %d" % (k, v, d["grid_points"]))
+    print("   NONEMPTY = %s ; inside = %d" % (d["NONEMPTY"], d["n_inside"]))
+    if d["BOUNDING_BOX"]:
+        b = d["BOUNDING_BOX"]
+        print("   box: beta in [%.3g, %.3g] (%.2f decades) ; muY in [%.3g, %.3g] (%.2f decades)"
+              % (b["beta_min"], b["beta_max"], b["beta_decades"], b["muY_min"], b["muY_max"],
+                 b["muY_decades"]))
 
 
 if __name__ == "__main__":

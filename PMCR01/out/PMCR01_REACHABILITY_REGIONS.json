@@ -191,6 +191,152 @@
    "max_expected_deaths_over_the_whole_horizon": 0.721027403116131,
    "READING": "dropping the activity conditions does leave points. At every one of them the expected number of Y births over the ENTIRE 11000-step horizon is at most 0.504 and the expected number of Y deaths at most 0.721. No Y event occurs. This set is the frozen point kY = muY = 0 wearing a different label, and calling it a window would be exactly the error the inherited handoff warns against: a structural zero is not a small number."
   },
+  "DIVISION_FRAMING_THE_MISSIONS_OWN": {
+   "WHY_IT_IS_COMPUTED": "the inherited handoff names an upper bound preventing a PREMATURE THIRD centre, so one division is allowed. Judging the mission only against the stricter single-source framing would answer a question it never asked.",
+   "SCAN": {
+    "c": 4,
+    "grid_points": 25599,
+    "n_inside": 87,
+    "per_condition_satisfied": {
+     "D1_PERSISTS": 15344,
+     "D2_DIVIDES_AT_LEAST_ONCE": 10361,
+     "D3_NO_THIRD_BEFORE_SEPARATION": 18834,
+     "D4_STILL_A_MINORITY_AT_T": 16674,
+     "D5_DEATH_CONTROL_ACTIVE": 16960,
+     "D6_ADMISSIBLE": 25599
+    },
+    "NONEMPTY": true,
+    "BOUNDING_BOX": {
+     "beta_min": 0.0001,
+     "beta_max": 0.00039810717055349773,
+     "muY_min": 2.6394837179924507e-05,
+     "muY_max": 0.0002124296775442607,
+     "beta_decades": 0.6000000000000005,
+     "muY_decades": 0.9056962025316455
+    },
+    "examples": [
+     {
+      "beta": 0.0001,
+      "muY": 8.407822687879733e-05,
+      "c": 4,
+      "R": 1.0000159133652984,
+      "epsilon": 1.5913365298381166e-05,
+      "E_nY_at_T": 1.1913005690605785,
+      "E_births": 1.2021377343737538,
+      "E_deaths": 1.0107360917023986,
+      "survival_to_T": 0.541004754097062,
+      "P_newborn_survives_to_separate": 0.9895448191639389,
+      "E_third_centre_before_separation": 0.024738620479098472,
+      "D1_PERSISTS": true,
+      "D2_DIVIDES_AT_LEAST_ONCE": true,
+      "D3_NO_THIRD_BEFORE_SEPARATION": true,
+      "D4_STILL_A_MINORITY_AT_T": true,
+      "D5_DEATH_CONTROL_ACTIVE": true,
+      "D6_ADMISSIBLE": true
+     },
+     {
+      "beta": 0.0001122018454301963,
+      "muY": 7.488021601841588e-05,
+      "c": 4,
+      "R": 1.0000373132277134,
+      "epsilon": 3.7313227713386965e-05,
+      "E_nY_at_T": 1.5074776859922208,
+      "E_births": 1.5259985901070776,
+      "E_deaths": 1.0184066370111944,
+      "survival_to_T": 0.5968184740077183,
+      "P_newborn_survives_to_separate": 0.9906832945046314,
+      "E_third_centre_before_separation": 0.027789123470071574,
+      "D1_PERSISTS": true,
+      "D2_DIVIDES_AT_LEAST_ONCE": true,
+      "D3_NO_THIRD_BEFORE_SEPARATION": true,
+      "D4_STILL_A_MINORITY_AT_T": true,
+      "D5_DEATH_CONTROL_ACTIVE": true,
+      "D6_ADMISSIBLE": true
+     },
+     {
+      "beta": 0.0001122018454301963,
+      "muY": 8.407822687879733e-05,
+      "c": 4,
+      "R": 1.0000281141848193,
+      "epsilon": 2.8114184819294508e-05,
+      "E_nY_at_T": 1.3624052254771577,
+      "E_births": 1.4463351988842714,
+      "E_deaths": 1.0838083681095607,
+      "survival_to_T": 0.5569511089199541,
+      "P_newborn_survives_to_separate": 0.9895448191639389,
+      "E_third_centre_before_separation": 0.027757188711520955,
+      "D1_PERSISTS": true,
+      "D2_DIVIDES_AT_LEAST_ONCE": true,
+      "D3_NO_THIRD_BEFORE_SEPARATION": true,
+      "D4_STILL_A_MINORITY_AT_T": true,
+      "D5_DEATH_CONTROL_ACTIVE": true,
+      "D6_ADMISSIBLE": true
+     },
+     {
+      "beta": 0.0001122018454301963,
+      "muY": 9.440608762859246e-05,
+      "c": 4,
+      "R": 1.0000177851652645,
+      "epsilon": 1.7785165264516678e-05,
+      "E_nY_at_T": 1.2160830491543106,
+      "E_births": 1.3632100978937034,
+      "E_deaths": 1.1469983534094346,
+      "survival_to_T": 0.5146239681149037,
+      "P_newborn_survives_to_separate": 0.9882680444088866,
+      "E_third_centre_before_separation": 0.02772137459059207,
+      "D1_PERSISTS": true,
+      "D2_DIVIDES_AT_LEAST_ONCE": true,
+      "D3_NO_THIRD_BEFORE_SEPARATION": true,
+      "D4_STILL_A_MINORITY_AT_T": true,
+      "D5_DEATH_CONTROL_ACTIVE": true,
+      "D6_ADMISSIBLE": true
+     }
+    ],
+    "WHAT_IT_WOULD_PRODUCE": "a state with two or more spatially separated organisers"
+   },
+   "TRANSPORT_TO_THE_ACTUAL_PARAMETERS": {
+    "the_scan_is_in_beta_and_muY": true,
+    "beta_equals_kY_times_Q_bar": true,
+    "upper_boundary_in_kY_certifiable": "kY <= beta_max / 28",
+    "lower_boundary_in_kY_certifiable": false,
+    "why": "no finite kY guarantees beta >= beta_min, because the infimum of Q over the admissible cell-state set is 0",
+    "PREDECLARED_BOUNDS": {
+     "AVAILABLE_PREDECLARED_BOUNDS": {
+      "gate.FREE_CAPACITY_PRESERVED.mean_free_at_organiser_min": 0.5,
+      "gate.NO_KINETIC_FREEZE.mean_births_per_step_min": 0.1,
+      "gate.NO_KINETIC_FREEZE.mean_deaths_per_step_min": 0.1,
+      "gate.POPULATION_STATIONARY.N_X_min": 20
+     },
+     "WHAT_THEY_LEGITIMATELY_GIVE": {
+      "E_free_at_the_organiser_cell_geq": 0.5,
+      "E_min_nSX_free_at_the_organiser_cell_geq": 0.1,
+      "P_nX_at_the_organiser_cell_geq_1": 0.00625,
+      "E_N_X_geq": 25.0,
+      "why_the_births_bound_reads_that_way": "p_X = min(1, kX nX nY) = 1 exactly at kX = 1.0 whenever nX nY >= 1, so the mean accepted X births per step IS E[min(nSX, free)] on the steps where the organiser cell holds at least one X; and since at most CAP births can occur in a cell, 0.1 <= CAP * P(nX_org >= 1)"
+     },
+     "WHAT_THEY_DO_NOT_GIVE": "a numerical lower bound on E[Q] = E[nX * min(nSY, free)] AT THE ORGANISER'S OWN CELL. They locate the global X population, the free capacity at the organiser and the X-substrate candidate count; none locates the product of the co-located X count with the Y-substrate candidate count.",
+     "THEREFORE": {
+      "E_Q_IS_STRICTLY_POSITIVE": true,
+      "basis": "P(nX_org >= 1) >= 0.00625 from a frozen predeclared threshold",
+      "E_Q_IS_NUMERICALLY_LOCATED": false,
+      "CONSEQUENCE_FOR_THE_REGION": "the lower boundary of the (kY, muY) region is known to be strictly positive and is NOT located. Condition 2 asks the next-generation criterion to exceed the persistence boundary WITH NUMERICAL MARGIN. A margin is a number. This one does not exist without measuring the realized cloud, which is precisely the measurement that made the parent's own prediction CONDITIONAL."
+     },
+     "UPPER_BOUNDARY_IS_UNAFFECTED": "beta <= Q_max kY = 28 kY needs no measurement at all"
+    }
+   },
+   "QUALIFIED_ENVIRONMENT_CHECK": {
+    "THE_PARENT_QUALIFIED": "a CONDITIONAL source-transport-decay operator for three observables of an ORGANIZER_BOUND_SOURCE cloud, with exactly one organiser",
+    "OBSERVABLE_LAYER": "metrics_obtc.frame resolves the organiser as oy[0], ox[0] from np.nonzero(nY). With two organisers it silently reports one of them, chosen by row-major order, and r80_organiser is measured about that arbitrary centre.",
+    "FROZEN_GATES_AFFECTED": [
+     "SOURCE_ATTACHMENT (median core-to-organiser, unwrapped position correlation)",
+     "RELATIVE_LOCALIZATION (r80 about THE organiser's cell)",
+     "CORE_CONTINUITY",
+     "MODEL_PREDICTION_COMPATIBILITY"
+    ],
+    "X_SOURCE_MULTIPLICITY": "p_X = min(1, kX nX nY) = 1 exactly at kX = 1.0 for any nX nY >= 1, so every separated organiser is a full-strength X source. Two organisers is not a perturbation of one; it is a two-source problem.",
+    "CONSEQUENCE": "any parameter region that succeeds in producing a persisting Y lineage produces a state for which the parent's qualification, the inherited observables and every frozen gate are undefined. The qualification chain does not extend to it."
+   }
+  },
   "THRESHOLD_AND_GEOMETRY_SENSITIVITY": {
    "ROWS": [
     {
