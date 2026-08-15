@@ -1,0 +1,433 @@
+{
+ "SECTION": "PMCR01 \u00a77-\u00a78 \u2014 regions and gates",
+ "REGION_A": {
+  "NAME": "ABSTRACT_Y_INTERVAL",
+  "STATEMENT": "R = (1-muY)(1 + Q kY) > 1  <=>  Q kY > muY/(1-muY)",
+  "TREATING_Q_AS_A_FREE_POSITIVE_REAL": true,
+  "NONEMPTY": true,
+  "for_any_muY_in_0_1_there_is_a_kY": true,
+  "STATUS": "EXPLANATORY ONLY. It ignores that Q is an integer functional of a cell state the LawSpec does not determine.",
+  "HISTORICAL_INTERVAL_NOT_REUSED": "(0, 1.787e-4) is inherited from a different, non-portable point and is not used as evidence"
+ },
+ "REGION_B": {
+  "NAME": "EXECUTABLE_Y_INTERVAL",
+  "kY_admissible_range": "[0, inf); p is clamped by min(1, .), so kY > 1/(nX nY) only saturates",
+  "muY_admissible_range": "[0, 1]; it is a Bernoulli probability in rng.binomial",
+  "Q_range_from_the_admissible_set": [
+   0,
+   28
+  ],
+  "beta_range_certifiable_from_category_A": [
+   "0",
+   "28 * kY"
+  ],
+  "UPPER_BOUNDARY_IS_CERTIFIABLE": true,
+  "why_upper": "beta <= Q_max kY = 28 kY holds for every admissible cell state",
+  "LOWER_BOUNDARY_IS_CERTIFIABLE": false,
+  "why_lower": "beta >= something positive requires E[Q] > 0, i.e. a positive lower bound on nX * min(nSY, free) AT THE ORGANISER'S OWN CELL. The admissible set contains Q = 0 (60.1 % of admissible cell states), so the infimum over the set is 0. A positive value is a property of the realized measure, not of the LawSpec.",
+  "THIS_IS_THE_INHERITED_LIMITATION": "the parent seal certified MARGINAL_DENSITY_CLOSURE = NOT_CLOSED and had to MEASURE the birth-flux law. E[Q] is the same kind of object. Placing the lower boundary of the minority window on it would make the window CONDITIONAL on a category-B measurement, which this mission forbids as load-bearing.",
+  "NONEMPTY_AS_A_ONE_SIDED_SET": true,
+  "IS_A_WINDOW": false
+ },
+ "REGION_C": {
+  "NAME": "ROBUST_REACHABLE_Y_REGION",
+  "INPUTS_USED": "category A only: CAP, S0, X_SEED, kX, the exact kernel constants, the frozen horizon and the admissible-state enumeration",
+  "CATEGORY_B_USED": "none as a load-bearing input; E[Q] is deliberately NOT used",
+  "CATEGORY_C_USED": "none",
+  "CONDITIONS": {
+   "1_does_not_deterministically_vanish": "survival to T >= 0.50",
+   "2_exceeds_the_persistence_boundary_with_margin": "R > 1 and E[nY(T)] <= 10",
+   "3_remains_minority_not_dominating": "expected separated second centres <= 0.5",
+   "4_capacity_and_resource_assumptions_hold": "rare-Y linearisation, nY << CAP",
+   "5_not_created_by_a_favourable_historical_trajectory": "no realized covariate used",
+   "6_survives_the_admissibility_map": "0 < muY < 1, kY >= 0, p = min(1, kY nX nY)",
+   "7_bounds_do_not_merely_touch": "both controls must fire at least once per horizon"
+  },
+  "THRESHOLDS_ARE_GENEROUS_ON_PURPOSE": "survival only 1/2, ten organisers allowed, half an expected second centre allowed. Every threshold is set to make a window EASIER to find, so that an empty region is not an artefact of strictness.",
+  "SCANS": {
+   "1": {
+    "c": 1,
+    "grid_points": 25599,
+    "n_inside": 0,
+    "per_condition_satisfied": {
+     "C1_SURVIVES": 15358,
+     "C2_BOUNDED_MINORITY": 16674,
+     "C3_SINGLE_SOURCE": 15035,
+     "C4_BIRTH_CONTROL_ACTIVE": 10361,
+     "C5_DEATH_CONTROL_ACTIVE": 16960,
+     "C6_ADMISSIBLE": 25599
+    },
+    "REGION_NONEMPTY": false,
+    "best_point_found": {
+     "beta": 0.0001,
+     "muY": 8.407822687879733e-05,
+     "c": 1,
+     "p": 0.0001,
+     "R": 1.0000159133652984,
+     "epsilon": 1.5913365298381166e-05,
+     "E_nY_at_T": 1.1913005690605785,
+     "E_births": 1.2021377343737538,
+     "E_deaths": 1.0107360917023986,
+     "E_separated_second_centres": 1.1895691669710233,
+     "survival_to_T": 0.5410079513565518,
+     "C1_SURVIVES": true,
+     "C2_BOUNDED_MINORITY": true,
+     "C3_SINGLE_SOURCE": false,
+     "C4_BIRTH_CONTROL_ACTIVE": true,
+     "C5_DEATH_CONTROL_ACTIVE": true,
+     "C6_ADMISSIBLE": true,
+     "n_satisfied": 5
+    },
+    "examples_inside": []
+   },
+   "4": {
+    "c": 4,
+    "grid_points": 25599,
+    "n_inside": 0,
+    "per_condition_satisfied": {
+     "C1_SURVIVES": 15344,
+     "C2_BOUNDED_MINORITY": 16674,
+     "C3_SINGLE_SOURCE": 15035,
+     "C4_BIRTH_CONTROL_ACTIVE": 10361,
+     "C5_DEATH_CONTROL_ACTIVE": 16960,
+     "C6_ADMISSIBLE": 25599
+    },
+    "REGION_NONEMPTY": false,
+    "best_point_found": {
+     "beta": 0.0001,
+     "muY": 8.407822687879733e-05,
+     "c": 4,
+     "p": 2.5e-05,
+     "R": 1.0000159133652984,
+     "epsilon": 1.5913365298381166e-05,
+     "E_nY_at_T": 1.1913005690605785,
+     "E_births": 1.2021377343737538,
+     "E_deaths": 1.0107360917023986,
+     "E_separated_second_centres": 1.1895691669710233,
+     "survival_to_T": 0.541004754097062,
+     "C1_SURVIVES": true,
+     "C2_BOUNDED_MINORITY": true,
+     "C3_SINGLE_SOURCE": false,
+     "C4_BIRTH_CONTROL_ACTIVE": true,
+     "C5_DEATH_CONTROL_ACTIVE": true,
+     "C6_ADMISSIBLE": true,
+     "n_satisfied": 5
+    },
+    "examples_inside": []
+   },
+   "7": {
+    "c": 7,
+    "grid_points": 25599,
+    "n_inside": 0,
+    "per_condition_satisfied": {
+     "C1_SURVIVES": 15343,
+     "C2_BOUNDED_MINORITY": 16674,
+     "C3_SINGLE_SOURCE": 15035,
+     "C4_BIRTH_CONTROL_ACTIVE": 10361,
+     "C5_DEATH_CONTROL_ACTIVE": 16960,
+     "C6_ADMISSIBLE": 25599
+    },
+    "REGION_NONEMPTY": false,
+    "best_point_found": {
+     "beta": 0.0001,
+     "muY": 8.407822687879733e-05,
+     "c": 7,
+     "p": 1.4285714285714287e-05,
+     "R": 1.0000159133652984,
+     "epsilon": 1.5913365298381166e-05,
+     "E_nY_at_T": 1.1913005690605785,
+     "E_births": 1.2021377343737538,
+     "E_deaths": 1.0107360917023986,
+     "E_separated_second_centres": 1.1895691669710233,
+     "survival_to_T": 0.5410042973628906,
+     "C1_SURVIVES": true,
+     "C2_BOUNDED_MINORITY": true,
+     "C3_SINGLE_SOURCE": false,
+     "C4_BIRTH_CONTROL_ACTIVE": true,
+     "C5_DEATH_CONTROL_ACTIVE": true,
+     "C6_ADMISSIBLE": true,
+     "n_satisfied": 5
+    },
+    "examples_inside": []
+   }
+  },
+  "CLOSED_FORM_CEILING": {
+   "muY_lower_bound_forced_by_C3_and_C5": 0.005529831326785639,
+   "epsilon_upper_bound_forced_by_C2": 0.00020932591754491326,
+   "SURVIVAL_CEILING": 0.03785394258428303,
+   "REQUIRED_BY_C1": 0.5,
+   "C1_CAN_BE_MET": false,
+   "APPROXIMATE_FORM": "survival <= ln(N*) * tau_sep / (T * ln(1/gamma))",
+   "approximate_value": 0.0377491828964473,
+   "READING": "the same muY has to be LARGE, so that a newborn dies before it can separate into a second source, and SMALL, so that the lineage itself survives the horizon. There is one muY. The ceiling is set by the ratio of the separation time to the horizon and does not depend on kY at all."
+  },
+  "PAIRWISE_AND_TRIPLE_FRONTIER": {
+   "pairs": {
+    "C1_SURVIVES & C2_BOUNDED_MINORITY": 3769,
+    "C1_SURVIVES & C3_SINGLE_SOURCE": 3094,
+    "C1_SURVIVES & C4_BIRTH_CONTROL_ACTIVE": 5331,
+    "C1_SURVIVES & C5_DEATH_CONTROL_ACTIVE": 4551,
+    "C2_BOUNDED_MINORITY & C3_SINGLE_SOURCE": 8454,
+    "C2_BOUNDED_MINORITY & C4_BIRTH_CONTROL_ACTIVE": 786,
+    "C2_BOUNDED_MINORITY & C5_DEATH_CONTROL_ACTIVE": 4862,
+    "C3_SINGLE_SOURCE & C4_BIRTH_CONTROL_ACTIVE": 142,
+    "C3_SINGLE_SOURCE & C5_DEATH_CONTROL_ACTIVE": 4587,
+    "C4_BIRTH_CONTROL_ACTIVE & C5_DEATH_CONTROL_ACTIVE": 5042
+   },
+   "triples": {
+    "C1_SURVIVES & C3_SINGLE_SOURCE & C4_BIRTH_CONTROL_ACTIVE": 0,
+    "C1_SURVIVES & C3_SINGLE_SOURCE & C5_DEATH_CONTROL_ACTIVE": 0
+   },
+   "n_points": 14399
+  },
+  "NONEMPTY": false,
+  "WIDTH": 0.0,
+  "WITHOUT_THE_ACTIVITY_CONDITIONS": {
+   "NONEMPTY": true,
+   "n_points": 5502,
+   "max_beta_inside": 5.011872336272725e-05,
+   "max_muY_inside": 7.488021601841588e-05,
+   "max_expected_births_over_the_whole_horizon": 0.5039766774923052,
+   "max_expected_deaths_over_the_whole_horizon": 0.721027403116131,
+   "READING": "dropping the activity conditions does leave points. At every one of them the expected number of Y births over the ENTIRE 11000-step horizon is at most 0.504 and the expected number of Y deaths at most 0.721. No Y event occurs. This set is the frozen point kY = muY = 0 wearing a different label, and calling it a window would be exactly the error the inherited handoff warns against: a structural zero is not a small number."
+  },
+  "THRESHOLD_AND_GEOMETRY_SENSITIVITY": {
+   "ROWS": [
+    {
+     "N_star": 2.0,
+     "gamma_sep": 0.5,
+     "alpha": 0.5,
+     "required_tau_sep_over_T": 0.5,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": false
+    },
+    {
+     "N_star": 2.0,
+     "gamma_sep": 0.5,
+     "alpha": 0.9,
+     "required_tau_sep_over_T": 0.09999999999999998,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": false
+    },
+    {
+     "N_star": 2.0,
+     "gamma_sep": 0.999999999,
+     "alpha": 0.5,
+     "required_tau_sep_over_T": 7.213475797683693e-10,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": true
+    },
+    {
+     "N_star": 2.0,
+     "gamma_sep": 0.999999999,
+     "alpha": 0.9,
+     "required_tau_sep_over_T": 1.4426951595367384e-10,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": true
+    },
+    {
+     "N_star": 2.0,
+     "gamma_sep": 0.1,
+     "alpha": 0.5,
+     "required_tau_sep_over_T": 1.6609640474436813,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": false
+    },
+    {
+     "N_star": 2.0,
+     "gamma_sep": 0.1,
+     "alpha": 0.9,
+     "required_tau_sep_over_T": 0.3321928094887362,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": false
+    },
+    {
+     "N_star": 10.0,
+     "gamma_sep": 0.5,
+     "alpha": 0.5,
+     "required_tau_sep_over_T": 0.15051499783199057,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": false
+    },
+    {
+     "N_star": 10.0,
+     "gamma_sep": 0.5,
+     "alpha": 0.9,
+     "required_tau_sep_over_T": 0.030102999566398107,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": false
+    },
+    {
+     "N_star": 10.0,
+     "gamma_sep": 0.999999999,
+     "alpha": 0.5,
+     "required_tau_sep_over_T": 2.1714725880989554e-10,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": true
+    },
+    {
+     "N_star": 10.0,
+     "gamma_sep": 0.999999999,
+     "alpha": 0.9,
+     "required_tau_sep_over_T": 4.3429451761979095e-11,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": true
+    },
+    {
+     "N_star": 10.0,
+     "gamma_sep": 0.1,
+     "alpha": 0.5,
+     "required_tau_sep_over_T": 0.5,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": false
+    },
+    {
+     "N_star": 10.0,
+     "gamma_sep": 0.1,
+     "alpha": 0.9,
+     "required_tau_sep_over_T": 0.09999999999999998,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": false
+    },
+    {
+     "N_star": 100.0,
+     "gamma_sep": 0.5,
+     "alpha": 0.5,
+     "required_tau_sep_over_T": 0.07525749891599529,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": false
+    },
+    {
+     "N_star": 100.0,
+     "gamma_sep": 0.5,
+     "alpha": 0.9,
+     "required_tau_sep_over_T": 0.015051499783199054,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": false
+    },
+    {
+     "N_star": 100.0,
+     "gamma_sep": 0.999999999,
+     "alpha": 0.5,
+     "required_tau_sep_over_T": 1.0857362940494777e-10,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": true
+    },
+    {
+     "N_star": 100.0,
+     "gamma_sep": 0.999999999,
+     "alpha": 0.9,
+     "required_tau_sep_over_T": 2.1714725880989547e-11,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": true
+    },
+    {
+     "N_star": 100.0,
+     "gamma_sep": 0.1,
+     "alpha": 0.5,
+     "required_tau_sep_over_T": 0.25,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": false
+    },
+    {
+     "N_star": 100.0,
+     "gamma_sep": 0.1,
+     "alpha": 0.9,
+     "required_tau_sep_over_T": 0.04999999999999999,
+     "actual_tau_sep_over_T": 0.011363636363636364,
+     "OPENS": false
+    }
+   ],
+   "SEPARATION_GEOMETRY": {
+    "1.0": {
+     "tau_sep_steps": 5.0,
+     "tau_sep_over_T": 0.00045454545454545455
+    },
+    "2.5": {
+     "tau_sep_steps": 31.25,
+     "tau_sep_over_T": 0.002840909090909091
+    },
+    "5.0": {
+     "tau_sep_steps": 125.0,
+     "tau_sep_over_T": 0.011363636363636364
+    },
+    "6.082762530298219": {
+     "tau_sep_steps": 184.99999999999994,
+     "tau_sep_over_T": 0.016818181818181812
+    },
+    "8.54400374531753": {
+     "tau_sep_steps": 364.9999999999999,
+     "tau_sep_over_T": 0.03318181818181817
+    }
+   },
+   "REQUIRED_RATIO_AT_THE_DECLARED_THRESHOLDS": 0.15051499783199057,
+   "ACTUAL_RATIO": 0.011363636363636364,
+   "SHORTFALL_FACTOR": 13.24531980921517,
+   "ONLY_DEGENERATE_ROWS_OPEN": "the only threshold combinations that open the region are those with gamma -> 1, i.e. those that ACCEPT one expected separated second centre. That is not a relaxation of a threshold, it is abandoning the single-source requirement and with it the qualified environment. The closest NON-degenerate miss is N* = 100, gamma = 0.5, alpha = 0.9 -- allow a hundred organisers and demand only a 10 %% survival probability -- and it still fails by a factor 1.33.",
+   "WHAT_WOULD_HAVE_TO_CHANGE": {
+    "shorten_the_horizon_to_steps": 830.4820237218407,
+    "and_the_burn_in_is": 2000,
+    "horizon_would_be_below_the_burn_in": true,
+    "or_slow_the_Y_transport_by_factor": 13.24531980921517,
+    "required_D_rel": 0.0037749182896447313,
+    "required_p_hop_Y_approx": 0.007549836579289463,
+    "BUT": "p_hop_Y is not a manifest field. protocol_obtc02.spec_for sets it to PT['p_hop'], the same number as p_hop_X. Slowing the Y transport slows the X transport by the same factor and moves the control baseline, which this mission forbids."
+   }
+  }
+ },
+ "INDEPENDENCE_GATES": {
+  "Y_BIRTH_CONTROL_IS_ACTIVE": {
+   "verdict": true,
+   "evidence": "mutation oracle kY 0 -> 1: hazard argument p changes 0 -> 1, Y delta 0 -> +4 = min(nSY, free) exactly, reversal bit-exact"
+  },
+  "Y_DEATH_OR_SURVIVAL_CONTROL_IS_ACTIVE": {
+   "verdict": true,
+   "evidence": "mutation oracle muY 0 -> 1: hazard argument p changes 0 -> 1, Y delta 0 -> -1, reversal bit-exact"
+  },
+  "CONTROLS_ARE_NOT_ALIASES": {
+   "verdict": true,
+   "evidence": "kY is read only in _react_core, muY only in _decay_core; they are separate manifest fields copied verbatim by spec_for; perturbing one leaves the other's captured hazard argument unchanged"
+  },
+  "CONTROLS_DO_NOT_ONLY_RESCALE_X": {
+   "verdict": "PARTIAL",
+   "evidence": "p_X = min(1, kX nX nY) with kX = 1.0 is EXACTLY 1 for any nX nY >= 1, so changing nY does not rescale the per-cell X hazard at all. What a second Y changes is the NUMBER of source cells, once it separates. So the Y controls do not rescale X \u2014 they multiply the source count, which is a stronger and worse coupling.",
+   "same_step_isolation": true,
+   "next_step_coupling": true
+  },
+  "PARAMETER_VALUES_ARE_ADMISSIBLE": {
+   "verdict": true,
+   "evidence": "no assert or raise anywhere in the executable path mentions kY, muY or p_hop_Y; muY in [0,1] is a Bernoulli probability, kY >= 0 is clamped by min(1, .)"
+  },
+  "OPERATOR_IS_IDENTIFIABLE_FROM_EXECUTABLE_SEMANTICS": {
+   "verdict": false,
+   "evidence": "the one-step law is CONDITIONAL_EXACT given (nX, nSY, free) at the Y's own cell, and every argument was verified against the scheduler. But that cell state is produced BY the lineage: _react creates X only where nX nY >= 1. The environment is endogenous, the marginal does not close, and no scalar branching ratio is identifiable without measuring the realized cloud."
+  },
+  "ROBUST_REGION_HAS_POSITIVE_WIDTH": {
+   "verdict": false,
+   "evidence": "see the scan and the closed-form ceiling"
+  }
+ },
+ "TIMESCALE_COLLAPSE": {
+  "Y_TIMESCALES_THE_ARCHITECTURE_EXPOSES": {
+   "tau_Y_birth": "1 / (kY * Q)",
+   "tau_Y_removal": "1 / muY",
+   "tau_newborn_removal": "1 / muY",
+   "tau_separation": "d^2 / (4 D_rel) = 5 d^2, set by p_hop"
+  },
+  "COLLAPSE_FOUND": true,
+  "WHICH": "tau_newborn_removal == tau_Y_removal, identically",
+  "WHY": "_decay draws Binomial(n_Y, muY) over the whole Y field. It reads no age, no position, no contact and no lineage label. A newborn and the founder are exchangeable counts in the same array, so one parameter sets both clocks.",
+  "WHY_IT_IS_FATAL_HERE": "a minority window needs newborns removed FAST, so that a second source never separates, and the lineage removed SLOWLY, so that it survives the horizon. Those are two requirements on one number.",
+  "SEPARATION_IS_ALSO_NOT_INDEPENDENT": "p_hop_Y is not a manifest field. protocol_obtc02.spec_for sets it to 0.0 under the declared immobilisation intervention and otherwise to PT['p_hop'], the SAME value as p_hop_X. The separation clock cannot be moved without moving the X transport clock, which is the control baseline.",
+  "CONTRAST_WITH_THE_X_SIDE": "OBTR01 found seven of eight X timescales to be fixed rational multiples of 1/muX. The Y side is not a repeat of that: tau_Y_birth and tau_Y_removal are genuinely two free parameters. The collapse here is different and narrower \u2014 it is the removal clock being shared between two ROLES, not two formulas sharing a parameter."
+ },
+ "CONSTANTS_USED": {
+  "CAP": 16,
+  "Q_MAX": 28,
+  "T_HORIZON": 11000,
+  "T_WINDOW": 9000,
+  "D_REL": 0.05,
+  "CORE_R": 5.0,
+  "TAU_SEP": 125.0
+ }
+}

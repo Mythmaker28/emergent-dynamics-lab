@@ -1,0 +1,473 @@
+{
+ "SECTION": "PMCR01 Gate 0 \u2014 static discovery",
+ "ANALYSED_BLOBS": {
+  "ORR01/code/kinetics.py": "4aa90b18a9e7c35e2cb4c842c911b28bd683bfa9",
+  "ORR01/code/lawspec_v2.py": "b2ca9471ecc9c5a575cb8c6c8691d0ef8184b245",
+  "OBTC02/code/engine_obtc.py": "745efd39036f8fbcac1f5bd1dda5bf0887609494",
+  "OBTC02/code/protocol_obtc02.py": "dfbf3cf91c3299cab7711d1817e09eff010b9dd6",
+  "OBTC02/code/gate_obtc02.py": "4e3fb7d8e590f3f7977368450c9ef94a43bef312",
+  "OBTC02/code/obtc02_protocol.yaml": "70c5cbf360c8bb49c3d0860eb3be338953ad431f"
+ },
+ "SCHEDULER_ORDER": {
+  "class": "World",
+  "order": [
+   {
+    "call": "_diffuse",
+    "args": [
+     "X",
+     "p_hop_X"
+    ]
+   },
+   {
+    "call": "_diffuse",
+    "args": [
+     "Y",
+     "p_hop_Y"
+    ]
+   },
+   {
+    "call": "_diffuse",
+    "args": [
+     "SX",
+     "p_hop_X"
+    ]
+   },
+   {
+    "call": "_diffuse",
+    "args": [
+     "SY",
+     "p_hop_X"
+    ]
+   },
+   {
+    "call": "_react",
+    "args": []
+   },
+   {
+    "call": "_decay",
+    "args": []
+   },
+   {
+    "call": "_feed_and_outflow",
+    "args": []
+   }
+  ]
+ },
+ "MANIFEST_POINT": {
+  "L": "36",
+  "L_large": "72",
+  "CAP": "16",
+  "S0": "3",
+  "phi": "0.2",
+  "omega": "0.05",
+  "muX": "0.004",
+  "muY": "0.0",
+  "kX": "1.0",
+  "kY": "0.0",
+  "p_hop": "0.10263340389897246",
+  "X_SEED": "4"
+ },
+ "SPEC_FOR_SOURCE": "def spec_for(L=None, immobile_organiser=False):\n    d = {k: PT[k] for k in (\"CAP\", \"S0\", \"phi\", \"omega\", \"muX\", \"muY\", \"kX\", \"kY\")}\n    d[\"L\"] = int(L or PT[\"L\"])\n    d[\"p_hop_X\"] = PT[\"p_hop\"]\n    d[\"p_hop_Y\"] = 0.0 if immobile_organiser else PT[\"p_hop\"]\n    return V2.spec_with(**d)",
+ "LITERAL_WRITES_TO_Y_BEARING_SPECIES": [
+  {
+   "module": "lawspec_v2",
+   "path": "ORR01/code/lawspec_v2.py",
+   "class": "WorldV2",
+   "method": "_exchange",
+   "line": 127,
+   "species_literal": "SY",
+   "dynamic_target": false,
+   "source": "self.n[\"SY\"] = self.n[\"SY\"] + ins_sy",
+   "spec_attrs_in_scope": [
+    "S0",
+    "phi"
+   ]
+  },
+  {
+   "module": "engine_obtc",
+   "path": "OBTC02/code/engine_obtc.py",
+   "class": "WorldOBTC",
+   "method": "_one_step",
+   "line": 227,
+   "species_literal": "Y",
+   "dynamic_target": false,
+   "source": "self.n[\"Y\"] = self.n[\"Y\"] - y",
+   "spec_attrs_in_scope": []
+  },
+  {
+   "module": "engine_obtc",
+   "path": "OBTC02/code/engine_obtc.py",
+   "class": "WorldOBTC",
+   "method": "_one_step",
+   "line": 228,
+   "species_literal": "WY",
+   "dynamic_target": false,
+   "source": "self.n[\"WY\"] = self.n[\"WY\"] + y",
+   "spec_attrs_in_scope": []
+  }
+ ],
+ "DYNAMIC_WRITES_TO_self_n": [
+  {
+   "module": "kinetics",
+   "path": "ORR01/code/kinetics.py",
+   "class": "World",
+   "method": "_diffuse",
+   "line": 111,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[sname] = n - accepted + np.roll(accepted, shift, axis=ax)",
+   "spec_attrs_in_scope": []
+  },
+  {
+   "module": "kinetics",
+   "path": "ORR01/code/kinetics.py",
+   "class": "World",
+   "method": "_react",
+   "line": 132,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[res] = self.n[res] - births",
+   "spec_attrs_in_scope": [
+    "kX",
+    "kY"
+   ]
+  },
+  {
+   "module": "kinetics",
+   "path": "ORR01/code/kinetics.py",
+   "class": "World",
+   "method": "_react",
+   "line": 133,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[prod] = self.n[prod] + births",
+   "spec_attrs_in_scope": [
+    "kX",
+    "kY"
+   ]
+  },
+  {
+   "module": "kinetics",
+   "path": "ORR01/code/kinetics.py",
+   "class": "World",
+   "method": "_decay",
+   "line": 141,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[s] = self.n[s] - d",
+   "spec_attrs_in_scope": [
+    "muX",
+    "muY"
+   ]
+  },
+  {
+   "module": "kinetics",
+   "path": "ORR01/code/kinetics.py",
+   "class": "World",
+   "method": "_decay",
+   "line": 142,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[w] = self.n[w] + d",
+   "spec_attrs_in_scope": [
+    "muX",
+    "muY"
+   ]
+  },
+  {
+   "module": "kinetics",
+   "path": "ORR01/code/kinetics.py",
+   "class": "World",
+   "method": "_feed_and_outflow",
+   "line": 148,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[s] = self.n[s] + rng.binomial(room, sp.phi)",
+   "spec_attrs_in_scope": [
+    "S0",
+    "omega",
+    "phi"
+   ]
+  },
+  {
+   "module": "kinetics",
+   "path": "ORR01/code/kinetics.py",
+   "class": "World",
+   "method": "_feed_and_outflow",
+   "line": 151,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[w] = self.n[w] - out",
+   "spec_attrs_in_scope": [
+    "S0",
+    "omega",
+    "phi"
+   ]
+  },
+  {
+   "module": "lawspec_v2",
+   "path": "ORR01/code/lawspec_v2.py",
+   "class": "WorldV2",
+   "method": "_exchange",
+   "line": 107,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[s] = self.n[s] - taken[i]",
+   "spec_attrs_in_scope": [
+    "S0",
+    "phi"
+   ]
+  },
+  {
+   "module": "lawspec_v2",
+   "path": "ORR01/code/lawspec_v2.py",
+   "class": "WorldV2",
+   "method": "_feed_and_outflow",
+   "line": 144,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[s] = self.n[s] + add",
+   "spec_attrs_in_scope": [
+    "S0",
+    "omega",
+    "phi"
+   ]
+  },
+  {
+   "module": "lawspec_v2",
+   "path": "ORR01/code/lawspec_v2.py",
+   "class": "WorldV2",
+   "method": "_feed_and_outflow",
+   "line": 148,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[w] = self.n[w] - out",
+   "spec_attrs_in_scope": [
+    "S0",
+    "omega",
+    "phi"
+   ]
+  },
+  {
+   "module": "lawspec_v2",
+   "path": "ORR01/code/lawspec_v2.py",
+   "class": "WorldV2",
+   "method": "_exchange",
+   "line": 114,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[s] = self.n[s] + taken[i]",
+   "spec_attrs_in_scope": [
+    "S0",
+    "phi"
+   ]
+  },
+  {
+   "module": "engine_obtc",
+   "path": "OBTC02/code/engine_obtc.py",
+   "class": "WorldOBTC",
+   "method": "_diffuse",
+   "line": 154,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[sname] = n - accepted + np.roll(accepted, shift, axis=ax)",
+   "spec_attrs_in_scope": []
+  },
+  {
+   "module": "engine_obtc",
+   "path": "OBTC02/code/engine_obtc.py",
+   "class": "WorldOBTC",
+   "method": "_react_core",
+   "line": 172,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[res] = self.n[res] - births",
+   "spec_attrs_in_scope": [
+    "kX",
+    "kY"
+   ]
+  },
+  {
+   "module": "engine_obtc",
+   "path": "OBTC02/code/engine_obtc.py",
+   "class": "WorldOBTC",
+   "method": "_react_core",
+   "line": 173,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[prod] = self.n[prod] + births",
+   "spec_attrs_in_scope": [
+    "kX",
+    "kY"
+   ]
+  },
+  {
+   "module": "engine_obtc",
+   "path": "OBTC02/code/engine_obtc.py",
+   "class": "WorldOBTC",
+   "method": "_decay_core",
+   "line": 204,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[s] = self.n[s] - d",
+   "spec_attrs_in_scope": [
+    "muX",
+    "muY"
+   ]
+  },
+  {
+   "module": "engine_obtc",
+   "path": "OBTC02/code/engine_obtc.py",
+   "class": "WorldOBTC",
+   "method": "_decay_core",
+   "line": 205,
+   "species_literal": null,
+   "dynamic_target": true,
+   "source": "self.n[w] = self.n[w] + d",
+   "spec_attrs_in_scope": [
+    "muX",
+    "muY"
+   ]
+  }
+ ],
+ "SPECIES_LOOPS_CARRYING_THE_DYNAMIC_WRITES": [
+  {
+   "module": "kinetics",
+   "path": "ORR01/code/kinetics.py",
+   "class": "World",
+   "method": "_diffuse",
+   "line": 104,
+   "loop_targets": [
+    "shift",
+    "ax"
+   ],
+   "literal_tuples": [
+    [
+     1,
+     0
+    ],
+    [
+     "<expr>",
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     "<expr>",
+     1
+    ]
+   ],
+   "n_writes_inside": 1,
+   "touches_Y": false
+  },
+  {
+   "module": "kinetics",
+   "path": "ORR01/code/kinetics.py",
+   "class": "World",
+   "method": "_react",
+   "line": 118,
+   "loop_targets": [
+    "prod",
+    "res",
+    "kk"
+   ],
+   "literal_tuples": [
+    [
+     "X",
+     "SX",
+     "sp.kX"
+    ],
+    [
+     "Y",
+     "SY",
+     "sp.kY"
+    ]
+   ],
+   "n_writes_inside": 2,
+   "touches_Y": true
+  },
+  {
+   "module": "kinetics",
+   "path": "ORR01/code/kinetics.py",
+   "class": "World",
+   "method": "_decay",
+   "line": 137,
+   "loop_targets": [
+    "s",
+    "w",
+    "mu"
+   ],
+   "literal_tuples": [
+    [
+     "X",
+     "WX",
+     "sp.muX"
+    ],
+    [
+     "Y",
+     "WY",
+     "sp.muY"
+    ]
+   ],
+   "n_writes_inside": 2,
+   "touches_Y": true
+  },
+  {
+   "module": "engine_obtc",
+   "path": "OBTC02/code/engine_obtc.py",
+   "class": "WorldOBTC",
+   "method": "_react_core",
+   "line": 164,
+   "loop_targets": [
+    "prod",
+    "res",
+    "kk"
+   ],
+   "literal_tuples": [
+    [
+     "X",
+     "SX",
+     "sp.kX"
+    ],
+    [
+     "Y",
+     "SY",
+     "sp.kY"
+    ]
+   ],
+   "n_writes_inside": 2,
+   "touches_Y": true
+  },
+  {
+   "module": "engine_obtc",
+   "path": "OBTC02/code/engine_obtc.py",
+   "class": "WorldOBTC",
+   "method": "_decay_core",
+   "line": 198,
+   "loop_targets": [
+    "s",
+    "w",
+    "mu"
+   ],
+   "literal_tuples": [
+    [
+     "X",
+     "WX",
+     "sp.muX"
+    ],
+    [
+     "Y",
+     "WY",
+     "sp.muY"
+    ]
+   ],
+   "n_writes_inside": 2,
+   "touches_Y": true
+  }
+ ],
+ "ADMISSIBILITY_CHECKS_MENTIONING_Y": [],
+ "N_LITERAL_Y_WRITES": 3,
+ "N_DYNAMIC_WRITES": 16
+}

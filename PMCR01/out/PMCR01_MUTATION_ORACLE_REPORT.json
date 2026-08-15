@@ -1,0 +1,702 @@
+{
+ "SECTION": "PMCR01 Gate 0 \u2014 mutation oracles",
+ "BLOB_EQUIVALENCE": {
+  "ORR01/code/kinetics.py": {
+   "blob_at_head": "4aa90b18a9e7c35e2cb4c842c911b28bd683bfa9",
+   "blob_of_the_file_i_import": "4aa90b18a9e7c35e2cb4c842c911b28bd683bfa9",
+   "IDENTICAL": true
+  },
+  "ORR01/code/lawspec_v2.py": {
+   "blob_at_head": "b2ca9471ecc9c5a575cb8c6c8691d0ef8184b245",
+   "blob_of_the_file_i_import": "b2ca9471ecc9c5a575cb8c6c8691d0ef8184b245",
+   "IDENTICAL": true
+  },
+  "OBTC02/code/engine_obtc.py": {
+   "blob_at_head": "745efd39036f8fbcac1f5bd1dda5bf0887609494",
+   "blob_of_the_file_i_import": "745efd39036f8fbcac1f5bd1dda5bf0887609494",
+   "IDENTICAL": true
+  },
+  "OBTC02/code/protocol_obtc02.py": {
+   "blob_at_head": "dfbf3cf91c3299cab7711d1817e09eff010b9dd6",
+   "blob_of_the_file_i_import": "dfbf3cf91c3299cab7711d1817e09eff010b9dd6",
+   "IDENTICAL": true
+  },
+  "OBTC02/code/obtc02_protocol.yaml": {
+   "blob_at_head": "70c5cbf360c8bb49c3d0860eb3be338953ad431f",
+   "blob_of_the_file_i_import": "70c5cbf360c8bb49c3d0860eb3be338953ad431f",
+   "IDENTICAL": true
+  }
+ },
+ "FIXTURE": {
+  "label": "NON_SCIENTIFIC_SEMANTIC_FIXTURE",
+  "L": 3,
+  "seed": 9000017,
+  "cell": [
+   1,
+   1
+  ],
+  "hand_set": {
+   "X": 3,
+   "Y": 1,
+   "SY": 4,
+   "SX": 2
+  },
+  "derived": {
+   "occupancy": 10,
+   "free": 6,
+   "cand_Y": 4,
+   "cand_X": 2
+  },
+  "steps_per_oracle": 1,
+  "seed_one_organiser_called": false
+ },
+ "ORACLES": [
+  {
+   "CHANNEL": "Y birth",
+   "FIELD": "kY",
+   "KIND": "count",
+   "value_off": 0.0,
+   "value_on": 1.0,
+   "FIXTURE": "NON_SCIENTIFIC_SEMANTIC_FIXTURE",
+   "1_HAZARD_CHANGED": true,
+   "hazard_calls_that_changed": [
+    {
+     "call_index": 17,
+     "off": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        4,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": [
+       [
+        0.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        0.0
+       ]
+      ]
+     },
+     "on": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        4,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": [
+       [
+        0.0,
+        0.0,
+        0.0
+       ],
+       [
+        0.0,
+        1.0,
+        0.0
+       ],
+       [
+        0.0,
+        0.0,
+        0.0
+       ]
+      ]
+     }
+    },
+    {
+     "call_index": 19,
+     "off": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": 0.0
+     },
+     "on": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        5,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": 0.0
+     }
+    }
+   ],
+   "n_calls_recorded": 20,
+   "2_Y_STATE_DELTA_CHANGED": true,
+   "Y_delta_off": 0,
+   "Y_delta_on": 4,
+   "expected_Y_delta_on": 4,
+   "2_MATCHES_THE_DETERMINISTIC_EXPECTATION": true,
+   "2b_Y_SPATIAL_CONFIGURATION_CHANGED": true,
+   "2b_Y_COUNT_CONSERVED_BY_THIS_EVENT": false,
+   "2_EFFECT_PROVED_FOR_THIS_KIND": true,
+   "full_delta_off": {
+    "X": 2,
+    "Y": 0,
+    "SX": -2,
+    "SY": 0,
+    "WX": 0,
+    "WY": 0
+   },
+   "full_delta_on": {
+    "X": 2,
+    "Y": 4,
+    "SX": -2,
+    "SY": -4,
+    "WX": 0,
+    "WY": 0
+   },
+   "3_X_SIDE_ARGUMENTS_IDENTICAL_UPSTREAM_IN_THE_SAME_STEP": true,
+   "3_X_DELTA_UNCHANGED_IN_THE_SAME_STEP": true,
+   "3b_X_HAZARD_CHANGED_IN_THE_NEXT_STEP": true,
+   "3b_READING": "p_X = min(1, kX*nX*nY) reads nY. Any channel that moves Y therefore reaches the X branch one step later. Same-step isolation is not independence.",
+   "4_REVERSAL_EXACT": true,
+   "state_sha_off": "bf67702714f7410c9b076a15417bd6cea3e331eec54915e5456a7267ba893ea2",
+   "state_sha_on": "b5ad3d116b07c27e8a22196890fafbb44d45738f04c7baba3e6a63c15d57704f",
+   "state_sha_reverted": "bf67702714f7410c9b076a15417bd6cea3e331eec54915e5456a7267ba893ea2",
+   "PASS": true
+  },
+  {
+   "CHANNEL": "Y death",
+   "FIELD": "muY",
+   "KIND": "count",
+   "value_off": 0.0,
+   "value_on": 1.0,
+   "FIXTURE": "NON_SCIENTIFIC_SEMANTIC_FIXTURE",
+   "1_HAZARD_CHANGED": true,
+   "hazard_calls_that_changed": [
+    {
+     "call_index": 19,
+     "off": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": 0.0
+     },
+     "on": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": 1.0
+     }
+    }
+   ],
+   "n_calls_recorded": 20,
+   "2_Y_STATE_DELTA_CHANGED": true,
+   "Y_delta_off": 0,
+   "Y_delta_on": -1,
+   "expected_Y_delta_on": -1,
+   "2_MATCHES_THE_DETERMINISTIC_EXPECTATION": true,
+   "2b_Y_SPATIAL_CONFIGURATION_CHANGED": true,
+   "2b_Y_COUNT_CONSERVED_BY_THIS_EVENT": false,
+   "2_EFFECT_PROVED_FOR_THIS_KIND": true,
+   "full_delta_off": {
+    "X": 2,
+    "Y": 0,
+    "SX": -2,
+    "SY": 0,
+    "WX": 0,
+    "WY": 0
+   },
+   "full_delta_on": {
+    "X": 2,
+    "Y": -1,
+    "SX": -2,
+    "SY": 0,
+    "WX": 0,
+    "WY": 1
+   },
+   "3_X_SIDE_ARGUMENTS_IDENTICAL_UPSTREAM_IN_THE_SAME_STEP": true,
+   "3_X_DELTA_UNCHANGED_IN_THE_SAME_STEP": true,
+   "3b_X_HAZARD_CHANGED_IN_THE_NEXT_STEP": true,
+   "3b_READING": "p_X = min(1, kX*nX*nY) reads nY. Any channel that moves Y therefore reaches the X branch one step later. Same-step isolation is not independence.",
+   "4_REVERSAL_EXACT": true,
+   "state_sha_off": "bf67702714f7410c9b076a15417bd6cea3e331eec54915e5456a7267ba893ea2",
+   "state_sha_on": "7139c6dcbc070450c1b6d779b4f6db3c2d0149bbc0e8f85891f3eee88d52fb15",
+   "state_sha_reverted": "bf67702714f7410c9b076a15417bd6cea3e331eec54915e5456a7267ba893ea2",
+   "PASS": true
+  },
+  {
+   "CHANNEL": "Y transport",
+   "FIELD": "p_hop_Y",
+   "KIND": "transport",
+   "value_off": 0.0,
+   "value_on": 1.0,
+   "FIXTURE": "NON_SCIENTIFIC_SEMANTIC_FIXTURE",
+   "1_HAZARD_CHANGED": true,
+   "hazard_calls_that_changed": [
+    {
+     "call_index": 4,
+     "off": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": 0.0
+     },
+     "on": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": 0.25
+     }
+    },
+    {
+     "call_index": 5,
+     "off": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": 0.0
+     },
+     "on": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": 0.25
+     }
+    },
+    {
+     "call_index": 6,
+     "off": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": 0.0
+     },
+     "on": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": 0.25
+     }
+    },
+    {
+     "call_index": 7,
+     "off": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": 0.0
+     },
+     "on": {
+      "fn": "binomial",
+      "n": [
+       [
+        0,
+        0,
+        0
+       ],
+       [
+        0,
+        1,
+        0
+       ],
+       [
+        0,
+        0,
+        0
+       ]
+      ],
+      "p": 0.25
+     }
+    }
+   ],
+   "n_calls_recorded": 20,
+   "2_Y_STATE_DELTA_CHANGED": false,
+   "Y_delta_off": 0,
+   "Y_delta_on": 0,
+   "expected_Y_delta_on": 0,
+   "2_MATCHES_THE_DETERMINISTIC_EXPECTATION": true,
+   "2b_Y_SPATIAL_CONFIGURATION_CHANGED": true,
+   "2b_Y_COUNT_CONSERVED_BY_THIS_EVENT": true,
+   "2_EFFECT_PROVED_FOR_THIS_KIND": true,
+   "full_delta_off": {
+    "X": 2,
+    "Y": 0,
+    "SX": -2,
+    "SY": 0,
+    "WX": 0,
+    "WY": 0
+   },
+   "full_delta_on": {
+    "X": 2,
+    "Y": 0,
+    "SX": -2,
+    "SY": 0,
+    "WX": 0,
+    "WY": 0
+   },
+   "3_X_SIDE_ARGUMENTS_IDENTICAL_UPSTREAM_IN_THE_SAME_STEP": true,
+   "3_X_DELTA_UNCHANGED_IN_THE_SAME_STEP": true,
+   "3b_X_HAZARD_CHANGED_IN_THE_NEXT_STEP": true,
+   "3b_READING": "p_X = min(1, kX*nX*nY) reads nY. Any channel that moves Y therefore reaches the X branch one step later. Same-step isolation is not independence.",
+   "4_REVERSAL_EXACT": true,
+   "state_sha_off": "bf67702714f7410c9b076a15417bd6cea3e331eec54915e5456a7267ba893ea2",
+   "state_sha_on": "bf67702714f7410c9b076a15417bd6cea3e331eec54915e5456a7267ba893ea2",
+   "state_sha_reverted": "bf67702714f7410c9b076a15417bd6cea3e331eec54915e5456a7267ba893ea2",
+   "PASS": true
+  }
+ ],
+ "MANIFEST_TO_SCHEDULER": {
+  "kY": {
+   "manifest_value": 0.25,
+   "Spec_attribute": 0.25,
+   "VERBATIM": true,
+   "spec_for_reads_it_from_PT": true
+  },
+  "muY": {
+   "manifest_value": 0.5,
+   "Spec_attribute": 0.5,
+   "VERBATIM": true,
+   "spec_for_reads_it_from_PT": true
+  },
+  "PT_RESTORED": true,
+  "p_hop_Y_IS_NOT_A_MANIFEST_FIELD": true,
+  "p_hop_Y_IS_SET_IN_CODE_AS": "0.0 if immobile_organiser else PT['p_hop']",
+  "p_hop_Y_ALIASED_TO_p_hop_X": true
+ },
+ "OMEGA": {
+  "CHANNEL": "omega under BALANCED_CHEMOSTAT",
+  "state_sha_equal": true,
+  "hazards_identical": true,
+  "CLASS": "SCHEMA_ONLY_INERT",
+  "why": "_feed_and_outflow returns immediately after _exchange when lawspec is LAWSPEC_V2_EXCHANGE, and _exchange never reads sp.omega"
+ },
+ "Y_EXCHANGEABILITY": {
+  "EXCHANGEABLE_DEFAULT": [
+   "SX",
+   "SY",
+   "WX",
+   "WY"
+  ],
+  "EXCHANGEABLE_WITH_BODY": [
+   "SX",
+   "SY",
+   "WX",
+   "WY",
+   "X"
+  ],
+  "Y_IN_ANY_DECLARED_POOL": false,
+  "CONSEQUENCE": "the chemostat can never remove a Y. The ONLY executable removal of Y is the muY decay event and the declared organiser_off intervention."
+ },
+ "SENTINEL": {
+  "ENGINE_CONSTRUCT_CALLS": 0,
+  "ENGINE_ADVANCE_CALLS": 0,
+  "SCIENTIFIC_WORLD_STARTS": 0,
+  "SCIENTIFIC_SEEDS_OPENED": 0,
+  "FIXTURE_CONSTRUCTIONS": 89,
+  "FIXTURE_STEPS": 95,
+  "SEEDS_SEEN": [
+   9000017,
+   9000100,
+   9000101,
+   9000102,
+   9000103,
+   9000104,
+   9000105,
+   9000106,
+   9000107,
+   9000108,
+   9000109,
+   9000110,
+   9000111
+  ],
+  "VIOLATIONS": [],
+  "FIXTURE_LABELS": [
+   "mutation-oracle",
+   "mutation-oracle",
+   "mutation-oracle",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-2step",
+   "mutation-oracle-2step",
+   "mutation-oracle",
+   "mutation-oracle",
+   "mutation-oracle",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-2step",
+   "mutation-oracle-2step",
+   "mutation-oracle",
+   "mutation-oracle",
+   "mutation-oracle",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-config",
+   "mutation-oracle-2step",
+   "mutation-oracle-2step",
+   "mutation-oracle",
+   "mutation-oracle"
+  ],
+  "ORGANISER_SEEDINGS": 0,
+  "ALL_FOUR_ZERO": true,
+  "INDEPENDENT_WITNESS_guard_obtc": {
+   "scientific_runs_used": 0,
+   "total_starts_logged": 0,
+   "AGREES_WITH_THE_SENTINEL": true
+  },
+  "SCIENTIFIC_SEEDS_IN_THE_REGISTERS": 377
+ }
+}
