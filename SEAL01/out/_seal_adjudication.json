@@ -1,0 +1,77 @@
+{
+ "SECTION": "SEAL \u00a75",
+ "ZERO_RUN_COMPLIANCE": {
+  "THE_PREMISE_TO_TEST": "the seal expects that the parent handoff authorised zero new scientific runs, and that OBFOR01 therefore violated it",
+  "WHAT_THE_PARENT_ACTUALLY_FROZE": {
+   "headline": "NO_FRESH_RUN_AT_THE_QUALIFIED_POINT_FOR_THIS_QUESTION",
+   "the_targeted_sub_entry": {
+    "target": "the absolute radial deficit found in \u00a715",
+    "status": "ELIGIBLE_AT_THE_QUALIFIED_POINT",
+    "why": "the static and mobile arms both sit below their absolute predictions, by 1.8 % and 6.1 %, while their RATIO matches. That residual is a genuine open question at this point, it needs no new LawSpec, and the observables registered in \u00a79 are the right instrument for it."
+   },
+   "reading": "the headline reads NO_FRESH_RUN_AT_THE_QUALIFIED_POINT_FOR_THIS_QUESTION, and 'this question' is the historical window. The same frozen artefact lists the absolute radial deficit as ELIGIBLE_AT_THE_QUALIFIED_POINT, which is precisely the question OBFOR01 was given."
+  },
+  "WHAT_THE_OBFOR01_MANDATE_ITSELF_SAID": "its \u00a716 requires a raw-only phase BEFORE any new start, \u00a717 states the criterion for OPENING a fresh validation, \u00a718 specifies conditions S, M and E, \u00a719 fixes the validation statistics and \u00a720 fixes a run budget and fresh seeds. A mandate that budgets runs is not a mandate that forbids them.",
+  "THE_LATER_HANDOFF": "a subsequent handoff, ORGANIZER-BOUND-FULL-OPERATOR-RECONSTRUCTION-01, does carry NEW_ENGINE_STARTS = 0. It arrived AFTER OBFOR01 was delivered and cannot bind it retroactively. It is named here so that nothing is concealed.",
+  "REAL_DEFECT_FOUND": "OBTR01's headline eligibility string is easy to misread as a blanket zero-run authorisation, because the scope qualifier FOR_THIS_QUESTION sits inside the token. That ambiguity is a reporting defect and is the likely origin of the seal's premise. Future eligibility strings should name the question they close.",
+  "ORIGINAL_ZERO_RUN_MISSION_COMPLIANCE": "PASS",
+  "CONFIDENCE": "the classification rests on the frozen text of both the parent artefact and the governing mandate, not on the outcome"
+ },
+ "PROSPECTIVITY": {
+  "freeze_commit": "050e666ed40dbcc18cc26d87e2e4b17b7c096ed6",
+  "first_fresh_arms_commit": "0148acc7dcdc52d10d0a0d62cd6048f7a8624462",
+  "all_load_bearing_present_at_the_freeze": true,
+  "load_bearing_files_changed_after_the_freeze": [],
+  "arms": {
+   "arms_declared_at_freeze": 28,
+   "arms_present": 28,
+   "arms_analysable": 28,
+   "extinct": [],
+   "declared_seeds_equal_present_seeds": true,
+   "any_seed_reuses_a_retired_seed": false,
+   "duplicate_seeds": false,
+   "raw_file_present_for_every_arm": true,
+   "raw_files_in_the_tree": 28,
+   "every_arm_included": true,
+   "ARMS_LAUNCHED_IN_ONE_BATCH": true,
+   "HOW_THAT_IS_KNOWN": "run_obfor01.main builds the whole job list from the frozen seed register and submits it in a single pool.map call, so no arm could be inspected before a later arm's choices were fixed; the runner blob is the one frozen at f8044917c87e",
+   "workers": 2,
+   "wall_seconds": 422.0623505115509
+  },
+  "DISCLOSED_WEAKNESS": "the adjudication, figure, delivery and readback scripts did not exist at the freeze. The decision RULE, the three endpoints, the +-2.9 %% margin, the seed register, the budget, the inclusion rule and the ablation rule were all inside the freeze commit's _freeze.json; the code that EVALUATES them was written after the arms ran. That is a real weakness of form, not of substance, and it is recorded rather than smoothed over.",
+  "WHY_IT_IS_NOT_A_SCOPE_AMENDMENT": "no threshold, endpoint, seed, arm count, inclusion rule or margin changed after the first arm; every load-bearing blob is byte-identical at HEAD.",
+  "FRESH_SUBSTUDY_PROSPECTIVITY": "PASS"
+ },
+ "NINE_REQUIREMENTS": {
+  "1_mechanically_verified_freeze_predating_the_first_arm": true,
+  "2_all_28_arms_accounted_for": true,
+  "3_unchanged_lawspec_and_analysis_path": true,
+  "4_correct_independent_units": true,
+  "5_all_three_intervals_inside_the_margin": true,
+  "6_no_target_derived_information_in_the_prediction": true,
+  "7_claim_restricted_to_the_tested_source_response_observables": true,
+  "8_no_marginal_density_closure_claim": true,
+  "9_no_reproduction_heredity_or_cohesion_upgrade": true
+ },
+ "ALL_NINE_MET": true,
+ "PREDICTION_MODE": "CONDITIONAL",
+ "WHY_NOT_UNCONDITIONAL": "the predictions are conditional on a birth-flux law measured from delivered engine output. Nothing target-derived enters, and the organiser trajectory is simulated rather than injected, so the predictions are genuinely predictive of the fresh clouds; but a model that must be told the source intensity is not an unconditional first-principles operator.",
+ "FINAL_DISPOSITION": "CONDITIONAL_FULL_CAPACITY_SOURCE_RESPONSE_OPERATOR_QUALIFIED",
+ "TARGET_REPORTED_DISPOSITION": "FULL_CAPACITY_SOURCE_RESPONSE_OPERATOR_QUALIFIED",
+ "CLAIM_CHANGE": "the reported disposition is narrowed by one qualifier: CONDITIONAL. Everything it asserted about the three endpoints survives; what it did not say is that the operator must be told the source intensity.",
+ "MAXIMAL_AUTHORIZED_CLAIM": "In the qualified LawSpec at the frozen point, a discrete source-transport-decay operator -- given (i) the exact one-step kernels, the intra-step order, the finite torus and the finite horizon, all known before the run, and (ii) a BIRTH-FLUX LAW measured on historical arms and frozen before the fresh ones -- predicts prospectively, with no fitted parameter and within +-2.9 %, three source-response observables on fresh seeds: the absolute median-summarised r80 under a static source, the same under a mobile source, and their ratio. The prediction is CONDITIONAL on that birth-flux law. Nothing beyond those three observables is claimed: not a closed marginal density, not a full-state theory, not an exactly zero M2 residual, and no statement about reproduction, heredity or autonomous cohesion.",
+ "OVERBROAD_PHRASES_TO_RETIRE": [
+  {
+   "phrase": "M2 matches",
+   "why": "the M2 interval is [-6.56, +9.78] % mobile; it excludes almost nothing",
+   "replacement": "no M2 deficit is detected, at low power"
+  },
+  {
+   "phrase": "the operator predicts the ABSOLUTE values of the profile",
+   "why": "true only for the median-summarised r80 and its ratio, and only conditionally on the measured birth flux",
+   "replacement": "the operator predicts the three tested source-response observables, conditionally on a frozen birth-flux law"
+  }
+ ],
+ "NEXT_SCIENTIFIC_ELIGIBILITY": "PROSPECTIVE_MINORITY_CHANNEL_REACHABILITY_01",
+ "SCIENTIFIC_RUNS_USED_BY_THIS_SEAL": 0
+}
