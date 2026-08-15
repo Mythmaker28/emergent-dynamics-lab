@@ -15,9 +15,11 @@ def main():
     rg = json.load(open(f"{OUT}/PMCR01_REACHABILITY_REGIONS.json"))
 
     C = rg["REGION_C"]
-    div = C["DIVISION_FRAMING_THE_MISSIONS_OWN"]
+    div = C["DIVISION_FRAMING_THE_LAUNCHERS_TIMING_CONSTRAINT"]
+    stat = C["REGION_C_STATIC_BRANCH"]
     gates = rg["INDEPENDENCE_GATES"]
     sent = orc["SENTINEL"]
+    sent_op = op.get("SENTINEL", {})
 
     checklist = {
         "EXACT_PARENT_AND_SEAL_BOUND": bind["GATE"] == "PROCEED",
@@ -48,38 +50,62 @@ def main():
             "three independent grounds."),
     }
 
+    # THE LOAD-BEARING LEG is branch-independent. Two subsidiary observations are branch-
+    # conditional and are reported AS such, not as pillars of the disposition. The adversarial
+    # review confirmed that the earlier draft rested on three legs of which two were scoped to
+    # the mobile branch without saying so; this is the corrected structure.
     legs = {
-        "LEG_1_SINGLE_SOURCE_FRAMING_IS_EXACTLY_EMPTY": {
-            "statement": ("if the qualified single-organiser environment is to be preserved, "
-                          "the region is empty at every one of %d grid points, for every "
-                          "candidate count c in {1,4,7}"
-                          % C["SCANS"]["4"]["grid_points"] if isinstance(
-                              list(C["SCANS"].keys())[0], str)
-                          else C["SCANS"][4]["grid_points"]),
-            "closed_form_ceiling": C["CLOSED_FORM_CEILING"],
-            "mechanism": rg["TIMESCALE_COLLAPSE"]["WHY_IT_IS_FATAL_HERE"],
-            "empty_triples": rg["REGION_C"]["PAIRWISE_AND_TRIPLE_FRONTIER"]["triples"],
-            "shortfall_factor": C["THRESHOLD_AND_GEOMETRY_SENSITIVITY"]["SHORTFALL_FACTOR"],
-        },
-        "LEG_2_THE_DIVISION_FRAMING_DOES_NOT_TRANSPORT_TO_THE_ACTUAL_PARAMETERS": {
-            "statement": ("under the inherited handoff's own framing — one division allowed, "
-                          "no third centre before separation — the region in (beta, muY) IS "
-                          "non-empty: %d points, beta in [%.3g, %.3g], muY in [%.3g, %.3g]. "
-                          "That is reported as a positive finding and is not concealed."
-                          % (div["SCAN"]["n_inside"], div["SCAN"]["BOUNDING_BOX"]["beta_min"],
-                             div["SCAN"]["BOUNDING_BOX"]["beta_max"],
-                             div["SCAN"]["BOUNDING_BOX"]["muY_min"],
-                             div["SCAN"]["BOUNDING_BOX"]["muY_max"])),
-            "but": ("beta is not a LawSpec parameter. beta = kY * E[Q] with "
-                    "Q = nX * min(nSY, free) at the organiser's own cell. The upper boundary "
-                    "transports (beta <= 28 kY gives kY <= %.4g). The lower boundary does "
-                    "not: the infimum of Q over the admissible cell-state set is 0, so no "
-                    "finite kY guarantees beta >= beta_min."
-                    % (div["SCAN"]["BOUNDING_BOX"]["beta_max"] / 28.0)),
+        "LOAD_BEARING__BIRTH_INTENSITY_HAS_NO_CERTIFIABLE_LOWER_BOUND_IN_kY": {
+            "statement": ("the minority-Y birth intensity is beta = kY * E[Q] with "
+                          "Q = nX * min(nSY, free) at the organiser's OWN cell. The UPPER "
+                          "boundary transports to the control (beta <= 28 kY, so "
+                          "kY <= beta_max/28). The LOWER boundary does not: inf Q = 0 over the "
+                          "admissible cell-state set (60.1 %% of admissible states have Q = 0), "
+                          "so no finite kY guarantees beta >= beta_min."),
+            "branch_independent": True,
+            "why_it_is_the_same_fact_the_parent_found": (
+                "E[Q] is a property of the realized cloud measure, not of the LawSpec. This is "
+                "MARGINAL_DENSITY_CLOSURE = NOT_CLOSED, the very reason the parent had to "
+                "MEASURE its birth-flux law and the reason its prediction is CONDITIONAL. "
+                "PMCR01 is forbidden from using such a category-B measurement as a "
+                "load-bearing input, so it cannot locate the lower edge of the (kY, muY) "
+                "window. Condition 2 of the robust region asks for the persistence boundary to "
+                "be exceeded WITH NUMERICAL MARGIN; a margin is a number, and this one does "
+                "not exist from category A."),
             "predeclared_bounds_were_tried":
                 div["TRANSPORT_TO_THE_ACTUAL_PARAMETERS"]["PREDECLARED_BOUNDS"]["THEREFORE"],
+            "reviewer_could_not_locate_E_Q_either": True,
         },
-        "LEG_3_SUCCESS_LEAVES_THE_QUALIFIED_ENVIRONMENT": div["QUALIFIED_ENVIRONMENT_CHECK"],
+        "SUBSIDIARY_MOBILE_BRANCH__SINGLE_SOURCE_REGION_IS_EMPTY": {
+            "SCOPE": "condition M only (p_hop_Y = p_hop_X); NOT a general claim",
+            "statement": ("in the mobile branch the single-source region is empty at every one "
+                          "of %d grid points for c in {1,4,7}, because one removal clock muY "
+                          "must be both large (kill newborns before they separate) and small "
+                          "(let the lineage persist)."
+                          % C["SCANS"]["4"]["grid_points"]),
+            "closed_form_ceiling": C["CLOSED_FORM_CEILING"],
+            "shortfall_factor": C["THRESHOLD_AND_GEOMETRY_SENSITIVITY"]["SHORTFALL_FACTOR"],
+            "DOES_NOT_HOLD_IN_THE_STATIC_BRANCH": True,
+        },
+        "STATIC_BRANCH_COUNTER_REGION__REPORTED_OPENLY": {
+            "SCOPE": "condition S (p_hop_Y = 0), used by 14 of OBFOR01's 28 fresh arms",
+            "single_source_region_in_beta_muY_is_nonempty":
+                stat["SINGLE_SOURCE_REGION_IN_(beta,muY)_IS_NONEMPTY"],
+            "n_inside": stat["n_inside"], "box": stat["bounding_box"],
+            "why_it_does_not_overturn_the_disposition":
+                stat["WHY_IT_DOES_NOT_OVERTURN_THE_DISPOSITION"],
+            "single_Y_branching_is_an_overestimate_here":
+                stat["SINGLE_Y_BRANCHING_IS_AN_OVERESTIMATE_HERE"],
+            "HONEST_CONCESSION": ("the mobile-branch 'two jobs for one clock' argument does "
+                                  "NOT apply here; immobile offspring never separate. The "
+                                  "static branch fails only for the load-bearing reason, and "
+                                  "saying otherwise would overclaim."),
+        },
+        "SUBSIDIARY_MOBILE_BRANCH__SUCCESS_LEAVES_THE_QUALIFIED_ENVIRONMENT": {
+            "SCOPE": "condition M only; in the static branch all Y share one cell so the "
+                     "observable layer is unambiguous and this does NOT apply",
+            "content": div["QUALIFIED_ENVIRONMENT_CHECK"],
+        },
     }
 
     disposition = "STOP__ARCHITECTURE_CHANGE_REQUIRED"
@@ -95,33 +121,39 @@ def main():
     }
 
     architecture = {
-        "WHY_EXISTING_ARCHITECTURE_CANNOT_EXPRESS_IT": [
-            "ONE removal clock, TWO roles. _decay_core draws Binomial(n['Y'], muY) over the "
-            "whole Y field and reads no age, no position, no contact and no lineage label. A "
-            "minority window needs newborns removed fast, so that no further centre "
-            "separates, and the lineage removed slowly, so that it survives the horizon.",
+        "THE_SINGLE_BRANCH_INDEPENDENT_BLOCKER": (
             "THE BIRTH INTENSITY IS NOT A LAWSPEC QUANTITY. beta = kY * E[nX min(nSY, free)] "
             "at the organiser's own cell, and that cell state is produced BY the lineage, "
-            "since _react creates X only where nX nY >= 1. The infimum over admissible cell "
-            "states is 0, so no lower boundary exists without measuring the realized cloud.",
-            "THE X SOURCE IS SATURATED. p_X = min(1, kX nX nY) = 1 exactly at kX = 1.0 for "
-            "any nX nY >= 1, so one organiser already drives the source at full strength and "
-            "a second changes the system only by adding a source cell. Y count is not a "
-            "minority variable in the causal sense.",
-            "THE OBSERVABLE LAYER IS SINGLE-ORGANISER. metrics_obtc.frame resolves the "
-            "organiser as oy[0], ox[0] from np.nonzero(nY); with two organisers it silently "
-            "reports one, chosen by row-major order.",
+            "since _react creates X only where nX nY >= 1. inf Q = 0 over the admissible set, "
+            "so no lower boundary in kY exists without measuring the realized cloud. This is "
+            "the only reason that holds in BOTH the static and mobile branches, and it is the "
+            "reason the disposition is STOP rather than REACHABLE."),
+        "ADDITIONAL_MOBILE_BRANCH_BLOCKERS_NOT_LOAD_BEARING": [
+            "ONE removal clock, TWO roles (condition M only). _decay_core draws "
+            "Binomial(n['Y'], muY) over the whole Y field and reads no age, position, contact "
+            "or lineage label, so newborns and founder share one clock. In the STATIC branch "
+            "this dissolves: immobile offspring never separate.",
+            "THE OBSERVABLE LAYER IS SINGLE-ORGANISER (condition M only). metrics_obtc.frame "
+            "resolves the organiser as oy[0], ox[0] from np.nonzero(nY); with two SEPARATED "
+            "organisers it silently reports one. In the static branch all Y share one cell, so "
+            "np.nonzero returns one cell and this is not triggered.",
         ],
+        "BRANCH_INDEPENDENT_STRUCTURAL_FACT": (
+            "THE X SOURCE IS SATURATED. p_X = min(1, kX nX nY) = 1 exactly at kX = 1.0 for any "
+            "nX nY >= 1, so one organiser already drives the source at full strength; a second "
+            "changes the system only by adding a source cell once it separates. 'Minority in "
+            "count' and 'minority in causal role' come apart. True in both branches."),
         "MINIMAL_NEW_STATE_OR_EVENT": {
             "chosen": ("a LOCAL, FINITE, CONSERVED Y-PRECURSOR SPECIES bound to the "
                        "organiser, with its own replenishment rate rho, consumed by Y birth"),
             "why_this_one": (
-                "it is the single smallest addition that repairs two of the three blockers at "
-                "once. The pool size makes the TOTAL number of Y births a LawSpec quantity, "
-                "which supplies the upper bound without loading muY; and a full pool makes "
-                "the birth intensity bounded BELOW by design rather than by the realized "
-                "cloud, which supplies the lower boundary. muY is then free to be small, so "
-                "the lineage can persist."),
+                "it targets the single LOAD-BEARING blocker directly. A full organiser-bound "
+                "pool makes the Y birth intensity bounded BELOW by a LawSpec quantity (the "
+                "pool size and rho) rather than by the realized co-located X count E[Q], which "
+                "is exactly the un-locatable object. That supplies the missing lower boundary. "
+                "It does NOT by itself fix the mobile-branch removal-clock tension; that is a "
+                "condition-M problem and is secondary, since the static branch has no such "
+                "tension yet still fails on the lower boundary."),
             "rejected_alternatives": {
                 "an independently controllable Y birth hazard": "already exists — kY",
                 "an independently controllable Y decay hazard": "already exists — muY; what is "
@@ -183,7 +215,11 @@ def main():
         "ALL_TEN_MET": all_pass,
         "INDEPENDENCE_GATES": {k: v["verdict"] for k, v in gates.items()},
         "TIMESCALE_COLLAPSE": rg["TIMESCALE_COLLAPSE"]["COLLAPSE_FOUND"],
-        "THREE_INDEPENDENT_LEGS": legs,
+        "LEGS": legs,
+        "DISPOSITION_RESTS_ON": ("one branch-independent load-bearing leg (birth intensity "
+                                 "has no certifiable lower bound in kY); the two mobile-branch "
+                                 "arguments and the static counter-region are reported but are "
+                                 "NOT pillars of the disposition"),
         "FINAL_DISPOSITION": disposition,
         "WHY_NOT_THE_OTHER_TERMINAL_DISPOSITIONS": why_not_the_others,
         "ARCHITECTURE_CHANGE_BOUNDARY": architecture,
@@ -197,17 +233,31 @@ def main():
             "X_LAWSPEC_BASELINE": "UNCHANGED",
             "SCIENTIFIC_RUNS_USED": 0,
             "TOMMY_ACTION_REQUIRED": "NONE"},
-        "SENTINEL": {k: sent[k] for k in
-                     ("ENGINE_CONSTRUCT_CALLS", "ENGINE_ADVANCE_CALLS",
-                      "SCIENTIFIC_WORLD_STARTS", "SCIENTIFIC_SEEDS_OPENED",
-                      "FIXTURE_CONSTRUCTIONS", "FIXTURE_STEPS", "ALL_FOUR_ZERO")},
-        "INDEPENDENT_WITNESS": sent.get("INDEPENDENT_WITNESS_guard_obtc"),
+        "SENTINEL_AGGREGATED_OVER_ALL_ANALYSIS_PROCESSES": {
+            "mutation_oracles": {k: sent[k] for k in
+                                 ("ENGINE_CONSTRUCT_CALLS", "ENGINE_ADVANCE_CALLS",
+                                  "SCIENTIFIC_WORLD_STARTS", "SCIENTIFIC_SEEDS_OPENED",
+                                  "FIXTURE_CONSTRUCTIONS", "FIXTURE_STEPS", "ALL_FOUR_ZERO")},
+            "operator_derivation": {k: sent_op.get(k) for k in
+                                    ("ENGINE_CONSTRUCT_CALLS", "ENGINE_ADVANCE_CALLS",
+                                     "SCIENTIFIC_WORLD_STARTS", "SCIENTIFIC_SEEDS_OPENED",
+                                     "FIXTURE_CONSTRUCTIONS", "FIXTURE_STEPS", "ALL_FOUR_ZERO")},
+            "ALL_FOUR_ZERO_IN_EVERY_PROCESS": bool(sent["ALL_FOUR_ZERO"]
+                                                   and sent_op.get("ALL_FOUR_ZERO", True))},
+        "FILESYSTEM_WITNESS_no_raw_file_written":
+            sent.get("FILESYSTEM_WITNESS_raw_dirs", {}).get("NO_RAW_FILE_WRITTEN"),
     }
     json.dump(out, open(f"{OUT}/PMCR01_FINAL_DISPOSITION.json", "w"), indent=1, default=str)
 
     for k, v in checklist.items():
         print("  %-44s %s" % (k, v))
     print("\n  ALL_TEN_MET = %s" % all_pass)
+    print("\n  static-branch counter-region nonempty in (beta,muY): %s (does not overturn)"
+          % stat["SINGLE_SOURCE_REGION_IN_(beta,muY)_IS_NONEMPTY"])
+    print("  sentinel all-four-zero in every process: %s ; no raw file written: %s"
+          % (out["SENTINEL_AGGREGATED_OVER_ALL_ANALYSIS_PROCESSES"]
+             ["ALL_FOUR_ZERO_IN_EVERY_PROCESS"],
+             out["FILESYSTEM_WITNESS_no_raw_file_written"]))
     print("\nFINAL_DISPOSITION = %s" % disposition)
     print("NEXT              = %s" % out["NEXT_SCIENTIFIC_ELIGIBILITY"])
 

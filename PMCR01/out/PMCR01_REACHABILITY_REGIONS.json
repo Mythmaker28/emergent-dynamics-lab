@@ -34,14 +34,18 @@
   "INPUTS_USED": "category A only: CAP, S0, X_SEED, kX, the exact kernel constants, the frozen horizon and the admissible-state enumeration",
   "CATEGORY_B_USED": "none as a load-bearing input; E[Q] is deliberately NOT used",
   "CATEGORY_C_USED": "none",
-  "CONDITIONS": {
-   "1_does_not_deterministically_vanish": "survival to T >= 0.50",
-   "2_exceeds_the_persistence_boundary_with_margin": "R > 1 and E[nY(T)] <= 10",
-   "3_remains_minority_not_dominating": "expected separated second centres <= 0.5",
-   "4_capacity_and_resource_assumptions_hold": "rare-Y linearisation, nY << CAP",
-   "5_not_created_by_a_favourable_historical_trajectory": "no realized covariate used",
-   "6_survives_the_admissibility_map": "0 < muY < 1, kY >= 0, p = min(1, kY nX nY)",
-   "7_bounds_do_not_merely_touch": "both controls must fire at least once per horizon"
+  "EVALUATED_CONDITIONS_C1_TO_C6": {
+   "C1_SURVIVES": "survival to T >= 0.50",
+   "C2_BOUNDED_MINORITY": "E[nY(T)] <= 10  (also the rare-Y / nY << CAP guard)",
+   "C3_SINGLE_SOURCE": "expected separated second centres <= 0.5 (mobile); trivially 0 in the static branch",
+   "C4_BIRTH_CONTROL_ACTIVE": "expected Y births over the horizon >= 1",
+   "C5_DEATH_CONTROL_ACTIVE": "expected Y deaths over the horizon >= 1",
+   "C6_ADMISSIBLE": "0 < muY < 1, kY >= 0, p = min(1, kY nX nY) <= 1"
+  },
+  "STRUCTURAL_CONDITIONS_NOT_ON_THE_GRID": {
+   "no_favourable_realized_trajectory_used": "no category-B or C covariate enters",
+   "R_IS_IN_beta_NOT_kY": "the grid axis beta = kY E[Q] is not a control; the transport to kY is where the region fails",
+   "nY_much_less_than_CAP": "C2 with N* = 10 against CAP = 16 is the closest grid proxy; where E[nY(T)] approaches CAP the linearisation is strained and the honest region is smaller"
   },
   "THRESHOLDS_ARE_GENEROUS_ON_PURPOSE": "survival only 1/2, ten organisers allowed, half an expected second centre allowed. Every threshold is set to make a window EASIER to find, so that an empty region is not an artefact of strictness.",
   "SCANS": {
@@ -191,8 +195,25 @@
    "max_expected_deaths_over_the_whole_horizon": 0.721027403116131,
    "READING": "dropping the activity conditions does leave points. At every one of them the expected number of Y births over the ENTIRE 11000-step horizon is at most 0.504 and the expected number of Y deaths at most 0.721. No Y event occurs. This set is the frozen point kY = muY = 0 wearing a different label, and calling it a window would be exactly the error the inherited handoff warns against: a structural zero is not a small number."
   },
-  "DIVISION_FRAMING_THE_MISSIONS_OWN": {
-   "WHY_IT_IS_COMPUTED": "the inherited handoff names an upper bound preventing a PREMATURE THIRD centre, so one division is allowed. Judging the mission only against the stricter single-source framing would answer a question it never asked.",
+  "REGION_C_STATIC_BRANCH": {
+   "CONDITION": "S (static), p_hop_Y = 0, a FROZEN condition, used by 14 of OBFOR01's 28 fresh arms",
+   "tau_separation": "inf (immobile offspring never separate)",
+   "SINGLE_SOURCE_REGION_IN_(beta,muY)_IS_NONEMPTY": true,
+   "n_inside": 87,
+   "bounding_box": {
+    "beta_min": 0.0001,
+    "beta_max": 0.00039810717055349773,
+    "muY_min": 2.6394837179924507e-05,
+    "muY_max": 0.0002124296775442607,
+    "max_survival": 0.8941181380176063,
+    "max_E_nY_at_T": 9.986281209147144
+   },
+   "WHY_IT_DOES_NOT_OVERTURN_THE_DISPOSITION": "the axis is beta = kY * E[Q], not kY. inf Q = 0 over the admissible set, so the LOWER boundary in the actual control kY is not certifiable from category A here either. A non-empty set in beta is not a certifiable window in kY. This is Leg 2, and it is branch-independent.",
+   "SINGLE_Y_BRANCHING_IS_AN_OVERESTIMATE_HERE": "in the static branch every Y sits in ONE cell and the births are Binomial(min(nSY, free), min(1, kY nX nY)) over a SHARED candidate pool and a SHARED free budget, not nY independent pools. The single-Y branching R = (1-muY)(1+cp) gives each Y its own pool and therefore OVERSTATES growth, so the non-empty set above is an optimistic upper bound. That is the conservative direction for a non-certifiability conclusion.",
+   "NARRATIVE_CONDITION_4_nY_LESS_THAN_CAP": "at the box's upper edge E[nY(T)] reaches ~10.0 against CAP = 16, so the rare-Y linearisation is already strained; the honest region under nY << CAP is smaller still."
+  },
+  "DIVISION_FRAMING_THE_LAUNCHERS_TIMING_CONSTRAINT": {
+   "WHY_IT_IS_COMPUTED": "the EXECUTION LAUNCHER (this mission's own instructions, \u00a77), not the handoff, names an upper bound preventing a PREMATURE THIRD centre, so one division is allowed. This is the mobile-branch timing framing, reported so the mission is not judged against a narrower question than it posed.",
    "SCAN": {
     "c": 4,
     "grid_points": 25599,
@@ -517,7 +538,7 @@
     "or_slow_the_Y_transport_by_factor": 13.24531980921517,
     "required_D_rel": 0.0037749182896447313,
     "required_p_hop_Y_approx": 0.007549836579289463,
-    "BUT": "p_hop_Y is not a manifest field. protocol_obtc02.spec_for sets it to PT['p_hop'], the same number as p_hop_X. Slowing the Y transport slows the X transport by the same factor and moves the control baseline, which this mission forbids."
+    "BUT": "p_hop_Y is not a manifest field. protocol_obtc02.spec_for exposes exactly two values: 0.0 in the static branch (condition S) and PT['p_hop'] = p_hop_X in the mobile branch (condition M). A CONTINUOUS retune of the Y transport to an intermediate value is not reachable through the frozen protocol without a code change; and at the engine level p_hop_Y still shares the RNG stream with the X draws. So this row is about the MOBILE branch only. The static branch is handled separately: there tau = inf and the single-source constraint is met for free -- see REGION_C_STATIC."
    }
   }
  },
@@ -563,8 +584,8 @@
   "COLLAPSE_FOUND": true,
   "WHICH": "tau_newborn_removal == tau_Y_removal, identically",
   "WHY": "_decay draws Binomial(n_Y, muY) over the whole Y field. It reads no age, no position, no contact and no lineage label. A newborn and the founder are exchangeable counts in the same array, so one parameter sets both clocks.",
-  "WHY_IT_IS_FATAL_HERE": "a minority window needs newborns removed FAST, so that a second source never separates, and the lineage removed SLOWLY, so that it survives the horizon. Those are two requirements on one number.",
-  "SEPARATION_IS_ALSO_NOT_INDEPENDENT": "p_hop_Y is not a manifest field. protocol_obtc02.spec_for sets it to 0.0 under the declared immobilisation intervention and otherwise to PT['p_hop'], the SAME value as p_hop_X. The separation clock cannot be moved without moving the X transport clock, which is the control baseline.",
+  "WHY_IT_IS_FATAL_IN_THE_MOBILE_BRANCH": "in condition M a minority window needs newborns removed FAST, so that a second source never separates, and the lineage removed SLOWLY, so that it survives the horizon. Those are two requirements on one number. NOTE: in the static branch (condition S, p_hop_Y = 0) this particular tension DISSOLVES, because immobile offspring never separate; the static branch fails for the branch-independent Leg 2 reason instead (E[Q] not locatable).",
+  "SEPARATION_CLOCK_IS_PROTOCOL_RESTRICTED_NOT_CONTINUOUSLY_TUNABLE": "p_hop_Y is not a manifest field. protocol_obtc02.spec_for exposes exactly two values: 0.0 in condition S and PT['p_hop'] = p_hop_X in condition M. It is NOT a blanket alias -- the earlier draft wrongly said so -- but it is not a continuously tunable Y separation clock either: only {0, p_hop_X} are reachable through the frozen protocol, and at the engine level it shares the RNG stream with the X draws.",
   "CONTRAST_WITH_THE_X_SIDE": "OBTR01 found seven of eight X timescales to be fixed rational multiples of 1/muX. The Y side is not a repeat of that: tau_Y_birth and tau_Y_removal are genuinely two free parameters. The collapse here is different and narrower \u2014 it is the removal clock being shared between two ROLES, not two formulas sharing a parameter."
  },
  "CONSTANTS_USED": {

@@ -86,12 +86,18 @@ CH = [
      "CAN_BE_NONZERO_WITHOUT_CODE_CHANGE": "at the engine level yes; through the qualified "
                                            "protocol only 0 or p_hop_X",
      "CAN_BE_VARIED_WITHOUT_CHANGING_X_BASELINE":
-         "NO. It is aliased to p_hop_X in spec_for, and even at the engine level it shifts "
-         "the shared random stream, so the X draws of the same step move with it.",
-     "INDEPENDENTLY_CONTROLLABLE": False,
+         "NO as a continuous control. spec_for exposes exactly two values: 0.0 (condition S) "
+         "and p_hop_X (condition M). It is NOT a blanket alias -- 0 != p_hop_X -- but only "
+         "{0, p_hop_X} are reachable through the frozen protocol, and at the engine level it "
+         "shifts the shared random stream so the X draws of the same step move with it.",
+     "INDEPENDENTLY_CONTROLLABLE": "two protocol-fixed values only; not a continuous Y "
+                                   "separation clock",
      "MUTATION_ORACLE_RESULT": "PASS as a transport channel (hazard 0 -> 0.25, count "
-                               "conserved, configuration set changes, reversal bit-exact)",
-     "FINAL_CLASS": "ALIASED_OR_NOT_INDEPENDENT"},
+                               "conserved, configuration set changes, reversal bit-exact); "
+                               "and spec_for(immobile=True/False) gives {0.0, p_hop_X}",
+     "FINAL_CLASS": "PARTIALLY_WIRED",
+     "CLASS_NOTE": "reachable but protocol-restricted to {0, p_hop_X}; not an independent "
+                   "continuous timescale"},
 
     {"NAME": "organiser_off_at (declared intervention)",
      "DECLARATION_LOCATION": "OBTC02/code/engine_obtc.py, WorldOBTC._one_step, lines 222-229",
@@ -150,6 +156,37 @@ CH = [
                                "hash and an identical captured hazard sequence",
      "FINAL_CLASS": "SCHEMA_ONLY_INERT"},
 
+    {"NAME": "exchangeable-pool membership of Y (the chemostat's removal set)",
+     "DECLARATION_LOCATION": "lawspec_v2.py EXCHANGEABLE_DEFAULT (38) / EXCHANGEABLE_WITH_BODY "
+                             "(39); WorldV2.__init__ exchangeable= argument (74-79)",
+     "MANIFEST_FIELD": "none; it is a CONSTRUCTOR ARGUMENT, bound at protocol_obtc02.py:79-81 "
+                       "to V2.EXCHANGEABLE_DEFAULT = ('SX','SY','WX','WY')",
+     "DEFAULT_VALUE": "('SX','SY','WX','WY') -- Y excluded",
+     "ADMISSIBLE_RANGE": "any subset of the six species; EXCHANGEABLE_WITH_BODY additionally "
+                         "includes X (a declared washout control)",
+     "CONSTRUCTOR_PATH": "protocol_obtc02.run_arm -> EN.fresh_world(exchangeable=...) -> "
+                         "WorldV2._exchange, _hyper_split over self.exchangeable",
+     "SCHEDULER_EVENT": "_exchange removes k = min(want, avail) units without replacement from "
+                        "the pool; a Y in the pool would be removed with per-Y hazard ~ k/avail",
+     "STATE_DELTA": "if Y were in the pool: n['Y'] -= taken_Y (occupancy conserved)",
+     "RESOURCE_OR_CAPACITY_DEPENDENCE": "reads local composition and crowding at the cell",
+     "EVENT_ORDER": "7th of 7",
+     "CAN_BE_NONZERO_WITHOUT_CODE_CHANGE": ("YES -- passing exchangeable=('SX','SY','WX','WY',"
+                                            "'Y') is a legal constructor argument, zero code "
+                                            "change. This is the SAME status (argument binding, "
+                                            "not code fact) that p_hop_Y has."),
+     "CAN_BE_VARIED_WITHOUT_CHANGING_X_BASELINE":
+         "NO. _exchange treats the whole pool jointly; adding Y changes the hypergeometric "
+         "split for SX and SY and therefore the X substrate supply.",
+     "INDEPENDENTLY_CONTROLLABLE": False,
+     "MUTATION_ORACLE_RESULT": "not run as a persistence control: its polarity is WRONG for a "
+                               "minority window -- it removes Y fastest in the crowded source "
+                               "cell, i.e. exactly where the lineage must persist",
+     "FINAL_CLASS": "DORMANT_BUT_REACHABLE_CHANNEL",
+     "CLASS_NOTE": "a removal, but polarity-wrong for a minority window; listed so Gate 0 is "
+                   "not overclaimed as exhaustive over code FACTS -- it is exhaustive under "
+                   "the frozen argument binding at protocol_obtc02.py:79-81"},
+
     {"NAME": "a Y-specific precursor pool, or a Y removal that reads age, position or contact",
      "DECLARATION_LOCATION": "does not exist",
      "MANIFEST_FIELD": "none",
@@ -179,6 +216,12 @@ def main():
         "METHOD": ("AST walk over the COMMITTED blobs for every write to self.n[species], "
                    "including species-loop writes; then a deterministic mutation oracle per "
                    "alleged channel on a NON_SCIENTIFIC_SEMANTIC_FIXTURE."),
+        "SCOPE_OF_EXHAUSTIVENESS": (
+            "the Y-changing EVENTS are exhaustive over the code. Which of them is ACTIVE also "
+            "depends on two constructor argument bindings fixed at protocol_obtc02.py:79-81: "
+            "lawspec = LAWSPEC_V2_EXCHANGE (which bypasses omega) and exchangeable = "
+            "EXCHANGEABLE_DEFAULT (which excludes Y from chemostat removal). Both are argument "
+            "values, not code facts, and both are listed as channels so nothing is hidden."),
         "ANALYSED_BLOBS": static["ANALYSED_BLOBS"],
         "SCHEDULER_ORDER": static["SCHEDULER_ORDER"],
         "MANIFEST_POINT": static["MANIFEST_POINT"],

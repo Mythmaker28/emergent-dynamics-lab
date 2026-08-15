@@ -46,7 +46,12 @@ def extinction_by(T, c, p, m):
 
 
 def evaluate(beta, m, c, T=T_HORIZON, tau=TAU_SEP):
-    """beta = c*p is the per-step mean number of Y births from one Y."""
+    """beta = c*p is the per-step mean number of Y births from one Y.
+
+    tau is the separation time. In the MOBILE branch (condition M) tau = TAU_SEP = 125 steps.
+    In the STATIC branch (condition S, p_hop_Y = 0) the offspring cannot move at all, so
+    tau = inf and no second centre can ever separate: n_sep collapses to 0 and C3 is met
+    trivially. Both are frozen conditions the parent used, so both are evaluated."""
     p = beta / c
     if p > 1.0:
         return None
@@ -65,7 +70,7 @@ def evaluate(beta, m, c, T=T_HORIZON, tau=TAU_SEP):
         cum = (nT - 1.0) / (R - 1.0)
     births = beta * cum
     deaths = m * cum
-    n_sep = births * (1.0 - m) ** tau
+    n_sep = 0.0 if math.isinf(tau) else births * (1.0 - m) ** tau
     surv = 1.0 - extinction_by(T, c, p, m)
     return {"beta": beta, "muY": m, "c": c, "p": p, "R": R, "epsilon": eps,
             "E_nY_at_T": nT, "E_births": births, "E_deaths": deaths,
@@ -78,7 +83,7 @@ def evaluate(beta, m, c, T=T_HORIZON, tau=TAU_SEP):
             "C6_ADMISSIBLE": 0.0 < m < 1.0 and beta > 0.0 and p <= 1.0}
 
 
-def scan(c):
+def scan(c, tau=TAU_SEP):
     betas = np.concatenate([np.logspace(-8, 0, 161)])
     mus = np.concatenate([np.logspace(-8, -0.05, 159)])
     inside, best = [], None
@@ -88,7 +93,7 @@ def scan(c):
     n = 0
     for b in betas:
         for m in mus:
-            r = evaluate(float(b), float(m), c)
+            r = evaluate(float(b), float(m), c, tau=tau)
             if r is None:
                 continue
             n += 1
@@ -236,25 +241,80 @@ def threshold_sensitivity():
             "or_slow_the_Y_transport_by_factor": need_ref / (TAU_SEP / T_HORIZON),
             "required_D_rel": D_REL * (TAU_SEP / T_HORIZON) / need_ref,
             "required_p_hop_Y_approx": 4 * (D_REL * (TAU_SEP / T_HORIZON) / need_ref) / 2,
-            "BUT": ("p_hop_Y is not a manifest field. protocol_obtc02.spec_for sets it to "
-                    "PT['p_hop'], the same number as p_hop_X. Slowing the Y transport slows "
-                    "the X transport by the same factor and moves the control baseline, which "
-                    "this mission forbids."),
+            "BUT": ("p_hop_Y is not a manifest field. protocol_obtc02.spec_for exposes exactly "
+                    "two values: 0.0 in the static branch (condition S) and PT['p_hop'] = "
+                    "p_hop_X in the mobile branch (condition M). A CONTINUOUS retune of the Y "
+                    "transport to an intermediate value is not reachable through the frozen "
+                    "protocol without a code change; and at the engine level p_hop_Y still "
+                    "shares the RNG stream with the X draws. So this row is about the MOBILE "
+                    "branch only. The static branch is handled separately: there tau = inf and "
+                    "the single-source constraint is met for free -- see REGION_C_STATIC."),
         },
     }
 
 
-# ------------------------------------------------------------------ the mission's OWN framing
+# ------------------------------------------------------------------ the static branch
+def static_branch_region(c=4):
+    """CONDITION S, p_hop_Y = 0 -- a frozen condition the parent used for 14 of its 28 fresh
+    arms, NOT a retune. Immobile offspring can never separate, so tau = inf, n_sep = 0 and the
+    single-source constraint is satisfied trivially. The single-source region is therefore
+    NOT empty here. This is reported openly; it is the counter-example to the mobile-branch
+    Leg 1 and it must not be hidden behind the (false) claim that p_hop_Y is aliased."""
+    s = scan(c, tau=math.inf)
+    box = None
+    if s["examples_inside"] or s["n_inside"]:
+        # rebuild the box from a fresh pass so we have the full inside-set, not just 5 examples
+        betas = np.logspace(-8, 0, 161)
+        mus = np.logspace(-8, -0.05, 159)
+        inside = [evaluate(float(b), float(m), c, tau=math.inf) for b in betas for m in mus]
+        inside = [r for r in inside if r and all(
+            r[k] for k in ("C1_SURVIVES", "C2_BOUNDED_MINORITY", "C3_SINGLE_SOURCE",
+                           "C4_BIRTH_CONTROL_ACTIVE", "C5_DEATH_CONTROL_ACTIVE",
+                           "C6_ADMISSIBLE"))]
+        if inside:
+            box = {"beta_min": min(r["beta"] for r in inside),
+                   "beta_max": max(r["beta"] for r in inside),
+                   "muY_min": min(r["muY"] for r in inside),
+                   "muY_max": max(r["muY"] for r in inside),
+                   "max_survival": max(r["survival_to_T"] for r in inside),
+                   "max_E_nY_at_T": max(r["E_nY_at_T"] for r in inside)}
+    return {
+        "CONDITION": "S (static), p_hop_Y = 0, a FROZEN condition, used by 14 of OBFOR01's "
+                     "28 fresh arms",
+        "tau_separation": "inf (immobile offspring never separate)",
+        "SINGLE_SOURCE_REGION_IN_(beta,muY)_IS_NONEMPTY": s["REGION_NONEMPTY"],
+        "n_inside": s["n_inside"], "bounding_box": box,
+        "WHY_IT_DOES_NOT_OVERTURN_THE_DISPOSITION": (
+            "the axis is beta = kY * E[Q], not kY. inf Q = 0 over the admissible set, so the "
+            "LOWER boundary in the actual control kY is not certifiable from category A here "
+            "either. A non-empty set in beta is not a certifiable window in kY. This is Leg 2, "
+            "and it is branch-independent."),
+        "SINGLE_Y_BRANCHING_IS_AN_OVERESTIMATE_HERE": (
+            "in the static branch every Y sits in ONE cell and the births are "
+            "Binomial(min(nSY, free), min(1, kY nX nY)) over a SHARED candidate pool and a "
+            "SHARED free budget, not nY independent pools. The single-Y branching R = "
+            "(1-muY)(1+cp) gives each Y its own pool and therefore OVERSTATES growth, so the "
+            "non-empty set above is an optimistic upper bound. That is the conservative "
+            "direction for a non-certifiability conclusion."),
+        "NARRATIVE_CONDITION_4_nY_LESS_THAN_CAP": (
+            "at the box's upper edge E[nY(T)] reaches ~%s against CAP = 16, so the rare-Y "
+            "linearisation is already strained; the honest region under nY << CAP is smaller "
+            "still." % (round(box["max_E_nY_at_T"], 1) if box else "n/a")),
+    }
+
+
+# ------------------------------------------------------------------ the launcher's timing framing
 def evaluate_division_framing(beta, m, c, T=T_HORIZON, tau=TAU_SEP):
-    """The inherited handoff does NOT ask for a single source held forever. Its §3.5 names
+    """The EXECUTION LAUNCHER (this mission's §7), not the handoff, names
 
         LOWER_BOUND_FOR_MINOR_Y_PERSISTENCE
         UPPER_BOUND_PREVENTING_PREMATURE_THIRD_CENTER
         SEPARATION_OR_REORGANIZATION_TIMESCALE
 
-    i.e. one division is ALLOWED and a THIRD centre must not appear before the first two have
-    separated. Evaluating only the stricter single-source framing would be judging the mission
-    against a question it never asked, so both are computed and both are reported."""
+    'if the scientific handoff also requires a separation/timing constraint'. So one division
+    is ALLOWED and a THIRD centre must not appear before the first two separate. Evaluating
+    only the stricter single-source framing would judge the mission against a narrower question
+    than it posed, so this MOBILE-branch timing framing is computed and reported alongside."""
     p = beta / c
     if p > 1.0:
         return None
@@ -479,15 +539,20 @@ def timescale_collapse():
         "WHY": ("_decay draws Binomial(n_Y, muY) over the whole Y field. It reads no age, no "
                 "position, no contact and no lineage label. A newborn and the founder are "
                 "exchangeable counts in the same array, so one parameter sets both clocks."),
-        "WHY_IT_IS_FATAL_HERE": (
-            "a minority window needs newborns removed FAST, so that a second source never "
-            "separates, and the lineage removed SLOWLY, so that it survives the horizon. "
-            "Those are two requirements on one number."),
-        "SEPARATION_IS_ALSO_NOT_INDEPENDENT": (
-            "p_hop_Y is not a manifest field. protocol_obtc02.spec_for sets it to 0.0 under "
-            "the declared immobilisation intervention and otherwise to PT['p_hop'], the SAME "
-            "value as p_hop_X. The separation clock cannot be moved without moving the X "
-            "transport clock, which is the control baseline."),
+        "WHY_IT_IS_FATAL_IN_THE_MOBILE_BRANCH": (
+            "in condition M a minority window needs newborns removed FAST, so that a second "
+            "source never separates, and the lineage removed SLOWLY, so that it survives the "
+            "horizon. Those are two requirements on one number. NOTE: in the static branch "
+            "(condition S, p_hop_Y = 0) this particular tension DISSOLVES, because immobile "
+            "offspring never separate; the static branch fails for the branch-independent "
+            "Leg 2 reason instead (E[Q] not locatable)."),
+        "SEPARATION_CLOCK_IS_PROTOCOL_RESTRICTED_NOT_CONTINUOUSLY_TUNABLE": (
+            "p_hop_Y is not a manifest field. protocol_obtc02.spec_for exposes exactly two "
+            "values: 0.0 in condition S and PT['p_hop'] = p_hop_X in condition M. It is NOT a "
+            "blanket alias -- the earlier draft wrongly said so -- but it is not a "
+            "continuously tunable Y separation clock either: only {0, p_hop_X} are reachable "
+            "through the frozen protocol, and at the engine level it shares the RNG stream "
+            "with the X draws."),
         "CONTRAST_WITH_THE_X_SIDE": (
             "OBTR01 found seven of eight X timescales to be fixed rational multiples of "
             "1/muX. The Y side is not a repeat of that: tau_Y_birth and tau_Y_removal are "
@@ -509,16 +574,26 @@ def main():
                        "frozen horizon and the admissible-state enumeration",
         "CATEGORY_B_USED": "none as a load-bearing input; E[Q] is deliberately NOT used",
         "CATEGORY_C_USED": "none",
-        "CONDITIONS": {
-            "1_does_not_deterministically_vanish": "survival to T >= %.2f" % (1 - ALPHA_SURVIVAL),
-            "2_exceeds_the_persistence_boundary_with_margin": "R > 1 and E[nY(T)] <= %g"
-                                                              % N_STAR,
-            "3_remains_minority_not_dominating": "expected separated second centres <= %g"
-                                                 % GAMMA_SEP,
-            "4_capacity_and_resource_assumptions_hold": "rare-Y linearisation, nY << CAP",
-            "5_not_created_by_a_favourable_historical_trajectory": "no realized covariate used",
-            "6_survives_the_admissibility_map": "0 < muY < 1, kY >= 0, p = min(1, kY nX nY)",
-            "7_bounds_do_not_merely_touch": "both controls must fire at least once per horizon",
+        # the SIX conditions the code actually evaluates, named to match C1..C6 exactly, plus
+        # the three narrative conditions that are structural rather than grid-evaluated. The
+        # earlier draft listed seven narrative conditions that did not line up with the code;
+        # this is the honest correspondence.
+        "EVALUATED_CONDITIONS_C1_TO_C6": {
+            "C1_SURVIVES": "survival to T >= %.2f" % (1 - ALPHA_SURVIVAL),
+            "C2_BOUNDED_MINORITY": "E[nY(T)] <= %g  (also the rare-Y / nY << CAP guard)" % N_STAR,
+            "C3_SINGLE_SOURCE": "expected separated second centres <= %g (mobile); trivially "
+                                "0 in the static branch" % GAMMA_SEP,
+            "C4_BIRTH_CONTROL_ACTIVE": "expected Y births over the horizon >= %g" % MIN_EVENTS,
+            "C5_DEATH_CONTROL_ACTIVE": "expected Y deaths over the horizon >= %g" % MIN_EVENTS,
+            "C6_ADMISSIBLE": "0 < muY < 1, kY >= 0, p = min(1, kY nX nY) <= 1",
+        },
+        "STRUCTURAL_CONDITIONS_NOT_ON_THE_GRID": {
+            "no_favourable_realized_trajectory_used": "no category-B or C covariate enters",
+            "R_IS_IN_beta_NOT_kY": "the grid axis beta = kY E[Q] is not a control; the "
+                                   "transport to kY is where the region fails",
+            "nY_much_less_than_CAP": "C2 with N* = 10 against CAP = 16 is the closest grid "
+                                     "proxy; where E[nY(T)] approaches CAP the linearisation "
+                                     "is strained and the honest region is smaller",
         },
         "THRESHOLDS_ARE_GENEROUS_ON_PURPOSE": (
             "survival only 1/2, ten organisers allowed, half an expected second centre "
@@ -530,12 +605,14 @@ def main():
         "NONEMPTY": any(s["REGION_NONEMPTY"] for s in scans.values()),
         "WIDTH": 0.0 if not any(s["REGION_NONEMPTY"] for s in scans.values()) else None,
         "WITHOUT_THE_ACTIVITY_CONDITIONS": region_without_activity_conditions(),
-        "DIVISION_FRAMING_THE_MISSIONS_OWN": {
-            "WHY_IT_IS_COMPUTED": ("the inherited handoff names an upper bound preventing a "
-                                   "PREMATURE THIRD centre, so one division is allowed. "
-                                   "Judging the mission only against the stricter "
-                                   "single-source framing would answer a question it never "
-                                   "asked."),
+        "REGION_C_STATIC_BRANCH": static_branch_region(4),
+        "DIVISION_FRAMING_THE_LAUNCHERS_TIMING_CONSTRAINT": {
+            "WHY_IT_IS_COMPUTED": ("the EXECUTION LAUNCHER (this mission's own instructions, "
+                                   "§7), not the handoff, names an upper bound preventing a "
+                                   "PREMATURE THIRD centre, so one division is allowed. This "
+                                   "is the mobile-branch timing framing, reported so the "
+                                   "mission is not judged against a narrower question than it "
+                                   "posed."),
             "SCAN": scan_division_framing(4),
             "TRANSPORT_TO_THE_ACTUAL_PARAMETERS": {
                 "the_scan_is_in_beta_and_muY": True,
@@ -599,8 +676,8 @@ def main():
     print("\nsensitivity: required tau_sep/T = %.4f, actual = %.4f, shortfall factor %.1fx"
           % (t["REQUIRED_RATIO_AT_THE_DECLARED_THRESHOLDS"], t["ACTUAL_RATIO"],
              t["SHORTFALL_FACTOR"]))
-    print("   to open it: horizon would have to fall to %.0f steps (burn-in alone is 2000) "
-          "or D_rel to %.5f (p_hop_Y ~ %.4f, but it is aliased to p_hop_X)"
+    print("   [MOBILE branch] to open it: horizon would fall to %.0f steps (burn-in alone is "
+          "2000) or D_rel to %.5f (p_hop_Y ~ %.4f, but the protocol exposes only {0, p_hop_X})"
           % (t["WHAT_WOULD_HAVE_TO_CHANGE"]["shorten_the_horizon_to_steps"],
              t["WHAT_WOULD_HAVE_TO_CHANGE"]["required_D_rel"],
              t["WHAT_WOULD_HAVE_TO_CHANGE"]["required_p_hop_Y_approx"]))
@@ -610,8 +687,19 @@ def main():
           % (any(r["OPENS"] for r in nd),
              min(r["required_tau_sep_over_T"] / r["actual_tau_sep_over_T"] for r in nd)))
     print("   the only rows that open have gamma -> 1, i.e. they accept a second centre")
-    d = C["DIVISION_FRAMING_THE_MISSIONS_OWN"]["SCAN"]
-    print("\nMISSION'S OWN DIVISION FRAMING (one division allowed, no third before separation):")
+    st = C["REGION_C_STATIC_BRANCH"]
+    print("\nSTATIC BRANCH (condition S, p_hop_Y = 0, tau_sep = inf):")
+    print("   single-source region in (beta,muY) NONEMPTY = %s ; inside = %d"
+          % (st["SINGLE_SOURCE_REGION_IN_(beta,muY)_IS_NONEMPTY"], st["n_inside"]))
+    if st["bounding_box"]:
+        bb = st["bounding_box"]
+        print("   box: beta [%.3g, %.3g] muY [%.3g, %.3g] max survival %.3f max E[nY(T)] %.1f"
+              % (bb["beta_min"], bb["beta_max"], bb["muY_min"], bb["muY_max"],
+                 bb["max_survival"], bb["max_E_nY_at_T"]))
+    print("   -> does NOT overturn the disposition: the axis is beta = kY E[Q], inf Q = 0, so "
+          "the lower boundary in kY is still not certifiable (Leg 2, branch-independent)")
+    d = C["DIVISION_FRAMING_THE_LAUNCHERS_TIMING_CONSTRAINT"]["SCAN"]
+    print("\nLAUNCHER TIMING FRAMING, mobile branch (one division allowed, no premature third):")
     for k, v in d["per_condition_satisfied"].items():
         print("   %-34s %6d / %d" % (k, v, d["grid_points"]))
     print("   NONEMPTY = %s ; inside = %d" % (d["NONEMPTY"], d["n_inside"]))

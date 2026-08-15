@@ -116,11 +116,13 @@ def install(seed_register_paths=()):
     _scientific_seeds = load_scientific_seed_registers(seed_register_paths)
     import kinetics as K
     import engine_obtc as EN
+    import lawspec_v2 as V2
 
     orig_init = K.World.__init__
     orig_step = K.World._one_step
     orig_seed_kin = K.seed_one_organiser
     orig_seed_en = EN.seed_one_organiser
+    orig_seed_v2 = V2.seed_one_organiser
 
     def init(self, L=None, seed=0, sp=None, *a, **kw):
         if sp is None:
@@ -148,8 +150,14 @@ def install(seed_register_paths=()):
                                         "step": int(getattr(self, "step", -1))})
         else:
             STATE["FIXTURE_STEPS"] += 1
-            if STATE["FIXTURE_STEPS"] > MAX_FIXTURE_STEPS * 400:
-                raise RuntimeError("fixture step budget exhausted: this is a trajectory")
+            # PER-FIXTURE cap, not just a global one: a world may not be advanced more than
+            # MAX_FIXTURE_STEPS times within a single fixture context. A single long fixture
+            # is a trajectory in disguise, and the earlier global-only cap would not catch it.
+            adv = getattr(self, "_pmcr01_fixture_steps", 0) + 1
+            self._pmcr01_fixture_steps = adv
+            if adv > MAX_FIXTURE_STEPS:
+                raise RuntimeError("fixture step budget exhausted for this world: %d > %d; "
+                                   "a fixture is not a trajectory" % (adv, MAX_FIXTURE_STEPS))
         return orig_step(self)
 
     def seeded(w, x_seed):
@@ -162,19 +170,49 @@ def install(seed_register_paths=()):
     K.World._one_step = step
     K.seed_one_organiser = seeded
     EN.seed_one_organiser = seeded
+    V2.seed_one_organiser = seeded            # the third seeding entry point, previously unpatched
     _installed = True
 
 
-def report(guard_module=None):
+def raw_dir_witness(dirs):
+    """A filesystem witness that does NOT depend on any in-process counter: the number of raw
+    output files and the newest mtime under each scientific raw directory. A scientific run
+    writes an npz here (protocol_obtc02.run_arm np.savez_compressed to RAW), so if none of
+    these directories gained a file or advanced its mtime, no arm was written. Call it before
+    and after the analysis and compare.
+    """
+    import glob
+    import os
+    out = {}
+    for d in dirs:
+        files = glob.glob(os.path.join(d, "*")) if os.path.isdir(d) else []
+        out[d] = {"n_files": len(files),
+                  "newest_mtime": max((os.path.getmtime(f) for f in files), default=0.0)}
+    return out
+
+
+def report(guard_module=None, raw_before=None, raw_after=None):
     out = {k: v for k, v in STATE.items()}
     out["ALL_FOUR_ZERO"] = (STATE["ENGINE_CONSTRUCT_CALLS"] == 0
                             and STATE["ENGINE_ADVANCE_CALLS"] == 0
                             and STATE["SCIENTIFIC_WORLD_STARTS"] == 0
                             and STATE["SCIENTIFIC_SEEDS_OPENED"] == 0)
     if guard_module is not None:
-        out["INDEPENDENT_WITNESS_guard_obtc"] = {
+        # kept only as a WEAK in-process check. guard_obtc.LEDGER is an in-memory global that
+        # this process never populates, so it reads 0 by construction; it corroborates nothing
+        # on its own and is labelled as such. The load-bearing witness is the filesystem one.
+        out["WEAK_IN_PROCESS_CHECK_guard_obtc"] = {
             "scientific_runs_used": int(guard_module.scientific_runs_used()),
-            "total_starts_logged": int(guard_module.used()),
-            "AGREES_WITH_THE_SENTINEL": int(guard_module.scientific_runs_used()) == 0}
+            "CAVEAT": "in-memory ledger, never populated by this process; not independent"}
+    if raw_before is not None and raw_after is not None:
+        changed = {d: {"files_before": raw_before[d]["n_files"],
+                       "files_after": raw_after[d]["n_files"],
+                       "mtime_advanced": raw_after[d]["newest_mtime"]
+                       > raw_before[d]["newest_mtime"]}
+                   for d in raw_before}
+        out["FILESYSTEM_WITNESS_raw_dirs"] = {
+            "per_dir": changed,
+            "NO_RAW_FILE_WRITTEN": all(v["files_after"] == v["files_before"]
+                                       and not v["mtime_advanced"] for v in changed.values())}
     out["SCIENTIFIC_SEEDS_IN_THE_REGISTERS"] = len(_scientific_seeds)
     return out

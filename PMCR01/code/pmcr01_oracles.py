@@ -44,6 +44,14 @@ EXEC_FILES = {
 FIXTURE_SEED = 9_000_017
 L_FIX = 3
 
+# the ONE canonical seed-register list and raw-directory list, used by every entry point so
+# the sentinel is installed identically everywhere (finding 6).
+SEED_REGISTERS = [
+    "/home/claude/OBFOR01/out/_freeze.json", "/home/claude/OBFOR01/out/_seeds.json",
+    "/home/claude/OBFOR01/out/_validation.json",
+    "/home/claude/OBTC02/out/_seeds.json", "/home/claude/OBDI02/out/_seeds.json"]
+RAW_DIRS = ["/home/claude/OBFOR01/raw", "/home/claude/OBTC02/raw", "/home/claude/OBDI02/raw"]
+
 
 # ------------------------------------------------------------------ committed-blob equivalence
 def verify_on_disk_equals_committed():
@@ -243,6 +251,16 @@ def oracle(EN, V2, name, field, off, on, expect, kind="count"):
     x2b = two_step_x_hazard(EN, V2, {field: on})
     x_next_step_changed = x2a["step2_binomial_arguments"] != x2b["step2_binomial_arguments"]
 
+    # WITNESS 3, done properly: compare the X-branch binomial arguments BY CALL POSITION, not
+    # "everything before the first difference" (which is identical by construction whenever the
+    # hazard changed at all, and therefore proved nothing). In the frozen order the X react
+    # birth is binomial call 16 and the X decay is call 18 (0-based), before the Y calls 17/19.
+    x_birth_a = a["calls_main"][16] if len(a["calls_main"]) > 16 else None
+    x_birth_b = b["calls_main"][16] if len(b["calls_main"]) > 16 else None
+    x_decay_a = a["calls_main"][18] if len(a["calls_main"]) > 18 else None
+    x_decay_b = b["calls_main"][18] if len(b["calls_main"]) > 18 else None
+    x_branch_args_identical = (x_birth_a == x_birth_b and x_decay_a == x_decay_b)
+
     if kind == "count":
         effect_ok = (a["delta"]["Y"] != b["delta"]["Y"]) and b["delta"]["Y"] == expect
     else:                                  # transport: the count MUST be conserved
@@ -262,7 +280,9 @@ def oracle(EN, V2, name, field, off, on, expect, kind="count"):
         "2b_Y_COUNT_CONSERVED_BY_THIS_EVENT": count_conserved,
         "2_EFFECT_PROVED_FOR_THIS_KIND": effect_ok,
         "full_delta_off": a["delta"], "full_delta_on": b["delta"],
-        "3_X_SIDE_ARGUMENTS_IDENTICAL_UPSTREAM_IN_THE_SAME_STEP": x_calls_a == x_calls_b,
+        "3_X_BRANCH_BINOMIAL_ARGS_IDENTICAL_BY_POSITION": x_branch_args_identical,
+        "3_X_react_birth_call_off_vs_on": [x_birth_a, x_birth_b],
+        "3_X_decay_call_off_vs_on": [x_decay_a, x_decay_b],
         "3_X_DELTA_UNCHANGED_IN_THE_SAME_STEP": (a["delta"]["X"] == b["delta"]["X"]
                                                  and a["delta"]["WX"] == b["delta"]["WX"]),
         "3b_X_HAZARD_CHANGED_IN_THE_NEXT_STEP": x_next_step_changed,
@@ -294,8 +314,19 @@ def manifest_end_to_end(PC, V2, EN):
     got["PT_RESTORED"] = PC.PT is saved
     got["p_hop_Y_IS_NOT_A_MANIFEST_FIELD"] = "p_hop_Y" not in saved
     got["p_hop_Y_IS_SET_IN_CODE_AS"] = "0.0 if immobile_organiser else PT['p_hop']"
-    got["p_hop_Y_ALIASED_TO_p_hop_X"] = float(PC.spec_for(L=L_FIX).p_hop_Y) == float(
-        PC.spec_for(L=L_FIX).p_hop_X)
+    # BOTH protocol-reachable settings, not only the mobile one. The earlier version tested
+    # only immobile_organiser=False and wrongly concluded a blanket alias.
+    mob = float(PC.spec_for(L=L_FIX, immobile_organiser=False).p_hop_Y)
+    sta = float(PC.spec_for(L=L_FIX, immobile_organiser=True).p_hop_Y)
+    px = float(PC.spec_for(L=L_FIX).p_hop_X)
+    got["p_hop_Y_mobile_condition_M"] = mob
+    got["p_hop_Y_static_condition_S"] = sta
+    got["p_hop_X"] = px
+    got["p_hop_Y_EQUALS_p_hop_X_ONLY_IN_THE_MOBILE_BRANCH"] = (mob == px and sta != px)
+    got["p_hop_Y_PROTOCOL_REACHABLE_VALUES"] = sorted({sta, mob})
+    got["THE_PARENT_USED_BOTH"] = ("OBFOR01 ran 14 fresh arms in condition S (p_hop_Y = 0) and "
+                                   "14 in condition M (p_hop_Y = p_hop_X). The static branch is "
+                                   "part of the qualified environment, not a retune of it.")
     return got
 
 
@@ -330,9 +361,8 @@ def main():
 
     sys.path.insert(0, "/home/claude/ORR01/code")
     sys.path.insert(0, "/home/claude/OBTC02/code")
-    SENT.install(seed_register_paths=[
-        "/home/claude/OBFOR01/out/_freeze.json", "/home/claude/OBFOR01/out/_seeds.json",
-        "/home/claude/OBTC02/out/_seeds.json", "/home/claude/OBDI02/out/_seeds.json"])
+    SENT.install(seed_register_paths=SEED_REGISTERS)
+    raw_before = SENT.raw_dir_witness(RAW_DIRS)
     import lawspec_v2 as V2
     import engine_obtc as EN
     import protocol_obtc02 as PC
@@ -360,7 +390,7 @@ def main():
         "MANIFEST_TO_SCHEDULER": manifest_end_to_end(PC, V2, EN),
         "OMEGA": omega_is_inert(EN, V2),
         "Y_EXCHANGEABILITY": y_is_never_exchangeable(V2),
-        "SENTINEL": SENT.report(GD),
+        "SENTINEL": SENT.report(GD, raw_before, SENT.raw_dir_witness(RAW_DIRS)),
     }
     json.dump(res, open(f"{OUT}/PMCR01_MUTATION_ORACLE_REPORT.json", "w"), indent=1,
               default=str)
@@ -373,15 +403,18 @@ def main():
                  o["1_HAZARD_CHANGED"], o["Y_delta_off"], o["Y_delta_on"],
                  o["expected_Y_delta_on"], o["2b_Y_SPATIAL_CONFIGURATION_CHANGED"],
                  o["2b_Y_COUNT_CONSERVED_BY_THIS_EVENT"],
-                 o["3_X_SIDE_ARGUMENTS_IDENTICAL_UPSTREAM_IN_THE_SAME_STEP"],
+                 o["3_X_BRANCH_BINOMIAL_ARGS_IDENTICAL_BY_POSITION"],
                  o["3b_X_HAZARD_CHANGED_IN_THE_NEXT_STEP"],
                  o["4_REVERSAL_EXACT"], o["PASS"]))
     print("\nmanifest -> Spec verbatim: %s"
           % {k: v.get("VERBATIM") for k, v in res["MANIFEST_TO_SCHEDULER"].items()
              if isinstance(v, dict)})
-    print("p_hop_Y is a manifest field: %s ; aliased to p_hop_X: %s"
-          % (not res["MANIFEST_TO_SCHEDULER"]["p_hop_Y_IS_NOT_A_MANIFEST_FIELD"],
-             res["MANIFEST_TO_SCHEDULER"]["p_hop_Y_ALIASED_TO_p_hop_X"]))
+    mts = res["MANIFEST_TO_SCHEDULER"]
+    print("p_hop_Y is a manifest field: %s ; equals p_hop_X only in the mobile branch: %s ; "
+          "protocol-reachable values %s"
+          % (not mts["p_hop_Y_IS_NOT_A_MANIFEST_FIELD"],
+             mts["p_hop_Y_EQUALS_p_hop_X_ONLY_IN_THE_MOBILE_BRANCH"],
+             mts["p_hop_Y_PROTOCOL_REACHABLE_VALUES"]))
     print("omega inert under the qualified LawSpec: %s"
           % res["OMEGA"]["state_sha_equal"])
     print("Y in any exchangeable pool: %s" % res["Y_EXCHANGEABILITY"]["Y_IN_ANY_DECLARED_POOL"])
@@ -391,7 +424,8 @@ def main():
           % (s["ENGINE_CONSTRUCT_CALLS"], s["ENGINE_ADVANCE_CALLS"],
              s["SCIENTIFIC_WORLD_STARTS"], s["SCIENTIFIC_SEEDS_OPENED"],
              s["FIXTURE_CONSTRUCTIONS"], s["FIXTURE_STEPS"], s["ALL_FOUR_ZERO"]))
-    print("guard_obtc independent witness: %s" % s.get("INDEPENDENT_WITNESS_guard_obtc"))
+    print("filesystem witness (no raw file written): %s"
+          % s.get("FILESYSTEM_WITNESS_raw_dirs", {}).get("NO_RAW_FILE_WRITTEN"))
 
 
 if __name__ == "__main__":

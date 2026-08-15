@@ -198,7 +198,9 @@ def main():
         raise SystemExit("on-disk files are not the committed blobs")
     sys.path.insert(0, "/home/claude/ORR01/code")
     sys.path.insert(0, "/home/claude/OBTC02/code")
-    SENT.install(seed_register_paths=["/home/claude/OBFOR01/out/_freeze.json"])
+    import pmcr01_oracles as _OR
+    SENT.install(seed_register_paths=_OR.SEED_REGISTERS)
+    _raw_before = SENT.raw_dir_witness(_OR.RAW_DIRS)
     import lawspec_v2 as V2
     import engine_obtc as EN
     import guard_obtc as GD
@@ -242,7 +244,7 @@ def main():
         "X_HAZARD_SATURATION": sat,
         "OBSERVABLE_LAYER": obs,
         "EXACT_KERNEL_CONSTANTS": ker,
-        "SENTINEL": SENT.report(GD),
+        "SENTINEL": SENT.report(GD, _raw_before, SENT.raw_dir_witness(_OR.RAW_DIRS)),
     }
     json.dump(out, open(f"{OUT}/_operator.json", "w"), indent=1, default=str)
 
