@@ -1,0 +1,172 @@
+{
+ "STATIC_TRACE_OF_THE_FROZEN_PREDICTOR": {
+  "simulate_arm_arguments": [
+   "L",
+   "mobile",
+   "q",
+   "mu",
+   "births",
+   "rng",
+   "shared_trajectory",
+   "birth_flux",
+   "B_const",
+   "horizon"
+  ],
+  "simulate_arm_references_to_target_statistics": [
+   "r80",
+   "frames"
+  ],
+  "empirical_birth_flux_reads": [
+   "series",
+   "fields",
+   "accepted_births_X",
+   "N_X"
+  ],
+  "npz_keys_referenced_anywhere_in_the_file": [
+   "36",
+   "BY_SIZE",
+   "ESTIMATOR",
+   "L",
+   "N_X",
+   "OBSERVED_DISPERSION",
+   "RESIDUALS",
+   "STATIC_mean_summary",
+   "STATIC_median_summary",
+   "accepted_births_X",
+   "arms",
+   "fields",
+   "interaction",
+   "main_effect_birth_flux",
+   "main_effect_shared_trajectory",
+   "mean",
+   "mean_residual_percent",
+   "median",
+   "median_residual_percent",
+   "median_se_percent",
+   "mobile_mean",
+   "mobile_median",
+   "mobile_within_arm_sd",
+   "mobile_within_arm_skew",
+   "muX",
+   "p_hop",
+   "point",
+   "residual_percent",
+   "series",
+   "static_mean",
+   "static_median",
+   "static_within_arm_sd",
+   "step_0_baseline_M2_level",
+   "step_1_add_shared_trajectory",
+   "step_1_gain",
+   "step_2_add_empirical_birth_flux",
+   "step_2_gain",
+   "tag",
+   "within_arm_sd",
+   "within_arm_skew"
+  ]
+ },
+ "DEPENDENCY_GRAPH": [
+  {
+   "input": "LawSpec point (L, CAP, S0, phi, omega, muX, muY, kX, kY, p_hop, X_SEED)",
+   "category": "A",
+   "why": "frozen in obdi02_protocol.yaml before every mission"
+  },
+  {
+   "input": "exact one-step kernels K_X and K_Y",
+   "category": "A",
+   "why": "derived in OBTR01 from the engine source, hashed into METHODS_CORE"
+  },
+  {
+   "input": "condition (static p_hop_Y = 0 / mobile)",
+   "category": "A",
+   "why": "the experimental condition itself"
+  },
+  {
+   "input": "domain size L = 36, horizon 11000, burn-in 2000, cadence 50",
+   "category": "A",
+   "why": "frozen window block"
+  },
+  {
+   "input": "the 28 fresh seeds",
+   "category": "A",
+   "why": "enumerated in the freeze commit's _freeze.json before any arm ran"
+  },
+  {
+   "input": "organiser trajectory",
+   "category": "A",
+   "SIMULATED_EX_ANTE": true,
+   "INJECTED_FROM_THE_ENGINE": false,
+   "why": "simulate_arm draws the organiser's increments itself, from the same exact kernel, inside each simulated arm. No realized engine path is read. The path is SHARED BY CONSTRUCTION within a simulated arm, which is the mechanism under test, not an injection."
+  },
+  {
+   "input": "empirical birth-flux distribution",
+   "category": "B",
+   "SIMULATED_EX_ANTE": false,
+   "INJECTED_FROM_THE_ENGINE": true,
+   "source": "accepted_births_X per step, from up to 40 HISTORICAL OBDI02 / OBTC02 arms",
+   "why": "this is a MEASURED birth flux taken from delivered engine output. It is non-target with respect to the fresh arms and it was frozen before them, but it is category B and it is load-bearing: the frozen ablation shows that replacing it by a Poisson source of the same mean moves the mobile prediction by 1.27 points.",
+   "load_bearing": true
+  },
+  {
+   "input": "N_X of historical arms",
+   "category": "B",
+   "role": "used ONLY to skip extinct historical arms when estimating the birth flux",
+   "load_bearing": false
+  },
+  {
+   "input": "capacity refusals",
+   "category": "not used",
+   "why": "not simulated; bounded separately at 0.018 % on r80"
+  },
+  {
+   "input": "finite-torus path",
+   "category": "A",
+   "why": "the torus is applied by construction in the simulator's modulo arithmetic"
+  },
+  {
+   "input": "event-order history",
+   "category": "A",
+   "why": "the intra-step order is transcribed from kinetics.py, not measured"
+  },
+  {
+   "input": "observed r80, M2 or radial profile of ANY arm",
+   "category": "C",
+   "USED_IN_THE_PREDICTION": false,
+   "why": "simulate_arm takes no such argument and references none; the observed values are read only afterwards, to compare. Static trace: ['r80', 'frames']"
+  },
+  {
+   "input": "historical arm-to-arm dispersion of r80",
+   "category": "C_HISTORICAL",
+   "USED_IN_THE_POINT_PREDICTION": false,
+   "USED_IN_THE_MARGIN_WIDTH": true,
+   "why": "the sampling term of the +-2.9 % margin is sized on the historical arm-to-arm relative standard deviation. That is a dispersion, not a mean, it cannot move the point comparison, and it was frozen before the fresh arms. It is disclosed rather than hidden."
+  }
+ ],
+ "LOAD_BEARING_CATEGORY_B_INPUTS": [
+  "empirical birth-flux distribution"
+ ],
+ "ANY_CATEGORY_C_INPUT_IN_THE_PREDICTION": false,
+ "SOURCE_PATH_TREATMENT": "SIMULATED_EX_ANTE__SHARED_BY_CONSTRUCTION",
+ "BIRTH_FLUX_TREATMENT": "MEASURED_FROM_HISTORICAL_ARMS_AND_INJECTED_AS_A_LAW",
+ "CAPACITY_TREATMENT": "NOT_MODELLED__BOUNDED_SEPARATELY",
+ "TORUS_TREATMENT": "APPLIED_BY_CONSTRUCTION",
+ "EVENT_ORDER_TREATMENT": "TRANSCRIBED_FROM_SOURCE",
+ "STATIC_PREDICTION_MODE": "CONDITIONAL",
+ "MOBILE_PREDICTION_MODE": "CONDITIONAL",
+ "RATIO_PREDICTION_MODE": "CONDITIONAL",
+ "WHY_NOT_UNCONDITIONAL": "the predictions are conditional on a birth-flux law measured from delivered engine output. Nothing target-derived enters, and the organiser trajectory is simulated rather than injected, so the predictions are genuinely predictive of the fresh clouds; but a model that must be told the source intensity is not an unconditional first-principles operator.",
+ "FROZEN_PREDICTION_VALUES": {
+  "static_median_r80": 6.007630361527475,
+  "mobile_median_r80": 8.057449850229872,
+  "ratio": 1.3412026648359268,
+  "margin_percent": 2.9
+ },
+ "M6_BIRTH_FLUX_PROVENANCE": {
+  "mobile_arms_used": 40,
+  "static_arms_used": 3,
+  "mobile_mean_B": 0.47001944444444443,
+  "static_mean_B": 0.3274074074074074,
+  "mobile_var_over_mean": 1.2938733023095315,
+  "note": "a Poisson source would have variance/mean = 1"
+ }
+}
