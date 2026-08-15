@@ -1,0 +1,180 @@
+{
+ "SECTION": "OBFOR01 \u00a77, \u00a715",
+ "CONSUMES_NO_SCIENTIFIC_RUN": true,
+ "WHAT_IS_SIMULATED": "the ideal process written from the frozen rules: exact one-step kernels, exact intra-step order, geometric mortality, point source at the organiser, finite torus, finite horizon, and the frozen estimator pipeline. No engine, no capacity refusal, no chemostat.",
+ "BIRTH_FLUX_SOURCE": {
+  "mobile_arms_used": 40,
+  "static_arms_used": 3,
+  "mobile_mean_B": 0.47001944444444443,
+  "static_mean_B": 0.3274074074074074,
+  "mobile_var_over_mean": 1.2938733023095315,
+  "note": "a Poisson source would have variance/mean = 1"
+ },
+ "MODELS": [
+  {
+   "tag": "M6_MOBILE_full",
+   "arms": 30,
+   "population_r80": 8.54400374531753,
+   "median_summary": 8.057449850229872,
+   "median_ratio": 0.9430531739461947,
+   "median_residual_percent": -5.69468260538053,
+   "median_se_percent": 0.6024122758550969,
+   "mean_summary": 8.38453361782714,
+   "mean_ratio": 0.9813354333350115,
+   "mean_residual_percent": -1.8664566664988502,
+   "mean_se_percent": 0.6148732622432708,
+   "within_arm_sd": 1.6808416039878906,
+   "within_arm_skew": 0.9921050698262178
+  },
+  {
+   "tag": "M4_ablate_birth_flux_to_constant",
+   "arms": 30,
+   "population_r80": 8.54400374531753,
+   "median_summary": 8.166040424573282,
+   "median_ratio": 0.9557627393420342,
+   "median_residual_percent": -4.4237260657965845,
+   "median_se_percent": 0.6760957406408264,
+   "mean_summary": 8.505958851854736,
+   "mean_ratio": 0.9955471820241599,
+   "mean_residual_percent": -0.4452817975840073,
+   "mean_se_percent": 0.7965078300479762,
+   "within_arm_sd": 1.7317763591155453,
+   "within_arm_skew": 1.0163761239272864
+  },
+  {
+   "tag": "M3_ablate_shared_trajectory",
+   "arms": 30,
+   "population_r80": 8.54400374531753,
+   "median_summary": 8.374601139800212,
+   "median_ratio": 0.9801729247122396,
+   "median_residual_percent": -1.9827075287760398,
+   "median_se_percent": 0.387040657123455,
+   "mean_summary": 8.444399108157526,
+   "mean_ratio": 0.9883421590007387,
+   "mean_residual_percent": -1.165784099926126,
+   "mean_se_percent": 0.2960125795085286,
+   "within_arm_sd": 0.7663305535970324,
+   "within_arm_skew": 0.21386980373043094
+  },
+  {
+   "tag": "M2_neither_shared_nor_endogenous",
+   "arms": 30,
+   "population_r80": 8.54400374531753,
+   "median_summary": 8.487928037047318,
+   "median_ratio": 0.9934368347742188,
+   "median_residual_percent": -0.6563165225781153,
+   "median_se_percent": 0.4254801578813688,
+   "mean_summary": 8.514838360723523,
+   "mean_ratio": 0.996586449928701,
+   "mean_residual_percent": -0.3413550071298954,
+   "mean_se_percent": 0.3234517585116483,
+   "within_arm_sd": 0.7642517061224102,
+   "within_arm_skew": 0.14941553599522023
+  },
+  {
+   "tag": "M6_STATIC_full",
+   "arms": 30,
+   "population_r80": 6.082762530298219,
+   "median_summary": 6.007630361527475,
+   "median_ratio": 0.9876483475400345,
+   "median_residual_percent": -1.23516524599655,
+   "median_se_percent": 0.2754187763598051,
+   "mean_summary": 5.992419456852994,
+   "mean_ratio": 0.9851476902155514,
+   "mean_residual_percent": -1.4852309784448625,
+   "mean_se_percent": 0.30779324910586164,
+   "within_arm_sd": 0.6667332247506254,
+   "within_arm_skew": 0.15061576674107238
+  },
+  {
+   "tag": "M6_STATIC_poisson_births",
+   "arms": 30,
+   "population_r80": 6.082762530298219,
+   "median_summary": 6.0117189587707545,
+   "median_ratio": 0.988320508786329,
+   "median_residual_percent": -1.1679491213670956,
+   "median_se_percent": 0.28553122140480836,
+   "mean_summary": 6.012768817278679,
+   "mean_ratio": 0.9884931044618458,
+   "mean_residual_percent": -1.1506895538154205,
+   "mean_se_percent": 0.2918358978743116,
+   "within_arm_sd": 0.6929394201805611,
+   "within_arm_skew": 0.31378267817329064
+  }
+ ],
+ "OBSERVED": {
+  "static_median": -1.8334496543011447,
+  "static_mean": -1.3948103647905108,
+  "mobile_median": -5.171587777784015,
+  "mobile_mean": -0.5752155272819137,
+  "static_within_arm_sd": 0.7367782142973308,
+  "mobile_within_arm_sd": 1.7799275248897777,
+  "mobile_within_arm_skew": 1.071929194644978
+ },
+ "DECOMPOSITION": {
+  "SEQUENTIAL": {
+   "ORDER": "physically ordered: start from the discrete kernel on the finite torus with a Poisson point source and frames treated as independent draws, then add the shared organiser trajectory, then the measured birth flux",
+   "step_0_baseline_M2_level": -0.6563165225781153,
+   "step_1_add_shared_trajectory": -4.4237260657965845,
+   "step_1_gain": -3.767409543218469,
+   "step_2_add_empirical_birth_flux": -5.69468260538053,
+   "step_2_gain": -1.2709565395839455,
+   "total": -5.038366082802415
+  },
+  "FACTORIAL": {
+   "DESIGN": "2 x 2 on {shared trajectory, empirical birth flux}",
+   "neither": -0.6563165225781153,
+   "shared_only": -4.4237260657965845,
+   "births_only": -1.9827075287760398,
+   "both": -5.69468260538053,
+   "main_effect_shared_trajectory": -3.7396923099114794,
+   "main_effect_birth_flux": -1.298673772890935,
+   "interaction": 0.055434466613978994,
+   "WARNING": "the two main effects and the interaction sum to the total by construction; no single mechanism is credited with the whole residual, and the ordering-dependent sequential table is reported beside this one because attribution is not order-free"
+  },
+  "TARGET": {
+   "mobile_median_residual_observed": -5.171587777784015,
+   "static_median_residual_observed": -1.8334496543011447,
+   "mobile_mean_residual_observed": -0.5752155272819137,
+   "static_mean_residual_observed": -1.3948103647905108
+  },
+  "M6_REPRODUCES": {
+   "mobile_median": -5.69468260538053,
+   "mobile_median_se": 0.6024122758550969,
+   "mobile_mean": -1.8664566664988502,
+   "static_median": -1.23516524599655,
+   "static_median_se": 0.2754187763598051,
+   "static_mean": -1.4852309784448625
+  },
+  "ABLATIONS": {
+   "removing_the_shared_trajectory": {
+    "median_residual_percent": -1.9827075287760398,
+    "within_arm_sd": 0.7663305535970324,
+    "loses_percentage_points": -3.71197507660449,
+    "READING": "the shared organiser trajectory is what over-disperses the per-frame statistic; removing it collapses the cloud onto the static width and the median penalty with it"
+   },
+   "flattening_the_birth_flux": {
+    "median_residual_percent": -4.4237260657965845,
+    "within_arm_sd": 1.7317763591155453,
+    "loses_percentage_points": -1.2709565395839455,
+    "READING": "replacing the measured birth flux by a Poisson source of the same mean; if this changes little, the endogeneity of the source is not what drives the residual"
+   }
+  },
+  "DISPERSION_CHECK": {
+   "mobile_within_arm_sd_simulated": 1.6808416039878906,
+   "mobile_within_arm_sd_observed": 1.7799275248897777,
+   "mobile_within_arm_skew_simulated": 0.9921050698262178,
+   "mobile_within_arm_skew_observed": 1.071929194644978,
+   "static_within_arm_sd_simulated": 0.6667332247506254,
+   "static_within_arm_sd_observed": 0.7367782142973308
+  }
+ },
+ "VERDICT": {
+  "M6_REPRODUCES_THE_MOBILE_MEDIAN_RESIDUAL": true,
+  "M6_REPRODUCES_THE_STATIC_MEDIAN_RESIDUAL": true,
+  "M6_REPRODUCES_THE_MEAN_SUMMARY_AS_NEARLY_UNBIASED": true,
+  "SHARED_TRAJECTORY_IS_NECESSARY": true,
+  "BIRTH_FLUX_ENDOGENEITY_IS_MATERIAL": true,
+  "INTERACTION_IS_MATERIAL": false
+ }
+}
