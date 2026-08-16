@@ -1,0 +1,311 @@
+{
+ "SECTION": "MYQBD01 \u00a77 temporal dependence",
+ "INDEPENDENT_UNIT": "ONE_ARM",
+ "WHY_NOT_FRAMES": "Q is strongly autocorrelated within an arm; the integrated autocorrelation time is far above 1, so the 9000 in-window frames carry only n_eff_blocks independent pieces of information per arm. Branch conclusions use the 14 arm-level means.",
+ "STATIC": {
+  "n_arms": 14,
+  "mean_of_arm_means": 2.3690476190476195,
+  "sd_of_arm_means": 0.13060221180721915,
+  "se_of_branch_mean_from_arms": 0.034904909324106885,
+  "min_arm_mean": 2.0776666666666666,
+  "max_arm_mean": 2.5985555555555555,
+  "mean_frac_zero": 0.6469603174603175,
+  "mean_iat": 7.177156559556863,
+  "mean_q10": 0.0,
+  "min_arm_q10": 0.0
+ },
+ "MOBILE": {
+  "n_arms": 14,
+  "mean_of_arm_means": 3.1697301587301587,
+  "sd_of_arm_means": 0.1629902887142898,
+  "se_of_branch_mean_from_arms": 0.043560986981445705,
+  "min_arm_mean": 2.8725555555555555,
+  "max_arm_mean": 3.4298888888888888,
+  "mean_frac_zero": 0.5427936507936508,
+  "mean_iat": 9.19672185075826,
+  "mean_q10": 0.0,
+  "min_arm_q10": 0.0
+ },
+ "PER_ARM_TEMPORAL": [
+  {
+   "arm_id": "M__seed9300014",
+   "branch": "M",
+   "iat": 8.30653886453042,
+   "n_eff_blocks": 1083.4837646315862,
+   "acf1": 0.6504515284963792,
+   "frac_Q_zero": 0.5464444444444444,
+   "max_zero_run": 67,
+   "early_late_drift": -0.08266666666666644
+  },
+  {
+   "arm_id": "M__seed9300015",
+   "branch": "M",
+   "iat": 35.33533229909496,
+   "n_eff_blocks": 254.70257146076185,
+   "acf1": 0.6529306504245226,
+   "frac_Q_zero": 0.5902222222222222,
+   "max_zero_run": 909,
+   "early_late_drift": -0.6843333333333335
+  },
+  {
+   "arm_id": "M__seed9300016",
+   "branch": "M",
+   "iat": 10.805483478452436,
+   "n_eff_blocks": 832.9104401433949,
+   "acf1": 0.6431417890196295,
+   "frac_Q_zero": 0.5428888888888889,
+   "max_zero_run": 53,
+   "early_late_drift": -0.23833333333333329
+  },
+  {
+   "arm_id": "M__seed9300017",
+   "branch": "M",
+   "iat": 6.375169455490926,
+   "n_eff_blocks": 1411.727180404328,
+   "acf1": 0.6425552768629458,
+   "frac_Q_zero": 0.5262222222222223,
+   "max_zero_run": 134,
+   "early_late_drift": -0.3546666666666667
+  },
+  {
+   "arm_id": "M__seed9300018",
+   "branch": "M",
+   "iat": 5.907149827809986,
+   "n_eff_blocks": 1523.577404051838,
+   "acf1": 0.6241215998180448,
+   "frac_Q_zero": 0.5567777777777778,
+   "max_zero_run": 42,
+   "early_late_drift": 0.12633333333333363
+  },
+  {
+   "arm_id": "M__seed9300019",
+   "branch": "M",
+   "iat": 6.542063546130058,
+   "n_eff_blocks": 1375.7127145797795,
+   "acf1": 0.6471223708137008,
+   "frac_Q_zero": 0.5334444444444445,
+   "max_zero_run": 80,
+   "early_late_drift": -0.1419999999999999
+  },
+  {
+   "arm_id": "M__seed9300020",
+   "branch": "M",
+   "iat": 7.224206904330976,
+   "n_eff_blocks": 1245.8114944914466,
+   "acf1": 0.6501328143051907,
+   "frac_Q_zero": 0.5385555555555556,
+   "max_zero_run": 43,
+   "early_late_drift": 0.1293333333333333
+  },
+  {
+   "arm_id": "M__seed9300021",
+   "branch": "M",
+   "iat": 6.124112032193863,
+   "n_eff_blocks": 1469.6008095031366,
+   "acf1": 0.6440832183910586,
+   "frac_Q_zero": 0.534,
+   "max_zero_run": 170,
+   "early_late_drift": -0.40766666666666707
+  },
+  {
+   "arm_id": "M__seed9300022",
+   "branch": "M",
+   "iat": 6.379948716904967,
+   "n_eff_blocks": 1410.6696463174815,
+   "acf1": 0.641898800151569,
+   "frac_Q_zero": 0.5262222222222223,
+   "max_zero_run": 58,
+   "early_late_drift": -0.08933333333333326
+  },
+  {
+   "arm_id": "M__seed9300023",
+   "branch": "M",
+   "iat": 5.876281609635077,
+   "n_eff_blocks": 1531.5807849036883,
+   "acf1": 0.6357396573047965,
+   "frac_Q_zero": 0.542,
+   "max_zero_run": 58,
+   "early_late_drift": -0.42833333333333323
+  },
+  {
+   "arm_id": "M__seed9300024",
+   "branch": "M",
+   "iat": 5.343979088471631,
+   "n_eff_blocks": 1684.1383267040412,
+   "acf1": 0.6580496046742784,
+   "frac_Q_zero": 0.5372222222222223,
+   "max_zero_run": 33,
+   "early_late_drift": -0.7126666666666663
+  },
+  {
+   "arm_id": "M__seed9300025",
+   "branch": "M",
+   "iat": 5.335475767463936,
+   "n_eff_blocks": 1686.822392650073,
+   "acf1": 0.637590629545824,
+   "frac_Q_zero": 0.5516666666666666,
+   "max_zero_run": 29,
+   "early_late_drift": -0.1166666666666667
+  },
+  {
+   "arm_id": "M__seed9300026",
+   "branch": "M",
+   "iat": 7.133116253354841,
+   "n_eff_blocks": 1261.720639386345,
+   "acf1": 0.6629010383048107,
+   "frac_Q_zero": 0.5402222222222223,
+   "max_zero_run": 38,
+   "early_late_drift": -0.01633333333333331
+  },
+  {
+   "arm_id": "M__seed9300027",
+   "branch": "M",
+   "iat": 12.065248066751565,
+   "n_eff_blocks": 745.9440494059523,
+   "acf1": 0.6601237856003336,
+   "frac_Q_zero": 0.5332222222222223,
+   "max_zero_run": 85,
+   "early_late_drift": 0.13866666666666694
+  },
+  {
+   "arm_id": "S__seed9300000",
+   "branch": "S",
+   "iat": 6.83704950283814,
+   "n_eff_blocks": 1316.357296559575,
+   "acf1": 0.6431793232423639,
+   "frac_Q_zero": 0.6483333333333333,
+   "max_zero_run": 52,
+   "early_late_drift": 0.36933333333333307
+  },
+  {
+   "arm_id": "S__seed9300001",
+   "branch": "S",
+   "iat": 6.984991289749321,
+   "n_eff_blocks": 1288.476910945868,
+   "acf1": 0.6212819717703862,
+   "frac_Q_zero": 0.6551111111111111,
+   "max_zero_run": 35,
+   "early_late_drift": 0.20866666666666678
+  },
+  {
+   "arm_id": "S__seed9300002",
+   "branch": "S",
+   "iat": 6.244685435892996,
+   "n_eff_blocks": 1441.2255176650049,
+   "acf1": 0.6232902495477002,
+   "frac_Q_zero": 0.6437777777777778,
+   "max_zero_run": 46,
+   "early_late_drift": 0.48666666666666636
+  },
+  {
+   "arm_id": "S__seed9300003",
+   "branch": "S",
+   "iat": 6.5226666731712,
+   "n_eff_blocks": 1379.8037598668777,
+   "acf1": 0.6375822639345938,
+   "frac_Q_zero": 0.6451111111111111,
+   "max_zero_run": 42,
+   "early_late_drift": 0.008333333333333304
+  },
+  {
+   "arm_id": "S__seed9300004",
+   "branch": "S",
+   "iat": 7.537640172297697,
+   "n_eff_blocks": 1194.0076461963204,
+   "acf1": 0.6301487406925633,
+   "frac_Q_zero": 0.6422222222222222,
+   "max_zero_run": 41,
+   "early_late_drift": -0.422333333333333
+  },
+  {
+   "arm_id": "S__seed9300005",
+   "branch": "S",
+   "iat": 6.736786986494286,
+   "n_eff_blocks": 1335.9484303189247,
+   "acf1": 0.6034409848587617,
+   "frac_Q_zero": 0.6538888888888889,
+   "max_zero_run": 65,
+   "early_late_drift": 0.07500000000000018
+  },
+  {
+   "arm_id": "S__seed9300006",
+   "branch": "S",
+   "iat": 6.968378825934591,
+   "n_eff_blocks": 1291.5486119245145,
+   "acf1": 0.6279437028869951,
+   "frac_Q_zero": 0.6451111111111111,
+   "max_zero_run": 50,
+   "early_late_drift": -0.6153333333333335
+  },
+  {
+   "arm_id": "S__seed9300007",
+   "branch": "S",
+   "iat": 7.422676214619179,
+   "n_eff_blocks": 1212.5006857060846,
+   "acf1": 0.6299927753987553,
+   "frac_Q_zero": 0.6531111111111111,
+   "max_zero_run": 37,
+   "early_late_drift": 0.1413333333333333
+  },
+  {
+   "arm_id": "S__seed9300008",
+   "branch": "S",
+   "iat": 6.666442540322106,
+   "n_eff_blocks": 1350.0453871106406,
+   "acf1": 0.6161563154636368,
+   "frac_Q_zero": 0.647,
+   "max_zero_run": 32,
+   "early_late_drift": 0.10099999999999998
+  },
+  {
+   "arm_id": "S__seed9300009",
+   "branch": "S",
+   "iat": 9.718588506357806,
+   "n_eff_blocks": 926.0604041535752,
+   "acf1": 0.6411276913026355,
+   "frac_Q_zero": 0.6437777777777778,
+   "max_zero_run": 40,
+   "early_late_drift": 0.3856666666666668
+  },
+  {
+   "arm_id": "S__seed9300010",
+   "branch": "S",
+   "iat": 8.521228052833635,
+   "n_eff_blocks": 1056.1857920240916,
+   "acf1": 0.6031085537990191,
+   "frac_Q_zero": 0.6531111111111111,
+   "max_zero_run": 44,
+   "early_late_drift": -0.42666666666666675
+  },
+  {
+   "arm_id": "S__seed9300011",
+   "branch": "S",
+   "iat": 7.429191432597908,
+   "n_eff_blocks": 1211.4373524566452,
+   "acf1": 0.6142265354200941,
+   "frac_Q_zero": 0.6264444444444445,
+   "max_zero_run": 32,
+   "early_late_drift": -0.20233333333333325
+  },
+  {
+   "arm_id": "S__seed9300012",
+   "branch": "S",
+   "iat": 5.783178142663348,
+   "n_eff_blocks": 1556.2377256902546,
+   "acf1": 0.6333239595012045,
+   "frac_Q_zero": 0.6321111111111111,
+   "max_zero_run": 36,
+   "early_late_drift": 0.16466666666666674
+  },
+  {
+   "arm_id": "S__seed9300013",
+   "branch": "S",
+   "iat": 7.106688058023876,
+   "n_eff_blocks": 1266.4126983649523,
+   "acf1": 0.6228386484231312,
+   "frac_Q_zero": 0.6683333333333333,
+   "max_zero_run": 50,
+   "early_late_drift": 0.5393333333333334
+  }
+ ]
+}

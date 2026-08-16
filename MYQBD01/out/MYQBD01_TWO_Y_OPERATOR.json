@@ -1,0 +1,94 @@
+{
+ "REDUCTION": {
+  "SECTION": "MYQBD01 \u00a79 attack on beta = kY * E[Q]",
+  "CONDITIONS": {
+   "1_one_Y_per_relevant_cell": {
+    "status": "HOLDS in the archive (kY=0 -> exactly one Y, the organiser)",
+    "but": "the QUESTION is a future ACTIVE lineage, where a second birth can co-locate; then p carries nY and the reduction's linear form breaks"
+   },
+   "2_rare_Y_approximation": {
+    "status": "HOLDS for the first birth only; see \u00a713 feedback bound"
+   },
+   "3_clamp_inactive_kY_nX_nY_lt_1": {
+    "mean_frac_frames_nX_ge_1": 0.9085555555555554,
+    "status": "for small kY the clamp min(1, kY*nX*nY) is inactive at the tested magnitudes, so this holds in the linear regime"
+   },
+   "4_correct_scheduler_phase": {
+    "status": "HOLDS -- Q_LEDGER_EVENT_EXACT (\u00a75)"
+   },
+   "5_no_Y_induced_env_change": {
+    "status": "FAILS beyond the first birth: a Y birth depletes local nSY (\u00a713)"
+   },
+   "6_exposure_survival_independence": {
+    "status": "QUESTIONABLE: Q, survival and organiser motion share the realized trajectory; exposure and lineage fate are not independent"
+   },
+   "7_no_consequential_temporal_correlation": {
+    "status": "FAILS: integrated autocorrelation time ~7-9, so E[Q] over frames is not a sum of independent draws; the arithmetic mean is a biased proxy for the growth-relevant functional"
+   },
+   "8_arithmetic_mean_is_the_persistence_criterion": {
+    "status": "NO: persistence is governed by the multiplicative growth of the lineage, which sees the JOINT law of (c,p) over its own path, not the marginal mean of Q. E[Q] can be positive while the lineage still dies because Q=0 episodes are long -- min arm Q10 = 0"
+   },
+   "9_organiser_exposure_represents_descendant_exposure": {
+    "status": "NO -- \u00a712, Q_POSITION unrecoverable for a separated descendant",
+    "min_arm_Q10": 0.0
+   },
+   "10_trial_count_c_not_c_nY": {
+    "status": "the trial count is c; the nY factor lives in p, so two co-located Y do NOT simply double the trials -- the process is not a sum of independent one-Y operators"
+   }
+  },
+  "mean_frac_frames_with_multiple_organiser_cells": 0.0,
+  "CLASSIFICATION": "SCALAR_Q_REDUCTION_VALID_ONLY_FOR_FIRST_BIRTH",
+  "WHY": "beta = kY * E[Q] is exact only for the intensity of the FIRST birth of a single Y at the organiser cell, in the unclamped regime. Beyond the first birth it fails on at least four independent counts: SY depletion (5), temporal correlation (7), the arithmetic-mean-vs-multiplicative-growth gap (8), and the absence of descendant exposure (9). It must NOT be used alone for the final region."
+ },
+ "TWO_Y": {
+  "SECTION": "MYQBD01 \u00a711 two-Y state and the Galton-Watson question",
+  "SMALLEST_EXACT_STATE": [
+   "ONE_Y",
+   "TWO_Y_COLOCATED",
+   "TWO_Y_SEPARATED",
+   "THREE_OR_MORE_STOP",
+   "EXTINCT"
+  ],
+  "PLUS_SPATIAL": "TWO_Y_SEPARATED and the third-centre hazard require source-relative displacement, i.e. the descendant position -- which \u00a712 shows is unrecorded",
+  "IS_GALTON_WATSON": false,
+  "EXACT_COUNTEREXAMPLE_two_colocated": {
+   "UNCLAMPED_REGIME": {
+    "c": 4,
+    "kY": 0.05,
+    "nX": 3,
+    "p_one_Y": 0.15000000000000002,
+    "p_two_Y": 0.30000000000000004,
+    "true_mean": 1.2000000000000002,
+    "naive_mean": 1.2,
+    "means_equal": true,
+    "true_variance": 0.8400000000000001,
+    "naive_variance": 1.02,
+    "variances_equal": false,
+    "true_max_births_support": 4,
+    "naive_max_births_support": 8,
+    "support_differs": true
+   },
+   "CLAMPED_REGIME": {
+    "c": 4,
+    "kY": 0.2,
+    "nX": 3,
+    "p_one_Y": 0.6000000000000001,
+    "p_two_Y": 1.0,
+    "true_mean": 4.0,
+    "naive_mean": 4.800000000000001,
+    "means_equal": false,
+    "true_variance": 0.0,
+    "naive_variance": 1.92,
+    "variances_equal": false,
+    "true_max_births_support": 4,
+    "naive_max_births_support": 8,
+    "support_differs": true
+   },
+   "reading": "two co-located Y draw ONE Binomial(c, min(1, kY*nX*2)) from the SHARED candidate pool c = min(nSY, free); they do NOT draw two independent Binomial(c, min(1, kY*nX*1)). In the UNCLAMPED regime the means coincide (p2 = 2 p1), but the SUPPORT does not: the shared pool caps true births at c = 4 while the naive independent sum allows up to 2c = 8, and the variances differ (0.8400 vs 1.0200). In the CLAMPED regime even the MEANS diverge (4.0000 vs 4.8000). Either way the offspring channels are coupled and the process is NOT a branching process."
+  },
+  "WHY_THE_STATE_CANNOT_BE_REDUCED_TO_A_SCALAR": "c and p both depend on the shared cell state (nSY, free, nX), and nX at the cell is produced by the lineage. Co-located Y compete for one candidate pool; separated Y have different, unrecorded environments. No scalar branching ratio captures this.",
+  "CONSEQUENCE": "the two-Y state operator is identifiable ONLY with per-cell descendant-position exposure. From an organiser-only ledger it is NOT_IDENTIFIABLE, which blocks the positive disposition.",
+  "TWO_Y_STATE_OPERATOR_VERIFIED": false,
+  "TWO_Y_STATE_OPERATOR_STATUS": "NOT_IDENTIFIABLE_FROM_ORGANISER_ONLY_LEDGER"
+ }
+}

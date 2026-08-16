@@ -1,0 +1,69 @@
+{
+ "SECTION": "MYQBD01 \u00a710 one-Y operator, independently re-derived",
+ "SOURCE_FACTS_CONFIRMED": {
+  "react_free0_once": true,
+  "react_cand_min": true,
+  "react_p_clamp": true,
+  "decay_after_react": true,
+  "births_binomial": true,
+  "decay_binomial": true
+ },
+ "ALL_SOURCE_FACTS_HOLD": true,
+ "PGF": "f(z) = (m + (1-m) z) * (1 - p (1-m) (1-z))^c",
+ "c": "min(nSY, free)   (free0, shared X/Y, top of _react)",
+ "p": "min(1, kY * nX * nY)",
+ "m": "muY, applied in _decay AFTER _react, so newborns decay in their birth step",
+ "R_mean_offspring": "(1 - muY) * (1 + c p)",
+ "INDEPENDENT_VERIFICATION_vs_brute_force": {
+  "checks": [
+   {
+    "c": 4,
+    "p": 0.03,
+    "m": 0.11,
+    "z": 0.37,
+    "closed": 0.41047959986474325,
+    "brute": 0.41047959986474314,
+    "abs_err": 1.1102230246251565e-16
+   },
+   {
+    "c": 7,
+    "p": 0.5,
+    "m": 0.9,
+    "z": 0.5,
+    "closed": 0.795712013824768,
+    "brute": 0.7957120138247677,
+    "abs_err": 2.220446049250313e-16
+   },
+   {
+    "c": 2,
+    "p": 0.9,
+    "m": 0.02,
+    "z": 0.8,
+    "closed": 0.54536683584,
+    "brute": 0.5453668358400001,
+    "abs_err": 1.1102230246251565e-16
+   },
+   {
+    "c": 1,
+    "p": 0.15,
+    "m": 0.25,
+    "z": 0.6,
+    "closed": 0.6685,
+    "brute": 0.6685,
+    "abs_err": 0.0
+   },
+   {
+    "c": 5,
+    "p": 0.0,
+    "m": 0.004,
+    "z": 0.5,
+    "closed": 0.502,
+    "brute": 0.502,
+    "abs_err": 0.0
+   }
+  ],
+  "max_abs_err": 2.220446049250313e-16,
+  "MATCHES": true
+ },
+ "NOT_TAKEN_FROM_PMCR01": "the closed form is checked against an independent enumeration over (parent survives, #births, #newborn survivors), not against PMCR01's code"
+}

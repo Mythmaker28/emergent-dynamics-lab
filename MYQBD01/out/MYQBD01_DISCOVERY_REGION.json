@@ -1,0 +1,158 @@
+{
+ "SECTION": "MYQBD01 \u00a714-\u00a716 discovery region and disposition",
+ "WHAT_IS_CONSTRUCTIBLE": {
+  "one_Y_first_birth_diagnostic_per_mobile_arm": [
+   {
+    "arm": "M__seed9300014",
+    "sum_Q": 28541.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.503731474019831e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300015",
+    "sum_Q": 25853.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.868023053417398e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300016",
+    "sum_Q": 27960.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.57653791130186e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300017",
+    "sum_Q": 30461.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.282886313646958e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300018",
+    "sum_Q": 27774.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.600489666594657e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300019",
+    "sum_Q": 28331.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.529702446083795e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300020",
+    "sum_Q": 28805.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.471619510501649e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300021",
+    "sum_Q": 29056.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.441629955947137e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300022",
+    "sum_Q": 30869.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.239495934432602e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300023",
+    "sum_Q": 26281.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.8050302499904876e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300024",
+    "sum_Q": 29161.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.429237680463633e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300025",
+    "sum_Q": 27429.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.6457763680775823e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300026",
+    "sum_Q": 28427.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.517782389981356e-05,
+    "has_positive_lower_tail_exposure": false
+   },
+   {
+    "arm": "M__seed9300027",
+    "sum_Q": 30438.0,
+    "Q10": 0.0,
+    "kY_for_one_expected_first_birth": 3.2853669754911625e-05,
+    "has_positive_lower_tail_exposure": false
+   }
+  ],
+  "kY_for_one_expected_first_birth_range": [
+   3.239495934432602e-05,
+   3.868023053417398e-05
+  ],
+  "any_arm_has_positive_lower_tail_exposure": false,
+  "reading": "the first-birth intensity kY * sum_t Q(t) is identifiable per arm, but it only says a first birth can occur; it says nothing about persistence, separation or a third centre."
+ },
+ "WHAT_IS_NOT_CONSTRUCTIBLE": {
+  "PERSISTENCE_beyond_first_birth": "the lineage survival to T requires iterating the offspring operator past the first birth, i.e. the TWO_Y state. \u00a711 proves that operator is not a branching process and is NOT_IDENTIFIABLE from an organiser-only ledger (co-located Y share one candidate pool; separated Y have different, unrecorded environments).",
+  "SEPARATION_and_THIRD_CENTRE": "these hazards depend on descendant-position exposure Q_POSITION(x,t). \u00a712 shows the archives record only the scalar organiser-cell exposure per step plus a single terminal spatial snapshot, so Q_POSITION for a separated descendant is unrecoverable.",
+  "LOWER_BOUND_ON_beta": "every mobile arm has Q10 = 0 (Q = 0 more than half the time), so even the first-birth exposure has no positive lower-tail floor: there is no positive statewise lower bound on the birth intensity derivable from these arms.",
+  "FEEDBACK": "\u00a713: the archive has kY = 0, so an active lineage's SY depletion is absent; the environment is a rare-Y approximation controlled only for the first birth."
+ },
+ "STRUCTURAL_PRECLUSION_CHECK": {
+  "QUESTION": "does the exact operator prove NO admissible (kY,muY) can meet the frozen mobile conditions under the MOST FAVOURABLE admissible environment?",
+  "most_favourable_witness": {
+   "c": 7,
+   "kY": 0.001,
+   "muY": 0.0001,
+   "R_mean_offspring": 1.0278972,
+   "survival_to_T": 0.9964849288508368,
+   "supercritical_and_survives": true
+  },
+  "STRUCTURAL_PRECLUSION_PROVED": false,
+  "why_not": "under a favourable-enough admissible environment a one-Y-seeded lineage is supercritical and survives, so the operator does NOT forbid a window. The obstruction is a MISSING LEDGER (descendant exposure) and MISSING IDENTIFIABILITY (two-Y operator), which the freeze explicitly rules inadmissible as structural proof."
+ },
+ "POSITIVE_DISPOSITION_REQUIREMENTS": {
+  "ALL_28_ARMS_ACCOUNTED_FOR": true,
+  "ALL_14_MOBILE_ARMS_INCLUDED": true,
+  "NO_FRAME_PSEUDOREPLICATION": true,
+  "Q_EVENT_PHASE_RESOLVED": true,
+  "MOBILE_SPATIAL_ENVIRONMENT_RESOLVED": false,
+  "ONE_Y_OPERATOR_VERIFIED": true,
+  "TWO_Y_STATE_OPERATOR_VERIFIED": false,
+  "FROZEN_ENVIRONMENT_ERROR_CONTROLLED": false,
+  "NO_TARGET_DERIVED_Y_OUTCOME": true,
+  "MOBILE_REGION_POSITIVE_WIDTH": "NOT_CONSTRUCTIBLE",
+  "ALL_ARM_INTERSECTION_POSITIVE_WIDTH": "NOT_CONSTRUCTIBLE",
+  "NO_SINGLE_ARM_CREATES_THE_REGION": "N/A_region_not_constructible",
+  "NO_FAVORABLE_SUBSET_SELECTION": true,
+  "SCIENTIFIC_RUNS_USED_ZERO": true
+ },
+ "POSITIVE_DISPOSITION_ATTAINABLE": false,
+ "EXACT_MISSING_ITEMS": [
+  "per-step position-resolved environmental arrays (nX, nSY, free) for the mobile descendant positions (\u00a712)",
+  "an identifiable two-Y / separated-lineage operator, which needs the above (\u00a711)",
+  "a controlled frozen-environment feedback error beyond the first birth (\u00a713)",
+  "a positive lower-tail exposure (every mobile arm has Q10 = 0)"
+ ],
+ "FINAL_DISPOSITION": "EXISTING_Q_DATA_INSUFFICIENT__PROSPECTIVE_Q_CALIBRATION_REQUIRED",
+ "WHY_NOT_POSITIVE": "MOBILE_SPATIAL_ENVIRONMENT_RESOLVED and TWO_Y_STATE_OPERATOR_VERIFIED are both false; the mobile candidate region is not constructible from an organiser-only ledger.",
+ "WHY_NOT_STRUCTURAL_PRECLUSION": "under a favourable-enough admissible environment a one-Y-seeded lineage is supercritical and survives, so the operator does NOT forbid a window. The obstruction is a MISSING LEDGER (descendant exposure) and MISSING IDENTIFIABILITY (two-Y operator), which the freeze explicitly rules inadmissible as structural proof.",
+ "TARGET_SELECTION": "NOT_PERFORMED (only after a positive disposition)",
+ "NEXT_SCIENTIFIC_ELIGIBILITY": "PROSPECTIVE_Q_ENVIRONMENT_CALIBRATION_01"
+}

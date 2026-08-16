@@ -1,0 +1,86 @@
+{
+ "SECTION": "MYQBD01 MASTER FREEZE (machine-readable)",
+ "SCIENTIFIC_QUESTION": "can the recorded Q trajectories of the 28 OBFOR01 arms, used explicitly as a development dataset, provide a branch-specific environmental operator or conservative bound sufficient to map the non-empty (beta,muY) region into an executable candidate (kY,muY) region for a later independent test",
+ "ELIGIBLE_ARMS": {
+  "total": 28,
+  "static": 14,
+  "mobile": 14,
+  "selection": "by delivery, not outcome",
+  "no_removal_for_unusual_Q": true
+ },
+ "INDEPENDENT_UNIT": "ONE_WORLD_OR_ARM",
+ "PSEUDO_REPLICATION_FORBIDDEN": "9000 frames per arm are not 9000 independent replicates",
+ "EVENT_TIME": {
+  "Q_written_in": "Recorder.pre_react (post-diffusion pre-reaction state)",
+  "per_step": true,
+  "burn_in": 2000,
+  "window": [
+   2001,
+   11000
+  ],
+  "in_window_frames": 9000
+ },
+ "Q_LIKE_QUANTITIES": [
+  "Q_ORGANISER",
+  "Q_REACTION",
+  "Q_POSITION",
+  "Q_LINEAGE",
+  "Q_AGGREGATE",
+  "Q_RECORDED"
+ ],
+ "MISSING_FRAME_RULE": "Q has zero missing values; Q=0 is a valid observation, not censored",
+ "FROZEN_THRESHOLDS": {
+  "T_HORIZON": 11000,
+  "T_WINDOW": 9000,
+  "BURN_IN": 2000,
+  "CAP": 16,
+  "Q_MAX": 28,
+  "D_REL": 0.05,
+  "CORE_R": 5.0,
+  "TAU_SEP_MOBILE": 125.0,
+  "TAU_SEP_STATIC": "inf",
+  "ALPHA_SURVIVAL": 0.5,
+  "N_STAR": 10.0,
+  "GAMMA_SEP": 0.5,
+  "MIN_EVENTS": 1.0,
+  "SOURCE": "PMCR01_REACHABILITY_REGIONS.json CONSTANTS_USED + evaluate() thresholds"
+ },
+ "ONE_Y_OPERATOR": "f(z)=(m+(1-m)z)(1-p(1-m)(1-z))^c ; c=min(nSY,free); p=min(1,kY nX nY); m=muY",
+ "TWO_Y_STATES": [
+  "ONE_Y",
+  "TWO_Y_COLOCATED",
+  "TWO_Y_SEPARATED",
+  "THREE_OR_MORE_STOP",
+  "EXTINCT"
+ ],
+ "REGION_RULE": {
+  "per_mobile_arm": "exact eligible R_i in (kY,muY) with the strongest justified operator",
+  "primary": "R_ALL_MOBILE = intersection of R_i over all 14 mobile arms",
+  "no_arm_removed_to_make_nonempty": true,
+  "pooled_frame_mean_point_estimate": "INSUFFICIENT"
+ },
+ "TERMINAL_DISPOSITIONS": [
+  "EXISTING_Q_DATA_SUPPORTS_DISCOVERY_DERIVED_EXECUTABLE_Y_REGION",
+  "EXISTING_Q_DATA_INSUFFICIENT__PROSPECTIVE_Q_CALIBRATION_REQUIRED",
+  "EXISTING_ENVIRONMENT_OPERATOR_STRUCTURALLY_PRECLUDES_WINDOW"
+ ],
+ "POSITIVE_REQUIREMENTS": [
+  "ALL_28_ARMS_ACCOUNTED_FOR",
+  "ALL_14_MOBILE_ARMS_INCLUDED",
+  "NO_FRAME_PSEUDOREPLICATION",
+  "Q_EVENT_PHASE_RESOLVED",
+  "MOBILE_SPATIAL_ENVIRONMENT_RESOLVED",
+  "ONE_Y_OPERATOR_VERIFIED",
+  "TWO_Y_STATE_OPERATOR_VERIFIED",
+  "FROZEN_ENVIRONMENT_ERROR_CONTROLLED",
+  "NO_TARGET_DERIVED_Y_OUTCOME",
+  "MOBILE_REGION_POSITIVE_WIDTH",
+  "ALL_ARM_INTERSECTION_POSITIVE_WIDTH",
+  "NO_SINGLE_ARM_CREATES_THE_REGION",
+  "NO_FAVORABLE_SUBSET_SELECTION",
+  "SCIENTIFIC_RUNS_USED_ZERO"
+ ],
+ "STRUCTURAL_PRECLUSION_REQUIRES": "exact operator proof over the most favourable admissible environment; arm failure, wide uncertainty and a missing ledger are NOT structural proof",
+ "CLAIM_CEILING": "a positive result licenses ONE independent prospectively frozen test; it is not a confirmation, not a kY window, not persistence/separation, never reproduction or heredity",
+ "ARMS_STATUS": "POST_OUTCOME_DEVELOPMENT_DIAGNOSTIC (unerasable)"
+}

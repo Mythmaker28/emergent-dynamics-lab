@@ -1,0 +1,111 @@
+{
+ "SPATIAL": {
+  "SECTION": "MYQBD01 \u00a712 spatial recoverability",
+  "PER_STEP_SERIES_SHAPE": [
+   11000,
+   29
+  ],
+  "PER_STEP_FIELDS_ARE_SCALAR_ORGANISER_AGGREGATES": true,
+  "PER_STEP_FIELD_NAMES": [
+   "step",
+   "N_X",
+   "N_Y",
+   "N_SX",
+   "N_SY",
+   "N_WX",
+   "N_WY",
+   "n_org_cells",
+   "c_X_total",
+   "c_X_per_org",
+   "u_nX_at_org",
+   "nSX_at_org",
+   "nSY_at_org",
+   "nW_at_org",
+   "free_at_org",
+   "p_X_at_org",
+   "expected_births_X",
+   "accepted_births_X",
+   "deaths_X",
+   "cand_Y_at_org",
+   "Q",
+   "source_on",
+   "O_total",
+   "free_total",
+   "flux_in",
+   "flux_out",
+   "occ_delta",
+   "free_at_source_mean",
+   "displaced_total"
+  ],
+  "PER_STEP_POSITION_RESOLVED_ARRAYS": [],
+  "TERMINAL_SPATIAL_ARRAYS": [
+   "nX_final",
+   "nY_final",
+   "nSX_final",
+   "nSY_final",
+   "nWX_final",
+   "nWY_final"
+  ],
+  "FULL_SPATIAL_FIELD_IS_TERMINAL_ONLY": true,
+  "SUBSTEP_LEDGERS_ARE_SCALAR": {
+   "hop_ledger": [
+    44000,
+    4
+   ],
+   "source_substep_ledger": [
+    44000,
+    6
+   ],
+   "birth_substep_ledger": [
+    11000,
+    6
+   ],
+   "birth_offsets": [
+    3862,
+    4
+   ],
+   "reading": "these carry step, sub-step index and scalar organiser-cell counts; birth_offsets carries (step, dy, dx, count) of X births relative to the organiser, which is WHERE births occurred, not the nSY/free field at cells a Y descendant could reach"
+  },
+  "Q_POSITION_RECOVERABLE_FOR_A_SEPARATED_DESCENDANT": false,
+  "CLASSIFICATION": "ORGANISER_ONLY_ENVIRONMENT_AVAILABLE",
+  "WHY": "the per-step ledger records only the organiser-cell exposure Q = nX*min(nSY,free) at cells with nY>0. The full per-cell (nX, nSY, free) field is serialized only at the terminal step. A mobile descendant that separates from the organiser occupies a DIFFERENT cell whose (nX, nSY, free) at that time is not recorded. Therefore Q_POSITION(x,t) and Q_LINEAGE(t) for a separated descendant are not recoverable from these archives.",
+  "CONSEQUENCE_FOR_THE_MOBILE_BRANCH": "the mobile branch is the load-bearing branch for a separation test. The separation and premature-third-centre hazards depend on descendant-position exposure, which is unrecoverable here. The organiser-only ledger locates the FIRST-BIRTH hazard exactly, and nothing after separation.",
+  "STATIC_BRANCH_NOTE": "in the static branch p_hop_Y = 0, so all Y remain in one cell and Q_ORGANISER does describe the whole lineage exposure -- but that branch structurally cannot produce spatial separation, so it cannot support a separation/timing test either."
+ },
+ "FEEDBACK": {
+  "SECTION": "MYQBD01 \u00a713 counterfactual validity of the frozen X environment",
+  "THE_ARCHIVE_HAS_kY_ZERO": "obtc02_protocol.yaml point.kY = 0.0, so NO Y birth ever occurred in any of the 28 arms. The recorded environment is the exact counterfactual for a Y that never reacts.",
+  "EXACT_CONSERVATION_FACTS": {
+   "Y_birth_effect": "_react converts SY -> Y in place: n[SY] -= b, n[Y] += b. Occupancy is conserved, so FREE is UNCHANGED, but local nSY drops by b at the birth cell.",
+   "Y_decay_effect": "_decay converts Y -> WY: occupancy conserved, free unchanged.",
+   "SY_replenishment": "_exchange offers Binomial(max(S0 - nSY, 0), phi) toward S0 = 3 at rate phi = 0.20 per step, per cell.",
+   "X_hazard_unaffected_by_nY": "p_X = min(1, kX*nX*nY) is already 1 for nX*nY >= 1 at kX = 1, so a second Y does not change X production."
+  },
+  "MEASURED_ORGANISER_CELL_MAGNITUDES_mobile": {
+   "mean_nSY_at_org": 0.9850476190476191,
+   "mean_free_at_org": 8.96026984126984,
+   "mean_nX_at_org": 4.312563492063493
+  },
+  "DETERMINISTIC_PERTURBATION_BOUND": {
+   "one_Y_birth": {
+    "delta_nSY_local": -1,
+    "as_fraction_of_mean_nSY": -1.015179348351542,
+    "recovery_rate_per_step": 0.2,
+    "steps_to_replenish_one_unit_approx": 5.0,
+    "reading": "one Y birth removes one SY at the organiser cell, a 102% local reduction of the ~0.99 mean nSY, recovering at ~0.20 per step. The recorded Q therefore OVERSTATES the SY an active lineage would see, and the first-birth error is bounded but NOT negligible."
+   },
+   "two_Y_colocated": {
+    "delta_nSY_local_per_step": "up to -2 (two births share the cell's SY pool)",
+    "extra_effect": "p_Y carries nY = 2, so the intensity the archive omits grows",
+    "reading": "the perturbation compounds and is not bounded from the kY=0 archive"
+   },
+   "two_Y_separated": {
+    "reading": "each occupies a different cell; the exposure at the descendant's cell is unrecorded (see \u00a712), so the perturbation there cannot be bounded from these archives at all"
+   }
+  },
+  "CLASSIFICATION": "FROZEN_ENVIRONMENT_RARE_Y_APPROXIMATION_WITH_CERTIFIED_ERROR",
+  "ERROR_IS_CONTROLLED_ONLY_FOR": "the FIRST birth of a single Y at the organiser cell",
+  "ERROR_IS_UNCONTROLLED_FOR": "a persisting lineage, co-located pairs, and any separated descendant -- exactly the regime a mobile window test would probe",
+  "DO_NOT_HIDE_UNDER_MINORITY_REGIME": "the SY depletion is a real feedback; calling the regime 'minority' does not make Q_recorded exact for an active lineage"
+ }
+}

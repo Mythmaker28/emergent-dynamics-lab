@@ -1,0 +1,110 @@
+{
+ "PHASE": {
+  "SECTION": "MYQBD01 \u00a75 Q phase map",
+  "SCHEDULER_ORDER": [
+   {
+    "call": "_diffuse",
+    "args": [
+     "X",
+     "p_hop_X"
+    ]
+   },
+   {
+    "call": "_diffuse",
+    "args": [
+     "Y",
+     "p_hop_Y"
+    ]
+   },
+   {
+    "call": "_diffuse",
+    "args": [
+     "SX",
+     "p_hop_X"
+    ]
+   },
+   {
+    "call": "_diffuse",
+    "args": [
+     "SY",
+     "p_hop_X"
+    ]
+   },
+   {
+    "call": "_react",
+    "args": []
+   },
+   {
+    "call": "_decay",
+    "args": []
+   },
+   {
+    "call": "_feed_and_outflow",
+    "args": []
+   }
+  ],
+  "OBSERVER_WRITES_Q_IN": "Recorder.pre_react (observe.py:51)",
+  "Q_DEFINITION": {
+   "line": 69,
+   "text": "\"Q\": float((nX[m] * cy).sum()),"
+  },
+  "cand_Y_definition": {
+   "line": 59,
+   "text": "cy = np.minimum(nSY[m], free[m])"
+  },
+  "free_snapshot": {
+   "line": 54,
+   "text": "free = np.maximum(w.free(), 0) on the post-diffusion pre-reaction state"
+  },
+  "ENGINE_Y_BIRTH": {
+   "free0": {
+    "line": 117,
+    "text": "free0 = np.maximum(self.free(), 0)  -- computed ONCE at the top of _react, shared by the X and Y loop iterations"
+   },
+   "cand_Y": {
+    "line": 120,
+    "text": "cand = np.minimum(self.n[res], free0), res = SY for the Y iteration"
+   },
+   "p_Y": {
+    "line": 119,
+    "text": "p = np.minimum(1.0, kk*pair), kk=kY, pair = nX*nY"
+   }
+  },
+  "CALL_ORDER_IN_WorldOBTC._react": {
+   "pre_react": 178,
+   "react_core": 179,
+   "post_react": 193,
+   "reading": "pre_react runs BEFORE _react_core, on the identical state _react_core then reads; free in pre_react is w.free() == free0 in _react_core"
+  },
+  "EXACT_IDENTITY": {
+   "claim": "Q_recorded(t) == Q_reaction(t) exactly, per step, for the organiser cell",
+   "why": "pre_react reads free = max(w.free(),0) and nSY, nX on the post-diffusion pre-reaction state; _react_core reads free0 = max(self.free(),0) and the same nSY, nX at the top of the same _react call. cand_Y = min(nSY, free) is the exact n-parameter of the Y-birth Binomial, and nX is the exact multiplier in p_Y = min(1, kY*nX*nY). No random number is drawn between pre_react and the Y binomial that changes nSY, nX or free.",
+   "per_step": "the row is finalized in close_step every step; series has 11000 rows, so the Q ledger is NOT subsampled (stride 1)",
+   "CLASSIFICATION": "Q_LEDGER_EVENT_EXACT"
+  },
+  "ONE_CAVEAT_FOR_MULTI_Y": "Q_recorded = sum_cells nX*min(nSY,free). The engine's expected Y births per cell are min(nSY,free)*min(1, kY*nX*nY). In the unclamped one-Y-per-cell regime the expected intensity is kY * nX * min(nSY,free) = kY * Q_cell, so Q_recorded * kY is the exact expected first-birth intensity. With nY >= 2 in a cell the true intensity carries an extra factor nY that Q_recorded omits, and once p clamps, the linear relation breaks entirely. Q_recorded is therefore the exact ONE-Y unclamped exposure and nothing wider."
+ },
+ "SEMANTICS": {
+  "SECTION": "MYQBD01 \u00a76 the six Q-like quantities",
+  "DEFINITIONS": {
+   "Q_ORGANISER_t": "nX * min(nSY, free) summed over cells with nY>0 (the original organiser location(s))",
+   "Q_REACTION_t": "the exact n*p-relevant exposure entering the Y-birth Binomial at the reaction sub-step",
+   "Q_POSITION_t_x": "nX(x) * min(nSY(x), free(x)) at an arbitrary cell x a Y particle could occupy",
+   "Q_LINEAGE_t": "Q_POSITION evaluated along a particular Y lineage's trajectory",
+   "Q_AGGREGATE_t": "sum over all cells currently containing Y",
+   "Q_RECORDED_t": "the scalar field 'Q' serialized by observe.py, index 20 of series"
+  },
+  "EQUALITIES_IN_THE_ONE_Y_BASELINE": {
+   "Q_RECORDED == Q_REACTION": true,
+   "Q_RECORDED == Q_ORGANISER": true,
+   "Q_ORGANISER == Q_LINEAGE": "True while the single Y sits at the organiser cell; at kY=0 (the archive) the Y never moves off its birth cell in the static branch and, in the mobile branch, the organiser IS the only Y, so Q_RECORDED tracks it",
+   "Q_ORGANISER == Q_AGGREGATE": "True while there is exactly one Y cell"
+  },
+  "WHERE_THEY_DIVERGE_AFTER_THE_FIRST_BIRTH": {
+   "Q_RECORDED_vs_Q_REACTION": "diverge if two Y become co-located: Q_RECORDED omits the nY multiplier in p_Y",
+   "Q_ORGANISER_vs_Q_POSITION": "diverge as soon as a mobile descendant leaves the organiser cell: the exposure at the descendant's new cell is a DIFFERENT, unrecorded quantity",
+   "Q_ORGANISER_vs_Q_AGGREGATE": "diverge once there are two Y cells",
+   "LOAD_BEARING": "the recorded field is the same object as PMCR01's one-organiser Q derivation. That does NOT make it the two-Y lineage environment. Q_POSITION and Q_LINEAGE for a separated descendant are never recorded per step."
+  }
+ }
+}
