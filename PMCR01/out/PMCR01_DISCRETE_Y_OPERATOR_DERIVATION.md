@@ -173,3 +173,44 @@ Temps de séparation de deux `Y`, `⟨r²⟩ = 4 D_rel t` :
 | un rayon spectral scalaire suffit | **non** : l'environnement est endogène |
 | la densité marginale de la lignée se ferme | **non** |
 
+## 10. RÉPARATION F1 — `Q` est déjà instrumenté et enregistré
+
+La première rédaction concluait de `inf Q = 0` que `E[Q]` relève d'une « mesure du
+nuage réalisé » inaccessible sans changement d'architecture. **C'est faux.** Le
+chemin d'INSTRUMENTATION — distinct du chemin d'EXÉCUTION du canal — enregistre
+exactement cette quantité :
+
+```
+ORR01/code/observe.py
+  ligne 55 :  m  = nY > 0
+  ligne 59 :  cy = np.minimum(nSY[m], free[m])
+  ligne 69 :  "Q": float((nX[m] * cy).sum())
+```
+
+soit, au bit près, le `Q = nX · min(nSY, free)` de cette dérivation. Champ d'indice
+20, présent dans **les 28 bras livrés**, sans valeur manquante.
+
+| grandeur recalculée | valeur |
+|---|---|
+| bras contenant `Q` | 28 / 28 |
+| trames contenant `Q` | 308 000 |
+| moyenne des moyennes par bras, branche **statique** (n=14) | **2,369048** |
+| moyenne des moyennes par bras, branche **mobile** (n=14) | **3,169730** |
+| ensemble complet (n=28) | **2,769389** |
+| maximum observé | **28** = `Q_max` dérivé par énumération |
+| `P(Q = 0)` statique / mobile | 0,6470 / 0,5428 |
+
+**Hiérarchie corrigée.** `inf Q = 0` signifie qu'il n'existe aucune borne inférieure
+**uniforme état par état**. Cela n'implique pas `E[Q] = 0` : l'infimum porte sur
+l'ENSEMBLE des états, `E[Q]` sur la MESURE. Ce qui manque à PMCR01 n'est pas la
+mesure — elle existe — mais une **borne gelée à l'avance**. C'est une frontière de
+politique de preuve, pas d'architecture.
+
+```
+MEASUREMENT_AVAILABILITY            = CONFIRMED
+PROSPECTIVE_BOUND_ALREADY_QUALIFIED = false
+ARCHITECTURE_CHANGE_NECESSITY       = NOT_ESTABLISHED
+EXISTING_CHANNEL_SUFFICIENCY        = UNRESOLVED
+LES_28_BRAS                         = POST_OUTCOME_DEVELOPMENT_DIAGNOSTIC
+```
+

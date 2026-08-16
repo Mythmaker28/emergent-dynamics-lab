@@ -1,5 +1,12 @@
 {
- "SECTION": "PMCR01 \u00a710-\u00a711",
+ "SECTION": "PMCR01 \u00a710-\u00a711, REPAIRED",
+ "REPAIR": "PMCR01-REVIEW-DRIVEN-Q-INSTRUMENTATION-REPAIR-01",
+ "PROVENANCE": {
+  "ORIGINAL_CANDIDATE_DISPOSITION": "STOP__ARCHITECTURE_CHANGE_REQUIRED",
+  "ORIGINAL_TIP": "5b4eace2ed99f2764e1a01e6d2a98e0bd7fc48ff",
+  "why_it_is_retained_here": "provenance; it is NOT the repaired scientific conclusion",
+  "adversarial_review": "PMCR01_ADVERSARIAL_REVIEW.{md,json}, 8 confirmed defects (1 load-bearing), 9 refuted attacks, 0 unresolved"
+ },
  "PARENT_BINDING": {
   "FINAL_SEAL_DISPOSITION": "CONDITIONAL_FULL_CAPACITY_SOURCE_RESPONSE_OPERATOR_QUALIFIED",
   "ORIGINAL_ZERO_RUN_MISSION_COMPLIANCE": "NOT_DETERMINABLE_FROM_THE_DELIVERED_EVIDENCE",
@@ -10,71 +17,198 @@
   "SEAL01_FINAL_TIP": "f9d9b61cc29db6a0afe0d0a7ec04f3edf9b4a0e2"
  },
  "FOUR_PROPOSITIONS": {
-  "ABSTRACT_INTERVAL_EXISTS": true,
-  "EXECUTABLE_CHANNEL_EXISTS": true,
-  "PARAMETER_IS_REACHABLE": true,
-  "ROBUST_NONEMPTY_REGION_EXISTS": false,
-  "WHY_THEY_ARE_NOT_INTERCHANGEABLE": "the first three are established by the mutation oracles and the admissible-state enumeration. The fourth is a separate question and it is answered negatively, on three independent grounds."
- },
- "K_Y_PATH": "ACTIVE_CONSTRUCTOR_TO_SCHEDULER (rate zero at the qualified point) = DORMANT_BUT_REACHABLE_CHANNEL",
- "MU_Y_PATH": "ACTIVE_CONSTRUCTOR_TO_SCHEDULER (rate zero at the qualified point) = DORMANT_BUT_REACHABLE_CHANNEL",
- "POSITIVE_DISPOSITION_CHECKLIST": {
-  "EXACT_PARENT_AND_SEAL_BOUND": true,
-  "TRUE_EXECUTABLE_Y_EVENT_FOUND": true,
-  "CONSTRUCTOR_TO_SCHEDULER_PATH_VERIFIED": true,
-  "MUTATION_ORACLE_PASS": true,
-  "ADMISSIBLE_NONZERO_CONTROL_RANGE": true,
-  "NO_TARGET_DERIVED_INPUT": true,
-  "EXACT_DISCRETE_OPERATOR_DERIVED": true,
-  "INDEPENDENCE_OR_ALIAS_STATUS_RESOLVED": true,
-  "ROBUST_REGION_POSITIVE_WIDTH": false,
-  "NO_SCIENTIFIC_RUN": true
- },
- "ALL_TEN_MET": false,
- "INDEPENDENCE_GATES": {
-  "Y_BIRTH_CONTROL_IS_ACTIVE": true,
-  "Y_DEATH_OR_SURVIVAL_CONTROL_IS_ACTIVE": true,
-  "CONTROLS_ARE_NOT_ALIASES": true,
-  "CONTROLS_DO_NOT_ONLY_RESCALE_X": "PARTIAL",
-  "PARAMETER_VALUES_ARE_ADMISSIBLE": true,
-  "OPERATOR_IS_IDENTIFIABLE_FROM_EXECUTABLE_SEMANTICS": false,
-  "ROBUST_REGION_HAS_POSITIVE_WIDTH": false
- },
- "TIMESCALE_COLLAPSE": true,
- "LEGS": {
-  "LOAD_BEARING__BIRTH_INTENSITY_HAS_NO_CERTIFIABLE_LOWER_BOUND_IN_kY": {
-   "statement": "the minority-Y birth intensity is beta = kY * E[Q] with Q = nX * min(nSY, free) at the organiser's OWN cell. The UPPER boundary transports to the control (beta <= 28 kY, so kY <= beta_max/28). The LOWER boundary does not: inf Q = 0 over the admissible cell-state set (60.1 %% of admissible states have Q = 0), so no finite kY guarantees beta >= beta_min.",
-   "branch_independent": true,
-   "why_it_is_the_same_fact_the_parent_found": "E[Q] is a property of the realized cloud measure, not of the LawSpec. This is MARGINAL_DENSITY_CLOSURE = NOT_CLOSED, the very reason the parent had to MEASURE its birth-flux law and the reason its prediction is CONDITIONAL. PMCR01 is forbidden from using such a category-B measurement as a load-bearing input, so it cannot locate the lower edge of the (kY, muY) window. Condition 2 of the robust region asks for the persistence boundary to be exceeded WITH NUMERICAL MARGIN; a margin is a number, and this one does not exist from category A.",
-   "predeclared_bounds_were_tried": {
-    "E_Q_IS_STRICTLY_POSITIVE": true,
-    "basis": "P(nX_org >= 1) >= 0.00625 from a frozen predeclared threshold",
-    "E_Q_IS_NUMERICALLY_LOCATED": false,
-    "CONSEQUENCE_FOR_THE_REGION": "the lower boundary of the (kY, muY) region is known to be strictly positive and is NOT located. Condition 2 asks the next-generation criterion to exceed the persistence boundary WITH NUMERICAL MARGIN. A margin is a number. This one does not exist without measuring the realized cloud, which is precisely the measurement that made the parent's own prediction CONDITIONAL."
-   },
-   "reviewer_could_not_locate_E_Q_either": true
+  "ABSTRACT_INTERVAL_EXISTS": {
+   "value": true,
+   "source": "REGION_A symbolic inequality"
   },
-  "SUBSIDIARY_MOBILE_BRANCH__SINGLE_SOURCE_REGION_IS_EMPTY": {
-   "SCOPE": "condition M only (p_hop_Y = p_hop_X); NOT a general claim",
-   "statement": "in the mobile branch the single-source region is empty at every one of 25599 grid points for c in {1,4,7}, because one removal clock muY must be both large (kill newborns before they separate) and small (let the lineage persist).",
-   "closed_form_ceiling": {
-    "muY_lower_bound_forced_by_C3_and_C5": 0.005529831326785639,
-    "epsilon_upper_bound_forced_by_C2": 0.00020932591754491326,
-    "SURVIVAL_CEILING": 0.03785394258428303,
-    "REQUIRED_BY_C1": 0.5,
-    "C1_CAN_BE_MET": false,
-    "APPROXIMATE_FORM": "survival <= ln(N*) * tau_sep / (T * ln(1/gamma))",
-    "approximate_value": 0.0377491828964473,
-    "READING": "the same muY has to be LARGE, so that a newborn dies before it can separate into a second source, and SMALL, so that the lineage itself survives the horizon. There is one muY. The ceiling is set by the ratio of the separation time to the horizon and does not depend on kY at all."
-   },
-   "shortfall_factor": 13.24531980921517,
-   "DOES_NOT_HOLD_IN_THE_STATIC_BRANCH": true
+  "EXECUTABLE_CHANNEL_EXISTS": {
+   "value": true,
+   "source": "mutation oracles kY, muY"
   },
-  "STATIC_BRANCH_COUNTER_REGION__REPORTED_OPENLY": {
-   "SCOPE": "condition S (p_hop_Y = 0), used by 14 of OBFOR01's 28 fresh arms",
-   "single_source_region_in_beta_muY_is_nonempty": true,
-   "n_inside": 87,
-   "box": {
+  "PARAMETER_IS_REACHABLE": {
+   "value": true,
+   "source": "manifest -> spec_for verbatim copy; no runtime guard"
+  },
+  "ROBUST_NONEMPTY_REGION_EXISTS": {
+   "value": "NOT_YET_LOCATED",
+   "source": "no prospectively frozen Q bound exists to transport beta -> kY",
+   "was_previously": "False (hardcoded literal)"
+  },
+  "WHY_THEY_ARE_NOT_INTERCHANGEABLE": "the first three are established by the mutation oracles and the admissible-state enumeration. The fourth is a separate question, and the repaired answer is NOT_YET_LOCATED on ONE branch-independent operational ground -- the absence of a prospectively frozen Q bound -- not a proof of non-existence."
+ },
+ "REPAIRED_SCIENTIFIC_LOGIC": {
+  "REMOVED_INVALID_IMPLICATION": "inf Q = 0 AND E[Q] not category-A known  =>  architecture change is required",
+  "WHY_IT_IS_INVALID": "the antecedent is about what THIS mission may use as a load-bearing input under its own ex-ante evidence rules. The consequent is a claim about what the ARCHITECTURE can express. The second does not follow from the first, and it is refuted by the fact that the architecture already instruments and records the quantity.",
+  "REPAIRED_HIERARCHY": [
+   "1. inf Q = 0 over the admissible cell-state set  =>  there is no strictly positive UNIFORM STATEWISE lower bound on Q. (Verified: 60.09 % of admissible states have Q = 0.)",
+   "2. inf Q = 0 does NOT imply E[Q] = 0. The infimum is over the state SET; E[Q] is a property of the MEASURE.",
+   "3. Q is ALREADY RECORDED by the existing architecture: ORR01/code/observe.py lines 55, 59, 69, field index 20, present in all 28 delivered arms with zero missing values.",
+   "4. The existing 28-arm Q values were NOT prospectively designated as a confirmatory calibration set; no bound on Q was frozen before those arms ran.",
+   "5. Therefore PMCR01 cannot certify a PROSPECTIVE lower kY boundary from those values inside its original zero-run proof.",
+   "6. However, the inability of PMCR01 to certify that boundary does NOT establish that the architecture must change.",
+   "7. The existing architecture may be sufficient after (A) a raw-only developmental Q-bound derivation on the 28 existing arms and, only if required, (B) an independently frozen prospective Q calibration."
+  ],
+  "MEASUREMENT_AVAILABILITY": "CONFIRMED",
+  "PROSPECTIVE_BOUND_ALREADY_QUALIFIED": false,
+  "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+  "EXISTING_CHANNEL_SUFFICIENCY": "UNRESOLVED",
+  "WHAT_IS_NOT_CLAIMED": [
+   "that the recorded Q values already prove a transportable lower bound -- they do not",
+   "that the recorded Q values are scientifically inert because they were not preregistered -- they are admissible as a declared discovery/calibration-design dataset for a later independent confirmation"
+  ]
+ },
+ "Q_INSTRUMENTATION": {
+  "EXISTING_Q_INSTRUMENTATION": "CONFIRMED",
+  "observer": "/home/claude/ORR01/code/observe.py",
+  "lines": {
+   "mask": [
+    55
+   ],
+   "cy": [
+    59
+   ],
+   "Q": [
+    69
+   ]
+  },
+  "column_index": 20,
+  "arms_containing_Q": 28,
+  "frames_containing_Q": 308000,
+  "static_branch_mean": 2.3690476190476195,
+  "mobile_branch_mean": 3.1697301587301587,
+  "complete_set_mean": 2.7693888888888893,
+  "observed_max_equals_derived_Q_max": true,
+  "EVIDENTIARY_LABEL": "POST_OUTCOME_DEVELOPMENT_DIAGNOSTIC"
+ },
+ "CHECKLIST_COMPUTED": {
+  "EXACT_PARENT_AND_SEAL_BOUND": {
+   "source": "PMCR01_PARENT_SEAL_BINDING.json.GATE",
+   "calculation": "hash-verified handoff AND base == sealed tip AND eligibility matches",
+   "observed_value": "PROCEED",
+   "threshold_or_rule": "== 'PROCEED'",
+   "result": true
+  },
+  "TRUE_EXECUTABLE_Y_EVENT_FOUND": {
+   "source": "PMCR01_EXECUTABLE_Y_CHANNEL_MAP.json.CHANNELS",
+   "calculation": "count channels classified DORMANT_BUT_REACHABLE_CHANNEL",
+   "observed_value": 3,
+   "threshold_or_rule": ">= 1",
+   "result": true
+  },
+  "CONSTRUCTOR_TO_SCHEDULER_PATH_VERIFIED": {
+   "source": "PMCR01_MUTATION_ORACLE_REPORT.json.MANIFEST_TO_SCHEDULER",
+   "calculation": "for kY and muY: Spec attribute == manifest value",
+   "observed_value": {
+    "kY": true,
+    "muY": true
+   },
+   "threshold_or_rule": "all VERBATIM true",
+   "result": true
+  },
+  "MUTATION_ORACLE_PASS": {
+   "source": "PMCR01_MUTATION_ORACLE_REPORT.json.ORACLES",
+   "calculation": "hazard changed AND effect proved for the kind AND reversal bit-exact",
+   "observed_value": [
+    true,
+    true,
+    true
+   ],
+   "threshold_or_rule": "all true",
+   "result": true
+  },
+  "ADMISSIBLE_NONZERO_CONTROL_RANGE": {
+   "source": "PMCR01_REPAIRED_ADMISSIBILITY_AUDIT (this repair)",
+   "calculation": "audit of constructor copy, clamp, Bernoulli domain, manifest, CAP, oracles -- REPLACES the vacuous Assert/Raise scan",
+   "observed_value": true,
+   "threshold_or_rule": "no mechanism refuses a nonzero kY or muY",
+   "result": true
+  },
+  "NO_TARGET_DERIVED_INPUT": {
+   "source": "AST/text scan of PMCR01's own analysis code",
+   "calculation": "AST: subscript string keys, attribute names, identifiers. Prose string constants excluded by construction.",
+   "observed_value": {
+    "data_access": [],
+    "prose_only": 12
+   },
+   "threshold_or_rule": "zero DATA_ACCESS hits",
+   "result": true
+  },
+  "EXACT_DISCRETE_OPERATOR_DERIVED": {
+   "source": "_operator.json.EXACT_ONE_STEP_OFFSPRING_LAW.ALL_ARGUMENTS_MATCH",
+   "calculation": "every (n,p) the scheduler passes matches the analytic law",
+   "observed_value": true,
+   "threshold_or_rule": "== true",
+   "result": true
+  },
+  "INDEPENDENCE_OR_ALIAS_STATUS_RESOLVED": {
+   "source": "PMCR01_EXECUTABLE_Y_CHANNEL_MAP.json.CHANNELS[*].INDEPENDENTLY_CONTROLLABLE",
+   "calculation": "every mapped channel carries a non-null independence verdict",
+   "observed_value": {
+    "kY  (minority birth coefficient)": true,
+    "muY (minority removal probability)": true,
+    "p_hop_Y (minority transport)": true,
+    "organiser_off_at (declared intervention)": true,
+    "S0 and phi (substrate set-point and exchange rate for SY)": true,
+    "omega (waste outflow)": true,
+    "exchangeable-pool membership of Y (the chemostat's removal set)": true,
+    "a Y-specific precursor pool, or a Y removal that reads age, position or contact": true
+   },
+   "threshold_or_rule": "no channel left unresolved",
+   "result": true
+  },
+  "PROSPECTIVELY_QUALIFIED_REGION_LOCATED": {
+   "source": "this repair, section 4 -- BRANCH-INDEPENDENT",
+   "calculation": "is there a prospectively frozen bound on E[Q] permitting beta -> kY transport?",
+   "observed_value": false,
+   "threshold_or_rule": "a frozen ex-ante Q bound must exist; none does",
+   "result": false
+  },
+  "NO_SCIENTIFIC_RUN": {
+   "source": "aggregated sentinel over all analysis processes",
+   "calculation": "construct + advance + scientific starts + scientific seeds + new npz",
+   "observed_value": {
+    "processes": [
+     "mutation-oracles",
+     "operator-derivation"
+    ],
+    "ENGINE_CONSTRUCT_CALLS": 0,
+    "ENGINE_ADVANCE_CALLS": 0,
+    "SCIENTIFIC_WORLD_STARTS": 0,
+    "SCIENTIFIC_SEEDS_OPENED": 0,
+    "NEW_PHYSICS_ARRAYS_WRITTEN": 0,
+    "n_output_roots_watched": 29,
+    "FIXTURE_CONSTRUCTIONS": 114,
+    "ALL_ZERO_EVERYWHERE": true
+   },
+   "threshold_or_rule": "all zero",
+   "result": true
+  }
+ },
+ "ALL_ITEMS_MET": false,
+ "BRANCH_SEPARATED_REGIONS": {
+  "SCOPE_RULE": "static persistence does not prove mobile separation; static non-separation does not prove mobile persistence impossible. The two branches are reported separately and never averaged.",
+  "MOBILE": {
+   "tau_separation_steps": 125.0,
+   "single_source_region_in_beta_muY": "EMPTY",
+   "exact_shortfall": {
+    "EXACT_MAX_SURVIVAL_subject_to_C2_C3_C4_C5": 4.5366781976110645e-06,
+    "at": {
+     "c": 1,
+     "beta": 0.14125375446227553,
+     "muY": 0.12434268845618877
+    },
+    "required_by_C1": 0.5,
+    "EXACT_SHORTFALL_FACTOR": 110212.79848839427,
+    "PREVIOUSLY_REPORTED_CLOSED_FORM_SHORTFALL": 13.2,
+    "NOTE": "the 13.2 figure was a single closed-form corner using the loose substitution S ~ 1/m. The exact maximisation over the real feasible set is reported as the headline; the closed form is demoted to an illustration. The direction was always AGAINST this mission's own case.",
+    "SCOPE": "MOBILE branch only (tau_sep = 125.0). The static branch has tau = inf."
+   }
+  },
+  "STATIC": {
+   "tau_separation": "infinite (p_hop_Y = 0 prevents spatial separation)",
+   "single_source_region_in_beta_muY": "NONEMPTY",
+   "n_points": 87,
+   "bounding_box": {
     "beta_min": 0.0001,
     "beta_max": 0.00039810717055349773,
     "muY_min": 2.6394837179924507e-05,
@@ -82,69 +216,131 @@
     "max_survival": 0.8941181380176063,
     "max_E_nY_at_T": 9.986281209147144
    },
-   "why_it_does_not_overturn_the_disposition": "the axis is beta = kY * E[Q], not kY. inf Q = 0 over the admissible set, so the LOWER boundary in the actual control kY is not certifiable from category A here either. A non-empty set in beta is not a certifiable window in kY. This is Leg 2, and it is branch-independent.",
-   "single_Y_branching_is_an_overestimate_here": "in the static branch every Y sits in ONE cell and the births are Binomial(min(nSY, free), min(1, kY nX nY)) over a SHARED candidate pool and a SHARED free budget, not nY independent pools. The single-Y branching R = (1-muY)(1+cp) gives each Y its own pool and therefore OVERSTATES growth, so the non-empty set above is an optimistic upper bound. That is the conservative direction for a non-certifiability conclusion.",
-   "HONEST_CONCESSION": "the mobile-branch 'two jobs for one clock' argument does NOT apply here; immobile offspring never separate. The static branch fails only for the load-bearing reason, and saying otherwise would overclaim."
-  },
-  "SUBSIDIARY_MOBILE_BRANCH__SUCCESS_LEAVES_THE_QUALIFIED_ENVIRONMENT": {
-   "SCOPE": "condition M only; in the static branch all Y share one cell so the observable layer is unambiguous and this does NOT apply",
-   "content": {
-    "THE_PARENT_QUALIFIED": "a CONDITIONAL source-transport-decay operator for three observables of an ORGANIZER_BOUND_SOURCE cloud, with exactly one organiser",
-    "OBSERVABLE_LAYER": "metrics_obtc.frame resolves the organiser as oy[0], ox[0] from np.nonzero(nY). With two organisers it silently reports one of them, chosen by row-major order, and r80_organiser is measured about that arbitrary centre.",
-    "FROZEN_GATES_AFFECTED": [
-     "SOURCE_ATTACHMENT (median core-to-organiser, unwrapped position correlation)",
-     "RELATIVE_LOCALIZATION (r80 about THE organiser's cell)",
-     "CORE_CONTINUITY",
-     "MODEL_PREDICTION_COMPATIBILITY"
-    ],
-    "X_SOURCE_MULTIPLICITY": "p_X = min(1, kX nX nY) = 1 exactly at kX = 1.0 for any nX nY >= 1, so every separated organiser is a full-strength X source. Two organisers is not a perturbation of one; it is a two-source problem.",
-    "CONSEQUENCE": "any parameter region that succeeds in producing a persisting Y lineage produces a state for which the parent's qualification, the inherited observables and every frozen gate are undefined. The qualification chain does not extend to it."
-   }
+   "PRESERVED": true
   }
  },
- "DISPOSITION_RESTS_ON": "one branch-independent load-bearing leg (birth intensity has no certifiable lower bound in kY); the two mobile-branch arguments and the static counter-region are reported but are NOT pillars of the disposition",
- "FINAL_DISPOSITION": "STOP__ARCHITECTURE_CHANGE_REQUIRED",
- "WHY_NOT_THE_OTHER_TERMINAL_DISPOSITIONS": {
-  "REACHABLE_NONEMPTY_Y_WINDOW_DERIVED": "refused: ROBUST_REGION_POSITIVE_WIDTH fails, and the positive-disposition checklist requires all ten items",
-  "NO_MINIMAL_REACHABLE_Y_CHANNEL": "REFUSED AS FALSE. kY and muY both pass the mutation oracles: the hazard argument changes at the point of use, the state delta matches a deterministic expectation, and the reversal is bit-exact. Choosing this disposition would be the easier negative and it would misdescribe the architecture."
+ "F6_CAPACITY_LIMITED_CHECK": {
+  "Q_max_by_nY": {
+   "1": 28,
+   "2": 24,
+   "3": 21,
+   "4": 18,
+   "5": 15,
+   "6": 12,
+   "7": 10,
+   "8": 8,
+   "9": 6,
+   "10": 4,
+   "11": 3,
+   "12": 2,
+   "13": 1,
+   "14": 0,
+   "15": 0,
+   "16": 0
+  },
+  "Q_max_reaches_zero_at_nY": 14,
+  "exact_capacity_limited_chain_at_the_static_box_edge": {
+   "implied_kY_at_the_most_favourable_state": 1.421811323405349e-05,
+   "survival_to_T": 0.934137558856223,
+   "E_nY_at_T": 7.601570812034441,
+   "P_nY_at_or_above_14_where_Q_max_is_zero": 0.00444451104384651
+  },
+  "VERDICT": "the occupancy invariant does NOT dissolve the static counter-region: survival 0.9341 and E[nY(T)] 7.60 under the capacity-limited chain against 0.894 and <= 10 unconstrained. The previous wording ('an optimistic upper bound') implied a softening that does not occur, and is withdrawn."
  },
- "ARCHITECTURE_CHANGE_BOUNDARY": {
-  "THE_SINGLE_BRANCH_INDEPENDENT_BLOCKER": "THE BIRTH INTENSITY IS NOT A LAWSPEC QUANTITY. beta = kY * E[nX min(nSY, free)] at the organiser's own cell, and that cell state is produced BY the lineage, since _react creates X only where nX nY >= 1. inf Q = 0 over the admissible set, so no lower boundary in kY exists without measuring the realized cloud. This is the only reason that holds in BOTH the static and mobile branches, and it is the reason the disposition is STOP rather than REACHABLE.",
-  "ADDITIONAL_MOBILE_BRANCH_BLOCKERS_NOT_LOAD_BEARING": [
-   "ONE removal clock, TWO roles (condition M only). _decay_core draws Binomial(n['Y'], muY) over the whole Y field and reads no age, position, contact or lineage label, so newborns and founder share one clock. In the STATIC branch this dissolves: immobile offspring never separate.",
-   "THE OBSERVABLE LAYER IS SINGLE-ORGANISER (condition M only). metrics_obtc.frame resolves the organiser as oy[0], ox[0] from np.nonzero(nY); with two SEPARATED organisers it silently reports one. In the static branch all Y share one cell, so np.nonzero returns one cell and this is not triggered."
-  ],
-  "BRANCH_INDEPENDENT_STRUCTURAL_FACT": "THE X SOURCE IS SATURATED. p_X = min(1, kX nX nY) = 1 exactly at kX = 1.0 for any nX nY >= 1, so one organiser already drives the source at full strength; a second changes the system only by adding a source cell once it separates. 'Minority in count' and 'minority in causal role' come apart. True in both branches.",
-  "MINIMAL_NEW_STATE_OR_EVENT": {
-   "chosen": "a LOCAL, FINITE, CONSERVED Y-PRECURSOR SPECIES bound to the organiser, with its own replenishment rate rho, consumed by Y birth",
-   "why_this_one": "it targets the single LOAD-BEARING blocker directly. A full organiser-bound pool makes the Y birth intensity bounded BELOW by a LawSpec quantity (the pool size and rho) rather than by the realized co-located X count E[Q], which is exactly the un-locatable object. That supplies the missing lower boundary. It does NOT by itself fix the mobile-branch removal-clock tension; that is a condition-M problem and is secondary, since the static branch has no such tension yet still fails on the lower boundary.",
-   "rejected_alternatives": {
-    "an independently controllable Y birth hazard": "already exists \u2014 kY",
-    "an independently controllable Y decay hazard": "already exists \u2014 muY; what is missing is a SECOND one",
-    "organiser-bound production rather than global": "Y production is ALREADY organiser-bound: p_Y needs nY >= 1 in the same cell",
-    "local capacity or substrate coupling": "already exists \u2014 cand = min(nSY, free)",
-    "a membrane, a genome, a saturation layer, new memories": "not evaluated. None of them is implied by any blocker found here."
+ "F4_ADMISSIBILITY_AUDIT": {
+  "WHY_THE_OLD_CHECK_WAS_WORTHLESS": "it inspected only ast.Assert / ast.Raise nodes. The analysed files contain 0 such nodes in total, so the empty result was a vacuous truth: it could not distinguish 'no guard on Y' from 'no guards at all'.",
+  "assert_or_raise_node_counts": {
+   "kinetics": 0,
+   "lawspec_v2": 0,
+   "engine_obtc": 0,
+   "protocol_obtc02": 0,
+   "gate_obtc02": 0,
+   "observe": 0
+  },
+  "VACUITY_POSITIVE_CONTROL": {
+   "file": "OBTC02/code/guard_obtc.py",
+   "assert_or_raise_nodes": 8,
+   "READING": "the searcher CAN find raises when they exist; the analysed engine files simply contain none. The control makes the null informative."
+  },
+  "REAL_ADMISSIBILITY_MECHANISMS": {
+   "constructor_assignment": {
+    "site": "protocol_obtc02.spec_for: d = {k: PT[k] for k in (...,'muY',...,'kY')}",
+    "effect": "kY and muY are copied VERBATIM from the manifest; no validation",
+    "bounds_imposed": "none"
+   },
+   "clamp_on_the_birth_probability": {
+    "site": "engine_obtc._react_core: p = np.minimum(1.0, kk * pair)",
+    "effect": "kY above 1/(nX*nY) SATURATES rather than being refused",
+    "bounds_imposed": "effective p in [0,1]; kY itself unbounded above"
+   },
+   "bernoulli_domain_on_muY": {
+    "site": "engine_obtc._decay_core: rng.binomial(n['Y'], muY)",
+    "effect": "numpy requires 0 <= muY <= 1; outside that it raises at RUNTIME",
+    "bounds_imposed": "muY in [0,1]"
+   },
+   "conditional_short_circuits": {
+    "sites": [
+     "_react_core: if not births.any(): continue",
+     "_decay_core: if not d.any(): continue",
+     "_diffuse: if not accepted.any(): continue"
+    ],
+    "effect": "performance guards only; they do not alter the law"
+   },
+   "protocol_manifest_choice": {
+    "point.kY": 0.0,
+    "point.muY": 0.0,
+    "effect": "the qualified point sets both rates to a STRUCTURAL ZERO"
+   },
+   "branch_dependent_p_hop_Y": {
+    "site": "protocol_obtc02.spec_for: 0.0 if immobile_organiser else PT['p_hop']",
+    "reachable_values": [
+     0.0,
+     0.10263340389897246
+    ],
+    "effect": "two protocol-reachable values only; not continuously tunable"
+   },
+   "CAP_preservation": {
+    "sites": [
+     "_diffuse accepts min(movers, dest_free)",
+     "_react and _decay are species conversions",
+     "_exchange removes exactly what it inserts"
+    ],
+    "effect": "occupancy <= CAP bounds cand and free, hence Q in [0, 28]"
+   },
+   "scheduler_reachability": {
+    "evidence": "mutation oracles: kY 0->1 moves the captured p at the point of use and yields dY = +4 = min(nSY,free); muY 0->1 yields dY = -1; both reversals bit-exact"
    }
   },
-  "CONSERVATION_OR_ACCOUNTING_REQUIREMENT": "the pool must be an occupancy-carrying species, so that the invariant sum(species) <= CAP still holds cell by cell and _exchange still removes exactly what it inserts. Adding a seventh species changes ALL_OCC, the free() computation and the exchangeable pool, and every one of those has to be re-derived, not assumed.",
-  "EXPECTED_NEW_DEGREE_OF_FREEDOM": "a second Y timescale 1/rho, independent of 1/muY. That is exactly the degree of freedom the present architecture lacks.",
-  "NEW_FAILURE_MODES": [
-   "a new absorbing state: pool empty AND nY = 1, from which no division is possible",
-   "the pool competes with SX and SY for CAP, so it perturbs the X baseline \u2014 the very thing this mission is forbidden to move",
-   "if the pool is replenished by the chemostat, rho becomes aliased to phi and S0 exactly as the SY supply already is, and the new degree of freedom evaporates",
-   "a pool bound to the organiser must follow it, which introduces a transport rule for the pool and a fresh question about what happens at CAP"
-  ],
-  "SMALLEST_STATIC_QUALIFICATION_NEEDED": [
-   "re-derive the occupancy invariant with seven species and prove _exchange still conserves occupancy exactly",
-   "re-enumerate Q_max under the new admissible-state set",
-   "re-run the three mutation oracles plus one for rho",
-   "prove the X baseline is unchanged: same captured hazard arguments on the X branch for the same seed, with the pool present and empty",
-   "extend metrics_obtc to resolve MULTIPLE organisers before any observable that mentions 'the organiser' can be used again"
-  ],
-  "NOT_IMPLEMENTED": true,
-  "NO_CODE_WRITTEN": true
+  "NO_RUNTIME_VALIDATION_EXISTS": true,
+  "STATEMENT": "no assertion, exception or validation anywhere on the executable path refuses a nonzero kY or muY. This is now established by auditing the mechanisms that could impose bounds -- constructor copy, clamp, Bernoulli domain, manifest choice, CAP -- and by the mutation oracles, NOT by an empty search over a node type that does not occur."
  },
- "NEXT_SCIENTIFIC_ELIGIBILITY": "MINIMAL_Y_CHANNEL_ARCHITECTURE_DESIGN_01 (inert, zero-run)",
+ "SENTINEL_AGGREGATED": {
+  "processes": [
+   "mutation-oracles",
+   "operator-derivation"
+  ],
+  "ENGINE_CONSTRUCT_CALLS": 0,
+  "ENGINE_ADVANCE_CALLS": 0,
+  "SCIENTIFIC_WORLD_STARTS": 0,
+  "SCIENTIFIC_SEEDS_OPENED": 0,
+  "NEW_PHYSICS_ARRAYS_WRITTEN": 0,
+  "n_output_roots_watched": 29,
+  "FIXTURE_CONSTRUCTIONS": 114,
+  "ALL_ZERO_EVERYWHERE": true
+ },
+ "REPAIRED_FINAL_DISPOSITION": "EXISTING_ARCHITECTURE_WINDOW_NOT_YET_PROSPECTIVELY_LOCATED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "OPERATIONAL_REASON_FOR_STOP": "NO_PROSPECTIVELY_QUALIFIED_Q_BOUND_FOR_MAPPING_BETA_TO_KY",
+ "EXISTING_Q_INSTRUMENTATION": "CONFIRMED",
+ "NEXT_SCIENTIFIC_ELIGIBILITY": "MINORITY_Y_Q_BOUND_DERIVATION_01",
+ "ORIGINAL_TERMINAL_VOCABULARY_INCOMPLETE": true,
+ "WHY_THE_VOCABULARY_WAS_INCOMPLETE": "the frozen terminal set offered only REACHABLE_NONEMPTY_Y_WINDOW_DERIVED, NO_MINIMAL_REACHABLE_Y_CHANNEL and STOP__ARCHITECTURE_CHANGE_REQUIRED. The true state -- channels reachable, region non-empty in beta, transport to kY not yet prospectively qualified -- has no label there. Forcing it into STOP__ARCHITECTURE_CHANGE_REQUIRED asserted an architectural impossibility the evidence never established. This is a WEAKENING forced by a confirmed defect, not an outcome-driven upgrade.",
+ "MYCAD01_STATUS": {
+  "STATUS": "SUPERSEDED_NOT_AUTHORIZED",
+  "SUPERSEDED_BY": "MINORITY_Y_Q_BOUND_DERIVATION_01",
+  "REASON": "EXISTING_Q_INSTRUMENTATION_CONFIRMED__ARCHITECTURE_CHANGE_NECESSITY_NOT_ESTABLISHED",
+  "RETAINED_AS_HISTORICAL_RECORD": true
+ },
  "STATUSES_REPORTED_UNCONDITIONALLY": {
   "H3_STATUS": "NOT_TESTED",
   "REPRODUCTION_STATUS": "NOT_TESTED",
@@ -153,27 +349,5 @@
   "X_LAWSPEC_BASELINE": "UNCHANGED",
   "SCIENTIFIC_RUNS_USED": 0,
   "TOMMY_ACTION_REQUIRED": "NONE"
- },
- "SENTINEL_AGGREGATED_OVER_ALL_ANALYSIS_PROCESSES": {
-  "mutation_oracles": {
-   "ENGINE_CONSTRUCT_CALLS": 0,
-   "ENGINE_ADVANCE_CALLS": 0,
-   "SCIENTIFIC_WORLD_STARTS": 0,
-   "SCIENTIFIC_SEEDS_OPENED": 0,
-   "FIXTURE_CONSTRUCTIONS": 89,
-   "FIXTURE_STEPS": 95,
-   "ALL_FOUR_ZERO": true
-  },
-  "operator_derivation": {
-   "ENGINE_CONSTRUCT_CALLS": 0,
-   "ENGINE_ADVANCE_CALLS": 0,
-   "SCIENTIFIC_WORLD_STARTS": 0,
-   "SCIENTIFIC_SEEDS_OPENED": 0,
-   "FIXTURE_CONSTRUCTIONS": 25,
-   "FIXTURE_STEPS": 25,
-   "ALL_FOUR_ZERO": true
-  },
-  "ALL_FOUR_ZERO_IN_EVERY_PROCESS": true
- },
- "FILESYSTEM_WITNESS_no_raw_file_written": true
+ }
 }

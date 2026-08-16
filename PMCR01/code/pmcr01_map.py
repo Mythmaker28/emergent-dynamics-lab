@@ -204,7 +204,14 @@ CH = [
      "CAN_BE_VARIED_WITHOUT_CHANGING_X_BASELINE": "n/a",
      "INDEPENDENTLY_CONTROLLABLE": False,
      "MUTATION_ORACLE_RESULT": "n/a — there is nothing to perturb",
-     "FINAL_CLASS": "ABSENT_REQUIRES_ARCHITECTURE_CHANGE"},
+     "FINAL_CLASS": "ABSENT_REQUIRES_ARCHITECTURE_CHANGE",
+     "CLASS_NOTE": ("REPAIR F1: 'absent' is a statement about the CODE, not a mandate. That no "
+                    "such precursor or age-dependent removal exists does NOT establish that one "
+                    "is scientifically required. The environmental exposure Q is already "
+                    "instrumented and recorded (ORR01/code/observe.py lines 55, 59, 69), so a "
+                    "prospectively frozen bound on the existing Q is a legal non-architectural "
+                    "route that must be evaluated first. See "
+                    "HANDOFF_MINORITY_Y_Q_BOUND_DERIVATION_01.md.")},
 ]
 
 
@@ -216,6 +223,23 @@ def main():
         "METHOD": ("AST walk over the COMMITTED blobs for every write to self.n[species], "
                    "including species-loop writes; then a deterministic mutation oracle per "
                    "alleged channel on a NON_SCIENTIFIC_SEMANTIC_FIXTURE."),
+        "CHANNEL_EXECUTION_PATH": {
+            "definition": "the files that can CHANGE nY or its continuation probability",
+            "files": ["ORR01/code/kinetics.py", "ORR01/code/lawspec_v2.py",
+                      "OBTC02/code/engine_obtc.py", "OBTC02/code/protocol_obtc02.py",
+                      "OBTC02/code/obtc02_protocol.yaml"],
+            "observer_creates_a_Y_channel": False},
+        "MEASUREMENT_AND_INSTRUMENTATION_PATH": {
+            "definition": "the files that determine what is RECORDED about the environment "
+                          "the Y channel would face",
+            "files": ["ORR01/code/observe.py"],
+            "why_it_is_load_bearing_anyway": (
+                "the observer does not create a Y channel, but it records Q = nX*min(nSY,free) "
+                "at the organiser cell (lines 55, 59, 69; field index 20). Omitting it from the "
+                "analysed set produced a false conclusion -- that the environmental exposure "
+                "was unmeasurable without an architecture change. It is measurable, and it is "
+                "measured, in all 28 delivered arms."),
+            "REPAIRED_IN": "PMCR01-REVIEW-DRIVEN-Q-INSTRUMENTATION-REPAIR-01"},
         "SCOPE_OF_EXHAUSTIVENESS": (
             "the Y-changing EVENTS are exhaustive over the code. Which of them is ACTIVE also "
             "depends on two constructor argument bindings fixed at protocol_obtc02.py:79-81: "

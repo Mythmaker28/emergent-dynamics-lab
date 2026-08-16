@@ -31,6 +31,11 @@ NEED = ["PMCR01/out/PMCR01_PARENT_SEAL_BINDING.json",
         "PMCR01/out/PMCR01_FINAL_DISPOSITION.json",
         "PMCR01/out/PMCR01_SHA256SUMS",
         "PMCR01/out/HANDOFF_MINIMAL_Y_CHANNEL_ARCHITECTURE_DESIGN_01.md",
+        "PMCR01/out/HANDOFF_MINORITY_Y_Q_BOUND_DERIVATION_01.md",
+        "PMCR01/out/PMCR01_Q_INSTRUMENTATION_EVIDENCE.json",
+        "PMCR01/out/PMCR01_REVIEW_REPAIR_MATRIX.json",
+        "PMCR01/code/pmcr01_repair_q.py", "PMCR01/code/pmcr01_repair_apply.py",
+        "PMCR01/code/pmcr01_repair_matrix.py",
         "PMCR01/code/pmcr01_sentinel.py", "PMCR01/code/pmcr01_oracles.py",
         "PMCR01/code/pmcr01_operator.py", "PMCR01/code/pmcr01_regions.py",
         "PMCR01/code/pmcr01_adjudicate.py"]
@@ -55,13 +60,20 @@ def main():
     head, _, _ = git("rev-parse", "HEAD")
     tree, _, _ = git("rev-parse", "HEAD^{tree}")
 
-    # ---------------------------------------------------------- one push attempt
-    out_p, rc, err = git("push", "origin", BRANCH)
-    push = {"ATTEMPTS": 1, "returncode": rc, "stderr": err,
+    # ---------------------------------------------------------- the push is NOT attempted
+    # PUSH_RETRY = forbidden. The mission's single permitted attempt was made and refused during
+    # the original delivery; the recorded response is reused verbatim rather than reissued.
+    prior = json.load(open(f"{OUT}/_pmcr01_delivery.json"))["PUSH"]
+    push = {"ATTEMPTS_IN_THIS_REPAIR": 0,
+            "PUSH_RETRY_COUNT": 0,
+            "ATTEMPTS_TOTAL_ACROSS_THE_MISSION": 1,
+            # tolerate either schema so re-running is idempotent; the 403 text is verbatim
+            "recorded_returncode": prior.get("returncode", prior.get("recorded_returncode")),
+            "recorded_stderr": prior.get("stderr", prior.get("recorded_stderr")),
             "RETRIED": False,
-            "action": ("pushed" if rc == 0 else
-                       "one attempt only; the proxy 403 is a session authorization boundary, "
-                       "recorded verbatim; split delivery instead")}
+            "action": ("not attempted; the mission's single permitted attempt was already made "
+                       "and refused by the proxy. Retrying a session authorization boundary "
+                       "cannot change it and is forbidden by this repair's mandate.")}
 
     # ---------------------------------------------------------- rebuild, split, digest
     shutil.rmtree(D, ignore_errors=True)
@@ -166,7 +178,8 @@ cd wc/PMCR01 && sha256sum -c out/PMCR01_SHA256SUMS 2>&1 | grep -c ': OK$' | sed 
            "HEAD_WHEN_WRITTEN": head}
     json.dump(rec, open(f"{OUT}/_pmcr01_delivery.json", "w"), indent=1, default=str)
 
-    print("push     : rc=%s retried=%s" % (push["returncode"], push["RETRIED"]))
+    print("push     : attempts in this repair=%s retried=%s (recorded rc=%s)"
+          % (push["ATTEMPTS_IN_THIS_REPAIR"], push["RETRIED"], push["recorded_returncode"]))
     print("archive  : %d parts, %d bytes, whole %s" % (len(parts), rec["ARCHIVE"]["bytes"],
                                                        whole[:16]))
     for k in ("REMOTES", "PROMISOR_PACKS", "COMMITS_REACHABLE", "HEAD",

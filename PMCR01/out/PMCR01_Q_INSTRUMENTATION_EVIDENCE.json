@@ -1,0 +1,593 @@
+{
+ "SECTION": "PMCR01 repair \u00a72 \u2014 the load-bearing Q finding, verified from the bytes",
+ "NO_ENGINE_RUN": true,
+ "OBSERVER_SOURCE": {
+  "OBSERVER_FILE_ON_THE_EXECUTABLE_PATH": "/home/claude/ORR01/code/observe.py",
+  "OBSERVER_FILE_IN_THE_REPOSITORY": "ORR01/code/observe.py",
+  "IS_COMMITTED": true,
+  "blob_at_HEAD": "66f3d95ed0b5b2ecbeb75df360eafde827bae377",
+  "blob_of_the_file_executed": "66f3d95ed0b5b2ecbeb75df360eafde827bae377",
+  "ON_DISK_IS_THE_COMMITTED_BLOB": true,
+  "sha256": "55840f35f44ccd424c4b71c80d591614d01c9143ca21e9c14e87e0faeeec2fbd",
+  "EXACT_LINES": {
+   "mask": {
+    "needle": "m = nY > 0",
+    "lines": [
+     55
+    ],
+    "PRESENT": true,
+    "text": "m = nY > 0"
+   },
+   "cy": {
+    "needle": "cy = np.minimum(nSY[m], free[m])",
+    "lines": [
+     59
+    ],
+    "PRESENT": true,
+    "text": "cy = np.minimum(nSY[m], free[m])"
+   },
+   "Q": {
+    "needle": "\"Q\": float((nX[m] * cy).sum())",
+    "lines": [
+     69
+    ],
+    "PRESENT": true,
+    "text": "\"Q\": float((nX[m] * cy).sum()),"
+   }
+  },
+  "Q_DEFINITION_CONFIRMED": true,
+  "FIELDS": [
+   "step",
+   "N_X",
+   "N_Y",
+   "N_SX",
+   "N_SY",
+   "N_WX",
+   "N_WY",
+   "n_org_cells",
+   "c_X_total",
+   "c_X_per_org",
+   "u_nX_at_org",
+   "nSX_at_org",
+   "nSY_at_org",
+   "nW_at_org",
+   "free_at_org",
+   "p_X_at_org",
+   "expected_births_X",
+   "accepted_births_X",
+   "deaths_X",
+   "cand_Y_at_org",
+   "Q",
+   "source_on",
+   "O_total",
+   "free_total",
+   "flux_in",
+   "flux_out",
+   "occ_delta",
+   "free_at_source_mean",
+   "displaced_total"
+  ],
+  "Q_COLUMN_INDEX": 20,
+  "SEMANTIC_IDENTITY_WITH_THE_PMCR01_OPERATOR": {
+   "pmcr01_operator_definition": "Q = nX * min(nSY, free) at the organiser's own cell",
+   "observer_definition": "m = nY > 0 ; cy = min(nSY[m], free[m]) ; Q = (nX[m] * cy).sum()",
+   "IDENTICAL": true,
+   "note": "the observer sums over organiser cells; at the qualified point there is exactly one Y, so the sum has exactly one term and the two definitions coincide term for term. n_org_cells is recorded and is checked below."
+  }
+ },
+ "OBSERVER_ON_THE_PRODUCTION_PATH": {
+  "protocol_obtc02.py": {
+   "import observe as OBS": [
+    14
+   ],
+   "OBS.Recorder()": [
+    77
+   ],
+   "rec=rec": [
+    80
+   ],
+   "rec = OBS.Recorder": [
+    77
+   ],
+   "sys.path.insert(0, \"/home/claude/ORR01/code\")": [
+    10
+   ]
+  },
+  "run_obfor01.py": {
+   "import observe as OBS": [
+    36
+   ],
+   "OBS.Recorder": [
+    45,
+    92
+   ],
+   "rec.array()": [
+    123
+   ]
+  },
+  "OBSERVER_IS_ON_THE_DATA_PRODUCTION_PATH": true,
+  "resolution": "protocol_obtc02.py inserts /home/claude/ORR01/code on sys.path and imports observe; no observe.py exists in OBTC02/code, so the import resolves to ORR01/code/observe.py, the file verified above."
+ },
+ "RECOMPUTED_Q": {
+  "N_ARMS_DELIVERED": 28,
+  "N_ARMS_CONTAINING_Q": 28,
+  "ARMS_MISSING_THE_Q_FIELD": [],
+  "EXACTLY_28_ARMS": true,
+  "ALL_ARMS_CONTAIN_Q": true,
+  "N_FRAMES_CONTAINING_Q_TOTAL": 308000,
+  "N_FRAMES_IN_WINDOW_PER_ARM": 9000,
+  "MISSING_VALUE_COUNT_nan": 0,
+  "BRANCH_ALLOCATION": {
+   "declared_S": 14,
+   "declared_M": 14,
+   "tag_prefix_agrees_with_declared": true,
+   "EXACT_RECONSTRUCTION": true
+  },
+  "STATIC_BRANCH": {
+   "n_arms": 14,
+   "mean_of_per_arm_means": 2.3690476190476195,
+   "sd_of_per_arm_means": 0.13060221180721915,
+   "min_per_arm_mean": 2.0776666666666666,
+   "max_per_arm_mean": 2.5985555555555555,
+   "pooled_min_Q": 0.0,
+   "pooled_max_Q": 28.0,
+   "mean_frac_Q_zero": 0.6469603174603175
+  },
+  "MOBILE_BRANCH": {
+   "n_arms": 14,
+   "mean_of_per_arm_means": 3.1697301587301587,
+   "sd_of_per_arm_means": 0.1629902887142898,
+   "min_per_arm_mean": 2.8725555555555555,
+   "max_per_arm_mean": 3.4298888888888888,
+   "pooled_min_Q": 0.0,
+   "pooled_max_Q": 28.0,
+   "mean_frac_Q_zero": 0.5427936507936508
+  },
+  "COMPLETE_SET": {
+   "n_arms": 28,
+   "mean_of_per_arm_means": 2.7693888888888893,
+   "sd_of_per_arm_means": 0.4326808652327324,
+   "min_per_arm_mean": 2.0776666666666666,
+   "max_per_arm_mean": 3.4298888888888888,
+   "pooled_min_Q": 0.0,
+   "pooled_max_Q": 28.0,
+   "mean_frac_Q_zero": 0.5948769841269842
+  },
+  "OBSERVED_MAX_VS_DERIVED_Q_MAX": {
+   "observed_pooled_max": 28.0,
+   "derived_Q_max_from_exhaustive_enumeration": 28,
+   "EQUAL": true,
+   "why_it_matters": "the observed ceiling coincides with the ceiling derived independently from the occupancy invariant. That is a differential check that the recorded field and the derived quantity are the same object, not merely similarly named."
+  },
+  "ONE_ORGANISER_CELL_IN_EVERY_IN_WINDOW_FRAME": true,
+  "PER_ARM": [
+   {
+    "arm": "M__seed9300014",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 3.171222222222222,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.5464444444444444,
+    "n_org_cells_always_one": true,
+    "series_sha256": "c23b24ea92bc3e647cb3654ff435e5278697af26be7b38ad12ecf8fc79efba76",
+    "Q_column_sha256": "46166968cb438154d9fc18e4b2aaba2ca65b853e435ae4b1547c08819b343d80"
+   },
+   {
+    "arm": "M__seed9300015",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.8725555555555555,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.5902222222222222,
+    "n_org_cells_always_one": true,
+    "series_sha256": "c90d8a90bd77fa77eee807a4b546ea79c26f6dee01d4611479289c86453ed488",
+    "Q_column_sha256": "cb314f961fe22281bcdb13a18aeb342794cfa876cf3197cc799da38314e22f64"
+   },
+   {
+    "arm": "M__seed9300016",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 3.1066666666666665,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.5428888888888889,
+    "n_org_cells_always_one": true,
+    "series_sha256": "136b52d9d19496acfce1792e7433bdf7c021c89fec438f632295bb2d8cabff8d",
+    "Q_column_sha256": "3e372972b1138397afd260822fcfadba41a55e3b194bee8fea95e5d1dc183306"
+   },
+   {
+    "arm": "M__seed9300017",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 3.3845555555555555,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.5262222222222223,
+    "n_org_cells_always_one": true,
+    "series_sha256": "5f6807db6c10d4640018a29ab5a720b8be55b3d182065e86d51f82575d28c505",
+    "Q_column_sha256": "dad69973c94d908bd231945b7965df39a565990e2a74136f17ce27ecf9968a8b"
+   },
+   {
+    "arm": "M__seed9300018",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 3.086,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.5567777777777778,
+    "n_org_cells_always_one": true,
+    "series_sha256": "c47a7f866013764d5b8cb224bbbcc6183341477497c2e5d3fba5d081ca83e8b3",
+    "Q_column_sha256": "b63bb158c4e835f428b1745a10f41e9464ea1f8789fef90b3e42584071a28c66"
+   },
+   {
+    "arm": "M__seed9300019",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 3.1478888888888887,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.5334444444444445,
+    "n_org_cells_always_one": true,
+    "series_sha256": "1557fe0c68bff72287e75574e2eda8d307da6e08a271ab6ae6ae27937abbbf6f",
+    "Q_column_sha256": "847633cf8928c5e2306fc612162440df3f674dff33db1532c913d1b6c7940a1d"
+   },
+   {
+    "arm": "M__seed9300020",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 3.2005555555555554,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.5385555555555556,
+    "n_org_cells_always_one": true,
+    "series_sha256": "e49ad16e2a0422b7a19996a12d520adc898f9cb0324fed639add59d5f0a7c872",
+    "Q_column_sha256": "e81343c697f89ad774431d0e13bf06b9709e21a23e580697e923561790350b13"
+   },
+   {
+    "arm": "M__seed9300021",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 3.2284444444444444,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.534,
+    "n_org_cells_always_one": true,
+    "series_sha256": "d5411c5ab2653e502abc6fbca19b0f7f601427fa4bc4120322b4a50c518c4eb4",
+    "Q_column_sha256": "f819ace55bf6a941ab9eb45af26cdf75c21a65cdd7523a8d5ad723aad6bbee48"
+   },
+   {
+    "arm": "M__seed9300022",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 3.4298888888888888,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.5262222222222223,
+    "n_org_cells_always_one": true,
+    "series_sha256": "cf392910282974c842efc37cd77f5e58813e714d2225f317bcbfc16fa09b50b3",
+    "Q_column_sha256": "4d3a98798ad8503d9c353577d092f4a729264938f4eeb428c1a1f1c17c386efd"
+   },
+   {
+    "arm": "M__seed9300023",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.9201111111111113,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.542,
+    "n_org_cells_always_one": true,
+    "series_sha256": "879573bc5d84f63e3361f77027ebad3236090b025898dca6326dc263523f8c91",
+    "Q_column_sha256": "f40cf5aca086865088968ea28c0ee1b809f227e4d9cdc53213640c644f0207eb"
+   },
+   {
+    "arm": "M__seed9300024",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 3.240111111111111,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.5372222222222223,
+    "n_org_cells_always_one": true,
+    "series_sha256": "998701d24b136193fbdacf8c99c1fd75455a1e87b3beb08dcc6f897c325a46ca",
+    "Q_column_sha256": "d7bbf9cfbef7bb71d2a58d9f65460b4d5bca7c27c14962df6e41dfdd031292bc"
+   },
+   {
+    "arm": "M__seed9300025",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 3.0476666666666667,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.5516666666666666,
+    "n_org_cells_always_one": true,
+    "series_sha256": "efc604d1f94606fd9045263ce027d4f1732e7caefea6e598975a52ec4b1b72d9",
+    "Q_column_sha256": "a01babaa6d7d60b05211371bf9d3ad79a68f8044430dfca2250dff162530e9c5"
+   },
+   {
+    "arm": "M__seed9300026",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 3.1585555555555556,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.5402222222222223,
+    "n_org_cells_always_one": true,
+    "series_sha256": "e86f5e145dfc659f6bb3329c5d06bdbb4058e35f3fcec6fa38c4aa24f70b486f",
+    "Q_column_sha256": "d7c923ed5f8b56f9841e5c65bf064d6ce7d981e434626b39127623ea79bacf1f"
+   },
+   {
+    "arm": "M__seed9300027",
+    "condition_declared": "M",
+    "condition_from_tag": "M",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 3.382,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.5332222222222223,
+    "n_org_cells_always_one": true,
+    "series_sha256": "c68ed7625134daf83ab9a97692a70518e7ab071d1cbeeeaa059ef384b8532627",
+    "Q_column_sha256": "8288d755084a0a0305fec62042dbf1dd8a617c4c7eff7672c2d38c1e9ea6c22b"
+   },
+   {
+    "arm": "S__seed9300000",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.493,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6483333333333333,
+    "n_org_cells_always_one": true,
+    "series_sha256": "c6ff1d03bd97af6ca4d244a6bffe7b57ec5e9378957d540c38687d2e2a57d291",
+    "Q_column_sha256": "d7032b56469e54f7096a96075f9c55d62c3b86749d16c257aa49772c37e424f1"
+   },
+   {
+    "arm": "S__seed9300001",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.339888888888889,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6551111111111111,
+    "n_org_cells_always_one": true,
+    "series_sha256": "4ac571e8cfa4d1a3bcd61fcf9112b4fde97be4f22b814787f831c430947af436",
+    "Q_column_sha256": "48bf2160fc0db318cab0b7aeaf842c0bd1dd4dd609f73a8c1fa2aa3b90d4ec48"
+   },
+   {
+    "arm": "S__seed9300002",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.355111111111111,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6437777777777778,
+    "n_org_cells_always_one": true,
+    "series_sha256": "3ba7abed49cf980f73227185623d40be79404fdd108f115e115405f63ed9daa9",
+    "Q_column_sha256": "5d137e7ee635d73d46949f48d5023a751917d4b8963f2baccd5c5037249ef306"
+   },
+   {
+    "arm": "S__seed9300003",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.3382222222222224,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6451111111111111,
+    "n_org_cells_always_one": true,
+    "series_sha256": "2b7736c7063187feb81f95d2f8f6fc24df2f8a4169716f770e859b230087268a",
+    "Q_column_sha256": "22c83c0f7a41a5ae594acbfd103de25429d9ec4f3afdfe2aaaa9740c7cc8969a"
+   },
+   {
+    "arm": "S__seed9300004",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.375777777777778,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6422222222222222,
+    "n_org_cells_always_one": true,
+    "series_sha256": "ab93b26ad7f5ec785861354300e7e8ba03ec2a4d260a2fcca7010458ddf0c8af",
+    "Q_column_sha256": "63b6e53118125fd680988b144c9bf76ad7a7f4776ef6a3d332b8b641203dd689"
+   },
+   {
+    "arm": "S__seed9300005",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.1835555555555555,
+    "Q_min": 0.0,
+    "Q_max": 27.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6538888888888889,
+    "n_org_cells_always_one": true,
+    "series_sha256": "cdaa610674330d4408ce2a226fe848ceae618f2b5847d8901141fb5735aee0fb",
+    "Q_column_sha256": "6e3d6ec4630a7edcc42cee04cbbc953e33642e0f82b8d7fa17378185b0e4cc0e"
+   },
+   {
+    "arm": "S__seed9300006",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.3866666666666667,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6451111111111111,
+    "n_org_cells_always_one": true,
+    "series_sha256": "82374145876693feb142e6bb07b0d94ee6f06011910bae3585f71910b05f76c1",
+    "Q_column_sha256": "07f19e63582cb65c6ddd3d35cdacaf53f2fbdc6e9e870d98edbd35464b6868db"
+   },
+   {
+    "arm": "S__seed9300007",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.319777777777778,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6531111111111111,
+    "n_org_cells_always_one": true,
+    "series_sha256": "61d1151e78885ebf0a34bf23f4d5a0f3693627bac2e87a0e95a9cb0ee4f5dfb2",
+    "Q_column_sha256": "a17196f46a0a89a8b805e3af17d60da535547f6fbe3ff3cba5c918dd2a1343fc"
+   },
+   {
+    "arm": "S__seed9300008",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.342888888888889,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.647,
+    "n_org_cells_always_one": true,
+    "series_sha256": "6bff53c11b5a58ba68b0d5913daecd94b4db56eb56b815ebaef09a8364a4f4c2",
+    "Q_column_sha256": "7572963eab304a93964328796ddaff90de050526bc3c37c3f59b0ed5e1213f6a"
+   },
+   {
+    "arm": "S__seed9300009",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.482666666666667,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6437777777777778,
+    "n_org_cells_always_one": true,
+    "series_sha256": "070276f6ea01790677c0728a4d7bb31cfc3ab8d4953bc3f5f79ea2d56d5ab6c7",
+    "Q_column_sha256": "db4f4812667a8571393a2fbf6ad329394fd64904b75cc7476b63562b74ca53da"
+   },
+   {
+    "arm": "S__seed9300010",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.3775555555555554,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6531111111111111,
+    "n_org_cells_always_one": true,
+    "series_sha256": "f0092dcff54c3f82f62f385ba116328f642fff9b9b3963396092317eefa60177",
+    "Q_column_sha256": "dda11b98a4b75b3122819ca1402be910ef66fdd37e903137df7e0db5c89b65a1"
+   },
+   {
+    "arm": "S__seed9300011",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.4953333333333334,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6264444444444445,
+    "n_org_cells_always_one": true,
+    "series_sha256": "d76ed26246b05c71feff2fd781cfa849bf9ff8a4859dcafcfa3dc5c7898d2571",
+    "Q_column_sha256": "673008cdd1da4826e93ce3a5fc382f6c87f3f658525aeee82c7a23f0bb72a6bc"
+   },
+   {
+    "arm": "S__seed9300012",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.5985555555555555,
+    "Q_min": 0.0,
+    "Q_max": 28.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6321111111111111,
+    "n_org_cells_always_one": true,
+    "series_sha256": "51ba2d95c3df17396e003b21bf5d24f8f888def5e3516df51e1a3f5fc96b0c32",
+    "Q_column_sha256": "5d1b0456c96693c35ddd3fd0dfff192a5bdfc3bd0fca422d6df9ccb05874a1f5"
+   },
+   {
+    "arm": "S__seed9300013",
+    "condition_declared": "S",
+    "condition_from_tag": "S",
+    "n_steps_total": 11000,
+    "n_frames_in_window": 9000,
+    "Q_mean_in_window": 2.0776666666666666,
+    "Q_min": 0.0,
+    "Q_max": 24.0,
+    "Q_median": 0.0,
+    "frac_Q_zero": 0.6683333333333333,
+    "n_org_cells_always_one": true,
+    "series_sha256": "b8987e682f10e28bf3c1ab5447db831f5ba9b030d38ad7d2af54745f95cf7eb7",
+    "Q_column_sha256": "b83f49efa1d9bdc6da8217bf4394c9e6e1a165fabd17d7e3005f67f60e602404"
+   }
+  ],
+  "EVIDENTIARY_LABEL": "POST_OUTCOME_DEVELOPMENT_DIAGNOSTIC",
+  "WHAT_THAT_LABEL_MEANS": "these 28 arms were executed and delivered before PMCR01 opened, and no bound on Q was frozen before they ran. They are admissible as DEVELOPMENT evidence for designing a later independent test. They are NOT a prospectively frozen lower bound and must never be presented as confirmatory proof of a kY window."
+ },
+ "REVIEWER_APPROXIMATION_CROSS_CHECK": {
+  "reviewer_said": "E[Q] ~ 3.17",
+  "recomputed_complete_set_mean_of_per_arm_means": 2.7693888888888893,
+  "NOTE": "the reviewer's figure was a single-arm approximation and is NOT used anywhere; the recomputed values above are authoritative"
+ }
+}

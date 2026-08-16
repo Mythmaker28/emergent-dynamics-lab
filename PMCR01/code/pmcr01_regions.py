@@ -442,6 +442,21 @@ def predeclared_category_B_bounds():
                 "the measurement that made the parent's own prediction CONDITIONAL."),
         },
         "UPPER_BOUNDARY_IS_UNAFFECTED": "beta <= Q_max kY = 28 kY needs no measurement at all",
+        "REPAIR_F1_THE_GATE_ROUTE_IS_NOT_THE_ONLY_ROUTE": {
+            "what_was_missed": (
+                "this function searched the frozen GATE THRESHOLDS for a bound on the Y "
+                "substrate and correctly found none (SY occurs 0 times in "
+                "obtc02_protocol.yaml). It did not ask whether Q itself is RECORDED."),
+            "it_is_recorded": (
+                "ORR01/code/observe.py lines 55, 59, 69 define m = nY > 0 ; "
+                "cy = min(nSY[m], free[m]) ; Q = (nX[m] * cy).sum() -- bit-for-bit the Q of "
+                "this derivation -- as field index 20, present in all 28 delivered arms."),
+            "CONSEQUENCE": (
+                "E[Q] is MEASURABLE and MEASURED. What PMCR01 lacks is not the measurement but "
+                "a PROSPECTIVELY FROZEN bound on it. That is an evidence-policy boundary, not "
+                "an architectural one, and it does not license the claim that the architecture "
+                "must change."),
+            "SEE": "PMCR01_Q_INSTRUMENTATION_EVIDENCE.json"},
     }
 
 

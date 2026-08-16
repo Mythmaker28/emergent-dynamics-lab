@@ -1,0 +1,301 @@
+{
+ "SECTION": "PMCR01 repair \u00a71 \u2014 review repair matrix",
+ "REPAIR": "PMCR01-REVIEW-DRIVEN-Q-INSTRUMENTATION-REPAIR-01",
+ "REVIEW_SOURCE": {
+  "md": "/home/claude/PMCR01/review/PMCR01_ADVERSARIAL_REVIEW.md",
+  "json": "/home/claude/PMCR01/review/PMCR01_ADVERSARIAL_REVIEW.json",
+  "md_sha256": "2201fd2f625e858d8ee76409e70f4e3ea1f316d85911f32244dc86bb7cb83cf8",
+  "json_sha256": "a26272b86de504354aab49a75b66b7a4faf51be1f4f1039920756aad0d9f3bcf",
+  "REVIEW_FILES_MODIFIED_BY_THIS_REPAIR": false
+ },
+ "reviewed_tip": "5b4eace2ed99f2764e1a01e6d2a98e0bd7fc48ff",
+ "N_FINDINGS": 17,
+ "N_DEFECTS_CONFIRMED": 8,
+ "N_ATTACKS_REFUTED": 9,
+ "N_PLAUSIBLE_UNRESOLVED": 0,
+ "EVERY_CONFIRMED_DEFECT_HANDLED": true,
+ "UNHANDLED_CONFIRMED_DEFECTS": [],
+ "MATRIX": [
+  {
+   "finding_id": "F1",
+   "severity": "load-bearing",
+   "review_status": "DEFECT_CONFIRMED",
+   "claim_attacked": "LEGS.LOAD_BEARING__BIRTH_INTENSITY_HAS_NO_CERTIFIABLE_LOWER_BOUND_IN_kY and ARCHITECTURE_CHANGE_BOUNDARY: that E[Q] = E[nX*min(nSY,free)] at the organiser cell is a property of the realized measure that would require measuring the realized cloud, and that the smallest missing capability is therefore a new conserved Y-precursor species.",
+   "exact_files_and_lines_attacked": "ORR01/code/observe.py:59,69 -- cy = np.minimum(nSY[m], free[m]) and \"Q\": float((nX[m] * cy).sum()) -- is bit-for-bit the candidate's Q. It is a recorded field (observe.Recorder.FIELDS index 20) alongside nSY_at_org, cand_Y_at_org, free_at_org, and it is present in all 28 delivered OBFOR01 arms: E[Q] in-window = 3.1712 for M__seed9300014.npz, P(Q=0) = 0.546, max Q = 28 (identical to the independently derived Q_max). E[Q] across 8 arms = 3.171, 2.873, 3.107, 3.385, 3.086, 3.148, 3.201, 3.228. Root cause: pmcr01_channels.py FILES omits observe.py although protocol_obtc02.py:14 imports it.",
+   "defect_accepted": true,
+   "repair_mode": "A_REPAIRED_MECHANICALLY",
+   "exact_files_changed": [
+    "pmcr01_channels.py (FILES + observe.py)",
+    "pmcr01_map.py (CHANNEL_EXECUTION_PATH / MEASUREMENT_AND_INSTRUMENTATION_PATH, ABSENT class qualified)",
+    "pmcr01_regions.py (REPAIR_F1 addendum to the predeclared-bound block)",
+    "pmcr01_repair_q.py (new: full Q verification)",
+    "pmcr01_repair_apply.py (new: repaired logic + disposition)",
+    "PMCR01_FINAL_DISPOSITION.json",
+    "PMCR01_FINAL_REPORT.md",
+    "PMCR01_Q_INSTRUMENTATION_EVIDENCE.json (new)",
+    "HANDOFF_MINIMAL_Y_CHANNEL_ARCHITECTURE_DESIGN_01.md (superseded)",
+    "HANDOFF_MINORITY_Y_Q_BOUND_DERIVATION_01.md (new)"
+   ],
+   "exact_pre_repair_claim": "E[Q] 'is a property of the realized cloud measure, not of the LawSpec' and 'does not exist without measuring the realized cloud'; therefore the smallest missing capability is a new conserved Y-precursor species and STOP__ARCHITECTURE_CHANGE_REQUIRED.",
+   "exact_repaired_claim": "E[Q] is INSTRUMENTED AND RECORDED by the existing architecture (ORR01/code/observe.py lines 55, 59, 69; field index 20; all 28 delivered arms; 0 missing values). MEASUREMENT_AVAILABILITY = CONFIRMED. What is missing is a PROSPECTIVELY FROZEN bound, not the measurement. ARCHITECTURE_CHANGE_NECESSITY = NOT_ESTABLISHED; disposition weakened to EXISTING_ARCHITECTURE_WINDOW_NOT_YET_PROSPECTIVELY_LOCATED.",
+   "deterministic_verification_command": "python3 pmcr01_repair_q.py",
+   "post_repair_result": "observer committed and on-disk == HEAD blob; 28/28 arms contain Q; 308000 frames; static mean 2.369048, mobile mean 3.169730, complete 2.769389; observed pooled max 28 == derived Q_max 28; 0 NaN"
+  },
+  {
+   "finding_id": "F2",
+   "severity": "material",
+   "review_status": "DEFECT_CONFIRMED",
+   "claim_attacked": "POSITIVE_DISPOSITION_CHECKLIST.ROBUST_REGION_POSITIVE_WIDTH = False, the single failing item that forces the disposition, alongside DISPOSITION_RESTS_ON = 'one branch-independent load-bearing leg'.",
+   "exact_files_and_lines_attacked": "pmcr01_adjudicate.py: \"ROBUST_REGION_POSITIVE_WIDTH\": bool(C[\"NONEMPTY\"]). pmcr01_regions.py:605: \"NONEMPTY\": any(s[\"REGION_NONEMPTY\"] for s in scans.values()). pmcr01_regions.py:567: scans = {c: scan(c) for c in (1,4,7)}. pmcr01_regions.py:86: def scan(c, tau=TAU_SEP) with TAU_SEP = 125.0, i.e. mobile branch only.",
+   "defect_accepted": true,
+   "repair_mode": "A_REPAIRED_MECHANICALLY",
+   "exact_files_changed": [
+    "pmcr01_repair_apply.py (build_checklist)",
+    "PMCR01_FINAL_DISPOSITION.json"
+   ],
+   "exact_pre_repair_claim": "ROBUST_REGION_POSITIVE_WIDTH = bool(C['NONEMPTY']) computed from mobile-only scans (scan(c) defaults tau=TAU_SEP=125) while the narrative claimed a branch-independent ground.",
+   "exact_repaired_claim": "replaced by PROSPECTIVELY_QUALIFIED_REGION_LOCATED, computed from the branch-independent transport question (is there a frozen ex-ante Q bound?). Both branches are reported separately under BRANCH_SEPARATED_REGIONS with an explicit SCOPE_RULE; the static non-empty counter-region is preserved.",
+   "deterministic_verification_command": "python3 -c \"import json;d=json.load(open('PMCR01_FINAL_DISPOSITION.json'));print(d['CHECKLIST_COMPUTED']['PROSPECTIVELY_QUALIFIED_REGION_LOCATED'])\"",
+   "post_repair_result": "the flag is branch-independent; MOBILE and STATIC reported separately and never averaged"
+  },
+  {
+   "finding_id": "F3",
+   "severity": "material",
+   "review_status": "DEFECT_CONFIRMED",
+   "claim_attacked": "The ten-item positive-disposition checklist and the FOUR_PROPOSITIONS block.",
+   "exact_files_and_lines_attacked": "pmcr01_adjudicate.py checklist contains the literals \"NO_TARGET_DERIVED_INPUT\": True and \"INDEPENDENCE_OR_ALIAS_STATUS_RESOLVED\": True; four_propositions contains four hardcoded booleans. Eight of ten checklist items are computed; these two are asserted.",
+   "defect_accepted": true,
+   "repair_mode": "A_REPAIRED_MECHANICALLY",
+   "exact_files_changed": [
+    "pmcr01_repair_apply.py (build_checklist, no_target_derived_input_computed)",
+    "PMCR01_FINAL_DISPOSITION.json"
+   ],
+   "exact_pre_repair_claim": "NO_TARGET_DERIVED_INPUT: True and INDEPENDENCE_OR_ALIAS_STATUS_RESOLVED: True were hardcoded literals; FOUR_PROPOSITIONS held four hardcoded booleans.",
+   "exact_repaired_claim": "every checklist item now carries source / calculation / observed_value / threshold_or_rule / result. NO_TARGET_DERIVED_INPUT is computed by an AST scan that distinguishes a data access from prose. FOUR_PROPOSITIONS carries a source per item.",
+   "deterministic_verification_command": "python3 -c \"import json;d=json.load(open('PMCR01_FINAL_DISPOSITION.json'));print(all(set(v)>={'source','calculation','observed_value','threshold_or_rule','result'} for v in d['CHECKLIST_COMPUTED'].values()))\"",
+   "post_repair_result": "all 10 items structured and computed. The computed scan initially returned False on three prose mentions of 'r80'; the check was corrected to AST-based (not the threshold relaxed) and then returned True on zero data accesses."
+  },
+  {
+   "finding_id": "F4",
+   "severity": "material",
+   "review_status": "DEFECT_CONFIRMED",
+   "claim_attacked": "NO_GUARD_REFUSES_A_NONZERO_kY_OR_muY = true, feeding ADMISSIBLE_NONZERO_CONTROL_RANGE = True.",
+   "exact_files_and_lines_attacked": "pmcr01_channels.py::admissibility_checks inspects only isinstance(n, (ast.Assert, ast.Raise)). AST count of Assert/Raise nodes over the five analysed blobs at HEAD: kinetics 0, lawspec_v2 0, engine_obtc 0, protocol_obtc02 0, gate_obtc02 0, TOTAL 0.",
+   "defect_accepted": true,
+   "repair_mode": "A_REPAIRED_MECHANICALLY",
+   "exact_files_changed": [
+    "pmcr01_repair_apply.py (admissibility_audit)",
+    "PMCR01_FINAL_DISPOSITION.json"
+   ],
+   "exact_pre_repair_claim": "NO_GUARD_REFUSES_A_NONZERO_kY_OR_muY derived from a scan of ast.Assert/ast.Raise nodes; the analysed files contain ZERO such nodes, so the empty result was a vacuous truth.",
+   "exact_repaired_claim": "replaced by an audit of the mechanisms that could actually bound the parameters: constructor copy, the min(1, .) clamp, the Bernoulli domain on muY, conditional short-circuits, the manifest choice, branch-dependent p_hop_Y, CAP preservation and the mutation oracles. A VACUITY POSITIVE CONTROL against guard_obtc.py (8 Assert/Raise nodes) proves the searcher can find raises when they exist.",
+   "deterministic_verification_command": "python3 -c \"import json;d=json.load(open('PMCR01_FINAL_DISPOSITION.json'));a=d['F4_ADMISSIBILITY_AUDIT'];print(a['assert_or_raise_node_counts'],a['VACUITY_POSITIVE_CONTROL']['assert_or_raise_nodes'])\"",
+   "post_repair_result": "engine files 0 nodes; positive control 8 nodes; NO_RUNTIME_VALIDATION_EXISTS established from mechanisms, not from an empty search"
+  },
+  {
+   "finding_id": "F5",
+   "severity": "material",
+   "review_status": "DEFECT_CONFIRMED",
+   "claim_attacked": "THRESHOLD_AND_GEOMETRY_SENSITIVITY.SHORTFALL_FACTOR = 13.2 and the final report's 'survie <= 0,0379 contre 0,50 requis -- court d'un facteur 13'.",
+   "exact_files_and_lines_attacked": "Maximising the candidate's own exact survival over the actual feasible set C2 and C3 and C4 and C5 and C6, mobile branch, c in {1,4,7}, on the candidate's own grid with a stable survival-space recursion: exact MAX survival = 5.0e-06 at (c, beta, muY) = (1, 0.1413, 0.1243). Against the required 0.50 this is a shortfall factor of 110213x, not 13.2x.",
+   "defect_accepted": true,
+   "repair_mode": "A_REPAIRED_MECHANICALLY",
+   "exact_files_changed": [
+    "pmcr01_repair_apply.py (exact_mobile_shortfall)",
+    "PMCR01_FINAL_DISPOSITION.json",
+    "PMCR01_FINAL_REPORT.md"
+   ],
+   "exact_pre_repair_claim": "the mobile shortfall headline was 13.2x, a single closed-form corner using the loose substitution S ~ 1/m.",
+   "exact_repaired_claim": "the exact maximum survival over the real feasible set C2..C6 is reported as the headline; the closed form is demoted to an illustration and labelled MOBILE-only.",
+   "deterministic_verification_command": "python3 -c \"import json;d=json.load(open('PMCR01_FINAL_DISPOSITION.json'));print(d['BRANCH_SEPARATED_REGIONS']['MOBILE']['exact_shortfall']['EXACT_SHORTFALL_FACTOR'])\"",
+   "post_repair_result": "exact max survival 4.537e-06 -> shortfall 110213x, not 13.2x. The direction was always AGAINST this mission's own case."
+  },
+  {
+   "finding_id": "F6",
+   "severity": "material",
+   "review_status": "DEFECT_CONFIRMED",
+   "claim_attacked": "REGION_C_STATIC_BRANCH.SINGLE_Y_BRANCHING_IS_AN_OVERESTIMATE_HERE: that the 87-point static counter-region is an optimistic upper bound because all Y share one cell's pool.",
+   "exact_files_and_lines_attacked": "admissible_Q(CAP=16, nY) takes nY as a parameter and is never called with nY != 1. Enumerated properly, Q_max(nY) = 28, 24, 21, 18, 15, 12, 10, 8, 6, 4, 3, 2, 1, 0 for nY = 1..14. An exact capacity-limited 17-state chain using the most favourable admissible state at each k, at the candidate's own static box edge beta = 3.981e-4, muY = 2.639e-5, T = 11000, gives survival = 0.9341 and E[nY(T)] = 7.60, versus the unconstrained 0.935 and E[nY(T)] <= 10.",
+   "defect_accepted": true,
+   "repair_mode": "A_REPAIRED_MECHANICALLY",
+   "exact_files_changed": [
+    "pmcr01_repair_apply.py (q_max_by_nY, capacity_limited_chain)",
+    "PMCR01_FINAL_DISPOSITION.json"
+   ],
+   "exact_pre_repair_claim": "'the single-Y branching overstates growth, so the 87-point static counter-region is an optimistic upper bound' -- asserted qualitatively; admissible_Q(CAP, nY) was never called with nY != 1.",
+   "exact_repaired_claim": "Q_max(nY) published for nY = 1..16 (28, 24, 21, 18, 15, 12, 10, 8, 6, 4, 3, 2, 1, 0, 0, 0) and an exact capacity-limited 17-state chain evaluated at the static box edge. The mitigation as written is WITHDRAWN: the correction is negligible and the counter-region survives the occupancy invariant essentially intact.",
+   "deterministic_verification_command": "python3 -c \"import json;d=json.load(open('PMCR01_FINAL_DISPOSITION.json'));print(d['F6_CAPACITY_LIMITED_CHECK']['exact_capacity_limited_chain_at_the_static_box_edge'])\"",
+   "post_repair_result": "survival 0.9341 and E[nY(T)] 7.60 under the capacity-limited chain against 0.894 and <= 10 unconstrained; Q_max reaches 0 at nY = 14"
+  },
+  {
+   "finding_id": "F7",
+   "severity": "cosmetic",
+   "review_status": "DEFECT_CONFIRMED",
+   "claim_attacked": "FOUR_PROPOSITIONS.WHY_THEY_ARE_NOT_INTERCHANGEABLE.",
+   "exact_files_and_lines_attacked": "It reads 'The fourth is a separate question and it is answered negatively, on three independent grounds.' The same file's DISPOSITION_RESTS_ON reads 'one branch-independent load-bearing leg ... the two mobile-branch arguments and the static counter-region are reported but are NOT pillars'.",
+   "defect_accepted": true,
+   "repair_mode": "A_REPAIRED_MECHANICALLY",
+   "exact_files_changed": [
+    "pmcr01_repair_apply.py (FOUR_PROPOSITIONS)",
+    "PMCR01_FINAL_DISPOSITION.json"
+   ],
+   "exact_pre_repair_claim": "FOUR_PROPOSITIONS.WHY_THEY_ARE_NOT_INTERCHANGEABLE said the fourth 'is answered negatively, on three independent grounds', contradicting DISPOSITION_RESTS_ON.",
+   "exact_repaired_claim": "rewritten: the repaired answer is NOT_YET_LOCATED on ONE branch-independent operational ground -- the absence of a prospectively frozen Q bound -- and is explicitly not a proof of non-existence.",
+   "deterministic_verification_command": "grep -c 'three independent grounds' PMCR01_FINAL_DISPOSITION.json",
+   "post_repair_result": "0 occurrences remain"
+  },
+  {
+   "finding_id": "F8",
+   "severity": "material",
+   "review_status": "DEFECT_CONFIRMED",
+   "claim_attacked": "ENGINE_ADVANCE_CALLS = 0 as a guarantee of zero trajectories.",
+   "exact_files_and_lines_attacked": "pmcr01_sentinel.py patches K.World.__init__, K.World._one_step and seed_one_organiser in kinetics, engine_obtc and lawspec_v2. grep -c '_react|_decay|_diffuse' pmcr01_sentinel.py returns 0: the operators are not instrumented, so a trajectory assembled from direct operator calls would advance state invisibly. Mitigations verified: grep over PMCR01/code/*.py finds exactly one hit, pmcr01_map.py:21, inside a docstring; and the filesystem witness shows OBFOR01/raw 28->28, OBTC02/raw 17->17, no mtime advance, NO_RAW_FILE_WRITTEN = True, SCIENTIFIC_SEEDS_IN_THE_REGISTERS = 406, 13 fixture seeds all ",
+   "defect_accepted": true,
+   "repair_mode": "A_REPAIRED_MECHANICALLY",
+   "exact_files_changed": [
+    "pmcr01_sentinel.py (all_mission_output_roots, raw_dir_witness, report)",
+    "pmcr01_oracles.py (RAW_DIRS = None)",
+    "pmcr01_repair_apply.py (SENTINEL_AGGREGATED)"
+   ],
+   "exact_pre_repair_claim": "the witness watched three directories chosen by the audited party, one of which (OBDI02/raw) is empty and could never fire; the sentinel report was per-process; NEW_PHYSICS_ARRAYS_WRITTEN was not reported.",
+   "exact_repaired_claim": "the roots are DISCOVERED by glob over /home/claude/*/raw and /home/claude/*/out (29 roots); npz counts are tracked per root; NEW_PHYSICS_ARRAYS_WRITTEN is reported; the sentinel is aggregated over all analysis processes.",
+   "deterministic_verification_command": "python3 -c \"import json;d=json.load(open('PMCR01_FINAL_DISPOSITION.json'));print(d['SENTINEL_AGGREGATED'])\"",
+   "post_repair_result": "29 roots watched; construct/advance/starts/seeds/new-npz all 0 across all processes; ALL_ZERO_EVERYWHERE true"
+  },
+  {
+   "finding_id": "R1",
+   "severity": "load-bearing",
+   "review_status": "ATTACK_REFUTED",
+   "claim_attacked": "The exact offspring law f(z) = (m + (1-m)z)(1 - p(1-m)(1-z))^c and R = (1-muY)(1+cp), including newborn exposure and the c (not c*nY) trial count.",
+   "exact_files_and_lines_attacked": "Brute-force enumeration over (parent survives, number of births, number of surviving newborns) at c=4, p=0.03, m=0.11 gives 0.410479599864743 against the closed form 0.410479599864743, matching to 1e-15. R formula 0.996800000000 against numeric f'(1) = 0.996799989.",
+   "defect_accepted": null,
+   "repair_mode": "NOT_A_DEFECT__ATTACK_REFUTED",
+   "exact_files_changed": [],
+   "exact_pre_repair_claim": null,
+   "exact_repaired_claim": null,
+   "deterministic_verification_command": "The enumeration above.",
+   "post_repair_result": "claim survived the attack; retained unchanged"
+  },
+  {
+   "finding_id": "R2",
+   "severity": "load-bearing",
+   "review_status": "ATTACK_REFUTED",
+   "claim_attacked": "Q_max = 28, inf Q = 0, 15504 admissible states, 60.1 percent with Q = 0.",
+   "exact_files_and_lines_attacked": "Independent five-fold enumeration: 15504 states, exactly C(20,5); Q_max = 28 at (nX,nSX,nSY,nWX,nWY,free) = (7,0,4,0,0,4); Q=0 fraction 0.6009. Independent cross-check: the delivered Q field's observed maximum is also 28.",
+   "defect_accepted": null,
+   "repair_mode": "NOT_A_DEFECT__ATTACK_REFUTED",
+   "exact_files_changed": [],
+   "exact_pre_repair_claim": null,
+   "exact_repaired_claim": null,
+   "deterministic_verification_command": "The enumeration above.",
+   "post_repair_result": "claim survived the attack; retained unchanged"
+  },
+  {
+   "finding_id": "R3",
+   "severity": "load-bearing",
+   "review_status": "ATTACK_REFUTED",
+   "claim_attacked": "Occupancy is bounded by CAP at every step.",
+   "exact_files_and_lines_attacked": "In _diffuse, dest_free[i] = free[i+shift], so roll(accepted,shift)[j] = accepted[j-shift] <= free[j], giving occ_new[j] = occ[j] - accepted[j] + accepted[j-shift] <= CAP; free() is recomputed on every pass; _react and _decay are species conversions; _exchange inserts k = min(want, avail) and removes exactly k.",
+   "defect_accepted": null,
+   "repair_mode": "NOT_A_DEFECT__ATTACK_REFUTED",
+   "exact_files_changed": [],
+   "exact_pre_repair_claim": null,
+   "exact_repaired_claim": null,
+   "deterministic_verification_command": "Trace the four frozen shifts in kinetics.World._diffuse.",
+   "post_repair_result": "claim survived the attack; retained unchanged"
+  },
+  {
+   "finding_id": "R4",
+   "severity": "material",
+   "review_status": "ATTACK_REFUTED",
+   "claim_attacked": "free0 in _react is computed before the X branch and might corrupt the Y candidate count.",
+   "exact_files_and_lines_attacked": "The X branch is an SX->X conversion, so occupancy and therefore free are unchanged, and n['SY'] is untouched by it. The mutation oracle's deterministic +4 = min(nSY=4, free=6) confirms it empirically.",
+   "defect_accepted": null,
+   "repair_mode": "NOT_A_DEFECT__ATTACK_REFUTED",
+   "exact_files_changed": [],
+   "exact_pre_repair_claim": null,
+   "exact_repaired_claim": null,
+   "deterministic_verification_command": "Read engine_obtc._react_core and check that both writes are conversions.",
+   "post_repair_result": "claim survived the attack; retained unchanged"
+  },
+  {
+   "finding_id": "R5",
+   "severity": "material",
+   "review_status": "ATTACK_REFUTED",
+   "claim_attacked": "p_X = min(1, kX*nX*nY) = 1 exactly at kX = 1.0 whenever nX*nY >= 1.",
+   "exact_files_and_lines_attacked": "Evaluated at (nX,nY) = (0,1),(1,1),(1,3),(7,2): 0.0, 1.0, 1.0, 1.0.",
+   "defect_accepted": null,
+   "repair_mode": "NOT_A_DEFECT__ATTACK_REFUTED",
+   "exact_files_changed": [],
+   "exact_pre_repair_claim": null,
+   "exact_repaired_claim": null,
+   "deterministic_verification_command": "Direct evaluation.",
+   "post_repair_result": "claim survived the attack; retained unchanged"
+  },
+  {
+   "finding_id": "R6",
+   "severity": "material",
+   "review_status": "ATTACK_REFUTED",
+   "claim_attacked": "Numerical validity of extinction_by, which iterates the pgf 11000 times in z-space and is cancellation-prone near z = 1.",
+   "exact_files_and_lines_attacked": "Differential verification against a stable survival-space recursion s <- -expm1(log1p(-(1-m)s) + c*log1p(-p(1-m)s)): agreement within 1.7e-11 relative across five representative points, including the near-critical corner where survival is 2.19e-4.",
+   "defect_accepted": null,
+   "repair_mode": "NOT_A_DEFECT__ATTACK_REFUTED",
+   "exact_files_changed": [],
+   "exact_pre_repair_claim": null,
+   "exact_repaired_claim": null,
+   "deterministic_verification_command": "The paired recursion above.",
+   "post_repair_result": "claim survived the attack; retained unchanged"
+  },
+  {
+   "finding_id": "R7",
+   "severity": "load-bearing",
+   "review_status": "ATTACK_REFUTED",
+   "claim_attacked": "That a rigorously predeclared GATE bound could locate E[Q] numerically.",
+   "exact_files_and_lines_attacked": "git show HEAD:OBTC02/code/obtc02_protocol.yaml | grep -c SY returns 0. No frozen gate threshold mentions the Y substrate, so the chain from mean_births_per_step_min, mean_free_at_organiser_min and N_X_min terminates exactly where the candidate says it does.",
+   "defect_accepted": null,
+   "repair_mode": "NOT_A_DEFECT__ATTACK_REFUTED",
+   "exact_files_changed": [],
+   "exact_pre_repair_claim": null,
+   "exact_repaired_claim": null,
+   "deterministic_verification_command": "The grep above.",
+   "post_repair_result": "claim survived the attack; retained unchanged"
+  },
+  {
+   "finding_id": "R8",
+   "severity": "load-bearing",
+   "review_status": "ATTACK_REFUTED",
+   "claim_attacked": "That NO_MINIMAL_REACHABLE_Y_CHANNEL should have been the disposition.",
+   "exact_files_and_lines_attacked": "The mutation oracles move the captured hazard argument at the point of use (kY 0->1 changes p at binomial call 17; muY 0->1 at call 19) and produce deterministic deltas +4 and -1 with bit-exact reversal; kY and muY are copied verbatim from the manifest by spec_for.",
+   "defect_accepted": null,
+   "repair_mode": "NOT_A_DEFECT__ATTACK_REFUTED",
+   "exact_files_changed": [],
+   "exact_pre_repair_claim": null,
+   "exact_repaired_claim": null,
+   "deterministic_verification_command": "Read PMCR01_MUTATION_ORACLE_REPORT.json ORACLES.",
+   "post_repair_result": "claim survived the attack; retained unchanged"
+  },
+  {
+   "finding_id": "R9",
+   "severity": "cosmetic",
+   "review_status": "ATTACK_REFUTED",
+   "claim_attacked": "That grid truncation (beta <= 1, muY <= 0.891) hides a feasible region.",
+   "exact_files_and_lines_attacked": "At beta = 1, R ~ 2 and R^11000 overflows C2 by roughly 3300 orders of magnitude; as muY approaches 1 the lineage dies immediately and C1 fails.",
+   "defect_accepted": null,
+   "repair_mode": "NOT_A_DEFECT__ATTACK_REFUTED",
+   "exact_files_changed": [],
+   "exact_pre_repair_claim": null,
+   "exact_repaired_claim": null,
+   "deterministic_verification_command": "Evaluate R^T at the grid corners.",
+   "post_repair_result": "claim survived the attack; retained unchanged"
+  }
+ ],
+ "LEFT_UNREPAIRED_WITH_A_LOAD_BEARING_REASON": {
+  "F8_residual_instrument_gap": {
+   "what": "_diffuse / _react / _decay are still not individually instrumented by the sentinel, so a trajectory assembled from direct operator calls would not be counted as an advance.",
+   "mode": "B_LEFT_UNREPAIRED_WITH_A_STATED_REASON",
+   "reason": "instrumenting the three operators would require patching methods that the mutation oracles themselves drive through _one_step, and would change the very code path under audit during the audit. The gap is closed by two independent means instead: (i) a grep proving no PMCR01 code calls the operators directly -- the sole match, pmcr01_map.py:21, is inside a docstring; and (ii) the filesystem witness over 29 discovered output roots showing NEW_PHYSICS_ARRAYS_WRITTEN = 0. The guarantee is therefore stated with its exact scope rather than overclaimed.",
+   "scope_statement": "the zero-run guarantee covers _one_step-mediated advances, and is corroborated by a filesystem witness that is independent of every in-process counter"
+  }
+ },
+ "COSMETIC_REWRITE_DISCLAIMER": "F1 concerns the scientific disposition and was NOT closed by rewording: the disposition itself is changed, the checklist item is recomputed, the superseded handoff is retired and a different next mission is issued."
+}

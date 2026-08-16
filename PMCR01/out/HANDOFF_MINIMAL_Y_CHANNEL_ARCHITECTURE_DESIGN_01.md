@@ -1,3 +1,25 @@
+> ## STATUS = SUPERSEDED_NOT_AUTHORIZED
+>
+> ```
+> STATUS         = SUPERSEDED_NOT_AUTHORIZED
+> SUPERSEDED_BY  = MINORITY_Y_Q_BOUND_DERIVATION_01
+> REASON         = EXISTING_Q_INSTRUMENTATION_CONFIRMED__
+>                  ARCHITECTURE_CHANGE_NECESSITY_NOT_ESTABLISHED
+> SUPERSEDED_BY_REPAIR = PMCR01-REVIEW-DRIVEN-Q-INSTRUMENTATION-REPAIR-01
+> ```
+>
+> **Ce handoff n'est pas la prochaine eligibilite et ne doit pas etre execute.**
+> La revue adverse a confirme que la quantite d'exposition environnementale `Q` est deja
+> instrumentee et enregistree par l'architecture existante (`ORR01/code/observe.py`, lignes
+> 55, 59, 69, colonne 20, presente dans les 28 bras livres). La necessite d'un changement
+> d'architecture n'est donc PAS etablie, et la route non architecturale -- une borne
+> prospectivement gelee sur le `Q` deja enregistre -- doit etre evaluee et rejetee sur le fond
+> avant que la conception d'une nouvelle espece soit rouverte.
+>
+> Conserve comme piece historique. Ne rien implementer d'apres ce document.
+
+---
+
 # ISING LIFE LAB — HANDOFF (INERTE, ZÉRO RUN)
 ## MINIMAL-Y-CHANNEL-ARCHITECTURE-DESIGN-01
 ## MYCAD01 — concevoir, sans l'implémenter, la plus petite capacité manquante

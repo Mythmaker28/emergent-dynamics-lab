@@ -50,7 +50,7 @@ SEED_REGISTERS = [
     "/home/claude/OBFOR01/out/_freeze.json", "/home/claude/OBFOR01/out/_seeds.json",
     "/home/claude/OBFOR01/out/_validation.json",
     "/home/claude/OBTC02/out/_seeds.json", "/home/claude/OBDI02/out/_seeds.json"]
-RAW_DIRS = ["/home/claude/OBFOR01/raw", "/home/claude/OBTC02/raw", "/home/claude/OBDI02/raw"]
+RAW_DIRS = None      # None -> the sentinel DISCOVERS every mission output root by glob (F8)
 
 
 # ------------------------------------------------------------------ committed-blob equivalence
@@ -424,8 +424,11 @@ def main():
           % (s["ENGINE_CONSTRUCT_CALLS"], s["ENGINE_ADVANCE_CALLS"],
              s["SCIENTIFIC_WORLD_STARTS"], s["SCIENTIFIC_SEEDS_OPENED"],
              s["FIXTURE_CONSTRUCTIONS"], s["FIXTURE_STEPS"], s["ALL_FOUR_ZERO"]))
-    print("filesystem witness (no raw file written): %s"
-          % s.get("FILESYSTEM_WITNESS_raw_dirs", {}).get("NO_RAW_FILE_WRITTEN"))
+    fw = s.get("FILESYSTEM_WITNESS_all_mission_output_roots", {})
+    print("filesystem witness: %d roots watched, no file written anywhere=%s, "
+          "NEW_PHYSICS_ARRAYS_WRITTEN=%s"
+          % (fw.get("n_roots_watched", 0), fw.get("NO_FILE_WRITTEN_ANYWHERE"),
+             s.get("NEW_PHYSICS_ARRAYS_WRITTEN")))
 
 
 if __name__ == "__main__":

@@ -1,57 +1,60 @@
 {
  "SECTION": "PMCR01 delivery",
  "PUSH": {
-  "ATTEMPTS": 1,
-  "returncode": 128,
-  "stderr": "remote: access denied by the git proxy: Mythmaker28/emergent-dynamics-lab is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources.\nfatal: unable to access 'https://github.com/Mythmaker28/emergent-dynamics-lab.git/': The requested URL returned error: 403",
+  "ATTEMPTS_IN_THIS_REPAIR": 0,
+  "PUSH_RETRY_COUNT": 0,
+  "ATTEMPTS_TOTAL_ACROSS_THE_MISSION": 1,
+  "recorded_returncode": 128,
+  "recorded_stderr": "remote: access denied by the git proxy: Mythmaker28/emergent-dynamics-lab is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources.\nfatal: unable to access 'https://github.com/Mythmaker28/emergent-dynamics-lab.git/': The requested URL returned error: 403",
   "RETRIED": false,
-  "action": "one attempt only; the proxy 403 is a session authorization boundary, recorded verbatim; split delivery instead"
+  "action": "not attempted; the mission's single permitted attempt was already made and refused by the proxy. Retrying a session authorization boundary cannot change it and is forbidden by this repair's mandate."
  },
  "ARCHIVE": {
-  "whole_sha256": "f722a0b353fe5da7ebc774efccba7edda3d2593bdc56eb0caf9c8bf355b12c5b",
+  "whole_sha256": "f7fb943a59d0c8a66c3acab8b60823ec76dde0f090c2a20cd0be5d74d0bc0be0",
   "parts": 7,
-  "bytes": 116575659,
+  "bytes": 116642107,
   "part_digests": [
    {
     "name": "PMCR01_OFFLINE_REPO.tar.gz.part00",
-    "sha256": "8a7e95ce9944acb16ca3212f325aade1d4e0853e5dbb5f8b67775db3f2705361"
+    "sha256": "91e08f634923b3f3173766339379e5e12759d060273c0e342d3d3471c3fb4c5c"
    },
    {
     "name": "PMCR01_OFFLINE_REPO.tar.gz.part01",
-    "sha256": "e94d53b905858334e4311a3d3bfc68d892b9d6e2b2a7decf589a340cc1d01f7f"
+    "sha256": "9a784f937e2e2688487fd25d068b31419ff3943118de9334fefe2d44b60e30d4"
    },
    {
     "name": "PMCR01_OFFLINE_REPO.tar.gz.part02",
-    "sha256": "e7f1c6e353bdb8ab8b3baeb870500378734e166da4c8802e0bf0abb8f300ab58"
+    "sha256": "1fdb6a84f173f04f1eeb210af15d75bb6c723ffbc62f6bf4e929ba33e4db86e4"
    },
    {
     "name": "PMCR01_OFFLINE_REPO.tar.gz.part03",
-    "sha256": "7aeda24235e1e9e97c89d0c1a629ddb6890f094d0c0e606fd21f9c340a796ead"
+    "sha256": "a4af0f7cb7247c15d2284b264dcba2db3522d402104d6328037932cac17048fd"
    },
    {
     "name": "PMCR01_OFFLINE_REPO.tar.gz.part04",
-    "sha256": "e45366262f850d79cb9d6c283aa062501b8db5d81965a15031962f74abfdd061"
+    "sha256": "f9ce94241ff9b1435ffe3e412b6f36b2a6b62e8396b06096760cd146f0faf1bd"
    },
    {
     "name": "PMCR01_OFFLINE_REPO.tar.gz.part05",
-    "sha256": "41c04eb89abd752e3d8a8ac62b164eb46d14e15e6ed11c8e9281895600963eaf"
+    "sha256": "c19a52f59093a895f69a98dd8ebc493c84d357ca3d4f24d60083d4915a11c6fd"
    },
    {
     "name": "PMCR01_OFFLINE_REPO.tar.gz.part06",
-    "sha256": "f38902907e49eeea9cfc2f62ccb3cacd7a0b2fd79a7c529144d61439b4eb1bf7"
+    "sha256": "3114b24749973f0b53573333600d3459b7303b65a1c6b8a4f2edeb7afc6fd1ca"
    }
   ]
  },
  "BRANCH": {
-  "head": "33ac5ab63efc1094802d048bc5cf06862a68aa88",
-  "tree": "cc63eb4d096df063da26aabc931e22a586b15b49",
+  "head": "fd327f73273586f39fac6d9a9e5a66bb39adb47a",
+  "tree": "7b1bcb8f99fec8f55abbc46b5c3ebb4a7ba4db0c",
   "base": "f9d9b61cc29db6a0afe0d0a7ec04f3edf9b4a0e2",
-  "commits_over_base": 4,
+  "commits_over_base": 5,
   "subjects": [
    "PMCR01 1/5: seal binding, engine sentinel, Gate 0 channel discovery and mutation oracles",
    "PMCR01 2/5: exact discrete K_Y, the three nested regions, and the independence gates",
    "PMCR01 3/5: adversarial review applied, six confirmed defects repaired; final report",
-   "PMCR01 4/5: one push attempt refused 403, self-contained split delivery, offline readback"
+   "PMCR01 4/5: one push attempt refused 403, self-contained split delivery, offline readback",
+   "PMCR01 5/5 REPAIR: Q is instrumented; architecture-change necessity NOT established"
   ]
  },
  "OFFLINE_READBACK": {
@@ -59,14 +62,14 @@
   "FSCK_CLEAN": true,
   "REMOTES": "REMOTES:[]",
   "PROMISOR_PACKS": "PROMISOR:[]",
-  "COMMITS_REACHABLE": "COMMITS:5",
-  "HEAD": "HEAD:33ac5ab63efc1094802d048bc5cf06862a68aa88",
-  "DELIVERABLES_PRESENT": 15,
+  "COMMITS_REACHABLE": "COMMITS:6",
+  "HEAD": "HEAD:fd327f73273586f39fac6d9a9e5a66bb39adb47a",
+  "DELIVERABLES_PRESENT": 21,
   "DELIVERABLES_MISSING": [],
-  "SHA256SUMS_VERIFIED_OFFLINE": "SUMS_OK:22",
+  "SHA256SUMS_VERIFIED_OFFLINE": "SUMS_OK:28",
   "ALL_NEEDED_PRESENT": true
  },
  "PRESERVED_EXACTLY_ONCE": true,
  "FIXED_POINT_NOTE": "a delivery record cannot contain the hash of the commit that carries it. This record is folded into the final commit by amending it once; the head named here is the predecessor, and MANIFEST.txt carries the authoritative head. The push is not repeated by any of this.",
- "HEAD_WHEN_WRITTEN": "33ac5ab63efc1094802d048bc5cf06862a68aa88"
+ "HEAD_WHEN_WRITTEN": "fd327f73273586f39fac6d9a9e5a66bb39adb47a"
 }

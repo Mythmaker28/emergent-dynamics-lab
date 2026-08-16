@@ -21,6 +21,10 @@ FILES = {
     "engine_obtc": "OBTC02/code/engine_obtc.py",
     "protocol_obtc02": "OBTC02/code/protocol_obtc02.py",
     "gate_obtc02": "OBTC02/code/gate_obtc02.py",
+    # REPAIR F1: the observer was previously omitted from the analysed set. It defines no rate,
+    # so it creates no Y channel -- but it records Q, the environmental exposure quantity the
+    # disposition turned on, and omitting it produced a false conclusion about measurability.
+    "observe": "ORR01/code/observe.py",
 }
 MANIFEST = "OBTC02/code/obtc02_protocol.yaml"
 Y_SPECIES = ("Y", "WY", "SY")

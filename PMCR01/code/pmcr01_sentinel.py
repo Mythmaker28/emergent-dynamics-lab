@@ -174,19 +174,30 @@ def install(seed_register_paths=()):
     _installed = True
 
 
-def raw_dir_witness(dirs):
-    """A filesystem witness that does NOT depend on any in-process counter: the number of raw
-    output files and the newest mtime under each scientific raw directory. A scientific run
-    writes an npz here (protocol_obtc02.run_arm np.savez_compressed to RAW), so if none of
-    these directories gained a file or advanced its mtime, no arm was written. Call it before
-    and after the analysis and compare.
-    """
+def all_mission_output_roots():
+    """EVERY mission raw/out root on the machine, discovered rather than hand-picked.
+
+    The earlier witness watched three directories chosen by the candidate, one of which
+    (OBDI02/raw) is empty and could never fire. A witness whose scope is selected by the party
+    being audited is not a witness. This enumerates the roots instead."""
     import glob
-    import os
+    roots = sorted(set(glob.glob("/home/claude/*/raw") + glob.glob("/home/claude/*/out")))
+    return [d for d in roots if os.path.isdir(d)]
+
+
+def raw_dir_witness(dirs=None):
+    """A filesystem witness that does NOT depend on any in-process counter: per root, the number
+    of files, the number of PHYSICS ARRAYS (.npz) and the newest mtime. A scientific run writes
+    an npz (protocol_obtc02.run_arm -> np.savez_compressed), so if no root gained an npz or
+    advanced its mtime, no arm was written. Call before and after, and compare."""
+    import glob
+    if dirs is None:
+        dirs = all_mission_output_roots()
     out = {}
     for d in dirs:
         files = glob.glob(os.path.join(d, "*")) if os.path.isdir(d) else []
-        out[d] = {"n_files": len(files),
+        npz = [f for f in files if f.endswith(".npz")]
+        out[d] = {"n_files": len(files), "n_npz": len(npz),
                   "newest_mtime": max((os.path.getmtime(f) for f in files), default=0.0)}
     return out
 
@@ -207,12 +218,24 @@ def report(guard_module=None, raw_before=None, raw_after=None):
     if raw_before is not None and raw_after is not None:
         changed = {d: {"files_before": raw_before[d]["n_files"],
                        "files_after": raw_after[d]["n_files"],
+                       "npz_before": raw_before[d]["n_npz"],
+                       "npz_after": raw_after[d]["n_npz"],
                        "mtime_advanced": raw_after[d]["newest_mtime"]
                        > raw_before[d]["newest_mtime"]}
                    for d in raw_before}
-        out["FILESYSTEM_WITNESS_raw_dirs"] = {
-            "per_dir": changed,
-            "NO_RAW_FILE_WRITTEN": all(v["files_after"] == v["files_before"]
-                                       and not v["mtime_advanced"] for v in changed.values())}
+        new_npz = sum(v["npz_after"] - v["npz_before"] for v in changed.values())
+        out["NEW_PHYSICS_ARRAYS_WRITTEN"] = int(new_npz)
+        out["FILESYSTEM_WITNESS_all_mission_output_roots"] = {
+            "n_roots_watched": len(changed),
+            "roots": sorted(changed),
+            "roots_that_changed": {d: v for d, v in changed.items()
+                                   if v["files_after"] != v["files_before"]
+                                   or v["mtime_advanced"]},
+            "NO_FILE_WRITTEN_ANYWHERE": all(v["files_after"] == v["files_before"]
+                                            and not v["mtime_advanced"]
+                                            for v in changed.values()),
+            "NO_PHYSICS_ARRAY_WRITTEN": new_npz == 0,
+            "SCOPE_NOTE": ("the roots are DISCOVERED by glob over /home/claude/*/raw and "
+                           "/home/claude/*/out, not selected by the audited party")}
     out["SCIENTIFIC_SEEDS_IN_THE_REGISTERS"] = len(_scientific_seeds)
     return out
