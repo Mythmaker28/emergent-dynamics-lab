@@ -73,6 +73,17 @@ def spatial_recoverability():
                                "and Q_ORGANISER does describe the whole lineage exposure -- but "
                                "that branch structurally cannot produce spatial separation, so "
                                "it cannot support a separation/timing test either."),
+        "WHY_THE_STATIC_BRANCH_ALSO_FAILS_the_full_reasons": [
+            "(a) STRUCTURAL: p_hop_Y = 0 means descendants never separate, so no separation or "
+            "premature-third-centre timing can be tested there at all -- the frozen mobile "
+            "framing has no static analogue",
+            "(b) FEEDBACK (§13): even the one-cell exposure was recorded with kY = 0, so it omits "
+            "the SY depletion an active lineage causes; uncontrolled beyond the first birth",
+            "(c) TEMPORAL (§7): the integrated autocorrelation time is ~7 in the static branch, "
+            "so the arithmetic mean of Q is not the growth-relevant functional",
+            "(d) LOWER TAIL: every static arm has Q10 = 0, so there is no positive statewise "
+            "exposure floor from which to certify a lower bound on the birth intensity",
+        ],
     }
 
 
@@ -93,9 +104,22 @@ def feedback_bound():
     nSY_mean = float(np.mean(nSY))
     free_mean = float(np.mean(free))
     nX_mean = float(np.mean(nX))
-    # engine facts, read from source
-    react = blob("ORR01/code/kinetics.py")
-    S0, phi = 3, 0.2  # frozen point
+    # C1 repair: parse S0 and phi from the ACTUAL frozen protocol (the loaded spec), not from a
+    # dead read of kinetics.py (whose class default phi=0.05 is NOT the value these arms used).
+    yaml_txt = blob("OBTC02/code/obtc02_protocol.yaml")
+    pt = {}
+    inblock = False
+    for ln in yaml_txt.splitlines():
+        if ln.startswith("point:"):
+            inblock = True
+            continue
+        if inblock:
+            if ln and not ln.startswith(" "):
+                break
+            if ":" in ln:
+                k, v = ln.strip().split(":", 1)
+                pt[k.strip()] = v.strip()
+    S0, phi = int(pt["S0"]), float(pt["phi"])
     return {
         "SECTION": "MYQBD01 §13 counterfactual validity of the frozen X environment",
         "THE_ARCHIVE_HAS_kY_ZERO": ("obtc02_protocol.yaml point.kY = 0.0, so NO Y birth ever "
@@ -108,6 +132,7 @@ def feedback_bound():
             "Y_decay_effect": "_decay converts Y -> WY: occupancy conserved, free unchanged.",
             "SY_replenishment": ("_exchange offers Binomial(max(S0 - nSY, 0), phi) toward "
                                  "S0 = %d at rate phi = %.2f per step, per cell." % (S0, phi)),
+            "phi_S0_provenance": "parsed from obtc02_protocol.yaml point block (the loaded spec)",
             "X_hazard_unaffected_by_nY": ("p_X = min(1, kX*nX*nY) is already 1 for nX*nY >= 1 at "
                                           "kX = 1, so a second Y does not change X production.")},
         "MEASURED_ORGANISER_CELL_MAGNITUDES_mobile": {

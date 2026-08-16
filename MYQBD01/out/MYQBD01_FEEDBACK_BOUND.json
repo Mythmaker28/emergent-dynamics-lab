@@ -70,7 +70,13 @@
   "CLASSIFICATION": "ORGANISER_ONLY_ENVIRONMENT_AVAILABLE",
   "WHY": "the per-step ledger records only the organiser-cell exposure Q = nX*min(nSY,free) at cells with nY>0. The full per-cell (nX, nSY, free) field is serialized only at the terminal step. A mobile descendant that separates from the organiser occupies a DIFFERENT cell whose (nX, nSY, free) at that time is not recorded. Therefore Q_POSITION(x,t) and Q_LINEAGE(t) for a separated descendant are not recoverable from these archives.",
   "CONSEQUENCE_FOR_THE_MOBILE_BRANCH": "the mobile branch is the load-bearing branch for a separation test. The separation and premature-third-centre hazards depend on descendant-position exposure, which is unrecoverable here. The organiser-only ledger locates the FIRST-BIRTH hazard exactly, and nothing after separation.",
-  "STATIC_BRANCH_NOTE": "in the static branch p_hop_Y = 0, so all Y remain in one cell and Q_ORGANISER does describe the whole lineage exposure -- but that branch structurally cannot produce spatial separation, so it cannot support a separation/timing test either."
+  "STATIC_BRANCH_NOTE": "in the static branch p_hop_Y = 0, so all Y remain in one cell and Q_ORGANISER does describe the whole lineage exposure -- but that branch structurally cannot produce spatial separation, so it cannot support a separation/timing test either.",
+  "WHY_THE_STATIC_BRANCH_ALSO_FAILS_the_full_reasons": [
+   "(a) STRUCTURAL: p_hop_Y = 0 means descendants never separate, so no separation or premature-third-centre timing can be tested there at all -- the frozen mobile framing has no static analogue",
+   "(b) FEEDBACK (\u00a713): even the one-cell exposure was recorded with kY = 0, so it omits the SY depletion an active lineage causes; uncontrolled beyond the first birth",
+   "(c) TEMPORAL (\u00a77): the integrated autocorrelation time is ~7 in the static branch, so the arithmetic mean of Q is not the growth-relevant functional",
+   "(d) LOWER TAIL: every static arm has Q10 = 0, so there is no positive statewise exposure floor from which to certify a lower bound on the birth intensity"
+  ]
  },
  "FEEDBACK": {
   "SECTION": "MYQBD01 \u00a713 counterfactual validity of the frozen X environment",
@@ -79,6 +85,7 @@
    "Y_birth_effect": "_react converts SY -> Y in place: n[SY] -= b, n[Y] += b. Occupancy is conserved, so FREE is UNCHANGED, but local nSY drops by b at the birth cell.",
    "Y_decay_effect": "_decay converts Y -> WY: occupancy conserved, free unchanged.",
    "SY_replenishment": "_exchange offers Binomial(max(S0 - nSY, 0), phi) toward S0 = 3 at rate phi = 0.20 per step, per cell.",
+   "phi_S0_provenance": "parsed from obtc02_protocol.yaml point block (the loaded spec)",
    "X_hazard_unaffected_by_nY": "p_X = min(1, kX*nX*nY) is already 1 for nX*nY >= 1 at kX = 1, so a second Y does not change X production."
   },
   "MEASURED_ORGANISER_CELL_MAGNITUDES_mobile": {

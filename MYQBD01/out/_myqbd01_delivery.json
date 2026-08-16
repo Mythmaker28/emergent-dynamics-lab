@@ -1,0 +1,39 @@
+{
+ "SECTION": "MYQBD01 delivery",
+ "PUSH": {
+  "ATTEMPTED": false,
+  "STATUS": "PUSH_NOT_ATTEMPTED__REPOSITORY_AUTHORIZATION_NOT_ESTABLISHED",
+  "PUSH_RETRY_COUNT": 0,
+  "reason": "repository authorization is not positively established; the proxy has refused every push across this program with a 403. Per \u00a721, recording this is preferable to another knowingly futile 403."
+ },
+ "ARCHIVE": {
+  "whole_sha256": "099162c9bd47b221aca99c6fc239c868323110a3f3a95fc4f6e278f0b0ed796c",
+  "parts": 7,
+  "bytes": 116683956
+ },
+ "BRANCH": {
+  "head": "5c316faf4d4908d440655044dac9a0a2e2293d67",
+  "tree": "713c7c9729f4d5b61077a6de5022371c241369be",
+  "base": "8c2afa32e1e19ecf7ee5ff6e803dbb50cf2f0367",
+  "commits_over_base": 2,
+  "subjects": [
+   "MYQBD01 1/2: raw-only Q environment analysis; existing data insufficient, calibration required",
+   "MYQBD01 2/2: adversarial review (0 load-bearing defects) and cosmetic repair"
+  ]
+ },
+ "OFFLINE_READBACK": {
+  "RAN_UNDER": "unshare -rn (no network namespace)",
+  "FSCK_CLEAN": true,
+  "REMOTES": "REMOTES:[]",
+  "PROMISOR_PACKS": "PROMISOR:[]",
+  "COMMITS_REACHABLE": "COMMITS:3",
+  "HEAD": "HEAD:5c316faf4d4908d440655044dac9a0a2e2293d67",
+  "DELIVERABLES_PRESENT": 20,
+  "DELIVERABLES_MISSING": [],
+  "SHA256SUMS_VERIFIED_OFFLINE": "SUMS_OK:28",
+  "ALL_NEEDED_PRESENT": true
+ },
+ "PRESERVED_EXACTLY_ONCE": true,
+ "FIXED_POINT_NOTE": "this record cannot contain the hash of the commit that carries it; it is folded into the final commit by amending, so the in-tree head is the predecessor and MANIFEST.txt carries the authoritative head.",
+ "HEAD_WHEN_WRITTEN": "5c316faf4d4908d440655044dac9a0a2e2293d67"
+}

@@ -82,25 +82,40 @@ def main():
         for _ in range(T):
             s = -math.expm1(math.log1p(-(1 - m) * s) + c * math.log1p(-p * (1 - m) * s))
         return s
-    # most favourable: c = Q_MAX-relevant candidate pool, choose a point that is clearly super-
-    # critical yet bounded, to witness that the operator does NOT forbid a window
-    c_fav = 7                     # max candidate pool with nX>=1 (from the admissible enumeration)
-    kY_fav, muY_fav = 1e-3, 1e-4
-    p_fav = min(1.0, kY_fav * 4 * 1)     # unclamped
+    # C2 repair: use an IN-BOX ADMISSIBLE witness, at the discovery-scale kY (not 25x above it),
+    # so "the operator does not forbid a window" is demonstrated at admissible (kY, muY).
+    # kY at the first-birth scale (~3.5e-5), muY at the inherited MTW01 scale (~1.95e-6),
+    # c at the mean organiser candidate pool. Also report the larger favourable witness for
+    # contrast, clearly labelled as above-scale.
+    c_box = 3                     # near the mean organiser-cell candidate pool in the arms
+    kY_box, muY_box = 4e-5, 1.9511206603301160e-06
+    p_box = min(1.0, kY_box * 4 * 1)
+    R_box = (1 - muY_box) * (1 + c_box * p_box)
+    surv_box = stable_survival(c_box, p_box, muY_box)
+    c_fav, kY_fav, muY_fav = 7, 1e-3, 1e-4
+    p_fav = min(1.0, kY_fav * 4 * 1)
     R_fav = (1 - muY_fav) * (1 + c_fav * p_fav)
     surv_fav = stable_survival(c_fav, p_fav, muY_fav)
     structural = {
         "QUESTION": "does the exact operator prove NO admissible (kY,muY) can meet the frozen "
                     "mobile conditions under the MOST FAVOURABLE admissible environment?",
+        "in_box_admissible_witness": {
+            "c": c_box, "kY": kY_box, "muY": muY_box,
+            "note": "kY at the first-birth discovery scale (~3.5e-5), muY at the inherited "
+                    "MTW01 scale, c near the mean organiser candidate pool",
+            "R_mean_offspring": R_box, "survival_to_T": surv_box,
+            "supercritical": R_box > 1},
         "most_favourable_witness": {"c": c_fav, "kY": kY_fav, "muY": muY_fav,
+                                    "ABOVE_DISCOVERY_SCALE": True,
                                     "R_mean_offspring": R_fav, "survival_to_T": surv_fav,
                                     "supercritical_and_survives": R_fav > 1 and surv_fav > 0.5},
         "STRUCTURAL_PRECLUSION_PROVED": False,
-        "why_not": ("under a favourable-enough admissible environment a one-Y-seeded lineage is "
-                    "supercritical and survives, so the operator does NOT forbid a window. The "
-                    "obstruction is a MISSING LEDGER (descendant exposure) and MISSING "
-                    "IDENTIFIABILITY (two-Y operator), which the freeze explicitly rules "
-                    "inadmissible as structural proof."),
+        "why_not": ("even at an IN-BOX admissible point (kY = 4e-5 at the first-birth scale, "
+                    "muY = 1.95e-6, c = 3) the one-Y-seeded lineage is supercritical "
+                    "(R = %.6f > 1), so the operator does NOT forbid a window at admissible "
+                    "magnitudes. The obstruction is a MISSING LEDGER (descendant exposure) and "
+                    "MISSING IDENTIFIABILITY (two-Y operator), which the freeze explicitly "
+                    "rules inadmissible as structural proof." % R_box),
     }
 
     # ---- the requirement checklist for the positive disposition ----
@@ -159,8 +174,9 @@ def main():
     print("constructible: one-Y first-birth kY range [%.2e, %.2e]; any positive lower tail: %s"
           % (kY_min, kY_max, any_positive_tail))
     print("structural preclusion proved:", structural["STRUCTURAL_PRECLUSION_PROVED"],
-          "(favourable witness survives:", structural["most_favourable_witness"]
-          ["supercritical_and_survives"], ")")
+          "(in-box admissible witness R=%.6f supercritical=%s)"
+          % (structural["in_box_admissible_witness"]["R_mean_offspring"],
+             structural["in_box_admissible_witness"]["supercritical"]))
     print("\npositive-disposition requirements:")
     for k, v in req.items():
         print("   %-40s %s" % (k, v))

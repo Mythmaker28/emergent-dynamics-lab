@@ -1,0 +1,42 @@
+{
+ "SECTION": "MYQBD01 \u00a719 adversarial review and repair",
+ "REVIEW": {
+  "reviewed_tip": "decfda575000775b1d49025af64636f6b2e97037",
+  "n_attacks": 15,
+  "LOAD_BEARING_CONFIRMED_DEFECTS": 0,
+  "MATERIAL_CONFIRMED_DEFECTS": 0,
+  "COSMETIC_CONFIRMED_DEFECTS": 3,
+  "ATTACKS_REFUTED": 12,
+  "reviewer_disposition": "CONCUR with EXISTING_Q_DATA_INSUFFICIENT__PROSPECTIVE_Q_CALIBRATION_REQUIRED",
+  "load_bearing_attacks_all_refuted": [
+   "Q phase: free0 computed once before the X and Y loop iterations, so the X birth does not perturb the Y candidate; Q_recorded == Q_reaction holds (engine_obtc.py:161-166, 177-178)",
+   "descendant exposure: the tracker and birth_offsets track X not Y; substep ledgers are organiser-cell scalars; full spatial only at terminal step; unrecoverable (confirmed)",
+   "two-Y not Galton-Watson: shared-pool support/variance gap (unclamped) and mean gap (clamped) carry it; the mean coincidence is not fatal",
+   "not structural preclusion: an admissible supercritical witness exists (R>1)",
+   "not too conservative: the mobile target is imposed by the launcher; no static-positive terminal disposition exists in the frozen menu"
+  ],
+  "single_strongest_argument_against_the_verdict": "the freeze targeted the mobile region knowing the organiser-only limitation, so 'insufficient' is partly baked into the requirements; a narrow static one-Y first-birth region is exactly constructible and could support a narrow positive claim",
+  "rebuttal": "the mobile branch is imposed as load-bearing by the execution launcher itself (a result may be positive only for the mobile branch), not chosen to guarantee insufficiency. The static one-Y first-birth diagnostic IS reported as constructible, but it is only a first-birth budget: it certifies neither persistence nor separation, and every arm has Q10 = 0, so it cannot yield a lower-bounded executable window. No terminal disposition in the frozen menu maps to 'static first-birth budget only'."
+ },
+ "REPAIR": {
+  "MAX_SUBSTANTIVE_REPAIR_ROUNDS": 1,
+  "rounds_used": 1,
+  "disposition_changed": false,
+  "C1": {
+   "defect": "phi read from kinetics.py (0.05) into a dead variable then hardcoded 0.2",
+   "fix": "parse S0 and phi from obtc02_protocol.yaml point block (the loaded spec); drop the dead kinetics.py read; add phi_S0_provenance note",
+   "verify": "phi parsed = 0.2 == obtc02_protocol.yaml:24"
+  },
+  "C2": {
+   "defect": "structural-preclusion witness used kY=1e-3 (~25x the discovery scale)",
+   "fix": "add an in-box admissible witness at kY=4e-5, muY=1.95e-6, c=3 -> R=1.000478>1; keep the larger witness labelled ABOVE_DISCOVERY_SCALE",
+   "verify": "R_box = 1.000478 > 1"
+  },
+  "C3": {
+   "defect": "static-branch dismissal in \u00a712 under-argued (only 'no separation')",
+   "fix": "assemble the full static preclusion: (a) structural no-separation, (b) feedback uncontrolled beyond first birth, (c) temporal IAT~7, (d) Q10=0 no lower-tail",
+   "verify": "WHY_THE_STATIC_BRANCH_ALSO_FAILS_the_full_reasons has 4 items"
+  },
+  "no_load_bearing_or_material_defect_required_repair": true
+ }
+}
