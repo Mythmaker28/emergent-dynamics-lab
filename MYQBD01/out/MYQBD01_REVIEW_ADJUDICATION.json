@@ -1,0 +1,455 @@
+{
+ "SECTION": "MYQBD01 FINAL SEAL \u00a716 \u2014 main-operator adjudication",
+ "REVIEWS_CONSUMED_BY_THIS_SEAL": 1,
+ "REVIEWS_OF_MYQBD01_OVERALL": 2,
+ "PRIOR_REVIEW_NOTE": "MYQBD01's own \u00a719 already consumed one adversarial review (concurring; 0 load-bearing, 3 cosmetic repaired). This seal's review is the SECOND overall, run under the seal launcher's separate budget. It is not the first look at this material.",
+ "REVIEWER_VERDICT": {
+  "REVIEWER_VERDICT": "CANDIDATE_DISPOSITION_SUPPORTED",
+  "LOAD_BEARING_DEFECTS": 0,
+  "SUBSTANTIVE_DEFECTS": 15,
+  "COSMETIC_DEFECTS": 4,
+  "ATTACKS_REFUTED": 10,
+  "ATTACKS_TOTAL": 12,
+  "DESCENDANT_EXPOSURE_RECOVERABLE": "NO",
+  "SCIENTIFIC_RUNS_USED_BY_REVIEW": 0
+ },
+ "OPERATOR_INDEPENDENT_VERIFICATION": {
+  "F10_N_Y_IDENTICALLY_ONE": {
+   "all_arms": true,
+   "n_org_cells_always_1": true,
+   "steps_checked": 308000,
+   "reading": "kY = 0 => no Y birth in any arm; the founder is the only Y that ever exists"
+  },
+  "F16_SY_MEAN_REVERSION": {
+   "per_arm_slopes_static": [
+    0.33619034707110984,
+    0.36670889641466875,
+    0.3759464645521086,
+    0.3561775428143367,
+    0.35733463311883973,
+    0.35847213370537967,
+    0.3662707258878458,
+    0.3413014199523955,
+    0.3733024548852517,
+    0.35109465212671487,
+    0.36630318877722273,
+    0.35257514587156574,
+    0.3313205314006997,
+    0.3472922721539835
+   ],
+   "mean": 0.35573502919515165,
+   "sd": 0.01347266465065013,
+   "claimed_phi": 0.2,
+   "ratio_measured_over_claimed": 1.7786751459757582
+  },
+  "F17_DEPLETION": {
+   "uncond_mean_nSY_mobile": 0.9850476190476191,
+   "uncond_depletion_pct": 101.51793483515421,
+   "cond_mean_nSY_given_candY_ge_1": 1.8140574465273327,
+   "cond_mean_candY_given_ge_1": 1.7770838779280036,
+   "cond_depletion_pct": 55.12504589721287
+  },
+  "F20_POOL": {
+   "mean_cand_Y_at_org_mobile": 0.9616507936507939,
+   "c_box_used": 3,
+   "ratio_c_box_over_mean": 3.119635547339231,
+   "mean_u_nX_at_org": 4.312563492063493,
+   "mean_Q_mobile": 3.1697301587301587,
+   "witness_exposure_c_times_nX": 12,
+   "ratio_witness_over_meanQ": 3.7858112202230423
+  },
+  "F08_SUBSTEP_LEDGER": {
+   "shape": [
+    44000,
+    6
+   ],
+   "columns_within_lattice_range": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "rows_where_org_cell_moved": 1038,
+   "distinct_org_cells_visited": 373,
+   "writer_lines": [
+    "hop_ledger=hop, source_substep_ledger=src, birth_substep_ledger=bir)",
+    "\"ledger_rows\": {\"hop\": int(len(hop)), \"source_substep\": int(len(src)),",
+    "\"birth_substep\": int(len(bir))},"
+   ],
+   "IS_POSITION_RESOLVED": true
+  },
+  "F05_IAT": {
+   "mobile_mean": 8.42768101880838,
+   "mobile_max": [
+    "M__seed9300015",
+    24.555554420220126
+   ],
+   "static_mean": 7.175562416275024,
+   "static_max": [
+    "S__seed9300009",
+    9.718588506357804
+   ],
+   "mobile_ratio_max_over_mean": 2.913678669780993
+  },
+  "F27_F28_F25": {
+   "MYQBD01_modules": 8,
+   "modules_installing_sentinel": [
+    "myqbd01_arms.py"
+   ],
+   "modules_using_ast": [
+    "myqbd01_phase.py"
+   ],
+   "seed_one_organiser_definitions": [
+    "/home/claude/ORR01/code/kinetics.py:172",
+    "/home/claude/ORR01/code/observe.py:151",
+    "/home/claude/ORR01/code/lawspec_v2.py:188",
+    "/home/claude/OBTC02/code/engine_obtc.py:239"
+   ],
+   "sentinel_patches_namespaces": [
+    "K",
+    "EN",
+    "V2"
+   ],
+   "observe_is_patched": false
+  }
+ },
+ "ADJUDICATION": [
+  {
+   "ID": "F01",
+   "ATTACK": "A1",
+   "SEVERITY": "LOAD_BEARING",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "NO_ACTION_REQUIRED",
+   "OPERATOR_NOTE": "Concur. Q event-exactness is the mission's load-bearing identity and it survives an exact residual test.",
+   "CLAIM_ATTACKED": "Q_LEDGER_EVENT_EXACT: Q written in Recorder.pre_react is the exact exposure entering the Y-birth Binomial at that step; nothing between the write and the Y cand computation can change min(nSY,free)."
+  },
+  {
+   "ID": "F02",
+   "ATTACK": "A1",
+   "SEVERITY": "COSMETIC",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur. The executed class is WorldOBTC; citing kinetics.py line numbers named an inherited, not an executed, site.",
+   "CLAIM_ATTACKED": "The phase map's ENGINE_Y_BIRTH provenance and the reported scheduler order."
+  },
+  {
+   "ID": "F03",
+   "ATTACK": "A1",
+   "SEVERITY": "COSMETIC",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur. series is post-increment (1..11000), the ledgers pre-increment (0..10999). Undocumented, now documented.",
+   "CLAIM_ATTACKED": "That the phase map fully documents the ledger's step phase."
+  },
+  {
+   "ID": "F04",
+   "ATTACK": "A2",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "NO_ACTION_REQUIRED",
+   "OPERATOR_NOTE": "Concur. Arm independence is the premise the whole uncertainty treatment rests on; it holds.",
+   "CLAIM_ATTACKED": "IAT ~7 (static) / ~9 (mobile); the independent unit is the arm (14/branch), never the 9000 frames; the 14 arms are independent."
+  },
+  {
+   "ID": "F05",
+   "ATTACK": "A2",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED_WITH_QUALIFICATION",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Accepted in substance, NOT in its numbers. My own initial-positive-sequence estimator gives mobile mean 8.4277 and max 24.5556 (M__seed9300015), against the reviewer's 9.1967 and 35.335. Same arm, same conclusion, different estimator. The finding is therefore that IAT is estimator-dependent AND heavy-tailed, and that reporting a bare '~7-9' hides both. Both estimates are recorded; neither is canonised.",
+   "CLAIM_ATTACKED": "The branch-level summary 'IAT ~7-9' as an adequate description, and the estimator that produced it."
+  },
+  {
+   "ID": "F06",
+   "ATTACK": "A3",
+   "SEVERITY": "LOAD_BEARING",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "NO_ACTION_REQUIRED",
+   "OPERATOR_NOTE": "Concur. Every arm mean is listed; separation is complete and not driven by one arm.",
+   "CLAIM_ATTACKED": "static mean-of-arm-means E[Q] = 2.369048 (sd 0.130602), mobile 3.169730 (sd 0.162990); separation not driven by one or two arms, not an artefact of burn-in 2000, and arm->branch assignment correct."
+  },
+  {
+   "ID": "F07",
+   "ATTACK": "A4",
+   "SEVERITY": "LOAD_BEARING",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "NO_ACTION_REQUIRED",
+   "OPERATOR_NOTE": "Concur, and this is the seal's central result: the most load-bearing attack was pressed hardest and failed. Independently re-derived (SEAL02, SEAL03).",
+   "CLAIM_ATTACKED": "Q_POSITION(x,t) for a separated mobile descendant is not recoverable from the archives (SPATIAL_ENVIRONMENT_STATUS = ORGANISER_ONLY_ENVIRONMENT_AVAILABLE). The whole calibration disposition rests on this."
+  },
+  {
+   "ID": "F08",
+   "ATTACK": "A4",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur and verified: source_substep_ledger is (44000,6) with 4 lattice-coordinate columns, 1038 organiser moves over 373 distinct cells in the arm inspected. Labelling it 'scalar' was wrong. The correct reading STRENGTHENS the record: because the organiser trajectory is recorded, Q_ORGANISER is the founder's exact lineage exposure in the mobile branch too.",
+   "CLAIM_ATTACKED": "'SUBSTEP_LEDGERS_ARE_SCALAR ... these carry step, sub-step index and scalar organiser-cell counts' (and, in commit f88147a, 'the sub-step ledgers are organiser-cell scalars')."
+  },
+  {
+   "ID": "F09",
+   "ATTACK": "A4",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur. A load-bearing boolean returned as a literal from a one-archive inspection is not evidence, even when the conclusion is right. Now derived over all 28 archives with every key enumerated and frames decoded.",
+   "CLAIM_ATTACKED": "That \u00a712's evidence establishes Q_POSITION_RECOVERABLE_FOR_A_SEPARATED_DESCENDANT = False and ORGANISER_ONLY_ENVIRONMENT_AVAILABLE."
+  },
+  {
+   "ID": "F10",
+   "ATTACK": "A4",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur, and verified independently: N_Y == 1 and n_org_cells == 1 at all 308000 recorded steps. This is a STRONGER ground than non-recording and it belonged in \u00a712.",
+   "CLAIM_ATTACKED": "The stated REASON Q_POSITION is unavailable ('a mobile descendant that separates occupies a DIFFERENT cell whose (nX,nSY,free) at that time is not recorded')."
+  },
+  {
+   "ID": "F11",
+   "ATTACK": "A4",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_PLAUSIBLE",
+   "OPERATOR_RULING": "ACCEPTED_WITH_QUALIFICATION",
+   "OPERATOR_ACTION": "CARRIED_TO_THE_SUCCESSOR_HANDOFF",
+   "OPERATOR_NOTE": "Accepted as a design point, rejected as a defect in the disposition. Re-instrumented replay of seeds 9300000-9300027 is a RUN, not a recovery from recorded data; it cannot move a disposition about what EXISTING data contain. It is a real improvement to the successor's design and is carried there.",
+   "CLAIM_ATTACKED": "Implicitly, that PQEC01 must consist of >=30 FRESH worlds because the spatial fields of the existing arms are unavailable."
+  },
+  {
+   "ID": "F12",
+   "ATTACK": "A5",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "NO_ACTION_REQUIRED",
+   "OPERATOR_NOTE": "Concur. The clamp is inactive at admissible kY, so the first-birth reduction is exact.",
+   "CLAIM_ATTACKED": "(side a) That beta = kY*E[Q] might fail even for the FIRST birth, because of the clamp p = min(1, kY*nX*nY) and because E[Q] averages a correlated series."
+  },
+  {
+   "ID": "F13",
+   "ATTACK": "A5",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED_WITH_QUALIFICATION",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Accepted: conditions 7 and 8 are ~2e-4 effects at the discovery scale and were presented without magnitude. Qualified: the classification never rested on them. Magnitudes now recorded.",
+   "CLAIM_ATTACKED": "(side b) That SCALAR_Q_REDUCTION_VALID_ONLY_FOR_FIRST_BIRTH 'fails on at least four independent counts', two of which are (7) temporal correlation and (8) the arithmetic-mean-vs-multiplicative-growth gap. The candidate is TOO PESSIMISTIC on those two."
+  },
+  {
+   "ID": "F14",
+   "ATTACK": "A6",
+   "SEVERITY": "LOAD_BEARING",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "NO_ACTION_REQUIRED",
+   "OPERATOR_NOTE": "Concur. Shared-pool structure verified at source.",
+   "CLAIM_ATTACKED": "Two co-located Y draw ONE Binomial(c, min(1, kY*nX*2)) from a shared candidate pool, so the process is not Galton-Watson; and the demonstration numbers (support 4 vs 8, variance 0.84 vs 1.02; clamped means 4.0 vs 4.8)."
+  },
+  {
+   "ID": "F15",
+   "ATTACK": "A6",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur. Demonstrating non-independence at 1250-5000x the admissible kY is a rhetorical scale, not the mission's scale. The magnitude at kY = 4e-5 is now recorded, and NOT_IDENTIFIABLE is restated as resting on the spatial ground.",
+   "CLAIM_ATTACKED": "That the exhibited counterexample demonstrates MATERIAL non-independence in the regime this mission concerns."
+  },
+  {
+   "ID": "F16",
+   "ATTACK": "A7",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur and verified independently: effective mean-reversion 0.355735 (sd 0.013473 over the 14 static arms) against the claimed phi = 0.20, a factor 1.7787. phi is the OFFER rate, not the replenishment rate. Note the correction moves the error in the CONSERVATIVE direction: recovery is faster than claimed.",
+   "CLAIM_ATTACKED": "The recovery model: '_exchange offers Binomial(max(S0-nSY,0), phi) toward S0=3 at rate phi=0.20 per step, per cell', giving recovery_rate_per_step = 0.20 and steps_to_replenish_one_unit ~ 5."
+  },
+  {
+   "ID": "F17",
+   "ATTACK": "A7",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur and verified independently: 101.52% unconditional versus 55.13% conditional on cand_Y >= 1 (E[nSY | cand_Y>=1] = 1.814057). A birth cannot occur when no candidate exists, so the unconditional mean was the wrong denominator.",
+   "CLAIM_ATTACKED": "'one Y birth removes one SY at the organiser cell, a 100% local reduction of the ~0.99 mean nSY' (as_fraction_of_mean_nSY = -1/nSY_mean)."
+  },
+  {
+   "ID": "F18",
+   "ATTACK": "A7",
+   "SEVERITY": "COSMETIC",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "NO_ACTION_REQUIRED",
+   "OPERATOR_NOTE": "Concur; the earlier internal C1 repair holds.",
+   "CLAIM_ATTACKED": "That S0 and phi come from the actually-loaded spec rather than a class default (the prior review's C1 repair)."
+  },
+  {
+   "ID": "F19",
+   "ATTACK": "A8",
+   "SEVERITY": "LOAD_BEARING",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "NO_ACTION_REQUIRED",
+   "OPERATOR_NOTE": "Concur. R = 1.000478048 and the fixed point is non-degenerate.",
+   "CLAIM_ATTACKED": "(side a) The in-box witness c=3, kY=4e-5, muY=1.9511e-6 gives R = 1.000478 > 1, and the survival iteration converges to a non-degenerate fixed point."
+  },
+  {
+   "ID": "F20",
+   "ATTACK": "A8",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur and verified: mean cand_Y_at_org = 0.961651, so c = 3 is 3.12x it, and witness exposure 12 is 3.79x mean Q = 3.169730. 'Q sustained at Q_MAX' was also wrong (the witness uses 12, not 28). A third witness at the arms' OWN measured magnitudes is added: R = 1.000163936 > 1, so non-preclusion no longer rests on any inflated pool.",
+   "CLAIM_ATTACKED": "That c_box = 3 is 'near the mean organiser-cell candidate pool', and the framing that the check evaluates 'the MOST FAVOURABLE admissible environment (Q sustained at Q_MAX)'."
+  },
+  {
+   "ID": "F21",
+   "ATTACK": "A8",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Accepted as a strengthening, and acted on: the measured-magnitude witness is now in the record.",
+   "CLAIM_ATTACKED": "(side b, the opposite side the brief requires) That with R-1 ~ 4.8e-4 the witness is so marginal as to be vacuous, and that Q10 = 0 makes the sustained-c=3 premise inadmissible, so non-preclusion is not established."
+  },
+  {
+   "ID": "F22",
+   "ATTACK": "A9",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "NO_ACTION_REQUIRED",
+   "OPERATOR_NOTE": "Concur. All 28 arms used, no outcome-conditioned inclusion.",
+   "CLAIM_ATTACKED": "All 28 delivered arms are used, none dropped, and no inclusion rule is conditioned on an outcome."
+  },
+  {
+   "ID": "F23",
+   "ATTACK": "A9",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur; same repair as F09. Note the single archive opened was MOBILE, so no static archive entered \u00a712 at all.",
+   "CLAIM_ATTACKED": "That the \u00a712 spatial classification is drawn from the delivered arm set."
+  },
+  {
+   "ID": "F24",
+   "ATTACK": "A10",
+   "SEVERITY": "LOAD_BEARING",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "NO_ACTION_REQUIRED",
+   "OPERATOR_NOTE": "Concur on the conclusion; the EVIDENCE for it was nonetheless a literal, which is F25.",
+   "CLAIM_ATTACKED": "NO_TARGET_DERIVED_Y_OUTCOME - no MYQBD01 computation consumes a quantity derived from the target it is meant to predict (e.g. an r80-like statistic), including via laundering through intermediate files."
+  },
+  {
+   "ID": "F25",
+   "ATTACK": "A10",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur and verified: 0 AST data-access checks existed in the candidate; the requirement was a literal with a comment. A real audit now derives it. The audit immediately caught the seal repair's own read of `frames`, which is disclosed with its justification rather than exempted.",
+   "CLAIM_ATTACKED": "That NO_TARGET_DERIVED_Y_OUTCOME is established by an AST-based check with zero data accesses."
+  },
+  {
+   "ID": "F26",
+   "ATTACK": "A11",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "NO_ACTION_REQUIRED",
+   "OPERATOR_NOTE": "Concur. No forbidden claim appears.",
+   "CLAIM_ATTACKED": "All 28 arms are labelled POST_OUTCOME_DEVELOPMENT_DIAGNOSTIC, no developmental quantity is used as if confirmatory, and no forbidden claim (reproduction, heredity, autonomous cohesion, H3, a minority window, Kamimura-Kaneko) is implied."
+  },
+  {
+   "ID": "F27",
+   "ATTACK": "A12",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur and verified: 1 of 8 modules. The commit message overstated coverage. The zero-run conclusion is re-grounded on a static import proof that does not depend on the sentinel at all.",
+   "CLAIM_ATTACKED": "Commit decfda5: 'Sentinel aggregated over ALL ANALYSIS PROCESSES, all counters zero.'"
+  },
+  {
+   "ID": "F28",
+   "ATTACK": "A12",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "RECORDED_NOT_REPAIRABLE",
+   "OPERATOR_NOTE": "Concur and verified: 4 seeding entry points exist, 3 are patched; observe.seed_one_organiser is unpatched. The sentinel lives in the inherited PMCR01 tree, which this mission may not rewrite; the gap is recorded, and the static proof makes the zero-run conclusion independent of it.",
+   "CLAIM_ATTACKED": "That the sentinel patches seed_one_organiser in all the modules that expose it - its own comment reads 'V2.seed_one_organiser = seeded  # the third seeding entry point, previously unpatched'."
+  },
+  {
+   "ID": "F29",
+   "ATTACK": "A12",
+   "SEVERITY": "COSMETIC",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "RECORDED_NOT_REPAIRABLE",
+   "OPERATOR_NOTE": "Concur: the witness glob is depth-2 and does not watch the repository tree. Same inherited-tree constraint; recorded, and superseded as a ground by the static proof.",
+   "CLAIM_ATTACKED": "'the filesystem witness covers the real output roots' / SCOPE_NOTE: 'the roots are DISCOVERED by glob over /home/claude/*/raw and /home/claude/*/out, not selected by the audited party'."
+  },
+  {
+   "ID": "F30",
+   "ATTACK": "A12",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "ATTACK_REFUTED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "NO_ACTION_REQUIRED",
+   "OPERATOR_NOTE": "Concur; this is now the primary zero-run ground.",
+   "CLAIM_ATTACKED": "That, notwithstanding F27-F29, some MYQBD01 script could have started a scientific world, so SCIENTIFIC_RUNS_USED = 0 is not established."
+  },
+  {
+   "ID": "F31",
+   "ATTACK": "A12",
+   "SEVERITY": "SUBSTANTIVE",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "RECORDED_NOT_REPAIRABLE",
+   "OPERATOR_NOTE": "Concur, and this is the seal's sharpest provenance point. The freeze cannot be retroactively separated without rewriting inherited history, which is forbidden. It is stated openly here and in the final report, and the successor is required to commit its freeze alone. Judged non-load-bearing because the freeze itself declares the mission response-informed and developmental and disclaims blinding, so no claim depends on the ordering.",
+   "CLAIM_ATTACKED": "'Master freeze committed BEFORE detailed trajectory access' (commit decfda5 message). [Brief provenance fact 2]"
+  },
+  {
+   "ID": "F32",
+   "ATTACK": "A11",
+   "SEVERITY": "COSMETIC",
+   "REVIEWER_STATUS": "DEFECT_CONFIRMED",
+   "OPERATOR_RULING": "ACCEPTED",
+   "OPERATOR_ACTION": "REPAIRED_IN_THE_SINGLE_SEAL_COMMIT",
+   "OPERATOR_NOTE": "Concur; the seal binding already records the actual tip f88147a and flags decfda5 as superseded.",
+   "CLAIM_ATTACKED": "The seal launcher's CANDIDATE_REPORTED_TIP = decfda5 identifies the candidate. [Brief provenance fact 1]"
+  }
+ ],
+ "TALLY": {
+  "findings": 32,
+  "ACCEPTED": 29,
+  "ACCEPTED_WITH_QUALIFICATION": 3,
+  "REJECTED": 0,
+  "REPAIRED": 16,
+  "RECORDED_NOT_REPAIRABLE": 3,
+  "CARRIED_TO_SUCCESSOR": 1,
+  "NO_ACTION": 12
+ },
+ "LOAD_BEARING_DEFECTS_CONFIRMED_BY_THE_OPERATOR": 0,
+ "WHY_NO_DEFECT_IS_LOAD_BEARING": "every confirmed defect lies in a SUPPORTING CERTIFICATE (a recovery rate, a depletion denominator, a witness pool size, a coverage claim, an evidence loop breadth) or in provenance. None touches the two facts the disposition rests on: (i) no array in any of the 28 archives is position-resolved per step, and decisively kY = 0 so no descendant ever exists; and (ii) the exact operator does not forbid a window at admissible magnitudes. Both were re-derived independently by the operator and both survive. Two corrections (F16, F17) move their numbers in the CONSERVATIVE direction, and two (F10, F21) strengthen the disposition's grounds rather than weakening them.",
+ "DISPOSITION_AFTER_ADJUDICATION": "EXISTING_Q_DATA_INSUFFICIENT__PROSPECTIVE_Q_CALIBRATION_REQUIRED",
+ "DISPOSITION_CHANGED_BY_THE_REVIEW": false,
+ "REPAIR_ROUNDS_USED": 1,
+ "REPAIR_COMMITS_USED": 1
+}

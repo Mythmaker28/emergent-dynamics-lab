@@ -106,5 +106,625 @@
    "Q_ORGANISER_vs_Q_AGGREGATE": "diverge once there are two Y cells",
    "LOAD_BEARING": "the recorded field is the same object as PMCR01's one-organiser Q derivation. That does NOT make it the two-Y lineage environment. Q_POSITION and Q_LINEAGE for a separated descendant are never recorded per step."
   }
- }
+ },
+ "REPAIRED_EXECUTED_SOURCE_CITATIONS": {
+  "react_core_def": {
+   "file": "OBTC02/code/engine_obtc.py",
+   "line": 158,
+   "source": "def _react_core(self):"
+  },
+  "free0_computed_once": {
+   "file": "OBTC02/code/engine_obtc.py",
+   "line": 162,
+   "source": "free0 = np.maximum(self.free(), 0)"
+  },
+  "species_loop": {
+   "file": "OBTC02/code/engine_obtc.py",
+   "line": 164,
+   "source": "for prod, res, kk in ((\"X\", \"SX\", sp.kX), (\"Y\", \"SY\", sp.kY)):"
+  },
+  "p_clamped": {
+   "file": "OBTC02/code/engine_obtc.py",
+   "line": 165,
+   "source": "p = np.minimum(1.0, kk * pair)"
+  },
+  "cand_min_nSY_free0": {
+   "file": "OBTC02/code/engine_obtc.py",
+   "line": 166,
+   "source": "cand = np.minimum(self.n[res], free0)"
+  },
+  "births_binomial": {
+   "file": "OBTC02/code/engine_obtc.py",
+   "line": 167,
+   "source": "births = rng.binomial(np.maximum(cand, 0), p)"
+  },
+  "react_def": {
+   "file": "OBTC02/code/engine_obtc.py",
+   "line": 176,
+   "source": "def _react(self):"
+  },
+  "pre_react_call": {
+   "file": "OBTC02/code/engine_obtc.py",
+   "line": 178,
+   "source": "self.rec.pre_react(self)"
+  },
+  "react_core_call": {
+   "file": "OBTC02/code/engine_obtc.py",
+   "line": 179,
+   "source": "b = self._react_core()"
+  }
+ },
+ "REPAIRED_EXECUTED_CLASS_CHAIN": [
+  {
+   "role": "executed subclass",
+   "file": "OBFOR01/code/run_obfor01.py",
+   "line": 56,
+   "source": "class Instrumented(EN.WorldOBTC):"
+  },
+  {
+   "role": "class selection",
+   "file": "OBFOR01/code/run_obfor01.py",
+   "line": 93,
+   "source": "cls = Instrumented if instrumented else EN.WorldOBTC"
+  },
+  {
+   "role": "engine class",
+   "file": "OBTC02/code/engine_obtc.py",
+   "line": 125,
+   "source": "class WorldOBTC(V2.WorldV2):"
+  },
+  {
+   "role": "lawspec layer",
+   "file": "ORR01/code/lawspec_v2.py",
+   "line": 68,
+   "source": "class WorldV2(K.World):"
+  },
+  {
+   "role": "base scheduler (INHERITED)",
+   "file": "ORR01/code/kinetics.py",
+   "line": 154,
+   "source": "def _one_step(self):"
+  },
+  {
+   "role": "step increment (INHERITED)",
+   "file": "ORR01/code/kinetics.py",
+   "line": 162,
+   "source": "self.step += 1"
+  }
+ ],
+ "REPAIRED_Q_WRITE_SITE": {
+  "recorder_pre_react_def": {
+   "file": "ORR01/code/observe.py",
+   "line": 51,
+   "source": "def pre_react(self, w):"
+  },
+  "Q_written": {
+   "file": "ORR01/code/observe.py",
+   "line": 69,
+   "source": "\"Q\": float((nX[m] * cy).sum()),"
+  },
+  "cand_Y_written": {
+   "file": "ORR01/code/observe.py",
+   "line": 68,
+   "source": "\"cand_Y_at_org\": float(cy.sum()),"
+  }
+ },
+ "CORRECTION_F02_EXECUTED_VS_INHERITED": "the pre-seal phase map cited kinetics.py:117/119/120 as the executed reaction path. Those lines are INHERITED_EQUIVALENT only: the executed class is run_obfor01.Instrumented(engine_obtc.WorldOBTC), whose WorldOBTC._react calls self._react_core() -- kinetics.World._react was never executed. The executed lines are engine_obtc.py:162 (free0, computed ONCE before the loop), 164 (species loop), 165 (p clamp), 166 (cand = min(nSY, free0)), 167 (binomial draw).",
+ "STEP_LABEL_CONVENTION": {
+  "series_step_labels": "1 ... 11000 (post-increment)",
+  "substep_ledger_labels": "0 ... 10999 (pre-increment)",
+  "MAPPING": "series_step = ledger_step + 1",
+  "VERIFIED_OVER_ALL_ARMS": true,
+  "ARMS_CHECKED": 28,
+  "PER_ARM": [
+   {
+    "arm": "M__seed9300014",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10995,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300015",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10090,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300016",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10998,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300017",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10999,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300018",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10991,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300019",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10998,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300020",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10998,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300021",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10995,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300022",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10995,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300023",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10999,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300024",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10999,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300025",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10999,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300026",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10998,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "M__seed9300027",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10992,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300000",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10998,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300001",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10991,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300002",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10998,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300003",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10999,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300004",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10999,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300005",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10999,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300006",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10999,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300007",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10985,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300008",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10994,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300009",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10999,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300010",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10999,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300011",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10998,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300012",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10999,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   },
+   {
+    "arm": "S__seed9300013",
+    "series_min": 1,
+    "series_max": 11000,
+    "ledger_min": {
+     "hop_ledger": 0,
+     "source_substep_ledger": 0,
+     "birth_substep_ledger": 0
+    },
+    "ledger_max": {
+     "hop_ledger": 10999,
+     "source_substep_ledger": 10999,
+     "birth_substep_ledger": 10999
+    },
+    "birth_offsets_min": 0,
+    "birth_offsets_max": 10993,
+    "matches_series_step_eq_ledger_step_plus_1": true
+   }
+  ],
+  "WHY": "kinetics.World._one_step increments self.step AFTER the operators run (kinetics.py:162), while the ledgers are appended during the sub-steps, before the increment. The offset is now explicit rather than implicit."
+ },
+ "OBSERVE_RECWORLD_NOTE": "observe.RecWorld(K.World) is a separate World class that OBFOR01 never used; the recorder was attached to WorldOBTC via self.rec. It is patched by the repair guard for completeness, not because it ran.",
+ "Q_LEDGER_STATUS": "EVENT_EXACT",
+ "EVENT_PHASE_IDENTITY_UNCHANGED": "engine_obtc.py:178 calls rec.pre_react(self) and :179 calls _react_core() immediately after, with no intervening state change. Q is therefore still the exact binomial n parameter of the Y birth draw at that step. Q_LEDGER_STATUS = EVENT_EXACT."
 }

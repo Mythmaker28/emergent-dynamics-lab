@@ -1,0 +1,421 @@
+arm,key,shape,dtype,ndim,cadence,column_semantics,coordinates_present,values_are,per_step_lattice_occupancy_invertible
+M__seed9300014,birth_offsets,3862x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300014,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300014,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300014,frames,220,<U572,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300014,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300014,molecule_births,118x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300014,molecule_deaths,5258x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300014,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300014,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300014,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300014,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300014,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300014,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300014,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300014,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300015,birth_offsets,3447x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300015,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300015,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300015,frames,220,<U573,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300015,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300015,molecule_births,3x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300015,molecule_deaths,4814x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300015,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300015,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300015,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300015,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300015,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300015,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300015,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300015,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300016,birth_offsets,3961x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300016,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300016,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300016,frames,220,<U572,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300016,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300016,molecule_births,112x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300016,molecule_deaths,5314x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300016,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300016,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300016,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300016,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300016,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300016,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300016,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300016,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300017,birth_offsets,3890x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300017,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300017,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300017,frames,220,<U573,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300017,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300017,molecule_births,107x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300017,molecule_deaths,5352x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300017,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300017,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300017,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300017,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300017,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300017,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300017,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300017,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300018,birth_offsets,3903x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300018,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300018,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300018,frames,220,<U573,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300018,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300018,molecule_births,110x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300018,molecule_deaths,5294x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300018,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300018,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300018,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300018,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300018,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300018,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300018,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300018,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300019,birth_offsets,3851x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300019,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300019,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300019,frames,220,<U572,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300019,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300019,molecule_births,118x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300019,molecule_deaths,5203x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300019,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300019,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300019,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300019,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300019,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300019,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300019,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300019,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300020,birth_offsets,3841x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300020,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300020,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300020,frames,220,<U573,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300020,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300020,molecule_births,123x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300020,molecule_deaths,5253x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300020,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300020,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300020,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300020,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300020,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300020,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300020,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300020,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300021,birth_offsets,3884x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300021,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300021,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300021,frames,220,<U572,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300021,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300021,molecule_births,92x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300021,molecule_deaths,5309x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300021,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300021,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300021,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300021,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300021,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300021,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300021,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300021,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300022,birth_offsets,4003x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300022,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300022,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300022,frames,220,<U571,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300022,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300022,molecule_births,128x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300022,molecule_deaths,5477x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300022,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300022,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300022,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300022,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300022,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300022,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300022,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300022,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300023,birth_offsets,3893x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300023,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300023,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300023,frames,220,<U573,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300023,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300023,molecule_births,127x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300023,molecule_deaths,5291x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300023,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300023,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300023,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300023,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300023,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300023,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300023,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300023,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300024,birth_offsets,3932x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300024,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300024,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300024,frames,220,<U571,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300024,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300024,molecule_births,131x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300024,molecule_deaths,5290x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300024,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300024,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300024,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300024,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300024,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300024,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300024,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300024,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300025,birth_offsets,3914x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300025,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300025,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300025,frames,220,<U573,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300025,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300025,molecule_births,107x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300025,molecule_deaths,5324x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300025,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300025,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300025,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300025,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300025,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300025,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300025,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300025,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300026,birth_offsets,3933x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300026,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300026,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300026,frames,220,<U572,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300026,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300026,molecule_births,118x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300026,molecule_deaths,5312x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300026,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300026,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300026,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300026,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300026,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300026,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300026,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300026,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+M__seed9300027,birth_offsets,4016x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+M__seed9300027,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+M__seed9300027,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+M__seed9300027,frames,220,<U572,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+M__seed9300027,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+M__seed9300027,molecule_births,118x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+M__seed9300027,molecule_deaths,5491x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+M__seed9300027,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300027,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300027,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300027,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300027,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300027,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+M__seed9300027,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+M__seed9300027,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300000,birth_offsets,3155x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300000,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300000,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300000,frames,220,<U568,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300000,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300000,molecule_births,68x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300000,molecule_deaths,3598x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300000,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300000,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300000,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300000,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300000,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300000,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300000,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300000,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300001,birth_offsets,3067x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300001,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300001,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300001,frames,220,<U570,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300001,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300001,molecule_births,78x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300001,molecule_deaths,3511x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300001,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300001,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300001,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300001,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300001,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300001,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300001,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300001,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300002,birth_offsets,3095x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300002,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300002,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300002,frames,220,<U566,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300002,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300002,molecule_births,83x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300002,molecule_deaths,3500x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300002,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300002,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300002,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300002,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300002,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300002,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300002,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300002,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300003,birth_offsets,3072x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300003,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300003,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300003,frames,220,<U572,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300003,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300003,molecule_births,85x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300003,molecule_deaths,3489x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300003,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300003,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300003,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300003,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300003,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300003,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300003,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300003,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300004,birth_offsets,3161x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300004,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300004,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300004,frames,220,<U570,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300004,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300004,molecule_births,76x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300004,molecule_deaths,3609x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300004,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300004,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300004,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300004,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300004,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300004,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300004,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300004,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300005,birth_offsets,3036x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300005,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300005,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300005,frames,220,<U571,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300005,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300005,molecule_births,75x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300005,molecule_deaths,3474x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300005,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300005,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300005,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300005,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300005,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300005,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300005,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300005,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300006,birth_offsets,3151x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300006,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300006,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300006,frames,220,<U571,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300006,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300006,molecule_births,83x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300006,molecule_deaths,3596x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300006,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300006,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300006,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300006,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300006,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300006,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300006,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300006,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300007,birth_offsets,3150x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300007,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300007,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300007,frames,220,<U558,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300007,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300007,molecule_births,71x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300007,molecule_deaths,3558x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300007,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300007,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300007,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300007,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300007,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300007,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300007,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300007,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300008,birth_offsets,3127x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300008,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300008,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300008,frames,220,<U572,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300008,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300008,molecule_births,74x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300008,molecule_deaths,3561x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300008,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300008,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300008,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300008,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300008,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300008,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300008,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300008,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300009,birth_offsets,3074x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300009,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300009,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300009,frames,220,<U569,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300009,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300009,molecule_births,88x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300009,molecule_deaths,3496x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300009,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300009,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300009,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300009,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300009,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300009,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300009,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300009,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300010,birth_offsets,3239x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300010,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300010,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300010,frames,220,<U566,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300010,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300010,molecule_births,79x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300010,molecule_deaths,3718x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300010,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300010,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300010,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300010,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300010,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300010,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300010,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300010,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300011,birth_offsets,3186x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300011,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300011,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300011,frames,220,<U572,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300011,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300011,molecule_births,95x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300011,molecule_deaths,3638x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300011,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300011,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300011,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300011,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300011,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300011,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300011,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300011,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300012,birth_offsets,3146x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300012,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300012,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300012,frames,220,<U570,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300012,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300012,molecule_births,90x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300012,molecule_deaths,3576x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300012,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300012,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300012,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300012,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300012,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300012,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300012,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300012,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False
+S__seed9300013,birth_offsets,2984x4,int64,2,event-driven / strided,"(step, dy, dx, count) of X births RELATIVE to the organiser cell",True,aggregate,False
+S__seed9300013,birth_substep_ledger,11000x6,int64,2,per step,"(step, + 5 scalar organiser-cell counts) - 1 row per step",True,aggregate,False
+S__seed9300013,fields,29,<U19,1,event-driven / strided,names of the series columns,False,other,False
+S__seed9300013,frames,220,<U569,1,event-driven / strided,JSON strings: morphology summaries at fixed stride; scalar fields only,False,other,False
+S__seed9300013,hop_ledger,44000x4,int64,2,4 rows per step,"(step, species_index, ?, ?) - 4 rows per step, ONE PER DIFFUSING SPECIES: an AGGREGATE sub-step record, not a per-particle displacement",False,aggregate,False
+S__seed9300013,molecule_births,68x4,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x) for X components alive at the end",True,individual,False
+S__seed9300013,molecule_deaths,3356x5,int64,2,event-driven / strided,"(molecule_id, birth_step, birth_y, birth_x, death_step) - BIRTH coordinates only; no trajectory between birth and death",False,individual,False
+S__seed9300013,nSX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300013,nSY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300013,nWX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300013,nWY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300013,nX_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300013,nY_final,36x36,int64,2,terminal only,terminal lattice occupancy for one species (final step only),True,field,False
+S__seed9300013,series,11000x29,float64,2,per step,"(step, then 28 recorded observer fields; see PER_STEP_FIELD_NAMES)",False,aggregate,False
+S__seed9300013,source_substep_ledger,44000x6,int64,2,4 rows per step,"(step, species_index, org_y_before, org_x_before, org_y_after, org_x_after) - POSITION-RESOLVED: 4 of 6 columns are lattice coordinates",True,other,False

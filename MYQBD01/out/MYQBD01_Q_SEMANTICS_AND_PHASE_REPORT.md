@@ -45,3 +45,41 @@ organisatrice, `Q_POSITION` à sa nouvelle cellule est une quantité **différen
 enregistrée**. Deux `Y` co-localisés couplent `Q_REACTION` (facteur `nY`). C'est le point porteur :
 le champ enregistré est le même objet que le `Q` un-organisateur de PMCR01, mais **pas**
 l'environnement de lignée à deux `Y`.
+
+---
+
+## Réparations du sceau (A1 — constats F02, F03)
+
+**Source exécutée, et non héritée.** La version pré-sceau citait `kinetics.py:117/119/120` comme
+le chemin de réaction exécuté par OBFOR01. C'est faux. La classe qui a tourné est
+`run_obfor01.Instrumented(engine_obtc.WorldOBTC)` (`run_obfor01.py:56`, sélectionnée à `:93`) ;
+`WorldOBTC._react` appelle `self._react_core()`, donc **`kinetics.World._react` n'a jamais été
+exécuté**. Les lignes `kinetics.py` sont conservées comme `INHERITED_EQUIVALENT` uniquement.
+
+Site exécuté de la naissance `Y`, résolu depuis la source liée :
+
+| ligne | code | rôle |
+|---|---|---|
+| `engine_obtc.py:162` | `free0 = np.maximum(self.free(), 0)` | calculé **une seule fois**, avant la boucle d'espèces — le pivot de l'identité de phase |
+| `engine_obtc.py:164` | `for prod, res, kk in (("X","SX",sp.kX), ("Y","SY",sp.kY)):` | boucle d'espèces |
+| `engine_obtc.py:165` | `p = np.minimum(1.0, kk * pair)` | clamp de l'intensité |
+| `engine_obtc.py:166` | `cand = np.minimum(self.n[res], free0)` | pool de candidats |
+| `engine_obtc.py:167` | `births = rng.binomial(np.maximum(cand, 0), p)` | tirage |
+
+`engine_obtc.py:178` appelle `rec.pre_react(self)` et `:179` appelle `_react_core()` immédiatement
+après, sans changement d'état intermédiaire. **`Q_LEDGER_STATUS = EVENT_EXACT` est inchangé.**
+
+`observe.RecWorld(K.World)` est une classe `World` distincte qu'OBFOR01 n'a jamais utilisée ; le
+garde du round de réparation la patche par exhaustivité, non parce qu'elle a tourné.
+
+**Convention d'étiquetage des pas, désormais explicite.** `kinetics.World._one_step` incrémente
+`self.step` **après** les opérateurs (`kinetics.py:162`), alors que les registres sont appendés
+pendant les sous-pas, avant l'incrément. D'où deux conventions :
+
+```
+series          : 1 ... 11000     (post-incrément)
+registres sous-pas et birth_offsets : 0 ... 10999   (pré-incrément)
+MAPPING : series_step = ledger_step + 1
+```
+
+**Vérifié sur les 28 bras**, pas supposé.

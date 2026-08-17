@@ -120,9 +120,20 @@
    "c": 3,
    "kY": 4e-05,
    "muY": 1.951120660330116e-06,
-   "note": "kY at the first-birth discovery scale (~3.5e-5), muY at the inherited MTW01 scale, c near the mean organiser candidate pool",
+   "note": "kY at the first-birth discovery scale (~3.5e-5), muY at the inherited MTW01 scale",
+   "SEAL_CORRECTION_F20": "the pre-seal comment claimed c = 3 was 'near the mean organiser candidate pool'. It is not: the measured mean cand_Y_at_org over the 14 mobile arms is 0.961651, so c = 3 is 3.12x it, and the witness exposure c*nX = 12 is 3.79x the arms' own mean Q = 3.169730. The claim is corrected here and a MEASURED-magnitude witness is added below.",
    "R_mean_offspring": 1.0004780479428017,
    "survival_to_T": 0.9959575009138625,
+   "supercritical": true
+  },
+  "measured_environment_witness": {
+   "c": 0.9616507936507939,
+   "kY": 4e-05,
+   "muY": 1.951120660330116e-06,
+   "nX": 4.312563492063493,
+   "note": "the arms' OWN measured mean candidate pool and mean nX at the organiser; no inflated magnitude anywhere",
+   "R_mean_offspring": 1.0001639357598662,
+   "survival_to_T": 0.9901583349731379,
    "supercritical": true
   },
   "most_favourable_witness": {
@@ -135,7 +146,7 @@
    "supercritical_and_survives": true
   },
   "STRUCTURAL_PRECLUSION_PROVED": false,
-  "why_not": "even at an IN-BOX admissible point (kY = 4e-5 at the first-birth scale, muY = 1.95e-6, c = 3) the one-Y-seeded lineage is supercritical (R = 1.000478 > 1), so the operator does NOT forbid a window at admissible magnitudes. The obstruction is a MISSING LEDGER (descendant exposure) and MISSING IDENTIFIABILITY (two-Y operator), which the freeze explicitly rules inadmissible as structural proof."
+  "why_not": "even at the arms' OWN MEASURED magnitudes (c = 0.961651, nX = 4.312563, kY = 4e-5, muY = 1.95e-6) the one-Y-seeded lineage is supercritical (R = 1.000163936 > 1), and at the in-box point (c = 3) R = 1.000478 > 1, so the operator does NOT forbid a window at admissible magnitudes. The obstruction is a MISSING LEDGER (descendant exposure) and MISSING IDENTIFIABILITY (two-Y operator), which the freeze explicitly rules inadmissible as structural proof."
  },
  "POSITIVE_DISPOSITION_REQUIREMENTS": {
   "ALL_28_ARMS_ACCOUNTED_FOR": true,
@@ -162,7 +173,7 @@
  ],
  "FINAL_DISPOSITION": "EXISTING_Q_DATA_INSUFFICIENT__PROSPECTIVE_Q_CALIBRATION_REQUIRED",
  "WHY_NOT_POSITIVE": "MOBILE_SPATIAL_ENVIRONMENT_RESOLVED and TWO_Y_STATE_OPERATOR_VERIFIED are both false; the mobile candidate region is not constructible from an organiser-only ledger.",
- "WHY_NOT_STRUCTURAL_PRECLUSION": "even at an IN-BOX admissible point (kY = 4e-5 at the first-birth scale, muY = 1.95e-6, c = 3) the one-Y-seeded lineage is supercritical (R = 1.000478 > 1), so the operator does NOT forbid a window at admissible magnitudes. The obstruction is a MISSING LEDGER (descendant exposure) and MISSING IDENTIFIABILITY (two-Y operator), which the freeze explicitly rules inadmissible as structural proof.",
+ "WHY_NOT_STRUCTURAL_PRECLUSION": "even at the arms' OWN MEASURED magnitudes (c = 0.961651, nX = 4.312563, kY = 4e-5, muY = 1.95e-6) the one-Y-seeded lineage is supercritical (R = 1.000163936 > 1), and at the in-box point (c = 3) R = 1.000478 > 1, so the operator does NOT forbid a window at admissible magnitudes. The obstruction is a MISSING LEDGER (descendant exposure) and MISSING IDENTIFIABILITY (two-Y operator), which the freeze explicitly rules inadmissible as structural proof.",
  "TARGET_SELECTION": "NOT_PERFORMED (only after a positive disposition)",
  "NEXT_SCIENTIFIC_ELIGIBILITY": "PROSPECTIVE_Q_ENVIRONMENT_CALIBRATION_01"
 }

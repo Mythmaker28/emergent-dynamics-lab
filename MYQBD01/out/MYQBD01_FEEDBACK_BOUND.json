@@ -1,118 +1,139 @@
 {
- "SPATIAL": {
-  "SECTION": "MYQBD01 \u00a712 spatial recoverability",
-  "PER_STEP_SERIES_SHAPE": [
-   11000,
-   29
-  ],
-  "PER_STEP_FIELDS_ARE_SCALAR_ORGANISER_AGGREGATES": true,
-  "PER_STEP_FIELD_NAMES": [
-   "step",
-   "N_X",
-   "N_Y",
-   "N_SX",
-   "N_SY",
-   "N_WX",
-   "N_WY",
-   "n_org_cells",
-   "c_X_total",
-   "c_X_per_org",
-   "u_nX_at_org",
-   "nSX_at_org",
-   "nSY_at_org",
-   "nW_at_org",
-   "free_at_org",
-   "p_X_at_org",
-   "expected_births_X",
-   "accepted_births_X",
-   "deaths_X",
-   "cand_Y_at_org",
-   "Q",
-   "source_on",
-   "O_total",
-   "free_total",
-   "flux_in",
-   "flux_out",
-   "occ_delta",
-   "free_at_source_mean",
-   "displaced_total"
-  ],
-  "PER_STEP_POSITION_RESOLVED_ARRAYS": [],
-  "TERMINAL_SPATIAL_ARRAYS": [
-   "nX_final",
-   "nY_final",
-   "nSX_final",
-   "nSY_final",
-   "nWX_final",
-   "nWY_final"
-  ],
-  "FULL_SPATIAL_FIELD_IS_TERMINAL_ONLY": true,
-  "SUBSTEP_LEDGERS_ARE_SCALAR": {
-   "hop_ledger": [
-    44000,
-    4
-   ],
-   "source_substep_ledger": [
-    44000,
-    6
-   ],
-   "birth_substep_ledger": [
-    11000,
-    6
-   ],
-   "birth_offsets": [
-    3862,
-    4
-   ],
-   "reading": "these carry step, sub-step index and scalar organiser-cell counts; birth_offsets carries (step, dy, dx, count) of X births relative to the organiser, which is WHERE births occurred, not the nSY/free field at cells a Y descendant could reach"
+ "A7_FEEDBACK": {
+  "SECTION": "MYQBD01 REPAIR A7 \u2014 feedback certificates, regenerated",
+  "ARCHIVE_PARAMETERS_FROM_THE_LOADED_SPEC": {
+   "S0": 3,
+   "phi": 0.2,
+   "kY": 0.0,
+   "source": "obtc02_protocol.yaml point block"
   },
-  "Q_POSITION_RECOVERABLE_FOR_A_SEPARATED_DESCENDANT": false,
-  "CLASSIFICATION": "ORGANISER_ONLY_ENVIRONMENT_AVAILABLE",
-  "WHY": "the per-step ledger records only the organiser-cell exposure Q = nX*min(nSY,free) at cells with nY>0. The full per-cell (nX, nSY, free) field is serialized only at the terminal step. A mobile descendant that separates from the organiser occupies a DIFFERENT cell whose (nX, nSY, free) at that time is not recorded. Therefore Q_POSITION(x,t) and Q_LINEAGE(t) for a separated descendant are not recoverable from these archives.",
-  "CONSEQUENCE_FOR_THE_MOBILE_BRANCH": "the mobile branch is the load-bearing branch for a separation test. The separation and premature-third-centre hazards depend on descendant-position exposure, which is unrecoverable here. The organiser-only ledger locates the FIRST-BIRTH hazard exactly, and nothing after separation.",
-  "STATIC_BRANCH_NOTE": "in the static branch p_hop_Y = 0, so all Y remain in one cell and Q_ORGANISER does describe the whole lineage exposure -- but that branch structurally cannot produce spatial separation, so it cannot support a separation/timing test either.",
-  "WHY_THE_STATIC_BRANCH_ALSO_FAILS_the_full_reasons": [
-   "(a) STRUCTURAL: p_hop_Y = 0 means descendants never separate, so no separation or premature-third-centre timing can be tested there at all -- the frozen mobile framing has no static analogue",
-   "(b) FEEDBACK (\u00a713): even the one-cell exposure was recorded with kY = 0, so it omits the SY depletion an active lineage causes; uncontrolled beyond the first birth",
-   "(c) TEMPORAL (\u00a77): the integrated autocorrelation time is ~7 in the static branch, so the arithmetic mean of Q is not the growth-relevant functional",
-   "(d) LOWER TAIL: every static arm has Q10 = 0, so there is no positive statewise exposure floor from which to certify a lower bound on the birth intensity"
-  ]
+  "SY_MEAN_REVERSION": {
+   "NOMINAL_EXCHANGE_PHI": 0.2,
+   "MEASURED_EFFECTIVE_RATE": 0.35573502919515165,
+   "SD_OVER_14_STATIC_ARMS": 0.01347266465065013,
+   "RATIO_MEASURED_OVER_NOMINAL": 1.7786751459757582,
+   "per_arm_slopes": [
+    0.33619034707110984,
+    0.36670889641466875,
+    0.3759464645521086,
+    0.3561775428143367,
+    0.35733463311883973,
+    0.35847213370537967,
+    0.3662707258878458,
+    0.3413014199523955,
+    0.3733024548852517,
+    0.35109465212671487,
+    0.36630318877722273,
+    0.35257514587156574,
+    0.3313205314006997,
+    0.3472922721539835
+   ],
+   "lag1_autocorr_per_arm": [
+    0.6638096529288922,
+    0.63328438509047,
+    0.6243403724649628,
+    0.6438224571856612,
+    0.6426707392700983,
+    0.6412310990923945,
+    0.6337292741121558,
+    0.6585513696252382,
+    0.6266975451147492,
+    0.648762962196325,
+    0.6336968112227782,
+    0.6474248541284352,
+    0.6686794685992995,
+    0.6526996427794474
+   ],
+   "reviewer_reported": {
+    "value": 0.355735,
+    "sd": 0.013473,
+    "ratio": 1.78
+   },
+   "REPRODUCED": true,
+   "WHY_THEY_DIFFER": "phi = 0.20 is the rate at which _exchange OFFERS a refill toward S0 = 3, i.e. the parameter of Binomial(max(S0 - nSY, 0), phi). The observed relaxation of nSY at a cell is not that offer alone: the cell ALSO receives SY by diffusion from its neighbours and loses SY to the hypergeometric removal that _exchange applies across {SX, SY, WX, WY}. The measured effective mean reversion is the NET of all three channels, and it is 1.78x the offer rate. Substituting phi for it -- as the pre-seal certificate did -- understates how fast the perturbation is erased.",
+   "DIRECTION_OF_THE_ERROR": "CONSERVATIVE: recovery is faster than was certified, so the true first-birth perturbation is SMALLER"
+  },
+  "DEPLETION_BY_ONE_Y_BIRTH": {
+   "delta_nSY_local": -1,
+   "UNCONDITIONAL_MEAN_DEPLETION": {
+    "mean_nSY_at_org": 0.9850476190476191,
+    "depletion_fraction": 1.015179348351542,
+    "status": "SUPERSEDED as the headline figure: it divides by an average that includes steps where no birth is possible at all"
+   },
+   "CONDITIONAL_ON_BIRTH_POSSIBLE_DEPLETION": {
+    "conditioning_event": "cand_Y = min(nSY, free) >= 1",
+    "mean_nSY_given_event": 1.8140574465273327,
+    "mean_cand_Y_given_event": 1.7770838779280036,
+    "depletion_fraction": 0.5512504589721288,
+    "reviewer_reported_pct": 55.1,
+    "computed_pct": 55.12504589721287,
+    "REPRODUCED": true,
+    "status": "THE HEADLINE FIGURE"
+   },
+   "CONDITIONAL_ON_BIRTH_REALIZED_DEPLETION": {
+    "weighting": "P(at least one Y birth at the cell) = 1 - (1-p)^cand_Y, exact at kY = 4e-05",
+    "mean_nSY_given_realized": 2.059077622080585,
+    "depletion_fraction": 0.48565434798400403,
+    "computed_pct": 48.5654347984004,
+    "note": "identifiable only as an exposure-weighted conditional: kY = 0 in the archives, so no birth was ever realised and this cannot be measured directly. It is reported as a derived weighting, not as an observation."
+   },
+   "steps_to_erase_one_unit_at_the_measured_rate": 2.8110810517100155
+  },
+  "DOWNSTREAM_BOUND": {
+   "FIRST_BIRTH": "controlled: the perturbation is -1 SY against a conditional pool of 1.814057 (55.1%), erased at 0.355735 per step (~2.8 steps).",
+   "SECOND_BIRTH_AND_BEYOND": "NOT controlled: the archives carry kY = 0, so no sequence of births was ever observed and the compounding of depletion across a persisting lineage cannot be bounded from them.",
+   "TWO_Y_COLOCATED": "not controlled: the pool is shared and depletes twice as fast",
+   "TWO_Y_SEPARATED": "not boundable at all: the descendant's cell exposure is unrecorded (A4)",
+   "STATUS": "FROZEN_ENVIRONMENT_FEEDBACK_NOT_FULLY_CONTROLLED",
+   "WHAT_THIS_SUPPORTS": "prospective calibration",
+   "WHAT_THIS_DOES_NOT_PROVE": "structural preclusion"
+  }
  },
- "FEEDBACK": {
-  "SECTION": "MYQBD01 \u00a713 counterfactual validity of the frozen X environment",
-  "THE_ARCHIVE_HAS_kY_ZERO": "obtc02_protocol.yaml point.kY = 0.0, so NO Y birth ever occurred in any of the 28 arms. The recorded environment is the exact counterfactual for a Y that never reacts.",
-  "EXACT_CONSERVATION_FACTS": {
-   "Y_birth_effect": "_react converts SY -> Y in place: n[SY] -= b, n[Y] += b. Occupancy is conserved, so FREE is UNCHANGED, but local nSY drops by b at the birth cell.",
-   "Y_decay_effect": "_decay converts Y -> WY: occupancy conserved, free unchanged.",
-   "SY_replenishment": "_exchange offers Binomial(max(S0 - nSY, 0), phi) toward S0 = 3 at rate phi = 0.20 per step, per cell.",
-   "phi_S0_provenance": "parsed from obtc02_protocol.yaml point block (the loaded spec)",
-   "X_hazard_unaffected_by_nY": "p_X = min(1, kX*nX*nY) is already 1 for nX*nY >= 1 at kX = 1, so a second Y does not change X production."
+ "A8_NON_PRECLUSION": {
+  "SECTION": "MYQBD01 REPAIR A8 \u2014 non-preclusion witnesses, labelled by typicality",
+  "LOGICAL_USE": "STRUCTURAL_PRECLUSION_NOT_PROVED. Nothing here qualifies a prospective window.",
+  "CLASSIFICATION_OF_BOTH_WITNESSES": "POST_OUTCOME_DEVELOPMENT_DIAGNOSTIC",
+  "REPRESENTATIVE_WITNESS": {
+   "basis": "the 14 mobile arms' OWN measured mean exposure E[Q]",
+   "mean_Q": 3.1697301587301587,
+   "kY": 4e-05,
+   "muY": 1.951120660330116e-06,
+   "R_mean_offspring": 1.0001248378383079,
+   "R_minus_1": 0.00012483783830785633,
+   "margin_over_muY": 63.98263359413899,
+   "supercritical": true,
+   "reviewer_reported_R": 1.000124838,
+   "REPRODUCED": true,
+   "launcher_said_approximately_65x_margin": 65.0,
+   "exact_margin_computed": 63.98263359413899,
+   "NOTE": "the launcher quoted the margin as approximately 65x; the exact value is 63.98x. The approximation is reported rather than silently adopted.",
+   "reading": "at the arms' own measured exposure the one-Y lineage is supercritical with a margin of 64.0x muY. This is the number that should carry the non-preclusion conclusion, because it uses no inflated magnitude."
   },
-  "MEASURED_ORGANISER_CELL_MAGNITUDES_mobile": {
-   "mean_nSY_at_org": 0.9850476190476191,
-   "mean_free_at_org": 8.96026984126984,
-   "mean_nX_at_org": 4.312563492063493
-  },
-  "DETERMINISTIC_PERTURBATION_BOUND": {
-   "one_Y_birth": {
-    "delta_nSY_local": -1,
-    "as_fraction_of_mean_nSY": -1.015179348351542,
-    "recovery_rate_per_step": 0.2,
-    "steps_to_replenish_one_unit_approx": 5.0,
-    "reading": "one Y birth removes one SY at the organiser cell, a 102% local reduction of the ~0.99 mean nSY, recovering at ~0.20 per step. The recorded Q therefore OVERSTATES the SY an active lineage would see, and the first-birth error is bounded but NOT negligible."
+  "FAVOURABLE_WITNESS_ATYPICAL": {
+   "c": 3,
+   "nX": 4,
+   "exposure_c_times_nX": 12,
+   "R_mean_offspring": 1.0004780479428017,
+   "extinction_fixed_point_eta_star": 0.0040635472473723,
+   "asymptotic_survival_1_minus_eta_star": 0.9959364527526277,
+   "survival_after_exactly_T_steps": 0.9959575009138625,
+   "T": 11000,
+   "NOTE_TWO_DISTINCT_QUANTITIES": "eta* is the ASYMPTOTIC extinction root of f(eta) = eta; the T-step value is where the iteration stands after 11000 steps, still above the limit because the process is only barely supercritical. Both are published so neither can be mistaken for the other.",
+   "reviewer_reported_R": 1.000478048,
+   "reviewer_reported_eta_star": 0.004063547247,
+   "REPRODUCED_R": true,
+   "REPRODUCED_ETA": true,
+   "ATYPICALITY": {
+    "measured_mean_cand_Y_at_org": 0.9616507936507939,
+    "c_over_measured_pool": 3.119635547339231,
+    "measured_mean_Q": 3.1697301587301587,
+    "exposure_over_measured_Q": 3.7858112202230423,
+    "measured_mean_nX_at_org": 4.312563492063493,
+    "nX_used_over_measured": 0.9275225761571486
    },
-   "two_Y_colocated": {
-    "delta_nSY_local_per_step": "up to -2 (two births share the cell's SY pool)",
-    "extra_effect": "p_Y carries nY = 2, so the intensity the archive omits grows",
-    "reading": "the perturbation compounds and is not bounded from the kY=0 archive"
-   },
-   "two_Y_separated": {
-    "reading": "each occupies a different cell; the exposure at the descendant's cell is unrecorded (see \u00a712), so the perturbation there cannot be bounded from these archives at all"
-   }
+   "LABEL": "EXPLICITLY FAVOURABLE, NOT REPRESENTATIVE: its candidate pool is 3.12x and its exposure 3.79x the measured means. Retained only to show the operator admits a supercritical point at admissible (kY, muY); the pre-seal framing 'the MOST FAVOURABLE admissible environment (Q sustained at Q_MAX)' was wrong on its own terms, since Q_MAX = 28 and this witness uses 12."
   },
-  "CLASSIFICATION": "FROZEN_ENVIRONMENT_RARE_Y_APPROXIMATION_WITH_CERTIFIED_ERROR",
-  "ERROR_IS_CONTROLLED_ONLY_FOR": "the FIRST birth of a single Y at the organiser cell",
-  "ERROR_IS_UNCONTROLLED_FOR": "a persisting lineage, co-located pairs, and any separated descendant -- exactly the regime a mobile window test would probe",
-  "DO_NOT_HIDE_UNDER_MINORITY_REGIME": "the SY depletion is a real feedback; calling the regime 'minority' does not make Q_recorded exact for an active lineage"
+  "STRUCTURAL_PRECLUSION_PROVED": false,
+  "WHY_NOT": "both witnesses are supercritical at admissible (kY, muY), and the representative one uses only measured magnitudes. The obstruction to a window is a MISSING LEDGER, which is not a proof of impossibility."
  }
 }

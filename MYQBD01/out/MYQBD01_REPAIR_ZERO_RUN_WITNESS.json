@@ -1,0 +1,66 @@
+{
+ "GUARD": "MYQBD01 final-repair runtime guard",
+ "COUNTERS": {
+  "ENGINE_CONSTRUCT_CALLS": 0,
+  "ENGINE_ADVANCE_CALLS": 0,
+  "SCIENTIFIC_WORLD_STARTS": 0,
+  "SCIENTIFIC_SEEDS_OPENED": 0,
+  "NEW_PHYSICS_ARRAYS_WRITTEN": 0
+ },
+ "PATCH_COVERAGE": {
+  "world_constructors": [
+   "engine_obtc.WorldOBTC.__init__",
+   "kinetics.World.__init__",
+   "lawspec_v2.WorldV2.__init__",
+   "observe.RecWorld.__init__"
+  ],
+  "scheduler_steps": [
+   "engine_obtc.WorldOBTC._one_step",
+   "engine_obtc.WorldOBTC._react",
+   "engine_obtc.WorldOBTC._react_core",
+   "kinetics.World._one_step",
+   "kinetics.World._react",
+   "lawspec_v2.WorldV2._one_step",
+   "lawspec_v2.WorldV2._react",
+   "observe.RecWorld._one_step",
+   "observe.RecWorld._react"
+  ],
+  "seeding_entry_points": [
+   "engine_obtc.seed_one_organiser",
+   "kinetics.seed_one_organiser",
+   "lawspec_v2.seed_one_organiser",
+   "observe.seed_one_organiser"
+  ],
+  "seeding_entry_points_count": 4,
+  "ALL_FOUR_SEEDING_ENTRY_POINTS_PATCHED": true
+ },
+ "FILESYSTEM_WITNESS": {
+  "MODE": "os.walk, RECURSIVE, NO DEPTH LIMIT",
+  "ROOTS": [
+   "/home/claude"
+  ],
+  "SKIPPED_DIR_NAMES": [
+   ".git",
+   ".venv",
+   "__pycache__",
+   "node_modules"
+  ],
+  "ARRAYS_AT_BASELINE": 7297,
+  "ARRAYS_NOW": 7297,
+  "CREATED": [],
+  "MODIFIED": []
+ },
+ "SUBPROCESS_AUDIT": {
+  "calls": 10,
+  "engine_invoking_calls": [],
+  "NO_ENGINE_SUBPROCESS": true
+ },
+ "VERDICT": {
+  "ENGINE_CONSTRUCT_CALLS": 0,
+  "ENGINE_ADVANCE_CALLS": 0,
+  "SCIENTIFIC_WORLD_STARTS": 0,
+  "SCIENTIFIC_SEEDS_OPENED": 0,
+  "NEW_PHYSICS_ARRAYS_WRITTEN": 0,
+  "ALL_ZERO": true
+ }
+}

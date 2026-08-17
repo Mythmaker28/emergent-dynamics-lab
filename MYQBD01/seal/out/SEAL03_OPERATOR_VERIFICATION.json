@@ -1,0 +1,101 @@
+{
+ "F10_N_Y_IDENTICALLY_ONE": {
+  "all_arms": true,
+  "n_org_cells_always_1": true,
+  "steps_checked": 308000,
+  "reading": "kY = 0 => no Y birth in any arm; the founder is the only Y that ever exists"
+ },
+ "F16_SY_MEAN_REVERSION": {
+  "per_arm_slopes_static": [
+   0.33619034707110984,
+   0.36670889641466875,
+   0.3759464645521086,
+   0.3561775428143367,
+   0.35733463311883973,
+   0.35847213370537967,
+   0.3662707258878458,
+   0.3413014199523955,
+   0.3733024548852517,
+   0.35109465212671487,
+   0.36630318877722273,
+   0.35257514587156574,
+   0.3313205314006997,
+   0.3472922721539835
+  ],
+  "mean": 0.35573502919515165,
+  "sd": 0.01347266465065013,
+  "claimed_phi": 0.2,
+  "ratio_measured_over_claimed": 1.7786751459757582
+ },
+ "F17_DEPLETION": {
+  "uncond_mean_nSY_mobile": 0.9850476190476191,
+  "uncond_depletion_pct": 101.51793483515421,
+  "cond_mean_nSY_given_candY_ge_1": 1.8140574465273327,
+  "cond_mean_candY_given_ge_1": 1.7770838779280036,
+  "cond_depletion_pct": 55.12504589721287
+ },
+ "F20_POOL": {
+  "mean_cand_Y_at_org_mobile": 0.9616507936507939,
+  "c_box_used": 3,
+  "ratio_c_box_over_mean": 3.119635547339231,
+  "mean_u_nX_at_org": 4.312563492063493,
+  "mean_Q_mobile": 3.1697301587301587,
+  "witness_exposure_c_times_nX": 12,
+  "ratio_witness_over_meanQ": 3.7858112202230423
+ },
+ "F08_SUBSTEP_LEDGER": {
+  "shape": [
+   44000,
+   6
+  ],
+  "columns_within_lattice_range": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "rows_where_org_cell_moved": 1038,
+  "distinct_org_cells_visited": 373,
+  "writer_lines": [
+   "hop_ledger=hop, source_substep_ledger=src, birth_substep_ledger=bir)",
+   "\"ledger_rows\": {\"hop\": int(len(hop)), \"source_substep\": int(len(src)),",
+   "\"birth_substep\": int(len(bir))},"
+  ],
+  "IS_POSITION_RESOLVED": true
+ },
+ "F05_IAT": {
+  "mobile_mean": 8.42768101880838,
+  "mobile_max": [
+   "M__seed9300015",
+   24.555554420220126
+  ],
+  "static_mean": 7.175562416275024,
+  "static_max": [
+   "S__seed9300009",
+   9.718588506357804
+  ],
+  "mobile_ratio_max_over_mean": 2.913678669780993
+ },
+ "F27_F28_F25": {
+  "MYQBD01_modules": 8,
+  "modules_installing_sentinel": [
+   "myqbd01_arms.py"
+  ],
+  "modules_using_ast": [
+   "myqbd01_phase.py"
+  ],
+  "seed_one_organiser_definitions": [
+   "/home/claude/ORR01/code/kinetics.py:172",
+   "/home/claude/ORR01/code/observe.py:151",
+   "/home/claude/ORR01/code/lawspec_v2.py:188",
+   "/home/claude/OBTC02/code/engine_obtc.py:239"
+  ],
+  "sentinel_patches_namespaces": [
+   "K",
+   "EN",
+   "V2"
+  ],
+  "observe_is_patched": false
+ }
+}

@@ -1,0 +1,178 @@
+{
+ "SECTION": "MYQBD01 REPAIR \u2014 deterministic verification (\u00a718)",
+ "HEADLINE_REPLAY_FROM_RAW": {
+  "mean_Q_mobile": 3.1697301587301587,
+  "mean_Q_static": 2.3690476190476195,
+  "sd_arm_means_mobile": 0.1629902887142898,
+  "uncond_mean_nSY_mobile": 0.9850476190476191,
+  "cond_mean_nSY_given_candY_ge_1": 1.8140574465273327,
+  "cond_depletion_pct": 55.12504589721287,
+  "R_representative": 1.0001248378383079,
+  "N_Y_identically_one": true,
+  "steps_checked": 308000,
+  "arms": 28
+ },
+ "CHECKS": [
+  {
+   "check": "replay: N_Y == 1 over all recorded steps",
+   "PASS": true,
+   "detail": "308000 steps, 28 arms"
+  },
+  {
+   "check": "replay matches A7 conditional depletion",
+   "PASS": true,
+   "detail": "55.125046 vs 55.125046"
+  },
+  {
+   "check": "replay matches A8 representative R",
+   "PASS": true,
+   "detail": "1.000124838 vs 1.000124838"
+  },
+  {
+   "check": "A4 flags are mutually consistent",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "A4 derived over all 28 archives",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "A2 reproduces the reviewer mobile IAT mean",
+   "PASS": true,
+   "detail": "9.19672185075826"
+  },
+  {
+   "check": "A5 clamp never active",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "A6 reviewer numbers reproduced",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "A7 measured mean reversion reproduced",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "A8 favourable witness reproduced",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "zero-run: static proof PASS and all counters zero",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "zero-run: original sentinel coverage reported as INCOMPLETE",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "guard patched all four seeding entry points",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "JSON carries FINAL_DISPOSITION",
+   "PASS": true,
+   "detail": "EXISTING_Q_DATA_INSUFFICIENT__PROSPECTIVE_Q_CALIBRATION_REQUIRED"
+  },
+  {
+   "check": "JSON carries Q_LEDGER_STATUS",
+   "PASS": true,
+   "detail": "EVENT_EXACT"
+  },
+  {
+   "check": "JSON carries SCALAR_Q_REDUCTION_STATUS",
+   "PASS": true,
+   "detail": "EXACT_FOR_FIRST_BIRTH_IN_ONE_Y_UNCLAMPED_REGIME__INSUFFICIENT_FOR_COMPLETE_TWO_Y_SPATIAL_WINDOW"
+  },
+  {
+   "check": "JSON carries TWO_Y_OPERATOR_STATUS",
+   "PASS": true,
+   "detail": "EXECUTABLE_LOCAL_LAW_DERIVED__FULL_SPATIOTEMPORAL_OPERATOR_NOT_IDENTIFIABLE_FROM_EXISTING_ARCHIVES"
+  },
+  {
+   "check": "JSON carries MOBILE_DISCOVERY_REGION_STATUS",
+   "PASS": true,
+   "detail": "NOT_DERIVABLE_FROM_EXISTING_ARCHIVES"
+  },
+  {
+   "check": "JSON carries ARCHITECTURE_CHANGE_NECESSITY",
+   "PASS": true,
+   "detail": "NOT_ESTABLISHED"
+  },
+  {
+   "check": "JSON carries DESCENDANT_EXPOSURE_RECOVERABLE",
+   "PASS": true,
+   "detail": "NO"
+  },
+  {
+   "check": "report states FINAL_DISPOSITION",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "report states Q_LEDGER_STATUS",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "report states SCALAR_Q_REDUCTION_STATUS",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "report states TWO_Y_OPERATOR_STATUS",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "report states MOBILE_DISCOVERY_REGION_STATUS",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "no forbidden preregistration wording asserted",
+   "PASS": true,
+   "detail": "[]"
+  },
+  {
+   "check": "exactly one active handoff",
+   "PASS": true,
+   "detail": "['HANDOFF_PROSPECTIVE_Q_ENVIRONMENT_CALIBRATION_01.md']"
+  },
+  {
+   "check": "handoff has both calibration phases",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "freeze defect disclosed",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "check": "three commit roles kept distinct",
+   "PASS": true,
+   "detail": ""
+  }
+ ],
+ "PASSED": 30,
+ "TOTAL": 30,
+ "ALL_PASS": true,
+ "GUARD": {
+  "ENGINE_CONSTRUCT_CALLS": 0,
+  "ENGINE_ADVANCE_CALLS": 0,
+  "SCIENTIFIC_WORLD_STARTS": 0,
+  "SCIENTIFIC_SEEDS_OPENED": 0,
+  "NEW_PHYSICS_ARRAYS_WRITTEN": 0,
+  "ALL_ZERO": true
+ }
+}

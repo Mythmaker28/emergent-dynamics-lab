@@ -1,0 +1,935 @@
+{
+ "SECTION": "MYQBD01 REPAIR A10 \u2014 real data-access audit",
+ "METHOD": "AST walk. An access counts ONLY if it is a Subscript with a string constant or an .index()/.get() string argument. A sentence in a docstring mentioning r80 is counted as PROSE and never as a read -- the pre-seal claim that such an audit existed was false (review F25); this is the audit.",
+ "MODULES_AUDITED": 11,
+ "PER_MODULE": {
+  "myqbd01_arms.py": {
+   "executable_data_access_keys": [
+    "ALL_FOUR_ZERO",
+    "ARMS",
+    "EXACT_COUNTS_MATCH_REPORTED",
+    "L",
+    "NEW_PHYSICS_ARRAYS_WRITTEN",
+    "OBSERVED_Q_MAX",
+    "Q",
+    "Q_MISSING_VALUES",
+    "Q_max",
+    "Q_mean",
+    "Q_missing_count",
+    "Q_q10",
+    "acf1",
+    "acf5",
+    "branch",
+    "cand_Y_at_org",
+    "condition",
+    "fields",
+    "frac_Q_zero",
+    "frac_zero",
+    "free_at_org",
+    "iat",
+    "max_zero_run",
+    "mean_frac_zero",
+    "mean_iat",
+    "mean_of_arm_means",
+    "mean_zero_run",
+    "min_arm_q10",
+    "nSY_at_org",
+    "nX_final",
+    "n_eff_blocks",
+    "n_org_cells",
+    "n_zero_episodes",
+    "sd_of_arm_means",
+    "se_of_branch_mean_from_arms",
+    "seed",
+    "series",
+    "tag",
+    "u_nX_at_org"
+   ],
+   "np_load_and_open_sites": [
+    {
+     "line": 83,
+     "call": "np.load"
+    },
+    {
+     "line": 83,
+     "call": "open"
+    },
+    {
+     "line": 94,
+     "call": "np.load"
+    },
+    {
+     "line": 203,
+     "call": "open"
+    },
+    {
+     "line": 207,
+     "call": "open"
+    },
+    {
+     "line": 208,
+     "call": "open"
+    },
+    {
+     "line": 212,
+     "call": "open"
+    },
+    {
+     "line": 219,
+     "call": "open"
+    },
+    {
+     "line": 103,
+     "call": "open"
+    }
+   ],
+   "prose_only_token_mentions": {
+    "frames": 12
+   }
+  },
+  "myqbd01_bind.py": {
+   "executable_data_access_keys": [
+    "ARCHITECTURE_CHANGE_NECESSITY",
+    "CAP",
+    "CONSTANTS_USED",
+    "CORE_R",
+    "D_REL",
+    "EVERY_CONFIRMED_DEFECT_HANDLED",
+    "EXISTING_Q_INSTRUMENTATION",
+    "GATE",
+    "MYCAD01_STATUS",
+    "NEXT_SCIENTIFIC_ELIGIBILITY",
+    "N_ARMS_CONTAINING_Q",
+    "N_DEFECTS_CONFIRMED",
+    "ORR01/code/observe.py",
+    "Q_MAX",
+    "RECOMPUTED_Q",
+    "REPAIRED_FINAL_DISPOSITION",
+    "STATUS",
+    "TAU_SEP",
+    "T_HORIZON",
+    "T_WINDOW"
+   ],
+   "np_load_and_open_sites": [
+    {
+     "line": 88,
+     "call": "open"
+    }
+   ],
+   "prose_only_token_mentions": {
+    "persistence": 1
+   }
+  },
+  "myqbd01_deliver.py": {
+   "executable_data_access_keys": [
+    "ARCHIVE",
+    "ATTEMPTED",
+    "DELIVERABLES_MISSING",
+    "DELIVERABLES_PRESENT",
+    "STATUS",
+    "bytes"
+   ],
+   "np_load_and_open_sites": [
+    {
+     "line": 43,
+     "call": "open"
+    },
+    {
+     "line": 80,
+     "call": "open"
+    },
+    {
+     "line": 88,
+     "call": "open"
+    },
+    {
+     "line": 153,
+     "call": "open"
+    },
+    {
+     "line": 91,
+     "call": "open"
+    },
+    {
+     "line": 103,
+     "call": "open"
+    },
+    {
+     "line": 86,
+     "call": "open"
+    }
+   ],
+   "prose_only_token_mentions": {}
+  },
+  "myqbd01_final.py": {
+   "executable_data_access_keys": [
+    "CLASSIFICATION",
+    "ERROR_IS_CONTROLLED_ONLY_FOR",
+    "EXACT_COUNTS_MATCH_REPORTED",
+    "EXACT_IDENTITY",
+    "EXACT_MISSING_ITEMS",
+    "FEEDBACK",
+    "INDEPENDENT_VERIFICATION_vs_brute_force",
+    "MATCHES",
+    "MOBILE",
+    "MOBILE_REGION_POSITIVE_WIDTH",
+    "PARENT_REPAIRED_TIP_RESOLVED_FULL",
+    "PHASE",
+    "POSITIVE_DISPOSITION_REQUIREMENTS",
+    "Q_POSITION_RECOVERABLE_FOR_A_SEPARATED_DESCENDANT",
+    "REDUCTION",
+    "SPATIAL",
+    "STRUCTURAL_PRECLUSION_CHECK",
+    "STRUCTURAL_PRECLUSION_PROVED",
+    "TWO_Y",
+    "TWO_Y_STATE_OPERATOR_STATUS",
+    "mean_iat"
+   ],
+   "np_load_and_open_sites": [
+    {
+     "line": 10,
+     "call": "np.load"
+    },
+    {
+     "line": 11,
+     "call": "np.load"
+    },
+    {
+     "line": 12,
+     "call": "np.load"
+    },
+    {
+     "line": 13,
+     "call": "np.load"
+    },
+    {
+     "line": 14,
+     "call": "np.load"
+    },
+    {
+     "line": 15,
+     "call": "np.load"
+    },
+    {
+     "line": 16,
+     "call": "np.load"
+    },
+    {
+     "line": 17,
+     "call": "np.load"
+    },
+    {
+     "line": 10,
+     "call": "open"
+    },
+    {
+     "line": 11,
+     "call": "open"
+    },
+    {
+     "line": 12,
+     "call": "open"
+    },
+    {
+     "line": 13,
+     "call": "open"
+    },
+    {
+     "line": 14,
+     "call": "open"
+    },
+    {
+     "line": 15,
+     "call": "open"
+    },
+    {
+     "line": 16,
+     "call": "open"
+    },
+    {
+     "line": 17,
+     "call": "open"
+    },
+    {
+     "line": 69,
+     "call": "open"
+    }
+   ],
+   "prose_only_token_mentions": {
+    "frames": 2
+   }
+  },
+  "myqbd01_operators.py": {
+   "executable_data_access_keys": [
+    "ALL_SOURCE_FACTS_HOLD",
+    "CLAMPED_REGIME",
+    "CLASSIFICATION",
+    "EXACT_COUNTEREXAMPLE_two_colocated",
+    "INDEPENDENT_VERIFICATION_vs_brute_force",
+    "IS_GALTON_WATSON",
+    "MATCHES",
+    "Q",
+    "TWO_Y_STATE_OPERATOR_STATUS",
+    "UNCLAMPED_REGIME",
+    "fields",
+    "max_abs_err",
+    "means_equal",
+    "n_org_cells",
+    "naive_max_births_support",
+    "naive_mean",
+    "naive_variance",
+    "p_one_Y",
+    "p_two_Y",
+    "self._decay()",
+    "self._react()",
+    "series",
+    "true_max_births_support",
+    "true_mean",
+    "true_variance",
+    "u_nX_at_org"
+   ],
+   "np_load_and_open_sites": [
+    {
+     "line": 90,
+     "call": "np.load"
+    },
+    {
+     "line": 222,
+     "call": "open"
+    },
+    {
+     "line": 224,
+     "call": "open"
+    }
+   ],
+   "prose_only_token_mentions": {
+    "persistence": 2,
+    "frames": 3
+   }
+  },
+  "myqbd01_phase.py": {
+   "executable_data_access_keys": [
+    "CLASSIFICATION",
+    "EXACT_IDENTITY",
+    "args",
+    "call"
+   ],
+   "np_load_and_open_sites": [
+    {
+     "line": 138,
+     "call": "open"
+    }
+   ],
+   "prose_only_token_mentions": {}
+  },
+  "myqbd01_regions.py": {
+   "executable_data_access_keys": [
+    "NO_MODULE_CAN_CONSTRUCT_A_WORLD",
+    "NO_TARGET_DERIVED_Y_OUTCOME",
+    "Q",
+    "R_mean_offspring",
+    "STRUCTURAL_PRECLUSION_PROVED",
+    "WHAT_IS_CONSTRUCTIBLE",
+    "cand_Y_at_org",
+    "fields",
+    "has_positive_lower_tail_exposure",
+    "in_box_admissible_witness",
+    "kY_for_one_expected_first_birth",
+    "series",
+    "supercritical",
+    "u_nX_at_org",
+    "why_not"
+   ],
+   "np_load_and_open_sites": [
+    {
+     "line": 32,
+     "call": "np.load"
+    },
+    {
+     "line": 214,
+     "call": "open"
+    },
+    {
+     "line": 215,
+     "call": "open"
+    },
+    {
+     "line": 98,
+     "call": "np.load"
+    },
+    {
+     "line": 104,
+     "call": "np.load"
+    },
+    {
+     "line": 100,
+     "call": "np.load"
+    },
+    {
+     "line": 106,
+     "call": "np.load"
+    }
+   ],
+   "prose_only_token_mentions": {
+    "persistence": 1,
+    "separation": 2
+   }
+  },
+  "myqbd01_seal_audits.py": {
+   "executable_data_access_keys": [
+    "ALL_DATA_ACCESS_KEYS",
+    "CONTAINER_KEYS_READ",
+    "COVERAGE",
+    "DESCRIPTOR_VIOLATIONS",
+    "MODULES_AUDITED",
+    "MODULES_IMPORTING_AN_ENGINE",
+    "NO_MODULE_CAN_CONSTRUCT_A_WORLD",
+    "NO_TARGET_DERIVED_Y_OUTCOME",
+    "SEEDING_ENTRY_POINTS_IN_THE_ENGINE_TREE",
+    "SEEDING_ENTRY_POINTS_PATCHED_BY_THE_SENTINEL",
+    "SENTINEL_COVERAGE",
+    "TARGET_DERIVED_AUDIT",
+    "UNJUSTIFIED_CONTAINER_READS",
+    "ZERO_RUN_STATIC_PROOF"
+   ],
+   "np_load_and_open_sites": [
+    {
+     "line": 182,
+     "call": "open"
+    },
+    {
+     "line": 150,
+     "call": "open"
+    },
+    {
+     "line": 66,
+     "call": "open"
+    },
+    {
+     "line": 112,
+     "call": "open"
+    },
+    {
+     "line": 139,
+     "call": "open"
+    },
+    {
+     "line": 139,
+     "call": "open"
+    },
+    {
+     "line": 144,
+     "call": "open"
+    }
+   ],
+   "prose_only_token_mentions": {
+    "r50": 1,
+    "Rg": 2,
+    "frames": 6,
+    "geodesic_diameter": 1,
+    "r80_organiser": 1,
+    "main_N_X": 1,
+    "centre_x": 1,
+    "main_mass_fraction": 1,
+    "organiser_to_core": 1,
+    "molecule_deaths": 2,
+    "molecule_births": 2,
+    "centre_y": 2,
+    "n_components": 1,
+    "r80": 3,
+    "r90": 1,
+    "n_eff_components": 1,
+    "main_cid": 1,
+    "core_fraction": 1,
+    "nY_final": 1
+   }
+  },
+  "myqbd01_spatial_feedback.py": {
+   "executable_data_access_keys": [
+    "ARCHIVES_EXAMINED",
+    "CLASSIFICATION",
+    "CORRECTED_depletion_fraction",
+    "CORRECTED_effective_recovery_rate_per_step",
+    "DECISIVE_GROUND_kY_ZERO",
+    "DETERMINISTIC_PERTURBATION_BOUND",
+    "KEY_SETS_IDENTICAL_ACROSS_ARMS",
+    "LEDGER_CONTENTS",
+    "N_Y",
+    "N_Y_identically_one_in_every_arm",
+    "PER_STEP_POSITION_RESOLVED_ARRAYS",
+    "Q_POSITION_RECOVERABLE_FOR_A_SEPARATED_DESCENDANT",
+    "S0",
+    "birth_offsets",
+    "birth_substep_ledger",
+    "cand_Y_at_org",
+    "cond_mean_nSY_at_org_given_cand_Y_ge_1",
+    "delta_nSY_local",
+    "every_value_is_scalar",
+    "fields",
+    "frames",
+    "free_at_org",
+    "hop_ledger",
+    "nSY_at_org",
+    "nX_final",
+    "n_org_cells",
+    "one_Y_birth",
+    "phi",
+    "series",
+    "source_substep_ledger",
+    "steps_checked",
+    "u_nX_at_org"
+   ],
+   "np_load_and_open_sites": [
+    {
+     "line": 38,
+     "call": "np.load"
+    },
+    {
+     "line": 46,
+     "call": "np.load"
+    },
+    {
+     "line": 194,
+     "call": "np.load"
+    },
+    {
+     "line": 234,
+     "call": "np.load"
+    },
+    {
+     "line": 319,
+     "call": "open"
+    }
+   ],
+   "prose_only_token_mentions": {
+    "separation": 4
+   }
+  },
+  "myqbd01_repair_evidence.py": {
+   "executable_data_access_keys": [
+    "ARCHIVES_EXAMINED",
+    "ARMS_CHECKED",
+    "BRANCHES",
+    "CONTAINER_READS_WITH_JUSTIFICATION",
+    "DESCENDANT_Q_POSITION_RECONSTRUCTIBLE",
+    "EXECUTED_Y_BIRTH_SITE",
+    "FULL_LATTICE_ENVIRONMENT_PER_STEP",
+    "HISTORICAL_DESCENDANT_TRAJECTORY_EXISTS",
+    "IQR",
+    "KEY_SET_CONSISTENT",
+    "MODULES_AUDITED",
+    "N_Y",
+    "PROSE_ONLY_MENTIONS_NOT_COUNTED_AS_READS",
+    "Q",
+    "REPRODUCED_MEAN_MOBILE_IAT",
+    "REVIEWER_MEAN_REPRODUCED",
+    "SOURCE_TRAJECTORY_POSITION_RESOLVED",
+    "STEP_LABEL_CONVENTION",
+    "TARGET_DERIVED_Y_OUTCOME_READS",
+    "VERDICT",
+    "VERIFIED_OVER_ALL_ARMS",
+    "arm",
+    "arm_attaining_max",
+    "arm_id",
+    "birth_offsets",
+    "births_binomial",
+    "cand_min_nSY_free0",
+    "descendant_trajectory_present",
+    "early_late_drift",
+    "fields",
+    "fraction_zero",
+    "frames",
+    "free0_computed_once",
+    "iat_block500",
+    "iat_first_negative",
+    "iat_geyer_IPS",
+    "iat_overlapping_pair_IPS",
+    "ledger_max",
+    "ledger_min",
+    "line",
+    "matches_series_step_eq_ledger_step_plus_1",
+    "max",
+    "max_len",
+    "mean",
+    "mean_len",
+    "median",
+    "min",
+    "mobile",
+    "nX_final",
+    "nY_max",
+    "p_clamped",
+    "pre_react_call",
+    "ratio_max_over_mean",
+    "react_core_call",
+    "series",
+    "series_max",
+    "series_min",
+    "source_substep_ledger",
+    "species_loop",
+    "zero_episodes"
+   ],
+   "np_load_and_open_sites": [
+    {
+     "line": 305,
+     "call": "np.load"
+    },
+    {
+     "line": 74,
+     "call": "np.load"
+    },
+    {
+     "line": 313,
+     "call": "np.load"
+    },
+    {
+     "line": 497,
+     "call": "open"
+    },
+    {
+     "line": 498,
+     "call": "open"
+    },
+    {
+     "line": 499,
+     "call": "open"
+    },
+    {
+     "line": 502,
+     "call": "open"
+    },
+    {
+     "line": 503,
+     "call": "open"
+    },
+    {
+     "line": 507,
+     "call": "open"
+    },
+    {
+     "line": 508,
+     "call": "open"
+    },
+    {
+     "line": 201,
+     "call": "np.load"
+    },
+    {
+     "line": 439,
+     "call": "open"
+    },
+    {
+     "line": 31,
+     "call": "open"
+    }
+   ],
+   "prose_only_token_mentions": {
+    "r50": 1,
+    "Rg": 1,
+    "persistence": 1,
+    "geodesic_diameter": 1,
+    "r80_organiser": 1,
+    "main_N_X": 1,
+    "separation": 1,
+    "centre_x": 1,
+    "selected_arm": 2,
+    "main_mass_fraction": 1,
+    "organiser_to_core": 1,
+    "M2": 1,
+    "molecule_deaths": 3,
+    "molecule_births": 3,
+    "centre_y": 1,
+    "n_components": 1,
+    "r80": 3,
+    "r90": 1,
+    "n_eff_components": 1,
+    "selected_arms": 1,
+    "main_cid": 1,
+    "core_fraction": 1,
+    "nY_final": 1
+   }
+  },
+  "myqbd01_repair_guard.py": {
+   "executable_data_access_keys": [
+    "ENGINE_ADVANCE_CALLS",
+    "ENGINE_CONSTRUCT_CALLS",
+    "NEW_PHYSICS_ARRAYS_WRITTEN",
+    "RAISED",
+    "SCIENTIFIC_SEEDS_OPENED",
+    "SCIENTIFIC_WORLD_STARTS",
+    "VERDICT",
+    "args",
+    "cmd",
+    "scheduler_steps",
+    "seeding_entry_points",
+    "world_constructors"
+   ],
+   "np_load_and_open_sites": [],
+   "prose_only_token_mentions": {}
+  }
+ },
+ "ALL_EXECUTABLE_ACCESS_KEYS": [
+  "ALL_DATA_ACCESS_KEYS",
+  "ALL_FOUR_ZERO",
+  "ALL_SOURCE_FACTS_HOLD",
+  "ARCHITECTURE_CHANGE_NECESSITY",
+  "ARCHIVE",
+  "ARCHIVES_EXAMINED",
+  "ARMS",
+  "ARMS_CHECKED",
+  "ATTEMPTED",
+  "BRANCHES",
+  "CAP",
+  "CLAMPED_REGIME",
+  "CLASSIFICATION",
+  "CONSTANTS_USED",
+  "CONTAINER_KEYS_READ",
+  "CONTAINER_READS_WITH_JUSTIFICATION",
+  "CORE_R",
+  "CORRECTED_depletion_fraction",
+  "CORRECTED_effective_recovery_rate_per_step",
+  "COVERAGE",
+  "DECISIVE_GROUND_kY_ZERO",
+  "DELIVERABLES_MISSING",
+  "DELIVERABLES_PRESENT",
+  "DESCENDANT_Q_POSITION_RECONSTRUCTIBLE",
+  "DESCRIPTOR_VIOLATIONS",
+  "DETERMINISTIC_PERTURBATION_BOUND",
+  "D_REL",
+  "ENGINE_ADVANCE_CALLS",
+  "ENGINE_CONSTRUCT_CALLS",
+  "ERROR_IS_CONTROLLED_ONLY_FOR",
+  "EVERY_CONFIRMED_DEFECT_HANDLED",
+  "EXACT_COUNTEREXAMPLE_two_colocated",
+  "EXACT_COUNTS_MATCH_REPORTED",
+  "EXACT_IDENTITY",
+  "EXACT_MISSING_ITEMS",
+  "EXECUTED_Y_BIRTH_SITE",
+  "EXISTING_Q_INSTRUMENTATION",
+  "FEEDBACK",
+  "FULL_LATTICE_ENVIRONMENT_PER_STEP",
+  "GATE",
+  "HISTORICAL_DESCENDANT_TRAJECTORY_EXISTS",
+  "INDEPENDENT_VERIFICATION_vs_brute_force",
+  "IQR",
+  "IS_GALTON_WATSON",
+  "KEY_SETS_IDENTICAL_ACROSS_ARMS",
+  "KEY_SET_CONSISTENT",
+  "L",
+  "LEDGER_CONTENTS",
+  "MATCHES",
+  "MOBILE",
+  "MOBILE_REGION_POSITIVE_WIDTH",
+  "MODULES_AUDITED",
+  "MODULES_IMPORTING_AN_ENGINE",
+  "MYCAD01_STATUS",
+  "NEW_PHYSICS_ARRAYS_WRITTEN",
+  "NEXT_SCIENTIFIC_ELIGIBILITY",
+  "NO_MODULE_CAN_CONSTRUCT_A_WORLD",
+  "NO_TARGET_DERIVED_Y_OUTCOME",
+  "N_ARMS_CONTAINING_Q",
+  "N_DEFECTS_CONFIRMED",
+  "N_Y",
+  "N_Y_identically_one_in_every_arm",
+  "OBSERVED_Q_MAX",
+  "ORR01/code/observe.py",
+  "PARENT_REPAIRED_TIP_RESOLVED_FULL",
+  "PER_STEP_POSITION_RESOLVED_ARRAYS",
+  "PHASE",
+  "POSITIVE_DISPOSITION_REQUIREMENTS",
+  "PROSE_ONLY_MENTIONS_NOT_COUNTED_AS_READS",
+  "Q",
+  "Q_MAX",
+  "Q_MISSING_VALUES",
+  "Q_POSITION_RECOVERABLE_FOR_A_SEPARATED_DESCENDANT",
+  "Q_max",
+  "Q_mean",
+  "Q_missing_count",
+  "Q_q10",
+  "RAISED",
+  "RECOMPUTED_Q",
+  "REDUCTION",
+  "REPAIRED_FINAL_DISPOSITION",
+  "REPRODUCED_MEAN_MOBILE_IAT",
+  "REVIEWER_MEAN_REPRODUCED",
+  "R_mean_offspring",
+  "S0",
+  "SCIENTIFIC_SEEDS_OPENED",
+  "SCIENTIFIC_WORLD_STARTS",
+  "SEEDING_ENTRY_POINTS_IN_THE_ENGINE_TREE",
+  "SEEDING_ENTRY_POINTS_PATCHED_BY_THE_SENTINEL",
+  "SENTINEL_COVERAGE",
+  "SOURCE_TRAJECTORY_POSITION_RESOLVED",
+  "SPATIAL",
+  "STATUS",
+  "STEP_LABEL_CONVENTION",
+  "STRUCTURAL_PRECLUSION_CHECK",
+  "STRUCTURAL_PRECLUSION_PROVED",
+  "TARGET_DERIVED_AUDIT",
+  "TARGET_DERIVED_Y_OUTCOME_READS",
+  "TAU_SEP",
+  "TWO_Y",
+  "TWO_Y_STATE_OPERATOR_STATUS",
+  "T_HORIZON",
+  "T_WINDOW",
+  "UNCLAMPED_REGIME",
+  "UNJUSTIFIED_CONTAINER_READS",
+  "VERDICT",
+  "VERIFIED_OVER_ALL_ARMS",
+  "WHAT_IS_CONSTRUCTIBLE",
+  "ZERO_RUN_STATIC_PROOF",
+  "acf1",
+  "acf5",
+  "args",
+  "arm",
+  "arm_attaining_max",
+  "arm_id",
+  "birth_offsets",
+  "birth_substep_ledger",
+  "births_binomial",
+  "branch",
+  "bytes",
+  "call",
+  "cand_Y_at_org",
+  "cand_min_nSY_free0",
+  "cmd",
+  "cond_mean_nSY_at_org_given_cand_Y_ge_1",
+  "condition",
+  "delta_nSY_local",
+  "descendant_trajectory_present",
+  "early_late_drift",
+  "every_value_is_scalar",
+  "fields",
+  "frac_Q_zero",
+  "frac_zero",
+  "fraction_zero",
+  "frames",
+  "free0_computed_once",
+  "free_at_org",
+  "has_positive_lower_tail_exposure",
+  "hop_ledger",
+  "iat",
+  "iat_block500",
+  "iat_first_negative",
+  "iat_geyer_IPS",
+  "iat_overlapping_pair_IPS",
+  "in_box_admissible_witness",
+  "kY_for_one_expected_first_birth",
+  "ledger_max",
+  "ledger_min",
+  "line",
+  "matches_series_step_eq_ledger_step_plus_1",
+  "max",
+  "max_abs_err",
+  "max_len",
+  "max_zero_run",
+  "mean",
+  "mean_frac_zero",
+  "mean_iat",
+  "mean_len",
+  "mean_of_arm_means",
+  "mean_zero_run",
+  "means_equal",
+  "median",
+  "min",
+  "min_arm_q10",
+  "mobile",
+  "nSY_at_org",
+  "nX_final",
+  "nY_max",
+  "n_eff_blocks",
+  "n_org_cells",
+  "n_zero_episodes",
+  "naive_max_births_support",
+  "naive_mean",
+  "naive_variance",
+  "one_Y_birth",
+  "p_clamped",
+  "p_one_Y",
+  "p_two_Y",
+  "phi",
+  "pre_react_call",
+  "ratio_max_over_mean",
+  "react_core_call",
+  "scheduler_steps",
+  "sd_of_arm_means",
+  "se_of_branch_mean_from_arms",
+  "seed",
+  "seeding_entry_points",
+  "self._decay()",
+  "self._react()",
+  "series",
+  "series_max",
+  "series_min",
+  "source_substep_ledger",
+  "species_loop",
+  "steps_checked",
+  "supercritical",
+  "tag",
+  "true_max_births_support",
+  "true_mean",
+  "true_variance",
+  "u_nX_at_org",
+  "why_not",
+  "world_constructors",
+  "zero_episodes"
+ ],
+ "NP_LOAD_AND_OPEN_SITES": 70,
+ "OUTCOME_TOKENS_TESTED": [
+  "M2",
+  "Rg",
+  "centre_x",
+  "centre_y",
+  "core_fraction",
+  "frames",
+  "geodesic_diameter",
+  "main_N_X",
+  "main_cid",
+  "main_mass_fraction",
+  "molecule_births",
+  "molecule_deaths",
+  "nY_final",
+  "n_components",
+  "n_eff_components",
+  "organiser_to_core",
+  "persistence",
+  "r50",
+  "r80",
+  "r80_organiser",
+  "r90",
+  "selected_arm",
+  "selected_arms",
+  "separation"
+ ],
+ "TARGET_DERIVED_Y_OUTCOME_READS": 0,
+ "TARGET_DERIVED_READ_KEYS": [],
+ "CONTAINER_READS_WITH_JUSTIFICATION": {
+  "frames": "opened by the A4 repair ONLY to decode the 220 JSON strings and ASSERT that every value is a scalar -- a negative control proving no lattice field hides inside them. No individual frame field is read; the descriptor tally below is the check on that."
+ },
+ "PROSE_ONLY_MENTIONS_NOT_COUNTED_AS_READS": {
+  "frames": 23,
+  "persistence": 5,
+  "separation": 7,
+  "r50": 2,
+  "Rg": 3,
+  "geodesic_diameter": 2,
+  "r80_organiser": 2,
+  "main_N_X": 2,
+  "centre_x": 2,
+  "main_mass_fraction": 2,
+  "organiser_to_core": 2,
+  "molecule_deaths": 5,
+  "molecule_births": 5,
+  "centre_y": 3,
+  "n_components": 2,
+  "r80": 6,
+  "r90": 2,
+  "n_eff_components": 2,
+  "main_cid": 2,
+  "core_fraction": 2,
+  "nY_final": 2,
+  "selected_arm": 2,
+  "M2": 1,
+  "selected_arms": 1
+ },
+ "NO_TARGET_DERIVED_Y_OUTCOME": true
+}

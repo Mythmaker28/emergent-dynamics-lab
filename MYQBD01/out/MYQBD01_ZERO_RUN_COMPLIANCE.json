@@ -1,0 +1,106 @@
+{
+ "SECTION": "MYQBD01 zero-run compliance, reported in three separable parts",
+ "ORIGINAL_RUNTIME_SENTINEL_COVERAGE": {
+  "STATUS": "INCOMPLETE",
+  "defects_acknowledged": [
+   "installed in 1 of 8 analysis modules, not 'all analysis processes' as commit decfda5 claimed",
+   "observe.seed_one_organiser -- a full re-implementation, not a delegator -- was never patched; 3 of 4 module-level seeding entry points were covered",
+   "the filesystem witness globbed /home/claude/*/raw and /home/claude/*/out at depth 2, so it never watched the repository tree (13 directories match /home/claude/edl/*/out)"
+  ],
+  "NOT_RETROACTIVELY_CLAIMED": "this coverage cannot be improved after the fact and is not presented as if it had been"
+ },
+ "RETROSPECTIVE_STATIC_ZERO_RUN_PROOF": {
+  "STATUS": "PASS",
+  "METHOD": "AST import analysis of every MYQBD01 ANALYSIS module; independent of any runtime counter",
+  "analysis_modules": 9,
+  "per_module_engine_imports": {
+   "myqbd01_arms.py": [],
+   "myqbd01_bind.py": [],
+   "myqbd01_deliver.py": [],
+   "myqbd01_final.py": [],
+   "myqbd01_operators.py": [],
+   "myqbd01_phase.py": [],
+   "myqbd01_regions.py": [],
+   "myqbd01_seal_audits.py": [],
+   "myqbd01_spatial_feedback.py": []
+  },
+  "modules_importing_an_engine": [],
+  "NO_WORLD_CONSTRUCTION_POSSIBLE": true,
+  "WHY_THIS_IS_DECISIVE": "a module that never imports kinetics, lawspec_v2, engine_obtc, observe, a protocol or a runner cannot construct a World, call _one_step, seed an organiser or continue a checkpoint, whatever any counter reports.",
+  "INFRASTRUCTURE_EXCEPTION_DECLARED": {
+   "modules": [
+    "myqbd01_repair_guard.py"
+   ],
+   "reading": "the repair guard is the ONE file that imports the engine, and it does so solely to patch every entry point so that a call raises. It is repair infrastructure, not analysis. Counting it inside the analysis set would be the same overstated-coverage error the review caught."
+  }
+ },
+ "FINAL_REPAIR_RUNTIME_GUARDS": {
+  "STATUS": "PASS",
+  "PATCH_COVERAGE": {
+   "world_constructors": [
+    "engine_obtc.WorldOBTC.__init__",
+    "kinetics.World.__init__",
+    "lawspec_v2.WorldV2.__init__",
+    "observe.RecWorld.__init__"
+   ],
+   "scheduler_steps": [
+    "engine_obtc.WorldOBTC._one_step",
+    "engine_obtc.WorldOBTC._react",
+    "engine_obtc.WorldOBTC._react_core",
+    "kinetics.World._one_step",
+    "kinetics.World._react",
+    "lawspec_v2.WorldV2._one_step",
+    "lawspec_v2.WorldV2._react",
+    "observe.RecWorld._one_step",
+    "observe.RecWorld._react"
+   ],
+   "seeding_entry_points": [
+    "engine_obtc.seed_one_organiser",
+    "kinetics.seed_one_organiser",
+    "lawspec_v2.seed_one_organiser",
+    "observe.seed_one_organiser"
+   ],
+   "seeding_entry_points_count": 4,
+   "ALL_FOUR_SEEDING_ENTRY_POINTS_PATCHED": true
+  },
+  "FILESYSTEM_WITNESS": {
+   "MODE": "os.walk, RECURSIVE, NO DEPTH LIMIT",
+   "ROOTS": [
+    "/home/claude"
+   ],
+   "SKIPPED_DIR_NAMES": [
+    ".git",
+    ".venv",
+    "__pycache__",
+    "node_modules"
+   ],
+   "ARRAYS_AT_BASELINE": 7297,
+   "ARRAYS_NOW": 7297,
+   "CREATED": [],
+   "MODIFIED": []
+  },
+  "SUBPROCESS_AUDIT": {
+   "calls": 0,
+   "engine_invoking_calls": [],
+   "NO_ENGINE_SUBPROCESS": true
+  },
+  "POSITIVE_CONTROL": "the guard's selftest calls World(...) and seed_one_organiser and requires BOTH to raise; a guard that cannot be shown to fire is not evidence.",
+  "COUNTERS": {
+   "ENGINE_CONSTRUCT_CALLS": 0,
+   "ENGINE_ADVANCE_CALLS": 0,
+   "SCIENTIFIC_WORLD_STARTS": 0,
+   "SCIENTIFIC_SEEDS_OPENED": 0,
+   "NEW_PHYSICS_ARRAYS_WRITTEN": 0
+  }
+ },
+ "REQUIRED_FINAL_VALUES": {
+  "ENGINE_CONSTRUCT_CALLS": 0,
+  "ENGINE_ADVANCE_CALLS": 0,
+  "SCIENTIFIC_WORLD_STARTS": 0,
+  "SCIENTIFIC_SEEDS_OPENED": 0,
+  "NEW_PHYSICS_ARRAYS_WRITTEN": 0
+ },
+ "ALL_REQUIRED_ZERO": true,
+ "HOW_COMPLIANCE_IS_ESTABLISHED": "by the combined retrospective STATIC import proof and the recursive filesystem witness -- NOT by the original incomplete runtime sentinel alone.",
+ "A_RUN_IS_NOT_DEFINED_BY_LATTICE_SIZE_OR_SEED_NUMBER": "any World construction, scheduler advance, seeding call or new physics array counts, regardless of L or of how large the seed integer is."
+}
