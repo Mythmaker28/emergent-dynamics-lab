@@ -1,0 +1,335 @@
+{
+ "SECTION": "PQEC01 instrumentation qualification",
+ "FIXTURE_CLASS": "NON_SCIENTIFIC_INSTRUMENTATION_FIXTURE",
+ "FIXTURE_CONSTRAINTS": {
+  "L": 5,
+  "steps_per_fixture": 8,
+  "seed_band": "77000001-77000010, disjoint from every scientific register in this programme",
+  "no_scientific_seed": true,
+  "no_scientific_domain": true,
+  "no_full_scientific_horizon": true
+ },
+ "SOURCE_EQUIVALENCE": {
+  "ENGINE_LINES": 14,
+  "OBSERVER_LINES": 33,
+  "ENGINE_LINES_NOT_PRESENT_IN_OBSERVER": [],
+  "PERMITTED_DECLARED_DIFFERENCES": [
+   {
+    "engine": "for shift, ax in NEI:",
+    "observer": "for sub, (shift, ax) in enumerate(EN.NEI):",
+    "why_equivalent": "enumerate() yields the same pairs in the same order and binds the same names; it adds an observer-only index and consumes no rng"
+   }
+  ],
+  "UNDECLARED_DIFFERENCES": 0,
+  "VERBATIM_SUBSET": true,
+  "NOTE": "every physics line of the engine's _diffuse appears verbatim in the observer's override apart from the single declared enumerate() wrapper; the observer otherwise adds only pq_* appends and a species branch"
+ },
+ "STATIC_MUTATION_AUDIT": {
+  "ALL_SELF_WRITES": [
+   {
+    "attr": "pq_T",
+    "line": 39
+   },
+   {
+    "attr": "pq_record_fields",
+    "line": 40
+   },
+   {
+    "attr": "pq_field",
+    "line": 42
+   },
+   {
+    "attr": "pq_steps_recorded",
+    "line": 44
+   },
+   {
+    "attr": "pq_ycells",
+    "line": 45
+   },
+   {
+    "attr": "pq_ybirth",
+    "line": 46
+   },
+   {
+    "attr": "pq_ydeath",
+    "line": 47
+   },
+   {
+    "attr": "pq_yhop",
+    "line": 48
+   },
+   {
+    "attr": "pq_xevent",
+    "line": 49
+   },
+   {
+    "attr": "pq_capacity",
+    "line": 50
+   },
+   {
+    "attr": "pq_exchange",
+    "line": 51
+   },
+   {
+    "attr": "pq_src",
+    "line": 52
+   },
+   {
+    "attr": "pq_stephash",
+    "line": 53
+   },
+   {
+    "attr": "n[...]",
+    "line": 106
+   },
+   {
+    "attr": "pq_field[...]",
+    "line": 123
+   },
+   {
+    "attr": "pq_steps_recorded",
+    "line": 124
+   },
+   {
+    "attr": "hops_offered[...] (augmented)",
+    "line": 102
+   },
+   {
+    "attr": "hops_blocked[...] (augmented)",
+    "line": 103
+   }
+  ],
+  "OBSERVER_ONLY_WRITES": [
+   {
+    "attr": "pq_T",
+    "line": 39
+   },
+   {
+    "attr": "pq_record_fields",
+    "line": 40
+   },
+   {
+    "attr": "pq_field",
+    "line": 42
+   },
+   {
+    "attr": "pq_steps_recorded",
+    "line": 44
+   },
+   {
+    "attr": "pq_ycells",
+    "line": 45
+   },
+   {
+    "attr": "pq_ybirth",
+    "line": 46
+   },
+   {
+    "attr": "pq_ydeath",
+    "line": 47
+   },
+   {
+    "attr": "pq_yhop",
+    "line": 48
+   },
+   {
+    "attr": "pq_xevent",
+    "line": 49
+   },
+   {
+    "attr": "pq_capacity",
+    "line": 50
+   },
+   {
+    "attr": "pq_exchange",
+    "line": 51
+   },
+   {
+    "attr": "pq_src",
+    "line": 52
+   },
+   {
+    "attr": "pq_stephash",
+    "line": 53
+   },
+   {
+    "attr": "pq_field[...]",
+    "line": 123
+   },
+   {
+    "attr": "pq_steps_recorded",
+    "line": 124
+   }
+  ],
+  "ENGINE_STATE_WRITES": [
+   {
+    "attr": "n[...]",
+    "line": 106
+   },
+   {
+    "attr": "hops_offered[...] (augmented)",
+    "line": 102
+   },
+   {
+    "attr": "hops_blocked[...] (augmented)",
+    "line": 103
+   }
+  ],
+  "ENGINE_STATE_WRITES_ARE_ONLY_IN_THE_DECLARED_VERBATIM_LOOP": true,
+  "RNG_CALLS_IN_OBSERVER": [
+   {
+    "call": "binomial",
+    "line": 98
+   }
+  ],
+  "RNG_CALL_COUNT": 1,
+  "NOTE": "the only rng call in the module is the binomial inside the declared verbatim Y sub-shift loop, which REPLACES the engine's own call rather than adding one. The differential test is what proves the stream is unchanged."
+ },
+ "DIFFERENTIAL_FIXTURES": [
+  {
+   "seed": 77000001,
+   "kY": 0.0,
+   "muY": 0.0,
+   "L": 5,
+   "steps": 8,
+   "record_fields": true,
+   "final_state_hash": "d24a15c6bdca4054b67ae42bc9ff6e87d5f66bca026266b49f0d009dc4c6918b",
+   "MISMATCHES": [],
+   "BIT_EXACT": true,
+   "Y_births_seen": 0,
+   "Y_deaths_seen": 0,
+   "Y_hops_seen": 0,
+   "max_nY_seen": 1,
+   "distinct_Y_cells_max": 1
+  },
+  {
+   "seed": 77000002,
+   "kY": 0.3,
+   "muY": 0.0,
+   "L": 5,
+   "steps": 8,
+   "record_fields": true,
+   "final_state_hash": "30ed7b43e1c6ecc5fcd925cf74fedce5fd96e71e8abde21404d523f02c4ab607",
+   "MISMATCHES": [],
+   "BIT_EXACT": true,
+   "Y_births_seen": 0,
+   "Y_deaths_seen": 0,
+   "Y_hops_seen": 1,
+   "max_nY_seen": 1,
+   "distinct_Y_cells_max": 1
+  },
+  {
+   "seed": 77000003,
+   "kY": 0.3,
+   "muY": 0.05,
+   "L": 5,
+   "steps": 8,
+   "record_fields": true,
+   "final_state_hash": "3fc7212998118484d04d5dfe4298010b7b5b46eb5fa4ce4d75f37b4576e0d8b5",
+   "MISMATCHES": [],
+   "BIT_EXACT": true,
+   "Y_births_seen": 2,
+   "Y_deaths_seen": 2,
+   "Y_hops_seen": 0,
+   "max_nY_seen": 4,
+   "distinct_Y_cells_max": 1
+  },
+  {
+   "seed": 77000004,
+   "kY": 0.6,
+   "muY": 0.02,
+   "L": 5,
+   "steps": 8,
+   "record_fields": true,
+   "final_state_hash": "856fb8c821231ca3ed3df76ef04843f813d7f904097444734c40f47aaf4fab67",
+   "MISMATCHES": [],
+   "BIT_EXACT": true,
+   "Y_births_seen": 2,
+   "Y_deaths_seen": 0,
+   "Y_hops_seen": 1,
+   "max_nY_seen": 4,
+   "distinct_Y_cells_max": 2
+  },
+  {
+   "seed": 77000005,
+   "kY": 0.9,
+   "muY": 0.1,
+   "L": 5,
+   "steps": 8,
+   "record_fields": true,
+   "final_state_hash": "4f8ac76408db3af031e77f188c48db33f3cfa87ac6841b0dfaf7a4d3311c247e",
+   "MISMATCHES": [],
+   "BIT_EXACT": true,
+   "Y_births_seen": 8,
+   "Y_deaths_seen": 3,
+   "Y_hops_seen": 3,
+   "max_nY_seen": 5,
+   "distinct_Y_cells_max": 4
+  },
+  {
+   "seed": 77000006,
+   "kY": 0.45,
+   "muY": 0.2,
+   "L": 5,
+   "steps": 8,
+   "record_fields": true,
+   "final_state_hash": "b56696f39500df8b03ced92df9f1eb3d72af236344bc1af0ac0d8465586b1408",
+   "MISMATCHES": [],
+   "BIT_EXACT": true,
+   "Y_births_seen": 4,
+   "Y_deaths_seen": 6,
+   "Y_hops_seen": 1,
+   "max_nY_seen": 3,
+   "distinct_Y_cells_max": 2
+  },
+  {
+   "seed": 77000004,
+   "kY": 0.6,
+   "muY": 0.02,
+   "L": 5,
+   "steps": 8,
+   "record_fields": false,
+   "final_state_hash": "856fb8c821231ca3ed3df76ef04843f813d7f904097444734c40f47aaf4fab67",
+   "MISMATCHES": [],
+   "BIT_EXACT": true,
+   "Y_births_seen": 2,
+   "Y_deaths_seen": 0,
+   "Y_hops_seen": 1,
+   "max_nY_seen": 4,
+   "distinct_Y_cells_max": 2
+  }
+ ],
+ "ALL_BIT_EXACT": true,
+ "TOTAL_Y_BIRTHS_IN_FIXTURES": 18,
+ "TOTAL_Y_HOPS_IN_FIXTURES": 7,
+ "MAX_nY_IN_FIXTURES": 5,
+ "OBSERVER_OUTPUT_SEMANTICS": {
+  "CAP": 16,
+  "steps_recorded": 8,
+  "free_never_negative": true,
+  "occupancy_never_exceeds_CAP": true,
+  "y_cell_rows_checked": 18,
+  "Y_CELL_LEDGER_AGREES_WITH_FIELD": true,
+  "derived_fields_are_exact_functions_of_the_six_species": true,
+  "Q_POSITION_definition": "nX * min(nSY, CAP - sum(6 species))"
+ },
+ "STEP_LABEL_MAPPING": {
+  "pre_increment_labels_recorded": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "pre_increment_min": 0,
+  "pre_increment_max": 7,
+  "post_increment_final_step": 8,
+  "MAPPING": "post_increment_step = pre_increment_step + 1",
+  "VERIFIED": true,
+  "NOTE": "every PQEC01 ledger and the field buffer are indexed by the PRE-increment step, so index t is the environment the reaction at step t saw"
+ },
+ "INSTRUMENTATION_INERTNESS": "PASS"
+}
