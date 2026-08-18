@@ -1,0 +1,96 @@
+{
+ "PHASE_A_REFERENCE": {
+  "mean_nSY": {
+   "mean": 2.9555700552983537,
+   "sd": 0.01224831840310677,
+   "n": 40
+  },
+  "mean_free": {
+   "mean": 9.996141975308642,
+   "sd": 0.0,
+   "n": 40
+  },
+  "mean_N_X": {
+   "mean": 111.01653055555553,
+   "sd": 29.072263813675924,
+   "n": 40
+  }
+ },
+ "COMPARISON_IS_DISTRIBUTION_LEVEL_NOT_PAIRED": "activating Y changes random-number consumption and state evolution, so the same seed does NOT give a paired counterfactual trajectory. Phase A and Phase B are compared as distributions over independent worlds.",
+ "POINTS": {
+  "B1": {
+   "mean_nSY": {
+    "phase_A_mean": 2.9555700552983537,
+    "phase_B_mean": 2.9501773703605876,
+    "delta": -0.0053926849377661235,
+    "relative_delta": -0.0018245836968400846,
+    "se_of_delta": 0.004230297882012841,
+    "z": -1.274776644145022,
+    "VARIANCE_DEGENERATE": false,
+    "significant_at_2se": false,
+    "INTERPRETATION": "world-level two-sample comparison"
+   },
+   "mean_free": {
+    "phase_A_mean": 9.996141975308642,
+    "phase_B_mean": 9.996141975308644,
+    "delta": 1.7763568394002505e-15,
+    "relative_delta": 1.777042426756252e-16,
+    "se_of_delta": 2.082362433788751e-16,
+    "z": 8.530488307783486,
+    "VARIANCE_DEGENERATE": true,
+    "significant_at_2se": false,
+    "INTERPRETATION": "variance is numerically degenerate at the world level (relative sd < 1e-4); the z statistic is not evidence and the effect size is what matters: +1.776e-15 absolute, +1.777e-16 relative"
+   },
+   "mean_N_X": {
+    "phase_A_mean": 111.01653055555553,
+    "phase_B_mean": 124.22235297071998,
+    "delta": 13.205822415164448,
+    "relative_delta": 0.11895365806406565,
+    "se_of_delta": 9.99485704821701,
+    "z": 1.321261760068919,
+    "VARIANCE_DEGENERATE": false,
+    "significant_at_2se": false,
+    "INTERPRETATION": "world-level two-sample comparison"
+   },
+   "total_Y_births": 31,
+   "worlds_with_a_birth": 16
+  },
+  "B2": {
+   "mean_nSY": {
+    "phase_A_mean": 2.9555700552983537,
+    "phase_B_mean": 2.948507408300439,
+    "delta": -0.007062646997914701,
+    "relative_delta": -0.0023896056820760262,
+    "se_of_delta": 0.0038276347849513664,
+    "z": -1.8451726443917869,
+    "VARIANCE_DEGENERATE": false,
+    "significant_at_2se": false,
+    "INTERPRETATION": "world-level two-sample comparison"
+   },
+   "mean_free": {
+    "phase_A_mean": 9.996141975308642,
+    "phase_B_mean": 9.996141975308644,
+    "delta": 1.7763568394002505e-15,
+    "relative_delta": 1.777042426756252e-16,
+    "se_of_delta": 2.614939075123777e-16,
+    "z": 6.793109852152741,
+    "VARIANCE_DEGENERATE": true,
+    "significant_at_2se": false,
+    "INTERPRETATION": "variance is numerically degenerate at the world level (relative sd < 1e-4); the z statistic is not evidence and the effect size is what matters: +1.776e-15 absolute, +1.777e-16 relative"
+   },
+   "mean_N_X": {
+    "phase_A_mean": 111.01653055555553,
+    "phase_B_mean": 127.92945391599618,
+    "delta": 16.912923360440644,
+    "relative_delta": 0.15234599096012086,
+    "se_of_delta": 9.195321000033871,
+    "z": 1.8392966771228916,
+    "VARIANCE_DEGENERATE": false,
+    "significant_at_2se": false,
+    "INTERPRETATION": "world-level two-sample comparison"
+   },
+   "total_Y_births": 25,
+   "worlds_with_a_birth": 18
+  }
+ }
+}

@@ -1,0 +1,43 @@
+{
+ "MEASURED_INPUTS": {
+  "phase_A_worlds": 40,
+  "mean_exposure_E": 2.8730222222222226,
+  "se_exposure": 0.12259929242070532,
+  "one_sided_95_LCB_of_mean_exposure": 2.6713463861901623,
+  "distribution_free_10th_pct_lower_bound": 0.0,
+  "phase_B_worlds": 88,
+  "total_Y_births": 56,
+  "worlds_reaching_two_centres": 34,
+  "worlds_stopped_at_third_centre": 14,
+  "median_separation_delay_steps": 111.0,
+  "mean_colocated_step_fraction": 0.15584650129181946,
+  "empirical_separation_rate_per_world": 0.38636363636363635,
+  "95pct_upper_bound_if_zero": null
+ },
+ "SEPARATION_TIME_USED": {
+  "value": 111.0,
+  "source": "measured median delay from first birth to two centres"
+ },
+ "CRITERIA": {
+  "C1_nontrivial_first_birth": "kY * LCB(E) * T_WINDOW >= MIN_EVENTS",
+  "C2_persistence": "(1-muY)^T_HORIZON >= 1 - ALPHA_SURVIVAL",
+  "C3_no_premature_third_centre": "C1_births * (1-muY)^tau <= GAMMA_SEP",
+  "C4_numerical_margin_no_clamp": "kY * CAP * N_STAR <= 0.1",
+  "C5_precision": "kY, muY > 1e-9",
+  "NOTE": "exposure enters through the one-sided 95% LOWER confidence bound of the world-level mean, not the point estimate; a point or pooled-frame estimate would be insufficient"
+ },
+ "REGION_POINTS": 0,
+ "REGION_NONEMPTY": false,
+ "REGION_BOX": null,
+ "LABEL": "CANDIDATE_REGION_REQUIRING_DISJOINT_CONFIRMATION",
+ "NOT_A_CONFIRMED_WINDOW": "no calibration result is a confirmed reproduction, a confirmed lineage window, heredity or life",
+ "MAXIMIN_ON_MEASURED_INPUTS": {
+  "kY": 2.985382618917957e-05,
+  "muY": 8.659643233600654e-05,
+  "expected_births": 0.7177491963397267,
+  "founder_survival": 0.3857360305019347,
+  "expected_separated_second_centres": 0.7108828008119162,
+  "min_margin_decades": -0.15282800264389057,
+  "READING": "the best attainable point on MEASURED inputs; if this is negative the region is empty for the frozen criteria and the shortfall factor is 10^(-min_margin) = 1.422"
+ }
+}

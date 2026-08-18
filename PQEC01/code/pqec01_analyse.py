@@ -77,6 +77,7 @@ def phase_a():
         w0 = BURN_IN
         # source cell per step = the founder Y cell (Phase A has exactly one Y)
         yc = d["ycells"]
+        cmap = {int(r[0]): int(r[7]) for r in yc}
         pos = {int(r[0]): (int(r[1]), int(r[2])) for r in yc}
         steps = [t for t in range(w0, n) if t in pos]
         groups = {}
@@ -91,13 +92,19 @@ def phase_a():
             rad_cnt += np.bincount(b, minlength=nbin) * len(ts)
         radial = np.where(rad_cnt > 0, rad_sum / np.maximum(rad_cnt, 1), np.nan)
         radial_acc.append(radial)
-        # exposure transition kernel seen by the mobile founder
-        q = col(d, "Q_founder")[w0:n].astype(int)
+        # exposure transition kernel seen by the mobile founder.
+        # FREEZE COMPLIANCE (defect found in this analysis, fixed here): the `scalars` array is
+        # computed AFTER _one_step() returns, so its Q_founder is a POST-step quantity. The
+        # frozen formula requires the EVENT-ALIGNED pre-reaction value. `ycells` is written
+        # inside _react at the qualified phase and is used instead. `scalars` is retained only
+        # for the stop-rule variables, which are post-step by definition.
+        qmap = {int(r[0]): int(r[8]) for r in yc}
+        q = np.array([qmap[t] for t in range(w0, n) if t in qmap], dtype=int)
         q = np.clip(q, 0, QMAX)
         k = np.zeros((QMAX + 1, QMAX + 1))
         np.add.at(k, (q[:-1], q[1:]), 1.0)
         kern_acc = k if kern_acc is None else kern_acc + k
-        cand = col(d, "candY_founder")[w0:n]
+        cand = np.array([cmap[t] for t in range(w0, n) if t in cmap], dtype=float)
         per_world.append({
             "world": m["tag"], "seed": m["seed"], "split": m["split"],
             "steps_recorded": int(n), "stop": m["stop"],
@@ -106,7 +113,8 @@ def phase_a():
             "q25": float(np.quantile(q, .25)), "median": float(np.median(q)),
             "q90": float(np.quantile(q, .90)), "max": float(q.max()),
             "frac_zero_Q": float((q == 0).mean()),
-            "mean_cand_Y_founder": float(cand.mean()),
+            "mean_cand_Y_founder": float(cand.mean()) if cand.size else 0.0,
+            "EXPOSURE_PHASE": "EVENT_ALIGNED_PRE_REACTION (from ycells, not from post-step scalars)",
             "mean_field_Q_POSITION": float(QP[w0:n].mean()),
             "mean_nSY": float(col(d, "mean_nSY")[w0:n].mean()),
             "mean_free": float(col(d, "mean_free")[w0:n].mean()),
@@ -121,6 +129,7 @@ def phase_a():
     K = kern_acc / np.maximum(kern_acc.sum(axis=1, keepdims=True), 1)
     E = np.array([w["E_w_mean_Q_founder"] for w in per_world])
     S = np.array([w["S_w_q10_Q_founder"] for w in per_world])
+    NX = np.array([w["mean_N_X"] for w in per_world])
     return {
         "N_WORLDS": len(files),
         "PER_WORLD": per_world,
@@ -134,6 +143,32 @@ def phase_a():
             "no_single_world_dominance": bool(
                 abs(E.mean() - np.delete(E, int(np.argmax(np.abs(E - E.mean())))).mean())
                 < 0.5 * E.std(ddof=1))},
+        "POST_HOC_DESCRIPTIVE_X_ESTABLISHMENT": {
+            "STATUS": "POST_HOC_DESCRIPTIVE — reported because it explains the world-level "
+                      "dispersion; it enters NO decision gate, NO validation test and NO region "
+                      "criterion, and no world is excluded because of it",
+            "mean_N_X_per_world_min": float(NX.min()), "max": float(NX.max()),
+            "median": float(np.median(NX)),
+            "worlds_with_mean_N_X_below_5": int((NX < 5).sum()),
+            "worlds_with_mean_N_X_below_50": int((NX < 50).sum()),
+            "corr_meanNX_with_E_w": float(np.corrcoef(NX, E)[0, 1]),
+            "READING": ("the founder's exposure is Q = nX * min(nSY, free); a world in which the "
+                        "X cloud fails to establish or collapses has Q identically 0 by "
+                        "construction, with no Y process involved. %d of %d Phase-A worlds have "
+                        "a mean N_X below 5. This failure mode, not Y dynamics, dominates the "
+                        "world-level dispersion of exposure."
+                        % (int((NX < 5).sum()), NX.size))},
+        "DESIGN_DISPERSION_MISS": {
+            "developmental_sd_used_in_the_freeze": 0.1629902887142898,
+            "measured_world_level_sd": float(E.std(ddof=1)),
+            "underestimate_factor": float(E.std(ddof=1) / 0.1629902887142898),
+            "designed_relative_SE": 0.0081,
+            "achieved_relative_SE": float(E.std(ddof=1) / np.sqrt(E.size) / E.mean()),
+            "DISCLOSURE": ("the freeze sized Phase A from the parent's 14-arm dispersion. The "
+                           "measured world-level dispersion is larger by the factor above, so "
+                           "the achieved precision is worse than designed. N_A was NOT changed "
+                           "in response -- that would be outcome-driven resizing. The miss is "
+                           "reported and handed to the successor.")},
         "RADIAL_EXPOSURE": {"bins": list(range(R.shape[1])),
                             "mean_over_worlds": np.nanmean(R, axis=0).tolist(),
                             "sd_over_worlds": np.nanstd(R, axis=0, ddof=1).tolist()},
@@ -308,12 +343,23 @@ def feedback(pa, pb):
             b = np.array([w[k] for w in B])
             a = base[k]
             se = np.sqrt(a.var(ddof=1) / a.size + b.var(ddof=1) / b.size)
+            rel = float((b.mean() - a.mean()) / a.mean())
+            # A quantity whose world-level variance is numerically degenerate produces a huge z
+            # from a physically meaningless difference. `free` is pinned near CAP - occupancy in
+            # every world, so its z is reported but explicitly disqualified as evidence.
+            degenerate = bool(a.std(ddof=1) / max(abs(a.mean()), 1e-30) < 1e-4)
             rec[k] = {"phase_A_mean": float(a.mean()), "phase_B_mean": float(b.mean()),
-                      "delta": float(b.mean() - a.mean()),
-                      "relative_delta": float((b.mean() - a.mean()) / a.mean()),
+                      "delta": float(b.mean() - a.mean()), "relative_delta": rel,
                       "se_of_delta": float(se),
                       "z": float((b.mean() - a.mean()) / se) if se > 0 else 0.0,
-                      "significant_at_2se": bool(abs(b.mean() - a.mean()) > 2 * se)}
+                      "VARIANCE_DEGENERATE": degenerate,
+                      "significant_at_2se": (False if degenerate
+                                             else bool(abs(b.mean() - a.mean()) > 2 * se)),
+                      "INTERPRETATION": ("variance is numerically degenerate at the world level "
+                                         "(relative sd < 1e-4); the z statistic is not evidence "
+                                         "and the effect size is what matters: %+.3e absolute, "
+                                         "%+.3e relative" % (b.mean() - a.mean(), rel))
+                      if degenerate else "world-level two-sample comparison"}
         births = sum(w["n_Y_births"] for w in B)
         rec["total_Y_births"] = births
         rec["worlds_with_a_birth"] = sum(1 for w in B if w["n_Y_births"] > 0)
@@ -337,13 +383,16 @@ def validation(pb, op_disc):
         z1 = (obs - mu) / sd if sd > 0 else 0.0
         # PREDECLARED TEST 2 — the discovery transition matrix predicts validation state
         # occupancy; compare the fraction of steps spent with two or more Y.
-        def frac2(rows):
-            num = sum(w["steps_two_plus_Y"] for w in rows)
-            den = sum(w["steps_recorded"] for w in rows)
-            return num / den if den else 0.0
-        f_d, f_v = frac2(D), frac2(V)
-        nv = sum(w["steps_recorded"] for w in V)
-        se2 = np.sqrt(max(f_d * (1 - f_d), 1e-12) / max(nv, 1))
+        # FREEZE COMPLIANCE (defect found in this analysis, fixed here): the first version of
+        # this test pooled STEPS and used a per-step standard error. That is exactly the frame
+        # pseudoreplication the freeze forbids. The unit is the WORLD: form a per-world
+        # fraction, then compare world-level means with a world-level standard error.
+        pw = lambda rows: np.array([w["steps_two_plus_Y"] / max(w["steps_recorded"], 1)
+                                    for w in rows], float)
+        a_d, a_v = pw(D), pw(V)
+        f_d, f_v = float(a_d.mean()), float(a_v.mean())
+        se2 = float(np.sqrt(a_d.var(ddof=1) / max(a_d.size, 1)
+                            + a_v.var(ddof=1) / max(a_v.size, 1))) if a_d.size > 1 and a_v.size > 1 else 0.0
         # PREDECLARED TEST 3 — survival of the founder: predicted (1-muY)^steps vs observed
         muY = blk["muY"]
         surv_pred = float(np.mean([(1 - muY) ** w["steps_recorded"] for w in V]))
@@ -356,6 +405,8 @@ def validation(pb, op_disc):
                 "z": z1, "PASS": bool(abs(z1) <= 2.0),
                 "note": "exact executable law on each world's own exposure; nothing fitted"},
             "TEST_2_two_plus_Y_step_fraction": {
+                "UNIT": "one world (per-world fraction, then world-level SE)",
+                "n_discovery_worlds": int(a_d.size), "n_validation_worlds": int(a_v.size),
                 "discovery": f_d, "validation": f_v, "se": float(se2),
                 "z": float((f_v - f_d) / se2) if se2 > 0 else 0.0,
                 "PASS": bool(abs(f_v - f_d) <= 2 * se2 or se2 == 0)},

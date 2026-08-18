@@ -1,0 +1,94 @@
+{
+ "SECTION": "PQEC01 candidate disposition",
+ "ACCOUNTING": {
+  "FROZEN_STARTS": 128,
+  "LEDGER_ROWS": 128,
+  "DISTINCT_SEEDS_RUN": 128,
+  "ALL_FROZEN_STARTS_ACCOUNTED_FOR": true,
+  "MISSING": [],
+  "UNEXPECTED": [],
+  "TECHNICALLY_INVALID": [],
+  "RESERVES_USED": 0,
+  "NO_OUTCOME_DRIVEN_REPLACEMENT": true,
+  "TOTAL_OUTCOME_INFORMATIVE_STARTS": 128
+ },
+ "DECISION_GATES": {
+  "PROSPECTIVE_FREEZE_PRECEDES_ALL_RUNS": true,
+  "INSTRUMENTATION_INERTNESS": true,
+  "ALL_FROZEN_STARTS_ACCOUNTED_FOR": true,
+  "NO_OUTCOME_DRIVEN_REPLACEMENT": true,
+  "PHASE_A_SPATIAL_OPERATOR_IDENTIFIED": true,
+  "PHASE_B_REAL_DESCENDANT_EXPOSURE_RECORDED": true,
+  "FIRST_BIRTH_OPERATOR_VALIDATED": true,
+  "TWO_Y_OPERATOR_IDENTIFIED": true,
+  "FEEDBACK_CONTROLLED_OR_EXPLICITLY_MODELLED": true,
+  "INTERNAL_VALIDATION_PASS": false,
+  "CANDIDATE_REGION_POSITIVE_WIDTH": false,
+  "NO_SINGLE_WORLD_DOMINANCE": true,
+  "NO_FRAME_PSEUDOREPLICATION": true
+ },
+ "GATES_PASSED": 11,
+ "GATES_TOTAL": 13,
+ "PHASE_B_TOTALS": {
+  "Y_births": {
+   "B1": 31,
+   "B2": 25
+  },
+  "colocated_steps": {
+   "B1": 7814,
+   "B2": 9517
+  },
+  "worlds_reaching_two_centres": {
+   "B1": 16,
+   "B2": 18
+  },
+  "descendant_exposure_rows": {
+   "B1": 125574,
+   "B2": 118757
+  }
+ },
+ "CANDIDATE_DISPOSITION": "PROSPECTIVE_Q_ENVIRONMENT_OPERATOR_NOT_IDENTIFIED__ADDITIONAL_INSTRUMENTATION_REQUIRED",
+ "MISSING_OBJECT_NAMED": {
+  "REQUIRED_BY_THE_LAUNCHER": "this disposition may only be used when a SPECIFIC missing field, cadence, observer state variable or unresolved operator component prevents identification. It is not usable because uncertainty is inconvenient. The specific objects are named below.",
+  "OBJECT_1_UNRESOLVED_OPERATOR_COMPONENT": {
+   "what": "the TWO_Y co-location / separation sub-operator is not CONDITIONED on the state that determines it",
+   "evidence": "predeclared validation TEST 2 at point B2: discovery worlds spend 19.66% of steps with two or more Y, held-out validation worlds 4.53%, a world-level z of -2.82. The same test passes at B1 (z = +1.16). A sub-operator that generalizes at one parameter point and not at the other is not identified.",
+   "exact_missing_conditioning": [
+    "the local exposure CLASS of the birth cell at the moment of the first birth",
+    "the elapsed time from first birth",
+    "the relative displacement of the descendant from the source at the moment co-location ends"
+   ],
+   "why_it_was_not_fitted_here": "the freeze forbids refitting after validation is opened. Conditioning the operator now, having seen the failure, would be exactly the retune the freeze prohibits."
+  },
+  "OBJECT_2_MISSING_OBSERVER_STATE_VARIABLE": {
+   "what": "a descendant-indexed identity channel",
+   "why": "the engine's reaction is aggregate: births = Binomial(min(nSY,free0), min(1,kY*nX*nY)) per cell. When a birth occurs in a multiply occupied cell the parent is a SHARED_PARENT_POOL and no observer can resolve which Y produced it without changing the physics. Co-location DURATION is therefore observable but per-descendant lineage age is not, and the conditioning in OBJECT_1 needs it.",
+   "this_is_an_instrumentation_limit_not_a_measurement_error": true
+  },
+  "WHAT_IS_NOT_CLAIMED": "this is NOT structural preclusion. No structural result was obtained showing that Y feedback destroys every controlled window across the admissible region; measured feedback on nSY was -0.18% to -0.24% and not significant at the world level."
+ },
+ "EMPTY_REGION_IS_PREREGISTERED": {
+  "declared_before_any_run_in_the_freeze": true,
+  "preregistered_maximin_shortfall_decades": -0.1513,
+  "measured_maximin_shortfall_decades": -0.1528,
+  "READING": "the freeze declared, before a single world ran, that no admissible (kY, muY) satisfies all five frozen boundaries and that the region might come back empty. The calibration replaced the mean-exposure proxy with measured, world-level quantities and the shortfall moved by 0.0015 decades. The boundary arithmetic was not the weak link; the measurement confirmed it."
+ },
+ "PHASE_A_DESIGN_DISPERSION_MISS": {
+  "developmental_sd_used_in_the_freeze": 0.1629902887142898,
+  "measured_world_level_sd": 0.7753860071488939,
+  "underestimate_factor": 4.757252798711766,
+  "designed_relative_SE": 0.0081,
+  "achieved_relative_SE": 0.04267258758822872,
+  "DISCLOSURE": "the freeze sized Phase A from the parent's 14-arm dispersion. The measured world-level dispersion is larger by the factor above, so the achieved precision is worse than designed. N_A was NOT changed in response -- that would be outcome-driven resizing. The miss is reported and handed to the successor."
+ },
+ "POST_HOC_DESCRIPTIVE_X_ESTABLISHMENT": {
+  "STATUS": "POST_HOC_DESCRIPTIVE \u2014 reported because it explains the world-level dispersion; it enters NO decision gate, NO validation test and NO region criterion, and no world is excluded because of it",
+  "mean_N_X_per_world_min": 0.10255555555555555,
+  "max": 125.46966666666667,
+  "median": 121.021,
+  "worlds_with_mean_N_X_below_5": 2,
+  "worlds_with_mean_N_X_below_50": 3,
+  "corr_meanNX_with_E_w": 0.9913040105737327,
+  "READING": "the founder's exposure is Q = nX * min(nSY, free); a world in which the X cloud fails to establish or collapses has Q identically 0 by construction, with no Y process involved. 2 of 40 Phase-A worlds have a mean N_X below 5. This failure mode, not Y dynamics, dominates the world-level dispersion of exposure."
+ }
+}

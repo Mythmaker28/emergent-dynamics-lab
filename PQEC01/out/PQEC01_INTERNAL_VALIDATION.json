@@ -1,0 +1,64 @@
+{
+ "B1": {
+  "N_VALIDATION_WORLDS": 15,
+  "N_DISCOVERY_WORLDS": 29,
+  "TEST_1_first_birth": {
+   "predicted_expected_worlds_with_a_birth": 5.495873062701067,
+   "sd": 1.7168089309903227,
+   "observed": 7,
+   "z": 0.8761178429047976,
+   "PASS": true,
+   "note": "exact executable law on each world's own exposure; nothing fitted"
+  },
+  "TEST_2_two_plus_Y_step_fraction": {
+   "UNIT": "one world (per-world fraction, then world-level SE)",
+   "n_discovery_worlds": 29,
+   "n_validation_worlds": 15,
+   "discovery": 0.13511999881486053,
+   "validation": 0.23775253736626686,
+   "se": 0.0887025032181242,
+   "z": 1.1570421896553182,
+   "PASS": true
+  },
+  "TEST_3_founder_survival": {
+   "predicted": 0.6437921505047226,
+   "observed": 0.4666666666666667,
+   "se": 0.12364568127064451,
+   "z": -1.4325246301999905,
+   "PASS": true
+  },
+  "NO_REFIT_AFTER_VIEWING_VALIDATION": true,
+  "ALL_PASS": true
+ },
+ "B2": {
+  "N_VALIDATION_WORLDS": 16,
+  "N_DISCOVERY_WORLDS": 28,
+  "TEST_1_first_birth": {
+   "predicted_expected_worlds_with_a_birth": 7.620798911478982,
+   "sd": 1.9472495662631535,
+   "observed": 6,
+   "z": -0.8323529451796756,
+   "PASS": true,
+   "note": "exact executable law on each world's own exposure; nothing fitted"
+  },
+  "TEST_2_two_plus_Y_step_fraction": {
+   "UNIT": "one world (per-world fraction, then world-level SE)",
+   "n_discovery_worlds": 28,
+   "n_validation_worlds": 16,
+   "discovery": 0.19663213109972716,
+   "validation": 0.045251526047674684,
+   "se": 0.053629171223843516,
+   "z": -2.822728779831464,
+   "PASS": false
+  },
+  "TEST_3_founder_survival": {
+   "predicted": 0.9999000108388347,
+   "observed": 1.0,
+   "se": 0.0024997395280923745,
+   "z": 0.039999831999126344,
+   "PASS": true
+  },
+  "NO_REFIT_AFTER_VIEWING_VALIDATION": true,
+  "ALL_PASS": false
+ }
+}
