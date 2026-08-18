@@ -1,0 +1,524 @@
+{
+ "SECTION": "PQEC01 review correction addendum (issued by FLCR01)",
+ "NO_HISTORY_REWRITTEN": true,
+ "PQEC01_TIP_CORRECTED": "80735ad5e9775db051954ca4d05e258ee4fdf36a",
+ "A_PROVENANCE": {
+  "METHODS_HASH_SCOPE": {
+   "COVERED": [
+    "pqec01_design.py",
+    "pqec01_observer.py",
+    "pqec01_qualify.py",
+    "pqec01_freeze.py"
+   ],
+   "NOT_COVERED": [
+    "pqec01_run.py (the runner)",
+    "pqec01_analyse.py (the analyser)",
+    "pqec01_manifest.py",
+    "pqec01_repair.py"
+   ],
+   "STATEMENT": "PQEC01_METHODS_HASH covered the DESIGN and the OBSERVER code only. The runner was NOT included in the pre-run methods hash, and neither was the analyser. Any reading of that hash as binding the whole method is withdrawn.",
+   "FREEZE_COMMIT_CONTENTS": [
+    "PQEC01/code/pqec01_freeze.py",
+    "PQEC01/out/PQEC01_MASTER_FREEZE.json",
+    "PQEC01/out/PQEC01_MASTER_FREEZE.md",
+    "PQEC01/out/PQEC01_METHODS_HASH.txt"
+   ]
+  },
+  "RETROSPECTIVE_EXECUTION_HASH": {
+   "VALUE": "c3a35a64daada5395f5e8b0fb415a1aec23ae92e6e45b4ceed167da96d6bb37f",
+   "INPUTS": [
+    {
+     "path": "PQEC01/code/pqec01_run.py",
+     "source": "git blob at C3",
+     "sha256": "3b88f901b118e1e2df6fac864aee6c24b62c7dae890dd28b4207eaba59ea2b96"
+    },
+    {
+     "path": "PQEC01/code/pqec01_observer.py",
+     "source": "git blob at C3",
+     "sha256": "d8ff4b9da05c95641c7f69cef4c8b2ffe4c45f17975e8f348d5c5e0f2b6bba21"
+    },
+    {
+     "path": "PQEC01/out/PQEC01_MASTER_FREEZE.json",
+     "source": "git blob at C3",
+     "sha256": "1d41505e0571eed53ac78d15bc04c08c80f697d00838f6db9d4302a2e5b6b83c"
+    },
+    {
+     "path": "/home/claude/ORR01/code/kinetics.py",
+     "source": "working tree (frozen engine, unchanged)",
+     "sha256": "d6b9e24daefd9a9ddd42780fa24da444a344a2773bb7836a8e168e44f026c4c4"
+    },
+    {
+     "path": "/home/claude/ORR01/code/observe.py",
+     "source": "working tree (frozen engine, unchanged)",
+     "sha256": "55840f35f44ccd424c4b71c80d591614d01c9143ca21e9c14e87e0faeeec2fbd"
+    },
+    {
+     "path": "/home/claude/ORR01/code/lawspec_v2.py",
+     "source": "working tree (frozen engine, unchanged)",
+     "sha256": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94"
+    },
+    {
+     "path": "/home/claude/OBTC02/code/engine_obtc.py",
+     "source": "working tree (frozen engine, unchanged)",
+     "sha256": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30"
+    },
+    {
+     "path": "/home/claude/OBTC02/code/protocol_obtc02.py",
+     "source": "working tree (frozen engine, unchanged)",
+     "sha256": "0b39875cef0aea3fef2ba0beaab7516208d3f3e4d9bd351b880d30e2ada2c8fe"
+    },
+    {
+     "path": "/home/claude/OBTC02/code/obtc02_protocol.yaml",
+     "source": "working tree (frozen engine, unchanged)",
+     "sha256": "65d577460f28d2cce96be73e61eb3667a9299e23601b122f34192c14de0352cd"
+    },
+    {
+     "path": "PQEC01/out/PQEC01_RAW_MANIFEST.json",
+     "source": "git blob at C3",
+     "sha256": "399cfbaae06fc479d661717f98e2ba7e56964eefd250ea4a846f05982b8fe88b"
+    }
+   ],
+   "WHAT_IT_PROVES": "that these exact bytes are what the delivery contains today",
+   "WHAT_IT_DOES_NOT_PROVE": "it is computed AFTER the runs. It cannot establish that the runner was fixed before the first start. Only the Git history can, and it shows the runner first appearing in C3, i.e. in the same commit as the outputs it produced -- not before them."
+  },
+  "CHRONOLOGY": {
+   "C2_freeze_alone": {
+    "commit": "0bba579f46895248364f3c74cd3c0e798c26eb4a",
+    "date": "2026-08-17 23:27:27 +0000"
+   },
+   "C3_runner_and_all_outputs": {
+    "commit": "7d97205818ae723683280053512a27f1872db375",
+    "date": "2026-08-17 23:59:35 +0000"
+   },
+   "C4_analyser_fixes": {
+    "commit": "d61e9a34367b42bd7534647ad9802a9892639f31",
+    "date": "2026-08-18 00:08:39 +0000"
+   },
+   "STATEMENT": "a complete analysis run, INCLUDING PQEC01_INTERNAL_VALIDATION.json, existed before the two analysis corrections were made. The operator therefore saw validation output before editing analysis code.",
+   "REPRODUCIBILITY": "the pre-fix analyser was recovered from commit 7d97205 and re-run on the identical 128 raw archives; the pre-fix outputs below are regenerated, not remembered.",
+   "PRE_FIX_ANALYSER_SHA256": "cb486ce271b9c1ae01c2148ff87233f2906622c13d1f634486bf8828530e3caa",
+   "POST_FIX_ANALYSER_SHA256": "8d2cc3dec6bf3f1b13094ffda9d7c0a0840ccd025dc90f738d9aff6273ee4d9f"
+  },
+  "PRE_FIX_VS_POST_FIX_VALIDATION": {
+   "B1": {
+    "TEST_1_first_birth": {
+     "PRE_FIX": {
+      "z": 0.8761178429047976,
+      "PASS": true
+     },
+     "POST_FIX": {
+      "z": 0.8761178429047976,
+      "PASS": true
+     },
+     "CHANGED": false
+    },
+    "TEST_2_two_plus_Y_step_fraction": {
+     "PRE_FIX": {
+      "z": -14.315303855118456,
+      "PASS": false
+     },
+     "POST_FIX": {
+      "z": 1.1570421896553182,
+      "PASS": true
+     },
+     "CHANGED": true
+    },
+    "TEST_3_founder_survival": {
+     "PRE_FIX": {
+      "z": -1.4325246301999905,
+      "PASS": true
+     },
+     "POST_FIX": {
+      "z": -1.4325246301999905,
+      "PASS": true
+     },
+     "CHANGED": false
+    },
+    "ALL_PASS": {
+     "PRE_FIX": false,
+     "POST_FIX": true
+    }
+   },
+   "B2": {
+    "TEST_1_first_birth": {
+     "PRE_FIX": {
+      "z": -0.8323529451796756,
+      "PASS": true
+     },
+     "POST_FIX": {
+      "z": -0.8323529451796756,
+      "PASS": true
+     },
+     "CHANGED": false
+    },
+    "TEST_2_two_plus_Y_step_fraction": {
+     "PRE_FIX": {
+      "z": -144.367265055217,
+      "PASS": false
+     },
+     "POST_FIX": {
+      "z": -2.822728779831464,
+      "PASS": false
+     },
+     "CHANGED": false
+    },
+    "TEST_3_founder_survival": {
+     "PRE_FIX": {
+      "z": 0.039999831999126344,
+      "PASS": true
+     },
+     "POST_FIX": {
+      "z": 0.039999831999126344,
+      "PASS": true
+     },
+     "CHANGED": false
+    },
+    "ALL_PASS": {
+     "PRE_FIX": false,
+     "POST_FIX": false
+    }
+   }
+  },
+  "THE_B1_TEST_CHANGE": {
+   "test": "B1 TEST_2_two_plus_Y_step_fraction",
+   "before": {
+    "z": -14.315303855118456,
+    "verdict": "FAIL"
+   },
+   "after": {
+    "z": 1.1570421896553182,
+    "verdict": "PASS"
+   },
+   "ASSESSMENT": "a test moved from FAIL to PASS after its failure was visible. That is the shape of a post-hoc rescue. The defence -- that the fix restores a rule the freeze states verbatim (the unit is the world; frame pseudoreplication is forbidden) -- is a defence, not a proof."
+  },
+  "DISPOSITION_UNCHANGED": {
+   "PRE_FIX": "PROSPECTIVE_Q_ENVIRONMENT_OPERATOR_NOT_IDENTIFIED__ADDITIONAL_INSTRUMENTATION_REQUIRED",
+   "POST_FIX": "PROSPECTIVE_Q_ENVIRONMENT_OPERATOR_NOT_IDENTIFIED__ADDITIONAL_INSTRUMENTATION_REQUIRED",
+   "IDENTICAL": true,
+   "gates_passed_pre": 11,
+   "gates_passed_post": 10
+  }
+ },
+ "B_COUNTS": {
+  "VERIFIED_FROM_RAW_ARCHIVES": true,
+  "TOTAL_PHASE_B_WORLDS": 88,
+  "TOTAL_Y_BIRTHS": 56,
+  "WORLDS_REACHING_TWO_CENTRES": 34,
+  "DISCOVERY_TWO_Y_COLOCATED_STEPS": 12474,
+  "DISCOVERY_TWO_Y_SEPARATED_STEPS": 73674,
+  "ALL_WORLD_COLOCATED_ONE_CENTRE_STEPS": 17331,
+  "ALL_WORLD_TWO_Y_SEPARATED_STEPS": 92635,
+  "DEFINITIONS": {
+   "TWO_Y_SEPARATED (state S)": "n_centres == 2 exactly",
+   "two_or_more_centres": "n_centres >= 2, which also counts state P steps",
+   "DISCOVERY_two_or_more_centre_steps": 73679,
+   "ALL_WORLD_two_or_more_centre_steps": 92649,
+   "NOTE": "the two differ by the steps spent in three-or-more centres. Reporting n_centres >= 2 as 'separated' silently folds state P into state S; the state-S figures above use n_centres == 2 exactly."
+  },
+  "WITHDRAWN_FIGURE": {
+   "value": 16474,
+   "where": "an interim progress message reported 16474 co-located steps",
+   "correct_value": 17331,
+   "STATEMENT": "16474 is unsupported and is withdrawn. It appears to have been formed by mixing a discovery-only separated-state count into an all-world co-location count. The correct all-world co-located figure is 17331 and the correct discovery-only co-located figure is 12474."
+  },
+  "DENOMINATORS_ARE_EXPLICIT": "every count above names whether it is over all 88 Phase-B worlds or over the discovery subset only"
+ },
+ "C_DATA_FLOW": {
+  "PHASE_A_SPLIT_NOT_RESPECTED": {
+   "FACT": true,
+   "STATEMENT": "phase_a() globs every A_*.npz and the region's exposure lower confidence bound is computed over ALL 40 Phase-A worlds. The frozen discovery/validation split (31/9) was never applied to Phase A.",
+   "phase_A_worlds_used_in_region": 40
+  },
+  "PHASE_B_VALIDATION_ENTERED_THE_REGION": {
+   "FACT": true,
+   "STATEMENT": "the region's separation statistics -- worlds reaching two centres, the median separation delay tau used as a criterion input -- were pooled over all 88 Phase-B worlds, validation included.",
+   "phase_B_worlds_used_in_region": 88
+  },
+  "HARDCODED_LITERALS_WITHDRAWN": [
+   {
+    "key": "NO_REFIT_AFTER_VIEWING_VALIDATION",
+    "was": true,
+    "now": "WITHDRAWN \u2014 it is contradicted by the reproduced chronology above"
+   },
+   {
+    "key": "NO_OUTCOME_DRIVEN_REPLACEMENT",
+    "was": true,
+    "now": "RECOMPUTED from the run ledger and the manifest (see COMPUTED_GATES)"
+   },
+   {
+    "key": "NO_FRAME_PSEUDOREPLICATION",
+    "was": true,
+    "now": "WITHDRAWN as a literal; the pre-fix analyser demonstrably violated it"
+   },
+   {
+    "key": "FEEDBACK_CONTROLLED_OR_EXPLICITLY_MODELLED",
+    "was": true,
+    "now": "already flipped to False in the PQEC01 repair round"
+   }
+  ],
+  "ALL_128_WORLDS_RELABELLED": {
+   "PQEC01_RAW_EXPERIMENT_STATUS": "VALID_DEVELOPMENTAL_CALIBRATION_DATA",
+   "PQEC01_PROSPECTIVE_CONFIRMATORY_STATUS": "NOT_ESTABLISHED",
+   "PQEC01_OBSERVER_PHYSICS_STATUS": "INERTNESS_CONFIRMED",
+   "PQEC01_DESCENDANT_DATA_STATUS": "REAL_AND_EVENT_ALIGNED",
+   "PQEC01_OPERATOR_IDENTIFICATION_STATUS": "NOT_CONFIRMED",
+   "STATEMENT": "all 128 worlds are POST_OUTCOME_DEVELOPMENT_DATA from this point on. No untouched holdout is reconstructed; the historical DISCOVERY/VALIDATION labels are retained only as a descriptive stability diagnostic and are never again called held-out."
+  }
+ },
+ "D_FIREWALL": {
+  "LEAK_ACKNOWLEDGED": true,
+  "STATEMENT": "file size, runtime and steps_recorded are all monotone in how long a world ran, and a world's run length IS its stop outcome. These three quantities were visible in the live run log, so outcome-dependent stop time leaked through the firewall during execution.",
+  "EVIDENCE": {
+   "corr_bytes_vs_steps_recorded": 0.9992486306173486,
+   "median_bytes_early_stop": 3476995.5,
+   "median_bytes_full_horizon": 9939636.0,
+   "n_early": 42,
+   "n_full": 46
+  },
+  "WHY_IT_DID_NOT_CAUSE_AN_ADAPTIVE_CHANGE": {
+   "no_world_was_replaced": true,
+   "no_reserve_seed_used": true,
+   "all_128_frozen_starts_executed_exactly_once": true,
+   "STATEMENT": "the leak is real but inert: the schedule was fixed by the freeze, every frozen seed ran exactly once, no reserve was drawn and no world was replaced or re-run. Nothing in the execution could have adapted to what leaked."
+  },
+  "SUCCESSOR_REQUIREMENT": "a firewall must not expose any variable monotone in run length. Report only a completion flag and a checksum."
+ },
+ "E_FEEDBACK": {
+  "WITHDRAWN_CLAIM": {
+   "text": "feedback not significant",
+   "STATUS": "WITHDRAWN",
+   "WHY": "the published pooled comparison is confounded four ways at once: it conditions on nothing while the effect exists only where a birth occurred; worlds stop at outcome-dependent times; the analysis windows are therefore unequal; and the number of active X sources is itself the mechanism under test."
+  },
+  "FOUR_COMPARISONS": {
+   "B1": {
+    "pooled": {
+     "comparison": "pooled, all Phase-B worlds",
+     "n_A": 40,
+     "n_B": 29,
+     "A_mean": 111.01653055555553,
+     "B_mean": 151.54570079747234,
+     "delta": 40.5291702419168,
+     "relative_delta": 0.3650732916899701,
+     "se": 9.480134090374841,
+     "z": 4.275168458119804,
+     "significant_at_2se": true
+    },
+    "birth_worlds": {
+     "comparison": "stratified: worlds with >= 1 Y birth",
+     "n_A": 40,
+     "n_B": 14,
+     "A_mean": 111.01653055555553,
+     "B_mean": 185.09799679946403,
+     "delta": 74.0814662439085,
+     "relative_delta": 0.6673012196758952,
+     "se": 12.282854875602474,
+     "z": 6.031290526036993,
+     "significant_at_2se": true
+    },
+    "no_birth_worlds": {
+     "comparison": "stratified: worlds with no Y birth",
+     "n_A": 40,
+     "n_B": 15,
+     "A_mean": 111.01653055555553,
+     "B_mean": 120.23022452894676,
+     "delta": 9.21369397339123,
+     "relative_delta": 0.08299389223644005,
+     "se": 5.422052245295126,
+     "z": 1.6993001093610307,
+     "significant_at_2se": false
+    },
+    "horizon_matched": {
+     "comparison": "only Phase-B worlds that ran the full horizon",
+     "n_A": 40,
+     "n_B": 9,
+     "A_mean": 111.01653055555553,
+     "B_mean": 164.14008641975306,
+     "delta": 53.12355586419753,
+     "relative_delta": 0.47851933039479316,
+     "se": 12.526982321613778,
+     "z": 4.240730488821663,
+     "significant_at_2se": true
+    },
+    "matched_time_window": {
+     "comparison": "fixed identical step window [2000, 4000)",
+     "n_A": 40,
+     "n_B": 22,
+     "A_mean": 113.461725,
+     "B_mean": 129.7765681818182,
+     "delta": 16.31484318181819,
+     "relative_delta": 0.14379160180949294,
+     "se": 7.763356027658089,
+     "z": 2.1015193846184794,
+     "significant_at_2se": true
+    },
+    "matched_window_bounds": [
+     2000,
+     4000
+    ],
+    "matched_window_survivorship": {
+     "phase_B_worlds_covering_the_window": 22,
+     "of": 44,
+     "excluded_because_they_stopped_earlier": 22,
+     "WARNING": "this comparison is itself survivorship-biased: only worlds that lived past step 4000 can contribute, and living that long is an outcome. It removes the unequal-window confound and introduces a selection one; it is reported as a bound on the confound, not as a clean estimate."
+    },
+    "naive_min_window_rejected": {
+     "window_would_be": [
+      269,
+      270
+     ],
+     "width": 1,
+     "REJECTED_BECAUSE": "the shortest world sets the window; at B1 this gives a width of one step, which cannot support any comparison"
+    },
+    "nSY_birth_worlds": {
+     "comparison": "nSY, worlds with >= 1 Y birth",
+     "n_A": 40,
+     "n_B": 14,
+     "A_mean": 2.9555700552983537,
+     "B_mean": 2.92452577203201,
+     "delta": -0.031044283266343786,
+     "relative_delta": -0.010503653334385262,
+     "se": 0.005118046636883314,
+     "z": -6.06565071967545,
+     "significant_at_2se": true
+    }
+   },
+   "B2": {
+    "pooled": {
+     "comparison": "pooled, all Phase-B worlds",
+     "n_A": 40,
+     "n_B": 44,
+     "A_mean": 111.01653055555553,
+     "B_mean": 127.92945391599618,
+     "delta": 16.912923360440644,
+     "relative_delta": 0.15234599096012086,
+     "se": 9.195321000033871,
+     "z": 1.8392966771228916,
+     "significant_at_2se": false
+    },
+    "birth_worlds": {
+     "comparison": "stratified: worlds with >= 1 Y birth",
+     "n_A": 40,
+     "n_B": 18,
+     "A_mean": 111.01653055555553,
+     "B_mean": 168.67211574527457,
+     "delta": 57.655585189719034,
+     "relative_delta": 0.5193423438941527,
+     "se": 9.805332778164363,
+     "z": 5.880023298965751,
+     "significant_at_2se": true
+    },
+    "no_birth_worlds": {
+     "comparison": "stratified: worlds with no Y birth",
+     "n_A": 40,
+     "n_B": 26,
+     "A_mean": 111.01653055555553,
+     "B_mean": 99.72299572649572,
+     "delta": -11.293534829059809,
+     "relative_delta": -0.10172840722497838,
+     "se": 9.624738067859186,
+     "z": -1.1733862001682307,
+     "significant_at_2se": false
+    },
+    "horizon_matched": {
+     "comparison": "only Phase-B worlds that ran the full horizon",
+     "n_A": 40,
+     "n_B": 37,
+     "A_mean": 111.01653055555553,
+     "B_mean": 120.98921321321322,
+     "delta": 9.972682657657685,
+     "relative_delta": 0.08983060997989932,
+     "se": 9.712739990199086,
+     "z": 1.0267630625056268,
+     "significant_at_2se": false
+    },
+    "matched_time_window": {
+     "comparison": "fixed identical step window [2000, 4000)",
+     "n_A": 40,
+     "n_B": 44,
+     "A_mean": 113.461725,
+     "B_mean": 114.7043181818182,
+     "delta": 1.2425931818181937,
+     "relative_delta": 0.010951650715853242,
+     "se": 7.155972062976683,
+     "z": 0.17364421924549966,
+     "significant_at_2se": false
+    },
+    "matched_window_bounds": [
+     2000,
+     4000
+    ],
+    "matched_window_survivorship": {
+     "phase_B_worlds_covering_the_window": 44,
+     "of": 44,
+     "excluded_because_they_stopped_earlier": 0,
+     "WARNING": "this comparison is itself survivorship-biased: only worlds that lived past step 4000 can contribute, and living that long is an outcome. It removes the unequal-window confound and introduces a selection one; it is reported as a bound on the confound, not as a clean estimate."
+    },
+    "naive_min_window_rejected": {
+     "window_would_be": [
+      2000,
+      4236
+     ],
+     "width": 2236,
+     "REJECTED_BECAUSE": "the shortest world sets the window; at B1 this gives a width of one step, which cannot support any comparison"
+    },
+    "nSY_birth_worlds": {
+     "comparison": "nSY, worlds with >= 1 Y birth",
+     "n_A": 40,
+     "n_B": 18,
+     "A_mean": 2.9555700552983537,
+     "B_mean": 2.93149334161293,
+     "delta": -0.024076713685423634,
+     "relative_delta": -0.008146216545353779,
+     "se": 0.004015051592936303,
+     "z": -5.996613773975382,
+     "significant_at_2se": true
+    }
+   }
+  },
+  "CAUSAL_WARNING": "NONE of these comparisons identifies a causal effect. Whether a birth occurred is not randomised -- it is itself an outcome of the same exposure that drives X production, so birth-worlds are selected for high exposure. Stopping is outcome-dependent. PQEC01 cannot estimate this feedback cleanly and no causal number is claimed.",
+  "PRESERVED_DEVELOPMENTAL_CLUE": "Y birth, and the appearance of multiple Y centres, may substantially increase X production. The mechanism is architecturally plausible: kX = 1.0 makes p_X = 1 wherever nX*nY >= 1, so a second Y at a different cell adds a saturated X source rather than competing for the first. This is a clue for the next design, not a measured effect."
+ },
+ "F_OPERATOR_UNCERTAINTY": {
+  "UNIT": "one world; the pooled transition table is NOT a sample of independent draws",
+  "N_WORLDS": 40,
+  "P_STAY_AT_ZERO": {
+   "world_level_mean": 0.8105756290977038,
+   "world_level_sd": 0.05565602900307313,
+   "world_level_se": 0.008799990858505077,
+   "n_worlds_contributing": 40,
+   "pooled_value_previously_reported": 0.8208,
+   "NOTE": "the pooled figure was published without any uncertainty. Its world-level standard error is given here."
+  },
+  "WORLDS_VISITING_EACH_EXPOSURE_STATE": {
+   "0": 40,
+   "1": 38,
+   "2": 39,
+   "3": 38,
+   "4": 38,
+   "5": 38,
+   "6": 38,
+   "7": 38,
+   "8": 38,
+   "9": 38,
+   "10": 38,
+   "11": 38,
+   "12": 38,
+   "13": 20,
+   "14": 38,
+   "15": 38,
+   "16": 38,
+   "18": 38,
+   "20": 38,
+   "21": 38,
+   "22": 30,
+   "24": 38,
+   "25": 38,
+   "27": 38,
+   "28": 37
+  },
+  "STATES_VISITED_BY_FEWER_THAN_5_WORLDS": [],
+  "SINGLE_WORLD_DOMINANCE_ON_ROW_ZERO": 0.04267801079399406,
+  "ROW_STOCHASTICITY_WITHDRAWN_AS_A_GATE": "a row-normalised matrix is row-stochastic by construction. Using `row_stochastic == True` as evidence of identification was tautological and is withdrawn as a gate.",
+  "IDENTIFICATION_CONSEQUENCE": "with 0 of 25 exposure states visited by fewer than 5 independent worlds, the upper tail of the kernel is not estimated at world level at all."
+ }
+}

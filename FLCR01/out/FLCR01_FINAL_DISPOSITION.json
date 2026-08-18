@@ -1,0 +1,54 @@
+{
+ "SECTION": "FLCR01 \u00a711 terminal disposition",
+ "DISPOSITION_1_REQUIREMENTS": {
+  "founder_shown_unnecessary": true,
+  "lineage_is_the_correct_criterion": true,
+  "nonempty_developmental_region_derived": true,
+  "necessary_state_variables_recorded": true,
+  "feedback_sufficiently_represented_or_bounded": false,
+  "one_clean_disjoint_test_can_confirm_it": true
+ },
+ "WHY_NOT_DISPOSITION_1": "two of its six requirements fail. Feedback is NOT sufficiently represented or bounded: the same comparison ranges from about +1%% to +67%% depending only on which stratification is chosen, and no causal estimate is available. And the PRIMARY criterion -- two-centre functional continuity -- is not determinable, because its spatial rates were measured at exactly two (kY, muY) points.",
+ "WHY_NOT_DISPOSITION_3": "architecture change is not justified: none of the five tests A-E holds. The lineage region is non-empty in the exact chain, a scalar muY suffices for the retained criteria, and nothing establishes necessary X amplification.",
+ "WHY_NOT_DISPOSITION_4": "the criterion IS resolved. Founder survival is rejected on scientific grounds that stand independently of any region, and two-centre functional continuity is the operational form of the object under test.",
+ "WHY_NOT_DISPOSITION_5": "the raw data are fully recoverable: all 128 archives verify against the manifest and the pre-fix analyser was recovered from Git and re-run.",
+ "FOUNDER_GATE_STATUS": "REJECTED \u2014 unsatisfiable a priori AND scientifically wrong",
+ "LINEAGE_REGION": {
+  "EMPTY": false,
+  "grid_points": 563,
+  "kY_range": [
+   1.584893192461114e-05,
+   0.0005623413251903491
+  ],
+  "muY_range": [
+   1e-08,
+   0.0011885022274370164
+  ],
+  "STATUS": "DEVELOPMENTAL \u2014 derived from post-outcome data under a mean-field environment; it authorizes a clean test, it confirms nothing"
+ },
+ "TWO_CENTRE_REGION": "NOT_DETERMINABLE_ACROSS_THE_PLANE",
+ "EXACT_MISSING_OPERATOR_COMPONENT": {
+  "NAME": "the spatial two-centre sub-operator as a function of (kY, muY)",
+  "COMPONENTS": [
+   "centre-formation rate (O or C -> S)",
+   "two-centre hold / dissolution rate (S -> S and S -> C, O)",
+   "third-centre appearance rate (S -> P)"
+  ],
+  "WHY_NOT_IDENTIFIED": "measured at exactly two points of a two-dimensional plane. The exact Markov chain cannot supply them because it counts Y and does not place them.",
+  "IT_IS_NOT_A_MISSING_FIELD": "every covariate needed to condition it is already recorded: birth-cell exposure class, per-cell local nX/nSY/free/candidate pool, source-relative displacement, co-location duration, separation distance and centre count, all per step. The deficit is world COVERAGE across the plane, which is a design problem.",
+  "SO_THIS_IS_NOT_CALLED_ADDITIONAL_INSTRUMENTATION": true
+ },
+ "FEEDBACK_STATUS": "UNRESOLVED_NOT_CONTROLLED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "FINAL_DISPOSITION": "LINEAGE_CRITERION_SUPPORTED__OPERATOR_NOT_IDENTIFIED_FROM_PQEC01",
+ "NEXT_SCIENTIFIC_ELIGIBILITY": "CLEAN-LINEAGE-OPERATOR-CALIBRATION-02",
+ "NEW_SCIENTIFIC_RUNS_USED": 0,
+ "PQEC01_RAW_EXPERIMENT_STATUS": "VALID_DEVELOPMENTAL_CALIBRATION_DATA",
+ "PQEC01_PROSPECTIVE_CONFIRMATORY_STATUS": "NOT_ESTABLISHED",
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "TOMMY_ACTION_REQUIRED": "NONE"
+}

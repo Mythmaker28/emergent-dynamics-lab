@@ -1,0 +1,57 @@
+{
+ "SECTION": "FLCR01 \u00a73 \u2014 the founder gate is unsatisfiable a priori",
+ "CRITERIA": {
+  "C1": "kY * E * W >= 1",
+  "C2_FOUNDER": "(1 - muY)^T_HORIZON >= 0.5",
+  "C3": "kY * E * W * (1 - muY)^tau_sep <= 0.5"
+ },
+ "ELIMINATION": {
+  "C1_AND_C3": "divide C3 by C1: (1-muY)^tau_sep <= 0.5  =>  muY >= 1 - 0.5^(1/tau_sep)",
+  "C2_FOUNDER": "muY <= 1 - 0.5^(1/T_HORIZON)",
+  "kY_CANCELS": true,
+  "E_CANCELS": true
+ },
+ "EVALUATED": [
+  {
+   "tau_sep": 83.0,
+   "muY_lower_bound_from_C1_and_C3": 0.00831639669181139,
+   "muY_upper_bound_from_C2_FOUNDER": 6.301139474962358e-05,
+   "compatible": false,
+   "incompatibility_factor": 131.9824251606662
+  },
+  {
+   "tau_sep": 111.0,
+   "muY_lower_bound_from_C1_and_C3": 0.006225112392870269,
+   "muY_upper_bound_from_C2_FOUNDER": 6.301139474962358e-05,
+   "compatible": false,
+   "incompatibility_factor": 98.79343914867805
+  },
+  {
+   "tau_sep": 125.0,
+   "muY_lower_bound_from_C1_and_C3": 0.005529831326785639,
+   "muY_upper_bound_from_C2_FOUNDER": 6.301139474962358e-05,
+   "compatible": false,
+   "incompatibility_factor": 87.75922749779592
+  }
+ ],
+ "INDEPENDENT_OF": {
+  "kY": true,
+  "Q_or_exposure": true,
+  "exposure_uncertainty": true,
+  "calibration_size": true,
+  "instrumentation": true,
+  "candidate_point_selection": true,
+  "maximin_margin_vs_exposure_decades": {
+   "E=0.01": -0.150808,
+   "E=0.1": -0.150808,
+   "E=1": -0.150808,
+   "E=2.87302": -0.154085,
+   "E=10": -0.150808,
+   "E=100": -0.250166
+  }
+ },
+ "FOUNDER_GATE_REGION": "EMPTY_FOR_ALL_kY_AND_ALL_EXPOSURE",
+ "PLAIN_STATEMENT": "PQEC01 could not have produced a positive candidate region under its frozen criteria, regardless of the data. The observed margin is not confirmation of a measurement; it is the value of an identity that never depended on the measurement.",
+ "WHERE_THE_CONFLICT_LIES": "C2_FOUNDER requires the ORIGINAL Y particle to survive 11000 steps, while C3 requires a NEWBORN Y to be dead within tau_sep steps so that no second centre forms. Both are enforced through the single scalar muY, which applies identically to every Y. The gate asks one parameter to be simultaneously tiny and large.",
+ "DEEPER_ERROR": "C3 forbids a separated second centre while the scientific objective is precisely that two organising centres should appear and persist. The old criterion set does not merely conflict numerically -- it opposes the thing it was written to detect."
+}

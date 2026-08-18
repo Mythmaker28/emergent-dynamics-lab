@@ -1,0 +1,62 @@
+{
+ "SECTION": "FLCR01 \u00a74 \u2014 four candidate criteria, compared on scientific meaning",
+ "SCIENTIFIC_OBJECT": "persistence of an ORGANISING LINEAGE through material turnover -- not preservation of an arbitrary particle identifier",
+ "CRITERIA": {
+  "FOUNDER_SURVIVAL": {
+   "meaning": "the exact initial Y particle is still alive at T_HORIZON (the old C2)",
+   "necessary_for_the_claim": false,
+   "why": "the X cloud already turns over completely; the whole programme is about a structure that persists while its material is replaced. Requiring one tagged particle to persist imposes on Y precisely the property the project denies is required of X. It is a particle-identity criterion wearing an organisational label.",
+   "sufficient": false,
+   "invariant_under_turnover": false,
+   "measurable_from_PQEC01": true,
+   "requires_particle_genealogy": true,
+   "aggregate_engine_can_identify": "only while nY == 1; once two Y share a cell the engine cannot say which is the founder",
+   "consequence_for_the_region": "forces muY <= 6.30e-05 and is what makes the region empty for every kY and every exposure",
+   "architectural_requirement": "a per-particle identity the physics does not carry"
+  },
+  "LINEAGE_NON_EXTINCTION": {
+   "meaning": "at least one Y descended from the initial state is present at T_HORIZON; the founder may die after producing a successor",
+   "necessary_for_the_claim": true,
+   "why": "this is the minimal statement of continuity through turnover, and it is exactly the property the project claims for the X structure",
+   "sufficient": false,
+   "why_not_sufficient": "non-extinction says nothing about spatial organisation; a single wandering Y satisfies it",
+   "invariant_under_turnover": true,
+   "measurable_from_PQEC01": true,
+   "requires_particle_genealogy": false,
+   "aggregate_engine_can_identify": "yes -- N_Y > 0 is a total count and needs no genealogy",
+   "consequence_for_the_region": "removes the muY upper bound entirely; the C1-versus-C3 contradiction dissolves",
+   "architectural_requirement": "none"
+  },
+  "ORGANISER_CONTINUITY": {
+   "meaning": "at every required time at least one Y occupies or controls a source-bound organising centre, whatever the particle",
+   "necessary_for_the_claim": true,
+   "why": "continuity of FUNCTION is the claim; continuity of count is only its shadow",
+   "sufficient": false,
+   "why_not_sufficient": "one centre is not the two-centre object under test",
+   "invariant_under_turnover": true,
+   "measurable_from_PQEC01": true,
+   "requires_particle_genealogy": false,
+   "aggregate_engine_can_identify": "yes -- a centre is a single-linkage cluster of occupied Y cells at radius CORE_R, plus the local X response, both recorded every step",
+   "consequence_for_the_region": "adds a function requirement on top of non-extinction",
+   "architectural_requirement": "none"
+  },
+  "TWO_CENTRE_FUNCTIONAL_CONTINUITY": {
+   "meaning": "after first separation, two spatially distinct Y organising centres persist for a frozen hold duration, each retaining a qualified local X response, without a premature third centre",
+   "necessary_for_the_claim": true,
+   "why": "this IS the object the programme set out to detect; it is the operational form of 'one organising centre became two and both kept working'",
+   "sufficient": true,
+   "invariant_under_turnover": true,
+   "measurable_from_PQEC01": true,
+   "requires_particle_genealogy": false,
+   "aggregate_engine_can_identify": "yes -- n_centres, per-centre occupancy, per-cell local nX/nSY/free and pairwise distances are all recorded every step",
+   "consequence_for_the_region": "replaces C3's prohibition of a second centre with a hold requirement plus a third-centre prohibition",
+   "architectural_requirement": "none identified so far"
+  }
+ },
+ "PRIMARY_CRITERION_SELECTED": "TWO_CENTRE_FUNCTIONAL_CONTINUITY",
+ "SUPPORTING_CRITERION": "LINEAGE_NON_EXTINCTION",
+ "FOUNDER_SURVIVAL_VERDICT": "REJECTED_AS_A_GATE",
+ "WHY_NOT_CHOSEN_FOR_CREATING_A_REGION": "the choice is made from the scientific object, and it can be stated without reference to any region: the programme tests whether an organising structure persists while its material is replaced. A criterion that fails the moment the original particle is replaced contradicts the hypothesis it is meant to test. That argument would stand even if founder survival happened to admit a wide region.",
+ "IF_FOUNDER_IDENTITY_WERE_ESSENTIAL": "it would be essential only for a claim about an individual rather than a lineage -- for instance 'this particular organiser survived a perturbation'. No such claim is in scope, and the programme forbids reproduction and heredity claims outright.",
+ "NO_INVENTED_GENEALOGY": "none of the three retained criteria requires knowing which Y produced which. All are functions of total count, cell occupancy, cluster structure and local fields -- every one of them recorded. Where genealogy would be needed it is declared unidentifiable rather than imputed."
+}

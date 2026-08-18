@@ -1,0 +1,196 @@
+{
+ "SECTION": "FLCR01 feedback reanalysis",
+ "WITHDRAWN_CLAIM": {
+  "text": "feedback not significant",
+  "STATUS": "WITHDRAWN",
+  "WHY": "the published pooled comparison is confounded four ways at once: it conditions on nothing while the effect exists only where a birth occurred; worlds stop at outcome-dependent times; the analysis windows are therefore unequal; and the number of active X sources is itself the mechanism under test."
+ },
+ "FOUR_COMPARISONS": {
+  "B1": {
+   "pooled": {
+    "comparison": "pooled, all Phase-B worlds",
+    "n_A": 40,
+    "n_B": 29,
+    "A_mean": 111.01653055555553,
+    "B_mean": 151.54570079747234,
+    "delta": 40.5291702419168,
+    "relative_delta": 0.3650732916899701,
+    "se": 9.480134090374841,
+    "z": 4.275168458119804,
+    "significant_at_2se": true
+   },
+   "birth_worlds": {
+    "comparison": "stratified: worlds with >= 1 Y birth",
+    "n_A": 40,
+    "n_B": 14,
+    "A_mean": 111.01653055555553,
+    "B_mean": 185.09799679946403,
+    "delta": 74.0814662439085,
+    "relative_delta": 0.6673012196758952,
+    "se": 12.282854875602474,
+    "z": 6.031290526036993,
+    "significant_at_2se": true
+   },
+   "no_birth_worlds": {
+    "comparison": "stratified: worlds with no Y birth",
+    "n_A": 40,
+    "n_B": 15,
+    "A_mean": 111.01653055555553,
+    "B_mean": 120.23022452894676,
+    "delta": 9.21369397339123,
+    "relative_delta": 0.08299389223644005,
+    "se": 5.422052245295126,
+    "z": 1.6993001093610307,
+    "significant_at_2se": false
+   },
+   "horizon_matched": {
+    "comparison": "only Phase-B worlds that ran the full horizon",
+    "n_A": 40,
+    "n_B": 9,
+    "A_mean": 111.01653055555553,
+    "B_mean": 164.14008641975306,
+    "delta": 53.12355586419753,
+    "relative_delta": 0.47851933039479316,
+    "se": 12.526982321613778,
+    "z": 4.240730488821663,
+    "significant_at_2se": true
+   },
+   "matched_time_window": {
+    "comparison": "fixed identical step window [2000, 4000)",
+    "n_A": 40,
+    "n_B": 22,
+    "A_mean": 113.461725,
+    "B_mean": 129.7765681818182,
+    "delta": 16.31484318181819,
+    "relative_delta": 0.14379160180949294,
+    "se": 7.763356027658089,
+    "z": 2.1015193846184794,
+    "significant_at_2se": true
+   },
+   "matched_window_bounds": [
+    2000,
+    4000
+   ],
+   "matched_window_survivorship": {
+    "phase_B_worlds_covering_the_window": 22,
+    "of": 44,
+    "excluded_because_they_stopped_earlier": 22,
+    "WARNING": "this comparison is itself survivorship-biased: only worlds that lived past step 4000 can contribute, and living that long is an outcome. It removes the unequal-window confound and introduces a selection one; it is reported as a bound on the confound, not as a clean estimate."
+   },
+   "naive_min_window_rejected": {
+    "window_would_be": [
+     269,
+     270
+    ],
+    "width": 1,
+    "REJECTED_BECAUSE": "the shortest world sets the window; at B1 this gives a width of one step, which cannot support any comparison"
+   },
+   "nSY_birth_worlds": {
+    "comparison": "nSY, worlds with >= 1 Y birth",
+    "n_A": 40,
+    "n_B": 14,
+    "A_mean": 2.9555700552983537,
+    "B_mean": 2.92452577203201,
+    "delta": -0.031044283266343786,
+    "relative_delta": -0.010503653334385262,
+    "se": 0.005118046636883314,
+    "z": -6.06565071967545,
+    "significant_at_2se": true
+   }
+  },
+  "B2": {
+   "pooled": {
+    "comparison": "pooled, all Phase-B worlds",
+    "n_A": 40,
+    "n_B": 44,
+    "A_mean": 111.01653055555553,
+    "B_mean": 127.92945391599618,
+    "delta": 16.912923360440644,
+    "relative_delta": 0.15234599096012086,
+    "se": 9.195321000033871,
+    "z": 1.8392966771228916,
+    "significant_at_2se": false
+   },
+   "birth_worlds": {
+    "comparison": "stratified: worlds with >= 1 Y birth",
+    "n_A": 40,
+    "n_B": 18,
+    "A_mean": 111.01653055555553,
+    "B_mean": 168.67211574527457,
+    "delta": 57.655585189719034,
+    "relative_delta": 0.5193423438941527,
+    "se": 9.805332778164363,
+    "z": 5.880023298965751,
+    "significant_at_2se": true
+   },
+   "no_birth_worlds": {
+    "comparison": "stratified: worlds with no Y birth",
+    "n_A": 40,
+    "n_B": 26,
+    "A_mean": 111.01653055555553,
+    "B_mean": 99.72299572649572,
+    "delta": -11.293534829059809,
+    "relative_delta": -0.10172840722497838,
+    "se": 9.624738067859186,
+    "z": -1.1733862001682307,
+    "significant_at_2se": false
+   },
+   "horizon_matched": {
+    "comparison": "only Phase-B worlds that ran the full horizon",
+    "n_A": 40,
+    "n_B": 37,
+    "A_mean": 111.01653055555553,
+    "B_mean": 120.98921321321322,
+    "delta": 9.972682657657685,
+    "relative_delta": 0.08983060997989932,
+    "se": 9.712739990199086,
+    "z": 1.0267630625056268,
+    "significant_at_2se": false
+   },
+   "matched_time_window": {
+    "comparison": "fixed identical step window [2000, 4000)",
+    "n_A": 40,
+    "n_B": 44,
+    "A_mean": 113.461725,
+    "B_mean": 114.7043181818182,
+    "delta": 1.2425931818181937,
+    "relative_delta": 0.010951650715853242,
+    "se": 7.155972062976683,
+    "z": 0.17364421924549966,
+    "significant_at_2se": false
+   },
+   "matched_window_bounds": [
+    2000,
+    4000
+   ],
+   "matched_window_survivorship": {
+    "phase_B_worlds_covering_the_window": 44,
+    "of": 44,
+    "excluded_because_they_stopped_earlier": 0,
+    "WARNING": "this comparison is itself survivorship-biased: only worlds that lived past step 4000 can contribute, and living that long is an outcome. It removes the unequal-window confound and introduces a selection one; it is reported as a bound on the confound, not as a clean estimate."
+   },
+   "naive_min_window_rejected": {
+    "window_would_be": [
+     2000,
+     4236
+    ],
+    "width": 2236,
+    "REJECTED_BECAUSE": "the shortest world sets the window; at B1 this gives a width of one step, which cannot support any comparison"
+   },
+   "nSY_birth_worlds": {
+    "comparison": "nSY, worlds with >= 1 Y birth",
+    "n_A": 40,
+    "n_B": 18,
+    "A_mean": 2.9555700552983537,
+    "B_mean": 2.93149334161293,
+    "delta": -0.024076713685423634,
+    "relative_delta": -0.008146216545353779,
+    "se": 0.004015051592936303,
+    "z": -5.996613773975382,
+    "significant_at_2se": true
+   }
+  }
+ },
+ "CAUSAL_WARNING": "NONE of these comparisons identifies a causal effect. Whether a birth occurred is not randomised -- it is itself an outcome of the same exposure that drives X production, so birth-worlds are selected for high exposure. Stopping is outcome-dependent. PQEC01 cannot estimate this feedback cleanly and no causal number is claimed.",
+ "PRESERVED_DEVELOPMENTAL_CLUE": "Y birth, and the appearance of multiple Y centres, may substantially increase X production. The mechanism is architecturally plausible: kX = 1.0 makes p_X = 1 wherever nX*nY >= 1, so a second Y at a different cell adds a saturated X source rather than competing for the first. This is a clue for the next design, not a measured effect."
+}

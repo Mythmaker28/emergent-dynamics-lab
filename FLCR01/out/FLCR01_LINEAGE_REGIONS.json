@@ -1,0 +1,148 @@
+{
+ "SECTION": "FLCR01 \u00a78-\u00a79 \u2014 lineage gates and the three regions",
+ "GATE_FAMILY": {
+  "L1_FIRST_BIRTH": "P(first Y birth before T_birth=9000) >= 0.50",
+  "L2_LINEAGE_CONTINUITY": "P(no total Y extinction before T_horizon=11000) >= 0.50",
+  "L3_TWO_CENTRE_FORMATION": "P(reach two spatial centres before T_sep=9000) >= 0.50",
+  "L4_TWO_CENTRE_HOLD": "P(two centres persist H_hold=16 steps once formed) >= 0.50",
+  "L5_THIRD_CENTRE_CONTROL": "P(no third centre before the hold completes) >= 0.50",
+  "L6_ORGANISER_FUNCTION": "both centres retain the qualified local X response",
+  "L7_TECHNICAL_AND_DOMAIN_INTEGRITY": "no integrity failure"
+ },
+ "THRESHOLD_PROVENANCE": {
+  "T_horizon": {
+   "value": 11000,
+   "source": "INHERITED from PQEC01/OBTC02"
+  },
+  "T_birth": {
+   "value": 9000,
+   "source": "INHERITED (the analysis window)"
+  },
+  "T_sep": {
+   "value": 9000,
+   "source": "INHERITED (the analysis window)"
+  },
+  "probability_threshold": {
+   "value": 0.5,
+   "source": "INHERITED \u2014 it is 1 - ALPHA_SURVIVAL"
+  },
+  "H_hold": {
+   "value": 16.0,
+   "source": "DEVELOPMENTAL \u2014 the median observed duration of a two-centre episode over all 128 worlds",
+   "n_episodes": 380,
+   "NOT_OPTIMIZED_AGAINST_OUTCOMES": "it is a location statistic of an observed distribution, chosen before any gate was evaluated, and it is labelled developmental"
+  }
+ },
+ "FOUNDER_SURVIVAL_REGION": {
+  "n_grid_points": 0,
+  "EMPTY": true,
+  "REASON": "C1 and C3 force muY >= 6.2e-03 while C2_FOUNDER forces muY <= 6.3e-05; kY and the exposure cancel"
+ },
+ "LINEAGE_CONTINUITY_REGION": {
+  "n_grid_points": 563,
+  "EMPTY": false,
+  "kY_range": [
+   1.584893192461114e-05,
+   0.0005623413251903491
+  ],
+  "muY_range": [
+   1e-08,
+   0.0011885022274370164
+  ],
+  "METHOD": "exact finite Markov chain on total Y count using the engine's own per-step binomial birth and death laws, at the measured mean candidate pool and mean organiser nX",
+  "STATUS": "EXACT_UNDER_A_MEAN_FIELD_ENVIRONMENT \u2014 the chain uses mean exposure, not the position-resolved field"
+ },
+ "TWO_CENTRE_FUNCTIONAL_REGION": {
+  "MEASURED_AT_TWO_POINTS_ONLY": {
+   "B1": {
+    "N_WORLDS": 44,
+    "P_first_birth": 0.36363636363636365,
+    "P_lineage_alive_at_end": 0.36363636363636365,
+    "P_reach_two_centres": 0.36363636363636365,
+    "P_third_centre": 0.1590909090909091,
+    "P_hold_ge_H": 0.36363636363636365,
+    "P_hold_ge_TAU_FROZEN": 0.3409090909090909,
+    "median_max_hold_among_S_worlds": 1380.0,
+    "binom_se_reach_two": 0.07252036683795142
+   },
+   "B2": {
+    "N_WORLDS": 44,
+    "P_first_birth": 0.4090909090909091,
+    "P_lineage_alive_at_end": 1.0,
+    "P_reach_two_centres": 0.4090909090909091,
+    "P_third_centre": 0.1590909090909091,
+    "P_hold_ge_H": 0.4090909090909091,
+    "P_hold_ge_TAU_FROZEN": 0.3409090909090909,
+    "median_max_hold_among_S_worlds": 1459.0,
+    "binom_se_reach_two": 0.07412145088699214
+   }
+  },
+  "H_HOLD_USED": 16.0,
+  "EMPTY_OR_NONEMPTY": "NOT_DETERMINABLE_ACROSS_THE_PLANE",
+  "REASON": "L3, L4 and L5 depend on SPATIAL rates -- centre formation, hold and third-centre appearance -- which were measured at exactly two (kY, muY) points. Two points cannot identify a surface over a two-dimensional plane, and nothing in the exact chain predicts them, because the chain counts Y and does not place them.",
+  "WHAT_WOULD_SETTLE_IT": "world coverage across the plane at the SAME instrumentation -- a design problem, not a missing field"
+ },
+ "ARCHITECTURE": {
+  "SECTION": "FLCR01 \u00a710 \u2014 architecture-change test",
+  "TESTS": {
+   "A_lineage_incompatible_with_third_centre_control_for_all_kY_muY": {
+    "HOLDS": false,
+    "evidence": "the exact chain admits 563 grid points satisfying L1, L2 and the N_STAR bound simultaneously"
+   },
+   "B_requires_different_removal_rates_for_founder_and_newborn": {
+    "HOLDS": false,
+    "evidence": "that asymmetry was required only by the FOUNDER gate. Under lineage continuity nothing distinguishes founder from newborn, so a single scalar muY suffices for the retained criteria."
+   },
+   "C_requires_age_state_contact_or_position_dependent_Y_death": {
+    "HOLDS": "NOT_ESTABLISHED",
+    "evidence": "this would follow only if L4 (hold) and L5 (third-centre control) proved jointly unreachable with a scalar muY. They were measured at two points, which cannot establish it either way."
+   },
+   "D_feedback_necessarily_causes_uncontrolled_X_amplification": {
+    "HOLDS": false,
+    "evidence": "the apparent effect ranges from about +1% to +67% depending only on which comparison is chosen, and the matched-window comparison is not significant at B2. Nothing establishes NECESSARY amplification for every admissible point."
+   },
+   "E_exact_operator_proves_every_admissible_lineage_region_empty": {
+    "HOLDS": false,
+    "evidence": "the lineage region is non-empty in the exact chain"
+   }
+  },
+  "ARCHITECTURE_CHANGE_JUSTIFIED": false,
+  "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+  "EXPLICITLY_NOT_INFERRED_FROM": [
+   "the founder gate being self-contradictory",
+   "PQEC01 provenance being incomplete",
+   "a misspecified validation model",
+   "the old positive gate being impossible",
+   "more data being desirable"
+  ],
+  "SMALLEST_MISSING_DEGREE_OF_FREEDOM_IF_LATER_REQUIRED": {
+   "ranked_candidates": [
+    {
+     "change": "state-dependent Y removal (muY conditioned on the number of centres)",
+     "why_first": "it is the minimal change that could enforce third-centre control without killing the founder, and it adds no species and no new physical state variable -- only a dependence of an existing rate on an already-computed quantity"
+    },
+    {
+     "change": "centre-dependent resource limitation",
+     "why": "acts on the shared pool rather than on Y directly"
+    },
+    {
+     "change": "local negative feedback on Y birth",
+     "why": "suppresses a third centre at its source"
+    },
+    {
+     "change": "age-dependent Y removal",
+     "why": "requires a per-particle age the aggregate engine cannot carry"
+    },
+    {
+     "change": "founder/newborn asymmetric survival",
+     "why": "requires the particle identity this analysis rejects as a criterion"
+    },
+    {
+     "change": "explicit lineage-level resource accounting",
+     "why": "largest change; not justified by anything measured"
+    }
+   ],
+   "NOT_A_NEW_SPECIES": "no candidate above introduces a new chemical species, and none is authorised by this mission"
+  }
+ }
+}
