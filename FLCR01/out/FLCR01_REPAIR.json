@@ -1,0 +1,151 @@
+{
+ "SECTION": "FLCR01 single repair round",
+ "OPERATOR_REVERIFIED_EVERY_ACCEPTED_FINDING": true,
+ "R1_ENVIRONMENT_PROVENANCE": {
+  "WAS": {
+   "c": 0.961651,
+   "nX": 4.312563,
+   "source": "pqec01_design.DEV_MEAN_CAND_Y / DEV_MEAN_NX_ORG, measured on MYQBD01's 14 mobile arms \u2014 the GRANDPARENT programme"
+  },
+  "NOW": {
+   "c": 1.116961111111111,
+   "nX": 3.9125277777777776,
+   "source": "PQEC01's own 40 Phase-A worlds, event-aligned ycells"
+  },
+  "EFFECTIVE_EXPOSURE_WAS": 4.312563,
+  "PQEC01_MEASURED_MEAN_Q": 2.8730222222222226,
+  "INFLATION_FACTOR": 1.5010545225314418,
+  "NOTE": "round(0.961651) = 1 collapsed the candidate pool to a single trial, so the chain's effective exposure was nX alone"
+ },
+ "R2_CHAIN_CALIBRATION": {
+  "PER_POINT": [
+   {
+    "point": "B1",
+    "kY": 2.51189e-05,
+    "muY": 9.26119e-05,
+    "observed_worlds_with_a_birth": 16,
+    "of": 44,
+    "observed_fraction": 0.36363636363636365,
+    "predicted_mean_field_GRANDPARENT_constants": 0.6962832549631418,
+    "p_value_grandparent": 1.072501789802675e-05,
+    "predicted_mean_field_PQEC01_constants": 0.660783068382581,
+    "p_value_pqec01_mean_field": 0.00010817878682052168,
+    "predicted_world_level_average": 0.652875680498504,
+    "p_value_world_level": 0.00017231514633519985
+   },
+   {
+    "point": "B2",
+    "kY": 2.15443e-05,
+    "muY": 1e-08,
+    "observed_worlds_with_a_birth": 18,
+    "of": 44,
+    "observed_fraction": 0.4090909090909091,
+    "predicted_mean_field_GRANDPARENT_constants": 0.6401507708027604,
+    "p_value_grandparent": 0.003007493324550749,
+    "predicted_mean_field_PQEC01_constants": 0.604363126816208,
+    "p_value_pqec01_mean_field": 0.013724694068812241,
+    "predicted_world_level_average": 0.5995949864094723,
+    "p_value_world_level": 0.016462891349601157
+   }
+  ],
+  "MEAN_FIELD_REJECTED": true,
+  "WORLD_LEVEL_REJECTED": true,
+  "MECHANISM": "P(at least one birth) is CONCAVE in exposure, so predicting at the mean exposure over-predicts relative to averaging the per-world predictions (Jensen). Discarding world-level dispersion is not a presentational shortcut here -- it is what makes the model wrong, and it errs in the PERMISSIVE direction.",
+  "CONSEQUENCE": "a chain the data reject at both testable points cannot carry a quantitative candidate region. Its output is downgraded to a NECESSARY-CONDITION SCREEN: a point outside it is excluded, a point inside it is not endorsed."
+ },
+ "R3_REGION_WITH_WORLD_LEVEL_UNCERTAINTY": {
+  "UNIT": "one world \u2014 the region is evaluated separately in EVERY Phase-A world's own measured environment, then summarized across worlds",
+  "N_WORLDS": 40,
+  "GRID": "41 x 41 log points for the per-world sweep",
+  "AT_THE_MEASURED_MEAN": {
+   "n_points": 130,
+   "box": {
+    "kY": [
+     1.9952623149688786e-05,
+     0.0001995262314968881
+    ],
+    "muY": [
+     1e-08,
+     0.0003548133892335753
+    ]
+   }
+  },
+  "ROBUST_CORE_90PCT_OF_WORLDS": {
+   "n_points": 101,
+   "box": {
+    "kY": [
+     2.5118864315095822e-05,
+     0.00012589254117941674
+    ],
+    "muY": [
+     1e-08,
+     0.00023713737056616554
+    ]
+   },
+   "worlds_required": 36
+  },
+  "INTERSECTION_OVER_ALL_WORLDS": {
+   "n_points": 0,
+   "box": null
+  },
+  "WORLDS_WITH_AN_EMPTY_REGION": 2,
+  "L1_HORIZON_CORRECTED": {
+   "declared_T_birth": 9000,
+   "previously_evaluated_at": 11000,
+   "now_evaluated_at": 9000
+  },
+  "NON_EMPTINESS_IS_ROBUST": true,
+  "QUANTITATIVE_BOX_IS_NOT": "the published box [1.58e-05, 5.62e-04] x [1.00e-08, 1.19e-03] was computed at a single imported exposure that is 1.5011x PQEC01's own measured mean. It is withdrawn."
+ },
+ "R4_COMPOSITION_CORRECTION": {
+  "WITHDRAWN_CLAIM": "'replacing founder survival by lineage non-extinction is what dissolves the contradiction'",
+  "WHY_IT_WAS_WRONG": "of the region's points, 88.3% ALREADY satisfy C2_FOUNDER while only 0.0% satisfy C3. The non-emptiness is therefore driven mainly by dropping C3 -- the prohibition on a separated second centre -- not by replacing the founder gate.",
+  "REGION_POINTS": 513,
+  "SATISFY_C1": 236,
+  "SATISFY_C2_FOUNDER": 453,
+  "SATISFY_C3": 0,
+  "COUNTERFACTUAL_ON_THE_ORIGINAL_FROZEN_SET": {
+   "drop_C2_FOUNDER_only": 225,
+   "drop_C3_only": 1056,
+   "READING": "dropping C3 alone admits 1056 grid points; dropping C2_FOUNDER alone admits 225. The larger relaxation is C3."
+  },
+  "WHAT_STILL_STANDS": "both changes are scientifically justified and neither was chosen for its region. C3 forbids the second centre the programme exists to detect; C2_FOUNDER imposes particle identity. But the CAUSAL attribution in the C2 commit message and the audit was wrong, and is corrected here.",
+  "L3_TO_L7_NEVER_EVALUATED_IN_THE_REGION": "the region uses only L1, L2 and the N_STAR bound. L3, L4 and L5 -- including the declared C3 replacement -- are measured at two points and enter no region computation. The region is therefore a LINEAGE-COUNT region, not a two-centre region."
+ },
+ "R5_GATE_AND_ARCHITECTURE_FIXES": {
+  "L4_WAS_DEGENERATE": {
+   "definition_used": "P(max two-centre hold >= H_hold) with H_hold = median episode length = 16 steps",
+   "why_degenerate": "every world that ever reached state S held it for at least the MEDIAN episode length, so L4 returned exactly L3 at both points (0.364 and 0.409). A gate that cannot fail independently of another gate is not a gate.",
+   "CORRECTED": "H_hold must be a high quantile of the episode distribution, declared before evaluation. At the frozen TAU_SEP = 125 the same measurement gives 0.341 and 0.341 -- a gate that does discriminate.",
+   "STATUS": "L4 is WITHDRAWN as evaluated; it is handed to the successor with the quantile requirement attached"
+  },
+  "L1_AND_L2_ALSO_FAIL_AT_BOTH_POINTS": {
+   "L1_first_birth": {
+    "B1": 0.36363636363636365,
+    "B2": 0.4090909090909091,
+    "threshold": 0.5,
+    "fails_at_both": true
+   },
+   "L2_lineage_alive": {
+    "B1": 0.36363636363636365,
+    "B2": 1.0,
+    "threshold": 0.5,
+    "fails_at": "B1 only"
+   },
+   "STATEMENT": "the candidate report named L3's failure but did not say that L1 fails at BOTH measured points and L2 fails at B1 -- and L1 and L2 are the only gates the region actually uses. Pooled across both points, 34 of 88 worlds have a birth. This is stated now."
+  },
+  "ARCHITECTURE_TEST_SCORING_CORRECTED": {
+   "test_A": {
+    "was": false,
+    "now": "NOT_ESTABLISHED \u2014 the evidence cited contained no third-centre term at all, so it could not have settled a claim about third-centre control"
+   },
+   "test_C": {
+    "was": "NOT_ESTABLISHED",
+    "now": "NOT_ESTABLISHED (unchanged)"
+   },
+   "WITHDRAWN_SENTENCE": "'none of the five tests A-E holds'",
+   "CORRECTED_SENTENCE": "two of the five tests (A and C) are NOT_ESTABLISHED rather than false; three (B, D, E) do not hold. No test holds, so architecture change remains unjustified -- but the record must not report an open question as a settled negative.",
+   "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED"
+  }
+ }
+}
