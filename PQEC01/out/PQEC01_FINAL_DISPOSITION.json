@@ -21,13 +21,13 @@
   "PHASE_B_REAL_DESCENDANT_EXPOSURE_RECORDED": true,
   "FIRST_BIRTH_OPERATOR_VALIDATED": true,
   "TWO_Y_OPERATOR_IDENTIFIED": true,
-  "FEEDBACK_CONTROLLED_OR_EXPLICITLY_MODELLED": true,
+  "FEEDBACK_CONTROLLED_OR_EXPLICITLY_MODELLED": false,
   "INTERNAL_VALIDATION_PASS": false,
   "CANDIDATE_REGION_POSITIVE_WIDTH": false,
   "NO_SINGLE_WORLD_DOMINANCE": true,
   "NO_FRAME_PSEUDOREPLICATION": true
  },
- "GATES_PASSED": 11,
+ "GATES_PASSED": 10,
  "GATES_TOTAL": 13,
  "PHASE_B_TOTALS": {
   "Y_births": {
@@ -71,7 +71,8 @@
   "declared_before_any_run_in_the_freeze": true,
   "preregistered_maximin_shortfall_decades": -0.1513,
   "measured_maximin_shortfall_decades": -0.1528,
-  "READING": "the freeze declared, before a single world ran, that no admissible (kY, muY) satisfies all five frozen boundaries and that the region might come back empty. The calibration replaced the mean-exposure proxy with measured, world-level quantities and the shortfall moved by 0.0015 decades. The boundary arithmetic was not the weak link; the measurement confirmed it."
+  "READING": "the freeze declared, before a single world ran, that no admissible (kY, muY) satisfies all five frozen boundaries and that the region might come back empty. The calibration replaced the mean-exposure proxy with measured, world-level quantities and the shortfall moved by 0.0015 decades. The boundary arithmetic was not the weak link; the measurement confirmed it.",
+  "SUPERSEDED_BY_R1": "the preregistration was right that the region would be empty, but its explanation was wrong. See REPAIR_ROUND.R1: the emptiness is algebraic in the criteria and involves neither kY nor the exposure."
  },
  "PHASE_A_DESIGN_DISPERSION_MISS": {
   "developmental_sd_used_in_the_freeze": 0.1629902887142898,
@@ -90,5 +91,71 @@
   "worlds_with_mean_N_X_below_50": 3,
   "corr_meanNX_with_E_w": 0.9913040105737327,
   "READING": "the founder's exposure is Q = nX * min(nSY, free); a world in which the X cloud fails to establish or collapses has Q identically 0 by construction, with no Y process involved. 2 of 40 Phase-A worlds have a mean N_X below 5. This failure mode, not Y dynamics, dominates the world-level dispersion of exposure."
- }
+ },
+ "REPAIR_ROUND": {
+  "ROUNDS_AUTHORIZED": 1,
+  "ROUNDS_USED": 1,
+  "REVIEW_VERDICT": "EVIDENCE_OR_PROVENANCE_INCOMPLETE",
+  "REVIEW_COUNTS": {
+   "LOAD_BEARING": 0,
+   "SUBSTANTIVE": 20,
+   "COSMETIC": 4,
+   "ATTACKS_REFUTED": 2
+  },
+  "R1": "the frozen criteria use ONE parameter, muY, for two opposite purposes: the founder must survive 11000 steps (needing muY <= 6.301e-05) while a newborn must usually die within tau = 111 steps so that no second centre forms (needing muY >= 6.225e-03). They are incompatible by a factor of 98.8 for EVERY kY and EVERY exposure. The region is empty as a matter of algebra on the criteria, not as a measured outcome. No calibration, no instrumentation and no amount of data could have made it non-empty under these criteria.",
+  "R2": "Y feedback on the X environment is LARGE and HIGHLY SIGNIFICANT once conditioned: +61.0% (z = 5.65) at B1 and +51.9% (z = 5.88) at B2 in birth-worlds, with a matching depletion of nSY. It is NOT modelled by the identified operator.",
+  "REPAIR_R3_METHODS_HASH_SCOPE": {
+   "REVIEW_FINDING": "F01",
+   "WHAT_THE_FROZEN_HASH_COVERED": [
+    "pqec01_design.py",
+    "pqec01_observer.py",
+    "pqec01_qualify.py",
+    "pqec01_freeze.py (added in the same commit as the hash)"
+   ],
+   "WHAT_IT_DID_NOT_COVER": [
+    "pqec01_analyse.py",
+    "pqec01_manifest.py",
+    "pqec01_repair.py",
+    "pqec01_run.py"
+   ],
+   "WHY": "PQEC01_METHODS_HASH was computed inside pqec01_freeze.py over the code present AT FREEZE TIME. The executor and the analyser were written after the freeze, so the hash does not bind them. The freeze binds the DESIGN -- points, seeds, sample sizes, splits, formulas, stop rules, gates -- and that is what it was for; but the claim it implies, that the whole method is hash-bound, is too broad.",
+   "POST_HOC_EXECUTOR_HASH": "0928684d0efa49b1a18464b60778a4f36d778cc871261a23152422a0c693271c",
+   "NOT_RETROACTIVELY_CLAIMED": "this hash is recorded now, after the fact. It does not and cannot show the executor was fixed before the runs; the Git history is the only evidence for that, and it shows the executor first appears in C3.",
+   "SUCCESSOR_REQUIREMENT": "compute the methods hash over the executor and analyser too, and commit them with the freeze."
+  },
+  "REPAIR_R4_REFIT_CHRONOLOGY": {
+   "REVIEW_FINDINGS": "F14, F15",
+   "WHAT_HAPPENED": "a complete analysis run, including PQEC01_INTERNAL_VALIDATION.json, finished BEFORE two analysis defects were fixed. The operator therefore saw validation output before editing analysis code. This is stated plainly rather than defended by assertion.",
+   "THE_TWO_FIXES": [
+    "exposure quantities were switched from the post-step `scalars` array to the event-aligned `ycells` ledger, because the freeze's formulas require the event-aligned value",
+    "validation TEST 2 was switched from a per-STEP standard error to a world-level two-sample comparison, because the freeze states the unit is the world and forbids frame pseudoreplication"
+   ],
+   "EFFECT_ON_VERDICTS": {
+    "B1_TEST_2_before_fix": {
+     "z": -14.32,
+     "verdict": "FAIL"
+    },
+    "B1_TEST_2_after_fix": {
+     "z": 1.16,
+     "verdict": "PASS"
+    },
+    "B2_TEST_2_before_fix": {
+     "z": -144.37,
+     "verdict": "FAIL"
+    },
+    "B2_TEST_2_after_fix": {
+     "z": -2.82,
+     "verdict": "FAIL"
+    },
+    "INTERNAL_VALIDATION_PASS_before_fix": false,
+    "INTERNAL_VALIDATION_PASS_after_fix": false,
+    "TERMINAL_DISPOSITION_UNCHANGED_EITHER_WAY": true
+   },
+   "HONEST_ASSESSMENT": "one fix moved a test from FAIL to PASS after the failure was visible. That is the shape of a post-hoc rescue, and the fact that it restores a rule the freeze states verbatim is a defence, not a proof. The mitigating facts are that the gate and the terminal disposition are identical before and after, and that BOTH sets of numbers are published here.",
+   "SUPERSEDED_LITERAL": "PQEC01_INTERNAL_VALIDATION.json carried NO_REFIT_AFTER_VIEWING_VALIDATION: True as a hardcoded literal. It is replaced by this record.",
+   "SUCCESSOR_REQUIREMENT": "freeze the analysis code with the design, in the same commit, and hash it; then a post-validation edit is detectable rather than arguable."
+  }
+ },
+ "FINAL_DISPOSITION": "PROSPECTIVE_Q_ENVIRONMENT_OPERATOR_NOT_IDENTIFIED__ADDITIONAL_INSTRUMENTATION_REQUIRED",
+ "DISPOSITION_UNCHANGED_BY_THE_REVIEW": true
 }

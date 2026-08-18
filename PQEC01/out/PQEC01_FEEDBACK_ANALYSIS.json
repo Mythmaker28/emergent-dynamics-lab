@@ -92,5 +92,211 @@
    "total_Y_births": 25,
    "worlds_with_a_birth": 18
   }
+ },
+ "REPAIR_R2_CONDITIONED_FEEDBACK": {
+  "REVIEW_FINDING": "F18",
+  "SUPERSEDED_CLAIM": "the pooled comparison reported N_X feedback of +11.9%/+15.2% at z = 1.32/1.84 and concluded it was not significant",
+  "WHY_IT_WAS_WRONG": "a Simpson's paradox. Pooling worlds in which a Y birth occurred with worlds in which none did averages a large positive effect against a negative one and hides both. Whether a birth occurred is not a covariate to average over -- it is the condition under which feedback can exist at all.",
+  "STRATIFIED": {
+   "B1": {
+    "birth_worlds": {
+     "mean_N_X": {
+      "n": 16,
+      "phase_A_mean": 111.01653055555553,
+      "phase_B_mean": 178.75573316267247,
+      "delta": 67.73920260711694,
+      "relative_delta": 0.610172217309732,
+      "se": 11.983043724566974,
+      "z": 5.6529212580808474,
+      "significant_at_2se": true
+     },
+     "mean_nSY": {
+      "n": 16,
+      "phase_A_mean": 2.9555700552983537,
+      "phase_B_mean": 2.926750013873687,
+      "delta": -0.028820041424666876,
+      "relative_delta": -0.009751093997248392,
+      "se": 0.004867407117608893,
+      "z": -5.92102545119026,
+      "significant_at_2se": true
+     },
+     "mean_free": {
+      "n": 16,
+      "phase_A_mean": 9.996141975308642,
+      "phase_B_mean": 9.996141975308642,
+      "delta": 0.0,
+      "relative_delta": 0.0,
+      "se": 5.254534392573277e-16,
+      "z": 0.0,
+      "significant_at_2se": false
+     }
+    },
+    "no_birth_worlds": {
+     "mean_N_X": {
+      "n": 28,
+      "phase_A_mean": 111.01653055555553,
+      "phase_B_mean": 93.06042143246144,
+      "delta": -17.956109123094095,
+      "relative_delta": -0.1617426615048864,
+      "se": 8.970745924477972,
+      "z": -2.0016294379822157,
+      "significant_at_2se": true
+     },
+     "mean_nSY": {
+      "n": 28,
+      "phase_A_mean": 2.9555700552983537,
+      "phase_B_mean": 2.9635644312102443,
+      "delta": 0.007994375911890561,
+      "relative_delta": 0.0027048507605357906,
+      "se": 0.00381660074928663,
+      "z": 2.094632485041777,
+      "significant_at_2se": true
+     },
+     "mean_free": {
+      "n": 28,
+      "phase_A_mean": 9.996141975308642,
+      "phase_B_mean": 9.996141975308644,
+      "delta": 1.7763568394002505e-15,
+      "relative_delta": 1.777042426756252e-16,
+      "se": 2.1427211544507504e-16,
+      "z": 8.29019135649309,
+      "significant_at_2se": true
+     }
+    },
+    "pooled": {
+     "mean_N_X": {
+      "n": 44,
+      "phase_A_mean": 111.01653055555553,
+      "phase_B_mean": 124.22235297071998,
+      "delta": 13.205822415164448,
+      "relative_delta": 0.11895365806406565,
+      "se": 9.99485704821701,
+      "z": 1.321261760068919,
+      "significant_at_2se": false
+     },
+     "mean_nSY": {
+      "n": 44,
+      "phase_A_mean": 2.9555700552983537,
+      "phase_B_mean": 2.9501773703605876,
+      "delta": -0.0053926849377661235,
+      "relative_delta": -0.0018245836968400846,
+      "se": 0.004230297882012841,
+      "z": -1.274776644145022,
+      "significant_at_2se": false
+     },
+     "mean_free": {
+      "n": 44,
+      "phase_A_mean": 9.996141975308642,
+      "phase_B_mean": 9.996141975308644,
+      "delta": 1.7763568394002505e-15,
+      "relative_delta": 1.777042426756252e-16,
+      "se": 2.082362433788751e-16,
+      "z": 8.530488307783486,
+      "significant_at_2se": true
+     }
+    }
+   },
+   "B2": {
+    "birth_worlds": {
+     "mean_N_X": {
+      "n": 18,
+      "phase_A_mean": 111.01653055555553,
+      "phase_B_mean": 168.67211574527457,
+      "delta": 57.655585189719034,
+      "relative_delta": 0.5193423438941527,
+      "se": 9.805332778164363,
+      "z": 5.880023298965751,
+      "significant_at_2se": true
+     },
+     "mean_nSY": {
+      "n": 18,
+      "phase_A_mean": 2.9555700552983537,
+      "phase_B_mean": 2.93149334161293,
+      "delta": -0.024076713685423634,
+      "relative_delta": -0.008146216545353779,
+      "se": 0.004015051592936303,
+      "z": -5.996613773975382,
+      "significant_at_2se": true
+     },
+     "mean_free": {
+      "n": 18,
+      "phase_A_mean": 9.996141975308642,
+      "phase_B_mean": 9.99614197530864,
+      "delta": -1.7763568394002505e-15,
+      "relative_delta": -1.777042426756252e-16,
+      "se": 6.007634759393126e-16,
+      "z": -2.956832281827487,
+      "significant_at_2se": true
+     }
+    },
+    "no_birth_worlds": {
+     "mean_N_X": {
+      "n": 26,
+      "phase_A_mean": 111.01653055555553,
+      "phase_B_mean": 99.72299572649572,
+      "delta": -11.293534829059809,
+      "relative_delta": -0.10172840722497838,
+      "se": 9.624738067859186,
+      "z": -1.1733862001682307,
+      "significant_at_2se": false
+     },
+     "mean_nSY": {
+      "n": 26,
+      "phase_A_mean": 2.9555700552983537,
+      "phase_B_mean": 2.9602863775456365,
+      "delta": 0.0047163222472828,
+      "relative_delta": 0.0015957403001928524,
+      "se": 0.004011122507639861,
+      "z": 1.1758110699186493,
+      "significant_at_2se": false
+     },
+     "mean_free": {
+      "n": 26,
+      "phase_A_mean": 9.996141975308642,
+      "phase_B_mean": 9.996141975308642,
+      "delta": 0.0,
+      "relative_delta": 0.0,
+      "se": 0.0,
+      "z": 0.0,
+      "significant_at_2se": false
+     }
+    },
+    "pooled": {
+     "mean_N_X": {
+      "n": 44,
+      "phase_A_mean": 111.01653055555553,
+      "phase_B_mean": 127.92945391599618,
+      "delta": 16.912923360440644,
+      "relative_delta": 0.15234599096012086,
+      "se": 9.195321000033871,
+      "z": 1.8392966771228916,
+      "significant_at_2se": false
+     },
+     "mean_nSY": {
+      "n": 44,
+      "phase_A_mean": 2.9555700552983537,
+      "phase_B_mean": 2.948507408300439,
+      "delta": -0.007062646997914701,
+      "relative_delta": -0.0023896056820760262,
+      "se": 0.0038276347849513664,
+      "z": -1.8451726443917869,
+      "significant_at_2se": false
+     },
+     "mean_free": {
+      "n": 44,
+      "phase_A_mean": 9.996141975308642,
+      "phase_B_mean": 9.996141975308644,
+      "delta": 1.7763568394002505e-15,
+      "relative_delta": 1.777042426756252e-16,
+      "se": 2.614939075123777e-16,
+      "z": 6.793109852152741,
+      "significant_at_2se": true
+     }
+    }
+   }
+  },
+  "MECHANISM": "kX = 1.0, so p_X = min(1, kX*nX*nY) is already 1 wherever nX*nY >= 1. A second Y at a DIFFERENT cell therefore adds a second saturated X source rather than competing for the first one, and X production roughly doubles. That is architectural, not stochastic.",
+  "CONCLUSION": "Y feedback on the X environment is LARGE and HIGHLY SIGNIFICANT once conditioned: +61.0% (z = 5.65) at B1 and +51.9% (z = 5.88) at B2 in birth-worlds, with a matching depletion of nSY. It is NOT modelled by the identified operator.",
+  "GATE_CONSEQUENCE": "FEEDBACK_CONTROLLED_OR_EXPLICITLY_MODELLED flips True -> False"
  }
 }

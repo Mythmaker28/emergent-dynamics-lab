@@ -39,5 +39,37 @@
   "expected_separated_second_centres": 0.7108828008119162,
   "min_margin_decades": -0.15282800264389057,
   "READING": "the best attainable point on MEASURED inputs; if this is negative the region is empty for the frozen criteria and the shortfall factor is 10^(-min_margin) = 1.422"
+ },
+ "REPAIR_R1_THE_EMPTINESS_IS_ALGEBRAIC": {
+  "REVIEW_FINDING": "F21",
+  "SUPERSEDED_CLAIM": "'the calibration replaced the mean-exposure proxy with measured world-level quantities and the shortfall moved by 0.0015 decades; the measurement confirmed the arithmetic'",
+  "WHY_IT_WAS_WRONG": "that wording implies the measurement COULD have moved the boundary and happened not to. It could not. Eliminating kY and the exposure between the frozen criteria gives a constraint on muY alone.",
+  "EXACT_DERIVATION": {
+   "C1": "kY * E * T_WINDOW >= MIN_EVENTS",
+   "C3": "kY * E * T_WINDOW * (1-muY)^tau <= GAMMA_SEP",
+   "C1_AND_C3_IMPLY": "(1-muY)^tau <= GAMMA_SEP/MIN_EVENTS  =>  muY >= 1 - (GAMMA_SEP/MIN_EVENTS)^(1/tau)",
+   "C2": "(1-muY)^T_HORIZON >= 1 - ALPHA_SURVIVAL  =>  muY <= 1 - (1-ALPHA_SURVIVAL)^(1/T_HORIZON)",
+   "tau_used": 111.0,
+   "muY_lower_bound_forced_by_C1_and_C3": 0.006225112392870269,
+   "muY_upper_bound_forced_by_C2": 6.301139474962358e-05,
+   "INCOMPATIBILITY_FACTOR": 98.79343914867805,
+   "KY_APPEARS": false,
+   "EXPOSURE_APPEARS": false,
+   "at_frozen_TAU_SEP_125": {
+    "muY_lower_bound": 0.005529831326785639,
+    "incompatibility_factor": 87.75922749779592
+   }
+  },
+  "MAXIMIN_MARGIN_VS_EXPOSURE_SWEEP": {
+   "E=0.01": -0.6291,
+   "E=0.1": -0.1511,
+   "E=1": -0.1511,
+   "E=2.87302": -0.159,
+   "E=10": -0.1511,
+   "E=100": -0.2502
+  },
+  "READING": "the frozen criteria use ONE parameter, muY, for two opposite purposes: the founder must survive 11000 steps (needing muY <= 6.301e-05) while a newborn must usually die within tau = 111 steps so that no second centre forms (needing muY >= 6.225e-03). They are incompatible by a factor of 98.8 for EVERY kY and EVERY exposure. The region is empty as a matter of algebra on the criteria, not as a measured outcome. No calibration, no instrumentation and no amount of data could have made it non-empty under these criteria.",
+  "WHAT_THIS_IS_NOT": "this is NOT EXISTING_ARCHITECTURE_FEEDBACK_PRECLUDES_CONTROLLED_WINDOW. It is not a feedback result at all. It is an incompatibility between two frozen ACCEPTANCE CRITERIA, and the correct response is to hand the criteria back for revision, not to declare the architecture preclusive.",
+  "SUCCESSOR_REQUIREMENT": "any successor must decouple the two roles of muY -- e.g. gate second-centre formation on a spatial or capacity condition rather than on descendant death -- or state explicitly that the frozen window is unreachable by construction."
  }
 }

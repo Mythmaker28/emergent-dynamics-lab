@@ -1,0 +1,1288 @@
+{
+ "SECTION": "PQEC01 independent adversarial review",
+ "REVIEW_ROLE": "single authorized independent adversarial reviewer; read-only on the candidate",
+ "CANDIDATE": {
+  "repo": "/home/claude/edl",
+  "branch": "codex/prospective-q-environment-calibration-01",
+  "C1": "0c8ed487641a06904f2690b23ee991857088ca00",
+  "C2": "0bba579f46895248364f3c74cd3c0e798c26eb4a",
+  "C3": "7d97205818ae723683280053512a27f1872db375",
+  "C4": "d61e9a34367b42bd7534647ad9802a9892639f31",
+  "DISPOSITION_UNDER_ATTACK": "PROSPECTIVE_Q_ENVIRONMENT_OPERATOR_NOT_IDENTIFIED__ADDITIONAL_INSTRUMENTATION_REQUIRED",
+  "GATES": "11 of 13 passing; failures INTERNAL_VALIDATION_PASS and CANDIDATE_REGION_POSITIVE_WIDTH"
+ },
+ "METHOD": {
+  "engine_never_run": true,
+  "world_constructed": false,
+  "_one_step_called": false,
+  "organiser_seeded": false,
+  "what_was_done": [
+   "source reading",
+   "exact recomputation from the 128 raw .npz archives with numpy",
+   "exact arithmetic on the frozen region criteria",
+   "git, filesystem and .pyc-header forensics"
+  ],
+  "scratch_scripts": [
+   "/home/claude/PQEC01/review/work/a5_a9_phaseA.py",
+   "/home/claude/PQEC01/review/work/a10_phaseB.py",
+   "/home/claude/PQEC01/review/work/a10_sep.py",
+   "/home/claude/PQEC01/review/work/a10_field.py",
+   "/home/claude/PQEC01/review/work/a2_hops.py",
+   "/home/claude/PQEC01/review/work/a6_a8.py"
+  ]
+ },
+ "ATTACK_COVERAGE": {
+  "A1_freeze_chronology": {
+   "result": "DEFECT_CONFIRMED (F01)",
+   "chronology_itself": "clean: C2 contains exactly 4 files, no raw outcome, no statistic; commit 23:27:27 strictly precedes the earliest raw archive 23:29:09 and the latest 23:58:27"
+  },
+  "A2_observer_inertness": {
+   "result": "ATTACK_REFUTED on the code; DEFECT_CONFIRMED on the qualification instruments (F02, F03, F04)"
+  },
+  "A3_outcome_firewall": {
+   "result": "DEFECT_CONFIRMED (F05); no evidence that anything was acted on"
+  },
+  "A4_accounting_of_starts": {
+   "result": "ATTACK_REFUTED"
+  },
+  "A5_step_phase_identity": {
+   "result": "ATTACK_REFUTED on the phase and on every named exposure quantity; DEFECT_CONFIRMED on the declared scope (F06, F07)"
+  },
+  "A6_lineage_label_ambiguity": {
+   "result": "DEFECT_CONFIRMED (F08, F09); no analysis assigns a parent"
+  },
+  "A7_frame_pseudoreplication": {
+   "result": "DEFECT_CONFIRMED (F10, F11)"
+  },
+  "A8_discovery_validation_leakage": {
+   "result": "ATTACK_REFUTED on the split rule; DEFECT_CONFIRMED on the region inputs and the unused Phase-A holdout (F12, F13)"
+  },
+  "A9_refitting_after_validation": {
+   "result": "DEFECT_CONFIRMED (F14, F15, F16, F17)"
+  },
+  "A10_descendant_position_exposure": {
+   "result": "ATTACK_REFUTED"
+  },
+  "A11_feedback_comparison": {
+   "result": "DEFECT_CONFIRMED (F18, F19, F20)"
+  },
+  "A12_terminal_disposition_both_ways": {
+   "result": "DEFECT_CONFIRMED on three published claims (F21, F22, F23) and one gate construction (F24); ATTACK_REFUTED on the disposition itself in both directions and on the correct non-use of EXISTING_ARCHITECTURE_FEEDBACK_PRECLUDES_CONTROLLED_WINDOW"
+  }
+ },
+ "FINDINGS": [
+  {
+   "ID": "F01",
+   "ATTACK": "A1",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "PQEC01_MASTER_FREEZE.json -> PQEC01_METHODS_HASH binds the programme's methods as of the freeze.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_freeze.py:18-24",
+    "/home/claude/edl/PQEC01/out/PQEC01_METHODS_HASH.txt:1"
+   ],
+   "EXACT_NUMBERS": {
+    "recorded_METHODS_HASH": "a1c910c870e92a2a8d33c8fdbc0d29224b7d02a7d9ab1c490383db2bd20e8142",
+    "sha256_over_the_four_files_present_at_freeze_time": "a1c910c870e92a2a8d33c8fdbc0d29224b7d02a7d9ab1c490383db2bd20e8142",
+    "files_covered": [
+     "pqec01_design.py",
+     "pqec01_freeze.py",
+     "pqec01_observer.py",
+     "pqec01_qualify.py"
+    ],
+    "files_NOT_covered": [
+     "pqec01_run.py",
+     "pqec01_manifest.py",
+     "pqec01_analyse.py",
+     "/home/claude/ORR01/code/*.py",
+     "/home/claude/OBTC02/code/*.py"
+    ],
+    "sha256_including_pqec01_run_py": "DIFFERENT (does not match the recorded hash)",
+    "sha256_over_all_seven_py_files_today": "34e43fd51c9840b6e29f624bd0bbe719aa1f1d2b06758c9d514074b8cf6545fa",
+    "pqec01_run_py_mtime": "2026-08-17T23:28:32.452Z",
+    "freeze_commit_time": "2026-08-17T23:27:27Z",
+    "methods_hash_computed_at": "2026-08-17T23:26:40.172Z",
+    "runner_written_after_freeze_commit_seconds": 65
+   },
+   "WHY_IT_MATTERS": "The un-hashed executor holds the stop-rule implementation, the SCALARS definition, the CORE_R single-linkage _centres routine, the archive schema and the n_rec truncation. The freeze binds design and observer but not the experiment; gate PROSPECTIVE_FREEZE_PRECEDES_ALL_RUNS is asserted rather than demonstrated for the executing code.",
+   "SETTLING_COMMAND_OR_CALCULATION": "python3 -c \"import hashlib,os;C='/home/claude/edl/PQEC01/code';h=hashlib.sha256();[(h.update(f.encode()),h.update(open(os.path.join(C,f),'rb').read())) for f in ['pqec01_design.py','pqec01_freeze.py','pqec01_observer.py','pqec01_qualify.py']];print(h.hexdigest())\"",
+   "MINIMUM_REQUIRED_CHANGE": "Publish a post-run EXECUTION_HASH covering pqec01_run.py and the engine files, stating it could not be frozen in advance; or declare in the freeze that METHODS_HASH covers design+observer only and name the uncovered files."
+  },
+  {
+   "ID": "F02",
+   "ATTACK": "A2",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "C1 commit: 'Checked by normalized source-text equality'; SOURCE_EQUIVALENCE.VERBATIM_SUBSET=True, UNDECLARED_DIFFERENCES=0.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_qualify.py:49-82",
+    "/home/claude/edl/PQEC01/code/pqec01_qualify.py:63-74",
+    "/home/claude/edl/PQEC01/code/pqec01_qualify.py:79"
+   ],
+   "EXACT_NUMBERS": {
+    "engine_lines": 14,
+    "observer_lines": 33,
+    "test_type": "one-directional set membership, order-insensitive",
+    "counterfactual_counter_block_moved_after_continue_VERBATIM_SUBSET": true,
+    "counterfactual_extra_engine_write_self_n_Y_0_0_plus_1_VERBATIM_SUBSET": true,
+    "counterfactual_continue_deleted_VERBATIM_SUBSET": false
+   },
+   "WHY_IT_MATTERS": "The specific mutation the brief asks about - the position of the hops_offered/hops_blocked update relative to the continue - is invisible to this test, as is any added engine-state write. The qualification's headline evidence for the highest-risk code does not test the property it names.",
+   "SETTLING_COMMAND_OR_CALCULATION": "Re-run the shipped predicate of pqec01_qualify.py:63-74 on the observer statement list with the counter block moved after 'continue' and with an extra write appended; both return VERBATIM_SUBSET=True. Independent order-sensitive difflib alignment (this review) shows the shipped code IS in the correct order.",
+   "MINIMUM_REQUIRED_CHANGE": "Replace the set test with an ordered difflib alignment of the two normalized statement sequences and assert equality in both directions after removing only pq_*, del and the two declared bookkeeping lines."
+  },
+  {
+   "ID": "F03",
+   "ATTACK": "A2",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "STATIC_MUTATION_AUDIT.ENGINE_STATE_WRITES_ARE_ONLY_IN_THE_DECLARED_VERBATIM_LOOP=True; RNG_CALL_COUNT=1.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_qualify.py:104-107",
+    "/home/claude/edl/PQEC01/code/pqec01_qualify.py:112-115",
+    "/home/claude/edl/PQEC01/code/pqec01_qualify.py:97,99,103"
+   ],
+   "EXACT_NUMBERS": {
+    "predicate_tests": "attribute name only",
+    "line_number_recorded_but_unused": true,
+    "rng_names_matched": [
+     "binomial",
+     "random",
+     "integers",
+     "choice",
+     "normal",
+     "uniform",
+     "poisson"
+    ],
+    "rng_names_missing": [
+     "hypergeometric",
+     "standard_normal",
+     "permutation",
+     "shuffle"
+    ],
+    "hypergeometric_used_by_engine_at": "/home/claude/ORR01/code/lawspec_v2.py:59,122",
+    "ast_node_types_missed": [
+     "AugAssign with Attribute target",
+     "in-place numpy methods (.fill, np.add.at, alias __setitem__)"
+    ]
+   },
+   "WHY_IT_MATTERS": "Two of the three qualification instruments prove less than their field names claim; only the differential fixture test carries real weight.",
+   "SETTLING_COMMAND_OR_CALCULATION": "Read pqec01_qualify.py:112-115; note w['line'] is collected at :97,:99,:103 and never used in the predicate.",
+   "MINIMUM_REQUIRED_CHANGE": "Assert every engine-state write's line number falls inside pqec01_observer.py:95-113, and extend the RNG name list and the AST walker."
+  },
+  {
+   "ID": "F04",
+   "ATTACK": "A2",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "That L=5, 8 steps and 7 fixtures qualify the verbatim Y sub-shift loop (C1 commit: 'Seven differential fixtures ... agree BIT-FOR-BIT').",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_qualify.py:39-41",
+    "/home/claude/edl/PQEC01/code/pqec01_qualify.py:207-210",
+    "/home/claude/edl/PQEC01/out/PQEC01_INSTRUMENTATION_TESTS.json"
+   ],
+   "EXACT_NUMBERS": {
+    "fixture_Y_subshift_executions": 224,
+    "fixture_accepted_branch_executions": 7,
+    "fixture_max_nY": 5,
+    "fixture_max_distinct_Y_cells": 4,
+    "fixture_L": 5,
+    "fixture_steps": 8,
+    "science_Y_diffuse_calls": 1112091,
+    "science_Y_subshift_executions": 4448364,
+    "science_Y_hops_offered": 125582,
+    "science_Y_hops_accepted": 125538,
+    "science_yhop_rows": 125537,
+    "science_Y_hops_blocked": 44,
+    "science_worlds_with_a_blocked_Y_hop": 34,
+    "max_blocked_in_one_world": 4,
+    "coverage_ratio_subshifts": "1:19859",
+    "coverage_ratio_accepted_branch": "1:17934",
+    "blocked_hop_count_reported_in_qualification": "none",
+    "identity_check": "offered 125582 - blocked 44 = accepted 125538 (holds)"
+   },
+   "WHY_IT_MATTERS": "Bit-exactness is only as strong as the branches visited. The movers>0 and not accepted.any() path - the only path on which the counter placement relative to continue is observable - is exercised 44 times in science and is not shown exercised by any fixture.",
+   "SETTLING_COMMAND_OR_CALCULATION": "python3 /home/claude/PQEC01/review/work/a2_hops.py (reads the yhop and capacity keys of all 128 archives).",
+   "MINIMUM_REQUIRED_CHANGE": "Add one non-scientific fixture with cap_override low enough to force blocked Y hops, assert hops_blocked['Y']>0 in both arms, and report the blocked count per fixture. MITIGATION TO RECORD: the counters are declared write-only (engine_obtc.py:132) and pqec01_analyse.py:42-55 never reads the 'capacity' key, so a counter error could not reach any PQEC01 result."
+  },
+  {
+   "ID": "F05",
+   "ATTACK": "A3",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "Freeze section 11 permits inspecting file size during execution; C3 commit: 'The outcome firewall held for the whole execution.'",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_run.py:134-139",
+    "/home/claude/edl/PQEC01/code/pqec01_run.py:137",
+    "/home/claude/edl/PQEC01/code/pqec01_run.py:139",
+    "/home/claude/edl/PQEC01/code/pqec01_run.py:175-178",
+    "/home/claude/edl/PQEC01/out/PQEC01_RUN_LEDGER.jsonl"
+   ],
+   "EXACT_NUMBERS": {
+    "corr_bytes_steps_all_128": 0.9992,
+    "corr_seconds_steps_all_128": 0.9965,
+    "corr_bytes_steps_phaseB": 0.9992,
+    "corr_seconds_steps_phaseB": 0.9968,
+    "smallest": "B_B1_i038_s945497148: 270 steps, 244746 bytes, 0.77 s",
+    "largest": "11000 steps, 10245129 bytes, ~37 s",
+    "worlds_stopping_early": 42,
+    "bytes_is_on_the_permitted_list": true,
+    "steps_recorded_and_seconds_written_to_the_live_ledger": true,
+    "evidence_of_action": "none: 128 seeds each exactly once, RESERVES_USED=0, no re-run, no replacement"
+   },
+   "WHY_IT_MATTERS": "File size is on the permitted list, is printed live for every world, and determines the stop step to within a step, hence EXTINCT vs HORIZON vs PREMATURE_THIRD_CENTRE. The firewall as specified cannot hold: the permitted metadata is the outcome.",
+   "SETTLING_COMMAND_OR_CALCULATION": "numpy.corrcoef over the ledger's 'bytes' and 'steps_recorded' columns.",
+   "MINIMUM_REQUIRED_CHANGE": "Remove bytes and seconds from the permitted list, or pad every archive to a fixed size before checksumming. Record explicitly that no action was taken on the leak."
+  },
+  {
+   "ID": "F06",
+   "ATTACK": "A5",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "pqec01_analyse.py:96-100 'scalars is retained only for the stop-rule variables, which are post-step by definition'.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:119-121",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:244-251",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:331",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:342"
+   ],
+   "EXACT_NUMBERS": {
+    "non_stop_rule_quantities_still_from_post_step_scalars": [
+     "mean_nSY",
+     "mean_free",
+     "mean_N_X",
+     "mean_Q_founder (Phase B)"
+    ],
+    "phaseA_mean_exposure_event_aligned": 2.8730222222,
+    "phaseA_mean_exposure_post_step": 2.4699694444,
+    "relative_difference_pct": 16.32,
+    "worlds_differing_of_40": 39,
+    "max_per_world_difference": 0.536111
+   },
+   "WHY_IT_MATTERS": "The exposure quantities the brief names (E_w, the transition kernel, the radial profile, the region LCB, TEST 1) are all clean and event-aligned; but the comment claims a stronger property than the code delivers, and the feedback analysis - the only scientific claim built on mean_nSY/mean_free/mean_N_X - runs on post-step data.",
+   "SETTLING_COMMAND_OR_CALCULATION": "python3 /home/claude/PQEC01/review/work/a5_a9_phaseA.py",
+   "MINIMUM_REQUIRED_CHANGE": "Recompute those four quantities from the reconstructed field at the pre-reaction phase, or narrow the comment to name the three distribution-level feedback summaries as a second retained use."
+  },
+  {
+   "ID": "F07",
+   "ATTACK": "A5",
+   "SEVERITY": "COSMETIC",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "The scalar names Q_founder, nSY_founder, free_founder, nX_founder, candY_founder.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_run.py:84-88",
+    "/home/claude/edl/PQEC01/code/pqec01_run.py:27-29",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:244"
+   ],
+   "EXACT_NUMBERS": {
+    "cells_0_is": "the lexicographically smallest occupied Y cell from np.nonzero, not the founder",
+    "phaseA_steps_with_exactly_one_Y_cell": "11000 of 11000 in all 40 worlds (unaffected)",
+    "phaseB_steps_with_two_or_more_occupied_Y_cells": 109409,
+    "phaseB_worlds_affected": 34
+   },
+   "WHY_IT_MATTERS": "mean_Q_founder is published for all 88 Phase-B worlds under a name asserting lineage the engine cannot supply - the limit the disposition's OBJECT_2 correctly names.",
+   "SETTLING_COMMAND_OR_CALCULATION": "numpy.nonzero row-major ordering; multi-cell step counts from python3 /home/claude/PQEC01/review/work/a10_phaseB.py \"B_*\"",
+   "MINIMUM_REQUIRED_CHANGE": "Rename to Q_first_cell etc., or drop mean_Q_founder from the Phase-B summaries."
+  },
+  {
+   "ID": "F08",
+   "ATTACK": "A6",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "PQEC01_FINAL_DISPOSITION.json PHASE_B_TOTALS.descendant_exposure_rows = {B1 125574, B2 118757}; gate PHASE_B_REAL_DESCENDANT_EXPOSURE_RECORDED.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:225",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:254",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:563",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:581-582"
+   ],
+   "EXACT_NUMBERS": {
+    "published_total": 244331,
+    "published_B1": 125574,
+    "published_B2": 118757,
+    "true_non_first_cell_rows_total": 112223,
+    "true_B1": 52309,
+    "true_B2": 59914,
+    "overstatement_factor": 2.18,
+    "gate_predicate": "sum(desc_rows) > 0 (satisfied by one founder row after one birth)"
+   },
+   "WHY_IT_MATTERS": "The published figure counts every Y-cell row at or after the first birth, including the founder's own row at every such step. The gate does not test what its name says and the headline number is 2.18x the real one.",
+   "SETTLING_COMMAND_OR_CALCULATION": "python3 /home/claude/PQEC01/review/work/a10_sep.py -> 'total non-first-cell rows at multi steps: 112223'",
+   "MINIMUM_REQUIRED_CHANGE": "Define descendant_local_rows = sum over t of max(0, n_occupied_Y_cells(t)-1); republish; require at least one such row in at least one world at each Phase-B point."
+  },
+  {
+   "ID": "F09",
+   "ATTACK": "A6",
+   "SEVERITY": "COSMETIC",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "separation_delay_after_first_birth; C4 commit 'measured median delay from first birth to two centres is 111 steps'.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:239-240"
+   ],
+   "EXACT_NUMBERS": {
+    "birth_worlds": 34,
+    "worlds_with_more_than_one_birth_event": 18,
+    "worlds_with_more_than_one_birth_event_before_separation": 2,
+    "worlds_with_a_Y_death_between_first_birth_and_separation": 0,
+    "median_delay_all": 111.0,
+    "median_delay_excluding_the_2_ambiguous": 107.0
+   },
+   "WHY_IT_MATTERS": "Small in magnitude, but the field name asserts a parent-child relation the engine cannot supply.",
+   "SETTLING_COMMAND_OR_CALCULATION": "python3 /home/claude/PQEC01/review/work/a6_a8.py",
+   "MINIMUM_REQUIRED_CHANGE": "Rename to steps_from_first_birth_to_two_centres and report the 2-world ambiguity."
+  },
+  {
+   "ID": "F10",
+   "ATTACK": "A7",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "Gate NO_FRAME_PSEUDOREPLICATION=True; freeze section 9 'uncertainty: world-level ... never N_frames'; freeze INDEPENDENT_UNIT='ONE WORLD'.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:318",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:578-579",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:584"
+   ],
+   "EXACT_NUMBERS": {
+    "criterion": "Ntr[i].sum() >= 30 on POOLED STEP transitions",
+    "B1_discovery_row_sums": [
+     105567,
+     5391,
+     28345,
+     0,
+     0
+    ],
+    "B2_discovery_row_sums": [
+     241396,
+     7083,
+     45316,
+     0,
+     0
+    ],
+    "B1_worlds_contributing_colocated_steps": "9 of 29",
+    "B2_worlds_contributing_colocated_steps": "12 of 28",
+    "B1_single_world_share_of_separated_steps": "8703 of 28351 = 30.7% (B_B1_i039_s950085585)",
+    "B2_single_world_share_of_separated_steps": "7419 of 45328 = 16.4%",
+    "gate_NO_FRAME_PSEUDOREPLICATION": "hardcoded literal True at line 584",
+    "honest_gate_count_if_recomputed": "10 of 13 (disposition string unchanged)"
+   },
+   "WHY_IT_MATTERS": "The gate the freeze installed to forbid frame pseudoreplication is asserted as a literal in the same function that commits it; a decision gate is decided by a count of autocorrelated within-world steps.",
+   "SETTLING_COMMAND_OR_CALCULATION": "Group PQEC01_PHASE_B_WORLD_SUMMARIES.json steps_two_centres and steps_colocated_one_centre by split and count contributing worlds.",
+   "MINIMUM_REQUIRED_CHANGE": "Change the identification criterion to 'at least 10 worlds contribute at least one visit to the state', and compute NO_FRAME_PSEUDOREPLICATION rather than asserting it."
+  },
+  {
+   "ID": "F11",
+   "ATTACK": "A7",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "C4 commit: 'a 25-state event-aligned exposure transition kernel with P(stay at Q=0) = 0.8208'; PQEC01_ENVIRONMENT_OPERATOR.json TRANSITION_MATRIX.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:104-106",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:129",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:177",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:123",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:293-309",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:552-556"
+   ],
+   "EXACT_NUMBERS": {
+    "Q_kernel_pooled_transitions": "40 worlds x 9000 steps = 360000",
+    "world_level_standard_error_on_any_kernel_entry": "none published",
+    "iat_Q_founder": "computed per world at line 123, stored, never used",
+    "row_stochastic": "true by construction (K = kern_acc / its own row sums) yet one of four gate conditions",
+    "P_stay_zero": 0.820832029138093,
+    "support_states": 25
+   },
+   "WHY_IT_MATTERS": "Both objects the programme calls 'the operator' are point estimates without error bars, and one of the four conditions certifying the Phase-A operator is a tautology.",
+   "SETTLING_COMMAND_OR_CALCULATION": "Read pqec01_analyse.py:177 and :552-556; grep iat_Q_founder across the repository - it appears only in the Phase-A summaries.",
+   "MINIMUM_REQUIRED_CHANGE": "Publish per-world kernels and a world-level standard error on at least P_stay_zero; drop row_stochastic from the gate."
+  },
+  {
+   "ID": "F12",
+   "ATTACK": "A8",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "Freeze section 8 VALIDATION_IS_NOT_TOUCHED_UNTIL_THE_OPERATOR_IS_FROZEN=true; pqec01_analyse.py:3-4 'the operator is identified on DISCOVERY worlds alone'.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:440-450",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:452-463",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:465",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:474"
+   ],
+   "EXACT_NUMBERS": {
+    "tau_published_all_splits": 111.0,
+    "n_worlds_in_tau": 34,
+    "validation_worlds_included": 13,
+    "tau_discovery_only": 83.0,
+    "n_discovery_worlds": 21,
+    "region_maximin_published_tau111": -0.152828,
+    "region_maximin_discovery_tau83": -0.153881,
+    "region_maximin_frozen_tau125": -0.152301,
+    "region_verdict_under_all_three": "EMPTY (no change)",
+    "other_leaked_MEASURED_INPUTS": [
+     "total_Y_births=56",
+     "worlds_reaching_two_centres=34",
+     "mean_colocated_step_fraction=0.15584650129181946",
+     "empirical_separation_rate_per_world=0.38636363636363635"
+    ]
+   },
+   "WHY_IT_MATTERS": "CANDIDATE_REGION_POSITIVE_WIDTH is a decision gate whose inputs are supposed to be discovery-only. The verdict does not change, but the published tau=111 - the number C4 calls an independent 11% check - is a leaked statistic that moves to 83 on the discovery set.",
+   "SETTLING_COMMAND_OR_CALCULATION": "python3 /home/claude/PQEC01/review/work/a6_a8.py",
+   "MINIMUM_REQUIRED_CHANGE": "Filter pb to split=='DISCOVERY' inside candidate_region(); republish tau, the margin and the 'independent check' claim on the discovery set."
+  },
+  {
+   "ID": "F13",
+   "ATTACK": "A8",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "Freeze section 8 declares a Phase-A split of 31 discovery / 9 validation; gate PHASE_A_SPATIAL_OPERATOR_IDENTIFIED.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:63-182",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:429-430",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:552-556",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:298"
+   ],
+   "EXACT_NUMBERS": {
+    "frozen_phaseA_split": "31 DISCOVERY / 9 VALIDATION",
+    "worlds_used_by_phase_a": 40,
+    "worlds_held_out": 0,
+    "quantities_fitted_in_sample": [
+     "mean_E_w=2.8730222222",
+     "relative_SE=0.0426725876",
+     "radial profile",
+     "Q transition kernel",
+     "one_sided_95_LCB_of_mean_exposure=2.6713463862"
+    ],
+    "only_split_filter_in_the_file": "line 298, inside operator()"
+   },
+   "WHY_IT_MATTERS": "The one operator the programme claims to have identified has no out-of-sample check whatever, contrary to a rule the freeze states explicitly. This is the mirror image of F12: Phase B holds out then leaks, Phase A declares a holdout then consumes it.",
+   "SETTLING_COMMAND_OR_CALCULATION": "grep -n 'split' /home/claude/edl/PQEC01/code/pqec01_analyse.py - the only filter is at line 298.",
+   "MINIMUM_REQUIRED_CHANGE": "Fit the Phase-A operator on the 31 discovery worlds and report mean_E_w and the radial profile on the 9 validation worlds as a held-out check; or delete the Phase-A split from the freeze and declare Phase A a single-set calibration."
+  },
+  {
+   "ID": "F14",
+   "ATTACK": "A9",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "C4 commit: 'Two defects in this analysis were found and fixed before the disposition was written'; 'It was NOT refitted after seeing validation'.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:95-107",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:386-395",
+    "git diff 7d97205 d61e9a3 -- PQEC01/code/pqec01_analyse.py"
+   ],
+   "EXACT_NUMBERS": {
+    "chronology": [
+     {
+      "t": "2026-08-17T23:58:27.452Z",
+      "evidence": "last raw .npz mtime",
+      "event": "128th start finishes"
+     },
+     {
+      "t": "2026-08-17T23:59:35Z",
+      "evidence": "git commit 7d97205",
+      "event": "C3: pqec01_analyse.py v1 committed, 29995 bytes"
+     },
+     {
+      "t": "2026-08-18T00:01:33.211Z",
+      "evidence": "out/ DIRECTORY mtime (dir mtime tracks file CREATION)",
+      "event": "a complete analysis run finished; all nine outputs including PQEC01_INTERNAL_VALIDATION.json were created here"
+     },
+     {
+      "t": "2026-08-18T00:02:20Z",
+      "evidence": "pqec01_analyse.cpython-311.pyc header src_mtime, src_size 31338",
+      "event": "pqec01_analyse.py edited (first fix)"
+     },
+     {
+      "t": "2026-08-18T00:05:25.737Z",
+      "evidence": ".pyc mtime",
+      "event": "module imported; source still 31338 bytes"
+     },
+     {
+      "t": "2026-08-18T00:06:01.237Z",
+      "evidence": "source mtime, size 34322",
+      "event": "pqec01_analyse.py edited again"
+     },
+     {
+      "t": "2026-08-18T00:07:58.3Z",
+      "evidence": "eight output mtimes",
+      "event": "final analysis run"
+     },
+     {
+      "t": "2026-08-18T00:08:39.113Z",
+      "evidence": "PQEC01_FINAL_DISPOSITION.json mtime = C4 commit time",
+      "event": "see F16"
+     }
+    ],
+    "TEST_2_old_C3_pooled_step_SE": {
+     "B1": {
+      "f_d": 0.24217,
+      "f_v": 0.220343,
+      "se": 0.001525,
+      "z": -14.32,
+      "PASS": false
+     },
+     "B2": {
+      "f_d": 0.178376,
+      "f_v": 0.040202,
+      "se": 0.0009571,
+      "z": -144.37,
+      "PASS": false
+     }
+    },
+    "TEST_2_new_C4_world_level_SE": {
+     "B1": {
+      "f_d": 0.13511999881486053,
+      "f_v": 0.23775253736626686,
+      "se": 0.0887025032181242,
+      "z": 1.1570421896553182,
+      "PASS": true
+     },
+     "B2": {
+      "f_d": 0.19663213109972716,
+      "f_v": 0.045251526047674684,
+      "se": 0.053629171223843516,
+      "z": -2.822728779831464,
+      "PASS": false
+     }
+    },
+    "verdict_flipped_by_the_fix": "B1 TEST 2: FAIL -> PASS",
+    "gate_INTERNAL_VALIDATION_PASS": "False under BOTH versions",
+    "exposure_fix_mean_E_w": {
+     "before": 2.4699694444,
+     "after": 2.8730222222
+    },
+    "exposure_fix_relative_SE": {
+     "before": 0.0425545958,
+     "after": 0.0426725876,
+     "gate_threshold": 0.05,
+     "gate_passes_under_both": true
+    },
+    "exposure_fix_region_LCB": {
+     "before": 2.2970658775,
+     "after": 2.6713463862
+    },
+    "exposure_fix_region_maximin": {
+     "before": -0.159584,
+     "after": -0.152828,
+     "decades_in_candidate_favour": 0.006756,
+     "region_empty_under_both": true
+    }
+   },
+   "WHY_IT_MATTERS": "The freeze prohibits acting after the outcome is visible, not after the disposition is written. By the filesystem record the validation z values existed on disk for 47 s before the first edit and 4 min 28 s before the second. The C4 narrative 'passes at B1 and fails at B2', which names the missing object, exists only after the fix; under the C3 statistic the sub-operator failed at both points.",
+   "DEFENCE_THAT_MUST_BE_RECORDED": "Both fixes restore rules the freeze states verbatim and in advance: section 9 'uncertainty: world-level ... never N_frames' and section 9 Q_POSITION = nX*min(nSY,free) at the qualified pre-reaction phase. Neither fix had a free parameter or a menu of choices; each moved the analysis towards the preregistered specification. The content was preregistered; only the timing was outcome-visible.",
+   "SETTLING_COMMAND_OR_CALCULATION": "stat -c '%n %y' /home/claude/edl/PQEC01/out /home/claude/edl/PQEC01/code/pqec01_analyse.py ; python3 -c \"import struct;print(struct.unpack('<IIII', open('/home/claude/edl/PQEC01/code/__pycache__/pqec01_analyse.cpython-311.pyc','rb').read(16)))\" ; recompute TEST 2 both ways from PQEC01_PHASE_B_WORLD_SUMMARIES.json",
+   "MINIMUM_REQUIRED_CHANGE": "Amend the C4 record with the true chronology, state that the TEST 2 fix changes B1 from FAIL to PASS, state that both fixes' content was fixed in advance by freeze section 9, and publish the pre-fix validation JSON alongside the post-fix one."
+  },
+  {
+   "ID": "F15",
+   "ATTACK": "A9",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "NO_REFIT_AFTER_VIEWING_VALIDATION=true, NO_OUTCOME_DRIVEN_REPLACEMENT=true and the gate values.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:417",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:542",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:567",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:572",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:580",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:584"
+   ],
+   "EXACT_NUMBERS": {
+    "gates_that_are_python_literals": 4,
+    "gates_total": 13,
+    "literal_gates": [
+     "PROSPECTIVE_FREEZE_PRECEDES_ALL_RUNS",
+     "NO_OUTCOME_DRIVEN_REPLACEMENT",
+     "FEEDBACK_CONTROLLED_OR_EXPLICITLY_MODELLED",
+     "NO_FRAME_PSEUDOREPLICATION"
+    ],
+    "NO_REFIT_AFTER_VIEWING_VALIDATION_asserted_at": 417,
+    "lines_rewritten_after_validation_outputs_existed": "386-395 of the same file"
+   },
+   "WHY_IT_MATTERS": "A gate that cannot fail is not a gate. GATES_PASSED=11 overstates the evidential content of the decision procedure by four.",
+   "SETTLING_COMMAND_OR_CALCULATION": "Read the gates dict at pqec01_analyse.py:566-584 and count literal True values.",
+   "MINIMUM_REQUIRED_CHANGE": "Compute NO_FRAME_PSEUDOREPLICATION (F10) and FEEDBACK_CONTROLLED_OR_EXPLICITLY_MODELLED (F18); derive PROSPECTIVE_FREEZE_PRECEDES_ALL_RUNS from commit time vs min raw mtime and NO_OUTCOME_DRIVEN_REPLACEMENT from RESERVES_USED==0 and len(ledger)==len(frozen)."
+  },
+  {
+   "ID": "F16",
+   "ATTACK": "A9",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "That PQEC01_FINAL_DISPOSITION.json is the output of the committed analysis, and that the missing object is named as the launcher requires.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:616-622",
+    "/home/claude/edl/PQEC01/out/PQEC01_FINAL_DISPOSITION.json"
+   ],
+   "EXACT_NUMBERS": {
+    "keys_written_by_main": [
+     "SECTION",
+     "ACCOUNTING",
+     "DECISION_GATES",
+     "GATES_PASSED",
+     "GATES_TOTAL",
+     "PHASE_B_TOTALS",
+     "CANDIDATE_DISPOSITION"
+    ],
+    "extra_keys_in_the_committed_file": [
+     "MISSING_OBJECT_NAMED",
+     "EMPTY_REGION_IS_PREREGISTERED",
+     "PHASE_A_DESIGN_DISPERSION_MISS",
+     "POST_HOC_DESCRIPTIVE_X_ESTABLISHMENT"
+    ],
+    "file_mtime": "2026-08-18T00:08:39.113Z",
+    "other_eight_outputs_mtime": "2026-08-18T00:07:58.3Z",
+    "gap_seconds": 41,
+    "equals_C4_commit_time": true,
+    "effect_of_rerunning_the_committed_code": "the four blocks, including MISSING_OBJECT_NAMED, are deleted",
+    "numbers_inside_the_hand_added_block_verified": "19.66% / 4.53% / z=-2.82 / z=+1.16 all match PQEC01_INTERNAL_VALIDATION.json"
+   },
+   "WHY_IT_MATTERS": "The single artefact carrying the terminal disposition is not reproducible from the sealed code, and the block it needs most - the named missing object - is the hand-added one.",
+   "SETTLING_COMMAND_OR_CALCULATION": "python3 -c \"import json;print(sorted(json.load(open('/home/claude/edl/PQEC01/out/PQEC01_FINAL_DISPOSITION.json'))))\" compared with pqec01_analyse.py:616-622; stat -c '%y' on the nine outputs.",
+   "MINIMUM_REQUIRED_CHANGE": "Move the four blocks into main() so the file regenerates byte-for-byte, or emit them into a separate, clearly hand-written narrative file."
+  },
+  {
+   "ID": "F17",
+   "ATTACK": "A9",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "The label 'PREDECLARED TEST 1/2/3' and 'predeclared validation TEST 2'.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:378",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:384",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:396",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:405",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:318",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:552-556",
+    "/home/claude/edl/PQEC01/out/PQEC01_MASTER_FREEZE.json"
+   ],
+   "EXACT_NUMBERS": {
+    "freeze_top_level_keys": 23,
+    "freeze_contains": "13 gate NAMES and 13 analysis FORMULAS",
+    "freeze_contains_no": [
+     "validation test",
+     "test statistic",
+     "|z| threshold",
+     "gate threshold"
+    ],
+    "thresholds_first_appearing_in_pqec01_analyse_py": [
+     "abs(z1)<=2.0",
+     "Ntr[i].sum()>=30",
+     "N_WORLDS>=29",
+     "relative_SE<0.05"
+    ],
+    "pqec01_analyse_py_first_committed": "7d97205 at 2026-08-17T23:59:35Z",
+    "last_raw_archive_written": "2026-08-17T23:58:27.452Z",
+    "gap_seconds": 68,
+    "mitigation": "604 lines cannot have been written in 68 s, so the file was almost certainly drafted while the firewall was up; but nothing binds it"
+   },
+   "WHY_IT_MATTERS": "'Predeclared' is the load-bearing word of the validation section. What is preregistered is a list of gate names and formulas; the operational content - which statistic, which threshold, which unit - was authored in a window in which the data existed.",
+   "SETTLING_COMMAND_OR_CALCULATION": "git log --diff-filter=A --format='%H %cd' -- PQEC01/code/pqec01_analyse.py ; ls --time-style=full-iso -la /home/claude/PQEC01/raw | sort -k6 | tail -1",
+   "MINIMUM_REQUIRED_CHANGE": "In any successor, commit the analysis script with its statistics and thresholds in the freeze commit itself and include it in METHODS_HASH (F01)."
+  },
+  {
+   "ID": "F18",
+   "ATTACK": "A11",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "PQEC01_FINAL_DISPOSITION.json WHAT_IS_NOT_CLAIMED 'measured feedback on nSY was -0.18% to -0.24% and not significant at the world level'; gate FEEDBACK_CONTROLLED_OR_EXPLICITLY_MODELLED; PQEC01_FEEDBACK_ANALYSIS.json mean_N_X z=1.321/1.839 significant_at_2se=false.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:329-368",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:580",
+    "/home/claude/OBTC02/code/engine_obtc.py:165-167"
+   ],
+   "EXACT_NUMBERS": {
+    "phaseA_mean_N_X": 111.0165,
+    "phaseA_sd": 29.0723,
+    "phaseA_n": 40,
+    "B1_birth_worlds": {
+     "n": 16,
+     "mean_N_X": 178.7557,
+     "delta_pct": 61.02,
+     "z": 5.653
+    },
+    "B1_no_birth_worlds": {
+     "n": 28,
+     "mean_N_X": 93.0604,
+     "delta_pct": -16.17,
+     "z": -2.002
+    },
+    "B1_pooled_published": {
+     "n": 44,
+     "mean_N_X": 124.2224,
+     "delta_pct": 11.9,
+     "z": 1.321
+    },
+    "B2_birth_worlds": {
+     "n": 18,
+     "mean_N_X": 168.6721,
+     "delta_pct": 51.93,
+     "z": 5.88
+    },
+    "B2_no_birth_worlds": {
+     "n": 26,
+     "mean_N_X": 99.723,
+     "delta_pct": -10.17,
+     "z": -1.173
+    },
+    "B2_pooled_published": {
+     "n": 44,
+     "mean_N_X": 127.9295,
+     "delta_pct": 15.23,
+     "z": 1.839
+    },
+    "medians": {
+     "A": 121.021,
+     "B1": 119.852,
+     "B2": 121.883
+    },
+    "mean_nSY_birth_worlds": {
+     "A": 2.95557,
+     "B1": 2.92675,
+     "B2": 2.931493
+    },
+    "mean_nSY_no_birth_worlds": {
+     "B1": 2.963564,
+     "B2": 2.960286
+    },
+    "mean_nSY_published_pooled_relative_delta": {
+     "B1": -0.0018246,
+     "B2": -0.0023896
+    },
+    "mechanism": "kX=1.0 so p=min(1,kX*nX*nY)=1 wherever nX>=1 and nY>=1; X production = sum of min(nSX,free) over X-bearing Y cells; two separated Y roughly double the source",
+    "phaseA_max_mean_N_X": 125.47,
+    "phaseB_max_mean_N_X": 267.66,
+    "horizon_matched": {
+     "B1": {
+      "n": 9,
+      "delta_pct": 47.85,
+      "z": 4.241
+     },
+     "B2": {
+      "n": 37,
+      "delta_pct": 8.98,
+      "z": 1.027
+     }
+    },
+    "honest_gate_value": "False"
+   },
+   "WHY_IT_MATTERS": "The pooled two-sample z on a bimodal mixture of a -16% subgroup and a +61% subgroup has almost no power against the actual alternative, and its null result is published as evidence that feedback is absent.",
+   "CONFOUNDS_BOTH_WAYS": "Conditioning on 'had a birth' conditions on an outcome and births are driven by Q=nX*cand_Y, so part of the +61% is reverse causation. And the step ranges are not matched (F20): horizon-matched, B2 gives only +8.98% (z=1.03). The defensible conclusion is that the design cannot answer the feedback question, not that feedback is +61% and not that it is absent.",
+   "SETTLING_COMMAND_OR_CALCULATION": "Group PQEC01_PHASE_B_WORLD_SUMMARIES.json by n_Y_births>0 and by steps_recorded==11000 and recompute the two-sample z against PQEC01_PHASE_A_WORLD_SUMMARIES.json.",
+   "MINIMUM_REQUIRED_CHANGE": "Publish the birth-stratified and horizon-matched comparisons beside the pooled one; replace 'not significant' with 'the comparison is confounded by outcome-dependent stopping and by the number of X sources and cannot be interpreted'; compute the feedback gate."
+  },
+  {
+   "ID": "F19",
+   "ATTACK": "A11",
+   "SEVERITY": "COSMETIC",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "Freeze section 9 names 'free' as a feedback channel; pqec01_analyse.py:347-350 'free is pinned near CAP - occupancy in every world'.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:342-366",
+    "/home/claude/ORR01/code/lawspec_v2.py:90-129"
+   ],
+   "EXACT_NUMBERS": {
+    "phaseA_mean_free": 9.996141975308642,
+    "phaseA_sd": 0.0,
+    "n": 40,
+    "exact_value": "(CAP*L^2 - 6*L^2 - 1 - X_SEED)/L^2 = (20736 - 7776 - 5)/1296 = 12955/1296",
+    "constants": {
+     "CAP": 16,
+     "L": 36,
+     "S0": 3,
+     "X_SEED": 4
+    },
+    "phaseB_mean_free": 9.996141975308644,
+    "delta": 1.7763568394002505e-15,
+    "se_of_delta_B1": 2.082362433788751e-16,
+    "z_B1": 8.530488307783486,
+    "z_B2": 6.793109852152741,
+    "reason": "LAWSPEC_V2_EXCHANGE conserves occupancy exactly cell by cell and step by step, so total free is an exact invariant of the initial condition"
+   },
+   "WHY_IT_MATTERS": "free is not 'pinned near' a value; it is an exact invariant, so the channel can never carry feedback information. The analysis correctly disqualifies it but still publishes z=8.53 beside the disqualification. This is a freeze defect (section 9 names the channel) rather than an analysis defect.",
+   "SETTLING_COMMAND_OR_CALCULATION": "12955/1296 in exact arithmetic; PQEC01_FEEDBACK_ANALYSIS.json PHASE_A_REFERENCE.mean_free.sd = 0.0",
+   "MINIMUM_REQUIRED_CHANGE": "Emit z=null when VARIANCE_DEGENERATE, and state the exact invariant sum(free)=CAP*L^2 - initial occupancy instead of 'pinned near'."
+  },
+  {
+   "ID": "F20",
+   "ATTACK": "A11",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "COMPARISON_IS_DISTRIBUTION_LEVEL_NOT_PAIRED - that the absence of pairing is the only caveat needed.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:244-251",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:119-121"
+   ],
+   "EXACT_NUMBERS": {
+    "phaseA_steps_recorded": "11000 for all 40 worlds",
+    "B1_steps_recorded": {
+     "min": 270,
+     "median": 3998,
+     "max": 11000,
+     "below_horizon": 35,
+     "below_BURN_IN_2000": 15
+    },
+    "B2_steps_recorded": {
+     "min": 4236,
+     "median": 11000,
+     "max": 11000,
+     "below_horizon": 7,
+     "below_BURN_IN_2000": 0
+    },
+    "B1_stops": {
+     "EXTINCT": 28,
+     "PREMATURE_THIRD_CENTRE": 7,
+     "HORIZON": 9
+    },
+    "B2_stops": {
+     "HORIZON": 37,
+     "PREMATURE_THIRD_CENTRE": 7
+    },
+    "fallback_behaviour": "if n <= BURN_IN the code averages [0,n) including the burn-in transient"
+   },
+   "WHY_IT_MATTERS": "Stopping is caused by the outcome, so the averaging window is outcome-dependent. Phase-A and Phase-B summaries are not commensurable, and the B1-vs-B2 difference tracks the difference in stopping as much as the difference in (kY,muY).",
+   "SETTLING_COMMAND_OR_CALCULATION": "Distribution of steps_recorded per point in PQEC01_PHASE_B_WORLD_SUMMARIES.json; horizon-matched z values in F18.",
+   "MINIMUM_REQUIRED_CHANGE": "Restrict the feedback comparison to a common window (steps_recorded == T_HORIZON, or the first min(steps_recorded) steps of every world) and never fall back to averaging across BURN_IN."
+  },
+  {
+   "ID": "F21",
+   "ATTACK": "A12",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "C4 commit and EMPTY_REGION_IS_PREREGISTERED: 'the shortfall moved by 0.0015 decades. The boundary arithmetic was not the weak link; the measurement confirmed it.' Also freeze section 2: the calibration replaces the mean-exposure proxy 'which can move every boundary'.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:466-482",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:507-526",
+    "/home/claude/edl/PQEC01/out/PQEC01_CANDIDATE_REGION.json"
+   ],
+   "EXACT_NUMBERS": {
+    "proof": "C1 (kY*E*W >= 1) and C3 (kY*E*W*(1-muY)^tau <= 0.5) jointly imply (1-muY)^tau <= 0.5, i.e. muY >= 1 - 0.5^(1/tau). C2 ((1-muY)^11000 >= 0.5) implies muY <= 1 - 0.5^(1/11000) = 6.301139e-05.",
+    "tau_111": {
+     "muY_lower_bound": 0.006225112,
+     "muY_upper_bound": 6.301139e-05,
+     "incompatibility_factor": 98.8
+    },
+    "tau_125": {
+     "muY_lower_bound": 0.005529831,
+     "incompatibility_factor": 87.8
+    },
+    "tau_83": {
+     "muY_lower_bound": 0.008316397,
+     "incompatibility_factor": 132.0
+    },
+    "maximin_margin_vs_LCB_on_the_shipped_161x161_grid": {
+     "0.5": -0.150068,
+     "1.0": -0.151098,
+     "2.2971_prefix": -0.159578,
+     "2.6713_published": -0.15282,
+     "3.1697_design_proxy": -0.152116,
+     "5.0": -0.150068,
+     "20.0": -0.152128
+    },
+    "spread_decades_over_a_460x_range_of_exposure": 0.0095,
+    "fine_grid_1201x1201_kY_1e-9_to_1e-1": "margin converges to -0.1514 for every LCB from 0.5 to 200, optimum always at kY*E*W ~ 0.706",
+    "preregistered_shortfall": -0.1513,
+    "measured_shortfall": -0.1528
+   },
+   "WHY_IT_MATTERS": "The exposure enters only through the product kY*E and kY is a free grid parameter, so E is not identified by the criteria at all. The 'agreement' between the preregistered -0.1513 and the measured -0.1528 is an identity up to grid quantization: the shortfall could not have moved. CANDIDATE_REGION_POSITIVE_WIDTH was unsatisfiable by any outcome from the moment C2 was committed, and with it the positive terminal disposition.",
+   "SETTLING_COMMAND_OR_CALCULATION": "The three-line implication above, plus the LCB sweep of the shipped maximin loop over grid_k x grid_m for LCB in {0.5,1,2.2971,2.6713,3.1697,5,20}.",
+   "MINIMUM_REQUIRED_CHANGE": "Replace the claim with the arithmetic statement that C1 and C3 require muY >= 1-0.5^(1/tau) while C2 requires muY <= 1-0.5^(1/T_HORIZON), incompatible by 98.8x for every kY and every exposure; mark CANDIDATE_REGION_POSITIVE_WIDTH as structurally unsatisfiable and hand the tau-vs-T_HORIZON contradiction to the successor as the object to redesign."
+  },
+  {
+   "ID": "F22",
+   "ATTACK": "A12",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "C4 commit: '56 real Y births across 88 active-Y worlds, 34 worlds reaching two spatial centres, 16474 steps of measured co-location and 73674 steps of measured SEPARATED two-Y state'.",
+   "EXACT_FILE_AND_LINES": [
+    "commit d61e9a34367b42bd7534647ad9802a9892639f31 (message)",
+    "/home/claude/edl/PQEC01/out/PQEC01_ENVIRONMENT_OPERATOR.json",
+    "/home/claude/edl/PQEC01/out/PQEC01_FINAL_DISPOSITION.json"
+   ],
+   "EXACT_NUMBERS": {
+    "claimed_colocation_steps": 16474,
+    "discovery_only_TWO_Y_COLOCATED_occupancy": 12474,
+    "components": {
+     "B1": 5391,
+     "B2": 7083
+    },
+    "all_worlds_steps_colocated_one_centre": 17331,
+    "all_worlds_steps_with_multiple_occupied_Y_cells": 109409,
+    "no_computed_quantity_equals_16474": true,
+    "companion_figure_73674": "exactly the discovery-only TWO_Y_SEPARATED occupancy (28349+45325)",
+    "inflation_if_12474_was_intended_pct": 32.1,
+    "denominator_mixing": "56 births / 88 worlds / 34 worlds are all-world counts; 16474 and 73674 are discovery-only step counts"
+   },
+   "WHY_IT_MATTERS": "This is the sealed record of what the calibration achieved. One of its four headline numbers is unsupported and the sentence silently changes denominator mid-way.",
+   "SETTLING_COMMAND_OR_CALCULATION": "python3 -c \"import json;d=json.load(open('/home/claude/edl/PQEC01/out/PQEC01_ENVIRONMENT_OPERATOR.json'))['DISCOVERY_ONLY'];print(sum(v['STATE_OCCUPANCY_STEPS']['TWO_Y_COLOCATED'] for v in d.values()), sum(v['STATE_OCCUPANCY_STEPS']['TWO_Y_SEPARATED'] for v in d.values()))\" -> 12474 73674",
+   "MINIMUM_REQUIRED_CHANGE": "Correct to '12474 discovery steps of measured co-location and 73674 discovery steps of measured separated two-Y state (17331 and 92649 over all 88 worlds)'."
+  },
+  {
+   "ID": "F23",
+   "ATTACK": "A12",
+   "SEVERITY": "SUBSTANTIVE",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "C4 commit: 'The measured median delay from first birth to two centres is 111 steps against the analytically frozen TAU_SEP = 125 - an independent 11% check on a constant that had only ever been derived.'",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:440-465",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:444-446",
+    "/home/claude/edl/PQEC01/code/pqec01_design.py:20",
+    "/home/claude/edl/PQEC01/out/PQEC01_CANDIDATE_REGION.json"
+   ],
+   "EXACT_NUMBERS": {
+    "TAU_SEP_frozen": 125.0,
+    "published_median_all_splits": 111.0,
+    "n_all": 34,
+    "discovery_only_median": 83.0,
+    "n_discovery": 21,
+    "deviation_from_125_published_pct": -11.2,
+    "deviation_from_125_discovery_pct": -33.6,
+    "median_excluding_2_ambiguous_worlds": 107.0,
+    "censoring": {
+     "worlds_stopped_at_PREMATURE_THIRD_CENTRE": 14,
+     "B1_extinct": 28,
+     "code_drops_any_world_with_delay<=0": true,
+     "worlds_with_delay<=0": 0
+    },
+    "statistic_type": "median compared against a mean-first-passage scale"
+   },
+   "WHY_IT_MATTERS": "This is offered as the one place the calibration independently validated a frozen analytic constant. A statistic that reads 83, 107 or 111 depending on the subset is not an 11% agreement.",
+   "SETTLING_COMMAND_OR_CALCULATION": "python3 /home/claude/PQEC01/review/work/a6_a8.py -> 'median delay DISCOVERY-only = 83.0 (n=21) ; published (all splits) = 111.0'",
+   "MINIMUM_REQUIRED_CHANGE": "Report the discovery-only median (83), the all-worlds median (111), the number censored and a world-level interval; withdraw 'independent 11% check' or restate it as an order-of-magnitude agreement with a split-dependent median between 83 and 111."
+  },
+  {
+   "ID": "F24",
+   "ATTACK": "A12",
+   "SEVERITY": "COSMETIC",
+   "STATUS": "DEFECT_CONFIRMED",
+   "CLAIM_ATTACKED": "Gate PHASE_A_SPATIAL_OPERATOR_IDENTIFIED=True; C4 commit 'Phase A spatial operator identified over 40 worlds'.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:552-556",
+    "/home/claude/edl/PQEC01/code/pqec01_analyse.py:141-142"
+   ],
+   "EXACT_NUMBERS": {
+    "conjunct_1": "N_WORLDS >= 29 (40 by frozen design; cannot fail)",
+    "conjunct_2": "row_stochastic (true by construction: K = kern_acc / its own row sums)",
+    "conjunct_3": "relative_SE < 0.05 -> 0.0426725876 (the only informative test; 0.0425545958 pre-fix, also passing)",
+    "conjunct_4": "isfinite(radial[1]) -> 3.0359",
+    "distribution_free_lower_bound_10th_pct": 0.0,
+    "worlds_with_positive_S_w": "0 of 40",
+    "min_E_w": 0.0,
+    "no_single_world_dominance": "leave-one-out shift 2.8730/39 = 0.0736 vs 0.5*sd = 0.3877; cannot fail here"
+   },
+   "WHY_IT_MATTERS": "'Identified' is doing a lot of work for a gate that reduces to one precision check, while the freeze's own distribution-free 10th-percentile bound - the justification for N_A=40 clearing the floor of 29 - returned a vacuous 0 with zero worlds positive.",
+   "SETTLING_COMMAND_OR_CALCULATION": "Read pqec01_analyse.py:552-556 and :141-142; PQEC01_ENVIRONMENT_OPERATOR.json PHASE_A_SPATIAL.WORLD_LEVEL.",
+   "MINIMUM_REQUIRED_CHANGE": "Drop row_stochastic and N_WORLDS>=29 from the gate; add the radial-decay and kernel-stability checks 'identified' implies; record that the distribution-free bound returned 0."
+  }
+ ],
+ "ATTACKS_THAT_FAILED": [
+  {
+   "ATTACK": "A2",
+   "STATUS": "ATTACK_REFUTED",
+   "CLAIM_THAT_STANDS": "The observer is inert: the verbatim re-implementation of the engine's four frozen Y sub-shifts adds no rng draw, moves no rng call, and mutates no engine state the engine would not.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_observer.py:77-117",
+    "/home/claude/OBTC02/code/engine_obtc.py:142-156",
+    "/home/claude/ORR01/code/kinetics.py:86-90",
+    "/home/claude/ORR01/code/kinetics.py:154-162"
+   ],
+   "EVIDENCE": {
+    "order_sensitive_alignment": "all 14 engine physics statements appear in the observer in the same relative order; the counter block (engine indices 7-9) precedes 'continue' (index 11) in both",
+    "declared_difference": "'for shift, ax in NEI:' -> 'for sub, (shift, ax) in enumerate(EN.NEI):' - same tuple, same order, same bound names, no rng consumed",
+    "rng_call_order": "exactly one rng.binomial per sub-shift, same position, same array shape, same generator (self.rng bound once before the loop); no other rng call anywhere in the module",
+    "observer_only_statements": [
+     "off0",
+     "blk0",
+     "before_all = self.n['Y'].copy()",
+     "before = n.copy()",
+     "np.nonzero(accepted)",
+     "pq_yhop/pq_capacity appends",
+     "del"
+    ],
+    "hops_counter_position": "before the continue in both - CORRECT",
+    "self_free_purity": "kinetics.py:86-90, free() = sp.CAP - sum(self.n[k]); pure, called once per sub-shift at the same point in both",
+    "can_self_track_and_sname_eq_X_fire": "NO - the branch is reached only after the guard 'if sname != \"Y\": ... return' at pqec01_observer.py:78-89, so sname == 'Y' identically; the engine evaluates the same condition to False for Y, so behaviour is identical and the line is dead in both",
+    "other_overrides": "_react (:119-134), _decay (:136-145), _feed_and_outflow (:147-154) take read-only snapshots, call super(), and diff",
+    "recorder": "observe.Recorder (/home/claude/ORR01/code/observe.py:35-95) is write-only, draws no randomness, assigns into no w.n; identical instance type in both differential arms",
+    "differential_test": "every step: six species byte-for-byte, all THREE bit-generator states (rng, rng_feed, tracker.rng), hops_offered, hops_blocked, births_total, step counter, engine state_hash; ALL_BIT_EXACT=True over 7 fixtures with 18 Y births, 13 Y deaths, max nY 5",
+    "observer_unchanged_since_qualification": "pqec01_observer.py mtime 23:18:58.767 < qualification output 23:20:36.786 < first scientific archive 23:29:09.080; working tree clean against d61e9a3"
+   },
+   "RESIDUAL_DEFECTS_IN_THE_INSTRUMENTS_NOT_THE_CODE": [
+    "F02",
+    "F03",
+    "F04"
+   ]
+  },
+  {
+   "ATTACK": "A10",
+   "STATUS": "ATTACK_REFUTED",
+   "CLAIM_THAT_STANDS": "Real descendant-local exposure was genuinely recorded, and the separation events are real under the frozen single-linkage CORE_R=5.0 definition.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/PQEC01/raw/*.npz (all 128, read with numpy)",
+    "/home/claude/edl/PQEC01/code/pqec01_observer.py:64-74",
+    "/home/claude/edl/PQEC01/code/pqec01_run.py:32-57"
+   ],
+   "EVIDENCE": {
+    "steps_with_two_or_more_distinct_occupied_Y_cells": 109409,
+    "components": {
+     "B1": 50857,
+     "B2": 58552
+    },
+    "worlds": 34,
+    "worked_example": "B_B1_i000_s942104457 step 2690: rows (2690,12,2,1,3,0,12,0,0) and (2690,14,7,1,8,0,5,0,0) - two distinct cells, distinct nX (3 vs 8), distinct free (12 vs 5), distinct payloads",
+    "field_verification": "for B_B1_i039_s950085585, B_B2_i011_s966153195, B_B1_i022_s960856267, B_B2_i008_s941377808, B_B2_i022_s966253201 the field was reconstructed from field0 + cumsum(field_delta) and nY, nX, nSY, free=max(CAP-sum6,0), cand_Y=min(nSY,free), Q=nX*cand_Y matched the ycells payload EXACTLY (np.array_equal, every row)",
+    "losslessness": "in all five, #ycells rows == #occupied Y cells in the field over all steps (e.g. 20679 == 20679)",
+    "engine_invariants_in_the_raw": "free.min()=0, occ.max()=16=CAP",
+    "descendant_rows_at_a_cell_other_than_the_row_major_first": 112223,
+    "fraction_with_Q_gt_0": 0.4469,
+    "per_world_range": [
+     0.3436,
+     0.6299
+    ],
+    "per_world_max_Q_range": [
+     24,
+     28
+    ],
+    "separation_recomputed_independently": "first step with >=2 single-linkage clusters at toroidal distance > CORE_R=5.0, recomputed from the ycells positions with an independent union-find, agrees with the published separation_first_step in 34 of 34 worlds (difference exactly 0 in every case)",
+    "max_pair_dist_agreement": "34 of 34 exact",
+    "median_delay_reproduced_by_both_routes": 111.0
+   },
+   "RESIDUAL_DEFECTS": [
+    "F08 (the published row count is not what its name says)",
+    "F09 (delay attribution)",
+    "F12 (tau pools validation worlds)",
+    "F23 (the 11% check is over-read)"
+   ]
+  },
+  {
+   "ATTACK": "A4",
+   "STATUS": "ATTACK_REFUTED",
+   "CLAIM_THAT_STANDS": "All 128 frozen seeds present exactly once with the frozen splits, no extra, no reserve, no drop, no replacement, no re-run.",
+   "EVIDENCE": {
+    "seeds_regenerated_from_the_rule": "A, B1, B2 all identical to the freeze",
+    "ledger_rows": 128,
+    "distinct_seeds": 128,
+    "distinct_tags": 128,
+    "seed_multiplicity_histogram": {
+     "1": 128
+    },
+    "MISSING": [],
+    "UNEXPECTED": [],
+    "reserve_seeds_used": 0,
+    "reserve_scientific_overlap": 0,
+    "TECHNICALLY_INVALID": 0,
+    "engine_invariants_ok": "128 of 128",
+    "checksum_spot_check": "5 of 5 archives re-hashed from disk match both the manifest and the ledger; byte counts match"
+   }
+  },
+  {
+   "ATTACK": "A8-split-rule",
+   "STATUS": "ATTACK_REFUTED",
+   "CLAIM_THAT_STANDS": "The discovery/validation split is a hash of the frozen seed, outcome-independent, and the two sets are disjoint.",
+   "EVIDENCE": {
+    "rule": "DISCOVERY if int(SHA256('SPLIT|'+parent_tip+'|'+seed)[:8],16) % 3 < 2 else VALIDATION",
+    "reproduces_the_freeze_label": "128 of 128",
+    "reproduces_the_ledger_label": "128 of 128",
+    "disjoint": {
+     "A": "31/9",
+     "B1": "29/15",
+     "B2": "28/16"
+    },
+    "phaseA_LCB_uses_no_phaseB_world": true
+   },
+   "NOTE": "The leaks found are elsewhere: F12 (Phase-B validation worlds feed the region through tau) and F13 (the Phase-A holdout is declared then consumed)."
+  },
+  {
+   "ATTACK": "A5-step-phase",
+   "STATUS": "ATTACK_REFUTED",
+   "CLAIM_THAT_STANDS": "pq_field[t] and the ycells rows for step t are the post-diffusion pre-reaction state of step t, and that state is exactly the argument of the engine's Y birth binomial.",
+   "EXACT_FILE_AND_LINES": [
+    "/home/claude/edl/PQEC01/code/pqec01_observer.py:119-129",
+    "/home/claude/ORR01/code/kinetics.py:154-162",
+    "/home/claude/OBTC02/code/engine_obtc.py:158-174"
+   ],
+   "EVIDENCE": {
+    "step_counter": "incremented at the end of K.World._one_step, after _feed_and_outflow, so st = t while the four _diffuse calls for step t have completed and _react_core has not started",
+    "react_core_algebra": "pair = nX*nY and free0 = max(free(),0) are evaluated once before the X reaction; self.n[prod] = self.n[prod] + births REBINDS the dict entry rather than mutating the array nX points at, so the Y birth law is exactly Binomial(min(nSY, free0), min(1, kY*nX*nY)) on the recorded state",
+    "field_check": "ycells columns 4,5,6,7,8 are precisely nX, nSY, free, cand_Y, Q = nX*cand_Y at that state, confirmed exactly against the reconstructed field in five worlds",
+    "step_label_mapping": "pre-increment labels 0..7 with w.step = 8; STEP_LABEL_MAPPING.VERIFIED = true",
+    "no_post_step_scalar_in": [
+     "E_w (analyse.py:111-112, ycells col 8)",
+     "S_w (analyse.py:112)",
+     "the Q transition kernel (analyse.py:101-105, ycells col 8)",
+     "the radial profile (analyse.py:76,90, from the field)",
+     "the region LCB (analyse.py:429, from E_w)",
+     "validation TEST 1 (analyse.py:253, _p_no_birth reads ycells only)"
+    ],
+    "TEST_2_uses_post_step_N_Y": "yes, but symmetrically on discovery and validation, and N_Y is a frozen stop-rule variable the freeze itself calls post-step"
+   },
+   "RESIDUAL_DEFECTS": [
+    "F06",
+    "F07"
+   ]
+  },
+  {
+   "ATTACK": "A12-label",
+   "STATUS": "ATTACK_REFUTED",
+   "CLAIM_THAT_STANDS": "EXISTING_ARCHITECTURE_FEEDBACK_PRECLUDES_CONTROLLED_WINDOW is correctly NOT used.",
+   "EVIDENCE": {
+    "the_strongest_case_for_the_label": "tau ~ 111 is four orders of magnitude shorter than the 11000 steps C2 demands, and that is an architecture property; and F18 shows real, large feedback (X source doubling in birth worlds)",
+    "why_it_still_fails": [
+     "the emptiness is a timescale contradiction among C1/C2/C3 in which no feedback term appears (F21)",
+     "the measured feedback is confounded by outcome-dependent stopping and by conditioning on the birth (F18, F20)",
+     "no result shows preclusion ACROSS the admissible region, which the label requires"
+    ],
+    "freeze_text": "'it is NOT structural preclusion' - consistent with the disposition's WHAT_IS_NOT_CLAIMED block"
+   }
+  },
+  {
+   "ATTACK": "A12b-too-conservative",
+   "STATUS": "ATTACK_REFUTED",
+   "CLAIM_THAT_STANDS": "The disposition should NOT have been PROSPECTIVE_Q_ENVIRONMENT_OPERATOR_IDENTIFIED.",
+   "EVIDENCE": {
+    "ground_1": "CANDIDATE_REGION_POSITIVE_WIDTH cannot be satisfied by any outcome (F21), and the positive disposition requires all 13 gates; it was unreachable from the moment the freeze was committed",
+    "ground_2_multiplicity": {
+     "tests_executed": 6,
+     "B2_TEST2_z": 2.822728779831464,
+     "two_sided_p": 0.00476,
+     "bonferroni_6": 0.0286,
+     "survives_alpha_0.05": true,
+     "other_five_bonferroni_p": [
+      0.912,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ]
+    },
+    "counter_note_in_the_candidate_favour": "TEST 2 is a normal-approximation two-sample z on a per-world fraction that is exactly zero in 16 of 28 discovery and 10 of 16 validation worlds at B2; the approximation is not trustworthy at p ~ 0.005 in either direction. That argues the test cannot decide, which supports NOT_IDENTIFIED, not IDENTIFIED."
+   }
+  },
+  {
+   "ATTACK": "A12-technically-invalid",
+   "STATUS": "ATTACK_REFUTED",
+   "CLAIM_THAT_STANDS": "The disposition should NOT have been CALIBRATION_TECHNICALLY_INVALID.",
+   "EVIDENCE": {
+    "freeze_definition": "corrupt serialization, process interruption, observer schema failure, checksum failure, engine invariant violation",
+    "observed": "128/128 archives present with matching checksums and complete key schema; free>=0 and occ<=CAP verified in the raw; observer inertness holds",
+    "note": "the provenance defects F01, F14, F16, F17 are serious but are not on that list"
+   }
+  },
+  {
+   "ATTACK": "A12a-gap-closed",
+   "STATUS": "ATTACK_REFUTED",
+   "CLAIM_THAT_STANDS": "'The parent's central gap is closed' is justified.",
+   "EVIDENCE": {
+    "parent_state": "28 archives, no Y descendant at any of 308000 steps",
+    "pqec01": "56 births; 112223 verified descendant-cell exposure rows carrying that cell's own (nX, nSY, free, cand_Y, Q) at the event-aligned phase, checked against the reconstructed field; 34 of 34 separation events reproduced independently",
+    "caveat": "the published count 244331 is not that number (F08)"
+   }
+  }
+ ],
+ "WHAT_WOULD_HAVE_BEEN_LOAD_BEARING_AND_WAS_NOT": [
+  {
+   "hypothesis": "observer not inert -> everything invalid",
+   "result": "REFUTED"
+  },
+  {
+   "hypothesis": "descendant exposure not really recorded -> gate false, headline claim void",
+   "result": "REFUTED"
+  },
+  {
+   "hypothesis": "a start missing, replaced or re-run -> CALIBRATION_TECHNICALLY_INVALID",
+   "result": "REFUTED"
+  },
+  {
+   "hypothesis": "post-step scalar leaked into E_w / kernel / radial / region / a validation test",
+   "result": "REFUTED for all five; residual leakage confined to the three feedback summaries (F06)"
+  },
+  {
+   "hypothesis": "the two fixes flip a gate in the candidate's favour",
+   "result": "a TEST verdict flips (B1 TEST 2 FAIL -> PASS) but no gate does; INTERNAL_VALIDATION_PASS and CANDIDATE_REGION_POSITIVE_WIDTH are false under both versions"
+  },
+  {
+   "hypothesis": "feedback so large that the architecture precludes a window",
+   "result": "NOT ESTABLISHED"
+  },
+  {
+   "hypothesis": "gates recomputed honestly (F10, F18)",
+   "result": "11 -> 10 of 13; disposition string unchanged"
+  }
+ ],
+ "SUPPORTING_CALCULATIONS": {
+  "region_emptiness_is_exposure_independent": {
+   "C1": "kY*E*W >= MIN_EVENTS = 1",
+   "C2": "(1-muY)^11000 >= 1 - ALPHA_SURVIVAL = 0.5",
+   "C3": "kY*E*W*(1-muY)^tau <= GAMMA_SEP = 0.5",
+   "C1_and_C3_imply": "(1-muY)^tau <= 0.5  =>  muY >= 1 - 0.5^(1/tau)",
+   "C2_implies": "muY <= 1 - 0.5^(1/11000) = 6.301139e-05",
+   "tau_111": "muY >= 6.225112e-03 (factor 98.8) -> EMPTY for every kY, every exposure",
+   "tau_125": "muY >= 5.529831e-03 (factor 87.8) -> EMPTY",
+   "tau_83": "muY >= 8.316397e-03 (factor 132.0) -> EMPTY",
+   "maximin_vs_LCB_on_the_shipped_grid": {
+    "0.5": -0.150068,
+    "1.0": -0.151098,
+    "2.2971": -0.159578,
+    "2.6713": -0.15282,
+    "3.1697": -0.152116,
+    "5.0": -0.150068,
+    "20.0": -0.152128
+   },
+   "fine_grid_limit": -0.1514
+  },
+  "validation_TEST_2_both_versions": {
+   "C3_pooled_step_SE": {
+    "B1": {
+     "z": -14.32,
+     "PASS": false
+    },
+    "B2": {
+     "z": -144.37,
+     "PASS": false
+    }
+   },
+   "C4_world_level_SE": {
+    "B1": {
+     "z": 1.1570421896553182,
+     "PASS": true
+    },
+    "B2": {
+     "z": -2.822728779831464,
+     "PASS": false
+    }
+   },
+   "gate_INTERNAL_VALIDATION_PASS": "False under both"
+  },
+  "phaseA_exposure_both_versions": {
+   "event_aligned_from_ycells": {
+    "mean_E_w": 2.8730222222,
+    "sd": 0.7753860071,
+    "relative_SE": 0.0426725876,
+    "LCB": 2.6713463862
+   },
+   "post_step_from_scalars": {
+    "mean_E_w": 2.4699694444,
+    "sd": 0.6647648476,
+    "relative_SE": 0.0425545958,
+    "LCB": 2.2970658775
+   },
+   "gate_relative_SE_lt_0.05": "passes under both"
+  },
+  "observer_vs_engine_diffuse_alignment": {
+   "engine_physics_statements": 14,
+   "all_present_in_the_observer_in_the_same_relative_order": true,
+   "declared_difference": "enumerate(EN.NEI) wrapper only",
+   "counter_block_before_continue": true,
+   "rng_binomial_calls_per_subshift": 1,
+   "self_track_and_sname_eq_X_reachable_in_the_Y_branch": false
+  }
+ },
+ "VERDICT_BLOCK": {
+  "REVIEWER_VERDICT": "EVIDENCE_OR_PROVENANCE_INCOMPLETE",
+  "LOAD_BEARING_DEFECTS": 0,
+  "SUBSTANTIVE_DEFECTS": 20,
+  "COSMETIC_DEFECTS": 4,
+  "ATTACKS_REFUTED": "2 of 12",
+  "OBSERVER_INERTNESS_HOLDS": "YES",
+  "DESCENDANT_EXPOSURE_REALLY_RECORDED": "YES",
+  "NEW_SCIENTIFIC_RUNS_BY_REVIEW": 0
+ },
+ "READING_OF_THE_VERDICT": "No attack forced the terminal disposition string to change, and PROSPECTIVE_Q_ENVIRONMENT_OPERATOR_NOT_IDENTIFIED__ADDITIONAL_INSTRUMENTATION_REQUIRED is the right string. The verdict is EVIDENCE_OR_PROVENANCE_INCOMPLETE rather than CANDIDATE_DISPOSITION_SUPPORTED because the record does not establish three things it asserts: PQEC01_METHODS_HASH does not cover the executor that ran the science (F01); the validation numbers were on disk before both declared fixes, one of which flips a validation verdict, while NO_REFIT_AFTER_VIEWING_VALIDATION is a hardcoded literal (F14, F15); and the file carrying the terminal disposition was hand-edited after the last analysis run and does not regenerate from the sealed code (F16). Separately, two of the reasons given for the disposition are wrong on the arithmetic (F21, F18) and one headline number is unsupported (F22). None of that makes the calibration invalid, and none of it makes the operator identified."
+}

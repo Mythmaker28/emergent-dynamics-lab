@@ -12,12 +12,69 @@
  "SOURCE_EQUIVALENCE": {
   "ENGINE_LINES": 14,
   "OBSERVER_LINES": 33,
+  "ORDER_SENSITIVE": true,
+  "EXTRA_LINE_CLASSIFICATION": {
+   "EXTRA_LINES": 19,
+   "OBSERVER_SCAFFOLDING": [
+    "if sname != \"Y\":",
+    "off0 = self.hops_offered.get(sname, 0)",
+    "blk0 = self.hops_blocked.get(sname, 0)",
+    "super()._diffuse(sname, p_hop)",
+    "int(self.hops_offered.get(sname, 0) - off0),",
+    "int(self.hops_blocked.get(sname, 0) - blk0)))",
+    "o0[0], o0[1], o1[0], o1[1]))",
+    "return",
+    "off0 = self.hops_offered.get(sname, 0)",
+    "blk0 = self.hops_blocked.get(sname, 0)",
+    "before_all = self.n[\"Y\"].copy()",
+    "before = n.copy()",
+    "ys, xs = np.nonzero(accepted)",
+    "for y, x in zip(ys.tolist(), xs.tolist()):",
+    "int(accepted[y, x])))",
+    "del before",
+    "int(self.hops_offered.get(sname, 0) - off0),",
+    "int(self.hops_blocked.get(sname, 0) - blk0)))",
+    "del before_all"
+   ],
+   "DEAD_BUT_PRESENT_IN_THE_CODE_THAT_RAN": {
+    "lines": [
+     "before_all = self.n[\"Y\"].copy()",
+     "before = n.copy()",
+     "del before",
+     "del before_all"
+    ],
+    "NOTE": "these local copies are never read. They are inert, and they are LEFT IN PLACE deliberately: the scientific archives were produced by this exact file, and tidying it after the runs would break the byte provenance of 128 worlds to gain nothing. The order-sensitive check reports them rather than hiding them."
+   },
+   "PHYSICS_TOUCHING_EXTRA_LINES": [],
+   "NO_UNDECLARED_PHYSICS_LINE": true,
+   "CRITERION": "an extra line passes only if it neither assigns to self.n / self.hops_* / self.step / a generator, nor draws from an engine generator"
+  },
+  "NEGATIVE_CONTROLS": [
+   {
+    "mutation": "counter block moved after the `continue`",
+    "missing": 6,
+    "extra": 19,
+    "CAUGHT": true
+   },
+   {
+    "mutation": "an engine-state mutation appended",
+    "missing": 0,
+    "extra": 20,
+    "CAUGHT": true
+   },
+   {
+    "mutation": "a physics line deleted",
+    "missing": 1,
+    "extra": 19,
+    "CAUGHT": true
+   }
+  ],
+  "ALL_NEGATIVE_CONTROLS_CAUGHT": true,
   "ENGINE_LINES_NOT_PRESENT_IN_OBSERVER": [],
   "PERMITTED_DECLARED_DIFFERENCES": [
    {
     "engine": "for shift, ax in NEI:",
-    "observer": "for sub, (shift, ax) in enumerate(EN.NEI):",
-    "why_equivalent": "enumerate() yields the same pairs in the same order and binds the same names; it adds an observer-only index and consumes no rng"
+    "observer": "for sub, (shift, ax) in enumerate(EN.NEI):"
    }
   ],
   "UNDECLARED_DIFFERENCES": 0,

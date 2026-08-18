@@ -46,37 +46,109 @@ def _norm(src):
     return re.sub(r"\s+", " ", src).strip()
 
 
+def _loop_lines(src, drop_pq=True):
+    out = []
+    for x in src.splitlines():
+        l = _norm(x)
+        if not l or l.startswith("def ") or l.startswith('"""') or (drop_pq and "pq_" in l):
+            continue
+        out.append(l)
+    return out
+
+
+def order_sensitive_compare(eng_lines, obs_lines, permitted):
+    """ORDER-SENSITIVE subsequence match. The pre-repair check used set membership, so moving a
+    line (e.g. the counter block past the `continue`) or appending a mutation was invisible to
+    it. This walks the engine's lines in order and requires each to appear, in order, in the
+    observer's; and it reports every observer physics line the engine does not have."""
+    i, missing, used = 0, [], []
+    for l in eng_lines:
+        tgt = permitted.get(l, l)
+        if tgt != l:
+            used.append({"engine": l, "observer": tgt})
+        found = None
+        for j in range(i, len(obs_lines)):
+            if obs_lines[j] == tgt:
+                found = j
+                break
+        if found is None:
+            missing.append(l)
+        else:
+            i = found + 1
+    extra = [l for l in obs_lines if l not in eng_lines and l not in permitted.values()]
+    return missing, extra, used
+
+
+# WRITES to engine state only. A READ such as `before = self.n["Y"].copy()` is inert and must
+# not be flagged; an assignment TO self.n[...] must be.
+PHYSICS_WRITE = re.compile(
+    r"^self\.n\[[^\]]*\]\s*[-+*/]?=|"
+    r"^self\.hops_(offered|blocked)\[[^\]]*\]\s*[-+]?=|"
+    r"^self\.(step|rng|rng_feed|tracker|sp)\s*=|"
+    r"\brng\.(binomial|random|integers|choice|normal|uniform|poisson)\(|"
+    r"self\.tracker\.(move|birth|death)\(")
+
+
+def classify_extra(extra):
+    """An observer line the engine does not have is acceptable ONLY if it cannot touch physics:
+    no write to engine state, no engine RNG draw. Anything else is a violation."""
+    viol = [l for l in extra if PHYSICS_WRITE.search(l)]
+    dead = [l for l in extra if l.startswith("del ") or "= n.copy()" in l
+            or '= self.n["Y"].copy()' in l]
+    return {"EXTRA_LINES": len(extra), "OBSERVER_SCAFFOLDING": [l for l in extra
+                                                                if not PHYSICS_WRITE.search(l)],
+            "DEAD_BUT_PRESENT_IN_THE_CODE_THAT_RAN": {
+                "lines": dead,
+                "NOTE": ("these local copies are never read. They are inert, and they are LEFT "
+                         "IN PLACE deliberately: the scientific archives were produced by this "
+                         "exact file, and tidying it after the runs would break the byte "
+                         "provenance of 128 worlds to gain nothing. The order-sensitive check "
+                         "reports them rather than hiding them.")},
+            "PHYSICS_TOUCHING_EXTRA_LINES": viol,
+            "NO_UNDECLARED_PHYSICS_LINE": len(viol) == 0,
+            "CRITERION": ("an extra line passes only if it neither assigns to self.n / "
+                          "self.hops_* / self.step / a generator, nor draws from an engine "
+                          "generator")}
+
+
 def source_equivalence():
     """The duplicated sub-shift loop must be textually identical to the engine's, modulo the
     observer lines that append to pq_* buffers."""
     eng = inspect.getsource(EN.WorldOBTC._diffuse)
     obs = inspect.getsource(O.PQECWorld._diffuse)
-    eng_loop = [l for l in (_norm(x) for x in eng.splitlines())
-                if l and not l.startswith("def ") and "pq_" not in l]
-    obs_all = [_norm(x) for x in obs.splitlines()]
-    obs_loop = [l for l in obs_all if l and "pq_" not in l and not l.startswith("def ")]
+    eng_loop = _loop_lines(eng)
+    obs_loop = _loop_lines(obs)
     # ONE declared, enumerated difference: the observer wraps the frozen iterator in
     # enumerate() to obtain a sub-shift INDEX for its own ledger. The iteration order, the
     # iterable and the bound names are unchanged, so no rng call moves. Any OTHER difference
     # is a failure.
     PERMITTED = {"for shift, ax in NEI:": "for sub, (shift, ax) in enumerate(EN.NEI):"}
-    missing, permitted_used = [], []
-    for l in eng_loop:
-        if l in obs_loop:
-            continue
-        if l in PERMITTED and PERMITTED[l] in obs_loop:
-            permitted_used.append({"engine": l, "observer": PERMITTED[l],
-                                   "why_equivalent": ("enumerate() yields the same pairs in the "
-                                                      "same order and binds the same names; it "
-                                                      "adds an observer-only index and consumes "
-                                                      "no rng")})
-            continue
-        missing.append(l)
+    missing, extra, permitted_used = order_sensitive_compare(eng_loop, obs_loop, PERMITTED)
+    # NEGATIVE CONTROLS (review finding on the qualification instrument): a check that cannot be
+    # shown to FAIL is not a check. Mutate the observer text three ways and require each to be
+    # caught.
+    controls = []
+    for name, mutate in (
+            ("counter block moved after the `continue`",
+             lambda ls: [l for l in ls if "hops_offered[sname] +=" not in l]
+             + ["self.hops_offered[sname] += int(movers.sum())"]),
+            ("an engine-state mutation appended",
+             lambda ls: ls + ['self.n["Y"][0, 0] += 1']),
+            ("a physics line deleted",
+             lambda ls: [l for l in ls if "dest_free = np.roll" not in l])):
+        m2, e2, _ = order_sensitive_compare(eng_loop, mutate(list(obs_loop)), PERMITTED)
+        controls.append({"mutation": name, "missing": len(m2), "extra": len(e2),
+                         "CAUGHT": bool(m2 or e2)})
     return {"ENGINE_LINES": len(eng_loop), "OBSERVER_LINES": len(obs_loop),
+            "ORDER_SENSITIVE": True,
+            "EXTRA_LINE_CLASSIFICATION": classify_extra(extra),
+            "NEGATIVE_CONTROLS": controls,
+            "ALL_NEGATIVE_CONTROLS_CAUGHT": all(c["CAUGHT"] for c in controls),
             "ENGINE_LINES_NOT_PRESENT_IN_OBSERVER": missing,
             "PERMITTED_DECLARED_DIFFERENCES": permitted_used,
             "UNDECLARED_DIFFERENCES": len(missing),
-            "VERBATIM_SUBSET": len(missing) == 0,
+            "VERBATIM_SUBSET": len(missing) == 0 and classify_extra(extra)[
+                "NO_UNDECLARED_PHYSICS_LINE"],
             "NOTE": ("every physics line of the engine's _diffuse appears verbatim in the "
                      "observer's override apart from the single declared enumerate() wrapper; "
                      "the observer otherwise adds only pq_* appends and a species branch")}
@@ -228,12 +300,19 @@ def main():
     }
     rec["INSTRUMENTATION_INERTNESS"] = (
         "PASS" if (rec["ALL_BIT_EXACT"] and rec["SOURCE_EQUIVALENCE"]["VERBATIM_SUBSET"]
+                   and rec["SOURCE_EQUIVALENCE"]["ALL_NEGATIVE_CONTROLS_CAUGHT"]
                    and rec["OBSERVER_OUTPUT_SEMANTICS"]["Y_CELL_LEDGER_AGREES_WITH_FIELD"]
                    and rec["STEP_LABEL_MAPPING"]["VERIFIED"]) else "FAIL")
     json.dump(rec, open(f"{OUT}/PQEC01_INSTRUMENTATION_TESTS.json", "w"), indent=1, default=str)
-    print("source equivalence  :", rec["SOURCE_EQUIVALENCE"]["VERBATIM_SUBSET"],
-          "| engine lines missing:",
-          rec["SOURCE_EQUIVALENCE"]["ENGINE_LINES_NOT_PRESENT_IN_OBSERVER"] or "none")
+    se = rec["SOURCE_EQUIVALENCE"]
+    print("source equivalence  :", se["VERBATIM_SUBSET"], "| order-sensitive:",
+          se["ORDER_SENSITIVE"], "| missing:",
+          se["ENGINE_LINES_NOT_PRESENT_IN_OBSERVER"] or "none",
+          "| extra lines %d, physics-touching %s"
+          % (se["EXTRA_LINE_CLASSIFICATION"]["EXTRA_LINES"],
+             se["EXTRA_LINE_CLASSIFICATION"]["PHYSICS_TOUCHING_EXTRA_LINES"] or "none"))
+    for c in se["NEGATIVE_CONTROLS"]:
+        print("   negative control: %-42s CAUGHT=%s" % (c["mutation"], c["CAUGHT"]))
     print("static audit        : observer writes %d, engine-state writes %d, rng calls %d"
           % (len(rec["STATIC_MUTATION_AUDIT"]["OBSERVER_ONLY_WRITES"]),
              len(rec["STATIC_MUTATION_AUDIT"]["ENGINE_STATE_WRITES"]),
