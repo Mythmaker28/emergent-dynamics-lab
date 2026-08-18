@@ -67,7 +67,43 @@ def main():
                                  for p in sorted(glob.glob(f"{REPO}/FLCR01/code/*.py"))},
         "PRE_FIX_ANALYSER_RECOVERED_FROM": "git blob at commit 7d97205",
         "RAW_DATA_UNCHANGED_SINCE_PQEC01": len(bad) == 0}
+    # ---- deterministic regeneration check ----
+    # Checked as a PIPELINE, not generator by generator: flcr01_final.py rewrites the disposition
+    # from scratch and flcr01_close.py then folds the repair back into it, so testing close.py in
+    # isolation compares a stripped file against an enriched one and reports a false failure.
+    # Running the whole chain and comparing every output is the property that actually matters.
+    import subprocess as sp, hashlib as hl
+    PIPELINE = ["flcr01_correct.py", "flcr01_science.py", "flcr01_repair.py",
+                "flcr01_final.py", "flcr01_close.py"]
+    WATCH = ["PQEC01_REVIEW_CORRECTION_ADDENDUM.json", "FLCR01_FOUNDER_CONTRADICTION.json",
+             "FLCR01_STATE_OPERATOR.json", "FLCR01_CRITERION_MATRIX.json",
+             "FLCR01_LINEAGE_REGIONS.json", "FLCR01_REPAIR.json",
+             "FLCR01_FEEDBACK_REANALYSIS.json", "FLCR01_REVIEW_AND_REPAIR.json",
+             "FLCR01_FINAL_DISPOSITION.json"]
+    hh = lambda q: hl.sha256(open(q, "rb").read()).hexdigest()
+    code = os.path.join(REPO, "FLCR01/code")
+    before = {f: hh(f"{OUT}/{f}") for f in WATCH if os.path.exists(f"{OUT}/{f}")}
+    rcs = {g: sp.run(["python3", g], cwd=code, capture_output=True, text=True).returncode
+           for g in PIPELINE}
+    res = [{"file": f, "regenerates_identically": os.path.exists(f"{OUT}/{f}")
+            and hh(f"{OUT}/{f}") == before.get(f)} for f in WATCH]
+    ledger["DETERMINISTIC_REGENERATION_CHECK"] = {
+        "MODE": "whole pipeline re-run, every output compared byte for byte",
+        "PIPELINE_ORDER": PIPELINE, "generator_returncodes": rcs, "results": res,
+        "ALL_REGENERATE_IDENTICALLY": (all(x["regenerates_identically"] for x in res)
+                                       and all(v == 0 for v in rcs.values())),
+        "SELF_EXCLUDED": "PQEC01_REPRODUCIBILITY_LEDGER.json",
+        "WHY_SELF_EXCLUDED": ("this ledger records the hashes of the sources it is generated from "
+                              "and embeds the result of this check. A file cannot contain its own "
+                              "hash, so it is excluded from its own test rather than made to "
+                              "appear to pass one."),
+        "MARKDOWN_DELIVERABLES_ARE_NARRATIVE": (
+            "the four .md files are prose. The addendum and the lineage report are generated from "
+            "the JSONs by inline scripts; the criterion audit and the final report are "
+            "hand-written, with every number traceable to a committed JSON. Stated, not implied.")}
     json.dump(ledger, open(f"{OUT}/PQEC01_REPRODUCIBILITY_LEDGER.json", "w"), indent=1, default=str)
+    print("regeneration check:", ledger["DETERMINISTIC_REGENERATION_CHECK"]["ALL_REGENERATE_IDENTICALLY"],
+          "(%d files)" % len(res))
     print("parent tip", tip, "| matches C5:", binding["RESOLVED_NOT_TRUSTED"]["matches_C5_recorded_tip"])
     print("raw archives", binding["RAW_ARCHIVES"]["n"], "checksums all match:",
           binding["RAW_ARCHIVES"]["all_checksums_match"])

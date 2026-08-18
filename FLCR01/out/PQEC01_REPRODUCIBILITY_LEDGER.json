@@ -26,10 +26,73 @@
   "pqec01_run.py": "3b88f901b118e1e2df6fac864aee6c24b62c7dae890dd28b4207eaba59ea2b96"
  },
  "FLCR01_SOURCE_HASHES": {
-  "flcr01_bind.py": "ae9854b84e3402d3708ce08b5183658876500be874ddf407b0ed875e46ac24f8",
-  "flcr01_correct.py": "d6fc0fe3e9919ebc1045f9496ce584cde32e454cd030974aa893c52f5a9d3c5b",
-  "flcr01_science.py": "559d532f7094fdd2fc7c3c1cfb01256afcbd7aaee31c886a7d8b7e0366002343"
+  "flcr01_bind.py": "668392d64246023e6a82bce150d334a6f645718884d684ddaf50c690a5bf1076",
+  "flcr01_close.py": "61eef9ce9ca06e9588f7a9671610d5d8d69e54a8412d7db700c5933450b3b084",
+  "flcr01_correct.py": "8daa88dfef0aca165ed79f54fd4e4c397029fb1d615407bbc953a69524d0d9de",
+  "flcr01_final.py": "213e26d15c16c5ce53467d4fe4cc3c45efa55b25cd1c9012c8180b674bb3dbee",
+  "flcr01_repair.py": "4b0214a0185ddd5e644e26bea2a340983f7e003ba2dff3d0d0e5cc49e7e1534a",
+  "flcr01_science.py": "559d532f7094fdd2fc7c3c1cfb01256afcbd7aaee31c886a7d8b7e0366002343",
+  "pqec01_analyse_PREFIX.py": "cb486ce271b9c1ae01c2148ff87233f2906622c13d1f634486bf8828530e3caa"
  },
  "PRE_FIX_ANALYSER_RECOVERED_FROM": "git blob at commit 7d97205",
- "RAW_DATA_UNCHANGED_SINCE_PQEC01": true
+ "RAW_DATA_UNCHANGED_SINCE_PQEC01": true,
+ "DETERMINISTIC_REGENERATION_CHECK": {
+  "MODE": "whole pipeline re-run, every output compared byte for byte",
+  "PIPELINE_ORDER": [
+   "flcr01_correct.py",
+   "flcr01_science.py",
+   "flcr01_repair.py",
+   "flcr01_final.py",
+   "flcr01_close.py"
+  ],
+  "generator_returncodes": {
+   "flcr01_correct.py": 0,
+   "flcr01_science.py": 0,
+   "flcr01_repair.py": 0,
+   "flcr01_final.py": 0,
+   "flcr01_close.py": 0
+  },
+  "results": [
+   {
+    "file": "PQEC01_REVIEW_CORRECTION_ADDENDUM.json",
+    "regenerates_identically": true
+   },
+   {
+    "file": "FLCR01_FOUNDER_CONTRADICTION.json",
+    "regenerates_identically": true
+   },
+   {
+    "file": "FLCR01_STATE_OPERATOR.json",
+    "regenerates_identically": true
+   },
+   {
+    "file": "FLCR01_CRITERION_MATRIX.json",
+    "regenerates_identically": true
+   },
+   {
+    "file": "FLCR01_LINEAGE_REGIONS.json",
+    "regenerates_identically": true
+   },
+   {
+    "file": "FLCR01_REPAIR.json",
+    "regenerates_identically": true
+   },
+   {
+    "file": "FLCR01_FEEDBACK_REANALYSIS.json",
+    "regenerates_identically": true
+   },
+   {
+    "file": "FLCR01_REVIEW_AND_REPAIR.json",
+    "regenerates_identically": true
+   },
+   {
+    "file": "FLCR01_FINAL_DISPOSITION.json",
+    "regenerates_identically": true
+   }
+  ],
+  "ALL_REGENERATE_IDENTICALLY": true,
+  "SELF_EXCLUDED": "PQEC01_REPRODUCIBILITY_LEDGER.json",
+  "WHY_SELF_EXCLUDED": "this ledger records the hashes of the sources it is generated from and embeds the result of this check. A file cannot contain its own hash, so it is excluded from its own test rather than made to appear to pass one.",
+  "MARKDOWN_DELIVERABLES_ARE_NARRATIVE": "the four .md files are prose. The addendum and the lineage report are generated from the JSONs by inline scripts; the criterion audit and the final report are hand-written, with every number traceable to a committed JSON. Stated, not implied."
+ }
 }

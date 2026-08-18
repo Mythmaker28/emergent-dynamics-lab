@@ -13,7 +13,7 @@ REPO = "/home/claude/edl"
 PQ = f"{REPO}/PQEC01/out"
 OUT = f"{REPO}/FLCR01/out"
 RAW = "/home/claude/PQEC01/raw"
-PRE = "/home/claude/FLCR01/work/prefix/out"
+PRE = f"{REPO}/FLCR01/prefix_outputs"   # committed, so the addendum is regenerable
 BURN_IN, T_HORIZON = 2000, 11000
 C3, C4 = "7d97205818ae723683280053512a27f1872db375", "d61e9a34367b42bd7534647ad9802a9892639f31"
 
@@ -106,8 +106,11 @@ def provenance():
             "REPRODUCIBILITY": ("the pre-fix analyser was recovered from commit %s and re-run on "
                                 "the identical 128 raw archives; the pre-fix outputs below are "
                                 "regenerated, not remembered." % C3[:7]),
-            "PRE_FIX_ANALYSER_SHA256":
-                sha("/home/claude/FLCR01/work/prefix/pqec01_analyse_PREFIX.py"),
+            "PRE_FIX_ANALYSER_SHA256": sha(f"{REPO}/FLCR01/code/pqec01_analyse_PREFIX.py"),
+            "PRE_FIX_ANALYSER_AND_OUTPUTS_ARE_COMMITTED": (
+                "the analyser recovered from commit 7d97205 and the outputs it produced are "
+                "both committed under FLCR01/, so this addendum regenerates from the repository "
+                "alone and depends on no scratch directory"),
             "POST_FIX_ANALYSER_SHA256": sha(f"{REPO}/PQEC01/code/pqec01_analyse.py")},
         "PRE_FIX_VS_POST_FIX_VALIDATION": side,
         "THE_B1_TEST_CHANGE": {
