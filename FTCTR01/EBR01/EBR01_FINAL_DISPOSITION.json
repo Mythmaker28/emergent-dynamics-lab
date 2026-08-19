@@ -1,0 +1,68 @@
+{
+  "program": "FTCTR01-EXECUTABLE-BYTE-RECOVERY-01",
+  "short_name": "EBR01",
+  "date_utc": "2026-08-19",
+  "RECOVERY_DISPOSITION": "RECOVERY_BLOCKED__EXTERNAL_ARTIFACTS_NOT_PRESENT_ON_DEVICE",
+  "disposition_is_one_of_the_six_permitted": true,
+  "why_not_the_others": {
+    "FULL_EXECUTABLE_RECOVERED__FTCTR01_CONTINUATION_AUTHORIZED": "0 of 14 semantic gates, 0 of 24 expected hashes",
+    "PARTIAL_RECOVERY__CENTRE_CLASSIFIER_MISSING": "would require the engine to have been recovered; it was not",
+    "PARTIAL_RECOVERY__ENGINE_PRESENT_BUT_PROVENANCE_INSUFFICIENT": "the engine is not present in any form",
+    "RECOVERY_REJECTED__HASH_MISMATCH": "no candidate file was ever produced to mismatch",
+    "RECOVERY_BLOCKED__SPLIT_DELIVERY_INCOMPLETE": "no split delivery of the target families exists at all; the three thin bundles found belong to a different paper line"
+  },
+  "acceptance_gates": {
+    "ENGINE_CORE_EXACT_HASHES": "FAIL",
+    "Y_DIFFUSION_SEMANTICS": "FAIL",
+    "Y_BIRTH_DEATH_PATHS": "FAIL",
+    "X_SOURCE_DECAY_PATHS": "FAIL",
+    "CAPACITY_BLOCKING": "FAIL",
+    "SCHEDULER_ORDER": "FAIL",
+    "CENTRE_CLASSIFIER": "FAIL",
+    "METHODS_OR_PROVENANCE_MANIFEST": "PARTIAL — PAPER_SOURCE_BINDING.json recovered, but it binds no code for OBFOR01, OBTR01 or PQEC01 and no centre classifier at all"
+  },
+  "priority_results": {
+    "P1_full_git_bundle": "NOT_PRESENT",
+    "P2_raw_confirmation_package": "NOT_PRESENT",
+    "P3_paper_capsule": "PRESENT__MANIFEST_ONLY__NO_SOURCE_BYTES",
+    "P4_split_deliveries": "3 thin bundles of an unrelated paper line; THIN_BUNDLE_PREREQUISITE_MISSING (f382dbf077699aa65c80328b6519035d1cda4a57)"
+  },
+  "content_hash_sweep": {"files_hashed": 1211, "expected_hashes": 24, "matches": 0, "naming_independent": true},
+  "new_repositories_reached_this_mission": [
+    "C:\\Users\\tommy\\Documents\\ising-life-lab (github.com/Mythmaker28/ising-life-lab, package isinglab, 121 commits, newest ref 2025-11-14) — distinct, and NOT the target",
+    "C:\\Users\\tommy\\Downloads — source of LRCPS01_PAPER_PACKAGE.tar.zst"
+  ],
+  "where_the_engine_lived": "/home/claude/{ORR01,OBTC02,OBFOR01,OBTR01,PQEC01} and /home/claude/edl/FLCR01 — ephemeral cloud container paths recorded by PAPER_SOURCE_BINDING.json; its REPO_HEAD 06c592313df96601de8d2a89676d5a5cf79fc414 and branch codex/lineage-route-closure-and-paper-synthesis-01 do not exist in ising v3",
+  "structural_ceiling_finding": "Even a perfect artefact recovery could not have authorised continuation: the only surviving expected-hash manifest binds NO code for OBFOR01/OBTR01, NOTHING at all for PQEC01 (128 raw archives, empty sha256 map), and no centre classifier. Eleven named engine files and the classifier would be FULL_HASH_NOT_AVAILABLE under section 6, forcing PARTIAL_RECOVERY__CENTRE_CLASSIFIER_MISSING under section 8.",
+  "prohibitions_observed": {
+    "REIMPLEMENT_ENGINE_FROM_REPORTS": "not done",
+    "RECONSTRUCT_SOURCE_FROM_PROSE": "not done",
+    "COPY_CODE_FROM_MEMORY": "not done",
+    "USE_PDF_PSEUDOCODE_AS_EXECUTABLE_SOURCE": "not done — figure_data/fig1_model_and_event_order.json and supplement/S1_methods.tex were present and deliberately unused",
+    "MERGE_RECOVERED_HISTORY_INTO_CURRENT_REPOSITORY": "not done",
+    "OVERWRITE_CURRENT_WINDOWS_REPOSITORY": "not done",
+    "originals_modified": false,
+    "second_byte_audit_agent": "not dispatched"
+  },
+  "budget_used": {
+    "NEW_SCIENTIFIC_ENGINE_RUNS": 0, "WORLD_CONSTRUCTIONS": 0, "ENGINE_ADVANCES": 0,
+    "NEW_SEEDS": 0, "NEW_TRAJECTORIES": 0, "CHECKPOINT_CONTINUATIONS": 0,
+    "INTENTIONAL_COMMITS_IN_CURRENT_REPO": 1, "MAX_ALLOWED": 3
+  },
+  "isolated_restoration_directory": "NOT_CREATED — nothing recovered to restore",
+  "recovery_bundle_and_capsule": "NOT_CREATED — a bundle of nothing would be a false artefact",
+  "recovery_dropbox_created": "C:\\Users\\tommy\\Downloads\\ising-life-byte-recovery\\verified-output\\",
+  "FTCTR01_CONTINUATION_STATUS": "NOT_AUTHORIZED",
+  "FTCTR01_FINAL_DISPOSITION": "STOP__CRITICAL_EXECUTABLE_BYTES_MISSING",
+  "TOMMY_ACTION_REQUIRED": "DOWNLOAD_EXISTING_RECOVERY_ARTIFACTS_ONLY",
+  "TOMMY_GIT_ACTION_REQUIRED": "NONE",
+  "requested_files_in_priority_order": [
+    "LRCPS01_FULL.bundle (or every LRCPS01_FULL.bundle.PART*)",
+    "LRCPS01_BUNDLE_PARTS_SHA256*",
+    "OBOPR01_FULL.bundle*",
+    "OBOPR01_RAW_CONFIRMATION_PACKAGE.tar.zst",
+    "OBOPR01_EXTERNAL_MANIFEST.json",
+    "OBOPR01_SHA256SUMS"
+  ],
+  "target_directory": "C:\\Users\\tommy\\Downloads\\ising-life-byte-recovery\\"
+}

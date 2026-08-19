@@ -1,0 +1,60 @@
+{
+  "program": "EBR01",
+  "split_artefacts_found": 0,
+  "note": "No .PART* file exists under any accessible search root, so no reassembly was performed. The three .bundle files in Downloads are whole files, not parts; two of them are byte-identical duplicates (sha256 3a3ebf9c...).",
+  "whole_artefacts_integrity_checked": [
+    {
+      "file": "LRCPS01_PAPER_PACKAGE.tar.zst",
+      "sha256": "953941eeb5eaf9f1e1f35e6710fdc4bcd35ea519111ea5c04b6ddf5597ed8ffc",
+      "format": "zstd + tar",
+      "integrity": "PASS",
+      "decompressed_bytes": 1925120,
+      "members": 79,
+      "expected_sha256_from_a_manifest": "NONE_AVAILABLE__NO_CHECKSUM_FILE_WAS_DELIVERED_WITH_IT",
+      "contains_engine_source": false
+    },
+    {
+      "file": "persistence-without-ownership-v2.bundle",
+      "sha256": "3a3ebf9c3c82073782401b460bcb04f69ce3e06814b5fff442ee62b7e292ffd1",
+      "format": "git bundle v2 (THIN)",
+      "git_bundle_verify": "FAIL",
+      "failure": "Repository lacks these prerequisite commits: f382dbf077699aa65c80328b6519035d1cda4a57",
+      "head": "eed514e3621a54813ea157361b02e66be019b4b2 refs/heads/paper/persistence-without-ownership-v2",
+      "status": "THIN_BUNDLE_PREREQUISITE_MISSING"
+    },
+    {
+      "file": "persistence-without-ownership-v2_1.bundle",
+      "sha256": "3a3ebf9c3c82073782401b460bcb04f69ce3e06814b5fff442ee62b7e292ffd1",
+      "status": "BYTE_IDENTICAL_DUPLICATE_OF_THE_PREVIOUS_FILE"
+    },
+    {
+      "file": "persistence-without-ownership-v2_2.bundle",
+      "sha256": "58aff9ce1f43d5fde02051742651a19a6714012b70f98dd9dac44d6ec7c09e4c",
+      "format": "git bundle v2 (THIN)",
+      "git_bundle_verify": "FAIL",
+      "failure": "same missing prerequisite f382dbf077699aa65c80328b6519035d1cda4a57",
+      "head": "9b507dae206b7fb58cac91b2c0c61c268062c233 refs/heads/paper/persistence-without-ownership-v2",
+      "status": "THIN_BUNDLE_PREREQUISITE_MISSING"
+    }
+  ],
+  "prerequisite_search": {
+    "missing_commit": "f382dbf077699aa65c80328b6519035d1cda4a57",
+    "searched_in": [
+      "C:\\Users\\tommy\\Documents\\ising v3 object database (reachable and unreachable) - ABSENT",
+      "the other two Downloads bundles - ABSENT",
+      "C:\\Users\\tommy\\Documents\\ising-life-lab - ABSENT (unrelated project)",
+      "no other full bundle exists to provide it"
+    ],
+    "cross_reference": "This is the SAME missing base commit that FTCTR01's independent checker reported for the orphan bundle inside ising v3 (tip 4dc575ea..., refs/tags/DCL01T_R_AUTHENTIC). The prerequisite is missing everywhere on this device.",
+    "result": "THIN_BUNDLE_PREREQUISITE_MISSING"
+  },
+  "thin_pack_object_recovery_attempt": {
+    "method": "the pack section of each thin bundle was split at the PACK magic and every non-delta object inflated directly, so literal blobs could be read even though git index-pack refuses the pack (6, 6 and 8 unresolved deltas respectively)",
+    "objects_walked": [66, 66, 94],
+    "blobs_inflated": [47, 47, 48],
+    "expected_hash_matches": 0,
+    "token_hits_inspected": "kY, nSY and 'kinetics' matched raw bytes only; every occurrence was inspected in context and is inside a compressed PDF/PNG stream or the bibliography string 'Journal of Pharmacokinetics and Biopharmaceutics'. All false positives.",
+    "engine_source_recovered": false
+  },
+  "originals_modified": false
+}

@@ -1,0 +1,170 @@
+{
+  "program": "EBR01",
+  "static_inspection_performed": false,
+  "reason": "No recovered source exists to inspect. Nothing was imported and nothing was executed.",
+  "gates": [
+    {
+      "gate": "A",
+      "object": "integer per-cell Y occupancy",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "B",
+      "object": "four ordered diffusion sub-shifts",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "C",
+      "object": "one Binomial mover draw per occupied cell/sub-shift",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "D",
+      "object": "sequential state update between sub-shifts",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "E",
+      "object": "toroidal wrapping",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "F",
+      "object": "destination free-capacity calculation",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "G",
+      "object": "destination-capacity refusal",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "H",
+      "object": "p_hop_Y constructor-to-scheduler path",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "I",
+      "object": "muX decay path",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "J",
+      "object": "kY and muY birth/death paths",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "K",
+      "object": "nSY / candidate-pool semantics",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "L",
+      "object": "X birth acceptance and X decay",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "M",
+      "object": "exact scheduler event order",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    },
+    {
+      "gate": "N",
+      "object": "centre-classification rule mapping Y positions to one versus two centres",
+      "file": null,
+      "function_or_class": null,
+      "exact_lines": null,
+      "content_sha256": null,
+      "git_blob": null,
+      "semantic_summary": null,
+      "result": "NOT_RECOVERED"
+    }
+  ],
+  "gates_passed": 0,
+  "gates_total": 14,
+  "documentary_substitutes_available": [
+    "LRCPS01_MANUSCRIPT.pdf and LRCPS01_SUPPLEMENT.pdf (Downloads)",
+    "figure_data/fig1_model_and_event_order.json inside the paper package",
+    "supplement/S1_methods.tex inside the paper package"
+  ],
+  "documentary_substitutes_used": "NONE",
+  "rule_applied": "Section 12 - documentary reports, figure data and LaTeX methods sections are expressly forbidden as executable source. fig1_model_and_event_order.json describes the event order; reading it into a reimplementation is exactly the prohibited act."
+}
