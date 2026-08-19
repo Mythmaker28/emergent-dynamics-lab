@@ -1,0 +1,77 @@
+{
+  "program": "FTCTR01",
+  "check_type": "INDEPENDENT_BYTE_EXISTENCE_CHECK",
+  "note": "The mission's independent mathematical check (relative-Y first passage, functional-time composition, third-centre probability) COULD NOT BE PERFORMED: there is no derivation to check, because the derivation never began. The single permitted independent check was therefore spent on the load-bearing claim that actually exists — the absence of the executable architecture.",
+  "independence": {
+    "shared_code": "none",
+    "shared_intermediate_files": "none",
+    "method_chosen_by_checker": true,
+    "primitives_used_by_checker": [
+      "independent enumeration of 6 pack .idx files and all 256 loose-object directories",
+      "direct zlib inflation of bundle packfiles (bypasses git grep entirely)",
+      "end-to-end streaming decompression of all tar payloads",
+      "git reflog --all",
+      "chunked xargs|grep over tracked, untracked and gitignored worktree files"
+    ]
+  },
+  "items": [
+    {"id": "A", "object": "TAU_SEP / tau_sep, value 125 as a separation time", "verdict": "ABSENT", "near_miss": "40+ distinct tau_*/TAU_* symbols exist (TAU, TAU_MAX, tau_sq, tau_iv, tau_feed, tau_on/off, TAU_CONTRAST, TAU_SLOW); none is tau_sep; no '= 125' bound to any separation concept"},
+    {"id": "B", "object": "p_hop_Y", "verdict": "ABSENT", "near_miss": "edlab/experiments/exp_ch_00.py:57 'hops' = Euclidean displacement of a continuum-field centroid between snapshots"},
+    {"id": "C", "object": "muX / mu_X", "verdict": "ABSENT", "near_miss": "mu_x^q in a face-flux chemical-potential identity J_xy^q = K_q(b_xy)*(mu_x^q - mu_y^q); different quantity"},
+    {"id": "D", "object": "kY/k_Y and muY/mu_Y", "verdict": "ABSENT", "note": "apparent hits localise to one ASCII85/PostScript-encoded binary blob; repository rate names are g0 (growth) and k (homogeneous removal)"},
+    {"id": "E", "object": "nSY / n_SY", "verdict": "ABSENT", "note": "17 raw-byte matches, all inside binary blobs; 0 in any text blob"},
+    {"id": "F", "object": "discrete lattice engine with co-located Y, four ordered sub-shifts, binomial mover count, destination-capacity blocking, X birth/decay", "verdict": "ABSENT", "decisive_evidence": "zero occurrences of np.random.binomial / rng.binomial anywhere in worktree or history; all 69 'binomial' occurrences are statistical inference"},
+    {"id": "G", "object": "centre-classification rule ONE_CENTRE / TWO_CENTRES", "verdict": "ABSENT", "note": "0 hits for ONE_CENT*, TWO_CENT*, one_centre/center, two_centre(s)/center(s), n_centres, centre_count, centre_class"},
+    {"id": "H", "object": "OBFOR01 / PQEC01 / FVLCR01 / CLOC02 / RSLOC03 / FTCTR01 and long forms", "verdict": "ABSENT", "note": "0 hits in 199 ref names, 397 commit messages, full reflog, 9528 historical paths, all blob contents, all 46 bundles, all 81 archives"},
+    {"id": "I", "object": "threshold '101 accepted X births per centre over 250 steps'", "verdict": "ABSENT", "near_miss": "edlab/substrates/reaction_diffusion/engine.py:93 tau_feed: int = 250 (feed-cohort period, unrelated to births or centres)"}
+  ],
+  "engines_enumerated_by_checker": 19,
+  "engine_families": [
+    "Conway Game of Life (life/engine.py, life/fast.py)",
+    "Boolean network (boolnet/engine.py)",
+    "continuum chemotaxis PDE (chemotaxis/engine.py)",
+    "Gray-Scott reaction-diffusion PDE (reaction_diffusion/engine.py)",
+    "motile polar continuum (motile_polar/engine.py)",
+    "multistable two-species continuum (multistable/engine.py)",
+    "scaffold + internal bistable network (scaffold/engine.py)",
+    "Flow-Lenia continuum (flow_lenia/engine.py, engine_throughput.py)",
+    "CTRANS continuous-site chain (ctrans/engine.py)",
+    "lattice_bond continuous fields m,n,b (lattice_bond/engine.py, history-only)",
+    "off-lattice Newtonian particles on a torus (particle_dynamics/engine*.py, 4 variants)",
+    "scaffold + organizational-memory field (edlab/experiments/sc_iom/engine.py)",
+    "multi-channel memory readout (edlab/experiments/sc_mcm/engine.py)",
+    "FitzHugh-Nagumo excitable network (independent_replication/substrate_fhn.py)"
+  ],
+  "checker_coverage": {
+    "blobs_fully_scanned": 10005,
+    "unreachable_objects_included": 258,
+    "refs": 199,
+    "commits": 397,
+    "historical_paths": 9528,
+    "tracked_worktree_files": 1203,
+    "untracked_worktree_files": 8492,
+    "gitignored_non_venv_files": 5792,
+    "bundles_byte_walked": 46,
+    "orphan_history_bundles_recovered": 1,
+    "tar_payloads_streamed": 81,
+    "largest_stream_bytes": 1553920000
+  },
+  "checker_positive_controls": [
+    "FCDDH01R|Clopper-Pearson -> 151 hits in one worktree chunk",
+    "sha256|seed -> 1125 matching gitignored files",
+    "binomial -> 69 real text hits; 'co-located' -> 6 real hits in docs/CRD01, CRD02",
+    "import |def |Clopper|binomial matched in every one of 46 bundles (585 matches in the 586 MB bundle)",
+    "sha256|seed|.json|.npz -> 16391 matching lines over the full 1.55 GB escrow stream",
+    "tau_* family -> 20+ distinct real symbols recovered, proving the tau_sep negative is a true negative"
+  ],
+  "checker_declared_coverage_gaps": [
+    ".venv/ third-party virtualenv files (7696), excluded by design",
+    "inner zlib/zip members of binary blobs (.npz arrays, .pkl, PNG/PDF streams) not individually inflated; .npz member names and JSON sidecars are plaintext and were scanned",
+    "delta copy-from-base reconstruction inside the single orphan bundle pair (42 of 43 bundle tips already materialised in .git)",
+    "worktree directories belonging to other machines/sessions do not exist on this device; their commits are in .git and were scanned",
+    "_ftctr01_src_py_md.tgz at repository root, created by the primary operator during this session, explicitly excluded as non-repository content"
+  ],
+  "primary_and_independent_agree": true,
+  "disagreement_rule_triggered": false,
+  "checker_overall_verdict": "No two-centre Y/X developmental timing architecture exists in this repository, in any form, at any point in its recorded history."
+}
