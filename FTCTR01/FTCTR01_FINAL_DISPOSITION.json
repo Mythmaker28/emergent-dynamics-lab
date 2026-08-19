@@ -21,7 +21,8 @@
     "THIRD_CENTRE_HAZARD_STATUS": "NOT_DERIVED",
     "LINEAGE_CONTINUITY_STATUS": "CRITERION_STATED_BUT_NOT_INSTANTIABLE__NO_OBSERVABLE_STATE_SPACE",
     "DIRECT_TEST_ELIGIBILITY": "NOT_ELIGIBLE",
-    "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED__UNDECIDABLE_ON_SURVIVING_BYTES"
+    "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED__UNDECIDABLE_ON_SURVIVING_BYTES",
+    "EXECUTABLE_BYTE_STATUS": "ALL_NINE_CRITICAL_OBJECTS_ABSENT__ESTABLISHED_AT_MECHANISM_LEVEL"
   },
   "budget_used": {
     "NEW_SCIENTIFIC_ENGINE_RUNS": 0,
@@ -31,7 +32,7 @@
     "NEW_PARAMETER_SWEEP": 0,
     "NEW_INTERPOLATION": 0,
     "NEW_ARCHITECTURE": 0,
-    "INTENTIONAL_COMMITS": 2,
+    "INTENTIONAL_COMMITS": 3,
     "INTENTIONAL_COMMITS_ALLOWED": 4,
     "INDEPENDENT_MATHEMATICAL_CHECKS": 1,
     "INDEPENDENT_MATHEMATICAL_CHECKS_ALLOWED": 1,
@@ -64,5 +65,57 @@
   "reason_for_non_production": "Each of these would have required inventing the transition kernel, the classifier, or the source-response operator. Producing them would be fabrication, explicitly forbidden by the mission's own STOP rule.",
   "conditional_next_handoff": "HANDOFF_FTCTR01_EXECUTABLE_BYTE_RECOVERY_01.md",
   "TOMMY_ACTION_REQUIRED": "NONE",
-  "TOMMY_GIT_ACTION_REQUIRED": "NONE"
+  "TOMMY_GIT_ACTION_REQUIRED": "NONE",
+  "revision": 2,
+  "revision_note": "Revision 2 after the autonomous continuation. The independent checker's report was consumed and bound verbatim (FTCTR01_EXECUTABLE_BYTE_AUDIT.md/.json), and a NAMING-INDEPENDENT physics-level re-audit was run by the primary operator to test the continuation's own warning that 'the old mission name is absent' must not be confused with 'the physics is absent'. Four independent fingerprints of a discrete stochastic hopping model were probed; zero are present. The disposition is unchanged and is now established at the level of mechanism, not vocabulary.",
+  "physics_level_reaudit": {
+    "fingerprint_1_mover_draw": {
+      "binomial_or_equivalent_draws_in_repository": 0,
+      "poisson_multinomial_hypergeometric_geometric_exponential_bernoulli": 0,
+      "only_per_cell_bernoulli_in_a_lattice_engine": "edlab/substrates/life/fast.py:57 (random initial Game-of-Life soup)"
+    },
+    "fingerprint_2_integer_occupancy": "no int-dtype array under edlab/substrates is an occupancy count of a mobile species; all are labels, opcodes, index sets, delay matrices or byte buffers",
+    "fingerprint_3_where_randomness_lives": "only 5 engine modules touch an RNG, each confined to initialisation; particle_dynamics/engine.py lines 46-50, boolnet/engine.py lines 158-165, life/fast.py, ctrans measurement noise",
+    "fingerprint_4_co_located_lead": "the only genuine textual 'co-located' hits are docs/CRD01_FINAL_REPORT.md:90 and docs/CRD02_TRANSFER_AUDIT.md:11,26, both denoting a co-located REFERENCE SENSOR in the Causal Response Decomposition metrology programme; lead closed",
+    "conclusion": "the physics is absent, not merely the vocabulary"
+  },
+  "critical_vs_non_critical": {
+    "critical_objects_absent": [
+      "discrete Y diffusion implementation",
+      "ordered four-sub-shift semantics",
+      "Y hop probability path",
+      "X decay path",
+      "Y birth and death paths",
+      "nSY / candidate-pool semantics",
+      "destination-capacity blocking semantics",
+      "centre-classification rule",
+      "exact scheduler event order"
+    ],
+    "non_critical_objects_absent_and_NOT_the_reason_for_stop": [
+      "TAU_SEP symbol",
+      "the literal value 125",
+      "prior mission names OBFOR01/PQEC01/FVLCR01",
+      "the 101-over-250 threshold"
+    ],
+    "note": "FTCTR01 exists to DERIVE the clock, not to retrieve it; it would have proceeded from an unnamed engine. It stops because the engine, the centre rule and the scheduler are the missing objects."
+  },
+  "named_missing_executable_object": "The discrete two-species lattice engine implementing sequential Y diffusion (four ordered sub-shifts, binomial mover count over integer co-located Y occupancies, sequential state update between sub-shifts, toroidal wrap, destination-capacity refusal), together with its centre classifier and its scheduler event order.",
+  "freeze": {
+    "FTCTR01_MASTER_FREEZE": "NOT_CREATED",
+    "FTCTR01_METHODS_HASH": "NOT_DEFINED",
+    "PRE_OUTCOME_DERIVATION_FREEZE_COMMIT": "NOT_DEFINED",
+    "reason": "the continuation's section-1 decision point is reached before section 3; freezing a derivation plan for an architecture with no executable referent would be fabrication"
+  },
+  "independent_deterministic_cross_check": {
+    "status": "NOT_RUNNABLE",
+    "reason": "PRIMARY_DERIVATION does not exist, so INDEPENDENT_MINIMAL_CHECKER has nothing to recompute. No load-bearing numeric quantity was produced by either route, therefore INDEPENDENT_DERIVATIONS_DISAGREE cannot be triggered.",
+    "what_was_cross_checked_instead": "the absence itself, by two independent search implementations with disjoint methods and their own positive controls; they AGREE"
+  },
+  "artifacts_produced_by_the_continuation": [
+    "FTCTR01_EXECUTABLE_BYTE_AUDIT.md",
+    "FTCTR01_EXECUTABLE_BYTE_AUDIT.json",
+    "FTCTR01_PARENT_BINDING.md",
+    "FTCTR01_EXECUTABLE_SOURCE_MANIFEST.json",
+    "FTCTR01_EXECUTABLE_SOURCE_SHA256SUMS"
+  ]
 }

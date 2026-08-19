@@ -1,0 +1,155 @@
+{
+  "program": "FTCTR01",
+  "date_utc": "2026-08-19",
+  "authoritative_repository": "C:\\Users\\tommy\\Documents\\ising v3",
+  "remote": "https://github.com/Mythmaker28/emergent-dynamics-lab.git",
+  "cloud_container_repository": "NOT_AUTHORITATIVE",
+  "checker_report_preserved_verbatim_in": "FTCTR01_EXECUTABLE_BYTE_AUDIT.md (Part 1)",
+  "checker_evidence_internally_contradictory": false,
+  "broad_search_repeated": false,
+  "physics_level_reaudit_performed": true,
+  "objects": [
+    {
+      "id": "A", "object": "TAU_SEP / tau_sep and the literal 125 as a separation time",
+      "criticality": "NON_CRITICAL",
+      "VERDICT": "ABSENT", "PATH": null, "GIT_REF_OR_OBJECT": null, "EXACT_LINES": null,
+      "BLOB_SHA": null, "WORKTREE_SHA256": null, "TRACKED_OR_UNTRACKED": null,
+      "REACHABILITY_STATUS": "SEARCHED_REACHABLE_AND_UNREACHABLE__NOT_FOUND",
+      "near_miss": "40+ distinct tau_*/TAU_* symbols; none is tau_sep; no '= 125' bound to any separation concept"
+    },
+    {
+      "id": "B", "object": "p_hop_Y (Y hop probability path)",
+      "criticality": "CRITICAL",
+      "VERDICT": "ABSENT", "PATH": null, "GIT_REF_OR_OBJECT": null, "EXACT_LINES": null,
+      "BLOB_SHA": null, "WORKTREE_SHA256": null, "TRACKED_OR_UNTRACKED": null,
+      "REACHABILITY_STATUS": "SEARCHED_REACHABLE_AND_UNREACHABLE__NOT_FOUND",
+      "near_miss": "edlab/experiments/exp_ch_00.py:57 'hops' = Euclidean displacement of a continuum-field centroid between snapshots"
+    },
+    {
+      "id": "C", "object": "muX / mu_X (X decay path)",
+      "criticality": "CRITICAL",
+      "VERDICT": "ABSENT", "PATH": null, "GIT_REF_OR_OBJECT": null, "EXACT_LINES": null,
+      "BLOB_SHA": null, "WORKTREE_SHA256": null, "TRACKED_OR_UNTRACKED": null,
+      "REACHABILITY_STATUS": "SEARCHED_REACHABLE_AND_UNREACHABLE__NOT_FOUND",
+      "near_miss": "blob 6e11da62c613487f4fc18359afb5196a85c6b9f2 contains mu_x^q in a face-flux chemical-potential identity; different quantity"
+    },
+    {
+      "id": "D", "object": "kY / muY (Y birth and death paths)",
+      "criticality": "CRITICAL",
+      "VERDICT": "ABSENT", "PATH": null, "GIT_REF_OR_OBJECT": null, "EXACT_LINES": null,
+      "BLOB_SHA": null, "WORKTREE_SHA256": null, "TRACKED_OR_UNTRACKED": null,
+      "REACHABILITY_STATUS": "SEARCHED_REACHABLE_AND_UNREACHABLE__NOT_FOUND",
+      "near_miss": "repository rate names are g0 (growth) and k (homogeneous removal); apparent kY hits localise to one ASCII85/PostScript binary blob 833e92225f42c4668fd496bb17c98e91ad93ce2b"
+    },
+    {
+      "id": "E", "object": "nSY / candidate-pool semantics",
+      "criticality": "CRITICAL",
+      "VERDICT": "ABSENT", "PATH": null, "GIT_REF_OR_OBJECT": null, "EXACT_LINES": null,
+      "BLOB_SHA": null, "WORKTREE_SHA256": null, "TRACKED_OR_UNTRACKED": null,
+      "REACHABILITY_STATUS": "SEARCHED_REACHABLE_AND_UNREACHABLE__NOT_FOUND",
+      "note": "17 raw-byte matches, all inside compressed binary blobs; 0 textual. Independently re-verified by the primary operator in a separate chunked scan."
+    },
+    {
+      "id": "F", "object": "discrete lattice engine: co-located Y, four ordered sub-shifts, binomial mover count, destination-capacity blocking, X birth/decay",
+      "criticality": "CRITICAL",
+      "VERDICT": "ABSENT", "PATH": null, "GIT_REF_OR_OBJECT": null, "EXACT_LINES": null,
+      "BLOB_SHA": null, "WORKTREE_SHA256": null, "TRACKED_OR_UNTRACKED": null,
+      "REACHABILITY_STATUS": "SEARCHED_REACHABLE_AND_UNREACHABLE__NOT_FOUND",
+      "naming_independent_evidence": {
+        "binomial_or_equivalent_draws_in_repository": 0,
+        "poisson_multinomial_hypergeometric_geometric_exponential_bernoulli_draws": 0,
+        "per_cell_bernoulli_pattern_in_a_lattice_engine": "edlab/substrates/life/fast.py:57 (random initial Game-of-Life soup, not a movement decision)",
+        "integer_per_cell_occupancy_of_a_mobile_species": "none; every int-dtype array under edlab/substrates is a label, opcode, index set, delay matrix or byte buffer",
+        "engines_whose_dynamics_use_an_RNG": "none; the five engines that touch an RNG confine it to initialisation",
+        "engines_enumerated": 19
+      }
+    },
+    {
+      "id": "G", "object": "centre-classification rule ONE_CENTRE / TWO_CENTRES",
+      "criticality": "CRITICAL",
+      "VERDICT": "ABSENT", "PATH": null, "GIT_REF_OR_OBJECT": null, "EXACT_LINES": null,
+      "BLOB_SHA": null, "WORKTREE_SHA256": null, "TRACKED_OR_UNTRACKED": null,
+      "REACHABILITY_STATUS": "SEARCHED_REACHABLE_AND_UNREACHABLE__NOT_FOUND",
+      "partial_analogue_bound_by_bytes": {
+        "PATH": "edlab/substrates/lattice_bond/instrumentation.py",
+        "symbol": "detect_components",
+        "EXACT_LINES": "95 (def), 103 (occupied = state.m >= spec.matter_threshold)",
+        "GIT_REF_OR_OBJECT": "axmat/a-x-materiality-audit-00",
+        "BLOB_SHA": "b5e5475cbc00ac117e3a8496d66dcc9d7de44b71",
+        "BLOB_CONTENT_SHA256": "65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef",
+        "WORKTREE_SHA256": null,
+        "TRACKED_OR_UNTRACKED": "TRACKED_AT_REF__ABSENT_FROM_CHECKED_OUT_WORKTREE",
+        "REACHABILITY_STATUS": "REACHABLE",
+        "why_not_a_substitute": "single-linkage over a continuum matter threshold; classifies matter cells, not Y particle positions; cannot return ONE_CENTRE/TWO_CENTRES for two point particles"
+      }
+    },
+    {
+      "id": "H", "object": "OBFOR01 / PQEC01 / FVLCR01 / CLOC02 / RSLOC03 / FTCTR01 and long forms",
+      "criticality": "NON_CRITICAL",
+      "VERDICT": "ABSENT", "PATH": null, "GIT_REF_OR_OBJECT": null, "EXACT_LINES": null,
+      "BLOB_SHA": null, "WORKTREE_SHA256": null, "TRACKED_OR_UNTRACKED": null,
+      "REACHABILITY_STATUS": "SEARCHED_REACHABLE_AND_UNREACHABLE__NOT_FOUND",
+      "note": "absence of a mission NAME is explicitly not a stop condition; recorded for completeness only"
+    },
+    {
+      "id": "I", "object": "threshold '101 accepted X births per centre over 250 steps'",
+      "criticality": "NON_CRITICAL",
+      "VERDICT": "ABSENT", "PATH": null, "GIT_REF_OR_OBJECT": null, "EXACT_LINES": null,
+      "BLOB_SHA": null, "WORKTREE_SHA256": null, "TRACKED_OR_UNTRACKED": null,
+      "REACHABILITY_STATUS": "SEARCHED_REACHABLE_AND_UNREACHABLE__NOT_FOUND",
+      "provenance_classification": "NOT_PRESENT",
+      "near_miss": "edlab/substrates/reaction_diffusion/engine.py:93 tau_feed: int = 250 (feed-cohort period; unrelated to births or centres)"
+    },
+    {
+      "id": "J", "object": "exact scheduler event order for a discrete X/Y model",
+      "criticality": "CRITICAL",
+      "VERDICT": "ABSENT", "PATH": null, "GIT_REF_OR_OBJECT": null, "EXACT_LINES": null,
+      "BLOB_SHA": null, "WORKTREE_SHA256": null, "TRACKED_OR_UNTRACKED": null,
+      "REACHABILITY_STATUS": "SEARCHED_REACHABLE_AND_UNREACHABLE__NOT_FOUND",
+      "note": "added by the primary operator; the continuation lists it among the critical objects but the checker's A-I list did not probe it separately. Its absence follows from F: with no discrete two-species engine there is no scheduler to order."
+    }
+  ],
+  "POSITIVE_CONTROL": {
+    "checker": [
+      "FCDDH01R|Clopper-Pearson -> 151 hits in one worktree chunk",
+      "sha256|seed -> 1125 matching gitignored files",
+      "binomial -> 69 real text hits; co-located -> 6 real hits (docs/CRD01_FINAL_REPORT.md:90, docs/CRD02_TRANSFER_AUDIT.md:11,26)",
+      "import |def |Clopper|binomial matched in every one of 46 bundles; 585 matches in the 586 MB bundle",
+      "sha256|seed|.json|.npz -> 16391 matching lines over the full 1553920000-byte escrow stream",
+      "tau_* family -> 20+ distinct real symbols recovered"
+    ],
+    "primary_operator": [
+      "CORE_RADIUS -> 41 blob-lines in chunk 1 and 42 ref-qualified files across all tips, through the identical pipeline that returned zero for the mission tokens",
+      "co-located -> located and read in context in docs/CRD01_FINAL_REPORT.md and docs/CRD02_TRANSFER_AUDIT.md, then classified as a metrology reference channel"
+    ]
+  },
+  "SEARCH_COVERAGE": {
+    "git_objects": 12817,
+    "blobs_fully_scanned": 10005,
+    "unreachable_objects_included": 258,
+    "refs": 199,
+    "commits": 397,
+    "reflog": "full git reflog --all (92 KB)",
+    "historical_paths": 9528,
+    "tracked_worktree_files": 1203,
+    "untracked_worktree_files": 8492,
+    "gitignored_non_venv_files": 5792,
+    "bundles_byte_walked": 46,
+    "orphan_histories_recovered": 1,
+    "orphan_tip": "4dc575ea1e4939700ddaa52f70e7baf8f8deb459",
+    "tar_payloads_streamed": 81,
+    "largest_stream_bytes": 1553920000,
+    "python_files_inventoried_for_stochastic_draws": 610
+  },
+  "SEARCH_LIMITATIONS": [
+    ".venv/ third-party virtualenv files (7696) excluded by design",
+    "inner zlib/zip members of binary blobs (.npz arrays, .pkl, PNG/PDF streams) not individually inflated; .npz member names and JSON sidecars are plaintext and were scanned",
+    "delta copy-from-base reconstruction inside the single orphan bundle pair not performed; 42 of 43 bundle tips are already materialised in .git",
+    "worktree directories belonging to other machines or sessions do not exist on this device; their commits are in .git and were scanned",
+    "_ftctr01_src_py_md.tgz (staging artifact created during this session) explicitly excluded as non-repository content; it has since been moved to _to_delete/ftctr01_staging/",
+    "the stochastic-draw inventory of Part 2 was run on the current tree (ref axmat/a-x-materiality-audit-00, 610 Python files); its history-wide equivalent is the checker's zero-binomial result over all 10005 blobs"
+  ],
+  "critical_objects_all_absent": true,
+  "named_missing_executable_object": "The discrete two-species lattice engine implementing sequential Y diffusion (four ordered sub-shifts, binomial mover count over integer co-located Y occupancies, sequential state update between sub-shifts, toroidal wrap, destination-capacity refusal), together with its centre classifier and its scheduler event order.",
+  "DISPOSITION": "STOP__CRITICAL_EXECUTABLE_BYTES_MISSING"
+}

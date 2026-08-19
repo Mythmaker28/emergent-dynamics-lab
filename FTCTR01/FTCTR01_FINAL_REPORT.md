@@ -179,3 +179,60 @@ This report claims exactly one thing: **that a named set of executable objects d
 named repository, as established by two independent byte-level searches with positive controls at
 every stage.** It claims nothing about the two-centre system's physics, timing, or feasibility. It
 does not assert that such code never existed anywhere; only that it is not here.
+
+---
+
+## 10. Addendum — autonomous continuation (same day)
+
+The continuation instruction correctly warned: *do not confuse "the old mission name is absent" with
+"the physics is absent."* That warning was taken seriously and tested, because the first pass was
+partly token-driven.
+
+**What was done.** The independent checker's report was consumed and bound verbatim
+(`FTCTR01_EXECUTABLE_BYTE_AUDIT.md` Part 1, `FTCTR01_EXECUTABLE_BYTE_AUDIT.json` with per-object
+`VERDICT / PATH / GIT_REF_OR_OBJECT / EXACT_LINES / BLOB_SHA / WORKTREE_SHA256 /
+TRACKED_OR_UNTRACKED / REACHABILITY_STATUS`). The broad search was **not** repeated — the checker's
+evidence is not internally contradictory. Instead a **naming-independent physics-level re-audit** was
+run: forget every symbol, is the *mechanism* there? A discrete stochastic hopping model leaves four
+fingerprints in a codebase.
+
+| fingerprint | expected if the model existed | found |
+|---|---|---|
+| a binomial (or sum-of-Bernoulli) mover draw | at least one | **0 binomial, 0 poisson, 0 multinomial, 0 hypergeometric, 0 geometric, 0 exponential, 0 bernoulli** across 610 Python files; the sole per-cell Bernoulli in a lattice engine is `life/fast.py:57`, a random Game-of-Life initial soup |
+| integer per-cell occupancy of a mobile species | at least one array | **none**; every int-dtype array under `edlab/substrates/` is a component label, a Boolean opcode, an index set, a delay matrix or a serialisation byte buffer |
+| an RNG inside a step function | at least one engine | **none**; only 5 engine modules touch an RNG and every draw is confined to initialisation (`particle_dynamics/engine.py:46-50`, `boolnet/engine.py:158-165`, `life/fast.py`, `ctrans` measurement noise) |
+| the phrase "co-located" meaning two particles in one cell | in the model's own docs | the only genuine hits, `docs/CRD01_FINAL_REPORT.md:90` and `docs/CRD02_TRANSFER_AUDIT.md:11,26`, denote a co-located **reference sensor** in the Causal Response Decomposition metrology programme |
+
+**Zero of four.** The physics is absent, not merely the vocabulary.
+
+**Critical versus non-critical, applied honestly.** Under the continuation's own classification, the
+absence of `TAU_SEP`, of the literal `125`, of the parent names, and of the `101/250` threshold is
+**not** what stops this mission — FTCTR01 exists to derive the clock, and would have derived it from
+an unnamed engine carrying no seals. The mission stops because the nine *critical* objects — the Y
+diffusion implementation, the four ordered sub-shifts, the hop-probability path, the X decay path,
+the Y birth and death paths, the candidate-pool semantics, the capacity-blocking semantics, the
+centre classifier, and the scheduler event order — are absent from the working tree, all refs, all
+remote-tracking refs, and reachable *and* unreachable Git objects. That is precisely the condition
+under which §1 of the continuation orders `STOP`.
+
+`TIMING_CRITERION_NOT_IDENTIFIABLE__EXACT_MISSING_OBJECT_NAMED` was considered and rejected: the
+continuation reserves it for the case where the engine survives and a *secondary* object is missing.
+
+**Source binding.** Five objects were examined as candidate substitutes and rejected, each bound by
+blob SHA and content SHA-256 in `FTCTR01_EXECUTABLE_SOURCE_MANIFEST.json` and
+`FTCTR01_EXECUTABLE_SOURCE_SHA256SUMS`, with its rejection reason, so that no successor re-examines
+them. Nothing was selected for convenience; nothing was selected at all. History was not rewritten,
+the working tree was not modified, and no push was attempted.
+
+**Independent deterministic cross-check (§13).** Not runnable: `PRIMARY_DERIVATION` does not exist,
+so `INDEPENDENT_MINIMAL_CHECKER` has nothing to recompute, and no load-bearing numeric quantity was
+produced by either route. What *was* cross-checked, by two implementations with disjoint methods and
+their own positive controls, is the absence itself — and they agree. No second byte-audit agent was
+dispatched and no review cascade was opened.
+
+The disposition is unchanged, and is now established at the level of mechanism rather than
+vocabulary:
+
+```
+STOP__CRITICAL_EXECUTABLE_BYTES_MISSING
+```

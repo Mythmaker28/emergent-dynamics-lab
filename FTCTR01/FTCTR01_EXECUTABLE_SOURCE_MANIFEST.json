@@ -1,0 +1,87 @@
+{
+  "program": "FTCTR01",
+  "date_utc": "2026-08-19",
+  "purpose": "Bind by bytes the executable sources FTCTR01 would have used. Under STOP, this manifest records (a) that NO required source was bindable, and (b) the exact identity of every object that was examined and rejected as a substitute, so no successor re-examines them.",
+  "authoritative_repository": "C:\\Users\\tommy\\Documents\\ising v3",
+  "scientific_parent_ref": "axmat/a-x-materiality-audit-00",
+  "scientific_parent_commit": "62a382720eb7638a6439baafe29d8551798cedec",
+  "parent_commit_date": "2026-08-11",
+  "parent_is_most_recent_commit_on_any_ref": true,
+  "history_rewritten": false,
+  "working_tree_modified": false,
+  "unrelated_working_tree_changes_preserved": true,
+  "required_sources_bound": 0,
+  "required_sources_missing": 9,
+  "bound_sources": [],
+  "examined_and_rejected_as_substitutes": [
+    {
+      "path": "edlab/substrates/lattice_bond/engine.py",
+      "ref": "axmat/a-x-materiality-audit-00",
+      "blob_sha": "0980525690ff38d84aa494581b2a68c6f8f44d8e",
+      "blob_content_sha256": "e027a9c56b773ed077cdfe725951d215b631c54b7080da73e5321ccedb6d9ff6",
+      "tracked_or_untracked": "TRACKED_AT_REF__ABSENT_FROM_CHECKED_OUT_WORKTREE",
+      "reachability": "REACHABLE",
+      "what_it_is": "periodic square lattice with three BOUNDED CONTINUOUS fields: matter m on cells, resource n on cells, bond fraction b on positive-y and positive-x faces",
+      "rejection_reason": "no particle species, no integer occupancy, no hop, no birth acceptance, no second species; it is the closest thing in the repository to 'a lattice' and it is still a continuum field model"
+    },
+    {
+      "path": "edlab/substrates/lattice_bond/instrumentation.py",
+      "ref": "axmat/a-x-materiality-audit-00",
+      "blob_sha": "b5e5475cbc00ac117e3a8496d66dcc9d7de44b71",
+      "blob_content_sha256": "65d4185bd9ef212b013d8d30000499f291f043f289e3e7bccbd536f466e810ef",
+      "tracked_or_untracked": "TRACKED_AT_REF__ABSENT_FROM_CHECKED_OUT_WORKTREE",
+      "reachability": "REACHABLE",
+      "what_it_is": "detect_components() at line 95, single-linkage over occupied = state.m >= spec.matter_threshold at line 103",
+      "rejection_reason": "candidate substitute for the centre classifier; it classifies continuum matter cells, not Y particle positions, and cannot express ONE_CENTRE / TWO_CENTRES for two point particles"
+    },
+    {
+      "path": "edlab/substrates/particle_dynamics/engine.py",
+      "ref": "axmat/a-x-materiality-audit-00",
+      "blob_sha": "317b14f49b3b36d863810e8eadd7a9d11aca7b20",
+      "blob_content_sha256": "215b65713f6fd47fd8b28057a06a3e2e084a8dc978049f5f6270948ee727d6c5",
+      "tracked_or_untracked": "TRACKED_AT_REF__ALSO_PRESENT_IN_WORKTREE",
+      "worktree_sha256": "215b65713f6fd47fd8b28057a06a3e2e084a8dc978049f5f6270948ee727d6c5",
+      "reachability": "REACHABLE",
+      "what_it_is": "deterministic CORE V0 Newtonian particles on a 2-D torus; RNG confined to initialize_world (lines 46-50)",
+      "rejection_reason": "candidate substitute for the Y particle engine; it is OFF-LATTICE and CONTINUOUS-SPACE with deterministic dynamics, so there is no cell, no co-location, no hop probability and no capacity"
+    },
+    {
+      "path": "experiments/individuation/directed_causal_pair_phase0_audit.py",
+      "ref": "axmat/a-x-materiality-audit-00",
+      "blob_sha": "28eb9932973fe3fc6fc23944dce5966c51d9f53a",
+      "blob_content_sha256": "f614d3bd4e8a09708f1d8e62fd4c018367381c0b0043426eeeba91dd96f67c1a",
+      "tracked_or_untracked": "TRACKED_AT_REF__ABSENT_FROM_CHECKED_OUT_WORKTREE",
+      "reachability": "REACHABLE",
+      "what_it_is": "CORE_RADIUS = 10 at line 25; HALO_OUTER_RADIUS = CORE_RADIUS + BARRIER_WIDTH at line 27",
+      "rejection_reason": "candidate substitute for CORE_R; it is the core/halo geometry of the lattice_bond individuation experiments, radiating around a detected continuum component, not around a Y particle"
+    },
+    {
+      "path": "experiments/individuation/directed_causal_pair_phase05_mechanics.py",
+      "ref": "axmat/a-x-materiality-audit-00",
+      "blob_sha": "10fa0b20c1c60cb4281398afa58d0f5fe4ffedd0",
+      "blob_content_sha256": "7e37df20a673f146413961a91fe5655b9a08d8a0625fa42c5cf81ed7b1bdc6ad",
+      "tracked_or_untracked": "TRACKED_AT_REF__ABSENT_FROM_CHECKED_OUT_WORKTREE",
+      "reachability": "REACHABLE",
+      "what_it_is": "CORE_RADIUS = 10 at line 52; toroidal geometry helpers",
+      "rejection_reason": "same as above; second definition site of the same geometry constant"
+    }
+  ],
+  "missing_required_sources": [
+    {"object": "discrete Y diffusion implementation", "criticality": "CRITICAL", "blocking": true},
+    {"object": "ordered four-sub-shift semantics", "criticality": "CRITICAL", "blocking": true},
+    {"object": "Y hop probability path (p_hop_Y)", "criticality": "CRITICAL", "blocking": true},
+    {"object": "X decay path (muX)", "criticality": "CRITICAL", "blocking": true},
+    {"object": "Y birth and death paths (kY, muY)", "criticality": "CRITICAL", "blocking": true},
+    {"object": "nSY / candidate-pool semantics", "criticality": "CRITICAL", "blocking": true},
+    {"object": "destination-capacity blocking semantics", "criticality": "CRITICAL", "blocking": true},
+    {"object": "centre-classification rule", "criticality": "CRITICAL", "blocking": true},
+    {"object": "exact scheduler event order", "criticality": "CRITICAL", "blocking": true},
+    {"object": "qualified X source-response operator", "criticality": "SECONDARY", "blocking": true, "note": "would block section 6 even if the engine survived"},
+    {"object": "event-aligned Y offered/blocked ledgers", "criticality": "SECONDARY", "blocking": false, "note": "its absence would only downgrade section 5 to a bound"},
+    {"object": "developmental separation/hold/third-centre raw arrays", "criticality": "SECONDARY", "blocking": false, "note": "its absence only omits the section 11 post-outcome diagnostic"},
+    {"object": "provenance of TAU_SEP = 125", "criticality": "NON_CRITICAL", "blocking": false},
+    {"object": "provenance of the 101/250 threshold", "criticality": "NON_CRITICAL", "blocking": false}
+  ],
+  "multiple_versions_of_the_same_logical_file": "NOT_APPLICABLE__NO_VERSION_OF_THE_REQUIRED_FILE_EXISTS",
+  "convenience_selection_risk": "NONE__NOTHING_WAS_SELECTED"
+}
