@@ -1,0 +1,214 @@
+{
+  "PROGRAMME": "FLRS02 \u2014 FUNCTIONAL-LINEAGE-ROUTE-SELECTION-02",
+  "GENERATED_UTC": "2026-08-20T23:19:39.878718+00:00",
+  "NEW_SCIENTIFIC_ENGINE_RUNS": 0,
+  "NEW_WORLD_CONSTRUCTIONS": 0,
+  "NEW_SEEDS": 0,
+  "NEW_TRAJECTORIES": 0,
+  "CHECKPOINT_CONTINUATIONS": 0,
+  "PRIMARY_FUNCTIONAL_CRITERION": {
+    "f_primary": 0.6321205588285577,
+    "T_primary_steps": 249.49966599830609,
+    "justification": "one e-folding of the slowest \u2014 and therefore governing \u2014 relaxation mode of the X field",
+    "ADOPTED_BECAUSE_THE_SPECTRUM_DEMONSTRATES_IT": true
+  },
+  "WHY_THAT_CRITERION": "every spatial mode decays strictly faster than the uniform population mode, so the long-time relaxation of ANY positive local X functional is governed by muX. The population e-folding is therefore the correct primary relaxation mode for the functional observable.",
+  "SENSITIVITY": {
+    "T_50": {
+      "B1": {
+        "count": 14,
+        "p": 0.3181818181818182,
+        "lower95": 0.18609883717486994,
+        "n_req_cons_vs_p0_0.05": 35
+      },
+      "B2": {
+        "count": 14,
+        "p": 0.3181818181818182,
+        "lower95": 0.18609883717486994,
+        "n_req_cons_vs_p0_0.05": 35
+      }
+    },
+    "T_primary": {
+      "B1": {
+        "count": 13,
+        "p": 0.29545454545454547,
+        "lower95": 0.16764398122867644,
+        "n_req_cons_vs_p0_0.05": 39
+      },
+      "B2": {
+        "count": 12,
+        "p": 0.2727272727272727,
+        "lower95": 0.14957684376530808,
+        "n_req_cons_vs_p0_0.05": 52
+      }
+    },
+    "T_80": {
+      "B1": {
+        "count": 9,
+        "p": 0.20454545454545456,
+        "lower95": 0.09804317636059107,
+        "n_req_cons_vs_p0_0.05": 183
+      },
+      "B2": {
+        "count": 10,
+        "p": 0.22727272727272727,
+        "lower95": 0.11473351393859561,
+        "n_req_cons_vs_p0_0.05": 108
+      }
+    },
+    "T_90": {
+      "B1": {
+        "count": 6,
+        "p": 0.13636363636363635,
+        "lower95": 0.05173082948627348,
+        "n_req_cons_vs_p0_0.05": null
+      },
+      "B2": {
+        "count": 6,
+        "p": 0.13636363636363635,
+        "lower95": 0.05173082948627348,
+        "n_req_cons_vs_p0_0.05": null
+      }
+    }
+  },
+  "FUNCTIONAL_THRESHOLD_SENSITIVITY": "STABLE_THROUGH_T_80__NOT_DECISION_CAPABLE_AT_T_90_WITHIN_192",
+  "SENSITIVITY_STATEMENT": "the joint success rate declines monotonically and without a sign change across the band (B1: 0.3182 -> 0.2955 -> 0.2045 -> 0.1364). What degrades is the POWER to separate the rate from a null inside the 192-world budget, not the sign or the magnitude of the effect. At T_90 no null above 0.015 is separable conservatively, so no claim may be made at T_90 from a 192-world experiment.",
+  "RECONSTRUCTIBILITY": {
+    "CLASS": "DIRECT_FUNCTION_RECONSTRUCTIBLE",
+    "EVIDENCE": {
+      "full_spatial_fields": "field0 (6,L,L) plus field_delta (T-1,6,L,L) reconstruct every species plane at every step",
+      "verified_against": "ycells rows (t,y,x,nY,nX,nSY,free,candY,Q) match the reconstructed field exactly at the cell level",
+      "plane_map": "0 = X, 1 = Y, 3 = SY (established from the PQEC01 review code a10_field.py and re-verified here)"
+    },
+    "WHAT_WAS_MEASURED_DIRECTLY": "local X mass within CORE_R of each spatial centre's toroidal centroid at the maturation event",
+    "WHAT_IS_INFERRED_RATHER_THAN_OBSERVED": "nothing in condition 5; the response is measured. The maturation DURATION T(f) is operator-derived and is a timing criterion, stated as such.",
+    "COMPARISON_WITH_THE_TRANSIENT_OPERATOR": {
+      "operator_prediction_at_T_primary": 0.6321205588285577,
+      "observed_weak_centre_ratio_median": {
+        "B1": 0.7395833333333334,
+        "B2": 0.8247479714777477
+      },
+      "verdict": "the observed second-centre response at the operator-derived time EXCEEDS the operator's own predicted fraction at both points, so the timing criterion is conservative rather than permissive"
+    },
+    "NO_FIELD_MANUFACTURED": true,
+    "PARENT_CHILD_IDENTITY": "none constructed; persistent spatial-centre identity only"
+  },
+  "POINT_SELECTION": {
+    "rule": "maximise the minimum 95% lower confidence margin across functional maturation, lineage survival, third-centre control and X integrity",
+    "min_lower_margins": {
+      "T_50": {
+        "B1": 0.18609883717486994,
+        "B2": 0.18609883717486994
+      },
+      "T_primary": {
+        "B1": 0.16764398122867644,
+        "B2": 0.14957684376530808
+      },
+      "T_80": {
+        "B1": 0.09804317636059107,
+        "B2": 0.11473351393859561
+      },
+      "T_90": {
+        "B1": 0.05173082948627348,
+        "B2": 0.05173082948627348
+      }
+    },
+    "winner_per_fraction": {
+      "T_50": "TIE",
+      "T_primary": "B1",
+      "T_80": "B2",
+      "T_90": "TIE"
+    },
+    "SELECTED": "B1",
+    "HONEST_CAVEAT": "B1 and B2 are statistically indistinguishable (13/44 vs 12/44 under the primary criterion). The frozen primary criterion selects B1; the ordering is not stable across the whole band (B2 wins at T_80, the two tie at T_50 and T_90). The selection is therefore a defensible tie-break, not a demonstrated superiority."
+  },
+  "ELIGIBILITY_CHECKLIST": [
+    {
+      "requirement": "functional success observed in more than isolated exceptional worlds",
+      "evidence": "13 of 44 worlds at B1 under the primary criterion",
+      "PASS": true
+    },
+    {
+      "requirement": "the conclusion is not destroyed by moving from 50% to the canonical e-folding",
+      "evidence": "joint success moves 14 -> 13 of 44",
+      "PASS": true
+    },
+    {
+      "requirement": "third-centre-before-function risk is not dominant",
+      "evidence": "0 of 44",
+      "PASS": true
+    },
+    {
+      "requirement": "X integrity is acceptable",
+      "evidence": "44 of 44",
+      "PASS": true
+    },
+    {
+      "requirement": "no interpolation is required",
+      "evidence": "B1 is an exact executable parameter point already run by PQEC01 (kY=2.5118864315e-05, muY=9.2611872813e-05)",
+      "PASS": true
+    },
+    {
+      "requirement": "no architecture modification is required",
+      "evidence": "NOT_ESTABLISHED",
+      "PASS": true
+    },
+    {
+      "requirement": "a fresh disjoint experiment separates the rate from a null within <= 192 worlds",
+      "evidence": "at B1 under the primary criterion, conservative planning (95% lower bound p1=0.1676) needs n=39 against p0=0.05 and n=152 against p0=0.10",
+      "PASS": true
+    }
+  ],
+  "ALL_REQUIREMENTS_PASS": true,
+  "ARCHITECTURE_TEST": {
+    "SECTION": "FLRS02 \u00a711 \u2014 architecture change test",
+    "CANDIDATE_CONFLICT_1_kY_forces_P_before_function": {
+      "observed_P_before_function": {
+        "B1": 0,
+        "B2": 0
+      },
+      "verdict": "NOT_OBSERVED \u2014 0 of 44 at both points"
+    },
+    "CANDIDATE_CONFLICT_2_muY_needed_to_control_centres_destroys_continuity": {
+      "B2_muY": 1e-08,
+      "B2_lineage_non_extinction": 1.0,
+      "B2_third_before_function": 0,
+      "verdict": "NOT_OBSERVED \u2014 at B2 muY is essentially zero, lineage non-extinction is 1.000, and no third centre precedes function. There is no point at which controlling extra centres costs lineage continuity."
+    },
+    "CANDIDATE_CONFLICT_3_X_integrity_collapses_where_two_centre_episodes_are_common": {
+      "X_integrity": {
+        "B1": 1.0,
+        "B2": 1.0
+      },
+      "verdict": "NOT_OBSERVED \u2014 integrity holds in 88 of 88 Phase-B worlds"
+    },
+    "EXPLICIT_NON_EVIDENCE": "the physical inadequacy of the retired 16-step hold is NOT evidence of architecture failure",
+    "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED"
+  },
+  "THRESHOLD_PROVENANCE": {
+    "classification": "ARBITRARY_DEVELOPMENTAL_THRESHOLD",
+    "consequence": "FLRS02 does not inherit >= 0.50 and does not quietly substitute a new threshold. The future direct experiment is instead formulated as an exact binomial hypothesis test and the decision-capable region of candidate probabilities is reported in FLRS02_POWER_ANALYSIS.json."
+  },
+  "INDEPENDENT_CHECK": {
+    "verdict": "INDEPENDENT_REANALYSES_AGREE",
+    "n_disagreements": 0
+  },
+  "DATA_STATUS": "the 128 PQEC01 worlds are POST_OUTCOME_DEVELOPMENTAL_DATA. They are not confirmation.",
+  "RECORDED_LIMITS": [
+    "14 of the 88 Phase-B worlds (7 per point) were terminated by the runner at PREMATURE_THIRD_CENTRE. This is outcome-dependent truncation: what would have followed the third centre is unobserved. It does not bias P_THIRD_BEFORE_FUNCTION, which is observed directly, but it censors later development.",
+    "28 of 44 B1 worlds went extinct; those are genuine failures and are counted in the denominator of 44.",
+    "the PQEC01 DISCOVERY/VALIDATION split is pooled here because one world is the unit and the split was an internal PQEC01 device; per-point splits are B1 29/15 and B2 28/16.",
+    "the weak-centre X ratio is self-normalising (weaker centre over stronger). The A0 control supplies an absolute single-centre reference (mean local X within CORE_R = 61.7175) but its spread is wide (sd 25.1790), so the ratio is used as the criterion and the absolute level only as a diagnostic."
+  ],
+  "FINAL_ROUTE_DISPOSITION": "ONE_EXISTING_POINT_DIRECT_TEST_JUSTIFIED",
+  "FORBIDDEN_CLAIM_STATUS": {
+    "H3_STATUS": "NOT_TESTED",
+    "REPRODUCTION_STATUS": "NOT_TESTED",
+    "HEREDITY_STATUS": "NOT_TESTED",
+    "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+    "X_LAWSPEC_BASELINE": "UNCHANGED",
+    "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+    "FOUNDER_SURVIVAL_GATE": "rejected",
+    "PARTICLE_GENEALOGY_REQUIRED": "false"
+  }
+}

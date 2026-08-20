@@ -1,0 +1,307 @@
+{
+  "SECTION": "FLRS02 \u00a79 \u2014 exact binomial decision capability",
+  "GENERATED_UTC": "2026-08-20T23:17:05.248371+00:00",
+  "METHOD": "exact binomial throughout; no normal approximation is used at any step",
+  "ALPHA": 0.05,
+  "TARGET_POWER": 0.8,
+  "MAX_PRIMARY_WORLDS": 192,
+  "NO_INHERITED_0_50_THRESHOLD": "see FLRS02_THRESHOLD_PROVENANCE.json \u2014 the decision-capable region is reported instead",
+  "POINT_SELECTION_RULE": "maximise the minimum 95% lower confidence margin across functional maturation, lineage survival, third-centre control and X integrity",
+  "SELECTION": {
+    "T_50": {
+      "B1": {
+        "functional_maturation": 0.18609883717486994,
+        "lineage_survival": 0.2240801400787238,
+        "third_centre_control": 0.9195800602364241,
+        "X_integrity": 0.9195800602364241,
+        "MIN_LOWER_MARGIN": 0.18609883717486994
+      },
+      "B2": {
+        "functional_maturation": 0.18609883717486994,
+        "lineage_survival": 0.9195800602364241,
+        "third_centre_control": 0.9195800602364241,
+        "X_integrity": 0.9195800602364241,
+        "MIN_LOWER_MARGIN": 0.18609883717486994
+      },
+      "WINNER": "TIE"
+    },
+    "T_primary": {
+      "B1": {
+        "functional_maturation": 0.16764398122867644,
+        "lineage_survival": 0.2240801400787238,
+        "third_centre_control": 0.9195800602364241,
+        "X_integrity": 0.9195800602364241,
+        "MIN_LOWER_MARGIN": 0.16764398122867644
+      },
+      "B2": {
+        "functional_maturation": 0.14957684376530808,
+        "lineage_survival": 0.9195800602364241,
+        "third_centre_control": 0.9195800602364241,
+        "X_integrity": 0.9195800602364241,
+        "MIN_LOWER_MARGIN": 0.14957684376530808
+      },
+      "WINNER": "B1"
+    },
+    "T_80": {
+      "B1": {
+        "functional_maturation": 0.09804317636059107,
+        "lineage_survival": 0.2240801400787238,
+        "third_centre_control": 0.9195800602364241,
+        "X_integrity": 0.9195800602364241,
+        "MIN_LOWER_MARGIN": 0.09804317636059107
+      },
+      "B2": {
+        "functional_maturation": 0.11473351393859561,
+        "lineage_survival": 0.9195800602364241,
+        "third_centre_control": 0.9195800602364241,
+        "X_integrity": 0.9195800602364241,
+        "MIN_LOWER_MARGIN": 0.11473351393859561
+      },
+      "WINNER": "B2"
+    },
+    "T_90": {
+      "B1": {
+        "functional_maturation": 0.05173082948627348,
+        "lineage_survival": 0.2240801400787238,
+        "third_centre_control": 0.9195800602364241,
+        "X_integrity": 0.9195800602364241,
+        "MIN_LOWER_MARGIN": 0.05173082948627348
+      },
+      "B2": {
+        "functional_maturation": 0.05173082948627348,
+        "lineage_survival": 0.9195800602364241,
+        "third_centre_control": 0.9195800602364241,
+        "X_integrity": 0.9195800602364241,
+        "MIN_LOWER_MARGIN": 0.05173082948627348
+      },
+      "WINNER": "TIE"
+    }
+  },
+  "SELECTED_POINT": "B1",
+  "POWER": {
+    "B1": {
+      "observed_joint_T_primary": {
+        "quantity": "all seven conditions including the direct local-X response requirement",
+        "n": 44,
+        "count": 13,
+        "point_estimate": 0.29545454545454547,
+        "exact_binomial_95": [
+          0.16764398122867644,
+          0.45202184808405527
+        ]
+      },
+      "grid": [
+        {
+          "p0_null": 0.05,
+          "planning_p1_observed": 0.29545454545454547,
+          "n_required_at_observed": 14,
+          "fits_in_192_at_observed": true,
+          "planning_p1_conservative_lower_95": 0.16764398122867644,
+          "n_required_at_conservative": 39,
+          "fits_in_192_at_conservative": true,
+          "power_at_n192_observed": 0.9999999999998676,
+          "power_at_n192_conservative": 0.999764745832816,
+          "critical_count_at_n192": 16
+        },
+        {
+          "p0_null": 0.075,
+          "planning_p1_observed": 0.29545454545454547,
+          "n_required_at_observed": 18,
+          "fits_in_192_at_observed": true,
+          "planning_p1_conservative_lower_95": 0.16764398122867644,
+          "n_required_at_conservative": 73,
+          "fits_in_192_at_conservative": true,
+          "power_at_n192_observed": 0.9999999994156881,
+          "power_at_n192_conservative": 0.9842029933395052,
+          "critical_count_at_n192": 22
+        },
+        {
+          "p0_null": 0.1,
+          "planning_p1_observed": 0.29545454545454547,
+          "n_required_at_observed": 26,
+          "fits_in_192_at_observed": true,
+          "planning_p1_conservative_lower_95": 0.16764398122867644,
+          "n_required_at_conservative": 152,
+          "fits_in_192_at_conservative": true,
+          "power_at_n192_observed": 0.9999998516675284,
+          "power_at_n192_conservative": 0.8652958451678221,
+          "critical_count_at_n192": 27
+        },
+        {
+          "p0_null": 0.125,
+          "planning_p1_observed": 0.29545454545454547,
+          "n_required_at_observed": 33,
+          "fits_in_192_at_observed": true,
+          "planning_p1_conservative_lower_95": 0.16764398122867644,
+          "n_required_at_conservative": 424,
+          "fits_in_192_at_conservative": false,
+          "power_at_n192_observed": 0.999972125879479,
+          "power_at_n192_conservative": 0.4674392118256256,
+          "critical_count_at_n192": 33
+        },
+        {
+          "p0_null": 0.15,
+          "planning_p1_observed": 0.29545454545454547,
+          "n_required_at_observed": 48,
+          "fits_in_192_at_observed": true,
+          "planning_p1_conservative_lower_95": 0.16764398122867644,
+          "n_required_at_conservative": 2647,
+          "fits_in_192_at_conservative": false,
+          "power_at_n192_observed": 0.999192430614015,
+          "power_at_n192_conservative": 0.15245309528823128,
+          "critical_count_at_n192": 38
+        },
+        {
+          "p0_null": 0.2,
+          "planning_p1_observed": 0.29545454545454547,
+          "n_required_at_observed": 129,
+          "fits_in_192_at_observed": true,
+          "planning_p1_conservative_lower_95": 0.16764398122867644,
+          "n_required_at_conservative": null,
+          "fits_in_192_at_conservative": false,
+          "power_at_n192_observed": 0.9048676711078745,
+          "power_at_n192_conservative": 0.001363139341611227,
+          "critical_count_at_n192": 49
+        },
+        {
+          "p0_null": 0.25,
+          "planning_p1_observed": 0.29545454545454547,
+          "n_required_at_observed": 592,
+          "fits_in_192_at_observed": false,
+          "planning_p1_conservative_lower_95": 0.16764398122867644,
+          "n_required_at_conservative": null,
+          "fits_in_192_at_conservative": false,
+          "power_at_n192_observed": 0.38581738751484135,
+          "power_at_n192_conservative": 1.3382190822131187e-06,
+          "critical_count_at_n192": 59
+        }
+      ],
+      "precision_at_n192": {
+        "if_true_p_equals_observed": {
+          "expected_count": 56.727272727272734,
+          "exact_95_interval": [
+            0.23324520137581345,
+            0.3668994331979425
+          ]
+        }
+      }
+    },
+    "B2": {
+      "observed_joint_T_primary": {
+        "quantity": "all seven conditions including the direct local-X response requirement",
+        "n": 44,
+        "count": 12,
+        "point_estimate": 0.2727272727272727,
+        "exact_binomial_95": [
+          0.14957684376530808,
+          0.4278964124555005
+        ]
+      },
+      "grid": [
+        {
+          "p0_null": 0.05,
+          "planning_p1_observed": 0.2727272727272727,
+          "n_required_at_observed": 15,
+          "fits_in_192_at_observed": true,
+          "planning_p1_conservative_lower_95": 0.14957684376530808,
+          "n_required_at_conservative": 52,
+          "fits_in_192_at_conservative": true,
+          "power_at_n192_observed": 0.9999999999886835,
+          "power_at_n192_conservative": 0.9979115164044133,
+          "critical_count_at_n192": 16
+        },
+        {
+          "p0_null": 0.075,
+          "planning_p1_observed": 0.2727272727272727,
+          "n_required_at_observed": 19,
+          "fits_in_192_at_observed": true,
+          "planning_p1_conservative_lower_95": 0.14957684376530808,
+          "n_required_at_conservative": 112,
+          "fits_in_192_at_conservative": true,
+          "power_at_n192_observed": 0.9999999740136437,
+          "power_at_n192_conservative": 0.9321979205823209,
+          "critical_count_at_n192": 22
+        },
+        {
+          "p0_null": 0.1,
+          "planning_p1_observed": 0.2727272727272727,
+          "n_required_at_observed": 32,
+          "fits_in_192_at_observed": true,
+          "planning_p1_conservative_lower_95": 0.14957684376530808,
+          "n_required_at_conservative": 271,
+          "fits_in_192_at_conservative": false,
+          "power_at_n192_observed": 0.9999961523993024,
+          "power_at_n192_conservative": 0.6662852836563311,
+          "critical_count_at_n192": 27
+        },
+        {
+          "p0_null": 0.125,
+          "planning_p1_observed": 0.2727272727272727,
+          "n_required_at_observed": 45,
+          "fits_in_192_at_observed": true,
+          "planning_p1_conservative_lower_95": 0.14957684376530808,
+          "n_required_at_conservative": 1210,
+          "fits_in_192_at_conservative": false,
+          "power_at_n192_observed": 0.9996179530014148,
+          "power_at_n192_conservative": 0.21915108692854995,
+          "critical_count_at_n192": 33
+        },
+        {
+          "p0_null": 0.15,
+          "planning_p1_observed": 0.2727272727272727,
+          "n_required_at_observed": 69,
+          "fits_in_192_at_observed": true,
+          "planning_p1_conservative_lower_95": 0.14957684376530808,
+          "n_required_at_conservative": null,
+          "fits_in_192_at_conservative": false,
+          "power_at_n192_observed": 0.9934168386087499,
+          "power_at_n192_conservative": 0.04153023336550862,
+          "critical_count_at_n192": 38
+        },
+        {
+          "p0_null": 0.2,
+          "planning_p1_observed": 0.2727272727272727,
+          "n_required_at_observed": 209,
+          "fits_in_192_at_observed": false,
+          "planning_p1_conservative_lower_95": 0.14957684376530808,
+          "n_required_at_conservative": null,
+          "fits_in_192_at_conservative": false,
+          "power_at_n192_observed": 0.7318474621273137,
+          "power_at_n192_conservative": 9.543576689353653e-05,
+          "critical_count_at_n192": 49
+        },
+        {
+          "p0_null": 0.25,
+          "planning_p1_observed": 0.2727272727272727,
+          "n_required_at_observed": 2312,
+          "fits_in_192_at_observed": false,
+          "planning_p1_conservative_lower_95": 0.14957684376530808,
+          "n_required_at_conservative": null,
+          "fits_in_192_at_conservative": false,
+          "power_at_n192_observed": 0.15993415845988015,
+          "power_at_n192_conservative": 2.5404924030658282e-08,
+          "critical_count_at_n192": 59
+        }
+      ],
+      "precision_at_n192": {
+        "if_true_p_equals_observed": {
+          "expected_count": 52.36363636363636,
+          "exact_95_interval": [
+            0.20936085916092667,
+            0.339529966766327
+          ]
+        }
+      }
+    }
+  },
+  "LARGEST_SEPARABLE_NULL_WITHIN_192": {
+    "B1": {
+      "at_observed_p1": 0.20999999999999996,
+      "at_conservative_p1": 0.10499999999999998
+    },
+    "B2": {
+      "at_observed_p1": 0.18999999999999997,
+      "at_conservative_p1": 0.08999999999999998
+    }
+  }
+}

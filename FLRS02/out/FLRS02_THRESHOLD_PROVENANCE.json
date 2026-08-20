@@ -1,0 +1,16 @@
+{
+  "SECTION": "FLRS02 \u00a78 \u2014 provenance audit of the inherited 0.50 probability threshold",
+  "GENERATED_UTC": "2026-08-20T23:16:04.247488+00:00",
+  "INHERITED_VALUE": 0.5,
+  "WHERE_IT_IS_SET": "FLCR01/code/flcr01_science.py:328  THRESH = 0.5",
+  "RECORDED_SELF_DESCRIPTION": "INHERITED - it is 1 - ALPHA_SURVIVAL   (FLCR01_LINEAGE_REGIONS.json)",
+  "WHAT_ALPHA_SURVIVAL_ACTUALLY_WAS": {
+    "definition": "FLCR01/code/flcr01_science.py:16  ALPHA = 0.5, used in C2_FOUNDER as (1-muY)^T_HORIZON >= 0.5",
+    "meaning": "a floor on the probability that the ORIGINAL FOUNDER PARTICLE survives the horizon",
+    "status_of_that_gate": "the founder-survival gate was REJECTED by FLCR01; FOUNDER_SURVIVAL_GATE = rejected"
+  },
+  "CLASSIFICATION": "ARBITRARY_DEVELOPMENTAL_THRESHOLD",
+  "REASONING": "0.50 was never frozen as an intended condition-level success-probability claim. It is the numerical complement of a founder-survival floor belonging to a criterion that FLCR01 itself rejected, and it was then reused as a developmental success threshold for a different quantity. It therefore fails the test for PREEXISTING_SCIENTIFIC_THRESHOLD and is not merely CONVENTIONAL_BUT_NOT_DERIVED, because its stated provenance points at a quantity it does not measure.",
+  "CONSEQUENCE": "FLRS02 does not inherit >= 0.50 and does not quietly substitute a new threshold. The future direct experiment is instead formulated as an exact binomial hypothesis test and the decision-capable region of candidate probabilities is reported in FLRS02_POWER_ANALYSIS.json.",
+  "NO_NEW_THRESHOLD_INVENTED": true
+}
