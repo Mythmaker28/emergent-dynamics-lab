@@ -1,0 +1,74 @@
+{
+  "BINDING": "FLRS02 \u00a71 \u2014 timescale binding; every quantity recomputed independently",
+  "GENERATED_UTC": "2026-08-20T23:00:53.658276+00:00",
+  "INDEPENDENCE_STATEMENT": "the first-passage law is recomputed by grid propagation with np.roll and absorbing-mask zeroing. It shares no calculation code with FTCTR01's sparse absorbing-chain implementation; only the frozen protocol constants are shared.",
+  "FROZEN_CONSTANTS_READ_FROM": "OBTC02/code/obtc02_protocol.yaml",
+  "L": 36,
+  "p_hop": 0.10263340389897246,
+  "muX": 0.004,
+  "CORE_R": 5.0,
+  "TAU_SEP_frozen": 125.0,
+  "KINETIC_CHECK": {
+    "variance_one_axis_one_step": 0.05000000000000003,
+    "frozen_a_X": 0.05,
+    "MATCH": true,
+    "D_relative_derived": 0.05000000000000003,
+    "frozen_D_relative": 0.05,
+    "MATCH_D": true
+  },
+  "GEOMETRIC_FIRST_PASSAGE": {
+    "absorbing_rule": "toroidal min-image distance > CORE_R",
+    "method_C_grid_propagation_mean": 147.4180368284486,
+    "method_C_sd": 105.45607039909959,
+    "median": 118.0,
+    "q25": 74.0,
+    "q75": 190.0,
+    "steps_until_mass_exhausted": 4303,
+    "TAU_SEP_frozen": 125.0,
+    "ratio_exact_over_frozen": 1.179344294627589,
+    "frozen_understates_by_percent_of_frozen": 17.934429462758885
+  },
+  "X_RESPONSE_TIMING": {
+    "decay_law": "N_X(t) = N_X(0) (1-muX)^t   [OBTC02 source_operator.py]",
+    "build_law": "N_X(t) = N_inf (1 - (1-muX)^t)",
+    "e_folding_steps": 249.49966599830609,
+    "frozen_e_folding": 249.49966599830609,
+    "MATCH": true,
+    "one_over_muX": 250.0,
+    "response_fraction_after_16_steps": 0.06211537852021787,
+    "T": {
+      "f_50": 172.93999003737392,
+      "f_primary_1_minus_1_over_e": 249.49966599830609,
+      "f_80": 401.55422159731904,
+      "f_90": 574.494211634693
+    },
+    "FRACTIONS": {
+      "f_50": 0.5,
+      "f_primary_1_minus_1_over_e": 0.6321205588285577,
+      "f_80": 0.8,
+      "f_90": 0.9
+    }
+  },
+  "HISTORICAL_101_PROVENANCE": {
+    "source": "OBTC02/out/_results.json :: cross_arm.CAUSAL_SOURCE_DEPENDENCE.R_arms[*].pre_removal_level",
+    "arm_tags": [
+      "R/seed9301",
+      "R/seed9302",
+      "R/seed9303"
+    ],
+    "arm_levels": [
+      116.64,
+      101.14,
+      113.83
+    ],
+    "n_arms": 3,
+    "mean": 110.53666666666668,
+    "sd": 8.258149510231291,
+    "the_value_101_14_is": "the pre_removal_level of ONE arm (R/seed9302)",
+    "VERDICT": "NOT_A_DERIVED_THRESHOLD__SINGLE_ARM_OBSERVATION__RETIRED"
+  },
+  "RETIRED": {
+    "H_HOLD_16": "retired as a functional maturity criterion (FLRS02 \u00a72)",
+    "X_BIRTHS_101": "retired as a qualified threshold (FLRS02 \u00a72)"
+  }
+}
