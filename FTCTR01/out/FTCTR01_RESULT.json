@@ -1,0 +1,261 @@
+{
+  "PROGRAMME": "FTCTR01 \u2014 FUNCTIONAL-TWO-CENTRE TIMESCALE REDERIVATION",
+  "RECORD_STATUS": "RECONSTRUCTED_AFTER_CONTAINER_ROLLBACK__EVERY_VALUE_RECOMPUTED_FROM_SOURCE",
+  "NEW_ENGINE_RUNS": 0,
+  "NEW_WORLD_CONSTRUCTIONS": 0,
+  "NEW_SEEDS": 0,
+  "NEW_PARAMETER_POINTS": 0,
+  "EXACT_SEPARATION_CLOCK": {
+    "q_per_substep": 0.025658350974743116,
+    "P_one_axis_one_step": {
+      "1": 0.025000000000000015,
+      "-1": 0.025000000000000015,
+      "0": 0.95
+    },
+    "variance_one_axis_one_step": 0.05000000000000003,
+    "frozen_a_X": 0.05,
+    "variance_matches_frozen_a_X": true,
+    "variance_relative_coordinate": 0.10000000000000006,
+    "D_relative_derived": 0.05000000000000003,
+    "frozen_D_relative": 0.05,
+    "D_relative_matches_frozen": true,
+    "n_transient_states": 81,
+    "n_absorbing_states": 1215,
+    "absorbing_rule": "toroidal min-image distance > CORE_R (the FLCR01 classifier rule)",
+    "E_tau_method_A_linear_solve": 147.41803682844846,
+    "E_tau_method_B_survival_sum": 147.41803682844696,
+    "METHODS_AGREE": true,
+    "abs_difference": 1.5063505998114124e-12,
+    "E_tau": 147.41803682844696,
+    "SD_tau": 105.45607039909953,
+    "median_tau": 118.0,
+    "q25_tau": 74.0,
+    "q75_tau": 190.0,
+    "TAU_SEP_frozen": 125.0,
+    "ratio_exact_over_frozen": 1.1793442946275756,
+    "frozen_understates_by_percent": 15.207119366631664,
+    "E_tau2_method_A_linear_solve": 32853.060366373626,
+    "E_tau2_method_B_survival_sum": 32853.06036637365,
+    "SD_tau_method_A": 105.45607039909953,
+    "SD_tau_method_B": 105.4560703990996,
+    "SD_METHODS_AGREE": true,
+    "frozen_understates_by_percent_of_exact": 15.207119366632533,
+    "frozen_understates_by_percent_of_frozen": 17.934429462758775
+  },
+  "OBSERVED_AND_MATURATION": {
+    "N_WORLDS": 88,
+    "UNIT": "one world",
+    "SEPARATION_DELAY_first_S_minus_first_birth": {
+      "n": 34,
+      "median": 111.0,
+      "mean": 144.08823529411765,
+      "sd": 112.85425507131104,
+      "sem": 19.354345072041646,
+      "min": 18.0,
+      "max": 621.0
+    },
+    "z_sep_vs_exact": -0.17204413385908762,
+    "CROSSING_DELAY_max_pair_dist_gt_CORE_R": {
+      "n": 34,
+      "median": 111.0,
+      "mean": 141.97058823529412,
+      "sd": 112.40928606473261,
+      "sem": 19.27803351698118,
+      "min": 18.0,
+      "max": 621.0
+    },
+    "z_cross_vs_exact": -0.2825728354686396,
+    "EXACT_E_tau": 147.41803682844696,
+    "THIRD_CENTRE": {
+      "worlds_reaching_S": 34,
+      "of_which_later_reach_P": 14,
+      "fraction": 0.4117647058823529
+    },
+    "MATURATION": {
+      "e_folding_steps_exact": 249.49966599830609,
+      "frozen_e_folding": 249.49966599830609,
+      "e_folding_matches_frozen": true,
+      "one_over_muX": 250.0,
+      "BUILD_UP_LAW": "N_X(t) = N_inf (1 - (1-muX)^t); t(f) = ln(1-f)/ln(1-muX). The response fraction f MUST be chosen explicitly; one e-folding is f = 1 - 1/e = 0.6321205588, NOT full maturation.",
+      "MATURATION_TIME_VS_RESPONSE_FRACTION": [
+        {
+          "response_fraction": 0.5,
+          "steps_from_empty": 172.93999003737392,
+          "shortfall_factor_vs_H_HOLD": 10.80874937733587
+        },
+        {
+          "response_fraction": 0.6321205588285577,
+          "steps_from_empty": 249.49966599830609,
+          "shortfall_factor_vs_H_HOLD": 15.59372912489413
+        },
+        {
+          "response_fraction": 0.8,
+          "steps_from_empty": 401.55422159731904,
+          "shortfall_factor_vs_H_HOLD": 25.09713884983244
+        },
+        {
+          "response_fraction": 0.9,
+          "steps_from_empty": 574.494211634693,
+          "shortfall_factor_vs_H_HOLD": 35.90588822716831
+        },
+        {
+          "response_fraction": 0.95,
+          "steps_from_empty": 747.4342016720666,
+          "shortfall_factor_vs_H_HOLD": 46.71463760450416
+        },
+        {
+          "response_fraction": 0.99,
+          "steps_from_empty": 1148.9884232693857,
+          "shortfall_factor_vs_H_HOLD": 71.81177645433661
+        }
+      ],
+      "historical_101_binding": {
+        "source": "OBTC02/out/_results.json cross_arm.CAUSAL_SOURCE_DEPENDENCE.R_arms",
+        "all_R_arm_pre_removal_levels": [
+          116.64,
+          101.14,
+          113.83
+        ],
+        "n_arms": 3,
+        "mean": 110.53666666666668,
+        "sd": 8.258149510231291,
+        "min": 101.14,
+        "max": 116.64,
+        "the_value_101_14_is": "ONE arm (R/seed9302), not a derived threshold",
+        "AUDIT": "NOT_DEFENSIBLE_AS_A_THRESHOLD__IT_IS_A_SINGLE_ARM_OBSERVATION"
+      },
+      "N_X_stationary_non_extinct_worlds": 149.07913433434288,
+      "N_X_stationary_n_worlds": 60,
+      "N_X_stationary_sd": 63.54053876492417,
+      "N_X_stationary_note": "late-window mean over worlds NOT extinct at the horizon; extinct worlds drive N_X to 0 and were excluded because the quantity wanted is the level an organiser SUSTAINS",
+      "H_HOLD_observed_median_S_run": 16.0,
+      "H_HOLD_provenance": "median of an OBSERVED distribution of S-runs, NOT a derived requirement",
+      "n_S_episodes": 380,
+      "hold_mean": 243.77631578947367,
+      "hold_q90": 614.8000000000018,
+      "hold_max": 4999,
+      "fraction_of_cloud_built_in_H_HOLD_steps": 0.06211537852021787,
+      "MIN_SHORTFALL_FACTOR_over_grid": 10.80874937733587,
+      "P_hold_ge_one_e_folding": 0.15526315789473685,
+      "P_hold_ge_TAU_FROZEN": 0.21052631578947367,
+      "P_hold_ge_E_tau": 0.19210526315789472
+    }
+  },
+  "SIX_TIMESCALES": {
+    "T_GEOMETRIC_FORMATION": {
+      "definition": "first step at which the toroidal min-image distance between two Y exceeds CORE_R = 5.0, i.e. the step the FLCR01 classifier first returns state S",
+      "exact_expectation_steps": 147.41803682844696,
+      "exact_sd": 105.45607039909953,
+      "exact_median": 118.0,
+      "observed_mean_steps": 144.08823529411765,
+      "observed_n_worlds": 34,
+      "STATUS": "DERIVED_EXACTLY_AND_CONFIRMED_AGAINST_THE_RECORD"
+    },
+    "T_X_MATURATION": {
+      "definition": "steps for a NEW centre to build its X cloud from empty to the level an established organiser holds",
+      "e_folding_steps": 249.49966599830609,
+      "steps_at_f_0.80": 401.55422159731904,
+      "maturation_time_vs_response_fraction": [
+        {
+          "response_fraction": 0.5,
+          "steps_from_empty": 172.93999003737392,
+          "shortfall_factor_vs_H_HOLD": 10.80874937733587
+        },
+        {
+          "response_fraction": 0.6321205588285577,
+          "steps_from_empty": 249.49966599830609,
+          "shortfall_factor_vs_H_HOLD": 15.59372912489413
+        },
+        {
+          "response_fraction": 0.8,
+          "steps_from_empty": 401.55422159731904,
+          "shortfall_factor_vs_H_HOLD": 25.09713884983244
+        },
+        {
+          "response_fraction": 0.9,
+          "steps_from_empty": 574.494211634693,
+          "shortfall_factor_vs_H_HOLD": 35.90588822716831
+        },
+        {
+          "response_fraction": 0.95,
+          "steps_from_empty": 747.4342016720666,
+          "shortfall_factor_vs_H_HOLD": 46.71463760450416
+        },
+        {
+          "response_fraction": 0.99,
+          "steps_from_empty": 1148.9884232693857,
+          "shortfall_factor_vs_H_HOLD": 71.81177645433661
+        }
+      ],
+      "STATUS": "DERIVED__BUT_THE_TARGET_LEVEL_IS_NOT_YET_A_QUALIFIED_THRESHOLD"
+    },
+    "T_FUNCTIONAL_TWO_CENTRE": {
+      "definition": "T_GEOMETRIC_FORMATION + T_X_MATURATION \u2014 the step at which BOTH centres hold a matured X response, not merely a spatial separation",
+      "lower_bound_steps_at_f_0.80": 548.972258425766,
+      "lower_bound_steps_at_one_e_folding": 396.91770282675304,
+      "STATUS": "NOT_MEASURED_IN_ANY_EXISTING_RECORD"
+    },
+    "T_FUNCTIONAL_HOLD": {
+      "definition": "duration for which the two matured centres must both persist",
+      "H_HOLD_used_by_FLCR01": 16.0,
+      "H_HOLD_provenance": "median of an OBSERVED distribution of S-runs (n_episodes=380), NOT a derived requirement",
+      "fraction_of_X_cloud_built_in_H_HOLD_steps": 0.06211537852021787,
+      "SHORTFALL_FACTOR_at_f_0.80": 25.09713884983244,
+      "MIN_SHORTFALL_FACTOR_over_grid": 10.80874937733587,
+      "STATUS": "UNDERSPECIFIED_BY_MORE_THAN_AN_ORDER_OF_MAGNITUDE"
+    },
+    "T_THIRD_CENTRE": {
+      "definition": "step at which a third spatial centre appears (classifier state P) after state S was reached",
+      "worlds_reaching_S": 34,
+      "of_which_later_reach_P": 14,
+      "fraction": 0.4117647058823529,
+      "STATUS": "MEASURED__ORDERING_RELATIVE_TO_FUNCTION_IS_NOT_YET_DEFINED"
+    },
+    "T_LINEAGE_EXTINCTION": {
+      "definition": "step at which Y reaches zero (classifier state E)",
+      "STATUS": "MEASURED_PER_WORLD_IN_THE_PQEC01_RECORD__NOT_A_LIMITING_TIMESCALE_AT_THIS_POINT"
+    }
+  },
+  "PRINCIPAL_FINDINGS": [
+    "The exact expected first passage of the relative coordinate to a toroidal separation greater than CORE_R is 147.4180 steps, obtained by two independent deterministic methods that agree to 1.5e-12. The frozen TAU_SEP = 125.0 understates it by 17.934% of the frozen value (15.207% of the exact value).",
+    "The per-axis single-step displacement variance derived from the engine's own four ordered sub-shifts is 0.0500000000, which reproduces the frozen a_X = 0.05 exactly; the relative-coordinate diffusion constant reproduces the frozen D_relative = 0.05 exactly. The kinetic law used for the clock is therefore the engine's, not an approximation of it.",
+    "The observed separation delay over the 34 PQEC01 worlds that reached two spatial centres has mean 144.08824 (sd 112.85426); the exact expectation lies -0.172 standard errors away, i.e. consistent.",
+    "GEOMETRIC SEPARATION IS NOT FUNCTIONAL SUCCESS. A new centre needs on the order of 401.6 steps to build an X cloud to the level an established organiser holds, whereas H_HOLD = 16.0 steps admits only 6.21% of that cloud. The functional hold criterion used by FLCR01 is underspecified by a factor of 25.1.",
+    "AUDIT OF THE HISTORICAL '101 accepted X births': the value 101.14 is the pre-removal X level of ONE arm (R/seed9302) of the OBTC02 causal-source-dependence test. The three R arms give [116.64, 101.14, 113.83]. It was never a derived threshold and is not defensible as one.",
+    "Of the 34 worlds that reached two spatial centres, 14 later reached three or more (41.2%). A third centre is not a rare perturbation at this point.",
+    "P(an S episode lasts at least one X e-folding) = 0.155263 over 380 episodes."
+  ],
+  "WHAT_THIS_DOES_NOT_ESTABLISH": [
+    "H3_STATUS = NOT_TESTED",
+    "REPRODUCTION_STATUS = NOT_TESTED",
+    "HEREDITY_STATUS = NOT_TESTED",
+    "AUTONOMOUS_COHESION_STATUS = NOT_ESTABLISHED",
+    "X_LAWSPEC_BASELINE = UNCHANGED",
+    "ARCHITECTURE_CHANGE_NECESSITY = NOT_ESTABLISHED",
+    "FOUNDER_SURVIVAL_GATE = rejected (inherited from FLCR01, unchanged)",
+    "PARTICLE_GENEALOGY_REQUIRED = false (inherited from FLCR01, unchanged)"
+  ],
+  "DISCREPANCY_AGAINST_THE_DESTROYED_RUN": {
+    "SD_tau": {
+      "destroyed_run_recorded": 104.0536,
+      "reconstructed": 105.45607039909953,
+      "resolution": "the reconstructed value is confirmed by two independent exact methods (linear solve of (I-Q)m2 = 1 + 2 Q m1, and the survival identity E[t^2] = sum_t (2t+1) P(tau>t)) which agree to machine precision; the earlier figure is superseded"
+    },
+    "maturation_build_time": {
+      "destroyed_run_recorded": "451.6 steps / SHORTFALL 28.2",
+      "reconstructed": 401.55422159731904,
+      "resolution": "the earlier figure pinned maturation to ONE implicit response fraction (101/120.845 = 0.8358). That is exactly the step the mission forbids taking silently. This reconstruction reports the maturation time as an explicit function of the chosen response fraction f. Even at the most permissive f = 0.50 the shortfall factor is 10.8087, and at f = 0.80 it is 25.0971. The conclusion \u2014 H_HOLD = 16 is short by at least an order of magnitude \u2014 holds for EVERY f on the grid and does not depend on the choice."
+    },
+    "z_scores": {
+      "destroyed_run_recorded": [
+        -0.187,
+        -0.305
+      ],
+      "reconstructed": [
+        -0.17204413385908762,
+        -0.2825728354686396
+      ],
+      "resolution": "both are far inside 2 sigma; the qualitative conclusion (exact clock consistent with the record) is unchanged"
+    }
+  }
+}
