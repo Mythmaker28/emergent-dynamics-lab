@@ -1,0 +1,102 @@
+{
+  "program": "SIZE-NORMALIZED-FLUX-LIMIT-01",
+  "short_name": "SNFL01",
+  "date_utc": "2026-08-20",
+  "FINAL_DISPOSITION": "ELIGIBLE_SET_SIZE_CONTROL_NOT_EXECUTABLE",
+  "disposition_is_in_the_permitted_list": true,
+  "reached_at": "section 3 (executable-control qualification), before any freeze and before any run",
+  "why_not_the_others": {
+    "ELIGIBLE_SET_ENLARGEMENT_BREAKS_THE_FLUX_PLATEAU__I_OVER_I0_BELOW_0_20": "no run was performed",
+    "ELIGIBLE_SET_ENLARGEMENT_REDUCES_FLUX__TARGET_0_20_NOT_REACHED": "no run was performed",
+    "FLUX_PLATEAU_PERSISTS_UNDER_ELIGIBLE_SET_ENLARGEMENT": "no run was performed; and no plateau is established to persist",
+    "BASELINE_PLATEAU_NOT_REPRODUCED__SIZE_EFFECT_NOT_INTERPRETABLE_AS_PLATEAU_BREAKING": "no baseline was run",
+    "STOP__DESIGN_NOT_DECISION_CAPABLE_WITHIN_BUDGET": "the design was never reached; execution is impossible before power is a question",
+    "CALIBRATION_TECHNICALLY_INVALID": "no scientific source was changed after any outcome, because there were no outcomes",
+    "STOP__SIZE_NORMALIZED_FLUX_PARENT_EVIDENCE_INCOMPLETE": "REJECTED - all six entry-gate items pass and are byte-verified"
+  },
+  "supporting_findings": [
+    {
+      "id": "F1",
+      "finding": "od_core.py, the root module of the entire Route E operator stack, is absent from all 12615 objects of the repository and from the untracked worktree. dsc_core.py, p07_core.py, p08_core.py and p09_run.py all fail on their first import.",
+      "status": "BYTE_VERIFIED"
+    },
+    {
+      "id": "F2",
+      "finding": "Eligible-set size cannot be varied at constant delivered material. q_event = min(planned, sink capacity, source capacity), so |E| reaches the outcome only through the material it unlocks. Measured: P07 07B at matched dose Q400 and matched t256, PARENT -> TRACKALL raises delivered mass 0.620 -> 3.865 of M256 while incumbent removed FALLS 0.460 -> 0.298.",
+      "status": "BYTE_VERIFIED",
+      "label": "ELIGIBLE_SET_SIZE_NOT_SEPARABLE_FROM_OTHER_PHYSICS"
+    },
+    {
+      "id": "F3",
+      "finding": "The premise 'observed normalized-flux plateau' is contradicted by the parent: DEV_06's commit records PLATEAU_ESTABLISHED = false, and at L=24 the x8 range is bounded by breakage rather than saturation.",
+      "status": "BYTE_VERIFIED"
+    },
+    {
+      "id": "F4",
+      "finding": "0.385 and 0.419 are the same endpoint at two different lattice sizes, and the L=24 value is survivor-conditioned: 7 of 9 blocks are TREATED_TRACK_LOST, so median 0.385416 rests on n=2 worlds. Recomputed from dr05_paired_flux_rows.csv by this mission.",
+      "status": "RECOMPUTED_INDEPENDENTLY"
+    },
+    {
+      "id": "F5",
+      "finding": "The experiment has largely been performed. P07 07B is a prospectively sealed, matched-dose, matched-state, 18-block eligible-set enlargement whose sealed primary contrast FAILED: COMOVING gains 20 percent at L=24 (8/9, p=0.039) and is strictly nil at L=32 (0/9). At Q400 the source is the active bound in 87.0 and 96.6 percent of executed events; the sink in 7.8 and 0 percent.",
+      "status": "BYTE_VERIFIED"
+    },
+    {
+      "id": "F6",
+      "finding": "I0 denominator audit: across all 18 (size, block) pairs, I0 is identical across all 7 arms. 0 of 18 blocks diverge.",
+      "status": "RECOMPUTED_INDEPENDENTLY",
+      "label": "I0_CONSISTENCY = PASS"
+    },
+    {
+      "id": "F7",
+      "finding": "The genuinely open question is the enlarged mask AT Q800, where P07 07A shows CAP_PARENT = 0 and CAP_TRACKALL > 0 at 100 percent of 4036 rejections. It is unreachable: it needs the missing module and a factor that cannot be isolated.",
+      "status": "BYTE_VERIFIED"
+    }
+  ],
+  "budget_used": {
+    "PRIMARY_SCIENTIFIC_STARTS": 0,
+    "MAX_PRIMARY_SCIENTIFIC_STARTS": 128,
+    "TECHNICAL_RESERVE_STARTS": 0,
+    "MAX_TECHNICAL_RESERVE_STARTS": 4,
+    "TOTAL_STARTS": 0,
+    "MAX_TOTAL_STARTS": 132,
+    "INTENTIONAL_COMMITS": 1,
+    "MAX_INTENTIONAL_COMMITS": 5,
+    "ADVERSARIAL_REVIEWS": 0,
+    "MAX_ADVERSARIAL_REVIEWS": 1,
+    "POST_OUTCOME_SCIENTIFIC_REPAIRS": 0
+  },
+  "prohibitions_observed": {
+    "LOST_ENGINE_REIMPLEMENTATION": "not attempted",
+    "od_core_reimplementation": "refused per section 3",
+    "PAPER_EDITING": "none",
+    "NEW_SUBSTRATE": "none",
+    "NEW_ARCHITECTURE": "none",
+    "PARAMETER_INTERPOLATION": "none",
+    "runs_before_freeze": "none - no run at all",
+    "whole_disk_search": "not performed"
+  },
+  "artifacts_deliberately_not_produced": [
+    "SNFL01_MASTER_FREEZE.md/.json",
+    "SNFL01_METHODS_MANIFEST.json",
+    "SNFL01_METHODS_SHA256SUMS",
+    "SNFL01_PARAMETER_DESIGN.json",
+    "SNFL01_SEED_MANIFEST.json",
+    "SNFL01_RUN_LEDGER.jsonl",
+    "SNFL01_RAW_MANIFEST.json",
+    "SNFL01_RAW_SHA256SUMS",
+    "SNFL01_WORLD_LEVEL_RESULTS.csv/.json",
+    "SNFL01_PAIRED_ANALYSIS.json",
+    "SNFL01_THRESHOLD_ANALYSIS.json",
+    "SNFL01_TREND_ANALYSIS.json",
+    "SNFL01_ACCOUNTING_AUDIT.json",
+    "SNFL01_ADVERSARIAL_REVIEW.md/.json",
+    "SNFL01_REVIEW_ADJUDICATION.json",
+    "SNFL01_PRE_RUN_FULL.bundle",
+    "SNFL01_PRE_RUN_METHODS_CAPSULE.tar.zst"
+  ],
+  "reason_for_non_production": "a freeze binds an executable path; there is no executable path to bind. Producing a freeze, a seed manifest or a durability capsule for runs that cannot occur would be paperwork mistaken for provenance.",
+  "conditional_next_handoff": "HANDOFF_LATTICE_BOND_BOTTLENECK_ARBITRATION_01.md",
+  "TOMMY_ACTION_REQUIRED": "NONE",
+  "TOMMY_GIT_ACTION_REQUIRED": "NONE"
+}

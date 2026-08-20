@@ -1,0 +1,88 @@
+{
+  "program": "SNFL01",
+  "section": "3 - is eligible-set size an executable control?",
+  "control_source_exists": true,
+  "control": {
+    "parameter": "GATE_MASK (with GATE_TRACK and SPREAD as companions)",
+    "declaration": "P07/p07_core.py line 55: MASK_GATES = ('FROZEN','COMOVING','TRACKALL'); line 60: class Gate; line 64: __init__(self, name, mask='FROZEN', track=True, thresh=True, spread='ORDERED'); line 74: PARENT_GATE = Gate('PARENT')",
+    "blob": "9f4576083d65924782c5e0f36b89a7720044f7e3",
+    "sha256": "4d06add2bba1ab525c27b0018c130442e957332c32d22c7415539698a1a47c63",
+    "admissible_domain": {
+      "GATE_MASK": [
+        "FROZEN",
+        "COMOVING",
+        "TRACKALL"
+      ],
+      "GATE_TRACK": [
+        true,
+        false
+      ],
+      "SPREAD": [
+        "ORDERED",
+        "MULTISITE"
+      ]
+    },
+    "semantics": "FROZEN = downstream half of C256 frozen at t256 (the DEV_05 parent rule); COMOVING = downstream half of the CURRENT track C_t; TRACKALL = the entire current track. This is exactly an eligible-set CARDINALITY ladder.",
+    "docstring": "class Gate: 'A sink eligibility rule. PARENT reproduces DEV_05 exactly.'"
+  },
+  "runtime_path_broken": true,
+  "missing_root_module": {
+    "name": "od_core.py",
+    "imported_by": [
+      "P07/p07_core.py line ~50",
+      "P08/p08_core.py line 53",
+      "P09/p09_run.py line 15",
+      "results/ROUTE_E_DYNAMIC_SOURCE_CAPTURE_04/dsc_core.py lines 23-25"
+    ],
+    "symbols_required": [
+      "THRESH",
+      "MMAX",
+      "DET",
+      "comps",
+      "largest_bounded",
+      "cells_of",
+      "nbrs",
+      "fhash",
+      "advect",
+      "LatticeBondState",
+      "LatticeBondEngine",
+      "graph_distance",
+      "AXES"
+    ],
+    "search_performed": "all 12615 objects of git rev-list --all --objects, plus git ls-files --others --exclude-standard over the whole worktree",
+    "occurrences_found": 0,
+    "verdict": "ABSENT_FROM_THE_REPOSITORY_ENTIRELY"
+  },
+  "other_missing_runtime_modules": {
+    "morph02_ic": "0 occurrences (imported by P09/p09_run.py line 18)",
+    "bridge00_harness": "PRESENT at results/ROUTE_E_CAUSAL_BRIDGE_00/bridge00_harness.py, blob d49ba1f69005bb07524261dd640ca870847f7674"
+  },
+  "what_this_means": "od_core.py is the ADAPTER between the surviving engine (edlab/substrates/lattice_bond/engine.py, blob 0980525690..., 27439 bytes, intact) and the whole Route E operator stack. The engine survives. The gate that would enlarge the eligible set survives as source text. The glue between them does not. Every module that could execute a scientific run fails on its first import line.",
+  "mutation_oracle": {
+    "status": "NOT_RUN",
+    "reason": "an oracle requires an importable module; p07_core.py cannot be imported",
+    "tests_not_performed": [
+      "control changes |E|",
+      "estimator receives the changed set",
+      "frozen parameters byte-identical",
+      "reverting restores the original exactly",
+      "no new RNG draw or reordering"
+    ]
+  },
+  "may_the_missing_module_be_written": false,
+  "why_not": "section 3 states explicitly: 'If no independent executable size control exists: ELIGIBLE_SET_SIZE_CONTROL_NOT_EXECUTABLE. Do not implement one in this mission.' Writing od_core.py would also change the executable path away from the one that produced every inherited number, so nothing measured with it could be compared to the prior evidence.",
+  "separability_finding": {
+    "question": "even with a runnable stack, can |E| be varied at constant dose?",
+    "answer": "NO, and this is measured rather than argued",
+    "structural_argument": "the delivered quantity per event is q = min(planned, sink capacity, source capacity), where sink capacity is a sum over the eligible set. |E| therefore influences the outcome ONLY through the delivered quantity it unlocks: where the planned dose or the source binds, enlarging |E| changes nothing; where |E| binds, enlarging it necessarily delivers more material.",
+    "measured_confirmation": "P07 07B at matched planned dose Q400 and matched t256 state, 18 blocks: PARENT -> TRACKALL raises delivered mass from 0.620 to 3.865 of M256 (x6.2) while incumbent removed FALLS from 0.460 to 0.298 and efficiency collapses from 0.744 to 0.075.",
+    "consequence": "the section-3 requirement that the control 'change the eligible set without silently changing total dose or material quantity' cannot be met by this architecture. Independently of the missing module, the factor is ELIGIBLE_SET_SIZE_NOT_SEPARABLE_FROM_OTHER_PHYSICS."
+  },
+  "already_answered_finding": {
+    "note": "P07 07B is a prospectively sealed, matched-dose, matched-state, 18-block execution of the eligible-set enlargement this mission proposes.",
+    "sealed_primary_contrast": "FAILED \u2014 COMOVING gains 20 percent at L=24 (8/9 continuity, p=0.039) and is STRICTLY NIL at L=32 (0/9, median difference about 0)",
+    "P07_conclusion_verbatim": "Un masque co-mobile ne leve pas le plafond, parce que le puits n'etait pas la borne active.",
+    "P07_headline": "saturation conjuguee - releasing one side moves the constraint onto the other instead of lifting the ceiling"
+  },
+  "DISPOSITION": "ELIGIBLE_SET_SIZE_CONTROL_NOT_EXECUTABLE"
+}

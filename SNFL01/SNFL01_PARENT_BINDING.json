@@ -1,0 +1,115 @@
+{
+  "program": "SIZE-NORMALIZED-FLUX-LIMIT-01",
+  "short_name": "SNFL01",
+  "date_utc": "2026-08-20",
+  "authoritative_repository": "C:\\Users\\tommy\\Documents\\ising-v3-recovery\\ising v3",
+  "documentary_tip_not_used_as_parent": "8239fa7affe94bc5b497d803df63f9373036f9c8 (FTCTR01/EBR01/EBR02 recovery records)",
+  "scientific_parent": {
+    "ref": "dev/route-e-p09-dose-yoked-closure",
+    "commit": "b6bc514126ffd559407065eb89c07b4e950958ce",
+    "why": "tip of the Route E throughput lineage; a descendant of both DEV_06 (8e619e6, which established SIZE_NORMALIZED_FLUX_LIMIT) and P07 (99df745, which defines the eligible-set size control); carries P07, P08, P09 and results/ together",
+    "ancestry_verified": {
+      "DEV_06_is_ancestor": true,
+      "P07_is_ancestor": true
+    }
+  },
+  "programme_that_produced_the_mechanism": {
+    "name": "ROUTE_E_DIRECT_EXCHANGE_FLUX_DECOMPOSITION_06",
+    "commit": "8e619e61e776f962d3d73c1ccfeaa0591a81baf3",
+    "date": "2026-08-09",
+    "declared_primary_mechanism": "SIZE_NORMALIZED_FLUX_LIMIT",
+    "engine_invocations": 0,
+    "note": "a raw-only re-analysis of DEV_05 ledgers"
+  },
+  "programme_that_produced_the_x8_numbers": {
+    "name": "ROUTE_E_DIRECT_INTERFACE_REPLACEMENT_FRONTIER_05",
+    "commit": "29923e89abcb0ad20db660deee6cf949f3b81d25",
+    "arm": "DIRECT_Q800_UNIFORM"
+  },
+  "programme_that_defines_the_eligible_set_size_control": {
+    "name": "ROUTE_E_EXCHANGE_THROUGHPUT_CAUSAL_PROGRAM_07",
+    "commit": "99df74531e5ada73bd02953cab6072c2f04e7485",
+    "file": "P07/p07_core.py",
+    "symbol": "class Gate (line 60) with MASK_GATES = (FROZEN, COMOVING, TRACKALL) at line 55"
+  },
+  "entry_gate": {
+    "LATTICE_BOND_ENGINE_PRESENT": {
+      "value": true,
+      "evidence": "edlab/substrates/lattice_bond/engine.py blob 0980525690ff38d84aa494581b2a68c6f8f44d8e, content sha256 e027a9c56b773ed077cdfe725951d215b631c54b7080da73e5321ccedb6d9ff6, 27439 bytes, identical at 29923e8, 99df745 and b6bc514"
+    },
+    "PRIOR_X8_CONDITION_PRESENT": {
+      "value": true,
+      "evidence": "arm DIRECT_Q800_UNIFORM in direct_replacement_summary.json (blob e6892353, sha256 4e2026f4...) and in dr05_paired_flux_rows.csv (blob 1aec668f, sha256 4a2396f1...)"
+    },
+    "NORMALIZED_FLUX_ESTIMATOR_PRESENT": {
+      "value": true,
+      "evidence": "dr05_flux_decomposition.py line 107: I_over_I0_treated = It / I0, with I0 read per (block,arm) row at line 78; stdlib-only imports, so the ANALYSIS layer is runnable"
+    },
+    "ELIGIBLE_SET_DEFINITION_PRESENT": {
+      "value": true,
+      "evidence": "P07/REPORT_P07.md section 1: the DEV_05 sink eligibility predicate is i in MASK and i in TRACK and m[i] >= THRESH, with the third conjunct proved dead code because detect_components builds every component from occupied = (m >= matter_threshold = THRESH = 0.45)"
+    },
+    "TARGET_0_20_PROVENANCE_PRESENT": {
+      "value": true,
+      "evidence": "direct_replacement_protocol.json /endpoints/FORCED_COMPONENT_TURNOVER_80 = ['I/I0 <= 0.20', 'I/T <= 0.20'] (blob 40a158de, sha256 85d37725...)"
+    },
+    "PRIOR_INDEPENDENT_UNIT_IDENTIFIED": {
+      "value": true,
+      "evidence": "direct_replacement_protocol.json /inference = 'n = 9 independent blocks per size, one LawSpec'; /forbidden = '144 logical trajectories must NEVER be reported as n = 144 independent'"
+    },
+    "ALL_SIX_PASS": true,
+    "gate_result": "PASSED \u2014 the mission was NOT stopped at section 2"
+  },
+  "bound_objects": [
+    {
+      "path": "edlab/substrates/lattice_bond/engine.py",
+      "commit": "b6bc514",
+      "blob": "0980525690ff38d84aa494581b2a68c6f8f44d8e",
+      "sha256": "e027a9c56b773ed077cdfe725951d215b631c54b7080da73e5321ccedb6d9ff6"
+    },
+    {
+      "path": "P07/p07_core.py",
+      "commit": "b6bc514",
+      "blob": "9f4576083d65924782c5e0f36b89a7720044f7e3",
+      "sha256": "4d06add2bba1ab525c27b0018c130442e957332c32d22c7415539698a1a47c63"
+    },
+    {
+      "path": "P07/REPORT_P07.md",
+      "commit": "b6bc514",
+      "blob": "12a86954d8b9c3e3571d1b68cb86bc782651a1ee",
+      "sha256": "c7412822a7b06897ee2962436d3f6be564258c08db37fb695796f66fec7872d1"
+    },
+    {
+      "path": "results/ROUTE_E_DIRECT_REPLACEMENT_05/direct_replacement_protocol.json",
+      "commit": "29923e8",
+      "blob": "40a158defa8e45aceace4f689d7fd84ac568844d",
+      "sha256": "85d37725cd9c3bc859f7fb111c6765afeecec3d3c5262ae316eda7b38381d208"
+    },
+    {
+      "path": "results/ROUTE_E_DIRECT_REPLACEMENT_05/direct_replacement_summary.json",
+      "commit": "29923e8",
+      "blob": "e6892353014b2b54d307cd52dbd651d8e6abc7e9",
+      "sha256": "4e2026f4a403a417c7b2606b35390f27482922eceda4a280a3a18b8392cba3bf"
+    },
+    {
+      "path": "results/ROUTE_E_FLUX_DECOMPOSITION_06/dr05_paired_flux_rows.csv",
+      "commit": "8e619e6",
+      "blob": "1aec668f07a4b4a8d9814ed8f6974126084687f9",
+      "sha256": "4a2396f1919de42722b8273f1493733d7b9a666d4f6384cd3193d194f15d68f1"
+    },
+    {
+      "path": "results/ROUTE_E_FLUX_DECOMPOSITION_06/dr05_flux_decomposition.py",
+      "commit": "8e619e6",
+      "blob": "1c9e1e29ad1aee5de9225eb6083b0f41e4f83cae",
+      "sha256": "d7fbe9145709d9c46ca809985c1b40c799b4a8a53915955e024806125bad9f75"
+    },
+    {
+      "path": "results/ROUTE_E_FLUX_DECOMPOSITION_06/dr05_mechanism_adjudication.json",
+      "commit": "8e619e6",
+      "blob": "4e7d84e99260881d7e5b2e4e76ee4984c563f8bb",
+      "sha256": "4f3fe96cc4ce24a42c1efa6332eb359ba026bc0633138068131addeaa01d3f59"
+    }
+  ],
+  "blocking_finding": "the execution stack is not runnable: od_core.py, the root module imported by dsc_core.py, p07_core.py, p08_core.py and p09_run.py, does not exist in any of the 12615 objects of this repository, tracked or untracked. See SNFL01_EXECUTABLE_SIZE_CONTROL.json.",
+  "DISPOSITION": "ELIGIBLE_SET_SIZE_CONTROL_NOT_EXECUTABLE"
+}

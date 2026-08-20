@@ -1,0 +1,174 @@
+{
+  "program": "SNFL01",
+  "note": "Every inherited number below was RECOMPUTED from the raw paired rows (dr05_paired_flux_rows.csv, sha256 4a2396f1...) by this mission, not copied from a report or a conversation. The conversational approximations 0.385 and 0.419 were treated as search clues only.",
+  "entries": [
+    {
+      "quantity": "I/I0 at the x8 dose, L=24",
+      "exact_value": 0.385416,
+      "exact_value_full": "median of [0.3682, 0.4027]",
+      "estimand": "median over independent blocks of terminal incumbent mass divided by that block's own I0",
+      "unit": "dimensionless ratio",
+      "independent_unit": "one seed block (one world)",
+      "n_used": 2,
+      "n_scheduled": 9,
+      "source_file": "results/ROUTE_E_FLUX_DECOMPOSITION_06/dr05_paired_flux_rows.csv",
+      "source_sha256": "4a2396f1919de42722b8273f1493733d7b9a666d4f6384cd3193d194f15d68f1",
+      "git_commit": "8e619e61e776f962d3d73c1ccfeaa0591a81baf3",
+      "evidence_status": "SURVIVOR_CONDITIONED \u2014 7 of the 9 blocks have status TREATED_TRACK_LOST; this median rests on TWO worlds"
+    },
+    {
+      "quantity": "I/I0 at the x8 dose, L=32",
+      "exact_value": 0.418707,
+      "estimand": "same",
+      "unit": "dimensionless ratio",
+      "independent_unit": "one seed block",
+      "n_used": 9,
+      "n_scheduled": 9,
+      "source_file": "results/ROUTE_E_FLUX_DECOMPOSITION_06/dr05_paired_flux_rows.csv",
+      "source_sha256": "4a2396f1919de42722b8273f1493733d7b9a666d4f6384cd3193d194f15d68f1",
+      "git_commit": "8e619e61e776f962d3d73c1ccfeaa0591a81baf3",
+      "evidence_status": "COMPLETE"
+    },
+    {
+      "quantity": "I/I0 anchor (Q100), L=24 / L=32",
+      "exact_value": [
+        0.593736,
+        0.660552
+      ],
+      "n_used": [
+        9,
+        9
+      ],
+      "estimand": "same",
+      "evidence_status": "COMPLETE",
+      "role": "the x1 dose reference against which x8 is compared"
+    },
+    {
+      "quantity": "target threshold",
+      "exact_value": 0.2,
+      "estimand": "FORCED_COMPONENT_TURNOVER_80 requires BOTH 'I/I0 <= 0.20' AND 'I/T <= 0.20'",
+      "source_file": "results/ROUTE_E_DIRECT_REPLACEMENT_05/direct_replacement_protocol.json",
+      "source_sha256": "85d37725cd9c3bc859f7fb111c6765afeecec3d3c5262ae316eda7b38381d208",
+      "git_commit": "29923e89abcb0ad20db660deee6cf949f3b81d25",
+      "evidence_status": "BYTE_VERIFIED",
+      "joint_endpoint_note": "section 8 of the mission asks whether both must cross. The protocol answers: BOTH. 0.385 and 0.419 are NOT two contexts of one condition - they are the SAME endpoint at TWO DIFFERENT LATTICE SIZES."
+    },
+    {
+      "quantity": "median eligible sink sites per event",
+      "exact_value": 1,
+      "estimand": "median cardinality of the sink's eligible set per scheduled event",
+      "source_file": "results/ROUTE_E_FLUX_DECOMPOSITION_06/dr05_mechanism_adjudication.json",
+      "source_sha256": "4f3fe96cc4ce24a42c1efa6332eb359ba026bc0633138068131addeaa01d3f59",
+      "git_commit": "8e619e61e776f962d3d73c1ccfeaa0591a81baf3",
+      "evidence_status": "BYTE_VERIFIED_AS_A_RECORDED_SCALAR",
+      "caveat": "recorded as a single integer in the adjudication JSON; the underlying per-event cardinality DISTRIBUTION (min, median, mean, max, fraction with |E|=0, fraction with |E|=1) that section 5 requires is NOT in this artefact. It would have to be recomputed from P07's surviving event ledgers."
+    },
+    {
+      "quantity": "event rejection rate for zero eligible sink capacity",
+      "exact_value": {
+        "Q100": 0.0,
+        "Q200": 0.0,
+        "Q800_L24": 0.406,
+        "Q800_L32": 0.139,
+        "sink_only_Q800": [
+          0.948,
+          0.945
+        ]
+      },
+      "source_file": "results/ROUTE_E_FLUX_DECOMPOSITION_06/dr05_mechanism_adjudication.json",
+      "evidence_status": "BYTE_VERIFIED"
+    },
+    {
+      "quantity": "PLATEAU_ESTABLISHED",
+      "exact_value": false,
+      "source_file": "commit message of 8e619e61e776f962d3d73c1ccfeaa0591a81baf3",
+      "evidence_status": "BYTE_VERIFIED",
+      "verbatim": "DOSE_RANGE_INSUFFICIENT holds at L=32 only: at L=24 the range is not insufficient, it is BOUNDED BY BREAKAGE between Q400 and Q800. PLATEAU_ESTABLISHED = false.",
+      "consequence": "the premise of this mission - 'the observed normalized-flux plateau' - is contradicted by the very programme that produced the numbers"
+    },
+    {
+      "quantity": "active bound per executed event at Q400 (P07 ledger)",
+      "exact_value": {
+        "L24": {
+          "dose": 0.052,
+          "source": 0.87,
+          "sink": 0.078
+        },
+        "L32": {
+          "dose": 0.034,
+          "source": 0.966,
+          "sink": 0.0
+        }
+      },
+      "source_file": "P07/REPORT_P07.md",
+      "source_sha256": "c7412822a7b06897ee2962436d3f6be564258c08db37fb695796f66fec7872d1",
+      "evidence_status": "BYTE_VERIFIED",
+      "consequence": "at Q400 the sink's eligible set is NOT the binding constraint; the source is"
+    },
+    {
+      "quantity": "eligible-set enlargement already executed (P07 07B, matched dose Q400, matched t256, 18 blocks)",
+      "exact_value": {
+        "PARENT_L24": {
+          "delivered": 0.62,
+          "incumbent_removed": 0.46,
+          "efficiency": 0.744,
+          "continuity": "9/9"
+        },
+        "COMOVING_L24": {
+          "delivered": 0.744,
+          "incumbent_removed": 0.478,
+          "efficiency": 0.643,
+          "continuity": "8/9"
+        },
+        "TRACKALL_L24": {
+          "delivered": 3.865,
+          "incumbent_removed": 0.298,
+          "efficiency": 0.075,
+          "continuity": "8/9"
+        },
+        "PARENT_L32": {
+          "delivered": 0.414,
+          "incumbent_removed": 0.377,
+          "efficiency": 0.91,
+          "continuity": "9/9"
+        },
+        "COMOVING_L32": {
+          "delivered": 0.413,
+          "incumbent_removed": 0.375,
+          "efficiency": 0.91,
+          "continuity": "9/9"
+        },
+        "TRACKALL_L32": {
+          "delivered": 3.835,
+          "incumbent_removed": 0.261,
+          "efficiency": 0.067,
+          "continuity": "8/9"
+        }
+      },
+      "source_file": "P07/REPORT_P07.md",
+      "evidence_status": "BYTE_VERIFIED",
+      "consequence": "the sealed primary contrast of P07 FAILED: COMOVING gains 20 percent at L=24 (8/9, p=0.039) and is STRICTLY NIL at L=32 (0/9). TRACKALL delivers x6.2 more mass and removes LESS incumbent."
+    }
+  ],
+  "I0_consistency_audit": {
+    "method": "recomputed by this mission from dr05_paired_flux_rows.csv: for each of the 18 (size, block) pairs, compare I0 across all 7 arms",
+    "blocks_with_non_identical_I0": 0,
+    "blocks_total": 18,
+    "result": "PASS \u2014 the denominator is per-block but identical across arms within a block, so historical arm comparisons are denominator-consistent"
+  },
+  "raw_row_status_counts": {
+    "OK": 110,
+    "TREATED_TRACK_LOST": 16,
+    "total": 126
+  },
+  "breakage_by_arm": {
+    "L24_DIRECT_Q800_UNIFORM": {
+      "OK": 2,
+      "LOST": 7
+    },
+    "L24_SOURCE_ONLY_Q800": {
+      "OK": 0,
+      "LOST": 9
+    }
+  }
+}

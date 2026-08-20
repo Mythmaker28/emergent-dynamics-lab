@@ -1,0 +1,36 @@
+{
+  "program": "SNFL01",
+  "section": "4 - what size-normalized means here",
+  "I": "terminal incumbent mass of the tracked component, read from the per-block snapshot at terminal_time",
+  "I0": {
+    "definition": "the block's own incumbent mass recorded at t256",
+    "implementation": "dr05_flux_decomposition.py line 78: I0 = num(r['I0']) read PER ROW, i.e. per (size, block, arm)",
+    "is_it_fixed": "NO - it is per block",
+    "is_it_condition_specific": "recorded per arm, but audited identical across arms within a block",
+    "recomputed_for_each_eligible_set_size": "NOT_APPLICABLE - no size ladder was ever run with this estimator",
+    "audit": "0 of 18 blocks show a non-identical I0 across the 7 arms, so the denominator rule is consistent and a comparison across arms is legitimate"
+  },
+  "I_over_I0": "dr05_flux_decomposition.py line 107: I_over_I0_treated = It / I0",
+  "I_over_T": "line 107: I_over_T_treated = It / Tt, where T is the terminal total tracked mass",
+  "frozen_denominator_rule_for_any_successor": "I0 must be the block's own t256 incumbent mass, never recomputed per condition and never pooled across blocks",
+  "does_a_prior_size_normalized_estimand_exist": {
+    "searched_for": "I/(I0*|E|) or any per-eligible-cell flux",
+    "found": false,
+    "consequence": "section 4 forbids inventing one merely because the mission is named 'size-normalized'. No secondary normalization is defined here."
+  },
+  "eligible_set_cardinality_distribution": {
+    "available": false,
+    "what_exists": "a single recorded scalar, median_eligible_sink_sites_per_event = 1, in dr05_mechanism_adjudication.json",
+    "what_section_5_requires": [
+      "minimum",
+      "median",
+      "mean",
+      "maximum",
+      "fraction with |E| = 0",
+      "fraction with |E| = 1"
+    ],
+    "where_it_could_come_from": "P07's surviving per-event ledgers P07/p07a_event_ledger.csv.gz and P07/p07b_event_ledger.csv.gz - recomputable with ZERO engine runs"
+  },
+  "independent_unit": "one seed block = one world per condition; the protocol forbids treating the 144 logical trajectories as 144 independent units",
+  "primary_endpoint_is_a_median": "yes - every I_over_I0 figure in the prior evidence is a median over blocks, so a successor must use the pre-existing definition and a paired world-level interval, not a mean"
+}
