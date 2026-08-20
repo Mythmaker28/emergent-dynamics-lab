@@ -1,0 +1,78 @@
+{
+  "program": "FTCTR01-RECOVER-FROM-LRCPS01-FULL-BUNDLE-02",
+  "short_name": "EBR02",
+  "date_utc": "2026-08-20",
+  "RECOVERY_DISPOSITION": "RECOVERY_BLOCKED__BUNDLE_PART_SET_INCOMPLETE",
+  "ROUTE_DISPOSITION": "RECOVERY_ROUTE_CLOSED__EXACT_EXECUTABLE_NOT_PRESERVED",
+  "FTCTR01_CONTINUATION_STATUS": "NOT_AUTHORIZED",
+  "FTCTR01_FINAL_DISPOSITION": "STOP__CRITICAL_EXECUTABLE_BYTES_MISSING",
+  "FURTHER_RECOVERY_AUTHORIZED": "NO",
+  "why_not_the_other_labels": {
+    "FULL_EXECUTABLE_RECOVERED__FTCTR01_CONTINUATION_AUTHORIZED": "0 of 15 semantic gates, 0 of 24 content digests, 0 engine paths",
+    "PARTIAL_RECOVERY__CENTRE_CLASSIFIER_MISSING": "presupposes the engine was recovered; it was not",
+    "PARTIAL_RECOVERY__ENGINE_OR_SPEC_PROVENANCE_INSUFFICIENT": "presupposes an engine with weak provenance; there is no engine",
+    "RECOVERY_REJECTED__HASH_MISMATCH": "no candidate file was produced to mismatch; the one bundle that was hash-checked MATCHED its manifest exactly",
+    "RECOVERY_BLOCKED__BUNDLE_INVALID": "the bundle actually present is valid, complete and fsck-clean; it is simply a different history"
+  },
+  "part_inventory": {
+    "LRCPS01_FULL.bundle.PART*": 0,
+    "LRCPS01_BUNDLE_PARTS_SHA256*": "ABSENT",
+    "OBOPR01_FULL.bundle*": "ABSENT",
+    "OBOPR01_RAW_CONFIRMATION_PACKAGE.tar.zst": "ABSENT",
+    "PART_SET_STATUS": "INCOMPLETE_PART_SET",
+    "CHECKSUM_MANIFEST_STATUS": "CHECKSUM_MANIFEST_MISSING",
+    "part_count_declarable": false,
+    "reason": "the manifest that would declare the expected part count is itself among the missing files"
+  },
+  "bundle_actually_verified": {
+    "file": "IPRR00R_FINAL_FULL_cff7f263c6acb65f94c18d50f71ab57658e12b80.bundle",
+    "sha256_vs_manifest": "EXACT_MATCH",
+    "bundle_verify_exit_code": 0,
+    "thin_or_full": "FULL",
+    "prerequisites": 0,
+    "restored_commits": 304,
+    "restored_objects": 5282,
+    "restored_blobs": 3210,
+    "fsck_exit_code": 0,
+    "was_previously_unscanned": true,
+    "contains_engine": false,
+    "contains_centre_classifier": false
+  },
+  "ENGINE_CORE_HASH_STATUS": "ZERO_OF_FIVE_KNOWN_HASHES_MATCHED",
+  "ENGINE_CORE_STATUS": "NOT_RECOVERED",
+  "CENTRE_CLASSIFIER_STATUS": "NOT_RECOVERED",
+  "CRITICAL_EXECUTABLE_SEMANTICS": "FAIL",
+  "DEVELOPMENTAL_RAW_COMPARISON_STATUS": "UNAVAILABLE",
+  "raw_package_used_as_a_blocker": false,
+  "prohibitions_observed": {
+    "REIMPLEMENTATION": "not attempted",
+    "SOURCE_RECONSTRUCTION_FROM_PAPER": "not attempted",
+    "SOURCE_RECONSTRUCTION_FROM_REPORTS": "not attempted",
+    "MERGE_INTO_ISING_V3": "not done",
+    "OVERWRITE_EXISTING_REPOSITORY": "not done",
+    "SECOND_RECOVERY_CASCADE": "not opened",
+    "SECOND_BYTE_AUDIT": "not dispatched",
+    "device_wide_search": "not launched",
+    "remote_added": false,
+    "histories_merged": false
+  },
+  "withdrawn_quantities": {
+    "status": "NON_EXECUTABLE__WITHDRAWN",
+    "items": ["TAU_SEP = 125", "101 accepted X births per centre over 250 steps", "the C3 third-centre surrogate", "every developmental separation, hold and third-centre timing observation attached to them"],
+    "meaning": "conversational quantities with no executable referent; they must not be cited as results again"
+  },
+  "repository_location_change": {
+    "old_path": "C:\\Users\\tommy\\Documents\\ising v3",
+    "new_path": "C:\\Users\\tommy\\Documents\\ising-v3-recovery\\ising v3",
+    "detected": "the old mount went empty mid-turn; the repository was found intact at the new path with tip 0c5ad54d",
+    "data_lost": "none"
+  },
+  "recommended_new_direction": [
+    "A. Complete the SIZE_NORMALIZED_FLUX_LIMIT mechanism on lattice_bond: test whether enlarging the eligible set (median 1 cell) moves I/I0 below the 0.20 gate that x8 dose could not reach. Surviving code, working per-event ledger, one parameter, pre-registerable.",
+    "B. Use ising-life-lab (isinglab, 121 commits) as an independent replication substrate; a claim surviving on both edlab and isinglab is far stronger than one living on a single engine.",
+    "C. Externalise CODE, not only numbers, on every mission: one small bundle per programme hashed into the owner's repository the same day. Three programmes and the whole source-response engine were lost to container resets while their hashes survived in a paper."
+  ],
+  "NEW_SCIENTIFIC_RUNS_USED": 0,
+  "TOMMY_ACTION_REQUIRED": "NONE",
+  "TOMMY_GIT_ACTION_REQUIRED": "NONE"
+}

@@ -1,0 +1,55 @@
+{
+  "program": "EBR02",
+  "approach": "section 6 correctly allows the classifier to be recovered through its scientific lineage rather than the paper methods hash. That route was taken and it terminates immediately.",
+  "searched_in": "the restored IPRR00R history (304 commits, 5282 objects) - the only newly available history",
+  "tokens_searched": [
+    "PQEC01",
+    "FLCR01",
+    "pqec01_run.py",
+    "pqec01_analyse.py",
+    "pqec01_design.py",
+    "flcr01_science.py",
+    "CORE_R",
+    "n_centres",
+    "centre_count",
+    "TWO_CENTRES",
+    "ONE_CENTRE",
+    "classifier",
+    "centre"
+  ],
+  "hits": 0,
+  "acceptance_conditions": [
+    {
+      "n": 1,
+      "condition": "exact source bytes exist in the restored bundle",
+      "result": "FAIL"
+    },
+    {
+      "n": 2,
+      "condition": "source belongs to the commit ancestry of the programme that produced the developmental two-centre results",
+      "result": "UNTESTABLE__NO_SOURCE"
+    },
+    {
+      "n": 3,
+      "condition": "a runner, freeze, manifest, report or output schema references that exact implementation",
+      "result": "UNTESTABLE__NO_SOURCE"
+    },
+    {
+      "n": 4,
+      "condition": "CORE_R and toroidal-distance semantics recoverable",
+      "result": "FAIL"
+    },
+    {
+      "n": 5,
+      "condition": "maps stored Y occupancies or positions to one versus two centres deterministically",
+      "result": "UNTESTABLE__NO_SOURCE"
+    },
+    {
+      "n": 6,
+      "condition": "no post-outcome replacement classifier substituted",
+      "result": "HONOURED__NONE_WAS_WRITTEN"
+    }
+  ],
+  "CENTRE_CLASSIFIER_STATUS": "NOT_RECOVERED",
+  "note": "PQEC01 and FLCR01 are recorded by PAPER_SOURCE_BINDING.json at container paths /home/claude/PQEC01 and /home/claude/edl/FLCR01, with PQEC01 carrying 128 raw archives and an EMPTY sha256 map. Neither directory has any counterpart in any git history reachable on this device."
+}

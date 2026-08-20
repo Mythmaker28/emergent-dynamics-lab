@@ -1,0 +1,26 @@
+{
+  "program": "EBR02",
+  "bundle": "IPRR00R_FINAL_FULL_cff7f263c6acb65f94c18d50f71ab57658e12b80.bundle",
+  "sha256_verified_against_manifest": true,
+  "git_bundle_verify_output": [
+    "/tmp/iprr.bundle is okay",
+    "The bundle contains this ref: cff7f263c6acb65f94c18d50f71ab57658e12b80 refs/heads/audit/chatgpt-independent-red-team-roadmap-01r",
+    "The bundle records a complete history."
+  ],
+  "bundle_verify_exit_code": 0,
+  "thin_or_full": "FULL",
+  "prerequisite_commits": [],
+  "advertised_refs": [
+    "refs/heads/audit/chatgpt-independent-red-team-roadmap-01r -> cff7f263c6acb65f94c18d50f71ab57658e12b80"
+  ],
+  "advertised_ref_count": 1,
+  "second_bundle": {
+    "file": "IPRR00R_FULL_e0561989db5de1b278b3b27d1e035afe6f3c6e75.bundle",
+    "tip": "e0561989db5de1b278b3b27d1e035afe6f3c6e75",
+    "same_ref": true,
+    "is_ancestor_of_cff7f263": true,
+    "consequence": "its entire history is contained in the verified bundle; scanning it separately would be redundant"
+  },
+  "is_this_the_LRCPS01_full_bundle": false,
+  "why": "it advertises a single emergent-dynamics-lab audit branch, audit/chatgpt-independent-red-team-roadmap-01r, not the LRCPS01 lineage branch codex/lineage-route-closure-and-paper-synthesis-01 whose head 06c592313df96601de8d2a89676d5a5cf79fc414 remains absent everywhere"
+}
