@@ -1,0 +1,63 @@
+{
+ "SECTION": "DOTC01 \u00a718 \u2014 one consolidated increment, written and verified from Windows bytes",
+ "GENERATED_UTC": "2026-08-21T17:47:37.180168+00:00",
+ "ARTEFACTS": {
+  "ISING_CONSOLIDATED_FTCTR01_TO_DOTC01.bundle": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\DOTC01\\ISING_CONSOLIDATED_FTCTR01_TO_DOTC01.bundle",
+   "bytes": 786648,
+   "sha256_written": "68523c1eca390b6590057d648a039bc29d5ac28b1548ee076f31bbe82f68b68a",
+   "sha256_read_back": "68523c1eca390b6590057d648a039bc29d5ac28b1548ee076f31bbe82f68b68a",
+   "IDENTICAL": true
+  },
+  "DOTC01_DELIVERABLES.tar.zst": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\DOTC01\\DOTC01_DELIVERABLES.tar.zst",
+   "bytes": 50792,
+   "sha256_written": "0134e5d83e1b002fa111df7720ca4098409221a53a333a9066283a010f373dee",
+   "sha256_read_back": "0134e5d83e1b002fa111df7720ca4098409221a53a333a9066283a010f373dee",
+   "IDENTICAL": true
+  },
+  "DOTC01_FINAL_REPORT.md": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\DOTC01\\DOTC01_FINAL_REPORT.md",
+   "bytes": 16656,
+   "sha256_written": "b5d116776082350f3cec35260ab43b627834436ca53fe8f740cff010160beba1",
+   "sha256_read_back": "b5d116776082350f3cec35260ab43b627834436ca53fe8f740cff010160beba1",
+   "IDENTICAL": true
+  }
+ },
+ "ALL_IDENTICAL_ON_READ_BACK": true,
+ "CONSOLIDATED_INCREMENT": {
+  "prerequisite": "06c592313df96601de8d2a89676d5a5cf79fc414 \u2014 the inherited boundary, never rewritten",
+  "commits_carried": 15,
+  "bytes": 786648,
+  "PROGRAMMES_CARRIED": {
+   "FTCTR01": 8,
+   "FLRS02": 29,
+   "FDFLT01": 34,
+   "RCD01": 33,
+   "FMRT01": 130,
+   "MRFA01": 58,
+   "DOTC01": 35
+  },
+  "SPOIQ01": {
+   "included": false,
+   "status": "UNRECOVERABLE",
+   "evidence": "a search of the container and of the mounted Windows recovery tree returns zero SPOIQ01 artefacts of any kind. Its outputs never reached external storage before the fifth container rollback. The capability it qualified was rebuilt and re-qualified inside FMRT01, and no SPOIQ01 hash is reasserted from memory."
+  },
+  "verified_by_rebuilding_from_the_DEVICE_COPY": {
+   "bundle_verify": "okay",
+   "git_fsck_full": "no corruption reported",
+   "restored_tree": "276cc3e115ccabd8d7e11e8797e614b01937bb99",
+   "live_tree": "276cc3e115ccabd8d7e11e8797e614b01937bb99",
+   "TREE_IDENTICAL": true
+  }
+ },
+ "EVERY_STAGE_VERIFIED_BY_READ_BACK_NOT_BY_WRITE_RECEIPT": true,
+ "EXTERNAL_COPY_SUCCEEDED": true,
+ "GITHUB": {
+  "status": "403, unchanged",
+  "tested_in": "MRFA01 C3, twice, mechanically",
+  "treated_as": "secondary \u2014 \u00a718 states GitHub must not block this zero-run derivation, and it did not",
+  "optional_action": "adding Mythmaker28/emergent-dynamics-lab to the session's sources would add an off-disk mirror; durability does not depend on it"
+ },
+ "DOTC01_DURABILITY": "PASS"
+}
