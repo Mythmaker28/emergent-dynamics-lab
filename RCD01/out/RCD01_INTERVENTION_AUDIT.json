@@ -1,0 +1,46 @@
+{
+  "SECTION": "RCD01 \u00a76 \u2014 audit of executable causal interventions in the exact engine",
+  "GENERATED_UTC": "2026-08-21T02:01:14.943615+00:00",
+  "SEARCH": "every intervention hook in engine_obtc.py, lawspec_v2.py, protocol_obtc02.py and the runners",
+  "FOUND": [
+    {
+      "name": "organiser_off_at",
+      "location": "OBTC02/code/engine_obtc.py:126 (constructor), :220-229 (_one_step)",
+      "exact_effect": "y = self.n['Y'].copy(); self.n['Y'] -= y; self.n['WY'] += y",
+      "spatial_scope": "GLOBAL \u2014 the entire Y field is zeroed in one operation",
+      "targets_one_centre": false,
+      "other_physics_touched": "none. Occupancy is conserved exactly, no X molecule is moved, created or destroyed, no resource is touched. Y leaves through the same Y->WY channel a spontaneous decay uses.",
+      "control_field": "constructor keyword organiser_off_at, threaded through protocol_obtc02.py:81",
+      "runner_path": "protocol_obtc02.py builds R arms with track=True, organiser_off_at=off",
+      "already_used_by": "the OBTC02 CAUSAL_SOURCE_DEPENDENCE R arms, which measured the X decay after removing the sole organiser"
+    },
+    {
+      "name": "organiser_immobile",
+      "location": "OBTC02/code/engine_obtc.py docstring, Spec p_hop_Y=0",
+      "exact_effect": "the organiser's hop probability is set to 0 in the Spec",
+      "spatial_scope": "global parameter, not an intervention on one centre",
+      "targets_one_centre": false
+    }
+  ],
+  "NOT_FOUND": [
+    "any per-cell or per-centre Y removal",
+    "any selective source suppression",
+    "any spatially scoped inactivation",
+    "any per-centre resource gate"
+  ],
+  "CLASSIFICATION": "GLOBAL_ORGANISER_OFF_ONLY",
+  "CONSEQUENCE": "R2 functional independence cannot be tested with the engine as it stands. Removing the parent with organiser_off_at removes the daughter at the same instant, because the operation is a single global zeroing of the Y field.",
+  "SMALLEST_MISSING_CAPABILITY": {
+    "name": "selective_organiser_off",
+    "specification": "at a declared step, remove Y only from the cells belonging to one named spatial centre under the frozen toroidal single-linkage partition, through the same Y->WY channel, conserving occupancy exactly, touching no X and no resource",
+    "why_it_is_an_intervention_and_not_an_architecture_change": "it manipulates the experiment at a declared instant. It adds no term to the autonomous law: between interventions every rate, every candidate rule and every update remains bit-identical. The existing global organiser_off already establishes the precedent and the channel; only the spatial scope changes.",
+    "qualification_required_before_use": [
+      "bit-identical trajectories when the intervention is not armed",
+      "occupancy conservation at the intervention step",
+      "no X molecule moved, created or destroyed",
+      "no resource field touched",
+      "the untouched centre's cells provably unaffected at that step",
+      "a deterministic parent/daughter tie-break declared in advance"
+    ]
+  }
+}

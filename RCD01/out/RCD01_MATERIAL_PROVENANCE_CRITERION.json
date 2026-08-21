@@ -1,0 +1,42 @@
+{
+  "SECTION": "RCD01 \u00a75 \u2014 material-turnover criterion, derived before any prevalence count",
+  "muX": 0.004,
+  "T_PRIMARY_STEPS": 250,
+  "DELTA_STEPS_t0_TO_MATURATION": 249,
+  "PER_MOLECULE_SURVIVAL_OVER_DELTA": 0.3686169212512471,
+  "SURVIVAL_LAW": "(1 - muX)^DELTA, exact, from rng.binomial(n[X], muX) applied every step",
+  "SURVIVOR_COUNT_LAW": "Binomial(N0, (1-muX)^DELTA)",
+  "CONFIDENCE_FOR_THE_UPPER_BOUND": 0.95,
+  "CRITERION_R1": "Dm > Q_0.95( Binomial(N0, (1-muX)^DELTA) )",
+  "WHY_THRESHOLD_FREE": "no percentage is chosen. The comparison is between the daughter's measured cloud and the certified upper bound on the total surviving pre-separation material in the entire world.",
+  "WHY_CONSERVATIVE": "the bound credits the daughter with every surviving old molecule anywhere, including those still held by the parent. A world that passes therefore passes by a margin larger than the one computed.",
+  "WORKED_EXAMPLES": [
+    {
+      "N0": 50,
+      "survivor_upper_95": 24,
+      "daughter_mass_needed_to_pass": 25
+    },
+    {
+      "N0": 100,
+      "survivor_upper_95": 45,
+      "daughter_mass_needed_to_pass": 46
+    },
+    {
+      "N0": 150,
+      "survivor_upper_95": 65,
+      "daughter_mass_needed_to_pass": 66
+    },
+    {
+      "N0": 200,
+      "survivor_upper_95": 85,
+      "daughter_mass_needed_to_pass": 86
+    },
+    {
+      "N0": 250,
+      "survivor_upper_95": 105,
+      "daughter_mass_needed_to_pass": 106
+    }
+  ],
+  "EXACT_PROVENANCE_NOTE": "the engine carries a molecular Tracker (engine_obtc.Tracker) that records id, birth_step and birth cell for every X molecule and draws from its own generator. Its state was NOT written to the PQEC01/FDFLT01 archives, so exact per-molecule provenance is NOT recoverable from the raw data alone. It IS recoverable by deterministic replay of a seed, which RCD01 may not perform because NEW_WORLD_CONSTRUCTIONS = 0.",
+  "CLASSIFICATION_FROM_ARCHIVES_ALONE": "CERTIFIED_LOWER_BOUND_ON_NEW_MATERIAL"
+}

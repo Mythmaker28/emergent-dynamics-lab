@@ -1,0 +1,74 @@
+{
+  "SECTION": "RCD01 \u00a710-\u00a711 \u2014 design of the one future minimal-reproduction test",
+  "STATUS": "DESIGNED_BUT_NOT_ELIGIBLE_UNTIL_THE_INTERVENTION_EXISTS",
+  "BLOCKER": "GLOBAL_ORGANISER_OFF_ONLY",
+  "PHASES": {
+    "PHASE_1": "run the exact frozen B1 law until the daughter reaches the frozen functional maturation event",
+    "PHASE_2": "at that frozen event step, apply the predeclared SELECTIVE parent-off intervention",
+    "PHASE_3": "test whether the daughter alone re-establishes and holds the qualified local X response for a physically derived hold interval"
+  },
+  "HOLD_INTERVAL_FOR_PHASE_3": {
+    "value": 250,
+    "derivation": "the same T_PRIMARY_STEPS, one e-folding of the slowest mode of the X operator; using a shorter interval would let a decaying cloud pass"
+  },
+  "ATTACKS": [
+    {
+      "attack": "intervention specificity",
+      "response": "the intervention must be qualified first: bit-identical trajectories when not armed, occupancy conserved, no X touched, no resource touched, the untouched centre's cells provably unaffected. That qualification is the successor mission, not this test."
+    },
+    {
+      "attack": "causal interpretation",
+      "response": "a SHAM arm with identical scheduling and no removal, plus a GLOBAL organiser-off arm, separate daughter autonomy from the act of intervening and from generic resilience to any Y removal."
+    },
+    {
+      "attack": "selection bias from conditioning on a successful Phase 1",
+      "response": "the PRIMARY estimand is the population rate per independently seeded world, denominator = all seeded worlds. The conditional daughter-survival probability is reported as secondary and explicitly labelled conditional."
+    },
+    {
+      "attack": "post-selection denominator",
+      "response": "every seeded world counts, including those that never reach Phase 2; those are reproduction failures, not exclusions."
+    },
+    {
+      "attack": "fixed-horizon requirement",
+      "response": "identical horizon and identical stop rules for all arms, as in FDFLT01, except that the PREMATURE_THIRD_CENTRE stop must be reconsidered because it censors R3 by construction; changing it changes the estimand and must be declared, not slipped in."
+    },
+    {
+      "attack": "how failures before intervention count",
+      "response": "in the denominator, as failures. A world that never forms a materially reconstructed daughter has not reproduced."
+    },
+    {
+      "attack": "is a control intervention needed",
+      "response": "yes, two: SHAM and PRE_MATURATION_INTERVENTION. The latter tests that the maturation interval is doing work rather than the daughter being robust from birth."
+    },
+    {
+      "attack": "is a sham intervention needed",
+      "response": "yes. Without it, any difference could be the scheduling machinery rather than the removal."
+    }
+  ],
+  "PRIMARY_ESTIMAND": "P(complete reproduction event per independently seeded world) = P(R0 and R1 and R2)",
+  "SECONDARY_ESTIMAND": "P(daughter survives parent-off | functional materially-reconstructed daughter formed)",
+  "CONTROLS": {
+    "SHAM": "identical scheduling and bookkeeping, no Y removed \u2014 separates the intervention from its timing",
+    "PARENT_STAYS_ON": "the untouched trajectory \u2014 the FDFLT01 condition itself, already available",
+    "GLOBAL_ORGANISER_OFF": "the existing OBTC02 intervention \u2014 distinguishes daughter autonomy from any-Y-removal",
+    "PRE_MATURATION_INTERVENTION": "parent removed BEFORE the daughter matures \u2014 tests that the hold interval is doing work",
+    "MINIMAL_SET": [
+      "SHAM",
+      "GLOBAL_ORGANISER_OFF",
+      "PRE_MATURATION_INTERVENTION"
+    ],
+    "why_not_more": "a daughter-off symmetry control adds no discrimination once the parent/daughter label is tie-broken deterministically, and multiplying arms costs the budget it would need"
+  },
+  "BUDGET": {
+    "MAX_PRIMARY_WORLDS": 256,
+    "OBSERVED_P_R0_AND_R1": 0.13020833333333334,
+    "EXPECTED_PHASE_2_WORLDS_AT_256": 33.333333333333336,
+    "DECISION_CAPABILITY": {
+      "vs_null_0.05": "only if daughter survival q >= 0.80",
+      "vs_null_0.02": "down to daughter survival q ~ 0.40",
+      "note": "the null must be frozen before the first world, with its derivation, exactly as FDFLT01 froze 0.10"
+    },
+    "VERDICT": "DECISION_CAPABLE_WITHIN_256_FOR_DAUGHTER_SURVIVAL_DOWN_TO_q_0.80"
+  },
+  "NOT_EXECUTED_IN_RCD01": true
+}

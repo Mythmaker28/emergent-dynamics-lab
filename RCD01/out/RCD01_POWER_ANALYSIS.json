@@ -1,0 +1,143 @@
+{
+  "SECTION": "RCD01 \u00a710-\u00a711 \u2014 decision capability of a future minimal-reproduction test",
+  "MAX_PRIMARY_WORLDS": 256,
+  "ALPHA": 0.05,
+  "TARGET_POWER": 0.8,
+  "METHOD": "exact binomial throughout; no normal approximation",
+  "OBSERVED_INPUTS_FROM_THE_FRESH_192": {
+    "N": 192,
+    "R0": 53,
+    "R0_rate": 0.2760416666666667,
+    "R0_and_R1": 25,
+    "R0_and_R1_rate": 0.13020833333333334,
+    "R1_given_R0": 0.4716981132075472,
+    "note": "R1 is a CERTIFIED LOWER BOUND count, so p_R0R1 is itself a lower bound on the true rate"
+  },
+  "PRIMARY_ESTIMAND": "P(complete reproduction event per independently seeded world) = P(R0 and R1 and R2)",
+  "SECONDARY_ESTIMAND": "P(daughter survives parent-off | functional materially-reconstructed daughter formed)",
+  "POPULATION_LEVEL_SCENARIOS": [
+    {
+      "assumed_daughter_survival_q": 1.0,
+      "population_reproduction_rate": 0.13020833333333334,
+      "expected_successes_at_n256": 33.333333333333336,
+      "n_required_vs_p0_0.02": 32,
+      "n_required_vs_p0_0.05": 77,
+      "power_at_n256_vs_p0_0.02": 0.9999998278603198,
+      "power_at_n256_vs_p0_0.05": 0.9968421234044275,
+      "decision_capable_within_256_vs_p0_0.05": true
+    },
+    {
+      "assumed_daughter_survival_q": 0.8,
+      "population_reproduction_rate": 0.10416666666666669,
+      "expected_successes_at_n256": 26.66666666666667,
+      "n_required_vs_p0_0.02": 40,
+      "n_required_vs_p0_0.05": 140,
+      "power_at_n256_vs_p0_0.02": 0.9999631963976875,
+      "power_at_n256_vs_p0_0.05": 0.933628976758116,
+      "decision_capable_within_256_vs_p0_0.05": true
+    },
+    {
+      "assumed_daughter_survival_q": 0.6,
+      "population_reproduction_rate": 0.078125,
+      "expected_successes_at_n256": 20.0,
+      "n_required_vs_p0_0.02": 85,
+      "n_required_vs_p0_0.05": 467,
+      "power_at_n256_vs_p0_0.02": 0.9961735019210465,
+      "power_at_n256_vs_p0_0.05": 0.5333788563260826,
+      "decision_capable_within_256_vs_p0_0.05": false
+    },
+    {
+      "assumed_daughter_survival_q": 0.5,
+      "population_reproduction_rate": 0.06510416666666667,
+      "expected_successes_at_n256": 16.666666666666668,
+      "n_required_vs_p0_0.02": 120,
+      "n_required_vs_p0_0.05": 1451,
+      "power_at_n256_vs_p0_0.02": 0.9728875947591236,
+      "power_at_n256_vs_p0_0.05": 0.23088506020933755,
+      "decision_capable_within_256_vs_p0_0.05": false
+    },
+    {
+      "assumed_daughter_survival_q": 0.4,
+      "population_reproduction_rate": 0.05208333333333334,
+      "expected_successes_at_n256": 13.333333333333336,
+      "n_required_vs_p0_0.02": 195,
+      "n_required_vs_p0_0.05": null,
+      "power_at_n256_vs_p0_0.02": 0.8619250361264217,
+      "power_at_n256_vs_p0_0.05": 0.04773711750361835,
+      "decision_capable_within_256_vs_p0_0.05": false
+    },
+    {
+      "assumed_daughter_survival_q": 0.3,
+      "population_reproduction_rate": 0.0390625,
+      "expected_successes_at_n256": 10.0,
+      "n_required_vs_p0_0.02": 462,
+      "n_required_vs_p0_0.05": null,
+      "power_at_n256_vs_p0_0.02": 0.5445695999297315,
+      "power_at_n256_vs_p0_0.05": 0.0028286625478184104,
+      "decision_capable_within_256_vs_p0_0.05": false
+    },
+    {
+      "assumed_daughter_survival_q": 0.2,
+      "population_reproduction_rate": 0.02604166666666667,
+      "expected_successes_at_n256": 6.666666666666668,
+      "n_required_vs_p0_0.02": 3754,
+      "n_required_vs_p0_0.05": null,
+      "power_at_n256_vs_p0_0.02": 0.1345506310089045,
+      "power_at_n256_vs_p0_0.05": 1.6155403007376227e-05,
+      "decision_capable_within_256_vs_p0_0.05": false
+    }
+  ],
+  "EXPECTED_PHASE2_WORLDS_AT_N256": 33.333333333333336,
+  "CONDITIONAL_PRECISION_SCENARIOS": [
+    {
+      "assumed_q": 0.9,
+      "expected_phase2_worlds": 33.333333333333336,
+      "expected_survivors": 30,
+      "exact_95_interval_on_q": [
+        0.756683649240845,
+        0.9808450570125951
+      ]
+    },
+    {
+      "assumed_q": 0.75,
+      "expected_phase2_worlds": 33.333333333333336,
+      "expected_survivors": 25,
+      "exact_95_interval_on_q": [
+        0.5774106822882981,
+        0.8890767004411605
+      ]
+    },
+    {
+      "assumed_q": 0.6,
+      "expected_phase2_worlds": 33.333333333333336,
+      "expected_survivors": 20,
+      "exact_95_interval_on_q": [
+        0.42139372138825043,
+        0.7709337616357992
+      ]
+    },
+    {
+      "assumed_q": 0.5,
+      "expected_phase2_worlds": 33.333333333333336,
+      "expected_survivors": 17,
+      "exact_95_interval_on_q": [
+        0.33544447838855584,
+        0.6920365563952677
+      ]
+    }
+  ],
+  "SELECTION_BIAS_WARNING": "conditioning the denominator on worlds that reach Phase 2 estimates the CONDITIONAL daughter-independence probability, not the population reproduction rate. Both must be reported, with the population rate as the primary.",
+  "CONTROLS_REQUIRED": {
+    "SHAM": "identical scheduling and bookkeeping, no Y removed \u2014 separates the intervention from its timing",
+    "PARENT_STAYS_ON": "the untouched trajectory \u2014 the FDFLT01 condition itself, already available",
+    "GLOBAL_ORGANISER_OFF": "the existing OBTC02 intervention \u2014 distinguishes daughter autonomy from any-Y-removal",
+    "PRE_MATURATION_INTERVENTION": "parent removed BEFORE the daughter matures \u2014 tests that the hold interval is doing work",
+    "MINIMAL_SET": [
+      "SHAM",
+      "GLOBAL_ORGANISER_OFF",
+      "PRE_MATURATION_INTERVENTION"
+    ],
+    "why_not_more": "a daughter-off symmetry control adds no discrimination once the parent/daughter label is tie-broken deterministically, and multiplying arms costs the budget it would need"
+  },
+  "BUDGET_VERDICT": "DECISION_CAPABLE_WITHIN_256_FOR_DAUGHTER_SURVIVAL_DOWN_TO_q_0.80"
+}

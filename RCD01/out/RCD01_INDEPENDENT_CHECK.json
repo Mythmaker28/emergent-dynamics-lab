@@ -1,0 +1,90 @@
+{
+  "SECTION": "RCD01 \u00a715 \u2014 two independent zero-run checkers",
+  "GENERATED_UTC": "2026-08-21T01:56:09.687251+00:00",
+  "SHARED": "the raw FDFLT01 archives and the frozen definitions (centre rule, T_PRIMARY_STEPS, response fraction, muX)",
+  "NOT_SHARED": {
+    "components": "A union-find / B BFS queue",
+    "centroid": "A anchored offsets / B complex circular mean",
+    "X_plane": "A single cumsum / B per-event partial sum",
+    "aggregation": "A boolean disc mask / B distance table",
+    "state_sequence": "A python loop via the frozen endpoint / B vectorised np.select",
+    "imports": "B imports neither A nor the FDFLT01 endpoint module"
+  },
+  "INTEGER_AND_EVENT_FIELDS_REQUIRING_EXACT_AGREEMENT": [
+    "first_P",
+    "extinct",
+    "max_S_duration",
+    "R0_functional_success",
+    "R1_material",
+    "N0_total_X",
+    "survivor_upper_95",
+    "t0_separation",
+    "t_maturation",
+    "daughter_is_weaker",
+    "third_centre_cell",
+    "closest_existing_centre"
+  ],
+  "FLOAT_FIELDS_AND_PREDECLARED_TOLERANCE": {
+    "daughter_mass": 1e-09,
+    "parent_mass": 1e-09,
+    "closest_distance": 1e-06
+  },
+  "N_WORLDS": 192,
+  "N_INTEGER_DISAGREEMENTS": 1,
+  "INTEGER_DISAGREEMENTS": [
+    {
+      "world": "F_B1_i182_s961444860",
+      "field": "daughter_is_weaker",
+      "A": true,
+      "B": false
+    }
+  ],
+  "N_FLOAT_DISAGREEMENTS": 2,
+  "FLOAT_DISAGREEMENTS": [
+    {
+      "world": "F_B1_i182_s961444860",
+      "field": "daughter_mass",
+      "kind": "value",
+      "A": 66.0,
+      "B": 67.0,
+      "tol": 1e-09
+    },
+    {
+      "world": "F_B1_i182_s961444860",
+      "field": "parent_mass",
+      "kind": "value",
+      "A": 67.0,
+      "B": 66.0,
+      "tol": 1e-09
+    }
+  ],
+  "EXACT_AGREEMENT": false,
+  "CORRECTION_EPISODE_RECORDED": {
+    "what_happened": "implementation B initially evaluated the functional-response condition on the FIRST qualifying S episode only. The frozen FDFLT01 rule accepts ANY qualifying episode. The two checkers therefore disagreed on 7 of 192 worlds, all of them multi-episode worlds where A said success and B said failure.",
+    "diagnosis": "B implemented a different rule from the specification, not a different implementation of the same rule",
+    "action": "B was corrected to the frozen specification and re-run. A was not touched.",
+    "why_this_is_not_a_post_outcome_repair_of_a_frozen_artefact": "the frozen artefact is the FDFLT01 endpoint, which predates RCD01 and was not modified. Both RCD01 checkers are new code whose job is to implement that frozen rule; one of them did not, and was fixed to it.",
+    "disagreeing_worlds_before_the_fix": 7
+  },
+  "code_sha256": {
+    "rcd01_audit_A.py": "f71e1084721d9374a6a02d1480224cb334579b538d0730a7847839cd7f1d5bde",
+    "rcd01_audit_B.py": "1d8ecda718e327b6687d60e133e79508a4a1c3920961262f52d8168cfea14a42"
+  },
+  "VERDICT": "INDEPENDENT_REANALYSES_AGREE_ON_EVERY_CLASSIFICATION__ONE_PARENT_DAUGHTER_LABEL_UNDETERMINED_BY_AN_EXACT_TIE",
+  "RESIDUAL_DISAGREEMENT_ADJUDICATED": {
+    "world": "F_B1_i182_s961444860",
+    "n_worlds_affected": 1,
+    "fields": [
+      "daughter_is_weaker",
+      "daughter_mass",
+      "parent_mass"
+    ],
+    "cause": "an EXACT geometric tie. At the separation step the pre-separation centroid is (21.5, 32.5) and the two new components sit at (19,33) and (24,32), both at toroidal distance 2.5495097568 from it. The difference is 0.0. The parent/daughter rule 'the component closest to the pre-separation centroid is the parent' is SILENT here.",
+    "not_a_bug": "neither implementation is wrong; the rule does not determine an answer for a symmetric split",
+    "effect_on_classification": "none. R1_material is False in both (66 and 67 both below the survivor bound of 96), and R0 agrees.",
+    "required_for_future_work": "a declared deterministic tie-break must be added to the parent/daughter rule before any experiment that conditions on daughter identity",
+    "all_other_191_worlds": "exact agreement on every integer and event field, and on the float fields within the predeclared tolerance"
+  },
+  "R0_AGREEMENT": "192 of 192",
+  "R1_AGREEMENT": "192 of 192"
+}

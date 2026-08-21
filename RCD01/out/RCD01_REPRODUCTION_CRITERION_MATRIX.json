@@ -1,0 +1,103 @@
+{
+  "SECTION": "RCD01 \u00a73 \u2014 reproduction criterion matrix",
+  "CANDIDATE_FORMULATION_UNDER_ATTACK": "a functional organising system generates a spatially distinct second organising system of the same operational class, using newly maintained material, and the second system can persist functionally without depending on the continued functioning of the original",
+  "ATTACKS_ON_THE_CANDIDATE": [
+    {
+      "attack": "'of the same operational class' is undefined",
+      "response": "it is defined operationally here as satisfying the same frozen functional maturation criterion the first centre satisfies: a qualified local X response held for T_primary steps. No new predicate is introduced."
+    },
+    {
+      "attack": "'newly maintained material' invites an arbitrary percentage",
+      "response": "it is replaced by a threshold-free comparison against the certified upper bound on surviving pre-separation material, derived from muX alone."
+    },
+    {
+      "attack": "'without depending on the continued functioning of the original' is causal and cannot be read off passive data",
+      "response": "correct, and this is the decisive limitation. It is why R2 is separated out and why RCD01 does not claim it."
+    },
+    {
+      "attack": "the formulation says nothing about generations",
+      "response": "deliberate. Generation competence is R3 and is argued to be beyond the MINIMUM first-generation criterion."
+    },
+    {
+      "attack": "the formulation could be satisfied by a fission of one cloud into two halves",
+      "response": "that is exactly what R1 excludes: a halved cloud is old material, and the certified bound rejects it."
+    }
+  ],
+  "LEVELS": [
+    {
+      "level": "R0",
+      "name": "FUNCTIONAL_MULTIPLICATION",
+      "scientific_meaning": "one functional organising centre becomes two functional organising centres",
+      "necessary": "yes \u2014 nothing called reproduction can require less",
+      "sufficient": "no \u2014 a system can multiply centres without any of them being new in substance or independent",
+      "observable_in_current_data": "yes",
+      "requires_intervention": "no",
+      "requires_genealogy": "no",
+      "requires_architecture_change": "no",
+      "status": "ESTABLISHED",
+      "evidence": "53 of 192 fresh worlds; the FDFLT01 qualified claim"
+    },
+    {
+      "level": "R1",
+      "name": "MATERIAL_RECONSTRUCTION",
+      "scientific_meaning": "the new centre's functional X field cannot be accounted for by redistributed pre-separation material",
+      "necessary": "yes \u2014 otherwise a cloud that merely splits would count",
+      "sufficient": "no \u2014 new material does not imply causal independence",
+      "observable_in_current_data": "yes, as a certified lower bound",
+      "requires_intervention": "no",
+      "requires_genealogy": "no",
+      "requires_architecture_change": "no",
+      "status": "SUPPORTED_AS_A_CERTIFIED_LOWER_BOUND",
+      "evidence": "25 of 53 R0 worlds satisfy the threshold-free bound; the count is a lower bound because the bound credits the daughter with every surviving old molecule in the world"
+    },
+    {
+      "level": "R2",
+      "name": "FUNCTIONAL_INDEPENDENCE",
+      "scientific_meaning": "after the new centre matures, removing or inactivating the original centre does not destroy the new centre's qualified X response over a physically derived hold interval",
+      "necessary": "yes \u2014 this is the causal content of the word reproduction",
+      "sufficient": "together with R0 and R1, yes, for a MINIMAL first-generation claim",
+      "observable_in_current_data": "no",
+      "requires_intervention": "yes \u2014 a selective parent-off",
+      "requires_genealogy": "no",
+      "requires_architecture_change": "no",
+      "status": "NOT_TESTABLE_WITH_THE_CURRENT_ENGINE",
+      "evidence": "no world in any dataset had one centre removed while another persisted; the only executable intervention zeroes the entire Y field"
+    },
+    {
+      "level": "R3",
+      "name": "REPRODUCTIVE_COMPETENCE",
+      "scientific_meaning": "a centre that arose as the second functional centre itself participates in generating a further functional centre",
+      "necessary": "no for a minimal first-generation claim; yes for a strong self-reproduction claim",
+      "sufficient": "yes for the strong claim",
+      "observable_in_current_data": "no",
+      "requires_intervention": "no, but it requires lifting the stop rule",
+      "requires_genealogy": "no \u2014 organisational descent suffices",
+      "requires_architecture_change": "no",
+      "status": "NOT_IDENTIFIABLE_IN_THIS_DATASET",
+      "evidence": "25 worlds reach a third centre and 20 of them had two functional centres first, but the frozen stop rule ends every world at the third centre, so 0 of 25 have enough record left for the third centre to mature"
+    }
+  ],
+  "SELECTED_HIERARCHY": {
+    "MINIMAL_REPRODUCTION": "R0 and R1 and R2",
+    "STRONG_SELF_REPRODUCTION": "R0 and R1 and R2 and R3",
+    "HEREDITY": "a separate future criterion, not part of either"
+  },
+  "ALTERNATIVES_CONSIDERED_AND_REJECTED": [
+    {
+      "alternative": "MINIMAL_REPRODUCTION = R0 + R1 only",
+      "rejected_because": "a second centre that dies the moment the first is removed was never an independent system; without R2 the word reproduction carries no causal content"
+    },
+    {
+      "alternative": "MINIMAL_REPRODUCTION = R0 + R2 only",
+      "rejected_because": "a cloud that splits in two and both halves persist would qualify, which is division of substance, not production of new substance"
+    },
+    {
+      "alternative": "MINIMAL_REPRODUCTION must include R3",
+      "rejected_because": "requiring the daughter to reproduce before the first event counts as reproduction is an infinite regress; R3 is the right criterion for a STRONG claim, not the minimum"
+    },
+    {
+      "alternative": "require survival of the original founder particle",
+      "rejected_because": "already rejected by FLCR01; particle identity is not organisational identity"
+    }
+  ]
+}
