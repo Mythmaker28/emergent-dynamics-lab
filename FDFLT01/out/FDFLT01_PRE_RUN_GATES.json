@@ -1,0 +1,126 @@
+{
+  "FDFLT01_PRE_RUN_GATES": [
+    {
+      "GATE": "EQUIVALENCE_WITH_FLRS02_ON_HISTORICAL_B1",
+      "n_worlds": 44,
+      "expected_success_counts": {
+        "T_50": 14,
+        "T_primary": 13,
+        "T_80": 9,
+        "T_90": 6
+      },
+      "reproduced_success_counts": {
+        "T_50": 14,
+        "T_primary": 13,
+        "T_80": 9,
+        "T_90": 6
+      },
+      "expected_timing_counts": {
+        "T_50": 15,
+        "T_primary": 15,
+        "T_80": 13,
+        "T_90": 12
+      },
+      "reproduced_timing_counts": {
+        "T_50": 15,
+        "T_primary": 15,
+        "T_80": 13,
+        "T_90": 12
+      },
+      "per_world_mismatches": [],
+      "PASS": true
+    },
+    {
+      "GATE": "PERSISTENT_CENTRE_IDENTITY",
+      "cases": [
+        {
+          "case": "stationary_two_centres",
+          "n_prev": 2,
+          "n_cur": 2,
+          "unmatched_current": 0,
+          "expected_unmatched": 0,
+          "map": {
+            "0": 0,
+            "1": 1
+          },
+          "PASS": true
+        },
+        {
+          "case": "crossing_centres",
+          "n_prev": 2,
+          "n_cur": 2,
+          "unmatched_current": 0,
+          "expected_unmatched": 0,
+          "map": {
+            "0": 0,
+            "1": 1
+          },
+          "PASS": true
+        },
+        {
+          "case": "centre_translation",
+          "n_prev": 2,
+          "n_cur": 2,
+          "unmatched_current": 0,
+          "expected_unmatched": 0,
+          "map": {
+            "0": 0,
+            "1": 1
+          },
+          "PASS": true
+        },
+        {
+          "case": "temporary_equal_distance_tie",
+          "n_prev": 2,
+          "n_cur": 2,
+          "unmatched_current": 0,
+          "expected_unmatched": 0,
+          "map": {
+            "0": 0,
+            "1": 1
+          },
+          "PASS": true
+        },
+        {
+          "case": "merge",
+          "n_prev": 2,
+          "n_cur": 1,
+          "unmatched_current": 0,
+          "expected_unmatched": 0,
+          "map": {
+            "0": 0
+          },
+          "PASS": true
+        },
+        {
+          "case": "split",
+          "n_prev": 1,
+          "n_cur": 2,
+          "unmatched_current": 1,
+          "expected_unmatched": 1,
+          "map": {
+            "0": 0,
+            "1": null
+          },
+          "PASS": true
+        },
+        {
+          "case": "third_centre_appears",
+          "n_prev": 2,
+          "n_cur": 3,
+          "unmatched_current": 1,
+          "expected_unmatched": 1,
+          "map": {
+            "0": 0,
+            "1": 1,
+            "2": null
+          },
+          "PASS": true
+        }
+      ],
+      "NO_ENGINE_RNG_CONSUMED": true,
+      "PASS": true
+    }
+  ],
+  "ALL_PASS": true
+}

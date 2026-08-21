@@ -1,0 +1,62 @@
+{
+  "SECTION": "FDFLT01 \u00a73+\u00a74 \u2014 the frozen primary endpoint, published before any run",
+  "PRIMARY_KEY": "T_primary",
+  "f_primary": 0.6321205588285577,
+  "T_primary_continuous": 249.49966599830609,
+  "T_PRIMARY_STEPS": 250,
+  "INTEGER_CONVENTION": "need_steps = ceil(T(f)); maturation event at episode_start + need_steps - 1; the episode must last at least need_steps consecutive steps",
+  "CONVENTION_MATCHES_PARENT": "proven by the pre-run equivalence gate, which reproduces the FLRS02 developmental counts exactly",
+  "BAND_STEPS": {
+    "T_50": 173,
+    "T_primary": 250,
+    "T_80": 402,
+    "T_90": 575
+  },
+  "BAND_CONTINUOUS": {
+    "T_50": 172.93999003737392,
+    "T_primary": 249.49966599830609,
+    "T_80": 401.55422159731904,
+    "T_90": 574.494211634693
+  },
+  "FRACTIONS": {
+    "T_50": 0.5,
+    "T_primary": 0.6321205588285577,
+    "T_80": 0.8,
+    "T_90": 0.9
+  },
+  "CENTRE_RULE": "toroidal single-linkage over Y-occupied cells, adjacency distance <= CORE_R = 5.0",
+  "STATE_OPERATOR": {
+    "E": "no Y",
+    "O": "one organising centre",
+    "C": "multiple Y but one spatial centre",
+    "S": "exactly two spatial centres",
+    "P": "three or more spatial centres",
+    "F": "X/source integrity failure"
+  },
+  "DIRECT_X_RESPONSE": {
+    "neighbourhood": "toroidal disc of radius CORE_R about each centre's toroidal centroid",
+    "numerator": "local X mass of the weaker centre",
+    "denominator": "local X mass of the stronger centre",
+    "overlap": "discs may overlap; the criterion is a scale-free ratio so no mass is partitioned or double counted",
+    "ties": "equal masses give ratio 1.0",
+    "centre_motion": "the centroid is recomputed at the maturation event step",
+    "ambiguous_boundary_X_births": "not attributed to a centre at all; only the field state is read"
+  },
+  "PERSISTENT_CENTRE_IDENTITY": {
+    "rule": "maximum component overlap, then minimum toroidal centroid distance, then lexicographic centroid order",
+    "role": "analysis bookkeeping only; consumes no engine RNG",
+    "tested": "seven synthetic cases in the pre-run gate"
+  },
+  "SEVEN_CONDITIONS": [
+    "F1 at least one dynamic Y birth occurs",
+    "F2 the Y lineage does not become extinct before functional maturation",
+    "F3 exactly two spatial Y centres form under the frozen toroidal centre rule",
+    "F4 the two centres remain spatially distinct for the complete primary maturation duration",
+    "F5 the weaker centre reaches the frozen direct local-X functional criterion",
+    "F6 no third spatial centre occurs before functional maturation completes",
+    "F7 X/source integrity remains valid through functional maturation"
+  ],
+  "FOUNDER_SURVIVAL_REQUIRED": false,
+  "PARTICLE_GENEALOGY": "none constructed",
+  "UNIT": "one world; steps and episodes are never independent replicates"
+}
