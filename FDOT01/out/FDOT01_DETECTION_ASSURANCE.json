@@ -1,0 +1,46 @@
+{
+ "SECTION": "FDOT01 \u00a73 \u2014 detection assurance at the frozen N = 160, computed before any world",
+ "GENERATED_UTC": "2026-08-21T18:18:48.819560+00:00",
+ "N": 160,
+ "REPLICATION_THRESHOLD": 2,
+ "N_IS_FIXED_BY_THE_LAUNCHER_AND_IS_NOT_ALTERED": true,
+ "ADAPTIVE_SAMPLE_SIZE": "forbidden, and not used",
+ "DESIGN_INPUTS": {
+  "STRICT_RULE_one_sided_95_lower": 0.001165077460260032,
+  "STRICT_RULE_point_estimate": 0.022727272727272728,
+  "DOTC01_REPORTED_one_sided_95_lower": 0.018840467964271104,
+  "DOTC01_REPORTED_point_estimate": 0.06818181818181818
+ },
+ "ASSURANCE": {
+  "STRICT_RULE_one_sided_95_lower": {
+   "K>=1": 0.17015892339942296,
+   "K>=2": 0.015285822809484872,
+   "K>=3": 0.000924177263482262
+  },
+  "STRICT_RULE_point_estimate": {
+   "K>=1": 0.9747346886249837,
+   "K>=2": 0.88072422769469,
+   "K>=3": 0.7069141894631007
+  },
+  "DOTC01_REPORTED_one_sided_95_lower": {
+   "K>=1": 0.9523195455957729,
+   "K>=2": 0.8058280453830189,
+   "K>=3": 0.5821972473617611
+  },
+  "DOTC01_REPORTED_point_estimate": {
+   "K>=1": 0.9999876123525374,
+   "K>=2": 0.9998425862359019,
+   "K>=3": 0.9989989587037662
+  }
+ },
+ "EXPECTED_COUNTS": {
+  "STRICT_RULE_one_sided_95_lower": 0.1864123936416051,
+  "STRICT_RULE_point_estimate": 3.6363636363636367,
+  "DOTC01_REPORTED_one_sided_95_lower": 3.0144748742833767,
+  "DOTC01_REPORTED_point_estimate": 10.909090909090908
+ },
+ "THE_PRE_RUN_PROBLEM_STATED_PLAINLY": "the launcher expected P(K >= 2 | N = 160, p_design) to come out near 0.80 using DOTC01's reported functional rate of 3/44 and its lower bound 0.01884. Recomputing the developmental input from the parent bytes under the rule FDOT01 \u00a75 MANDATES \u2014 ties, splits and merges all terminate centre identity \u2014 gives 1/44, not 3/44, and a lower bound of 0.001165. At that input the assurance for K >= 2 is far below 0.80. This is reported BEFORE the runs, not discovered afterwards. N is not changed, because \u00a73 fixes it and adaptive sample size is forbidden.",
+ "WHY_THE_INPUT_MOVED": "DOTC01's audit code linked components by mutual-nearest with a tie guard, which does not terminate an interval when one component splits into two that both stay within CORE_R. Its written definition, and FDOT01 \u00a75, both say a split terminates identity. FDOT01 implements the DEFINITION, which is strictly stricter, so the recomputed counts can only be lower or equal. Both figures are reported and the parent definition is preserved.",
+ "WHICH_RULE_IS_AUTHORITATIVE": "FDOT01 \u00a75 lists 'ties: terminate identity / split: terminate identity / merge: terminate identity' explicitly, and DOTC01's own written definition says a match that is not mutually unique ends the interval. DOTC01's audit CODE was more permissive than its own definition. \u00a71 orders the parent DEFINITION preserved, so the strict rule is used and the discrepancy is reported rather than resolved in favour of the more convenient number.",
+ "CONSEQUENCE_FOR_INTERPRETATION": "a K < 2 outcome must therefore NOT be read as evidence that the phenomenon is absent. At the conservative input the experiment is underpowered for the K >= 2 threshold by construction. The rate estimate and its exact interval carry the information in that case, and \u00a74 already makes rate estimation co-primary descriptive evidence."
+}

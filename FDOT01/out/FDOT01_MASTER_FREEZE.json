@@ -1,0 +1,152 @@
+{
+ "PROGRAM": "FRESH-DAUGHTER-ORGANISER-TURNOVER-TEST-01",
+ "SHORT_NAME": "FDOT01",
+ "GENERATED_UTC": "2026-08-21T18:18:48.841033+00:00",
+ "PARENT_TIP": "d9f29d33864985068570ad3ddb9f69436b021234",
+ "FREEZE_IS_COMMITTED_ALONE_BEFORE_ANY_FRESH_WORLD": true,
+ "POINT": {
+  "LABEL": "B1",
+  "kY": 2.5118864315095822e-05,
+  "muY": 9.261187281287937e-05,
+  "INHERITED_FROZEN_CONSTANTS": {
+   "CAP": 16,
+   "S0": 3,
+   "phi": 0.2,
+   "omega": 0.05,
+   "muX": 0.004,
+   "kX": 1.0,
+   "L": 36,
+   "X_SEED": 4,
+   "p_hop_X": 0.10263340389897246,
+   "p_hop_Y_mobile": 0.10263340389897246,
+   "T_HORIZON": 11000,
+   "T_WINDOW": 9000,
+   "BURN_IN": 2000,
+   "CORE_R": 5.0,
+   "TAU_SEP": 125.0,
+   "ALPHA_SURVIVAL": 0.5,
+   "N_STAR": 10.0,
+   "GAMMA_SEP": 0.5,
+   "MIN_EVENTS": 1.0
+  }
+ },
+ "NEW_PARAMETER_POINTS": 0,
+ "PARAMETER_RETUNING": "forbidden",
+ "INTERPOLATION": "forbidden",
+ "PRIMARY_SCIENTIFIC_WORLDS": 160,
+ "MAX_TECHNICAL_RESERVES": 6,
+ "ADAPTIVE_SAMPLE_SIZE": "forbidden",
+ "OUTCOME_DRIVEN_STOPPING_OF_THE_BATCH": "forbidden",
+ "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0,
+ "PRIMARY_ENDPOINT": {
+  "SECTION": "FDOT01 \u00a72-\u00a74 \u2014 the frozen primary endpoint",
+  "GENERATED_UTC": "2026-08-21T18:18:48.030209+00:00",
+  "PRIMARY_QUESTION": "does the prospectively frozen B1 law repeatedly produce daughter organising centres whose local organising function survives replacement of constituent Y material?",
+  "UNIT": "the seeded world",
+  "N": 160,
+  "K": "the number of fresh independent worlds, of 160, that satisfy FUNCTIONAL_COMPLETE_TURNOVER",
+  "QUALIFICATION": "FUNCTIONAL_ORGANISER_TURNOVER_PROSPECTIVELY_REPLICATED iff K >= 2",
+  "WHY_NOT_H0_p_EQ_0": "a p = 0 null is degenerate: a single event would reject it automatically. The criterion here is prospective REPLICATION \u2014 the frozen event seen independently in at least two fresh worlds under one fixed law.",
+  "IT_IS_NOT": [
+   "a biological constant",
+   "a probability threshold of nature",
+   "a hypothesis test"
+  ],
+  "RATE_ESTIMATION_IS_CO_PRIMARY_DESCRIPTIVE_EVIDENCE": true,
+  "NO_POOLING_WITH_THE_44_DEVELOPMENTAL_WORLDS": true,
+  "NO_THRESHOLD_SUCH_AS_p_GT_0_05_OR_0_10_OR_0_50_MAY_BE_INVENTED_AFTER_THE_FACT": true,
+  "HORIZON": 11000,
+  "EVERY_WORLD_RUNS_THE_FULL_HORIZON": true,
+  "NOT_STOPS": [
+   "EXTINCT",
+   "PREMATURE_THIRD_CENTRE",
+   "MAX_PERMITTED_Y",
+   "event became impossible",
+   "one turnover already succeeded"
+  ],
+  "ONLY_BREAK": "a genuine engine invariant failure, which is a technical fault and not a scientific outcome",
+  "THIRD_CENTRE_INTERPRETATION_FROZEN_BEFORE_RUNS": "a daughter identity interval that splits into multiple centres TERMINATES, so that candidate centre cannot complete a turnover after the split. The world is still recorded to the horizon, and third-centre timing is reported as a scientific outcome, never as a technical failure."
+ },
+ "PARENT_BINDING_SUMMARY": {
+  "what": "DOTC01's audit CODE linked components by mutual-nearest with a tie guard, which does not terminate an identity interval when one component splits into two that both remain within CORE_R. Its written DEFINITION says a match that is not mutually unique ends the interval, and FDOT01 \u00a75 lists ties, splits and merges as all terminating identity.",
+  "resolution": "\u00a71 orders the parent DEFINITION preserved. FDOT01 implements the definition, which is strictly stricter than the parent code.",
+  "consequence_measured_before_any_run": {
+   "developmental_complete_under_the_strict_rule": 2,
+   "developmental_functional_under_the_strict_rule": 1,
+   "DOTC01_reported_complete": 4,
+   "DOTC01_reported_functional": 3,
+   "of_worlds": 44
+  },
+  "reported_not_resolved_in_favour_of_the_convenient_number": true
+ },
+ "DETECTION_ASSURANCE": {
+  "STRICT_RULE_one_sided_95_lower": {
+   "K>=1": 0.17015892339942296,
+   "K>=2": 0.015285822809484872,
+   "K>=3": 0.000924177263482262
+  },
+  "STRICT_RULE_point_estimate": {
+   "K>=1": 0.9747346886249837,
+   "K>=2": 0.88072422769469,
+   "K>=3": 0.7069141894631007
+  },
+  "DOTC01_REPORTED_one_sided_95_lower": {
+   "K>=1": 0.9523195455957729,
+   "K>=2": 0.8058280453830189,
+   "K>=3": 0.5821972473617611
+  },
+  "DOTC01_REPORTED_point_estimate": {
+   "K>=1": 0.9999876123525374,
+   "K>=2": 0.9998425862359019,
+   "K>=3": 0.9989989587037662
+  }
+ },
+ "DESIGN_INPUTS": {
+  "STRICT_RULE_one_sided_95_lower": 0.001165077460260032,
+  "STRICT_RULE_point_estimate": 0.022727272727272728,
+  "DOTC01_REPORTED_one_sided_95_lower": 0.018840467964271104,
+  "DOTC01_REPORTED_point_estimate": 0.06818181818181818
+ },
+ "THE_PRE_RUN_PROBLEM_STATED_PLAINLY": "the launcher expected P(K >= 2 | N = 160, p_design) to come out near 0.80 using DOTC01's reported functional rate of 3/44 and its lower bound 0.01884. Recomputing the developmental input from the parent bytes under the rule FDOT01 \u00a75 MANDATES \u2014 ties, splits and merges all terminate centre identity \u2014 gives 1/44, not 3/44, and a lower bound of 0.001165. At that input the assurance for K >= 2 is far below 0.80. This is reported BEFORE the runs, not discovered afterwards. N is not changed, because \u00a73 fixes it and adaptive sample size is forbidden.",
+ "SEEDS": {
+  "formula": "seed = 940000000 + int(SHA256(parent_tip|FDOT01|B1|KIND|index + 10000*bump)[:12],16) mod 50000000",
+  "n_primary": 160,
+  "n_reserve": 6,
+  "disjoint": true,
+  "unique": true,
+  "bumps": 0,
+  "registry_size": 411
+ },
+ "FIXTURES": {
+  "n": 13,
+  "all_pass": true,
+  "two_implementations_agree": true
+ },
+ "METHODS_HASH": "318b4313e086eea32e78507dd41509f3ad25799f4edabe0916afa1eb80314d1f",
+ "OUTCOME_FIREWALL": {
+  "EXPOSED": [
+   "opaque arm token",
+   "completed",
+   "technical failure",
+   "checksum written"
+  ],
+  "WITHHELD": [
+   "seed",
+   "turnover",
+   "birth/death counts",
+   "centre count",
+   "runtime",
+   "file size",
+   "stop reason",
+   "X production",
+   "success status"
+  ]
+ },
+ "TERMINAL_DISPOSITIONS": [
+  "FUNCTIONAL_ORGANISER_TURNOVER_PROSPECTIVELY_REPLICATED",
+  "FUNCTIONAL_ORGANISER_TURNOVER_NOT_PROSPECTIVELY_REPLICATED",
+  "FDOT01_TECHNICALLY_INVALID"
+ ],
+ "CLAIM_CEILING": "organiser-level constituent turnover with retained local function at the frozen B1 law. Not reproduction, not heredity, not self-replication.",
+ "WINDOWS_PRE_RUN_DURABILITY": "RECORDED_SEPARATELY_IN_FDOT01_DURABILITY_JSON"
+}

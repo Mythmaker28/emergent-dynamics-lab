@@ -1,0 +1,94 @@
+{
+ "SECTION": "FDOT01 \u00a71 \u2014 parent binding by exact bytes",
+ "GENERATED_UTC": "2026-08-21T18:18:48.026824+00:00",
+ "PARENT_PROGRAM": "DAUGHTER-ORGANISER-TURNOVER-CRITERION-01",
+ "PARENT_TIP_RESOLVED": "d9f29d33864985068570ad3ddb9f69436b021234",
+ "PARENT_TIP_IS_A_COMMIT": true,
+ "PARENT_FINAL_DISPOSITION": "ORGANISER_TURNOVER_CRITERION_DERIVED__ONE_EXISTING_POINT_DIRECT_TEST_ELIGIBLE",
+ "DOTC01_FILE_HASHES": {
+  "DOTC01_ORGANISER_OBJECT_DEFINITION.json": "a96c85ae374b888fe47e2688bd1a009131e1d265824ac1e8696efc0d8b58e85b",
+  "DOTC01_TURNOVER_EVENT_DEFINITION.json": "897be4d6de3e498a2904743a2e1020973464f6e2a81b9f296702b6b9a8363175",
+  "DOTC01_FUNCTIONAL_CONTINUITY_DEFINITION.json": "0942df8bd6367da8f8e797f44306d7cd3316dfa961cce71da7c762946d67110e",
+  "DOTC01_ORGANISER_TIMESCALE.json": "71078273204b0e5ddf20e2d2348f204b455d43c771376ef9be02544b562f4097",
+  "DOTC01_B1_FEASIBILITY.json": "d6d467c71401847257ea2e5e8ccf1e0d64428f796b7139dea0a47c09d99400bb",
+  "DOTC01_INDEPENDENT_CHECK.json": "62cf2ad738c296238591e947170f4eae0321b15763ff1a99601f5a584f5aba9a",
+  "DOTC01_FINAL_DISPOSITION.json": "360bd94ad4de12a16a0c198559785a8970dbb34c496b87644755dfc66c98a500"
+ },
+ "DOTC01_SHA256SUMS_VERIFIED": true,
+ "PRIMARY_EVENT_RECOVERED_EXACTLY": true,
+ "THE_EVENT_AS_INHERITED": {
+  "centre": {
+   "definition": "a time-indexed connected component of Y-occupied cells under the frozen centre rule",
+   "frozen_rule": "toroidal single-linkage over Y-occupied cells with adjacency distance <= CORE_R",
+   "CORE_R": 5.0,
+   "source": "FMRT01/code/fmrt01_identity.py components(), unchanged"
+  },
+  "identity_rule": "a component at step t+1 continues a component at step t when it is the unique nearest component by toroidal centroid distance in both directions and that distance does not exceed CORE_R. A step at which the match is not mutually unique ENDS the identity interval; it is never resolved by preference.",
+  "six_conditions": [
+   "1. C remains spatially coherent under the frozen centre rule at every step in [t0,t1]",
+   "2. N_Y_C(t) >= 1 at every step in [t0,t1] \u2014 the component never becomes empty",
+   "3. at least one constituent-Y REMOVAL event is recorded inside C during [t0,t1]",
+   "4. at least one accepted constituent-Y BIRTH is recorded inside C during [t0,t1]",
+   "5. centre identity survives those material changes under the persistent spatial matching above",
+   "6. the local X organising function remains active across the turnover (see \u00a75)"
+  ],
+  "complete_turnover": [
+   "the component remains nonempty throughout the identity interval",
+   "at least one Y removal recorded inside C",
+   "at least one accepted Y birth recorded inside C",
+   "both events lie inside ONE continuous centre-identity interval"
+  ],
+  "functional_measure": "ACTIVE_LOCAL_X_PRODUCTION",
+  "functional_operational_form": "across the identity interval containing the turnover event pair, the centre records at least one accepted X birth inside its local domain on both sides of the removal event. Zero is the only threshold used, and zero is not a choice: it is the value the matched no-source control takes.",
+  "no_genealogy": "no parent-child assignment between Y molecules is invented, asserted or required. The engine keeps no Y tracker and DOTC01 does not create one."
+ },
+ "DECLARED_DIFFERENCE_BETWEEN_THE_PARENT_DEFINITION_AND_THE_PARENT_CODE": {
+  "what": "DOTC01's audit CODE linked components by mutual-nearest with a tie guard, which does not terminate an identity interval when one component splits into two that both remain within CORE_R. Its written DEFINITION says a match that is not mutually unique ends the interval, and FDOT01 \u00a75 lists ties, splits and merges as all terminating identity.",
+  "resolution": "\u00a71 orders the parent DEFINITION preserved. FDOT01 implements the definition, which is strictly stricter than the parent code.",
+  "consequence_measured_before_any_run": {
+   "developmental_complete_under_the_strict_rule": 2,
+   "developmental_functional_under_the_strict_rule": 1,
+   "DOTC01_reported_complete": 4,
+   "DOTC01_reported_functional": 3,
+   "of_worlds": 44
+  },
+  "reported_not_resolved_in_favour_of_the_convenient_number": true
+ },
+ "B1_LAW_BOUND_BY_BYTES": {
+  "engine": "/home/claude/OBTC02/code/engine_obtc.py",
+  "engine_sha256": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30",
+  "engine_unchanged": true,
+  "lawspec": "/home/claude/ORR01/code/lawspec_v2.py",
+  "lawspec_sha256": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94",
+  "kinetics_sha256": "d6b9e24daefd9a9ddd42780fa24da444a344a2773bb7836a8e168e44f026c4c4",
+  "protocol_sha256": "65d577460f28d2cce96be73e61eb3667a9299e23601b122f34192c14de0352cd",
+  "observer_sha256": "d8ff4b9da05c95641c7f69cef4c8b2ffe4c45f17975e8f348d5c5e0f2b6bba21",
+  "kY": 2.5118864315095822e-05,
+  "muY": 9.261187281287937e-05,
+  "INHERITED": {
+   "CAP": 16,
+   "S0": 3,
+   "phi": 0.2,
+   "omega": 0.05,
+   "muX": 0.004,
+   "kX": 1.0,
+   "L": 36,
+   "X_SEED": 4,
+   "p_hop_X": 0.10263340389897246,
+   "p_hop_Y_mobile": 0.10263340389897246,
+   "T_HORIZON": 11000,
+   "T_WINDOW": 9000,
+   "BURN_IN": 2000,
+   "CORE_R": 5.0,
+   "TAU_SEP": 125.0,
+   "ALPHA_SURVIVAL": 0.5,
+   "N_STAR": 10.0,
+   "GAMMA_SEP": 0.5,
+   "MIN_EVENTS": 1.0
+  },
+  "muY_NOT_CHANGED": true,
+  "kY_NOT_CHANGED": true,
+  "HORIZON_NOT_LENGTHENED": true,
+  "B2_NOT_RERUN": true
+ }
+}
