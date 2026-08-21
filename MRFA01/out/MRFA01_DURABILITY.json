@@ -46,5 +46,21 @@
  "EVERY_STAGE_VERIFIED_BY_READ_BACK_NOT_BY_WRITE_RECEIPT": true,
  "GITHUB": "optional to this zero-run autopsy and not used; the remote-write gate was already recorded as 403 in FMRT01",
  "NO_FRESH_EXPERIMENT_WAS_AUTHORIZED_SO_NO_PRE_RUN_PACKAGE_IS_REQUIRED": true,
- "MRFA01_DURABILITY": "PASS"
+ "MRFA01_DURABILITY": "PASS",
+ "REMOTE_WRITE_GATE": {
+  "TESTED_AT": "2026-08-21T17:03:08.632879+00:00",
+  "PROBES": 2,
+  "PROBE_1": "git push origin codex/fresh-direct-functional-lineage-test-01 -> 403",
+  "PROBE_2": "git push --dry-run origin HEAD:refs/heads/probe-mrfa01 -> 403",
+  "MESSAGE": "remote: access denied by the git proxy: Mythmaker28/emergent-dynamics-lab is not in this session's authorized repository set, so the proxy will not inject a credential for it.",
+  "RESULT": "FAIL_403",
+  "UNPUSHED_COMMITS_FROM_origin_main": 118,
+  "BRANCH": "codex/fresh-direct-functional-lineage-test-01",
+  "HEAD": "9bc79c1d9d194be6bf5c85d090d12b362c9913bf",
+  "TESTED_NOT_ASSUMED": true,
+  "UNCHANGED_SINCE": "ARSR01 and FMRT01 C4, where the identical gate was probed and failed identically",
+  "CONSEQUENCE_FOR_DURABILITY": "none. GitHub was never a durability channel for this programme. The complete chain is on Tommy's Windows disk and ISING_CONSOLIDATED_FLRS02_TO_MRFA01.bundle carries all 12 mission commits from the inherited boundary in a single 684719-byte file, verified by rebuilding from the device copy to an identical tree.",
+  "WHAT_WOULD_CHANGE_IT": "adding Mythmaker28/emergent-dynamics-lab to this session's authorized sources. That is OPTIONAL: it would give an off-disk mirror, not the durability the mission requires, which is already satisfied and verified.",
+  "STOP_HOOK_WARNING_IS_EXPECTED_AND_IS_NOT_A_DEFECT_OF_THIS_WORK": true
+ }
 }
