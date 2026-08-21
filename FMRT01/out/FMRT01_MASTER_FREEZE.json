@@ -1,0 +1,161 @@
+{
+  "PROGRAM": "FRESH-MINIMAL-REPRODUCTION-TEST-01",
+  "SHORT_NAME": "FMRT01",
+  "GENERATED_UTC": "2026-08-21T14:59:08.971274+00:00",
+  "FREEZE_IS_COMMITTED_ALONE_BEFORE_ANY_SCIENTIFIC_WORLD": true,
+  "PARENT_TIP": "a453e215f39150afe8a2e9c59a74150b9abecd63",
+  "CONTAINER_INCIDENT": "this mission began after the FIFTH container rollback. The repository was restored from RCD01_INCREMENT.bundle on Tommy's Windows disk. The SPOIQ01 capability module was never made durable and was destroyed; it is RECONSTRUCTED here and RE-QUALIFIED from scratch, and SPOIQ01's recorded hashes are NOT claimed.",
+  "N_BLOCKS": 85,
+  "ARMS_PER_BLOCK": 3,
+  "PRIMARY_SCIENTIFIC_WORLDS": 255,
+  "MAX_PRIMARY_WORLDS": 256,
+  "POINT": {
+    "LABEL": "B1",
+    "kY": 2.5118864315095822e-05,
+    "muY": 9.261187281287937e-05,
+    "INHERITED_FROZEN_CONSTANTS": {
+      "CAP": 16,
+      "S0": 3,
+      "phi": 0.2,
+      "omega": 0.05,
+      "muX": 0.004,
+      "kX": 1.0,
+      "L": 36,
+      "X_SEED": 4,
+      "p_hop_X": 0.10263340389897246,
+      "p_hop_Y_mobile": 0.10263340389897246,
+      "T_HORIZON": 11000,
+      "T_WINDOW": 9000,
+      "BURN_IN": 2000,
+      "CORE_R": 5.0,
+      "TAU_SEP": 125.0,
+      "ALPHA_SURVIVAL": 0.5,
+      "N_STAR": 10.0,
+      "GAMMA_SEP": 0.5,
+      "MIN_EVENTS": 1.0
+    }
+  },
+  "EXECUTION_LAW": {
+    "engine": "OBTC02/code/engine_obtc.py, byte-unchanged",
+    "engine_sha256": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30",
+    "engine_unchanged": true,
+    "observer": "PQEC01/code/pqec01_observer.py",
+    "observer_sha256": "d8ff4b9da05c95641c7f69cef4c8b2ffe4c45f17975e8f348d5c5e0f2b6bba21",
+    "capability": "FMRT01/code/fmrt01_engine.py subclass; the autonomous law never invokes it",
+    "capability_sha256": "6801081deb4726acd6eb6ddbaa037060e9f10a1fa205982fb6a8498128dcb95d"
+  },
+  "DESIGN": "A",
+  "DESIGN_REASONING": "A reaches the 0.80 power target at q = 0.40 with 150 primary worlds where B needs 256, and it delivers a strictly stronger causal contrast because the arms share the exact pre-intervention state. B was not retained merely because SPOIQ01 proposed it.",
+  "UNCONDITIONAL_POWER": {
+    "q_0.40": 0.9699905737401786,
+    "q_0.30": 0.8663466405459543,
+    "q_0.20": 0.5768922789752977,
+    "q_0.15": 0.35857512930599605,
+    "q_0.10": 0.14779139405787842
+  },
+  "PRIMARY_NULL": {
+    "H0": "q <= 0.05",
+    "H1": "q > 0.05",
+    "alpha": "one-sided 0.05",
+    "WHY_0.05_IS_NOT_ARBITRARY": "the frozen R2 material criterion D compares the daughter's post-intervention local X against the exact 95 per cent binomial upper bound on how much pre-intervention X could survive T_HOLD steps with no new production. Under NO_NEW_DAUGHTER_X_PRODUCTION the false-positive probability of criterion D is therefore bounded by 0.05 by construction. The null is the criterion's own false-positive rate, not a chosen number.",
+    "critical_function": "critical(M) = smallest k with P[Binomial(M,0.05) >= k] <= 0.05",
+    "critical_examples": {
+      "5": 2,
+      "10": 3,
+      "15": 3,
+      "18": 4,
+      "20": 4,
+      "25": 4,
+      "30": 5
+    }
+  },
+  "PRIMARY_ENDPOINT": {
+    "SECTION": "FMRT01 \u00a76, \u00a710, \u00a711, \u00a712, \u00a713 \u2014 the frozen primary endpoint",
+    "TRIGGER": {
+      "definition": "the FIRST step at which an episode of exactly two spatial centres reaches its frozen FDFLT01 maturation event",
+      "exact_step": "run_start + 250 - 1, evaluated at EXACTLY that step and not at later steps of the same run",
+      "requires": [
+        "no third centre inside the episode window",
+        "the weaker centre's local X mass at the event is at least f_primary of the stronger's"
+      ],
+      "does_NOT_require": "R1. R1 is classified separately at t_m so the intervention can never be delayed until a favourable provenance state appears.",
+      "f_primary": 0.6321205588285577,
+      "NEED_STEPS": 250
+    },
+    "TOTAL_HORIZON": 11000,
+    "T_HOLD": 250,
+    "LATEST_ALLOWED_TRIGGER": 10750,
+    "LATE_TRIGGER_RULE": "a functional daughter appearing after the latest allowed trigger is a population-level FAILURE and is NOT intervention-eligible; the count is reported explicitly. No world is extended adaptively.",
+    "INTERVENTION_BOUNDARY": "after the completed end-of-step observation at t_m and before the first transport of t_m + 1. The engine never detects maturation and never invokes the intervention.",
+    "R1_EXACT": {
+      "classified_at": "t_m",
+      "basis": "molecule identity from the engine's inert tracker",
+      "criterion": "inherited_mass_in_daughter_disc < f_primary * parent_disc_mass \u2014 the counterfactual F5 asks, restricted to material that existed before the daughter did",
+      "no_majority_cutoff": true,
+      "not_retuned_from_fresh_worlds": true
+    },
+    "R2_EXACT": {
+      "evaluated_at": "t_m + 250",
+      "A": "the daughter Y centre still exists",
+      "B": "the daughter remains spatially identifiable",
+      "C": "X/source integrity has held",
+      "D": "daughter-local X mass exceeds Q_0.95[Binomial(N_X_world_at_intervention, (1-muX)^250)]",
+      "E": "the tracker shows post-intervention X births inside the surviving daughter disc",
+      "per_molecule_survival_over_hold": 0.3671424535662421,
+      "E_is_load_bearing": "criterion E converts the test from 'old stock survived' to 'the daughter maintained production'"
+    },
+    "THIRD_CENTRE_RULE": "a third spatial centre appearing before R2 completion is a PRIMARY_REPRODUCTION_FAILURE, frozen before runs, because the causal source of maintained X would otherwise be ambiguous",
+    "POST_INTERVENTION_WINDOW": "exactly T_HOLD steps with NO early stop. Extinction and third-centre events are recorded as OUTCOMES, not used as stops, because the GLOBAL arm removes all Y by design and must still be observed decaying. Frozen here, before any world exists.",
+    "MINIMAL_REPRODUCTION": "R0 and R1 and R2 in the predeclared temporal order"
+  },
+  "CONTROL_DESIGN": {
+    "SECTION": "FMRT01 \u00a77, \u00a713-\u00a714 \u2014 control design",
+    "ARMS": {
+      "A_SELECTIVE_PARENT_OFF": "remove only parent-centre Y, exactly to WY; daughter untouched; no RNG",
+      "B_SHAM": "the identical experimental branch and audit record with an empty mask; controls the trigger and intervention machinery",
+      "C_GLOBAL_ORGANISER_OFF": "the historical global Y->WY transformation, applied at the identical boundary through the same three-line operation with an all-true mask; a frozen fixture proves state-identity with the historical organiser_off_at path"
+    },
+    "WHY_NO_SECOND_GLOBAL_MECHANISM": "the all-true mask reproduces the historical transformation exactly; applying it at the same boundary as A and B is what makes the paired comparison valid, and the equivalence is proven by fixture rather than asserted",
+    "PAIRING": "all three arms of a block share one seed and are forked from one bit-identical pre-intervention state",
+    "PRE_INTERVENTION_MATCHING_GATE": "physical state hash and RNG fingerprint must be identical across the three arms before the intervention; any mismatch is a technical failure of the design and is not repaired after outcomes",
+    "NOT_REQUIRED": "SELECTIVE need not equal SHAM; parent removal is supposed to be a perturbation"
+  },
+  "QUALIFICATION": {
+    "UNARMED_INERTNESS": "PASS_88_OF_88",
+    "FIXTURES_ALL_PASS": true
+  },
+  "COMPLETE_PRE_RUN_METHODS_HASH": "PASS",
+  "METHODS_HASH": "ca6318d7ccd38cd6d4eb75b32a4d54d6de98265594204693c21a1680c5e7fd87",
+  "MAX_TECHNICAL_RESERVES": 6,
+  "NO_SCIENTIFIC_FAILURE_MAY_TRIGGER_REPLACEMENT": true,
+  "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0,
+  "OUTCOME_FIREWALL": {
+    "EXPOSED": [
+      "opaque block token",
+      "completed",
+      "technical failure",
+      "checksum written"
+    ],
+    "WITHHELD": [
+      "condition",
+      "seed",
+      "trigger occurrence",
+      "R0",
+      "R1",
+      "R2",
+      "runtime",
+      "file size",
+      "stop step",
+      "centre count",
+      "X response"
+    ]
+  },
+  "TERMINAL_DISPOSITIONS": [
+    "MINIMAL_REPRODUCTION_CAUSALLY_QUALIFIED",
+    "MINIMAL_REPRODUCTION_NOT_QUALIFIED__DAUGHTER_INDEPENDENCE_NOT_ESTABLISHED",
+    "MINIMAL_REPRODUCTION_NOT_QUALIFIED__PRE_INTERVENTION_MULTIPLICATION_TOO_RARE",
+    "MINIMAL_REPRODUCTION_TEST_TECHNICALLY_INVALID"
+  ],
+  "CLAIM_CEILING": "minimal reproduction under R0+R1+R2 at the frozen B1 law. Not strong self-reproduction, not second-generation competence, not heredity, not evolution, not life.",
+  "WINDOWS_PRE_RUN_DURABILITY": "PENDING"
+}

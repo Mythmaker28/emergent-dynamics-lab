@@ -1,0 +1,12 @@
+{
+  "SECTION": "FMRT01 \u00a77, \u00a713-\u00a714 \u2014 control design",
+  "ARMS": {
+    "A_SELECTIVE_PARENT_OFF": "remove only parent-centre Y, exactly to WY; daughter untouched; no RNG",
+    "B_SHAM": "the identical experimental branch and audit record with an empty mask; controls the trigger and intervention machinery",
+    "C_GLOBAL_ORGANISER_OFF": "the historical global Y->WY transformation, applied at the identical boundary through the same three-line operation with an all-true mask; a frozen fixture proves state-identity with the historical organiser_off_at path"
+  },
+  "WHY_NO_SECOND_GLOBAL_MECHANISM": "the all-true mask reproduces the historical transformation exactly; applying it at the same boundary as A and B is what makes the paired comparison valid, and the equivalence is proven by fixture rather than asserted",
+  "PAIRING": "all three arms of a block share one seed and are forked from one bit-identical pre-intervention state",
+  "PRE_INTERVENTION_MATCHING_GATE": "physical state hash and RNG fingerprint must be identical across the three arms before the intervention; any mismatch is a technical failure of the design and is not repaired after outcomes",
+  "NOT_REQUIRED": "SELECTIVE need not equal SHAM; parent removal is supposed to be a perturbation"
+}

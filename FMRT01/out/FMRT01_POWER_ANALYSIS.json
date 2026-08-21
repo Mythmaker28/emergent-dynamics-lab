@@ -1,0 +1,59 @@
+{
+  "SECTION": "FMRT01 \u00a73-\u00a74 \u2014 design selection and exact sample size, decided before any world exists",
+  "PLANNING_INPUTS": {
+    "P_trigger_point": 0.2760416666666667,
+    "P_trigger_conservative_lower_95": 0.21411676535655655,
+    "USED_FOR_PLANNING": 0.21411676535655655,
+    "source": "FDFLT01, developmental; not confirmatory evidence",
+    "late_trigger_loss": "0 of 53 FDFLT01 maturation events fell after step 10750 (max observed t_m = 9464), so the latest-allowed-trigger rule costs nothing"
+  },
+  "DESIGNS_COMPARED": [
+    {
+      "design": "A paired 3-arm common-seed blocks",
+      "worlds_for_power_0.80_at_q_0.40": 150,
+      "blocks": 50,
+      "causal_contrast": "matched \u2014 the three arms are bit-identical immediately before the intervention, by construction",
+      "note": "one trajectory per block is forked at the trigger, so the pre-intervention matching gate is satisfied exactly rather than approximately"
+    },
+    {
+      "design": "B 2:1:1 independent allocation (SPOIQ01 proposal)",
+      "worlds_for_power_0.80_at_q_0.40": 256,
+      "blocks": null,
+      "causal_contrast": "unmatched \u2014 arms differ by seed as well as by treatment"
+    }
+  ],
+  "SELECTED": "A",
+  "SELECTION_REASONING": "A reaches the 0.80 power target at q = 0.40 with 150 primary worlds where B needs 256, and it delivers a strictly stronger causal contrast because the arms share the exact pre-intervention state. B was not retained merely because SPOIQ01 proposed it.",
+  "OPERATING_POINT": {
+    "blocks": 85,
+    "primary_worlds": 255,
+    "budget": 256,
+    "why_not_the_minimum_50": "the comparison criterion is which DESIGN needs fewer worlds; within the chosen design the budget is then spent on power against a more conservative alternative",
+    "expected_M": 18.199925055307308
+  },
+  "UNCONDITIONAL_POWER_AT_85_BLOCKS": {
+    "q_0.40": 0.9699905737401786,
+    "q_0.30": 0.8663466405459543,
+    "q_0.20": 0.5768922789752977,
+    "q_0.15": 0.35857512930599605,
+    "q_0.10": 0.14779139405787842
+  },
+  "METHOD": "exact binomial throughout, integrating over the random number of trigger-eligible worlds; no normal approximation",
+  "PRIMARY_NULL": {
+    "H0": "q <= 0.05",
+    "H1": "q > 0.05",
+    "alpha": "one-sided 0.05",
+    "WHY_0.05_IS_NOT_ARBITRARY": "the frozen R2 material criterion D compares the daughter's post-intervention local X against the exact 95 per cent binomial upper bound on how much pre-intervention X could survive T_HOLD steps with no new production. Under NO_NEW_DAUGHTER_X_PRODUCTION the false-positive probability of criterion D is therefore bounded by 0.05 by construction. The null is the criterion's own false-positive rate, not a chosen number.",
+    "critical_function": "critical(M) = smallest k with P[Binomial(M,0.05) >= k] <= 0.05",
+    "critical_examples": {
+      "5": 2,
+      "10": 3,
+      "15": 3,
+      "18": 4,
+      "20": 4,
+      "25": 4,
+      "30": 5
+    }
+  },
+  "CONSERVATIVE_ALTERNATIVE_FOR_PLANNING": 0.4
+}

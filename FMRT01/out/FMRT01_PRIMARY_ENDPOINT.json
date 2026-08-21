@@ -1,0 +1,39 @@
+{
+  "SECTION": "FMRT01 \u00a76, \u00a710, \u00a711, \u00a712, \u00a713 \u2014 the frozen primary endpoint",
+  "TRIGGER": {
+    "definition": "the FIRST step at which an episode of exactly two spatial centres reaches its frozen FDFLT01 maturation event",
+    "exact_step": "run_start + 250 - 1, evaluated at EXACTLY that step and not at later steps of the same run",
+    "requires": [
+      "no third centre inside the episode window",
+      "the weaker centre's local X mass at the event is at least f_primary of the stronger's"
+    ],
+    "does_NOT_require": "R1. R1 is classified separately at t_m so the intervention can never be delayed until a favourable provenance state appears.",
+    "f_primary": 0.6321205588285577,
+    "NEED_STEPS": 250
+  },
+  "TOTAL_HORIZON": 11000,
+  "T_HOLD": 250,
+  "LATEST_ALLOWED_TRIGGER": 10750,
+  "LATE_TRIGGER_RULE": "a functional daughter appearing after the latest allowed trigger is a population-level FAILURE and is NOT intervention-eligible; the count is reported explicitly. No world is extended adaptively.",
+  "INTERVENTION_BOUNDARY": "after the completed end-of-step observation at t_m and before the first transport of t_m + 1. The engine never detects maturation and never invokes the intervention.",
+  "R1_EXACT": {
+    "classified_at": "t_m",
+    "basis": "molecule identity from the engine's inert tracker",
+    "criterion": "inherited_mass_in_daughter_disc < f_primary * parent_disc_mass \u2014 the counterfactual F5 asks, restricted to material that existed before the daughter did",
+    "no_majority_cutoff": true,
+    "not_retuned_from_fresh_worlds": true
+  },
+  "R2_EXACT": {
+    "evaluated_at": "t_m + 250",
+    "A": "the daughter Y centre still exists",
+    "B": "the daughter remains spatially identifiable",
+    "C": "X/source integrity has held",
+    "D": "daughter-local X mass exceeds Q_0.95[Binomial(N_X_world_at_intervention, (1-muX)^250)]",
+    "E": "the tracker shows post-intervention X births inside the surviving daughter disc",
+    "per_molecule_survival_over_hold": 0.3671424535662421,
+    "E_is_load_bearing": "criterion E converts the test from 'old stock survived' to 'the daughter maintained production'"
+  },
+  "THIRD_CENTRE_RULE": "a third spatial centre appearing before R2 completion is a PRIMARY_REPRODUCTION_FAILURE, frozen before runs, because the causal source of maintained X would otherwise be ambiguous",
+  "POST_INTERVENTION_WINDOW": "exactly T_HOLD steps with NO early stop. Extinction and third-centre events are recorded as OUTCOMES, not used as stops, because the GLOBAL arm removes all Y by design and must still be observed decaying. Frozen here, before any world exists.",
+  "MINIMAL_REPRODUCTION": "R0 and R1 and R2 in the predeclared temporal order"
+}
