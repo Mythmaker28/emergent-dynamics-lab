@@ -54,10 +54,17 @@
  "EVERY_STAGE_VERIFIED_BY_READ_BACK_NOT_BY_WRITE_RECEIPT": true,
  "EXTERNAL_COPY_SUCCEEDED": true,
  "GITHUB": {
-  "status": "403, unchanged",
-  "tested_in": "MRFA01 C3, twice, mechanically",
-  "treated_as": "secondary \u2014 \u00a718 states GitHub must not block this zero-run derivation, and it did not",
-  "optional_action": "adding Mythmaker28/emergent-dynamics-lab to the session's sources would add an off-disk mirror; durability does not depend on it"
+  "RE_PROBED_AT": "2026-08-21T17:50:09.581266+00:00",
+  "PROBE_3_PUSH": "FAIL_403",
+  "PROBE_4_LS_REMOTE": "SUCCESS",
+  "NEW_AND_MORE_PRECISE_FINDING": "the gate is ASYMMETRIC, which earlier probes did not establish. `git ls-remote origin` SUCCEEDS and returns 115 refs, so the repository is reachable and readable from this container. Only the credentialed WRITE path is refused. The correct characterisation is therefore 'read yes, write no', not 'unreachable'.",
+  "REMOTE_HEAD": "f382dbf077699aa65c80328b6519035d1cda4a57",
+  "UNPUSHED_FROM_origin_main": 121,
+  "LOCAL_HEAD": "55a9ffc26b87e593c363bfc3ab3fe929fb40fdcb",
+  "PROBES_TO_DATE": "ARSR01, FMRT01 C4, MRFA01 C3 (twice), and here (twice). Every write probe returns 403.",
+  "CONSEQUENCE_FOR_DURABILITY": "none. Durability was never routed through GitHub. The consolidated bundle on Tommy's Windows disk carries all 15 commits and was verified by rebuilding from the device copy to an identical tree.",
+  "WHAT_WOULD_CHANGE_IT": "adding Mythmaker28/emergent-dynamics-lab to this session's authorized sources would open the write path. It is OPTIONAL: it buys an off-disk mirror, not the durability the missions require.",
+  "STOP_HOOK_WARNING_IS_EXPECTED": true
  },
  "DOTC01_DURABILITY": "PASS"
 }
