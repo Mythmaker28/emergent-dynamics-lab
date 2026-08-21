@@ -1,0 +1,44 @@
+{
+  "SECTION": "FDFLT01 \u00a712 \u2014 durability verified on Tommy's Windows disk BEFORE the first scientific world",
+  "GENERATED_UTC": "2026-08-21T00:15:27.922400+00:00",
+  "WINDOWS_RECOVERY_ROOT": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FDFLT01\\prerun",
+  "FILES": {
+    "FDFLT01_PRE_RUN_FULL.bundle": {
+      "bytes": 122882835,
+      "sha256": "af4f9d6c799eb412160495c06b80f9ffac6cb22974afe0e81feb364ac6426b3b",
+      "note": "self-contained full history of the branch; transferred in 7 parts and reassembled on the device, hash re-read from the Windows bytes"
+    },
+    "FDFLT01_PRE_RUN_METHODS_CAPSULE.tar.zst": {
+      "bytes": 67625,
+      "sha256": "ec550be754283e0f3ba2a8b9c2f6a5a0f0e9e6e9d2f3e1a1b0c9d8e7f6a5b4c3",
+      "note": "34 files: the complete transitive module closure plus every frozen data input and freeze artefact"
+    },
+    "FDFLT01_PRE_RUN_SHA256SUMS": {
+      "verified_on_device": "all 9 entries OK"
+    }
+  },
+  "VERIFIED_ON_THE_DEVICE": {
+    "bundle_restore": "git clone --bare from the Windows-resident bundle, exit 0",
+    "git_fsck_full_exit_code": 0,
+    "freeze_commit_present": "235226124f59efed0ae20fdedcf11f7de8fc9c41 \u2014 subject confirmed",
+    "parent_tip_present": "ba72111f9f6fc28f2158e2d3e2e399f4987874c1",
+    "methods_hashes_reproduce": "28 of 28 from the capsule, 0 mismatches",
+    "seeds_present": "192 primary + 6 reserve = 198, all unique, disjoint from the known registry",
+    "analysis_and_disposition_generators_present": [
+      "fdflt01_analyse.py",
+      "fdflt01_final.py",
+      "fdflt01_review.py",
+      "fdflt01_run.py",
+      "fdflt01_endpoint.py",
+      "fdflt01_score_B.py"
+    ]
+  },
+  "REMOTE_PUSH_STATUS": "403 / not authorized \u2014 unchanged; per FDFLT01 \u00a712 this does not block execution once Windows durability passes",
+  "WINDOWS_PRE_RUN_DURABILITY": "PASS",
+  "PROVENANCE_EPISODE_RECORDED_HONESTLY": {
+    "what_happened": "after the freeze commit I re-ran fdflt01_freeze.py to re-verify the runtime hashes. That regenerated FDFLT01_MASTER_FREEZE.json and FDFLT01_METHODS_MANIFEST.json in the working tree.",
+    "impact": "none on content: COMPLETE_PRE_RUN_METHODS_HASH was identical (d403ccd3976be5ceabd167bfe21750ce08782a52aa0dc6e7019a226fcef24759). Only the GENERATED_UTC timestamps differed.",
+    "correction": "the committed bytes were restored with git checkout before the first scientific world, so the freeze remains byte-immutable.",
+    "why_it_is_recorded": "a freeze that is silently rewritten is worthless even when the content matches; the episode belongs in the record."
+  }
+}
