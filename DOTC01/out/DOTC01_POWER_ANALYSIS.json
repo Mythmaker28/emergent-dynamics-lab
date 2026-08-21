@@ -1,0 +1,54 @@
+{
+ "SECTION": "DOTC01 \u00a714 \u2014 decision capability of a fresh, prospectively frozen test at B1",
+ "GENERATED_UTC": "2026-08-21T17:38:37.167871+00:00",
+ "PRIMARY_ENDPOINT": "per seeded world: does at least one continuously matched centre satisfy FUNCTIONAL_CONTINUITY_ACROSS_CONSTITUENT_TURNOVER, judged by the criterion frozen in DOTC01 before any world is run",
+ "NULL": {
+  "H0": "p <= 0",
+  "basis": "under the hypothesis that a centre's identity CANNOT survive removal of a constituent, a removal necessarily ends the identity interval, so a birth and a removal can never lie inside one interval and the event probability is exactly zero. Zero is not a chosen threshold: it is what the negated hypothesis forces.",
+  "alpha": "one-sided 0.05",
+  "critical_count": 1,
+  "honesty": "with p0 = 0 a single qualifying event rejects, so the statistical power of this test is not where its value lies. Its value is PROSPECTIVE FREEZING: the criterion is fixed before the worlds exist, so the events cannot be found by searching after the fact. The developmental 3 of 44 is a diagnostic; a frozen 1 of N is evidence."
+ },
+ "PLANNING_INPUTS": {
+  "developmental_functional_rate": 0.06818181818181818,
+  "exact_one_sided_95_lower": 0.018840467964271104,
+  "rule": "plan on the exact 95 % lower bound, never the point estimate \u2014 the FDFLT01 precedent"
+ },
+ "POWER_TABLE": {
+  "44": {
+   "p_conservative_0.01884": 0.5669444527843148,
+   "p_point_0.06818": 0.9552727774623233
+  },
+  "64": {
+   "p_conservative_0.01884": 0.7039697075073414,
+   "p_point_0.06818": 0.9891057952090938
+  },
+  "85": {
+   "p_conservative_0.01884": 0.8014507138896573,
+   "p_point_0.06818": 0.9975274201832435
+  },
+  "128": {
+   "p_conservative_0.01884": 0.912366065926711,
+   "p_point_0.06818": 0.9998813163019737
+  },
+  "170": {
+   "p_conservative_0.01884": 0.9605781809850733,
+   "p_point_0.06818": 0.9999938863490497
+  },
+  "256": {
+   "p_conservative_0.01884": 0.9923202935988384,
+   "p_point_0.06818": 0.9999999859141798
+  }
+ },
+ "RECOMMENDED_N": 128,
+ "WHY_128": "128 seeded worlds give 0.9124 power at the conservative lower bound 0.01884 and 0.9999 at the point estimate, well inside the 256-world budget, and leave room for the three-arm structure to be added later without a second freeze.",
+ "BUDGET": 256,
+ "WORLDS_USED_BY_THE_RECOMMENDED_DESIGN": 128,
+ "NO_MATCHED_FORK": "\u00a714 prefers a matched causal fork only if parent-removal causality is load-bearing. For establishing that a centre carries organiser-level identity through turnover it is not: the question is about the centre itself, not about its dependence on a parent. The fork belongs to the SUBSEQUENT question and is deliberately not spent here.",
+ "HORIZON": {
+  "steps": 11000,
+  "why": "the model median complete-turnover time is beyond 11000, so lengthening the horizon would raise the rate. It is NOT lengthened: \u00a77 forbids going beyond 11000 without a separate justification and cost analysis, and 11000 is already decision-capable at the recommended N."
+ },
+ "ONE_POINT": "B1, unchanged. No interpolation, no sweep, no new point.",
+ "DECISION_CAPABLE": true
+}

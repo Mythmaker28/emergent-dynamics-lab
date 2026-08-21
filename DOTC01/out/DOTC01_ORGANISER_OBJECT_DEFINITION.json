@@ -1,0 +1,34 @@
+{
+ "SECTION": "DOTC01 \u00a73 \u2014 the organiser-level daughter object, defined without particle genealogy",
+ "GENERATED_UTC": "2026-08-21T17:28:51.716367+00:00",
+ "NO_GENEALOGY": "no parent-child assignment between Y molecules is invented, asserted or required. The engine keeps no Y tracker and DOTC01 does not create one.",
+ "CENTRE": {
+  "definition": "a time-indexed connected component of Y-occupied cells under the frozen centre rule",
+  "frozen_rule": "toroidal single-linkage over Y-occupied cells with adjacency distance <= CORE_R",
+  "CORE_R": 5.0,
+  "source": "FMRT01/code/fmrt01_identity.py components(), unchanged"
+ },
+ "CENTRE_IDENTITY_ACROSS_STEPS": {
+  "method": "persistent spatial matching between consecutive steps",
+  "rule": "a component at step t+1 continues a component at step t when it is the unique nearest component by toroidal centroid distance in both directions and that distance does not exceed CORE_R. A step at which the match is not mutually unique ENDS the identity interval; it is never resolved by preference.",
+  "why_mutual_and_unique": "so that a fission or a merger terminates an identity interval instead of being absorbed into it"
+ },
+ "ORGANISER_LEVEL_CONTINUITY": {
+  "an interval [t0,t1] on one continuously matched component C qualifies only if ALL SIX hold": [
+   "1. C remains spatially coherent under the frozen centre rule at every step in [t0,t1]",
+   "2. N_Y_C(t) >= 1 at every step in [t0,t1] \u2014 the component never becomes empty",
+   "3. at least one constituent-Y REMOVAL event is recorded inside C during [t0,t1]",
+   "4. at least one accepted constituent-Y BIRTH is recorded inside C during [t0,t1]",
+   "5. centre identity survives those material changes under the persistent spatial matching above",
+   "6. the local X organising function remains active across the turnover (see \u00a75)"
+  ],
+  "NAME": "FUNCTIONAL_CONTINUITY_ACROSS_CONSTITUENT_TURNOVER"
+ },
+ "WHY_N_Y_GE_2_IS_NOT_THE_CRITERION": "a static two-particle centre has more material but has demonstrated no organisational persistence through turnover; a single Y that survives a long time has demonstrated no material replacement. The criterion is the EVENT PAIR inside one continuous identity interval, not a count.",
+ "REMOVAL_IS_DEFINED_AS": {
+  "primary": "a Y decay event recorded inside C (the ydeath ledger)",
+  "why_not_emigration": "for a one-cell component the component travels with its own Y, so a hop can never remove that Y from its own component. Once a component has two or more constituents, a constituent moving beyond CORE_R produces a SECOND component: that is centre fission, i.e. centre creation, which \u00a79 requires be kept distinct from turnover. Emigration is therefore counted separately and never as turnover.",
+  "recorded_separately": "YES"
+ },
+ "BIRTH_IS_ALWAYS_INSIDE_C": "a structural consequence of the frozen law, not an assumption: the Y birth branch of _react_core draws births with probability min(1, kY*nX*nY), which is zero at any cell with nY = 0. Every Y birth is therefore co-located with an existing constituent and is inside that constituent's component by construction."
+}

@@ -1,0 +1,105 @@
+{
+ "SECTION": "DOTC01 \u00a717 \u2014 independent check",
+ "GENERATED_UTC": "2026-08-21T17:42:33.796807+00:00",
+ "CHECKER_RAN_ZERO_WORLDS": true,
+ "CHECKER_IMPORTS_THE_PRIMARY_ANALYSIS": false,
+ "INDEPENDENCE": {
+  "components": "scipy.sparse.csgraph.connected_components vs union-find",
+  "identity_matching": "explicit per-step python mutual-best vs the primary implementation",
+  "lifetime_arithmetic": "50-digit Decimal vs IEEE double",
+  "birth_survival": "complementary Decimal survival product vs numpy log1p reduceat",
+  "imports_from_the_primary_analysis": "none"
+ },
+ "AGREEMENT_TABLE": [
+  {
+   "quantity": "Y lifetime e-folding B1",
+   "primary": 10797.251615563411,
+   "checker": 10797.25161555908,
+   "agree": true
+  },
+  {
+   "quantity": "P(one constituent decays by 11000) B1",
+   "primary": 0.6389640630003623,
+   "checker": 0.6389640630005098,
+   "agree": true
+  },
+  {
+   "quantity": "P(one constituent decays by 11000) B2",
+   "primary": 0.00010999395132438305,
+   "checker": 0.00010999395077176674,
+   "agree": true
+  },
+  {
+   "quantity": "P(>=1 local Y birth by 11000) B1",
+   "primary": 0.3238843779120071,
+   "checker": 0.32388437791196045,
+   "agree": true
+  },
+  {
+   "quantity": "P(>=1 local Y birth by 11000) B2",
+   "primary": 0.48850675123450693,
+   "checker": 0.4885067512345519,
+   "agree": true
+  },
+  {
+   "quantity": "worlds with complete turnover B1",
+   "primary": 4,
+   "checker": 4,
+   "agree": true
+  },
+  {
+   "quantity": "centres with complete turnover B1",
+   "primary": 4,
+   "checker": 4,
+   "agree": true
+  },
+  {
+   "quantity": "orderings B1",
+   "primary": {
+    "BIRTH_THEN_DEATH": 3,
+    "DEATH_THEN_BIRTH": 1
+   },
+   "checker": {
+    "BIRTH_THEN_DEATH": 3,
+    "DEATH_THEN_BIRTH": 1
+   },
+   "agree": true
+  },
+  {
+   "quantity": "worlds with complete turnover B2",
+   "primary": 0,
+   "checker": 0,
+   "agree": true
+  },
+  {
+   "quantity": "total Y births B1",
+   "primary": 31,
+   "checker": 31,
+   "agree": true
+  },
+  {
+   "quantity": "total Y deaths B1",
+   "primary": 40,
+   "checker": 40,
+   "agree": true
+  },
+  {
+   "quantity": "total Y deaths B2",
+   "primary": 0,
+   "checker": 0,
+   "agree": true
+  },
+  {
+   "quantity": "centres persisting after the removal B1",
+   "primary": 3,
+   "checker": 3,
+   "agree": true
+  }
+ ],
+ "N_CHECKED": 13,
+ "N_DISAGREEMENTS": 0,
+ "DISAGREEMENTS": [],
+ "LOAD_BEARING_DISAGREEMENT": false,
+ "TERMINAL_ROUTE_DECISION_INDEPENDENTLY_SUPPORTED": true,
+ "VERDICT": "INDEPENDENT_DERIVATIONS_AGREE"
+}

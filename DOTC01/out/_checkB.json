@@ -1,0 +1,52 @@
+{
+ "SECTION": "DOTC01 \u00a717 \u2014 one independent zero-run checker",
+ "GENERATED_UTC": "2026-08-21T17:39:19.709054+00:00",
+ "INDEPENDENCE": {
+  "components": "scipy.sparse.csgraph.connected_components vs union-find",
+  "identity_matching": "explicit per-step python mutual-best vs the primary implementation",
+  "lifetime_arithmetic": "50-digit Decimal vs IEEE double",
+  "birth_survival": "complementary Decimal survival product vs numpy log1p reduceat",
+  "imports_from_the_primary_analysis": "none"
+ },
+ "Y_LIFETIME": {
+  "B1": {
+   "e_folding": 10797.25161555908,
+   "P_death_11000": 0.6389640630005098,
+   "mean": 10796.751623277094,
+   "median": 7484
+  },
+  "B2": {
+   "e_folding": 99999999.5,
+   "P_death_11000": 0.00010999395077176674,
+   "mean": 99999999.0,
+   "median": 69314717
+  }
+ },
+ "P_AT_LEAST_ONE_LOCAL_Y_BIRTH_BY_HORIZON": {
+  "B1": 0.32388437791196045,
+  "B2": 0.4885067512345519
+ },
+ "TURNOVER_AUDIT": {
+  "B1": {
+   "n_worlds": 44,
+   "worlds_with_complete_turnover": 4,
+   "centres_with_complete_turnover": 4,
+   "orderings": {
+    "BIRTH_THEN_DEATH": 3,
+    "DEATH_THEN_BIRTH": 1
+   },
+   "worlds_with_persistence_after_removal_gt_0": 3,
+   "total_Y_births": 31,
+   "total_Y_deaths": 40
+  },
+  "B2": {
+   "n_worlds": 44,
+   "worlds_with_complete_turnover": 0,
+   "centres_with_complete_turnover": 0,
+   "orderings": {},
+   "worlds_with_persistence_after_removal_gt_0": 0,
+   "total_Y_births": 25,
+   "total_Y_deaths": 0
+  }
+ }
+}

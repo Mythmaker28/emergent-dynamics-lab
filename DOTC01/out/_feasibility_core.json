@@ -1,0 +1,102 @@
+{
+ "SECTION": "DOTC01 \u00a77,\u00a710-\u00a714 \u2014 turnover feasibility and decision capability",
+ "GENERATED_UTC": "2026-08-21T17:36:13.930612+00:00",
+ "HORIZON": 11000,
+ "METHOD": "an exact discrete-time absorbing chain driven step by step by each world's REALISED local Y-birth hazard sequence. No mean is substituted for a time-dependent hazard.",
+ "MODEL_CAVEAT": "after the actual first birth a world's recorded environment is that of a two-constituent centre. Using that recorded sequence inside the hypothetical single-constituent branch is the one approximation in this calculation. Because the per-step hazards are of order 1e-4, the induced error on the reported probabilities is far below the sampling error of a 44-world developmental set, and the direction is to slightly OVERSTATE the birth rate in the single-constituent branch.",
+ "POINTS": {
+  "B1": {
+   "kY": 2.5118864315095822e-05,
+   "muY": 9.261187281287937e-05,
+   "Y_LIFETIME_e_folding": 10797.251615563411,
+   "P_ONE_CONSTITUENT_DECAYS_BY_HORIZON": 0.6389640630003623,
+   "MODEL_P_COMPLETE_TURNOVER_BY": {
+    "1000": 0.005750396299046896,
+    "2500": 0.02628942268281515,
+    "5000": 0.06495227985207223,
+    "11000": 0.1166408916714208
+   },
+   "MODEL_P_EXTINCT_BEFORE_TURNOVER_BY_HORIZON": 0.2552434521488339,
+   "MODEL_median_complete_turnover_time": null,
+   "MODEL_q80": null,
+   "MODEL_q90": null,
+   "MODEL_NOTE": "None means the quantile is not reached inside the 11000-step horizon",
+   "DEVELOPMENTAL_worlds": 44,
+   "DEVELOPMENTAL_COMPLETE_TURNOVER": {
+    "k": 4,
+    "n": 44,
+    "rate": 0.09090909090909091,
+    "exact_95": [
+     0.025328421703450763,
+     0.21668658946527453
+    ],
+    "one_sided_95_lower": 0.03165112061071553
+   },
+   "DEVELOPMENTAL_FUNCTIONAL_TURNOVER": {
+    "k": 3,
+    "n": 44,
+    "rate": 0.06818181818181818,
+    "exact_95": [
+     0.014287668426975394,
+     0.18656201007202233
+    ],
+    "one_sided_95_lower": 0.018840467964271104
+   },
+   "STOPS": {
+    "EXTINCT": 28,
+    "PREMATURE_THIRD_CENTRE": 7,
+    "HORIZON": 9
+   },
+   "EXTINCTION_SHARE": 0.6363636363636364,
+   "THIRD_CENTRE_SHARE": 0.1590909090909091,
+   "TOTAL_Y_BIRTHS": 31,
+   "TOTAL_Y_DEATHS": 40
+  },
+  "B2": {
+   "kY": 2.1544346900318823e-05,
+   "muY": 1e-08,
+   "Y_LIFETIME_e_folding": 99999998.99752407,
+   "P_ONE_CONSTITUENT_DECAYS_BY_HORIZON": 0.00010999395132438305,
+   "MODEL_P_COMPLETE_TURNOVER_BY": {
+    "1000": 6.320297346616362e-07,
+    "2500": 3.7844898014695096e-06,
+    "5000": 1.4231861240483852e-05,
+    "11000": 5.5850478126691555e-05
+   },
+   "MODEL_P_EXTINCT_BEFORE_TURNOVER_BY_HORIZON": 7.520778211627891e-05,
+   "MODEL_median_complete_turnover_time": null,
+   "MODEL_q80": null,
+   "MODEL_q90": null,
+   "MODEL_NOTE": "None means the quantile is not reached inside the 11000-step horizon",
+   "DEVELOPMENTAL_worlds": 44,
+   "DEVELOPMENTAL_COMPLETE_TURNOVER": {
+    "k": 0,
+    "n": 44,
+    "rate": 0.0,
+    "exact_95": [
+     0.0,
+     0.08041993976357587
+    ],
+    "one_sided_95_lower": 0.0
+   },
+   "DEVELOPMENTAL_FUNCTIONAL_TURNOVER": {
+    "k": 0,
+    "n": 44,
+    "rate": 0.0,
+    "exact_95": [
+     0.0,
+     0.08041993976357587
+    ],
+    "one_sided_95_lower": 0.0
+   },
+   "STOPS": {
+    "HORIZON": 37,
+    "PREMATURE_THIRD_CENTRE": 7
+   },
+   "EXTINCTION_SHARE": 0.0,
+   "THIRD_CENTRE_SHARE": 0.1590909090909091,
+   "TOTAL_Y_BIRTHS": 25,
+   "TOTAL_Y_DEATHS": 0
+  }
+ }
+}

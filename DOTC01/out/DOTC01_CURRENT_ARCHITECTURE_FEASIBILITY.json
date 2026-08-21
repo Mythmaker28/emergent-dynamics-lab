@@ -1,0 +1,44 @@
+{
+ "SECTION": "DOTC01 \u00a712-\u00a713 \u2014 is the CURRENT architecture capable of organiser-level turnover?",
+ "GENERATED_UTC": "2026-08-21T17:38:37.167522+00:00",
+ "THE_QUESTION": "does the current state space and transition law admit ANY regime in which a daughter forms, stays nonempty, gains a constituent, loses a constituent, keeps producing X locally, and does not proliferate out of control?",
+ "ANSWERED_WITHOUT_ANY_NEW_RUN": true,
+ "THE_ANSWER_IS_ALREADY_IN_THE_DATA": "the question does not need a feasibility argument at all, because the phenomenon has ALREADY OCCURRED. Four centres in the surviving PQEC01 B1 set complete a constituent turnover inside one continuous identity interval, and three of them keep producing X locally on both sides of the removal. An existence proof by observation supersedes any bound.",
+ "STRUCTURAL_REQUIREMENTS_AND_WHERE_EACH_IS_SATISFIED": [
+  {
+   "requirement": "a mechanism for local replenishment INSIDE an existing centre",
+   "status": "PRESENT",
+   "why": "the Y birth branch of _react_core fires only at cells with nY > 0, so every newborn Y is co-located with an existing constituent and lands inside that centre by construction. The engine's replenishment mechanism is intrinsically intra-centre."
+  },
+  {
+   "requirement": "co-located Y can form a persistent multi-constituent centre under the scheduler",
+   "status": "PRESENT",
+   "why": "observed max N_Y in one centre reached 3; single-linkage at CORE_R = 5.0 keeps co-located and near constituents in one component"
+  },
+  {
+   "requirement": "a removal rate that produces turnover without forcing extinction first",
+   "status": "PRESENT AT B1",
+   "why": "birth and death hazards at B1 are of the same order \u2014 mean local birth hazard 8.680e-05 per step against muY = 9.261e-05, ratio 0.9373 \u2014 so neither swamps the other. The exact chain gives P(complete turnover by horizon) = 0.11664 against P(extinct before turnover) = 0.25524."
+  },
+  {
+   "requirement": "a birth rate high enough for replacement without uncontrolled new centres",
+   "status": "PRESENT AT B1",
+   "why": "PREMATURE_THIRD_CENTRE accounts for 0.1591 of B1 stops, so proliferation is present but bounded, and 28 of 44 worlds never exceeded one centre."
+  },
+  {
+   "requirement": "local X function survives the removal",
+   "status": "OBSERVED",
+   "why": "3 of 4 turnover centres record exact X births at their own cells on both sides of the removal"
+  }
+ ],
+ "THE_FOUR_CANONICAL_CONFLICTS_AND_THEIR_STATUS": {
+  "birth rate high enough for replacement always causes uncontrolled new centres": "REFUTED BY OBSERVATION \u2014 replacement occurred at B1 while 28 of 44 worlds never exceeded one centre",
+  "death rate high enough to create turnover always causes extinction before replacement": "REFUTED BY OBSERVATION \u2014 4 centres completed turnover; 3 kept producing afterwards for 99, 217 and 5644 further steps",
+  "co-located Y cannot form a persistent multi-constituent centre under the scheduler": "REFUTED BY OBSERVATION \u2014 N_Y reached 2 and 3 inside single components",
+  "the engine has no mechanism for local replenishment inside an existing centre": "REFUTED STRUCTURALLY \u2014 Y birth is Y-gated and therefore intrinsically intra-centre"
+ },
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "WHY_NOT": "the standard requires a PROOF that the current state variables and transition laws cannot support a continuously functioning centre through constituent turnover. The opposite has been observed. No architecture change is proposed, considered or implied.",
+ "NEW_PARAMETER_DESIGN_REQUIRED": false,
+ "WHY_NO_NEW_POINT": "\u00a712 asks for a new design only if NO existing point can produce constituent turnover. B1 produces it. No sweep, no interpolation, no new point."
+}

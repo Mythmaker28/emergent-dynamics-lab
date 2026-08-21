@@ -1,0 +1,82 @@
+{
+ "SECTION": "DOTC01 \u00a71 \u2014 executable object map. Every object this mission needs, and where it lives.",
+ "GENERATED_UTC": "2026-08-21T17:27:42.553970+00:00",
+ "Y_BIRTH_LAW": {
+  "where": "OBTC02/code/engine_obtc.py _react_core, the ('Y','SY',kY) branch",
+  "exact": "p = min(1, kY * nX * nY) per cell; cand = min(n[SY], free); births ~ Binomial(cand, p)",
+  "consequence": "a Y birth occurs ONLY at a cell that already holds a Y, so a newborn Y is always co-located with a parent constituent and therefore always inside the same centre component",
+  "recoverable": "EXACT, event-aligned, from PQEC01 raw `ybirth` = (step, y, x, n_born)"
+ },
+ "Y_DEATH_LAW": {
+  "where": "OBTC02/code/engine_obtc.py _decay_core, the ('Y','WY',muY) branch",
+  "exact": "d ~ Binomial(n[Y], muY) per cell, per-molecule Bernoulli",
+  "recoverable": "EXACT, event-aligned, from PQEC01 raw `ydeath` = (step, y, x, n_died)"
+ },
+ "Y_DIFFUSION": {
+  "where": "ORR01/code/kinetics.py _diffuse, called for Y in the frozen step order",
+  "p_hop_Y_mobile": 0.10263340389897246,
+  "recoverable": "EXACT from PQEC01 raw `yhop` = (step, sub, shift, ax, y_from, x_from, n_accepted)"
+ },
+ "CENTRE_CLASSIFIER": {
+  "where": "FMRT01/code/fmrt01_identity.py components()",
+  "exact": "toroidal single-linkage over Y-occupied cells with adjacency distance <= CORE_R",
+  "CORE_R": 5.0,
+  "recoverable": "EXACT per step from PQEC01 raw `ycells` (step,y,x,...) which lists every Y-occupied cell"
+ },
+ "LOCAL_X_SOURCE_LAW": {
+  "where": "engine_obtc.py _react_core, the ('X','SX',kX) branch",
+  "exact": "p = min(1, kX * nX * nY); births ~ Binomial(min(n[SX],free), p) \u2014 X is born ONLY at Y-occupied cells",
+  "recoverable": "world totals per step from PQEC01 raw `xevent` = (step, n_X_born, n_X_died); per-cell X births are NOT stored by PQEC01 and are recoverable only by replay"
+ },
+ "LOCAL_X_DECAY": {
+  "exact": "d ~ Binomial(n[X], muX), muX = 0.004"
+ },
+ "PERSISTENT_CENTRE_TRACKER": {
+  "status": "DOES NOT EXIST AS A STORED OBJECT",
+  "consequence": "centre identity across steps must be RECONSTRUCTED from `ycells` by spatial matching; no stored object asserts it and none is assumed"
+ },
+ "Y_BIRTH_DEATH_LEDGERS": {
+  "status": "PRESENT AND EXACT in PQEC01 raw",
+  "ybirth_columns": "(step, y, x, n_born)",
+  "ydeath_columns": "(step, y, x, n_died)",
+  "recorded_how": "the Y-plane difference across _react() and across _decay() respectively, so they are exact and event-aligned, not inferred"
+ },
+ "X_BIRTH_LEDGER": {
+  "status": "WORLD-TOTAL ONLY in PQEC01 (`xevent`); per-cell X birth positions are not stored"
+ },
+ "FMRT01_THREE_ARM_FORK": {
+  "where": "FMRT01/code/fmrt01_run.py",
+  "status": "present, byte-verified",
+  "note": "FMRT01 archives store per-arm world totals every 25 steps and a tracker snapshot at t_m only; they contain NO Y birth/death ledger, so the organiser question cannot be answered from FMRT01 raw alone"
+ },
+ "THE_DATA_SOURCE_FOR_THIS_MISSION": {
+  "primary": "/home/claude/PQEC01/raw \u2014 128 archives, 958 MB, with exact Y ledgers",
+  "n_archives": 128,
+  "points": {
+   "A0": 40,
+   "B1": 44,
+   "B2": 44
+  },
+  "arrays_per_archive": [
+   "capacity",
+   "exchange",
+   "field0",
+   "field_delta",
+   "final",
+   "meta",
+   "scalar_names",
+   "scalars",
+   "src",
+   "xevent",
+   "ybirth",
+   "ycells",
+   "ydeath",
+   "yhop"
+  ],
+  "why_no_replay_is_needed": "PQEC01 recorded the exact event-aligned Y ledgers and the per-step local environment at every Y-occupied cell. Everything DOTC01 needs about the organiser process is in those bytes. No world is constructed and no trajectory is run."
+ },
+ "EXCLUDED": {
+  "CLOC02": "lost, not used as numerical evidence",
+  "RSLOC03": "invalid, not used as numerical evidence"
+ }
+}

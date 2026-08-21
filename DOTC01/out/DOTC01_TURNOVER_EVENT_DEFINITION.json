@@ -1,0 +1,33 @@
+{
+ "SECTION": "DOTC01 \u00a74 \u2014 the constituent-turnover event, defined exactly",
+ "GENERATED_UTC": "2026-08-21T17:28:51.716536+00:00",
+ "PER_CENTRE_SERIES": {
+  "Y_BIRTH_C(t)": "sum of ybirth n_born over cells belonging to C at step t",
+  "Y_DEATH_C(t)": "sum of ydeath n_died over cells belonging to C at step t",
+  "N_Y_C(t)": "sum of nY over cells belonging to C at step t",
+  "membership": "cell membership is taken from the frozen centre rule applied to the ycells listing at step t"
+ },
+ "COMPLETE_TURNOVER": {
+  "requires": [
+   "the component remains nonempty throughout the identity interval",
+   "at least one Y removal recorded inside C",
+   "at least one accepted Y birth recorded inside C",
+   "both events lie inside ONE continuous centre-identity interval"
+  ],
+  "orderings_analysed": {
+   "BIRTH_THEN_DEATH": {
+    "admissible": true,
+    "note": "the centre first grows to at least two constituents and then loses one, so it is never empty"
+   },
+   "DEATH_THEN_BIRTH": {
+    "admissible": "ONLY IF N_Y_C >= 2 BEFORE THE DEATH",
+    "proved_impossible_for_a_one_constituent_centre": true,
+    "proof": "if N_Y_C = 1 and that constituent decays then N_Y_C = 0 and condition 2 fails at that step, ending the identity interval. A centre that begins the interval with one constituent can therefore reach COMPLETE_TURNOVER only through BIRTH_THEN_DEATH. This is a theorem about the frozen law and the definition, not an empirical claim."
+   }
+  },
+  "consequence_for_the_B1_daughter": "every FMRT01 daughter begins with exactly one constituent, so at B1 the ONLY route to complete turnover is a local Y birth followed by a local Y removal."
+ },
+ "PARTIAL_TURNOVER": "an identity interval containing a birth inside C or a removal inside C, but not both",
+ "NO_TURNOVER": "an identity interval containing neither",
+ "GENEALOGY_REQUIRED": false
+}

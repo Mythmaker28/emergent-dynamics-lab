@@ -1,0 +1,72 @@
+{
+ "SECTION": "DOTC01 \u00a710-\u00a711 \u2014 exact feasibility of point B2",
+ "GENERATED_UTC": "2026-08-21T17:38:37.167315+00:00",
+ "POINT": "B2",
+ "kY": 2.1544346900318823e-05,
+ "muY": 1e-08,
+ "Y_LIFETIME_SCALE": {
+  "e_folding_steps": 99999998.99752407,
+  "P_one_constituent_decays_by_horizon": 0.00010999395132438305
+ },
+ "LOCAL_BIRTH_SCALE": {
+  "per_step_hazard_mean_of_world_means": 7.063160331082675e-05,
+  "per_step_hazard_max_observed": 0.0012058467924737082,
+  "P_at_least_one_local_Y_birth_by_horizon": 0.48850675123450693,
+  "birth_to_death_hazard_ratio": 7063.160331082675
+ },
+ "TURNOVER_FEASIBILITY": {
+  "MODEL_P_COMPLETE_TURNOVER_BY": {
+   "1000": 6.320297346616362e-07,
+   "2500": 3.7844898014695096e-06,
+   "5000": 1.4231861240483852e-05,
+   "11000": 5.5850478126691555e-05
+  },
+  "MODEL_median": null,
+  "MODEL_q80": null,
+  "MODEL_q90": null,
+  "DEVELOPMENTAL_COMPLETE": {
+   "k": 0,
+   "n": 44,
+   "rate": 0.0,
+   "exact_95": [
+    0.0,
+    0.08041993976357587
+   ],
+   "one_sided_95_lower": 0.0
+  },
+  "DEVELOPMENTAL_FUNCTIONAL": {
+   "k": 0,
+   "n": 44,
+   "rate": 0.0,
+   "exact_95": [
+    0.0,
+    0.08041993976357587
+   ],
+   "one_sided_95_lower": 0.0
+  },
+  "MODEL_AND_LEDGER_AGREE": "the exact chain predicts 0.00006 and the ledger gives 0/44 = 0.00000, which lies inside the exact 95 % interval [0.0, 0.08042]"
+ },
+ "LINEAGE_EXTINCTION": {
+  "stop_EXTINCT_share": 0.0,
+  "MODEL_P_extinct_before_turnover": 7.520778211627891e-05
+ },
+ "THIRD_CENTRE_RISK": {
+  "stop_PREMATURE_THIRD_CENTRE_share": 0.1590909090909091,
+  "max_centres_distribution": null
+ },
+ "X_INTEGRITY": {
+  "integrity_failures_in_the_developmental_set": 0,
+  "source": "no PQEC01 world stopped on INTEGRITY_FAILURE"
+ },
+ "TOTAL_Y_BIRTHS": 25,
+ "TOTAL_Y_DEATHS": 0,
+ "P_DAUGHTER_FORMATION_AND_FUNCTIONAL_TURNOVER": {
+  "k": 0,
+  "n": 44,
+  "rate": 0.0,
+  "note": "no removal event is possible at muY = 1e-08"
+ },
+ "CANDIDATE": false,
+ "CANDIDATE_RULE": "complete turnover neither vanishingly rare nor dominated by extinction or uncontrolled proliferation",
+ "WHY_NOT": "muY = 1e-08 makes a constituent removal essentially impossible: P(one constituent decays within the whole 11000-step horizon) = 0.000109994. The ledgers confirm it exactly \u2014 ZERO Y deaths across 44 worlds and 11000 steps each. A removal event is a NECESSARY part of the turnover definition, so B2 cannot produce one. This is a structural exclusion, not a sampling result."
+}

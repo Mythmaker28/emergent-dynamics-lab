@@ -1,0 +1,80 @@
+{
+ "SECTION": "DOTC01 \u00a710-\u00a711 \u2014 exact feasibility of point B1",
+ "GENERATED_UTC": "2026-08-21T17:38:37.166339+00:00",
+ "POINT": "B1",
+ "kY": 2.5118864315095822e-05,
+ "muY": 9.261187281287937e-05,
+ "Y_LIFETIME_SCALE": {
+  "e_folding_steps": 10797.251615563411,
+  "P_one_constituent_decays_by_horizon": 0.6389640630003623
+ },
+ "LOCAL_BIRTH_SCALE": {
+  "per_step_hazard_mean_of_world_means": 8.680467533126594e-05,
+  "per_step_hazard_max_observed": 0.0012803789474952199,
+  "P_at_least_one_local_Y_birth_by_horizon": 0.3238843779120071,
+  "birth_to_death_hazard_ratio": 0.937295323966218
+ },
+ "TURNOVER_FEASIBILITY": {
+  "MODEL_P_COMPLETE_TURNOVER_BY": {
+   "1000": 0.005750396299046896,
+   "2500": 0.02628942268281515,
+   "5000": 0.06495227985207223,
+   "11000": 0.1166408916714208
+  },
+  "MODEL_median": null,
+  "MODEL_q80": null,
+  "MODEL_q90": null,
+  "DEVELOPMENTAL_COMPLETE": {
+   "k": 4,
+   "n": 44,
+   "rate": 0.09090909090909091,
+   "exact_95": [
+    0.025328421703450763,
+    0.21668658946527453
+   ],
+   "one_sided_95_lower": 0.03165112061071553
+  },
+  "DEVELOPMENTAL_FUNCTIONAL": {
+   "k": 3,
+   "n": 44,
+   "rate": 0.06818181818181818,
+   "exact_95": [
+    0.014287668426975394,
+    0.18656201007202233
+   ],
+   "one_sided_95_lower": 0.018840467964271104
+  },
+  "MODEL_AND_LEDGER_AGREE": "the exact chain predicts 0.11664 and the ledger gives 4/44 = 0.09091, which lies inside the exact 95 % interval [0.02533, 0.21669]"
+ },
+ "LINEAGE_EXTINCTION": {
+  "stop_EXTINCT_share": 0.6363636363636364,
+  "MODEL_P_extinct_before_turnover": 0.2552434521488339
+ },
+ "THIRD_CENTRE_RISK": {
+  "stop_PREMATURE_THIRD_CENTRE_share": 0.1590909090909091,
+  "max_centres_distribution": {
+   "1": 28,
+   "2": 9,
+   "3": 7
+  }
+ },
+ "X_INTEGRITY": {
+  "integrity_failures_in_the_developmental_set": 0,
+  "source": "no PQEC01 world stopped on INTEGRITY_FAILURE"
+ },
+ "TOTAL_Y_BIRTHS": 31,
+ "TOTAL_Y_DEATHS": 40,
+ "P_DAUGHTER_FORMATION_AND_FUNCTIONAL_TURNOVER": {
+  "k": 3,
+  "n": 44,
+  "rate": 0.06818181818181818,
+  "exact_95": [
+   0.014287668426975394,
+   0.18656201007202233
+  ],
+  "observed_not_assumed": "counted directly in the same 44 worlds; no independence assumption is used",
+  "note": "every world with a complete turnover also had a two-centre episode. That is structural, not coincidental: a local Y birth is the SAME event that supplies a second constituent and, if the newborn later separates beyond CORE_R, a second centre."
+ },
+ "CANDIDATE": true,
+ "CANDIDATE_RULE": "complete turnover neither vanishingly rare nor dominated by extinction or uncontrolled proliferation"
+}
