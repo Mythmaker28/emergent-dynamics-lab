@@ -1,0 +1,42 @@
+{
+ "SECTION": "MRFA01 \u00a712 \u2014 adjudication of FMRT01's declared provenance defects. ADDITIVE ONLY.",
+ "GENERATED_UTC": "2026-08-21T16:53:04.005079+00:00",
+ "NO_FMRT01_JSON_WAS_ALTERED": true,
+ "ORIGINAL_MACHINE_DISPOSITION": "MINIMAL_REPRODUCTION_TEST_TECHNICALLY_INVALID",
+ "FMRT01_ADJUDICATED_DISPOSITION": "MINIMAL_REPRODUCTION_NOT_QUALIFIED__DAUGHTER_INDEPENDENCE_NOT_ESTABLISHED",
+ "SCIENTIFIC_CAUSAL_RESULT": "the frozen primary test did not reject H0: q <= 0.05. K = 3 against a required critical count of 4, exact one-sided p = 0.09482304591843077. That stands, and nothing in this autopsy changes it.",
+ "P1_TRIGGER_LEAKAGE_THROUGH_RAW_NAMING": {
+  "what_was_visible": "the suffix _NOTRIG on 63 of 85 archive filenames, i.e. trigger occurrence",
+  "when": "at raw-manifest construction, AFTER all 85 blocks had completed",
+  "any_run_still_unexecuted": false,
+  "reserve_use_still_possible": false,
+  "sample_size_still_changeable": false,
+  "verified_here": {
+   "archives": 85,
+   "blocks_completed": 85,
+   "technical_failures": 0,
+   "reserves_spent": 0
+  },
+  "CLASSIFICATION": "OUTCOME_METADATA_LEAK__NO_ADAPTIVE_CONSEQUENCE"
+ },
+ "P2_DURABILITY_GATE_SELF_REFERENCE": {
+  "what_happened": "fmrt01_final.py, frozen and hashed before any world existed, reads two of its ten decision gates out of files that structurally cannot contain the values it wants. It reads PRE_RUN_DURABILITY out of the COMMITTED master freeze, where the field is PENDING and is deliberately never rewritten, and RAW_DURABILITY_BEFORE_ANALYSIS out of the raw manifest, which is written before that verdict exists. Both gates therefore read false while both operations in fact PASSED with read-back proof.",
+  "gates_affected": [
+   "PRE_RUN_DURABILITY",
+   "RAW_DURABILITY_BEFORE_ANALYSIS"
+  ],
+  "any_scientific_quantity_changed": false,
+  "could_it_qualify_a_failed_test": false,
+  "why_not": "REJECT_H0 is false under BOTH readings, so no correction of the gate addressing can reach MINIMAL_REPRODUCTION_CAUSALLY_QUALIFIED. The adjudication moves the result from one negative disposition to a different negative disposition. It converts nothing.",
+  "CLASSIFICATION": "NONSCIENTIFIC_PROVENANCE_GATE_DEFECT"
+ },
+ "P3_FOUND_BY_THIS_AUTOPSY__WORLD_COUNT_OVERSTATED": {
+  "what": "FMRT01 reports PRIMARY_SCIENTIFIC_WORLDS = 255 = 85 x 3. Only the 22 triggered blocks forked into three arms; the other 63 ran a single trajectory. Arm-instances actually instantiated: 22 x 3 + 63 x 1 = 129.",
+  "is_255_in_any_denominator": false,
+  "checked": "the primary test used M = 22 and the population analysis used N = 85; 255 appears only as a descriptive field",
+  "budget_respected": "129 <= 255 <= 256, so no constraint was breached either way",
+  "CLASSIFICATION": "DESCRIPTIVE_OVERSTATEMENT__NO_DENOMINATOR_AFFECTED",
+  "NOT_REPAIRED_IN_FMRT01": true
+ },
+ "A_BROKEN_DURABILITY_BOOLEAN_DOES_NOT_QUALIFY_A_FAILED_TEST": true
+}

@@ -1,0 +1,107 @@
+{
+ "SECTION": "MRFA01 \u00a73 \u2014 criterion D audited from its definition",
+ "GENERATED_UTC": "2026-08-21T16:48:14.377147+00:00",
+ "EXACT_FORMULA": "criterion_D  <=>  daughter_mass_post  >  Q_0.95[ Binomial( N_X_world_at_intervention , (1-muX)^250 ) ]",
+ "SOURCE": "FMRT01/code/fmrt01_endpoint.py survivor_upper(), applied in fmrt01_run.py to NX_world",
+ "SURV_HOLD": 0.3671424535662421,
+ "DISC_CELLS": 81,
+ "LATTICE_CELLS": 1296,
+ "DISC_FRACTION_OF_LATTICE": 0.0625,
+ "SYMBOL_TABLE": [
+  {
+   "symbol": "daughter_mass_post",
+   "quantity": "count of X molecules",
+   "spatial_scope": "LOCAL: a disc of radius CORE_R = 5.0 around the daughter centre, 81 of 1296 cells (6.25 % of the lattice)",
+   "temporal_scope": "a single instant, t_m + 250",
+   "source_programme": "FMRT01, via PQEC01 disc geometry",
+   "interpretation": "how much X sits around the daughter at the end of the hold",
+   "normalisation": "none, an absolute count",
+   "independent_unit": "the block",
+   "why_chosen": "it is the quantity the daughter is supposed to be maintaining"
+  },
+  {
+   "symbol": "N_X_world_at_intervention",
+   "quantity": "count of X molecules",
+   "spatial_scope": "GLOBAL: the entire 36x36 torus, all 1296 cells",
+   "temporal_scope": "a single instant, t_m",
+   "source_programme": "FMRT01",
+   "interpretation": "the total X stock anywhere in the world at the moment of intervention",
+   "normalisation": "none",
+   "independent_unit": "the block",
+   "why_chosen": "chosen to make the bound CONSERVATIVE: the daughter disc cannot contain more old X than the whole world holds, so no amount of diffusion into the disc can breach it. The conservatism is real and deliberate. The cost is that the reference is a different spatial object from the quantity it is compared with."
+  },
+  {
+   "symbol": "(1-muX)^T_HOLD",
+   "quantity": "per-molecule survival probability",
+   "spatial_scope": "none, a scalar",
+   "temporal_scope": "the whole 250-step hold",
+   "source_programme": "ORR01 kinetics, muX = 0.004 frozen",
+   "interpretation": "probability one X molecule alive at t_m is still alive at t_m + 250",
+   "normalisation": "dimensionless",
+   "independent_unit": "the molecule",
+   "value": 0.3671424535662421,
+   "why_chosen": "decay is per-molecule Bernoulli in the frozen engine, so survival over 250 steps is exactly this"
+  },
+  {
+   "symbol": "Q_0.95[Binomial(N,(1-muX)^250)]",
+   "quantity": "a count",
+   "spatial_scope": "GLOBAL, inherited from N",
+   "temporal_scope": "the whole hold",
+   "source_programme": "FMRT01",
+   "interpretation": "the 95th percentile of how many of the world's pre-intervention X molecules are still alive at the end",
+   "normalisation": "none",
+   "independent_unit": "the block",
+   "why_chosen": "it makes the false-positive rate of D at most 0.05 under the null 'no new daughter-local X'"
+  }
+ ],
+ "WHAT_D_COMPARES": {
+  "left_hand_side": "a LOCAL count over 6.25 % of the lattice at one instant",
+  "right_hand_side": "a quantile of a GLOBAL count over 100 % of the lattice",
+  "reference_derived_from": "WHOLE_WORLD_X_MASS",
+  "reference_NOT_derived_from": [
+   "daughter-local single-centre physics",
+   "parent-local physics",
+   "the SHAM world",
+   "any measured control"
+  ]
+ },
+ "QUANTITATIVE_CONSEQUENCES": {
+  "median_bound": 94.0,
+  "median_daughter_mass_at_intervention": 71.0,
+  "blocks_where_the_bound_EXCEEDS_the_daughters_entire_mass_at_intervention": 20,
+  "of_blocks": 22,
+  "median_excess": 23.0,
+  "reading": "in 20 of 22 blocks a daughter that PERFECTLY maintained its field, losing nothing, would still be scored a failure. D cannot detect maintenance; it can only detect growth.",
+  "bound_as_multiple_of_the_daughters_own_decayed_stock": 3.548595152911451,
+  "measured_old_material_in_the_fixed_disc_GLOBAL_arm_median": 19.0,
+  "analytic_bound_over_measured_old_material": 4.857142857142858
+ },
+ "WORLD_SIZE_SENSITIVITY": {
+  "world_X_x0.5": {
+   "median_bound": 49.5,
+   "SELECTIVE_passes": 20,
+   "SHAM_passes": 22
+  },
+  "world_X_x1": {
+   "median_bound": 94.0,
+   "SELECTIVE_passes": 3,
+   "SHAM_passes": 8
+  },
+  "world_X_x2": {
+   "median_bound": 181.0,
+   "SELECTIVE_passes": 0,
+   "SHAM_passes": 0
+  },
+  "world_X_x4": {
+   "median_bound": 352.0,
+   "SELECTIVE_passes": 0,
+   "SHAM_passes": 0
+  }
+ },
+ "WORLD_SIZE_ARGUMENT": "D's right-hand side scales with the number of X molecules anywhere in the world; its left-hand side does not. Adding X in a distant corner of the lattice, with no change whatsoever to the daughter, flips D against the daughter. A criterion whose verdict depends on matter that is nowhere near the object it is about is not measuring that object. This is decisive and it does not depend on FMRT01's outcome.",
+ "IS_D_ALPHA_VALID": true,
+ "ALPHA_VALIDITY_IS_NOT_ENOUGH": "D's false-positive rate really is bounded by 0.05 under its stated null, and that is worth preserving. But alpha-validity is necessary, not sufficient: a test that can never fire is alpha-valid and useless. D is close to that regime here.",
+ "CLASSIFICATION": "WORLD_SCALE_CRITERION_MISAPPLIED_TO_LOCAL_DAUGHTER",
+ "CLASSIFICATION_BASIS": "derived from the definition and from the scientific object 'local daughter autonomy', not from the fact that D failed. The two load-bearing facts are (i) the LHS and RHS are different spatial objects differing by a factor of 16 in area, and (ii) D is not invariant to world size or to unrelated X elsewhere, which the scientific object must be.",
+ "WHAT_D_WOULD_HAVE_NEEDED": "a reference built at the daughter's own scale that still accounts for X diffusing IN from elsewhere. FMRT01 solved the diffusion problem by inflating the reference to the whole world. The three-arm fork already contained the exact empirical answer and it was not used for the endpoint."
+}

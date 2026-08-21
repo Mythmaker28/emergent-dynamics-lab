@@ -1,0 +1,115 @@
+{
+ "SECTION": "MRFA01 \u00a713 \u2014 eligibility for a fresh test, and the exact power it would have",
+ "GENERATED_UTC": "2026-08-21T16:53:07.883972+00:00",
+ "CANDIDATE_PRIMARY_ENDPOINT": "Definition IV, scored per block on the SELECTIVE arm against the SAME block's GLOBAL_OFF arm in identical fixed daughter-centred geometry",
+ "NULL": {
+  "H0": "q <= 0.5",
+  "basis": "matched-pair exchangeability. Under 'removing the parent leaves no daughter-specific local response' the SELECTIVE and GLOBAL arms are two draws from the same post-fork law in the same world, so the paired comparison is a coin flip. 0.5 is the pair's own rate, not a chosen number.",
+  "alpha": "one-sided 0.05",
+  "critical_function": "critical(M) = smallest k with P[Binomial(M,0.5) >= k] <= 0.05",
+  "critical_examples": {
+   "5": 5,
+   "10": 9,
+   "15": 12,
+   "18": 13,
+   "20": 15,
+   "22": 16,
+   "25": 18,
+   "30": 20
+  }
+ },
+ "PLANNING_INPUTS": {
+  "P_trigger_point": 0.25882352941176473,
+  "P_trigger_conservative_lower_95": 0.1821888671373235,
+  "q_point": 0.9090909090909091,
+  "q_conservative_lower_95": 0.7405334677715627,
+  "rule": "plan on the exact 95 % lower bounds, never the point estimates \u2014 the FDFLT01 precedent"
+ },
+ "EXACT_UNCONDITIONAL_POWER": {
+  "50": {
+   "q=0.95": 0.8613059896950076,
+   "q=0.90": 0.7265187887636616,
+   "q=0.85": 0.5790022351590135,
+   "q=0.80": 0.43598975466160733,
+   "q=0.75": 0.3099612034005846
+  },
+  "60": {
+   "q=0.95": 0.9291037486874958,
+   "q=0.90": 0.8227484293527334,
+   "q=0.85": 0.6843774218534672,
+   "q=0.80": 0.5327129725359525,
+   "q=0.75": 0.38694539100022496
+  },
+  "70": {
+   "q=0.95": 0.964907422542909,
+   "q=0.90": 0.8886025084995179,
+   "q=0.85": 0.7685185443151046,
+   "q=0.80": 0.6181091059969072,
+   "q=0.75": 0.4594507761623733
+  },
+  "85": {
+   "q=0.95": 0.9885124366027284,
+   "q=0.90": 0.9467991709899698,
+   "q=0.85": 0.8578930207571741,
+   "q=0.80": 0.7209136303769578,
+   "q=0.75": 0.5542141395685874
+  },
+  "128": {
+   "q=0.95": 0.9996299518514244,
+   "q=0.90": 0.9941616483107962,
+   "q=0.85": 0.9661772679196581,
+   "q=0.80": 0.8878847226803727,
+   "q=0.75": 0.7433761650612679
+  }
+ },
+ "POWER_AT_85_BLOCKS_ON_THE_CONSERVATIVE_INPUT": 0.5216297287860694,
+ "SEVEN_CONDITIONS": [
+  {
+   "n": 1,
+   "condition": "criterion D did not validly operationalise local daughter autonomy",
+   "met": true,
+   "evidence": "MRFA01_CRITERION_D_AUDIT.json \u2014 WORLD_SCALE_CRITERION_MISAPPLIED_TO_LOCAL_DAUGHTER, on world-size dependence and a 16x scope gap"
+  },
+  {
+   "n": 2,
+   "condition": "one replacement criterion follows from physics/causal design, not outcome optimisation",
+   "met": false,
+   "evidence": "Definition IV is derived from the design and has an exact exchangeability null, but at a 250-step hold its content reduces to Y-gated catalysis by a surviving single molecule, which the frozen law entails. A criterion entailed by the law is not a replacement criterion; it is a restatement of the law."
+  },
+  {
+   "n": 3,
+   "condition": "the criterion is measurable losslessly",
+   "met": true,
+   "evidence": "daughter-local accepted births and fixed-disc mass are exact integer counts; the reconstruction recovered them bit-exactly in 22/22"
+  },
+  {
+   "n": 4,
+   "condition": "SHAM and GLOBAL_OFF provide valid positive/negative causal references",
+   "met": true,
+   "evidence": "GLOBAL produced exactly zero daughter-disc births in all 22 blocks; SHAM retained a functioning daughter in 22 of 22"
+  },
+  {
+   "n": 5,
+   "condition": "post-outcome diagnostics show the criterion is not vanishingly rare",
+   "met": true,
+   "evidence": "20 of 22 under Definition IV; exact one-sided 95 % lower bound 0.740533"
+  },
+  {
+   "n": 6,
+   "condition": "a fresh experiment is decision-capable within <= 256 primary worlds",
+   "met": false,
+   "evidence": "at 85 blocks the exact unconditional power against the exchangeability null, planned on the conservative lower bounds q = 0.7405 and P(trigger) = 0.1822, is 0.5216 \u2014 below 0.80. Reaching 0.80 needs q >= about 0.87, which is above the conservative planning input."
+  },
+  {
+   "n": 7,
+   "condition": "the criterion has a frozen null and an exact testable prediction",
+   "met": false,
+   "evidence": "the null is exact \u2014 matched-pair exchangeability, H0: q <= 0.5 \u2014 but the prediction is not testable in the scientific sense at this scale: the law entails the outcome whenever the daughter's single Y molecule survives, which it does with probability 0.977112 per hold."
+  }
+ ],
+ "N_MET": 4,
+ "N_REQUIRED": 7,
+ "FRESH_TEST_ELIGIBLE": false,
+ "PARAMETER_POINT": "B1, unchanged. No parameter search was performed and none is proposed.",
+ "NO_B1_VS_B2_COMPARISON": "B1 is not re-litigated merely because it failed under the old D"
+}

@@ -1,0 +1,82 @@
+{
+ "SECTION": "MRFA01 \u00a78 \u2014 is the qualified single-centre operator a valid autonomy reference?",
+ "GENERATED_UTC": "2026-08-21T16:53:03.999541+00:00",
+ "SOURCES": [
+  "OBTC02/out/_operator_status.json",
+  "OBFOR01/out/_residual.json"
+ ],
+ "WHAT_IS_ACTUALLY_QUALIFIED": {
+  "UNBLOCKED_DISCRETE_KERNEL": "EXACT",
+  "FULL_CAPACITY_CONSTRAINED_OPERATOR": "APPROXIMATE_WITH_EMPIRICAL_ERROR",
+  "why_not_bounded": "no deterministic bound, no certified interval and no pre-registered probabilistic bound on the rejection rate was derived before the runs, and an analytic majoration would require bounding the local occupancy distribution, which is not available. The rejection rates are therefore reported as measurements, not as a bound."
+ },
+ "COMPARISON": [
+  {
+   "aspect": "source law",
+   "single_centre": "one organiser",
+   "daughter_context": "one organiser after selective removal",
+   "comparable": true
+  },
+  {
+   "aspect": "substrate law",
+   "single_centre": "LawSpec v2 exchange",
+   "daughter_context": "identical",
+   "comparable": true
+  },
+  {
+   "aspect": "X decay",
+   "single_centre": "muX = 0.004",
+   "daughter_context": "identical",
+   "comparable": true
+  },
+  {
+   "aspect": "mobility / p_hop",
+   "single_centre": "0.10263340389897246",
+   "daughter_context": "identical",
+   "comparable": true
+  },
+  {
+   "aspect": "capacity regime",
+   "single_centre": "CAP = 16",
+   "daughter_context": "identical nominal cap",
+   "comparable": true
+  },
+  {
+   "aspect": "substrate history",
+   "single_centre": "one centre has drawn on SX/SY throughout",
+   "daughter_context": "two centres have drawn on SX/SY for the whole episode before the intervention",
+   "comparable": false
+  },
+  {
+   "aspect": "measurement radius",
+   "single_centre": "the operator's own r80 = 8.544004",
+   "daughter_context": "FMRT01 measures inside CORE_R = 5.0",
+   "comparable": false
+  },
+  {
+   "aspect": "certified error",
+   "single_centre": "none; rejection rates are measurements, not bounds",
+   "daughter_context": "a frozen null needs a certified bound",
+   "comparable": false
+  }
+ ],
+ "OPERATOR_IS_WORLD_SIZE_INVARIANT": {
+  "36": 8.54400374531753,
+  "72": 8.54400374531753,
+  "96": 8.54400374531753
+ },
+ "OPERATOR_r80_EXCEEDS_FMRT01_MEASUREMENT_RADIUS": {
+  "r80": 8.54400374531753,
+  "CORE_R": 5.0,
+  "consequence": "the operator's own characteristic radius is larger than the disc FMRT01 measures in, so a margin derived from the operator would not even apply at the scale that was measured"
+ },
+ "VERDICT": "SINGLE_CENTRE_OPERATOR_NOT_TRANSPORTABLE_TO_DAUGHTER_CONTEXT",
+ "GROUNDS": [
+  "only the unblocked kernel is exact and the daughter context is capacity-constrained",
+  "the operator's r80 = 8.544 exceeds FMRT01's measurement radius of 5.0",
+  "the daughter's substrate history is a two-centre history, outside the qualification scope",
+  "no certified bound exists, so no frozen exact null can be derived from it"
+ ],
+ "THEREFORE": "use the paired causal fork, which is empirical, exactly scoped and world-size invariant by construction",
+ "THIS_CHOICE_IS_LOAD_BEARING": true
+}

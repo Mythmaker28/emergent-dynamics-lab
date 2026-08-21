@@ -1,0 +1,138 @@
+{
+ "SECTION": "MRFA01 \u00a717 \u2014 two independent calculators, sharing only the raw archives",
+ "GENERATED_UTC": "2026-08-21T16:54:28.297277+00:00",
+ "INDEPENDENCE": {
+  "scalar_source": {
+   "A": "the meta blob inside each .npz",
+   "B": "FMRT01_SEALED_RECORDS.jsonl"
+  },
+  "geometry": {
+   "A": "numpy broadcast disc mask",
+   "B": "explicit integer cell loop with math.hypot"
+  },
+  "binomial_quantile": {
+   "A": "scipy.stats.binom.ppf",
+   "B": "50-significant-digit Decimal PMF recurrence"
+  },
+  "R1": {
+   "A": "numpy boolean masking",
+   "B": "pure-python per-molecule loop"
+  },
+  "contrasts": {
+   "A": "numpy over the reconstruction JSON",
+   "B": "python lists re-read from the CSV"
+  },
+  "B_imports_nothing_from": [
+   "calculator A",
+   "FMRT01/code",
+   "the engine"
+  ]
+ },
+ "AGREEMENT_TABLE": [
+  {
+   "quantity": "trigger blocks",
+   "A": 22,
+   "B": 22,
+   "agree": true
+  },
+  {
+   "quantity": "not triggered",
+   "A": 63,
+   "B": 63,
+   "agree": true
+  },
+  {
+   "quantity": "technical failures",
+   "A": 0,
+   "B": 0,
+   "agree": true
+  },
+  {
+   "quantity": "R1 exact",
+   "A": 22,
+   "B": 22,
+   "agree": true
+  },
+  {
+   "quantity": "criterion D SELECTIVE",
+   "A": 3,
+   "B": 3,
+   "agree": true
+  },
+  {
+   "quantity": "criterion D SHAM",
+   "A": 8,
+   "B": 8,
+   "agree": true
+  },
+  {
+   "quantity": "criterion D GLOBAL",
+   "A": 0,
+   "B": 0,
+   "agree": true
+  },
+  {
+   "quantity": "criterion E positive SELECTIVE",
+   "A": 20,
+   "B": 20,
+   "agree": true
+  },
+  {
+   "quantity": "criterion E positive SHAM",
+   "A": 22,
+   "B": 22,
+   "agree": true
+  },
+  {
+   "quantity": "criterion E positive GLOBAL",
+   "A": 0,
+   "B": 0,
+   "agree": true
+  },
+  {
+   "quantity": "survivor_upper reproduced",
+   "A": 22,
+   "B": 22,
+   "agree": true
+  },
+  {
+   "quantity": "SELECTIVE endpoint mass > GLOBAL",
+   "A": 22,
+   "B": 22,
+   "agree": true
+  },
+  {
+   "quantity": "SHAM endpoint mass > GLOBAL",
+   "A": 21,
+   "B": 21,
+   "agree": true
+  },
+  {
+   "quantity": "SELECTIVE births > 0",
+   "A": 22,
+   "B": 22,
+   "agree": true
+  },
+  {
+   "quantity": "GLOBAL births total",
+   "A": 0,
+   "B": 0,
+   "agree": true
+  }
+ ],
+ "N_CHECKED": 15,
+ "N_DISAGREEMENTS": 0,
+ "DISAGREEMENTS": [],
+ "EXACT_AGREEMENT_ON_EVERY_LISTED_QUANTITY": true,
+ "ONE_NUMERIC_DIFFERENCE_RECORDED": {
+  "quantity": "the float rendering of (1-muX)^250",
+  "A": 0.3671424535662421,
+  "B": 0.3671424535662424,
+  "relative_difference": 9.071871262838117e-16,
+  "cause": "IEEE double repeated multiplication in A versus a 50-digit decimal power in B",
+  "load_bearing": false,
+  "why_not": "the derived integer quantile survivor_upper is identical in 22 of 22 blocks, so no classification moves"
+ },
+ "R2_FAILURE_PARTITION_IS_A_PARTITION": true,
+ "VERDICT": "INDEPENDENT_REANALYSES_AGREE"
+}

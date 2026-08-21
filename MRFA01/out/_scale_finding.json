@@ -1,0 +1,39 @@
+{
+ "SECTION": "MRFA01 \u2014 what the object under test actually is at B1",
+ "Y_OCCUPIED_CELLS_AT_t_m": [
+  2
+ ],
+ "NY_AT_t_m": 2,
+ "Y_REMOVED_BY_SELECTIVE": [
+  1
+ ],
+ "Y_REMOVED_BY_GLOBAL": [
+  2
+ ],
+ "THE_DAUGHTER_CENTRE_IS_ONE_Y_MOLECULE": true,
+ "DAUGHTER_EVER_PRODUCED_A_NEW_Y_DURING_THE_HOLD": {
+  "SELECTIVE": 0,
+  "SHAM": 1,
+  "of": 22
+ },
+ "SINGLE_Y_SURVIVAL_OVER_THE_HOLD": 0.977111957473708,
+ "OBSERVED_DAUGHTER_PERSISTENCE": 0.9090909090909091,
+ "TIMESCALES": {
+  "X_e_folding_steps": 249.49966599830609,
+  "Y_decay_e_folding_steps": 10797.251615563411,
+  "T_HOLD_steps": 250,
+  "T_HOLD_in_X_e_foldings": 1.0020053493847054,
+  "T_HOLD_in_Y_e_foldings": 0.023154040389282413,
+  "empirical_Y_reproduction_waiting_time_median_t_m": 3323.0,
+  "T_HOLD_as_fraction_of_that": 0.07523322299127294,
+  "analytic_Y_birth_waiting_time_steps": [
+   13270.239018449898,
+   4423.413006149966
+  ],
+  "expected_Y_births_in_250_steps": [
+   0.018839148236321865,
+   0.056517444708965595
+  ]
+ },
+ "CONSEQUENCE": "at B1 a 'centre' is a single Y molecule. Its persistence over the hold is molecule survival, (1-muY)^250 = 0.977112, and its 'function' is Y-gated X catalysis, which the frozen law entails at any cell holding a Y and an X. The hold is matched to the X relaxation timescale and is 7.5 % of the timescale on which the organiser population changes at all. Any LOCAL criterion measurable inside this hold therefore tests the law, not the daughter."
+}
