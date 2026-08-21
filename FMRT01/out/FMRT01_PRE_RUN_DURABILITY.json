@@ -1,0 +1,71 @@
+{
+ "SECTION": "FMRT01 \u00a716 \u2014 pre-run external durability, executed BEFORE the first scientific world",
+ "GENERATED_UTC": "2026-08-21T15:09:52.959769+00:00",
+ "WHY_THIS_FILE_IS_SEPARATE": "FMRT01_MASTER_FREEZE.json is committed and is never rewritten. Its WINDOWS_PRE_RUN_DURABILITY field reads PENDING because that was its true value at the instant of the freeze commit. The durability outcome is recorded HERE instead. This rule exists because of a documented FDFLT01 incident: a freeze that is silently rewritten is worthless even when the content matches.",
+ "FREEZE_COMMIT": "90750ad6e0fff8e0add76371b33fccf749f02806",
+ "WORLDS_RUN_BEFORE_THIS_DURABILITY_OPERATION": 0,
+ "BRIDGE_AVAILABLE": true,
+ "ARTEFACTS": {
+  "FMRT01_PRE_RUN_INCREMENT.bundle": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FMRT01\\prerun\\FMRT01_PRE_RUN_INCREMENT.bundle",
+   "bytes": 47211,
+   "sha256_written": "7c4aabaec5164bc35f37f8eea5f171ecca17a1fe67388507679e452687aaef42",
+   "sha256_read_back": "7c4aabaec5164bc35f37f8eea5f171ecca17a1fe67388507679e452687aaef42",
+   "IDENTICAL": true
+  },
+  "FMRT01_PRE_RUN_METHODS.tar.zst": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FMRT01\\prerun\\FMRT01_PRE_RUN_METHODS.tar.zst",
+   "bytes": 67816,
+   "sha256_written": "c5ddfee24adc78173cce5dc17b34d60fa9cc5e9ccf31a9a730f3164d341e461d",
+   "sha256_read_back": "c5ddfee24adc78173cce5dc17b34d60fa9cc5e9ccf31a9a730f3164d341e461d",
+   "IDENTICAL": true
+  },
+  "FMRT01_PRE_RUN_SHA256SUMS": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FMRT01\\prerun\\FMRT01_PRE_RUN_SHA256SUMS",
+   "bytes": 195,
+   "sha256_written": "596ab6aad70073563fe25fff6a2f7b97d26d2ba6f976984f173ff6874bf3817c",
+   "sha256_read_back": "596ab6aad70073563fe25fff6a2f7b97d26d2ba6f976984f173ff6874bf3817c",
+   "IDENTICAL": true
+  },
+  "FMRT01_PRE_RUN_README.txt": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FMRT01\\prerun\\FMRT01_PRE_RUN_README.txt",
+   "bytes": 3136,
+   "sha256_written": "94f5a4f4bcd502bf81ff4c01db43d93bccdd497de24c05370d2ade17a7913ff6",
+   "sha256_read_back": "94f5a4f4bcd502bf81ff4c01db43d93bccdd497de24c05370d2ade17a7913ff6",
+   "IDENTICAL": true
+  }
+ },
+ "ALL_ARTEFACTS_IDENTICAL_ON_READ_BACK": true,
+ "READ_BACK_VERIFICATION": {
+  "METHOD": "the four files were written to the Windows disk, then STAGED BACK into the container from that disk and re-hashed. A write receipt was not accepted as proof.",
+  "BUNDLE_VERIFY": "okay",
+  "BUNDLE_CONTAINS": "90750ad6e0fff8e0add76371b33fccf749f02806 refs/heads/codex/fresh-direct-functional-lineage-test-01",
+  "BUNDLE_REQUIRES": "a453e215f39150afe8a2e9c59a74150b9abecd63",
+  "PREREQUISITE_ALREADY_DURABLE_IN": "RCD01_INCREMENT.bundle on the same disk, itself resting on ISING_LIFE_AUTHORITATIVE_FULL.bundle",
+  "INDEPENDENT_RECONSTRUCTION": "a scratch repository was created, the prerequisite fetched, then the DEVICE COPY of the bundle fetched into it",
+  "FILES_IN_RESTORED_FREEZE_COMMIT": 21,
+  "RESTORED_TREE_SHA": "4ce1dff43c2ab6238bc1457b74a93b4ca0e348a3",
+  "LIVE_TREE_SHA": "4ce1dff43c2ab6238bc1457b74a93b4ca0e348a3",
+  "TREE_IDENTICAL": true,
+  "GIT_FSCK_FULL": "no corruption reported",
+  "METHODS_ARCHIVE_MEMBERS_RESTORED": 55,
+  "METHODS_HASHES_REPRODUCED_FROM_DEVICE_COPY": "33/33",
+  "ENGINE_SHA_FROM_DEVICE_COPY": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30",
+  "ENGINE_MATCHES_FROZEN_VALUE": true,
+  "SEED_BLOCKS_FROM_DEVICE_COPY": 85,
+  "SEEDS_UNIQUE_FROM_DEVICE_COPY": true,
+  "METHODS_HASH_FROM_DEVICE_COPY": "ca6318d7ccd38cd6d4eb75b32a4d54d6de98265594204693c21a1680c5e7fd87"
+ },
+ "SELF_CONTAINED_FALLBACK": "FMRT01_PRE_RUN_METHODS.tar.zst needs no git object at all. If every bundle on the disk were lost, the complete FMRT01 specification would still be readable from that one file, and its 33 manifest hashes were reproduced from the device copy.",
+ "WINDOWS_PRE_RUN_DURABILITY": "PASS",
+ "USER_DOWNLOADED_PRE_RUN_BUNDLE": "NOT_REQUIRED__BRIDGE_SUCCEEDED (the four files were also attached to the conversation as a second, independent copy)",
+ "SPOIQ01_DURABILITY_DEBT": {
+  "STATUS": "UNPAYABLE__ARTEFACTS_DESTROYED",
+  "EXPLANATION": "SPOIQ01's outputs never reached external storage before the fifth container rollback and were destroyed with the container. A search of the current container and of the Windows recovery tree finds no SPOIQ01 artefact of any kind. The debt cannot be paid by transferring something that no longer exists, and no SPOIQ01 hash is reasserted from memory. The capability SPOIQ01 qualified has been REBUILT and RE-QUALIFIED inside FMRT01 from scratch, which is the only honest remedy; that re-qualification is what this freeze rests on.",
+  "SEARCH_PERFORMED": "find /home/claude /mnt -iname '*SPOIQ*' -> 0 results",
+  "REPLACEMENT_EVIDENCE": [
+   "FMRT01_UNARMED_INERTNESS.json (PASS_88_OF_88)",
+   "FMRT01_INTERVENTION_FIXTURES.json (11/11)"
+  ]
+ }
+}
