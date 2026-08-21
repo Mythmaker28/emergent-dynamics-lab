@@ -1,0 +1,196 @@
+{
+  "SECTION": "FMRT01 \u00a721 \u2014 one independent adversarial review",
+  "REVIEWER_CREATED_WORLDS": false,
+  "N_ATTACKS": 19,
+  "DEFECTS_CONFIRMED": 1,
+  "DEFECTS_PLAUSIBLE": 1,
+  "LOAD_BEARING_DEFECT_CONFIRMED": true,
+  "ATTACKS": [
+    {
+      "attack": "1 paired common-seed design",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "the three arms of a block share one seed and one forked pre-intervention state",
+      "evidence": {
+        "selected": "A",
+        "arms_per_block": 3,
+        "blocks": 85
+      }
+    },
+    {
+      "attack": "2 pre-intervention bit identity",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "state hash and RNG fingerprint identical across arms before the intervention",
+      "evidence": {
+        "blocks_failing": [],
+        "checked": 22
+      }
+    },
+    {
+      "attack": "3 sample-size derivation",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "exact binomial integrated over the random number of trigger-eligible worlds, conservative trigger bound",
+      "evidence": {
+        "planning_trigger": 0.21411676535655655,
+        "power": {
+          "q_0.40": 0.9699905737401786,
+          "q_0.30": 0.8663466405459543,
+          "q_0.20": 0.5768922789752977,
+          "q_0.15": 0.35857512930599605,
+          "q_0.10": 0.14779139405787842
+        }
+      }
+    },
+    {
+      "attack": "4 R1 exact provenance",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "R1 uses molecule identity and the counterfactual F5, with no majority cutoff",
+      "evidence": {
+        "criterion": "inherited_mass_in_daughter_disc < f_primary * parent_disc_mass \u2014 the counterfactual F5 asks, restricted to material that existed before the daughter did"
+      }
+    },
+    {
+      "attack": "5 selective mask specificity",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "no unselected state changes in any fixture",
+      "evidence": {
+        "failing": []
+      }
+    },
+    {
+      "attack": "6 sham implementation",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "the sham runs the identical branch and audit record and removes nothing",
+      "evidence": {
+        "n_removed": 0,
+        "sham_removed_total_in_runs": 0
+      }
+    },
+    {
+      "attack": "7 global-off implementation",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "the all-true mask is state-identical to the historical three-line organiser-off transformation",
+      "evidence": {
+        "equivalence": {
+          "case": "global_off_equivalence_to_the_historical_three_lines",
+          "states_identical": true,
+          "source": "OBTC02/code/engine_obtc.py lines 226-228, quoted verbatim in the comparison",
+          "PASS": true
+        },
+        "global_final_NY_all_zero": true
+      }
+    },
+    {
+      "attack": "8 trigger timing",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "the maturation event is evaluated at exactly run_start + NEED - 1, the frozen FDFLT01 semantics",
+      "evidence": {
+        "exact_step": "run_start + 250 - 1, evaluated at EXACTLY that step and not at later steps of the same run",
+        "boundary": "after the completed end-of-step observation at t_m and before the first transport of t_m + 1. The engine never detects maturation and never invokes the intervention."
+      }
+    },
+    {
+      "attack": "9 late-trigger rule",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "late triggers are population failures and not intervention-eligible; the count is reported",
+      "evidence": {
+        "latest_allowed": 10750,
+        "n_late": 0
+      }
+    },
+    {
+      "attack": "10 R2 old-material bound",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "criterion D credits the daughter with every surviving pre-intervention molecule in the world",
+      "evidence": {
+        "D": "daughter-local X mass exceeds Q_0.95[Binomial(N_X_world_at_intervention, (1-muX)^250)]",
+        "survival": 0.3671424535662421
+      }
+    },
+    {
+      "attack": "11 post-off daughter X births",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "criterion E requires births after the intervention inside the surviving daughter disc",
+      "evidence": {
+        "E": "the tracker shows post-intervention X births inside the surviving daughter disc",
+        "selective_with_post_births": 20
+      }
+    },
+    {
+      "attack": "12 third-centre handling",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "a third centre before R2 completion is a frozen primary failure",
+      "evidence": {
+        "rule": "a third spatial centre appearing before R2 completion is a PRIMARY_REPRODUCTION_FAILURE, frozen before runs, because the causal source of maintained X would otherwise be ambiguous",
+        "selective_third_centre": 0
+      }
+    },
+    {
+      "attack": "13 conditional denominator M",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "M counts exactly the intervention-eligible triggered SELECTIVE worlds",
+      "evidence": {
+        "M": 22,
+        "triggered_total": 22
+      }
+    },
+    {
+      "attack": "14 population denominator",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "every seeded block stays in the population denominator",
+      "evidence": {
+        "N": 85,
+        "blocks": 85,
+        "rule": "every seeded block; failures before intervention are failures, not censored"
+      }
+    },
+    {
+      "attack": "15 exact binomial test",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "critical-count and lower-bound formulations coincide; no normal approximation",
+      "evidence": {
+        "M": 22,
+        "K": 3,
+        "crit": 4,
+        "lower": 0.038223511006417944,
+        "p": 0.09482304591843077
+      }
+    },
+    {
+      "attack": "16 raw-before-analysis chronology",
+      "verdict": "DEFECT_CONFIRMED",
+      "claim": "the raw ledger and hashes were committed before analysis and carry no result",
+      "evidence": {
+        "raw_commit": null,
+        "files": [],
+        "leaked": []
+      }
+    },
+    {
+      "attack": "17 pre-run and raw durability",
+      "verdict": "DEFECT_PLAUSIBLE",
+      "claim": "the freeze existed outside the container before the first world",
+      "evidence": {
+        "freeze_commit": "90750ad6e0fff8e0add76371b33fccf749f02806",
+        "pre_run_durability": "PENDING",
+        "raw_durability": null
+      }
+    },
+    {
+      "attack": "18 absence of post-outcome code changes",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "every hashed module is byte-unchanged since the freeze",
+      "evidence": {
+        "changed": [],
+        "n_modules": 22
+      }
+    },
+    {
+      "attack": "19 claim ceiling",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "no claim beyond minimal reproduction appears anywhere",
+      "evidence": {
+        "banned_found": []
+      }
+    }
+  ]
+}

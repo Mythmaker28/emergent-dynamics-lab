@@ -1,0 +1,95 @@
+{
+ "SECTION": "FMRT01 \u2014 POST HOC DESCRIPTION",
+ "STATUS": "POST_HOC__NOT_PART_OF_THE_FROZEN_TEST__NO_DECISION_ATTACHED",
+ "WHY_IT_IS_HERE": "these quantities were computed after the outcome was known. None of them was prespecified, none carries a decision, and none is used to support or weaken the terminal disposition. They are published because they are the most informative content of the data and hiding them would be worse than quarantining them.",
+ "PAIRED_CRITERION_D_TABLE": {
+  "both_pass": 1,
+  "selective_only": 2,
+  "sham_only": 7,
+  "neither": 12,
+  "discordant_pairs": 9,
+  "exact_two_sided_sign_test_p": 0.1796875,
+  "direction": "removing the parent centre lowers criterion-D passage on the same blocks",
+  "caveat": "post hoc; the frozen primary test is the one-sample exact binomial against q <= 0.05"
+ },
+ "CRITERION_D_MARGIN_MOLECULES": {
+  "selective_median": -20.0,
+  "selective_max": 6.0,
+  "sham_median": -8.5,
+  "sham_max": 29.0,
+  "reading": "the frozen bound is Q_0.95 of the survival of the WHOLE WORLD's X stock over 250 steps, while the mass compared is the daughter's local X alone. The bound is therefore severe by construction: it asks the daughter alone to exceed what every old molecule anywhere could leave behind. That severity is exactly what makes the 0.05 false-positive rate valid, and it is also why the median daughter falls short of it even in the SHAM arm, where the parent is untouched."
+ },
+ "R1_PROVENANCE": {
+  "R1_EXACT_true": 22,
+  "of": 22,
+  "fraction_of_daughter_X_that_is_NEW": {
+   "min": 0.7078651685393258,
+   "median": 0.8781323087203474,
+   "max": 0.9714285714285714
+  }
+ },
+ "TRIGGER_TIMES": {
+  "min": 646,
+  "median": 3323.0,
+  "max": 10708,
+  "LATEST_ALLOWED_TRIGGER": 10750,
+  "closest_approach_to_the_boundary_steps": 42,
+  "note": "one block matured at step 10708, only 42 steps inside the frozen boundary. FDFLT01's largest observed maturation was 9464, so the planning input understated the tail. No world was lost, but the margin was thin and is reported rather than left implicit."
+ },
+ "NON_TRIGGER_CAUSES": {
+  "PREMATURE_THIRD_CENTRE": 4,
+  "EXTINCT": 46,
+  "HORIZON": 13
+ },
+ "IDENTITY_LEVELS_USED": {
+  "1": 21,
+  "4": 1
+ },
+ "IDENTITY_LEVEL_NOTE": "level 1 (minimum toroidal distance to the pre-separation centroid) resolved 21 of 22. One block needed level 4, the lexicographic canonical tie-break \u2014 the exact tie class first seen in RCD01 as F_B1_i182_s961444860 occurs in fresh worlds too.",
+ "OBSERVED_TRIGGER_RATE": {
+  "triggered": 22,
+  "blocks": 85,
+  "rate": 0.25882352941176473,
+  "planning_conservative_lower_95": 0.21411676535655655,
+  "planning_point": 0.2760416666666667,
+  "note": "the observed rate falls between the conservative planning input and the FDFLT01 point estimate"
+ },
+ "THE_THREE_SUCCESSES": [
+  {
+   "block": 1,
+   "seed": 986782284,
+   "t_m": 8914,
+   "fraction_new": 0.8658536585365854,
+   "SELECTIVE_daughter_mass_post": 101.0,
+   "SELECTIVE_survivor_upper_95": 96,
+   "SELECTIVE_criterion_E_post_intervention_births_in_daughter": 71,
+   "SELECTIVE_final_NY": 1,
+   "SELECTIVE_final_NX": 180,
+   "SHAM_R2_PASS": false
+  },
+  {
+   "block": 61,
+   "seed": 982915845,
+   "t_m": 6548,
+   "fraction_new": 0.7078651685393258,
+   "SELECTIVE_daughter_mass_post": 95.0,
+   "SELECTIVE_survivor_upper_95": 89,
+   "SELECTIVE_criterion_E_post_intervention_births_in_daughter": 72,
+   "SELECTIVE_final_NY": 1,
+   "SELECTIVE_final_NX": 164,
+   "SHAM_R2_PASS": true
+  },
+  {
+   "block": 80,
+   "seed": 982257479,
+   "t_m": 3507,
+   "fraction_new": 0.7272727272727273,
+   "SELECTIVE_daughter_mass_post": 89.0,
+   "SELECTIVE_survivor_upper_95": 85,
+   "SELECTIVE_criterion_E_post_intervention_births_in_daughter": 80,
+   "SELECTIVE_final_NY": 1,
+   "SELECTIVE_final_NX": 166,
+   "SHAM_R2_PASS": false
+  }
+ ]
+}

@@ -1,0 +1,73 @@
+{
+ "SECTION": "FMRT01 \u00a722 \u2014 adjudication of the frozen final module's gate addressing",
+ "GENERATED_UTC": "2026-08-21T15:28:58.501416+00:00",
+ "WHAT_HAPPENED": "fmrt01_final.py, frozen and hashed before any world existed, reads two of its ten decision gates out of files that structurally cannot contain the values it wants. It reads PRE_RUN_DURABILITY out of the COMMITTED master freeze, where the field is PENDING and is deliberately never rewritten, and RAW_DURABILITY_BEFORE_ANALYSIS out of the raw manifest, which is written before that verdict exists. Both gates therefore read false while both operations in fact PASSED with read-back proof.",
+ "THE_CONFLICT_IS_MINE_AND_WAS_FROZEN_IN": "the frozen module expects the committed master freeze to be edited to PASS after the freeze commit. FDFLT01 established, from a documented incident, that a freeze which is silently rewritten is worthless even when its content matches. The two frozen rules are in direct conflict and the conflict was unavoidable: a bundle cannot be built before the commit it carries. I resolved it in favour of NEVER rewriting a committed freeze, and I record the cost here rather than hiding it.",
+ "FROZEN_MODULE_WAS_NOT_EDITED": true,
+ "FROZEN_MODULE_SHA256": "1f84af3913f783ca23a066c105e96382dadf69633e2e7d370025390a1ad4c2f0",
+ "FROZEN_MODULE_LITERAL_OUTPUT": {
+  "DECISION_GATES": {
+   "ALL_BLOCKS_ACCOUNTED": true,
+   "NO_TECHNICAL_FAILURE": true,
+   "FORK_IDENTITY_OK": true,
+   "UNARMED_INERTNESS": true,
+   "FIXTURES_PASS": true,
+   "FAILURE_PARTITION_VALID": true,
+   "PRE_RUN_DURABILITY": false,
+   "RAW_DURABILITY_BEFORE_ANALYSIS": false,
+   "NO_LOAD_BEARING_REVIEW_DEFECT": true,
+   "DECISION_RULES_AGREE": true
+  },
+  "TECHNICALLY_VALID": false,
+  "FINAL_DISPOSITION": "MINIMAL_REPRODUCTION_TEST_TECHNICALLY_INVALID"
+ },
+ "FROZEN_ARTEFACT_LEFT_UNREPAIRED": "FMRT01_FINAL_DISPOSITION.json is left exactly as the frozen module wrote it, in the same way FDFLT01's mislabelled FIRST_FAILING_COMPONENT_COUNTS was left unrepaired. MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS = 0 is honoured.",
+ "GATES_RECOMPUTED_FROM_THEIR_TRUE_SOURCES": {
+  "ALL_BLOCKS_ACCOUNTED": true,
+  "NO_TECHNICAL_FAILURE": true,
+  "FORK_IDENTITY_OK": true,
+  "UNARMED_INERTNESS": true,
+  "FIXTURES_PASS": true,
+  "FAILURE_PARTITION_VALID": true,
+  "PRE_RUN_DURABILITY": true,
+  "RAW_DURABILITY_BEFORE_ANALYSIS": true,
+  "NO_LOAD_BEARING_REVIEW_DEFECT": true,
+  "DECISION_RULES_AGREE": true
+ },
+ "GATES_THAT_DIFFER": [
+  "PRE_RUN_DURABILITY",
+  "RAW_DURABILITY_BEFORE_ANALYSIS"
+ ],
+ "EVIDENCE_FOR_THE_TWO_DIFFERING_GATES": {
+  "PRE_RUN_DURABILITY": {
+   "source": "FMRT01_PRE_RUN_DURABILITY.json",
+   "verdict": "PASS",
+   "read_back_identical": true,
+   "restored_tree_identical": true,
+   "methods_hashes_reproduced_from_device": "33/33",
+   "worlds_run_before_the_operation": 0
+  },
+  "RAW_DURABILITY_BEFORE_ANALYSIS": {
+   "source": "FMRT01_RAW_DURABILITY.json",
+   "verdict": "PASS",
+   "read_back_identical": true,
+   "restored_tree_identical": true,
+   "npz_archives_restored_from_device": 85,
+   "analysis_had_not_been_run": true
+  }
+ },
+ "NO_SCIENTIFIC_QUANTITY_CHANGES": {
+  "M": 22,
+  "K": 3,
+  "critical": 4,
+  "q": 0.13636363636363635,
+  "p": 0.09482304591843077,
+  "REJECT_H0": false,
+  "identical_under_both_readings": true
+ },
+ "THE_ADJUDICATION_CANNOT_BE_SELF_SERVING": "REJECT_H0 is false under BOTH readings, so no correction of the gate addressing can reach MINIMAL_REPRODUCTION_CAUSALLY_QUALIFIED. The adjudication moves the result from one negative disposition to a different negative disposition. It converts nothing.",
+ "FROZEN_MODULE_DISPOSITION": "MINIMAL_REPRODUCTION_TEST_TECHNICALLY_INVALID",
+ "ADJUDICATED_TERMINAL_DISPOSITION": "MINIMAL_REPRODUCTION_NOT_QUALIFIED__DAUGHTER_INDEPENDENCE_NOT_ESTABLISHED",
+ "WHICH_ONE_IS_REPORTED": "the adjudicated one, because declaring this experiment technically invalid would be a false statement: there were 0 technical failures, fork identity held in every block, and both durability operations passed with staged read-back verification from the Windows disk.",
+ "DEFECT_RECORDED_FOR_SUCCESSORS": "fmrt01_review.py and fmrt01_final.py both assume durability verdicts live inside artefacts that are frozen before those verdicts exist. Any successor mission must place the durability verdict in its own file and must read it from there."
+}

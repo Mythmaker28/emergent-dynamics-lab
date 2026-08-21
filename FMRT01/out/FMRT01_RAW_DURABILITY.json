@@ -1,0 +1,41 @@
+{
+ "SECTION": "FMRT01 \u00a718 \u2014 external durability of the RAW, executed BEFORE ANY ANALYSIS",
+ "GENERATED_UTC": "2026-08-21T15:25:23.231735+00:00",
+ "RAW_COMMIT": "61f8f39682f3e557827735207292e4a97d3a5aab",
+ "PREREQUISITE": "90750ad6e0fff8e0add76371b33fccf749f02806 (the freeze, already durable)",
+ "ANALYSIS_HAD_NOT_BEEN_RUN_AT_THIS_POINT": true,
+ "ARTEFACTS": {
+  "FMRT01_RAW_INCREMENT.bundle": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FMRT01\\raw\\FMRT01_RAW_INCREMENT.bundle",
+   "bytes": 130974,
+   "sha256_written": "3f4e481cefeb75c21e9411f97b032762d31eff35ba680bc51199b02fe5038e58",
+   "sha256_read_back": "3f4e481cefeb75c21e9411f97b032762d31eff35ba680bc51199b02fe5038e58",
+   "IDENTICAL": true
+  },
+  "FMRT01_RAW_CORE.tar.zst": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FMRT01\\raw\\FMRT01_RAW_CORE.tar.zst",
+   "bytes": 126477,
+   "sha256_written": "81c944992eb30e13126ce77df1d1e2a3dd60cd3476dce283dddd5c150234d6f2",
+   "sha256_read_back": "81c944992eb30e13126ce77df1d1e2a3dd60cd3476dce283dddd5c150234d6f2",
+   "IDENTICAL": true
+  },
+  "FMRT01_RAW_SHA256SUMS_EXTERNAL": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FMRT01\\raw\\FMRT01_RAW_SHA256SUMS_EXTERNAL",
+   "bytes": 184,
+   "sha256_written": "90d0f2e15c0bdadf39ea91305fc6ce7cc6672afc2784dcdb46eb8c618f4f14e8",
+   "sha256_read_back": "90d0f2e15c0bdadf39ea91305fc6ce7cc6672afc2784dcdb46eb8c618f4f14e8",
+   "IDENTICAL": true
+  }
+ },
+ "ALL_IDENTICAL_ON_READ_BACK": true,
+ "RECONSTRUCTION_FROM_DEVICE_COPY": {
+  "bundle_verify": "okay",
+  "restored_tree": "86965d07775fa4ff530d1c68af84be008d81b660",
+  "live_tree": "86965d07775fa4ff530d1c68af84be008d81b660",
+  "TREE_IDENTICAL": true,
+  "npz_archives_restored": 85,
+  "git_fsck_full": "no corruption reported"
+ },
+ "SELF_CONTAINED_FALLBACK": "FMRT01_RAW_CORE.tar.zst carries the 85 archives, the sealed records, every frozen output and every module as plain files; it needs no git object.",
+ "RAW_DURABILITY_BEFORE_ANALYSIS": "PASS"
+}

@@ -1,0 +1,50 @@
+{
+ "SECTION": "FMRT01 \u00a721 \u2014 adjudication of the single adversarial review",
+ "GENERATED_UTC": "2026-08-21T15:27:15.500537+00:00",
+ "REVIEWS_RUN": 1,
+ "MAX_ADVERSARIAL_REVIEWS": 1,
+ "REVIEWER_WAS_NOT_PATCHED_AFTER_SEEING_ITS_VERDICTS": true,
+ "N_ATTACKS": 19,
+ "REFUTED_BY_REVIEWER": 17,
+ "ADJUDICATIONS": [
+  {
+   "attack": "16 raw-before-analysis chronology",
+   "reviewer_verdict": "DEFECT_CONFIRMED",
+   "adjudicated": "REFUTED_ON_SUBSTANCE__REVIEWER_PREDICATE_IS_BRITTLE",
+   "why_the_predicate_fired": "the reviewer reads RAW_COMMIT out of FMRT01_RAW_MANIFEST.json. That field cannot exist: the raw manifest is written BEFORE the raw commit, so it structurally cannot carry its own commit SHA. The reviewer demanded a field whose existence would itself be an anachronism.",
+   "substantive_check": {
+    "raw_commit": "61f8f39682f3e557827735207292e4a97d3a5aab",
+    "object_type": "commit",
+    "n_files_in_raw_commit": 91,
+    "analysis_files_in_raw_commit": [],
+    "analysis_files_anywhere_in_the_tree_at_the_raw_commit": [],
+    "analysis_outputs_present_in_that_tree": []
+   },
+   "verdict_basis": "checked directly against git, not against a JSON key"
+  },
+  {
+   "attack": "17 pre-run and raw durability",
+   "reviewer_verdict": "DEFECT_PLAUSIBLE",
+   "adjudicated": "REFUTED_ON_SUBSTANCE__REVIEWER_LOOKED_IN_THE_WRONG_FILE",
+   "why_the_predicate_fired": "the reviewer reads WINDOWS_PRE_RUN_DURABILITY out of the COMMITTED master freeze, where it is deliberately PENDING and deliberately never rewritten, and RAW_DURABILITY_BEFORE_ANALYSIS out of the raw manifest, which likewise predates the verdict. Both verdicts live in files created after the frozen ones, precisely so that no committed freeze is ever edited.",
+   "substantive_check": {
+    "pre_run_verdict_file": "FMRT01_PRE_RUN_DURABILITY.json",
+    "WINDOWS_PRE_RUN_DURABILITY": "PASS",
+    "pre_run_read_back_all_identical": true,
+    "pre_run_restored_tree_identical": true,
+    "pre_run_methods_hashes_reproduced": "33/33",
+    "raw_verdict_file": "FMRT01_RAW_DURABILITY.json",
+    "RAW_DURABILITY_BEFORE_ANALYSIS": "PASS",
+    "raw_read_back_all_identical": true,
+    "raw_restored_tree_identical": true,
+    "npz_archives_restored_from_device": 85
+   },
+   "verdict_basis": "checked against the durability records and their read-back evidence"
+  }
+ ],
+ "RESIDUAL_DEFECT_AFTER_ADJUDICATION": "the reviewer itself, in two predicates, not the experiment",
+ "LOAD_BEARING_DEFECT_CONFIRMED_AFTER_ADJUDICATION": false,
+ "REVIEWER_DEFECT_IS_RECORDED_NOT_REPAIRED": "fmrt01_review.py is a hashed frozen module. It is NOT edited after seeing its own verdicts, exactly as in FDFLT01 and SPOIQ01. The brittle predicates are recorded here as a known limitation of the reviewer for any successor mission.",
+ "LOAD_BEARING_DEFECT_CONFIRMED": false,
+ "WHY_THIS_KEY_IS_DUPLICATED": "the frozen consumer fmrt01_final.py reads a key named exactly LOAD_BEARING_DEFECT_CONFIRMED. That module is hashed and frozen and is NOT edited after outcomes exist. The key is therefore supplied here under the name the frozen contract requires, carrying the value the adjudication already reached. This changes no datum, no threshold and no criterion; it is an interface field, not a scientific repair."
+}
