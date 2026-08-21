@@ -1,0 +1,64 @@
+{
+ "SECTION": "FMRT01 \u2014 external durability of the FINAL deliverables",
+ "GENERATED_UTC": "2026-08-21T15:35:56.682660+00:00",
+ "FINAL_COMMIT": "5b1b04b",
+ "ARTEFACTS": {
+  "FMRT01_FINAL_INCREMENT.bundle": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FMRT01\\final\\FMRT01_FINAL_INCREMENT.bundle",
+   "bytes": 42298,
+   "sha256_written": "bc60bb07a1a08a72fc0f46eab2291523db4a3c4c4cb4a232fe6927b7ae4c4a91",
+   "sha256_read_back": "bc60bb07a1a08a72fc0f46eab2291523db4a3c4c4cb4a232fe6927b7ae4c4a91",
+   "IDENTICAL": true
+  },
+  "FMRT01_DELIVERABLES.tar.zst": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FMRT01\\final\\FMRT01_DELIVERABLES.tar.zst",
+   "bytes": 143135,
+   "sha256_written": "726ac71cf2a9e07c444a24205ebfc926602fe6ae4e89f80eafd8f13347eb93aa",
+   "sha256_read_back": "726ac71cf2a9e07c444a24205ebfc926602fe6ae4e89f80eafd8f13347eb93aa",
+   "IDENTICAL": true
+  },
+  "FMRT01_FINAL_REPORT.md": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FMRT01\\final\\FMRT01_FINAL_REPORT.md",
+   "bytes": 17481,
+   "sha256_written": "c6613f357f63d305eaf73e6241f212e8dc8e4d88f62203e535480aed1bef4400",
+   "sha256_read_back": "c6613f357f63d305eaf73e6241f212e8dc8e4d88f62203e535480aed1bef4400",
+   "IDENTICAL": true
+  }
+ },
+ "ALL_IDENTICAL_ON_READ_BACK": true,
+ "RECONSTRUCTION_FROM_DEVICE_COPY": {
+  "restored_tree": "33e6116fbd7b4b9b1b4ee329763999d08fa88a2d",
+  "live_tree": "33e6116fbd7b4b9b1b4ee329763999d08fa88a2d",
+  "TREE_IDENTICAL": true,
+  "git_fsck_full": "no corruption reported"
+ },
+ "THREE_STAGE_CHAIN_ON_THE_DISK": {
+  "prerun": [
+   "FMRT01_PRE_RUN_INCREMENT.bundle",
+   "FMRT01_PRE_RUN_METHODS.tar.zst",
+   "FMRT01_PRE_RUN_SHA256SUMS",
+   "FMRT01_PRE_RUN_README.txt"
+  ],
+  "raw": [
+   "FMRT01_RAW_INCREMENT.bundle",
+   "FMRT01_RAW_CORE.tar.zst",
+   "FMRT01_RAW_SHA256SUMS_EXTERNAL"
+  ],
+  "final": [
+   "FMRT01_FINAL_INCREMENT.bundle",
+   "FMRT01_DELIVERABLES.tar.zst",
+   "FMRT01_FINAL_SHA256SUMS",
+   "FMRT01_FINAL_REPORT.md",
+   "HANDOFF_MINIMAL_REPRODUCTION_FAILURE_AUTOPSY_01.md"
+  ]
+ },
+ "EVERY_STAGE_VERIFIED_BY_READ_BACK_NOT_BY_WRITE_RECEIPT": true,
+ "FINAL_DURABILITY": "PASS",
+ "REMOTE_WRITE_GATE": {
+  "TESTED_MECHANICALLY": true,
+  "RESULT": "FAIL_403",
+  "MESSAGE": "remote: access denied by the git proxy: Mythmaker28/emergent-dynamics-lab is not in this session's authorized repository set, so the proxy will not inject a credential for it.",
+  "CONSEQUENCE": "the branch cannot be pushed from this container. GitHub is therefore NOT a durability channel for this mission and was never treated as one. All three durability stages went to Tommy's Windows disk and were verified by read-back.",
+  "UNCHANGED_SINCE": "ARSR01, where the same gate was tested and failed identically"
+ }
+}
