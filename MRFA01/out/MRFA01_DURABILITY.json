@@ -1,0 +1,50 @@
+{
+ "SECTION": "MRFA01 \u00a718 \u2014 durability, written and verified from Windows bytes",
+ "GENERATED_UTC": "2026-08-21T17:00:09.897340+00:00",
+ "CONTEXT": "this mission opened with the SIXTH container rollback. Six increments had to be chained to rebuild the repository. That fragility is itself a durability defect and is fixed here.",
+ "MRFA01_COMMIT": "40ca48471c93f647f8f72824a4b9e957f5f10c2a",
+ "ARTEFACTS": {
+  "ISING_CONSOLIDATED_FLRS02_TO_MRFA01.bundle": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\MRFA01\\ISING_CONSOLIDATED_FLRS02_TO_MRFA01.bundle",
+   "bytes": 684719,
+   "sha256_written": "76cb4c7043a581a59d7bc7544e022b4fed3a4960acd4995ab1457e6e3f78d5d8",
+   "sha256_read_back": "76cb4c7043a581a59d7bc7544e022b4fed3a4960acd4995ab1457e6e3f78d5d8",
+   "IDENTICAL": true
+  },
+  "MRFA01_INCREMENT.bundle": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\MRFA01\\MRFA01_INCREMENT.bundle",
+   "bytes": 163002,
+   "sha256_written": "1c7c2fbd693d0dbf3ffb283c765bf6805b83f9ccf22c5a72f1c71af235d97857",
+   "sha256_read_back": "1c7c2fbd693d0dbf3ffb283c765bf6805b83f9ccf22c5a72f1c71af235d97857",
+   "IDENTICAL": true
+  },
+  "MRFA01_DELIVERABLES.tar.zst": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\MRFA01\\MRFA01_DELIVERABLES.tar.zst",
+   "bytes": 90402,
+   "sha256_written": "913794579e9c8c1e1ea74352747e6f446b29f31936e889e3f4b13e9f8ec78e63",
+   "sha256_read_back": "913794579e9c8c1e1ea74352747e6f446b29f31936e889e3f4b13e9f8ec78e63",
+   "IDENTICAL": true
+  }
+ },
+ "ALL_IDENTICAL_ON_READ_BACK": true,
+ "CONSOLIDATED_BUNDLE": {
+  "purpose": "one file that carries the ENTIRE chain from the inherited boundary 06c5923 to MRFA01. After a seventh rollback the restoration is a single fetch instead of seven chained ones.",
+  "prerequisite": "06c592313df96601de8d2a89676d5a5cf79fc414 \u2014 the inherited boundary, never rewritten",
+  "tip": "40ca48471c93f647f8f72824a4b9e957f5f10c2a",
+  "bytes": 684719,
+  "commits_carried": 12,
+  "verified_by_rebuilding_from_the_DEVICE_COPY": {
+   "bundle_verify": "okay",
+   "git_fsck_full": "no corruption reported",
+   "restored_tree": "c40df04f6e1704c5783ef9b599f07f2999385c5f",
+   "live_tree": "c40df04f6e1704c5783ef9b599f07f2999385c5f",
+   "TREE_IDENTICAL": true,
+   "FMRT01_npz_archives_restored": 85,
+   "MRFA01_files_restored": 57
+  }
+ },
+ "EVERY_STAGE_VERIFIED_BY_READ_BACK_NOT_BY_WRITE_RECEIPT": true,
+ "GITHUB": "optional to this zero-run autopsy and not used; the remote-write gate was already recorded as 403 in FMRT01",
+ "NO_FRESH_EXPERIMENT_WAS_AUTHORIZED_SO_NO_PRE_RUN_PACKAGE_IS_REQUIRED": true,
+ "MRFA01_DURABILITY": "PASS"
+}
