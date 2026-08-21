@@ -1,0 +1,251 @@
+{
+ "SECTION": "FDOT01 \u00a75-\u00a76 \u2014 pre-run fixtures",
+ "GENERATED_UTC": "2026-08-21T18:10:28.970311+00:00",
+ "TWO_INDEPENDENT_IMPLEMENTATIONS": [
+  "fdot01_centres.py (union-find)",
+  "fdot01_centres_b.py (scipy csgraph)"
+ ],
+ "N_FIXTURES": 13,
+ "N_PASS": 13,
+ "ALL_PASS": true,
+ "A_AND_B_AGREE_ON_EVERY_FIXTURE": true,
+ "FIXTURES": [
+  {
+   "fixture": "1_translation",
+   "A_vs_B_AGREE": true,
+   "expected": {
+    "n_intervals": 1,
+    "classes": [
+     "NO_TURNOVER"
+    ]
+   },
+   "observed": {
+    "n_intervals": 1,
+    "classes": [
+     "NO_TURNOVER"
+    ],
+    "functional": 0
+   },
+   "PASS": true
+  },
+  {
+   "fixture": "2_crossing",
+   "A_vs_B_AGREE": true,
+   "expected": {},
+   "observed": {
+    "n_intervals": 8,
+    "classes": [
+     "NO_TURNOVER",
+     "NO_TURNOVER",
+     "NO_TURNOVER",
+     "NO_TURNOVER",
+     "NO_TURNOVER",
+     "NO_TURNOVER",
+     "NO_TURNOVER",
+     "NO_TURNOVER"
+    ],
+    "functional": 0
+   },
+   "PASS": true,
+   "NOTE": "two centres approach, merge into ONE component while within CORE_R, then separate. The run must show more than one identity interval, i.e. the crossing is NOT silently bridged."
+  },
+  {
+   "fixture": "3_equal_distance_tie",
+   "A_vs_B_AGREE": true,
+   "expected": {
+    "n_intervals": 3
+   },
+   "observed": {
+    "n_intervals": 3,
+    "classes": [
+     "NO_TURNOVER",
+     "NO_TURNOVER",
+     "NO_TURNOVER"
+    ],
+    "functional": 0
+   },
+   "PASS": true,
+   "NOTE": "a tie leaves two candidates, so no link is clean and three intervals result"
+  },
+  {
+   "fixture": "4_split",
+   "A_vs_B_AGREE": true,
+   "expected": {
+    "n_intervals": 3
+   },
+   "observed": {
+    "n_intervals": 3,
+    "classes": [
+     "NO_TURNOVER",
+     "NO_TURNOVER",
+     "NO_TURNOVER"
+    ],
+    "functional": 0
+   },
+   "PASS": true,
+   "NOTE": "children 6 apart => two components; both within CORE_R of the parent centroid at distances 2 and 4 => the parent has two candidates => the identity terminates and is not resolved by preferring the nearer child"
+  },
+  {
+   "fixture": "5_merge",
+   "A_vs_B_AGREE": true,
+   "expected": {
+    "n_intervals": 3
+   },
+   "observed": {
+    "n_intervals": 3,
+    "classes": [
+     "NO_TURNOVER",
+     "NO_TURNOVER",
+     "NO_TURNOVER"
+    ],
+    "functional": 0
+   },
+   "PASS": true,
+   "NOTE": "the child has two candidates within CORE_R, so the identity terminates"
+  },
+  {
+   "fixture": "6_birth_inside_centre",
+   "A_vs_B_AGREE": true,
+   "expected": {
+    "n_intervals": 1,
+    "classes": [
+     "PARTIAL_BIRTH_ONLY"
+    ]
+   },
+   "observed": {
+    "n_intervals": 1,
+    "classes": [
+     "PARTIAL_BIRTH_ONLY"
+    ],
+    "functional": 0
+   },
+   "PASS": true
+  },
+  {
+   "fixture": "7_death_inside_centre",
+   "A_vs_B_AGREE": true,
+   "expected": {
+    "n_intervals": 1,
+    "classes": [
+     "PARTIAL_DEATH_ONLY"
+    ]
+   },
+   "observed": {
+    "n_intervals": 1,
+    "classes": [
+     "PARTIAL_DEATH_ONLY"
+    ],
+    "functional": 0
+   },
+   "PASS": true
+  },
+  {
+   "fixture": "8_birth_then_death_functional",
+   "A_vs_B_AGREE": true,
+   "expected": {
+    "n_intervals": 1,
+    "classes": [
+     "COMPLETE_BIRTH_THEN_DEATH"
+    ],
+    "functional": 1
+   },
+   "observed": {
+    "n_intervals": 1,
+    "classes": [
+     "COMPLETE_BIRTH_THEN_DEATH"
+    ],
+    "functional": 1
+   },
+   "PASS": true
+  },
+  {
+   "fixture": "8b_birth_then_death_no_post_X",
+   "A_vs_B_AGREE": true,
+   "expected": {
+    "n_intervals": 1,
+    "classes": [
+     "COMPLETE_BIRTH_THEN_DEATH"
+    ],
+    "functional": 0
+   },
+   "observed": {
+    "n_intervals": 1,
+    "classes": [
+     "COMPLETE_BIRTH_THEN_DEATH"
+    ],
+    "functional": 0
+   },
+   "PASS": true
+  },
+  {
+   "fixture": "9_death_then_birth_NY_ge_2",
+   "A_vs_B_AGREE": true,
+   "expected": {
+    "n_intervals": 1,
+    "classes": [
+     "COMPLETE_DEATH_THEN_BIRTH"
+    ],
+    "functional": 1
+   },
+   "observed": {
+    "n_intervals": 1,
+    "classes": [
+     "COMPLETE_DEATH_THEN_BIRTH"
+    ],
+    "functional": 1
+   },
+   "PASS": true
+  },
+  {
+   "fixture": "10_single_Y_death_extinction",
+   "A_vs_B_AGREE": true,
+   "expected": {
+    "n_intervals": 1,
+    "classes": [
+     "PARTIAL_DEATH_ONLY"
+    ],
+    "functional": 0
+   },
+   "observed": {
+    "n_intervals": 1,
+    "classes": [
+     "PARTIAL_DEATH_ONLY"
+    ],
+    "functional": 0
+   },
+   "PASS": true,
+   "NOTE": "the theorem of DOTC01 \u00a74 as a deterministic fixture: a one-constituent centre that loses its constituent leaves the component empty, the interval ends, and no COMPLETE_DEATH_THEN_BIRTH can follow. Observed class is PARTIAL_DEATH_ONLY."
+  },
+  {
+   "fixture": "11_no_bridging_across_an_empty_gap",
+   "A_vs_B_AGREE": true,
+   "expected": {
+    "n_intervals": 2
+   },
+   "observed": {
+    "n_intervals": 2,
+    "classes": [
+     "PARTIAL_BIRTH_ONLY",
+     "PARTIAL_DEATH_ONLY"
+    ],
+    "functional": 0
+   },
+   "PASS": true,
+   "NOTE": "after the component is empty for four steps a new interval must start; bridging would manufacture a false COMPLETE_DEATH_THEN_BIRTH"
+  },
+  {
+   "fixture": "12_observer_inertness",
+   "A_vs_B_AGREE": true,
+   "expected": {
+    "identical_state_after_600_steps": true
+   },
+   "observed": {
+    "instrumented_hash": "9891145e535872d3",
+    "uninstrumented_hash": "9891145e535872d3",
+    "identical_state_after_600_steps": true
+   },
+   "PASS": true,
+   "NOTE": "the FDOT01 X-birth ledger is pure observation. Fixture seed 1 is outside every scientific registry and its output is discarded."
+  }
+ ]
+}
