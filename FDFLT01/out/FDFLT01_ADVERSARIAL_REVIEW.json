@@ -1,0 +1,268 @@
+{
+  "SECTION": "FDFLT01 \u00a718 \u2014 one independent adversarial review",
+  "REVIEWER_RAN_THE_ENGINE": false,
+  "N_ATTACKS": 15,
+  "DEFECTS_CONFIRMED": 0,
+  "DEFECTS_PLAUSIBLE": 1,
+  "LOAD_BEARING_DEFECT_CONFIRMED": false,
+  "ATTACKS": [
+    {
+      "attack": "1 freeze chronology",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "the freeze commit exists and contains no scientific result",
+      "evidence": {
+        "freeze_commit": "235226124f59efed0ae20fdedcf11f7de8fc9c41",
+        "freeze_binding_written_after_the_freeze_commit": true,
+        "files": [
+          "FDFLT01/code/fdflt01_analyse.py",
+          "FDFLT01/code/fdflt01_endpoint.py",
+          "FDFLT01/code/fdflt01_final.py",
+          "FDFLT01/code/fdflt01_freeze.py",
+          "FDFLT01/code/fdflt01_power.py",
+          "FDFLT01/code/fdflt01_review.py",
+          "FDFLT01/code/fdflt01_run.py",
+          "FDFLT01/code/fdflt01_score_B.py",
+          "FDFLT01/code/fdflt01_seeds.py",
+          "FDFLT01/code/fdflt01_selftest.py",
+          "FDFLT01/out/FDFLT01_MASTER_FREEZE.json",
+          "FDFLT01/out/FDFLT01_METHODS_MANIFEST.json",
+          "FDFLT01/out/FDFLT01_METHODS_SHA256SUMS",
+          "FDFLT01/out/FDFLT01_PARENT_BINDING.json",
+          "FDFLT01/out/FDFLT01_POWER_ANALYSIS.json",
+          "FDFLT01/out/FDFLT01_PRE_RUN_GATES.json",
+          "FDFLT01/out/FDFLT01_PRIMARY_ENDPOINT.json",
+          "FDFLT01/out/FDFLT01_SEED_MANIFEST.json"
+        ],
+        "result_files_leaked_into_freeze": []
+      }
+    },
+    {
+      "attack": "2 full transitive methods hash",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "every load-bearing module including runner, analysis, review and disposition is hashed and unchanged",
+      "evidence": {
+        "n_modules": 20,
+        "changed_or_missing": [],
+        "required_missing": [],
+        "python": "3.11.15",
+        "numpy": "2.4.4"
+      }
+    },
+    {
+      "attack": "3 seed disjointness and 192-start accounting",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "192 unique fresh seeds, disjoint from every historical seed, all scored exactly once",
+      "evidence": {
+        "n_primary_seeds": 192,
+        "n_archives_present": 192,
+        "n_scored": 192,
+        "overlap_with_history": [],
+        "duplicate_archive_seeds": 0
+      }
+    },
+    {
+      "attack": "4 observer inertness",
+      "verdict": "DEFECT_PLAUSIBLE",
+      "claim": "the observer draws no engine RNG; established bit-for-bit by the parent qualification",
+      "evidence": {
+        "qualification_present": false,
+        "identity_tracker_inert": true
+      }
+    },
+    {
+      "attack": "5 exact reproduction of the B1 physical parameters",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "every fresh world carries the frozen B1 kY, muY, CAP and L",
+      "evidence": {
+        "frozen_kY": 2.5118864315095822e-05,
+        "frozen_muY": 9.261187281287937e-05,
+        "sampled_metas": [
+          {
+            "kY": 2.5118864315095822e-05,
+            "muY": 9.261187281287937e-05,
+            "CAP": 16,
+            "L": 36
+          },
+          {
+            "kY": 2.5118864315095822e-05,
+            "muY": 9.261187281287937e-05,
+            "CAP": 16,
+            "L": 36
+          },
+          {
+            "kY": 2.5118864315095822e-05,
+            "muY": 9.261187281287937e-05,
+            "CAP": 16,
+            "L": 36
+          }
+        ]
+      }
+    },
+    {
+      "attack": "6+8 centre classifier and primary event implementation",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "the endpoint reproduces the parent developmental result exactly and two independent implementations agree on the fresh data",
+      "evidence": {
+        "equivalence_gate": true,
+        "reproduced": {
+          "T_50": 14,
+          "T_primary": 13,
+          "T_80": 9,
+          "T_90": 6
+        },
+        "expected": {
+          "T_50": 14,
+          "T_primary": 13,
+          "T_80": 9,
+          "T_90": 6
+        },
+        "fresh_dual_disagreements": 0
+      }
+    },
+    {
+      "attack": "7 persistent centre identity",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "identity survives stationary, crossing, translating, tied, merging, splitting and third-centre cases",
+      "evidence": {
+        "cases": [
+          [
+            "stationary_two_centres",
+            true
+          ],
+          [
+            "crossing_centres",
+            true
+          ],
+          [
+            "centre_translation",
+            true
+          ],
+          [
+            "temporary_equal_distance_tie",
+            true
+          ],
+          [
+            "merge",
+            true
+          ],
+          [
+            "split",
+            true
+          ],
+          [
+            "third_centre_appears",
+            true
+          ]
+        ]
+      }
+    },
+    {
+      "attack": "9 local X functional-response implementation",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "two independent aggregations of the local X response agree to 1e-12 on every fresh world",
+      "evidence": {
+        "ratio_mismatches": 0
+      }
+    },
+    {
+      "attack": "10 stop-rule fidelity",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "the fresh worlds use the frozen PQEC01 stop rules, unmodified, because the frozen runner itself was executed",
+      "evidence": {
+        "rules_in_frozen_source": [
+          "EXTINCT",
+          "HORIZON",
+          "INTEGRITY_FAILURE",
+          "MAX_PERMITTED_Y",
+          "PREMATURE_THIRD_CENTRE"
+        ],
+        "stops_observed": [
+          "EXTINCT",
+          "HORIZON",
+          "PREMATURE_THIRD_CENTRE"
+        ],
+        "runner_sha256": "3b88f901b118e1e2df6fac864aee6c24b62c7dae890dd28b4207eaba59ea2b96"
+      }
+    },
+    {
+      "attack": "11 outcome firewall",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "the live ledger carries only an opaque token and technical flags",
+      "evidence": {
+        "ledger_fields": [
+          "arm_token",
+          "checksum_written",
+          "completed",
+          "kind",
+          "technical_failure"
+        ],
+        "banned_present": [],
+        "n_ledger_rows": 192
+      }
+    },
+    {
+      "attack": "12 technical replacement accounting",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "reserves were used only to replace predeclared technical failures, never a scientific outcome",
+      "evidence": {
+        "technical_failures": 0,
+        "reserves_used": 0,
+        "definitions": [
+          "returncode != 0 (process interruption or unhandled exception)",
+          "archive absent after the write",
+          "schema_ok False (corrupt or incomplete serialization)",
+          "engine_invariants_ok False (engine invariant violation preventing a readable outcome)",
+          "sha256 recomputation over the written bytes disagrees with the value recorded at write time"
+        ]
+      }
+    },
+    {
+      "attack": "13 exact binomial rejection rule",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "the rejection rule was frozen before the runs, its size is at or below alpha, and both decision statements coincide",
+      "evidence": {
+        "critical_frozen": 27,
+        "critical_used": 27,
+        "size": 0.04450131521669012,
+        "rules_agree": true
+      }
+    },
+    {
+      "attack": "14 developmental and fresh data separation",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "no historical world entered the primary estimate",
+      "evidence": {
+        "historical_paths_in_fresh_set": [],
+        "n_scored": 192
+      }
+    },
+    {
+      "attack": "15 raw-before-analysis chronology",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "the raw ledger and hashes were committed before any scientific analysis and carry no result",
+      "evidence": {
+        "raw_commit": "3f275604080ac3024101a8e5aace84190ed34b97",
+        "files": [
+          "FDFLT01/out/FDFLT01_DURABILITY.json",
+          "FDFLT01/out/FDFLT01_FREEZE_BINDING.json",
+          "FDFLT01/out/FDFLT01_RAW_MANIFEST.json",
+          "FDFLT01/out/FDFLT01_RAW_SHA256SUMS",
+          "FDFLT01/out/FDFLT01_RUN_LEDGER.jsonl"
+        ],
+        "result_files_leaked": []
+      }
+    },
+    {
+      "attack": "16 final JSON reproducibility",
+      "verdict": "ATTACK_REFUTED",
+      "claim": "every reported JSON is regenerated by committed code from committed inputs; none is hand edited",
+      "evidence": {
+        "generators": [
+          "fdflt01_analyse.py",
+          "fdflt01_final.py"
+        ],
+        "no_hardcoded_gate": "the disposition is computed from PRIMARY_ANALYSIS, never assigned a literal"
+      }
+    }
+  ]
+}

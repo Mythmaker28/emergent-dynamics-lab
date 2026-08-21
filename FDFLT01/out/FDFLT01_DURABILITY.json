@@ -40,5 +40,24 @@
     "impact": "none on content: COMPLETE_PRE_RUN_METHODS_HASH was identical (d403ccd3976be5ceabd167bfe21750ce08782a52aa0dc6e7019a226fcef24759). Only the GENERATED_UTC timestamps differed.",
     "correction": "the committed bytes were restored with git checkout before the first scientific world, so the freeze remains byte-immutable.",
     "why_it_is_recorded": "a freeze that is silently rewritten is worthless even when the content matches; the episode belongs in the record."
+  },
+  "WINDOWS_RAW_DURABILITY_BEFORE_ANALYSIS": "PASS",
+  "RAW_DURABILITY_SCOPE_READ_THIS": {
+    "WHAT_IS_ON_TOMMYS_DISK_AND_VERIFIED": {
+      "FDFLT01_RAW_CORE.tar.zst": {
+        "bytes": 92229211,
+        "sha256": "936fac7c7d61df1a1bedf2d94e5e933930aa55f66de2e057e41202b467f04467",
+        "reassembled_from": "5 parts, re-hashed from the Windows bytes, all 6 entries OK",
+        "contents": "for all 192 worlds: scalars, scalar_names, ycells, ybirth, ydeath, yhop, xevent, capacity, exchange, src, final, meta, AND the X field plane at every step (field0_X, field_delta_X)"
+      },
+      "FDFLT01_RAW_MANIFEST.json": "per-archive sha256 and byte size for all 192 full archives",
+      "FDFLT01_RAW_SHA256SUMS": "192 hashes of the full archives",
+      "FDFLT01_RUN_LEDGER.jsonl": "the firewalled execution ledger"
+    },
+    "SUFFICIENCY": "the core contains every array the frozen primary endpoint reads. All seven conditions, INCLUDING F5 (the direct local-X functional response, which needs the X plane), are exactly re-derivable from the core alone. The primary result can therefore be reproduced and audited from Tommy's disk without this container.",
+    "WHAT_IS_NOT_ON_TOMMYS_DISK": "the five non-X field planes (Y, SX, SY, WX, WY) of field_delta, i.e. the difference between the 92 MB core and the 1.16 GB full package. The endpoint does not read them. They remain only in this container.",
+    "WHY": "measured device-bridge throughput fell to roughly one 19 MB part per call, with repeated wall-clock timeouts and one disconnection. The full package is 59 such parts; transferring it would have required on the order of sixty round trips with a high failure rate. The 192 full-archive hashes ARE on the disk, so any later recovery of the full archives can be verified against them.",
+    "HONEST_LABEL": "PASS is claimed for the result-bearing raw evidence, not for the full six-plane field package.",
+    "device_numpy": "2.2.6 present on Tommy's machine, so the core can be read there directly"
   }
 }

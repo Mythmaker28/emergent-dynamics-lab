@@ -1,0 +1,41 @@
+{
+  "SECTION": "FDFLT01 \u00a718 \u2014 adjudication of the single adversarial review",
+  "GENERATED_UTC": "2026-08-21T01:26:12.163061+00:00",
+  "N_ATTACKS": 15,
+  "DEFECTS_CONFIRMED": 0,
+  "DEFECTS_PLAUSIBLE": 1,
+  "ADJUDICATED": [
+    {
+      "attack": "4 observer inertness",
+      "reviewer_verdict": "DEFECT_PLAUSIBLE",
+      "reviewer_reason": "the reviewer looked for PQEC01_QUALIFICATION.json at a path that does not exist, so it could not confirm the parent's inertness proof",
+      "adjudication": "REFUTED_ON_EVIDENCE_THE_REVIEWER_DID_NOT_LOCATE",
+      "evidence": {
+        "PQEC01_INSTRUMENTATION_TESTS.json::INSTRUMENTATION_INERTNESS": "PASS",
+        "PQEC01_REVIEW_AND_REPAIR.json::OBSERVER_INERTNESS_HOLDS": null,
+        "file_sha256": {
+          "PQEC01_INSTRUMENTATION_TESTS.json": "a60a23ab2e2b9fb84faaa8fbb768fde10d8bf25b529c821d7b281dbd5c6a1316"
+        },
+        "mechanism": "pqec01_observer.py only reads engine state and appends to its own buffers; the parent programme tested this bit-for-bit against an uninstrumented run",
+        "FDFLT01_own_check": "the persistent-centre identity tracker was shown to consume no engine RNG in the pre-run gate: True"
+      },
+      "LOAD_BEARING": false,
+      "AFFECTS_DISPOSITION": false,
+      "NO_CODE_WAS_CHANGED": true
+    },
+    {
+      "attack": "secondary failure accounting (self-reported, not raised by the reviewer)",
+      "finding": "FIRST_FAILING_COMPONENT_COUNTS is mislabelled: the categories are marginal counts over all worlds, not a mutually exclusive partition, so they do not sum to the number of non-successes. The frozen self-check FAILURE_ACCOUNTING_SUMS_TO_NON_SUCCESS correctly reported False rather than hiding it.",
+      "adjudication": "DEFECT_ACKNOWLEDGED__NOT_REPAIRED",
+      "reason": "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS = 0. The defect is in a SECONDARY DESCRIPTIVE statistic that \u00a714 explicitly forbids from altering the primary decision. The frozen code is left exactly as it ran.",
+      "correct_reading": "the marginal counts are individually correct: 126 worlds had no birth, 108 went extinct (these overlap), 8 of the 66 worlds that formed two centres held them for less than the primary maturation duration, and 5 more failed the direct X-response criterion. 66 - 8 - 5 = 53, which is the primary success count. That chain is exact and is the one to read.",
+      "LOAD_BEARING": false,
+      "AFFECTS_DISPOSITION": false,
+      "NO_CODE_WAS_CHANGED": true
+    }
+  ],
+  "LOAD_BEARING_POST_OUTCOME_DEFECT_CONFIRMED": false,
+  "POST_OUTCOME_SCIENTIFIC_REPAIRS_MADE": 0,
+  "SECOND_REVIEWER": "none \u2014 the mission permits exactly one",
+  "VERDICT": "NO_LOAD_BEARING_DEFECT__DISPOSITION_STANDS"
+}
