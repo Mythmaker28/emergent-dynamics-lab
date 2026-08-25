@@ -1,0 +1,223 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "methods manifest",
+ "GENERATED_UTC": "2026-08-25T22:30:04.982603+00:00",
+ "GENERATOR": "OMLDCT02/code/omldct02_methods_manifest.py \u2014 committed",
+ "PYTHON": "3.11.15",
+ "SCIPY": {
+  "IS_SCIPY_IMPORTED_INTO_THE_PROCESS": true,
+  "BY_WHICH_FILE": "/FMRT01/code/fmrt01_endpoint.py, at module level: 'from scipy.stats import binom'",
+  "IMPORT_CHAIN": "omldct02_fork -> tlmr01_world -> fmrt01_endpoint -> scipy.stats",
+  "WHY_IT_IS_THERE": "the frozen engine tlmr01_world imports fmrt01_endpoint for state_of, local_x_masses and f5_ratio. None of those three uses scipy.",
+  "THE_ONLY_SCIPY_CALL_IN_THAT_FILE": "binom.ppf inside survivor_upper(), which is on no OMLDCT02 path and is never called by this mission.",
+  "DOES_ANY_OMLDCT02_ENDPOINT_GATE_OR_TEST_USE_SCIPY": false,
+  "THE_EXACT_TEST": "the conditional sign-flip distribution is enumerated by dynamic programming; omldct02_analysis imports fractions and numpy, and importing it alone does not pull scipy into the process.",
+  "A_CORRECTION": "OMLDCT01's methods closure recorded 'scipy: not imported anywhere'. That was false as stated \u2014 scipy has been in the process since the engine was written. Corrected here rather than repeated, and a runtime sentinel in the batch runner records whether binom.ppf is ever actually called."
+ },
+ "ENTRY_POINTS": [
+  "OMLDCT02/code/omldct02_fork.py",
+  "OMLDCT02/code/omldct02_analysis.py",
+  "OMLDCT02/code/omldct02_e3_a.py",
+  "OMLDCT02/code/omldct02_e3_b.py",
+  "OMLDCT02/code/omldct02_guard.py",
+  "OMLDCT02/code/omldct02_hashes.py",
+  "OMLDCT02/code/omldct02_seed_manifest.py",
+  "OMLDCT02/code/omldct02_forbidden_seeds.py",
+  "OMLDCT02/code/omldct02_design.py",
+  "OMLDCT02/code/omldct02_e3_bind.py",
+  "OMLDCT02/code/omldct02_e3_qualify.py",
+  "OMLDCT02/code/omldct02_selftest.py",
+  "OMLDCT02/code/omldct02_methods_manifest.py",
+  "OMLDCT02/code/omldct02_freeze.py",
+  "OMLDCT02/code/omldct02_run.py",
+  "OMLDCT02/code/omldct02_verify_freeze.py"
+ ],
+ "TWO_INDEPENDENT_CLOSURES": {
+  "ast_traversal_n": 39,
+  "runtime_import_trace_n": 28,
+  "runtime_trace_succeeded": true,
+  "EXACT_AGREEMENT": false,
+  "only_in_ast": [
+   "/MCM01/code/kinetics.py",
+   "/OBTC01/code/engine_obtc.py",
+   "/OBTC01/code/guard_obtc.py",
+   "/OBTC01/code/metrics_obtc.py",
+   "/OBTC01/code/nulls_obtc.py",
+   "/OBTC01/code/source_operator.py",
+   "/OBTC01/code/topology.py",
+   "/OBTC02/code/gate_obtc02.py",
+   "/OBTC02/code/protocol_obtc02.py",
+   "/ORR01/code/lawspec_v2.py",
+   "/ORR01/code/observe.py"
+  ],
+  "only_in_runtime": [],
+  "unresolved_import_names": [
+   "argparse",
+   "fractions",
+   "scipy",
+   "yaml"
+  ],
+  "WHAT_IS_BOUND": "the UNION. A superset closure can only over-bind and can never leave an executing file unhashed. The disagreement is reported, not trimmed away."
+ },
+ "N_FILES": 39,
+ "MODULES": [
+  {
+   "path": "/FDFLT01/code/fdflt01_endpoint.py",
+   "sha256": "144f2fe16a792a57e2791869fac14d50cdf4d313a9e752dfe0c6f1a2f0677066"
+  },
+  {
+   "path": "/FDOT01/code/fdot01_centres.py",
+   "sha256": "e53513d464ac4a332a652c947f2ceed0fad2e5bd23c4eaa8fabcb1c52d608333"
+  },
+  {
+   "path": "/FDOT01/code/fdot01_world.py",
+   "sha256": "566ec83854a3ea66efce58b58dd3bbc162390e11d4a98af23657f10471b52cd8"
+  },
+  {
+   "path": "/FMRCT01/code/fmrct01_descent.py",
+   "sha256": "32363c56dd7595567710ec17974b0f640c329c7beb4c803c4bdecfec751efa02"
+  },
+  {
+   "path": "/FMRCT01/code/fmrct01_track.py",
+   "sha256": "a276f254fdeb3fb4647b6c409bf4237207950b585904117531240ee9f7d2a213"
+  },
+  {
+   "path": "/FMRCT01/code/fmrct01_world.py",
+   "sha256": "1980644f4f8e92d2485120b730ffc836f80baffd4edb5aefe8cad502f032a9f6"
+  },
+  {
+   "path": "/FMRT01/code/fmrt01_endpoint.py",
+   "sha256": "6f5e8c7092c785630a47cfa73edeaede1c2aafdd05a22327687ab5b1a84db30b"
+  },
+  {
+   "path": "/FMRT01/code/fmrt01_identity.py",
+   "sha256": "686e0810f6c6b9b81c81c96e6c185b1decf79f98d98a0b79dc2c34ba48fc7aea"
+  },
+  {
+   "path": "/LDFMA01/code/ldfma01_raw.py",
+   "sha256": "baef98c61ce87a6085d7bd8581f97adb4150c8707c1cb242bc6e593d09d199c8"
+  },
+  {
+   "path": "/MCM01/code/kinetics.py",
+   "sha256": "d6b9e24daefd9a9ddd42780fa24da444a344a2773bb7836a8e168e44f026c4c4"
+  },
+  {
+   "path": "/OBTC01/code/engine_obtc.py",
+   "sha256": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30"
+  },
+  {
+   "path": "/OBTC01/code/guard_obtc.py",
+   "sha256": "ae6f6f241fdf7ae481e8443f135dbb276a0dc0d20d1d67da28d1f6710b7b5c9d"
+  },
+  {
+   "path": "/OBTC01/code/metrics_obtc.py",
+   "sha256": "8f7d4d5fd920653ced75ae65497e0470b67f074722e152605d62ebfbbb7e007c"
+  },
+  {
+   "path": "/OBTC01/code/nulls_obtc.py",
+   "sha256": "5609c4c711d857203e56f64396f4a9ce044116870489748161f30d41a60fc704"
+  },
+  {
+   "path": "/OBTC01/code/source_operator.py",
+   "sha256": "537f1d4576c64af7c845a99a863c559e94efdf6cddba2eb9e5920fe64bae99cf"
+  },
+  {
+   "path": "/OBTC01/code/topology.py",
+   "sha256": "290e193ce2e6341159193e840d7a7ee23ab9573777485821951508cbe48bf074"
+  },
+  {
+   "path": "/OBTC02/code/gate_obtc02.py",
+   "sha256": "4857758f4aade1509ef5d7ca19566d2852197a2cc9dab6f24b81304acef3b7c7"
+  },
+  {
+   "path": "/OBTC02/code/protocol_obtc02.py",
+   "sha256": "0b39875cef0aea3fef2ba0beaab7516208d3f3e4d9bd351b880d30e2ada2c8fe"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_analysis.py",
+   "sha256": "fe377fd9bd98621567f7d6fb4f4641dc99d232e25d6f6a240a309f766efc5eaf"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_design.py",
+   "sha256": "ad57e7abff5ad8f08b53a4c5ebeaf7ffc70a4d19df10d20e297ed0afcf3181e2"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_e3_a.py",
+   "sha256": "61098cf3342a4e04991fa3e49ab1262c5aab144f1d6005f8d8945a1a0b0c1291"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_e3_b.py",
+   "sha256": "f4a701a69e5cc7d06757918bf235a4618af47948b978a245946bac980eb818a1"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_e3_bind.py",
+   "sha256": "603d066b8a5616035916facbad0fccd3d57e42b2c60dd143c8637b6d6efedd8d"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_e3_qualify.py",
+   "sha256": "204efc3a5e7ee641fa0e5e907ffc9b104438d112cbde3125ee660091833e5df3"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_forbidden_seeds.py",
+   "sha256": "3f71425cb8f978fef657d0e0cc368550f73aaae0bfe8ff172eaae18a6e4683e7"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_fork.py",
+   "sha256": "235635bfe7b97a6c23071ba8a96e01f4cf5192784b07fd8f598c3ee77065b46f"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_freeze.py",
+   "sha256": "abe73f61ed10419c9ca2f80f79235cd2ebdea5626b4dabef0c1b5dfcbd19f5f8"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_guard.py",
+   "sha256": "83101158396a9ef3ff7ce2ff982910fa8fa7fd877fa2ca2e8f22ec23a3cb6ad8"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_hashes.py",
+   "sha256": "3d36b6bdd11ec7befa20855569141f0106de1c93e40021562999c21d63bf966f"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_methods_manifest.py",
+   "sha256": "12ce8100bb365e9bf5c3b4cdd7e956e214c66915e299b46af145305d264ad666"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_run.py",
+   "sha256": "fe0500392fa5e3d9c9b3cff43982110fb3776af85ce0bfbb2672a9749b4b230f"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_seed_manifest.py",
+   "sha256": "ae50424a5a960cc831b050ee16fae4517e214c87e22bffec8365a3f32d618331"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_selftest.py",
+   "sha256": "a0f7d908c3ca02295ac646b8a95bc5932084e1c97de0d649698f1e7a3e25ff77"
+  },
+  {
+   "path": "/OMLDCT02/code/omldct02_verify_freeze.py",
+   "sha256": "6e7f53dabcb38bc019e177af0e559f29cf8d3463631cba1f28887685b63ba7bd"
+  },
+  {
+   "path": "/ORR01/code/lawspec_v2.py",
+   "sha256": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94"
+  },
+  {
+   "path": "/ORR01/code/observe.py",
+   "sha256": "55840f35f44ccd424c4b71c80d591614d01c9143ca21e9c14e87e0faeeec2fbd"
+  },
+  {
+   "path": "/PQEC01/code/pqec01_observer.py",
+   "sha256": "d8ff4b9da05c95641c7f69cef4c8b2ffe4c45f17975e8f348d5c5e0f2b6bba21"
+  },
+  {
+   "path": "/TLMR01/code/tlmr01_laws.py",
+   "sha256": "ed485a5088844b5eae406177c4dd877dd3eb2c96bb5b68a9b9ef0f0ed135a349"
+  },
+  {
+   "path": "/TLMR01/code/tlmr01_world.py",
+   "sha256": "edcb51ce7d7c8b4a8c0bcf03f3e3a30fbc98f1554d940d208d80f132a0d3ca7a"
+  }
+ ],
+ "METHODS_HASH": "3955c99052c318a17e415a1aead3ac5096cd118634435840c6cf55d5b279ec6b",
+ "METHODS_HASH_RULE": "H.methods_hash: canonical digest of [[path, sha256], ...] ordered byte-lexicographically by path. Rules in omldct02_hashes.CANONICAL_RULES."
+}

@@ -1,0 +1,94 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "hash primitive self-test",
+ "GENERATED_UTC": "2026-08-25T22:30:03.595744+00:00",
+ "WHY": "OMLDCT01 lost two digests because their recipes lived only in uncommitted heredocs. Every property these primitives promise is checked here, in committed code.",
+ "CANONICAL_RULES": {
+  "algorithm": "SHA-256, output as 64 lowercase hexadecimal characters",
+  "json_encoding": "json.dumps(obj, sort_keys=True, separators=(',', ':'), ensure_ascii=True)",
+  "sort_keys": "true \u2014 object keys are ordered by Unicode code point, so insertion order cannot change a digest",
+  "separators": "',' and ':' with NO surrounding space",
+  "whitespace_rule": "the encoded JSON contains no whitespace outside string literals",
+  "newline_rule": "NO trailing newline. The digest is taken over the encoded bytes exactly as produced by json.dumps, with nothing appended",
+  "text_encoding": "UTF-8. ensure_ascii=True means the encoded form is pure ASCII, so the UTF-8 step cannot introduce a platform difference",
+  "float_rule": "no float is ever hashed. Law parameters enter a digest by their IEEE-754 bit pattern as a lowercase 0x-prefixed hexadecimal string, never by their decimal repr, which is where two Python versions could disagree",
+  "path_ordering": "byte-lexicographic ordering of the UTF-8 encoding of the repository-relative POSIX path. Every path begins with '/' and uses '/' as separator on every platform",
+  "list_ordering": "lists are hashed in the order given and that order is stated by the caller. No digest depends on a set iteration order",
+  "excluded_self_referential_fields": "a document's own digest field is removed before the document is hashed, and so is GENERATED_UTC, so that regenerating an unchanged document reproduces its digest exactly"
+ },
+ "FOUR_DISTINCT_LABELS": {
+  "FREEZE_CONTENT_HASH": "canonical digest of the master freeze document with FREEZE_CONTENT_HASH and GENERATED_UTC removed. Answers: is the frozen CONTENT this content?",
+  "FREEZE_FILE_SHA256": "sha256 of the master freeze FILE's bytes on disk. Answers: is this FILE byte-identical? Stored OUTSIDE the freeze, in its sidecar and in the external manifest, because a file cannot contain its own file digest.",
+  "METHODS_HASH": "canonical digest of the ordered [path, sha256] list of every method file.",
+  "SEED_SET_HASH": "canonical digest of the ordered [role, index, seed] list of every seed."
+ },
+ "CASES": [
+  {
+   "case": "no trailing newline",
+   "PASS": true,
+   "detail": "b'{\"a\":1}'"
+  },
+  {
+   "case": "no whitespace",
+   "PASS": true,
+   "detail": "b'{\"a\":1,\"b\":[1,2]}'"
+  },
+  {
+   "case": "key order irrelevant",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "list order matters",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "ascii only",
+   "PASS": true,
+   "detail": "b'{\"k\":\"\\\\u00e9\"}'"
+  },
+  {
+   "case": "content digest ignores timestamp and self field",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "content digest still sees content",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "methods hash is order-independent in input",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "methods hash sees a byte change",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "seed set hash IS order-dependent \u2014 accrual order is frozen",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "float bits are exact",
+   "PASS": true,
+   "detail": "0x3f50763f01e8e5b2"
+  },
+  {
+   "case": "float bits distinguish neighbours",
+   "PASS": true,
+   "detail": ""
+  },
+  {
+   "case": "path sort is byte-lexicographic",
+   "PASS": true,
+   "detail": "['/A', '/a', '/b']"
+  }
+ ],
+ "N": 13,
+ "HASH_PRIMITIVE_SELF_TEST": "PASS"
+}

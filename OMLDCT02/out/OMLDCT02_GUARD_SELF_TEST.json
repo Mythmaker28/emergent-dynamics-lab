@@ -1,0 +1,156 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "pre-C2 scientific-scale guard self-test",
+ "GENERATED_UTC": "2026-08-25T22:30:03.697274+00:00",
+ "WHY": "OMLDCT01 died because four full-scale trajectories preceded its freeze and nothing in the code stopped them. This guard replaces attention with a gate, and the gate itself is covered by fixtures.",
+ "SCALE_RULE": "a construction is SCIENTIFIC-SCALE when L > 5, or horizon >= NEED = 250, or the seed appears in the OMLDCT02 seed manifest. The three conditions are OR-ed: any one of them makes the construction capable of producing a candidate admissible pair, or spends a frozen seed, and section 7 forbids both before a committed C2.",
+ "C2_TOKEN": "OMLDCT02_C2_MASTER_FREEZE_COMMITTED",
+ "MAX_FIXTURE_L": 5,
+ "NEED": 250,
+ "IT_READS_GIT_NOT_THE_WORKING_TREE": true,
+ "C2_STATE_AT_TEST_TIME": {
+  "C2_COMMITTED": false,
+  "reason": "no commit on HEAD carries the token OMLDCT02_C2_MASTER_FREEZE_COMMITTED"
+ },
+ "CASES": [
+  {
+   "case": "synthetic fixture, L=4 horizon=100",
+   "kwargs": {
+    "L": 4,
+    "horizon": 100
+   },
+   "scientific_scale": false,
+   "expected_scale": false,
+   "allowed": true,
+   "expected_allowed": true,
+   "why": [],
+   "error": null,
+   "PASS": true
+  },
+  {
+   "case": "fixture at the L limit, L=5 horizon=249",
+   "kwargs": {
+    "L": 5,
+    "horizon": 249
+   },
+   "scientific_scale": false,
+   "expected_scale": false,
+   "allowed": true,
+   "expected_allowed": true,
+   "why": [],
+   "error": null,
+   "PASS": true
+  },
+  {
+   "case": "one step over the L limit, L=6",
+   "kwargs": {
+    "L": 6,
+    "horizon": 100
+   },
+   "scientific_scale": true,
+   "expected_scale": true,
+   "allowed": false,
+   "expected_allowed": false,
+   "why": [
+    "L = 6 exceeds the fixture limit 5"
+   ],
+   "error": "REFUSED: one step over the L limit, L=6 is scientific-scale (L = 6 exceeds the fixture limit 5) and no valid committed C2 exists (no commit on HEAD carries the ",
+   "PASS": true
+  },
+  {
+   "case": "one step over the horizon limit, horizon=250",
+   "kwargs": {
+    "L": 4,
+    "horizon": 250
+   },
+   "scientific_scale": true,
+   "expected_scale": true,
+   "allowed": false,
+   "expected_allowed": false,
+   "why": [
+    "horizon = 250 reaches NEED = 250"
+   ],
+   "error": "REFUSED: one step over the horizon limit, horizon=250 is scientific-scale (horizon = 250 reaches NEED = 250) and no valid committed C2 exists (no commit on HEAD",
+   "PASS": true
+  },
+  {
+   "case": "full scale, L=36 horizon=11000",
+   "kwargs": {
+    "L": 36,
+    "horizon": 11000
+   },
+   "scientific_scale": true,
+   "expected_scale": true,
+   "allowed": false,
+   "expected_allowed": false,
+   "why": [
+    "L = 36 exceeds the fixture limit 5",
+    "horizon = 11000 reaches NEED = 250"
+   ],
+   "error": "REFUSED: full scale, L=36 horizon=11000 is scientific-scale (L = 36 exceeds the fixture limit 5; horizon = 11000 reaches NEED = 250) and no valid committed C2 e",
+   "PASS": true
+  },
+  {
+   "case": "full horizon at fixture L",
+   "kwargs": {
+    "L": 5,
+    "horizon": 11000
+   },
+   "scientific_scale": true,
+   "expected_scale": true,
+   "allowed": false,
+   "expected_allowed": false,
+   "why": [
+    "horizon = 11000 reaches NEED = 250"
+   ],
+   "error": "REFUSED: full horizon at fixture L is scientific-scale (horizon = 11000 reaches NEED = 250) and no valid committed C2 exists (no commit on HEAD carries the toke",
+   "PASS": true
+  },
+  {
+   "case": "a frozen manifest seed at fixture scale",
+   "kwargs": {
+    "L": 4,
+    "horizon": 10,
+    "seed": 8578507
+   },
+   "scientific_scale": true,
+   "expected_scale": true,
+   "allowed": false,
+   "expected_allowed": false,
+   "why": [
+    "seed 8578507 is in the OMLDCT02 seed manifest"
+   ],
+   "error": "REFUSED: a frozen manifest seed at fixture scale is scientific-scale (seed 8578507 is in the OMLDCT02 seed manifest) and no valid committed C2 exists (no commit",
+   "PASS": true
+  },
+  {
+   "case": "a non-manifest seed at fixture scale",
+   "kwargs": {
+    "L": 4,
+    "horizon": 10,
+    "seed": 1
+   },
+   "scientific_scale": false,
+   "expected_scale": false,
+   "allowed": true,
+   "expected_allowed": true,
+   "why": [],
+   "error": null,
+   "PASS": true
+  },
+  {
+   "case": "no arguments at all",
+   "kwargs": {},
+   "scientific_scale": false,
+   "expected_scale": false,
+   "allowed": true,
+   "expected_allowed": true,
+   "why": [],
+   "error": null,
+   "PASS": true
+  }
+ ],
+ "N": 9,
+ "GUARD_SELF_TEST": "PASS",
+ "PRE_C2_SCIENTIFIC_SCALE_EXECUTIONS": 0
+}

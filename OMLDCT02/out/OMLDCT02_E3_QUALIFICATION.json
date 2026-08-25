@@ -1,0 +1,631 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "PRE_RUN_E3_QUALIFICATION",
+ "GENERATED_UTC": "2026-08-25T22:23:54.955010+00:00",
+ "BOTH_CLASSIFIERS_REBOUND_IN_THIS_MISSION": true,
+ "NOT_INHERITED_BY_REFERENCE": "the world layer re-ran BOTH classifiers over the same archives in this mission and compared them to each other. It does not compare B against a number stored during LDFMA01.",
+ "CLASSIFIER_A": {
+  "implementation": "LDFMA01/code/ldfma01_raw.py",
+  "adapter": "OMLDCT02/code/omldct02_e3_a.py",
+  "sha256_implementation": "baef98c61ce87a6085d7bd8581f97adb4150c8707c1cb242bc6e593d09d199c8",
+  "sha256_adapter": "61098cf3342a4e04991fa3e49ab1262c5aab144f1d6005f8d8945a1a0b0c1291",
+  "note": "the adapter calls A's components, centroid, link and running-identity trace. It reimplements none of them and reads no removal ledger, so it works on a SHAM arm."
+ },
+ "CLASSIFIER_B": {
+  "implementation": "OMLDCT02/code/omldct02_e3_b.py",
+  "sha256": "f4a701a69e5cc7d06757918bf235a4618af47948b978a245946bac980eb818a1"
+ },
+ "WHAT_THEY_SHARE": "raw archive inputs, the frozen constants L and CORE_R, and the endpoint definition. Nothing else.",
+ "WHAT_THEY_DO_NOT_SHARE": [
+  "component finding \u2014 BFS flood-fill on a dense adjacency matrix against union-find over an enumerated edge list",
+  "centroid accumulation \u2014 a Python loop against exact-integer numpy offsets",
+  "the link rule \u2014 forward and backward candidate dicts against boolean matrix row and column counts",
+  "the range test \u2014 math.hypot against squared distance, with every near-boundary comparison logged",
+  "identity \u2014 running ids assigned to every component at every step against one identity chased forward from t_m",
+  "exposure \u2014 a re-scan of membership after the trace against accumulation during the chase"
+ ],
+ "INDEPENDENCE_AUDIT_B": {
+  "file": "OMLDCT02/code/omldct02_e3_b.py",
+  "imports": [
+   "__future__",
+   "json",
+   "math",
+   "numpy",
+   "os"
+  ],
+  "banned_in_executable_code": {
+   "ldfma01": false,
+   "omldct02_e3_a": false,
+   "c_cid": false,
+   "k_id": false,
+   "TERMINAL_LABEL": false,
+   "VERDICT": false,
+   "descent_level": false,
+   "identity_carried": false
+  },
+  "banned_anywhere_including_prose": {
+   "ldfma01": true,
+   "omldct02_e3_a": false,
+   "c_cid": true,
+   "k_id": true,
+   "TERMINAL_LABEL": false,
+   "VERDICT": false,
+   "descent_level": false,
+   "identity_carried": false
+  },
+  "scan_method": "tokenised; comments and string literals removed",
+  "READS_NO_ONLINE_IDENTITY_OR_VERDICT_FIELD": true,
+  "SHARES_NO_IMPLEMENTATION_WITH_A": true
+ },
+ "INDEPENDENCE_PASS": true,
+ "MANUAL_ANSWER_FIXTURES": {
+  "n_component_cases": 11,
+  "n_centroid_cases": 13,
+  "n_link_cases": 8,
+  "each_carries_the_answer_written_out_by_hand": true,
+  "why": "a case where BOTH implementations are wrong the same way is still caught",
+  "PASS": true
+ },
+ "RANDOM_COMPONENT_FIXTURES": {
+  "n": 3000,
+  "disagreements": 0,
+  "PASS": true
+ },
+ "RANDOM_IDENTITY_LINK_FIXTURES": {
+  "n": 1500,
+  "disagreements": 0,
+  "PASS": true
+ },
+ "DEVELOPMENTAL_REMOVAL_WORLDS": {
+  "n": 22,
+  "n_agreeing": 22,
+  "fields_compared": [
+   "t_m",
+   "interval_end",
+   "E3_DURATION",
+   "E3_EXPOSURE",
+   "identity_termination_type",
+   "min_nY",
+   "max_nY",
+   "nY_histogram"
+  ],
+  "per_world": [
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i001_s1474284807",
+    "t_m": 942,
+    "A_duration": 309,
+    "B_duration": 309,
+    "A_exposure": 514,
+    "B_exposure": 514,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 6.46,
+    "B_seconds": 0.09
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i002_s2168595504",
+    "t_m": 697,
+    "A_duration": 161,
+    "B_duration": 161,
+    "A_exposure": 216,
+    "B_exposure": 216,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 7.0,
+    "B_seconds": 0.08
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i005_s203158793",
+    "t_m": 580,
+    "A_duration": 244,
+    "B_duration": 244,
+    "A_exposure": 584,
+    "B_exposure": 584,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 7.95,
+    "B_seconds": 0.1
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i009_s2255663407",
+    "t_m": 1334,
+    "A_duration": 88,
+    "B_duration": 88,
+    "A_exposure": 155,
+    "B_exposure": 155,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 6.17,
+    "B_seconds": 0.07
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i015_s1512492624",
+    "t_m": 903,
+    "A_duration": 276,
+    "B_duration": 276,
+    "A_exposure": 337,
+    "B_exposure": 337,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 7.15,
+    "B_seconds": 0.07
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i020_s1557150137",
+    "t_m": 658,
+    "A_duration": 335,
+    "B_duration": 335,
+    "A_exposure": 555,
+    "B_exposure": 555,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 7.84,
+    "B_seconds": 0.09
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i031_s183681731",
+    "t_m": 720,
+    "A_duration": 142,
+    "B_duration": 142,
+    "A_exposure": 278,
+    "B_exposure": 278,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 7.72,
+    "B_seconds": 0.1
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i037_s4195007327",
+    "t_m": 479,
+    "A_duration": 405,
+    "B_duration": 405,
+    "A_exposure": 576,
+    "B_exposure": 576,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 8.16,
+    "B_seconds": 0.08
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i041_s1110731446",
+    "t_m": 2379,
+    "A_duration": 180,
+    "B_duration": 180,
+    "A_exposure": 303,
+    "B_exposure": 303,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 6.32,
+    "B_seconds": 0.08
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i043_s2646349982",
+    "t_m": 2017,
+    "A_duration": 40,
+    "B_duration": 40,
+    "A_exposure": 82,
+    "B_exposure": 82,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 7.48,
+    "B_seconds": 0.07
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i045_s1775703340",
+    "t_m": 1062,
+    "A_duration": 545,
+    "B_duration": 545,
+    "A_exposure": 1324,
+    "B_exposure": 1324,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 7.19,
+    "B_seconds": 0.1
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i058_s2121762450",
+    "t_m": 928,
+    "A_duration": 298,
+    "B_duration": 298,
+    "A_exposure": 1360,
+    "B_exposure": 1360,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 8.03,
+    "B_seconds": 0.1
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i079_s3754004101",
+    "t_m": 840,
+    "A_duration": 216,
+    "B_duration": 216,
+    "A_exposure": 292,
+    "B_exposure": 292,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 6.8,
+    "B_seconds": 0.07
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i083_s460074954",
+    "t_m": 606,
+    "A_duration": 52,
+    "B_duration": 52,
+    "A_exposure": 106,
+    "B_exposure": 106,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 8.6,
+    "B_seconds": 0.08
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i093_s3302628962",
+    "t_m": 603,
+    "A_duration": 156,
+    "B_duration": 156,
+    "A_exposure": 273,
+    "B_exposure": 273,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 8.45,
+    "B_seconds": 0.09
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i119_s2378920449",
+    "t_m": 547,
+    "A_duration": 987,
+    "B_duration": 987,
+    "A_exposure": 1248,
+    "B_exposure": 1248,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 7.57,
+    "B_seconds": 0.09
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i150_s1335159117",
+    "t_m": 1135,
+    "A_duration": 597,
+    "B_duration": 597,
+    "A_exposure": 680,
+    "B_exposure": 680,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 7.01,
+    "B_seconds": 0.08
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i153_s1007174239",
+    "t_m": 683,
+    "A_duration": 31,
+    "B_duration": 31,
+    "A_exposure": 128,
+    "B_exposure": 128,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 8.51,
+    "B_seconds": 0.08
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i156_s1109449052",
+    "t_m": 2348,
+    "A_duration": 59,
+    "B_duration": 59,
+    "A_exposure": 180,
+    "B_exposure": 180,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 6.52,
+    "B_seconds": 0.07
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i158_s1907819116",
+    "t_m": 1418,
+    "A_duration": 1472,
+    "B_duration": 1472,
+    "A_exposure": 1712,
+    "B_exposure": 1712,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 5.98,
+    "B_seconds": 0.08
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i163_s1806899634",
+    "t_m": 728,
+    "A_duration": 267,
+    "B_duration": 267,
+    "A_exposure": 364,
+    "B_exposure": 364,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 7.73,
+    "B_seconds": 0.08
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i184_s927162381",
+    "t_m": 1204,
+    "A_duration": 58,
+    "B_duration": 58,
+    "A_exposure": 118,
+    "B_exposure": 118,
+    "termination": "SPLIT_OR_TIE",
+    "fields_equal": {
+     "t_m": true,
+     "interval_end": true,
+     "E3_DURATION": true,
+     "E3_EXPOSURE": true,
+     "identity_termination_type": true,
+     "min_nY": true,
+     "max_nY": true,
+     "nY_histogram": true
+    },
+    "ALL_EQUAL": true,
+    "A_seconds": 7.13,
+    "B_seconds": 0.08
+   }
+  ],
+  "PASS": true
+ },
+ "NEGATIVE_CONTROLS": {
+  "n": 4,
+  "detail": [
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i077_s2414544028",
+    "A_refused": "NO_REMOVAL_LEDGER",
+    "B_refused": "NO_REMOVAL_LEDGER",
+    "BOTH_REFUSED": true,
+    "ALL_EQUAL": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i111_s4049698502",
+    "A_refused": "NO_REMOVAL_LEDGER",
+    "B_refused": "NO_REMOVAL_LEDGER",
+    "BOTH_REFUSED": true,
+    "ALL_EQUAL": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i183_s4120635981",
+    "A_refused": "NO_REMOVAL_LEDGER",
+    "B_refused": "NO_REMOVAL_LEDGER",
+    "BOTH_REFUSED": true,
+    "ALL_EQUAL": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i217_s1018017219",
+    "A_refused": "NO_REMOVAL_LEDGER",
+    "B_refused": "NO_REMOVAL_LEDGER",
+    "BOTH_REFUSED": true,
+    "ALL_EQUAL": true
+   }
+  ],
+  "what": "LAW_C worlds that triggered but did not carry the identity, so no removal was applied and no locked-daughter interval exists",
+  "why_it_matters": "agreement on 22 productions is weaker than agreement on 22 productions and 4 refusals. Neither classifier invents an interval where the other produces none.",
+  "PASS": true
+ },
+ "LOAD_BEARING_DISAGREEMENTS": [],
+ "PROVEN_BLIND_REGION": {
+  "what": "shrinking CORE_R squared by as little as 0.001 is detected; enlarging it by 0.1 is not.",
+  "why": "cell separations are integers, so no squared separation lies in the open interval (25, 26); centroid separations lie on a quarter-integer squared lattice, so none lies in (25, 25.25). An enlargement inside those gaps cannot admit a pair and therefore cannot change any answer.",
+  "falsifiable_prediction_made_before_testing": "the link layer stays blind at +0.24 and becomes sensitive at exactly +0.25",
+  "held": true,
+  "conclusion": "the blind region is provably empty of realisable configurations. The comparison is complete over the reachable space, and it is recorded here because a comparison whose limits are unstated is not a qualification.",
+  "link_rule_mutation": "resolving a split by preference instead of terminating \u2014 the most dangerous silent change available \u2014 was caught."
+ },
+ "PRE_RUN_E3_QUALIFICATION": "PASS",
+ "WORLDS_RUN": 0,
+ "WHAT_THIS_DOES_NOT_DO": "it qualifies the instrument, not the hypothesis.",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "QUALIFICATION_CONTENT_HASH": "737392bb7bf44f74afe2dfb3fc69e0e3176e2e57a84316b6ed0f33c1dbb76ca9"
+}

@@ -1,0 +1,6230 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "seed registry",
+ "GENERATED_UTC": "2026-08-25T22:16:12.550848+00:00",
+ "GENERATOR": "OMLDCT02/code/omldct02_seed_manifest.py \u2014 committed, and this list is fully recomputable from it plus the recorded nonces",
+ "OMLDCT01_INVALID_CLOSURE_TIP": "d8b5007744ce14ea056d8cdab8e4fd520086ba53",
+ "LAW_STRING": "LAW_C_MCTT01|kY=0x3f50763f01e8e5b2|muY=0x3f484713dc1c8ab5|p_hop_Y=0x3fba462ec93926a0",
+ "LAW_BITS": {
+  "kY": "0x3f50763f01e8e5b2",
+  "muY": "0x3f484713dc1c8ab5",
+  "p_hop_Y": "0x3fba462ec93926a0"
+ },
+ "DERIVATION": "seed(role, index, nonce) = the first 4 bytes, big-endian, of sha256('<OMLDCT01 invalid-closure tip>|OMLDCT02|<law string>|<role>|<index>' and, only when a nonce is needed, '|<nonce>'), interpreted as an unsigned 32-bit integer. nonce starts at 0 and increments only when the candidate collides with an already-accepted OMLDCT02 seed or with the forbidden set. Every nonce actually used is recorded, so the whole list is recomputable from this file alone.",
+ "MAX_NONCE_USED": 0,
+ "N_COLLISION_REJECTIONS": 0,
+ "COLLISION_REJECTIONS": [],
+ "N_BASE": 1024,
+ "N_RESERVE": 6,
+ "WHY_N_BASE_IS_NOT_474": "OMLDCT01 froze 474 base seeds and disclosed P(reaching 41 pairs) = 0.5063. The recomputation in OMLDCT02_DESIGN_RECOMPUTED.json shows that probability was governed by the LENGTH OF THE SEED LIST, not by the 512-instance ceiling: with the ceiling alone the probability is 1.0000 and the largest number of seeds ever consumed in 20000 simulated campaigns was 788. A 474-long list stops the campaign before the frozen ceiling does. OMLDCT02 freezes 1024 so that the frozen ceiling is what binds. No frozen design quantity moves: the target is still 41 pairs and the ceiling is still 512 arm instances.",
+ "FORBIDDEN_SET": {
+  "size": 2554,
+  "sources": {
+   "repository filenames": 559,
+   "json seed keys": 2490,
+   "DEVICE_ARCHIVE_SEEDS.txt": 620
+  },
+  "json_files_scanned": 1225,
+  "frozen_artefact": "OMLDCT02_FORBIDDEN_SEEDS.json",
+  "FORBIDDEN_SET_HASH": "c8829b25d28f933273528747dfdc125aa4f95335cb28cf6a115415fd6c265ee9",
+  "verified_on_load": true,
+  "rule": "a deliberate superset. Every integer in [0, 2**32) under any key containing 'seed' in any JSON in the repository, every _s<digits> or seed<digits> token in any filename in the repository, and every such token in every .npz filename on the Windows device. Over-excluding costs nothing; under-excluding would let OMLDCT02 reuse a seed whose outcome is already known somewhere in the programme."
+ },
+ "DISJOINTNESS": {
+  "from_OMLDCT01_all_seeds": true,
+  "n_OMLDCT01_seeds_checked": 480,
+  "from_the_four_pre_C2_pilot_seeds": true,
+  "from_every_harvested_source": true,
+  "base_internally_distinct": true,
+  "reserve_internally_distinct": true,
+  "base_and_reserve_disjoint": true,
+  "ALL_PASS": true
+ },
+ "ACCRUAL_ORDER": "BASE index 0 upward. A base seed without an admissible trigger consumes its cost and is never selectively replaced. A technical retry reuses the identical seed and arm. Reserves are technical only.",
+ "BASE_SEEDS": [
+  {
+   "role": "BASE",
+   "index": 0,
+   "seed": 949050624,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1,
+   "seed": 738566139,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 2,
+   "seed": 249796412,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 3,
+   "seed": 3423492411,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 4,
+   "seed": 4194646884,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 5,
+   "seed": 1476837683,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 6,
+   "seed": 2754922314,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 7,
+   "seed": 292540366,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 8,
+   "seed": 823312983,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 9,
+   "seed": 2625760079,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 10,
+   "seed": 1819855435,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 11,
+   "seed": 1032667450,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 12,
+   "seed": 1716260022,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 13,
+   "seed": 2283566755,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 14,
+   "seed": 3479905956,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 15,
+   "seed": 2974495908,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 16,
+   "seed": 3195203542,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 17,
+   "seed": 1020774293,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 18,
+   "seed": 2206799019,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 19,
+   "seed": 3094012399,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 20,
+   "seed": 3926158855,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 21,
+   "seed": 4145499957,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 22,
+   "seed": 991696592,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 23,
+   "seed": 3169392548,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 24,
+   "seed": 2862290840,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 25,
+   "seed": 1041582353,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 26,
+   "seed": 1921436106,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 27,
+   "seed": 2070538282,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 28,
+   "seed": 1800257308,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 29,
+   "seed": 234035837,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 30,
+   "seed": 1616417047,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 31,
+   "seed": 627894609,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 32,
+   "seed": 3888705339,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 33,
+   "seed": 1318316070,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 34,
+   "seed": 938594825,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 35,
+   "seed": 1328897845,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 36,
+   "seed": 4175158017,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 37,
+   "seed": 2992562768,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 38,
+   "seed": 4185432690,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 39,
+   "seed": 3899541938,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 40,
+   "seed": 3700090985,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 41,
+   "seed": 582199971,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 42,
+   "seed": 3050414212,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 43,
+   "seed": 2946619849,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 44,
+   "seed": 1968499944,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 45,
+   "seed": 3016722618,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 46,
+   "seed": 1412786643,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 47,
+   "seed": 2886467602,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 48,
+   "seed": 3533168608,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 49,
+   "seed": 3720924271,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 50,
+   "seed": 416303353,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 51,
+   "seed": 2817660378,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 52,
+   "seed": 3697579520,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 53,
+   "seed": 2913579736,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 54,
+   "seed": 2205703633,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 55,
+   "seed": 2301654062,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 56,
+   "seed": 41536936,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 57,
+   "seed": 3977344968,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 58,
+   "seed": 283693633,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 59,
+   "seed": 3516605549,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 60,
+   "seed": 2576447193,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 61,
+   "seed": 3735399889,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 62,
+   "seed": 3149286939,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 63,
+   "seed": 501389519,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 64,
+   "seed": 4069603882,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 65,
+   "seed": 1771289495,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 66,
+   "seed": 4113812867,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 67,
+   "seed": 2364798094,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 68,
+   "seed": 3693611045,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 69,
+   "seed": 1811580770,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 70,
+   "seed": 3359530653,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 71,
+   "seed": 3798638444,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 72,
+   "seed": 1308624934,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 73,
+   "seed": 569874088,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 74,
+   "seed": 622330984,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 75,
+   "seed": 3842014946,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 76,
+   "seed": 3682979661,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 77,
+   "seed": 2998927110,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 78,
+   "seed": 1752919673,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 79,
+   "seed": 3977453411,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 80,
+   "seed": 1198473402,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 81,
+   "seed": 3636607084,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 82,
+   "seed": 2756551871,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 83,
+   "seed": 3524850152,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 84,
+   "seed": 3518211856,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 85,
+   "seed": 1479262027,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 86,
+   "seed": 2887330044,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 87,
+   "seed": 841022638,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 88,
+   "seed": 4232793099,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 89,
+   "seed": 1304349909,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 90,
+   "seed": 320458710,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 91,
+   "seed": 3513549052,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 92,
+   "seed": 895020908,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 93,
+   "seed": 657742078,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 94,
+   "seed": 4102098946,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 95,
+   "seed": 2502392326,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 96,
+   "seed": 1781099049,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 97,
+   "seed": 2990058907,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 98,
+   "seed": 2806686469,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 99,
+   "seed": 4160354266,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 100,
+   "seed": 3338467315,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 101,
+   "seed": 4253281347,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 102,
+   "seed": 3487253170,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 103,
+   "seed": 3644301597,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 104,
+   "seed": 2386110429,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 105,
+   "seed": 2712045455,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 106,
+   "seed": 1300454854,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 107,
+   "seed": 1150675470,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 108,
+   "seed": 3662742869,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 109,
+   "seed": 2355082099,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 110,
+   "seed": 3475491174,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 111,
+   "seed": 2978005455,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 112,
+   "seed": 1937392280,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 113,
+   "seed": 2059299615,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 114,
+   "seed": 1056834320,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 115,
+   "seed": 2175810461,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 116,
+   "seed": 2438669161,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 117,
+   "seed": 3855524279,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 118,
+   "seed": 897724775,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 119,
+   "seed": 3468888173,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 120,
+   "seed": 3268146387,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 121,
+   "seed": 1344459310,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 122,
+   "seed": 3393707813,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 123,
+   "seed": 1736883417,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 124,
+   "seed": 2996763163,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 125,
+   "seed": 3920173340,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 126,
+   "seed": 2826927182,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 127,
+   "seed": 3859780783,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 128,
+   "seed": 4268705411,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 129,
+   "seed": 704200197,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 130,
+   "seed": 1493431270,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 131,
+   "seed": 2115689039,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 132,
+   "seed": 1014149538,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 133,
+   "seed": 1509182057,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 134,
+   "seed": 2671758174,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 135,
+   "seed": 2463941642,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 136,
+   "seed": 2344557235,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 137,
+   "seed": 2027505530,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 138,
+   "seed": 1335504239,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 139,
+   "seed": 296469937,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 140,
+   "seed": 2055025161,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 141,
+   "seed": 2342127637,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 142,
+   "seed": 1698174697,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 143,
+   "seed": 3912212362,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 144,
+   "seed": 1495530314,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 145,
+   "seed": 2232351535,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 146,
+   "seed": 3714558990,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 147,
+   "seed": 2195985272,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 148,
+   "seed": 2394140054,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 149,
+   "seed": 2671485872,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 150,
+   "seed": 3702023151,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 151,
+   "seed": 2200039404,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 152,
+   "seed": 2961174230,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 153,
+   "seed": 3817653304,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 154,
+   "seed": 2383962159,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 155,
+   "seed": 2212003135,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 156,
+   "seed": 1021431592,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 157,
+   "seed": 370541705,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 158,
+   "seed": 3612978778,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 159,
+   "seed": 1414538543,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 160,
+   "seed": 2873644248,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 161,
+   "seed": 131598457,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 162,
+   "seed": 1021945051,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 163,
+   "seed": 3793801118,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 164,
+   "seed": 2792169531,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 165,
+   "seed": 3573290497,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 166,
+   "seed": 3697319817,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 167,
+   "seed": 386641868,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 168,
+   "seed": 1800870188,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 169,
+   "seed": 2808679288,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 170,
+   "seed": 2660660634,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 171,
+   "seed": 1843579980,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 172,
+   "seed": 1893061474,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 173,
+   "seed": 531975166,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 174,
+   "seed": 3660740413,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 175,
+   "seed": 153734122,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 176,
+   "seed": 1232257993,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 177,
+   "seed": 1910972180,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 178,
+   "seed": 3557886273,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 179,
+   "seed": 1001072853,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 180,
+   "seed": 1435841174,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 181,
+   "seed": 4238587594,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 182,
+   "seed": 2436313560,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 183,
+   "seed": 4185014628,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 184,
+   "seed": 2143529428,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 185,
+   "seed": 504722113,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 186,
+   "seed": 4250667333,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 187,
+   "seed": 2624676772,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 188,
+   "seed": 687319716,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 189,
+   "seed": 405431286,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 190,
+   "seed": 769849092,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 191,
+   "seed": 4197005762,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 192,
+   "seed": 3264397565,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 193,
+   "seed": 1717010709,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 194,
+   "seed": 386385727,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 195,
+   "seed": 1246470418,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 196,
+   "seed": 3740151780,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 197,
+   "seed": 1866306386,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 198,
+   "seed": 3690127377,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 199,
+   "seed": 2191731633,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 200,
+   "seed": 685340142,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 201,
+   "seed": 1859790874,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 202,
+   "seed": 2174925019,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 203,
+   "seed": 2854124529,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 204,
+   "seed": 2172655338,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 205,
+   "seed": 2808875948,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 206,
+   "seed": 2677594033,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 207,
+   "seed": 1283105330,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 208,
+   "seed": 880382034,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 209,
+   "seed": 800070916,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 210,
+   "seed": 1920002073,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 211,
+   "seed": 2625779225,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 212,
+   "seed": 3201565804,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 213,
+   "seed": 3139171321,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 214,
+   "seed": 3247721496,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 215,
+   "seed": 3303841783,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 216,
+   "seed": 1215821877,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 217,
+   "seed": 1510734480,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 218,
+   "seed": 246692847,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 219,
+   "seed": 382915143,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 220,
+   "seed": 84157238,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 221,
+   "seed": 2215474022,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 222,
+   "seed": 1128500759,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 223,
+   "seed": 2997990772,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 224,
+   "seed": 1759926706,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 225,
+   "seed": 3194750209,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 226,
+   "seed": 3963348012,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 227,
+   "seed": 3175276960,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 228,
+   "seed": 1250036914,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 229,
+   "seed": 247560449,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 230,
+   "seed": 3218189353,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 231,
+   "seed": 676879858,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 232,
+   "seed": 2257354339,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 233,
+   "seed": 3622915960,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 234,
+   "seed": 2402749746,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 235,
+   "seed": 253756686,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 236,
+   "seed": 74477470,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 237,
+   "seed": 93483119,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 238,
+   "seed": 3456366840,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 239,
+   "seed": 3090769710,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 240,
+   "seed": 2489335030,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 241,
+   "seed": 2134778562,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 242,
+   "seed": 359023128,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 243,
+   "seed": 3325101521,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 244,
+   "seed": 2352200909,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 245,
+   "seed": 111800521,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 246,
+   "seed": 206233955,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 247,
+   "seed": 3777939546,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 248,
+   "seed": 965879648,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 249,
+   "seed": 3812209060,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 250,
+   "seed": 930583029,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 251,
+   "seed": 2249260057,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 252,
+   "seed": 3299432320,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 253,
+   "seed": 1508798193,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 254,
+   "seed": 507405729,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 255,
+   "seed": 3599494412,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 256,
+   "seed": 3527167766,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 257,
+   "seed": 4176831237,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 258,
+   "seed": 3613224154,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 259,
+   "seed": 4102284548,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 260,
+   "seed": 2309334489,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 261,
+   "seed": 2779620772,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 262,
+   "seed": 3703951814,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 263,
+   "seed": 4263993546,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 264,
+   "seed": 2769392574,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 265,
+   "seed": 2455121207,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 266,
+   "seed": 3005918685,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 267,
+   "seed": 3031137638,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 268,
+   "seed": 3583497688,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 269,
+   "seed": 2118099278,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 270,
+   "seed": 4121788667,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 271,
+   "seed": 2224968345,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 272,
+   "seed": 856376202,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 273,
+   "seed": 79282388,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 274,
+   "seed": 1557619422,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 275,
+   "seed": 2990045140,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 276,
+   "seed": 1305302527,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 277,
+   "seed": 3288739840,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 278,
+   "seed": 1517171066,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 279,
+   "seed": 3896421438,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 280,
+   "seed": 930567177,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 281,
+   "seed": 3819837736,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 282,
+   "seed": 3641989075,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 283,
+   "seed": 3453831409,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 284,
+   "seed": 3490471573,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 285,
+   "seed": 1928591967,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 286,
+   "seed": 2384075229,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 287,
+   "seed": 3019510602,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 288,
+   "seed": 3510149468,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 289,
+   "seed": 3525368001,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 290,
+   "seed": 1370838178,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 291,
+   "seed": 1148900147,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 292,
+   "seed": 789755702,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 293,
+   "seed": 2480566312,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 294,
+   "seed": 2062695704,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 295,
+   "seed": 158414089,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 296,
+   "seed": 2920937062,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 297,
+   "seed": 2338938358,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 298,
+   "seed": 1001725226,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 299,
+   "seed": 3462774807,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 300,
+   "seed": 561268332,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 301,
+   "seed": 1489466590,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 302,
+   "seed": 832594871,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 303,
+   "seed": 445604756,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 304,
+   "seed": 3607473580,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 305,
+   "seed": 1014373698,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 306,
+   "seed": 492751665,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 307,
+   "seed": 3326210917,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 308,
+   "seed": 456852001,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 309,
+   "seed": 795821094,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 310,
+   "seed": 2916981062,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 311,
+   "seed": 1065651540,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 312,
+   "seed": 3803063700,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 313,
+   "seed": 1751505298,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 314,
+   "seed": 513393838,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 315,
+   "seed": 2531014399,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 316,
+   "seed": 1088767078,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 317,
+   "seed": 3695768263,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 318,
+   "seed": 2555900376,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 319,
+   "seed": 308974756,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 320,
+   "seed": 712503143,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 321,
+   "seed": 4207366260,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 322,
+   "seed": 595213321,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 323,
+   "seed": 1284596557,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 324,
+   "seed": 520497811,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 325,
+   "seed": 1407652734,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 326,
+   "seed": 440175676,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 327,
+   "seed": 1399981228,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 328,
+   "seed": 1042716488,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 329,
+   "seed": 2961773223,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 330,
+   "seed": 3676719974,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 331,
+   "seed": 2590652824,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 332,
+   "seed": 1354731900,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 333,
+   "seed": 992988470,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 334,
+   "seed": 2945630805,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 335,
+   "seed": 29547342,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 336,
+   "seed": 1529984351,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 337,
+   "seed": 3894896711,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 338,
+   "seed": 110005798,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 339,
+   "seed": 2799443921,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 340,
+   "seed": 1819472319,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 341,
+   "seed": 3693760626,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 342,
+   "seed": 4084239295,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 343,
+   "seed": 237648956,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 344,
+   "seed": 256355099,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 345,
+   "seed": 23896167,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 346,
+   "seed": 545561542,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 347,
+   "seed": 8978113,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 348,
+   "seed": 2588536928,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 349,
+   "seed": 3711892255,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 350,
+   "seed": 3727843170,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 351,
+   "seed": 3964494594,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 352,
+   "seed": 234733821,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 353,
+   "seed": 2535410781,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 354,
+   "seed": 2150214651,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 355,
+   "seed": 340178831,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 356,
+   "seed": 4116102519,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 357,
+   "seed": 2598098751,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 358,
+   "seed": 2225906726,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 359,
+   "seed": 1586385863,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 360,
+   "seed": 55561144,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 361,
+   "seed": 2411375228,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 362,
+   "seed": 1073009899,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 363,
+   "seed": 1350547668,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 364,
+   "seed": 3220234663,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 365,
+   "seed": 3201799109,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 366,
+   "seed": 2664194097,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 367,
+   "seed": 1176942030,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 368,
+   "seed": 2484460242,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 369,
+   "seed": 26536348,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 370,
+   "seed": 4113410387,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 371,
+   "seed": 3609174600,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 372,
+   "seed": 1766722654,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 373,
+   "seed": 638421419,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 374,
+   "seed": 2207851998,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 375,
+   "seed": 1876959042,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 376,
+   "seed": 1578456369,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 377,
+   "seed": 2764456876,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 378,
+   "seed": 1142881092,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 379,
+   "seed": 648146367,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 380,
+   "seed": 3108484988,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 381,
+   "seed": 2811536937,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 382,
+   "seed": 860476133,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 383,
+   "seed": 1208841854,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 384,
+   "seed": 3461140698,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 385,
+   "seed": 1297905704,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 386,
+   "seed": 3166951267,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 387,
+   "seed": 243102357,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 388,
+   "seed": 261658074,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 389,
+   "seed": 2768418449,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 390,
+   "seed": 2902497145,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 391,
+   "seed": 1155199275,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 392,
+   "seed": 3812087833,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 393,
+   "seed": 862135335,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 394,
+   "seed": 2679466680,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 395,
+   "seed": 694927155,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 396,
+   "seed": 3929910392,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 397,
+   "seed": 203358679,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 398,
+   "seed": 3398182160,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 399,
+   "seed": 1365453968,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 400,
+   "seed": 4249140693,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 401,
+   "seed": 2041283747,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 402,
+   "seed": 242822027,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 403,
+   "seed": 2743728851,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 404,
+   "seed": 2700327775,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 405,
+   "seed": 1356414689,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 406,
+   "seed": 3689455861,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 407,
+   "seed": 263742385,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 408,
+   "seed": 378037790,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 409,
+   "seed": 1196386647,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 410,
+   "seed": 324610419,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 411,
+   "seed": 3723790331,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 412,
+   "seed": 1134617024,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 413,
+   "seed": 2882154837,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 414,
+   "seed": 1192150944,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 415,
+   "seed": 1490422453,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 416,
+   "seed": 32549316,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 417,
+   "seed": 2893187952,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 418,
+   "seed": 541463658,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 419,
+   "seed": 3531280120,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 420,
+   "seed": 134297071,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 421,
+   "seed": 74512248,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 422,
+   "seed": 4186689026,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 423,
+   "seed": 1610482636,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 424,
+   "seed": 4105692711,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 425,
+   "seed": 1305129176,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 426,
+   "seed": 644000864,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 427,
+   "seed": 2114270959,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 428,
+   "seed": 2002546260,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 429,
+   "seed": 4000542395,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 430,
+   "seed": 2076399051,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 431,
+   "seed": 2166902982,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 432,
+   "seed": 444295991,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 433,
+   "seed": 3724844299,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 434,
+   "seed": 2446006748,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 435,
+   "seed": 2094226157,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 436,
+   "seed": 1756563711,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 437,
+   "seed": 991691077,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 438,
+   "seed": 1714485010,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 439,
+   "seed": 3902160891,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 440,
+   "seed": 738014487,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 441,
+   "seed": 2141508438,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 442,
+   "seed": 3558603281,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 443,
+   "seed": 3583250331,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 444,
+   "seed": 3151710441,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 445,
+   "seed": 1039363691,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 446,
+   "seed": 1257816259,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 447,
+   "seed": 419386658,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 448,
+   "seed": 2239028025,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 449,
+   "seed": 2243174232,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 450,
+   "seed": 2191075399,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 451,
+   "seed": 4141537399,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 452,
+   "seed": 578614524,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 453,
+   "seed": 3495752522,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 454,
+   "seed": 484854925,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 455,
+   "seed": 2179419428,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 456,
+   "seed": 966998696,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 457,
+   "seed": 569717185,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 458,
+   "seed": 635755407,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 459,
+   "seed": 1311472691,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 460,
+   "seed": 1951126570,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 461,
+   "seed": 1915127986,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 462,
+   "seed": 3661990029,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 463,
+   "seed": 687448853,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 464,
+   "seed": 1061749035,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 465,
+   "seed": 462873471,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 466,
+   "seed": 3120956589,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 467,
+   "seed": 488938482,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 468,
+   "seed": 313532382,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 469,
+   "seed": 2660574557,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 470,
+   "seed": 2417755831,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 471,
+   "seed": 1161599545,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 472,
+   "seed": 763045275,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 473,
+   "seed": 3850159991,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 474,
+   "seed": 1126468930,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 475,
+   "seed": 2198882603,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 476,
+   "seed": 2689326956,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 477,
+   "seed": 4153050284,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 478,
+   "seed": 841961574,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 479,
+   "seed": 421455056,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 480,
+   "seed": 2261125245,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 481,
+   "seed": 3866556376,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 482,
+   "seed": 947580020,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 483,
+   "seed": 3679875960,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 484,
+   "seed": 1282993013,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 485,
+   "seed": 2471197635,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 486,
+   "seed": 2134892784,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 487,
+   "seed": 2660792162,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 488,
+   "seed": 1407215087,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 489,
+   "seed": 2801676164,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 490,
+   "seed": 1227570977,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 491,
+   "seed": 4242318898,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 492,
+   "seed": 2429687068,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 493,
+   "seed": 2627006385,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 494,
+   "seed": 4178411098,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 495,
+   "seed": 485641535,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 496,
+   "seed": 3124489461,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 497,
+   "seed": 2153024780,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 498,
+   "seed": 3606408683,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 499,
+   "seed": 1603407737,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 500,
+   "seed": 1091110583,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 501,
+   "seed": 3288295165,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 502,
+   "seed": 2728976064,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 503,
+   "seed": 4184581749,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 504,
+   "seed": 1857614274,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 505,
+   "seed": 514589946,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 506,
+   "seed": 455520046,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 507,
+   "seed": 2462293729,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 508,
+   "seed": 2418252712,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 509,
+   "seed": 2358243026,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 510,
+   "seed": 1144718858,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 511,
+   "seed": 1919556745,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 512,
+   "seed": 3927650147,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 513,
+   "seed": 1798900817,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 514,
+   "seed": 4102403564,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 515,
+   "seed": 503270909,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 516,
+   "seed": 1203244980,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 517,
+   "seed": 3727602717,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 518,
+   "seed": 4140869190,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 519,
+   "seed": 3727593721,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 520,
+   "seed": 2254187694,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 521,
+   "seed": 201459160,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 522,
+   "seed": 2728429465,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 523,
+   "seed": 923328685,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 524,
+   "seed": 584492842,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 525,
+   "seed": 295308758,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 526,
+   "seed": 3803661205,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 527,
+   "seed": 4224504172,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 528,
+   "seed": 2957718152,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 529,
+   "seed": 2109603509,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 530,
+   "seed": 465643087,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 531,
+   "seed": 2930517210,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 532,
+   "seed": 2019834815,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 533,
+   "seed": 1249885845,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 534,
+   "seed": 2201058563,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 535,
+   "seed": 2020364823,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 536,
+   "seed": 4257809083,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 537,
+   "seed": 1619401031,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 538,
+   "seed": 4135187170,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 539,
+   "seed": 2668493923,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 540,
+   "seed": 3813232127,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 541,
+   "seed": 1067826355,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 542,
+   "seed": 1332387325,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 543,
+   "seed": 2695136458,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 544,
+   "seed": 2188141766,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 545,
+   "seed": 3452318086,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 546,
+   "seed": 1138009085,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 547,
+   "seed": 3926343573,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 548,
+   "seed": 4072594226,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 549,
+   "seed": 2790437136,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 550,
+   "seed": 3180631441,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 551,
+   "seed": 112310289,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 552,
+   "seed": 1649582190,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 553,
+   "seed": 328672154,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 554,
+   "seed": 2176895681,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 555,
+   "seed": 2839478170,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 556,
+   "seed": 2235314992,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 557,
+   "seed": 1855116906,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 558,
+   "seed": 518017903,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 559,
+   "seed": 2683809185,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 560,
+   "seed": 974955029,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 561,
+   "seed": 2930753671,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 562,
+   "seed": 1563047768,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 563,
+   "seed": 2420019419,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 564,
+   "seed": 3311859789,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 565,
+   "seed": 1678537844,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 566,
+   "seed": 1903425837,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 567,
+   "seed": 2599605507,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 568,
+   "seed": 3187537002,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 569,
+   "seed": 1876312092,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 570,
+   "seed": 2483960406,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 571,
+   "seed": 2172463140,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 572,
+   "seed": 2218620674,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 573,
+   "seed": 4209733810,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 574,
+   "seed": 4018916252,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 575,
+   "seed": 3966766615,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 576,
+   "seed": 1078260739,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 577,
+   "seed": 801675722,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 578,
+   "seed": 2444136365,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 579,
+   "seed": 3278243717,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 580,
+   "seed": 1769719602,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 581,
+   "seed": 144455393,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 582,
+   "seed": 3135010111,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 583,
+   "seed": 4250320139,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 584,
+   "seed": 3513549990,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 585,
+   "seed": 2319295563,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 586,
+   "seed": 2135112385,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 587,
+   "seed": 3252705116,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 588,
+   "seed": 14698099,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 589,
+   "seed": 4252544669,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 590,
+   "seed": 3381776372,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 591,
+   "seed": 3715910250,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 592,
+   "seed": 861429425,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 593,
+   "seed": 3962410871,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 594,
+   "seed": 1346141760,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 595,
+   "seed": 3663108870,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 596,
+   "seed": 2408134732,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 597,
+   "seed": 2244127709,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 598,
+   "seed": 3427384584,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 599,
+   "seed": 2470996372,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 600,
+   "seed": 848193351,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 601,
+   "seed": 1017719649,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 602,
+   "seed": 3043858230,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 603,
+   "seed": 2126783473,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 604,
+   "seed": 3636202820,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 605,
+   "seed": 1631680073,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 606,
+   "seed": 1618897080,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 607,
+   "seed": 73542191,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 608,
+   "seed": 2929917692,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 609,
+   "seed": 4100911883,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 610,
+   "seed": 809269134,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 611,
+   "seed": 995255380,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 612,
+   "seed": 4079053405,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 613,
+   "seed": 528236406,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 614,
+   "seed": 2028431010,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 615,
+   "seed": 2488947112,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 616,
+   "seed": 2461325874,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 617,
+   "seed": 3788788325,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 618,
+   "seed": 3252625562,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 619,
+   "seed": 2552383578,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 620,
+   "seed": 1519843223,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 621,
+   "seed": 3354108624,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 622,
+   "seed": 1586536410,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 623,
+   "seed": 1784797470,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 624,
+   "seed": 3292029242,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 625,
+   "seed": 3407537846,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 626,
+   "seed": 2866717140,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 627,
+   "seed": 361725709,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 628,
+   "seed": 1752155556,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 629,
+   "seed": 1717350426,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 630,
+   "seed": 2025967574,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 631,
+   "seed": 1171877323,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 632,
+   "seed": 643235649,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 633,
+   "seed": 3256013772,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 634,
+   "seed": 3903522307,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 635,
+   "seed": 3251440947,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 636,
+   "seed": 1346634248,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 637,
+   "seed": 3381277752,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 638,
+   "seed": 1671854369,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 639,
+   "seed": 2593738315,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 640,
+   "seed": 4275616100,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 641,
+   "seed": 278137306,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 642,
+   "seed": 3886545866,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 643,
+   "seed": 379106647,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 644,
+   "seed": 2698712185,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 645,
+   "seed": 3126121782,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 646,
+   "seed": 1456830436,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 647,
+   "seed": 1059279185,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 648,
+   "seed": 2378022854,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 649,
+   "seed": 444423598,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 650,
+   "seed": 3819869540,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 651,
+   "seed": 3438921725,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 652,
+   "seed": 933675828,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 653,
+   "seed": 1240999762,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 654,
+   "seed": 3304702294,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 655,
+   "seed": 2632521067,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 656,
+   "seed": 1914466326,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 657,
+   "seed": 4260173040,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 658,
+   "seed": 2328550994,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 659,
+   "seed": 2922947815,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 660,
+   "seed": 3574073302,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 661,
+   "seed": 1709487023,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 662,
+   "seed": 2584695244,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 663,
+   "seed": 1305814736,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 664,
+   "seed": 2809883036,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 665,
+   "seed": 1141797542,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 666,
+   "seed": 4013843686,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 667,
+   "seed": 3336348244,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 668,
+   "seed": 3792619264,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 669,
+   "seed": 3461841042,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 670,
+   "seed": 3338890845,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 671,
+   "seed": 1221602186,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 672,
+   "seed": 2793611070,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 673,
+   "seed": 4057570871,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 674,
+   "seed": 298471945,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 675,
+   "seed": 2455427950,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 676,
+   "seed": 3501317688,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 677,
+   "seed": 1588574473,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 678,
+   "seed": 1984591303,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 679,
+   "seed": 850568342,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 680,
+   "seed": 1340752096,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 681,
+   "seed": 3826138260,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 682,
+   "seed": 3285002193,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 683,
+   "seed": 1702202516,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 684,
+   "seed": 1510431475,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 685,
+   "seed": 352732712,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 686,
+   "seed": 1657515049,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 687,
+   "seed": 562158405,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 688,
+   "seed": 72144988,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 689,
+   "seed": 106161295,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 690,
+   "seed": 2832038246,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 691,
+   "seed": 1268272037,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 692,
+   "seed": 1224128793,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 693,
+   "seed": 4262666330,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 694,
+   "seed": 3948382430,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 695,
+   "seed": 1581507605,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 696,
+   "seed": 104927953,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 697,
+   "seed": 3203945288,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 698,
+   "seed": 3267046673,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 699,
+   "seed": 4274766437,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 700,
+   "seed": 4158280593,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 701,
+   "seed": 3415388914,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 702,
+   "seed": 990700689,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 703,
+   "seed": 4026713533,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 704,
+   "seed": 2313761027,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 705,
+   "seed": 1732526175,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 706,
+   "seed": 1564213234,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 707,
+   "seed": 3878558632,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 708,
+   "seed": 3740759454,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 709,
+   "seed": 3178185140,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 710,
+   "seed": 1352289058,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 711,
+   "seed": 2801777859,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 712,
+   "seed": 3064510747,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 713,
+   "seed": 1054976886,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 714,
+   "seed": 3866044464,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 715,
+   "seed": 1904156254,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 716,
+   "seed": 3099042898,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 717,
+   "seed": 1246442827,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 718,
+   "seed": 2277619755,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 719,
+   "seed": 4187864611,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 720,
+   "seed": 3694955452,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 721,
+   "seed": 3845235782,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 722,
+   "seed": 745938453,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 723,
+   "seed": 2116898314,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 724,
+   "seed": 489502762,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 725,
+   "seed": 19193801,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 726,
+   "seed": 3452109296,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 727,
+   "seed": 3796164087,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 728,
+   "seed": 1675233565,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 729,
+   "seed": 3152034052,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 730,
+   "seed": 4025007102,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 731,
+   "seed": 1834275457,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 732,
+   "seed": 2222672774,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 733,
+   "seed": 2568814981,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 734,
+   "seed": 1966238137,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 735,
+   "seed": 849851704,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 736,
+   "seed": 2427526604,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 737,
+   "seed": 897210937,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 738,
+   "seed": 3832745232,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 739,
+   "seed": 1086488504,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 740,
+   "seed": 2735781579,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 741,
+   "seed": 2686003052,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 742,
+   "seed": 457696496,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 743,
+   "seed": 1338869610,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 744,
+   "seed": 4253052567,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 745,
+   "seed": 2726927793,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 746,
+   "seed": 1701821984,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 747,
+   "seed": 2479310446,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 748,
+   "seed": 3055358491,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 749,
+   "seed": 2175083844,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 750,
+   "seed": 668660155,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 751,
+   "seed": 2380553785,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 752,
+   "seed": 1326868365,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 753,
+   "seed": 2480876766,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 754,
+   "seed": 1015294004,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 755,
+   "seed": 446899820,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 756,
+   "seed": 1749749760,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 757,
+   "seed": 1448371184,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 758,
+   "seed": 3219939070,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 759,
+   "seed": 4001996036,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 760,
+   "seed": 3531320674,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 761,
+   "seed": 4015539029,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 762,
+   "seed": 472089747,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 763,
+   "seed": 3651366043,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 764,
+   "seed": 569858800,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 765,
+   "seed": 844942867,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 766,
+   "seed": 210462725,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 767,
+   "seed": 2263979569,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 768,
+   "seed": 401839637,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 769,
+   "seed": 2723155358,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 770,
+   "seed": 2850556946,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 771,
+   "seed": 249822457,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 772,
+   "seed": 2580037184,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 773,
+   "seed": 1222896068,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 774,
+   "seed": 2996451360,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 775,
+   "seed": 3394863106,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 776,
+   "seed": 2548284685,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 777,
+   "seed": 2364185966,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 778,
+   "seed": 728201944,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 779,
+   "seed": 3608233128,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 780,
+   "seed": 3810452366,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 781,
+   "seed": 3871024410,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 782,
+   "seed": 3102655759,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 783,
+   "seed": 1098556927,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 784,
+   "seed": 2137751284,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 785,
+   "seed": 2543311399,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 786,
+   "seed": 1702139729,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 787,
+   "seed": 1107428038,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 788,
+   "seed": 1048162524,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 789,
+   "seed": 3461678618,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 790,
+   "seed": 1300893831,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 791,
+   "seed": 382463846,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 792,
+   "seed": 560991087,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 793,
+   "seed": 2789357799,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 794,
+   "seed": 2075106742,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 795,
+   "seed": 3135044108,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 796,
+   "seed": 1532444385,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 797,
+   "seed": 20773747,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 798,
+   "seed": 3697609179,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 799,
+   "seed": 3985812549,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 800,
+   "seed": 3568229810,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 801,
+   "seed": 158816951,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 802,
+   "seed": 2955888459,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 803,
+   "seed": 1679895517,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 804,
+   "seed": 4191447101,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 805,
+   "seed": 195900842,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 806,
+   "seed": 2326904477,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 807,
+   "seed": 107777960,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 808,
+   "seed": 2685934358,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 809,
+   "seed": 686405985,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 810,
+   "seed": 4293859308,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 811,
+   "seed": 2350484724,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 812,
+   "seed": 4132140806,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 813,
+   "seed": 2785027523,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 814,
+   "seed": 4271456574,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 815,
+   "seed": 2395478764,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 816,
+   "seed": 1295330849,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 817,
+   "seed": 273003736,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 818,
+   "seed": 2434431225,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 819,
+   "seed": 2009368158,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 820,
+   "seed": 1292824573,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 821,
+   "seed": 4172541303,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 822,
+   "seed": 3810963840,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 823,
+   "seed": 3587739275,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 824,
+   "seed": 3276633185,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 825,
+   "seed": 2562546660,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 826,
+   "seed": 3546328302,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 827,
+   "seed": 2312304443,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 828,
+   "seed": 3978384340,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 829,
+   "seed": 2606680871,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 830,
+   "seed": 3034832376,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 831,
+   "seed": 3050552320,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 832,
+   "seed": 1061818683,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 833,
+   "seed": 3751176420,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 834,
+   "seed": 3213425792,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 835,
+   "seed": 1218606043,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 836,
+   "seed": 2103108261,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 837,
+   "seed": 2487577880,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 838,
+   "seed": 423110758,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 839,
+   "seed": 3535382970,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 840,
+   "seed": 3670480925,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 841,
+   "seed": 3290826812,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 842,
+   "seed": 3672470086,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 843,
+   "seed": 2631617172,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 844,
+   "seed": 1702570982,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 845,
+   "seed": 3606894971,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 846,
+   "seed": 831088289,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 847,
+   "seed": 1768524043,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 848,
+   "seed": 2009617349,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 849,
+   "seed": 1333098720,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 850,
+   "seed": 402052674,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 851,
+   "seed": 2878828014,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 852,
+   "seed": 188704694,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 853,
+   "seed": 1779056749,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 854,
+   "seed": 1303683785,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 855,
+   "seed": 1784703302,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 856,
+   "seed": 724981690,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 857,
+   "seed": 1468546724,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 858,
+   "seed": 1436557052,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 859,
+   "seed": 639379801,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 860,
+   "seed": 3427789258,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 861,
+   "seed": 53426683,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 862,
+   "seed": 1802018245,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 863,
+   "seed": 225475439,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 864,
+   "seed": 1860476922,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 865,
+   "seed": 934553582,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 866,
+   "seed": 1753449542,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 867,
+   "seed": 1014673047,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 868,
+   "seed": 4185443578,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 869,
+   "seed": 2346923350,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 870,
+   "seed": 479073350,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 871,
+   "seed": 1888699961,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 872,
+   "seed": 955512215,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 873,
+   "seed": 2226050288,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 874,
+   "seed": 272790520,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 875,
+   "seed": 2478734049,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 876,
+   "seed": 1142701831,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 877,
+   "seed": 2475468317,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 878,
+   "seed": 3278569869,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 879,
+   "seed": 297832792,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 880,
+   "seed": 3229592056,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 881,
+   "seed": 299517998,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 882,
+   "seed": 1435409804,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 883,
+   "seed": 3855119135,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 884,
+   "seed": 85781545,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 885,
+   "seed": 2346167488,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 886,
+   "seed": 207309448,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 887,
+   "seed": 682276060,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 888,
+   "seed": 2397960060,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 889,
+   "seed": 2317915065,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 890,
+   "seed": 3167540798,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 891,
+   "seed": 2087273941,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 892,
+   "seed": 632950756,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 893,
+   "seed": 1386527007,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 894,
+   "seed": 928807594,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 895,
+   "seed": 1460719544,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 896,
+   "seed": 1829979748,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 897,
+   "seed": 748169408,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 898,
+   "seed": 2893234295,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 899,
+   "seed": 3619508144,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 900,
+   "seed": 1053206774,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 901,
+   "seed": 606839862,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 902,
+   "seed": 3486240944,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 903,
+   "seed": 1181496102,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 904,
+   "seed": 4168110400,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 905,
+   "seed": 1839836024,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 906,
+   "seed": 2799861410,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 907,
+   "seed": 4074801467,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 908,
+   "seed": 140560908,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 909,
+   "seed": 2121272206,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 910,
+   "seed": 3340604629,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 911,
+   "seed": 1400949036,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 912,
+   "seed": 1391090795,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 913,
+   "seed": 1194644347,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 914,
+   "seed": 2766482512,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 915,
+   "seed": 104257364,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 916,
+   "seed": 4236431290,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 917,
+   "seed": 1530061942,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 918,
+   "seed": 3654150257,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 919,
+   "seed": 2636503840,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 920,
+   "seed": 3728172106,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 921,
+   "seed": 2582075024,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 922,
+   "seed": 243925830,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 923,
+   "seed": 2391944039,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 924,
+   "seed": 2948664335,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 925,
+   "seed": 1292364617,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 926,
+   "seed": 1763788945,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 927,
+   "seed": 3963294587,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 928,
+   "seed": 280938145,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 929,
+   "seed": 2487049817,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 930,
+   "seed": 2928115418,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 931,
+   "seed": 3842690167,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 932,
+   "seed": 882938160,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 933,
+   "seed": 1088708849,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 934,
+   "seed": 2048401749,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 935,
+   "seed": 4228874048,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 936,
+   "seed": 4178496769,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 937,
+   "seed": 3442459832,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 938,
+   "seed": 696392943,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 939,
+   "seed": 2114646548,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 940,
+   "seed": 3797054142,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 941,
+   "seed": 2331694599,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 942,
+   "seed": 1527136412,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 943,
+   "seed": 2672414672,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 944,
+   "seed": 3587605356,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 945,
+   "seed": 1250376242,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 946,
+   "seed": 3044613631,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 947,
+   "seed": 3374859755,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 948,
+   "seed": 1844827740,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 949,
+   "seed": 3228596758,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 950,
+   "seed": 1389647981,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 951,
+   "seed": 3941413019,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 952,
+   "seed": 240347958,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 953,
+   "seed": 512383517,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 954,
+   "seed": 2149507755,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 955,
+   "seed": 2121304373,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 956,
+   "seed": 2441685860,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 957,
+   "seed": 2981225158,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 958,
+   "seed": 3456783336,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 959,
+   "seed": 2203178674,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 960,
+   "seed": 1075741970,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 961,
+   "seed": 3019645793,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 962,
+   "seed": 2983005652,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 963,
+   "seed": 1041400467,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 964,
+   "seed": 1405883428,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 965,
+   "seed": 2000319815,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 966,
+   "seed": 525925336,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 967,
+   "seed": 2184255566,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 968,
+   "seed": 551588566,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 969,
+   "seed": 595745851,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 970,
+   "seed": 3213904517,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 971,
+   "seed": 1259858269,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 972,
+   "seed": 2149638658,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 973,
+   "seed": 2825354702,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 974,
+   "seed": 2123366567,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 975,
+   "seed": 3239330037,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 976,
+   "seed": 1508443325,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 977,
+   "seed": 3357697042,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 978,
+   "seed": 4154376676,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 979,
+   "seed": 3031001710,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 980,
+   "seed": 1455723522,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 981,
+   "seed": 504549125,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 982,
+   "seed": 1202250793,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 983,
+   "seed": 906293958,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 984,
+   "seed": 779652864,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 985,
+   "seed": 1331716360,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 986,
+   "seed": 2058363958,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 987,
+   "seed": 985163747,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 988,
+   "seed": 3055859866,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 989,
+   "seed": 815711851,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 990,
+   "seed": 2811147370,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 991,
+   "seed": 3857026503,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 992,
+   "seed": 3740565261,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 993,
+   "seed": 2840105389,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 994,
+   "seed": 54528410,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 995,
+   "seed": 310667289,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 996,
+   "seed": 942773588,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 997,
+   "seed": 3491884808,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 998,
+   "seed": 1325810821,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 999,
+   "seed": 1422006239,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1000,
+   "seed": 2174422132,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1001,
+   "seed": 815249275,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1002,
+   "seed": 2291567012,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1003,
+   "seed": 4033449179,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1004,
+   "seed": 3324563911,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1005,
+   "seed": 3839923963,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1006,
+   "seed": 4059141555,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1007,
+   "seed": 1067882373,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1008,
+   "seed": 4145735973,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1009,
+   "seed": 162940858,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1010,
+   "seed": 2877312649,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1011,
+   "seed": 896300405,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1012,
+   "seed": 450861567,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1013,
+   "seed": 2403521384,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1014,
+   "seed": 1887387051,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1015,
+   "seed": 2899867634,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1016,
+   "seed": 809023654,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1017,
+   "seed": 868155914,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1018,
+   "seed": 3720761968,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1019,
+   "seed": 1657915755,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1020,
+   "seed": 8578507,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1021,
+   "seed": 1926837291,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1022,
+   "seed": 2145987281,
+   "nonce": 0
+  },
+  {
+   "role": "BASE",
+   "index": 1023,
+   "seed": 1910234087,
+   "nonce": 0
+  }
+ ],
+ "RESERVE_SEEDS": [
+  {
+   "role": "RESERVE",
+   "index": 0,
+   "seed": 1772009755,
+   "nonce": 0
+  },
+  {
+   "role": "RESERVE",
+   "index": 1,
+   "seed": 3183827230,
+   "nonce": 0
+  },
+  {
+   "role": "RESERVE",
+   "index": 2,
+   "seed": 1886729999,
+   "nonce": 0
+  },
+  {
+   "role": "RESERVE",
+   "index": 3,
+   "seed": 820716210,
+   "nonce": 0
+  },
+  {
+   "role": "RESERVE",
+   "index": 4,
+   "seed": 3791938706,
+   "nonce": 0
+  },
+  {
+   "role": "RESERVE",
+   "index": 5,
+   "seed": 4066360239,
+   "nonce": 0
+  }
+ ],
+ "SEED_SET_HASH": "998f6fabaf166c029e0c9fadabc26bc83837e7c728ae83c8410c93d1afb3a019",
+ "SEED_SET_HASH_RULE": "H.seed_set_hash: canonical digest of [[role, index, seed], ...] in frozen order. Rules in omldct02_hashes.CANONICAL_RULES."
+}

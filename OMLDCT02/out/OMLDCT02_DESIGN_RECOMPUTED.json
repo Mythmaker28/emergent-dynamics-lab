@@ -1,0 +1,81 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "design recomputation, before world 1",
+ "GENERATED_UTC": "2026-08-25T22:17:28.263498+00:00",
+ "GENERATOR": "OMLDCT02/code/omldct02_design.py \u2014 deterministic, MC_SEED fixed in the file",
+ "FROZEN_AND_UNCHANGED": {
+  "TARGET_VALID_PAIRED_BLOCKS": 41,
+  "MAX_PRIMARY_ARM_INSTANCES": 512,
+  "ONE_ARM_INSTANCE": "one full-horizon world-equivalent of engine work, T = 11000",
+  "T_HORIZON": 11000,
+  "LATEST_ALLOWED_TRIGGER": 6500
+ },
+ "COST_MODEL": {
+  "admissible": "prefix to t_m, then two full-horizon arms: (t_m+1)/T + 2(T-t_m-1)/T",
+  "triggered_not_carried": "prefix only: (t_m+1)/T \u2014 no arm is ever created",
+  "no_trigger": "prefix to the frozen deadline only: 6501/T = 0.5910",
+  "prefix_truncation_justification": "a maturation candidate after LATEST_ALLOWED_TRIGGER fails the frozen deadline gate, so a world with no candidate by that step can never trigger. This uses the frozen rule and changes no definition.",
+  "mean_instances_per_base_seed": 0.69637,
+  "p_admissible_per_seed": 0.08594
+ },
+ "SIZING_DATA": {
+  "source": "the 256 developmental LAW_C_MCTT01 worlds TLMR01 ran",
+  "n_worlds": 256,
+  "n_admissible": 22,
+  "n_triggered_not_carried": 4,
+  "n_no_trigger": 230,
+  "NO_OMLDCT01_PILOT_OUTCOME_ENTERS_THIS": "the four pre-C2 pilot outcomes are DEVELOPMENTAL_PILOT_DIAGNOSTIC and are excluded from power, seed selection, thresholds and every estimate. This sizing uses only the same developmental data the parent handoff used."
+ },
+ "MONTE_CARLO": {
+  "seed": 20260826,
+  "trials": 20000,
+  "ceiling_never_breached_by_construction": true
+ },
+ "WHAT_OMLDCT01_DISCLOSED": {
+  "P_reaching_41_pairs": 0.5063,
+  "P_under_accrual": 0.4937
+ },
+ "RECOMPUTED_AT_A_474_SEED_LIST": {
+  "P_reaching_target": 0.5046,
+  "P_under_accrual": 0.49539999999999995,
+  "seeds_used_mean": 447.01815,
+  "seeds_used_p99": 474.0,
+  "seeds_used_p99_99": 474.0,
+  "seeds_used_max": 474,
+  "instances_used_mean": 311.2788444181833,
+  "instances_used_max": 333.1470000000017
+ },
+ "RECOMPUTED_AT_THE_1024_SEED_LIST": {
+  "P_reaching_target": 0.9999,
+  "P_under_accrual": 9.999999999998899e-05,
+  "seeds_used_mean": 477.01405,
+  "seeds_used_p99": 660.0099999999984,
+  "seeds_used_p99_99": 767.0019999999495,
+  "seeds_used_max": 789,
+  "instances_used_mean": 332.1733106409108,
+  "instances_used_max": 510.5823636363675
+ },
+ "RECOMPUTED_WITH_THE_INSTANCE_CEILING_ALONE": {
+  "P_reaching_target": 0.9999,
+  "P_under_accrual": 9.999999999998899e-05,
+  "seeds_used_mean": 477.01405,
+  "seeds_used_p99": 660.0099999999984,
+  "seeds_used_p99_99": 767.0019999999495,
+  "seeds_used_max": 789,
+  "instances_used_mean": 332.1733106409108,
+  "instances_used_max": 510.5823636363675
+ },
+ "THE_FINDING": {
+  "what": "OMLDCT01's disclosed 0.5063 is reproduced here at 474 seeds and is therefore correct \u2014 but it measures the wrong constraint. It is the probability of reaching 41 pairs before the SEED LIST runs out, not before the frozen 512-instance ceiling does. With the ceiling alone the probability is essentially 1 and the largest number of seeds any simulated campaign consumed was 789.",
+  "why_it_matters": "a 474-long list stops the campaign roughly half the time for a reason that is not in the frozen design at all. That is an implementation shortfall, not a power limitation.",
+  "what_changes": "the candidate list length only. OMLDCT02 freezes 1024 base seeds so that the frozen ceiling is what binds.",
+  "what_does_not_change": "the target of 41 valid paired blocks, the 512-arm-instance ceiling, the endpoints, the test, the alpha, the direction, the combination rule, the zero treatment and the claim ceiling.",
+  "residual_under_accrual_risk": 0.0001,
+  "and_it_is_disclosed_not_used_to_change_the_design": true
+ },
+ "N_BASE_FROZEN": 1024,
+ "N_RESERVE_FROZEN": 6,
+ "RESERVE_BASIS": "MAX_TECHNICAL_RESERVES = 6 in the committed parent handoff. Technical only: a technical retry reuses the identical seed and arm; a scientific non-trigger consumes its seed and is never replaced.",
+ "WORLDS_RUN": 0,
+ "DESIGN_CONTENT_HASH": "792921935cbbf57f7b1ec0766c550cd4cba4f326852d396cb051633f22c8b53d"
+}
