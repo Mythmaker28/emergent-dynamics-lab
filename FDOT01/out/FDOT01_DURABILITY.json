@@ -1,0 +1,43 @@
+{
+ "SECTION": "FDOT01 \u00a714 \u2014 Windows durability BEFORE the first scientific world",
+ "GENERATED_UTC": "2026-08-21T18:21:57.974908+00:00",
+ "FREEZE_COMMIT": "82f6c847ebf5789e3133c33a8a366cb144300952",
+ "WORLDS_RUN_AT_THIS_POINT": 0,
+ "ARTEFACTS": {
+  "FDOT01_PRE_RUN_FULL.bundle": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FDOT01\\prerun\\FDOT01_PRE_RUN_FULL.bundle",
+   "bytes": 847059,
+   "sha256_written": "d365284d6abae1fdda73f3b94da612f99f040d9a89dd66fc34db694989a03297",
+   "sha256_read_back": "d365284d6abae1fdda73f3b94da612f99f040d9a89dd66fc34db694989a03297",
+   "IDENTICAL": true
+  },
+  "FDOT01_PRE_RUN_METHODS_CAPSULE.tar.zst": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FDOT01\\prerun\\FDOT01_PRE_RUN_METHODS_CAPSULE.tar.zst",
+   "bytes": 64351,
+   "sha256_written": "c9c4997dda75ccc702b4bd934d44db2d397bfe7d3183334588d5783f92c474db",
+   "sha256_read_back": "c9c4997dda75ccc702b4bd934d44db2d397bfe7d3183334588d5783f92c474db",
+   "IDENTICAL": true
+  },
+  "FDOT01_PRE_RUN_SHA256SUMS": {
+   "windows_path": "C:\\Users\\tommy\\Documents\\ising v3\\ISING_LIFE_AUTHORITATIVE_RECOVERY\\FDOT01\\prerun\\FDOT01_PRE_RUN_SHA256SUMS",
+   "bytes": 198,
+   "sha256_written": "0287f19d74c659e40b11a7df3a42fce5e644afdcde68814c6680431f4bf4a515",
+   "sha256_read_back": "0287f19d74c659e40b11a7df3a42fce5e644afdcde68814c6680431f4bf4a515",
+   "IDENTICAL": true
+  }
+ },
+ "ALL_IDENTICAL_ON_READ_BACK": true,
+ "FIVE_REQUIRED_VERIFICATIONS": {
+  "1_freeze_commit_restored": true,
+  "2_git_fsck_full_exit_code": 0,
+  "3_methods_hashes_reproduce": "32/32",
+  "4_all_primary_and_reserve_seeds_present": "160 primary + 6 reserve, unique",
+  "5_analysis_and_final_disposition_code_present": "6/6"
+ },
+ "VERIFIER_BUG_CAUGHT_AND_CORRECTED": "the first read-back check chose the archive prefix from the manifest's `abs` field while the capsule builder had keyed on `path`, so 13 of 32 files were looked for in the wrong place and reported missing. Every byte was in fact present. The bug was in the VERIFIER, not in the durability, and it is recorded here rather than quietly re-run.",
+ "METHOD": "written to the Windows disk, then staged BACK into the container and re-hashed, and the repository rebuilt from the DEVICE copy in a scratch clone. A write receipt was never accepted.",
+ "RESTORED_TREE_IDENTICAL": true,
+ "WINDOWS_PRE_RUN_DURABILITY": "PASS",
+ "GITHUB": "optional; the 403 does not block the experiment now that Windows durability has passed",
+ "WINDOWS_RAW_DURABILITY_BEFORE_ANALYSIS": "PENDING"
+}
