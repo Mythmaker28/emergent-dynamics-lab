@@ -1,0 +1,45 @@
+{
+ "MISSION": "LDFMA01",
+ "SECTION": "10 \u2014 terminal disposition",
+ "GENERATED_UTC": "2026-08-25T19:21:18.118399+00:00",
+ "FINAL_DISPOSITION": "LOCKED_DAUGHTER_FAILURE_MECHANISM_IDENTIFIED__ONE_MATCHED_CONTROL_TEST_ELIGIBLE",
+ "ALLOWED_TERMINALS": [
+  "LOCKED_DAUGHTER_FAILURE_MECHANISM_IDENTIFIED__ONE_MATCHED_CONTROL_TEST_ELIGIBLE",
+  "LOCKED_DAUGHTER_FAILURE_MECHANISM_IDENTIFIED__ONE_MINIMAL_ARCHITECTURE_TEST_ELIGIBLE",
+  "LOCKED_DAUGHTER_FAILURE_NOT_IDENTIFIABLE__LINEAGE_ROUTE_PAUSED",
+  "FIMRCC01_RECORD_NOT_INTERPRETABLE__LOAD_BEARING_RECONSTRUCTION_DEFECT"
+ ],
+ "DISPOSITION_IS_ONE_OF_THE_FOUR": true,
+ "IT_CHANGED_AFTER_THE_CHECKER": {
+  "before": "LOCKED_DAUGHTER_FAILURE_NOT_IDENTIFIABLE__LINEAGE_ROUTE_PAUSED",
+  "after": "LOCKED_DAUGHTER_FAILURE_MECHANISM_IDENTIFIED__ONE_MATCHED_CONTROL_TEST_ELIGIBLE",
+  "cause": "C-03, upheld and independently recomputed",
+  "the_checker_recommended_this": true
+ },
+ "THE_IDENTIFIED_MECHANISM": {
+  "part_1_exposure": "after the removal the locked daughter is a 1-to-6 particle object holding the world's entire Y population (parent_nY + daughter_nY = world_nY in 22 of 22). Its identity window is closed by a split with exactly two successor candidates within CORE_R in 22 of 22, at a median of 230 steps. The resulting 11,385 particle-steps predict 8.44 constituent removals, and the exposure model reproduces the observed completion count to 5.809 against 5.",
+  "part_2_attribution": "the frozen endpoint attributes a ledger event to the component whose cell set contains it AT STEP t, while the archive writes cell rows after the step, so a decay that empties a cell is invisible. This is a measurement defect, quantified but NOT repaired here.",
+  "which_is_load_bearing": "both. Part 1 sets how many removals occur; part 2 sets how many are counted. Neither alone explains 1 of 22."
+ },
+ "SELECTED_ROUTE": "ROUTE_A__ONE_MATCHED_CONTROL_TEST",
+ "SELECTED_PRIMARY_ENDPOINT": "E3",
+ "SELECTED_MAXIMUM_RUN_BUDGET": "512 primary arm instances, one instance = one full-horizon world-equivalent of engine work",
+ "NEW_SCIENTIFIC_ENGINE_RUNS_IN_LDFMA01": 0,
+ "NEW_SEEDS": 0,
+ "NEW_TRAJECTORIES": 0,
+ "ROUTE_CANDIDATES_EVALUATED": 3,
+ "ROUTES_SELECTED": 1,
+ "INDEPENDENT_CHECKERS_USED": 1,
+ "REVIEW_CASCADES": 0,
+ "HANDOFF_EMITTED": "HANDOFF_ONE_MATCHED_LOCKED_DAUGHTER_CONTROL_TEST_01.md",
+ "HANDOFF_IS_CREATED_NOT_EXECUTED": true,
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "FINITE_SIZE_RELEVANCE": "NOT_SUPPORTED",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+ "NEXT_SCIENTIFIC_ELIGIBILITY": "ONE_MATCHED_CONTROL_TEST__AWAITING_TOMMYS_AUTHORISATION"
+}

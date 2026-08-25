@@ -1,0 +1,52 @@
+{
+ "MISSION": "LDFMA01",
+ "SECTION": "12 \u2014 Windows durability, ZERO-RUN",
+ "GENERATED_UTC": "2026-08-25T19:24:52.453420+00:00",
+ "PREREQUISITE_TIP": "3d67654fc5cfa7e5502c4d7e93b13c090d735263",
+ "PACKAGE": {
+  "LDFMA01_FINAL_INCREMENT.bundle": "586a28ed2ac68a5f4a6689182bd923d9aac1fa782786480be8539265f6f31fb0",
+  "LDFMA01_FINAL_EVIDENCE_CAPSULE.tar.gz": "dc2021f6766bcfa7e3f4cf8a788c797ecb65acae42df6fc42944a0793baa28bb",
+  "LDFMA01_CHECKER_RAW.txt": "f93c85a7082973c426fbe99bd5a47c7bda20b1c2ceac81101595058ede0ce5ba"
+ },
+ "READ_BACK_ON_WINDOWS": {
+  "n_files": 13,
+  "n_identical": 13,
+  "ALL_IDENTICAL": true
+ },
+ "TREE_RESTORATION_FROM_THE_PACKAGE_ALONE": {
+  "chain": [
+   "TLMR01_FINAL_SELFCONTAINED.bundle -> 1de5373",
+   "FIMRCC01_FINAL_INCREMENT.bundle  -> 3d67654",
+   "LDFMA01_FINAL_INCREMENT.bundle   -> b2f4298"
+  ],
+  "restored_tip": "b2f42989e8fceabe723f7298541987306b0b6726",
+  "git_fsck_full_exit_code": 0,
+  "artefacts_checked_against_SHA256SUMS": 28,
+  "artefacts_OK": 28,
+  "artefacts_FAILED": 0
+ },
+ "FINAL_DISPOSITION_READ_BACK": "LOCKED_DAUGHTER_FAILURE_MECHANISM_IDENTIFIED__ONE_MATCHED_CONTROL_TEST_ELIGIBLE",
+ "ZERO_RUN_VERIFIED_FROM_THE_RESTORED_TREE": {
+  "LDFMA01_raw_archives_in_the_tree": 0,
+  "NEW_SCIENTIFIC_ENGINE_RUNS": 0,
+  "NEW_SEEDS": 0,
+  "NEW_TRAJECTORIES": 0
+ },
+ "THE_FIFTH_ROLLBACK_AND_WHAT_IT_COST": {
+  "bytes_moved_to_recover": 572275,
+  "artefacts_verified_after_recovery": 18,
+  "artefacts_failed": 0,
+  "why_it_was_cheap": "the durability package is a CHAIN OF INCREMENTS whose prerequisites reach a commit the snapshot still contained, not one self-contained bundle."
+ },
+ "GITHUB_PUSH": {
+  "attempted": false,
+  "reason": "the CCR git proxy refuses this repository with 403 and the refusal has never been bypassed. Windows durability is the binding record.",
+  "BLOCKS_CLOSURE": false
+ },
+ "WINDOWS_DURABILITY": "PASS",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED"
+}

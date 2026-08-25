@@ -1,0 +1,48 @@
+{
+ "MISSION": "LDFMA01",
+ "SECTION": "0 \u2014 container rollback incident",
+ "GENERATED_UTC": "2026-08-25T18:19:27.649232+00:00",
+ "A_ROLLBACK_OCCURRED": true,
+ "ROLLBACK_ORDINAL_FOR_THIS_PROGRAMME": 5,
+ "WHEN": "between the close of FIMRCC01 and the launch of LDFMA01, in the same session",
+ "WHAT_HAPPENED": "the container reverted to the FDOT01 C2 snapshot (82f6c84) for the fifth time. TLMR01, FIMRCC01, MCTT01/out, BPRTC01/out and every staged upload were erased from the container. The rolled-back snapshot also restored the partial-clone promisor, so git cat-file began consulting GitHub again and reported the missing commits as 'upload-pack: not our ref' rather than as locally absent.",
+ "WHAT_WAS_LOST_FROM_THE_CONTAINER": [
+  "the branch codex/fresh-integrated-minimal-reproduction-causal-confirmation-01",
+  "commits 19fa6be and 3d67654",
+  "TLMR01/ and FIMRCC01/ working trees",
+  "MCTT01/out and BPRTC01/out",
+  "every file under /mnt/user-data/uploads"
+ ],
+ "WHAT_WAS_LOST_PERMANENTLY": "nothing.",
+ "HOW_IT_WAS_RESTORED": {
+  "bytes_moved_across_the_bridge": 572275,
+  "step_1": {
+   "file": "TLMR01_FINAL_FULL.bundle",
+   "bytes": 374049,
+   "sha256": "bd25d706e5f9215e33cd4da997f0cdd5e8215f49e6045acc463b5c6103a2d308",
+   "prerequisite": "82f6c847ebf5789e3133c33a8a366cb144300952 \u2014 present in the snapshot",
+   "gives": "1de537386d584f2ff6abfb72ca46dec3e02e3c36"
+  },
+  "step_2": {
+   "file": "FIMRCC01_FINAL_INCREMENT.bundle",
+   "bytes": 198226,
+   "sha256": "6021d033c1bb726525452db654c1173402ff1218ec34689f3762b54dcb578c76",
+   "prerequisite": "1de537386d584f2ff6abfb72ca46dec3e02e3c36",
+   "gives": "3d67654fc5cfa7e5502c4d7e93b13c090d735263"
+  },
+  "step_3": "checkout, then sha256sum -c FIMRCC01/out/SHA256SUMS",
+  "artefacts_verified": 18,
+  "artefacts_failed": 0,
+  "working_tree_clean_after_restore": true
+ },
+ "WHY_IT_COST_572_KB_AND_NOT_124_MB": "the durability package was built as two INCREMENTS whose prerequisites chain to a commit the snapshot already contains, rather than as one self-contained bundle. The 124 MB self-contained bundle exists on Windows as the fallback for a container that has nothing at all; it was not needed here.",
+ "THREE_UNTRACKED_FDOT01_FILES": {
+  "what": "the snapshot restored FDOT01_DURABILITY.json, FDOT01_FREEZE_BINDING.json and FDOT01_RUN_LEDGER.jsonl as untracked files, blocking the checkout",
+  "what_was_checked_before_removing_them": "each was compared byte for byte against the version committed in 19fa6be; all three were identical, so removing them lost nothing",
+  "identical": true
+ },
+ "NO_SCIENTIFIC_CONTENT_WAS_RECONSTRUCTED_FROM_PROSE": true,
+ "NEW_SCIENTIFIC_WORLDS_RUN_DURING_RECOVERY": 0,
+ "RAW_ARCHIVES_ON_THE_DEVICE_AFTER_THE_ROLLBACK": 512,
+ "LESSON_ALREADY_APPLIED": "externalise as increments chained to a commit the snapshot contains. That is what made this recovery a two-file operation."
+}

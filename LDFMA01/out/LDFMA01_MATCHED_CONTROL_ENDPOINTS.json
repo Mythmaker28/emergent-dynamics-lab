@@ -1,0 +1,166 @@
+{
+ "MISSION": "LDFMA01",
+ "SECTION": "6 \u2014 matched-control endpoints",
+ "GENERATED_UTC": "2026-08-25T18:45:09.512295+00:00",
+ "DERIVED_FROM_FIRST_PRINCIPLES_NOT_INHERITED": "E3 and E5 are re-derived here against the seven conditions. Being listed in FIMRCC01 gives them no standing.",
+ "MAX_ROUTE_CANDIDATES": 3,
+ "N_CANDIDATES": 3,
+ "CANDIDATES": [
+  {
+   "id": "E1-corrected",
+   "name": "locked-daughter COMPLETE_TURNOVER with the attribution defect repaired, SELECTIVE vs SHAM, paired",
+   "why_it_is_considered": "it is the only candidate aligned with the identified mechanism. It is NOT a new endpoint: it is the frozen locked-daughter endpoint with the event-attribution defect quantified in section 3 repaired at the instrumentation level.",
+   "scientific_question": "does removing the parent change the probability that the locked daughter completes a constituent turnover inside its own identity?",
+   "causal_estimand": "the paired difference in that binary, SELECTIVE minus SHAM, on the same seed",
+   "independent_unit": "the base block",
+   "matched_arms": [
+    "SELECTIVE_PARENT_REMOVAL",
+    "SHAM_NO_REMOVAL"
+   ],
+   "time_origin": "t_m",
+   "endpoint": "binary per block",
+   "censoring": "administrative at the horizon",
+   "competing_events": "identity termination by split, merge or extinction before completion",
+   "decision_rule": "exact McNemar on discordant pairs, one-sided, alpha 0.05",
+   "claim_ceiling": "a causal effect of parent removal on locked-daughter constituent turnover. NOT reproduction, NOT heredity.",
+   "RETROSPECTIVE_RATE_USED_FOR_POWER_ONLY": {
+    "value": "5/22",
+    "note": "the rate the SAME archives give when the identical ledger rows are attributed one step earlier. Used to size a hypothetical design. It is NOT adopted as a verdict anywhere in this mission."
+   },
+   "CONDITIONS": {
+    "1 answers a question directly relevant to daughter independence": {
+     "verdict": "PASS",
+     "why": "it is exactly the reproduction-relevant event."
+    },
+    "2 does not substitute ambient-population turnover for locked-daughter turnover": {
+     "verdict": "PASS",
+     "why": "restricted to the one locked identity."
+    },
+    "3 its decision rule has a non-arbitrary physical or causal derivation": {
+     "verdict": "PASS",
+     "why": "McNemar on discordant pairs; no free threshold."
+    },
+    "4 the endpoint is reconstructable offline": {
+     "verdict": "PASS",
+     "why": "reconstructable, given the instrumentation repair."
+    },
+    "5 one prospective design is decision-capable within 512 primary arm instances": {
+     "verdict": "FAIL",
+     "why": "only 22 paired blocks are expected from 512 primary arm instances, because just 8.6 % of LAW_C worlds ever reach a removal. Exact McNemar power at 22 pairs is 0.58 even against the most extreme alternative (0.227 vs 0.000) and 0.15 against 0.227 vs 0.100. It cannot decide anything but near-total suppression."
+    },
+    "6 no developmental outcome is used to choose its threshold": {
+     "verdict": "PARTIAL",
+     "why": "the attribution repair is justified by a defect argument \u2014 the frozen rule recovers 1 of the 8.44 removals the decay rate predicts \u2014 and not by the value it produces. But the repair was identified AFTER the outcomes were known, so it must be frozen and independently justified before any world runs, not adopted here."
+    },
+    "7 a positive result would materially advance the reproduction question": {
+     "verdict": "PASS",
+     "why": "a demonstrated causal effect on locked-daughter turnover would materially advance the reproduction question."
+    }
+   },
+   "ELIGIBLE": false,
+   "CLASSIFICATION": "MATCHED_CONTROL_TEST_NOT_DECISION_CAPABLE"
+  },
+  {
+   "id": "E3",
+   "name": "locked-daughter persistence, SELECTIVE vs SHAM, paired",
+   "scientific_question": "does removing the parent change how long the locked daughter's identity persists under the frozen strict rule?",
+   "causal_estimand": "the paired within-block difference in post-trigger identity lifetime between the SELECTIVE and SHAM arms on the same seed",
+   "independent_unit": "the base block (one seed, one trigger, both arms)",
+   "matched_arms": [
+    "SELECTIVE_PARENT_REMOVAL",
+    "SHAM_NO_REMOVAL"
+   ],
+   "time_origin": "the trigger step t_m, identical in both arms by construction",
+   "endpoint": "continuous: steps of identity survival after t_m",
+   "censoring": "administrative at the horizon; observed in 0 of 22 retrospective worlds, all of which terminated by SPLIT_OR_TIE well before the horizon",
+   "competing_events": "third centre, merge, extinction \u2014 none observed as a terminator in 22 of 22",
+   "decision_rule": "Wilcoxon signed-rank on the paired log-lifetime difference, two-sided, alpha 0.05",
+   "claim_ceiling": "a persistence difference. NOT reproduction, NOT heredity, NOT turnover.",
+   "CONDITIONS": {
+    "1 answers a question directly relevant to daughter independence": {
+     "verdict": "PARTIAL",
+     "why": "persistence is necessary for a daughter to turn over, but the funnel just measured that persistence is NOT the binding constraint: the daughters persist a median 230 steps and up to 1472, and still fail."
+    },
+    "2 does not substitute ambient-population turnover for locked-daughter turnover": {
+     "verdict": "PASS",
+     "why": "it is the locked daughter and nothing else."
+    },
+    "3 its decision rule has a non-arbitrary physical or causal derivation": {
+     "verdict": "PASS",
+     "why": "a paired difference needs no threshold beyond zero."
+    },
+    "4 the endpoint is reconstructable offline": {
+     "verdict": "PASS",
+     "why": "reconstructed here by a third implementation."
+    },
+    "5 one prospective design is decision-capable within 512 primary arm instances": {
+     "verdict": "PASS",
+     "why": "22 paired blocks, paired log-SD 1.00; a Wilcoxon signed-rank detects roughly a two-fold shift at 80 % power."
+    },
+    "6 no developmental outcome is used to choose its threshold": {
+     "verdict": "PASS",
+     "why": "no threshold is taken from a developmental outcome."
+    },
+    "7 a positive result would materially advance the reproduction question": {
+     "verdict": "FAIL",
+     "why": "a persistence difference would show the removal has SOME causal effect on the daughter. It would not show the daughter completes a constituent turnover, which is the reproduction-relevant event and the one that fails. Answering a question about a variable the funnel has just shown is not binding does not materially advance the reproduction question."
+    }
+   },
+   "ELIGIBLE": false,
+   "CLASSIFICATION": "MATCHED_CONTROL_OBJECT_NOT_SCIENTIFICALLY_ALIGNED"
+  },
+  {
+   "id": "E5",
+   "name": "ambient-population response, SELECTIVE vs SHAM, paired",
+   "scientific_question": "does removing the parent change the ambient identity/population dynamics?",
+   "causal_estimand": "the paired within-block difference in the count of COMPLETE_TURNOVER intervals anywhere in the world after t_m",
+   "independent_unit": "the base block",
+   "matched_arms": [
+    "SELECTIVE_PARENT_REMOVAL",
+    "SHAM_NO_REMOVAL"
+   ],
+   "time_origin": "t_m",
+   "endpoint": "count per world",
+   "censoring": "administrative at the horizon",
+   "competing_events": "none defined at the population level",
+   "decision_rule": "paired test on the count difference",
+   "claim_ceiling": "a population-level response. NOT the daughter.",
+   "CONDITIONS": {
+    "1 answers a question directly relevant to daughter independence": {
+     "verdict": "FAIL",
+     "why": "the object is the population, not the daughter's independence."
+    },
+    "2 does not substitute ambient-population turnover for locked-daughter turnover": {
+     "verdict": "FAIL",
+     "why": "it substitutes ambient-population turnover for locked-daughter turnover by construction \u2014 the exact substitution condition 2 exists to forbid. Section 5 measured that 2017 of 2018 ambient complete intervals begin AFTER the locked identity has already ended, in a population that did not exist at the removal."
+    },
+    "3 its decision rule has a non-arbitrary physical or causal derivation": {
+     "verdict": "PASS",
+     "why": "a paired difference needs no threshold."
+    },
+    "4 the endpoint is reconstructable offline": {
+     "verdict": "PASS",
+     "why": "reconstructed here."
+    },
+    "5 one prospective design is decision-capable within 512 primary arm instances": {
+     "verdict": "PASS",
+     "why": "counts are large; 22 pairs would detect a modest shift."
+    },
+    "6 no developmental outcome is used to choose its threshold": {
+     "verdict": "PASS",
+     "why": "no outcome-chosen threshold."
+    },
+    "7 a positive result would materially advance the reproduction question": {
+     "verdict": "FAIL",
+     "why": "a population response at a 706-to-2614-step lag says nothing about whether a daughter reproduces."
+    }
+   },
+   "ELIGIBLE": false,
+   "CLASSIFICATION": "MATCHED_CONTROL_OBJECT_NOT_SCIENTIFICALLY_ALIGNED"
+  }
+ ],
+ "ELIGIBLE_CANDIDATES": [],
+ "ROUTE_A_CLASSIFICATION": "MATCHED_CONTROL_TEST_NOT_DECISION_CAPABLE",
+ "THE_BINDING_REASON": "the trigger yield. Only 22 of 256 LAW_C worlds reach a selective removal, so a two-arm design inside 512 primary arm instances yields about 22 paired blocks. That is enough to detect near-total suppression and nothing finer.",
+ "NOT_CHOSEN_FOR_POWER": "E3 has more statistical power than E1-corrected and was still rejected, because it measures a variable the funnel showed is not the binding constraint."
+}

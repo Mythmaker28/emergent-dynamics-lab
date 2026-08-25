@@ -1,0 +1,73 @@
+"""LDFMA01 Section 4 — the single-success comparison families, PRE-DECLARED and hashed before the
+21 failure worlds have been reconstructed."""
+from __future__ import annotations
+import json,hashlib,datetime
+OUT="/home/claude/edl/LDFMA01/out"
+U=datetime.datetime.now(datetime.timezone.utc).isoformat()
+REG={
+ "MISSION":"LDFMA01","SECTION":"4 — single-success comparison pre-registration","GENERATED_UTC":U,
+ "AN_HONEST_LIMIT_ON_THIS_PRE_REGISTRATION":{
+   "what_was_already_known":"the identity of the sole success, TLMR01_LAW_C_MCTT01_P_i001_"
+     "s1474284807, was established by FIMRCC01 before LDFMA01 began, and its own feature values "
+     "were seen while this mission's reconstruction was being smoke-tested on the only archive "
+     "staged at the time.",
+   "what_this_pre_registration_can_and_cannot_buy":"it CANNOT make the success label blind. What "
+     "it does buy, and the reason it is written before the 21 failure worlds are reconstructed, "
+     "is that the FEATURE SET and the COMPARISON RULE are fixed before any failure distribution "
+     "exists. That is what stops a feature being selected after seeing which one separates.",
+   "STATED_RATHER_THAN_GLOSSED":True},
+ "N_SUCCESSES":1,"N_FAILURES":21,
+ "NO_SIGNIFICANCE_TEST_WILL_BE_RUN":"one success is not an independent population sample. No "
+   "p-value, no confidence interval and no effect size will be computed for any feature. The "
+   "success is used only to FALSIFY candidate mechanisms and to identify exact NECESSARY "
+   "conditions — a feature whose success value lies inside the failure range falsifies any "
+   "mechanism that requires that feature to be extreme.",
+ "COMPARISON_FAMILIES":[
+  {"family":"A","name":"trigger-time state",
+   "features":["t_m","world_nY_at_t_m","n_centres_at_t_m","episode_start","separation_occupancy",
+               "episode_interior_ambiguous_steps","f5_ratio_at_trigger",
+               "n_prior_matured_episodes","n_prior_episodes"]},
+  {"family":"B","name":"locked-daughter occupation and geometry",
+   "features":["daughter_ncells","daughter_nY","daughter_mean_Y_per_cell","daughter_radius"]},
+  {"family":"C","name":"local X / environment",
+   "features":["daughter_xd","parent_xd","xd_ratio_daughter_over_parent","daughter_xd_per_Y"]},
+  {"family":"D","name":"parent size and distance",
+   "features":["parent_ncells","parent_nY","parent_daughter_centroid_distance",
+               "parent_mass_removed_from_the_ledger","daughter_over_parent_nY"]},
+  {"family":"E","name":"post-removal birth/removal timing",
+   "features":["post_removal_identity_lifetime","maximum_locked_daughter_nY_after_t_m",
+               "first_accepted_Y_birth_after_t_m","first_Y_removal_after_t_m",
+               "n_Y_births_after_t_m","n_Y_removals_after_t_m","n_X_births_after_t_m",
+               "x_before_first_removal","x_after_first_removal"]},
+  {"family":"F","name":"ambient-population pressure",
+   "features":["n_identity_intervals_live_after_t_m","ambient_complete_interval_count",
+               "ambient_functional_interval_count","mean_centres_after_t_m",
+               "max_centres_after_t_m","mean_world_nY_after_t_m"]},
+  {"family":"G","name":"competing-event timing",
+   "features":["first_third_centre_after_t_m","first_merge_to_one_after_t_m",
+               "steps_to_identity_termination","steps_from_t_m_to_horizon"]}],
+ "FOR_EVERY_FEATURE_REPORT":["success value","failure distribution: min, median, max, n",
+   "rank of the success among all 22 worlds (1 = lowest)",
+   "whether the success value is UNIQUE, i.e. outside the closed range of the 21 failures",
+   "whether its direction has an executable mechanistic interpretation",
+   "whether the feature was available BEFORE the outcome"],
+ "AVAILABLE_BEFORE_OUTCOME":{
+   "definition":"a feature is available-before-outcome if its value is fully determined at or "
+     "before the trigger step t_m, when the intervention is applied.",
+   "families_available_before_outcome":["A","B","C","D"],
+   "families_NOT_available_before_outcome":["E","F","G"],
+   "why_it_matters":"only an available-before-outcome feature could ever become a prospective "
+     "eligibility criterion. A post-outcome feature can describe the mechanism but can never "
+     "select worlds in advance."},
+ "UNIQUENESS_RULE":"a feature is called UNIQUE only if the success value lies strictly outside "
+   "[min, max] of the 21 failures. Being at the extreme of the range is reported as a rank, not "
+   "as uniqueness.",
+ "FALSIFICATION_RULE":"any candidate mechanism asserting that feature X must be extreme for the "
+   "locked daughter to complete a turnover is FALSIFIED if the success value of X sits inside "
+   "the interquartile span of the failures.",
+ "NOTHING_HERE_SELECTS_A_ROUTE":"this pre-registration constrains the description of the single "
+   "success. Route eligibility is decided in sections 6 to 8 against their own written criteria.",
+ "H3_STATUS":"NOT_TESTED","REPRODUCTION_STATUS":"NOT_TESTED","HEREDITY_STATUS":"NOT_TESTED"}
+p=f"{OUT}/LDFMA01_SUCCESS_COMPARISON_PREREGISTRATION.json"
+json.dump(REG,open(p,"w"),indent=1)
+print("sha256",hashlib.sha256(open(p,"rb").read()).hexdigest())

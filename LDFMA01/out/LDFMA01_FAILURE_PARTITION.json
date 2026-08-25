@@ -1,0 +1,69 @@
+{
+ "MISSION": "LDFMA01",
+ "SECTION": "3 \u2014 failure partition",
+ "GENERATED_UTC": "2026-08-25T18:41:18.914182+00:00",
+ "N_FAILURES": 21,
+ "N_SUCCESSES": 1,
+ "PARTITION_IS_MUTUALLY_EXCLUSIVE_AND_EXHAUSTIVE": true,
+ "DECLARED_PRECEDENCE": "L0 fidelity, then L1 immediate identity end, then the funnel stage the world reached: L2 no birth, L3 birth without removal, L4 removal without birth, L5 both but not in one continuous nonempty identity, L6/L7 complete but X function missing on one side. L8 to L11 are IDENTITY TERMINATION MECHANISMS, not funnel stages, and are reported for every world as SECONDARY_LATER_FAILURES.",
+ "WHY_TERMINATION_IS_NOT_THE_PRIMARY_CODE": "every one of the 22 identities terminates by SPLIT_OR_TIE, so making termination primary would put 21 of 21 failures in one bin and hide that some intervals ran for 300 to 1472 steps with a birth and still no removal. The stage code says how far the daughter got; the termination code says what ended the window. Both are reported.",
+ "PRIMARY_COUNTS": {
+  "SUCCESS": 1,
+  "L3": 16,
+  "L2": 5
+ },
+ "DOMINANT_FAILURE_STAGE": "L3",
+ "DOMINANT_FAILURE_COUNT": 16,
+ "TERMINATION_TYPES": {
+  "SPLIT_OR_TIE": 22
+ },
+ "SUCCESSOR_CANDIDATES_AT_TERMINATION": {
+  "2": 22
+ },
+ "THE_BINDING_LEG_IS_THE_Y_REMOVAL": {
+  "Y_births_inside_locked_daughters_total": 33,
+  "Y_removals_inside_locked_daughters_total": 1,
+  "worlds_with_at_least_one_birth": 17,
+  "worlds_with_at_least_one_removal": 1,
+  "reading": "the birth leg works in 17 of 22 worlds. The removal leg fires in 1. The frozen COMPLETE_TURNOVER needs both inside one identity, so the removal leg is the binding constraint."
+ },
+ "AND_THE_REMOVAL_LEG_IS_MOSTLY_AN_ATTRIBUTION_ARTEFACT": {
+  "daughter_particle_steps_after_t_m": 11385,
+  "expected_Y_deaths_at_muY": 8.435,
+  "observed_under_the_frozen_rule_attributed_at_step_t": 1,
+  "observed_when_the_same_ledger_rows_are_attributed_at_step_t_minus_1": 8,
+  "worlds_that_would_be_COMPLETE_under_t_minus_1": 5,
+  "MECHANISM": "the archive writes cell rows AFTER the step. A Y decay that empties a cell removes that cell from the step-t rows, so the frozen attribution \u2014 which asks whether the event cell is in the component's cell set AT STEP t \u2014 cannot see it. Attributing the identical ledger rows one step earlier recovers 8 of the 8.44 removals the decay rate predicts.",
+  "WHAT_THIS_IS": "a measurement-definition artefact of the endpoint, quantified.",
+  "WHAT_THIS_IS_NOT": "it is NOT a correction applied to any verdict in this mission. Every verdict here uses the frozen rule and reports 1 of 22. The probe is reported so that a future test does not inherit the artefact unknowingly.",
+  "NO_VERDICT_IN_THIS_MISSION_USES_THE_t_MINUS_1_RULE": true
+ },
+ "THE_DAUGHTER_IS_A_ONE_TO_SIX_PARTICLE_OBJECT": {
+  "max_locked_daughter_nY_after_t_m": [
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   2,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   4,
+   4,
+   4,
+   6
+  ],
+  "median_fraction_of_life_at_nY_1": 0.334,
+  "reading": "a turnover needs the daughter to lose a constituent AND still exist. At occupancy 1 any loss is fatal, and the daughters spend a median 33 % of their post-removal life at occupancy 1."
+ }
+}

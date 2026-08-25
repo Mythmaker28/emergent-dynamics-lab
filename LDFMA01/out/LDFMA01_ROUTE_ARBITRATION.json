@@ -1,0 +1,76 @@
+{
+ "MISSION": "LDFMA01",
+ "SECTION": "8 \u2014 route arbitration",
+ "GENERATED_UTC": "2026-08-25T18:46:10.089803+00:00",
+ "ARBITRATION_ORDER_APPLIED": [
+  "1 prefer Route A when a matched-control design is scientifically aligned, non-arbitrary and decision-capable",
+  "2 select Route B only when Route A fails and one minimal architecture change directly targets an identified mechanism",
+  "3 otherwise pause"
+ ],
+ "STEP_1_ROUTE_A": {
+  "classification": "MATCHED_CONTROL_TEST_NOT_DECISION_CAPABLE",
+  "aligned_candidate": "E1-corrected",
+  "why_it_fails": "only ~22 paired blocks are reachable inside 512 primary arm instances, because 8.6 % of LAW_C worlds reach a removal. Exact McNemar power is 0.58 against the most extreme alternative and 0.15 against a modest one.",
+  "the_two_powered_candidates_were_rejected_on_alignment_not_power": true
+ },
+ "STEP_2_ROUTE_B": {
+  "classification": "NO_MINIMAL_CHANGE_JUSTIFIED",
+  "why": "the identified mechanism is a measurement-attribution defect, not a missing physical degree of freedom. The decay already delivers the removals and the daughters already survive them."
+ },
+ "STEP_3": "pause",
+ "SELECTED_ROUTE": "ROUTE_C__PAUSE",
+ "MAX_SELECTED_ROUTES": 1,
+ "N_SELECTED": 1,
+ "SCORING": [
+  {
+   "criterion": "scientific alignment with reproduction",
+   "Route_A": "E1-corrected aligned; E3 and E5 not",
+   "Route_B": "none of the three targets the measured mechanism",
+   "Route_C": "n/a"
+  },
+  {
+   "criterion": "clarity of estimand",
+   "Route_A": "clear for all three candidates",
+   "Route_B": "clear",
+   "Route_C": "n/a"
+  },
+  {
+   "criterion": "ability to falsify",
+   "Route_A": "yes, but only near-total suppression at 22 pairs",
+   "Route_B": "yes, but would falsify a hypothesis the evidence does not support",
+   "Route_C": "n/a"
+  },
+  {
+   "criterion": "independence from post-hoc thresholds",
+   "Route_A": "E1-corrected needs an attribution repair identified after the outcomes; it must be frozen and justified before any world runs",
+   "Route_B": "B2 and B3 would need a swept value",
+   "Route_C": "n/a"
+  },
+  {
+   "criterion": "world cost",
+   "Route_A": "512 arm instances for ~22 paired blocks",
+   "Route_B": "512 worlds",
+   "Route_C": "0"
+  },
+  {
+   "criterion": "implementation risk",
+   "Route_A": "low; the arms already exist and the SHAM no-op is proved bit-exact",
+   "Route_B": "high; a substrate change on the strength of an artefact",
+   "Route_C": "none"
+  },
+  {
+   "criterion": "risk of another methodological loop",
+   "Route_A": "high \u2014 an underpowered test would return NOT_REPLICATED for a power reason, exactly the failure FIMRCC01 already stopped",
+   "Route_B": "very high \u2014 an uninterpretable improvement",
+   "Route_C": "low"
+  }
+ ],
+ "NO_SECOND_ROUTE_WAS_SELECTED": true,
+ "NO_HANDOFF_IS_EMITTED": true,
+ "A_VOCABULARY_GAP_IN_THE_FROZEN_TERMINAL_SET": {
+  "what_the_evidence_reached": "the locked-daughter failure mechanism IS identified, quantitatively and by a third independent reconstruction, and NO route is eligible.",
+  "what_the_frozen_terminals_offer": "they pair MECHANISM_IDENTIFIED with an eligible route, or pair a pause with NOT_IDENTIFIABLE. There is no terminal for identified-and-no-route.",
+  "what_was_done": "the launcher permits no fifth disposition, so LOCKED_DAUGHTER_FAILURE_NOT_IDENTIFIABLE__LINEAGE_ROUTE_PAUSED is used for its PAUSE half, and this note records that its NOT_IDENTIFIABLE half understates the result. The mechanism is named in section 3 and section 5 and should be read there, not from the terminal string.",
+  "THIS_IS_REPORTED_RATHER_THAN_RESOLVED_BY_INVENTING_A_TERMINAL": true
+ }
+}

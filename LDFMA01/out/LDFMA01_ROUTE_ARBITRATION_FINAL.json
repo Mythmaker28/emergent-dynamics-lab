@@ -1,0 +1,66 @@
+{
+ "MISSION": "LDFMA01",
+ "SECTION": "8 \u2014 route arbitration, RE-DERIVED after adjudication",
+ "GENERATED_UTC": "2026-08-25T19:21:18.118399+00:00",
+ "SUPERSEDES": "the pre-checker arbitration in LDFMA01_ROUTE_ARBITRATION.json",
+ "WHAT_CHANGED_AND_WHY": "C-03 was upheld. The pause had rested on rejecting E3 for measuring a variable that is not binding. That claim was wrong and was mine; exposure IS binding. With it withdrawn, E3 satisfies all seven conditions and arbitration rule 1 applies.",
+ "STEP_1_ROUTE_A": {
+  "classification": "MATCHED_CONTROL_TEST_ELIGIBLE",
+  "selected_endpoint": "E3"
+ },
+ "STEP_2_ROUTE_B": {
+  "classification": "NO_MINIMAL_CHANGE_JUSTIFIED",
+  "now_independent_of_the_probe": true
+ },
+ "SELECTED_ROUTE": "ROUTE_A__ONE_MATCHED_CONTROL_TEST",
+ "MAX_SELECTED_ROUTES": 1,
+ "N_SELECTED": 1,
+ "THE_CHECKER_RECOMMENDED_THE_SAME_ROUTE": true,
+ "NOT_CHOSEN_FOR_POWER": "E5 remains rejected although it has more power than E3.",
+ "E3": {
+  "id": "E3",
+  "name": "locked-daughter post-removal exposure, SELECTIVE vs SHAM, paired",
+  "primary": "the daughter's post-removal identity lifetime (persistence)",
+  "co_primary_pre_declared": "the daughter's post-removal particle-step exposure, sum over the interval of component nY \u2014 the quantity the verified Poisson map converts into completion probability with no free parameter",
+  "causal_estimand": "paired within-block difference, SELECTIVE minus SHAM, on the same seed",
+  "independent_unit": "the base block",
+  "time_origin": "t_m, identical in both arms by construction",
+  "censoring": "administrative at the horizon; 0 of 22 retrospective worlds reached it",
+  "competing_events": "third centre, merge, extinction \u2014 none observed as a terminator in 22 of 22",
+  "decision_rule": "Wilcoxon signed-rank on the paired log difference, two-sided, alpha 0.05",
+  "claim_ceiling": "a causal effect of parent removal on the locked daughter's post-removal exposure. NOT reproduction, NOT heredity, NOT a turnover measurement.",
+  "CONDITIONS": {
+   "1 relevant to daughter independence": {
+    "verdict": "PASS",
+    "why": "C-03: exposure = occupancy x identity lifetime is the binding constraint on the daughter's constituent turnover, verified at 5.809 predicted against 5 observed. My earlier PARTIAL rested on a claim now withdrawn."
+   },
+   "2 does not substitute ambient for daughter": {
+    "verdict": "PASS"
+   },
+   "3 non-arbitrary decision rule": {
+    "verdict": "PASS",
+    "why": "a paired difference needs no threshold beyond zero"
+   },
+   "4 reconstructable offline": {
+    "verdict": "PASS",
+    "why": "reconstructed here by a third implementation"
+   },
+   "5 decision-capable within 512 primary arm instances": {
+    "verdict": "PASS",
+    "why": "22 paired blocks with independent runs, 41 with the admissible fork at t_m; the endpoint is continuous and paired, and the shared prefix makes the paired SD smaller than the marginal 0.997"
+   },
+   "6 no outcome-chosen threshold": {
+    "verdict": "PASS",
+    "why": "no threshold is taken from any outcome; the endpoint needs no attribution repair and no probe"
+   },
+   "7 a positive result materially advances the reproduction question": {
+    "verdict": "PASS_WITH_A_STATED_CEILING",
+    "why": "the exposure-to-completion map is verified with no free parameter, so a measured causal change in exposure is a measured causal change in the daughter's probability of completing a constituent turnover. The ceiling is that this is an effect on exposure, not a reproduction result, and the handoff must say so."
+   }
+  },
+  "ELIGIBLE": true,
+  "CLASSIFICATION": "MATCHED_CONTROL_TEST_ELIGIBLE",
+  "WHY_NOT_E1_CORRECTED": "selecting the turnover binary would require adopting an attribution repair identified after the outcomes \u2014 post-outcome endpoint selection, which the launcher forbids and which the checker independently warned against. The repair belongs in the handoff as a PRECONDITION to be frozen and justified before world 1, not as the selected endpoint.",
+  "WHY_NOT_E5": "unchanged: it substitutes ambient-population turnover for locked-daughter turnover, and zero non-daughter complete intervals start inside any daughter's window."
+ }
+}

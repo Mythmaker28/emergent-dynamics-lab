@@ -1,0 +1,231 @@
+{
+ "MISSION": "LDFMA01",
+ "SECTION": "2 \u2014 independent reconstruction",
+ "GENERATED_UTC": "2026-08-25T18:41:18.914182+00:00",
+ "WHAT_THIS_IS": "a third reconstruction of the same archives, written from the TLMR01-ARCHIVE-1 schema and the frozen rule statements alone.",
+ "IMPORTS_NEITHER": [
+  "TLMR01's online identity assignment (tlmr01_offline, which keys its per-step cell sets by the online component id)",
+  "FIMRCC01's daughter-verdict implementation (fimrcc01_independent, fimrcc01_precondition_a, fimrcc01_independent_descent)"
+ ],
+ "DELIBERATELY_DIFFERENT_IMPLEMENTATION": {
+  "components": "BFS flood-fill over an explicit adjacency test \u2014 not FDOT01's union-find and not FIMRCC01's label propagation",
+  "constants": "read from PQEC01_MASTER_FREEZE.json and BPRTC01_MASTER_FREEZE.json at import, not from any mission module",
+  "everything_else": "state machine, link rule, descent rule, maturation run detector, gates, identity intervals and turnover predicate re-derived from their written statements"
+ },
+ "INPUTS_USED": [
+  "c_t, c_y, c_x, c_nY cell rows",
+  "the s step array for the world Y total",
+  "ybirth, ydeath, xbirth ledgers",
+  "k_xd with a physical (ncells, nY, centroid) match",
+  "the intervention ledger, to locate the removal in time and to audit its fidelity"
+ ],
+ "INPUTS_NOT_USED": [
+  "c_cid, the online component id",
+  "k_id, the online component id",
+  "the online terminal label",
+  "the online t_m",
+  "any online verdict"
+ ],
+ "ONE_DECLARED_DEPENDENCY": "k_xd cannot be recomputed \u2014 the archive stores X only on Y-occupied cells while the frozen gate sums X over an 81-cell disc. It is attached by a physical match that was a bijection at every step of every world.",
+ "AGREEMENT_WITH_THE_ACCEPTED_RECORD": {
+  "worlds": 26,
+  "world_level_verdict": "26/26",
+  "trigger_step": "26/26",
+  "component_count_disagreements_total": 0,
+  "xd_match_bijective_in_every_world": true,
+  "locked_daughters_reconstructed": "22/22",
+  "removal_fidelity_all_pass": "22/22",
+  "ledger_parent_cells_match": "22/22",
+  "ledger_daughter_cells_match": "22/22",
+  "locked_daughter_COMPLETE": "1/22",
+  "locked_daughter_FUNCTIONAL": "1/22"
+ },
+ "REQUIRED_22_OF_22_RECONSTRUCTED": true,
+ "REQUIRED_1_OF_22_SUCCESS_REPRODUCED": true,
+ "LOAD_BEARING_DISAGREEMENTS": 0,
+ "VERDICT": "THE FIMRCC01 RECORD IS INTERPRETABLE \u2014 a third independent implementation reproduces every load-bearing quantity.",
+ "PER_WORLD": [
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i001_s1474284807",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 942,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i002_s2168595504",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 697,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i005_s203158793",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 580,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i009_s2255663407",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 1334,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i015_s1512492624",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 903,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i020_s1557150137",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 658,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i031_s183681731",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 720,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i037_s4195007327",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 479,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i041_s1110731446",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 2379,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i043_s2646349982",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 2017,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i045_s1775703340",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 1062,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i058_s2121762450",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 928,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i077_s2414544028",
+   "verdict": "TRIGGERED_IDENTITY_NOT_CARRIED__NO_REMOVAL",
+   "t_m": 490,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i079_s3754004101",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 840,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i083_s460074954",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 606,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i093_s3302628962",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 603,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i111_s4049698502",
+   "verdict": "TRIGGERED_IDENTITY_NOT_CARRIED__NO_REMOVAL",
+   "t_m": 1959,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i119_s2378920449",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 547,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i150_s1335159117",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 1135,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i153_s1007174239",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 683,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i156_s1109449052",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 2348,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i158_s1907819116",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 1418,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i163_s1806899634",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 728,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i183_s4120635981",
+   "verdict": "TRIGGERED_IDENTITY_NOT_CARRIED__NO_REMOVAL",
+   "t_m": 1497,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i184_s927162381",
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 1204,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i217_s1018017219",
+   "verdict": "TRIGGERED_IDENTITY_NOT_CARRIED__NO_REMOVAL",
+   "t_m": 639,
+   "matches_archive_label": true,
+   "matches_archive_t_m": true
+  }
+ ]
+}

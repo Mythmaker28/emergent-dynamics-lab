@@ -1,0 +1,51 @@
+{
+ "MISSION": "LDFMA01",
+ "SECTION": "6 \u2014 matched-control power",
+ "GENERATED_UTC": "2026-08-25T18:45:09.512295+00:00",
+ "BUDGET_PRIMARY_ARM_INSTANCES": 512,
+ "ARMS": 2,
+ "INSTANCES_PER_ARM": 256,
+ "TRIGGER_YIELD_PER_WORLD": 0.085938,
+ "EXPECTED_PAIRED_BLOCKS": 22,
+ "TEST": "exact McNemar on discordant pairs, one-sided, alpha 0.05",
+ "POWER_GRID": [
+  {
+   "p_selective": 0.22727272727272727,
+   "p_sham": 0.0,
+   "power_at_22_pairs": 0.582
+  },
+  {
+   "p_selective": 0.22727272727272727,
+   "p_sham": 0.05,
+   "power_at_22_pairs": 0.308
+  },
+  {
+   "p_selective": 0.22727272727272727,
+   "p_sham": 0.1,
+   "power_at_22_pairs": 0.153
+  },
+  {
+   "p_selective": 0.22727272727272727,
+   "p_sham": 0.22727272727272727,
+   "power_at_22_pairs": 0.02
+  },
+  {
+   "p_selective": 0.4,
+   "p_sham": 0.0,
+   "power_at_22_pairs": 0.973
+  },
+  {
+   "p_selective": 0.5,
+   "p_sham": 0.0,
+   "power_at_22_pairs": 0.998
+  }
+ ],
+ "DISCORDANT_PAIRS_NEEDED_FOR_SIGNIFICANCE_ALL_ONE_WAY": 5,
+ "E3_CONTINUOUS_ALTERNATIVE": {
+  "paired_log_SD_from_the_22_SELECTIVE_worlds": 0.997,
+  "n_pairs": 22,
+  "detectable_shift_at_80pc_power_approx": "about a two-fold change in persistence",
+  "note": "reported so the rejection of E3 cannot be mistaken for a power argument. E3 has the power; it does not have the alignment."
+ },
+ "CONCLUSION": "no matched-control endpoint is simultaneously aligned with the identified mechanism and decision-capable inside the declared budget."
+}
