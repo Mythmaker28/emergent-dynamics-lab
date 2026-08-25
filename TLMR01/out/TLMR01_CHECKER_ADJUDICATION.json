@@ -1,0 +1,196 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "17 \u2014 checker adjudication, one pass",
+ "GENERATED_UTC": "2026-08-25T14:41:23.983398+00:00",
+ "CHECKER_RAW": {
+  "file": "TLMR01/review/TLMR01_CHECKER_RAW.txt",
+  "sha256": "abb00254cd9482f876ea48d3176c44146fda2046846058f6e7f7c7ece3cacfd1",
+  "WRITTEN_AND_EXTERNALISED_BEFORE_ANY_FINDING_WAS_ACTED_ON": true
+ },
+ "MAX_INDEPENDENT_CHECKERS": 1,
+ "CHECKERS_RUN": 1,
+ "REVIEW_CASCADE": "forbidden",
+ "CASCADES_RUN": 0,
+ "EVERY_FINDING_ADJUDICATED_EXACTLY_ONCE": true,
+ "N_FINDINGS": 21,
+ "VERDICT_COUNTS": {
+  "UPHELD": 19,
+  "PARTIALLY_UPHELD": 2,
+  "REJECTED": 0
+ },
+ "LOAD_BEARING_DEFECT_COUNT": 0,
+ "CHECKER_RECOMMENDED_DISPOSITION": "TARGETED_LINEAGE_OBJECTS_MEASURED__ONE_DIRECTLY_MEASURED_LAW_CONFIRMATION_ELIGIBLE",
+ "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0,
+ "WHAT_CHANGED_AND_WHAT_DID_NOT": "no rule, threshold, denominator, unit, ordering or disposition changed. Every action below is a correction to the record, the publication of a quantity that was pre-registered or should have been reported, or a precondition attached to the successor. The frozen C2 analysis remains the sole source of scientific quantities and selection.",
+ "FINDINGS": [
+  {
+   "id": "F-01",
+   "severity": "MATERIAL",
+   "verdict": "UPHELD",
+   "finding": "The device-path cross-check exercises none of the code that produces M2, M3 or M5.",
+   "adjudication": "Upheld in full and it is the most important finding in the return. The two cross-checked archives are an extinct LAW_A world and a single-Y LAW_B world; link and tdist are called zero times in both, and episodes(), _candidate_gates(), identity_intervals() and turnover_in() never execute. 'Compared field for field' compared two dictionaries empty in every field that matters. That wording is withdrawn. The 22 that make up the selection statistic were computed once, on the device, by a driver no cross-check reached.",
+   "action": "The claim is corrected to the checker's own wording: the device path is verified for the reader, the O and E branches of the state machine, centroid_component, M1 with zero forks and M4, and is UNVERIFIED for M2, M3, M5, the identity link and the toroidal distance. F-01 is carried into the handoff as a BINDING PRECONDITION: the authorised confirmation may not be executed until at least three LAW_C_MCTT01 archives with a removal applied are re-measured in a container with the byte-identical frozen module and diff field for field including post_removal_intervals. The bridge to the archives was down when this adjudication was written; that is stated rather than worked around."
+  },
+  {
+   "id": "F-02",
+   "severity": "MATERIAL",
+   "verdict": "UPHELD",
+   "finding": "ARCHIVE_DECISION_RECONSTRUCTION is a gate that cannot fail.",
+   "adjudication": "Upheld. reconstruct() regroups cells by the comp_id the online code wrote, so it reproduces the online grouping for any decomposition whatsoever; the checker demonstrated it passing on a merge-everything, a split-into-singletons and a scrambled cross-pairing. This is the same failure FOTSEA01's checker found in that mission's torus tests, committed again here, and it sits under the one quantity tlmr01_offline declares it cannot recompute independently.",
+   "action": "Recorded in a tautology register so no successor inherits it as evidence. The gate's PASS is not withdrawn from the frozen record \u2014 the freeze is not rewritten \u2014 but it is annotated as carrying no information. The check it should have been is the checker's own: len(comps) == s.n_components, contiguous component ids, and sum of component nY == world nY at every step. That is added to the successor's required qualification."
+  },
+  {
+   "id": "F-03",
+   "severity": "MATERIAL",
+   "verdict": "UPHELD",
+   "finding": "'e(n) is directly measured to occupancy 316' in the C4 subject is false.",
+   "adjudication": "Upheld. 281 of the 311 strata above sI = 5 are DIRECTLY_MEASURED; the highest is n = 296; the 30 thin strata hold 2,226 of 1,380,875 steps and 97 of 7,317 forks. The report labels every row DIRECT or THIN correctly; the defect is in the commit subject, which is where the mission's most-read claim lives.",
+   "action": "The corrected figures are published in TLMR01_CHECKER_CORRECTIONS.json, in the final report and in the C5 commit message, which states the C4 subject's claim was false and gives the right one. C4 itself is NOT amended: amending it would rewrite C5's parent, and a correction that is visible in the record is worth more than a history that looks tidy."
+  },
+  {
+   "id": "F-04",
+   "severity": "MATERIAL",
+   "verdict": "UPHELD",
+   "finding": "'440 post-removal intervals, 400 FUNCTIONAL' is a truncated diagnostic; the true figures are 2,018 and 1,813.",
+   "adjudication": "Upheld. 440 = 22 x 20 is the tell, and the untruncated counts were sitting in the measurement dictionaries. M5 itself is unaffected because D is computed on the full list before truncation. The correction strengthens the mission's own caveat: ~93 complete intervals per world, not ~20.",
+   "action": "Corrected in TLMR01_CHECKER_CORRECTIONS.json, in the report and in C5. The medians are labelled as computed over the truncated sample. C4 is not rewritten; C5 corrects it."
+  },
+  {
+   "id": "F-05",
+   "severity": "MATERIAL",
+   "verdict": "UPHELD",
+   "finding": "IDENTITY_AMBIGUOUS was pre-registered as 'published whatever it is' and is published nowhere.",
+   "adjudication": "Upheld, and this is a broken pre-registration commitment, not an oversight in wording. Measured: 2,060 of 16,368 LAW_C episodes (12.6 per cent), 6 of 440 at LAW_A, 5 of 135 at LAW_B. PTOPD01 observed this outcome zero times across three corpora. The related point that the seven declared PTOPD01 outcomes are not the implemented terminator partition is also upheld.",
+   "action": "Published in TLMR01_CHECKER_CORRECTIONS.json and in the final report, with the crossing the checker computed: 0 of 44 matured and 0 of 32 triggering LAW_C episodes are ambiguous, so no integrated world rests on one."
+  },
+  {
+   "id": "F-06",
+   "severity": "MATERIAL",
+   "verdict": "UPHELD",
+   "finding": "Three categories that cannot take any value but the one they took are presented as gates or empirical results.",
+   "adjudication": "Upheld on all three. ONLY_Y_LAW_FIELDS_DIFFER tests a dict for having the keys it was built with. failure_modes.not_exactly_two_centres cannot fire because state S already requires ncen == 2. INTEGRITY_FAULT and UNCLASSIFIED terminators are unreachable by construction. The checker also notes the underlying law claim is true for a different, structural reason, which is accepted.",
+   "action": "All three enter the tautology register. The report's 'failed on centre count' column is annotated as an identity rather than a measurement."
+  },
+  {
+   "id": "F-07",
+   "severity": "MATERIAL",
+   "verdict": "UPHELD",
+   "finding": "The per-world M1-M5 reduction was completed before the rebuilt raw commitment; C3 asserts the contrary.",
+   "adjudication": "Upheld, and this one is mine to own plainly. The measurement file existed at 14:03:15 and C3 was written at 14:05:51. C3's sentence 'No scientific outcome has been opened' is stronger than the facts: no outcome was READ, and nothing downstream of measure_world existed, but a file containing per-world M5.INTEGRATED sat on disk before the commit. The frozen order runs measure_world inside the analysis stage, after C3; the device split changed the order as well as the location, and no artefact said so.",
+   "action": "Corrected in the record: the true chronology is published here and in the final report, and the C3 sentence is superseded by the accurate one. The mitigation is stated but not used as a defence: measure_world is deterministic and contains no free choice, and the aggregation, eligibility, selection and disposition all followed C3."
+  },
+  {
+   "id": "F-08",
+   "severity": "MATERIAL",
+   "verdict": "UPHELD",
+   "finding": "The post-freeze file audit omits tlmr01_device_measure.py, then reasons about it by name.",
+   "adjudication": "Upheld. The file that produced every number in the analysis was never committed and never hashed, while the audit asserted a classification for it. The checker read it and confirms the classification would have been correct, and that the path shim is sound and its constants assertion sufficient \u2014 but an audit that reasons about a file it did not audit is exactly the kind of gap this mission spent C1 closing.",
+   "action": "The file is committed and hashed, N_POST_C2_MODULES becomes 5, and the shim's residual \u2014 it rewrites any /home/claude/edl/ path, not only the intended one \u2014 is recorded."
+  },
+  {
+   "id": "F-09",
+   "severity": "MINOR",
+   "verdict": "UPHELD",
+   "finding": "'the single-centre step count at occupancy n, which is M4' is false by construction.",
+   "adjudication": "Upheld. M1's denominator is M4 restricted to steps with a successor: 1,380,875 against 1,381,051 above the ceiling. The code is right and the declaration is wrong.",
+   "action": "Wording corrected and the two figures are reconciled explicitly in the report."
+  },
+  {
+   "id": "F-10",
+   "severity": "MINOR",
+   "verdict": "UPHELD",
+   "finding": "PRIMARY_ESTIMAND_SUPPORT_REACHED is computed on the pooled above-ceiling object, which is weaker than the frozen per-stratum criterion.",
+   "adjudication": "Upheld. The implemented test is strictly easier than the frozen text. It is non-binding here because 281 individual strata satisfy the stricter reading.",
+   "action": "Recorded, with the stricter figure published so the claim rests on the stronger reading."
+  },
+  {
+   "id": "F-11",
+   "severity": "MINOR",
+   "verdict": "UPHELD",
+   "finding": "M3's three failure modes are overlapping marginals; the report lays them out as if they added.",
+   "adjudication": "Upheld. At LAW_A the marginals sum to 42 against 35 failures, with 7 episodes failing both.",
+   "action": "The report's three columns are annotated as marginals, with the joint counts published."
+  },
+  {
+   "id": "F-12",
+   "severity": "MINOR",
+   "verdict": "PARTIALLY_UPHELD",
+   "finding": "The world-clustered bootstrap resamples only worlds with a non-zero denominator and is degenerate where a numerator is zero.",
+   "adjudication": "The mechanism is upheld: worlds contributing (0,0) are excluded, so the interval is conditional on exposure, and it is degenerate at k = 0 and at single-contributor strata. The part not upheld is the implied criticism of the \u00a77 rule: the checker itself concludes no claim in this mission rests on a clustered interval, and the ZERO_NUMERATORS rule supplies the exact bound where the bootstrap degenerates.",
+   "action": "Recorded as a declared limitation of the clustered interval, with the conditioning stated."
+  },
+  {
+   "id": "F-13",
+   "severity": "MINOR",
+   "verdict": "UPHELD",
+   "finding": "'every world asserts the narrowing is lossless' is not literal.",
+   "adjudication": "Upheld. Four of eighteen narrowed columns are unchecked, though truncation is impossible in practice for all four.",
+   "action": "Wording corrected."
+  },
+  {
+   "id": "F-14",
+   "severity": "MINOR",
+   "verdict": "UPHELD",
+   "finding": "N_NON_SCIENTIFIC_TRAJECTORIES undercounts: 36, not 24.",
+   "adjudication": "Upheld. inertness runs two trajectories per call and was counted once.",
+   "action": "Corrected in the record."
+  },
+  {
+   "id": "F-15",
+   "severity": "MINOR",
+   "verdict": "UPHELD",
+   "finding": "E5 uses 'directly measured' in a sense that contradicts \u00a77.",
+   "adjudication": "Upheld as a vocabulary collision. The code matches the frozen E5 text; the clause NAME invites a reader to assume the \u00a77 standard. The checker confirms M3 meets the \u00a77 standard at all three laws anyway.",
+   "action": "The clause is renamed in the record to E5_M3_HAS_AT_LEAST_ONE_MATURED_EPISODE, with a note that the \u00a77 standard is separately satisfied."
+  },
+  {
+   "id": "F-16",
+   "severity": "MINOR",
+   "verdict": "UPHELD",
+   "finding": "Forbidden claims appear in denial in the final report.",
+   "adjudication": "Upheld under the mission's own strictest reading. The line lowers rather than raises the claim, but INCLUDING_IN_DENIAL admits no exception for helpful denials.",
+   "action": "The line is replaced by the frozen status strings alone."
+  },
+  {
+   "id": "F-17",
+   "severity": "MINOR",
+   "verdict": "UPHELD",
+   "finding": "Two mislabelled figures in the C4 commit.",
+   "adjudication": "Upheld. 26/256 is B/N and not B|A, and the quoted medians are the upper middle order statistic over the truncated sample.",
+   "action": "Corrected in C5, which states that 26/256 is B/N and not B|A and that the quoted medians are over the truncated sample. C4 is not rewritten."
+  },
+  {
+   "id": "F-18",
+   "severity": "OBSERVATION",
+   "verdict": "UPHELD",
+   "finding": "The law binding and the floor cannot be re-verified in this container, and the recovery record does not say so.",
+   "adjudication": "Upheld and material to how the restoration should be read. Only LAW_A_B1 is bit-verifiable here; the BPRTC01 and MCTT01 source artefacts are absent, so tlmr01_laws, tlmr01_run and tlmr01_seeds no longer import, and PARENT_TIP_RESOLVED_FROM_THE_REPOSITORY is now an unverifiable assertion in this container.",
+   "action": "Recorded in the recovery incident and in the handoff. The frozen TLMR01_MEASUREMENT_LAWS.json carries the sha256 of all four source artefacts, so the binding remains checkable by anyone holding them; the successor must re-verify all three against the owner's copies before spending a world."
+  },
+  {
+   "id": "F-19",
+   "severity": "OBSERVATION",
+   "verdict": "UPHELD",
+   "finding": "The pooled e(n) headline is an exposure-weighted mixture over a hazard varying by three orders of magnitude.",
+   "adjudication": "Upheld. 86 per cent of above-ceiling exposure sits at n >= 161 where e ~ 0.0003, against e ~ 0.17 at n in 41-80. The single number describes no occupancy. The checker's own conclusion that the mission nevertheless delivers PTOPD01's named gap at n in 6-10 is accepted.",
+   "action": "The banded table is published and the pooled number is demoted to a summary with its caveat attached wherever it appears."
+  },
+  {
+   "id": "F-20",
+   "severity": "OBSERVATION",
+   "verdict": "PARTIALLY_UPHELD",
+   "finding": "The non-discrimination finding: numerically correct, absent from the report, overstated in the commit.",
+   "adjudication": "The numbers are upheld. Three criticisms are upheld: 'non-discriminating' is the wrong word when the statistic separates the three laws perfectly \u2014 occupancy-confounded is right; 'measured, not conjectured' is not supportable because no no-removal control exists anywhere in the 512 worlds; and three laws over two occupancy regimes do not make a measured function. The criticism not upheld is any implication that the caveat should be softened: the checker's own sharper argument \u2014 that all 44 matured and all 32 triggering LAW_C episodes begin at occupancy 2, 3 or 4, occupancy-identical to LAW_A and LAW_B, so only the post-removal ambient occupancy differs \u2014 makes the caveat stronger, and it is adopted.",
+   "action": "The finding is reworded as occupancy-confounding, moved into the report artefact, given the checker's sharper argument, and stated with the absence of a no-removal control."
+  },
+  {
+   "id": "F-21",
+   "severity": "OBSERVATION",
+   "verdict": "UPHELD",
+   "finding": "s(n) = 0 above separation occupancy 4 at every law is the mission's most substantive unclaimed measurement.",
+   "adjudication": "Upheld and adopted as a headline result. Every maturation at every law begins at separation occupancy 2, 3 or 4; 15,252 episodes beginning at n >= 5 produced zero maturations, 15,243 of them at LAW_C. That replicates PTOPD01's 'zero of 3,602 above occupancy 3 at B1 mobility' and extends it to a law 40x in kY.",
+   "action": "Published in the report and carried into the handoff as the sharpest constraint the successor inherits."
+  }
+ ],
+ "HISTORY_IS_NOT_REWRITTEN": "C4 carries two false claims that C5 corrects in full. Amending C4 would rewrite C5's parent for cosmetic tidiness; the correction is published instead, which is what a record is for."
+}

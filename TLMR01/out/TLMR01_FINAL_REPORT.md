@@ -673,6 +673,97 @@ matching M5 in kind, chosen by that stated principle before its value was comput
 | `LAW_B_POINT_D10` | 0 | 128 | 0 | ✓ | ✗ | ✗ | ✓ | ✓ | ✗ | **False** | — | False |
 | `LAW_C_MCTT01` | 22 | 256 | 0.0588948 | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | **True** | 50 | True |
 
+## 8b. The endpoint is confounded with occupancy — read the selection with this
+
+The chain conversions are
+
+| law | A matured | B\|A | C\|B | D\|C |
+|---|---:|---:|---:|---:|
+| `LAW_A_B1` | 40/128 | 27/40 | 23/27 | **0/23** |
+| `LAW_B_POINT_D10` | 32/128 | 16/32 | 15/16 | **0/15** |
+| `LAW_C_MCTT01` | 37/256 | 26/37 | 22/26 | **22/22** |
+
+A conversion of exactly 1.000 at one law and exactly 0.000 at the other two is not evidence
+that a lineage works at LAW_C and fails elsewhere. The frozen DOTC01 COMPLETE_TURNOVER is
+**confounded with occupancy**. At LAW_C the 22 removals leave **2018** complete post-removal
+identity intervals, median 93 per world, **1813** of them FUNCTIONAL; an endpoint that asks for
+*at least one* against that ambient rate is saturated. At LAW_A and LAW_B, which hold
+occupancy 1 for 97.7 % and 91.0 % of their single-centre steps and never exceed occupancy 4,
+**not one** complete post-removal interval occurs at all — 0 of 0, not 0 of some.
+
+The sharpest form of the argument, which the independent check supplied: **all 44 matured and
+all 32 triggering LAW_C episodes begin at separation occupancy 2, 3 or 4** — occupancy-identical
+to LAW_A and LAW_B. The triggering configurations do not differ between the laws. What differs
+is the ambient occupancy of the window AFTER the removal, which at LAW_C runs to the hundreds.
+
+**No no-removal control exists anywhere in these 512 worlds.** The saturation is therefore an
+inference from the interval count and the occupancy, not a measured contrast, and it is
+stated as an inference. This is a caveat on what the selection MEANS; it does not move the
+frozen rule, which selected LAW_C_MCTT01 on the arithmetic in §8.
+
+## 8c. s(n) = 0 above separation occupancy 4, at every law
+
+| law | episodes | beginning at n ≥ 5 | matured among those | maturations by separation occupancy |
+|---|---:|---:|---:|---|
+| `LAW_A_B1` | 440 | 9 | **0** | n=2: 66, n=3: 1, n=4: 1 |
+| `LAW_B_POINT_D10` | 135 | 0 | **0** | n=2: 39, n=3: 5, n=4: 2 |
+| `LAW_C_MCTT01` | 16368 | 15243 | **0** | n=2: 32, n=3: 11, n=4: 1 |
+
+Every maturation at every law begins at separation occupancy 2, 3 or 4. **15252 episodes beginning
+at n ≥ 5 produced zero maturations**, 15,243 of them at LAW_C_MCTT01. PTOPD01 reported zero of
+3,602 above occupancy 3 at B1 mobility; this replicates that and extends it to a law 40× in kY.
+
+## 8d. e(n) above the ceiling is a mixture, not a rate
+
+| occupancy band | forks | exposure (steps) | e(n) |
+|---|---:|---:|---:|
+| 6-10 | 473 | 10233 | 0.046223 |
+| 11-20 | 333 | 4704 | 0.070791 |
+| 21-40 | 233 | 1853 | 0.125742 |
+| 41-80 | 1082 | 6250 | 0.17312 |
+| 81-160 | 4813 | 169158 | 0.028453 |
+| 161-400 | 383 | 1188677 | 0.000322 |
+
+The pooled figure 0.00529881 describes no occupancy: the hazard varies by three orders of magnitude
+across the bands and 86 %% of the exposure sits in the top one. The stratum table above is the
+honest object. Of the 311 strata above the ceiling, **281 are DIRECTLY_MEASURED and 30 are
+SUPPORT_TOO_THIN**; the highest directly measured stratum is **n = 296**, not the maximum
+occupancy of 316. The thin strata hold 2226 of 1380875 steps and 97 of 7317 forks.
+
+M1's denominator is M4 **restricted to steps that have a successor** — a one-step hazard cannot
+use a step whose t+1 does not exist. That is why §3 prints 1380875 and §4 prints 1381051.
+
+## 8e. IDENTITY_AMBIGUOUS, as pre-registered
+
+| law | episodes | IDENTITY_AMBIGUOUS | fraction | ambiguous interior steps | matured & ambiguous | triggering & ambiguous |
+|---|---:|---:|---:|---:|---:|---:|
+| `LAW_A_B1` | 440 | 6 | 0.013636 | 8 | 4 | 1 |
+| `LAW_B_POINT_D10` | 135 | 5 | 0.037037 | 47 | 0 | 0 |
+| `LAW_C_MCTT01` | 16368 | 2060 | 0.125855 | 3152 | 0 | 0 |
+
+PTOPD01 observed this outcome **zero** times across three corpora. It is measured here at
+12.6 %% of LAW_C episodes. It was pre-registered as *published whatever it is* and the first
+version of this report omitted it; the independent check caught that and it is published here.
+None of the 22 integrated LAW_C worlds rests on an ambiguous episode: 0 of 44 matured and 0 of
+32 triggering episodes are ambiguous.
+
+## 8f. Gates in this mission that carry no information
+
+Recorded so no successor inherits them as evidence.
+
+| gate | why it cannot fail |
+|---|---|
+| `ARCHIVE_DECISION_RECONSTRUCTION` | it regroups cells by the component id the online code wrote, so it reproduces the online grouping for any decomposition whatsoever |
+| `ONLY_Y_LAW_FIELDS_DIFFER` | it tests a dictionary for having the three keys it was built with |
+| `failure_modes.not_exactly_two_centres` | the frozen state S already requires exactly two centres, so a matured episode cannot fail this gate |
+| terminators `INTEGRITY_FAULT`, `UNCLASSIFIED` | unreachable by construction; the integrity flag is per world and the run is maximal |
+
+The device-path cross-check is near-vacuous for the same reason: its two archives are an
+extinct world and a single-Y world, in which the identity link and the toroidal distance are
+never called and no episode, candidate or removal exists. **The device path is verified for
+the archive reader, M1 with zero forks and M4, and is UNVERIFIED for M2, M3, M5, the identity
+link and the toroidal distance.** Closing it is a binding precondition on the successor.
+
 ## 9. What this does NOT establish
 
 ```
@@ -688,9 +779,10 @@ OLD_ROUTE_A_STATUS                             = REJECTED__NOT_AUTHORISED
 FINITE_SIZE_RELEVANCE                          = NOT_SUPPORTED
 ```
 Claim ceiling: *the named objects have been measured at the laws and occupancies stated.*
-Nothing about reproduction, heredity, autonomous cohesion or life follows from any number
-above, and no point is qualified by this mission. Forbidden vocabulary is unchanged:
-*organism*, *daughter organism*, *life created*, *self-replication demonstrated*.
+No point is qualified by this mission. The frozen status strings above are the only permitted
+formulation, and this report makes no claim outside them, in the affirmative or the negative.
+Forbidden vocabulary is unchanged: *organism*, *daughter organism*, *life created*,
+*self-replication demonstrated*.
 
 ## 10. Declared limitations
 
@@ -699,6 +791,15 @@ above, and no point is qualified by this mission. Forbidden vocabulary is unchan
   and p\*(128) exceeds that. This was stated in the pre-run methods and is not repaired here.
 - M1, M2, M3 and M4 have units that repeat within a world. Both the naive exact interval and
   the world-clustered interval are published; **only the clustered one may support a claim**.
+- The three M3 failure-mode columns in §6 are **marginals** and can double-count: at
+  `LAW_A_B1` they sum to 42 against 35 failures, with 7 episodes failing both the deadline and
+  the local-X ratio. The `failed on centre count` column is an identity, not a measurement.
+- The world-clustered interval is conditional on exposure: worlds contributing no denominator
+  are not resampled, and it is degenerate where a numerator is zero. No gate in this mission
+  rests on it; where it degenerates the exact one-sided bound is the reported object.
+- The per-world reduction ran on the device and completed BEFORE the rebuilt raw commitment,
+  not inside the analysis stage as the frozen order has it. Nothing downstream of it existed
+  before C3, and no outcome was read, but the order differed and that is recorded here.
 - No law is pooled with another inside any gate. Where two laws populate the same stratum the
   two measurements are shown side by side and neither transports to the other. MCTT01
   established that the fork-to-trigger conversion does not transport in kY.

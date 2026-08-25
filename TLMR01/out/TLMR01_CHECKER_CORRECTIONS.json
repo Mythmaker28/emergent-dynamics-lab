@@ -1,0 +1,201 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "18 \u2014 corrections and additions required by the checker",
+ "STATUS": "none of these changes a rule, a threshold, a denominator or the disposition. They publish quantities the mission pre-registered or should have reported, and correct wording.",
+ "F05_IDENTITY_AMBIGUOUS": {
+  "LAW_A_B1": {
+   "episodes": 440,
+   "identity_ambiguous_episodes": 6,
+   "fraction": 0.013636,
+   "ambiguous_interior_steps": 8,
+   "matured_episodes": 68,
+   "matured_and_ambiguous": 4,
+   "triggering_episodes": 33,
+   "triggering_and_ambiguous": 1
+  },
+  "LAW_B_POINT_D10": {
+   "episodes": 135,
+   "identity_ambiguous_episodes": 5,
+   "fraction": 0.037037,
+   "ambiguous_interior_steps": 47,
+   "matured_episodes": 46,
+   "matured_and_ambiguous": 0,
+   "triggering_episodes": 19,
+   "triggering_and_ambiguous": 0
+  },
+  "LAW_C_MCTT01": {
+   "episodes": 16368,
+   "identity_ambiguous_episodes": 2060,
+   "fraction": 0.125855,
+   "ambiguous_interior_steps": 3152,
+   "matured_episodes": 44,
+   "matured_and_ambiguous": 0,
+   "triggering_episodes": 32,
+   "triggering_and_ambiguous": 0
+  }
+ },
+ "F21_MATURATION_ABOVE_SEPARATION_OCCUPANCY_4": {
+  "LAW_A_B1": {
+   "episodes": 440,
+   "episodes_beginning_at_n_at_least_5": 9,
+   "matured_among_those": 0,
+   "all_maturations_by_separation_occupancy": {
+    "2": 66,
+    "3": 1,
+    "4": 1
+   },
+   "max_separation_occupancy_observed": 5
+  },
+  "LAW_B_POINT_D10": {
+   "episodes": 135,
+   "episodes_beginning_at_n_at_least_5": 0,
+   "matured_among_those": 0,
+   "all_maturations_by_separation_occupancy": {
+    "2": 39,
+    "3": 5,
+    "4": 2
+   },
+   "max_separation_occupancy_observed": 4
+  },
+  "LAW_C_MCTT01": {
+   "episodes": 16368,
+   "episodes_beginning_at_n_at_least_5": 15243,
+   "matured_among_those": 0,
+   "all_maturations_by_separation_occupancy": {
+    "2": 32,
+    "3": 11,
+    "4": 1
+   },
+   "max_separation_occupancy_observed": 264
+  }
+ },
+ "F04_POST_REMOVAL_INTERVALS_UNTRUNCATED": {
+  "LAW_A_B1": {
+   "worlds_with_a_removal": 23,
+   "complete_post_removal_intervals": 0,
+   "functional_post_removal_intervals": 0,
+   "median_complete_intervals_per_world": 0,
+   "serialised_sample_is_truncated_to": 20,
+   "why": "tlmr01_offline.py returns post_removal_intervals[:20]; the COUNTS above are computed on the full list before truncation and are the correct figures"
+  },
+  "LAW_B_POINT_D10": {
+   "worlds_with_a_removal": 15,
+   "complete_post_removal_intervals": 0,
+   "functional_post_removal_intervals": 0,
+   "median_complete_intervals_per_world": 0,
+   "serialised_sample_is_truncated_to": 20,
+   "why": "tlmr01_offline.py returns post_removal_intervals[:20]; the COUNTS above are computed on the full list before truncation and are the correct figures"
+  },
+  "LAW_C_MCTT01": {
+   "worlds_with_a_removal": 22,
+   "complete_post_removal_intervals": 2018,
+   "functional_post_removal_intervals": 1813,
+   "median_complete_intervals_per_world": 93.0,
+   "serialised_sample_is_truncated_to": 20,
+   "why": "tlmr01_offline.py returns post_removal_intervals[:20]; the COUNTS above are computed on the full list before truncation and are the correct figures"
+  }
+ },
+ "F19_E_N_IS_AN_EXPOSURE_WEIGHTED_MIXTURE": {
+  "bands": [
+   {
+    "band": "6-10",
+    "forks": 473,
+    "exposure": 10233,
+    "e": 0.046223
+   },
+   {
+    "band": "11-20",
+    "forks": 333,
+    "exposure": 4704,
+    "e": 0.070791
+   },
+   {
+    "band": "21-40",
+    "forks": 233,
+    "exposure": 1853,
+    "e": 0.125742
+   },
+   {
+    "band": "41-80",
+    "forks": 1082,
+    "exposure": 6250,
+    "e": 0.17312
+   },
+   {
+    "band": "81-160",
+    "forks": 4813,
+    "exposure": 169158,
+    "e": 0.028453
+   },
+   {
+    "band": "161-400",
+    "forks": 383,
+    "exposure": 1188677,
+    "e": 0.000322
+   }
+  ],
+  "pooled_value": 0.0052988141576898705,
+  "reading": "the pooled number describes no occupancy; the stratum table is the honest object"
+ },
+ "F03_SUPPORT_BY_STRATUM": {
+  "strata_above_sI": 311,
+  "DIRECTLY_MEASURED": 281,
+  "SUPPORT_TOO_THIN": 30,
+  "highest_directly_measured_stratum": 296,
+  "highest_stratum_with_any_exposure": 316,
+  "thin_strata": [
+   22,
+   23,
+   25,
+   26,
+   28,
+   29,
+   30,
+   36,
+   38,
+   47,
+   297,
+   298,
+   299,
+   300,
+   301,
+   302,
+   303,
+   304,
+   305,
+   306,
+   307,
+   308,
+   309,
+   310,
+   311,
+   312,
+   313,
+   314,
+   315,
+   316
+  ],
+  "steps_in_thin_strata": 2226,
+  "forks_in_thin_strata": 97
+ },
+ "F06_OCCUPANCY_STRUCTURE": {
+  "LAW_A_B1": {
+   "single_centre_steps": 751723,
+   "at_occupancy_1": 734119,
+   "fraction_at_occupancy_1": 0.976582,
+   "max_single_centre_occupancy": 4
+  },
+  "LAW_B_POINT_D10": {
+   "single_centre_steps": 944543,
+   "at_occupancy_1": 859789,
+   "fraction_at_occupancy_1": 0.91027,
+   "max_single_centre_occupancy": 4
+  },
+  "LAW_C_MCTT01": {
+   "single_centre_steps": 1542156,
+   "at_occupancy_1": 104554,
+   "fraction_at_occupancy_1": 0.067797,
+   "max_single_centre_occupancy": 316
+  }
+ }
+}

@@ -1,0 +1,845 @@
+TLMR01 — INDEPENDENT ADVERSARIAL CHECK
+======================================
+Single checker, single pass. Mission TLMR01 (TARGETED-LINEAGE-MEASUREMENT-FOR-REPRODUCTION-01),
+repository /home/claude/edl, branch codex/targeted-lineage-measurement-for-reproduction-01-restored,
+HEAD 856266c (C4). Master freeze b354944f0e5b7f8269312ae7a7de35953e9803b960953caccff7aaa84c474718.
+
+No file was modified. Nothing was committed. The physics engine was not run. Two `.npz` archives
+that already existed in the container at `/mnt/user-data/uploads/ising v3/TLMR01/work/xcheck/`
+were re-read with the frozen offline reader; that is recomputation from an archive, not execution
+of the engine, and it is disclosed here because it is the basis of finding F-01.
+
+
+=====================================================================
+0. BOTTOM LINE
+=====================================================================
+
+NO LOAD_BEARING DEFECT EXISTS. Nothing I found forces TLMR01_TECHNICALLY_INVALID.
+
+Every headline number reproduces under independent recomputation:
+
+  e(n>5) at LAW_C_MCTT01   7317 forks / 1,380,875 single-centre steps / 176 worlds
+                           e = 0.0052988141576898705            REPRODUCES EXACTLY
+  M5 at LAW_C_MCTT01       22 / 256, one-sided lower 95 % 0.058894818455196132
+                           floor F_INTEGRATED 0.0032015171041760242, confirmation n = 50
+                                                                REPRODUCES EXACTLY
+  D|C                      22/22 at LAW_C, 0/23 at LAW_A, 0/15 at LAW_B
+                                                                REPRODUCES EXACTLY
+  Disposition              MEASUREMENT_DELIVERED__ONE_LAW_SELECTED_FOR_DISJOINT_CONFIRMATION
+                           SELECTED_LAW = LAW_C_MCTT01          IS WHAT THE FROZEN CASCADE RETURNS
+
+The published TLMR01_ANALYSIS.json is bit-for-bit reproducible — including all 2000-draw
+world-clustered bootstrap intervals — by re-executing the FROZEN aggregate/eligibility functions
+on the device measurement file. TLMR01_FINAL_REPORT.md regenerates byte-identically from the
+frozen generator. All six §6–§8 artefacts regenerate from tlmr01_design.py. 39/39 methods-closure
+module hashes and 17/17 frozen artefact hashes verify. All 512 seeds re-derive from the stated
+rule. This is a well-built mission and most of it survives attack intact.
+
+What it does NOT have is verification of the device measurement path for any quantity that enters
+the disposition (F-01), and it has a gate that provably cannot fail standing in for the one
+quantity its own offline module declares it cannot recompute (F-02). It also carries four
+statements in the C4 commit record that are false or overstated as written (F-03, F-04, F-17,
+and part of F-20), and one pre-registered publication commitment it did not keep (F-05).
+
+
+=====================================================================
+1. FINDINGS
+=====================================================================
+
+---------------------------------------------------------------------
+F-01  MATERIAL  —  The device-path cross-check exercises none of the code
+      that produces M2, M3 or M5. CROSS_CHECK_PASS is near-vacuous.
+---------------------------------------------------------------------
+WHERE
+  TLMR01/out/TLMR01_DEVICE_PATH_CROSSCHECK.json  (entire artefact; N_CROSS_CHECKED = 2,
+      DISAGREEMENTS = [], CROSS_CHECK_PASS = true)
+  relied on as a hard precondition at TLMR01/code/tlmr01_run_analysis.py:22-23
+      `assert XC["CROSS_CHECK_PASS"], "the device measurement path did not reproduce the container's"`
+  asserted at TLMR01/out/TLMR01_POST_FREEZE_FILE_AUDIT.json field
+      THE_TWO_DRIVERS_ARE_NOT_LOAD_BEARING_BECAUSE ("...the device path they use is cross-checked
+      field for field against a container re-measurement")
+  and in commit 856266c body ("two archives were re-measured in the container with the same
+      frozen module and agree field for field")
+
+WHAT IS WRONG
+  The two cross-checked archives are TLMR01_LAW_A_B1_P_i000_s3160790870 and
+  TLMR01_LAW_B_POINT_D10_P_i000_s2910186089. I re-measured both. Their contents:
+
+    LAW_A_B1 i000     frozen-state census {O: 2798, E: 8202}  — the world is extinct from
+                      step ~2798 onward. 0 episodes, 0 maturation candidates, 0 triggers,
+                      no intervention, 0 exposure above the ceiling.
+    LAW_B_POINT_D10 i000  frozen-state census {O: 11000} — single-Y for the entire horizon.
+                      0 episodes, 0 candidates, 0 triggers, no intervention, 0 above-ceiling
+                      exposure.
+
+  Instrumenting the frozen offline module during those two measurements:
+
+    tdist            called   0 times   (both worlds)
+    link             called   0 times   (both worlds)
+    centroid_component called 11192 / 44000 times
+
+  Consequently `episodes()`, `_candidate_gates()`, the non-trivial branches of
+  `M3_trigger_given_matured()`, `identity_intervals()` and `turnover_in()` NEVER EXECUTE in
+  either cross-checked world. The toroidal distance and the identity link — the float-sensitive
+  core that §5 widened the archive schema specifically to protect (D-ROUNDED-CENTROID) — are not
+  called at all. Neither archive is from LAW_C_MCTT01, the selected law, and neither has a
+  removal applied.
+
+  So "compared field for field" compares two dictionaries that are empty in every field that
+  matters. The D stage of M5 — 22/256, the entire selection statistic, the numerator of E2/E3/E6
+  — has (a) no container re-measurement, (b) no counterpart in the online archive meta to check
+  against, and (c) no exercise anywhere in the cross-check. It was computed exactly once, on a
+  different machine, by a driver that is not committed to the repository.
+
+  The artefact also names no tag, no seed, no sha256 and no field count, which makes it the one
+  record in this mission that cannot be audited from its own contents.
+
+CORRECT STATEMENT
+  "The device measurement path is verified for the archive reader, the O and E branches of the
+  frozen state machine, centroid_component, M1 with zero forks, and M4. It is UNVERIFIED for M2,
+  M3 and M5, and for the identity link and toroidal distance."
+
+REMEDY (cheap, and it changes no threshold)
+  Re-measure at least three LAW_C_MCTT01 archives with C_selective_removal_applied = true in the
+  container with the same frozen module and diff field for field, including post_removal_intervals.
+  The archives exist on the owner's machine. Until that is done the confirmation authorised by
+  this mission should not be executed.
+
+HOW VERIFIED
+  sha256 of both container archives matches TLMR01_RAW_MANIFEST.json. Re-ran
+  tlmr01_offline.measure_world on both: 0 field-for-field differences against the device rows in
+  /home/claude/TLMR01/TLMR01_MEASUREMENTS.json (so the cross-check itself is honest and
+  reproducible — it is its coverage that is empty). Monkey-patched tdist/link/centroid_component
+  to count calls. Read the state census directly from the archives.
+
+WHY THIS IS NOT LOAD_BEARING
+  The residual risk is bounded by things I did verify: the driver
+  (/home/claude/push/tlmr01_device_measure.py) computes nothing and I read every line; the path
+  shim is sound and its constants assertion is sufficient (see F-08 note and section 3, P-9); the
+  frozen module is byte-identical; the offline-reconstructed trigger agrees with the ONLINE
+  archive record in 512/512 worlds and on the exact step in 69/69 triggered worlds, which spans
+  episodes(), the maturation rule and all three gates; 116 pre-rollback archive hashes match
+  post-recovery. The gap is a demonstrated absence of verification, not a demonstrated error, and
+  the frozen TECHNICALLY_INVALID branch (short denominator / unreplaced technical failure) is
+  not met.
+
+---------------------------------------------------------------------
+F-02  MATERIAL  —  ARCHIVE_DECISION_RECONSTRUCTION is a gate that cannot fail.
+---------------------------------------------------------------------
+WHERE
+  TLMR01/code/tlmr01_fixtures.py:78-104  (`reconstruct`)
+  TLMR01/out/TLMR01_INSTRUMENTATION_QUALIFICATION.json  ARCHIVE_DECISION_RECONSTRUCTION = "PASS"
+  TLMR01/out/TLMR01_MASTER_FREEZE.json  GATES.ARCHIVE_DECISION_RECONSTRUCTION = "PASS"
+  the dependence is declared at TLMR01/code/tlmr01_offline.py:8-10:
+      "Where a value cannot be recomputed independently -- the component MEMBERSHIP, which the
+       archive stores as comp_id -- the archive's own reconstruction gate (§5) is what guarantees
+       it"
+
+WHAT IS WRONG
+  `reconstruct` builds the "offline" grouping as `groups.setdefault(c,[]).append((y,x))` keyed by
+  the stored `c_cid`, which `tl_record` (tlmr01_world.py:68-76) wrote as the index of the online
+  component. Regrouping cells by the label the online code assigned them reproduces the online
+  grouping identically, for any decomposition whatsoever. The only reachable failure mode is an
+  unlabelled cell (`cid.get((y,x),-1)`), which CC.components never produces.
+
+  Demonstrated by replaying the exact comparison logic with deliberately wrong decompositions on
+  two well-separated clusters:
+
+      correct decomposition        reconstruct() -> ok = True
+      merge everything into one    reconstruct() -> ok = True
+      split into singletons        reconstruct() -> ok = True
+      scrambled cross-pairing      reconstruct() -> ok = True
+
+  The same tautology appears in tlmr01_paths.py:85-96 (`classify_from_archive`), which also
+  rebuilds groups from the stored cid and is described as showing "the archive can name which
+  path was taken".
+
+  The consequence is precise: the ONE quantity the offline module declares it cannot recompute
+  independently — component membership, which determines the M1 fork event, the M1/M4 occupancy
+  stratum, every centroid and every identity link — is delegated to a check that guarantees
+  nothing.
+
+CORRECT STATEMENT
+  The archive IS sufficient to rebuild component membership (per-cell y,x are stored), but no
+  TLMR01 test rebuilds it. Component membership is inherited unverified from
+  fdot01_centres.components. The only direct test of that classifier in this mission is the six
+  synthetic `components_*` cases in tlmr01_paths.geometry_paths (one centre, two centres,
+  toroidal wrap, exactly CORE_R, just beyond, empty).
+
+MITIGATION I ESTABLISHED
+  On the two archives available to me, the archive is internally consistent at every one of
+  11,000 steps: len(comps) == s.n_components, component ids are contiguous 0..k-1, and
+  sum(component nY) == world nY. That is the check `reconstruct` should have been.
+
+---------------------------------------------------------------------
+F-03  MATERIAL  —  "e(n) is directly measured to occupancy 316" is false.
+---------------------------------------------------------------------
+WHERE
+  git commit 856266c, subject line.
+
+WHAT IS WRONG
+  Stratum n = 316 at LAW_C_MCTT01 is k = 0, n = 1, contributing_worlds = 1,
+  DIRECTLY_MEASURED = false, SUPPORT = "SUPPORT_TOO_THIN__NOT_DIRECTLY_MEASURED".
+  Of the 311 strata above sI = 5, thirty are THIN: 22, 23, 25, 26, 28, 29, 30, 36, 38, 47, and
+  every stratum from 297 to 316 inclusive. The highest DIRECTLY_MEASURED stratum is n = 296.
+  The commit conflates "strata exist up to 316" (true; that is M4's max occupancy, and the body
+  states it correctly) with "e(n) is directly measured up to 316" (false).
+
+CORRECT STATEMENT
+  "e(n) is DIRECTLY_MEASURED in 281 of the 311 strata above n = 5, the highest being n = 296.
+  Thirty strata above the ceiling are SUPPORT_TOO_THIN, holding 2,226 of 1,380,875 steps (0.16 %)
+  and 97 of 7,317 forks (1.33 %)."
+
+  TLMR01_FINAL_REPORT.md is correct — it labels every one of its 316 LAW_C rows DIRECT or THIN.
+  The defect is in the commit record only, which is where the mission's most-read claim lives.
+
+HOW VERIFIED
+  Enumerated DIRECTLY_MEASURED over TLMR01_ANALYSIS.json PER_LAW.LAW_C_MCTT01.M1_by_occupancy.
+
+---------------------------------------------------------------------
+F-04  MATERIAL  —  "440 post-removal identity intervals, 400 FUNCTIONAL" is
+      a truncated diagnostic. The true figures are 2018 and 1813.
+---------------------------------------------------------------------
+WHERE
+  TLMR01/code/tlmr01_offline.py:285   `"post_removal_intervals":D[:20]`
+  git commit 856266c body.
+
+WHAT IS WRONG
+  All 22 integrated LAW_C worlds hold between 65 and 117 complete post-removal intervals; every
+  one is truncated to 20 by the serialiser. 440 = 22 x 20 exactly, which is the tell.
+
+CORRECT VALUES
+  2,018 complete post-removal identity intervals; 1,813 of them FUNCTIONAL. Both are recorded
+  verbatim in the measurement dictionaries as n_post_removal_complete_intervals and
+  n_post_removal_functional_intervals and were available without any recomputation.
+  The quoted medians (6 Y births, 251 X births before the first Y removal, 359 after) are medians
+  over the truncated 440, not over 2,018. My recomputation over the 440 gives median x_before 250
+  and x_after 358; the quoted 251/359 correspond to taking the upper of the two middle order
+  statistics.
+
+IMPACT
+  M5 itself is unaffected: `D_stage`, `n_post_removal_complete_intervals` and
+  `n_post_removal_functional_intervals` are all computed on the full list before truncation
+  (tlmr01_offline.py:278-284). The error direction strengthens rather than weakens the mission's
+  own non-discrimination caveat — ~92 intervals per world, not ~20.
+
+HOW VERIFIED
+  Summed the untruncated per-world counts across the 22 integrated LAW_C worlds; compared with
+  len(post_removal_intervals) per world.
+
+---------------------------------------------------------------------
+F-05  MATERIAL  —  IDENTITY_AMBIGUOUS was pre-registered as "published
+      whatever it is" and is published nowhere. It is not zero.
+---------------------------------------------------------------------
+WHERE
+  Pre-registration: TLMR01/out/TLMR01_MEASUREMENT_OBJECTS.json, M2 field
+      "IDENTITY_AMBIGUOUS_is_counted_not_assumed_zero": "PTOPD01 observed it zero times in three
+      corpora. It is measured here, with its count published whatever it is."
+  Computed at TLMR01/code/tlmr01_offline.py:154-165.
+  Dropped at TLMR01/code/tlmr01_analyse.py:79-91 — the M2 aggregation carries only
+      episodes / matured / terminators.
+
+WHAT IS WRONG
+  The string "IDENTITY_AMBIGUOUS" (and "interior_ambiguous") appears nowhere in
+  TLMR01_ANALYSIS.json, TLMR01_WORLD_RESULTS.json or TLMR01_FINAL_REPORT.md.
+
+CORRECT VALUES (recomputed from the 512 measurement dictionaries)
+                     episodes   IDENTITY_AMBIGUOUS episodes   ambiguous interior steps
+  LAW_A_B1               440                  6                          8
+  LAW_B_POINT_D10        135                  5                         47
+  LAW_C_MCTT01        16,368              2,060  (12.6 %)             3,152
+
+  PTOPD01 observed this outcome zero times across three corpora; TLMR01 measures it at 12.6 % of
+  LAW_C episodes and does not report it.
+
+  Related: the seven declared M2 outcomes (TLMR01_MEASUREMENT_OBJECTS.json M2.outcomes,
+  "inherited verbatim from PTOPD01 §3") are NOT the implemented terminator set. Implemented
+  terminators are REACHED_THE_WINDOW_HORIZON, Y_EXTINCT, FORMED_A_THIRD_CENTRE,
+  LOST_A_CENTRE_TO_A_SINGLE_Y, MERGED_TO_ONE_CENTRE, INTEGRITY_FAULT, UNCLASSIFIED. MATURED and
+  IDENTITY_AMBIGUOUS are cross-cutting booleans, not terminators, so the declared set is neither
+  exhaustive nor mutually exclusive as a partition of the implemented outcome.
+
+WHY THIS IS NOT LOAD_BEARING
+  I checked the crossing directly. At LAW_C, 0 of 44 matured episodes and 0 of 32 triggering
+  episodes are IDENTITY_AMBIGUOUS, so none of the 22 integrated worlds rests on an episode whose
+  identity link broke. At LAW_A, 4 of 68 matured and 1 of 33 triggering are ambiguous — but
+  LAW_A returns K = 0 and is ineligible on E2/E3/E6 regardless. The 2,060 ambiguous LAW_C
+  episodes sit in the DENOMINATOR of s(n) at strata where s(n) = 0 anyway.
+
+---------------------------------------------------------------------
+F-06  MATERIAL  —  Three categories that cannot take any value but the one
+      they took are presented as gates or as empirical results.
+---------------------------------------------------------------------
+(a) ONLY_Y_LAW_FIELDS_DIFFER
+    TLMR01/code/tlmr01_laws.py:44-45
+        diffs={k:{"kY":v["kY"],"muY":v["muY"],"p_hop_Y":v["p_hop_Y"]} for k,v in LAWS.items()}
+        only_y=all(set(d)<= {"kY","muY","p_hop_Y"} for d in diffs.values())
+    `diffs` is constructed with exactly those three keys and then tested for having at most those
+    three keys. Tautology. Published as ONLY_Y_LAW_FIELDS_DIFFER: true in
+    TLMR01_MEASUREMENT_LAWS.json. It does not check that nothing else differs between the laws.
+    The underlying claim is nevertheless TRUE, for a different reason I verified structurally:
+    tlmr01_world.build(seed,kY,muY,p_hop_Y,horizon) passes only those into O.build_world; every
+    other constant comes from the inherited PQEC01 spec, and build asserts sp.kY/sp.muY/sp.p_hop_Y
+    reached the spec (tlmr01_world.py:103-104). NEW_PARAMETER_POINTS = 0 is likewise true by
+    construction — every tuple is read from a parent artefact, none is chosen here.
+
+(b) failure_modes.not_exactly_two_centres
+    TLMR01/code/tlmr01_offline.py:177 and :194.
+    `_candidate_gates` runs only when MATURED (offline.py:165-166), and the candidate step
+    cand = i + NEED - 1 satisfies cand <= j because the run length is >= NEED. Every step in
+    [i,j] is in the frozen state S, which by state_of requires ncen == 2. Therefore
+    GATE_exactly_two_centres is true by construction for every matured episode, and the mode can
+    never fire. Observed: 0 / 0 / 0.
+    TLMR01_FINAL_REPORT.md §6 prints a column "failed on centre count" of 0, 0, 0. That is an
+    identity, not a measurement. (Strictly, it is a weak archive-self-consistency check, since
+    state_of reads the `s` array's n_components while the gate reads the `k` rows.)
+
+(c) Episode terminators INTEGRITY_FAULT and UNCLASSIFIED
+    TLMR01/code/tlmr01_offline.py:60-67 and :149-153.
+    `state_of` takes a per-WORLD integrity flag. If it is False every step is "F", so no run of
+    "S" exists and no episode can terminate in "F". If it is True no step is ever "F". So
+    INTEGRITY_FAULT is unreachable either way. And st[j+1] can never be "S" because j is maximal,
+    so the `.get(nx,"UNCLASSIFIED")` default never fires. Observed across 16,943 episodes:
+    INTEGRITY_FAULT 0, UNCLASSIFIED 0.
+    Y_EXTINCT is genuinely reachable but observed 0 times, while extinction itself is common:
+    the steps that are neither single-centre nor inside an S episode (extinct, or three-or-more
+    centres) have per-world median 4,498 at LAW_A, 724 at LAW_B and 1,918 at LAW_C, and one of
+    the two cross-check worlds is extinct for 8,202 of its 11,000 steps. Extinction is nowhere
+    reported.
+
+---------------------------------------------------------------------
+F-07  MATERIAL  —  The per-world M1–M5 reduction was completed BEFORE the raw
+      commitment. No artefact discloses the reordering; C3 asserts the contrary.
+---------------------------------------------------------------------
+WHERE
+  Frozen order: TLMR01/code/tlmr01_analyse.py:157-158
+      paths=sorted(glob.glob(...)); rows=[OFF.measure_world(p) for p in paths]
+  — i.e. measure_world runs INSIDE the analysis stage, after C3.
+
+  Executed order (container mtimes and commit times, all 2026-08-25 UTC):
+      14:03:15  /home/claude/TLMR01/TLMR01_MEASUREMENTS.json   (512 per-world M1–M5 dicts)
+      14:04:47  TLMR01/out/TLMR01_RAW_MANIFEST.json
+      14:05:51  commit 477a4a5  "TLMR01 C3 (rebuilt): the raw commitment, alone"
+      14:07:00  TLMR01/code/tlmr01_run_analysis.py
+      14:07:05  TLMR01/out/TLMR01_ANALYSIS.json
+  Total device measurement time, summed from the driver's own _measure_seconds: 384 s.
+
+WHAT IS WRONG
+  Commit 477a4a5 states: "RAW RECORDS ONLY. No M1, no M2, no M3, no M4, no M5. No trigger count,
+  no eligibility result, no law selection, no disposition. No scientific outcome has been opened."
+  The first sentences are true of the commit's CONTENTS — I confirmed no analysis artefact is in
+  the C3 tree. The last sentence is not supported: a single file containing per-world M1, M2, M3,
+  M4 and M5 — including M5.INTEGRATED for each of the 512 worlds — existed on disk 2.5 minutes
+  before C3 was written.
+
+  TLMR01_RECOVERY_INCIDENT.json, TLMR01_RAW_MANIFEST.json and TLMR01_POST_FREEZE_FILE_AUDIT.json
+  all describe the device split as a LOCATION change ("the bridge could not carry 800 MB into the
+  container"). None describes it as a change in ORDER relative to the raw commitment.
+
+MITIGATION
+  measure_world is deterministic, reads only the archive, and contains no free choice; nothing
+  downstream of it (aggregation, support classification, eligibility, selection, disposition) was
+  in place before C3. TLMR01_RAW_MANIFEST.json carries only tag / law / seed / steps_executed /
+  integrity_ok / sha256 — no scientific value, as it claims. TLMR01_RUN_LEDGER.jsonl is clean
+  (opaque arm token, completed, technical_failure, checksum_written, archive_bytes). And the
+  ORIGINAL C3 ordering cannot be checked at all, because that commit was lost.
+
+CORRECT STATEMENT
+  "The per-world reduction ran on the device and was complete before the rebuilt raw commitment.
+  The aggregation, eligibility, selection and disposition all followed it."
+
+---------------------------------------------------------------------
+F-08  MATERIAL  —  The post-freeze file audit omits the one post-C2 file that
+      produced the data, then reasons about it by name.
+---------------------------------------------------------------------
+WHERE
+  TLMR01/out/TLMR01_POST_FREEZE_FILE_AUDIT.json
+      POST_C2_MODULES lists 4 files with sha256; N_POST_C2_MODULES = 4.
+      `tlmr01_device_measure.py` is not among them — no hash, no classification.
+      The same artefact's field THE_TWO_DRIVERS_ARE_NOT_LOAD_BEARING_BECAUSE says
+      "tlmr01_device_measure serialises measure_world's return verbatim".
+
+WHAT IS WRONG
+  The file is not in the repository at all. It exists only at
+  /home/claude/push/tlmr01_device_measure.py (untracked, outside /home/claude/edl), so no
+  committed record fixes the bytes that ran. The audit reasons about a file it did not audit.
+  N_POST_C2_MODULES should be 5.
+
+WHAT I FOUND ON READING IT (the classification would have been correct)
+  90 lines. It walks TLMR01_*_P_*.npz, calls OFF.measure_world, adds `_archive_sha256` and
+  `_measure_seconds`, and json.dumps the return. It computes no scientific value. Both added keys
+  are popped by tlmr01_run_analysis.py:37 before aggregation.
+
+THE PATH SHIM IS SOUND AND THE CONSTANTS ASSERTION IS SUFFICIENT
+  The shim replaces builtins.open for the duration of `import tlmr01_offline`, rewriting any path
+  beginning "/home/claude/edl/" to a copy shipped beside the driver, and restores open in a
+  `finally`. tlmr01_offline opens exactly one file at import — PQEC01_MASTER_FREEZE.json — and
+  takes exactly three values from it: L, CORE_R, T_HORIZON (tlmr01_offline.py:18-19). All three
+  are asserted against literals 36, 5.0, 11000. NEED, F_PRIMARY, LATEST_ALLOWED_TRIGGER and sI
+  are module literals, not freeze reads, so those four assertions are tautological but harmless.
+  Because every value that flows from the redirected file is asserted, the redirection is verified
+  rather than trusted, exactly as claimed. np.load runs after open is restored.
+  Residual, small: the shim rewrites ANY /home/claude/edl/ path, not only the intended one, so a
+  future edit to tlmr01_offline that opened a second such path would be silently redirected. It
+  does not today.
+
+---------------------------------------------------------------------
+F-09  MINOR  —  "the single-centre step count at occupancy n, which is M4" is
+      false by construction; M1's denominator is M4 minus the terminal step.
+---------------------------------------------------------------------
+WHERE
+  TLMR01/code/tlmr01_offline.py:122  and  TLMR01/code/tlmr01_design.py:145
+      "exposure": "the single-centre step count at occupancy n, which is M4"
+  M1 iterates `for t in range(A.T-1)` (offline.py:125); M4 iterates `for t in range(A.T)`
+      (offline.py:203).
+
+MEASURED DIFFERENCE
+      LAW_A_B1          M1 exposure   751,687   M4 total   751,723   diff  36
+      LAW_B_POINT_D10                 944,494              944,543   diff  49
+      LAW_C_MCTT01                  1,541,980            1,542,156   diff 176
+      LAW_C above sI                1,380,875            1,381,051   diff 176
+
+CORRECT STATEMENT
+  The CODE is right — a one-step hazard cannot use a step whose t+1 does not exist. The
+  DECLARATION is wrong. The report prints 1,380,875 in §3 and 1,381,051 in §4 with no note that
+  they differ or why; a reader who checks the two tables against each other will find an
+  unexplained discrepancy. The correct wording is "M4 restricted to steps that have a successor".
+  Immaterial to the value (0.013 %).
+
+---------------------------------------------------------------------
+F-10  MINOR  —  PRIMARY_ESTIMAND_SUPPORT_REACHED is computed from the POOLED
+      above-ceiling object, which is weaker than the frozen "at least one stratum".
+---------------------------------------------------------------------
+WHERE
+  Frozen text: TLMR01_POWER_RULE.json PART_A_PRIMARY_ESTIMAND_SUPPORT.criterion —
+      "DIRECTLY_MEASURED in at least one stratum above sI = 5: at least 10 distinct worlds and at
+       least 30 single-centre steps of exposure IN THAT STRATUM";
+      TLMR01_DISPOSITION_LOGIC.json branch 2.
+  Code: TLMR01/code/tlmr01_analyse.py:167-168 reads
+      a["M1_above_support_ceiling"].get("DIRECTLY_MEASURED"), where that object pools every
+      stratum above sI (offline.py sI; analyse.py:67-77).
+
+WHAT IS WRONG
+  The pooled test asks for >= 10 worlds with ANY above-ceiling exposure and >= 30 POOLED steps.
+  Thirty worlds contributing one step each at thirty different occupancies would pass it while no
+  single stratum qualified. That is strictly easier than the frozen criterion.
+
+NON-BINDING HERE
+  281 individual strata at LAW_C satisfy the stricter per-stratum reading, so
+  PRIMARY_ESTIMAND_SUPPORT_REACHED = True either way and the disposition is unaffected.
+
+---------------------------------------------------------------------
+F-11  MINOR  —  M3's three failure modes are overlapping marginals; the report
+      lays them out as if they added up.
+---------------------------------------------------------------------
+WHERE  TLMR01/code/tlmr01_offline.py:193-195; TLMR01_FINAL_REPORT.md §6 table.
+
+MEASURED
+      LAW_A_B1         matured 68, triggered 33, failures 35.
+                       marginals 25 deadline + 0 centres + 17 x-ratio = 42.
+                       joint: 18 deadline-only, 10 x-ratio-only, 7 BOTH.
+      LAW_B_POINT_D10  matured 46, triggered 19, failures 27.
+                       marginals 26 + 0 + 3 = 29. joint: 24 deadline-only, 1 x-ratio-only, 2 both.
+      LAW_C_MCTT01     matured 44, triggered 32, failures 12. marginals 0 + 0 + 12 = 12. no overlap.
+
+CORRECT STATEMENT
+  The design's own wording ("failure_modes_reported_separately") is honest. The report's three
+  columns should carry a note that they are marginals and can double-count; at LAW_A they exceed
+  the failure count by 7.
+
+---------------------------------------------------------------------
+F-12  MINOR  —  The world-clustered bootstrap resamples only worlds with a
+      non-zero denominator, and is exactly degenerate where a numerator is zero.
+---------------------------------------------------------------------
+WHERE  TLMR01/code/tlmr01_analyse.py:35-47 (boot_ratio), :57-76 (M1), :85 (M2), :99-100 (M3).
+
+WHAT IS WRONG
+  It does resample WORLDS — that part of the §7 rule is correctly implemented. But worlds
+  contributing (0,0) are excluded from `pairs` (M1 per-stratum builds `per_world[n_]` only from
+  worlds with exposure; M1_above gates on `if a:`; M3 gates on `n_matured>0`). The interval is
+  therefore conditional on exposure and slightly narrower than a bootstrap over all worlds at the
+  law, because the randomness in how many worlds contribute a denominator is removed.
+  It is also exactly degenerate where k = 0 — LAW_A n=1 clustered [0, 0] against exact
+  [0, 5.02513e-06] — and where one world contributes — LAW_A n=4 clustered
+  [0.0106762, 0.0106762].
+
+IMPACT
+  None on any gate. No claim in this mission rests on a clustered interval: E3 and E6 use M5's
+  exact binomial, whose unit IS the world; E4 and primary_ok use counts; E5 uses n > 0. The rule
+  "only the world-clustered interval may support a claim" would, read literally, make [0,0] the
+  supporting object for the zero strata, which would be absurd; the mission's own ZERO_NUMERATORS
+  rule supplies the exact one-sided upper bound instead, and the report prints it.
+
+---------------------------------------------------------------------
+F-13  MINOR  —  "every world asserts the narrowing is lossless" is not literal.
+---------------------------------------------------------------------
+WHERE  TLMR01/code/tlmr01_run.py:52-57; claimed at TLMR01_ARCHIVE_SCHEMA.json NARROW_DTYPES.
+  The check covers cells columns 0-6 and 8 and comp columns 0-5. It does NOT check k_soy, k_sox,
+  k_xd (int32) or c_cand (int32). No truncation is possible in practice (|soy| <= 1296*18,
+  k_xd <= 81*CAP = 1296, c_cand <= 10^6, all far inside int32), so the archives are sound; the
+  declaration overstates the check by four of eighteen narrowed columns.
+
+---------------------------------------------------------------------
+F-14  MINOR  —  N_NON_SCIENTIFIC_TRAJECTORIES undercounts.
+---------------------------------------------------------------------
+WHERE  TLMR01/code/tlmr01_fixtures.py:121-122; TLMR01_INSTRUMENTATION_QUALIFICATION.json = 24.
+  `inertness` runs two trajectories per call (instrumented + plain) and is counted once each.
+  Actual: 24 + 6 + 3 + 3 = 36, not 24. Bookkeeping only.
+
+---------------------------------------------------------------------
+F-15  MINOR  —  E5 uses "directly measured" in a sense that contradicts §7.
+---------------------------------------------------------------------
+WHERE  TLMR01/code/tlmr01_analyse.py:136 (`m3ok=agg[...]["n"]>0`) and :141
+       (key "E5_M3_directly_measured").
+  §7's DIRECTLY_MEASURED is ">= 10 distinct worlds AND >= 30 elementary units". E5's frozen text
+  in TLMR01_SELECTION_RULE.json defines it as "at least one matured episode", so the CODE MATCHES
+  THE RULE; the collision is in vocabulary, and a reader could take the clause name for the §7
+  standard.
+  Non-binding: M3 satisfies the §7 standard at all three laws — 33/68 over 40 worlds, 19/46 over
+  32 worlds, 32/44 over 37 worlds. The §7 test also confirms the E5 sub-clause "the denominator
+  is the measured matured count and never a modelled one": tlmr01_offline.py:191 takes it
+  directly from the measured MATURED flags, and tlmr01_analyse.py:93 sums those.
+
+---------------------------------------------------------------------
+F-16  MINOR  —  Forbidden claims appear in denial in the final report.
+---------------------------------------------------------------------
+WHERE  TLMR01_FINAL_REPORT.md line 691:
+       "Nothing about reproduction, heredity, autonomous cohesion or life follows from any number
+        above, and no point is qualified by this mission."
+  Against TLMR01_SCIENTIFIC_STATE_LEDGER.json INCLUDING_IN_DENIAL: "the forbidden claims may not
+  be made even in the form of a denial; the frozen status strings above are the only permitted
+  formulation."
+
+  Under the mission's own strictest reading this is a breach. Substantively it is harmless — it
+  lowers rather than raises the claim, and the frozen status strings appear three lines above it.
+  Line 693's restatement of the forbidden vocabulary list names the rule and is not a breach.
+
+  Nothing else trips either list. I scanned TLMR01_FINAL_REPORT.md and both commit messages for
+  organism, daughter organism, life created, self-replication demonstrated, reproduction,
+  heredity, life, autonomous cohesion, H3 confirmation, Kamimura, Kaneko, minority window. The
+  only hits are the mission title, the frozen status strings, the quoted rule, and line 691.
+
+---------------------------------------------------------------------
+F-17  MINOR  —  Two mislabelled figures in the C4 commit.
+---------------------------------------------------------------------
+  "B|A at LAW_C reproduces MCTT01 Stage A independently: 26 of 256 worlds trigger here, 0.102"
+  — 26/256 is B/N, not B|A. B|A is 26/37 = 0.7027. The quoted number and the comparison against
+  MCTT01's 6/64 = 0.09375 are fine; the label is not.
+  "251 X births before ... and 359 after" — see F-04; over the truncated 440 the two-middle
+  order-statistic mean is 250 and 358.
+
+---------------------------------------------------------------------
+F-18  OBSERVATION  —  The law binding and the floor cannot be re-verified in
+      this container, and the recovery record does not say so.
+---------------------------------------------------------------------
+  TLMR01/code/tlmr01_laws.py:12-14 reads BPRTC01/out/BPRTC01_MASTER_FREEZE.json,
+  MCTT01/out/MCTT01_SELECTED_LAW.json and MCTT01/out/MCTT01_PHYSICS_DIFF_FROM_B1.json. None of
+  the three exists in the container, and none appears anywhere in the repository's git history
+  across all 494 commits on all branches. As a direct consequence tlmr01_laws, tlmr01_run and
+  tlmr01_seeds all raise FileNotFoundError on import — three of the four modules in
+  THE_RUN_IMPORT_CLOSURE cannot be loaded. (tlmr01_offline, tlmr01_design and tlmr01_analyse
+  import cleanly; PQEC01 survives.)
+
+  What that means for the three headline law claims:
+    LAW_A_B1        VERIFIED bit-for-bit against PQEC01_MASTER_FREEZE.json —
+                    kY 2.5118864315095822e-05, muY 9.261187281287937e-05,
+                    p_hop_Y 0.10263340389897246, all identical; SOURCE_BYTES sha256
+                    1d41505e0571eed5... reproduces; SHARED_FROZEN_PHYSICS reproduces exactly.
+    LAW_B_POINT_D10 NOT VERIFIABLE HERE. p_hop_Y is exactly 0.1 x LAW_A's, consistent with the
+                    declared slow-mobility ladder, but the source bytes are gone.
+    LAW_C_MCTT01    NOT VERIFIABLE HERE. kY is exactly 40 x and muY exactly 8 x LAW_A's.
+    F_INTEGRATED    Arithmetically verified: lo95(3,256) = 0.0032015171041760242 exactly. The
+                    underlying 3-of-256 from BPRTC01 is a citation to an artefact absent from
+                    this container and from git history.
+
+  TLMR01_RECOVERY_INCIDENT.json states the ancestry limitation for COMMITS honestly and its two
+  substantive claims verify (see P-6). It does not state that three of the four parent artefacts
+  the frozen law binding reads are gone, nor that the seed derivation can no longer execute here.
+  Seeds themselves DO re-derive from the recorded tip string (P-1), but the tip
+  9f4c70ceeb05b0b8a1f27c4cfc855e125f921ce9 is not resolvable in this repository, so
+  PARENT_TIP_RESOLVED_FROM_THE_REPOSITORY is now an unverifiable assertion.
+
+---------------------------------------------------------------------
+F-19  OBSERVATION  —  The pooled e(n) headline is an exposure-weighted mixture
+      over a hazard that varies by three orders of magnitude.
+---------------------------------------------------------------------
+  LAW_C_MCTT01, above the ceiling:
+      n in [  6,  10]   forks    473   exposure     10,233   e = 0.0462
+      n in [ 11,  20]   forks    333   exposure      4,704   e = 0.0708
+      n in [ 21,  40]   forks    233   exposure      1,853   e = 0.1257
+      n in [ 41,  80]   forks  1,082   exposure      6,250   e = 0.1731
+      n in [ 81, 160]   forks  4,813   exposure    169,158   e = 0.0285
+      n in [161, 316]   forks    383   exposure  1,188,677   e = 0.0003
+
+  86.1 % of the above-ceiling exposure sits in the top band, where the hazard is ~600x smaller
+  than at n ~ 57 (e = 0.339). The single number 0.0052988 therefore describes no occupancy. The
+  stratum-by-stratum table — all 316 rows — is the honest object and TLMR01_FINAL_REPORT.md
+  prints it; the commit subject and the §3 summary row do not carry the caveat.
+
+  This does not undermine the mission's purpose. PTOPD01's named gap is at occupancies 6-10,
+  which are covered with 10,233 steps and 473 forks across 77, 70, 69, 55 and 50 worlds — all
+  DIRECTLY_MEASURED. The mission delivers what it said it would.
+
+---------------------------------------------------------------------
+F-20  OBSERVATION  —  The non-discrimination finding: numerically correct,
+      absent from the report artefact, overstated in the commit. Both directions.
+---------------------------------------------------------------------
+THE NUMBERS ARE RIGHT (verified)
+      LAW_A_B1         A 40/128   B|A 27/40   C|B 23/27   D|C  0/23
+      LAW_B_POINT_D10  A 32/128   B|A 16/32   C|B 15/16   D|C  0/15
+      LAW_C_MCTT01     A 37/256   B|A 26/37   C|B 22/26   D|C 22/22
+  At LAW_A and LAW_B not one COMPLETE post-removal identity interval occurs at all — 0 of 0, not
+  0 of some. The endpoint's precondition never even arises there.
+
+FOR THE FINDING (it is real, and I can strengthen it)
+  - At LAW_C the 22 removals leave 2,018 complete intervals, median ~92 per world, 1,813
+    FUNCTIONAL. An endpoint that asks for "at least one" against an ambient rate of ~92 is
+    saturated by construction.
+  - LAW_A holds occupancy 1 for 97.7 % of its single-centre steps (734,119 / 751,723) and LAW_B
+    for 91.0 % (859,789 / 944,543). A Y birth AND a Y death inside one surviving identity
+    interval, with minNY >= 1, is close to unsatisfiable there.
+  - AN ARGUMENT THE MISSION DOES NOT MAKE, WHICH IS BETTER THAN THE ONE IT DOES: at LAW_C all 44
+    matured episodes and all 32 triggering episodes begin at world occupancy 2 or 3 (one at 4).
+    15,243 LAW_C episodes beginning at n >= 5 produced ZERO maturations. So the triggering
+    configurations at LAW_C are occupancy-identical to LAW_A's and LAW_B's. The only thing that
+    differs downstream is the ambient occupancy of the post-removal window — the median LAW_C
+    trigger fires at step 1,062, after which the world grows to occupancies of 100-316. That
+    isolates the confound far more cleanly than the aggregate comparison does.
+
+AGAINST THE FINDING (the mission overstates it in three ways)
+  - "Non-discriminating" is the wrong word for a statistic that separates the three laws
+    perfectly. The accurate statement is that the endpoint is CONFOUNDED WITH OCCUPANCY: it is
+    trivially satisfiable above n ~ 100 and near-unsatisfiable at n <= 4.
+  - "It is measured, not conjectured" is not supportable. tlmr01_offline.py:274-277 computes D
+    only when C_selective_removal_applied is true. I confirmed across all 512 worlds that no
+    world anywhere has a post-removal-window turnover count without a removal. There is no
+    matched no-removal control at any law, and none could be produced from these dictionaries.
+    "Satisfied by ambient churn" is an inference from the interval count and the occupancy — a
+    good inference, but an inference.
+  - "makes its discriminating power a measured function of occupancy" — three laws spanning two
+    occupancy regimes, two of which return a degenerate zero, do not make a measured function.
+
+WHAT SHOULD CHANGE
+  The finding belongs in TLMR01_FINAL_REPORT.md. As things stand the report contains neither the
+  word "non-discriminating" nor any statement of the D|C contrast beyond the raw §7 table, so a
+  reader of the deliverable artefact gets the selection WITHOUT the caveat, and only a reader of
+  the git commit message gets the caveat. Given that the report regenerates deterministically
+  from tlmr01_report.py, adding it is a reporting change, not a scientific repair, and does not
+  touch MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS = 0.
+
+---------------------------------------------------------------------
+F-21  OBSERVATION  —  s(n) = 0 above separation occupancy 4 at every law is
+      arguably the mission's most substantive new measurement and is never stated.
+---------------------------------------------------------------------
+  LAW_C_MCTT01   15,243 episodes begin at n >= 5;  0 mature.
+                 All 44 maturations begin at n = 2 (32), n = 3 (11), n = 4 (1).
+                 145 occupancy strata are DIRECTLY_MEASURED; only 3 have any maturation.
+  LAW_A_B1            9 episodes begin at n >= 5;  0 mature.
+  LAW_B_POINT_D10     0 episodes begin at n >= 5.
+  This replicates and extends PTOPD01's "zero of 3602 episodes above occupancy 3 matured at B1
+  mobility" onto a law 40x in kY. It is published as 236 table rows and summarised nowhere.
+
+
+=====================================================================
+2. THE THREE HEADLINE CLAIMS, ADJUDICATED
+=====================================================================
+
+CLAIM 1  PRIMARY_ESTIMAND_SUPPORT_REACHED = true; e(n>5) DIRECTLY_MEASURED at LAW_C_MCTT01,
+         7317 forks / 1,380,875 steps / 176 worlds, e = 0.0052988.
+  UPHELD. Every figure reproduces exactly. The denominator used is M1's own exposure (right-
+  censored at the last step), not M4's total — which is the correct choice, though it contradicts
+  the design's own wording (F-09). The support criterion is met on the pooled object AND, on the
+  stricter frozen per-stratum reading, in 281 individual strata (F-10). Qualify with F-03
+  ("to occupancy 316" is false; the highest DIRECTLY_MEASURED stratum is 296) and F-19 (the
+  pooled value is a mixture describing no occupancy).
+
+CLAIM 2  The frozen cascade returns MEASUREMENT_DELIVERED__ONE_LAW_SELECTED_FOR_DISJOINT_
+         CONFIRMATION and selects LAW_C_MCTT01 on M5 = 22/256, lower 95 % 0.0589 > 0.0032015,
+         confirmation affordable at n = 50.
+  UPHELD IN FULL. I recomputed every element:
+      F_INTEGRATED = lo95(3,256)  = 0.0032015171041760242   matches to the last bit
+      F_TURNOVER   = lo95(7,160)  = 0.020710503010107881    matches
+      p*(128) = 0.02321150272141098   p*(256) = 0.01165104600063477
+      p*(512) = 0.005836879691683838  (correctly excluded from the assurance)
+      K(E3) 3 / 3 / 4 ;  K(E6) 4 / 4 / 6 ;  BINDING_K 4 / 4 / 6
+      prospective confirmation n 735 / 735 / 770
+      lo95(22,256) = 0.058894818455196132 ;  confirmation_n = 50
+      at n = 50 the rejection region is K >= 2, exact size <= 0.05, power 0.8015 at p = 0.0589
+      (n = 49 gives 0.7923, so 50 is the smallest n — the search is correct)
+  E1-E6 each verified independently at each law. The ordering statistic is the exact one-sided
+  lower 95 % on M5 as the frozen rule states; the tie rule (exact equality, selects nothing) is
+  implemented as written and does not fire because the two K = 0 laws are ineligible. The cascade
+  branch order matches TLMR01_DISPOSITION_LOGIC.json exactly.
+  The floor is non-circular in the sense claimed — it is computed from a committed parent corpus
+  with no TLMR01 input, and it was fixed before world 1. A sharper reading is that using the
+  parent's LOWER 95 % bound (0.0032) rather than its point estimate (3/256 = 0.0117) makes the
+  gate ~3.7x easier; the design states this openly, and it does not matter here, because
+  LAW_C's lower bound 0.0589 clears even the parent's point estimate and clears F_TURNOVER too.
+  The only reservation is F-01: the 22 that make up the numerator were computed once, on the
+  device, by code no cross-check reached.
+
+CLAIM 3  The frozen DOTC01 turnover endpoint is non-discriminating at LAW_C: D|C = 22/22 versus
+         0/23 and 0/15.
+  NUMBERS UPHELD; FRAMING QUALIFIED (F-20). The contrast is real and is a proper caveat on the
+  selection. But "non-discriminating" understates precision (the right word is
+  occupancy-confounded), "measured, not conjectured" is not supportable because no no-removal
+  control exists anywhere in the 512 worlds, and the finding is absent from the deliverable
+  report artefact. The mission's own data support a stronger version of its argument than the one
+  it makes (F-20, third bullet under FOR).
+
+
+=====================================================================
+3. WHAT I VERIFIED THAT HOLDS — recorded so the reader knows the scope
+=====================================================================
+
+P-1  SEEDS AND ARCHIVE ACCOUNTING. All 512 primary and 6 reserve seeds re-derive exactly from
+     sha256(tip|'TLMR01'|LAW|ROLE|INDEX)[:8] big-endian mod 2^32 with the recorded tip.
+     SEED_SET_HASH f5f0243770bbf86af85dfbe63c56db6b5503d74cbfd8633f41f36afefe19a163 reproduces.
+     Primary distinct, reserve distinct, primary/reserve disjoint, all three law pairs disjoint,
+     fixture band disjoint from both — all by enumeration. 512 measurement rows, tags unique,
+     each tag's embedded law/index/seed self-consistent and present in the manifest; 0 missing,
+     0 unexpected, 0 duplicate, 0 reserve seeds used, integrity_ok on all 512, steps_executed
+     11000 on all 512. Every archive sha256 in TLMR01_RAW_MANIFEST.json matches the driver's own
+     re-hash for the same tag, 512/512.
+
+P-2  THE PUBLISHED ANALYSIS IS BIT-REPRODUCIBLE. Re-executed the frozen AN.aggregate and
+     AN.eligibility on the device measurement file with the derived bootstrap seed 3067208650:
+     0 differences against TLMR01_ANALYSIS.json PER_LAW, 0 against ELIGIBILITY — including all
+     2000-draw world-clustered percentile intervals across 316 + 4 + 4 M1 strata and 236 + 4 + 3
+     M2 strata. This proves tlmr01_run_analysis.py did not perturb the RNG stream or any value
+     relative to tlmr01_analyse.main(); sorting rows by tag is equivalent to sorting paths, which
+     I checked separately.
+
+P-3  THE REPORT IS NOT HAND-EDITED. TLMR01_FINAL_REPORT.md regenerates byte-identically from
+     tlmr01_report.report() reading the published analysis.
+
+P-4  ALL SIX §6-§8 FROZEN ARTEFACTS regenerate exactly from tlmr01_design.py modulo GENERATED_UTC.
+
+P-5  ALL POWER ARITHMETIC reproduces (enumerated under CLAIM 2 above).
+
+P-6  RESTORATION CLAIM VERIFIED. All 39 methods-closure module hashes recomputed and matched,
+     0 missing, 0 drifted. All 17 frozen pre-run artefact hashes and byte counts matched.
+     The 6 ambiguous import names and the 3 executing-but-unmanifested modules (OBTC01
+     nulls_obtc, source_operator, topology) are correctly enumerated. The recovery incident is
+     stated plainly, not spun: it says C1/C2 are CONTENT-restored and not OBJECT-restored, names
+     the reason, and says the claim rests on hashes rather than the commit graph. That is honest,
+     and the hashes check out.
+
+P-7  A STRONGER PIECE OF RECOVERY EVIDENCE THAN THE MISSION USES. TLMR01_ARCHIVE_MANIFEST.json
+     and TLMR01_ARCHIVE_SHA256SUMS were written IN THE CONTAINER at 2026-08-24 23:44, before the
+     rollback, and hold 116 archive hashes. All 116 match the post-recovery RAW_MANIFEST and the
+     device driver's re-hash, with zero disagreements. That is direct evidence the recovered
+     bytes are the originals. Caveat: all 116 are LAW_A_B1. Zero LAW_B and zero LAW_C archives
+     have any surviving pre-rollback hash in the repository, so byte-preservation for the
+     selected law rests on the device-side tar verification, which is not checkable here.
+
+P-8  ONLINE/OFFLINE AGREEMENT ACROSS ALL 512 WORLDS. The offline-reconstructed trigger agrees
+     with the ONLINE archive record (fired / not fired) in 512/512 worlds, and the offline first
+     trigger step equals the online t_m in 69/69 triggered worlds. C matches TERMINAL_LABEL in
+     512/512. The chain nests properly everywhere: C subset B subset A, no exceptions. This is a
+     far stronger check than the frozen 5-world §5 gate, and it substantially de-risks F-01 for
+     M2 and M3 — though not for M5's D stage, which has no online counterpart.
+
+P-9  THE PATH SHIM IS SOUND AND ITS ASSERTION IS SUFFICIENT — see F-08.
+
+P-10 THE TWO AVAILABLE ARCHIVES ARE INTERNALLY CONSISTENT at every one of 11,000 steps
+     (len(comps) == s.n_components; contiguous component ids; sum of component nY == world nY),
+     and their sha256 match the raw manifest. M1's stratification is therefore the single
+     centre's occupancy as declared, and it coincides with the world occupancy when there is
+     exactly one centre — so it is consistent with M2's PTOPD01 convention (world Y occupancy at
+     the run's first step, tlmr01_offline.py:148, `n=int(A.nY[i])`, taken from the `s` array's
+     nY_total column — which is exactly what was declared).
+
+P-11 §5 IS MOSTLY REAL, AND ITS ONE HONEST FAILURE IS DECLARED. tlmr01_paths.py opens by stating
+     that the first §5 run "returned max_components_seen = 1 and component_increase_events = 0 on
+     all three laws" and that "the fork, split, merge, trigger and selective-removal branches
+     ... had therefore NEVER executed", then closes the gap with 40 natural + 9 injected
+     trajectories. That is the opposite of spin. The resulting coverage is genuine: 19 required
+     paths, 0 uncovered at any law; disc_equivalence tested at all 1,296 centres on random X
+     planes; 100 % line coverage of run_world/tl_record/build/tlmr_init including the
+     integrity-fault branch proved to fire; OFFLINE_AGREEMENT explicitly guarded by a
+     NON_VACUITY clause requiring >= 1 candidate, >= 1 fired trigger and >= 1 applied removal
+     before PASS is allowed. TLMR01_ANALYSIS_QUALIFICATION.json's 33 synthetic cases are
+     likewise non-vacuous — they test the support rule biting and not biting, E1 in both
+     directions, and the eligibility K threshold on either side of the boundary.
+     The vacuous ones are the three in F-02 and F-06 plus the near-vacuous one in F-01.
+
+P-12 THE FIREWALL HELD DURING THE RUN. TLMR01_RUN_LEDGER.jsonl carries only opaque arm tokens,
+     completion, technical_failure, checksum_written and archive_bytes — no physical quantity.
+
+
+=====================================================================
+4. LOAD-BEARING STATEMENT
+=====================================================================
+
+I find NO LOAD_BEARING DEFECT. No headline number is wrong; every quantity I could recompute
+reproduces exactly, and the frozen cascade applied to those numbers returns the disposition the
+mission reports. The frozen TECHNICALLY_INVALID branch — "any law's primary denominator is short
+of its planned n, or any technical failure remains unreplaced" — is not met: 512/512 archives,
+full horizon everywhere, integrity_ok everywhere, zero reserves used.
+
+F-01 is the largest hole and I considered making it LOAD_BEARING. I did not, for four reasons.
+It is an absence of verification rather than a demonstrated error. The residual risk is bounded
+by checks I performed independently (P-2, P-6, P-7, P-8, P-9, P-10). The frozen rule that would
+force invalidity has a stated trigger that is not met, and inventing a new one after seeing the
+outcome is precisely what this programme's own MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS = 0 forbids —
+in both directions. And the gap closes in minutes with archives that exist on the owner's machine.
+
+F-01 is therefore recorded as a MATERIAL defect and as a PRECONDITION ON ACTING on the
+eligibility, not on establishing it.
+
+
+=====================================================================
+5. WHAT SHOULD HAPPEN, IN ORDER
+=====================================================================
+
+Required before the authorised confirmation is executed:
+  1. (F-01) Re-measure at least three LAW_C_MCTT01 archives with a removal applied, in the
+     container, with the byte-identical frozen module, and diff field for field including
+     post_removal_intervals. Publish the tags, seeds and sha256 in a replacement
+     TLMR01_DEVICE_PATH_CROSSCHECK.json. If they agree, F-01 closes and nothing else changes.
+
+Required as corrections to the record (none is a scientific repair; none moves a threshold):
+  2. (F-03) Correct the C4 support claim: 281 of 311 strata, highest DIRECTLY_MEASURED n = 296.
+  3. (F-04) Correct 440/400 to 2,018/1,813 and label the medians as computed over a 20-per-world
+     truncation.
+  4. (F-05) Publish the IDENTITY_AMBIGUOUS counts (2,060 / 6 / 5 episodes; 3,152 / 8 / 47 steps)
+     as pre-registered, and state that none of the 22 integrated LAW_C worlds rests on one.
+  5. (F-20) Move the non-discrimination finding into TLMR01_FINAL_REPORT.md, worded as
+     occupancy-confounding, and state plainly that no no-removal control exists in this mission.
+  6. (F-02, F-06) Record which gates are tautological, so no successor inherits them as evidence.
+  7. (F-07) Record that the per-world reduction preceded the rebuilt raw commitment.
+  8. (F-08) Hash and commit tlmr01_device_measure.py; N_POST_C2_MODULES = 5.
+  9. (F-18) Record that BPRTC01 and MCTT01 source artefacts are absent from the container, that
+     only LAW_A is bit-verifiable here, and that tlmr01_laws/run/seeds no longer import.
+ 10. (F-09, F-11, F-13, F-14, F-15, F-16, F-17) Correct the wording as itemised.
+
+Worth adding because it is the mission's best unclaimed result:
+ 11. (F-21) State that s(n) = 0 above separation occupancy 4 at every law, on 15,243 LAW_C
+     episodes, extending PTOPD01's finding to a law 40x in kY.
+
+
+=====================================================================
+6. RECOMMENDED DISPOSITION
+=====================================================================
+
+TARGETED_LINEAGE_OBJECTS_MEASURED__ONE_DIRECTLY_MEASURED_LAW_CONFIRMATION_ELIGIBLE
+
+Reasoning. The five named objects are measured at the three laws and the occupancies stated. The
+primary estimand is delivered under both the implemented and the stricter frozen reading of its
+own criterion. LAW_C_MCTT01 satisfies E1 through E6 on arithmetic I reproduced to the last bit,
+and the frozen cascade selects it. No defect I found makes any published quantity wrong, and none
+meets the frozen trigger for technical invalidity, so TLMR01_TECHNICALLY_INVALID is not warranted.
+Neither of the two "paused" dispositions fits either: the measurement is not insufficient and has
+no named coverage gap — its coverage is the strongest part of it — and a law IS eligible under the
+rule as frozen, so refusing eligibility would mean me moving a threshold after seeing the outcome.
+
+That eligibility is established, not licensed. Two conditions attach, and I would put both in
+writing in the handoff: the confirmation must not be executed until F-01 is closed by a LAW_C
+re-measurement, and it must not be described anywhere without the occupancy-confounding caveat of
+F-20 carried in the report artefact itself rather than only in a commit message. A 22/22
+conversion at one law against 0/23 and 0/15 at two others, with no no-removal control anywhere in
+512 worlds, is a selection that the mission's own data tell you to hold loosely.agentId: ae2eba9d14b75dab4 (use SendMessage with to: 'ae2eba9d14b75dab4', summary: '<5-10 word recap>' to continue this agent)
+<usage>subagent_tokens: 305789
+tool_uses: 77
+duration_ms: 1657766</usage>

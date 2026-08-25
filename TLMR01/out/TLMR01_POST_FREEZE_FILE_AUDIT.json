@@ -35,9 +35,17 @@
    "sha256": "e1cb728cdc2dad5e990305ad1af3e2fd197c33eb5dfcd6f6e21235a885afb497",
    "ON_THE_RUN_IMPORT_PATH": false,
    "ON_THE_ANALYSIS_IMPORT_PATH": false
+  },
+  {
+   "file": "TLMR01/code/tlmr01_device_measure.py",
+   "class": "NONSCIENTIFIC_DRIVER",
+   "sha256": "ff283770d2a1f6a31e4420f9e790b96cb811bcc5da745df49529ccd69be86fb7",
+   "why": "iterates archives and calls the FROZEN tlmr01_offline.measure_world, serialising its return verbatim. It computes no scientific quantity. Committed here after the independent check found the audit had reasoned about a file it had not audited (F-08). Its declared path shim rewrites ANY /home/claude/edl/ prefix, not only the intended one; today the frozen module opens exactly one such path and every value taken from it is asserted.",
+   "ON_THE_RUN_IMPORT_PATH": false,
+   "ON_THE_ANALYSIS_IMPORT_PATH": false
   }
  ],
- "N_POST_C2_MODULES": 4,
+ "N_POST_C2_MODULES": 5,
  "EVERY_FROZEN_MODULE_IS_BYTE_UNCHANGED": true,
  "MODULES_THAT_DRIFTED": [],
  "EVERY_FROZEN_ARTEFACT_IS_BYTE_UNCHANGED": true,
@@ -62,5 +70,6 @@
  "CONCLUSION": "no post-C2 file influences any scientific quantity or the disposition. The frozen C2 analysis remains the sole source of scientific quantities and selection.",
  "C2_IS_NOT_AMENDED": true,
  "NOTHING_IS_BACKDATED_INTO_C1": true,
- "NO_SCIENTIFIC_REPAIR_WAS_MADE": true
+ "NO_SCIENTIFIC_REPAIR_WAS_MADE": true,
+ "CORRECTED_AFTER_THE_INDEPENDENT_CHECK": "F-08: tlmr01_device_measure.py was not committed and not hashed while the audit asserted a classification for it. It is committed and hashed now."
 }
