@@ -1,0 +1,180 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "MASTER FREEZE",
+ "GENERATED_UTC": "2026-08-25T22:30:05.022074+00:00",
+ "THIS_FREEZE_PRECEDES_EVERY_SCIENTIFIC_WORLD": true,
+ "TOKEN_REQUIRED_IN_THE_C2_COMMIT_MESSAGE": "OMLDCT02_C2_MASTER_FREEZE_COMMITTED",
+ "INVALID_PREDECESSOR": "OMLDCT01 \u2014 ONE-MATCHED-LOCKED-DAUGHTER-CONTROL-TEST-01",
+ "OMLDCT01_FINAL_DISPOSITION": "OMLDCT01_TECHNICALLY_INVALID",
+ "OMLDCT01_INVALID_CLOSURE_TIP": "d8b5007744ce14ea056d8cdab8e4fd520086ba53",
+ "SCIENTIFIC_PARENT": "LDFMA01 \u2014 LOCKED-DAUGHTER-FAILURE-MECHANISM-ARBITRATION-01",
+ "SCIENTIFIC_PARENT_TIP": "2101b301a2444a4a825a6cd338a8db7334c53c9f",
+ "PARENT_HANDOFF_SHA256": "e3ec4b929069a794b648feffc9b7b5d9315a7b96a74711fcd99746f931523029",
+ "SELECTED_LAW": "LAW_C_MCTT01",
+ "Y_LAW_BITS": {
+  "kY": "0x3f50763f01e8e5b2",
+  "muY": "0x3f484713dc1c8ab5",
+  "p_hop_Y": "0x3fba462ec93926a0"
+ },
+ "NEW_PARAMETER_POINTS": 0,
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "PRIMARY_ENDPOINT": "paired post-intervention duration of the same locked daughter identity",
+ "COPRIMARY_ENDPOINT": "paired post-intervention locked-daughter particle-step exposure",
+ "SIGN_CONVENTION": "SELECTIVE minus SHAM, on the paired log difference",
+ "PAIRED_TEST": "two-sided exact Wilcoxon signed-rank with Pratt ranking; the conditional sign-flip distribution is enumerated by dynamic programming. No normal approximation anywhere.",
+ "ALPHA": 0.05,
+ "PRIMARY_AND_COPRIMARY_COMBINATION": "AND_WITH_CONCORDANT_DIRECTION",
+ "ZERO_DIFFERENCE_TREATMENT": "PRATT_EXACT_SIGN_FLIP",
+ "MINIMUM_VALID_PAIR_COUNT": 41,
+ "SUPPORT_REQUIRES": [
+  "n_valid_pairs >= 41",
+  "p_duration < 0.05",
+  "p_exposure < 0.05",
+  "median_duration_difference != 0",
+  "median_exposure_difference != 0",
+  "both median effects have the same sign"
+ ],
+ "NULL_RESULT_INTERPRETATION": "INCONCLUSIVE__NO_CLAIM_OF_EQUIVALENCE__NO_CLAIM_OF_NO_EFFECT",
+ "NO_EQUIVALENCE_MARGIN_EXISTS": true,
+ "FORBIDDEN_WORDS_FOR_A_NON_POSITIVE_RESULT": [
+  "NO_EFFECT",
+  "EQUIVALENT",
+  "UNCHANGED"
+ ],
+ "TERMINAL_VOCABULARY": [
+  "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_SUPPORTED",
+  "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+  "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS",
+  "OMLDCT02_TECHNICALLY_INVALID"
+ ],
+ "NO_FIFTH_DISPOSITION": true,
+ "MATCHED_DESIGN": {
+  "unit": "the base block \u2014 one seed, one trigger, both arms",
+  "arms": [
+   "SELECTIVE_PARENT_REMOVAL",
+   "SHAM_NO_REMOVAL"
+  ],
+  "time_origin": "t_m, the frozen trigger step, identical in both arms by construction",
+  "procedure": [
+   "one common prefix to the frozen functional-maturity time t_m",
+   "lock the uniquely reconstructed daughter",
+   "record complete physical and RNG state",
+   "fork two bit-identical continuations"
+  ],
+  "the_originally_locked_daughter_is_followed": true,
+  "forbidden": [
+   "later daughter replacement",
+   "identity restart",
+   "later interval substitution",
+   "ambient-population identity substitution"
+  ],
+  "identity_terminates_at": [
+   "split",
+   "merge",
+   "tie or ambiguity",
+   "empty component",
+   "administrative horizon"
+  ],
+  "one_base_seed_contributes_at_most_one_valid_paired_observation": true
+ },
+ "ACCRUAL_RULE": "process the frozen base seeds in index order until 41 technically valid admissible pairs are retained, or the hard 512-arm-instance ceiling is exhausted. A base seed without an admissible trigger consumes its predeclared cost and is never selectively replaced. A technical retry uses the identical seed and arm. A scientific non-trigger consumes its seed.",
+ "TARGET_VALID_PAIRED_BLOCKS": 41,
+ "MAX_PRIMARY_ARM_INSTANCES": 512,
+ "ONE_ARM_INSTANCE": "one full-horizon world-equivalent of engine work, T = 11000 steps",
+ "PREFIX_TRUNCATION": "the common prefix runs only to the frozen LATEST_ALLOWED_TRIGGER = 6500, because a maturation candidate after that step fails the frozen deadline gate. This uses the frozen rule and changes no definition.",
+ "MAX_UNEXTERNALISED_ARM_INSTANCES": 16,
+ "MAX_TECHNICAL_RESERVES": 6,
+ "MAX_INTENTIONAL_COMMITS": 5,
+ "MAX_INDEPENDENT_CHECKERS": 1,
+ "REVIEW_CASCADE": "forbidden",
+ "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0,
+ "SECOND_CLEAN_RESTART": "forbidden",
+ "SEED_SET_HASH": "998f6fabaf166c029e0c9fadabc26bc83837e7c728ae83c8410c93d1afb3a019",
+ "N_BASE_SEEDS": 1024,
+ "N_RESERVE_SEEDS": 6,
+ "SEED_DERIVATION": "seed(role, index, nonce) = the first 4 bytes, big-endian, of sha256('<OMLDCT01 invalid-closure tip>|OMLDCT02|<law string>|<role>|<index>' and, only when a nonce is needed, '|<nonce>'), interpreted as an unsigned 32-bit integer. nonce starts at 0 and increments only when the candidate collides with an already-accepted OMLDCT02 seed or with the forbidden set. Every nonce actually used is recorded, so the whole list is recomputable from this file alone.",
+ "FORBIDDEN_SET_HASH": "c8829b25d28f933273528747dfdc125aa4f95335cb28cf6a115415fd6c265ee9",
+ "FORBIDDEN_SET_SIZE": 2554,
+ "SEED_DISJOINTNESS": {
+  "from_OMLDCT01_all_seeds": true,
+  "n_OMLDCT01_seeds_checked": 480,
+  "from_the_four_pre_C2_pilot_seeds": true,
+  "from_every_harvested_source": true,
+  "base_internally_distinct": true,
+  "reserve_internally_distinct": true,
+  "base_and_reserve_disjoint": true,
+  "ALL_PASS": true
+ },
+ "METHODS_HASH": "3955c99052c318a17e415a1aead3ac5096cd118634435840c6cf55d5b279ec6b",
+ "N_METHODS_FILES": 39,
+ "METHODS_CLOSURE_AGREEMENT": false,
+ "METHODS_CLOSURE_NOTE": "the UNION. A superset closure can only over-bind and can never leave an executing file unhashed. The disagreement is reported, not trimmed away.",
+ "SCIPY": {
+  "IS_SCIPY_IMPORTED_INTO_THE_PROCESS": true,
+  "BY_WHICH_FILE": "/FMRT01/code/fmrt01_endpoint.py, at module level: 'from scipy.stats import binom'",
+  "IMPORT_CHAIN": "omldct02_fork -> tlmr01_world -> fmrt01_endpoint -> scipy.stats",
+  "WHY_IT_IS_THERE": "the frozen engine tlmr01_world imports fmrt01_endpoint for state_of, local_x_masses and f5_ratio. None of those three uses scipy.",
+  "THE_ONLY_SCIPY_CALL_IN_THAT_FILE": "binom.ppf inside survivor_upper(), which is on no OMLDCT02 path and is never called by this mission.",
+  "DOES_ANY_OMLDCT02_ENDPOINT_GATE_OR_TEST_USE_SCIPY": false,
+  "THE_EXACT_TEST": "the conditional sign-flip distribution is enumerated by dynamic programming; omldct02_analysis imports fractions and numpy, and importing it alone does not pull scipy into the process.",
+  "A_CORRECTION": "OMLDCT01's methods closure recorded 'scipy: not imported anywhere'. That was false as stated \u2014 scipy has been in the process since the engine was written. Corrected here rather than repeated, and a runtime sentinel in the batch runner records whether binom.ppf is ever actually called."
+ },
+ "DESIGN_CONTENT_HASH": "792921935cbbf57f7b1ec0766c550cd4cba4f326852d396cb051633f22c8b53d",
+ "PRE_RUN_DISCLOSURES": {
+  "P_reaching_41_pairs": 0.9999,
+  "P_under_accrual": 9.999999999998899e-05,
+  "what_OMLDCT01_disclosed": {
+   "P_reaching_41_pairs": 0.5063,
+   "P_under_accrual": 0.4937
+  },
+  "the_finding": "OMLDCT01's disclosed 0.5063 is reproduced here at 474 seeds and is therefore correct \u2014 but it measures the wrong constraint. It is the probability of reaching 41 pairs before the SEED LIST runs out, not before the frozen 512-instance ceiling does. With the ceiling alone the probability is essentially 1 and the largest number of seeds any simulated campaign consumed was 789.",
+  "these_are_disclosures_not_gates": true
+ },
+ "PRE_RUN_E3_QUALIFICATION": "PASS",
+ "E3_QUALIFICATION_CONTENT_HASH": "737392bb7bf44f74afe2dfb3fc69e0e3176e2e57a84316b6ed0f33c1dbb76ca9",
+ "FIVE_LINE_DECISION_SELF_TEST": "PASS",
+ "PRE_C2_SCIENTIFIC_SCALE_GUARD": {
+  "module": "OMLDCT02/code/omldct02_guard.py",
+  "rule": "L > 5, or horizon >= NEED = 250, or a seed in this manifest, makes a construction scientific-scale and requires a committed C2",
+  "it_reads_git_not_the_working_tree": true,
+  "PRE_C2_SCIENTIFIC_SCALE_EXECUTIONS": 0
+ },
+ "CLAIM_CEILING": "a positive result establishes at most that, under one frozen law, selective removal of the parent changed both the post-removal identity duration and the particle-step exposure of the same locked daughter relative to a bit-identical sham, with concordant effect direction.",
+ "IT_DOES_NOT_ESTABLISH": [
+  "constituent turnover",
+  "minimal reproduction",
+  "strong self-reproduction",
+  "heredity",
+  "multigeneration",
+  "living status",
+  "architecture necessity"
+ ],
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+ "HASH_LABELS": {
+  "FREEZE_CONTENT_HASH": "canonical digest of the master freeze document with FREEZE_CONTENT_HASH and GENERATED_UTC removed. Answers: is the frozen CONTENT this content?",
+  "FREEZE_FILE_SHA256": "sha256 of the master freeze FILE's bytes on disk. Answers: is this FILE byte-identical? Stored OUTSIDE the freeze, in its sidecar and in the external manifest, because a file cannot contain its own file digest.",
+  "METHODS_HASH": "canonical digest of the ordered [path, sha256] list of every method file.",
+  "SEED_SET_HASH": "canonical digest of the ordered [role, index, seed] list of every seed."
+ },
+ "CANONICAL_RULES": {
+  "algorithm": "SHA-256, output as 64 lowercase hexadecimal characters",
+  "json_encoding": "json.dumps(obj, sort_keys=True, separators=(',', ':'), ensure_ascii=True)",
+  "sort_keys": "true \u2014 object keys are ordered by Unicode code point, so insertion order cannot change a digest",
+  "separators": "',' and ':' with NO surrounding space",
+  "whitespace_rule": "the encoded JSON contains no whitespace outside string literals",
+  "newline_rule": "NO trailing newline. The digest is taken over the encoded bytes exactly as produced by json.dumps, with nothing appended",
+  "text_encoding": "UTF-8. ensure_ascii=True means the encoded form is pure ASCII, so the UTF-8 step cannot introduce a platform difference",
+  "float_rule": "no float is ever hashed. Law parameters enter a digest by their IEEE-754 bit pattern as a lowercase 0x-prefixed hexadecimal string, never by their decimal repr, which is where two Python versions could disagree",
+  "path_ordering": "byte-lexicographic ordering of the UTF-8 encoding of the repository-relative POSIX path. Every path begins with '/' and uses '/' as separator on every platform",
+  "list_ordering": "lists are hashed in the order given and that order is stated by the caller. No digest depends on a set iteration order",
+  "excluded_self_referential_fields": "a document's own digest field is removed before the document is hashed, and so is GENERATED_UTC, so that regenerating an unchanged document reproduces its digest exactly"
+ },
+ "HASH_RECIPES_COMMITTED": true,
+ "WORLDS_RUN_AT_FREEZE_TIME": 0,
+ "FREEZE_CONTENT_HASH": "4a1a8817584039bc10e3b0965eb8700d534b8460cc46e8323f25631179742865"
+}

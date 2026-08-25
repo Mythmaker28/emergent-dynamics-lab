@@ -1,0 +1,9 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "master freeze file digest",
+ "WHY_A_SIDECAR": "a file cannot contain its own file digest. OMLDCT01 stored the file digest inside a record under the key FREEZE_HASH, which the master freeze used for a digest of its own content \u2014 one label over two quantities. The two are named separately here and kept apart.",
+ "FREEZE_FILE": "OMLDCT02_MASTER_FREEZE.json",
+ "FREEZE_FILE_SHA256": "b709e2adf80b31e373b9b6d123ca3e6b6c6b6ac2521c7b5609bb2022e7467f6c",
+ "FREEZE_CONTENT_HASH": "4a1a8817584039bc10e3b0965eb8700d534b8460cc46e8323f25631179742865",
+ "FREEZE_CONTENT_HASH_RULE": "H.content_digest: canonical digest of the document with its own digest fields and GENERATED_UTC removed"
+}

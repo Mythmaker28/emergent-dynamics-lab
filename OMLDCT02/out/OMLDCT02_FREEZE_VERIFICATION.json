@@ -1,0 +1,60 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "freeze verification",
+ "GENERATED_UTC": "2026-08-25T22:30:46.635707+00:00",
+ "VERIFIER": "OMLDCT02/code/omldct02_verify_freeze.py \u2014 committed",
+ "DIGEST_CHECKS": [
+  {
+   "label": "FREEZE_CONTENT_HASH",
+   "recorded": "4a1a8817584039bc10e3b0965eb8700d534b8460cc46e8323f25631179742865",
+   "recomputed": "4a1a8817584039bc10e3b0965eb8700d534b8460cc46e8323f25631179742865",
+   "REPRODUCIBLE": true,
+   "how": "H.content_digest over the freeze with its digest fields and GENERATED_UTC removed"
+  },
+  {
+   "label": "FREEZE_FILE_SHA256",
+   "recorded": "b709e2adf80b31e373b9b6d123ca3e6b6c6b6ac2521c7b5609bb2022e7467f6c",
+   "recomputed": "b709e2adf80b31e373b9b6d123ca3e6b6c6b6ac2521c7b5609bb2022e7467f6c",
+   "REPRODUCIBLE": true,
+   "how": "sha256 of the freeze file's bytes"
+  },
+  {
+   "label": "METHODS_HASH",
+   "recorded": "3955c99052c318a17e415a1aead3ac5096cd118634435840c6cf55d5b279ec6b",
+   "recomputed": "3955c99052c318a17e415a1aead3ac5096cd118634435840c6cf55d5b279ec6b",
+   "REPRODUCIBLE": true,
+   "how": "H.methods_hash over the recorded [path, sha256] list"
+  },
+  {
+   "label": "SEED_SET_HASH",
+   "recorded": "998f6fabaf166c029e0c9fadabc26bc83837e7c728ae83c8410c93d1afb3a019",
+   "recomputed": "998f6fabaf166c029e0c9fadabc26bc83837e7c728ae83c8410c93d1afb3a019",
+   "REPRODUCIBLE": true,
+   "how": "H.seed_set_hash over base then reserve in index order"
+  },
+  {
+   "label": "FORBIDDEN_SET_HASH",
+   "recorded": "c8829b25d28f933273528747dfdc125aa4f95335cb28cf6a115415fd6c265ee9",
+   "recomputed": "c8829b25d28f933273528747dfdc125aa4f95335cb28cf6a115415fd6c265ee9",
+   "REPRODUCIBLE": true,
+   "how": "H.canonical_digest over the ascending forbidden list"
+  }
+ ],
+ "CROSS_CHECKS": {
+  "freeze_quotes_the_seed_manifest_hash": true,
+  "freeze_quotes_the_methods_hash": true,
+  "freeze_quotes_the_forbidden_hash": true,
+  "sidecar_quotes_the_same_content_hash": true,
+  "n_base_matches": true,
+  "n_reserve_matches": true,
+  "n_methods_matches": true
+ },
+ "BOUND_METHOD_FILES_BYTE_IDENTICAL": true,
+ "DRIFTED": [],
+ "TERMINAL_VOCABULARY_EXACT": true,
+ "N_DIGESTS": 5,
+ "N_REPRODUCIBLE": 5,
+ "ALL_HASHES_RECALCULABLE_FROM_FRESH_CLONE": true,
+ "HASH_RECIPES_COMMITTED": true,
+ "FREEZE_VERIFICATION": "PASS"
+}
