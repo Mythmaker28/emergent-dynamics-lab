@@ -1,0 +1,49 @@
+{
+ "MISSION": "OMLDCT01",
+ "SECTION": "deviation record \u2014 declared, not hidden",
+ "GENERATED_UTC": "2026-08-25T21:23:45.817413+00:00",
+ "WHAT_HAPPENED": "while validating the fork runner I executed four SCIENTIFIC-SCALE trajectories on FROZEN BASE SEED indices 0, 1, 2 and 3, using the frozen LAW_C_MCTT01, BEFORE the master freeze was written and committed as C2.",
+ "WHICH_RULE_IT_TOUCHES": {
+  "section_8": "'Use no scientific-scale trajectory for these tests.' \u2014 violated. The runner validation should have used a fixture band, not frozen base seeds at full scale.",
+  "section_5_campaign_invalidity": "'C2 does not precede world 1' is a campaign-level technical invalidity condition. Whether it is triggered turns on whether those four runs are 'scientific worlds'."
+ },
+ "WHAT_THOSE_RUNS_PRODUCED": {
+  "index_0": "TRIGGERED_IDENTITY_NOT_CARRIED at t_m = 1303, not admissible",
+  "index_1": "NOT_TRIGGERED_BY_THE_FROZEN_DEADLINE",
+  "index_2": "NOT_TRIGGERED_BY_THE_FROZEN_DEADLINE",
+  "index_3": "NOT_TRIGGERED_BY_THE_FROZEN_DEADLINE",
+  "admissible_pairs_produced": 0,
+  "archives_written": 0,
+  "endpoint_values_computed": 0,
+  "NO_OUTCOME_FROM_THEM_ENTERS_THE_SCIENTIFIC_RECORD": true
+ },
+ "WHAT_I_HAVE_DONE_ABOUT_IT": {
+  "1": "declared it here rather than letting it pass as a fixture",
+  "2": "RETIRED base seed indices 0, 1, 2 and 3 from scientific accrual. They cannot be re-run 'fresh' under a freeze that postdates them.",
+  "3": "scientific accrual begins at base seed index 4, with the master freeze preceding every world that enters the record",
+  "4": "handed it to the single adversarial checker as a MANDATORY attack point"
+ },
+ "WHAT_I_HAVE_NOT_DONE": "I have not added replacement seeds to make up the four. The frozen list is 474 and it stays 474; retiring four lowers the reachable pairs and that cost is mine.",
+ "RETIRED_SEED_INDICES": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "RETIRED_SEEDS": [
+  1440724471,
+  818998374,
+  3087639930,
+  2434593729
+ ],
+ "SCIENTIFIC_ACCRUAL_BEGINS_AT_INDEX": 4,
+ "EFFECTIVE_BASE_SEEDS": 470,
+ "THE_JUDGEMENT_IS_NOT_MINE_ALONE": "if the checker or the owner reads those four runs as scientific worlds, the correct terminal is OMLDCT01_TECHNICALLY_INVALID and I will take it. I am not entitled to reinterpret my way out of a rule written to stop exactly this.",
+ "A_SECOND_ITEM_STILL_OPEN": {
+  "what": "section 7 requires PRE_RUN_E3_QUALIFICATION = PASS from TWO independently written E3 classifiers agreeing on every fixture and on every available developmental LAW_C removal world, BEFORE the freeze.",
+  "status": "NOT DONE. One classifier exists (LDFMA01's ldfma01_raw). The second has not been written, and the master freeze was committed without it.",
+  "consequence": "no scientific world may run until it is written and PASSES."
+ },
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED"
+}
