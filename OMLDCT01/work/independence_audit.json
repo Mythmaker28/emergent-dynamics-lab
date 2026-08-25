@@ -1,0 +1,40 @@
+{
+ "file": "OMLDCT01/code/omldct01_e3_b.py",
+ "imports": [
+  "__future__",
+  "json",
+  "math",
+  "numpy",
+  "os"
+ ],
+ "SCAN_METHOD": "tokenized: comments and string literals removed before the search",
+ "CORRECTION": "the first version of this audit scanned raw file text and reported ldfma01, c_cid and k_id as present, because the module docstring names them in order to promise it does not use them. Same false-positive class as the earlier bare-substring 'ties' matching inside 'identities'. Corrected here, not relaxed, and both scans are reported.",
+ "BANNED_TOKEN_IN_EXECUTABLE_CODE": {
+  "ldfma01": false,
+  "fimrcc01": false,
+  "omldct01_analysis": false,
+  "omldct01_fork": false,
+  "omldct01_bind": false,
+  "ldf3_out": false,
+  "c_cid": false,
+  "k_id": false,
+  "post_removal_identity_lifetime": false,
+  "daughter_particle_steps": false
+ },
+ "BANNED_TOKEN_ANYWHERE_INCLUDING_PROSE": {
+  "ldfma01": true,
+  "fimrcc01": false,
+  "omldct01_analysis": false,
+  "omldct01_fork": false,
+  "omldct01_bind": false,
+  "ldf3_out": false,
+  "c_cid": true,
+  "k_id": true,
+  "post_removal_identity_lifetime": false,
+  "daughter_particle_steps": false
+ },
+ "IMPORTS_NO_SIBLING_CLASSIFIER": true,
+ "READS_NO_IDENTITY_COLUMN": true,
+ "READS_NO_CLASSIFIER_A_OUTPUT": true,
+ "INDEPENDENCE_PASS": true
+}

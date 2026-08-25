@@ -1,0 +1,684 @@
+{
+ "MISSION": "OMLDCT01",
+ "SECTION": "7 \u2014 PRE_RUN_E3_QUALIFICATION, fixture layer",
+ "GENERATED_UTC": "2026-08-25T21:34:50.607207+00:00",
+ "CLASSIFIER_A": "LDFMA01/code/ldfma01_raw.py \u2014 frozen, written before OMLDCT01 existed",
+ "CLASSIFIER_B": "OMLDCT01/code/omldct01_e3_b.py \u2014 written for this qualification",
+ "FIXTURES": [
+  {
+   "layer": "components",
+   "case": "empty",
+   "expected_by_hand": [],
+   "A": [],
+   "B": [],
+   "A_matches_hand": true,
+   "B_matches_hand": true,
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "no cells at all"
+  },
+  {
+   "layer": "components",
+   "case": "single",
+   "expected_by_hand": [
+    [
+     0
+    ]
+   ],
+   "A": [
+    [
+     0
+    ]
+   ],
+   "B": [
+    [
+     0
+    ]
+   ],
+   "A_matches_hand": true,
+   "B_matches_hand": true,
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "one cell is one component"
+  },
+  {
+   "layer": "components",
+   "case": "boundary_exactly_CORE_R",
+   "expected_by_hand": [
+    [
+     0,
+     1
+    ]
+   ],
+   "A": [
+    [
+     0,
+     1
+    ]
+   ],
+   "B": [
+    [
+     0,
+     1
+    ]
+   ],
+   "A_matches_hand": true,
+   "B_matches_hand": true,
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "3-4-5 triangle: squared distance is exactly 25 = CORE_R^2, and the frozen test is <=, so they join"
+  },
+  {
+   "layer": "components",
+   "case": "just_outside",
+   "expected_by_hand": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "A": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "B": [
+    [
+     0
+    ],
+    [
+     1
+    ]
+   ],
+   "A_matches_hand": true,
+   "B_matches_hand": true,
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "squared distance 36 > 25"
+  },
+  {
+   "layer": "components",
+   "case": "wrap_y",
+   "expected_by_hand": [
+    [
+     0,
+     1
+    ]
+   ],
+   "A": [
+    [
+     0,
+     1
+    ]
+   ],
+   "B": [
+    [
+     0,
+     1
+    ]
+   ],
+   "A_matches_hand": true,
+   "B_matches_hand": true,
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "toroidal dy = min(34, 2) = 2"
+  },
+  {
+   "layer": "components",
+   "case": "wrap_x",
+   "expected_by_hand": [
+    [
+     0,
+     1
+    ]
+   ],
+   "A": [
+    [
+     0,
+     1
+    ]
+   ],
+   "B": [
+    [
+     0,
+     1
+    ]
+   ],
+   "A_matches_hand": true,
+   "B_matches_hand": true,
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "toroidal dx = min(33, 3) = 3"
+  },
+  {
+   "layer": "components",
+   "case": "wrap_both",
+   "expected_by_hand": [
+    [
+     0,
+     1
+    ]
+   ],
+   "A": [
+    [
+     0,
+     1
+    ]
+   ],
+   "B": [
+    [
+     0,
+     1
+    ]
+   ],
+   "A_matches_hand": true,
+   "B_matches_hand": true,
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "dy = 3, dx = 3, squared 18 <= 25"
+  },
+  {
+   "layer": "components",
+   "case": "wrap_boundary",
+   "expected_by_hand": [
+    [
+     0,
+     1
+    ]
+   ],
+   "A": [
+    [
+     0,
+     1
+    ]
+   ],
+   "B": [
+    [
+     0,
+     1
+    ]
+   ],
+   "A_matches_hand": true,
+   "B_matches_hand": true,
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "dy = 3, dx = 4, squared exactly 25"
+  },
+  {
+   "layer": "components",
+   "case": "chain_transitive",
+   "expected_by_hand": [
+    [
+     0,
+     1,
+     2
+    ]
+   ],
+   "A": [
+    [
+     0,
+     1,
+     2
+    ]
+   ],
+   "B": [
+    [
+     0,
+     1,
+     2
+    ]
+   ],
+   "A_matches_hand": true,
+   "B_matches_hand": true,
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "single linkage: 0-1 and 1-2 are within range, 0-2 is not, and the component is still one"
+  },
+  {
+   "layer": "components",
+   "case": "two_groups",
+   "expected_by_hand": [
+    [
+     0,
+     1
+    ],
+    [
+     2,
+     3
+    ]
+   ],
+   "A": [
+    [
+     0,
+     1
+    ],
+    [
+     2,
+     3
+    ]
+   ],
+   "B": [
+    [
+     0,
+     1
+    ],
+    [
+     2,
+     3
+    ]
+   ],
+   "A_matches_hand": true,
+   "B_matches_hand": true,
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "two separated pairs"
+  },
+  {
+   "layer": "components",
+   "case": "ordering",
+   "expected_by_hand": [
+    [
+     0,
+     2
+    ],
+    [
+     1,
+     3
+    ]
+   ],
+   "A": [
+    [
+     0,
+     2
+    ],
+    [
+     1,
+     3
+    ]
+   ],
+   "B": [
+    [
+     0,
+     2
+    ],
+    [
+     1,
+     3
+    ]
+   ],
+   "A_matches_hand": true,
+   "B_matches_hand": true,
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "groups are ordered by smallest member, not by position"
+  },
+  {
+   "layer": "centroid",
+   "case": "single:[0]",
+   "A": [
+    5.0,
+    5.0
+   ],
+   "B": [
+    5.0,
+    5.0
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "centroid",
+   "case": "boundary_exactly_CORE_R:[0, 1]",
+   "A": [
+    1.5,
+    2.0
+   ],
+   "B": [
+    1.5,
+    2.0
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "centroid",
+   "case": "just_outside:[0]",
+   "A": [
+    0.0,
+    0.0
+   ],
+   "B": [
+    0.0,
+    0.0
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "centroid",
+   "case": "just_outside:[1]",
+   "A": [
+    0.0,
+    6.0
+   ],
+   "B": [
+    0.0,
+    6.0
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "centroid",
+   "case": "wrap_y:[0, 1]",
+   "A": [
+    35.0,
+    0.0
+   ],
+   "B": [
+    35.0,
+    0.0
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "centroid",
+   "case": "wrap_x:[0, 1]",
+   "A": [
+    0.0,
+    34.5
+   ],
+   "B": [
+    0.0,
+    34.5
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "centroid",
+   "case": "wrap_both:[0, 1]",
+   "A": [
+    35.5,
+    35.5
+   ],
+   "B": [
+    35.5,
+    35.5
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "centroid",
+   "case": "wrap_boundary:[0, 1]",
+   "A": [
+    34.5,
+    34.0
+   ],
+   "B": [
+    34.5,
+    34.0
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "centroid",
+   "case": "chain_transitive:[0, 1, 2]",
+   "A": [
+    0.0,
+    5.0
+   ],
+   "B": [
+    0.0,
+    5.0
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "centroid",
+   "case": "two_groups:[0, 1]",
+   "A": [
+    0.5,
+    0.5
+   ],
+   "B": [
+    0.5,
+    0.5
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "centroid",
+   "case": "two_groups:[2, 3]",
+   "A": [
+    20.5,
+    20.5
+   ],
+   "B": [
+    20.5,
+    20.5
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "centroid",
+   "case": "ordering:[0, 2]",
+   "A": [
+    20.5,
+    20.5
+   ],
+   "B": [
+    20.5,
+    20.5
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "centroid",
+   "case": "ordering:[1, 3]",
+   "A": [
+    0.5,
+    0.5
+   ],
+   "B": [
+    0.5,
+    0.5
+   ],
+   "A_equals_B_bitwise": true,
+   "PASS": true
+  },
+  {
+   "layer": "link",
+   "case": "continued",
+   "expected_map_by_hand": {
+    "0": 0
+   },
+   "A_map": {
+    "0": 0
+   },
+   "B_map": {
+    "0": 0
+   },
+   "A_reasons": {
+    "0": "CONTINUED"
+   },
+   "expected_reasons_by_hand": {
+    "0": "CONTINUED"
+   },
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "unique both ways",
+   "near_boundary": []
+  },
+  {
+   "layer": "link",
+   "case": "out_of_range",
+   "expected_map_by_hand": {},
+   "A_map": {},
+   "B_map": {},
+   "A_reasons": {
+    "0": "OUT_OF_RANGE"
+   },
+   "expected_reasons_by_hand": {
+    "0": "OUT_OF_RANGE"
+   },
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "no candidate",
+   "near_boundary": []
+  },
+  {
+   "layer": "link",
+   "case": "split",
+   "expected_map_by_hand": {},
+   "A_map": {},
+   "B_map": {},
+   "A_reasons": {
+    "0": "SPLIT_OR_TIE"
+   },
+   "expected_reasons_by_hand": {
+    "0": "SPLIT_OR_TIE"
+   },
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "two candidates forward, terminates without preference",
+   "near_boundary": []
+  },
+  {
+   "layer": "link",
+   "case": "exact_tie",
+   "expected_map_by_hand": {},
+   "A_map": {},
+   "B_map": {},
+   "A_reasons": {
+    "0": "SPLIT_OR_TIE"
+   },
+   "expected_reasons_by_hand": {
+    "0": "SPLIT_OR_TIE"
+   },
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "equidistant candidates: a tie terminates, it is never resolved",
+   "near_boundary": []
+  },
+  {
+   "layer": "link",
+   "case": "merge",
+   "expected_map_by_hand": {},
+   "A_map": {},
+   "B_map": {},
+   "A_reasons": {
+    "0": "MERGE",
+    "1": "MERGE"
+   },
+   "expected_reasons_by_hand": {
+    "0": "MERGE",
+    "1": "MERGE"
+   },
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "one candidate forward each, but two back",
+   "near_boundary": []
+  },
+  {
+   "layer": "link",
+   "case": "clean_pair_and_ambiguity",
+   "expected_map_by_hand": {
+    "0": 0
+   },
+   "A_map": {
+    "0": 0
+   },
+   "B_map": {
+    "0": 0
+   },
+   "A_reasons": {
+    "0": "CONTINUED",
+    "1": "SPLIT_OR_TIE"
+   },
+   "expected_reasons_by_hand": {
+    "0": "CONTINUED",
+    "1": "SPLIT_OR_TIE"
+   },
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "one identity survives while another in the same step does not",
+   "near_boundary": []
+  },
+  {
+   "layer": "link",
+   "case": "empty_cur",
+   "expected_map_by_hand": {},
+   "A_map": {},
+   "B_map": {},
+   "A_reasons": {
+    "0": "NO_PARTNER"
+   },
+   "expected_reasons_by_hand": {
+    "0": "NO_PARTNER"
+   },
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "nothing to link to",
+   "near_boundary": []
+  },
+  {
+   "layer": "link",
+   "case": "boundary_link",
+   "expected_map_by_hand": {
+    "0": 0
+   },
+   "A_map": {
+    "0": 0
+   },
+   "B_map": {
+    "0": 0
+   },
+   "A_reasons": {
+    "0": "CONTINUED"
+   },
+   "expected_reasons_by_hand": {
+    "0": "CONTINUED"
+   },
+   "A_equals_B": true,
+   "PASS": true,
+   "why": "centroid distance exactly CORE_R links, because the frozen test is <=",
+   "near_boundary": [
+    {
+     "i": 0,
+     "j": 0,
+     "d2": 25.0,
+     "R2": 25.0
+    }
+   ]
+  }
+ ],
+ "FIXTURE_LAYER_PASS": true,
+ "RANDOM_STRESS": {
+  "n_component_configurations": 3000,
+  "n_link_configurations": 1500,
+  "seed": 20260825,
+  "component_disagreements": [],
+  "n_component_disagreements": 0,
+  "centroid_disagreements": [],
+  "n_centroid_disagreements": 0,
+  "link_disagreements": [],
+  "n_link_disagreements": 0,
+  "n_near_boundary_link_comparisons": 14,
+  "PASS": true
+ },
+ "STRESS_LAYER_PASS": true,
+ "DECLARED_WINDOW_ASYMMETRY": "duration counts rows t_m+1..end; exposure sums rows t_m..end.  This is not an off-by-one: the archive writes a cell row AFTER the step, so the occupancy on row t is the population that a decay at step t+1 acts on.  An exposure window that starts at row t_m is therefore the correct driver for events at steps t_m+1..end+1, and it is the convention under which LDFMA01's Poisson map read 5.809 predicted against 5 observed.  The duration counts post-intervention steps and starts one row later.  Both quantities are reported; the symmetric variant is reported beside the frozen one so the difference is measured, not assumed away."
+}

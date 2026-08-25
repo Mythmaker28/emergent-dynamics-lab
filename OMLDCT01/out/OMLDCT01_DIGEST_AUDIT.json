@@ -1,0 +1,70 @@
+{
+ "MISSION": "OMLDCT01",
+ "SECTION": "digest audit \u2014 every digest this mission records",
+ "GENERATED_UTC": "2026-08-25T21:45:48.760513+00:00",
+ "WHY_THIS_EXISTS": "METHODS_HASH turned out not to be recomputable from the committed record. One such finding is a slip; the same question had to be asked of every digest before any of them is relied on.",
+ "ROOT_CAUSE": "digests produced by inline heredoc scripts that were never committed. The value survives in the artefact; the formula does not.",
+ "DIGESTS": [
+  {
+   "digest": "FREEZE_HASH",
+   "artefact": "OMLDCT01_MASTER_FREEZE.json",
+   "value": "2ade99caee97678d377e573ffaf156e74285a152ca50aaa7e6cf11ed20782bb7",
+   "REPRODUCIBLE": true,
+   "FORMULA_RECOVERED": "json.dumps(doc_without_FREEZE_HASH, indent=1)",
+   "n_formulas_tried": 6,
+   "file_sha256": "5a8b52ddde2115324870fa28d69297e38a7c57add356c9aaf32ec65637836671",
+   "NOTE": "reproduces cleanly. Nothing to amend."
+  },
+  {
+   "digest": "FREEZE_HASH, as recorded in the durability record",
+   "artefact": "OMLDCT01_PRE_RUN_DURABILITY.json",
+   "value": "5a8b52ddde2115324870fa28d69297e38a7c57add356c9aaf32ec65637836671",
+   "MASTER_FREEZE_INTERNAL_FREEZE_HASH": "2ade99caee97678d377e573ffaf156e74285a152ca50aaa7e6cf11ed20782bb7",
+   "MASTER_FREEZE_FILE_SHA256": "5a8b52ddde2115324870fa28d69297e38a7c57add356c9aaf32ec65637836671",
+   "IT_IS_THE_FILE_DIGEST_NOT_THE_INTERNAL_ONE": true,
+   "DEFECT": "MISLABELLED, NOT WRONG. The durability record stores the master freeze FILE's sha256 under the key FREEZE_HASH, while the master freeze itself uses that key for a digest of its own content. Two different and individually correct quantities carry one label, and a reader comparing them sees a contradiction where there is none.",
+   "MASTER_FREEZE_BLOB_UNCHANGED_SINCE_C2": true,
+   "REPRODUCIBLE": true,
+   "WHAT_IS_NOT_DONE": "the durability record is not rewritten. The collision is named here."
+  },
+  {
+   "digest": "METHODS_HASH",
+   "artefact": "OMLDCT01_METHODS_CLOSURE.json",
+   "value": "2e8bc65914e93d923d148297b14a9281fc5d5a1c9e6a1274bfd58d71166b4402",
+   "REPRODUCIBLE": false,
+   "FORMULA_RECOVERED": null,
+   "n_formulas_tried": 21,
+   "WHAT_SURVIVES": "the 24 (path, sha256) pairs are committed and every one of the 24 files is still byte-identical, so which files are bound and to which bytes is fully determined.",
+   "ALL_24_FILES_STILL_BYTE_IDENTICAL": true,
+   "DRIFTED": [],
+   "V2": "METHODS_HASH_V2 in OMLDCT01_METHODS_CLOSURE_AMENDMENT_1.json, formula in omldct01_methods_amend.py"
+  },
+  {
+   "digest": "SEED_SET_HASH",
+   "artefact": "OMLDCT01_SEED_MANIFEST.json",
+   "value": "7a568a3e978b6c61d734ad24b8a41eb02110098ee519c203887f12390de82cae",
+   "REPRODUCIBLE": false,
+   "FORMULA_RECOVERED": null,
+   "n_formulas_tried": 72,
+   "WHAT_SURVIVES": "the 474 base seeds and 6 reserves are committed with their indices and roles, so which seed carries which index is fully determined. The accrual order is defined by index, not by the digest.",
+   "N_BASE": 474,
+   "N_RESERVE": 6,
+   "ALL_BASE_DISTINCT": true,
+   "BASE_AND_RESERVE_DISJOINT": true,
+   "SEED_SET_HASH_V2": "8f066d9d77ea4b778ba3321655e1f0a66f2fa24853a99310877c99245db2fabc",
+   "SEED_SET_HASH_V2_FORMULA": "canonical() over [[role, index, seed], ...] for base then reserve in index order \u2014 formula in this file"
+  }
+ ],
+ "N_DIGESTS": 4,
+ "N_UNREPRODUCIBLE": 2,
+ "UNREPRODUCIBLE": [
+  "METHODS_HASH",
+  "SEED_SET_HASH"
+ ],
+ "WHAT_IS_ACTUALLY_LOST": "the ability of a third party to verify these three digests. Nothing about which seeds, which files or which decisions are bound is lost \u2014 that content is committed and was re-verified here.",
+ "WHAT_IS_NOT_DONE": "no frozen artefact is rewritten, and no formula was reverse-fitted to a digest and then declared original. A digest fitted to its own value proves nothing.",
+ "GOING_FORWARD": "every digest this mission emits from here carries its formula in committed code.",
+ "WORLDS_RUN": 0,
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED"
+}

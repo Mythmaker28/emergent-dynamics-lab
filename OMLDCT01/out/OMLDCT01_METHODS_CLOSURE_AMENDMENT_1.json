@@ -1,0 +1,75 @@
+{
+ "MISSION": "OMLDCT01",
+ "SECTION": "8 \u2014 methods closure, AMENDMENT 1 (additive)",
+ "GENERATED_UTC": "2026-08-25T21:45:56.547760+00:00",
+ "ITEM_1_WHY_AN_AMENDMENT_EXISTS": "section 7 requires a second, independently written E3 classifier before world 1. I committed the C2 methods closure and master freeze BEFORE writing it, so the frozen closure could not have covered it. The freeze was premature relative to section 7 \u2014 the same root cause as the sequencing deviation already declared. Recorded the same way: additively, without touching the frozen record.",
+ "WHY_CLASSIFIER_B_IS_METHOD_CODE_AND_NOT_ONLY_AN_INSTRUMENT": "classifier A is built around the removal ledger and cannot process a SHAM arm, which by construction has no removal. B is therefore the classifier that measures both arms in the campaign, and it belongs in the closure that binds the campaign.",
+ "ITEM_2_METHODS_HASH_V1_IS_NOT_REPRODUCIBLE": {
+  "what": "the digest recorded at C2 cannot be recomputed from the committed artefact.",
+  "why": "the script that produced it was an inline heredoc and was never committed.",
+  "serialisations_tried": {
+   "as_listed:json_pairs": false,
+   "as_listed:json_dicts": false,
+   "as_listed:json_indent1": false,
+   "as_listed:json_plain": false,
+   "as_listed:sha_two_space_path_lines": false,
+   "as_listed:sha_two_space_path_lines_trailing_nl": false,
+   "as_listed:path_space_sha_lines": false,
+   "as_listed:concat_sha": false,
+   "as_listed:concat_path_sha": false,
+   "as_listed:concat_sha_path": false,
+   "sorted_by_path:json_pairs": false,
+   "sorted_by_path:json_dicts": false,
+   "sorted_by_path:json_indent1": false,
+   "sorted_by_path:json_plain": false,
+   "sorted_by_path:sha_two_space_path_lines": false,
+   "sorted_by_path:sha_two_space_path_lines_trailing_nl": false,
+   "sorted_by_path:path_space_sha_lines": false,
+   "sorted_by_path:concat_sha": false,
+   "sorted_by_path:concat_path_sha": false,
+   "sorted_by_path:concat_sha_path": false,
+   "sorted_by_path:concatenated_file_contents": false
+  },
+  "n_tried": 21,
+  "n_matched": 0,
+  "WHAT_SURVIVES": "the closure's content. The 24 (path, sha256) pairs are in the committed artefact and every one of the 24 files is still byte-identical, so which files are bound and to which bytes is fully determined. Only the summary digest is unrecoverable.",
+  "WHAT_I_DID_NOT_DO": "I did not search for a formula that happens to reproduce the digest and then declare it the original. A digest reverse-fitted to its own value proves nothing.",
+  "REMEDY": "v2 has its formula written out in this committed file."
+ },
+ "METHODS_HASH_V1_AS_FROZEN": "2e8bc65914e93d923d148297b14a9281fc5d5a1c9e6a1274bfd58d71166b4402",
+ "METHODS_HASH_V1_REPRODUCIBLE": false,
+ "V1_ARTEFACT_UNCHANGED": true,
+ "FROZEN_MODULES_STILL_BYTE_IDENTICAL": true,
+ "DRIFTED": [],
+ "N_FILES_V1": 24,
+ "N_FILES_ADDED": 5,
+ "N_FILES_V2": 29,
+ "ADDED_MODULES": [
+  {
+   "path": "/OMLDCT01/code/omldct01_e3_b.py",
+   "sha256": "3dbbd6529c9cc0a8349147d392c237f1e0e79fb0e74148ce6c7575ee15f57a26"
+  },
+  {
+   "path": "/OMLDCT01/code/omldct01_e3_qualify.py",
+   "sha256": "93d1fa6d14a9c25fdea53d900f0a99312ab1f273490b10423edf95c66c65e547"
+  },
+  {
+   "path": "/OMLDCT01/code/omldct01_e3_device.py",
+   "sha256": "367183f6b933815b8e14076c282b5d784c97a586a91be110b10a255bd1ed3f50"
+  },
+  {
+   "path": "/OMLDCT01/code/omldct01_methods_amend.py",
+   "sha256": "9e793585757f2fd4387662c055c22cbdf4b9cd550b263aebb0e9856c0c4fed6f"
+  },
+  {
+   "path": "/OMLDCT01/code/omldct01_digest_audit.py",
+   "sha256": "a1034197b3433f3568c5c5c5a463729247d5d1825102122203b125a0b4e1b0c8"
+  }
+ ],
+ "METHODS_HASH_V2_FORMULA": "sha256 of '\\n'.join(f'{path} {sha256}') over the union sorted by path, no trailing newline, UTF-8. Implemented in methods_hash_v2().",
+ "METHODS_HASH_V2": "9c31d0644e0d39fd621ce384813107754a61766a7804e438b41d731bf327e75d",
+ "SCOPE_OF_V2": "binds the campaign. A pair measured under code outside V2 is a technical failure.",
+ "WORLDS_RUN": 0,
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED"
+}

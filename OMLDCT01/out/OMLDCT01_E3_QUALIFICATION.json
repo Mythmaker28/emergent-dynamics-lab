@@ -1,0 +1,455 @@
+{
+ "MISSION": "OMLDCT01",
+ "SECTION": "7 \u2014 PRE_RUN_E3_QUALIFICATION",
+ "GENERATED_UTC": "2026-08-25T21:39:21.849597+00:00",
+ "WHAT_SECTION_7_REQUIRES": "a second, independently written E3 classifier, agreeing with the first on every fixture and on every available developmental LAW_C removal world, before any scientific world runs.",
+ "THIS_CLOSES_THE_ITEM_LEFT_OPEN_IN": "OMLDCT01_DEVIATION_RECORD.json / A_SECOND_ITEM_STILL_OPEN",
+ "CLASSIFIER_A": {
+  "file": "LDFMA01/code/ldfma01_raw.py",
+  "status": "frozen and committed before OMLDCT01 existed",
+  "sha256": "baef98c61ce87a6085d7bd8581f97adb4150c8707c1cb242bc6e593d09d199c8",
+  "why_it_cannot_be_tuned": "its per-world outputs were computed during LDFMA01 and are already in the repository at LDFMA01/work/ldf3_out/. Nothing in this qualification recomputed them."
+ },
+ "CLASSIFIER_B": {
+  "file": "OMLDCT01/code/omldct01_e3_b.py",
+  "status": "written for this qualification",
+  "sha256": "3dbbd6529c9cc0a8349147d392c237f1e0e79fb0e74148ce6c7575ee15f57a26",
+  "device_copy_sha256": "3dbbd6529c9cc0a8349147d392c237f1e0e79fb0e74148ce6c7575ee15f57a26",
+  "device_copy_is_byte_identical": true
+ },
+ "WHERE_THEY_DIFFER_BY_CONSTRUCTION": [
+  {
+   "stage": "cell rows to steps",
+   "A": "argsort over all T then searchsorted",
+   "B": "verify the archive is already ordered, then a single difference scan; stable-sort fallback recorded in a flag"
+  },
+  {
+   "stage": "components",
+   "A": "BFS flood-fill on a dense boolean adjacency matrix",
+   "B": "union-find with path compression over an enumerated edge list"
+  },
+  {
+   "stage": "centroid",
+   "A": "Python accumulation loop, anchor idx[0]",
+   "B": "numpy exact-integer offsets, anchor min index"
+  },
+  {
+   "stage": "link rule",
+   "A": "forward and backward dicts of candidate lists",
+   "B": "boolean matrix reduced by row and column counts"
+  },
+  {
+   "stage": "range test",
+   "A": "math.hypot compared to CORE_R",
+   "B": "squared distance compared to CORE_R squared, with every near-boundary comparison logged"
+  },
+  {
+   "stage": "identity",
+   "A": "running ids assigned to every component at every step",
+   "B": "one identity chased forward from t_m"
+  },
+  {
+   "stage": "exposure",
+   "A": "re-scan of membership after the trace",
+   "B": "accumulated during the chase"
+  }
+ ],
+ "WHAT_IS_SHARED_ON_PURPOSE": "the endpoint definition and the trigger step and locked-daughter cell set at t_m. Two implementations of one definition is the point; in the campaign t_m and the daughter cells come from the fork runner and are identical in both arms by construction.",
+ "INDEPENDENCE_AUDIT": {
+  "file": "OMLDCT01/code/omldct01_e3_b.py",
+  "imports": [
+   "__future__",
+   "json",
+   "math",
+   "numpy",
+   "os"
+  ],
+  "SCAN_METHOD": "tokenized: comments and string literals removed before the search",
+  "CORRECTION": "the first version of this audit scanned raw file text and reported ldfma01, c_cid and k_id as present, because the module docstring names them in order to promise it does not use them. Same false-positive class as the earlier bare-substring 'ties' matching inside 'identities'. Corrected here, not relaxed, and both scans are reported.",
+  "BANNED_TOKEN_IN_EXECUTABLE_CODE": {
+   "ldfma01": false,
+   "fimrcc01": false,
+   "omldct01_analysis": false,
+   "omldct01_fork": false,
+   "omldct01_bind": false,
+   "ldf3_out": false,
+   "c_cid": false,
+   "k_id": false,
+   "post_removal_identity_lifetime": false,
+   "daughter_particle_steps": false
+  },
+  "BANNED_TOKEN_ANYWHERE_INCLUDING_PROSE": {
+   "ldfma01": true,
+   "fimrcc01": false,
+   "omldct01_analysis": false,
+   "omldct01_fork": false,
+   "omldct01_bind": false,
+   "ldf3_out": false,
+   "c_cid": true,
+   "k_id": true,
+   "post_removal_identity_lifetime": false,
+   "daughter_particle_steps": false
+  },
+  "IMPORTS_NO_SIBLING_CLASSIFIER": true,
+  "READS_NO_IDENTITY_COLUMN": true,
+  "READS_NO_CLASSIFIER_A_OUTPUT": true,
+  "INDEPENDENCE_PASS": true
+ },
+ "LAYER_1_FIXTURES": {
+  "hand_built_component_cases": 11,
+  "hand_built_centroid_cases": 13,
+  "hand_built_link_cases": 8,
+  "every_hand_case_carries_the_answer_written_out_by_hand": true,
+  "why_that_matters": "a case where BOTH implementations are wrong in the same way is still caught, which a bare A-versus-B comparison would miss.",
+  "adversarial_cases_included": [
+   "squared distance exactly equal to CORE_R squared",
+   "toroidal wrap in y, in x, and in both",
+   "single-linkage transitivity across a chain",
+   "an exact tie, which must terminate and must never be resolved by preference",
+   "a merge",
+   "a step where one identity survives and another does not"
+  ],
+  "random_stress": {
+   "n_component_configurations": 3000,
+   "n_link_configurations": 1500,
+   "seed": 20260825,
+   "n_component_disagreements": 0,
+   "n_centroid_disagreements": 0,
+   "n_link_disagreements": 0,
+   "n_near_boundary_link_comparisons": 14
+  },
+  "PASS": true
+ },
+ "LAYER_2_DEVELOPMENTAL_WORLDS": {
+  "the_available_set": "the 22 developmental LAW_C_MCTT01 worlds that triggered, carried the identity to maturation and had the selective removal applied \u2014 TLMR01/work/raw22 on the device.",
+  "n_worlds": 22,
+  "fields_compared_per_world": [
+   "t_m",
+   "interval_end",
+   "duration",
+   "exposure",
+   "termination type",
+   "maximum nY",
+   "the full nY histogram"
+  ],
+  "n_worlds_with_any_disagreement": 0,
+  "EXACT_AGREEMENT_ON_EVERY_FIELD": true,
+  "per_world": [
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i001_s1474284807",
+    "t_m": 942,
+    "duration": 309,
+    "exposure": 514,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i002_s2168595504",
+    "t_m": 697,
+    "duration": 161,
+    "exposure": 216,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i005_s203158793",
+    "t_m": 580,
+    "duration": 244,
+    "exposure": 584,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i009_s2255663407",
+    "t_m": 1334,
+    "duration": 88,
+    "exposure": 155,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i015_s1512492624",
+    "t_m": 903,
+    "duration": 276,
+    "exposure": 337,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i020_s1557150137",
+    "t_m": 658,
+    "duration": 335,
+    "exposure": 555,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i031_s183681731",
+    "t_m": 720,
+    "duration": 142,
+    "exposure": 278,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i037_s4195007327",
+    "t_m": 479,
+    "duration": 405,
+    "exposure": 576,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i041_s1110731446",
+    "t_m": 2379,
+    "duration": 180,
+    "exposure": 303,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i043_s2646349982",
+    "t_m": 2017,
+    "duration": 40,
+    "exposure": 82,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i045_s1775703340",
+    "t_m": 1062,
+    "duration": 545,
+    "exposure": 1324,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i058_s2121762450",
+    "t_m": 928,
+    "duration": 298,
+    "exposure": 1360,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i079_s3754004101",
+    "t_m": 840,
+    "duration": 216,
+    "exposure": 292,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i083_s460074954",
+    "t_m": 606,
+    "duration": 52,
+    "exposure": 106,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i093_s3302628962",
+    "t_m": 603,
+    "duration": 156,
+    "exposure": 273,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i119_s2378920449",
+    "t_m": 547,
+    "duration": 987,
+    "exposure": 1248,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i150_s1335159117",
+    "t_m": 1135,
+    "duration": 597,
+    "exposure": 680,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i153_s1007174239",
+    "t_m": 683,
+    "duration": 31,
+    "exposure": 128,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i156_s1109449052",
+    "t_m": 2348,
+    "duration": 59,
+    "exposure": 180,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i158_s1907819116",
+    "t_m": 1418,
+    "duration": 1472,
+    "exposure": 1712,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i163_s1806899634",
+    "t_m": 728,
+    "duration": 267,
+    "exposure": 364,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   },
+   {
+    "tag": "TLMR01_LAW_C_MCTT01_P_i184_s927162381",
+    "t_m": 1204,
+    "duration": 58,
+    "exposure": 118,
+    "termination": "SPLIT_OR_TIE",
+    "B_reproduced_all_fields": true
+   }
+  ],
+  "NEGATIVE_CONTROL": {
+   "what": "the four LAW_C worlds that triggered but did not carry the identity to maturation, so no removal was applied and classifier A emits no locked-daughter interval at all.",
+   "worlds": {
+    "TLMR01_LAW_C_MCTT01_P_i077_s2414544028": 490,
+    "TLMR01_LAW_C_MCTT01_P_i111_s4049698502": 1959,
+    "TLMR01_LAW_C_MCTT01_P_i183_s4120635981": 1497,
+    "TLMR01_LAW_C_MCTT01_P_i217_s1018017219": 639
+   },
+   "B_refused_all_four": true,
+   "B_reason": "LEDGER_DAUGHTER_CELLS_ARE_NOT_EXACTLY_ONE_COMPONENT_AT_t_m",
+   "why_it_matters": "agreement on 22 productions is weaker than agreement on 22 productions and 4 refusals. B invents no interval where A produces none, and refuses none where A produces one."
+  },
+  "PASS": true
+ },
+ "LAYER_3_SENSITIVITY": {
+  "why": "a comparison that cannot fail proves nothing. These mutations break classifier B on purpose and ask whether the qualification notices.",
+  "mutations": [
+   {
+    "R2_delta": -1.0,
+    "comp": 76,
+    "cen": 0,
+    "link": 7,
+    "DETECTED": true
+   },
+   {
+    "R2_delta": -0.1,
+    "comp": 76,
+    "cen": 0,
+    "link": 4,
+    "DETECTED": true
+   },
+   {
+    "R2_delta": -0.001,
+    "comp": 76,
+    "cen": 0,
+    "link": 4,
+    "DETECTED": true
+   },
+   {
+    "R2_delta": 0.001,
+    "comp": 0,
+    "cen": 0,
+    "link": 0,
+    "DETECTED": false
+   },
+   {
+    "R2_delta": 0.1,
+    "comp": 0,
+    "cen": 0,
+    "link": 0,
+    "DETECTED": false
+   },
+   {
+    "R2_delta": 1.0,
+    "comp": 55,
+    "cen": 0,
+    "link": 3,
+    "DETECTED": true
+   },
+   {
+    "mutation": "SPLIT_RESOLVED_BY_PREFERENCE",
+    "link": 9,
+    "DETECTED": true
+   },
+   {
+    "mutation": "restored",
+    "DETECTED": false
+   }
+  ],
+  "ONE_SIDED_BLIND_ZONE_FOUND": {
+   "observation": "shrinking CORE_R squared by as little as 0.001 is caught; enlarging it by 0.1 is not.",
+   "explanation": "cell separations are integers, so no squared distance lies in the open interval (25, 26); centroid separations lie on a quarter-integer squared lattice, so none lies in (25, 25.25). An enlargement inside those gaps cannot admit a pair and therefore cannot change any answer.",
+   "falsifiable_prediction_made_and_tested": "the link layer must stay blind at +0.24 and must become sensitive at exactly +0.25",
+   "result": [
+    {
+     "R2_delta": 0.24,
+     "link_disagreements": 0,
+     "comp": 0,
+     "DETECTED": false
+    },
+    {
+     "R2_delta": 0.25,
+     "link_disagreements": 29,
+     "comp": 0,
+     "DETECTED": true
+    },
+    {
+     "R2_delta": 0.26,
+     "link_disagreements": 29,
+     "comp": 0,
+     "DETECTED": true
+    }
+   ],
+   "PREDICTION_HELD": true,
+   "conclusion": "the blind zone is provably empty of realisable configurations. The test is complete over the reachable space, not merely one-sided."
+  },
+  "LINK_RULE_MUTATION": "resolving a split by preference instead of terminating \u2014 the single most dangerous silent change available \u2014 produced 9 link disagreements and was caught.",
+  "PASS": true
+ },
+ "DECLARED_WINDOW_ASYMMETRY": "duration counts rows t_m+1..end; exposure sums rows t_m..end.  This is not an off-by-one: the archive writes a cell row AFTER the step, so the occupancy on row t is the population that a decay at step t+1 acts on.  An exposure window that starts at row t_m is therefore the correct driver for events at steps t_m+1..end+1, and it is the convention under which LDFMA01's Poisson map read 5.809 predicted against 5 observed.  The duration counts post-intervention steps and starts one row later.  Both quantities are reported; the symmetric variant is reported beside the frozen one so the difference is measured, not assumed away.",
+ "SYMMETRIC_EXPOSURE_VARIANT_ALSO_COMPUTED": {
+  "what": "B also reports the exposure summed over rows t_m+1..end, the variant that matches the duration window.",
+  "difference_per_world": {
+   "TLMR01_LAW_C_MCTT01_P_i001_s1474284807": 1,
+   "TLMR01_LAW_C_MCTT01_P_i002_s2168595504": 1,
+   "TLMR01_LAW_C_MCTT01_P_i005_s203158793": 3,
+   "TLMR01_LAW_C_MCTT01_P_i009_s2255663407": 2,
+   "TLMR01_LAW_C_MCTT01_P_i015_s1512492624": 1,
+   "TLMR01_LAW_C_MCTT01_P_i020_s1557150137": 1,
+   "TLMR01_LAW_C_MCTT01_P_i031_s183681731": 1,
+   "TLMR01_LAW_C_MCTT01_P_i037_s4195007327": 1,
+   "TLMR01_LAW_C_MCTT01_P_i041_s1110731446": 1,
+   "TLMR01_LAW_C_MCTT01_P_i043_s2646349982": 2,
+   "TLMR01_LAW_C_MCTT01_P_i045_s1775703340": 1,
+   "TLMR01_LAW_C_MCTT01_P_i058_s2121762450": 2,
+   "TLMR01_LAW_C_MCTT01_P_i079_s3754004101": 1,
+   "TLMR01_LAW_C_MCTT01_P_i083_s460074954": 2,
+   "TLMR01_LAW_C_MCTT01_P_i093_s3302628962": 1,
+   "TLMR01_LAW_C_MCTT01_P_i119_s2378920449": 1,
+   "TLMR01_LAW_C_MCTT01_P_i150_s1335159117": 1,
+   "TLMR01_LAW_C_MCTT01_P_i153_s1007174239": 4,
+   "TLMR01_LAW_C_MCTT01_P_i156_s1109449052": 3,
+   "TLMR01_LAW_C_MCTT01_P_i158_s1907819116": 1,
+   "TLMR01_LAW_C_MCTT01_P_i163_s1806899634": 1,
+   "TLMR01_LAW_C_MCTT01_P_i184_s927162381": 2
+  },
+  "the_difference_is_exactly_the_daughter_nY_at_t_m": true,
+  "NOT_A_SUBSTITUTION": "the frozen endpoint is unchanged. The variant is published so the size of the convention is measured rather than argued about, and so that a checker can see it without recomputing anything."
+ },
+ "PRE_RUN_E3_QUALIFICATION": "PASS",
+ "NO_SCIENTIFIC_WORLD_HAS_RUN": true,
+ "WORLDS_RUN": 0,
+ "WHAT_THIS_DOES_NOT_DO": "it qualifies the instrument, not the hypothesis. Two implementations agreeing means the endpoint is computed reproducibly; it says nothing about whether parent removal affects the locked daughter.",
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED"
+}

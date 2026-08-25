@@ -1,0 +1,61 @@
+{
+ "MISSION": "OMLDCT01",
+ "SECTION": "C3 Windows durability",
+ "GENERATED_UTC": "2026-08-25T21:48:23.936182+00:00",
+ "CERTIFIED_TIP": "6e8f2d3f128e38a1ea95fec2b150df7b8a802685",
+ "NOTE_ON_THE_ORDERING": "this record certifies the tip that existed when the restore ran. Committing the record necessarily moves the tip, so the bundle shipped afterwards carries a later commit than the one certified here. That is stated rather than papered over; the later tip is verified by ref only.",
+ "PACKAGE": {
+  "OMLDCT01_C3_INCREMENT.bundle": "f2344801d9fb51b0530abbbc5a1d82183d81c84791d2afc8cd4c9bebc37265e6",
+  "OMLDCT01_C3_CAPSULE.tar.gz": "613a945be57e3529b9eefed7df9a98605777f54e44a817b51bd10d7c5e3d9a0c"
+ },
+ "DEVICE_READ_BACK": {
+  "files": 2,
+  "OK": 2,
+  "FAILED": 0,
+  "method": "sha256sum -c against OMLDCT01_C3_SHA256SUMS on the device"
+ },
+ "A_GAP_WAS_FOUND_AND_CLOSED": {
+  "what": "the first C3 increment was cut from e8e5818..tip, but nothing on the device carried e8e5818 \u2014 the previous Windows package ended at 1b18fc1. The chain would have had a hole.",
+  "how_found": "listing every bundle head on the device before trusting the chain, rather than after.",
+  "fix": "the shipped increment is cut from 1b18fc1..tip and carries both commits.",
+  "REQUIRED_PREREQ": "1b18fc124f54238b25433106e400edf3084dcd0f"
+ },
+ "RESTORE_FROM_WINDOWS_ALONE": {
+  "chain": [
+   "TLMR01_FINAL_SELFCONTAINED",
+   "FIMRCC01_FINAL_INCREMENT",
+   "LDFMA01_FINAL_INCREMENT",
+   "OMLDCT01_C1_INCREMENT",
+   "OMLDCT01_PRE_RUN_FULL",
+   "OMLDCT01_C3_INCREMENT"
+  ],
+  "restored_tip": "6e8f2d3f128e38a1ea95fec2b150df7b8a802685",
+  "n_commits": 265,
+  "git_fsck_full_exit_code": 0,
+  "blobs_verified_byte_identical": [
+   "OMLDCT01/out/OMLDCT01_E3_QUALIFICATION.json",
+   "OMLDCT01/out/OMLDCT01_DIGEST_AUDIT.json",
+   "OMLDCT01/out/OMLDCT01_METHODS_CLOSURE_AMENDMENT_1.json",
+   "OMLDCT01/code/omldct01_e3_b.py",
+   "OMLDCT01/out/OMLDCT01_MASTER_FREEZE.json",
+   "LDFMA01/out/HANDOFF_ONE_MATCHED_LOCKED_DAUGHTER_CONTROL_TEST_01.md"
+  ],
+  "n_blobs_verified": 6,
+  "n_blobs_differing": 0
+ },
+ "PARENT_HANDOFF_BYTES_UNCHANGED": "e3ec4b929069a794b648feffc9b7b5d9315a7b96a74711fcd99746f931523029",
+ "MASTER_FREEZE_FILE_SHA256": "5a8b52ddde2115324870fa28d69297e38a7c57add356c9aaf32ec65637836671",
+ "WHICH_CONFIRMS_THE_DIGEST_AUDIT": "the durability record written at C2 stored this file digest under the key FREEZE_HASH. The master freeze's own FREEZE_HASH is 2ade99ca..., a digest of its content.",
+ "GITHUB_PUSH": {
+  "probe_ordinal": 5,
+  "result": "FAIL_403",
+  "message": "Mythmaker28/emergent-dynamics-lab is not in this session's authorized repository set",
+  "WHAT_I_WILL_NOT_DO": "bypass the proxy. The fix is on Tommy's side: add the repository to the session's authorized sources. Do not send me a token."
+ },
+ "WINDOWS_C3_DURABILITY": "PASS",
+ "WORLDS_RUN": 0,
+ "INTENTIONAL_COMMITS_USED": 4,
+ "MAX_INTENTIONAL_COMMITS": 5,
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED"
+}
