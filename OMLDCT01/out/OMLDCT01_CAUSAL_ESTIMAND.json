@@ -1,0 +1,77 @@
+{
+ "MISSION": "OMLDCT01",
+ "SECTION": "2 \u2014 causal estimand",
+ "GENERATED_UTC": "2026-08-25T20:10:45.917832+00:00",
+ "HANDOFF_SHA256": "e3ec4b929069a794b648feffc9b7b5d9315a7b96a74711fcd99746f931523029",
+ "E3_PRIMARY": "post-intervention lifetime of the locked daughter identity",
+ "E3_EXPOSURE": "sum over post-intervention steps of locked-daughter nY, until the frozen identity-ending event or the administrative horizon",
+ "WHAT_THE_HANDOFF_STATES": [
+  {
+   "item": "primary endpoint named",
+   "present": true,
+   "quote": "PRIMARY ENDPOINT. The locked daughter's post-removal identity lifetime"
+  },
+  {
+   "item": "co-primary endpoint named",
+   "present": true,
+   "quote": "CO-PRIMARY, pre-declared. The locked daughter's post-removal particle-step exposure"
+  },
+  {
+   "item": "paired statistic",
+   "present": true,
+   "quote": "Wilcoxon signed-rank"
+  },
+  {
+   "item": "direction (one- or two-sided)",
+   "present": true,
+   "quote": "two-sided"
+  },
+  {
+   "item": "alpha",
+   "present": true,
+   "quote": "alpha = 0.05"
+  },
+  {
+   "item": "PRIMARY_AND_COPRIMARY_COMBINATION_RULE \u2014 AND rule, hierarchical secondary, or descriptive support",
+   "present": false,
+   "quote": "the handoff says only 'on both the primary and the co-primary'"
+  },
+  {
+   "item": "treatment of zero differences",
+   "present": false,
+   "note": "the first version of this check used the bare substring 'ties', which matches inside 'identities'. That false positive is corrected here rather than left standing.",
+   "quote": null
+  },
+  {
+   "item": "minimum valid pair count",
+   "present": false,
+   "quote": null
+  },
+  {
+   "item": "technically-invalid rule",
+   "present": false,
+   "quote": null
+  },
+  {
+   "item": "null-result interpretation / equivalence margin",
+   "present": false,
+   "quote": null
+  }
+ ],
+ "MISSING_OR_AMBIGUOUS": [
+  "PRIMARY_AND_COPRIMARY_COMBINATION_RULE \u2014 AND rule, hierarchical secondary, or descriptive support",
+  "treatment of zero differences",
+  "minimum valid pair count",
+  "technically-invalid rule",
+  "null-result interpretation / equivalence margin"
+ ],
+ "THE_LAUNCHER_GATE": "section 2 requires the handoff to state whether the exposure endpoint is co-primary under an AND rule, a hierarchical secondary, or descriptive support, and forbids inventing that relation.",
+ "THE_EXACT_HANDOFF_TEXT": "DECISION RULE. Wilcoxon signed-rank on the paired log difference, two-sided, alpha = 0.05, on both the primary and the co-primary. Declared before world 1 and not revisable.",
+ "WHY_THAT_IS_NOT_ENOUGH": "'on both' says the test is RUN on both endpoints. It does not say what the mission concludes when they disagree \u2014 and they can disagree, because exposure is the sum of occupancy over the interval while lifetime counts steps, and occupancy varied from 1 to 6 across the 22 retrospective daughters. Under an AND rule a split verdict is negative; under a hierarchical rule it is positive with the secondary reported; under descriptive support the co-primary never gates at all. Those are three different missions.",
+ "COMBINATION_RULE_PRESENT": false,
+ "VERDICT": "STOP__PRIMARY_AND_COPRIMARY_DECISION_RULE_INCOMPLETE",
+ "WORLDS_RUN": 0,
+ "WHAT_I_DID_NOT_DO": "I did not choose the relation. Choosing it here would silently fix the decision rule of an experiment I am about to run, after having written the handoff myself.",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED"
+}

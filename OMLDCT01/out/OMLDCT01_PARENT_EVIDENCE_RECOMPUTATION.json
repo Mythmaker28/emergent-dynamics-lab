@@ -1,0 +1,55 @@
+{
+ "MISSION": "OMLDCT01",
+ "SECTION": "1 \u2014 independent recomputation of the parent evidence",
+ "GENERATED_UTC": "2026-08-25T20:10:45.917832+00:00",
+ "RECOMPUTED_FROM": "the 26 committed LDFMA01 per-world reconstruction records, not from the artefacts that assert the figures",
+ "CHECKS": [
+  {
+   "item": "selective-removal developmental worlds",
+   "declared": 22,
+   "recomputed": 22,
+   "AGREES": true
+  },
+  {
+   "item": "locked-daughter complete-functional success",
+   "declared": "1/22",
+   "recomputed": "1/22",
+   "AGREES": true
+  },
+  {
+   "item": "failures",
+   "declared": 21,
+   "recomputed": 21,
+   "AGREES": true
+  },
+  {
+   "item": "dominant failure L3 = accepted Y birth but no Y removal",
+   "declared": "16/21",
+   "recomputed": "16/21",
+   "AGREES": true
+  },
+  {
+   "item": "SPLIT_OR_TIE termination",
+   "declared": "22/22",
+   "recomputed": "22/22",
+   "AGREES": true
+  },
+  {
+   "item": "ambient endpoint is succession across later identities, not the locked daughter",
+   "declared": "complete intervals begin after the daughter identity has ended",
+   "recomputed": "2017 of 2018 ambient complete intervals start after the daughter identity is gone",
+   "AGREES": true
+  }
+ ],
+ "ALL_AGREE": true,
+ "SUPPORTING": {
+  "L2_no_birth": 5,
+  "L3_birth_no_removal": 16,
+  "L2_plus_L3": 21,
+  "ambient_complete_intervals_total": 2018,
+  "ambient_starting_after_the_daughter_is_gone": 2017,
+  "fraction": 0.999504
+ },
+ "NOTE_ON_THE_AMBIENT_ITEM": "LDFMA01's checker established that the single interval not starting after the daughter is the daughter's own. Excluding it, ZERO non-daughter complete intervals begin inside any daughter's window.",
+ "REPRODUCTION_STATUS": "NOT_TESTED"
+}
