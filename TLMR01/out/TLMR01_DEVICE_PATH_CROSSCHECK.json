@@ -1,8 +1,74 @@
 {
  "MISSION": "TLMR01",
- "SECTION": "16 \u2014 device-path cross-check",
- "WHY": "the per-world reconstruction ran on the device because the bridge could not carry 800 MB into the container. Two archives are re-measured here with the same frozen module and compared field for field, so the device path is verified rather than trusted.",
- "N_CROSS_CHECKED": 2,
+ "SECTION": "16 \u2014 device-path cross-check, REPLACEMENT closing F-01",
+ "GENERATED_UTC": "2026-08-25T15:26:10.499758+00:00",
+ "SUPERSEDES": "the first cross-check, whose two archives were an extinct world and a single-Y world in which the identity link and the toroidal distance were never called and no episode, candidate or removal existed. Its CROSS_CHECK_PASS was near-vacuous; the independent check said so as F-01 and this artefact closes it.",
+ "COMPARISON_NOTE": "JSON round-trips integer dict keys to strings, so both sides are normalised to string keys before comparison. Without that normalisation M1, M2 and M4 appear to differ at every world purely on key typing; the first run of this replacement showed exactly that and it is recorded here rather than quietly fixed.",
+ "N_CROSS_CHECKED": 3,
+ "LAW": "LAW_C_MCTT01",
+ "ALL_HAVE_A_REMOVAL_APPLIED": true,
+ "WORLDS": [
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i001_s1474284807",
+   "seed": 1474284807,
+   "sha256": "a5f1b6b5cac039f7c4d66e5beeb4d4668736f0f49d24d39a3574054b82f6ceaf",
+   "archive_hash_matches_the_device_driver": true,
+   "identical_field_for_field": true,
+   "differing_fields": [],
+   "removal_applied": true,
+   "INTEGRATED": true,
+   "n_post_removal_complete_intervals": 75,
+   "n_episodes": 106,
+   "n_matured": 2,
+   "n_triggered": 2,
+   "online_t_m": 942,
+   "identity_link_calls": 12881,
+   "toroidal_distance_calls": 127008
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i002_s2168595504",
+   "seed": 2168595504,
+   "sha256": "18761dbb1e3363fee726c7daa5843bce794e83dd8b9cca53f7bf807407074f5a",
+   "archive_hash_matches_the_device_driver": true,
+   "identical_field_for_field": true,
+   "differing_fields": [],
+   "removal_applied": true,
+   "INTEGRATED": true,
+   "n_post_removal_complete_intervals": 92,
+   "n_episodes": 73,
+   "n_matured": 1,
+   "n_triggered": 1,
+   "online_t_m": 697,
+   "identity_link_calls": 11934,
+   "toroidal_distance_calls": 127266
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i005_s203158793",
+   "seed": 203158793,
+   "sha256": "01eb3988403f104bc99f36da62e5431670793fec2f9fa1daf49ecdcea337ac6b",
+   "archive_hash_matches_the_device_driver": true,
+   "identical_field_for_field": true,
+   "differing_fields": [],
+   "removal_applied": true,
+   "INTEGRATED": true,
+   "n_post_removal_complete_intervals": 113,
+   "n_episodes": 87,
+   "n_matured": 1,
+   "n_triggered": 1,
+   "online_t_m": 580,
+   "identity_link_calls": 11716,
+   "toroidal_distance_calls": 156504
+  }
+ ],
+ "NON_VACUITY": {
+  "every_world_has_a_removal": true,
+  "min_identity_link_calls": 11716,
+  "min_toroidal_distance_calls": 127008,
+  "episodes_reconstructed": 266,
+  "post_removal_intervals_reconstructed": 280,
+  "NON_VACUOUS": true
+ },
  "DISAGREEMENTS": [],
- "CROSS_CHECK_PASS": true
+ "CROSS_CHECK_PASS": true,
+ "WHAT_IS_NOW_VERIFIED": "the device path is verified for the archive reader, the frozen state machine, centroid_component, the toroidal distance, the identity link, episodes(), the maturation candidate gates, identity_intervals(), turnover_in() and the full M1-M5 return including post_removal_intervals, on three LAW_C_MCTT01 worlds with a removal applied."
 }

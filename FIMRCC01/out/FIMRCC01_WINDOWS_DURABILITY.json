@@ -1,0 +1,143 @@
+{
+ "MISSION": "FIMRCC01",
+ "SECTION": "closure 5 \u2014 Windows durability, ZERO-RUN package",
+ "GENERATED_UTC": "2026-08-25T17:18:28.603181+00:00",
+ "PREREQUISITE_TIP": "1de537386d584f2ff6abfb72ca46dec3e02e3c36",
+ "WHY_AN_INCREMENTAL_BUNDLE": "the prerequisite tip is already durable on Windows inside TLMR01/sc/TLMR01_FINAL_SELFCONTAINED.bundle, whose reassembled hash TLMR01 verified. The increment is 194,880 bytes and carries the two commits this session added.",
+ "ARTEFACTS_WRITTEN_TO_WINDOWS": [
+  {
+   "file": "FIMRCC01_FINAL_INCREMENT.bundle",
+   "windows_path": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\FIMRCC01\\\\FIMRCC01_FINAL_INCREMENT.bundle",
+   "sha256": "ceb4795f8432d5e9e06b1bba230568ad52f61f1a783508ed215367818d64e24a",
+   "bytes": 194880
+  },
+  {
+   "file": "FIMRCC01_FINAL_EVIDENCE_CAPSULE.tar.gz",
+   "windows_path": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\FIMRCC01\\\\FIMRCC01_FINAL_EVIDENCE_CAPSULE.tar.gz",
+   "sha256": "067a664962b330380aa0693315e7e7891eea702bcad5d1205530a922c340ebd8",
+   "bytes": 144580
+  },
+  {
+   "file": "FIMRCC01_FINAL_SHA256SUMS",
+   "windows_path": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\FIMRCC01\\\\FIMRCC01_FINAL_SHA256SUMS",
+   "sha256": "f19a901a85a3c819a381f260e472411b3fcc905ee4f73e3b2cf68dac794dd98a",
+   "bytes": 947
+  },
+  {
+   "file": "FIMRCC01_FINAL_REPORT.md",
+   "windows_path": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\FIMRCC01\\\\FIMRCC01_FINAL_REPORT.md",
+   "sha256": "60767b135b0d4056419166c8cde1e6ca3658f3fddb1ebe73c5d692fff0fa4e0b",
+   "bytes": 10772
+  },
+  {
+   "file": "FIMRCC01_PRECONDITION_CLOSURE_REPORT.md",
+   "windows_path": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\FIMRCC01\\\\FIMRCC01_PRECONDITION_CLOSURE_REPORT.md",
+   "sha256": "36cc807907bfbab19363ae88f0f61ae034c3da780f95485556574d31e71b13ee",
+   "bytes": 5281
+  },
+  {
+   "file": "FIMRCC01_PRECONDITION_B_RESULT.md",
+   "windows_path": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\FIMRCC01\\\\FIMRCC01_PRECONDITION_B_RESULT.md",
+   "sha256": "f18ac1434370dbb76200d613a4feef2bffdeb4717d8959cbc16451af55f26dd1",
+   "bytes": 4948
+  },
+  {
+   "file": "FIMRCC01_ENDPOINT_ADJUDICATION.md",
+   "windows_path": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\FIMRCC01\\\\FIMRCC01_ENDPOINT_ADJUDICATION.md",
+   "sha256": "7404655a7a5b4d8c03198d5b2a780c4b190a5b2cd781c58208b19532771eec41",
+   "bytes": 4098
+  },
+  {
+   "file": "FIMRCC01_FINAL_DISPOSITION.json",
+   "windows_path": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\FIMRCC01\\\\FIMRCC01_FINAL_DISPOSITION.json",
+   "sha256": "d17f7011b8b4a06e20efea7a33f79c99aa5277ce6d836439cdda1aaa132f543a",
+   "bytes": 3533
+  },
+  {
+   "file": "FIMRCC01_CURRENT_CHECKPOINT_BINDING.json",
+   "windows_path": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\FIMRCC01\\\\FIMRCC01_CURRENT_CHECKPOINT_BINDING.json",
+   "sha256": "b260b60c771ec9432d2fceb40270484ef24b728b95ed215a003466148b193822",
+   "bytes": 8978
+  },
+  {
+   "file": "FIMRCC01_PRECONDITION_B_RESULT.json",
+   "windows_path": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\FIMRCC01\\\\FIMRCC01_PRECONDITION_B_RESULT.json",
+   "sha256": "795b76d9939f96942f7ff21a8cb59cc15d783201f34d117ea3371674af7027db",
+   "bytes": 12445
+  },
+  {
+   "file": "FIMRCC01_ENDPOINT_ADJUDICATION.json",
+   "windows_path": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\FIMRCC01\\\\FIMRCC01_ENDPOINT_ADJUDICATION.json",
+   "sha256": "976fc41fd1dc13c15df5e486c8428d32232abe32f84715813f0af5785f6eeaf7",
+   "bytes": 8124
+  },
+  {
+   "file": "SHA256SUMS",
+   "windows_path": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\FIMRCC01\\\\SHA256SUMS",
+   "sha256": "6ac0c82e75d576075135821bb7014449c2495a0579d792a8e592e82751fa292f",
+   "bytes": 1725
+  }
+ ],
+ "READ_BACK_ON_WINDOWS": {
+  "method": "sha256sum on the mounted Windows files, compared to the container's",
+  "n_files": 12,
+  "n_identical": 12,
+  "ALL_IDENTICAL_ON_READ_BACK": true
+ },
+ "TREE_RESTORATION_FROM_THE_PACKAGE_ALONE": {
+  "step_1": "git clone --bare TLMR01/sc/TLMR01_FINAL_SELFCONTAINED.bundle  -> tip 1de5373",
+  "step_2": "git fetch FIMRCC01_FINAL_INCREMENT.bundle HEAD:refs/heads/fimrcc01 -> tip f245968",
+  "step_3": "git fsck --full",
+  "fsck_exit_code": 0,
+  "restored_tip": "f2459688d30118237edcf1be88bd760c677bed53",
+  "chain_visible": [
+   "f245968 FIMRCC01 closure",
+   "19fa6be FDOT01 orphaned records",
+   "1de5373 TLMR01 C5"
+  ],
+  "step_4": "checkout and verify FIMRCC01/out against its own SHA256SUMS",
+  "files_checked": 17,
+  "files_OK": 17,
+  "files_FAILED": 0
+ },
+ "FINAL_DISPOSITION_READ_BACK_FROM_THE_RESTORED_TREE": "CONFIRMATION_PRECONDITIONS_NOT_MET__LINEAGE_ROUTE_PAUSED",
+ "ZERO_RUN_VERIFIED_FROM_THE_RESTORED_TREE": {
+  "FIMRCC01_raw_archives_in_the_tree": 0,
+  "FIMRCC01_files_in_the_tree": 573,
+  "NEW_SEEDS": 0,
+  "NEW_SCIENTIFIC_WORLDS": 0,
+  "SELECTIVE_ARM_EXECUTED": false,
+  "SHAM_ARM_EXECUTED": false,
+  "GLOBAL_OFF_ARM_EXECUTED": false,
+  "TECHNICAL_RESERVES_USED": 0,
+  "note": "472 .npz files exist in the restored tree; every one is inherited from an earlier mission. FIMRCC01 contributed none, which was checked by path rather than asserted."
+ },
+ "A_DEFECT_FOUND_IN_THE_REPOSITORY_AND_REPORTED_NOT_FIXED": {
+  "what": "git bundle create --all fails with `unable to read ee57811f12c2f82e24e1723693848d216a715d19`",
+  "where": "one of the OTHER branches carried in this container (not the FIMRCC01 chain)",
+  "evidence_it_does_not_touch_this_chain": "a HEAD-only bundle of the closure tip succeeds, and the restored clone passes git fsck --full with exit code 0",
+  "what_was_NOT_done": "no history was rewritten and no branch was deleted to make --all succeed. The floor 06c592313df96601de8d2a89676d5a5cf79fc414 is not touched.",
+  "STATUS": "REPORTED__NOT_REPAIRED__OUT_OF_SCOPE_FOR_A_CLOSURE"
+ },
+ "WINDOWS_DURABILITY": "PASS",
+ "GITHUB_PUSH": {
+  "attempted_once": true,
+  "result": "FAIL_403",
+  "remote_message": "access denied by the git proxy: Mythmaker28/emergent-dynamics-lab is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources.",
+  "NEVER_BYPASSED": "a GITHUB_TOKEN environment variable exists and all git HTTPS is forced through the proxy by insteadOf rewriting. Setting NO_PROXY to route around the gate would have worked and was explicitly declined, and the owner was told so rather than the step being silently skipped. Do not send a token; add the repository to the session's authorised sources instead.",
+  "BLOCKS_CLOSURE": false,
+  "note": "optional by the owner's closure instruction. Windows durability is the binding record."
+ },
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+ "THIS_RECORD_CANNOT_NAME_ITS_OWN_COMMIT": {
+  "why": "adding this file to the closure commit changes that commit's hash, so any tip written here would be stale the moment it is committed. FDOT01_FREEZE_BINDING.json records the same constraint in its own NOTE and it is respected rather than worked around.",
+  "what_is_named_here_instead": "the CONTENT this record verifies \u2014 the 18 artefacts in FIMRCC01/out with their sha256, and the restoration procedure that reproduces them.",
+  "where_the_tip_is_named": "FIMRCC01_CLOSURE_TIP.json, written to Windows AFTER the amend and deliberately NOT committed, so it can name the commit truthfully.",
+  "the_restoration_was_verified_at": "f2459688d30118237edcf1be88bd760c677bed53, the tip before this record was added. The amend added this file and the regenerated SHA256SUMS and changed nothing else; the re-verification at the amended tip is recorded in FIMRCC01_CLOSURE_TIP.json."
+ }
+}

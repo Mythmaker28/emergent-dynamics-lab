@@ -1,0 +1,246 @@
+{
+ "MISSION": "FIMRCC01",
+ "SECTION": "closure 1 \u2014 current checkpoint binding",
+ "GENERATED_UTC": "2026-08-25T17:10:47.727154+00:00",
+ "HUMAN_DECISION": "A__PRECONDITIONS_NOT_MET",
+ "NEW_SCIENTIFIC_WORLDS": 0,
+ "NEW_WORLD_CONSTRUCTIONS": 0,
+ "NEW_SEEDS": 0,
+ "NEW_TRAJECTORIES": 0,
+ "HEAD_AT_CLOSURE": "1de537386d584f2ff6abfb72ca46dec3e02e3c36",
+ "PARENT_TIP_OF_TLMR01": "9f4c70ceeb05b0b8a1f27c4cfc855e125f921ce9",
+ "PARENT_GIT_OBJECT_STATUS": "PARENT_GIT_OBJECT_NOT_RECOVERED",
+ "PARENT_SOURCE_BYTE_STATUS": "SOURCE_BYTES_AND_CHAIN_PREREQUISITE_VERIFIED",
+ "WHAT_THAT_DISTINCTION_MEANS": "the commit OBJECT 9f4c70ce... is unrecoverable in the container, in all three owner-side bare repositories and in every bundle checked. Its CONTENT is not verifiable. What IS verified is (a) the four source artefacts it is supposed to have carried, byte for byte, and (b) that TLMR01_C1_C2.bundle, written before the rollback, names that exact commit as its prerequisite. Content recovery is not object recovery and is not reported as such.",
+ "THE_FOUR_VERIFIED_SOURCE_HASHES": [
+  {
+   "path": "PQEC01/out/PQEC01_MASTER_FREEZE.json",
+   "present_in_container": true,
+   "declared_sha256": "1d41505e0571eed53ac78d15bc04c08c80f697d00838f6db9d4302a2e5b6b83c",
+   "observed_sha256": "1d41505e0571eed53ac78d15bc04c08c80f697d00838f6db9d4302a2e5b6b83c",
+   "MATCHES": true,
+   "bytes": 22723
+  },
+  {
+   "path": "BPRTC01/out/BPRTC01_MASTER_FREEZE.json",
+   "present_in_container": true,
+   "declared_sha256": "9ba9e8efe29280211b8f6d984d5c435b3feab46887964b384c441b1f950621f1",
+   "observed_sha256": "9ba9e8efe29280211b8f6d984d5c435b3feab46887964b384c441b1f950621f1",
+   "MATCHES": true,
+   "bytes": 18491
+  },
+  {
+   "path": "MCTT01/out/MCTT01_SELECTED_LAW.json",
+   "present_in_container": true,
+   "declared_sha256": "aa3b023d4834fa4305a981f90ef8472f1355d3aa3d1e167ba7cc4ee6b7fc2faf",
+   "observed_sha256": "aa3b023d4834fa4305a981f90ef8472f1355d3aa3d1e167ba7cc4ee6b7fc2faf",
+   "MATCHES": true,
+   "bytes": 3734
+  },
+  {
+   "path": "MCTT01/out/MCTT01_PHYSICS_DIFF_FROM_B1.json",
+   "present_in_container": true,
+   "declared_sha256": "d0cb0f648f2943f8e561231b570be236c0787c33303968c6c5debc879d96a9d0",
+   "observed_sha256": "d0cb0f648f2943f8e561231b570be236c0787c33303968c6c5debc879d96a9d0",
+   "MATCHES": true,
+   "bytes": 1339
+  }
+ ],
+ "ALL_SOURCE_BYTES_MATCH": true,
+ "THE_THREE_EXACT_LAW_BINDINGS": {
+  "LAW_A_B1": {
+   "bit_exact": true,
+   "rows": [
+    {
+     "field": "kY",
+     "value_in_tlmr01_laws": "2.5118864315095822e-05",
+     "value_in_source": "2.5118864315095822e-05",
+     "source": "PQEC01_MASTER_FREEZE PHASE_B.POINT_B1",
+     "IDENTICAL_DOUBLE": true
+    },
+    {
+     "field": "muY",
+     "value_in_tlmr01_laws": "9.261187281287937e-05",
+     "value_in_source": "9.261187281287937e-05",
+     "source": "PQEC01_MASTER_FREEZE PHASE_B.POINT_B1",
+     "IDENTICAL_DOUBLE": true
+    },
+    {
+     "field": "p_hop_Y",
+     "value_in_tlmr01_laws": "0.10263340389897246",
+     "value_in_source": "0.10263340389897246",
+     "source": "BPRTC01_MASTER_FREEZE POINT.INHERITED_FROZEN_CONSTANTS.p_hop_Y_mobile",
+     "IDENTICAL_DOUBLE": true
+    }
+   ]
+  },
+  "LAW_B_POINT_D10": {
+   "bit_exact": true,
+   "rows": [
+    {
+     "field": "kY",
+     "value_in_tlmr01_laws": "2.5118864315095822e-05",
+     "value_in_BPRTC01_POINT": "2.5118864315095822e-05",
+     "bits_live": "0x3efa56cb36416f83",
+     "bits_source": "0x3efa56cb36416f83",
+     "IDENTICAL_DOUBLE": true
+    },
+    {
+     "field": "muY",
+     "value_in_tlmr01_laws": "9.261187281287937e-05",
+     "value_in_BPRTC01_POINT": "9.261187281287937e-05",
+     "bits_live": "0x3f184713dc1c8ab5",
+     "bits_source": "0x3f184713dc1c8ab5",
+     "IDENTICAL_DOUBLE": true
+    },
+    {
+     "field": "p_hop_Y",
+     "value_in_tlmr01_laws": "0.010263340389897247",
+     "value_in_BPRTC01_POINT": "0.010263340389897247",
+     "bits_live": "0x3f8504f23a941ee7",
+     "bits_source": "0x3f8504f23a941ee7",
+     "IDENTICAL_DOUBLE": true
+    }
+   ]
+  },
+  "LAW_C_MCTT01": {
+   "bit_exact": true,
+   "rows": [
+    {
+     "field": "kY",
+     "value_in_tlmr01_laws": "0.001004754572603833",
+     "value_in_MCTT01_SELECTED_LAW": "0.001004754572603833",
+     "bits_of_the_live_value": "0x3f50763f01e8e5b2",
+     "bits_declared_by_MCTT01": "0x3f50763f01e8e5b2",
+     "IDENTICAL_DOUBLE": true,
+     "MATCHES_DECLARED_BITS": true
+    },
+    {
+     "field": "muY",
+     "value_in_tlmr01_laws": "0.000740894982503035",
+     "value_in_MCTT01_SELECTED_LAW": "0.000740894982503035",
+     "bits_of_the_live_value": "0x3f484713dc1c8ab5",
+     "bits_declared_by_MCTT01": "0x3f484713dc1c8ab5",
+     "IDENTICAL_DOUBLE": true,
+     "MATCHES_DECLARED_BITS": true
+    },
+    {
+     "field": "p_hop_Y",
+     "value_in_tlmr01_laws": "0.10263340389897246",
+     "value_in_MCTT01_SELECTED_LAW": "0.10263340389897246",
+     "bits_of_the_live_value": "0x3fba462ec93926a0",
+     "bits_declared_by_MCTT01": "0x3fba462ec93926a0",
+     "IDENTICAL_DOUBLE": true,
+     "MATCHES_DECLARED_BITS": true
+    }
+   ]
+  }
+ },
+ "ALL_THREE_LAWS_BIT_EXACT": true,
+ "SEEDS": {
+  "n_rederived": 518,
+  "all_rederive_from_the_tip_string": true,
+  "seed_set_hash": "f5f0243770bbf86af85dfbe63c56db6b5503d74cbfd8633f41f36afefe19a163",
+  "seed_set_hash_agrees": true,
+  "n_primary": 512,
+  "n_reserve": 6,
+  "FRESH_SEEDS_CONSUMED_BY_FIMRCC01": 0
+ },
+ "P1_DEVICE_PATH_VERIFICATION": {
+  "CROSS_CHECK_PASS": true,
+  "NON_VACUOUS": true,
+  "n_worlds": 3,
+  "all_with_a_removal": true,
+  "STATUS": "CLOSED"
+ },
+ "P2_SOURCE_BYTE_VERIFICATION": {
+  "P2_BYTE_LEVEL_PASS": true,
+  "RESIDUAL": "the parent commit OBJECT is unrecoverable everywhere it was looked for. The tip string is corroborated by an independent pre-rollback artefact and every frozen seed re-derives from it, so the binding is checkable; the parent commit's content is not.",
+  "STATUS": "CLOSED_AT_THE_BYTE_LEVEL"
+ },
+ "LOCKED_DAUGHTER_REANALYSIS": {
+  "PRECONDITION_A": "PASS",
+  "A1": true,
+  "A2": true,
+  "A3": true,
+  "rule_sha256": "654d8fc59161e50f83868fad32b3e6c217960786421c591eb9f35095590b5209"
+ },
+ "UNRESTRICTED_VERSUS_LOCKED_ENDPOINT": {
+  "DECLARED_IN_ADVANCE_AS_NOT_A_GATE": true,
+  "unrestricted_frozen_endpoint": {
+   "worlds_FUNCTIONAL": 22,
+   "of": 22,
+   "total_complete_intervals": 2018,
+   "total_functional_intervals": 1813,
+   "median_complete_intervals_per_world": 93.0
+  },
+  "locked_daughter_endpoint": {
+   "worlds_COMPLETE": 1,
+   "worlds_FUNCTIONAL": 1,
+   "of": 22,
+   "median_complete_intervals_per_world": 0.0
+  },
+  "what_it_shows": "the frozen endpoint asks whether ANY identity anywhere in the world completed a turnover after the removal, and at this law's occupancy that is answered by the ambient population. Restricted to the ONE identity the frozen code names as the daughter, the same question separates the worlds instead of saturating.",
+  "M5_style_rate_under_the_locked_daughter_endpoint_over_all_256_worlds": {
+   "k": 1,
+   "n": 256,
+   "point": 0.00390625,
+   "lower95_ClopperPearson": 0.00020034435958929078
+  },
+  "THIS_IS_A_RETROSPECTIVE_DESCRIPTION_OF_TLMR01_DATA": "it is not a result of FIMRCC01 and it qualifies nothing. FIMRCC01's own rate will be measured prospectively on fresh disjoint seeds in three matched arms."
+ },
+ "ARTEFACTS_BOUND": [
+  {
+   "file": "FIMRCC01_P2_LAW_BINDING_REVERIFICATION.json",
+   "sha256": "8c20a99db550697c728c18d3d9eefe72f50855d07a5f4cf7d11dc39e453620ee",
+   "bytes": 14249
+  },
+  {
+   "file": "FIMRCC01_PARENT_BINDING.json",
+   "sha256": "07fb7693502b302d3affd5294d445b8f3a4d66563abb632970986f0032fdcd91",
+   "bytes": 4720
+  },
+  {
+   "file": "FIMRCC01_SELECTED_LAW.json",
+   "sha256": "234e17bc73931dd3a1af0b5584433bda1ad8392bb604096f381054058256b334",
+   "bytes": 3509
+  },
+  {
+   "file": "FIMRCC01_PHYSICS_BINDING.json",
+   "sha256": "efdd3d83fff846de156e87398f7fef9521cda28d73c0f9881c3127afe24ea18b",
+   "bytes": 6661
+  },
+  {
+   "file": "FIMRCC01_PRECONDITION_A_RULE.json",
+   "sha256": "654d8fc59161e50f83868fad32b3e6c217960786421c591eb9f35095590b5209",
+   "bytes": 4966
+  },
+  {
+   "file": "FIMRCC01_LOCKED_IDENTITY_QUALIFICATION.json",
+   "sha256": "d0f15ded90b85d593db9f079af238b79773c78ce145a46c98fa0e01c6958bab4",
+   "bytes": 16513
+  },
+  {
+   "file": "FIMRCC01_INDEPENDENT_ENDPOINT_QUALIFICATION.json",
+   "sha256": "306363fd21fa6c8ff763c5901f0848c48238a487a5866f0d8843a33e8d9664fa",
+   "bytes": 58727
+  },
+  {
+   "file": "FIMRCC01_ENDPOINT_PREREGISTRATION.json",
+   "sha256": "820be62b59e50d4e3e7d25a441856687291f149f28db1c0efa5e7f63fde73223",
+   "bytes": 6846
+  },
+  {
+   "file": "FIMRCC01_ENDPOINT_TABLE.json",
+   "sha256": "b431fef0962cad64163f546899a852649bdee70473062883bb49780f45b07f90",
+   "bytes": 11736
+  }
+ ],
+ "RECOMPUTED_BECAUSE_A_FILE_INTEGRITY_CHECK_FAILED": false,
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED"
+}

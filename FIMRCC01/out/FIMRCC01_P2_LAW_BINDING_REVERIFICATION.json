@@ -1,0 +1,437 @@
+{
+ "MISSION": "FIMRCC01",
+ "SECTION": "0 \u2014 precondition P2, law-binding re-verification",
+ "GENERATED_UTC": "2026-08-25T15:35:07.866713+00:00",
+ "WHY_THIS_EXISTS": "the TLMR01 handoff records that BPRTC01_MASTER_FREEZE.json, MCTT01_SELECTED_LAW.json and MCTT01_PHYSICS_DIFF_FROM_B1.json were absent from the container that issued it, so the selected law was not bit-verifiable there and three modules did not import. All three were retrieved from the owner's machine and are checked here.",
+ "PROVENANCE_OF_THE_RETRIEVED_COPIES": {
+  "MCTT01_SELECTED_LAW.json": "ISING_LIFE_AUTHORITATIVE_RECOVERY/delivery/MCTT01_FINAL_EVIDENCE_CAPSULE.tar :: MCTT01/out/",
+  "MCTT01_PHYSICS_DIFF_FROM_B1.json": "ISING_LIFE_AUTHORITATIVE_RECOVERY/delivery/MCTT01_FINAL_EVIDENCE_CAPSULE.tar :: MCTT01/out/",
+  "BPRTC01_MASTER_FREEZE.json": "ISING_LIFE_AUTHORITATIVE_RECOVERY/BPRTC01/final/BPRTC01_FINAL_EVIDENCE_CAPSULE.tar :: out/",
+  "PQEC01_MASTER_FREEZE.json": "already present in the container; hashed here anyway"
+ },
+ "SOURCE_BYTES": [
+  {
+   "path": "PQEC01/out/PQEC01_MASTER_FREEZE.json",
+   "present_in_container": true,
+   "declared_sha256": "1d41505e0571eed53ac78d15bc04c08c80f697d00838f6db9d4302a2e5b6b83c",
+   "observed_sha256": "1d41505e0571eed53ac78d15bc04c08c80f697d00838f6db9d4302a2e5b6b83c",
+   "MATCHES": true,
+   "bytes": 22723
+  },
+  {
+   "path": "BPRTC01/out/BPRTC01_MASTER_FREEZE.json",
+   "present_in_container": true,
+   "declared_sha256": "9ba9e8efe29280211b8f6d984d5c435b3feab46887964b384c441b1f950621f1",
+   "observed_sha256": "9ba9e8efe29280211b8f6d984d5c435b3feab46887964b384c441b1f950621f1",
+   "MATCHES": true,
+   "bytes": 18491
+  },
+  {
+   "path": "MCTT01/out/MCTT01_SELECTED_LAW.json",
+   "present_in_container": true,
+   "declared_sha256": "aa3b023d4834fa4305a981f90ef8472f1355d3aa3d1e167ba7cc4ee6b7fc2faf",
+   "observed_sha256": "aa3b023d4834fa4305a981f90ef8472f1355d3aa3d1e167ba7cc4ee6b7fc2faf",
+   "MATCHES": true,
+   "bytes": 3734
+  },
+  {
+   "path": "MCTT01/out/MCTT01_PHYSICS_DIFF_FROM_B1.json",
+   "present_in_container": true,
+   "declared_sha256": "d0cb0f648f2943f8e561231b570be236c0787c33303968c6c5debc879d96a9d0",
+   "observed_sha256": "d0cb0f648f2943f8e561231b570be236c0787c33303968c6c5debc879d96a9d0",
+   "MATCHES": true,
+   "bytes": 1339
+  }
+ ],
+ "ALL_SOURCE_BYTES_MATCH": true,
+ "MODULE_IMPORT": {
+  "tlmr01_laws": "IMPORTS",
+  "tlmr01_seeds": "IMPORTS",
+  "tlmr01_run": "IMPORTS"
+ },
+ "ALL_MODULES_IMPORT": true,
+ "LAW_C_AGAINST_MCTT01_BITS": [
+  {
+   "field": "kY",
+   "value_in_tlmr01_laws": "0.001004754572603833",
+   "value_in_MCTT01_SELECTED_LAW": "0.001004754572603833",
+   "bits_of_the_live_value": "0x3f50763f01e8e5b2",
+   "bits_declared_by_MCTT01": "0x3f50763f01e8e5b2",
+   "IDENTICAL_DOUBLE": true,
+   "MATCHES_DECLARED_BITS": true
+  },
+  {
+   "field": "muY",
+   "value_in_tlmr01_laws": "0.000740894982503035",
+   "value_in_MCTT01_SELECTED_LAW": "0.000740894982503035",
+   "bits_of_the_live_value": "0x3f484713dc1c8ab5",
+   "bits_declared_by_MCTT01": "0x3f484713dc1c8ab5",
+   "IDENTICAL_DOUBLE": true,
+   "MATCHES_DECLARED_BITS": true
+  },
+  {
+   "field": "p_hop_Y",
+   "value_in_tlmr01_laws": "0.10263340389897246",
+   "value_in_MCTT01_SELECTED_LAW": "0.10263340389897246",
+   "bits_of_the_live_value": "0x3fba462ec93926a0",
+   "bits_declared_by_MCTT01": "0x3fba462ec93926a0",
+   "IDENTICAL_DOUBLE": true,
+   "MATCHES_DECLARED_BITS": true
+  }
+ ],
+ "LAW_C_BIT_EXACT": true,
+ "NO_NUMBER_HERE_COMES_FROM_PROSE": "every value is read from the source artefact's JSON and compared as an IEEE-754 double and as a 64-bit pattern. MCTT01 itself records that its handoff prose printed kY and muY with a different repr that is the same double; the prose repr is never read by this check.",
+ "PHYSICS_DIFF_FROM_B1": [
+  {
+   "parameter": "kY",
+   "B1_in_the_diff": "2.5118864315095822e-05",
+   "B1_in_tlmr01_laws": "2.5118864315095822e-05",
+   "MCTT01_in_the_diff": "0.001004754572603833",
+   "MCTT01_in_tlmr01_laws": "0.001004754572603833",
+   "B1_AGREES": true,
+   "MCTT01_AGREES": true
+  },
+  {
+   "parameter": "muY",
+   "B1_in_the_diff": "9.261187281287937e-05",
+   "B1_in_tlmr01_laws": "9.261187281287937e-05",
+   "MCTT01_in_the_diff": "0.000740894982503035",
+   "MCTT01_in_tlmr01_laws": "0.000740894982503035",
+   "B1_AGREES": true,
+   "MCTT01_AGREES": true
+  }
+ ],
+ "DIFF_ARTEFACT_AGREES": true,
+ "ONLY_kY_AND_muY_MOVED_OFF_B1": true,
+ "SHARED_PHYSICS": [
+  {
+   "field": "CAP",
+   "value_frozen_by_TLMR01": 16,
+   "declared_by": [
+    {
+     "artefact": "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+     "value": 16,
+     "AGREES": true
+    },
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS",
+     "value": 16,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "CORE_R",
+   "value_frozen_by_TLMR01": 5.0,
+   "declared_by": [
+    {
+     "artefact": "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+     "value": 5.0,
+     "AGREES": true
+    },
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS",
+     "value": 5.0,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "L",
+   "value_frozen_by_TLMR01": 36,
+   "declared_by": [
+    {
+     "artefact": "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+     "value": 36,
+     "AGREES": true
+    },
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS",
+     "value": 36,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "LATEST_ALLOWED_TRIGGER",
+   "value_frozen_by_TLMR01": 6500,
+   "declared_by": [
+    {
+     "artefact": "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+     "value": 6500,
+     "AGREES": true
+    },
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json TRIGGER",
+     "value": 6500,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "NEED",
+   "value_frozen_by_TLMR01": 250,
+   "declared_by": [
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json TRIGGER",
+     "value": 250,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 1,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "S0",
+   "value_frozen_by_TLMR01": 3,
+   "declared_by": [
+    {
+     "artefact": "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+     "value": 3,
+     "AGREES": true
+    },
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS",
+     "value": 3,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "T_HORIZON",
+   "value_frozen_by_TLMR01": 11000,
+   "declared_by": [
+    {
+     "artefact": "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+     "value": 11000,
+     "AGREES": true
+    },
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS",
+     "value": 11000,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "X_SEED",
+   "value_frozen_by_TLMR01": 4,
+   "declared_by": [
+    {
+     "artefact": "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+     "value": 4,
+     "AGREES": true
+    },
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS",
+     "value": 4,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "kX",
+   "value_frozen_by_TLMR01": 1.0,
+   "declared_by": [
+    {
+     "artefact": "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+     "value": 1.0,
+     "AGREES": true
+    },
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS",
+     "value": 1.0,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "muX",
+   "value_frozen_by_TLMR01": 0.004,
+   "declared_by": [
+    {
+     "artefact": "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+     "value": 0.004,
+     "AGREES": true
+    },
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS",
+     "value": 0.004,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "omega",
+   "value_frozen_by_TLMR01": 0.05,
+   "declared_by": [
+    {
+     "artefact": "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+     "value": 0.05,
+     "AGREES": true
+    },
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS",
+     "value": 0.05,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "p_hop_X",
+   "value_frozen_by_TLMR01": 0.10263340389897246,
+   "declared_by": [
+    {
+     "artefact": "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+     "value": 0.10263340389897246,
+     "AGREES": true
+    },
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS",
+     "value": 0.10263340389897246,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "phi",
+   "value_frozen_by_TLMR01": 0.2,
+   "declared_by": [
+    {
+     "artefact": "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+     "value": 0.2,
+     "AGREES": true
+    },
+    {
+     "artefact": "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS",
+     "value": 0.2,
+     "AGREES": true
+    }
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "HAS_A_BYTE_VERIFIED_SOURCE": true,
+   "ALL_SOURCES_AGREE": true
+  }
+ ],
+ "SHARED_PHYSICS_AGREES": true,
+ "EVERY_SHARED_CONSTANT_HAS_A_BYTE_VERIFIED_SOURCE": true,
+ "SHARED_CONSTANTS_WITHOUT_A_SOURCE": [],
+ "F_PRIMARY": {
+  "computed_in_tlmr01_as_1_minus_1_over_e": "0.6321205588285577",
+  "declared_by_BPRTC01_TRIGGER": "0.6321205588285577",
+  "bits_live": "0x3fe43a54e4e98864",
+  "bits_declared": "0x3fe43a54e4e98864",
+  "IDENTICAL_DOUBLE": true
+ },
+ "F_PRIMARY_BIT_EXACT": true,
+ "LAW_A_AGAINST_PQEC01": [
+  {
+   "field": "kY",
+   "value_in_tlmr01_laws": "2.5118864315095822e-05",
+   "value_in_source": "2.5118864315095822e-05",
+   "source": "PQEC01_MASTER_FREEZE PHASE_B.POINT_B1",
+   "IDENTICAL_DOUBLE": true
+  },
+  {
+   "field": "muY",
+   "value_in_tlmr01_laws": "9.261187281287937e-05",
+   "value_in_source": "9.261187281287937e-05",
+   "source": "PQEC01_MASTER_FREEZE PHASE_B.POINT_B1",
+   "IDENTICAL_DOUBLE": true
+  },
+  {
+   "field": "p_hop_Y",
+   "value_in_tlmr01_laws": "0.10263340389897246",
+   "value_in_source": "0.10263340389897246",
+   "source": "BPRTC01_MASTER_FREEZE POINT.INHERITED_FROZEN_CONSTANTS.p_hop_Y_mobile",
+   "IDENTICAL_DOUBLE": true
+  }
+ ],
+ "LAW_A_BIT_EXACT": true,
+ "LAW_B_AGAINST_BPRTC01": [
+  {
+   "field": "kY",
+   "value_in_tlmr01_laws": "2.5118864315095822e-05",
+   "value_in_BPRTC01_POINT": "2.5118864315095822e-05",
+   "bits_live": "0x3efa56cb36416f83",
+   "bits_source": "0x3efa56cb36416f83",
+   "IDENTICAL_DOUBLE": true
+  },
+  {
+   "field": "muY",
+   "value_in_tlmr01_laws": "9.261187281287937e-05",
+   "value_in_BPRTC01_POINT": "9.261187281287937e-05",
+   "bits_live": "0x3f184713dc1c8ab5",
+   "bits_source": "0x3f184713dc1c8ab5",
+   "IDENTICAL_DOUBLE": true
+  },
+  {
+   "field": "p_hop_Y",
+   "value_in_tlmr01_laws": "0.010263340389897247",
+   "value_in_BPRTC01_POINT": "0.010263340389897247",
+   "bits_live": "0x3f8504f23a941ee7",
+   "bits_source": "0x3f8504f23a941ee7",
+   "IDENTICAL_DOUBLE": true
+  }
+ ],
+ "LAW_B_BIT_EXACT": true,
+ "ALL_THREE_LAWS_BIT_EXACT_AGAINST_THEIR_OWN_SOURCE": true,
+ "PARENT_TIP": "9f4c70ceeb05b0b8a1f27c4cfc855e125f921ce9",
+ "PARENT_TIP_OBJECT_REACHABLE_IN_THIS_CONTAINER": false,
+ "PARENT_TIP_SEARCHED_FOR_IN": [
+  "the container repository (git cat-file)",
+  "ISING_LIFE_AUTHORITATIVE_RECOVERY/git/edl_verify.git",
+  "ISING_LIFE_AUTHORITATIVE_RECOVERY/git/vc2.git",
+  "ISING_LIFE_AUTHORITATIVE_RECOVERY/git/verify_clone.git"
+ ],
+ "PARENT_TIP_FOUND_IN_ANY_OF_THEM": false,
+ "WHY_THE_OBJECT_IS_GONE": "the total container rollback erased FOTSEA01's history; TLMR01 C3 was rebuilt on 82f6c84 (FDOT01 C2) and the current history does not descend from the parent tip.",
+ "WHAT_CORROBORATES_THE_TIP_STRING_INSTEAD": {
+  "artefact": "TLMR01_C1_C2.bundle on the owner's machine, written 2026-08-24 before the rollback",
+  "test": "git bundle verify against an empty repository",
+  "result": "error: Repository lacks these prerequisite commits: 9f4c70ceeb05b0b8a1f27c4cfc855e125f921ce9",
+  "what_it_shows": "the bundle names that exact commit as its prerequisite, so TLMR01 C1 was written directly on top of it in a repository that contained it. This corroborates the tip STRING independently of TLMR01's own artefacts. It does not recover the object, so the tip's tree and message remain unverifiable.",
+  "STATUS": "CORROBORATED_BUT_NOT_OBJECT_VERIFIABLE"
+ },
+ "WHY_THIS_DOES_NOT_BLOCK_A_WORLD": "the seed rule consumes the tip as a STRING fed to sha256, not as a git lookup. The string is frozen identically in TLMR01_PARENT_BINDING.json, in TLMR01_SEED_MANIFEST.json and in the bundle prerequisite above, and every one of the 518 frozen seeds re-derives from it here. Seed reproducibility and the disjointness proof FIMRCC01 owes are therefore fully checkable; what is NOT checkable is the CONTENT of the parent commit, and that is reported, not asserted away.",
+ "SEED_RULE_REDERIVES_EVERY_FROZEN_SEED_FROM_THE_TIP_STRING": true,
+ "N_SEEDS_REDERIVED": 518,
+ "SEED_SET_HASH_AGREES": true,
+ "SEED_SET_HASH": "f5f0243770bbf86af85dfbe63c56db6b5503d74cbfd8633f41f36afefe19a163",
+ "P2_BYTE_LEVEL_PASS": true,
+ "P2_RESIDUAL_OPEN": "the parent commit OBJECT is unrecoverable everywhere it was looked for. The tip string is corroborated by an independent pre-rollback artefact and every frozen seed re-derives from it, so the binding is checkable; the parent commit's content is not."
+}

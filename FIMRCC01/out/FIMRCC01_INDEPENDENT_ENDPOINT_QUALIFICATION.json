@@ -1,0 +1,3240 @@
+{
+ "MISSION": "FIMRCC01",
+ "SECTION": "3 \u2014 Precondition B verdict",
+ "GENERATED_UTC": "2026-08-25T16:30:11.780176+00:00",
+ "LAW": "LAW_C_MCTT01",
+ "N_WORLDS": 256,
+ "CLASSIFIER_1": {
+  "module": "TLMR01/code/tlmr01_offline.py",
+  "status": "frozen, byte-unchanged",
+  "sha256": "70b3df0e57ac4e593bf70254451c29934f74a1f9b924ea18b6bac8b1f5bd3afb",
+  "reads_the_online_component_id": true,
+  "where": "A.comps is built from the archive's compressed component rows, which carry the online id, and identity_intervals keys its per-step cell sets by that id."
+ },
+ "CLASSIFIER_2": {
+  "module": "FIMRCC01/code/fimrcc01_independent.py",
+  "status": "independent",
+  "sha256": "6ccf1e6d937e66f1630da6c823172ddb12590e957d05abb634dca40ad0373dd0",
+  "reads_the_online_component_id": false,
+  "inputs_it_uses": [
+   "the step index t",
+   "the cell coordinates (y,x)",
+   "the per-cell Y occupancy",
+   "the world Y total from the step array",
+   "the birth and death ledgers"
+  ],
+  "what_it_recomputes": [
+   "the components, by toroidal single-linkage at CORE_R from coordinates alone",
+   "the centroids, from the cell sets",
+   "the per-component Y occupancy, by summing the cell rows",
+   "the identity links, the episodes, the maturation gates, the identity intervals and their event content"
+  ],
+  "algorithmic_independence": "components are closed by label propagation to the per-row minimum, not by union-find. Both formulations are implemented and checked against each other."
+ },
+ "THE_ONE_DECLARED_DEPENDENCY": {
+  "quantity": "the local X disc mass xd",
+  "why_it_cannot_be_recomputed": "the narrow archive stores the X field only on Y-occupied cells, and the frozen gate sums X over an 81-cell disc most of which is not Y-occupied.",
+  "how_it_is_obtained": "read from the archive's component rows and attached by matching (centroid, ncells, nY) \u2014 a physical match. No component id is used to make the match.",
+  "what_would_expose_a_problem": "a non-bijective match, which is counted below and is zero.",
+  "what_it_affects": "only GATE_local_x_ratio in M3. The component structure, M2, the identity intervals and the event step do not depend on it.",
+  "THIS_IS_STATED_RATHER_THAN_CLAIMED_AWAY": true
+ },
+ "SCALE_OF_THE_COMPARISON": {
+  "worlds": 256,
+  "steps_compared": 2816000,
+  "episodes_compared": 16368,
+  "worlds_with_a_removal": 22,
+  "component_algorithm_selfcheck_steps": 20609,
+  "component_algorithm_selfcheck_disagreements": 0
+ },
+ "AGREEMENT": {
+  "worlds_with_full_agreement": 256,
+  "of": 256,
+  "percent": 100.0,
+  "component_count_disagreements_total": 0,
+  "xd_match_failures_total": 0
+ },
+ "GATES": {
+  "COMPONENT_COUNT_AGREES_AT_EVERY_STEP": true,
+  "EPISODES_AGREE_IN_EVERY_WORLD": true,
+  "M2_AGREES_IN_EVERY_WORLD": true,
+  "M3_AGREES_IN_EVERY_WORLD": true,
+  "M5_AGREES_IN_EVERY_WORLD": true,
+  "EVENT_STEP_AGREES_IN_EVERY_WORLD": true,
+  "XD_PHYSICAL_MATCH_IS_A_BIJECTION_IN_EVERY_WORLD": true,
+  "FAST_COMPONENTS_EQUAL_UNIONFIND_ON_EVERY_SAMPLED_STEP": true
+ },
+ "REQUIRED": "100 % agreement on M2, M3, M5 and the event step",
+ "PRECONDITION_B": "PASS",
+ "DISAGREEING_WORLDS": [],
+ "EVENT_STEPS": {
+  "TLMR01_LAW_C_MCTT01_P_i001_s1474284807": [
+   942,
+   942
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i002_s2168595504": [
+   697,
+   697
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i005_s203158793": [
+   580,
+   580
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i009_s2255663407": [
+   1334,
+   1334
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i015_s1512492624": [
+   903,
+   903
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i020_s1557150137": [
+   658,
+   658
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i031_s183681731": [
+   720,
+   720
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i037_s4195007327": [
+   479,
+   479
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i041_s1110731446": [
+   2379,
+   2379
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i043_s2646349982": [
+   2017,
+   2017
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i045_s1775703340": [
+   1062,
+   1062
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i058_s2121762450": [
+   928,
+   928
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i079_s3754004101": [
+   840,
+   840
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i083_s460074954": [
+   606,
+   606
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i093_s3302628962": [
+   603,
+   603
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i119_s2378920449": [
+   547,
+   547
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i150_s1335159117": [
+   1135,
+   1135
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i153_s1007174239": [
+   683,
+   683
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i156_s1109449052": [
+   2348,
+   2348
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i158_s1907819116": [
+   1418,
+   1418
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i163_s1806899634": [
+   728,
+   728
+  ],
+  "TLMR01_LAW_C_MCTT01_P_i184_s927162381": [
+   1204,
+   1204
+  ]
+ },
+ "WHAT_THIS_ESTABLISHES": "that every number FIMRCC01 will read out of an archive can be produced without trusting the online component bookkeeping. It does not establish that the endpoint is the right one, and it does not establish anything about reproduction, heredity, life or autonomous cohesion, in the affirmative or in the negative.",
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "PER_WORLD": [
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i000_s3468774367",
+   "seed": 3468774367,
+   "steps": 11000,
+   "n_episodes": 60,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i001_s1474284807",
+   "seed": 1474284807,
+   "steps": 11000,
+   "n_episodes": 106,
+   "ALL_AGREE": true,
+   "event_step": [
+    942,
+    942
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i002_s2168595504",
+   "seed": 2168595504,
+   "steps": 11000,
+   "n_episodes": 73,
+   "ALL_AGREE": true,
+   "event_step": [
+    697,
+    697
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i003_s1229132502",
+   "seed": 1229132502,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i004_s3515550705",
+   "seed": 3515550705,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i005_s203158793",
+   "seed": 203158793,
+   "steps": 11000,
+   "n_episodes": 87,
+   "ALL_AGREE": true,
+   "event_step": [
+    580,
+    580
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i006_s3342441000",
+   "seed": 3342441000,
+   "steps": 11000,
+   "n_episodes": 99,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i007_s2123417262",
+   "seed": 2123417262,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i008_s3788279427",
+   "seed": 3788279427,
+   "steps": 11000,
+   "n_episodes": 92,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i009_s2255663407",
+   "seed": 2255663407,
+   "steps": 11000,
+   "n_episodes": 91,
+   "ALL_AGREE": true,
+   "event_step": [
+    1334,
+    1334
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i010_s1299368896",
+   "seed": 1299368896,
+   "steps": 11000,
+   "n_episodes": 127,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i011_s174110330",
+   "seed": 174110330,
+   "steps": 11000,
+   "n_episodes": 109,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i012_s4151489036",
+   "seed": 4151489036,
+   "steps": 11000,
+   "n_episodes": 105,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i013_s4252385814",
+   "seed": 4252385814,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i014_s2652517076",
+   "seed": 2652517076,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i015_s1512492624",
+   "seed": 1512492624,
+   "steps": 11000,
+   "n_episodes": 108,
+   "ALL_AGREE": true,
+   "event_step": [
+    903,
+    903
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i016_s849921550",
+   "seed": 849921550,
+   "steps": 11000,
+   "n_episodes": 68,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i017_s2171491",
+   "seed": 2171491,
+   "steps": 11000,
+   "n_episodes": 7,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i018_s3183842364",
+   "seed": 3183842364,
+   "steps": 11000,
+   "n_episodes": 78,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i019_s3750150916",
+   "seed": 3750150916,
+   "steps": 11000,
+   "n_episodes": 71,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i020_s1557150137",
+   "seed": 1557150137,
+   "steps": 11000,
+   "n_episodes": 117,
+   "ALL_AGREE": true,
+   "event_step": [
+    658,
+    658
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i021_s254241750",
+   "seed": 254241750,
+   "steps": 11000,
+   "n_episodes": 106,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i022_s3333264350",
+   "seed": 3333264350,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i023_s4140360083",
+   "seed": 4140360083,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i024_s3278274137",
+   "seed": 3278274137,
+   "steps": 11000,
+   "n_episodes": 111,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i025_s2784149955",
+   "seed": 2784149955,
+   "steps": 11000,
+   "n_episodes": 117,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i026_s48200489",
+   "seed": 48200489,
+   "steps": 11000,
+   "n_episodes": 101,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i027_s1749129666",
+   "seed": 1749129666,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i028_s66279995",
+   "seed": 66279995,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i029_s4000396048",
+   "seed": 4000396048,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i030_s1820801619",
+   "seed": 1820801619,
+   "steps": 11000,
+   "n_episodes": 63,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i031_s183681731",
+   "seed": 183681731,
+   "steps": 11000,
+   "n_episodes": 96,
+   "ALL_AGREE": true,
+   "event_step": [
+    720,
+    720
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i032_s2663648561",
+   "seed": 2663648561,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i033_s3618822510",
+   "seed": 3618822510,
+   "steps": 11000,
+   "n_episodes": 59,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i034_s3781692354",
+   "seed": 3781692354,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i035_s4027495691",
+   "seed": 4027495691,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i036_s3167689978",
+   "seed": 3167689978,
+   "steps": 11000,
+   "n_episodes": 65,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i037_s4195007327",
+   "seed": 4195007327,
+   "steps": 11000,
+   "n_episodes": 89,
+   "ALL_AGREE": true,
+   "event_step": [
+    479,
+    479
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i038_s1839084561",
+   "seed": 1839084561,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i039_s1480153874",
+   "seed": 1480153874,
+   "steps": 11000,
+   "n_episodes": 99,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i040_s61550146",
+   "seed": 61550146,
+   "steps": 11000,
+   "n_episodes": 43,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i041_s1110731446",
+   "seed": 1110731446,
+   "steps": 11000,
+   "n_episodes": 89,
+   "ALL_AGREE": true,
+   "event_step": [
+    2379,
+    2379
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i042_s2285576030",
+   "seed": 2285576030,
+   "steps": 11000,
+   "n_episodes": 99,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i043_s2646349982",
+   "seed": 2646349982,
+   "steps": 11000,
+   "n_episodes": 67,
+   "ALL_AGREE": true,
+   "event_step": [
+    2017,
+    2017
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i044_s3445421175",
+   "seed": 3445421175,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i045_s1775703340",
+   "seed": 1775703340,
+   "steps": 11000,
+   "n_episodes": 90,
+   "ALL_AGREE": true,
+   "event_step": [
+    1062,
+    1062
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i046_s3604330700",
+   "seed": 3604330700,
+   "steps": 11000,
+   "n_episodes": 106,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i047_s2024253694",
+   "seed": 2024253694,
+   "steps": 11000,
+   "n_episodes": 84,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i048_s1714656634",
+   "seed": 1714656634,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i049_s2243809191",
+   "seed": 2243809191,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i050_s2057205944",
+   "seed": 2057205944,
+   "steps": 11000,
+   "n_episodes": 92,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i051_s3893277691",
+   "seed": 3893277691,
+   "steps": 11000,
+   "n_episodes": 97,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i052_s1710353668",
+   "seed": 1710353668,
+   "steps": 11000,
+   "n_episodes": 80,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i053_s2771503041",
+   "seed": 2771503041,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i054_s4124249009",
+   "seed": 4124249009,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i055_s4265216816",
+   "seed": 4265216816,
+   "steps": 11000,
+   "n_episodes": 87,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i056_s1598018184",
+   "seed": 1598018184,
+   "steps": 11000,
+   "n_episodes": 96,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i057_s2997862579",
+   "seed": 2997862579,
+   "steps": 11000,
+   "n_episodes": 66,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i058_s2121762450",
+   "seed": 2121762450,
+   "steps": 11000,
+   "n_episodes": 135,
+   "ALL_AGREE": true,
+   "event_step": [
+    928,
+    928
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i059_s1259379538",
+   "seed": 1259379538,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i060_s1608789194",
+   "seed": 1608789194,
+   "steps": 11000,
+   "n_episodes": 70,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i061_s4127317310",
+   "seed": 4127317310,
+   "steps": 11000,
+   "n_episodes": 6,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i062_s2904670048",
+   "seed": 2904670048,
+   "steps": 11000,
+   "n_episodes": 77,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i063_s3582085970",
+   "seed": 3582085970,
+   "steps": 11000,
+   "n_episodes": 98,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i064_s2010144759",
+   "seed": 2010144759,
+   "steps": 11000,
+   "n_episodes": 120,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i065_s2025243000",
+   "seed": 2025243000,
+   "steps": 11000,
+   "n_episodes": 62,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i066_s1000709160",
+   "seed": 1000709160,
+   "steps": 11000,
+   "n_episodes": 123,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i067_s3500567118",
+   "seed": 3500567118,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i068_s1590922910",
+   "seed": 1590922910,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i069_s1846484854",
+   "seed": 1846484854,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i070_s3108709017",
+   "seed": 3108709017,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i071_s3246077102",
+   "seed": 3246077102,
+   "steps": 11000,
+   "n_episodes": 59,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i072_s2119964088",
+   "seed": 2119964088,
+   "steps": 11000,
+   "n_episodes": 85,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i073_s4288429831",
+   "seed": 4288429831,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i074_s2243712584",
+   "seed": 2243712584,
+   "steps": 11000,
+   "n_episodes": 106,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i075_s84471945",
+   "seed": 84471945,
+   "steps": 11000,
+   "n_episodes": 91,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i076_s3048655774",
+   "seed": 3048655774,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i077_s2414544028",
+   "seed": 2414544028,
+   "steps": 11000,
+   "n_episodes": 128,
+   "ALL_AGREE": true,
+   "event_step": [
+    490,
+    490
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i078_s684660470",
+   "seed": 684660470,
+   "steps": 11000,
+   "n_episodes": 111,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i079_s3754004101",
+   "seed": 3754004101,
+   "steps": 11000,
+   "n_episodes": 64,
+   "ALL_AGREE": true,
+   "event_step": [
+    840,
+    840
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i080_s367906464",
+   "seed": 367906464,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i081_s3364744378",
+   "seed": 3364744378,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i082_s3484175405",
+   "seed": 3484175405,
+   "steps": 11000,
+   "n_episodes": 111,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i083_s460074954",
+   "seed": 460074954,
+   "steps": 11000,
+   "n_episodes": 76,
+   "ALL_AGREE": true,
+   "event_step": [
+    606,
+    606
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i084_s1009755402",
+   "seed": 1009755402,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i085_s1091949873",
+   "seed": 1091949873,
+   "steps": 11000,
+   "n_episodes": 109,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i086_s2766514015",
+   "seed": 2766514015,
+   "steps": 11000,
+   "n_episodes": 63,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i087_s876674420",
+   "seed": 876674420,
+   "steps": 11000,
+   "n_episodes": 115,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i088_s1429174528",
+   "seed": 1429174528,
+   "steps": 11000,
+   "n_episodes": 81,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i089_s3878582599",
+   "seed": 3878582599,
+   "steps": 11000,
+   "n_episodes": 92,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i090_s2160052205",
+   "seed": 2160052205,
+   "steps": 11000,
+   "n_episodes": 98,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i091_s3007844443",
+   "seed": 3007844443,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i092_s539559787",
+   "seed": 539559787,
+   "steps": 11000,
+   "n_episodes": 81,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i093_s3302628962",
+   "seed": 3302628962,
+   "steps": 11000,
+   "n_episodes": 98,
+   "ALL_AGREE": true,
+   "event_step": [
+    603,
+    603
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i094_s3216424895",
+   "seed": 3216424895,
+   "steps": 11000,
+   "n_episodes": 105,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i095_s1908401089",
+   "seed": 1908401089,
+   "steps": 11000,
+   "n_episodes": 1,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i096_s34644360",
+   "seed": 34644360,
+   "steps": 11000,
+   "n_episodes": 119,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i097_s1689472722",
+   "seed": 1689472722,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i098_s472871786",
+   "seed": 472871786,
+   "steps": 11000,
+   "n_episodes": 79,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i099_s3473992632",
+   "seed": 3473992632,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i100_s1557135739",
+   "seed": 1557135739,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i101_s4155942011",
+   "seed": 4155942011,
+   "steps": 11000,
+   "n_episodes": 107,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i102_s609510143",
+   "seed": 609510143,
+   "steps": 11000,
+   "n_episodes": 75,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i103_s3155298137",
+   "seed": 3155298137,
+   "steps": 11000,
+   "n_episodes": 123,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i104_s4251606752",
+   "seed": 4251606752,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i105_s1680419745",
+   "seed": 1680419745,
+   "steps": 11000,
+   "n_episodes": 63,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i106_s1269574956",
+   "seed": 1269574956,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i107_s3867877507",
+   "seed": 3867877507,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i108_s370417667",
+   "seed": 370417667,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i109_s1418839031",
+   "seed": 1418839031,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i110_s106188204",
+   "seed": 106188204,
+   "steps": 11000,
+   "n_episodes": 141,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i111_s4049698502",
+   "seed": 4049698502,
+   "steps": 11000,
+   "n_episodes": 84,
+   "ALL_AGREE": true,
+   "event_step": [
+    1959,
+    1959
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i112_s922803847",
+   "seed": 922803847,
+   "steps": 11000,
+   "n_episodes": 121,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i113_s3565431405",
+   "seed": 3565431405,
+   "steps": 11000,
+   "n_episodes": 89,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i114_s2970914122",
+   "seed": 2970914122,
+   "steps": 11000,
+   "n_episodes": 152,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i115_s3909651804",
+   "seed": 3909651804,
+   "steps": 11000,
+   "n_episodes": 136,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i116_s269123682",
+   "seed": 269123682,
+   "steps": 11000,
+   "n_episodes": 89,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i117_s1436257237",
+   "seed": 1436257237,
+   "steps": 11000,
+   "n_episodes": 57,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i118_s3579237061",
+   "seed": 3579237061,
+   "steps": 11000,
+   "n_episodes": 70,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i119_s2378920449",
+   "seed": 2378920449,
+   "steps": 11000,
+   "n_episodes": 74,
+   "ALL_AGREE": true,
+   "event_step": [
+    547,
+    547
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i120_s2831873163",
+   "seed": 2831873163,
+   "steps": 11000,
+   "n_episodes": 98,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i121_s1068953773",
+   "seed": 1068953773,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i122_s3811911119",
+   "seed": 3811911119,
+   "steps": 11000,
+   "n_episodes": 104,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i123_s2175622413",
+   "seed": 2175622413,
+   "steps": 11000,
+   "n_episodes": 63,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i124_s51962472",
+   "seed": 51962472,
+   "steps": 11000,
+   "n_episodes": 93,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i125_s650394426",
+   "seed": 650394426,
+   "steps": 11000,
+   "n_episodes": 123,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i126_s1275765073",
+   "seed": 1275765073,
+   "steps": 11000,
+   "n_episodes": 71,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i127_s1249680113",
+   "seed": 1249680113,
+   "steps": 11000,
+   "n_episodes": 57,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i128_s1253940047",
+   "seed": 1253940047,
+   "steps": 11000,
+   "n_episodes": 55,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i129_s3331908209",
+   "seed": 3331908209,
+   "steps": 11000,
+   "n_episodes": 121,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i130_s2949635617",
+   "seed": 2949635617,
+   "steps": 11000,
+   "n_episodes": 99,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i131_s4084519793",
+   "seed": 4084519793,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i132_s3074301056",
+   "seed": 3074301056,
+   "steps": 11000,
+   "n_episodes": 2,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i133_s4049969518",
+   "seed": 4049969518,
+   "steps": 11000,
+   "n_episodes": 96,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i134_s2393262169",
+   "seed": 2393262169,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i135_s2496538809",
+   "seed": 2496538809,
+   "steps": 11000,
+   "n_episodes": 75,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i136_s813940258",
+   "seed": 813940258,
+   "steps": 11000,
+   "n_episodes": 100,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i137_s1666452167",
+   "seed": 1666452167,
+   "steps": 11000,
+   "n_episodes": 108,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i138_s3510308587",
+   "seed": 3510308587,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i139_s2132275838",
+   "seed": 2132275838,
+   "steps": 11000,
+   "n_episodes": 117,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i140_s568387761",
+   "seed": 568387761,
+   "steps": 11000,
+   "n_episodes": 113,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i141_s3072867135",
+   "seed": 3072867135,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i142_s1357242748",
+   "seed": 1357242748,
+   "steps": 11000,
+   "n_episodes": 119,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i143_s3476161065",
+   "seed": 3476161065,
+   "steps": 11000,
+   "n_episodes": 100,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i144_s1696709460",
+   "seed": 1696709460,
+   "steps": 11000,
+   "n_episodes": 78,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i145_s143045343",
+   "seed": 143045343,
+   "steps": 11000,
+   "n_episodes": 150,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i146_s2127522666",
+   "seed": 2127522666,
+   "steps": 11000,
+   "n_episodes": 106,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i147_s1601203250",
+   "seed": 1601203250,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i148_s458232827",
+   "seed": 458232827,
+   "steps": 11000,
+   "n_episodes": 83,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i149_s1073666088",
+   "seed": 1073666088,
+   "steps": 11000,
+   "n_episodes": 79,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i150_s1335159117",
+   "seed": 1335159117,
+   "steps": 11000,
+   "n_episodes": 82,
+   "ALL_AGREE": true,
+   "event_step": [
+    1135,
+    1135
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i151_s1562015410",
+   "seed": 1562015410,
+   "steps": 11000,
+   "n_episodes": 93,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i152_s1479004053",
+   "seed": 1479004053,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i153_s1007174239",
+   "seed": 1007174239,
+   "steps": 11000,
+   "n_episodes": 64,
+   "ALL_AGREE": true,
+   "event_step": [
+    683,
+    683
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i154_s1551301317",
+   "seed": 1551301317,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i155_s4178075089",
+   "seed": 4178075089,
+   "steps": 11000,
+   "n_episodes": 85,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i156_s1109449052",
+   "seed": 1109449052,
+   "steps": 11000,
+   "n_episodes": 89,
+   "ALL_AGREE": true,
+   "event_step": [
+    2348,
+    2348
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i157_s88433437",
+   "seed": 88433437,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i158_s1907819116",
+   "seed": 1907819116,
+   "steps": 11000,
+   "n_episodes": 64,
+   "ALL_AGREE": true,
+   "event_step": [
+    1418,
+    1418
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i159_s169036279",
+   "seed": 169036279,
+   "steps": 11000,
+   "n_episodes": 100,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i160_s2872827574",
+   "seed": 2872827574,
+   "steps": 11000,
+   "n_episodes": 109,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i161_s371438899",
+   "seed": 371438899,
+   "steps": 11000,
+   "n_episodes": 106,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i162_s1365599247",
+   "seed": 1365599247,
+   "steps": 11000,
+   "n_episodes": 56,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i163_s1806899634",
+   "seed": 1806899634,
+   "steps": 11000,
+   "n_episodes": 118,
+   "ALL_AGREE": true,
+   "event_step": [
+    728,
+    728
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i164_s1539241069",
+   "seed": 1539241069,
+   "steps": 11000,
+   "n_episodes": 75,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i165_s4172152514",
+   "seed": 4172152514,
+   "steps": 11000,
+   "n_episodes": 98,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i166_s2054584376",
+   "seed": 2054584376,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i167_s1747269135",
+   "seed": 1747269135,
+   "steps": 11000,
+   "n_episodes": 77,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i168_s2082877258",
+   "seed": 2082877258,
+   "steps": 11000,
+   "n_episodes": 103,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i169_s97966614",
+   "seed": 97966614,
+   "steps": 11000,
+   "n_episodes": 131,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i170_s2170854620",
+   "seed": 2170854620,
+   "steps": 11000,
+   "n_episodes": 94,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i171_s1892298039",
+   "seed": 1892298039,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i172_s1404539041",
+   "seed": 1404539041,
+   "steps": 11000,
+   "n_episodes": 2,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i173_s1978643702",
+   "seed": 1978643702,
+   "steps": 11000,
+   "n_episodes": 92,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i174_s3991292758",
+   "seed": 3991292758,
+   "steps": 11000,
+   "n_episodes": 74,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i175_s3684727519",
+   "seed": 3684727519,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i176_s2709720631",
+   "seed": 2709720631,
+   "steps": 11000,
+   "n_episodes": 104,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i177_s3590841126",
+   "seed": 3590841126,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i178_s209323135",
+   "seed": 209323135,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i179_s2833508370",
+   "seed": 2833508370,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i180_s3651961197",
+   "seed": 3651961197,
+   "steps": 11000,
+   "n_episodes": 94,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i181_s3476813584",
+   "seed": 3476813584,
+   "steps": 11000,
+   "n_episodes": 105,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i182_s1493646214",
+   "seed": 1493646214,
+   "steps": 11000,
+   "n_episodes": 82,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i183_s4120635981",
+   "seed": 4120635981,
+   "steps": 11000,
+   "n_episodes": 102,
+   "ALL_AGREE": true,
+   "event_step": [
+    1497,
+    1497
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i184_s927162381",
+   "seed": 927162381,
+   "steps": 11000,
+   "n_episodes": 60,
+   "ALL_AGREE": true,
+   "event_step": [
+    1204,
+    1204
+   ],
+   "removal": true
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i185_s647097423",
+   "seed": 647097423,
+   "steps": 11000,
+   "n_episodes": 74,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i186_s1155617503",
+   "seed": 1155617503,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i187_s2277246742",
+   "seed": 2277246742,
+   "steps": 11000,
+   "n_episodes": 63,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i188_s3992051214",
+   "seed": 3992051214,
+   "steps": 11000,
+   "n_episodes": 100,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i189_s1996625881",
+   "seed": 1996625881,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i190_s85983058",
+   "seed": 85983058,
+   "steps": 11000,
+   "n_episodes": 95,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i191_s1237331785",
+   "seed": 1237331785,
+   "steps": 11000,
+   "n_episodes": 78,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i192_s1209256556",
+   "seed": 1209256556,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i193_s1372949746",
+   "seed": 1372949746,
+   "steps": 11000,
+   "n_episodes": 89,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i194_s3663101975",
+   "seed": 3663101975,
+   "steps": 11000,
+   "n_episodes": 47,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i195_s1167949137",
+   "seed": 1167949137,
+   "steps": 11000,
+   "n_episodes": 84,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i196_s1740617176",
+   "seed": 1740617176,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i197_s2404365416",
+   "seed": 2404365416,
+   "steps": 11000,
+   "n_episodes": 93,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i198_s3193559368",
+   "seed": 3193559368,
+   "steps": 11000,
+   "n_episodes": 119,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i199_s1850395281",
+   "seed": 1850395281,
+   "steps": 11000,
+   "n_episodes": 48,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i200_s3962563505",
+   "seed": 3962563505,
+   "steps": 11000,
+   "n_episodes": 112,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i201_s516697319",
+   "seed": 516697319,
+   "steps": 11000,
+   "n_episodes": 55,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i202_s2161675034",
+   "seed": 2161675034,
+   "steps": 11000,
+   "n_episodes": 84,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i203_s3160244357",
+   "seed": 3160244357,
+   "steps": 11000,
+   "n_episodes": 108,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i204_s3129793385",
+   "seed": 3129793385,
+   "steps": 11000,
+   "n_episodes": 93,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i205_s716096705",
+   "seed": 716096705,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i206_s3559689162",
+   "seed": 3559689162,
+   "steps": 11000,
+   "n_episodes": 74,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i207_s3224145194",
+   "seed": 3224145194,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i208_s2878771728",
+   "seed": 2878771728,
+   "steps": 11000,
+   "n_episodes": 66,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i209_s3204439562",
+   "seed": 3204439562,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i210_s2775969402",
+   "seed": 2775969402,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i211_s1539229014",
+   "seed": 1539229014,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i212_s1078237330",
+   "seed": 1078237330,
+   "steps": 11000,
+   "n_episodes": 114,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i213_s1383697873",
+   "seed": 1383697873,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i214_s4187466142",
+   "seed": 4187466142,
+   "steps": 11000,
+   "n_episodes": 108,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i215_s3209308484",
+   "seed": 3209308484,
+   "steps": 11000,
+   "n_episodes": 71,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i216_s216082777",
+   "seed": 216082777,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i217_s1018017219",
+   "seed": 1018017219,
+   "steps": 11000,
+   "n_episodes": 2,
+   "ALL_AGREE": true,
+   "event_step": [
+    639,
+    639
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i218_s1566366124",
+   "seed": 1566366124,
+   "steps": 11000,
+   "n_episodes": 90,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i219_s2010928977",
+   "seed": 2010928977,
+   "steps": 11000,
+   "n_episodes": 86,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i220_s1735945190",
+   "seed": 1735945190,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i221_s809390372",
+   "seed": 809390372,
+   "steps": 11000,
+   "n_episodes": 130,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i222_s3853622625",
+   "seed": 3853622625,
+   "steps": 11000,
+   "n_episodes": 59,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i223_s2915924792",
+   "seed": 2915924792,
+   "steps": 11000,
+   "n_episodes": 91,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i224_s3051072952",
+   "seed": 3051072952,
+   "steps": 11000,
+   "n_episodes": 49,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i225_s1323357962",
+   "seed": 1323357962,
+   "steps": 11000,
+   "n_episodes": 67,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i226_s271091024",
+   "seed": 271091024,
+   "steps": 11000,
+   "n_episodes": 86,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i227_s627993181",
+   "seed": 627993181,
+   "steps": 11000,
+   "n_episodes": 4,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i228_s1658096019",
+   "seed": 1658096019,
+   "steps": 11000,
+   "n_episodes": 95,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i229_s78134766",
+   "seed": 78134766,
+   "steps": 11000,
+   "n_episodes": 96,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i230_s1094364661",
+   "seed": 1094364661,
+   "steps": 11000,
+   "n_episodes": 77,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i231_s1906922770",
+   "seed": 1906922770,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i232_s2607991924",
+   "seed": 2607991924,
+   "steps": 11000,
+   "n_episodes": 69,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i233_s3348714048",
+   "seed": 3348714048,
+   "steps": 11000,
+   "n_episodes": 103,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i234_s2477791979",
+   "seed": 2477791979,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i235_s3178928346",
+   "seed": 3178928346,
+   "steps": 11000,
+   "n_episodes": 122,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i236_s2250393235",
+   "seed": 2250393235,
+   "steps": 11000,
+   "n_episodes": 72,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i237_s1503183245",
+   "seed": 1503183245,
+   "steps": 11000,
+   "n_episodes": 107,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i238_s2655761404",
+   "seed": 2655761404,
+   "steps": 11000,
+   "n_episodes": 151,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i239_s1508226821",
+   "seed": 1508226821,
+   "steps": 11000,
+   "n_episodes": 111,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i240_s3329644744",
+   "seed": 3329644744,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i241_s1844213924",
+   "seed": 1844213924,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i242_s3049497462",
+   "seed": 3049497462,
+   "steps": 11000,
+   "n_episodes": 107,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i243_s977018595",
+   "seed": 977018595,
+   "steps": 11000,
+   "n_episodes": 145,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i244_s768413773",
+   "seed": 768413773,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i245_s956144254",
+   "seed": 956144254,
+   "steps": 11000,
+   "n_episodes": 80,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i246_s4162119465",
+   "seed": 4162119465,
+   "steps": 11000,
+   "n_episodes": 82,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i247_s3872849088",
+   "seed": 3872849088,
+   "steps": 11000,
+   "n_episodes": 115,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i248_s2834117364",
+   "seed": 2834117364,
+   "steps": 11000,
+   "n_episodes": 127,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i249_s1791945193",
+   "seed": 1791945193,
+   "steps": 11000,
+   "n_episodes": 119,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i250_s2106745176",
+   "seed": 2106745176,
+   "steps": 11000,
+   "n_episodes": 1,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i251_s845688018",
+   "seed": 845688018,
+   "steps": 11000,
+   "n_episodes": 2,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i252_s4111157368",
+   "seed": 4111157368,
+   "steps": 11000,
+   "n_episodes": 0,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i253_s84020468",
+   "seed": 84020468,
+   "steps": 11000,
+   "n_episodes": 144,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i254_s3393758646",
+   "seed": 3393758646,
+   "steps": 11000,
+   "n_episodes": 114,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i255_s2474993149",
+   "seed": 2474993149,
+   "steps": 11000,
+   "n_episodes": 77,
+   "ALL_AGREE": true,
+   "event_step": [
+    null,
+    null
+   ],
+   "removal": false
+  }
+ ]
+}

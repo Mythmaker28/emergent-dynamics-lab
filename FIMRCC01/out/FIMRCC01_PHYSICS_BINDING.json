@@ -1,0 +1,184 @@
+{
+ "MISSION": "FIMRCC01",
+ "SECTION": "1 \u2014 physics binding",
+ "GENERATED_UTC": "2026-08-25T15:37:07.036460+00:00",
+ "EVERY_CONSTANT_AND_ITS_BYTE_VERIFIED_SOURCE": [
+  {
+   "field": "CAP",
+   "value": 16,
+   "declared_by": [
+    "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+    "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS"
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "CORE_R",
+   "value": 5.0,
+   "declared_by": [
+    "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+    "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS"
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "L",
+   "value": 36,
+   "declared_by": [
+    "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+    "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS"
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "LATEST_ALLOWED_TRIGGER",
+   "value": 6500,
+   "declared_by": [
+    "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+    "BPRTC01_MASTER_FREEZE.json TRIGGER"
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "NEED",
+   "value": 250,
+   "declared_by": [
+    "BPRTC01_MASTER_FREEZE.json TRIGGER"
+   ],
+   "N_INDEPENDENT_SOURCES": 1,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "S0",
+   "value": 3,
+   "declared_by": [
+    "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+    "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS"
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "T_HORIZON",
+   "value": 11000,
+   "declared_by": [
+    "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+    "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS"
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "X_SEED",
+   "value": 4,
+   "declared_by": [
+    "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+    "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS"
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "kX",
+   "value": 1.0,
+   "declared_by": [
+    "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+    "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS"
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "muX",
+   "value": 0.004,
+   "declared_by": [
+    "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+    "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS"
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "omega",
+   "value": 0.05,
+   "declared_by": [
+    "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+    "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS"
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "p_hop_X",
+   "value": 0.10263340389897246,
+   "declared_by": [
+    "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+    "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS"
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "ALL_SOURCES_AGREE": true
+  },
+  {
+   "field": "phi",
+   "value": 0.2,
+   "declared_by": [
+    "MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+    "BPRTC01_MASTER_FREEZE.json POINT.INHERITED_FROZEN_CONSTANTS"
+   ],
+   "N_INDEPENDENT_SOURCES": 2,
+   "ALL_SOURCES_AGREE": true
+  }
+ ],
+ "EVERY_CONSTANT_HAS_A_BYTE_VERIFIED_SOURCE": true,
+ "TRIGGER_GATES": {
+  "NEED": 250,
+  "F_PRIMARY": 0.6321205588285577,
+  "F_PRIMARY_bits": "0x3fe43a54e4e98864",
+  "F_PRIMARY_computed_as_1_minus_1_over_e_is_the_same_double": true,
+  "LATEST_ALLOWED_TRIGGER": 6500,
+  "rule": "the frozen FDFLT01 functional maturation: a maximal run of exactly two spatial centres lasting NEED = 250 steps with no third centre in the run, and the weaker centre's local X mass at least F_PRIMARY = 1 - 1/e of the stronger's; the event is at run_start + NEED - 1",
+  "UNCHANGED_FROM": "FDFLT01 via FMRT01 and FMRCT01"
+ },
+ "UNCHANGED_MACHINERY": [
+  "CAP",
+  "CORE_R",
+  "L",
+  "LATEST_ALLOWED_TRIGGER",
+  "NEED",
+  "S0",
+  "T_HORIZON",
+  "X_SEED",
+  "kX",
+  "muX",
+  "omega",
+  "p_hop_X",
+  "phi",
+  "initial condition (seed_one_organiser: one Y and X_SEED = 4 X at (L//2, L//2), SX = SY = S0 in every cell)",
+  "feed/exchange law",
+  "scheduler",
+  "centre classifier",
+  "trigger rule",
+  "parent-removal intervention",
+  "engine",
+  "LawSpec"
+ ],
+ "NEW_ARCHITECTURE": false,
+ "NEW_SUBSTRATE": false,
+ "NEW_SPECIES": false,
+ "NEW_X_LAWSPEC": false,
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "ENGINE": "the frozen WorldV2._one_step order \u2014 diffuse, react, decay, exchange \u2014 reached through pqec01_observer.build_world and lawspec_v2.spec_with, unchanged.",
+ "CENTRE_CLASSIFIER": "toroidal single-linkage components at radius CORE_R = 5.0, squared distance compared with <=, imported byte-unchanged from fdot01_centres via fmrct01_track. Unchanged.",
+ "FEED_EXCHANGE_LAW": "lawspec_v2 _exchange: per cell and species, offers ~ Binomial(max(S0-n,0), phi), removals drawn without replacement from the exchangeable pool {SX,SY,WX,WY}, insertions split hypergeometrically. Unchanged from B1.",
+ "INITIAL_CONDITION": "seed_one_organiser: one Y and X_SEED = 4 X at the lattice centre (L//2, L//2); SX and SY set to S0 = 3 in every cell by fresh_world. Unchanged from B1.",
+ "SCHEDULER": "the frozen WorldV2._one_step order, unchanged: diffuse, react, decay, exchange.",
+ "PARENT_REMOVAL_INTERVENTION": "fmrct01_world.intervene: the parent component's Y are moved to WY through the same channel a spontaneous decay uses. Occupancy is conserved exactly and no random number is consumed, which the runner verifies by comparing the generator hash across the call. Unchanged.",
+ "MOBILITY_CONSTANCY": "p_hop_Y is a Spec field read by kinetics._diffuse at every step. It is set once at construction and never written again; there is no code path that changes it at the fork or at the removal. The runner asserts spec identity after construction and the intervention touches only n['Y'] and n['WY'].",
+ "WHAT_FIMRCC01_ADDS_TO_THE_PHYSICS": "nothing. The three arms differ only in which cells the intervention writes to at the trigger step; the law, the engine, the scheduler, the classifier and the trigger rule are byte-identical across all three.",
+ "SEED_RULE": "sha256(PARENT_TIP | 'FIMRCC01' | ARM | ROLE | INDEX)[:8] as big-endian uint64, mod 2**32, with PARENT_TIP = 1de537386d584f2ff6abfb72ca46dec3e02e3c36. Disjointness from TLMR01's primary, reserve and fixture bands is PROVED BY ENUMERATION in the pre-run freeze, not argued from the mission string.",
+ "SEED_RULE_IS_DECLARED_HERE_AND_EXECUTED_IN_THE_FREEZE": true
+}

@@ -1,0 +1,82 @@
+{
+ "MISSION": "FIMRCC01",
+ "SECTION": "1 \u2014 the selected law",
+ "GENERATED_UTC": "2026-08-25T15:37:07.036460+00:00",
+ "SELECTED_LAW": "LAW_C_MCTT01",
+ "MAX_SELECTED_LAWS": 1,
+ "N_SELECTED": 1,
+ "IT_IS_THE_LAW_TLMR01_SELECTED": true,
+ "NEW_PARAMETER_POINTS": 0,
+ "PARAMETER_RETUNING": "forbidden \u2014 and none is performed; every field below is read from a byte-verified parent artefact",
+ "SELECTED_Y_LAW": {
+  "kY": 0.001004754572603833,
+  "muY": 0.000740894982503035,
+  "p_hop_Y": 0.10263340389897246
+ },
+ "BIT_LEVEL_VERIFICATION": [
+  {
+   "field": "kY",
+   "value": "0.001004754572603833",
+   "bits": "0x3f50763f01e8e5b2",
+   "declared_bits_in_MCTT01_SELECTED_LAW": "0x3f50763f01e8e5b2",
+   "MATCHES_DECLARED_BITS": true,
+   "IDENTICAL_DOUBLE_TO_THE_SOURCE": true
+  },
+  {
+   "field": "muY",
+   "value": "0.000740894982503035",
+   "bits": "0x3f484713dc1c8ab5",
+   "declared_bits_in_MCTT01_SELECTED_LAW": "0x3f484713dc1c8ab5",
+   "MATCHES_DECLARED_BITS": true,
+   "IDENTICAL_DOUBLE_TO_THE_SOURCE": true
+  },
+  {
+   "field": "p_hop_Y",
+   "value": "0.10263340389897246",
+   "bits": "0x3fba462ec93926a0",
+   "declared_bits_in_MCTT01_SELECTED_LAW": "0x3fba462ec93926a0",
+   "MATCHES_DECLARED_BITS": true,
+   "IDENTICAL_DOUBLE_TO_THE_SOURCE": true
+  }
+ ],
+ "ALL_FIELDS_BIT_EXACT": true,
+ "PROVENANCE_CHAIN": [
+  {
+   "step": 1,
+   "artefact": "MCTT01/out/MCTT01_SELECTED_LAW.json",
+   "sha256": "aa3b023d4834fa4305a981f90ef8472f1355d3aa3d1e167ba7cc4ee6b7fc2faf",
+   "declares": "SELECTED.kY, SELECTED.muY, SELECTED.p_hop_Y and their 64-bit patterns"
+  },
+  {
+   "step": 2,
+   "artefact": "MCTT01/out/MCTT01_PHYSICS_DIFF_FROM_B1.json",
+   "sha256": "d0cb0f648f2943f8e561231b570be236c0787c33303968c6c5debc879d96a9d0",
+   "declares": "that exactly two parameters, kY and muY, moved off B1, and by what factor"
+  },
+  {
+   "step": 3,
+   "artefact": "TLMR01/out/TLMR01_MEASUREMENT_LAWS.json",
+   "sha256": "9116b7ec88d591d7a3b2fc42799c3448f6b5cd49365b307eb8f2610fc38d8443",
+   "declares": "the same three doubles as LAW_C_MCTT01, and the sha256 of all four source artefacts"
+  },
+  {
+   "step": 4,
+   "artefact": "FIMRCC01/out/FIMRCC01_P2_LAW_BINDING_REVERIFICATION.json",
+   "sha256": "8c20a99db550697c728c18d3d9eefe72f50855d07a5f4cf7d11dc39e453620ee",
+   "declares": "that all four source artefacts hash to their declared values in this container and that all three laws are bit-exact against their own sources"
+  }
+ ],
+ "NO_NUMBER_IS_READ_FROM_PROSE": "MCTT01 records that its own handoff prose printed kY as 0.0010047545726038329 and muY as 0.00074089498250303496 \u2014 different reprs of the same doubles. Neither prose literal is read anywhere in this mission; the doubles are taken from the JSON and checked against the published bit patterns.",
+ "kY_IS_40x_B1": true,
+ "muY_IS_8x_B1": true,
+ "MOBILITY_IS_AN_ALREADY_EXECUTED_VALUE": true,
+ "MOBILITY_RETUNED": false,
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "WHAT_TLMR01_MEASURED_AT_THIS_LAW_AND_NOTHING_MORE": {
+  "n_worlds": 256,
+  "M5_integrated": "22/256",
+  "M5_lower95": 0.0589,
+  "F_INTEGRATED_endpoint_matched_floor": 0.0032015171041760242,
+  "CAVEAT_THAT_TRAVELS_WITH_THE_SELECTION": "the frozen turnover endpoint is confounded with occupancy: at this law the 22 removals leave 2,018 complete post-removal identity intervals, median 93 per world, so an endpoint asking for at least one is saturated. There is no no-removal control anywhere in TLMR01's 512 worlds. This is the reason FIMRCC01 is a three-arm matched design and not a repeat."
+ }
+}

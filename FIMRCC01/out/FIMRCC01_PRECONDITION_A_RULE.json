@@ -1,0 +1,56 @@
+{
+ "MISSION": "FIMRCC01",
+ "SECTION": "2 \u2014 Precondition A decision rule, written before measurement",
+ "GENERATED_UTC": "2026-08-25T15:40:59.244370+00:00",
+ "WHAT_PRECONDITION_A_IS_NOT": "it is not the invention of a daughter-identity definition. The daughter is already named by frozen inherited code and FIMRCC01 changes none of it.",
+ "WHERE_THE_DAUGHTER_COMES_FROM": {
+  "named_at": "the 1 -> 2 separation, by fmrct01_track.Trigger.observe calling the frozen organisational descent rule DS.descent(prev_cells, prev_comp, cells, comps), which returns the parent index, the daughter index and a descent level.",
+  "carried_by": "the frozen identity link CC.link between the separation step and the maturation candidate step t_m. Split, merge, tie and out-of-range all terminate a link; none is ever resolved by preference.",
+  "checked_at_t_m": "the two identities present at t_m must be EXACTLY the pair named at separation. If they are not, parent_comp and daughter_comp are set to None, NO REMOVAL IS APPLIED, and the world is labelled TRIGGERED_IDENTITY_NOT_CARRIED__NO_REMOVAL.",
+  "recorded_in_every_archive": [
+   "meta.intervention.daughter_cells_before",
+   "meta.intervention.daughter_cells_after",
+   "meta.intervention.parent_cells",
+   "meta.AT_TRIGGER.identity_carried_to_maturation",
+   "meta.TERMINAL_LABEL"
+  ],
+  "FIMRCC01_ADDS": "nothing. It reads these fields."
+ },
+ "THE_LOCKED_DAUGHTER_ENDPOINT_TO_BE_QUALIFIED": {
+  "step_1": "locate, at t_m, the offline component whose cell set contains the recorded daughter cells. The offline components are rebuilt by tlmr01_offline from the written cell rows; the online component id is NOT used to make this match.",
+  "step_2": "take the identity-interval id that tlmr01_offline.identity_intervals assigns to that component at t_m.",
+  "step_3": "follow that interval forward under the frozen link rule only. It ends when the link rule terminates, for a declared reason.",
+  "step_4": "the endpoint is the frozen DOTC01 COMPLETE_TURNOVER, and its FUNCTIONAL qualification, evaluated STRICTLY INSIDE THAT ONE INTERVAL and strictly after t_m.",
+  "contrast_with_the_frozen_TLMR01_endpoint": "TLMR01's D stage asks whether ANY identity interval anywhere in the world satisfies the endpoint after the removal. At LAW_C occupancy that is saturated: 2,018 complete intervals across 22 worlds, median 93 per world. The locked daughter endpoint asks the same question of ONE interval."
+ },
+ "WHAT_WILL_BE_MEASURED_ON_THE_256_LAW_C_ARCHIVES": [
+  "N1  worlds triggered, and of those, worlds where the identity was carried to maturation",
+  "N2  worlds where a removal was applied (TLMR01 reports 22)",
+  "N3  worlds where the recorded daughter cells match EXACTLY ONE offline component at t_m",
+  "N4  worlds where that component is assigned exactly one identity-interval id at t_m",
+  "N5  the daughter interval's survival: length in steps after t_m, and its termination reason",
+  "N6  the endpoint restricted to the daughter interval: COMPLETE and FUNCTIONAL counts",
+  "N7  the same endpoint unrestricted (the frozen TLMR01 D stage), for the saturation contrast",
+  "N8  the interior IDENTITY_AMBIGUOUS rate over all LAW_C episodes, recomputed",
+  "N9  worlds where the daughter interval is ambiguous at or after t_m, with the reason"
+ ],
+ "THE_VERDICT_RULE_FIXED_IN_ADVANCE": {
+  "A1_UNIQUE_LOCALISATION": "PASS if N3 == N2 and N4 == N2 \u2014 the recorded daughter localises to exactly one offline component and one identity interval in EVERY world that got a removal. Any shortfall is a FAIL and is reported world by world.",
+  "A2_NO_SILENT_TIE": "PASS if no world required a tie-break of any kind to localise the daughter. A single tie-break is a FAIL.",
+  "A3_ENDPOINT_IS_NOT_DEGENERATE": "PASS if the daughter interval survives at least one step after t_m in every world that got a removal, so the endpoint is askable. Worlds where the daughter is extinct at t_m+1 are reported and counted, not dropped.",
+  "PRECONDITION_A_PASSES": "A1 and A2 and A3.",
+  "IF_IT_FAILS": "the terminal disposition CONFIRMATION_PRECONDITIONS_NOT_MET__LINEAGE_ROUTE_PAUSED is taken and no world of the confirmation runs. The rule is not relaxed to make it pass."
+ },
+ "WHAT_THIS_RULE_DELIBERATELY_DOES_NOT_DO": [
+  "it does not choose the endpoint by which value it produces. A1, A2 and A3 are properties of the identity bookkeeping, not of the turnover outcome.",
+  "the saturation contrast N6 vs N7 is a DISCLOSURE computed after the three gates are evaluated. It cannot change the verdict, and this file says so before the numbers exist.",
+  "no threshold anywhere in this file is a function of a result."
+ ],
+ "SATURATION_DISCLOSURE_IS_NOT_A_GATE": true,
+ "THIS_FILE_IS_HASHED_AND_EXTERNALISED_BEFORE_THE_MEASUREMENT_RUNS": true,
+ "NEW_PARAMETER_POINTS": 0,
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED"
+}

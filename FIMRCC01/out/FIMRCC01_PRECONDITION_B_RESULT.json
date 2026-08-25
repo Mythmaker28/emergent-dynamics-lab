@@ -1,0 +1,386 @@
+{
+ "MISSION": "FIMRCC01",
+ "SECTION": "closure 2 \u2014 Precondition B result",
+ "GENERATED_UTC": "2026-08-25T17:10:47.727154+00:00",
+ "REQUIRED": "an independent offline reconstruction from raw physical inputs only, agreeing 100 % on M2, M3, M5 and the event step, and additionally \u2014 at the owner's closure instruction \u2014 reconstructing the parent/daughter naming, the selective-removal fidelity, the X function either side of turnover, the competing terminal events and the world-level locked-daughter verdict without using any online verdict or id.",
+ "PASS_1_ALL_256_LAW_C_ARCHIVES": {
+  "worlds": 256,
+  "steps_compared": 2816000,
+  "episodes_compared": 16368,
+  "worlds_with_full_agreement": 256,
+  "GATES": {
+   "COMPONENT_COUNT_AGREES_AT_EVERY_STEP": true,
+   "EPISODES_AGREE_IN_EVERY_WORLD": true,
+   "M2_AGREES_IN_EVERY_WORLD": true,
+   "M3_AGREES_IN_EVERY_WORLD": true,
+   "M5_AGREES_IN_EVERY_WORLD": true,
+   "EVENT_STEP_AGREES_IN_EVERY_WORLD": true,
+   "XD_PHYSICAL_MATCH_IS_A_BIJECTION_IN_EVERY_WORLD": true,
+   "FAST_COMPONENTS_EQUAL_UNIONFIND_ON_EVERY_SAMPLED_STEP": true
+  },
+  "VERDICT": "PASS"
+ },
+ "PASS_2_THE_NAMING_ITSELF_ON_THE_26_TRIGGERED_WORLDS": {
+  "why_only_26": "the parent/daughter naming is defined only where a trigger occurred. For the other 230 worlds the independent reconstruction already returned NOT_TRIGGERED in pass 1, with M3 and the event step agreeing in all 256.",
+  "n_worlds": 26,
+  "INPUTS_NOT_USED": [
+   "online component id",
+   "online identity id",
+   "online selected-daughter id",
+   "online trigger verdict",
+   "online maturation verdict",
+   "online turnover verdict",
+   "online M5 verdict",
+   "online terminal label"
+  ],
+  "INPUTS_USED": [
+   "cell rows (t, y, x, per-cell Y occupancy)",
+   "world Y total",
+   "Y-birth, Y-death and X-birth ledgers",
+   "toroidal geometry",
+   "the frozen centre rule",
+   "the frozen FMRCT01 descent rule",
+   "the intervention ledger's step and cell list, to locate the removal in time and to audit its fidelity \u2014 never to decide which component is the daughter"
+  ],
+  "AGREEMENT": {
+   "world_level_verdict": "26/26",
+   "event_step_t_m": "26/26",
+   "daughter_cell_set": "22/22",
+   "parent_cell_set": "22/22",
+   "ALL_CHECKS": "26/26"
+  },
+  "INDEPENDENT_VERDICT_COUNTS": {
+   "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED": 22,
+   "TRIGGERED_IDENTITY_NOT_CARRIED__NO_REMOVAL": 4
+  },
+  "SELECTIVE_REMOVAL_FIDELITY": {
+   "Y_conserved": "22/22",
+   "WY_gained_equals_Y_removed": "22/22",
+   "parent_emptied": "22/22",
+   "daughter_untouched": "22/22",
+   "rng_unchanged": "22/22"
+  },
+  "COMPETING_TERMINAL_EVENTS": {
+   "MERGED_TO_ONE_CENTRE": 1117,
+   "LOST_A_CENTRE_TO_A_SINGLE_Y": 20,
+   "FORMED_A_THIRD_CENTRE": 1116
+  },
+  "DESCENT_AT_THE_TRIGGER": {
+   "PARENT_CONTINUED_UNIQUELY": 26
+  },
+  "LITERAL_MRCI01_CLAUSE_4_AT_THE_TRIGGER": {
+   "DESCENT_AMBIGUOUS_BOTH_INSIDE_CORE_R": 26
+  },
+  "TERMINAL_DESCENT_DIFFERS_FROM_AT_TRIGGER_IN": 25,
+  "WHY_THAT_LAST_LINE_MATTERS": "the frozen FMRCT01 trigger keeps overwriting descent_level and the named pair at every later 1 -> 2 transition, so its terminal value is the LAST separation in the trajectory. TLMR01 recorded that defect; this reconstruction snapshots the naming AS OF the trigger step, as the online code does when it fires. The first version of this module read the terminal values instead and disagreed with the archive on world P_i001; the cause was that bug in the reconstruction, not a data disagreement, and it is recorded here rather than quietly fixed."
+ },
+ "INDEPENDENT_LOCKED_DAUGHTER_ENDPOINT": {
+  "COMPLETE": "1/22",
+  "FUNCTIONAL": "1/22",
+  "reproduces_Precondition_A": true,
+  "ambient_FUNCTIONAL": "22/22",
+  "ambient_total_complete_intervals": 2018,
+  "daughter_life_after_t_m": {
+   "min": 31,
+   "median": 230.0,
+   "max": 1472
+  }
+ },
+ "CONFIRMED_LOAD_BEARING_DISAGREEMENTS": 0,
+ "DISAGREEING_WORLDS": [],
+ "PRECONDITION_B": "PASS",
+ "CONSEQUENCE_FOR_THE_DISPOSITION": "the independent reconstruction AGREES on the load-bearing locked-daughter endpoint, so the disposition is not FIMRCC01_TECHNICALLY_INVALID. The human-selected disposition A is not forced through a technical defect: there is no technical defect.",
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "PER_WORLD": [
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i001_s1474284807",
+   "seed": 1474284807,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 942,
+   "agrees": true,
+   "locked_daughter_COMPLETE": true,
+   "locked_daughter_FUNCTIONAL": true,
+   "steps_after_t_m": 309,
+   "ambient_n_complete": 75
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i002_s2168595504",
+   "seed": 2168595504,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 697,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 161,
+   "ambient_n_complete": 92
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i005_s203158793",
+   "seed": 203158793,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 580,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 244,
+   "ambient_n_complete": 113
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i009_s2255663407",
+   "seed": 2255663407,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 1334,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 88,
+   "ambient_n_complete": 85
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i015_s1512492624",
+   "seed": 1512492624,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 903,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 276,
+   "ambient_n_complete": 78
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i020_s1557150137",
+   "seed": 1557150137,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 658,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 335,
+   "ambient_n_complete": 100
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i031_s183681731",
+   "seed": 183681731,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 720,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 142,
+   "ambient_n_complete": 104
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i037_s4195007327",
+   "seed": 4195007327,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 479,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 405,
+   "ambient_n_complete": 99
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i041_s1110731446",
+   "seed": 1110731446,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 2379,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 180,
+   "ambient_n_complete": 86
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i043_s2646349982",
+   "seed": 2646349982,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 2017,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 40,
+   "ambient_n_complete": 77
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i045_s1775703340",
+   "seed": 1775703340,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 1062,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 545,
+   "ambient_n_complete": 100
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i058_s2121762450",
+   "seed": 2121762450,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 928,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 298,
+   "ambient_n_complete": 97
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i077_s2414544028",
+   "seed": 2414544028,
+   "verdict": "TRIGGERED_IDENTITY_NOT_CARRIED__NO_REMOVAL",
+   "t_m": 490,
+   "agrees": true,
+   "locked_daughter_COMPLETE": null,
+   "locked_daughter_FUNCTIONAL": null,
+   "steps_after_t_m": null,
+   "ambient_n_complete": null
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i079_s3754004101",
+   "seed": 3754004101,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 840,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 216,
+   "ambient_n_complete": 68
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i083_s460074954",
+   "seed": 460074954,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 606,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 52,
+   "ambient_n_complete": 108
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i093_s3302628962",
+   "seed": 3302628962,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 603,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 156,
+   "ambient_n_complete": 105
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i111_s4049698502",
+   "seed": 4049698502,
+   "verdict": "TRIGGERED_IDENTITY_NOT_CARRIED__NO_REMOVAL",
+   "t_m": 1959,
+   "agrees": true,
+   "locked_daughter_COMPLETE": null,
+   "locked_daughter_FUNCTIONAL": null,
+   "steps_after_t_m": null,
+   "ambient_n_complete": null
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i119_s2378920449",
+   "seed": 2378920449,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 547,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 987,
+   "ambient_n_complete": 94
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i150_s1335159117",
+   "seed": 1335159117,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 1135,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 597,
+   "ambient_n_complete": 90
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i153_s1007174239",
+   "seed": 1007174239,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 683,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 31,
+   "ambient_n_complete": 117
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i156_s1109449052",
+   "seed": 1109449052,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 2348,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 59,
+   "ambient_n_complete": 80
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i158_s1907819116",
+   "seed": 1907819116,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 1418,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 1472,
+   "ambient_n_complete": 65
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i163_s1806899634",
+   "seed": 1806899634,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 728,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 267,
+   "ambient_n_complete": 88
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i183_s4120635981",
+   "seed": 4120635981,
+   "verdict": "TRIGGERED_IDENTITY_NOT_CARRIED__NO_REMOVAL",
+   "t_m": 1497,
+   "agrees": true,
+   "locked_daughter_COMPLETE": null,
+   "locked_daughter_FUNCTIONAL": null,
+   "steps_after_t_m": null,
+   "ambient_n_complete": null
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i184_s927162381",
+   "seed": 927162381,
+   "verdict": "TRIGGERED_AND_SELECTIVE_REMOVAL_APPLIED",
+   "t_m": 1204,
+   "agrees": true,
+   "locked_daughter_COMPLETE": false,
+   "locked_daughter_FUNCTIONAL": false,
+   "steps_after_t_m": 58,
+   "ambient_n_complete": 97
+  },
+  {
+   "tag": "TLMR01_LAW_C_MCTT01_P_i217_s1018017219",
+   "seed": 1018017219,
+   "verdict": "TRIGGERED_IDENTITY_NOT_CARRIED__NO_REMOVAL",
+   "t_m": 639,
+   "agrees": true,
+   "locked_daughter_COMPLETE": null,
+   "locked_daughter_FUNCTIONAL": null,
+   "steps_after_t_m": null,
+   "ambient_n_complete": null
+  }
+ ]
+}
