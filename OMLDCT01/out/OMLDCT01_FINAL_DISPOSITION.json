@@ -1,0 +1,94 @@
+{
+ "MISSION": "OMLDCT01",
+ "SECTION": "final disposition",
+ "GENERATED_UTC": "2026-08-25T22:05:45.419576+00:00",
+ "OMLDCT01_FINAL_DISPOSITION": "OMLDCT01_TECHNICALLY_INVALID",
+ "DECIDED_BY": "Tommy Lepesteur, owner adjudication, final",
+ "NO_SOFTER_STRING_WAS_INVENTED": true,
+ "OMLDCT01_CURRENT_TIP": "4d61da4b68364277f2a9739a4837055860c0c01e",
+ "SCIENTIFIC_PARENT": "LDFMA01 \u2014 LOCKED-DAUGHTER-FAILURE-MECHANISM-ARBITRATION-01",
+ "SCIENTIFIC_PARENT_TIP": "2101b301a2444a4a825a6cd338a8db7334c53c9f",
+ "PARENT_HANDOFF_SHA256": "e3ec4b929069a794b648feffc9b7b5d9315a7b96a74711fcd99746f931523029",
+ "PARENT_HANDOFF_BYTES_NEVER_REWRITTEN": true,
+ "PRIMARY_CONFIRMATORY_PAIRS": 0,
+ "PRIMARY_RESULT": "NOT_REACHED",
+ "NEW_SCIENTIFIC_WORLDS_ENTERING_ANY_RECORD": 0,
+ "INTENTIONAL_COMMITS_USED": 5,
+ "MAX_INTENTIONAL_COMMITS": 5,
+ "REUSABLE_ASSETS": [
+  {
+   "asset": "human five-line decision addendum",
+   "files": [
+    "OMLDCT01/out/OMLDCT01_HUMAN_DECISION_ADDENDUM.json",
+    "OMLDCT01/out/OMLDCT01_HUMAN_DECISION_ADDENDUM.md"
+   ],
+   "status": "REUSABLE_IMPLEMENTATION_EVIDENCE",
+   "why": "the five decisions are the owner's, taken with FRESH_WORLD_COUNT_AT_DECISION = 0 and OUTCOMES_ACCESSED = none. They are untouched by the invalidity, which is about sequencing."
+  },
+  {
+   "asset": "exact Pratt sign-flip implementation",
+   "files": [
+    "OMLDCT01/code/omldct01_analysis.py",
+    "OMLDCT01/code/omldct01_selftest.py",
+    "OMLDCT01/out/OMLDCT01_FIVE_LINE_SELF_TEST.json"
+   ],
+   "status": "REUSABLE_IMPLEMENTATION_EVIDENCE",
+   "why": "ten deterministic self-test cases, no scientific trajectory. Code, not evidence."
+  },
+  {
+   "asset": "second independent E3 classifier",
+   "files": [
+    "OMLDCT01/code/omldct01_e3_b.py"
+   ],
+   "status": "REUSABLE_IMPLEMENTATION_EVIDENCE",
+   "why": "written after the pilots but reading none of them; qualified against archives that predate OMLDCT01 entirely."
+  },
+  {
+   "asset": "fixtures and the qualification harness",
+   "files": [
+    "OMLDCT01/code/omldct01_e3_qualify.py",
+    "OMLDCT01/out/OMLDCT01_E3_QUALIFICATION_FIXTURES.json"
+   ],
+   "status": "REUSABLE_IMPLEMENTATION_EVIDENCE",
+   "why": "hand-built and random configurations only."
+  },
+  {
+   "asset": "locked-daughter reconstruction qualification",
+   "files": [
+    "OMLDCT01/out/OMLDCT01_E3_QUALIFICATION.json",
+    "OMLDCT01/out/OMLDCT01_E3_CLASSIFIER_B_22_WORLDS.json"
+   ],
+   "status": "REUSABLE_IMPLEMENTATION_EVIDENCE",
+   "why": "22 developmental LAW_C removal worlds and 4 negative controls, all from LDFMA01 and earlier. It must be REBOUND in OMLDCT02 C1, not inherited by reference."
+  },
+  {
+   "asset": "Windows durability chain",
+   "files": [
+    "OMLDCT01/out/OMLDCT01_C3_DURABILITY.json",
+    "OMLDCT01/out/OMLDCT01_PRE_RUN_DURABILITY.json"
+   ],
+   "status": "REUSABLE_IMPLEMENTATION_EVIDENCE",
+   "why": "the chain that carries the repository is infrastructure, not a scientific claim."
+  },
+  {
+   "asset": "the master freeze, the seed manifest and the methods closure",
+   "files": [
+    "OMLDCT01/out/OMLDCT01_MASTER_FREEZE.json",
+    "OMLDCT01/out/OMLDCT01_SEED_MANIFEST.json",
+    "OMLDCT01/out/OMLDCT01_METHODS_CLOSURE.json"
+   ],
+   "status": "NOT_AUTHORITATIVE_FOR_OMLDCT02",
+   "why": "the freeze postdates scientific-scale execution and the seed list is contaminated by outcome-informed retirement. OMLDCT02 builds its own."
+  }
+ ],
+ "SUCCESSOR": "OMLDCT02 \u2014 ONE-MATCHED-LOCKED-DAUGHTER-CONTROL-TEST-02",
+ "SUCCESSOR_AUTHORISED_ONCE": true,
+ "SECOND_CLEAN_RESTART": "forbidden",
+ "THE_DESIGN_IS_UNCHANGED": "no endpoint, parameter, law, alpha, direction, combination rule, zero treatment, minimum pair count or resource ceiling moves.",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED"
+}
