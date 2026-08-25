@@ -1,0 +1,94 @@
+{
+ "MISSION": "OMLDCT01",
+ "SECTION": "9 \u2014 MASTER FREEZE",
+ "GENERATED_UTC": "2026-08-25T21:21:02.445287+00:00",
+ "THIS_FREEZE_PRECEDES_EVERY_SCIENTIFIC_WORLD": true,
+ "PARENT_TIP": "2101b301a2444a4a825a6cd338a8db7334c53c9f",
+ "SELECTED_LAW": "LAW_C_MCTT01",
+ "Y_LAW": [
+  {
+   "field": "kY",
+   "value": 0.001004754572603833,
+   "bits": "0x3f50763f01e8e5b2",
+   "declared_bits_in_the_handoff": "0x3f50763f01e8e5b2",
+   "MATCHES": true
+  },
+  {
+   "field": "muY",
+   "value": 0.000740894982503035,
+   "bits": "0x3f484713dc1c8ab5",
+   "declared_bits_in_the_handoff": "0x3f484713dc1c8ab5",
+   "MATCHES": true
+  },
+  {
+   "field": "p_hop_Y",
+   "value": 0.10263340389897246,
+   "bits": "0x3fba462ec93926a0",
+   "declared_bits_in_the_handoff": "0x3fba462ec93926a0",
+   "MATCHES": true
+  }
+ ],
+ "NEW_PARAMETER_POINTS": 0,
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "THE_FIVE_HUMAN_FROZEN_DECISIONS": {
+  "PRIMARY_AND_COPRIMARY_COMBINATION": "AND_WITH_CONCORDANT_DIRECTION",
+  "ZERO_DIFFERENCE_TREATMENT": "PRATT_EXACT_SIGN_FLIP",
+  "MINIMUM_VALID_PAIR_COUNT": 41,
+  "TECHNICALLY_INVALID_RULE": "ANY_LOAD_BEARING_PAIR_OR_CAMPAIGN_INTEGRITY_FAILURE_INVALIDATES; PURE_SCIENTIFIC_UNDER_ACCRUAL_WITHOUT_TECHNICAL_FAILURE_MAPS_TO INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS",
+  "NULL_RESULT_INTERPRETATION": "INCONCLUSIVE__NO_CLAIM_OF_EQUIVALENCE__NO_CLAIM_OF_NO_EFFECT"
+ },
+ "PRIMARY_ENDPOINT": "post-intervention locked-daughter identity duration",
+ "COPRIMARY_ENDPOINT": "post-intervention locked-daughter particle-step exposure",
+ "SIGN_CONVENTION": "SELECTIVE minus SHAM, on the paired log difference",
+ "PAIRED_TEST": "Wilcoxon signed-rank, two-sided, alpha 0.05, Pratt zeros, exact conditional sign-flip distribution by dynamic programming \u2014 no normal approximation",
+ "COMBINATION": "intersection-union AND with concordant median direction",
+ "TERMINAL_VOCABULARY": [
+  "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_SUPPORTED",
+  "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+  "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS",
+  "OMLDCT01_TECHNICALLY_INVALID"
+ ],
+ "NO_FIFTH_TERMINAL_STRING": true,
+ "ACCRUAL_RULE": "process the frozen base seeds in index order until 41 technically valid admissible pairs are retained, or the hard 512-arm-instance ceiling is exhausted. A base seed without an admissible trigger consumes its predeclared cost and may not be replaced.",
+ "MAX_CANDIDATE_BASE_SEEDS": 474,
+ "HARD_ARM_INSTANCE_CEILING": 512,
+ "ONE_ARM_INSTANCE": "one full-horizon world-equivalent of engine work, T = 11000 steps",
+ "PREFIX_TRUNCATION": "the common prefix is run only to the frozen LATEST_ALLOWED_TRIGGER = 6500, because a candidate after that step fails the frozen deadline gate and no trigger is possible. This uses the frozen rule and changes no definition. Arm instances are created only for admissible seeds and always run the full horizon.",
+ "MAX_UNEXTERNALISED_ARM_INSTANCES": 16,
+ "MAX_TECHNICAL_RESERVES": 6,
+ "MAX_INTENTIONAL_COMMITS": 5,
+ "MAX_INDEPENDENT_CHECKERS": 1,
+ "REVIEW_CASCADE": "forbidden",
+ "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0,
+ "SEED_SET_HASH": "7a568a3e978b6c61d734ad24b8a41eb02110098ee519c203887f12390de82cae",
+ "N_BASE_SEEDS": 474,
+ "N_RESERVE_SEEDS": 6,
+ "METHODS_HASH": "2e8bc65914e93d923d148297b14a9281fc5d5a1c9e6a1274bfd58d71166b4402",
+ "N_METHODS_FILES": 24,
+ "FIVE_LINE_DECISION_SELF_TEST": "PASS",
+ "PRE_RUN_DISCLOSURES": {
+  "P_reaching_41_pairs_within_the_ceiling": 0.5063,
+  "P_under_accruing": 0.4937,
+  "these_are_disclosures_not_gates": true
+ },
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "METHODS_CLOSURE_DISAGREEMENT": {
+  "runtime_files": 21,
+  "ast_files": 24,
+  "EXACT_AGREEMENT": false,
+  "only_in_ast": [
+   "OBTC02/code/nulls_obtc.py",
+   "OBTC02/code/source_operator.py",
+   "OBTC02/code/topology.py"
+  ],
+  "only_in_runtime": [],
+  "WHAT_IS_BOUND": "the UNION, 24 files. A superset closure can only over-bind, never leave an executing file unhashed, and no file is in runtime-only.",
+  "WHY_THEY_DIFFER": "the AST traversal follows import names that the runtime resolves to a different directory or never reaches. TLMR01's methods closure recorded the same three files for the same reason.",
+  "THE_LAUNCHER_ASKED_FOR_EXACT_AGREEMENT_AND_DID_NOT_GET_IT": true,
+  "REPORTED_NOT_FORCED": "the closure was not trimmed to manufacture agreement."
+ },
+ "FREEZE_HASH": "2ade99caee97678d377e573ffaf156e74285a152ca50aaa7e6cf11ed20782bb7"
+}

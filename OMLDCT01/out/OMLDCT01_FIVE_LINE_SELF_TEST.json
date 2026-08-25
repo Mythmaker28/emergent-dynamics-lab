@@ -1,0 +1,159 @@
+{
+ "MISSION": "OMLDCT01",
+ "SECTION": "8 \u2014 five-line decision self-tests",
+ "GENERATED_UTC": "2026-08-25T21:14:51.184387+00:00",
+ "NO_SCIENTIFIC_TRAJECTORY_WAS_USED": true,
+ "CASES": [
+  {
+   "case": "both reject, same direction",
+   "n_pairs": 41,
+   "expected": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_SUPPORTED",
+   "got": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_SUPPORTED",
+   "PASS": true,
+   "p_duration": 0.0,
+   "p_exposure": 0.0,
+   "median_duration": 21.0,
+   "median_exposure": 21.0,
+   "direction_concordant": true,
+   "note": "the only route to SUPPORTED"
+  },
+  {
+   "case": "duration only rejects",
+   "n_pairs": 41,
+   "expected": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+   "got": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+   "PASS": true,
+   "p_duration": 0.0,
+   "p_exposure": 0.98025,
+   "median_duration": 21.0,
+   "median_exposure": -1.0,
+   "direction_concordant": false,
+   "note": ""
+  },
+  {
+   "case": "exposure only rejects",
+   "n_pairs": 41,
+   "expected": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+   "got": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+   "PASS": true,
+   "p_duration": 0.98025,
+   "p_exposure": 0.0,
+   "median_duration": -1.0,
+   "median_exposure": 21.0,
+   "direction_concordant": false,
+   "note": ""
+  },
+  {
+   "case": "both reject, OPPOSITE directions",
+   "n_pairs": 41,
+   "expected": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+   "got": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+   "PASS": true,
+   "p_duration": 0.0,
+   "p_exposure": 0.0,
+   "median_duration": 21.0,
+   "median_exposure": -21.0,
+   "direction_concordant": false,
+   "note": "the concordance clause is what catches this"
+  },
+  {
+   "case": "neither rejects",
+   "n_pairs": 41,
+   "expected": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+   "got": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+   "PASS": true,
+   "p_duration": 0.98025,
+   "p_exposure": 0.98025,
+   "median_duration": -1.0,
+   "median_exposure": -1.0,
+   "direction_concordant": true,
+   "note": ""
+  },
+  {
+   "case": "all differences zero",
+   "n_pairs": 41,
+   "expected": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+   "got": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+   "PASS": true,
+   "p_duration": 1.0,
+   "p_exposure": 1.0,
+   "median_duration": 0.0,
+   "median_exposure": 0.0,
+   "direction_concordant": false,
+   "note": "p must be exactly 1"
+  },
+  {
+   "case": "mixed zero and non-zero under Pratt",
+   "n_pairs": 41,
+   "expected": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_SUPPORTED",
+   "got": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_SUPPORTED",
+   "PASS": true,
+   "p_duration": 0.0,
+   "p_exposure": 0.0,
+   "median_duration": 13.0,
+   "median_exposure": 13.0,
+   "direction_concordant": true,
+   "note": "zero pairs stay valid, contribute zero signed weight, and are ranked"
+  },
+  {
+   "case": "40 valid pairs",
+   "n_pairs": 40,
+   "expected": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS",
+   "got": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS",
+   "PASS": true,
+   "p_duration": 0.0,
+   "p_exposure": 0.0,
+   "median_duration": 20.5,
+   "median_exposure": 20.5,
+   "direction_concordant": true,
+   "note": "one pair short of the frozen minimum, however strong the effect"
+  },
+  {
+   "case": "41 valid pairs",
+   "n_pairs": 41,
+   "expected": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_SUPPORTED",
+   "got": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_SUPPORTED",
+   "PASS": true,
+   "p_duration": 0.0,
+   "p_exposure": 0.0,
+   "median_duration": 21.0,
+   "median_exposure": 21.0,
+   "direction_concordant": true,
+   "note": ""
+  },
+  {
+   "case": "technical invalidity dominates a positive p",
+   "nominal_terminal": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_SUPPORTED",
+   "with_a_pair_level_technical_fault": "OMLDCT01_TECHNICALLY_INVALID",
+   "PASS": true,
+   "note": "enforced in the runner and the disposition generator, before the analysis result is consulted; the analysis object is never allowed to be the last word."
+  }
+ ],
+ "N_CASES": 10,
+ "ZERO_DIFFERENCES_GIVE_P_EQUAL_1": true,
+ "PRATT_KEEPS_ZERO_PAIRS_AS_VALID_PAIRS": true,
+ "PRATT_DIFFERS_FROM_PLAIN_WILCOXON_ON_THE_MIXED_CASE": {
+  "small_case": [
+   0.0,
+   0.0,
+   1.0,
+   2.0,
+   3.0,
+   -4.0
+  ],
+  "plain_wilcoxon_drops_the_zeros": {
+   "W_plus": 6.0,
+   "p": 0.875
+  },
+  "pratt_keeps_and_ranks_them": {
+   "W_plus": 12.0,
+   "p": 0.625,
+   "n_nonzero": 4,
+   "n_zero": 2
+  },
+  "DIFFERS": true,
+  "why_the_first_version_of_this_test_failed": "it compared the two methods on the 41-pair strong case, where both p-values underflow to 0 and the comparison is vacuous. Corrected to a 6-pair case, not relaxed."
+ },
+ "EXACTNESS": "the p-value is the exact conditional sign-flip distribution over the non-zero Pratt ranks, enumerated by dynamic programming on the doubled rank scale. No normal approximation is used anywhere.",
+ "FIVE_LINE_DECISION_SELF_TEST": "PASS"
+}

@@ -1,0 +1,111 @@
+{
+ "MISSION": "OMLDCT01",
+ "SECTION": "7 \u2014 design recomputed before world 1",
+ "GENERATED_UTC": "2026-08-25T21:16:34.793403+00:00",
+ "THESE_ARE_DISCLOSURES_NOT_GATES": true,
+ "NOTHING_WAS_CHANGED_BECAUSE_A_NUMBER_IS_UNCOMFORTABLE": {
+  "N": "unchanged",
+  "MINIMUM_VALID_PAIR_COUNT": "unchanged at 41",
+  "law": "unchanged",
+  "endpoint": "unchanged",
+  "alpha": "unchanged",
+  "AND_rule": "unchanged"
+ },
+ "PER_ENDPOINT_POWER_AT_41_PAIRS": {
+  "test": "Wilcoxon signed-rank, two-sided, alpha 0.05",
+  "SIGMA_PAIRED_IS_UNMEASURED": "no SHAM arm has ever been executed, so the within-block standard deviation of the SELECTIVE-minus-SHAM difference cannot be estimated from the record. Power is therefore given as a CURVE against the standardised shift, not as a single number.",
+  "CURVE": [
+   {
+    "standardised_paired_shift": 0.2,
+    "per_endpoint_power": 0.238
+   },
+   {
+    "standardised_paired_shift": 0.3,
+    "per_endpoint_power": 0.4614
+   },
+   {
+    "standardised_paired_shift": 0.4,
+    "per_endpoint_power": 0.6949
+   },
+   {
+    "standardised_paired_shift": 0.5,
+    "per_endpoint_power": 0.8653
+   },
+   {
+    "standardised_paired_shift": 0.6,
+    "per_endpoint_power": 0.954
+   },
+   {
+    "standardised_paired_shift": 0.8,
+    "per_endpoint_power": 0.9974
+   },
+   {
+    "standardised_paired_shift": 1.0,
+    "per_endpoint_power": 0.9999
+   }
+  ]
+ },
+ "JOINT_POWER_UNDER_THE_AND_RULE": {
+  "rule": "intersection-union: both endpoints must reject, both medians non-zero, signs concordant",
+  "bounds": [
+   {
+    "per_endpoint_power": 0.5,
+    "independent_endpoints": 0.25,
+    "perfectly_dependent_endpoints": 0.5
+   },
+   {
+    "per_endpoint_power": 0.7,
+    "independent_endpoints": 0.49,
+    "perfectly_dependent_endpoints": 0.7
+   },
+   {
+    "per_endpoint_power": 0.8,
+    "independent_endpoints": 0.64,
+    "perfectly_dependent_endpoints": 0.8
+   },
+   {
+    "per_endpoint_power": 0.9,
+    "independent_endpoints": 0.81,
+    "perfectly_dependent_endpoints": 0.9
+   },
+   {
+    "per_endpoint_power": 0.95,
+    "independent_endpoints": 0.9025,
+    "perfectly_dependent_endpoints": 0.95
+   }
+  ],
+  "SENSITIVITY_TO_ENDPOINT_DEPENDENCE": "exposure is the sum of occupancy over the identity interval and duration is its length, so the two are strongly positively dependent and the truth sits near the upper bound. The independent product is the conservative floor.",
+  "the_AND_rule_controls_type_I_error_without_a_multiplicity_correction": true
+ },
+ "CONSERVATIVE_POWER_UNDER_THE_INHERITED_LOWER_INPUTS": {
+  "inherited_from_LDFMA01": "McNemar power 0.402 at the Wilson lower bound of the retrospective completion rate, 0.971 at the point estimate \u2014 those were for a BINARY endpoint and do not transfer to E3. They are recorded so the two are not confused.",
+  "for_E3": "the curve above is the disclosure; no single conservative number is invented."
+ },
+ "ACCRUAL_AND_THE_HARD_CEILING": {
+  "trigger_yield_per_base_seed": 0.085938,
+  "source": "22 of 256 LAW_C worlds in TLMR01",
+  "mean_SHAM_tail_fraction": 0.9057,
+  "cost_model": "one base seed costs 1.0 instance (shared prefix plus SELECTIVE continuation = one full horizon). A triggered seed costs an additional SHAM tail of (T - t_m)/T.",
+  "MAX_CANDIDATE_BASE_SEEDS": 474,
+  "cost_at_the_ceiling": 511.1,
+  "HARD_CEILING": 512,
+  "PROBABILITY_OF_UNDER_ACCRUING_41_VALID_PAIRS": 0.4937,
+  "PROBABILITY_OF_REACHING_41": 0.5063,
+  "expected_triggers_at_the_ceiling": 40.7,
+  "sd_of_triggers": 6.1,
+  "WHAT_THIS_MEANS": "reaching 41 admissible pairs inside the frozen 512-instance ceiling is close to a coin flip. That is a property of the design the owner froze, disclosed here before world 1, and it is NOT a reason to change 41, the ceiling, or anything else.",
+  "seeds_that_would_be_needed_for_95_percent": 600
+ },
+ "MEASURED_COMPUTE_COST": {
+  "one_full_horizon_instrumented_world_seconds": 206.8,
+  "measured_how": "one complete LAW_C world with the frozen TLMR01 instrumentation, in this container, on 2 CPUs",
+  "campaign_at_the_ceiling_instances": 511.1,
+  "single_thread_hours": 29.4,
+  "two_core_hours": 14.7,
+  "THE_OPERATIONAL_FACT": "the frozen campaign needs about 15 hours of dedicated wall-clock in this container. The container has rolled back to the FDOT01 C2 snapshot SEVEN times in this session. The frozen 16-instance externalisation ceiling bounds what a rollback can destroy, but it does not make 15 hours survivable in one stretch.",
+  "THIS_IS_AN_OPERATIONAL_LIMIT_NOT_A_SCIENTIFIC_ONE": true,
+  "IT_CHANGES_NOTHING_THAT_IS_FROZEN": true
+ },
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED"
+}
