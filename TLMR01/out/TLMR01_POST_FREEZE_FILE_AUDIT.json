@@ -1,0 +1,66 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "3 \u2014 post-C2 file audit, final",
+ "GENERATED_UTC": "2026-08-25T14:08:58.224018+00:00",
+ "MASTER_FREEZE_HASH": "b354944f0e5b7f8269312ae7a7de35953e9803b960953caccff7aaa84c474718",
+ "POST_C2_MODULES": [
+  {
+   "file": "TLMR01/code/tlmr01_analysis_fixture.py",
+   "class": "NONSCIENTIFIC_FIXTURE",
+   "why": "synthetic-input test of the frozen analysis",
+   "sha256": "5afb4f96e5351aefe01dc2e8d397bbae6ebff2d882264181c90e14af0005d4a5",
+   "ON_THE_RUN_IMPORT_PATH": false,
+   "ON_THE_ANALYSIS_IMPORT_PATH": false
+  },
+  {
+   "file": "TLMR01/code/tlmr01_export_state.py",
+   "class": "DURABILITY_ONLY",
+   "why": "packs ledgers and hashes",
+   "sha256": "26ba408f70724b89951c89ea39827156c6f5a49674854f2a43408aac4e6d6af2",
+   "ON_THE_RUN_IMPORT_PATH": false,
+   "ON_THE_ANALYSIS_IMPORT_PATH": false
+  },
+  {
+   "file": "TLMR01/code/tlmr01_report.py",
+   "class": "FORMATTING_OR_REPORTING_ONLY",
+   "why": "renders the analysis artefacts to markdown",
+   "sha256": "0aeed3febd307b004cfe8e8ca2cefc8db0830726089d004403571a3314ff3d39",
+   "ON_THE_RUN_IMPORT_PATH": false,
+   "ON_THE_ANALYSIS_IMPORT_PATH": false
+  },
+  {
+   "file": "TLMR01/code/tlmr01_run_analysis.py",
+   "class": "NONSCIENTIFIC_DRIVER",
+   "why": "reproduces tlmr01_analyse.main() step for step and calls the FROZEN functions for every scientific quantity. The only difference is that `rows` are loaded from the device-side measurement file instead of being recomputed locally, and that path is cross-checked.",
+   "sha256": "e1cb728cdc2dad5e990305ad1af3e2fd197c33eb5dfcd6f6e21235a885afb497",
+   "ON_THE_RUN_IMPORT_PATH": false,
+   "ON_THE_ANALYSIS_IMPORT_PATH": false
+  }
+ ],
+ "N_POST_C2_MODULES": 4,
+ "EVERY_FROZEN_MODULE_IS_BYTE_UNCHANGED": true,
+ "MODULES_THAT_DRIFTED": [],
+ "EVERY_FROZEN_ARTEFACT_IS_BYTE_UNCHANGED": true,
+ "ARTEFACTS_THAT_DRIFTED": [],
+ "THE_RUN_IMPORT_CLOSURE": [
+  "tlmr01_laws.py",
+  "tlmr01_offline.py",
+  "tlmr01_run.py",
+  "tlmr01_world.py"
+ ],
+ "THE_ANALYSIS_IMPORT_CLOSURE": [
+  "tlmr01_analyse.py",
+  "tlmr01_design.py",
+  "tlmr01_offline.py"
+ ],
+ "NO_POST_C2_FILE_IS_ON_THE_RUN_OR_ANALYSIS_IMPORT_PATH": true,
+ "POST_C2_FILES_ON_A_SCIENTIFIC_IMPORT_PATH": [],
+ "N_LOAD_BEARING_POST_C2_FILES": 0,
+ "LOAD_BEARING_POST_C2_FILES": [],
+ "MANDATORY_CONSEQUENCE_TRIGGERED": false,
+ "THE_TWO_DRIVERS_ARE_NOT_LOAD_BEARING_BECAUSE": "each calls the frozen module for every scientific value and adds none of its own. tlmr01_device_measure serialises measure_world's return verbatim; tlmr01_run_analysis calls aggregate, eligibility and the frozen cascade unchanged. Neither is imported by the frozen run or analysis closures, and the device path they use is cross-checked field for field against a container re-measurement.",
+ "CONCLUSION": "no post-C2 file influences any scientific quantity or the disposition. The frozen C2 analysis remains the sole source of scientific quantities and selection.",
+ "C2_IS_NOT_AMENDED": true,
+ "NOTHING_IS_BACKDATED_INTO_C1": true,
+ "NO_SCIENTIFIC_REPAIR_WAS_MADE": true
+}
