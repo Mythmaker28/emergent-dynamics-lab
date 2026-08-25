@@ -1,0 +1,64 @@
+{
+ "SECTION": "FMRCT01 \u00a70A/\u00a70C \u2014 hard arm-instance bound and design search",
+ "GENERATED_UTC": "2026-08-21T21:03:24.097424+00:00",
+ "CEILING": 512,
+ "RECOMPUTED_INPUTS": {
+  "FMRT01_blocks": 85,
+  "FMRT01_triggered": 22,
+  "FMRT01_triggered_within_latest": 15,
+  "p_trigger": 0.17647058823529413,
+  "FDOT01_daughter_forming": 59,
+  "FDOT01_turnover_in_window": 4,
+  "p_cond_point": 0.06779661016949153,
+  "p_cond_lower95": 0.023487551887426975,
+  "FDOT01_complete": 7,
+  "FDOT01_functional": 7,
+  "p_functional_given_complete": 1.0,
+  "tm_min": 646,
+  "tm_median": 3323,
+  "tm_max": 10708
+ },
+ "DESIGN_STRUCTURE_FROZEN_HERE": {
+  "1": "run N independent base trajectories to the FULL horizon 11000",
+  "2": "a base trajectory is ELIGIBLE iff its first frozen functional-maturation event has t_m <= 6500",
+  "3": "the base trajectory IS the SHAM arm of its block: SHAM removes nothing, and a pre-run fixture must prove the intervention machinery is a bit-exact no-op on physical state AND on RNG. If that fixture fails, SHAM becomes a third continuation and the arithmetic below is recomputed BEFORE any world.",
+  "4": "eligible triggers are ranked by a deterministic priority derived ONLY from the frozen seed/hash manifest",
+  "5": "the first MAX_FULL_FORKS eligible triggers in that order are SELECTED",
+  "6": "each selected trigger gets exactly 2 extra continuations, SELECTIVE and GLOBAL_OFF, forked from the bit-identical checkpoint at t_m and run to 11000",
+  "7": "no fork is ever selected or rejected because of any post-intervention outcome"
+ },
+ "HARD_BOUND_PROOF": {
+  "realized_arm_instances": "A(N,F,M) = N + 2*min(M,F), where M is the number of eligible triggers, 0 <= M <= N",
+  "step_1": "every base trajectory is instantiated exactly once, contributing exactly N",
+  "step_2": "min(M,F) <= F holds for every M by definition of min, with no distributional assumption",
+  "step_3": "therefore A(N,F,M) <= N + 2F for EVERY possible outcome, including M = N",
+  "step_4": "N + 2F is a constant fixed before the first world and is not a random variable",
+  "MAX_REALIZED_ARM_INSTANCES": 508,
+  "CEILING": 512,
+  "HOLDS": true,
+  "NO_EXPECTATION_IS_USED_ANYWHERE_IN_THIS_PROOF": true
+ },
+ "PARENT_DESIGN_AS_A_HARD_BOUND": {
+  "N": 376,
+  "MAX_FULL_FORKS": 66,
+  "arm_instances_worst_case": 508,
+  "arm_instances_expected_in_parent": 508,
+  "ceiling": 512,
+  "fits": true,
+  "WHY_THE_PARENT_NUMBER_WAS_NOT_A_BOUND": "MRCI01 computed 508 as int(N + 2*N*p_trigger) = int(376 + 132.71), an EXPECTED value. The number 508 reproduces exactly, but as an expectation it bounds nothing: with no cap, M can reach 376 and the realized arm-instances would be 1128. The cap MAX_FULL_FORKS is what converts it into a bound, and the cap did not exist until now.",
+  "E_S": 63.229977619365975,
+  "P_K_ge_1_point": 0.9875971750607417,
+  "P_K_ge_1_conservative": 0.7763717965451467,
+  "P_K_ge_2_point": 0.9319284186782137,
+  "P_K_ge_2_conservative": 0.4386246600477448
+ },
+ "SECTION_0C_SEARCH": "owned by FMRCT01_DESIGN_DECISION.json \u2014 the exhaustive (N,F) search, its robustness test against a conservative trigger rate, and the verdict that no strictly better design exists live there. This file proves the BOUND only.",
+ "FROZEN": {
+  "N": 376,
+  "MAX_FULL_FORKS": 66,
+  "MAX_REALIZED_ARM_INSTANCES": 508,
+  "CEILING": 512,
+  "SLACK": 4,
+  "STATUS": "PASS"
+ }
+}

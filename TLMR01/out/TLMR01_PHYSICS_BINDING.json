@@ -1,0 +1,57 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "2 \u2014 physics binding",
+ "GENERATED_UTC": "2026-08-24T23:08:30.324695+00:00",
+ "SHARED_FROZEN_PHYSICS": {
+  "CAP": 16,
+  "S0": 3,
+  "phi": 0.2,
+  "omega": 0.05,
+  "muX": 0.004,
+  "kX": 1.0,
+  "L": 36,
+  "p_hop_X": 0.10263340389897246,
+  "X_SEED": 4,
+  "CORE_R": 5.0,
+  "T_HORIZON": 11000,
+  "LATEST_ALLOWED_TRIGGER": 6500,
+  "NEED": 250
+ },
+ "IDENTICAL_ACROSS_ALL_THREE_LAWS": [
+  "the engine",
+  "the LawSpec",
+  "the feed and exchange law",
+  "the scheduler",
+  "the initial condition",
+  "the centre classifier",
+  "the identity rule",
+  "the trigger rule",
+  "the intervention",
+  "the horizon",
+  "CAP",
+  "L",
+  "p_hop_X",
+  "muX",
+  "kX",
+  "X_SEED"
+ ],
+ "THE_ONLY_DIFFERENCES_ARE": [
+  "kY",
+  "muY",
+  "p_hop_Y"
+ ],
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "NEW_PARAMETER_POINTS": 0,
+ "L": 36,
+ "L_IS_UNCHANGED": true,
+ "FINITE_SIZE_SCOPE": "OUT_OF_SCOPE \u2014 FINITE_SIZE_RELEVANCE = NOT_SUPPORTED and ONE_ZERO_RUN_DETOUR_ONLY is spent",
+ "T_HORIZON": 11000,
+ "FULL_HORIZON_EVERY_WORLD": true,
+ "NO_SCIENTIFIC_EARLY_STOP": "not extinction, not a third centre, not a maximum occupancy. The single break is an engine invariant failure, which is technical.",
+ "ENVIRONMENT": {
+  "python": "3.11.15",
+  "numpy": "2.4.4",
+  "scipy": "1.17.1",
+  "platform": "Linux-6.18.44-fc-v21-x86_64-with-glibc2.39"
+ }
+}

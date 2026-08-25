@@ -1,0 +1,853 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "10 \u2014 complete pre-run methods closure",
+ "GENERATED_UTC": "2026-08-24T23:07:52.784696+00:00",
+ "PYTHON": "3.11.15",
+ "PLATFORM": "Linux-6.18.44-fc-v21-x86_64-with-glibc2.39",
+ "ENTRY_FILES": [
+  "/home/claude/edl/TLMR01/code/tlmr01_analyse.py",
+  "/home/claude/edl/TLMR01/code/tlmr01_bind.py",
+  "/home/claude/edl/TLMR01/code/tlmr01_design.py",
+  "/home/claude/edl/TLMR01/code/tlmr01_fixtures.py",
+  "/home/claude/edl/TLMR01/code/tlmr01_freeze.py",
+  "/home/claude/edl/TLMR01/code/tlmr01_laws.py",
+  "/home/claude/edl/TLMR01/code/tlmr01_methods.py",
+  "/home/claude/edl/TLMR01/code/tlmr01_offline.py",
+  "/home/claude/edl/TLMR01/code/tlmr01_paths.py",
+  "/home/claude/edl/TLMR01/code/tlmr01_run.py",
+  "/home/claude/edl/TLMR01/code/tlmr01_seeds.py",
+  "/home/claude/edl/TLMR01/code/tlmr01_world.py",
+  "/home/claude/edl/TLMR01/code/tlmr01_writer_fixture.py"
+ ],
+ "TWO_INDEPENDENT_CLOSURES": {
+  "RUNTIME_OK": true,
+  "RUNTIME_N": 33,
+  "STATIC_N": 39,
+  "RUNTIME_FILES_NOT_FOUND_BY_THE_STATIC_CLOSURE": [],
+  "STATIC_FILES_THAT_DID_NOT_EXECUTE": [
+   {
+    "file": "OBTC01/code/engine_obtc.py",
+    "class": "ALTERNATIVE_COPY_OF_AN_EXECUTED_MODULE",
+    "the_copy_that_executed": "OBTC02/code/engine_obtc.py",
+    "BYTE_IDENTICAL_TO_THE_EXECUTED_COPY": true,
+    "HARMLESS": true
+   },
+   {
+    "file": "OBTC01/code/guard_obtc.py",
+    "class": "ALTERNATIVE_COPY_OF_AN_EXECUTED_MODULE",
+    "the_copy_that_executed": "OBTC02/code/guard_obtc.py",
+    "BYTE_IDENTICAL_TO_THE_EXECUTED_COPY": true,
+    "HARMLESS": true
+   },
+   {
+    "file": "OBTC01/code/metrics_obtc.py",
+    "class": "ALTERNATIVE_COPY_OF_AN_EXECUTED_MODULE",
+    "the_copy_that_executed": "OBTC02/code/metrics_obtc.py",
+    "BYTE_IDENTICAL_TO_THE_EXECUTED_COPY": true,
+    "HARMLESS": true
+   },
+   {
+    "file": "OBTC02/code/nulls_obtc.py",
+    "class": "ALTERNATIVE_COPY_OF_AN_EXECUTED_MODULE",
+    "the_copy_that_executed": "OBTC01/code/nulls_obtc.py",
+    "BYTE_IDENTICAL_TO_THE_EXECUTED_COPY": true,
+    "HARMLESS": true
+   },
+   {
+    "file": "OBTC02/code/source_operator.py",
+    "class": "ALTERNATIVE_COPY_OF_AN_EXECUTED_MODULE",
+    "the_copy_that_executed": "OBTC01/code/source_operator.py",
+    "BYTE_IDENTICAL_TO_THE_EXECUTED_COPY": true,
+    "HARMLESS": true
+   },
+   {
+    "file": "OBTC02/code/topology.py",
+    "class": "ALTERNATIVE_COPY_OF_AN_EXECUTED_MODULE",
+    "the_copy_that_executed": "OBTC01/code/topology.py",
+    "BYTE_IDENTICAL_TO_THE_EXECUTED_COPY": true,
+    "HARMLESS": true
+   }
+  ],
+  "CLOSURES_AGREE": true,
+  "WHAT_AGREEMENT_MEANS": "every file that executed was also found statically, every file found statically that did not execute is either a BYTE-IDENTICAL alternative copy of a module that did execute or is reachable-but-unexecuted, and no import name resolves to two files with different bytes.",
+  "IMPORT_FAILURES": [],
+  "STATIC_UNRESOLVED_NON_STDLIB": [],
+  "SYS_PATH_AFTER_IMPORT": [
+   "/home/claude/edl/TLMR01/code",
+   "/home/claude/edl/TLMR01/code",
+   "/home/claude/edl/TLMR01/code",
+   "/home/claude/edl/TLMR01/code",
+   "/home/claude/edl/TLMR01/code",
+   "/home/claude/edl/FDFLT01/code",
+   "/home/claude/edl/FMRT01/code",
+   "/home/claude/OBTC01/code",
+   "/home/claude/OBTC01/code",
+   "/home/claude/OBTC02/code",
+   "/home/claude/ORR01/code",
+   "/home/claude/ORR01/code",
+   "/home/claude/OBTC02/code",
+   "/home/claude/ORR01/code",
+   "/home/claude/edl/FDFLT01/code",
+   "/home/claude/edl/FMRT01/code",
+   "/home/claude/edl/MRCI01/code",
+   "/home/claude/edl/PQEC01/code",
+   "/home/claude/edl/FDOT01/code",
+   "/home/claude/edl/FMRCT01/code",
+   "/home/claude/edl/TLMR01/code",
+   "/home/claude/edl/TLMR01/code",
+   "/home/claude/edl/TLMR01/code",
+   "/usr/lib/python311.zip",
+   "/usr/lib/python3.11",
+   "/usr/lib/python3.11/lib-dynload",
+   "/root/.local/lib/python3.11/site-packages",
+   "/usr/local/lib/python3.11/dist-packages",
+   "/usr/lib/python3/dist-packages"
+  ],
+  "RUNTIME_STDERR": ""
+ },
+ "RESOLUTION_AMBIGUITY": {
+  "WHY_IT_MATTERS": "several inherited modules exist in more than one directory on the search path, and which copy executes depends on the ORDER of sys.path insertions performed deep inside inherited code. metrics_obtc.py inserts /home/claude/OBTC01/code at import time, so topology, nulls_obtc and source_operator execute from OBTC01 and not from the OBTC02 paths that FOTSEA01's executability audit named. The copies are byte-identical today; the hazard is that nothing was checking.",
+  "N_AMBIGUOUS_IMPORT_NAMES": 6,
+  "AMBIGUOUS_IMPORT_NAMES": {
+   "metrics_obtc": {
+    "candidates": [
+     "/home/claude/OBTC02/code/metrics_obtc.py",
+     "/home/claude/OBTC01/code/metrics_obtc.py"
+    ],
+    "sha256": {
+     "/home/claude/OBTC02/code/metrics_obtc.py": "8f7d4d5fd920653ced75ae65497e0470b67f074722e152605d62ebfbbb7e007c",
+     "/home/claude/OBTC01/code/metrics_obtc.py": "8f7d4d5fd920653ced75ae65497e0470b67f074722e152605d62ebfbbb7e007c"
+    },
+    "ALL_BYTE_IDENTICAL": true
+   },
+   "topology": {
+    "candidates": [
+     "/home/claude/OBTC02/code/topology.py",
+     "/home/claude/OBTC01/code/topology.py"
+    ],
+    "sha256": {
+     "/home/claude/OBTC02/code/topology.py": "290e193ce2e6341159193e840d7a7ee23ab9573777485821951508cbe48bf074",
+     "/home/claude/OBTC01/code/topology.py": "290e193ce2e6341159193e840d7a7ee23ab9573777485821951508cbe48bf074"
+    },
+    "ALL_BYTE_IDENTICAL": true
+   },
+   "engine_obtc": {
+    "candidates": [
+     "/home/claude/OBTC02/code/engine_obtc.py",
+     "/home/claude/OBTC01/code/engine_obtc.py"
+    ],
+    "sha256": {
+     "/home/claude/OBTC02/code/engine_obtc.py": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30",
+     "/home/claude/OBTC01/code/engine_obtc.py": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30"
+    },
+    "ALL_BYTE_IDENTICAL": true
+   },
+   "guard_obtc": {
+    "candidates": [
+     "/home/claude/OBTC02/code/guard_obtc.py",
+     "/home/claude/OBTC01/code/guard_obtc.py"
+    ],
+    "sha256": {
+     "/home/claude/OBTC02/code/guard_obtc.py": "ae6f6f241fdf7ae481e8443f135dbb276a0dc0d20d1d67da28d1f6710b7b5c9d",
+     "/home/claude/OBTC01/code/guard_obtc.py": "ae6f6f241fdf7ae481e8443f135dbb276a0dc0d20d1d67da28d1f6710b7b5c9d"
+    },
+    "ALL_BYTE_IDENTICAL": true
+   },
+   "nulls_obtc": {
+    "candidates": [
+     "/home/claude/OBTC02/code/nulls_obtc.py",
+     "/home/claude/OBTC01/code/nulls_obtc.py"
+    ],
+    "sha256": {
+     "/home/claude/OBTC02/code/nulls_obtc.py": "5609c4c711d857203e56f64396f4a9ce044116870489748161f30d41a60fc704",
+     "/home/claude/OBTC01/code/nulls_obtc.py": "5609c4c711d857203e56f64396f4a9ce044116870489748161f30d41a60fc704"
+    },
+    "ALL_BYTE_IDENTICAL": true
+   },
+   "source_operator": {
+    "candidates": [
+     "/home/claude/OBTC02/code/source_operator.py",
+     "/home/claude/OBTC01/code/source_operator.py"
+    ],
+    "sha256": {
+     "/home/claude/OBTC02/code/source_operator.py": "537f1d4576c64af7c845a99a863c559e94efdf6cddba2eb9e5920fe64bae99cf",
+     "/home/claude/OBTC01/code/source_operator.py": "537f1d4576c64af7c845a99a863c559e94efdf6cddba2eb9e5920fe64bae99cf"
+    },
+    "ALL_BYTE_IDENTICAL": true
+   }
+  },
+  "ANY_AMBIGUITY_WITH_DIFFERING_BYTES": {},
+  "ALL_AMBIGUITY_IS_BYTE_IDENTICAL": true
+ },
+ "N_FILES_HASHED": 39,
+ "N_EXECUTED": 33,
+ "MODULES": [
+  {
+   "abs": "/home/claude/OBTC01/code/engine_obtc.py",
+   "rel": "OBTC01/code/engine_obtc.py",
+   "sha256": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30",
+   "bytes": 10167,
+   "lines": 247,
+   "EXECUTED": false,
+   "module_name": "engine_obtc",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": true
+  },
+  {
+   "abs": "/home/claude/OBTC01/code/guard_obtc.py",
+   "rel": "OBTC01/code/guard_obtc.py",
+   "sha256": "ae6f6f241fdf7ae481e8443f135dbb276a0dc0d20d1d67da28d1f6710b7b5c9d",
+   "bytes": 4143,
+   "lines": 126,
+   "EXECUTED": false,
+   "module_name": "guard_obtc",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": true
+  },
+  {
+   "abs": "/home/claude/OBTC01/code/metrics_obtc.py",
+   "rel": "OBTC01/code/metrics_obtc.py",
+   "sha256": "8f7d4d5fd920653ced75ae65497e0470b67f074722e152605d62ebfbbb7e007c",
+   "bytes": 10382,
+   "lines": 278,
+   "EXECUTED": false,
+   "module_name": "metrics_obtc",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": true
+  },
+  {
+   "abs": "/home/claude/OBTC01/code/nulls_obtc.py",
+   "rel": "OBTC01/code/nulls_obtc.py",
+   "sha256": "5609c4c711d857203e56f64396f4a9ce044116870489748161f30d41a60fc704",
+   "bytes": 6097,
+   "lines": 151,
+   "EXECUTED": true,
+   "module_name": "nulls_obtc",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": true
+  },
+  {
+   "abs": "/home/claude/OBTC01/code/source_operator.py",
+   "rel": "OBTC01/code/source_operator.py",
+   "sha256": "537f1d4576c64af7c845a99a863c559e94efdf6cddba2eb9e5920fe64bae99cf",
+   "bytes": 8815,
+   "lines": 182,
+   "EXECUTED": true,
+   "module_name": "source_operator",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": true
+  },
+  {
+   "abs": "/home/claude/OBTC01/code/topology.py",
+   "rel": "OBTC01/code/topology.py",
+   "sha256": "290e193ce2e6341159193e840d7a7ee23ab9573777485821951508cbe48bf074",
+   "bytes": 3979,
+   "lines": 95,
+   "EXECUTED": true,
+   "module_name": "topology",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": true
+  },
+  {
+   "abs": "/home/claude/OBTC02/code/engine_obtc.py",
+   "rel": "OBTC02/code/engine_obtc.py",
+   "sha256": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30",
+   "bytes": 10167,
+   "lines": 247,
+   "EXECUTED": true,
+   "module_name": "engine_obtc",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FDOT01",
+    "MCTT01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/OBTC02/code/gate_obtc02.py",
+   "rel": "OBTC02/code/gate_obtc02.py",
+   "sha256": "4857758f4aade1509ef5d7ca19566d2852197a2cc9dab6f24b81304acef3b7c7",
+   "bytes": 24743,
+   "lines": 506,
+   "EXECUTED": true,
+   "module_name": "gate_obtc02",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FDOT01",
+    "MCTT01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/OBTC02/code/guard_obtc.py",
+   "rel": "OBTC02/code/guard_obtc.py",
+   "sha256": "ae6f6f241fdf7ae481e8443f135dbb276a0dc0d20d1d67da28d1f6710b7b5c9d",
+   "bytes": 4143,
+   "lines": 126,
+   "EXECUTED": true,
+   "module_name": "guard_obtc",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FDOT01",
+    "MCTT01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/OBTC02/code/metrics_obtc.py",
+   "rel": "OBTC02/code/metrics_obtc.py",
+   "sha256": "8f7d4d5fd920653ced75ae65497e0470b67f074722e152605d62ebfbbb7e007c",
+   "bytes": 10382,
+   "lines": 278,
+   "EXECUTED": true,
+   "module_name": "metrics_obtc",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FDOT01",
+    "MCTT01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/OBTC02/code/nulls_obtc.py",
+   "rel": "OBTC02/code/nulls_obtc.py",
+   "sha256": "5609c4c711d857203e56f64396f4a9ce044116870489748161f30d41a60fc704",
+   "bytes": 6097,
+   "lines": 151,
+   "EXECUTED": false,
+   "module_name": "nulls_obtc",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "MCTT01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/OBTC02/code/protocol_obtc02.py",
+   "rel": "OBTC02/code/protocol_obtc02.py",
+   "sha256": "0b39875cef0aea3fef2ba0beaab7516208d3f3e4d9bd351b880d30e2ada2c8fe",
+   "bytes": 10298,
+   "lines": 207,
+   "EXECUTED": true,
+   "module_name": "protocol_obtc02",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FDOT01",
+    "MCTT01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/OBTC02/code/source_operator.py",
+   "rel": "OBTC02/code/source_operator.py",
+   "sha256": "537f1d4576c64af7c845a99a863c559e94efdf6cddba2eb9e5920fe64bae99cf",
+   "bytes": 8815,
+   "lines": 182,
+   "EXECUTED": false,
+   "module_name": "source_operator",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "MCTT01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/OBTC02/code/topology.py",
+   "rel": "OBTC02/code/topology.py",
+   "sha256": "290e193ce2e6341159193e840d7a7ee23ab9573777485821951508cbe48bf074",
+   "bytes": 3979,
+   "lines": 95,
+   "EXECUTED": false,
+   "module_name": "topology",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "MCTT01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/ORR01/code/kinetics.py",
+   "rel": "ORR01/code/kinetics.py",
+   "sha256": "d6b9e24daefd9a9ddd42780fa24da444a344a2773bb7836a8e168e44f026c4c4",
+   "bytes": 7251,
+   "lines": 178,
+   "EXECUTED": true,
+   "module_name": "kinetics",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FDOT01",
+    "MCTT01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/ORR01/code/lawspec_v2.py",
+   "rel": "ORR01/code/lawspec_v2.py",
+   "sha256": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94",
+   "bytes": 8497,
+   "lines": 192,
+   "EXECUTED": true,
+   "module_name": "lawspec_v2",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FDOT01",
+    "MCTT01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/ORR01/code/observe.py",
+   "rel": "ORR01/code/observe.py",
+   "sha256": "55840f35f44ccd424c4b71c80d591614d01c9143ca21e9c14e87e0faeeec2fbd",
+   "bytes": 13994,
+   "lines": 323,
+   "EXECUTED": true,
+   "module_name": "observe",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FDOT01",
+    "MCTT01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/FDFLT01/code/fdflt01_endpoint.py",
+   "rel": "edl/FDFLT01/code/fdflt01_endpoint.py",
+   "sha256": "144f2fe16a792a57e2791869fac14d50cdf4d313a9e752dfe0c6f1a2f0677066",
+   "bytes": 8621,
+   "lines": 184,
+   "EXECUTED": true,
+   "module_name": "fdflt01_endpoint",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FMRCT01",
+    "MCTT01",
+    "BPRTC01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/FDOT01/code/fdot01_centres.py",
+   "rel": "edl/FDOT01/code/fdot01_centres.py",
+   "sha256": "e53513d464ac4a332a652c947f2ceed0fad2e5bd23c4eaa8fabcb1c52d608333",
+   "bytes": 8731,
+   "lines": 170,
+   "EXECUTED": true,
+   "module_name": "fdot01_centres",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FDOT01",
+    "FMRCT01",
+    "MCTT01",
+    "BPRTC01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/FDOT01/code/fdot01_world.py",
+   "rel": "edl/FDOT01/code/fdot01_world.py",
+   "sha256": "566ec83854a3ea66efce58b58dd3bbc162390e11d4a98af23657f10471b52cd8",
+   "bytes": 2297,
+   "lines": 49,
+   "EXECUTED": true,
+   "module_name": "fdot01_world",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FDOT01",
+    "FMRCT01",
+    "MCTT01",
+    "BPRTC01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/FMRCT01/code/fmrct01_descent.py",
+   "rel": "edl/FMRCT01/code/fmrct01_descent.py",
+   "sha256": "32363c56dd7595567710ec17974b0f640c329c7beb4c803c4bdecfec751efa02",
+   "bytes": 3912,
+   "lines": 71,
+   "EXECUTED": true,
+   "module_name": "fmrct01_descent",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FMRCT01",
+    "MCTT01",
+    "BPRTC01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/FMRCT01/code/fmrct01_track.py",
+   "rel": "edl/FMRCT01/code/fmrct01_track.py",
+   "sha256": "a276f254fdeb3fb4647b6c409bf4237207950b585904117531240ee9f7d2a213",
+   "bytes": 9980,
+   "lines": 202,
+   "EXECUTED": true,
+   "module_name": "fmrct01_track",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FMRCT01",
+    "MCTT01",
+    "BPRTC01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/FMRCT01/code/fmrct01_world.py",
+   "rel": "edl/FMRCT01/code/fmrct01_world.py",
+   "sha256": "1980644f4f8e92d2485120b730ffc836f80baffd4edb5aefe8cad502f032a9f6",
+   "bytes": 4091,
+   "lines": 93,
+   "EXECUTED": true,
+   "module_name": "fmrct01_world",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FMRCT01",
+    "MCTT01",
+    "BPRTC01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/FMRT01/code/fmrt01_endpoint.py",
+   "rel": "edl/FMRT01/code/fmrt01_endpoint.py",
+   "sha256": "6f5e8c7092c785630a47cfa73edeaede1c2aafdd05a22327687ab5b1a84db30b",
+   "bytes": 2604,
+   "lines": 59,
+   "EXECUTED": true,
+   "module_name": "fmrt01_endpoint",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FMRCT01",
+    "MCTT01",
+    "BPRTC01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/FMRT01/code/fmrt01_identity.py",
+   "rel": "edl/FMRT01/code/fmrt01_identity.py",
+   "sha256": "686e0810f6c6b9b81c81c96e6c185b1decf79f98d98a0b79dc2c34ba48fc7aea",
+   "bytes": 2864,
+   "lines": 78,
+   "EXECUTED": true,
+   "module_name": "fmrt01_identity",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FMRCT01",
+    "MCTT01",
+    "BPRTC01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/PQEC01/code/pqec01_observer.py",
+   "rel": "edl/PQEC01/code/pqec01_observer.py",
+   "sha256": "d8ff4b9da05c95641c7f69cef4c8b2ffe4c45f17975e8f348d5c5e0f2b6bba21",
+   "bytes": 8934,
+   "lines": 196,
+   "EXECUTED": true,
+   "module_name": "pqec01_observer",
+   "in_static_closure": true,
+   "owned_by_TLMR01": false,
+   "frozen_by": [
+    "FDOT01",
+    "FMRCT01",
+    "MCTT01",
+    "BPRTC01"
+   ],
+   "matches_every_inherited_freeze": true,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_analyse.py",
+   "rel": "edl/TLMR01/code/tlmr01_analyse.py",
+   "sha256": "b96bcb794ce829707cbe04236e8b58b34b173bd39209cfa11c3bc958160f0010",
+   "bytes": 11155,
+   "lines": 213,
+   "EXECUTED": true,
+   "module_name": "tlmr01_analyse",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_bind.py",
+   "rel": "edl/TLMR01/code/tlmr01_bind.py",
+   "sha256": "d90c0c6b876704ee90be9d44697c008cd32167b356737bc1e8ffbe4e7c8701a9",
+   "bytes": 8822,
+   "lines": 137,
+   "EXECUTED": true,
+   "module_name": "tlmr01_bind",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_design.py",
+   "rel": "edl/TLMR01/code/tlmr01_design.py",
+   "sha256": "02048b5608c6dbf317e7da524b153fa997dfb548a300c9ba9e244d2846c1e28c",
+   "bytes": 28357,
+   "lines": 411,
+   "EXECUTED": true,
+   "module_name": "tlmr01_design",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_fixtures.py",
+   "rel": "edl/TLMR01/code/tlmr01_fixtures.py",
+   "sha256": "036251481d1f71b8491bdd23fb4236d38bf853ef594fcd7b2df4b4d0dade55b8",
+   "bytes": 7118,
+   "lines": 141,
+   "EXECUTED": true,
+   "module_name": "tlmr01_fixtures",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_freeze.py",
+   "rel": "edl/TLMR01/code/tlmr01_freeze.py",
+   "sha256": "86417bc61929d5b59fb81f83160adcae7b272e1dcdb3d46a95732050b8dd5c99",
+   "bytes": 9006,
+   "lines": 135,
+   "EXECUTED": true,
+   "module_name": "tlmr01_freeze",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_laws.py",
+   "rel": "edl/TLMR01/code/tlmr01_laws.py",
+   "sha256": "ed485a5088844b5eae406177c4dd877dd3eb2c96bb5b68a9b9ef0f0ed135a349",
+   "bytes": 3467,
+   "lines": 59,
+   "EXECUTED": true,
+   "module_name": "tlmr01_laws",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_methods.py",
+   "rel": "edl/TLMR01/code/tlmr01_methods.py",
+   "sha256": "298cd550e0bd988c7677701ffd44bab2b6829a34ca7de4d442f6c66f9551b6dc",
+   "bytes": 17109,
+   "lines": 330,
+   "EXECUTED": true,
+   "module_name": "tlmr01_methods",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_offline.py",
+   "rel": "edl/TLMR01/code/tlmr01_offline.py",
+   "sha256": "70b3df0e57ac4e593bf70254451c29934f74a1f9b924ea18b6bac8b1f5bd3afb",
+   "bytes": 14708,
+   "lines": 296,
+   "EXECUTED": true,
+   "module_name": "tlmr01_offline",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_paths.py",
+   "rel": "edl/TLMR01/code/tlmr01_paths.py",
+   "sha256": "649d1a55e8d5cc7f43a4ec988c0d0481ea43a5ea991d64b47a3298f97781196d",
+   "bytes": 36066,
+   "lines": 614,
+   "EXECUTED": true,
+   "module_name": "tlmr01_paths",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_run.py",
+   "rel": "edl/TLMR01/code/tlmr01_run.py",
+   "sha256": "50aad6668957fb10027b81076ba336f1f0fba64b54921b6bf86b84e5b2c591da",
+   "bytes": 8770,
+   "lines": 161,
+   "EXECUTED": true,
+   "module_name": "tlmr01_run",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_seeds.py",
+   "rel": "edl/TLMR01/code/tlmr01_seeds.py",
+   "sha256": "e0b69c825945c30c5b1fbea132865707497cab4f0dc3800b2735797c680da890",
+   "bytes": 4593,
+   "lines": 84,
+   "EXECUTED": true,
+   "module_name": "tlmr01_seeds",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_world.py",
+   "rel": "edl/TLMR01/code/tlmr01_world.py",
+   "sha256": "edcb51ce7d7c8b4a8c0bcf03f3e3a30fbc98f1554d940d208d80f132a0d3ca7a",
+   "bytes": 10939,
+   "lines": 173,
+   "EXECUTED": true,
+   "module_name": "tlmr01_world",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  },
+  {
+   "abs": "/home/claude/edl/TLMR01/code/tlmr01_writer_fixture.py",
+   "rel": "edl/TLMR01/code/tlmr01_writer_fixture.py",
+   "sha256": "5f6490c15a2c404342088062cd9128953821a3f03e76e0e589a390a887e6224d",
+   "bytes": 1936,
+   "lines": 34,
+   "EXECUTED": true,
+   "module_name": "tlmr01_writer_fixture",
+   "in_static_closure": true,
+   "owned_by_TLMR01": true,
+   "frozen_by": [],
+   "matches_every_inherited_freeze": null,
+   "ABSENT_FROM_EVERY_INHERITED_MANIFEST": false
+  }
+ ],
+ "EXECUTED_MODULE_FILES": [
+  "OBTC01/code/nulls_obtc.py",
+  "OBTC01/code/source_operator.py",
+  "OBTC01/code/topology.py",
+  "OBTC02/code/engine_obtc.py",
+  "OBTC02/code/gate_obtc02.py",
+  "OBTC02/code/guard_obtc.py",
+  "OBTC02/code/metrics_obtc.py",
+  "OBTC02/code/protocol_obtc02.py",
+  "ORR01/code/kinetics.py",
+  "ORR01/code/lawspec_v2.py",
+  "ORR01/code/observe.py",
+  "edl/FDFLT01/code/fdflt01_endpoint.py",
+  "edl/FDOT01/code/fdot01_centres.py",
+  "edl/FDOT01/code/fdot01_world.py",
+  "edl/FMRCT01/code/fmrct01_descent.py",
+  "edl/FMRCT01/code/fmrct01_track.py",
+  "edl/FMRCT01/code/fmrct01_world.py",
+  "edl/FMRT01/code/fmrt01_endpoint.py",
+  "edl/FMRT01/code/fmrt01_identity.py",
+  "edl/PQEC01/code/pqec01_observer.py",
+  "edl/TLMR01/code/tlmr01_analyse.py",
+  "edl/TLMR01/code/tlmr01_bind.py",
+  "edl/TLMR01/code/tlmr01_design.py",
+  "edl/TLMR01/code/tlmr01_fixtures.py",
+  "edl/TLMR01/code/tlmr01_freeze.py",
+  "edl/TLMR01/code/tlmr01_laws.py",
+  "edl/TLMR01/code/tlmr01_methods.py",
+  "edl/TLMR01/code/tlmr01_offline.py",
+  "edl/TLMR01/code/tlmr01_paths.py",
+  "edl/TLMR01/code/tlmr01_run.py",
+  "edl/TLMR01/code/tlmr01_seeds.py",
+  "edl/TLMR01/code/tlmr01_world.py",
+  "edl/TLMR01/code/tlmr01_writer_fixture.py"
+ ],
+ "N_OWNED_BY_TLMR01": 13,
+ "N_INHERITED": 26,
+ "INHERITED_BYTE_DRIFT": [],
+ "NO_INHERITED_MODULE_HAS_DRIFTED": true,
+ "EXECUTING_MODULES_ABSENT_FROM_EVERY_INHERITED_MANIFEST": [
+  "OBTC01/code/nulls_obtc.py",
+  "OBTC01/code/source_operator.py",
+  "OBTC01/code/topology.py"
+ ],
+ "N_ABSENT_AND_EXECUTING": 3,
+ "THE_FOTSEA01_GAP": "FOTSEA01 found three L-dependent modules reaching the running process without appearing in any frozen manifest, and named them at their OBTC02 paths. This closure shows the executing copies are OBTC01's, that all four copies of each are byte-identical, and hashes every copy either way. The set is closed at this mission whatever the ancestors recorded, and the count that remained unfrozen upstream is reported rather than hidden.",
+ "L_REPARAMETERISATION_SCOPE": {
+  "IN_SCOPE": false,
+  "REASON": "TLMR01 runs at the frozen L = 36 and changes no size. The 11-file re-parameterisation FOTSEA01 priced is required only by a size ladder, and ONE_ZERO_RUN_DETOUR_ONLY is spent. It is declared out of scope rather than half-done.",
+  "FINITE_SIZE_RELEVANCE": "NOT_SUPPORTED"
+ },
+ "COMPLETE_PRE_RUN_METHODS_HASH": "5e7417939046b0838096f12bdfdeccf3324cf8a1d35306a3e1635db693fc318d"
+}

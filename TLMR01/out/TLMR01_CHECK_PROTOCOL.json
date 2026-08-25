@@ -1,0 +1,37 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "17 \u2014 the independent check protocol",
+ "GENERATED_UTC": "2026-08-24T23:24:17.118133+00:00",
+ "DECLARED_BEFORE_THE_OUTCOME_IS_KNOWN": true,
+ "MAX_INDEPENDENT_CHECKERS": 1,
+ "REVIEW_CASCADE": "forbidden",
+ "MAX_REVIEW_CASCADES": 0,
+ "THE_RULE_THAT_MATTERS_MOST": {
+  "CHECKER_RETURN_WRITTEN_BEFORE_ANY_FINDING_IS_ACTED_ON": "mandatory",
+  "why": "the PTOPD01 record lost 17 checker findings because the return was acted on before it was written to an artefact. The raw return is written to TLMR01/review/TLMR01_CHECKER_RAW.txt, byte for byte, with its sha256 and byte count published, BEFORE a single finding is read for action.",
+  "artefact": "TLMR01/review/TLMR01_CHECKER_RAW.txt"
+ },
+ "WHAT_THE_CHECKER_IS_GIVEN": [
+  "the frozen pre-run artefacts and the master freeze",
+  "the code of every TLMR01 module",
+  "the analysis output and the per-world results",
+  "the raw archives, and the offline reader with which to re-derive anything it doubts"
+ ],
+ "WHAT_THE_CHECKER_IS_ASKED": [
+  "does the analysis compute what the frozen definitions say it computes",
+  "is any threshold, unit, denominator or ordering different from the one frozen before world 1",
+  "is any quantity presented as DIRECTLY_MEASURED that does not meet the declared support rule",
+  "is any interval, clustering correction or zero-numerator bound computed wrongly",
+  "is any claim in the report stronger than the claim ceiling permits",
+  "is any forbidden claim made, including in denial",
+  "is any gate vacuous \u2014 incapable of returning a value other than the one it returned",
+  "is the disposition the one the frozen cascade returns for these numbers"
+ ],
+ "ADJUDICATION": {
+  "passes": 1,
+  "rule": "every finding is adjudicated exactly once, in writing, with an explicit verdict of UPHELD, PARTIALLY_UPHELD or REJECTED and a stated reason. A finding is never silently dropped and never re-litigated in a second pass.",
+  "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0,
+  "what_may_change_after_a_finding": "the REPORT and the DESCRIPTION may be corrected. The frozen rules, thresholds, denominators and the disposition logic may not. If a finding shows the analysis violated a frozen rule, the analysis is corrected to obey that rule \u2014 which is not a repair of the science but the removal of a departure from it \u2014 and the correction is published with the finding that caused it."
+ },
+ "THE_DISPOSITION_IS_RETURNED_ONCE": true
+}

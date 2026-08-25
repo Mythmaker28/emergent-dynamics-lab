@@ -1,0 +1,22 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "11 \u2014 post-freeze addendum",
+ "GENERATED_UTC": "2026-08-24T23:43:57.824881+00:00",
+ "FREEZE_HASH": "b354944f0e5b7f8269312ae7a7de35953e9803b960953caccff7aaa84c474718",
+ "WHY_THIS_EXISTS": "a file was added to TLMR01/code AFTER the master freeze was taken. The freeze is not re-taken and not amended, because a freeze that moves once the run has begun is no freeze. Instead the addition is declared here and every frozen file is re-hashed to prove nothing frozen moved.",
+ "FILES_ADDED_AFTER_THE_FREEZE": [
+  "tlmr01_analysis_fixture.py"
+ ],
+ "FILES_REMOVED_AFTER_THE_FREEZE": [],
+ "WHAT_THE_ADDITION_IS": "tlmr01_analysis_fixture.py \u2014 a TEST. It builds synthetic per-world dictionaries with hand-checkable answers and runs the frozen aggregation, the exact intervals, the support rule, the world-clustered bootstrap, the eligibility clauses and the disposition cascade against them. It reads no archive and sees no outcome, so it cannot inform any rule.",
+ "IT_ADDS_NO_RULE_AND_CHANGES_NO_RULE": true,
+ "IT_IS_NOT_IMPORTED_BY_ANY_MODULE_ON_THE_RUN_OR_ANALYSIS_PATH": true,
+ "EVERY_FROZEN_MODULE_IS_BYTE_UNCHANGED": true,
+ "MODULES_THAT_DRIFTED": [],
+ "EVERY_FROZEN_ARTEFACT_IS_BYTE_UNCHANGED": true,
+ "ARTEFACTS_THAT_DRIFTED": [],
+ "NEW_FILE_HASH": {
+  "tlmr01_analysis_fixture.py": "5afb4f96e5351aefe01dc2e8d397bbae6ebff2d882264181c90e14af0005d4a5"
+ },
+ "RESULT": true
+}

@@ -1,0 +1,32 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "8 \u2014 disposition logic",
+ "GENERATED_UTC": "2026-08-24T22:51:50.618910+00:00",
+ "EXACTLY_ONE_DISPOSITION_IS_RETURNED": true,
+ "EVALUATED_IN_THIS_ORDER_AND_THE_FIRST_MATCH_WINS": [
+  {
+   "1": "TECHNICALLY_INVALID__DENOMINATOR_INCOMPLETE_OR_UNREPLACED_TECHNICAL_FAILURE",
+   "when": "any law's primary denominator is short of its planned n, or any technical failure remains unreplaced after the reserve band is exhausted"
+  },
+  {
+   "2": "MEASUREMENT_INCOMPLETE__PRIMARY_REGIME_UNREACHED",
+   "when": "no law delivered DIRECTLY_MEASURED support for M1 anywhere above the occupation support ceiling sI = 5. The mission's own reason for existing was that regime."
+  },
+  {
+   "3": "MEASUREMENT_DELIVERED__ONE_LAW_SELECTED_FOR_DISJOINT_CONFIRMATION",
+   "when": "M1 to M5 are measured, at least one law satisfies E1 to E6, and the ordering statistic has a unique maximum"
+  },
+  {
+   "4": "MEASUREMENT_DELIVERED__NO_LAW_SELECTED__EXACT_TIE",
+   "when": "two or more eligible laws tie exactly on the ordering statistic"
+  },
+  {
+   "5": "MEASUREMENT_DELIVERED__NO_LAW_ELIGIBLE__CONFIRMATION_NOT_AUTHORISED",
+   "when": "M1 to M5 are measured and no law satisfies E1 to E6"
+  }
+ ],
+ "MUTUAL_EXCLUSIVITY": "guaranteed by the ordered cascade; the first match returns and no later branch is evaluated.",
+ "EXHAUSTIVENESS": "branch 5 is the complement of 1 to 4 given that the run completed, so the set covers every reachable state.",
+ "NOTHING_IS_REPAIRED_AFTER_THE_OUTCOME": true,
+ "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0
+}

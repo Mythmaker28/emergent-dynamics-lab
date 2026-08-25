@@ -1,0 +1,27 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "7 \u2014 uncertainty and support",
+ "GENERATED_UTC": "2026-08-24T22:51:47.549162+00:00",
+ "EVERY_PROPORTION_CARRIES": [
+  "the exact numerator and denominator",
+  "the exact Clopper-Pearson 95 per cent interval",
+  "the exact one-sided lower 95 per cent bound"
+ ],
+ "ZERO_NUMERATORS": "reported with the exact one-sided upper 95 per cent bound from the beta quantile. The rule of three is NOT used anywhere.",
+ "DIRECTLY_MEASURED": {
+  "rule": "a quantity is DIRECTLY_MEASURED at a law only if its denominator draws on at least 10 distinct worlds AND contains at least 30 elementary units of its own declared unit.",
+  "MIN_WORLDS": 10,
+  "MIN_EVENTS": 30,
+  "otherwise": "SUPPORT_TOO_THIN__NOT_DIRECTLY_MEASURED \u2014 published with its exact counts and interval, and forbidden from entering any gate or any selection."
+ },
+ "CLUSTERING": {
+  "problem": "M1, M2, M3 and M4 have units (steps, episodes, candidates) that repeat within a world, so a naive binomial interval understates the uncertainty.",
+  "rule": "each is published TWICE: the naive exact interval over the elementary unit, and a WORLD-CLUSTERED interval obtained by treating the world as the sampling unit and bootstrapping over worlds with the per-world numerators and denominators intact.",
+  "which_one_gates": "only the world-clustered interval may support a claim; the naive one is descriptive.",
+  "M5_needs_no_correction": "its unit IS the world."
+ },
+ "NO_LAW_IS_POOLED_WITH_ANOTHER_INSIDE_ANY_GATE": true,
+ "OVERLAP_COMPARISON_IS_DESCRIPTIVE_ONLY": "where two laws populate the same occupancy stratum the two measurements are shown side by side. Agreement is not asserted, disagreement is not repaired, and neither is used to transport a quantity from one law to another. MCTT01 established that the fork-to-trigger conversion does not transport in kY; nothing here assumes any other quantity does.",
+ "TECHNICAL_FAILURES": "a world with an engine invariant failure, a crashed process or a missing or corrupt archive is TECHNICAL. It may be replaced from the reserve band, at most 6 times for the whole mission. A short denominator or any unreplaced technical failure makes the affected law TECHNICALLY_INVALID; it is never repaired scientifically.",
+ "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0
+}

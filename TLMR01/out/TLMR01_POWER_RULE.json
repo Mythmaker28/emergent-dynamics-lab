@@ -1,0 +1,134 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "8 \u2014 the power rule",
+ "GENERATED_UTC": "2026-08-24T22:51:48.937510+00:00",
+ "TWO_SEPARATE_QUESTIONS": "the primary estimand and the selection statistic are powered differently and are reported separately. Merging them would let a favourable figure for one stand in for the other.",
+ "PART_A_PRIMARY_ESTIMAND_SUPPORT": {
+  "estimand": "e(n) for n > 5",
+  "criterion": "DIRECTLY_MEASURED in at least one stratum above sI = 5: at least 10 distinct worlds and at least 30 single-centre steps of exposure in that stratum",
+  "why_no_prospective_power_curve_is_given": "the exposure denominator is precisely the quantity no archive ever recorded, so any prospective figure for it would be a model, and a model is what this programme exists to replace. The support achieved is reported, whatever it is, and a shortfall returns MEASUREMENT_INCOMPLETE__PRIMARY_REGIME_UNREACHED rather than an estimate.",
+  "what_inherited_evidence_does_say": "forks above occupancy 5 are common in the executed corpora \u2014 PTOPD01's pooled table shows 77 episodes beginning at occupancy 6, 77 at 7, 69 at 8 and hundreds more above \u2014 and LAW_C_MCTT01 is the highest-occupation law of the three, with a published median maximum Y occupancy of 231. That is why 256 of the 512 worlds are allocated to it.",
+  "allocation_and_its_reason": {
+   "LAW_A_B1": {
+    "n": 128
+   },
+   "LAW_B_POINT_D10": {
+    "n": 128
+   },
+   "LAW_C_MCTT01": {
+    "n": 256
+   }
+  },
+  "ALLOCATION_IS_DRIVEN_BY_THE_PRIMARY_NOT_BY_THE_SELECTION_STATISTIC": true
+ },
+ "PART_B_SELECTION_STATISTIC_POWER": {
+  "estimand": "M5, per world",
+  "K_MIN": 2,
+  "RULE": "p*(n) is the smallest per-world rate at which the design observes at least K_MIN = 2 events with probability at least 0.80, computed exactly from the binomial with no normal approximation.",
+  "K_MIN_IS_TWO_BECAUSE": "one event is not a replicate. The inherited house rule across FDOT01, BPRTC01 and PTOPD01 is that a design must be able to see the event twice.",
+  "p_star": {
+   "128": 0.02321150272141098,
+   "256": 0.01165104600063477,
+   "512": 0.005836879691683838
+  },
+  "PER_LAW": {
+   "LAW_A_B1": {
+    "n": 128,
+    "p_star_for_K_at_least_2": 0.02321150272141098,
+    "K_required_by_E3_lower_bound_exceeds_F": 3,
+    "lower95_at_that_K": 0.006417991747614904,
+    "K_required_by_E6_confirmation_affordable": 4,
+    "confirmation_n_at_that_K": 735,
+    "BINDING_K": 4,
+    "K_also_clearing_the_stronger_reference": 7
+   },
+   "LAW_B_POINT_D10": {
+    "n": 128,
+    "p_star_for_K_at_least_2": 0.02321150272141098,
+    "K_required_by_E3_lower_bound_exceeds_F": 3,
+    "lower95_at_that_K": 0.006417991747614904,
+    "K_required_by_E6_confirmation_affordable": 4,
+    "confirmation_n_at_that_K": 735,
+    "BINDING_K": 4,
+    "K_also_clearing_the_stronger_reference": 7
+   },
+   "LAW_C_MCTT01": {
+    "n": 256,
+    "p_star_for_K_at_least_2": 0.01165104600063477,
+    "K_required_by_E3_lower_bound_exceeds_F": 4,
+    "lower95_at_that_K": 0.005354318327788894,
+    "K_required_by_E6_confirmation_affordable": 6,
+    "confirmation_n_at_that_K": 770,
+    "BINDING_K": 6,
+    "K_also_clearing_the_stronger_reference": 10
+   }
+  },
+  "POOLED_512_IS_NOT_THE_DESIGNS_ASSURANCE": {
+   "p_star_512": 0.005836879691683838,
+   "why": "the three laws are different physics and are never pooled inside a gate. The pooled figure is shown only so a reader can see how much assurance would come from aggregation, and it is not used."
+  },
+  "FLOOR": {
+   "value": 0.0032015171041760242,
+   "name": "F_INTEGRATED",
+   "definition": "the exact one-sided lower 95 per cent bound on BPRTC01's published 3 of 256 post-removal FUNCTIONAL COMPLETE TURNOVERS at POINT_D10 \u2014 the only endpoint any parent corpus published that matches M5 in kind",
+   "k": 3,
+   "n": 256,
+   "principle": "match the endpoint kind. Stated before the value was computed, and it is the reason FDOT01's easier 7 of 160 is not the gate.",
+   "why_it_is_not_circular": "it is computed from a COMMITTED PARENT corpus, a different mission and a different sample. No TLMR01 outcome enters it, and it is fixed here before world 1 runs.",
+   "source": "BPRTC01/out/BPRTC01_ANALYSIS.json STATS_FOR_THE_FROZEN_GATES"
+  },
+  "STRONGER_REFERENCE": {
+   "value": 0.02071050301010788,
+   "name": "F_TURNOVER",
+   "k": 7,
+   "n": 160,
+   "definition": "the exact one-sided lower 95 per cent bound on FDOT01's 7 of 160 functional complete turnovers at B1, an endpoint with no trigger and no intervention",
+   "role": "REPORTED, NEVER A GATE. A law that also clears it is flagged CLEARS_THE_STRONGER_TURNOVER_REFERENCE so that no reader can suppose the bar was quietly lowered.",
+   "source": "FDOT01/out/FDOT01_PRIMARY_ANALYSIS.json ONE_SIDED_LOWER_95"
+  },
+  "CONFIRMATION_CEILING_WORLDS": 1024
+ },
+ "INHERITED_REFERENCE_RATES_FOR_M5": {
+  "FDOT01_functional_complete_turnover_at_B1": {
+   "k": 7,
+   "n": 160,
+   "source": "FDOT01/out/FDOT01_PRIMARY_ANALYSIS.json",
+   "endpoint": "FUNCTIONAL_COMPLETE_TURNOVER, no trigger, no intervention"
+  },
+  "BPRTC01_integrated_chain_at_POINT_D10": {
+   "n": 256,
+   "triggered": 35,
+   "removals_applied": 34,
+   "complete_turnovers": 3,
+   "functional": 3,
+   "k": 3,
+   "source": "BPRTC01/out/BPRTC01_ANALYSIS.json STATS_FOR_THE_FROZEN_GATES",
+   "endpoint": "trigger, then SELECTIVE_PARENT_REMOVAL, then a post-removal FUNCTIONAL COMPLETE TURNOVER \u2014 the same chain M5 measures, at one of the three laws measured here"
+  },
+  "MCTT01_trigger_rate_at_the_MCTT01_law": {
+   "k": 6,
+   "n": 64,
+   "source": "MCTT01/out/MCTT01_STAGE_A_QUALIFICATION.json",
+   "endpoint": "frozen functional trigger"
+  },
+  "MCTT01_removal_applied_of_triggered": {
+   "k": 3,
+   "n": 6,
+   "source": "MCTT01/out/MCTT01_STAGE_A_QUALIFICATION.json TERMINAL_LABEL_COUNTS_DIAGNOSTIC_ONLY",
+   "note": "of 6 triggers, 2 were TRIGGER_DESCENT_AMBIGUOUS and 1 REMOVAL_NOT_APPLIED"
+  },
+  "PTOPD01_maturation_by_occupancy_pooled": {
+   "source": "PTOPD01/out/PTOPD01_SUPPORT_EXTRAPOLATION_GATE.json",
+   "note": "zero of 3602 episodes above occupancy 3 matured at B1 mobility; the entire n > 5 regime of e(n) is unobserved, which is what this mission measures"
+  }
+ },
+ "WHAT_THIS_DESIGN_CAN_AND_CANNOT_SEE": {
+  "LAW_C_MCTT01": "n = 256 gives p* = 0.011651. MCTT01 published 6 of 64 triggers at this exact law with 3 of those 6 reaching an applied removal, so the plausible range for M5 sits above p*. The design has assurance here.",
+  "LAW_B_POINT_D10": "n = 128 gives p* = 0.0232115, while BPRTC01 measured this exact chain at this exact law as 3 of 256 = 0.0117188. The design is therefore UNDERPOWERED at LAW_B relative to its own inherited expectation: at that rate it sees two or more events only about 44 per cent of the time. This is stated as a declared limitation before world 1 and is NOT repaired by pooling or by moving worlds after the fact.",
+  "LAW_A_B1": "n = 128 gives p* = 0.0232115. No parent corpus measured this chain at B1 \u2014 FDOT01's 7 of 160 is a strictly easier endpoint with no trigger and no removal \u2014 so no honest prospective statement is available and none is invented."
+ },
+ "NO_ADAPTIVE_SAMPLE_SIZE": true,
+ "NO_INTERIM_ANALYSIS": true,
+ "NO_WORLD_IS_MOVED_BETWEEN_LAWS_AFTER_THE_BUDGET_IS_FROZEN": true,
+ "THE_BUDGET_IS_FIXED_AT_512_PRIMARY_WORLDS_BEFORE_WORLD_1": true
+}

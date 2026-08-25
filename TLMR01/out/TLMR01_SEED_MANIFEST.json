@@ -1,0 +1,3183 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "12 \u2014 seed derivation",
+ "GENERATED_UTC": "2026-08-24T22:24:49.918194+00:00",
+ "PARENT_TIP_RESOLVED_FROM_THE_REPOSITORY": "9f4c70ceeb05b0b8a1f27c4cfc855e125f921ce9",
+ "RULE": "sha256(PARENT_TIP | 'TLMR01' | LAW_ID | ROLE | INDEX)[:8] as big-endian uint64, mod 2**32",
+ "NO_FREE_CHOICE_IN_ANY_SEED": true,
+ "N_PRIMARY": 512,
+ "N_PER_LAW": {
+  "LAW_A_B1": 128,
+  "LAW_B_POINT_D10": 128,
+  "LAW_C_MCTT01": 256
+ },
+ "MAX_PRIMARY_MEASUREMENT_WORLDS": 512,
+ "PRIMARY_BUDGET_RESPECTED": true,
+ "PRIMARY_BUDGET_EXACT": true,
+ "N_RESERVE": 6,
+ "MAX_TECHNICAL_RESERVES": 6,
+ "RESERVE_BUDGET_RESPECTED": true,
+ "RESERVES_ARE_TECHNICAL_ONLY": "a reserve may replace only a world with a declared TECHNICAL failure \u2014 engine invariant violation, crashed process, missing or corrupt archive. Never for a scientific reason, never to change an outcome.",
+ "PRIMARY_ALL_DISTINCT": true,
+ "RESERVE_ALL_DISTINCT": true,
+ "PRIMARY_AND_RESERVE_DISJOINT": true,
+ "PER_LAW_PAIRWISE_DISJOINT": {
+  "LAW_A_B1|LAW_B_POINT_D10": true,
+  "LAW_A_B1|LAW_C_MCTT01": true,
+  "LAW_B_POINT_D10|LAW_C_MCTT01": true
+ },
+ "FIXTURE_BAND": [
+  70001,
+  70002,
+  70003,
+  70004,
+  70005,
+  70006,
+  70007,
+  70008,
+  70009,
+  70010,
+  70011,
+  70012,
+  71001,
+  71002,
+  71003,
+  71004,
+  71005,
+  71006,
+  71007,
+  71008,
+  71009,
+  71010,
+  71011,
+  71012,
+  71013,
+  71014,
+  71015,
+  71016,
+  71101,
+  71102,
+  71103,
+  71104,
+  71201,
+  71202,
+  71203
+ ],
+ "FIXTURE_BAND_DISJOINT_FROM_PRIMARY": true,
+ "FIXTURE_BAND_DISJOINT_FROM_RESERVE": true,
+ "DISJOINTNESS_IS_PROVED_BY_ENUMERATION_NOT_ARGUED": true,
+ "SEEDS": [
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 0,
+   "seed": 3160790870
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 1,
+   "seed": 571446841
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 2,
+   "seed": 1866694611
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 3,
+   "seed": 4153607546
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 4,
+   "seed": 39359059
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 5,
+   "seed": 4184562594
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 6,
+   "seed": 2334114643
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 7,
+   "seed": 1650943441
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 8,
+   "seed": 265130296
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 9,
+   "seed": 1731149644
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 10,
+   "seed": 3046877131
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 11,
+   "seed": 332495838
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 12,
+   "seed": 753286061
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 13,
+   "seed": 3486802277
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 14,
+   "seed": 4022386926
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 15,
+   "seed": 1310075747
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 16,
+   "seed": 1175252647
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 17,
+   "seed": 235255953
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 18,
+   "seed": 2449765559
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 19,
+   "seed": 3847114988
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 20,
+   "seed": 4161847129
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 21,
+   "seed": 1569571501
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 22,
+   "seed": 3089921502
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 23,
+   "seed": 2972922588
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 24,
+   "seed": 2525970937
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 25,
+   "seed": 1067982364
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 26,
+   "seed": 3146083302
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 27,
+   "seed": 113175244
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 28,
+   "seed": 1596318875
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 29,
+   "seed": 49998123
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 30,
+   "seed": 3453783556
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 31,
+   "seed": 567218718
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 32,
+   "seed": 4055852605
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 33,
+   "seed": 3578423883
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 34,
+   "seed": 1996814626
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 35,
+   "seed": 2005247887
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 36,
+   "seed": 3853438445
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 37,
+   "seed": 930338418
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 38,
+   "seed": 3848823085
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 39,
+   "seed": 1167960906
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 40,
+   "seed": 1814241034
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 41,
+   "seed": 775340321
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 42,
+   "seed": 4233708817
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 43,
+   "seed": 3585610469
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 44,
+   "seed": 576504320
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 45,
+   "seed": 4152108290
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 46,
+   "seed": 4249165516
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 47,
+   "seed": 1264610309
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 48,
+   "seed": 1365234752
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 49,
+   "seed": 3488396327
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 50,
+   "seed": 1605616151
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 51,
+   "seed": 2823775785
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 52,
+   "seed": 825791179
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 53,
+   "seed": 810397808
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 54,
+   "seed": 1558926505
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 55,
+   "seed": 1789242958
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 56,
+   "seed": 2508838613
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 57,
+   "seed": 3697919114
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 58,
+   "seed": 4240783143
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 59,
+   "seed": 4077823784
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 60,
+   "seed": 1188308715
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 61,
+   "seed": 714333501
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 62,
+   "seed": 3652258630
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 63,
+   "seed": 2012886983
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 64,
+   "seed": 228808133
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 65,
+   "seed": 1849423907
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 66,
+   "seed": 902782350
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 67,
+   "seed": 482132137
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 68,
+   "seed": 1089345473
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 69,
+   "seed": 3956185490
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 70,
+   "seed": 893596282
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 71,
+   "seed": 2034889902
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 72,
+   "seed": 2071245036
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 73,
+   "seed": 2333151252
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 74,
+   "seed": 2406152687
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 75,
+   "seed": 169629229
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 76,
+   "seed": 4077671369
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 77,
+   "seed": 1131150605
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 78,
+   "seed": 2021926507
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 79,
+   "seed": 2122113120
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 80,
+   "seed": 1340742589
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 81,
+   "seed": 3092379333
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 82,
+   "seed": 3328843259
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 83,
+   "seed": 1797479286
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 84,
+   "seed": 4174744104
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 85,
+   "seed": 2128414469
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 86,
+   "seed": 3448397545
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 87,
+   "seed": 3474470862
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 88,
+   "seed": 2333918332
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 89,
+   "seed": 711316744
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 90,
+   "seed": 2941387081
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 91,
+   "seed": 3766119093
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 92,
+   "seed": 200015889
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 93,
+   "seed": 3233695264
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 94,
+   "seed": 93216872
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 95,
+   "seed": 3262200423
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 96,
+   "seed": 1290396436
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 97,
+   "seed": 1722358957
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 98,
+   "seed": 1252457159
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 99,
+   "seed": 2487372947
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 100,
+   "seed": 1806961348
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 101,
+   "seed": 404910481
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 102,
+   "seed": 1783942450
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 103,
+   "seed": 932263362
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 104,
+   "seed": 506411856
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 105,
+   "seed": 942098825
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 106,
+   "seed": 740538051
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 107,
+   "seed": 3993805846
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 108,
+   "seed": 670284588
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 109,
+   "seed": 11676775
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 110,
+   "seed": 2342775998
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 111,
+   "seed": 3621496032
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 112,
+   "seed": 1900514309
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 113,
+   "seed": 3052609330
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 114,
+   "seed": 3967287156
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 115,
+   "seed": 2923945805
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 116,
+   "seed": 777696771
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 117,
+   "seed": 1445596509
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 118,
+   "seed": 3428677488
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 119,
+   "seed": 2403405247
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 120,
+   "seed": 1101558328
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 121,
+   "seed": 755853074
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 122,
+   "seed": 3046250800
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 123,
+   "seed": 2212722632
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 124,
+   "seed": 2755149826
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 125,
+   "seed": 2704229728
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 126,
+   "seed": 2994877720
+  },
+  {
+   "law": "LAW_A_B1",
+   "role": "PRIMARY",
+   "index": 127,
+   "seed": 2357607761
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 0,
+   "seed": 2910186089
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 1,
+   "seed": 4287319598
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 2,
+   "seed": 1454761472
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 3,
+   "seed": 2715761813
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 4,
+   "seed": 3835639061
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 5,
+   "seed": 285031609
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 6,
+   "seed": 979665976
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 7,
+   "seed": 816424322
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 8,
+   "seed": 3012592422
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 9,
+   "seed": 2412052533
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 10,
+   "seed": 566542275
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 11,
+   "seed": 554956051
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 12,
+   "seed": 2803552622
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 13,
+   "seed": 3257368612
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 14,
+   "seed": 1796590164
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 15,
+   "seed": 42990160
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 16,
+   "seed": 100401582
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 17,
+   "seed": 969589895
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 18,
+   "seed": 1356656826
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 19,
+   "seed": 2185372795
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 20,
+   "seed": 356706206
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 21,
+   "seed": 1909652212
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 22,
+   "seed": 4068540854
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 23,
+   "seed": 366467891
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 24,
+   "seed": 767271710
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 25,
+   "seed": 4058651626
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 26,
+   "seed": 2715562786
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 27,
+   "seed": 2059548744
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 28,
+   "seed": 3966795732
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 29,
+   "seed": 2181647531
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 30,
+   "seed": 2642967109
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 31,
+   "seed": 1531129677
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 32,
+   "seed": 2887875370
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 33,
+   "seed": 2844795026
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 34,
+   "seed": 4187690538
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 35,
+   "seed": 1558551172
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 36,
+   "seed": 3743121575
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 37,
+   "seed": 2078874322
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 38,
+   "seed": 179936136
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 39,
+   "seed": 3089703558
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 40,
+   "seed": 804885852
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 41,
+   "seed": 2372793584
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 42,
+   "seed": 4251238101
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 43,
+   "seed": 1202912021
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 44,
+   "seed": 812593782
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 45,
+   "seed": 3261342970
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 46,
+   "seed": 1253987433
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 47,
+   "seed": 2861986852
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 48,
+   "seed": 1729735039
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 49,
+   "seed": 2044329815
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 50,
+   "seed": 1303608878
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 51,
+   "seed": 1123671310
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 52,
+   "seed": 1515540250
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 53,
+   "seed": 4258725711
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 54,
+   "seed": 2169888456
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 55,
+   "seed": 3723422658
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 56,
+   "seed": 1148897813
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 57,
+   "seed": 2390903154
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 58,
+   "seed": 3565965990
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 59,
+   "seed": 1498457447
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 60,
+   "seed": 2189670373
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 61,
+   "seed": 1242900724
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 62,
+   "seed": 973952046
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 63,
+   "seed": 3006760607
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 64,
+   "seed": 2005067927
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 65,
+   "seed": 1040678603
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 66,
+   "seed": 248029034
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 67,
+   "seed": 3230480943
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 68,
+   "seed": 2761692521
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 69,
+   "seed": 188879144
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 70,
+   "seed": 4165670398
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 71,
+   "seed": 2510212309
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 72,
+   "seed": 1020846431
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 73,
+   "seed": 2567765863
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 74,
+   "seed": 3575589779
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 75,
+   "seed": 982319067
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 76,
+   "seed": 1215599416
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 77,
+   "seed": 355877195
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 78,
+   "seed": 685529277
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 79,
+   "seed": 757778286
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 80,
+   "seed": 1868471583
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 81,
+   "seed": 95236811
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 82,
+   "seed": 2956506174
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 83,
+   "seed": 1314587806
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 84,
+   "seed": 3602037670
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 85,
+   "seed": 1937036324
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 86,
+   "seed": 1096496204
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 87,
+   "seed": 1715983938
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 88,
+   "seed": 25910684
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 89,
+   "seed": 2574105784
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 90,
+   "seed": 1395842593
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 91,
+   "seed": 4184253210
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 92,
+   "seed": 403988521
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 93,
+   "seed": 1954022776
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 94,
+   "seed": 2152952307
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 95,
+   "seed": 1381781866
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 96,
+   "seed": 715541438
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 97,
+   "seed": 1703391450
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 98,
+   "seed": 1352475373
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 99,
+   "seed": 3058392030
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 100,
+   "seed": 3981496232
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 101,
+   "seed": 2494585758
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 102,
+   "seed": 1989864518
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 103,
+   "seed": 1786073635
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 104,
+   "seed": 230420694
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 105,
+   "seed": 2850135037
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 106,
+   "seed": 1062095882
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 107,
+   "seed": 545149468
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 108,
+   "seed": 1487302027
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 109,
+   "seed": 694501478
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 110,
+   "seed": 4018838173
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 111,
+   "seed": 2782542739
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 112,
+   "seed": 4032029916
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 113,
+   "seed": 2373065773
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 114,
+   "seed": 1839045697
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 115,
+   "seed": 1613094123
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 116,
+   "seed": 60202836
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 117,
+   "seed": 2935008761
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 118,
+   "seed": 2676445729
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 119,
+   "seed": 2273070453
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 120,
+   "seed": 742644024
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 121,
+   "seed": 2777740968
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 122,
+   "seed": 3539185956
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 123,
+   "seed": 988677943
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 124,
+   "seed": 3979688605
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 125,
+   "seed": 364552965
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 126,
+   "seed": 2830848714
+  },
+  {
+   "law": "LAW_B_POINT_D10",
+   "role": "PRIMARY",
+   "index": 127,
+   "seed": 828467062
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 0,
+   "seed": 3468774367
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 1,
+   "seed": 1474284807
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 2,
+   "seed": 2168595504
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 3,
+   "seed": 1229132502
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 4,
+   "seed": 3515550705
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 5,
+   "seed": 203158793
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 6,
+   "seed": 3342441000
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 7,
+   "seed": 2123417262
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 8,
+   "seed": 3788279427
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 9,
+   "seed": 2255663407
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 10,
+   "seed": 1299368896
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 11,
+   "seed": 174110330
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 12,
+   "seed": 4151489036
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 13,
+   "seed": 4252385814
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 14,
+   "seed": 2652517076
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 15,
+   "seed": 1512492624
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 16,
+   "seed": 849921550
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 17,
+   "seed": 2171491
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 18,
+   "seed": 3183842364
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 19,
+   "seed": 3750150916
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 20,
+   "seed": 1557150137
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 21,
+   "seed": 254241750
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 22,
+   "seed": 3333264350
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 23,
+   "seed": 4140360083
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 24,
+   "seed": 3278274137
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 25,
+   "seed": 2784149955
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 26,
+   "seed": 48200489
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 27,
+   "seed": 1749129666
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 28,
+   "seed": 66279995
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 29,
+   "seed": 4000396048
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 30,
+   "seed": 1820801619
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 31,
+   "seed": 183681731
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 32,
+   "seed": 2663648561
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 33,
+   "seed": 3618822510
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 34,
+   "seed": 3781692354
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 35,
+   "seed": 4027495691
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 36,
+   "seed": 3167689978
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 37,
+   "seed": 4195007327
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 38,
+   "seed": 1839084561
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 39,
+   "seed": 1480153874
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 40,
+   "seed": 61550146
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 41,
+   "seed": 1110731446
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 42,
+   "seed": 2285576030
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 43,
+   "seed": 2646349982
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 44,
+   "seed": 3445421175
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 45,
+   "seed": 1775703340
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 46,
+   "seed": 3604330700
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 47,
+   "seed": 2024253694
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 48,
+   "seed": 1714656634
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 49,
+   "seed": 2243809191
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 50,
+   "seed": 2057205944
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 51,
+   "seed": 3893277691
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 52,
+   "seed": 1710353668
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 53,
+   "seed": 2771503041
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 54,
+   "seed": 4124249009
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 55,
+   "seed": 4265216816
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 56,
+   "seed": 1598018184
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 57,
+   "seed": 2997862579
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 58,
+   "seed": 2121762450
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 59,
+   "seed": 1259379538
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 60,
+   "seed": 1608789194
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 61,
+   "seed": 4127317310
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 62,
+   "seed": 2904670048
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 63,
+   "seed": 3582085970
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 64,
+   "seed": 2010144759
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 65,
+   "seed": 2025243000
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 66,
+   "seed": 1000709160
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 67,
+   "seed": 3500567118
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 68,
+   "seed": 1590922910
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 69,
+   "seed": 1846484854
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 70,
+   "seed": 3108709017
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 71,
+   "seed": 3246077102
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 72,
+   "seed": 2119964088
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 73,
+   "seed": 4288429831
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 74,
+   "seed": 2243712584
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 75,
+   "seed": 84471945
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 76,
+   "seed": 3048655774
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 77,
+   "seed": 2414544028
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 78,
+   "seed": 684660470
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 79,
+   "seed": 3754004101
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 80,
+   "seed": 367906464
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 81,
+   "seed": 3364744378
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 82,
+   "seed": 3484175405
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 83,
+   "seed": 460074954
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 84,
+   "seed": 1009755402
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 85,
+   "seed": 1091949873
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 86,
+   "seed": 2766514015
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 87,
+   "seed": 876674420
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 88,
+   "seed": 1429174528
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 89,
+   "seed": 3878582599
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 90,
+   "seed": 2160052205
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 91,
+   "seed": 3007844443
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 92,
+   "seed": 539559787
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 93,
+   "seed": 3302628962
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 94,
+   "seed": 3216424895
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 95,
+   "seed": 1908401089
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 96,
+   "seed": 34644360
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 97,
+   "seed": 1689472722
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 98,
+   "seed": 472871786
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 99,
+   "seed": 3473992632
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 100,
+   "seed": 1557135739
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 101,
+   "seed": 4155942011
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 102,
+   "seed": 609510143
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 103,
+   "seed": 3155298137
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 104,
+   "seed": 4251606752
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 105,
+   "seed": 1680419745
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 106,
+   "seed": 1269574956
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 107,
+   "seed": 3867877507
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 108,
+   "seed": 370417667
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 109,
+   "seed": 1418839031
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 110,
+   "seed": 106188204
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 111,
+   "seed": 4049698502
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 112,
+   "seed": 922803847
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 113,
+   "seed": 3565431405
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 114,
+   "seed": 2970914122
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 115,
+   "seed": 3909651804
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 116,
+   "seed": 269123682
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 117,
+   "seed": 1436257237
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 118,
+   "seed": 3579237061
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 119,
+   "seed": 2378920449
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 120,
+   "seed": 2831873163
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 121,
+   "seed": 1068953773
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 122,
+   "seed": 3811911119
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 123,
+   "seed": 2175622413
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 124,
+   "seed": 51962472
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 125,
+   "seed": 650394426
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 126,
+   "seed": 1275765073
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 127,
+   "seed": 1249680113
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 128,
+   "seed": 1253940047
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 129,
+   "seed": 3331908209
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 130,
+   "seed": 2949635617
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 131,
+   "seed": 4084519793
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 132,
+   "seed": 3074301056
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 133,
+   "seed": 4049969518
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 134,
+   "seed": 2393262169
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 135,
+   "seed": 2496538809
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 136,
+   "seed": 813940258
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 137,
+   "seed": 1666452167
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 138,
+   "seed": 3510308587
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 139,
+   "seed": 2132275838
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 140,
+   "seed": 568387761
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 141,
+   "seed": 3072867135
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 142,
+   "seed": 1357242748
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 143,
+   "seed": 3476161065
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 144,
+   "seed": 1696709460
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 145,
+   "seed": 143045343
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 146,
+   "seed": 2127522666
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 147,
+   "seed": 1601203250
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 148,
+   "seed": 458232827
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 149,
+   "seed": 1073666088
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 150,
+   "seed": 1335159117
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 151,
+   "seed": 1562015410
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 152,
+   "seed": 1479004053
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 153,
+   "seed": 1007174239
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 154,
+   "seed": 1551301317
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 155,
+   "seed": 4178075089
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 156,
+   "seed": 1109449052
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 157,
+   "seed": 88433437
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 158,
+   "seed": 1907819116
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 159,
+   "seed": 169036279
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 160,
+   "seed": 2872827574
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 161,
+   "seed": 371438899
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 162,
+   "seed": 1365599247
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 163,
+   "seed": 1806899634
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 164,
+   "seed": 1539241069
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 165,
+   "seed": 4172152514
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 166,
+   "seed": 2054584376
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 167,
+   "seed": 1747269135
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 168,
+   "seed": 2082877258
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 169,
+   "seed": 97966614
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 170,
+   "seed": 2170854620
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 171,
+   "seed": 1892298039
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 172,
+   "seed": 1404539041
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 173,
+   "seed": 1978643702
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 174,
+   "seed": 3991292758
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 175,
+   "seed": 3684727519
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 176,
+   "seed": 2709720631
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 177,
+   "seed": 3590841126
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 178,
+   "seed": 209323135
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 179,
+   "seed": 2833508370
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 180,
+   "seed": 3651961197
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 181,
+   "seed": 3476813584
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 182,
+   "seed": 1493646214
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 183,
+   "seed": 4120635981
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 184,
+   "seed": 927162381
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 185,
+   "seed": 647097423
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 186,
+   "seed": 1155617503
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 187,
+   "seed": 2277246742
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 188,
+   "seed": 3992051214
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 189,
+   "seed": 1996625881
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 190,
+   "seed": 85983058
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 191,
+   "seed": 1237331785
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 192,
+   "seed": 1209256556
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 193,
+   "seed": 1372949746
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 194,
+   "seed": 3663101975
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 195,
+   "seed": 1167949137
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 196,
+   "seed": 1740617176
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 197,
+   "seed": 2404365416
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 198,
+   "seed": 3193559368
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 199,
+   "seed": 1850395281
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 200,
+   "seed": 3962563505
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 201,
+   "seed": 516697319
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 202,
+   "seed": 2161675034
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 203,
+   "seed": 3160244357
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 204,
+   "seed": 3129793385
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 205,
+   "seed": 716096705
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 206,
+   "seed": 3559689162
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 207,
+   "seed": 3224145194
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 208,
+   "seed": 2878771728
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 209,
+   "seed": 3204439562
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 210,
+   "seed": 2775969402
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 211,
+   "seed": 1539229014
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 212,
+   "seed": 1078237330
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 213,
+   "seed": 1383697873
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 214,
+   "seed": 4187466142
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 215,
+   "seed": 3209308484
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 216,
+   "seed": 216082777
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 217,
+   "seed": 1018017219
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 218,
+   "seed": 1566366124
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 219,
+   "seed": 2010928977
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 220,
+   "seed": 1735945190
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 221,
+   "seed": 809390372
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 222,
+   "seed": 3853622625
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 223,
+   "seed": 2915924792
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 224,
+   "seed": 3051072952
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 225,
+   "seed": 1323357962
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 226,
+   "seed": 271091024
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 227,
+   "seed": 627993181
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 228,
+   "seed": 1658096019
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 229,
+   "seed": 78134766
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 230,
+   "seed": 1094364661
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 231,
+   "seed": 1906922770
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 232,
+   "seed": 2607991924
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 233,
+   "seed": 3348714048
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 234,
+   "seed": 2477791979
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 235,
+   "seed": 3178928346
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 236,
+   "seed": 2250393235
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 237,
+   "seed": 1503183245
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 238,
+   "seed": 2655761404
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 239,
+   "seed": 1508226821
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 240,
+   "seed": 3329644744
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 241,
+   "seed": 1844213924
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 242,
+   "seed": 3049497462
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 243,
+   "seed": 977018595
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 244,
+   "seed": 768413773
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 245,
+   "seed": 956144254
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 246,
+   "seed": 4162119465
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 247,
+   "seed": 3872849088
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 248,
+   "seed": 2834117364
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 249,
+   "seed": 1791945193
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 250,
+   "seed": 2106745176
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 251,
+   "seed": 845688018
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 252,
+   "seed": 4111157368
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 253,
+   "seed": 84020468
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 254,
+   "seed": 3393758646
+  },
+  {
+   "law": "LAW_C_MCTT01",
+   "role": "PRIMARY",
+   "index": 255,
+   "seed": 2474993149
+  }
+ ],
+ "RESERVE_SEEDS": [
+  {
+   "law": null,
+   "role": "RESERVE",
+   "index": 0,
+   "seed": 3036582241
+  },
+  {
+   "law": null,
+   "role": "RESERVE",
+   "index": 1,
+   "seed": 3260406842
+  },
+  {
+   "law": null,
+   "role": "RESERVE",
+   "index": 2,
+   "seed": 3671650938
+  },
+  {
+   "law": null,
+   "role": "RESERVE",
+   "index": 3,
+   "seed": 1989116930
+  },
+  {
+   "law": null,
+   "role": "RESERVE",
+   "index": 4,
+   "seed": 759475320
+  },
+  {
+   "law": null,
+   "role": "RESERVE",
+   "index": 5,
+   "seed": 3889830429
+  }
+ ],
+ "SEED_SET_HASH": "f5f0243770bbf86af85dfbe63c56db6b5503d74cbfd8633f41f36afefe19a163",
+ "ALL_GATES": true
+}

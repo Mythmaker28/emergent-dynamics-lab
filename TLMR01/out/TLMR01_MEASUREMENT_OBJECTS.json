@@ -1,0 +1,90 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "6 \u2014 the five measurement objects",
+ "GENERATED_UTC": "2026-08-24T22:51:47.549130+00:00",
+ "THE_UNIT_OF_EACH_OBJECT_IS_DECLARED": true,
+ "THE_ONE_EXACT_SCIENTIFIC_QUESTION": "At the three exact executable laws, what are the fork hazard e(n) ABOVE the occupation support ceiling n = 5, the occupation-resolved maturation law s(n), P(trigger | matured), the single-centre time exposure, and the integrated trigger-to-turnover rate \u2014 measured directly, never modelled?",
+ "PRIMARY_ESTIMAND": {
+  "object": "M1 restricted to n > 5 \u2014 the fork hazard above PTOPD01's occupation support ceiling sI = 5, published stratum by stratum with its world-clustered uncertainty",
+  "why_this_one": "it is the single object whose absence made PTOPD01's route NOT_IDENTIFIABLE. Its support-extrapolation gate had to stop at sI = 5 because no archive anywhere recorded the SINGLE-CENTRE EXPOSURE above that occupancy. Everything else this mission measures is either an input to it or a consequence of it.",
+  "SUCCESS_CRITERION_IS_SUPPORT_NOT_A_VALUE": "the pre-registered criterion is whether e(n) becomes DIRECTLY_MEASURED \u2014 at least 10 distinct worlds and at least 30 single-centre steps of exposure \u2014 in at least one stratum with n > 5. There is deliberately NO threshold on the VALUE of e(n), because a measurement programme that set one would be taking a threshold from the outcomes it judges.",
+  "why_the_numerator_is_already_known_to_be_nonzero": "PTOPD01's pooled occupation-resolved table records episodes BEGINNING at occupancy 6 (77), 7 (77), 8 (69), 9 (45), 10 (44) and on up past 36 across the three executed corpora. Every one of those is a fork that happened above n = 5. What no archive recorded is the denominator \u2014 the single-centre exposure at those occupancies \u2014 which this mission's schema records by construction, one row per component per step.",
+  "source_of_that_inherited_count": "PTOPD01/out/PTOPD01_SUPPORT_EXTRAPOLATION_GATE.json MATURATION_BY_OCCUPANCY_POOLED"
+ },
+ "SELECTION_STATISTIC": {
+  "object": "M5, the integrated trigger-to-turnover rate per world",
+  "role": "it orders the laws for the selection rule of \u00a78. It is NOT the primary estimand, and the two roles are kept apart on purpose: the primary is what the mission exists to measure, the selection statistic is what a later disjoint confirmation would have to be powered on.",
+  "why_it_can_carry_that_role": "its unit is the WORLD, one seed each, so it needs no clustering correction and its exact interval is the honest one."
+ },
+ "M1": {
+  "name": "e(n) \u2014 the fork hazard, resolved by single-centre occupancy",
+  "why": "PTOPD01 could not obtain it above the occupation support n = 5 and named it missing",
+  "definition": "e(n) = P(the world holds two or more centres at step t+1 | at step t it holds EXACTLY ONE centre whose Y occupancy is n). One step is one unit.",
+  "exposure": "the single-centre step count at occupancy n, which is M4",
+  "primary_regime": "n > 5, above PTOPD01's declared support ceiling sI = 5",
+  "also_recorded": "the FULL transition table n_components(t) -> n_components(t+1) by n, so no later definition of a fork needs a re-run",
+  "unit": "step",
+  "clustering": "steps within a world are not independent; reported per law with the world-clustered check of \u00a77"
+ },
+ "M2": {
+  "name": "s(n) \u2014 the occupation-resolved episode maturation law",
+  "definition": "an EPISODE is a maximal run of the frozen FDFLT01 state S (exactly two centres, Y occupancy at least two, integrity intact, no third centre). n is the world Y occupancy at the FIRST step of the run, which is PTOPD01's convention. s(n) = P(the run reaches NEED = 250 consecutive S steps | the run began at occupancy n).",
+  "outcomes": [
+   "MATURED_TO_FUNCTIONAL_MATURITY",
+   "MERGED_TO_ONE_CENTRE",
+   "FORMED_A_THIRD_CENTRE",
+   "LOST_A_CENTRE_TO_A_SINGLE_Y",
+   "Y_EXTINCT",
+   "REACHED_THE_WINDOW_HORIZON",
+   "IDENTITY_AMBIGUOUS"
+  ],
+  "outcomes_inherited_verbatim_from": "PTOPD01 \u00a73 occupation-resolved episode operator",
+  "IDENTITY_AMBIGUOUS_is_counted_not_assumed_zero": "PTOPD01 observed it zero times in three corpora. It is measured here, with its count published whatever it is.",
+  "unit": "episode",
+  "clustering": "episodes within a world are not independent"
+ },
+ "M3": {
+  "name": "P(trigger | matured)",
+  "definition": "of the maturation candidates offered at exactly run_start + NEED - 1, the fraction that also satisfy every frozen FMRCT01 gate: the candidate step is at most LATEST_ALLOWED_TRIGGER = 6500, exactly two centres are present, and the weaker centre's local X mass over the frozen CORE_R disc is at least F_PRIMARY = 1 - 1/e of the stronger's.",
+  "failure_modes_reported_separately": [
+   "deadline",
+   "not_exactly_two_centres",
+   "local_x_ratio"
+  ],
+  "unit": "maturation candidate",
+  "note": "the frozen watcher offers ONE candidate per episode, so the denominator is exactly the matured-episode count of M2"
+ },
+ "M4": {
+  "name": "the single-centre time exposure",
+  "definition": "the number of steps at which the world holds exactly one centre, resolved by that centre's Y occupancy n. Reported per world and per law, with the occupancy histogram, the fraction of the horizon, and the exposure above sI = 5.",
+  "unit": "step",
+  "why": "it is both the denominator of M1 and an object PTOPD01 named as missing in its own right"
+ },
+ "M5": {
+  "name": "the integrated trigger-to-turnover rate \u2014 THE SELECTION STATISTIC",
+  "definition": "the per-world probability that the whole frozen chain completes: A a maturation candidate is reached; B the frozen trigger fires; C the identity is carried to maturation so a parent and a daughter are named and the exact inherited SELECTIVE_PARENT_REMOVAL is applied; D after that removal a surviving identity interval shows a COMPLETE_TURNOVER that is FUNCTIONAL under the frozen DOTC01 rules.",
+  "unit": "WORLD \u2014 independent by construction, one seed each",
+  "why_it_carries_the_selection": "it is the only object among the five whose unit is the world, so it needs no clustering correction; and it is exactly the quantity a later disjoint causal confirmation would have to be powered on.",
+  "one_parent_corpus_already_measured_this_exact_chain": "BPRTC01 at POINT_D10: 256 worlds, 35 triggered, 34 removals applied, 3 functional complete turnovers. That published figure is the floor of \u00a78 and is the reason the floor is not circular.",
+  "decomposition_reported": [
+   "P(A)",
+   "P(B|A)",
+   "P(C|B)",
+   "P(D|C)"
+  ],
+  "claim_ceiling": "a rate at which the frozen chain completes. It is NOT reproduction, NOT heredity, NOT autonomous cohesion and NOT life, and it qualifies no point by itself."
+ },
+ "WHAT_IS_FORBIDDEN": [
+  "interpolation",
+  "a response surface",
+  "a fitted curve of any kind",
+  "smoothing across strata",
+  "pooling laws inside any gate",
+  "a threshold read from these outcomes",
+  "adaptive sample size",
+  "adaptive parameter retuning",
+  "a second measurement campaign",
+  "selecting a law that was not executed here"
+ ],
+ "STRATA_WITH_NO_EXPOSURE": "reported as NO_EXPOSURE. Never as zero, and never filled in."
+}

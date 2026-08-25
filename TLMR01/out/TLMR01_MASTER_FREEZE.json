@@ -1,0 +1,119 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "11 \u2014 MASTER FREEZE",
+ "GENERATED_UTC": "2026-08-24T23:08:30.329332+00:00",
+ "TAKEN_ALONE_IN_ITS_OWN_COMMIT_BEFORE_EVERY_PRIMARY_WORLD": true,
+ "MISSING_ARTEFACTS": [],
+ "PRE_RUN_ARTEFACTS": [
+  {
+   "artefact": "TLMR01_PARENT_BINDING.json",
+   "sha256": "6f3645ee8447414a4d9c607d5e6fd009664a0e50c2ba346f6d6bf6acf1a2b802",
+   "bytes": 3257
+  },
+  {
+   "artefact": "TLMR01_SCIENTIFIC_STATE_LEDGER.json",
+   "sha256": "eb0aae9d70a602df27ad164f38ae6dadd1bfb6c561dc813235c74bdb0f976b01",
+   "bytes": 4098
+  },
+  {
+   "artefact": "TLMR01_MEASUREMENT_LAWS.json",
+   "sha256": "9116b7ec88d591d7a3b2fc42799c3448f6b5cd49365b307eb8f2610fc38d8443",
+   "bytes": 3168
+  },
+  {
+   "artefact": "TLMR01_PHYSICS_BINDING.json",
+   "sha256": "2c02945e0dac50f1f2fee1553f5b29dcb51aed89c4f70b68b55aac4a96f99faa",
+   "bytes": 1348
+  },
+  {
+   "artefact": "TLMR01_ARCHIVE_SCHEMA.json",
+   "sha256": "688706faa0bc49ad9b6199769748384df033dedc2e6aa56ea2b25696875088c5",
+   "bytes": 4198
+  },
+  {
+   "artefact": "TLMR01_MEASUREMENT_OBJECTS.json",
+   "sha256": "96231f8fa85e8af19d8fa434f074c95624016c70956e62329694216e35907179",
+   "bytes": 7217
+  },
+  {
+   "artefact": "TLMR01_UNCERTAINTY_RULES.json",
+   "sha256": "fbed8f2a011b9fe2177e1b13034d93faf4e974d19ac48b2ac7204ee0a86b3449",
+   "bytes": 2308
+  },
+  {
+   "artefact": "TLMR01_POWER_RULE.json",
+   "sha256": "2fe10fa5ea78b2cbc96807a3c6a6311466c2fbb77dc3b9fb6c0fbb40ed669518",
+   "bytes": 7341
+  },
+  {
+   "artefact": "TLMR01_SELECTION_RULE.json",
+   "sha256": "a2e834d23112f06c8ae1df1125a7c01490a4669d0d36306198c36e30c0580b81",
+   "bytes": 3565
+  },
+  {
+   "artefact": "TLMR01_TERMINAL_VOCABULARY.json",
+   "sha256": "3454203db433c5c68c4e9cac888b6b4433e5c6515bc77d3df7644ae588af7c5a",
+   "bytes": 1803
+  },
+  {
+   "artefact": "TLMR01_DISPOSITION_LOGIC.json",
+   "sha256": "a5dbbd44fa79cf856fa30d07c6fa597b2040aaafcac980e6b92a5d97c154054a",
+   "bytes": 1558
+  },
+  {
+   "artefact": "TLMR01_SEED_MANIFEST.json",
+   "sha256": "d07a59d5653a99ddf920c1c1bcab80fa6af3e43de6756f2266ca3dad144c1a42",
+   "bytes": 50821
+  },
+  {
+   "artefact": "TLMR01_METHODS_CLOSURE.json",
+   "sha256": "4f24aca45d0eeafb73bd13477afc7808b69ca1f9db3f457abfef6cc7f7462e57",
+   "bytes": 28108
+  },
+  {
+   "artefact": "TLMR01_INSTRUMENTATION_QUALIFICATION.json",
+   "sha256": "71119221b21a60ddc0dc7425f5b049376325315ba4cec4e3d5094f17fd5a2a82",
+   "bytes": 9939
+  },
+  {
+   "artefact": "TLMR01_PATH_COVERAGE.json",
+   "sha256": "9202e959e84ea5eaa619a81308cb974424b644f80f5ee983c9b8002c530645c2",
+   "bytes": 68076
+  },
+  {
+   "artefact": "TLMR01_WRITER_QUALIFICATION.json",
+   "sha256": "08d3f129868d368cc207e41704fb9039eed553396a45b5cd423dffb363455aa0",
+   "bytes": 1217
+  },
+  {
+   "artefact": "TLMR01_FIXTURES.json",
+   "sha256": "53fa33989a62974778f5cec0657547c6959b4d686c19f7e1c279c702faa51e3e",
+   "bytes": 300
+  }
+ ],
+ "COMPLETE_PRE_RUN_METHODS_HASH": "5e7417939046b0838096f12bdfdeccf3324cf8a1d35306a3e1635db693fc318d",
+ "SEED_SET_HASH": "f5f0243770bbf86af85dfbe63c56db6b5503d74cbfd8633f41f36afefe19a163",
+ "PARENT_TIP": "9f4c70ceeb05b0b8a1f27c4cfc855e125f921ce9",
+ "GATES": {
+  "ALL_PRE_RUN_ARTEFACTS_PRESENT": true,
+  "METHODS_CLOSURES_AGREE": true,
+  "NO_INHERITED_MODULE_HAS_DRIFTED": true,
+  "INSTRUMENTATION_INERTNESS": "PASS",
+  "ARCHIVE_DECISION_RECONSTRUCTION": "PASS",
+  "PATH_COVERAGE": "PASS",
+  "WRITER_AND_READ_BACK": true,
+  "OFFLINE_AGREEMENT_NON_VACUOUS": true,
+  "SEED_GATES": true,
+  "PRIMARY_BUDGET_EXACT": true
+ },
+ "ALL_GATES_PASS": true,
+ "WHAT_A_FAILED_GATE_MEANS": "no primary world is run. A gate is never waived and never downgraded to a warning.",
+ "AFTER_THIS_POINT": [
+  "no artefact above may change",
+  "no rule may be added or removed",
+  "no threshold may move",
+  "no world may be moved between laws",
+  "no sample size may change"
+ ],
+ "FREEZE_HASH": "b354944f0e5b7f8269312ae7a7de35953e9803b960953caccff7aaa84c474718"
+}

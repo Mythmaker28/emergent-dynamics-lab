@@ -1,0 +1,61 @@
+{
+ "SECTION": "FMRCT01 \u00a70 \u2014 the pre-run consistency gate",
+ "GENERATED_UTC": "2026-08-21T21:22:42.686334+00:00",
+ "WORLDS_RUN_AT_THIS_POINT": 0,
+ "0A_HARD_BUDGET": {
+  "STATUS": "PASS",
+  "N": 372,
+  "MAX_FULL_FORKS": 70,
+  "MAX_REALIZED_ARM_INSTANCES": 512,
+  "CEILING": 512,
+  "PROOF": "A(N,F,M) = N + 2*min(M,F) <= N + 2F = 512 for every M in [0,N], with no distributional assumption",
+  "WHY_THE_PARENT_NUMBER_WAS_NOT_A_BOUND": "MRCI01's 508 was int(N + 2*N*p_trigger), an EXPECTED value. Uncapped, the worst case is 376 + 2*376 = 1128. MAX_FULL_FORKS is what makes a bound exist, and it did not exist until now.",
+  "THE_BASE_TRAJECTORY_SUPPLIES_THE_SHAM_ARM": "proven bit-exact in fixtures, so only 2 extra arm-instances per selected fork"
+ },
+ "0B_CLAIM_SEMANTICS": {
+  "STATUS": "PASS",
+  "K0": "MINIMAL_REPRODUCTION_CAUSAL_EVENT_NOT_OBSERVED",
+  "K1": "MINIMAL_REPRODUCTION_CAUSAL_EVENT_PROSPECTIVELY_OBSERVED",
+  "K2plus": "MINIMAL_REPRODUCTION_CAUSAL_EVENT_PROSPECTIVELY_REPLICATED",
+  "ONE_OCCURRENCE_IS_NEVER_CALLED_A_REPLICATION": true
+ },
+ "0C_ASSURANCE": {
+  "STATUS": "PASS_WITH_TWO_MATERIAL_CORRECTIONS",
+  "CORRECTION_1_THE_DESCENT_RULE": {
+   "finding": "MRCI01's clause 4, applied literally, resolves parent from daughter in 14 of 652 separations (2.1%) and in 0 of 160 worlds under the online semantics FMRCT01 uses. It requires the DAUGHTER to be outside CORE_R of the parent's last centroid, but separations here are gradual, so both children are typically inside it.",
+   "MRCI01_fixtures_could_not_see_it": "all six of its synthetic cases return the same verdict under either reading; none places both children inside CORE_R at different distances.",
+   "action": "the frozen FMRCT01 rule keeps every clause that can bind and drops only the implicit requirement that the daughter be far. The literal rule is evaluated and reported for every block.",
+   "measured_rates": {
+    "literal": 0.02147239263803681,
+    "frozen": 0.9800613496932515
+   }
+  },
+  "CORRECTION_2_THE_CONDITIONAL_RATE": {
+   "MRCI01_conditional": {
+    "k": 4,
+    "n": 59,
+    "rate": 0.06779661016949153,
+    "one_sided_95_lower": 0.023487551887426975
+   },
+   "WHY_IT_DOES_NOT_SURVIVE": "MRCI01 counted worlds that had a two-centre step and then took FDOT01's WORLD-level turnover verdict. It never required the turnover to occur in the DAUGHTER identity, and it never applied its own descent rule to name a daughter. Replaying FDOT01's archives through the frozen chain \u2014 strict identity tracking, the frozen descent rule, the daughter identity, a complete FUNCTIONAL turnover after maturation \u2014 gives 1 of 43, not 4 of 59.",
+   "FROZEN_CHAIN_conditional": {
+    "k": 1,
+    "n": 43,
+    "rate": 0.023255813953488372,
+    "one_sided_95_lower": 0.0011921561279377396,
+    "one_sided_95_upper": 0.10563408261589403
+   },
+   "AND_IT_IS_STILL_NOT_THE_ESTIMAND": "every developmental number is measured with the parent PRESENT. FMRCT01 measures the post-removal rate, which no existing dataset contains: FMRT01 held 250 steps after removal and FDOT01 never removed a parent."
+  },
+  "PARENT_REPORTED_CONSERVATIVE_P_K_ge_1": 0.7902223081336518,
+  "CORRECTED_CONSERVATIVE_P_K_ge_1": 0.07389346365479091,
+  "CORRECTED_POINT_P_K_ge_1": 0.7781444226660034,
+  "NOT_ROUNDED": true,
+  "SAMPLE_SIZE_CHANGED": true,
+  "WHY": "unlike the pre-recompute search, this design is strictly better than 376/66 at EVERY eligibility rate in the justified range, so the choice does not depend on which end of that range is right. It is selected on the MAXIMIN value of 0.7781, which does NOT cross 0.80; the fact that its best case crosses 0.80 is not the reason it was chosen.",
+  "LIMITATION_FROZEN_BEFORE_OUTCOMES": "with the corrected conditional the conservative assurance for K >= 1 is about 0.07 to 0.08, not the 0.79 MRCI01 reported. The point-estimate assurance is about 0.78 to 0.81. This design is NOT decision-capable for K >= 1 in the conservative sense, and it is not presented as such. Its primary scientific value is that its 70 matched forks give the FIRST measurement of daughter identity persistence and constituent turnover AFTER selective parent removal, over about 7700 steps each, against FMRT01's 250. A K = 0 outcome will be reported as a BOUND on that rate and never as impossibility."
+ },
+ "GATE": "PASS",
+ "AUTHORIZED_TO_FREEZE_AND_EXECUTE": true,
+ "STOP__MRCI01_ARM_BUDGET_NOT_HARD_BOUNDED": false
+}

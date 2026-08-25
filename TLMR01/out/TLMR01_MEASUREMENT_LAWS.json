@@ -1,0 +1,112 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "2 \u2014 measurement-law binding",
+ "LAWS": {
+  "LAW_A_B1": {
+   "label": "B1",
+   "kY": 2.5118864315095822e-05,
+   "muY": 9.261187281287937e-05,
+   "p_hop_Y": 0.10263340389897246,
+   "n_worlds": 128,
+   "source": "PQEC01_MASTER_FREEZE.json PHASE_B.POINT_B1 + INHERITED_FROZEN_CONSTANTS.p_hop_Y_mobile",
+   "role": "established daughter formation and functional-turnover anchor (FDOT01 7 of 160)"
+  },
+  "LAW_B_POINT_D10": {
+   "label": "POINT_D10",
+   "kY": 2.5118864315095822e-05,
+   "muY": 9.261187281287937e-05,
+   "p_hop_Y": 0.010263340389897247,
+   "n_worlds": 128,
+   "source": "BPRTC01_MASTER_FREEZE.json POINT",
+   "role": "slow-mobility post-removal anchor with a measured integrated event rate (3 of 256)"
+  },
+  "LAW_C_MCTT01": {
+   "label": "MCTT01_SELECTED",
+   "kY": 0.001004754572603833,
+   "muY": 0.000740894982503035,
+   "p_hop_Y": 0.10263340389897246,
+   "n_worlds": 256,
+   "source": "MCTT01_PHYSICS_DIFF_FROM_B1.json CHANGED + MCTT01_SELECTED_LAW.json INHERITED_UNCHANGED",
+   "role": "high-occupation law that directly populates the n>5 regime missing from e(n); its Stage B was never executed"
+  }
+ },
+ "TOTAL_WORLDS": 512,
+ "SHARED_FROZEN_PHYSICS": {
+  "CAP": 16,
+  "S0": 3,
+  "phi": 0.2,
+  "omega": 0.05,
+  "muX": 0.004,
+  "kX": 1.0,
+  "L": 36,
+  "p_hop_X": 0.10263340389897246,
+  "X_SEED": 4,
+  "CORE_R": 5.0,
+  "T_HORIZON": 11000,
+  "LATEST_ALLOWED_TRIGGER": 6500,
+  "NEED": 250
+ },
+ "MEASUREMENT_LAWS_ARE_ALL_PREVIOUSLY_EXECUTED_EXACT_LAWS": true,
+ "NEW_PARAMETER_POINTS": 0,
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "ONLY_Y_LAW_FIELDS_DIFFER": true,
+ "PER_LAW_Y_FIELDS": {
+  "LAW_A_B1": {
+   "kY": 2.5118864315095822e-05,
+   "muY": 9.261187281287937e-05,
+   "p_hop_Y": 0.10263340389897246
+  },
+  "LAW_B_POINT_D10": {
+   "kY": 2.5118864315095822e-05,
+   "muY": 9.261187281287937e-05,
+   "p_hop_Y": 0.010263340389897247
+  },
+  "LAW_C_MCTT01": {
+   "kY": 0.001004754572603833,
+   "muY": 0.000740894982503035,
+   "p_hop_Y": 0.10263340389897246
+  }
+ },
+ "SOURCE_BYTES": [
+  {
+   "path": "PQEC01/out/PQEC01_MASTER_FREEZE.json",
+   "sha256": "1d41505e0571eed53ac78d15bc04c08c80f697d00838f6db9d4302a2e5b6b83c"
+  },
+  {
+   "path": "BPRTC01/out/BPRTC01_MASTER_FREEZE.json",
+   "sha256": "9ba9e8efe29280211b8f6d984d5c435b3feab46887964b384c441b1f950621f1"
+  },
+  {
+   "path": "MCTT01/out/MCTT01_SELECTED_LAW.json",
+   "sha256": "aa3b023d4834fa4305a981f90ef8472f1355d3aa3d1e167ba7cc4ee6b7fc2faf"
+  },
+  {
+   "path": "MCTT01/out/MCTT01_PHYSICS_DIFF_FROM_B1.json",
+   "sha256": "d0cb0f648f2943f8e561231b570be236c0787c33303968c6c5debc879d96a9d0"
+  }
+ ],
+ "WHAT_IS_IDENTICAL_ACROSS_ALL_THREE": [
+  "CAP",
+  "CORE_R",
+  "L",
+  "LATEST_ALLOWED_TRIGGER",
+  "NEED",
+  "S0",
+  "T_HORIZON",
+  "X_SEED",
+  "kX",
+  "muX",
+  "omega",
+  "p_hop_X",
+  "phi",
+  "initial condition (seed_one_organiser: one Y and X_SEED = 4 X at (L//2, L//2), SX = SY = S0 in every cell)",
+  "feed/exchange law",
+  "scheduler",
+  "centre classifier",
+  "trigger rule",
+  "parent-removal intervention",
+  "engine",
+  "LawSpec"
+ ],
+ "NO_NEW_TUPLE_IS_INVENTED": "every value above is read from a committed parent artefact; none is chosen by this mission."
+}

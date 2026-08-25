@@ -1,0 +1,216 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "5 \u2014 analysis qualification on synthetic inputs",
+ "GENERATED_UTC": "2026-08-24T23:43:30.984201+00:00",
+ "NO_ARCHIVE_IS_READ": true,
+ "NO_OUTCOME_IS_SEEN": true,
+ "WHY_SYNTHETIC": "running the analysis on real archives before the raw commitment would put outcomes in front of the operator, which the firewall forbids. Synthetic inputs with hand-checkable answers test the same code.",
+ "N_CASES": 33,
+ "ALL_PASS": true,
+ "CASES": [
+  {
+   "case": "M4_total_exposure",
+   "got": 180,
+   "expected": 180,
+   "PASS": true
+  },
+  {
+   "case": "M4_above_ceiling",
+   "got": 180,
+   "expected": 180,
+   "PASS": true
+  },
+  {
+   "case": "M1_n6_numerator",
+   "got": 12,
+   "expected": 12,
+   "PASS": true
+  },
+  {
+   "case": "M1_n6_denominator",
+   "got": 120,
+   "expected": 120,
+   "PASS": true
+  },
+  {
+   "case": "M1_n6_rate",
+   "got": 0.1,
+   "expected": 0.1,
+   "PASS": true
+  },
+  {
+   "case": "M1_n7_zero_numerator",
+   "got": 0,
+   "expected": 0,
+   "PASS": true
+  },
+  {
+   "case": "M1_n7_upper_bound_is_finite",
+   "got": true,
+   "expected": true,
+   "PASS": true
+  },
+  {
+   "case": "M1_n7_lower_bound_is_zero",
+   "got": 0.0,
+   "expected": 0.0,
+   "PASS": true
+  },
+  {
+   "case": "M1_above_ceiling_pools_only_strata_above_sI",
+   "got": [
+    6,
+    7
+   ],
+   "expected": [
+    6,
+    7
+   ],
+   "PASS": true
+  },
+  {
+   "case": "M1_directly_measured_12_worlds_180_steps",
+   "got": true,
+   "expected": true,
+   "PASS": true
+  },
+  {
+   "case": "M1_world_clustered_interval_present",
+   "got": true,
+   "expected": true,
+   "PASS": true
+  },
+  {
+   "case": "M2_n2_denominator",
+   "got": 36,
+   "expected": 36,
+   "PASS": true
+  },
+  {
+   "case": "M2_n2_numerator",
+   "got": 12,
+   "expected": 12,
+   "PASS": true
+  },
+  {
+   "case": "M3_denominator_is_matured_count",
+   "got": 24,
+   "expected": 24,
+   "PASS": true
+  },
+  {
+   "case": "M3_numerator",
+   "got": 12,
+   "expected": 12,
+   "PASS": true
+  },
+  {
+   "case": "M5_unit_is_the_world",
+   "got": 12,
+   "expected": 12,
+   "PASS": true
+  },
+  {
+   "case": "M5_numerator",
+   "got": 4,
+   "expected": 4,
+   "PASS": true
+  },
+  {
+   "case": "M5_chain_C_given_B",
+   "got": 12,
+   "expected": 12,
+   "PASS": true
+  },
+  {
+   "case": "support_rule_bites_on_3_worlds",
+   "got": false,
+   "expected": false,
+   "PASS": true
+  },
+  {
+   "case": "support_rule_names_the_reason",
+   "got": "SUPPORT_TOO_THIN__NOT_DIRECTLY_MEASURED",
+   "expected": "SUPPORT_TOO_THIN__NOT_DIRECTLY_MEASURED",
+   "PASS": true
+  },
+  {
+   "case": "support_rule_passes_on_10_worlds_40_steps",
+   "got": true,
+   "expected": true,
+   "PASS": true
+  },
+  {
+   "case": "eligibility_LAW_A_B1_K3",
+   "got": false,
+   "expected": false,
+   "PASS": true
+  },
+  {
+   "case": "eligibility_LAW_A_B1_K4",
+   "got": true,
+   "expected": true,
+   "PASS": true
+  },
+  {
+   "case": "eligibility_LAW_A_B1_lower_bound_exceeds_F",
+   "got": true,
+   "expected": true,
+   "PASS": true
+  },
+  {
+   "case": "eligibility_LAW_A_B1_confirmation_is_affordable",
+   "got": true,
+   "expected": true,
+   "PASS": true
+  },
+  {
+   "case": "eligibility_LAW_C_MCTT01_K5",
+   "got": false,
+   "expected": false,
+   "PASS": true
+  },
+  {
+   "case": "eligibility_LAW_C_MCTT01_K6",
+   "got": true,
+   "expected": true,
+   "PASS": true
+  },
+  {
+   "case": "eligibility_LAW_C_MCTT01_lower_bound_exceeds_F",
+   "got": true,
+   "expected": true,
+   "PASS": true
+  },
+  {
+   "case": "eligibility_LAW_C_MCTT01_confirmation_is_affordable",
+   "got": true,
+   "expected": true,
+   "PASS": true
+  },
+  {
+   "case": "E1_catches_a_short_denominator",
+   "got": false,
+   "expected": false,
+   "PASS": true
+  },
+  {
+   "case": "E1_short_denominator_makes_it_ineligible",
+   "got": false,
+   "expected": false,
+   "PASS": true
+  },
+  {
+   "case": "E1_catches_a_technical_failure",
+   "got": false,
+   "expected": false,
+   "PASS": true
+  },
+  {
+   "case": "clustered_interval_is_wider_than_the_naive_one",
+   "got": true,
+   "expected": true,
+   "PASS": true
+  }
+ ]
+}

@@ -1,0 +1,54 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "13 \u2014 pre-run durability",
+ "GENERATED_UTC": "2026-08-24T23:11:23.713056+00:00",
+ "WHY": "this programme has survived three container rollbacks. The pre-run state is placed on hardware the container cannot roll back BEFORE world 1, not after.",
+ "EXECUTED_BEFORE_WORLD_1": true,
+ "FREEZE_HASH": "b354944f0e5b7f8269312ae7a7de35953e9803b960953caccff7aaa84c474718",
+ "DESTINATION": "C:\\\\Users\\\\tommy\\\\Documents\\\\ising v3\\\\TLMR01",
+ "ARTEFACTS": [
+  {
+   "file": "TLMR01_PRE_RUN.tar.gz",
+   "bytes": 94493,
+   "sha256": "4a8c9d9f1f027e296fecc175b7860dc9577c40cf4e3831bec80a58ee0dc0a24e",
+   "contains": "TLMR01/code and TLMR01/out in full \u2014 every module and every pre-run artefact"
+  },
+  {
+   "file": "TLMR01_C1_C2.bundle",
+   "bytes": 105984,
+   "sha256": "1e7c3c145071626a9949a00eb008f5286e7b9f6cc483f6af993f0590cfd45566",
+   "contains": "a git bundle of 9f4c70c..HEAD, i.e. commits C1 and C2, replayable onto the recovered FOTSEA01 tip"
+  },
+  {
+   "file": "SHA256SUMS_PRE_RUN.txt",
+   "bytes": 174,
+   "sha256": null,
+   "contains": "the two hashes above"
+  }
+ ],
+ "VERIFIED_ON_THE_DEVICE": "sha256 recomputed on the Windows side and compared; both match.",
+ "RUN_TIME_DURABILITY_PLAN": {
+  "per_batch": "every batch of at most 16 worlds is read back from disk, its sha256 re-verified against what was written, and the offline reader constructed on it. A read-back failure stops the run and is never papered over.",
+  "off_container": "the small state \u2014 the run ledger, the read-back log, the sealed per-world records and the archive hash manifest \u2014 is exported to the device periodically. The full per-cell archives, about 1.2 GB, are exported as split bundles at the raw commitment.",
+  "resume": "the runner skips any world whose opaque token already appears in the ledger, so an interrupted run resumes without re-running a completed world and without replacing one."
+ },
+ "MEASURED_RESOURCE_FIGURES": {
+  "note": "measured on non-scientific fixture worlds at full horizon; resource figures only, no outcome is read from them",
+  "LAW_A_B1": {
+   "runtime_s_per_world": 30.7,
+   "archive_MB": 0.08
+  },
+  "LAW_B_POINT_D10": {
+   "runtime_s_per_world": 30.4,
+   "archive_MB": 0.08
+  },
+  "LAW_C_MCTT01": {
+   "runtime_s_per_world": 153.9,
+   "archive_MB": 4.39
+  },
+  "projected_total_core_seconds": 47219,
+  "projected_wall_clock_hours_on_two_cores": 6.56,
+  "projected_archive_GB": 1.18,
+  "dominant_cost": "the frozen single-linkage centre classifier, which is O(k^2) in the number of Y-occupied cells and is required by the trigger itself, not by the instrumentation"
+ }
+}

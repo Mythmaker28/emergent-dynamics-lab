@@ -1,0 +1,388 @@
+{
+ "PROGRAM": "FRESH-MINIMAL-REPRODUCTION-CAUSAL-TEST-01",
+ "SHORT_NAME": "FMRCT01",
+ "GENERATED_UTC": "2026-08-21T21:26:26.614813+00:00",
+ "PARENT_TIP": "4bd10881819b44499fd3c17ee310ed1b0307ad97",
+ "FREEZE_IS_COMMITTED_ALONE_BEFORE_ANY_FRESH_WORLD": true,
+ "WORLDS_RUN_AT_THIS_POINT": 0,
+ "POINT": {
+  "LABEL": "B1",
+  "kY": 2.5118864315095822e-05,
+  "muY": 9.261187281287937e-05,
+  "INHERITED_FROZEN_CONSTANTS": {
+   "CAP": 16,
+   "S0": 3,
+   "phi": 0.2,
+   "omega": 0.05,
+   "muX": 0.004,
+   "kX": 1.0,
+   "L": 36,
+   "X_SEED": 4,
+   "p_hop_X": 0.10263340389897246,
+   "p_hop_Y_mobile": 0.10263340389897246,
+   "T_HORIZON": 11000,
+   "T_WINDOW": 9000,
+   "BURN_IN": 2000,
+   "CORE_R": 5.0,
+   "TAU_SEP": 125.0,
+   "ALPHA_SURVIVAL": 0.5,
+   "N_STAR": 10.0,
+   "GAMMA_SEP": 0.5,
+   "MIN_EVENTS": 1.0
+  }
+ },
+ "ENGINE": {
+  "path": "OBTC01/code/engine_obtc.py",
+  "sha256": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30",
+  "matches_frozen": true,
+  "reimplementation_from_reports": "FORBIDDEN \u2014 the engine is imported, never retyped"
+ },
+ "PARAMETER_RETUNING": "forbidden",
+ "INTERPOLATION": "forbidden",
+ "NEW_SPECIES": 0,
+ "SUBSTRATE_CHANGE": "forbidden",
+ "TRIGGER": {
+  "rule": "the frozen FDFLT01 functional maturation: a maximal run of exactly two spatial centres lasting NEED = 250 steps with no third centre in the run, and the weaker centre's local X mass at the event at least F_PRIMARY = 1 - 1/e of the stronger's; the event is at exactly run_start + NEED - 1",
+  "NEED": 250,
+  "F_PRIMARY": 0.6321205588285577,
+  "LATEST_ALLOWED_TRIGGER": 6500,
+  "POST_TRIGGER_WINDOW": 4500,
+  "MATERIAL_PROVENANCE_IS_NOT_PART_OF_THE_TRIGGER": true
+ },
+ "HORIZON": {
+  "T_HORIZON": 11000,
+  "EVERY_TRAJECTORY_RUNS_THE_FULL_HORIZON": true,
+  "NOT_STOPS": [
+   "EXTINCT",
+   "THIRD_CENTRE",
+   "MAX_PERMITTED_Y",
+   "daughter failed",
+   "success occurred",
+   "event became impossible"
+  ],
+  "ONLY_BREAK": "a genuine engine invariant failure, which is a technical fault and not a scientific outcome",
+  "DIFFERENCE_FROM_FMRT01": "FMRT01 stopped phase 1 on extinction, a third centre and NY > N_STAR. FMRCT01 stops for none of them, so FMRT01's 15/85 trigger rate is a LOWER bound here."
+ },
+ "DESCENT_RULE": {
+  "module": "fmrct01_descent.py",
+  "frozen": "exactly two components; exact tie is ambiguous; the parent is the component at strictly minimal toroidal centroid distance from the parent's last centroid; that minimum must be <= CORE_R; the other component is the daughter; both identities must survive under the strict FDOT01 link rule from the separation to maturation",
+  "LITERAL_MRCI01_CLAUSE_4_IS_ALSO_EVALUATED_AND_REPORTED_FOR_EVERY_BLOCK": true,
+  "WHY_THE_LITERAL_RULE_IS_NOT_USED": "a separation in this architecture is gradual: a Y birth is Y-gated so the newborn appears at the occupied cell, and the two constituents then drift apart one cell per hop. At the step where the toroidal centroid distance first exceeds CORE_R the previous single component's centroid sits between them, so BOTH children are typically within CORE_R of it. Reading A then reports AMBIGUOUS_BOTH_INSIDE.",
+  "MEASURED_LITERAL_RESOLUTION_RATE": {
+   "unique": 14,
+   "rate": 0.02147239263803681,
+   "ambiguous_both_inside_CORE_R": 638,
+   "ambiguous_none_inside_CORE_R": 0,
+   "worlds_with_at_least_one_unique_descent": 6,
+   "of_worlds": 160
+  },
+  "MEASURED_FROZEN_RESOLUTION_RATE": {
+   "unique": 639,
+   "rate": 0.9800613496932515,
+   "ambiguous_exact_tie": 13,
+   "worlds_with_at_least_one_unique_descent": 59,
+   "of_worlds": 160
+  },
+  "SIZE_AGE_AND_X_MASS_ARE_NEVER_USED": true
+ },
+ "IDENTITY_RULE": "the strict FDOT01 link: a link continues an identity only when the previous component has exactly one candidate within CORE_R and the current component has exactly one. Ties, splits and merges all terminate the identity.",
+ "PRIMARY_EVENT": {
+  "R0": "exactly one parent organiser exists and is continuously tracked",
+  "R1": "one endogenous daughter organiser forms and is uniquely identified by the frozen descent rule",
+  "R2": "the daughter reaches the frozen functional maturation and produces local X",
+  "R3": "the parent organiser is selectively removed and the daughter is left physically untouched",
+  "R4": "after the removal the daughter continues generating local X in its own cells",
+  "R5": "while the parent remains absent the daughter completes at least one constituent-Y turnover inside ONE identity interval",
+  "R6": "local X production is present on BOTH sides of that removal, and the daughter persists past it",
+  "CONTROLS": "a matched GLOBAL_OFF showing zero local production and a matched SHAM showing the machinery inert",
+  "UNIT": "one independent seed block; steps, centres, births, turnovers and particles are never replicates",
+  "ORDERING": "R5 must follow R3"
+ },
+ "ARMS": {
+  "SHAM": "the base trajectory itself; the intervention is a bit-exact no-op, proven in fixtures",
+  "SELECTIVE": "Y of the parent component only, Y -> WY through the engine's declared channel",
+  "GLOBAL_OFF": "every Y in the world, same channel",
+  "ALL_THREE_ARE_DETERMINISTIC_AND_CONSUME_NO_RANDOM_NUMBER": true
+ },
+ "DESIGN": {
+  "N_BLOCKS": 372,
+  "MAX_FULL_FORKS": 70,
+  "MAX_REALIZED_ARM_INSTANCES": 512,
+  "CEILING": 512,
+  "HARD_BOUND_PROOF": {
+   "A(N,F,M) = N + 2*min(M,F)": "M is the number of eligible triggers, 0 <= M <= N",
+   "min(M,F) <= F for every M": "by definition of min, with no distributional assumption",
+   "therefore A <= N + 2F": 512,
+   "CEILING": 512,
+   "HOLDS": true,
+   "NO_EXPECTATION_IS_USED": true
+  },
+  "ADAPTIVE_SAMPLE_SIZE": "forbidden",
+  "OUTCOME_DRIVEN_STOPPING": "forbidden",
+  "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0
+ },
+ "FORK_SELECTION": {
+  "rule": "key = SHA256(tip || FMRCT01 || B1 || PRIORITY || index); eligible blocks are taken in ascending key order until MAX_FULL_FORKS are selected. The order is fixed before the first world and no outcome can enter it.",
+  "order_sha256": "fd6575cc4b5db09302ee62aa9c220ffa15d191d8e9360e2b70dba39a30bd58b0",
+  "eligibility": "triggered AND t_m <= 6500 AND the frozen descent resolved AND both identities carried to maturation. Every clause is a PRE-intervention property of the base trajectory; no post-intervention outcome can enter the selection."
+ },
+ "CORRECTED_ASSURANCE": {
+  "FMRT01_15_of_85_a_LOWER_bound": {
+   "E_S": 64.37289695498748,
+   "P_K_ge_1_q_point": 0.7781444226660034,
+   "P_K_ge_1_q_95_lower": 0.07389346365479091,
+   "P_K_ge_1_q_95_upper": 0.9990487562323556,
+   "P_K_ge_2_q_point": 0.442222210897956
+  },
+  "FDOT01_proxy_95_lower": {
+   "E_S": 69.49074642680111,
+   "P_K_ge_1_q_point": 0.8048988933632052,
+   "P_K_ge_1_q_95_lower": 0.07954855478368572,
+   "P_K_ge_1_q_95_upper": 0.9995610105369324,
+   "P_K_ge_2_q_point": 0.4824688553298549
+  },
+  "FDOT01_proxy_point_an_UPPER_bound": {
+   "E_S": 69.9997294097648,
+   "P_K_ge_1_q_point": 0.8073977623576001,
+   "P_K_ge_1_q_95_lower": 0.08010927052153236,
+   "P_K_ge_1_q_95_upper": 0.9995962771476037,
+   "P_K_ge_2_q_point": 0.4863953892399469
+  }
+ },
+ "THE_CORRECTION": {
+  "MRCI01_conditional": {
+   "k": 4,
+   "n": 59,
+   "rate": 0.06779661016949153,
+   "one_sided_95_lower": 0.023487551887426975
+  },
+  "WHY_IT_DOES_NOT_SURVIVE": "MRCI01 counted worlds that had a two-centre step and then took FDOT01's WORLD-level turnover verdict. It never required the turnover to occur in the DAUGHTER identity, and it never applied its own descent rule to name a daughter. Replaying FDOT01's archives through the frozen chain \u2014 strict identity tracking, the frozen descent rule, the daughter identity, a complete FUNCTIONAL turnover after maturation \u2014 gives 1 of 43, not 4 of 59.",
+  "FROZEN_CHAIN_conditional": {
+   "k": 1,
+   "n": 43,
+   "rate": 0.023255813953488372,
+   "one_sided_95_lower": 0.0011921561279377396,
+   "one_sided_95_upper": 0.10563408261589403
+  },
+  "AND_IT_IS_STILL_NOT_THE_ESTIMAND": "every developmental number is measured with the parent PRESENT. FMRCT01 measures the post-removal rate, which no existing dataset contains: FMRT01 held 250 steps after removal and FDOT01 never removed a parent."
+ },
+ "HONEST_LIMITATION_FROZEN_BEFORE_OUTCOMES": "with the corrected conditional the conservative assurance for K >= 1 is about 0.07 to 0.08, not the 0.79 MRCI01 reported. The point-estimate assurance is about 0.78 to 0.81. This design is NOT decision-capable for K >= 1 in the conservative sense, and it is not presented as such. Its primary scientific value is that its 70 matched forks give the FIRST measurement of daughter identity persistence and constituent turnover AFTER selective parent removal, over about 7700 steps each, against FMRT01's 250. A K = 0 outcome will be reported as a BOUND on that rate and never as impossibility.",
+ "CLAIM_LEVELS": {
+  "K = 0": {
+   "status": "MINIMAL_REPRODUCTION_CAUSAL_EVENT_NOT_OBSERVED",
+   "permitted": "the fully integrated causal event was not observed in this prospective sample",
+   "forbidden": "any inference of architectural impossibility. Absence at a derived rate of about 1 in 84 is expected to happen sometimes."
+  },
+  "K = 1": {
+   "status": "MINIMAL_REPRODUCTION_CAUSAL_EVENT_PROSPECTIVELY_OBSERVED",
+   "permitted": "one prospectively frozen causal parent-to-daughter event was observed in which a distinct daughter organiser remained functional after selective parent removal and across constituent turnover",
+   "forbidden": "the word replicated, in any form. One occurrence is an observation."
+  },
+  "K >= 2": {
+   "status": "MINIMAL_REPRODUCTION_CAUSAL_EVENT_PROSPECTIVELY_REPLICATED",
+   "permitted": "the prospectively frozen causal parent-to-daughter event was independently reproduced in multiple fresh blocks",
+   "forbidden": "reading the result across to the architecture as a general capacity"
+  }
+ },
+ "UNCONDITIONAL": {
+  "STRONG_SELF_REPRODUCTION_STATUS": "NOT_TESTED",
+  "HEREDITY_STATUS": "NOT_TESTED",
+  "MULTIGENERATIONAL_CLOSURE": "NOT_TESTED",
+  "LIVING_STATUS": "NOT_CLAIMED",
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+  "X_LAWSPEC_BASELINE": "UNCHANGED"
+ },
+ "TERMINAL_DISPOSITIONS_ALLOWED": [
+  "MINIMAL_REPRODUCTION_CAUSAL_EVENT_PROSPECTIVELY_REPLICATED",
+  "MINIMAL_REPRODUCTION_CAUSAL_EVENT_PROSPECTIVELY_OBSERVED_ONCE",
+  "MINIMAL_REPRODUCTION_CAUSAL_EVENT_NOT_OBSERVED",
+  "FMRCT01_TECHNICALLY_INVALID"
+ ],
+ "FIXTURES": {
+  "n": 11,
+  "all_pass": true,
+  "two_independent_implementations": "fmrct01_track/fmrct01_event (A) and fmrct01_event_b (B)"
+ },
+ "DEVELOPMENTAL_INPUTS_ARE_NOT_CONFIRMATORY": true,
+ "NO_POOLING_WITH_ANY_PREVIOUS_EXPERIMENT": true,
+ "METHODS_MANIFEST": [
+  {
+   "path": "OBTC01/code/engine_obtc.py",
+   "sha256": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30",
+   "bytes": 10167,
+   "imported_as": "engine_obtc",
+   "runtime_path": "/home/claude/OBTC02/code/engine_obtc.py"
+  },
+  {
+   "path": "OBTC02/code/gate_obtc02.py",
+   "sha256": "4857758f4aade1509ef5d7ca19566d2852197a2cc9dab6f24b81304acef3b7c7",
+   "bytes": 24743,
+   "imported_as": "gate_obtc02",
+   "runtime_path": "/home/claude/OBTC02/code/gate_obtc02.py"
+  },
+  {
+   "path": "OBTC01/code/guard_obtc.py",
+   "sha256": "ae6f6f241fdf7ae481e8443f135dbb276a0dc0d20d1d67da28d1f6710b7b5c9d",
+   "bytes": 4143,
+   "imported_as": "guard_obtc",
+   "runtime_path": "/home/claude/OBTC02/code/guard_obtc.py"
+  },
+  {
+   "path": "OBTC01/code/metrics_obtc.py",
+   "sha256": "8f7d4d5fd920653ced75ae65497e0470b67f074722e152605d62ebfbbb7e007c",
+   "bytes": 10382,
+   "imported_as": "metrics_obtc",
+   "runtime_path": "/home/claude/OBTC02/code/metrics_obtc.py"
+  },
+  {
+   "path": "OBTC02/code/protocol_obtc02.py",
+   "sha256": "0b39875cef0aea3fef2ba0beaab7516208d3f3e4d9bd351b880d30e2ada2c8fe",
+   "bytes": 10298,
+   "imported_as": "protocol_obtc02",
+   "runtime_path": "/home/claude/OBTC02/code/protocol_obtc02.py"
+  },
+  {
+   "path": "MCM01/code/kinetics.py",
+   "sha256": "d6b9e24daefd9a9ddd42780fa24da444a344a2773bb7836a8e168e44f026c4c4",
+   "bytes": 7251,
+   "imported_as": "kinetics",
+   "runtime_path": "/home/claude/ORR01/code/kinetics.py"
+  },
+  {
+   "path": "ORR01/code/lawspec_v2.py",
+   "sha256": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94",
+   "bytes": 8497,
+   "imported_as": "lawspec_v2",
+   "runtime_path": "/home/claude/ORR01/code/lawspec_v2.py"
+  },
+  {
+   "path": "ORR01/code/observe.py",
+   "sha256": "55840f35f44ccd424c4b71c80d591614d01c9143ca21e9c14e87e0faeeec2fbd",
+   "bytes": 13994,
+   "imported_as": "observe",
+   "runtime_path": "/home/claude/ORR01/code/observe.py"
+  },
+  {
+   "path": "FDFLT01/code/fdflt01_endpoint.py",
+   "sha256": "144f2fe16a792a57e2791869fac14d50cdf4d313a9e752dfe0c6f1a2f0677066",
+   "bytes": 8621,
+   "imported_as": "fdflt01_endpoint",
+   "runtime_path": "/home/claude/edl/FDFLT01/code/fdflt01_endpoint.py"
+  },
+  {
+   "path": "FDOT01/code/fdot01_centres.py",
+   "sha256": "e53513d464ac4a332a652c947f2ceed0fad2e5bd23c4eaa8fabcb1c52d608333",
+   "bytes": 8731,
+   "imported_as": "fdot01_centres",
+   "runtime_path": "/home/claude/edl/FDOT01/code/fdot01_centres.py"
+  },
+  {
+   "path": "FDOT01/code/fdot01_world.py",
+   "sha256": "566ec83854a3ea66efce58b58dd3bbc162390e11d4a98af23657f10471b52cd8",
+   "bytes": 2297,
+   "imported_as": "fdot01_world",
+   "runtime_path": "/home/claude/edl/FDOT01/code/fdot01_world.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_descent.py",
+   "sha256": "32363c56dd7595567710ec17974b0f640c329c7beb4c803c4bdecfec751efa02",
+   "bytes": 3912,
+   "imported_as": "fmrct01_descent",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_descent.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_event.py",
+   "sha256": "8b2ca6a41eeb5657b5d1bb4e3bd5cf6e5ce9559634b2568df1cb15d24bf77d15",
+   "bytes": 5011,
+   "imported_as": "fmrct01_event",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_event.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_event_b.py",
+   "sha256": "aa1e891df608687b34548c19bd67d35fcb5b5059f2d3fc580ea27fca9e63cc27",
+   "bytes": 5074,
+   "imported_as": "fmrct01_event_b",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_event_b.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_freeze.py",
+   "sha256": "14ad5d169dffb100e654a3967042aad3d1d7540cba5431371827228e35801330",
+   "bytes": 8330,
+   "imported_as": "__main__",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_freeze.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_run.py",
+   "sha256": "fe10838d43f2f145c4049adb626fec4b41524f64686c7a56322c25792a61baeb",
+   "bytes": 8212,
+   "imported_as": "fmrct01_run",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_run.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_runtime.py",
+   "sha256": "633eb06d6d8c588ff78ac9185a82414d9f3144aa3c6ec19f4cd8feed9d4f8de2",
+   "bytes": 1529,
+   "imported_as": "fmrct01_runtime",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_runtime.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_seeds.py",
+   "sha256": "2cdf89ac201b6dda305688b86935718141aa666a95aca85739f6672ca1da23eb",
+   "bytes": 3148,
+   "imported_as": "fmrct01_seeds",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_seeds.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_select.py",
+   "sha256": "05e2c4b9563c02b61d1c10e99e7474f095983da51b423b9fb4824c8f4c4c8ee0",
+   "bytes": 2845,
+   "imported_as": "fmrct01_select",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_select.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_track.py",
+   "sha256": "a276f254fdeb3fb4647b6c409bf4237207950b585904117531240ee9f7d2a213",
+   "bytes": 9980,
+   "imported_as": "fmrct01_track",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_track.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_world.py",
+   "sha256": "1980644f4f8e92d2485120b730ffc836f80baffd4edb5aefe8cad502f032a9f6",
+   "bytes": 4091,
+   "imported_as": "fmrct01_world",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_world.py"
+  },
+  {
+   "path": "FMRT01/code/fmrt01_endpoint.py",
+   "sha256": "6f5e8c7092c785630a47cfa73edeaede1c2aafdd05a22327687ab5b1a84db30b",
+   "bytes": 2604,
+   "imported_as": "fmrt01_endpoint",
+   "runtime_path": "/home/claude/edl/FMRT01/code/fmrt01_endpoint.py"
+  },
+  {
+   "path": "FMRT01/code/fmrt01_identity.py",
+   "sha256": "686e0810f6c6b9b81c81c96e6c185b1decf79f98d98a0b79dc2c34ba48fc7aea",
+   "bytes": 2864,
+   "imported_as": "fmrt01_identity",
+   "runtime_path": "/home/claude/edl/FMRT01/code/fmrt01_identity.py"
+  },
+  {
+   "path": "OBTC02/code/obtc02_protocol.yaml",
+   "sha256": "65d577460f28d2cce96be73e61eb3667a9299e23601b122f34192c14de0352cd",
+   "bytes": 10100,
+   "imported_as": "obtc02_protocol.yaml",
+   "runtime_path": "/home/claude/edl/OBTC02/code/obtc02_protocol.yaml"
+  },
+  {
+   "path": "PQEC01/code/pqec01_observer.py",
+   "sha256": "d8ff4b9da05c95641c7f69cef4c8b2ffe4c45f17975e8f348d5c5e0f2b6bba21",
+   "bytes": 8934,
+   "imported_as": "pqec01_observer",
+   "runtime_path": "/home/claude/edl/PQEC01/code/pqec01_observer.py"
+  }
+ ],
+ "N_METHODS_FILES": 25
+}

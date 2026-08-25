@@ -1,0 +1,59 @@
+{
+ "MISSION": "TLMR01",
+ "SECTION": "8 \u2014 the selection rule",
+ "GENERATED_UTC": "2026-08-24T22:51:50.618864+00:00",
+ "WHAT_IS_SELECTED": "at most ONE law, from the three EXECUTED here, for a later DISJOINT causal confirmation. Selecting zero is a permitted and honourable outcome.",
+ "MAX_SELECTED_CONFIRMATION_LAWS": 1,
+ "UNEXECUTED_LAW_SELECTION": "FORBIDDEN. Only a law measured in this mission may be selected.",
+ "POST_OUTCOME_NEW_LAW_SELECTION": "FORBIDDEN.",
+ "ORDERING_STATISTIC": "the exact one-sided lower 95 per cent bound on M5 at that law",
+ "FLOOR": {
+  "value": 0.0032015171041760242,
+  "name": "F_INTEGRATED",
+  "definition": "the exact one-sided lower 95 per cent bound on BPRTC01's published 3 of 256 post-removal FUNCTIONAL COMPLETE TURNOVERS at POINT_D10 \u2014 the only endpoint any parent corpus published that matches M5 in kind",
+  "k": 3,
+  "n": 256,
+  "principle": "match the endpoint kind. Stated before the value was computed, and it is the reason FDOT01's easier 7 of 160 is not the gate.",
+  "why_it_is_not_circular": "it is computed from a COMMITTED PARENT corpus, a different mission and a different sample. No TLMR01 outcome enters it, and it is fixed here before world 1 runs.",
+  "source": "BPRTC01/out/BPRTC01_ANALYSIS.json STATS_FOR_THE_FROZEN_GATES"
+ },
+ "STRONGER_REFERENCE": {
+  "value": 0.02071050301010788,
+  "name": "F_TURNOVER",
+  "k": 7,
+  "n": 160,
+  "definition": "the exact one-sided lower 95 per cent bound on FDOT01's 7 of 160 functional complete turnovers at B1, an endpoint with no trigger and no intervention",
+  "role": "REPORTED, NEVER A GATE. A law that also clears it is flagged CLEARS_THE_STRONGER_TURNOVER_REFERENCE so that no reader can suppose the bar was quietly lowered.",
+  "source": "FDOT01/out/FDOT01_PRIMARY_ANALYSIS.json ONE_SIDED_LOWER_95"
+ },
+ "ELIGIBILITY_ALL_MUST_HOLD": {
+  "E1": "the law ran its full planned n with a complete denominator and no unreplaced technical failure",
+  "E2": "M5 numerator K >= 2 at that law",
+  "E3": "the exact one-sided lower 95 per cent bound on M5 at that law exceeds the floor F_INTEGRATED = 0.0032015171041760242",
+  "E4": "M2 is DIRECTLY_MEASURED in at least one occupancy stratum in which maturation was observed",
+  "E5": "M3 is directly measured \u2014 at least one matured episode, and the denominator is the measured matured count and never a modelled one",
+  "E6": "a later disjoint confirmation is affordable: the exact n needed to reject p <= F_INTEGRATED at one-sided 95 per cent with 80 per cent power, evaluated at the law's own measured lower bound, is at most 1024 worlds"
+ },
+ "PRECOMPUTED_SO_ELIGIBILITY_IS_CHECKABLE_BEFORE_WORLD_1": {
+  "LAW_A_B1": {
+   "n": 128,
+   "K_required": 4,
+   "which_clause_binds": "E6"
+  },
+  "LAW_B_POINT_D10": {
+   "n": 128,
+   "K_required": 4,
+   "which_clause_binds": "E6"
+  },
+  "LAW_C_MCTT01": {
+   "n": 256,
+   "K_required": 6,
+   "which_clause_binds": "E6"
+  }
+ },
+ "TIES": "an exact tie on the ordering statistic selects NOTHING and is reported as a tie. It is never resolved by preference \u2014 the same rule the frozen identity link uses for a tie between centres.",
+ "IF_NONE_IS_ELIGIBLE": "NO_LAW_SELECTED. The measurement still stands; the confirmation is simply not authorised by this mission.",
+ "THE_RULE_IS_FIXED_BEFORE_WORLD_1": true,
+ "NO_THRESHOLD_IS_TAKEN_FROM_THE_OUTCOMES_IT_JUDGES": true,
+ "THE_FLOOR_WAS_CHOSEN_BY_A_STATED_PRINCIPLE_NOT_BY_ITS_VALUE": "match the endpoint kind. Stated before the value was computed, and it is the reason FDOT01's easier 7 of 160 is not the gate."
+}

@@ -1,0 +1,66 @@
+{
+ "SECTION": "FMRCT01 \u00a710 \u2014 pre-run fixtures and inertness",
+ "GENERATED_UTC": "2026-08-21T21:21:10.073639+00:00",
+ "SCIENTIFIC_WORLDS_USED": 0,
+ "SEEDS": "TECHNICAL_FIXTURE namespace, disjoint from the frozen manifest",
+ "N": 11,
+ "N_PASS": 11,
+ "ALL_PASS": true,
+ "FIXTURES": [
+  {
+   "fixture": "plain_engine_vs_instrumented_engine_bit_identical",
+   "PASS": true,
+   "detail": "400 steps, all 6 species planes compared"
+  },
+  {
+   "fixture": "replay_from_seed_is_bit_identical",
+   "PASS": true,
+   "detail": "physical state, all generators and all counters"
+  },
+  {
+   "fixture": "SHAM_is_a_bit_exact_no_op_now_and_forever",
+   "PASS": true,
+   "detail": "identical fingerprint at the fork and after a further 300 steps"
+  },
+  {
+   "fixture": "selective_and_global_removal_fidelity",
+   "PASS": true,
+   "detail": "parent Y removed=1 of world Y=1; other centres untouched; occupancy conserved"
+  },
+  {
+   "fixture": "no_intervention_touches_any_generator",
+   "PASS": true,
+   "detail": "3 arms, 3 generators each"
+  },
+  {
+   "fixture": "organisational_descent_cases_A_and_B_agree",
+   "PASS": true,
+   "detail": "[{\"case\": \"clean_separation\", \"verdict\": \"PARENT_CONTINUED_UNIQUELY\", \"impl_B\": \"PARENT_CONTINUED_UNIQUELY\", \"expected\": \"OK\", \"agree\": true, \"PASS\": true}, {\"case\": \"symmetric_split\", \"verdict\": \"DESCENT_AMBIGUOUS_EXACT_TIE\", \"impl_B\": \"DESCENT_AMBIGUOUS_EXACT_TIE\", \"expected\": \"AMB\", \"agree\": true, \"PASS\": true}, {\"case\": \"three_way_split\", \"verdict\": \"DESCENT_AMBIGUOUS_NOT_EXACTLY_TWO_COMPONENTS\", \"impl_B\": \"DESCENT_AMBIGUOUS_NOT_EXACTLY_TWO_COMPONENTS\", \"expected\": \"AMB\", \"agree\": true, \"PASS\": true}, {\"case\": \"merge_two_into_one\", \"verdict\": \"PREV_NOT_ONE_COMPONENT\", \"impl_B\": \"PREV_NOT_ONE_COMPONENT\", \"expected\": \"AMB\", \"agree\": true, \"PASS\": true}, {\"case\": \"crossing_equidistant\", \"verdict\": \"DESCENT_AMBIGUOUS_NOT_EXACTLY_TWO_COMPONENTS\", \"impl_B\": \"DESCENT_AMBIGUOUS_NOT_EXACTLY_TWO_COMPONENTS\", \"expected\": \"AMB\", \"agree\": true, \"PASS\": true}, {\"case\": \"turnover_before_separation\", \"verdict\": \"PARENT_CONTINUED_UNIQUELY\", \"impl_B\": \"PARENT_CONTINUED_UNIQUELY\", \"expected\": \"OK\", \"agree\": true, \"PASS\": true}, {\"case\": \"gradual_both_inside_CORE_R_parent_nearer\", \"verdict\": \"PARENT_CONTINUED_UNIQUELY\", \"impl_B\": \"PARENT_CONTINUED_UNIQUELY\", \"expected\": \"OK\", \"agree\": true, \"PASS\": true}, {\"case\": \"gradual_both_inside_CORE_R_exact_tie\", \"verdict\": \"DESCENT_AMBIGUOUS_EXACT_TIE\", \"impl_B\": \"DESCENT_AMBIGUOUS_EXACT_TIE\", \"expected\": \"AMB\", \"agree\": true, \"PASS\": true}, {\"case\": \"ambiguous_mutual_nearest\", \"verdict\": \"PREV_NOT_ONE_COMPONENT\", \"impl_B\": \"PREV_NOT_ONE_COMPONENT\", \"expected\": \"AMB\", \"agree\": true, \"PASS\": true}]"
+  },
+  {
+   "fixture": "strict_identity_split_and_merge_terminate_hold_continues",
+   "PASS": true,
+   "detail": "split [[0], [0], [1, 2]] merge [[0, 1], [0, 1], [2]] hold [[0], [0], [0]]"
+  },
+  {
+   "fixture": "turnover_complete_and_function_on_both_sides_A_and_B_agree",
+   "PASS": true,
+   "detail": "{\"A\": {\"id\": 0, \"start\": 0, \"end\": 59, \"n_steps\": 60, \"minNY\": 1, \"y_births\": 1, \"y_deaths\": 1, \"x_births\": 2, \"COMPLETE\": true, \"FUNCTIONAL\": true, \"first_y_death\": 30, \"x_before\": 1, \"x_after\": 1, \"post_duration\": 29}, \"B\": {\"COMPLETE\": true, \"FUNCTIONAL\": true, \"first_y_death\": 30, \"x_before\": 1, \"x_after\": 1, \"post_duration\": 29, \"minNY\": 1, \"y_births\": 1, \"y_deaths\": 1}, \"negative_case_functional\": false}"
+  },
+  {
+   "fixture": "selective_removal_does_not_terminate_the_daughter_identity",
+   "PASS": true,
+   "detail": "daughter id 1 before, 1 after"
+  },
+  {
+   "fixture": "hard_arm_instance_ceiling_holds_for_every_outcome",
+   "PASS": true,
+   "detail": "N=372 F=70 worst=512 ceiling=512"
+  },
+  {
+   "fixture": "online_and_offline_component_counts_agree",
+   "PASS": true,
+   "detail": "1500 steps compared"
+  }
+ ]
+}

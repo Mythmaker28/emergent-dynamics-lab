@@ -1,0 +1,86 @@
+{
+ "SECTION": "FMRCT01 \u00a70/\u00a73 \u2014 developmental recompute of the inherited descent rule",
+ "FRESH_WORLDS_USED": 0,
+ "SOURCE": "FDOT01 raw, 160 committed archives",
+ "N_WORLDS": 160,
+ "N_SEPARATION_EVENTS": 652,
+ "READING_A_LITERAL_MRCI01": {
+  "unique": 14,
+  "rate": 0.02147239263803681,
+  "ambiguous_both_inside_CORE_R": 638,
+  "ambiguous_none_inside_CORE_R": 0,
+  "worlds_with_at_least_one_unique_descent": 6,
+  "of_worlds": 160
+ },
+ "READING_B_STRICT_MINIMUM": {
+  "unique": 639,
+  "rate": 0.9800613496932515,
+  "ambiguous_exact_tie": 13,
+  "worlds_with_at_least_one_unique_descent": 59,
+  "of_worlds": 160
+ },
+ "WHY_THE_TWO_READINGS_DIVERGE": "a separation in this architecture is gradual: a Y birth is Y-gated so the newborn appears at the occupied cell, and the two constituents then drift apart one cell per hop. At the step where the toroidal centroid distance first exceeds CORE_R the previous single component's centroid sits between them, so BOTH children are typically within CORE_R of it. Reading A then reports AMBIGUOUS_BOTH_INSIDE.",
+ "MRCI01_FIXTURES_CANNOT_SEPARATE_THE_TWO_READINGS": "all six MRCI01 synthetic cases return the same verdict under A and under B: distances (0,6), (3,3), n/a, n/a, (2,2), (1,8). None of them has both children inside CORE_R at different distances, which is exactly the configuration the dynamics produce.",
+ "PER_WORLD_SAMPLE": [
+  {
+   "file": "F_B1_P_i000_s980537347.npz",
+   "n_separations": 0,
+   "A_unique": 0,
+   "B_unique": 0
+  },
+  {
+   "file": "F_B1_P_i001_s963329129.npz",
+   "n_separations": 0,
+   "A_unique": 0,
+   "B_unique": 0
+  },
+  {
+   "file": "F_B1_P_i002_s974124305.npz",
+   "n_separations": 0,
+   "A_unique": 0,
+   "B_unique": 0
+  },
+  {
+   "file": "F_B1_P_i003_s965915519.npz",
+   "n_separations": 3,
+   "A_unique": 0,
+   "B_unique": 3
+  },
+  {
+   "file": "F_B1_P_i004_s947027179.npz",
+   "n_separations": 0,
+   "A_unique": 0,
+   "B_unique": 0
+  },
+  {
+   "file": "F_B1_P_i005_s952181029.npz",
+   "n_separations": 0,
+   "A_unique": 0,
+   "B_unique": 0
+  },
+  {
+   "file": "F_B1_P_i006_s947897172.npz",
+   "n_separations": 0,
+   "A_unique": 0,
+   "B_unique": 0
+  },
+  {
+   "file": "F_B1_P_i007_s960796823.npz",
+   "n_separations": 0,
+   "A_unique": 0,
+   "B_unique": 0
+  },
+  {
+   "file": "F_B1_P_i008_s980294986.npz",
+   "n_separations": 32,
+   "A_unique": 0,
+   "B_unique": 31
+  },
+  {
+   "file": "F_B1_P_i009_s966676633.npz",
+   "n_separations": 0,
+   "A_unique": 0,
+   "B_unique": 0
+  }
+ ]
+}
