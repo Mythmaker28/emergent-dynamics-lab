@@ -1,0 +1,117 @@
+{
+ "MISSION": "EVCS01",
+ "SECTION": "5 \u2014 the campaign sizing instrument",
+ "GENERATED_UTC": "2026-08-26T23:07:38.631485+00:00",
+ "INSTRUMENT": "EVCS01/code/evcs01_sizing.py",
+ "DETERMINISTIC": true,
+ "BOOTSTRAP_SEED": 20260826,
+ "FROZEN_OUTPUT_FOR_THE_CURRENT_DESIGN": {
+  "LEDGER": "caller-supplied",
+  "n_seeds": 805,
+  "admissible": 33,
+  "admissible_rate": 0.040993788819875775,
+  "cost_per_admissible_pair": 15.471788484848485,
+  "TARGET_PAIRS": 41,
+  "CONFIDENCE": 0.95,
+  "REQUIRED_CEILING": 785.1458135000072,
+  "COST_DISTRIBUTION": {
+   "p5": 496.90397400000376,
+   "p25": 571.8221525000046,
+   "p50": 629.0131700000054,
+   "p75": 691.5971700000061,
+   "p90": 750.4873410000072,
+   "p95": 785.1458135000072
+  },
+  "MEDIAN_COST": 629.0131700000054,
+  "EXPECTED_SEEDS": 1000.1515151515152,
+  "BOOTSTRAP_SEED": 20260826,
+  "REPLICATES": 20000,
+  "STOP_RULE": "stop on PAIRS, not on cost. The ceiling is a cost bound, not a stopping rule. A ceiling that binds must be news, not a result. Pre-register an interim re-estimate that may only RAISE the ceiling, never lower the target."
+ },
+ "P_41_PAIRS_AT_THE_OMLDCT02_CEILING_512": 0.07495,
+ "THE_INSTRUMENT_REFUSES_512": {
+  "VERDICT": "REFUSED",
+  "why": "a ceiling of 512 is below the median cost 629.0 of accruing 41 pairs. More than half of all campaigns under this design end on the ceiling with the target unmet. That is not a risk, it is the expected outcome."
+ },
+ "THE_INSTRUMENT_ACCEPTS_800": {
+  "VERDICT": "OK"
+ },
+ "SELF_TESTS": [
+  {
+   "test": "realised admissible rate is 33/805",
+   "PASS": true
+  },
+  {
+   "test": "cost per admissible pair is 15.47 +- 0.01",
+   "PASS": true
+  },
+  {
+   "test": "P(41 pairs | ceiling 512) is under 0.12",
+   "PASS": true
+  },
+  {
+   "test": "P(41 pairs | ceiling 512) is over 0.03",
+   "PASS": true
+  },
+  {
+   "test": "the 95% ceiling for 41 pairs is between 700 and 900",
+   "PASS": true
+  },
+  {
+   "test": "OMLDCT02's frozen ceiling of 512 is below the median cost of its own target",
+   "PASS": true
+  },
+  {
+   "test": "a ceiling of 512 for 41 pairs is REFUSED by the instrument",
+   "PASS": true
+  },
+  {
+   "test": "a ceiling of 800 for 41 pairs is not refused",
+   "PASS": true
+  },
+  {
+   "test": "the TLMR01 developmental rate is more than 1.8x the realised rate",
+   "PASS": true
+  },
+  {
+   "test": "sizing from TLMR01 is flagged DO_NOT_SIZE_FROM_THIS",
+   "PASS": true
+  }
+ ],
+ "ALL_SELF_TESTS_PASS": true,
+ "TLMR01_DEVELOPMENTAL_SIZING": {
+  "source": "the 256 developmental LAW_C_MCTT01 worlds, per OMLDCT02_DESIGN_RECOMPUTED.json",
+  "n_worlds": 256,
+  "n_admissible": 22,
+  "n_triggered_not_carried": 4,
+  "n_no_trigger": 230,
+  "implied_admissible_rate": 0.0859375,
+  "NOT_EXCHANGEABLE_WITH_THE_PROSPECTIVE_LEDGER": {
+   "expected_admissible_in_805_seeds_at_the_sizing_rate": 69.1796875,
+   "observed": 33,
+   "binomial_tail_P_X_le_33": 4.163814282174877e-07,
+   "trigger_rate_sizing": 0.1015625,
+   "trigger_rate_realised": 0.06459627329192547,
+   "carried_given_triggered_sizing": 0.8461538461538461,
+   "carried_given_triggered_realised": 0.6346153846153846,
+   "WHY_IT_CANNOT_BE_DIAGNOSED": "the 256 developmental archives no longer exist in this container, so the most likely explanation \u2014 that 'carried' meant something laxer before the E3 qualification rule was rebuilt during OMLDCT01 \u2014 cannot be checked. What survives is the conclusion: do not size from that set."
+  },
+  "DO_NOT_SIZE_FROM_THIS": true
+ },
+ "TWO_CAMPAIGNS_FROZEN_WITH_SINGLE_DIGIT_POWER": {
+  "FIMRCC01": {
+   "rule": "k >= 2 of n = 50 blocks",
+   "power_at_the_observed_rate_1_in_256": 0.0165,
+   "source": "FIMRCC01_FINAL_DISPOSITION.json LOCKED_DAUGHTER_N50_P_K_GE_2"
+  },
+  "OMLDCT02": {
+   "rule": "41 valid paired blocks under a 512 arm-instance ceiling",
+   "power_at_the_realised_rate": 0.07495,
+   "source": "recomputed here from OMLDCT02_SEALED_LEDGER.jsonl"
+  },
+  "COMMON_CAUSE": "a target and a cost ceiling frozen independently and never checked against each other. This instrument exists so that check is not optional."
+ },
+ "THESE_ARE_SAMPLING_YIELD_QUANTITIES_NOT_THE_PAIRED_ENDPOINTS": true,
+ "THE_OWNERS_RULE_IS_UNTOUCHED": "fewer than 41 pairs may not be interpreted using the paired p-values. Nothing here does.",
+ "SIZING_CONTENT_HASH": "83062508908cba16c907baf50a5007a86b8ee15f6e80fe91e1f242e487549083"
+}
