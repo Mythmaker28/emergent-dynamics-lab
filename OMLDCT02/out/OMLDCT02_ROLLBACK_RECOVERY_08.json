@@ -1,0 +1,33 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "rollback recovery \u2014 the eighth this session, and the first mid-campaign",
+ "GENERATED_UTC": "2026-08-26T13:15:36.153742+00:00",
+ "WHAT_HAPPENED": "the container reset to the inherited baseline 82f6c84 while the campaign was held at the batch-03 boundary waiting for the device bridge. It took with it the OMLDCT01 closure commit, both OMLDCT02 commits, the 16 batch-03 archives and the sealed ledger past batch 02.",
+ "WHAT_SURVIVED_ON_WINDOWS": [
+  "the bundle chain through OMLDCT02_PRE_RUN_FULL, tip 5dded59",
+  "batches 01 and 02: 32 arm instances, 16 pairs, in verified split packages",
+  "the sealed ledger and run state as of batch 02 packaging"
+ ],
+ "RECOVERY": {
+  "repository": "restored from the Windows bundle chain alone, 268 commits, C1 8953d97 and C2 5dded59 present, working tree clean",
+  "freeze_reverified_after_recovery": "FREEZE_VERIFICATION = PASS \u2014 all five digests reproduce and no bound method file has drifted",
+  "archives": "32 of 32 restored and sha256-verified against the sealed ledger, then re-checked by the frozen read-back path: 16 of 16 on the open batch",
+  "state": "the Windows snapshot predates the --close of batch 02, so it showed that batch still open. I did NOT hand-edit the state file. I re-ran the frozen --close through the same code path, which is justified because batch 02 IS externalised and verified on the device \u2014 its two split packages re-checked clean just now.",
+  "resumed_at_base_seed_index": 403
+ },
+ "WHAT_WAS_LOST": {
+  "batch_03": "16 arm instances, 8 pairs, base seed indices 403 to 520",
+  "why_nothing_is_invalidated": "the seeds are frozen and the engine is deterministic, so re-running 403 onward reproduces them exactly. The loss is machine time, not validity.",
+  "instance_accounting": "the ledger charges each base seed once. The restored state resumes at 256.12353 instances for 403 seeds, and the re-run adds indices 403 onward once. The destroyed work is a technical loss and is NOT charged twice against the 512 ceiling; the cost that counts is the cost of the seeds that end up in the record."
+ },
+ "SEEDS_ATTEMPTED_AT_RESUME": 403,
+ "VALID_PAIRED_BLOCKS_AT_RESUME": 16,
+ "HARD_ARM_INSTANCE_COUNT_AT_RESUME": 256.12353,
+ "EXTERNALISED_BATCHES": 2,
+ "UNEXTERNALISED_ARM_INSTANCES": 0,
+ "ROLLBACK_ORDINAL_THIS_SESSION": 8,
+ "NO_SCIENTIFIC_OUTCOME_WAS_READ_AT_ANY_POINT": true,
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "RECOVERY_CONTENT_HASH": "b8fc6d3ae6d19f75e544e22fe840af7e2d91a2934f61c93483e83936371eabf1"
+}

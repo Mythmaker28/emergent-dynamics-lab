@@ -1,0 +1,72 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "durability \u2014 pre-run and raw",
+ "GENERATED_UTC": "2026-08-26T18:50:02.403931+00:00",
+ "A_NOTE_ON_THIS_FILE": "the original pre-run durability record was written before C2 was committed and was therefore untracked when the eighth container rollback destroyed it. It is rewritten here from surviving evidence rather than reconstructed from memory: the Windows package hashes below were re-read from the device, and the restore was re-performed and re-verified after the rollback. That rewrite is itself a consequence of my post-C2 planning miss, and it is declared.",
+ "PRE_RUN": {
+  "package": [
+   "OMLDCT02_PRE_RUN_FULL.bundle",
+   "OMLDCT02_PRE_RUN_METHODS_CAPSULE.tar",
+   "OMLDCT02_PRE_RUN_SHA256SUMS",
+   "OMLDCT02_PRE_RUN_EXTERNAL_MANIFEST.json"
+  ],
+  "restore_from_windows_bytes_alone": "performed twice \u2014 once before world 1, and again after the eighth rollback, both times reaching tip 5dded59 with 268 commits and git fsck exit 0",
+  "freeze_verification_in_the_restored_clone": "PASS, all five digests, on the device's Python 3.10 as well as the container's 3.11",
+  "WINDOWS_PRE_RUN_DURABILITY": "PASS"
+ },
+ "RAW_BATCHES": [
+  {
+   "batch": "01",
+   "arm_instances": 16,
+   "device_archive_verification": "16 of 16"
+  },
+  {
+   "batch": "02",
+   "arm_instances": 16,
+   "device_archive_verification": "16 of 16"
+  },
+  {
+   "batch": "03",
+   "arm_instances": 16,
+   "device_archive_verification": "16 of 16",
+   "note": "destroyed by the rollback and reproduced exactly; the re-run returned admissible pairs at the same indices with the same seeds and identical campaign totals"
+  },
+  {
+   "batch": "04",
+   "arm_instances": 16,
+   "device_archive_verification": "16 of 16"
+  },
+  {
+   "batch": "05",
+   "arm_instances": 2,
+   "device_archive_verification": "2 of 2"
+  }
+ ],
+ "TOTAL_ARM_INSTANCES_EXTERNALISED": 66,
+ "UNEXTERNALISED_ARM_INSTANCES": 0,
+ "PER_ARCHIVE_DEVICE_CHECKS": [
+  "seed",
+  "index",
+  "arm",
+  "schema version TLMR01-ARCHIVE-1",
+  "horizon 11000",
+  "steps executed",
+  "sha256 against the sealed ledger",
+  "law LAW_C_MCTT01",
+  "integrity flag",
+  "t_m",
+  "intervention applied flag matches the arm"
+ ],
+ "ALL_ARCHIVE_HASHES_MATCH_IN_THE_CONTAINER": true,
+ "N_ARCHIVES": 66,
+ "MAX_UNEXTERNALISED_ARM_INSTANCES": 16,
+ "RULE_ENFORCED_BY_CODE": "the frozen runner refuses to start a batch while a previous one is open. It fired once for real, when the device bridge went down at the batch-03 boundary.",
+ "FREEZE_CONTENT_HASH": "4a1a8817584039bc10e3b0965eb8700d534b8460cc46e8323f25631179742865",
+ "FREEZE_FILE_SHA256": "b709e2adf80b31e373b9b6d123ca3e6b6c6b6ac2521c7b5609bb2022e7467f6c",
+ "METHODS_HASH": "3955c99052c318a17e415a1aead3ac5096cd118634435840c6cf55d5b279ec6b",
+ "SEED_SET_HASH": "998f6fabaf166c029e0c9fadabc26bc83837e7c728ae83c8410c93d1afb3a019",
+ "ROLLBACKS_THIS_SESSION": 8,
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "DURABILITY_CONTENT_HASH": "c01f285224c2b67dfc18ce7dbd92de11bf74547e7edd24cc6bfff1bd2557bf40"
+}
