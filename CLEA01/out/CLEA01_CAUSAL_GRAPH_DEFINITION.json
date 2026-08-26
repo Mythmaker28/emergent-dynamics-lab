@@ -1,0 +1,77 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "3 \u2014 causal graph definition",
+ "GENERATED_UTC": "2026-08-26T19:57:27.971811+00:00",
+ "RULES_WERE_FROZEN_IN": "CLEA01_IDENTITY_MODELS.json, before any archive was opened for Model C",
+ "PERMITTED_INPUTS": [
+  "Y-occupied cell coordinates",
+  "nY per cell",
+  "event-aligned accepted Y births",
+  "event-aligned Y removals",
+  "accepted local X births",
+  "pre and post intervention physical states",
+  "toroidal geometry",
+  "the frozen reaction and event order",
+  "the locked daughter cells at the fork"
+ ],
+ "FORBIDDEN_AS_CAUSAL_TRUTH": [
+  "online component IDs (c_cid)",
+  "online identity IDs (k_id)",
+  "the online selected-daughter ID after the fork",
+  "the online turnover verdict",
+  "the online primary verdict",
+  "the online terminal label",
+  "the SELECTIVE/SHAM paired effect",
+  "future survival or exposure outcome"
+ ],
+ "VERIFIED_BY": "a tokenised source scan of both implementations, reported in the non-vacuity artefact",
+ "EDGE_TYPES": [
+  {
+   "edge": "PERSISTENCE_AND_TRANSPORT",
+   "from": "every Y-occupied cell c on row t within toroidal Chebyshev distance 1 of d",
+   "to": "Y-occupied cell d on row t+1",
+   "justification": "_diffuse runs the four NEI passes sequentially inside one step, each pass moving a binomial subset of the current occupancy at most once. The net displacement is a subset sum of the four unit vectors with the opposing pair cancelling, so it lies exactly in {-1,0,1}^2. Persistence is the zero-displacement member of the same kernel.",
+   "SET_VALUED": true,
+   "uncertainty": "the archive records occupancy, not particle identity, so which member of S(d) supplied the mass at d is not determined. The CERTAIN/POSSIBLE bracket carries that uncertainty forward instead of resolving it by preference."
+  },
+  {
+   "edge": "ACCEPTED_LOCAL_Y_BIRTH",
+   "from": "the Y present at the birth cell at react time, which arrived there under the transport edge from S(d)",
+   "to": "the accepted Y birth recorded at (t+1, d)",
+   "justification": "_react_core draws births ~ Binomial(min(nSY, free), min(1, kY * nX * nY)) elementwise. A Y birth at cell d requires nY(d) > 0 at react time. The ancestor is a single cell, not a neighbourhood.",
+   "SET_VALUED": "only through the transport that placed Y at d during the same step"
+  },
+  {
+   "edge": "LOCAL_X_PRODUCTION",
+   "from": "the same Y-bearing source state at d",
+   "to": "the accepted local X birth recorded at (t+1, d)",
+   "justification": "the X branch of the same reaction loop uses the same pair = nX * nY, so an X birth at d also requires nY(d) > 0 at react time."
+  },
+  {
+   "edge": "REMOVAL_TERMINATES_CAUSAL_MASS",
+   "from": "the Y at the removal cell",
+   "to": "nothing",
+   "justification": "_decay converts Y to WY at its own cell, conserving occupancy. A cell emptied by removal leaves both sets on the next row, which is what the physics does."
+  },
+  {
+   "edge": "SPLIT_CREATES_MULTIPLE_DESCENDANT_BRANCHES",
+   "mechanism": "no special rule is needed: the transport edge is one-to-many, so a lineage that separates spatially simply occupies several disconnected groups. A split does not terminate Model C. The number of rows on which CERTAIN occupies more than one group is reported."
+  },
+  {
+   "edge": "MERGE_COMBINES_BRANCHES_WITH_PROVENANCE_FROM_EVERY_CONTRIBUTOR",
+   "mechanism": "the transport edge is also many-to-one. A cell fed by both lineage and non-lineage sources satisfies the POSSIBLE rule and fails the CERTAIN rule. Provenance from every contributing branch is therefore expressed as a bracket, not as an invented assignment."
+  }
+ ],
+ "NO_MOLECULAR_GENEALOGY_IS_INVENTED": "nowhere does a specific particle acquire a specific parent. Where the physics does not determine ancestry the bracket widens.",
+ "MACHINE_CHECKABLE_INVARIANT": "every occupied cell on row t+1 must have a non-empty S(d). A violation would mean Y mass appeared with no Moore-1 predecessor and would indicate an archive or kernel error, not a lineage finding. Counted and reported per arm.",
+ "TWO_INDEPENDENT_IMPLEMENTATIONS": {
+  "implementation_1": "CLEA01/code/clea01_lineage_i1.py \u2014 Python sets of coordinate tuples, the nine Moore offsets enumerated explicitly, every membership decided by a set test",
+  "implementation_2": "CLEA01/code/clea01_lineage_i2.py \u2014 boolean morphology on numpy arrays: certain(t+1) = occ(t+1) & dilate(certain(t)) & ~dilate(occ(t) & ~certain(t)), with dilate a nine-shift np.roll union",
+  "what_they_share": "CORRECTED BY THE CHECKER. My claim of 'no code' was FALSE. The two implementations share about 28 non-trivial identical source lines: the ledger-parsing helper, the flood-fill body, the archive-array extraction, the loop skeleton, the break conditions, the duration and exposure accounting and the output dictionary. What genuinely differs is the CERTAIN/POSSIBLE step operator and the occupancy representation. G2 therefore tests THE PROPAGATION OPERATOR ONLY; the archive-reading conventions, the event-label alignment, the horizon handling and the exposure accounting are common-mode across both.",
+  "why_the_second_form_is_equivalent": "dilate(certain) asserts at least one certain source; ~dilate(occ & ~certain) asserts no occupied non-certain source. Together they are exactly 'S(d) is non-empty and contained in CERTAIN(t)', which implementation 1 tests by enumeration.",
+  "HOW_THE_COMMON_MODE_GAP_WAS_CLOSED": "not by G2. The checker derived the archive row cadence and the event-ledger label convention directly from the engine source, confirmed the transport kernel analytically and then empirically on 4000 randomised engine trials and 400 full step calls, and wrote a THIRD implementation from the rule text alone \u2014 neighbour counting with precomputed modular index tables, no np.roll and no set-subset test \u2014 which reproduced all 13 quantities on all 66 arms with zero disagreements, and reproduced POST_A_CLAIM_FRACTION on all 66 arms with zero disagreements.",
+  "EQUIVALENCE_PROOF_CONDITION_ADDED": "the morphological form equals the set form GIVEN the invariant CERTAIN(t) is a subset of occ(t), which the pipeline maintains by construction. My sketch omitted the condition. The checker verified the equivalence on 4000 random configurations with zero mismatches, and then broke the precondition deliberately on 2000 more, where all 2000 mismatched."
+ },
+ "NEW_SCIENTIFIC_ENGINE_RUNS": 0,
+ "CAUSAL_GRAPH_CONTENT_HASH": "4a250bdfc39041308f272d0aff4f1c9ee09aa18ace0a779ceb032537b34f6798"
+}

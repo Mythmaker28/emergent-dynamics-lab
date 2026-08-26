@@ -1,0 +1,87 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "7 \u2014 the ten structural gates",
+ "GENERATED_UTC": "2026-08-26T20:38:37.037254+00:00",
+ "NO_GATE_IS_STATISTICAL": true,
+ "NO_PERFORMANCE_THRESHOLD_WAS_INTRODUCED": true,
+ "GATES": [
+  {
+   "gate": "G1",
+   "requirement": "reconstructable in all 33 pairs",
+   "VERDICT": "PASS",
+   "BASIS": "Model C was reconstructed on all 66 arms of all 33 pairs from raw physical events alone. Zero physical-invariant violations: every occupied cell on every row had a Moore-1 predecessor."
+  },
+  {
+   "gate": "G2",
+   "requirement": "exact agreement between two independently written causal-graph implementations on all load-bearing lineage decisions",
+   "VERDICT": "PASS",
+   "BASIS": "66 of 66 arms agree on all 13 recorded quantities, including both durations, both exposures, the split-row count, all six event attributions and the invariant count. The two implementations share the archive, the constants and the rule text and no code: one enumerates S(d) with Python sets, the other computes the same set by nine-shift boolean morphology. 16 hand-answered fixtures agree as well."
+  },
+  {
+   "gate": "G3",
+   "requirement": "non-vacuous relative to A and B",
+   "VERDICT": "FAIL",
+   "BASIS": "Relative to A: PASS \u2014 C differs in 62 of 66 arms, often by orders of magnitude. Relative to B: literally true in 66 of 66 but empty where it matters. In every SELECTIVE arm the entire difference from the ambient population is the parent's own Y mass on the fork row, because the archive writes row t_m before the intervention. A few particles out of about 1.7 million particle-steps is not non-vacuity. C is non-vacuous relative to B on the SHAM arms only.",
+   "BASIS_CORRECTED": "the magnitude argument is withdrawn. Threshold-free: in the SELECTIVE arm the CERTAIN set equals the full occupied set on 100% of post-fork rows and C's certain duration equals the ambient duration exactly in 33 of 33. C and B are the same set on every row after the fork; the only difference is the single pre-intervention row t_m."
+  },
+  {
+   "gate": "G4",
+   "requirement": "preserves the known locked-daughter success",
+   "VERDICT": "FAIL",
+   "BASIS": "The necessary condition holds everywhere: C's certain duration is never shorter than A's in any of the 66 arms. The strong condition fails in 2: at index 402 SHAM and index 518 SHAM the CERTAIN set does not contain A's component cells on every row, and at 402 SHAM C's certain exposure (1387) falls below A's (2080) even though C lasts more than twice as long. The reason is structural and is not a defect in either object: the frozen mutual-unique link rule tracks a component centroid, not the provenance of the mass inside it, so Model A can carry mass whose origin is not certainly its own. The two objects genuinely cross.",
+   "BASIS_CORRECTED": "the failing cells were never CERTAIN and never POSSIBLE at any earlier row. They have no causal path to the daughter root at all. Model A's centroid rule absorbed separate Y trajectories into the daughter's component."
+  },
+  {
+   "gate": "G5",
+   "requirement": "rejects unrelated ambient succession",
+   "VERDICT": "PASS_ON_SHAM__NOT_TESTABLE_ON_SELECTIVE",
+   "BASIS": "On SHAM, where a competing ambient population exists, the median share of post-A world mass claimed as certain lineage is 0.00745 and the median downstream-X share is 0.0151. Six arms saturate. On SELECTIVE the gate cannot be tested at all: the intervention removes the only other Y source, so there is no unrelated ambient succession to reject."
+  },
+  {
+   "gate": "G6",
+   "requirement": "every cross-split or cross-turnover continuation has an explicit causal witness",
+   "VERDICT": "PASS",
+   "BASIS": "The witness for 'd is CERTAIN on row t+1' is the pair (S(d,t+1), CERTAIN(t)) with S non-empty and contained in CERTAIN(t) \u2014 enumerable, checkable, and referring to no label. Across the 66 arms Model C crossed 42,593 constituent replacements with a certain causal path in 58 arms, and occupied more than one spatially separate group on 373,987 rows in 60 arms. Four mutation fixtures confirm that deleting one required edge destroys the dependent claim, and a fifth control confirms the test is not vacuously destructive."
+  },
+  {
+   "gate": "G7",
+   "requirement": "no future outcome field is used to define ancestry",
+   "VERDICT": "PASS",
+   "BASIS": "A token-level scan of both implementations, with comments and string literals stripped, finds none of c_cid, k_id, VERDICT, TERMINAL_LABEL, descent_level, identity_carried, E3_DURATION, E3_EXPOSURE, COMPLETE_TURNOVER, FUNCTIONAL, PAIR_MEASUREMENTS, FROZEN_ANALYSIS, exact_two_sided_p or AND_RULE \u2014 in executable code or in prose. Both read exactly c_t, c_y, c_x, c_nY, meta and the three event ledgers.",
+   "BASIS_CORRECTED": "the original basis was a scan that stripped string literals \u2014 blind to dict field access, which is where such a field would appear \u2014 and covered 2 of 7 scripts. Re-scanned over raw text across all 7 with an AST enumeration of every string subscript. The two ancestry-defining implementations contain no forbidden token anywhere in their text. The tokens appear only in the tabulation and gate scripts, which define no ancestry."
+  },
+  {
+   "gate": "G8",
+   "requirement": "the validation set produces no new unresolvable contradiction",
+   "VERDICT": "PASS_WITH_A_FINDING",
+   "BASIS": "The validation set produced exactly one contradiction \u2014 index 402 SHAM, where C outlasts A but carries less certain mass \u2014 and it is resolved, not left open: it is the centroid-versus-provenance difference recorded under G4. The eleven validation arms otherwise reproduce the development structure exactly, including the SELECTIVE claim fraction of 1.0 in all 11."
+  },
+  {
+   "gate": "G9",
+   "requirement": "the causal object remains meaningful under both SELECTIVE and SHAM",
+   "VERDICT": "FAIL",
+   "BASIS": "Under SHAM it is meaningful and specific. Under SELECTIVE it is not: in all 31 arms where the question can be asked it claims exactly 100 per cent of the post-A world mass and a median of 100 per cent of downstream X production. The statement 'the world is the daughter's lineage' is true there and explains nothing, because the intervention itself made it true. The object carries information in the control arm and none in the treated arm \u2014 which is the arm the experiment is about."
+  },
+  {
+   "gate": "G10",
+   "requirement": "a future intervention capable of selectively perturbing causal integration without changing Y/X counts can be defined exactly",
+   "VERDICT": "NOT_REACHED",
+   "BASIS": "Section 9 makes a future experiment eligible only if Model C passes all ten gates. Three have failed, so this gate was not evaluated and no handoff is written."
+  }
+ ],
+ "N_PASS": 6,
+ "N_FAIL": 3,
+ "N_NOT_REACHED": 1,
+ "FAILED_GATES": [
+  "G3",
+  "G4",
+  "G9"
+ ],
+ "MODEL_C_SELECTED": false,
+ "WHY_NOT": "Model C is reconstructible, distinct from the locked component, specific against the ambient population in the control arm, and it crosses splits and constituent replacements with explicit witnesses. What it cannot do is stay meaningful in the treated arm. Removing the parent leaves the daughter as the world's only Y source, so in the SELECTIVE arm the causal lineage and the ambient population are the same object as a matter of physics, and the distinction the audit set out to draw disappears exactly where the experiment needs it.",
+ "THIS_IS_A_PROPERTY_OF_THE_INTERVENTION_NOT_OF_THE_MODEL": "a lineage object could still be the right individual. It cannot be identified as one from archives generated by an intervention that removes every competing source.",
+ "MAX_SELECTED_IDENTITY_MODELS": 1,
+ "SELECTED": "none",
+ "GATES_CONTENT_HASH": "9b6fc5df02ff3901567752ebc001be7a598a4e8cb4cf1fee569898558ca4b924",
+ "SCORING_HONESTY": "the checker is right that 'six pass, three fail' reads harder than it is. Scored literally G3 would PASS, because C is numerically distinct from B in 66 of 66; its FAIL rests on the structural fact restated above. And G5 sits inside the pass count while being untestable on the treated arm \u2014 the same defect G9 is failed for. Both judgement calls go against my own model, and neither moves the terminal, because G9 fails on a fact that needs no threshold."
+}

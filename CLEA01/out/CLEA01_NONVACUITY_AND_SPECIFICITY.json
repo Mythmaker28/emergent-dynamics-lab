@@ -1,0 +1,716 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "4 \u2014 non-vacuity and specificity",
+ "GENERATED_UTC": "2026-08-26T20:37:54.381816+00:00",
+ "N_PAIRS": 33,
+ "N_ARMS": 66,
+ "TEST_1_DIFFERS_FROM_MODEL_A": {
+  "arms_where_C_differs_from_A": 62,
+  "of": 66,
+  "arms_where_C_equals_A": [
+   [
+    10,
+    "SHAM"
+   ],
+   [
+    450,
+    "SELECTIVE"
+   ],
+   [
+    471,
+    "SHAM"
+   ],
+   [
+    482,
+    "SELECTIVE"
+   ]
+  ],
+  "PASS": true,
+  "note": "CORRECTED BY THE CHECKER. My first note said all four coincidences were arms where the whole Y population died with the lineage. That is true for only two of them. At (10, SHAM) Model C ends at 951 while the ambient population runs 10247 rows, and at (471, SHAM) C ends at 119 while the ambient runs 1028. In those two the lineage simply died while the world went on. The 62-of-66 verdict is unaffected; the explanation attached to it was wrong for half the cases it explained.",
+  "the_four_coincidences_in_detail": [
+   {
+    "index": 10,
+    "arm": "SHAM",
+    "A_duration": 951,
+    "C_certain_duration": 951,
+    "B_duration": 10247,
+    "B_exposure": 1172068,
+    "did_the_Y_population_die_with_the_lineage": false
+   },
+   {
+    "index": 450,
+    "arm": "SELECTIVE",
+    "A_duration": 257,
+    "C_certain_duration": 257,
+    "B_duration": 257,
+    "B_exposure": 374,
+    "did_the_Y_population_die_with_the_lineage": true
+   },
+   {
+    "index": 471,
+    "arm": "SHAM",
+    "A_duration": 119,
+    "C_certain_duration": 119,
+    "B_duration": 1028,
+    "B_exposure": 1149,
+    "did_the_Y_population_die_with_the_lineage": false
+   },
+   {
+    "index": 482,
+    "arm": "SELECTIVE",
+    "A_duration": 214,
+    "C_certain_duration": 214,
+    "B_duration": 214,
+    "B_exposure": 216,
+    "did_the_Y_population_die_with_the_lineage": true
+   }
+  ]
+ },
+ "TEST_2_DIFFERS_FROM_MODEL_B": {
+  "arms_where_C_differs_from_B_numerically": 66,
+  "of": 66,
+  "LITERAL_PASS": true,
+  "BUT_THE_MAGNITUDE_MATTERS": "in every SELECTIVE arm the difference is exactly the parent's own Y mass on the fork row \u2014 the archive writes row t_m BEFORE the intervention, so the ambient count includes the parent that is about to be removed while the lineage root does not. The median difference is a few particles out of about 1.7 million particle-steps.",
+  "selective_C_minus_B_exposure": [
+   -4,
+   -4,
+   -3,
+   -3,
+   -2,
+   -2,
+   -2,
+   -2,
+   -2,
+   -2,
+   -2,
+   -2,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1,
+   -1
+  ],
+  "HONEST_VERDICT": "non-vacuity relative to B holds on the SHAM arms and does NOT hold on the SELECTIVE arms, where Model C is the ambient population.",
+  "THRESHOLD_FREE_RESTATEMENT": "CORRECTED BY THE CHECKER. Arguing the G3 failure from 'a few particles out of 1.7 million' is a magnitude judgement, which contradicts my own claim that no threshold was introduced. The threshold-free statement, which the checker proved by row-walking six pairs and by decomposing row t_m in all 33: in the SELECTIVE arm the CERTAIN set equals the full occupied set on ONE HUNDRED PER CENT of post-fork rows, and C's certain duration equals the ambient duration exactly in 33 of 33. The only difference between C and B in the treated arm is the single pre-intervention row t_m, where the archive still counts the parent that is about to be removed. C and B are the same set on every row that follows. No magnitude is needed to say that."
+ },
+ "TEST_3_PRESERVES_THE_KNOWN_LOCKED_DAUGHTER_SUCCESS": {
+  "necessary_condition_C_certain_never_shorter_than_A": true,
+  "arms_where_C_certain_exposure_is_below_A": [
+   [
+    402,
+    "SHAM"
+   ]
+  ],
+  "strong_condition_C_contains_A_on_every_row": {
+   "passing": 64,
+   "of": 66,
+   "failing": [
+    [
+     402,
+     "SHAM"
+    ],
+    [
+     518,
+     "SHAM"
+    ]
+   ]
+  },
+  "PASS": false,
+  "WHY_IT_FAILS_WHERE_IT_FAILS": "the frozen mutual-unique link rule tracks a component CENTROID, not the provenance of the mass inside it. On the failing rows part of Model A's component received mass whose origin was not certainly the lineage, so those cells left CERTAIN while A's spatial identity continued. The two objects genuinely cross; this is a property of the physics and the two definitions, not a defect in either implementation.",
+  "ESCALATED_BY_THE_CHECKER": "my explanation was directionally right and understated. The checker walked both failing arms and found that the cells Model A carries but Model C does not were NEVER CERTAIN and NEVER POSSIBLE at any earlier row \u2014 each has a single admissible source, itself, and that source is outside the lineage. They are not cells of ambiguous origin. They have NO causal path to the daughter root at all: separate Y trajectories, in the SHAM arm the surviving parent's descendants, that Model A's CORE_R centroid rule absorbed into the daughter's component. The consequence is worth stating plainly and is not a CLEA01 finding about CLEA01: IN AT LEAST 2 OF 66 ARMS THE QUALIFIED OMLDCT02 E3 COMPONENT PROVABLY CONTAINS Y MASS WITH NO CAUSAL PATH TO THE DAUGHTER. That bears on what E3_DURATION and E3_EXPOSURE measure. It changes no OMLDCT02 number and reinterprets no OMLDCT02 test; it is recorded here because the parent's record does not contain it."
+ },
+ "TEST_4_DOES_NOT_INHERIT_AMBIENT_INTERVALS_THAT_BEGAN_AFTER_A_DISAPPEARED": {
+  "measure": "POST_A_CLAIM_FRACTION \u2014 the share of world Y mass that Model C calls CERTAIN, over the rows after Model A's identity ended. Threshold-free.",
+  "SELECTIVE": {
+   "n": 31,
+   "all_exactly_1.0": true,
+   "interpretation": "Model C claims one hundred per cent of the post-A world in every SELECTIVE arm where the question can be asked. This is NOT a false positive \u2014 it is causally correct. Removing the parent leaves the daughter as the world's only Y source, so everything afterwards genuinely descends from it. The intervention makes Model C and Model B the same object as a matter of physics."
+  },
+  "SHAM": {
+   "n": 33,
+   "median": 0.007449,
+   "max": 1.0,
+   "arms_above_0.9": 6,
+   "interpretation": "where a competing ambient population exists, Model C rejects almost all of it. Six arms saturate, meaning the daughter's lineage took over the world even without the removal."
+  },
+  "DOWNSTREAM_X_FRACTION": {
+   "selective_median": 1.0,
+   "sham_median": 0.0151
+  },
+  "PASS_ON_SHAM": true,
+  "NOT_TESTABLE_ON_SELECTIVE": true,
+  "POST_HOC_DISCLOSURE": "the POST_A_CLAIM_FRACTION observable was added AFTER the first development sweep and BEFORE the validation set was opened. It introduces no rule, constant or threshold \u2014 it is a ratio of two sums under rules already frozen \u2014 and section 4 item 4 requires an ambient-inheritance test that the first sweep did not record. It is also substantively defused: the checker reproduced the same conclusion from C_minus_B_exposure, an observable the FIRST sweep did record, and more directly by row-walking. Until the checker said so this disclosure lived only in a source docstring and in no externalised artefact. That was a real gap and it is closed here."
+ },
+ "TEST_5_EVERY_INHERITED_INTERVAL_HAS_A_MACHINE_READABLE_CAUSAL_WITNESS": {
+  "the_witness": "for the claim 'cell d is CERTAIN on row t+1' the witness is the pair (S(d,t+1), CERTAIN(t)) with S non-empty and contained in CERTAIN(t). It is enumerable and checkable by either implementation without reference to any label.",
+  "fixtures": 12,
+  "PASS": true
+ },
+ "TEST_6_REMOVING_ONE_REQUIRED_CAUSAL_EDGE_DESTROYS_THE_INHERITANCE_CLAIM": {
+  "mutations": 4,
+  "includes_a_control_that_must_NOT_be_destroyed": true,
+  "PASS": true
+ },
+ "FIXTURES": [
+  {
+   "layer": "witness_fixture",
+   "case": "lone lineage cell persists",
+   "expected_by_hand": [
+    [
+     10,
+     10
+    ]
+   ],
+   "impl1": [
+    [
+     10,
+     10
+    ]
+   ],
+   "impl2": [
+    [
+     10,
+     10
+    ]
+   ],
+   "impl1_matches_hand": true,
+   "impl2_matches_hand": true,
+   "implementations_agree": true,
+   "why": "the only admissible source is the lineage cell itself",
+   "PASS": true
+  },
+  {
+   "layer": "witness_fixture",
+   "case": "lineage cell hops one step",
+   "expected_by_hand": [
+    [
+     10,
+     11
+    ]
+   ],
+   "impl1": [
+    [
+     10,
+     11
+    ]
+   ],
+   "impl2": [
+    [
+     10,
+     11
+    ]
+   ],
+   "impl1_matches_hand": true,
+   "impl2_matches_hand": true,
+   "implementations_agree": true,
+   "why": "Moore-1 reachable and the only source is lineage",
+   "PASS": true
+  },
+  {
+   "layer": "witness_fixture",
+   "case": "diagonal hop is reachable in one step",
+   "expected_by_hand": [
+    [
+     11,
+     11
+    ]
+   ],
+   "impl1": [
+    [
+     11,
+     11
+    ]
+   ],
+   "impl2": [
+    [
+     11,
+     11
+    ]
+   ],
+   "impl1_matches_hand": true,
+   "impl2_matches_hand": true,
+   "implementations_agree": true,
+   "why": "the +y pass and the +x pass both act within one step, so a diagonal net displacement is reachable. A von Neumann kernel would wrongly call this unreachable.",
+   "PASS": true
+  },
+  {
+   "layer": "witness_fixture",
+   "case": "two cells away is NOT reachable",
+   "expected_by_hand": [],
+   "impl1": [],
+   "impl2": [],
+   "impl1_matches_hand": true,
+   "impl2_matches_hand": true,
+   "implementations_agree": true,
+   "why": "net displacement 2 is outside {-1,0,1}^2; S is empty and the invariant flags it",
+   "PASS": true
+  },
+  {
+   "layer": "witness_fixture",
+   "case": "an adjacent non-lineage source destroys certainty",
+   "expected_by_hand": [],
+   "impl1": [],
+   "impl2": [],
+   "impl1_matches_hand": true,
+   "impl2_matches_hand": true,
+   "implementations_agree": true,
+   "why": "(10,11) is Moore-1 of both (10,10) and (10,12); the second is not lineage, so the mass could have come from outside. This is the ambient-succession rejection in miniature.",
+   "PASS": true
+  },
+  {
+   "layer": "witness_fixture",
+   "case": "a distant non-lineage source does not destroy certainty",
+   "expected_by_hand": [
+    [
+     10,
+     11
+    ]
+   ],
+   "impl1": [
+    [
+     10,
+     11
+    ]
+   ],
+   "impl2": [
+    [
+     10,
+     11
+    ]
+   ],
+   "impl1_matches_hand": true,
+   "impl2_matches_hand": true,
+   "implementations_agree": true,
+   "why": "(10,20) is not Moore-1 of (10,11), so it is not an admissible source",
+   "PASS": true
+  },
+  {
+   "layer": "witness_fixture",
+   "case": "split into two branches, both certain",
+   "expected_by_hand": [
+    [
+     10,
+     9
+    ],
+    [
+     10,
+     11
+    ]
+   ],
+   "impl1": [
+    [
+     10,
+     9
+    ],
+    [
+     10,
+     11
+    ]
+   ],
+   "impl2": [
+    [
+     10,
+     9
+    ],
+    [
+     10,
+     11
+    ]
+   ],
+   "impl1_matches_hand": true,
+   "impl2_matches_hand": true,
+   "implementations_agree": true,
+   "why": "one-to-many transport; a split does not terminate Model C",
+   "PASS": true
+  },
+  {
+   "layer": "witness_fixture",
+   "case": "merge of two lineage branches stays certain",
+   "expected_by_hand": [
+    [
+     10,
+     10
+    ]
+   ],
+   "impl1": [
+    [
+     10,
+     10
+    ]
+   ],
+   "impl2": [
+    [
+     10,
+     10
+    ]
+   ],
+   "impl1_matches_hand": true,
+   "impl2_matches_hand": true,
+   "implementations_agree": true,
+   "why": "every contributing branch is lineage",
+   "PASS": true
+  },
+  {
+   "layer": "witness_fixture",
+   "case": "merge of a lineage and a non-lineage branch is not certain",
+   "expected_by_hand": [],
+   "impl1": [],
+   "impl2": [],
+   "impl1_matches_hand": true,
+   "impl2_matches_hand": true,
+   "implementations_agree": true,
+   "why": "provenance from every contributor is required; one contributor is outside",
+   "PASS": true
+  },
+  {
+   "layer": "witness_fixture",
+   "case": "toroidal wrap in x",
+   "expected_by_hand": [
+    [
+     0,
+     35
+    ]
+   ],
+   "impl1": [
+    [
+     0,
+     35
+    ]
+   ],
+   "impl2": [
+    [
+     0,
+     35
+    ]
+   ],
+   "impl1_matches_hand": true,
+   "impl2_matches_hand": true,
+   "implementations_agree": true,
+   "why": "the lattice is a torus; column L-1 is Moore-1 of column 0",
+   "PASS": true
+  },
+  {
+   "layer": "witness_fixture",
+   "case": "toroidal wrap on the diagonal corner",
+   "expected_by_hand": [
+    [
+     35,
+     35
+    ]
+   ],
+   "impl1": [
+    [
+     35,
+     35
+    ]
+   ],
+   "impl2": [
+    [
+     35,
+     35
+    ]
+   ],
+   "impl1_matches_hand": true,
+   "impl2_matches_hand": true,
+   "implementations_agree": true,
+   "why": "both axes wrap in the same step",
+   "PASS": true
+  },
+  {
+   "layer": "witness_fixture",
+   "case": "empty lineage cannot revive",
+   "expected_by_hand": [],
+   "impl1": [],
+   "impl2": [],
+   "impl1_matches_hand": true,
+   "impl2_matches_hand": true,
+   "implementations_agree": true,
+   "why": "a cell can only enter CERTAIN through a source already in CERTAIN",
+   "PASS": true
+  },
+  {
+   "layer": "mutation_fixture",
+   "case": "delete the sole lineage source",
+   "base_case": "lineage cell hops one step",
+   "claim_destroyed": true,
+   "expected_destroyed": true,
+   "impl1": [],
+   "impl2": [],
+   "implementations_agree": true,
+   "why": "removing the one required causal edge leaves the claim unsupported",
+   "PASS": true
+  },
+  {
+   "layer": "mutation_fixture",
+   "case": "add an adjacent non-lineage occupied cell",
+   "base_case": "lineage cell hops one step",
+   "claim_destroyed": true,
+   "expected_destroyed": true,
+   "impl1": [],
+   "impl2": [],
+   "implementations_agree": true,
+   "why": "a second admissible source that is not lineage removes certainty",
+   "PASS": true
+  },
+  {
+   "layer": "mutation_fixture",
+   "case": "move the required source out of Moore range",
+   "base_case": "lineage cell hops one step",
+   "claim_destroyed": true,
+   "expected_destroyed": true,
+   "impl1": [],
+   "impl2": [],
+   "implementations_agree": true,
+   "why": "the causal edge no longer exists at all",
+   "PASS": true
+  },
+  {
+   "layer": "mutation_fixture",
+   "case": "delete one of two merging lineage branches",
+   "base_case": "merge of two lineage branches stays certain",
+   "claim_destroyed": false,
+   "expected_destroyed": false,
+   "impl1": [
+    [
+     10,
+     10
+    ]
+   ],
+   "impl2": [
+    [
+     10,
+     10
+    ]
+   ],
+   "implementations_agree": true,
+   "why": "the surviving branch still supports the claim on its own \u2014 a control showing the mutation test is not vacuously destructive",
+   "PASS": true
+  }
+ ],
+ "FIXTURES_PASS": true,
+ "IMPLEMENTATION_AGREEMENT": {
+  "arms": 66,
+  "agreeing": 66,
+  "quantities_compared_per_arm": 13,
+  "PASS": true
+ },
+ "PHYSICAL_INVARIANT": {
+  "total_violations": 0,
+  "meaning": "no occupied cell on any row lacked a Moore-1 predecessor. The archives are consistent with the derived transport kernel, which is independent evidence that the kernel is right."
+ },
+ "STRUCTURE_CROSSED": {
+  "constituent_replacements_crossed_with_a_certain_causal_path": 42593,
+  "arms_with_at_least_one": 58,
+  "rows_where_CERTAIN_occupied_more_than_one_separate_group": 373987,
+  "arms_with_at_least_one_split_row": 60,
+  "meaning": "Model C does what Model A cannot: it survives spatial separation and constituent replacement without losing the causal path.",
+  "CORRECTED_FOR_DEGENERACY": {
+   "why": "the headline counts are dominated by arms where CERTAIN is the whole world, in which a 'split' is the ambient population coming apart rather than a lineage surviving separation.",
+   "split_rows_total": 373987,
+   "split_rows_from_arms_with_claim_fraction_1.0": 335930,
+   "split_rows_from_non_saturating_SHAM_arms": 37944,
+   "non_saturating_SHAM_arms_with_at_least_one_split_row": 23,
+   "replacements_total": 42593,
+   "replacements_from_arms_with_claim_fraction_1.0": 41189,
+   "replacements_from_non_saturating_SHAM_arms": 1404,
+   "non_saturating_SHAM_arms_with_at_least_one_replacement": 22,
+   "G6_SURVIVES": "yes \u2014 37944 split rows and 1404 replacements crossed with an explicit causal witness, in arms where the lineage is genuinely a proper subset of the world, is ample. But the headline was inflated and is corrected."
+  }
+ },
+ "G7_SOURCE_SCAN": {
+  "SUPERSEDED": "the first scan stripped string literals, which in Python is exactly where a dict field access lives, and it covered only 2 of the 7 scripts. Both defects were the checker's finding.",
+  "CORRECTED_SCAN": {
+   "METHOD": "raw text search over the whole file, plus an AST enumeration of every string subscript. The earlier scan stripped string literals, which in Python is exactly where a dict field access lives \u2014 it was structurally blind to what it was looking for. The checker demonstrated this by showing clea01_assemble.py scanning clean while containing [\"E3_DURATION\"]. Corrected here.",
+   "N_SCRIPTS": 7,
+   "SCRIPTS": {
+    "clea01_assemble.py": {
+     "raw_text_hits": [
+      "E3_DURATION",
+      "E3_EXPOSURE",
+      "PAIR_MEASUREMENTS"
+     ],
+     "string_subscripts": [
+      "A",
+      "AMBIENT_ROWS_CLAIMED",
+      "AMBIENT_duration",
+      "AMBIENT_exposure",
+      "AMBIENT_terminal",
+      "ARCHIVES",
+      "A_duration",
+      "A_exposure",
+      "B",
+      "B_duration",
+      "B_exposure",
+      "CERTAIN_duration",
+      "CERTAIN_exposure",
+      "C_certain_duration",
+      "C_certain_exposure",
+      "C_contains_A_every_row",
+      "C_downstream_X_fraction_certain",
+      "C_equals_A",
+      "C_equals_B",
+      "C_impl1",
+      "C_impl2",
+      "C_minus_B_exposure",
+      "E3_DURATION",
+      "E3_EXPOSURE",
+      "IMPLEMENTATIONS_AGREE",
+      "PAIRS",
+      "POSSIBLE_duration",
+      "POSSIBLE_exposure",
+      "POST_A_CLAIM_FRACTION",
+      "SPLIT",
+      "arm",
+      "certain_split_rows",
+      "identity_termination_type",
+      "index",
+      "n_invariant_violations",
+      "path",
+      "root_size",
+      "split",
+      "t_m",
+      "xb_certain",
+      "xb_possible",
+      "xbirth",
+      "yb_certain",
+      "yb_possible",
+      "yd_certain",
+      "yd_possible"
+     ]
+    },
+    "clea01_fixtures.py": {
+     "raw_text_hits": [],
+     "string_subscripts": [
+      "PASS",
+      "base",
+      "case",
+      "certain_prev",
+      "expect",
+      "expect_claim_destroyed",
+      "mutate",
+      "name",
+      "occ_now",
+      "occ_prev",
+      "why"
+     ]
+    },
+    "clea01_g4_containment.py": {
+     "raw_text_hits": [],
+     "string_subscripts": [
+      "ARCHIVES",
+      "FORK",
+      "PAIRS",
+      "SPLIT",
+      "index",
+      "locked_daughter_cells",
+      "path",
+      "t_m"
+     ]
+    },
+    "clea01_lineage_i1.py": {
+     "raw_text_hits": [],
+     "string_subscripts": [
+      "c_nY",
+      "c_t",
+      "c_x",
+      "c_y",
+      "meta",
+      "steps_executed",
+      "xbirth",
+      "ybirth",
+      "ydeath"
+     ]
+    },
+    "clea01_lineage_i2.py": {
+     "raw_text_hits": [],
+     "string_subscripts": [
+      "c_nY",
+      "c_t",
+      "c_x",
+      "c_y",
+      "meta",
+      "steps_executed",
+      "xbirth",
+      "ybirth",
+      "ydeath"
+     ]
+    },
+    "clea01_run.py": {
+     "raw_text_hits": [],
+     "string_subscripts": [
+      "ARCHIVES",
+      "FORK",
+      "IMPLEMENTATIONS_AGREE",
+      "PAIRS",
+      "SELECTIVE",
+      "SHAM",
+      "SPLIT",
+      "index",
+      "locked_daughter_cells",
+      "meta",
+      "path",
+      "s",
+      "seed",
+      "steps_executed",
+      "t_m"
+     ]
+    },
+    "clea01_specificity.py": {
+     "raw_text_hits": [
+      "PAIR_MEASUREMENTS",
+      "interval_end"
+     ],
+     "string_subscripts": [
+      "A",
+      "ARCHIVES",
+      "FORK",
+      "PAIRS",
+      "POST_A_CLAIM_FRACTION",
+      "SELECTIVE",
+      "SHAM",
+      "SPLIT",
+      "index",
+      "interval_end",
+      "locked_daughter_cells",
+      "path",
+      "t_m"
+     ]
+    }
+   },
+   "ANCESTRY_DEFINING_SCRIPTS": [
+    "clea01_lineage_i1.py",
+    "clea01_lineage_i2.py"
+   ],
+   "FORBIDDEN_TOKENS_IN_THE_ANCESTRY_DEFINING_SCRIPTS": {
+    "clea01_lineage_i1.py": [],
+    "clea01_lineage_i2.py": []
+   },
+   "G7_VERDICT": "PASS \u2014 neither ancestry-defining implementation contains any forbidden token anywhere in its text, and their string subscripts are exactly c_t, c_y, c_x, c_nY, meta, schema, ybirth, ydeath, xbirth and steps_executed.",
+   "WHERE_FORBIDDEN_TOKENS_DO_APPEAR_AND_WHY_IT_IS_ALLOWED": {
+    "clea01_assemble.py": "reads E3_DURATION, E3_EXPOSURE and identity_termination_type from the parent's pair measurements to TABULATE Model A beside Model C. It defines no ancestry.",
+    "clea01_g4_containment.py": "reads Model A's per-row cells to test containment. That is the gate, not the model.",
+    "clea01_specificity.py": "reads interval_end only to set the window over which the claim fraction is measured. It does not enter the propagation."
+   }
+  }
+ },
+ "DOES_MODEL_C_COLLAPSE_TO_A_OR_B": "neither exactly. It is distinct from A in 62 of 66 arms and numerically distinct from B in all 66, but in the SELECTIVE arm the distinction from B is the parent's own fork-row mass and nothing else.",
+ "NONVACUITY_CONTENT_HASH": "7a20ca88d047ef88db241155e6f2febf1b57d90581946a4fc20395cf34ec3ee7",
+ "SOUNDNESS_OF_CERTAIN_ESTABLISHED_BY_THE_CHECKER": "because the Moore-1 kernel is exactly the reachable displacement set, CERTAIN is provably SOUND by induction: membership implies all of a cell's Y mass descends from the root. CERTAIN can under-claim and can never over-claim. I did not state this and it is load-bearing \u2014 it is what turns a SELECTIVE claim fraction of 1.0 from a suspected false positive into a proof of takeover. The checker also found a conservative asymmetry in the model's favour: on the single transition t_m to t_m+1 of the SELECTIVE arm the pre-intervention row makes S too large, hence CERTAIN too small.",
+ "DOWNSTREAM_X_WORDING_CORRECTED": "C_downstream_X_fraction_certain measures X births CATALYSED AT CELLS whose Y is certainly lineage. It is not 'X production caused by the lineage': an accepted X birth also requires nX > 0 and nSX > 0 at that cell, and X diffuses at p_hop_X = 1.0. The number is right; my words around it claimed more than the physics gives."
+}

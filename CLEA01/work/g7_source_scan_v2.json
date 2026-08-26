@@ -1,0 +1,173 @@
+{
+ "METHOD": "raw text search over the whole file, plus an AST enumeration of every string subscript. The earlier scan stripped string literals, which in Python is exactly where a dict field access lives \u2014 it was structurally blind to what it was looking for. The checker demonstrated this by showing clea01_assemble.py scanning clean while containing [\"E3_DURATION\"]. Corrected here.",
+ "N_SCRIPTS": 7,
+ "SCRIPTS": {
+  "clea01_assemble.py": {
+   "raw_text_hits": [
+    "E3_DURATION",
+    "E3_EXPOSURE",
+    "PAIR_MEASUREMENTS"
+   ],
+   "string_subscripts": [
+    "A",
+    "AMBIENT_ROWS_CLAIMED",
+    "AMBIENT_duration",
+    "AMBIENT_exposure",
+    "AMBIENT_terminal",
+    "ARCHIVES",
+    "A_duration",
+    "A_exposure",
+    "B",
+    "B_duration",
+    "B_exposure",
+    "CERTAIN_duration",
+    "CERTAIN_exposure",
+    "C_certain_duration",
+    "C_certain_exposure",
+    "C_contains_A_every_row",
+    "C_downstream_X_fraction_certain",
+    "C_equals_A",
+    "C_equals_B",
+    "C_impl1",
+    "C_impl2",
+    "C_minus_B_exposure",
+    "E3_DURATION",
+    "E3_EXPOSURE",
+    "IMPLEMENTATIONS_AGREE",
+    "PAIRS",
+    "POSSIBLE_duration",
+    "POSSIBLE_exposure",
+    "POST_A_CLAIM_FRACTION",
+    "SPLIT",
+    "arm",
+    "certain_split_rows",
+    "identity_termination_type",
+    "index",
+    "n_invariant_violations",
+    "path",
+    "root_size",
+    "split",
+    "t_m",
+    "xb_certain",
+    "xb_possible",
+    "xbirth",
+    "yb_certain",
+    "yb_possible",
+    "yd_certain",
+    "yd_possible"
+   ]
+  },
+  "clea01_fixtures.py": {
+   "raw_text_hits": [],
+   "string_subscripts": [
+    "PASS",
+    "base",
+    "case",
+    "certain_prev",
+    "expect",
+    "expect_claim_destroyed",
+    "mutate",
+    "name",
+    "occ_now",
+    "occ_prev",
+    "why"
+   ]
+  },
+  "clea01_g4_containment.py": {
+   "raw_text_hits": [],
+   "string_subscripts": [
+    "ARCHIVES",
+    "FORK",
+    "PAIRS",
+    "SPLIT",
+    "index",
+    "locked_daughter_cells",
+    "path",
+    "t_m"
+   ]
+  },
+  "clea01_lineage_i1.py": {
+   "raw_text_hits": [],
+   "string_subscripts": [
+    "c_nY",
+    "c_t",
+    "c_x",
+    "c_y",
+    "meta",
+    "steps_executed",
+    "xbirth",
+    "ybirth",
+    "ydeath"
+   ]
+  },
+  "clea01_lineage_i2.py": {
+   "raw_text_hits": [],
+   "string_subscripts": [
+    "c_nY",
+    "c_t",
+    "c_x",
+    "c_y",
+    "meta",
+    "steps_executed",
+    "xbirth",
+    "ybirth",
+    "ydeath"
+   ]
+  },
+  "clea01_run.py": {
+   "raw_text_hits": [],
+   "string_subscripts": [
+    "ARCHIVES",
+    "FORK",
+    "IMPLEMENTATIONS_AGREE",
+    "PAIRS",
+    "SELECTIVE",
+    "SHAM",
+    "SPLIT",
+    "index",
+    "locked_daughter_cells",
+    "meta",
+    "path",
+    "s",
+    "seed",
+    "steps_executed",
+    "t_m"
+   ]
+  },
+  "clea01_specificity.py": {
+   "raw_text_hits": [
+    "PAIR_MEASUREMENTS",
+    "interval_end"
+   ],
+   "string_subscripts": [
+    "A",
+    "ARCHIVES",
+    "FORK",
+    "PAIRS",
+    "POST_A_CLAIM_FRACTION",
+    "SELECTIVE",
+    "SHAM",
+    "SPLIT",
+    "index",
+    "interval_end",
+    "locked_daughter_cells",
+    "path",
+    "t_m"
+   ]
+  }
+ },
+ "ANCESTRY_DEFINING_SCRIPTS": [
+  "clea01_lineage_i1.py",
+  "clea01_lineage_i2.py"
+ ],
+ "FORBIDDEN_TOKENS_IN_THE_ANCESTRY_DEFINING_SCRIPTS": {
+  "clea01_lineage_i1.py": [],
+  "clea01_lineage_i2.py": []
+ },
+ "G7_VERDICT": "PASS \u2014 neither ancestry-defining implementation contains any forbidden token anywhere in its text, and their string subscripts are exactly c_t, c_y, c_x, c_nY, meta, schema, ybirth, ydeath, xbirth and steps_executed.",
+ "WHERE_FORBIDDEN_TOKENS_DO_APPEAR_AND_WHY_IT_IS_ALLOWED": {
+  "clea01_assemble.py": "reads E3_DURATION, E3_EXPOSURE and identity_termination_type from the parent's pair measurements to TABULATE Model A beside Model C. It defines no ancestry.",
+  "clea01_g4_containment.py": "reads Model A's per-row cells to test containment. That is the gate, not the model.",
+  "clea01_specificity.py": "reads interval_end only to set the window over which the claim fraction is measured. It does not enter the propagation."
+ }
+}
