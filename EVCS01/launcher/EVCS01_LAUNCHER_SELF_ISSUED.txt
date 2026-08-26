@@ -1,0 +1,228 @@
+# ISING LIFE LAB — ENDPOINT VALIDITY AND CAMPAIGN SIZING AUDIT
+## ENDPOINT-VALIDITY-AND-CAMPAIGN-SIZING-AUDIT-01
+## EVCS01 — is the measuring instrument sound, and can we afford to use it?
+##
+## ZERO NEW WORLDS — NO CLEA02 — NO LINEAGE IDENTIFICATION — NO PARAMETER SEARCH
+
+======================================================================
+0. PROVENANCE OF THIS LAUNCHER — READ FIRST
+======================================================================
+
+THIS LAUNCHER IS SELF-ISSUED. Tommy Lepesteur did not write it. He wrote, in the conversation of
+2026-08-26, after abandoning the GitHub authorisation attempt:
+
+  "je t'invite à continuer sur la suite la plus logique. Je pense que tu es bien au courant du
+   projet. Donc, je te laisse faire le prompt suivant tout seul et l'appliquer [...] Réfléchis bien
+   avant d'agir."
+
+That is a general authorisation to choose and execute the next mission. It is not a specification.
+Everything below — the questions, the gates, the terminal vocabulary, the commit cap — is mine.
+
+WHY THAT IS DANGEROUS, AND WHAT IS DONE ABOUT IT. An operator who writes his own mandate can write
+one he is guaranteed to pass. Three structural guards, all of which must hold:
+
+  1. THE METHOD IS COMMITTED BEFORE THE MEASUREMENT. This launcher and the measurement code are
+     committed at C1. No world, no archive walk, no number is produced before that commit exists.
+  2. AN INCONVENIENT RESULT IS NAMED IN ADVANCE. Section 4 states, before any measurement, which
+     outcome would embarrass the programme and commits to reporting it in the same words.
+  3. NO THRESHOLD, NO VERDICT ON THE SCIENCE. This mission MEASURES and REPORTS a distribution. It
+     does not declare the endpoint "contaminated" against any cut-off, and it does not decide what
+     the next experiment should be. That decision is referred to the owner, explicitly, as
+     FIMRCC01 referred its step-5 decision.
+
+If any of the three fails, the mission is EVCS01_TECHNICALLY_INVALID.
+
+======================================================================
+1. WHY THIS MISSION AND NOT ANOTHER
+======================================================================
+
+CLEA01 closed with a finding aimed at the parent, not at itself:
+
+  in at least 2 of 66 arms the qualified OMLDCT02 E3 component provably contains Y mass with no
+  causal path to the daughter.
+
+"At least 2" is a floor, not a measurement: the G4 containment test stopped at the first three
+disagreeing rows per arm. The real quantity — in what fraction of arms, and how much of E3_EXPOSURE
+— was never measured.
+
+This matters because E3_DURATION and E3_EXPOSURE are not OMLDCT02's endpoints alone. They are the
+programme's measuring instrument, and any successor campaign will reuse them. Auditing what an
+instrument measures, before reusing it, is not a twenty-first angle on the lineage question. It is
+the thing that should have preceded the lineage question.
+
+Second, the pre-mission accrual note of 2026-08-26 established that two independent campaigns were
+frozen with single-digit power:
+
+  FIMRCC01   P(k>=2 | n=50, observed rate 1/256)      = 0.0165
+  OMLDCT02   P(41 pairs | ceiling 512, realised rate) = 0.076
+
+and that any future campaign sized from the TLMR01 developmental worlds will under-accrue by a
+factor of about two. That note is not committed and not tested. A finding that lives only in a
+delivered markdown file is the OMLDCT01 failure mode again. It is turned into committed, tested
+code here.
+
+======================================================================
+2. ABSOLUTE RULES
+======================================================================
+
+NEW_SCIENTIFIC_ENGINE_RUNS = 0
+NEW_WORLD_CONSTRUCTIONS    = 0
+NEW_SEEDS                  = 0
+NEW_TRAJECTORIES           = 0
+
+MAX_INTENTIONAL_COMMITS    = 3
+MAX_INDEPENDENT_CHECKERS   = 1
+SECOND_CHECKER             = forbidden
+REVIEW_CASCADE             = forbidden
+
+NEW_IDENTITY_MODEL         = forbidden
+LINEAGE_IDENTIFICATION     = forbidden          # CLEA01 is closed and stays closed
+CLEA01_REOPENING           = forbidden
+NEW_THRESHOLD              = forbidden
+PARAMETER_SEARCH           = forbidden
+INTERPOLATION              = forbidden
+NEW_ARCHITECTURE           = forbidden
+
+OMLDCT02_RESULT_CHANGE                = forbidden
+OMLDCT02_PAIRED_P_VALUE_INTERPRETATION = forbidden
+HISTORY_REWRITE_AT_OR_BELOW_06c592313df96601de8d2a89676d5a5cf79fc414 = forbidden
+
+Forbidden claims, including in denial: reproduction, heredity, life, autonomous cohesion, H3
+confirmation, Kamimura-Kaneko validation, a minority window.
+Forbidden vocabulary: "organism", "daughter organism", "life created", "self-replication
+demonstrated".
+
+======================================================================
+3. GATE 0 — THE RECONSTRUCTION MUST BE THE OBJECT OMLDCT02 QUALIFIED
+======================================================================
+
+Before any composition is measured, reconstruct Model A per row from LDFMA01's frozen classifier and
+recompute, for all 66 arms, the parent's own two numbers under the parent's own frozen conventions:
+
+    E3_DURATION  = interval_end - t_m
+    E3_EXPOSURE  = sum of nY over rows t_m .. interval_end     (t_m INCLUDED)
+
+Compare against OMLDCT02_PAIR_MEASUREMENTS.json, classifier A, exactly.
+
+    ALL 66 ARMS REPRODUCE  ->  proceed
+    ANY ARM DISAGREES      ->  EVCS01_TECHNICALLY_INVALID, and the disagreement is published
+
+There is no partial credit and no tolerance. If the object being decomposed is not bit-identical in
+its aggregates to the object the parent qualified, the decomposition describes something else.
+
+======================================================================
+4. THE MEASUREMENT — THRESHOLD-FREE COMPOSITION OF E3_EXPOSURE
+======================================================================
+
+For every one of the 66 arms, over rows t_m .. interval_end, partition the Y mass inside Model A's
+component into exactly three classes, using Model C's CERTAIN and POSSIBLE sets as already frozen
+and committed in CLEA01 (imported unchanged, not re-specified):
+
+    CERTAIN            all of this cell's Y mass provably descends from the locked daughter
+    POSSIBLE_ONLY      a causal path exists but is not exclusive
+    NO_CAUSAL_PATH     no admissible source of this cell is even POSSIBLE
+
+Report, per arm and in aggregate, and as a DISTRIBUTION rather than a headline:
+
+    E3_EXPOSURE_TOTAL
+    E3_EXPOSURE_CERTAIN / POSSIBLE_ONLY / NO_CAUSAL_PATH
+    rows of the interval carrying any NO_CAUSAL_PATH mass
+    rows of the interval carrying ZERO CERTAIN mass          # a duration-level version
+    first row at which NO_CAUSAL_PATH mass appears
+    the same, split by arm (SELECTIVE / SHAM)
+
+DECLARED IN ADVANCE, BEFORE THE MEASUREMENT EXISTS:
+
+  * The SELECTIVE arm is expected to show almost no NO_CAUSAL_PATH mass, and that is NOT evidence
+    that the endpoint is clean. It is the same degeneracy CLEA01 already established: after the
+    intervention the daughter is the world's only Y source, so everything descends from it by
+    construction. Any SELECTIVE number here is uninformative and must be labelled as such.
+  * The informative arm is SHAM.
+  * THE INCONVENIENT RESULT, NAMED NOW: if a substantial share of SHAM E3_EXPOSURE is
+    NO_CAUSAL_PATH, then E3_EXPOSURE is not measuring the daughter's persistence in the control arm,
+    the SELECTIVE-vs-SHAM contrast that OMLDCT02 was built on is partly a contrast between
+    different things, and every successor design that reuses this endpoint inherits the problem.
+    That result will be reported in those words if it occurs.
+  * NO THRESHOLD separates "substantial" from "negligible". The distribution is published and the
+    reader decides. No gate in this mission turns on a magnitude.
+
+======================================================================
+5. THE SIZING INSTRUMENT
+======================================================================
+
+Turn the accrual arithmetic into committed, self-tested code that any future campaign must pass
+through. Required behaviour:
+
+    input   a pair target, a confidence level, and an empirical ledger of (cost, admissible)
+    output  the arm-instance ceiling that attains that confidence, by bootstrap over the ledger
+    output  P(reaching the target) at any proposed ceiling
+    refuse  to return a ceiling below the target's own p50 cost without saying so
+
+It must reproduce, from OMLDCT02_SEALED_LEDGER.jsonl:
+
+    realised admissible rate            33/805
+    cost per admissible pair            15.47 arm-instances
+    P(41 pairs | ceiling 512)           ~0.076
+    ceiling for P(41 pairs) >= 0.95     ~800
+
+and must carry a self-test that fails if any of those moves. It records, as a fixed fact and not as
+an opinion, that the TLMR01 developmental sizing rate 22/256 is not exchangeable with the realised
+rate: expected 69.2 admissible in 805 seeds, observed 33.
+
+These are sampling-yield quantities. They are NOT the paired duration/exposure endpoints and they do
+not touch the owner's rule that fewer than 41 pairs may not be interpreted using the paired
+p-values. That rule is untouched and restated in the final report.
+
+======================================================================
+6. ONE INDEPENDENT ADVERSARIAL CHECKER
+======================================================================
+
+Exactly one. Its return is written verbatim to EVCS01/review/EVCS01_CHECKER_RAW.txt and hashed
+BEFORE any finding is acted on. It must attack:
+
+    the self-issue guards of section 0
+    Gate 0 — does the reconstruction really reproduce the parent's numbers
+    the three-class partition — is it exhaustive and disjoint
+    whether any threshold entered by the back door
+    whether CLEA01's frozen rules were imported unchanged
+    the SELECTIVE degeneracy disclosure
+    the sizing instrument's arithmetic and its self-test
+    whether the terminal disposition overstates or understates what was measured
+
+A confirmed load-bearing defect yields EVCS01_TECHNICALLY_INVALID, because a second checker is
+forbidden.
+
+======================================================================
+7. TERMINAL DISPOSITIONS — use exactly one, no fifth string
+======================================================================
+
+    E3_ENDPOINT_COMPOSITION_MEASURED__DECISION_REFERRED_TO_THE_OWNER
+    E3_ENDPOINT_COMPOSITION_NOT_MEASURABLE_FROM_EXISTING_ARCHIVES
+    EVCS01_TECHNICALLY_INVALID
+
+Note that none of the three is a verdict on whether the endpoint is good. That is deliberate. This
+mission is not authorised to decide the fate of the programme's measuring instrument on its own
+authority, and a self-issued launcher least of all.
+
+======================================================================
+8. DURABILITY AND CLAIM CEILING
+======================================================================
+
+Windows-restorable increment, verified from read-back bytes, git fsck --full = 0. GitHub push is
+refused 403 by the session proxy and no bypass is to be attempted; that must not block closure.
+
+Preserve unconditionally:
+
+    OMLDCT02_STATUS               = INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED
+    OMLDCT02_PAIRED_STATISTICS    = DESCRIPTIVE_ONLY__NO_INFERENTIAL_WEIGHT
+    CLEA01_STATUS                 = CLOSED__LINEAGE_ROUTE_PAUSED__NOT_REOPENED
+    H3_STATUS                     = NOT_TESTED
+    REPRODUCTION_STATUS           = NOT_TESTED
+    HEREDITY_STATUS               = NOT_TESTED
+    AUTONOMOUS_COHESION_STATUS    = NOT_ESTABLISHED
+    X_LAWSPEC_BASELINE            = UNCHANGED
+    ARCHITECTURE_CHANGE_NECESSITY = NOT_ESTABLISHED
+    COMPANION_PAPER_V1_1_STATUS   = UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED
+
+Nothing measured here establishes reproduction, and nothing measured here is authorised to reopen
+CLEA01 or to start a successor campaign.
