@@ -23,6 +23,11 @@ ARTEFACTS = {
  "CLEA01_NONVACUITY_AND_SPECIFICITY.json": "NONVACUITY_CONTENT_HASH",
  "CLEA01_STRUCTURAL_GATES.json": "GATES_CONTENT_HASH",
  "CLEA01_CAUSAL_EMERGENCE_DIAGNOSTIC.json": "CAUSAL_EMERGENCE_CONTENT_HASH",
+ # added at C4, after the checker was adjudicated and the disposition written. The two artefacts
+ # below did not exist when this file was first committed at C3; they are verified by the same
+ # rule, with no exception and no second rule.
+ "CLEA01_CHECKER_ADJUDICATION.json": "ADJUDICATION_CONTENT_HASH",
+ "CLEA01_FINAL_DISPOSITION.json": "DISPOSITION_CONTENT_HASH",
 }
 GENERATED_BY_COMMITTED_CODE = {
  "CLEA01_MATCHED_PAIR_MODEL_COMPARISON.json": "clea01_assemble.py",
