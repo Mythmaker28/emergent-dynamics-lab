@@ -1,0 +1,72 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "digest verification",
+ "THE_RULE": "H.content_digest of the artefact with its OWN hash key removed. content_digest already strips GENERATED_UTC. Stated here because the first version of this verifier omitted the key exclusion and reported all seven as unreproducible, and because three artefacts had been re-digested on documents that still carried their previous digest. Both defects were mine and both are fixed.",
+ "DECLARED_DEFECT": "seven of the ten artefacts have no committed generating script. Declared, not argued away. Their content digests are verifiable; their provenance is not reproducible from code.",
+ "ARTEFACTS_WITH_A_COMMITTED_GENERATOR": {
+  "CLEA01_MATCHED_PAIR_MODEL_COMPARISON.json": "clea01_assemble.py",
+  "CLEA01_MATCHED_PAIR_MODEL_COMPARISON.csv": "clea01_assemble.py",
+  "CLEA01_IDENTITY_DISAGREEMENT_LEDGER.csv": "clea01_assemble.py"
+ },
+ "CHECKS": [
+  {
+   "artefact": "CLEA01_PARENT_BINDING.json",
+   "key": "PARENT_BINDING_CONTENT_HASH",
+   "recorded": "3278e0514b5c745b4d538b01723d0f81cf6fb4c4ca877d13212e6c367399d678",
+   "recomputed": "3278e0514b5c745b4d538b01723d0f81cf6fb4c4ca877d13212e6c367399d678",
+   "REPRODUCIBLE": true,
+   "file_sha256": "0591f66cdea43d6fc0678792b23b1804f250614124643ebefd7c18fde1a2ce30"
+  },
+  {
+   "artefact": "CLEA01_IDENTITY_MODELS.json",
+   "key": "IDENTITY_MODELS_CONTENT_HASH",
+   "recorded": "f21c68e5f9bcf18d7a39b6b5b889006870622c19d382eb92c9a33987475119c9",
+   "recomputed": "f21c68e5f9bcf18d7a39b6b5b889006870622c19d382eb92c9a33987475119c9",
+   "REPRODUCIBLE": true,
+   "file_sha256": "0775511d3a6a4fc5ce5a1a33b3e2004f7bb94447edd22d6a2188311bb9d4677b"
+  },
+  {
+   "artefact": "CLEA01_CAUSAL_GRAPH_DEFINITION.json",
+   "key": "CAUSAL_GRAPH_CONTENT_HASH",
+   "recorded": "4a250bdfc39041308f272d0aff4f1c9ee09aa18ace0a779ceb032537b34f6798",
+   "recomputed": "4a250bdfc39041308f272d0aff4f1c9ee09aa18ace0a779ceb032537b34f6798",
+   "REPRODUCIBLE": true,
+   "file_sha256": "72f87e3b961e6e329fd24749213739207ff0a4d6a4089989b09d049a016a1512"
+  },
+  {
+   "artefact": "CLEA01_SPLIT_MANIFEST.json",
+   "key": "SPLIT_MANIFEST_CONTENT_HASH",
+   "recorded": "77ab74cbdb150b53d3b58de2e42020548d8eccc3b94143c646788214cfabfeae",
+   "recomputed": "77ab74cbdb150b53d3b58de2e42020548d8eccc3b94143c646788214cfabfeae",
+   "REPRODUCIBLE": true,
+   "file_sha256": "3caa60e6791aa421d3606be85cda2686f6598d59e306423ef2de146fc4be4034"
+  },
+  {
+   "artefact": "CLEA01_NONVACUITY_AND_SPECIFICITY.json",
+   "key": "NONVACUITY_CONTENT_HASH",
+   "recorded": "7a20ca88d047ef88db241155e6f2febf1b57d90581946a4fc20395cf34ec3ee7",
+   "recomputed": "7a20ca88d047ef88db241155e6f2febf1b57d90581946a4fc20395cf34ec3ee7",
+   "REPRODUCIBLE": true,
+   "file_sha256": "23b02fc50eb78959ca03300dfcaf41a67d3ce0e8264ff2cc2f1eef71729f2d1d"
+  },
+  {
+   "artefact": "CLEA01_STRUCTURAL_GATES.json",
+   "key": "GATES_CONTENT_HASH",
+   "recorded": "9b6fc5df02ff3901567752ebc001be7a598a4e8cb4cf1fee569898558ca4b924",
+   "recomputed": "9b6fc5df02ff3901567752ebc001be7a598a4e8cb4cf1fee569898558ca4b924",
+   "REPRODUCIBLE": true,
+   "file_sha256": "3a674230c9d102bbfcd8949e0a17da4bbdd891390771cac65af1281e24ed5f2a"
+  },
+  {
+   "artefact": "CLEA01_CAUSAL_EMERGENCE_DIAGNOSTIC.json",
+   "key": "CAUSAL_EMERGENCE_CONTENT_HASH",
+   "recorded": "905a38aed4582169a714e3b1f93c0c4084e2164472955eb0c897ca2511669369",
+   "recomputed": "905a38aed4582169a714e3b1f93c0c4084e2164472955eb0c897ca2511669369",
+   "REPRODUCIBLE": true,
+   "file_sha256": "d24976b85ffffad1ea3d8b41073839bc429d0378357f93bdb988b716535d0837"
+  }
+ ],
+ "N_CHECKED": 7,
+ "N_REPRODUCIBLE": 7,
+ "ALL_CONTENT_HASHES_REPRODUCE": true
+}

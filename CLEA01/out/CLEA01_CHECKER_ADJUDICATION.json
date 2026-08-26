@@ -1,0 +1,101 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "checker adjudication",
+ "GENERATED_UTC": "2026-08-26T21:09:45.636304+00:00",
+ "MAX_INDEPENDENT_CHECKERS": 1,
+ "CHECKERS_DISPATCHED": 1,
+ "REVIEW_CASCADE": "none",
+ "CHECKER_RETURN": "CLEA01/review/CLEA01_CHECKER_RAW.txt",
+ "CHECKER_RETURN_SHA256": "c5048e3c4d09db7611677d6a4cf464fbddf7dbeb698df35d2cf4f1fa384cfb12",
+ "WRITTEN_HASHED_AND_EXTERNALISED_BEFORE_ANY_FINDING_WAS_ACTED_ON": true,
+ "LOAD_BEARING_DEFECT_COUNT": 0,
+ "I_ACCEPT_THE_CHECKER_IN_FULL": true,
+ "NEW_SCIENTIFIC_ENGINE_RUNS": 0,
+ "TEN_CORRECTIONS_I_ACCEPT": [
+  {
+   "n": 1,
+   "my_claim": "G7 basis: a tokenised scan with comments and string literals stripped",
+   "the_truth": "structurally blind. In Python a dict field access IS a string literal, so the scan could not see the very thing it looked for \u2014 the checker showed clea01_assemble.py scanning clean while containing [\"E3_DURATION\"]. It also covered 2 of 7 scripts.",
+   "fixed": "re-scanned over raw text across all seven scripts plus an AST enumeration of every string subscript. The verdict stands: neither ancestry-defining implementation contains any forbidden token anywhere. The tokens appear only in the tabulation and gate scripts."
+  },
+  {
+   "n": 2,
+   "my_claim": "G3 fails because a few particles out of 1.7 million is not non-vacuity",
+   "the_truth": "a magnitude judgement, contradicting my own NO_PERFORMANCE_THRESHOLD_WAS_INTRODUCED",
+   "fixed": "restated threshold-free: in the SELECTIVE arm CERTAIN equals the full occupied set on 100% of post-fork rows, and C's certain duration equals the ambient duration exactly in 33 of 33. The only difference is the single pre-intervention row."
+  },
+  {
+   "n": 3,
+   "my_claim": "the G4 cells are of ambiguous origin",
+   "the_truth": "they were never CERTAIN and never POSSIBLE at any row. They have NO causal path to the daughter at all.",
+   "fixed": "escalated. In at least 2 of 66 arms the qualified OMLDCT02 E3 component provably contains Y mass with no causal path to the daughter. Recorded because the parent's record does not contain it. It changes no OMLDCT02 number and reinterprets no OMLDCT02 test."
+  },
+  {
+   "n": 4,
+   "my_claim": "the two implementations share the archive, the constants and the rule text, and no code",
+   "the_truth": "FALSE. About 28 non-trivial lines are identical. G2 tests the propagation operator only; archive reading, event labelling, horizon handling and exposure accounting are common-mode.",
+   "fixed": "stated, and recorded that the checker closed the gap another way \u2014 by deriving the row cadence and event labels from the engine source, verifying the kernel on 4000 engine trials, and writing a third implementation that reproduced all 13 quantities on all 66 arms."
+  },
+  {
+   "n": 5,
+   "my_claim": "the four C = A coincidences are arms where the whole Y population died with the lineage",
+   "the_truth": "true for two of the four. At (10, SHAM) and (471, SHAM) the world went on without the lineage.",
+   "fixed": "corrected in the artefact with all four rows written out."
+  },
+  {
+   "n": 6,
+   "my_claim": "the post-hoc status of POST_A_CLAIM_FRACTION was declared",
+   "the_truth": "only in a source docstring, in no externalised artefact",
+   "fixed": "declared in the non-vacuity artefact, with the checker's demonstration that the same conclusion follows from an observable the FIRST development sweep already recorded."
+  },
+  {
+   "n": 7,
+   "my_claim": "implicit \u2014 that the audit had the programme's usual audit trail",
+   "the_truth": "the entire mission was uncommitted when the checker ran. Every ordering claim in sections 2 and 6 rested on file mtimes I control.",
+   "fixed": "committed now, with the ordering declared rather than implied. It cannot retroactively become a prospective freeze and I do not pretend otherwise."
+  },
+  {
+   "n": 8,
+   "my_claim": "implicit \u2014 that the artefacts were reproducible",
+   "the_truth": "seven of ten had no committed generating script. This is the OMLDCT01 failure mode recurring in a mission run by the person who wrote the module built to prevent it.",
+   "fixed": "declared in CLEA01_DIGEST_VERIFICATION.json. A committed verifier now recomputes every content digest. Writing that verifier exposed two more defects of mine: it forgot to exclude each artefact's own hash key, and three artefacts had been re-digested on documents still carrying their previous digest. Both fixed under one stated rule; all seven now reproduce."
+  },
+  {
+   "n": 9,
+   "my_claim": "G6's headline: 42,593 replacements and 373,987 split rows",
+   "the_truth": "dominated by arms where CERTAIN is the whole world, where a split is the ambient population coming apart",
+   "fixed": "non-degenerate figures recorded: 1,404 replacements across 22 arms and 37,944 split rows across 23 arms, from SHAM arms that do not saturate. G6 survives; the headline was inflated."
+  },
+  {
+   "n": 10,
+   "my_claim": "fraction of local X births causally downstream of the lineage",
+   "the_truth": "it measures X births CATALYSED AT CELLS whose Y is certainly lineage. An X birth also needs nX and nSX at that cell, and X diffuses at p_hop_X = 1.0.",
+   "fixed": "wording corrected in the artefact."
+  }
+ ],
+ "TWO_THINGS_THE_CHECKER_ESTABLISHED_THAT_I_HAD_NOT": [
+  "CERTAIN is provably SOUND by induction, because the Moore-1 kernel is exactly the reachable displacement set. Membership implies all of a cell's Y mass descends from the root; CERTAIN can under-claim and can never over-claim. This is what turns a SELECTIVE claim fraction of 1.0 from a suspected false positive into a proof of takeover, and I had not stated it.",
+  "a conservative asymmetry in the model's favour: on the single transition t_m to t_m+1 of the SELECTIVE arm the archive row is pre-intervention, so the source set is too large and CERTAIN is too small."
+ ],
+ "WHAT_THE_CHECKER_VERIFIED_BY_REDOING_IT": [
+  "the transport kernel, analytically from three engine sources and empirically on 4000 randomised single-cell trials and 400 full step calls: maximum Chebyshev displacement 1, mass escaping Moore-1 zero, and all nine displacements observed",
+  "the archive row cadence and the event-ledger label convention, from the engine source",
+  "a third independent implementation on all 66 arms: 0 disagreements on all 13 quantities",
+  "POST_A_CLAIM_FRACTION reimplemented on all 66 arms: 0 disagreements",
+  "the parent's six bound numbers, all 66 archive hashes, all 33 split digests, all 7 content hashes",
+  "both G4 failures walked cell by cell",
+  "the split derivation reproduced 33 of 33, plus six alternative encodings showing that four of them would have made G8 a clean pass \u2014 the encoding used went against me",
+  "that no p-value is computed or interpreted anywhere in CLEA01"
+ ],
+ "TERMINAL_UNCHANGED_BY_THE_ADJUDICATION": true,
+ "FINAL_DISPOSITION": "CAUSAL_LINEAGE_NOT_IDENTIFIABLE_FROM_EXISTING_ARCHIVES__LINEAGE_ROUTE_PAUSED",
+ "WHY_NOT_THE_ALTERNATIVES": {
+  "OBJECT_IDENTIFIED": "requires all ten gates; G3, G4 and G9 fail",
+  "NOT_DISTINCT_FROM_LOCKED_COMPONENT": "false on the facts \u2014 C differs from A in 62 of 66 arms and in 2 arms A is not even contained in C. C's failure is against B, not against A. Selecting it would put a false statement in the record.",
+  "TECHNICALLY_INVALID": "requires a load-bearing defect; there is none"
+ },
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "ADJUDICATION_CONTENT_HASH": "05760dc4f59b04cdf03e3cf98dfd038cfe438e0491739dc7fd08f54c3958ddd8"
+}

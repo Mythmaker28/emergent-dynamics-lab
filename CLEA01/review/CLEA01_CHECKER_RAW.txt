@@ -1,0 +1,186 @@
+CLEA01 — INDEPENDENT ADVERSARIAL CHECKER, VERBATIM RETURN
+
+One checker. No second checker, no review cascade. This is the return exactly as delivered,
+written and externalised BEFORE any finding was acted on.
+
+Checker agent id: a8d1c456df10c7715
+Target: /home/claude/edl, CLEA01 audit over the 66 OMLDCT02 paired archives
+
+---
+
+I have finished. Everything below was recomputed by me from the artefacts, the engine source and the 66 raw archives; nothing is taken from the operator's prose.
+
+---
+
+## FINDINGS
+
+**1. PARENT BINDING — SEVERITY: NONE**
+
+I reparsed `/home/claude/edl/OMLDCT02/work/OMLDCT02_SEALED_LEDGER.jsonl` (805 rows, indices contiguous 0–804), recomputed every bound number rather than reading OMLDCT02's summaries, and re-hashed all 66 archives in `/home/claude/OMLDCT02_raw/`.
+
+- 805 base seeds attempted — confirmed (805 ledger rows, `next_index` 805).
+- 33 valid matched pairs — confirmed (33 rows with `ADMISSIBLE`).
+- Minimum 41 — confirmed against `TARGET_VALID_PAIRED_BLOCKS = 41` in `/home/claude/edl/OMLDCT02/code/omldct02_run.py` and `MINIMUM_VALID_PAIR_COUNT` in the final adjudication.
+- 510.56902 instances — confirmed. I reproduced the runner's own accumulation `round(running + cost, 5)` exactly (510.56902), the naive float sum (510.56902000000395), and the exact rational recomputed from `t_m` and `prefix_steps` (510569/1000 = 510.569). The parent binding's note about the 2.0e-05 rounding artefact is correct.
+- Ceiling 512 — confirmed (`MAX_PRIMARY_ARM_INSTANCES = 512`; `STOPPED = HARD_ARM_INSTANCE_CEILING`).
+- 0 technical failures — confirmed (no row has `technical_failure` true).
+- 0 load-bearing defects — confirmed: `/home/claude/edl/OMLDCT02/out/OMLDCT02_FINAL_ADJUDICATION.json` has exactly 13 ITEMS and `LOAD_BEARING_DEFECT_COUNT = 0`.
+- Sealed ledger sha256 `c799194...72c5e` matches the binding. All 66 archives hash-match the sealed record, 66/66. Every hash cited in `BOUND_OBJECTS` resolves to a real file in the repo (I hashed the whole of OMLDCT02, LDFMA01 and OMLDCT01 to find them). C1–C5 commit hashes all resolve; tip `84000ff3a67...` is HEAD.
+
+**p-values:** I grepped every `.py`, `.json`, `.csv` and `.log` under `/home/claude/edl/CLEA01/`. There is no p-value computed or interpreted anywhere. The only matches for `exact_two_sided_p` are inside the G7 *banned-token* list. The parent's own p-values (0.4009 duration, 0.2311 exposure) appear nowhere in CLEA01. CLEA01 does compute per-pair SELECTIVE−SHAM descriptive differences for A, B and C, but no gate, verdict or terminal cites them. **CLEA01 does not promote, reject or reinterpret the OMLDCT02 paired hypothesis.**
+
+**2. THE A/B/C DEFINITIONS — SEVERITY: NONE**
+
+They are three genuinely different mathematical objects: A is a centroid-linked spatial component under a mutual-unique rule at CORE_R; B is the whole post-intervention Y population; C is the provenance closure of the daughter root under the transport kernel. C ⊆ B and A ⊆ B always, but A and C *cross* (proven in finding 7), so C is not a refinement of A.
+
+Model B is **not** a straw man. It is implemented as world `nY_total` over `[t_m, extinction]`, which equals the sum over all Y components (the component classifier partitions all Y-occupied cells), so the implementation matches the stated definition. It is the *maximal* object, which is the hardest possible thing to be "specific against" — and it is what bit the operator in the treated arm. If anything B is defined generously against the operator's own hypothesis.
+
+Model C's CERTAIN/POSSIBLE bracket is a real set-valued relation, not a disguised threshold. The two ends are the ∀ and ∃ quantifiers over the *same* source relation S(d). No numeric parameter, weight or cut-off enters. The only "parameter" is the kernel radius, and that is derived from the engine, not chosen (finding 3). I also checked the bracket is not vacuous: POSSIBLE never equals B in any of the 66 arms (`B_exposure − C_possible_exposure` ranges 2 … 1,891,199), so the envelope is genuinely narrower than ambient.
+
+**3. CAUSAL-EDGE VALIDITY — SEVERITY: NONE (the crux holds, in both directions)**
+
+I read `/home/claude/edl/ORR01/code/kinetics.py::_diffuse/_one_step`, the verbatim copy in `/home/claude/edl/OBTC02/code/engine_obtc.py`, the Y-specific re-implementation in `/home/claude/edl/PQEC01/code/pqec01_observer.py::_diffuse` (which is what actually runs, and is the same four passes), and `WorldV2._one_step` / `_exchange` in `/home/claude/edl/ORR01/code/lawspec_v2.py`.
+
+*Analytically:* `_diffuse` re-reads `n = self.n[sname]` at the head of every pass, so a particle is offered a move once per pass, in the frozen order (+y, −y, +x, −x). Net displacement is (a−b, c−d) with a,b,c,d ∈ {0,1}, i.e. exactly {−1,0,1}². The +y/−y and +x/−x passes cancel; nothing can move twice along one axis. Persistence (0,0) is in the kernel. The derivation is right, and it is tight in **both** directions.
+
+*Empirically, on the real engine:* 4000 randomised single-cell trials under the frozen LAW_C_MCTT01 spec — maximum Chebyshev displacement observed = 1, mass escaping Moore-1 = 0, and the observed displacement set is exactly all nine of {−1,0,1}². 400 full `_one_step` calls with random occupancy generating 165 Y births — zero cells occupied outside Moore-1 of the previous Y support, so the birth channel does not widen the kernel either.
+
+*Empirically, on the archives:* the machine-checkable invariant (every occupied cell has a non-empty S(d)) records **0 violations across all 66 arms**, which I reproduced independently with my own implementation (finding 10). Over roughly 700,000 archive rows that is strong independent evidence the kernel is neither too small (violations would appear) nor mismatched to the row cadence.
+
+*Row cadence:* I verified from `/home/claude/edl/OMLDCT02/code/omldct02_fork.py` that `tl_record(t)` is called once per `_one_step` in both the prefix and the continuation, so consecutive archive rows differ by exactly one step. Had rows been subsampled, Chebyshev-1 would have been too small and CERTAIN would have *over*-claimed — this is the failure mode that would have been load-bearing, and it does not occur. I also verified the event-ledger label convention from `pqec01_observer._react/_decay` and `fdot01_world._react` (`st = int(self.step)` before the increment): an event in the transition row t → row t+1 carries label t+1, which is exactly how i1/i2 index `YB/YD/XB`.
+
+*Cell-locality:* confirmed from `_react_core`. `pair = nX * nY` elementwise; `p = min(1, k·nX·nY)`; `cand = min(n[res], free)` at the same cell. If nY(d) = 0 then p = 0 and no Y birth and no X birth occurs at d. Both births are strictly cell-local and both require nY > 0 at the same cell at react time. Confirmed. `_exchange`'s pool is (SX, SY, WX, WY) — it never touches Y — and the fork intervention only removes Y. There is no other Y transport channel.
+
+*One conservative asymmetry I found, in the model's favour:* on the single transition t_m → t_m+1 of the SELECTIVE arm, the archive row t_m is pre-intervention, so S(d) includes parent cells whose Y was already removed. S is therefore too *large* on that one row, which makes CERTAIN too *small*. The error direction is safe.
+
+*Soundness consequence worth recording:* because the kernel is exactly the reachable set, CERTAIN is provably **sound** by induction — membership implies all of a cell's Y mass descends from the root. CERTAIN can under-claim but can never over-claim. This is load-bearing for finding 6 and the operator does not state it.
+
+**4. ABSENCE OF HIDDEN ONLINE IDs — SEVERITY: MATERIAL (evidence overstated; substantive claim holds)**
+
+I read all seven scripts in `/home/claude/edl/CLEA01/code/` rather than trusting the scan. No CLEA01 code defines ancestry from `c_cid`, `k_id`, any verdict, any label or any future outcome. `clea01_lineage_i1.py` and `clea01_lineage_i2.py` read exactly `c_t, c_y, c_x, c_nY, meta, ybirth, ydeath, xbirth`. `clea01_run.py::model_b` reads `s` (step summary) — that is Model B's definition, not ancestry. `clea01_g4_containment.py` imports `/home/claude/edl/LDFMA01/code/ldfma01_raw.py`, which I checked does **not** read `c_cid` or `k_id` (it reads `k_xd` only, matched physically) — its `ids_at` are its own offline labels. `clea01_specificity.py` reads `interval_end` from the parent measurements, but only to set the *window*, not to define ancestry.
+
+Two problems with the operator's G7 evidence, neither load-bearing:
+- The scan (`/home/claude/edl/CLEA01/work/g7_source_scan.json`) covers only **2 of the 7** CLEA01 scripts, while the gate BASIS reads as though it settles the question for CLEA01.
+- The method — "with comments and string literals stripped" — is structurally **blind to the thing it is looking for**. In Python a dict field access *is* a string literal. I reran the same tokenizer method over all seven files: `clea01_assemble.py` shows `executable-code hits: []` while in fact containing `["E3_DURATION"]`, `["E3_EXPOSURE"]`, `["identity_termination_type"]` and `["PAIR_MEASUREMENTS"]`. The scan would report `rec["VERDICT"]` as clean.
+
+The gate's *conclusion* is correct — I verified it by reading — but its stated *basis* would not detect a violation.
+
+**5. NON-VACUITY — SEVERITY: NONE (operator's claim confirmed and strengthened)**
+
+*Distinct from A:* yes. 62 of 66 arms differ; median (C_certain+1)/(A+1) duration ratio 22.8×, maximum 10,667×. The four coincidences are (10, SHAM), (450, SELECTIVE), (471, SHAM), (482, SELECTIVE).
+
+*Distinct from B:* I verified the operator's SELECTIVE-arm claim numerically on **all 33 arms**, not several. For each SELECTIVE arm I read row t_m directly from the archive and decomposed the world's Y mass into daughter / parent / other:
+
+- In 33 of 33 arms the number of components at t_m is exactly 2 and the "other" mass is exactly 0.
+- In 33 of 33 arms `C_minus_B_exposure` equals exactly −(parent's fork-row Y mass). Every single row matched.
+- In 33 of 33 arms C's CERTAIN duration equals B's duration exactly.
+
+Since CERTAIN ⊆ occupied and the exposure deficit is entirely consumed by row t_m, it follows that on every post-fork row the CERTAIN set carries the world's whole Y mass. I confirmed this directly by row-walking six pairs: in the SELECTIVE arms, **CERTAIN equals the full occupied set on 100.0% of post-fork rows** (10,247 / 10,218 / 10,125 / 9,893 / 9,730 / 10,444 rows). In the same six SHAM arms it is **0.0%**. Median B_exposure is 1.66M particle-steps against a 1–4 particle difference, so "a few particles out of about 1.7 million" is accurate.
+
+The operator's claim is right, and understated: post-fork, Model C is not merely close to Model B in the treated arm, it is *identically the same set on every row*.
+
+*One wording defect (MATERIAL, does not change the verdict):* `CLEA01_STRUCTURAL_GATES.json` asserts `NO_PERFORMANCE_THRESHOLD_WAS_INTRODUCED: true` and `NO_GATE_IS_STATISTICAL: true`, yet G3's FAIL is argued as "a few particles out of about 1.7 million particle-steps is not non-vacuity" — a magnitude judgement, i.e. an unstated threshold. The verdict survives, but it needs the threshold-free restatement I just proved: *in the treated arm C and B are the same set on every row after the fork; the only difference is the single pre-intervention row.*
+
+**6. AMBIENT FALSE-POSITIVE REJECTION — SEVERITY: NONE**
+
+I re-implemented POST_A_CLAIM_FRACTION from scratch and recomputed it on all 66 arms: **0 disagreements** with `dev_spec.json`/`val_spec.json` on all five recorded quantities. SELECTIVE is exactly 1.0 in exactly 31 arms; 2 arms (450, 482) are undefined because the world Y mass after A's end is zero.
+
+*Against the model:* a lineage object that claims 100% of the world is doing no work; and a mass share cannot by itself distinguish a genuine takeover from an over-permissive rule.
+
+*For the model:* three things settle it. (i) In all 33 pairs there are exactly two components at t_m and the SELECTIVE intervention empties the parent completely (`parent_emptied` true 33/33, `daughter_untouched` true 33/33, occupancy conserved 33/33 — I checked every audit field). So after the fork the only Y in the world descends from the daughter, as physics, not as modelling. (ii) CERTAIN is provably sound (finding 3) — it can never over-claim — so a fraction of 1.0 is a *proof* of takeover, not a false positive. (iii) The same rule returns a median of 0.00745 on SHAM, where a competitor exists, and 0.0 in several arms. The rule demonstrably discriminates whenever there is anything to discriminate.
+
+**Decision: the intervention makes lineage and ambient identical; Model C is not broken.** The correct reading is that POST_A_CLAIM_FRACTION is a fair measure that is *single-valued by construction* on the SELECTIVE arm and therefore carries no information there — which is exactly the operator's `PASS_ON_SHAM__NOT_TESTABLE_ON_SELECTIVE`. I agree with the operator's disposition and with their reasoning.
+
+**7. KNOWN-SUCCESS PRESERVATION — SEVERITY: MATERIAL (a real finding, but about Model A, not a bug)**
+
+I verified both arms independently. The necessary condition (C's certain duration never shorter than A's) holds 66/66 — no violations. For the two strong-form failures I walked the archives myself and, for every cell the containment test reports missing, asked whether it was ever CERTAIN or ever POSSIBLE:
+
+- **402 SHAM, rows 1153–1155**: cells (8,27), (11/12,29), (14,32), (16,31). Each has |S| = 1 (itself), its single source is non-CERTAIN, and it was **never CERTAIN and never POSSIBLE** at any earlier row.
+- **518 SHAM, rows 1521–1526**: cells (30,17/18), (32,17), (33,17). Same picture — never CERTAIN, never POSSIBLE.
+
+So the operator's explanation is directionally right but **understated**. These are not cells whose origin is merely "not certainly the lineage"; they are cells with **no causal path to the daughter root at all** — separate Y trajectories (the surviving parent's descendants in the SHAM arm) that Model A's CORE_R centroid rule absorbed into the daughter's component. It is not covering a bug: the containment code is correct, and it is a property of Model A's definition.
+
+This is worth escalating beyond a G4 footnote: **in at least 2 of 66 arms the qualified OMLDCT02 E3 component provably contains Y mass with no causal path to the daughter.** That bears on what `E3_DURATION`/`E3_EXPOSURE` measure, and the parent's record does not contain it. CLEA01 records it only as a gate explanation.
+
+*Secondary (MINOR):* `clea01_g4_containment.py` is dated 20:19, i.e. the strong containment form was written **after** the development sweep (20:04). That is a post-hoc strengthening of a gate. It was written before validation opened (20:22), and it goes *against* the operator's own model, so it is not self-serving — but it should be declared.
+
+**8. SPLIT MANIFEST CHRONOLOGY — SEVERITY: NONE**
+
+I recomputed the split from scratch. The documented recipe reproduces exactly under `SHA256(tip + "|CLEA01|" + str(seed))` — **33 of 33 digest prefixes match**, and sorting by the first 64 bits ascending with index tie-break and cutting at 22 reproduces the recorded DEVELOPMENT/VALIDATION assignment **with zero disagreements**. The manifest's pair set is exactly the 33 admissible ledger rows, and every `t_m` agrees. The `|`-joined form is the house convention in `/home/claude/edl/OMLDCT02/code/omldct02_hashes.py`.
+
+I then attacked the one remaining degree of freedom — the choice of encoding — by testing six plausible alternatives. Two facts kill the gerrymandering hypothesis:
+
+- **Nothing except G8's flavour is split-dependent.** G3 and G9 fail identically on all 33 pairs; G4 is evaluated over all 66 arms; G1, G2, G6, G7 are split-invariant. No split could have changed the terminal.
+- Under **4 of the 6** alternative encodings, index 402 lands in DEVELOPMENT, which would have left the validation set with **zero** contradictions and made G8 a clean PASS. The encoding actually used is one of the two that puts the contradiction in VALIDATION. The choice went against the operator.
+
+Row 664 did not matter. Its assignment is DEVELOPMENT and would have been VALIDATION under 3 of 6 alternatives; its Model A duration is 0 in both arms (terminal MERGE at the fork), so it carries no distinguishing information, and its C values are unremarkable.
+
+**9. VALIDATION-SET ISOLATION — SEVERITY: MATERIAL (two disclosure/audit-trail gaps; substance intact)**
+
+The mtime chronology is internally consistent and in the right order: parent binding 19:52 → identity models 19:54:34 → split manifest 19:54:55 → i2 19:55, i1 19:56, run 19:57, graph definition 19:57:27 → **dev sweep 20:04** → specificity code 20:12 → dev spec 20:13 → fixtures + G4 code 20:19 → **validation opened 20:22–20:23** → dev G4 20:31 → val G4 20:34 → assemble 20:36 → nonvacuity 20:37 → gates 20:38. Every piece of code that touches the validation set was written **before** the validation set was opened. That satisfies the stated rule.
+
+On POST_A_CLAIM_FRACTION specifically: it was added after the first development sweep and before validation opened. It introduces no rule, constant or threshold — it is a ratio of two sums under already-frozen rules. **It is substantively defused:** G9's content does not depend on it. I proved the same fact from `C_minus_B_exposure`, an observable recorded in the *first* development sweep, and more directly by row-walking (finding 5). So the post-hoc observable restates a result that the pre-existing observable already established. On balance: legitimate.
+
+Two real gaps:
+- **The post-hoc status is declared only in the docstring of `/home/claude/edl/CLEA01/code/clea01_specificity.py`.** I grepped all of `/home/claude/edl/CLEA01/out/` — nothing in any externalised artefact says the observable was added after the development sweep. A record that is externalised should carry its own caveat.
+- **The entire mission is uncommitted.** `git status` reports `?? CLEA01/`. There is no C1/C2-style prospective freeze commit for the parent binding, the identity models or the split manifest. Every ordering claim in section 2 and section 6 therefore rests on file mtimes the operator controls. The parent mission's own protocol (C1 implementation → C2 freeze alone → C3 raw alone → C4 analysis → C5 closure) was not followed. This does not make any number wrong — I recomputed the load-bearing ones — but it removes the audit trail the programme normally provides.
+
+**10. TWO INDEPENDENT IMPLEMENTATIONS — SEVERITY: MATERIAL (overstated independence; the rule itself is verified three ways)**
+
+*The equivalence proof.* `occ & dilate(certain) & ~dilate(occ_prev & ~certain)` is exactly "S(d) non-empty and contained in CERTAIN" **given the invariant CERTAIN(t) ⊆ occ(t)**, which the pipeline maintains by construction (CERTAIN(t+1) = occ(t+1) & …, and CERTAIN(t_m) = root & occ(t_m)). Since the nine offsets are symmetric, `np.roll` dilation is the correct Moore-1 neighbour test.
+
+I tested this rather than accepting it. On **4000 random configurations** (densities 0.02–0.8, lineage fraction 0–1), I compared four routes: a literal brute-force reading of the frozen rule text, i1's set-subset test, i2's morphology, and my own counting rule. **Zero mismatches.** I then deliberately broke the precondition (CERTAIN ⊄ occ_prev) on 2000 configurations: **2000 of 2000 mismatched**. So the equivalence is real but conditional, and the artefact's proof sketch omits the condition. **MINOR** — the condition holds.
+
+*A genuinely independent third implementation.* I wrote `i3` from the rule text alone, using neighbour **counting** with precomputed modular index tables (no `np.roll`, no set-subset test): d is CERTAIN iff n_occ(d) > 0 and n_occ(d) == n_cert(d). I ran it on **all 66 arms** and compared all 13 recorded quantities against both i1 and i2: **0 disagreements**. I separately reimplemented POST_A_CLAIM_FRACTION: **0 disagreements** on 66 arms. I also reran `clea01_fixtures.py`: 16/16 PASS.
+
+*The overstatement.* `CLEA01_CAUSAL_GRAPH_DEFINITION.json` states `what_they_share: "the archive, the frozen constants, and the rule text. No code."` **That is false.** i1 and i2 share 28 non-trivial identical source lines: the ledger-parsing helper `led()` is byte-identical in body, the `_n_groups` flood-fill body is identical, the archive-array extraction lines are identical, the loop skeleton, break conditions, duration/exposure accounting and output dictionary are identical. What actually differs is the CERTAIN/POSSIBLE step operator and the occupancy representation. So **G2 tests the propagation operator only** — the archive-reading conventions, the event-label alignment, the horizon handling and the exposure accounting are common-mode across both. That gap is closed not by G2 but by my direct derivation of the row cadence and event labelling from the engine source (finding 3).
+
+**11. CAUSAL-EMERGENCE ESTIMATOR — SEVERITY: NONE (right call; the reason given is weaker than the reason available)**
+
+Not an evasion. There is a substantive reason the operator does not state: in the SELECTIVE arm the lineage macrostate and the ambient macrostate are **the same partition on every row** (finding 5). A causal-emergence comparison between them is therefore degenerate in the treated arm, and could only be run on SHAM — the control arm, where the answer cannot bear on the experiment. Producing a number under those conditions would create exactly the temptation the operator names. That reason rests on artefacts I verified.
+
+The *procedural* reason the operator gives — that section 8 gates the diagnostic behind G1–G9 — I **cannot verify**: there is no CLEA01 launcher or handoff document anywhere in `/home/claude/edl` (I searched the whole repo and `/home/claude`). See finding 15.
+
+**12. TERMINAL DISPOSITION — SEVERITY: NONE (the selection is correct)**
+
+*Strongest alternative, argued first.* `DISTRIBUTED_CAUSAL_LINEAGE_NOT_DISTINCT_FROM_LOCKED_COMPONENT__NO_NEW_EXPERIMENT`. The case for it: in the arm the experiment is about, C carries no individual-like information; the only arm where C is a distinct, specific object is the control; therefore no new experiment is warranted, and terminal 2's operational consequence is the honest one. **It fails on the facts.** C is distinct from A in 62 of 66 arms, by a median factor of 23 and a maximum of 10,667 in duration; and in 2 arms A is not even contained in C. C's failure is against **B**, not against A, and terminal 2 names the locked component. Selecting it would put a false statement in the record.
+
+`DISTRIBUTED_CAUSAL_LINEAGE_OBJECT_IDENTIFIED` requires all ten gates and is unavailable: G9 fails on a structural, threshold-free fact I verified directly.
+
+`CLEA01_TECHNICALLY_INVALID` requires a load-bearing defect. I found none.
+
+`CAUSAL_LINEAGE_NOT_IDENTIFIABLE_FROM_EXISTING_ARCHIVES__LINEAGE_ROUTE_PAUSED` is precisely right: the object is reconstructible (G1, G2, my third implementation), sound, distinct from A, and specific against B in the control arm — but it cannot be *identified as an individual* from archives generated by an intervention that removes the only competing Y source. The failure is a property of the intervention design, so "paused" rather than "closed" is the correct disposition. **The chosen terminal is right.**
+
+*One soft edge in the gate scoring (MINOR).* Scored literally, G3 would PASS (C is numerically distinct from B in 66/66) — the FAIL comes from a magnitude judgement. And G5 is counted inside `N_PASS: 6` despite being untestable on the arm that matters, which is the same defect G9 is failed for. So "six pass, three fail" is softer than it reads. Both judgement calls go *against* the operator's own model, and neither changes the terminal, because G9 fails on a fact that needs no threshold.
+
+---
+
+**13. TEST_1's explanatory note is factually wrong — SEVERITY: MATERIAL**
+
+`CLEA01_NONVACUITY_AND_SPECIFICITY.json` says of the four C = A arms: *"the four coincidences are arms where the whole Y population died with the lineage, so A, B and C necessarily agree."* I pulled the four rows. For **(10, SHAM)** C ends at duration 951 while B runs 10,247 steps with exposure 1,172,068; for **(471, SHAM)** C ends at 119 while B runs 1,028 steps. In both, the Y population emphatically did **not** die with the lineage, and A, B and C do not agree — `C_equals_B` is False for all 66 arms. Only (450, SELECTIVE) and (482, SELECTIVE) fit the description. The TEST_1 verdict (62/66) is correct and I reproduced it; the explanation attached to it is wrong for half the cases it explains.
+
+**14. Seven of ten artefacts have no generating script — SEVERITY: MATERIAL**
+
+Only `CLEA01_MATCHED_PAIR_MODEL_COMPARISON.{json,csv}` and `CLEA01_IDENTITY_DISAGREEMENT_LEDGER.csv` are produced by committed code (`/home/claude/edl/CLEA01/code/clea01_assemble.py`). `CLEA01_PARENT_BINDING.json`, `CLEA01_IDENTITY_MODELS.json`, `CLEA01_CAUSAL_GRAPH_DEFINITION.json`, `CLEA01_SPLIT_MANIFEST.json`, `CLEA01_NONVACUITY_AND_SPECIFICITY.json`, `CLEA01_STRUCTURAL_GATES.json`, `CLEA01_CAUSAL_EMERGENCE_DIAGNOSTIC.json` and `work/g7_source_scan.json` were produced by uncommitted inline code. This is the FLCR01 C4 standard ("every final JSON regenerates from committed code") not being met, and the OMLDCT01 failure mode that `omldct02_hashes.py` was written to prevent.
+
+Mitigating, and I checked it: **all seven `*_CONTENT_HASH` fields reproduce exactly** under the parent's committed canonical rule (`H.content_digest` of the document minus its own hash key). And every aggregate number I tested regenerates from the CSV: 42,593 replacements crossed / 58 arms, 373,987 split rows / 60 arms, 62 differ from A, 66 differ from B, SHAM median 0.007449, SELECTIVE downstream-X median 1.0, SHAM 0.01510. So the data are sound; the reproducibility discipline is not.
+
+**15. The launcher is absent from the repository — SEVERITY: MATERIAL (bounds what any checker can verify)**
+
+There is no CLEA01 launcher, handoff or section text anywhere in `/home/claude/edl` or `/home/claude`. The gate list, the "ten structural gates", the "section 8 is gated behind G1–G9" rule, the "section 4 item 4" requirement and the four permitted terminal strings exist only in the operator's own prose. I could verify internal consistency and every scientific claim, but I **cannot** verify that the gates, the gate texts or the terminal vocabulary are faithful transcriptions. A reader of the record should know that.
+
+**16. G6's headline numbers are dominated by the degenerate arm — SEVERITY: MINOR**
+
+Of the 373,987 split rows, 288,398 (77%) come from SELECTIVE arms where CERTAIN is the whole world — those count spatial disconnection of the *ambient population*, not a lineage surviving separation. Of the 42,593 replacements crossed, 35,476 (83%) likewise. The non-degenerate SHAM figures (85,589 split rows across 28 arms; 7,117 replacements across 27 arms) still support the gate, so G6 PASS survives, but the headline is inflated four- to fivefold.
+
+**17. "Downstream X production" overstates the attribution — SEVERITY: MINOR**
+
+An accepted X birth at d requires nX(d) > 0 and nSX(d) > 0 as well as nY(d) > 0, and X diffuses at p_hop_X = 1.0. `C_downstream_X_fraction_certain` therefore measures "X births catalysed at cells whose Y is certainly lineage", not "X production caused by the lineage". The number is right; the words around it claim more than the physics gives.
+
+---
+
+**LOAD_BEARING_DEFECT_COUNT = 0**
+
+To be explicit about which findings do *not* rise to load-bearing and why: findings 4, 5 (wording), 7, 9, 10, 13, 14, 15 are MATERIAL — they concern overstated evidence, an incorrect explanatory note, a missing disclosure, an absent audit trail and an unverifiable launcher. None of them makes a recorded number wrong. I recomputed the load-bearing quantities independently — the transport kernel, the CERTAIN/POSSIBLE propagation on all 66 arms, the invariant count, POST_A_CLAIM_FRACTION on all 66 arms, both G4 failures, the parent's six bound numbers, all 66 archive hashes, all 33 split digests and all 7 content hashes — and every one of them stands. Nothing forces CLEA01_TECHNICALLY_INVALID.
+
+**CHECKER_VERDICT = The crux survives full attack — the Moore-1 transport kernel is exactly right in both directions, CERTAIN is provably sound, and a third implementation I wrote from scratch reproduces all 13 quantities on all 66 arms with zero disagreements — so the three gate failures are real structural facts (in the treated arm Model C is the ambient population on 100% of post-fork rows, and Model A provably absorbs mass with no causal path to the daughter), the chosen terminal is the correct one of the four, and the eight MATERIAL findings are all about overstated evidence, a wrong explanatory note, an undeclared post-hoc observable, and an audit trail that was never committed.
