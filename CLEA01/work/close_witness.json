@@ -1,0 +1,2492 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "7 and 8 \u2014 structural witnesses and known-success detail",
+ "GENERATED_UTC": "2026-08-26T21:59:32.739326+00:00",
+ "STRUCTURAL_WITNESS": {
+  "SELECTION_RULE": "among SHAM arms with C_certain_duration > A_duration and POST_A_REJECTED_FRACTION > 0.5, take the largest (C_certain_duration - A_duration); ties broken by smallest index.",
+  "N_CANDIDATE_ARMS": 4,
+  "ARM_SELECTED": {
+   "index": 298,
+   "arm": "SHAM",
+   "t_m": 392
+  },
+  "A_duration": 18,
+  "C_certain_duration": 1231,
+  "B_duration": 10607,
+  "A_ended_at_row": 410,
+  "C_certain_ended_at_row": 1623,
+  "POST_A_CLAIM_FRACTION": 0.0006948499203432506,
+  "POST_A_REJECTED_FRACTION": 0.9993051500796567,
+  "CELLS_REJECTED_OVER_THE_WHOLE_POST_A_WINDOW": 1720372,
+  "OCCUPIED_CELLS_OVER_THE_WHOLE_POST_A_WINDOW": 1721687,
+  "EXHIBIT_ROW_SELECTION": "the post-A row inside C's certain interval with the most outright-rejected occupied cells; ties to the earlier row. 1213 rows qualified.",
+  "FIRST_QUALIFYING_ROW": 411,
+  "WITNESS_A_ROW": 1511,
+  "WITNESS_A_N_CERTAIN_CELLS_ON_THAT_ROW": 1,
+  "WITNESS_A_EXAMPLES": [
+   {
+    "cell": [
+     8,
+     25
+    ],
+    "S_of_d": [
+     {
+      "source": [
+       8,
+       25
+      ],
+      "was_CERTAIN": true
+     }
+    ],
+    "S_is_non_empty": true,
+    "every_source_certain": true
+   }
+  ],
+  "WITNESS_A_MEANS": "Model A's identity ended at row 410. On row 1511, 1 cells are still CERTAIN, and for each one the witness is enumerable: every admissible source on the previous row was itself CERTAIN. The continuation is 1231 rows long \u2014 1213 rows beyond where A stopped.",
+  "WITNESS_B_ROW": 1511,
+  "WITNESS_B_N_OCCUPIED_CELLS_REJECTED_ON_THAT_ROW": 14,
+  "WITNESS_B_EXAMPLES": [
+   {
+    "cell": [
+     18,
+     13
+    ],
+    "S_of_d": [
+     {
+      "source": [
+       18,
+       13
+      ],
+      "was_POSSIBLE": false
+     }
+    ],
+    "S_intersect_POSSIBLE_is_empty": true,
+    "reason": "every admissible source of this cell is outside the lineage envelope, so no causal path from the daughter root reaches it"
+   },
+   {
+    "cell": [
+     19,
+     17
+    ],
+    "S_of_d": [
+     {
+      "source": [
+       19,
+       17
+      ],
+      "was_POSSIBLE": false
+     }
+    ],
+    "S_intersect_POSSIBLE_is_empty": true,
+    "reason": "every admissible source of this cell is outside the lineage envelope, so no causal path from the daughter root reaches it"
+   },
+   {
+    "cell": [
+     20,
+     7
+    ],
+    "S_of_d": [
+     {
+      "source": [
+       20,
+       7
+      ],
+      "was_POSSIBLE": false
+     }
+    ],
+    "S_intersect_POSSIBLE_is_empty": true,
+    "reason": "every admissible source of this cell is outside the lineage envelope, so no causal path from the daughter root reaches it"
+   },
+   {
+    "cell": [
+     21,
+     17
+    ],
+    "S_of_d": [
+     {
+      "source": [
+       21,
+       17
+      ],
+      "was_POSSIBLE": false
+     }
+    ],
+    "S_intersect_POSSIBLE_is_empty": true,
+    "reason": "every admissible source of this cell is outside the lineage envelope, so no causal path from the daughter root reaches it"
+   },
+   {
+    "cell": [
+     22,
+     5
+    ],
+    "S_of_d": [
+     {
+      "source": [
+       22,
+       5
+      ],
+      "was_POSSIBLE": false
+     }
+    ],
+    "S_intersect_POSSIBLE_is_empty": true,
+    "reason": "every admissible source of this cell is outside the lineage envelope, so no causal path from the daughter root reaches it"
+   },
+   {
+    "cell": [
+     23,
+     15
+    ],
+    "S_of_d": [
+     {
+      "source": [
+       23,
+       15
+      ],
+      "was_POSSIBLE": false
+     },
+     {
+      "source": [
+       24,
+       15
+      ],
+      "was_POSSIBLE": false
+     }
+    ],
+    "S_intersect_POSSIBLE_is_empty": true,
+    "reason": "every admissible source of this cell is outside the lineage envelope, so no causal path from the daughter root reaches it"
+   }
+  ],
+  "WITNESS_B_MEANS": "on the same row the world carries 14 occupied cells that Model B counts and Model C rejects outright \u2014 not as uncertain, but as unreachable: none of their admissible sources is even POSSIBLE.",
+  "BOTH_WITNESSES_COME_FROM_THE_SAME_ARM_AND_THE_SAME_ROW": true
+ },
+ "G4_FAILURES": {
+  "402_SHAM": {
+   "index": 402,
+   "t_m": 1106,
+   "A_end_row": 1343,
+   "A_rows": 238,
+   "first_disagreeing_rows": [
+    {
+     "row": 1153,
+     "A_cells": [
+      [
+       8,
+       27
+      ],
+      [
+       11,
+       29
+      ],
+      [
+       14,
+       32
+      ],
+      [
+       16,
+       31
+      ],
+      [
+       19,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "C_CERTAIN_cells": [
+      [
+       19,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "raw_occupied_cells": [
+      [
+       8,
+       27
+      ],
+      [
+       11,
+       29
+      ],
+      [
+       14,
+       32
+      ],
+      [
+       16,
+       31
+      ],
+      [
+       19,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "missing_from_C": [
+      [
+       8,
+       27
+      ],
+      [
+       11,
+       29
+      ],
+      [
+       14,
+       32
+      ],
+      [
+       16,
+       31
+      ]
+     ],
+     "detail": [
+      {
+       "cell": [
+        8,
+        27
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          8,
+          27
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        11,
+        29
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          11,
+          29
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        14,
+        32
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          14,
+          32
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        16,
+        31
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          16,
+          31
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      }
+     ]
+    },
+    {
+     "row": 1154,
+     "A_cells": [
+      [
+       8,
+       27
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       14,
+       32
+      ],
+      [
+       16,
+       31
+      ],
+      [
+       19,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "C_CERTAIN_cells": [
+      [
+       19,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "raw_occupied_cells": [
+      [
+       8,
+       27
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       14,
+       32
+      ],
+      [
+       16,
+       31
+      ],
+      [
+       19,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "missing_from_C": [
+      [
+       8,
+       27
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       14,
+       32
+      ],
+      [
+       16,
+       31
+      ]
+     ],
+     "detail": [
+      {
+       "cell": [
+        8,
+        27
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          8,
+          27
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        12,
+        29
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          11,
+          29
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        14,
+        32
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          14,
+          32
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        16,
+        31
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          16,
+          31
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      }
+     ]
+    },
+    {
+     "row": 1155,
+     "A_cells": [
+      [
+       8,
+       27
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       14,
+       32
+      ],
+      [
+       16,
+       31
+      ],
+      [
+       19,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "C_CERTAIN_cells": [
+      [
+       19,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "raw_occupied_cells": [
+      [
+       8,
+       27
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       14,
+       32
+      ],
+      [
+       16,
+       31
+      ],
+      [
+       19,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "missing_from_C": [
+      [
+       8,
+       27
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       14,
+       32
+      ],
+      [
+       16,
+       31
+      ]
+     ],
+     "detail": [
+      {
+       "cell": [
+        8,
+        27
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          8,
+          27
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        12,
+        29
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          12,
+          29
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        14,
+        32
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          14,
+          32
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        16,
+        31
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          16,
+          31
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      }
+     ]
+    },
+    {
+     "row": 1156,
+     "A_cells": [
+      [
+       8,
+       27
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       14,
+       31
+      ],
+      [
+       16,
+       31
+      ],
+      [
+       20,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "C_CERTAIN_cells": [
+      [
+       20,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "raw_occupied_cells": [
+      [
+       8,
+       27
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       14,
+       31
+      ],
+      [
+       16,
+       31
+      ],
+      [
+       20,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "missing_from_C": [
+      [
+       8,
+       27
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       14,
+       31
+      ],
+      [
+       16,
+       31
+      ]
+     ],
+     "detail": [
+      {
+       "cell": [
+        8,
+        27
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          8,
+          27
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        12,
+        29
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          12,
+          29
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        14,
+        31
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          14,
+          32
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        16,
+        31
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          16,
+          31
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      }
+     ]
+    },
+    {
+     "row": 1157,
+     "A_cells": [
+      [
+       8,
+       27
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       14,
+       31
+      ],
+      [
+       16,
+       31
+      ],
+      [
+       20,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "C_CERTAIN_cells": [
+      [
+       20,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "raw_occupied_cells": [
+      [
+       8,
+       27
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       14,
+       31
+      ],
+      [
+       16,
+       31
+      ],
+      [
+       20,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "missing_from_C": [
+      [
+       8,
+       27
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       14,
+       31
+      ],
+      [
+       16,
+       31
+      ]
+     ],
+     "detail": [
+      {
+       "cell": [
+        8,
+        27
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          8,
+          27
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        12,
+        29
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          12,
+          29
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        14,
+        31
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          14,
+          31
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        16,
+        31
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          16,
+          31
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      }
+     ]
+    },
+    {
+     "row": 1158,
+     "A_cells": [
+      [
+       8,
+       27
+      ],
+      [
+       11,
+       29
+      ],
+      [
+       14,
+       31
+      ],
+      [
+       16,
+       31
+      ],
+      [
+       20,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "C_CERTAIN_cells": [
+      [
+       20,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "raw_occupied_cells": [
+      [
+       8,
+       27
+      ],
+      [
+       11,
+       29
+      ],
+      [
+       14,
+       31
+      ],
+      [
+       16,
+       31
+      ],
+      [
+       20,
+       26
+      ],
+      [
+       20,
+       28
+      ],
+      [
+       21,
+       29
+      ],
+      [
+       24,
+       26
+      ],
+      [
+       24,
+       29
+      ]
+     ],
+     "missing_from_C": [
+      [
+       8,
+       27
+      ],
+      [
+       11,
+       29
+      ],
+      [
+       14,
+       31
+      ],
+      [
+       16,
+       31
+      ]
+     ],
+     "detail": [
+      {
+       "cell": [
+        8,
+        27
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          8,
+          27
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        11,
+        29
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          12,
+          29
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        14,
+        31
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          14,
+          31
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        16,
+        31
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          16,
+          31
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      }
+     ]
+    }
+   ],
+   "EVER_CERTAIN_OR_POSSIBLE_AT_ANY_ROW": {
+    "[8, 27]": {
+     "ever_CERTAIN": false,
+     "ever_POSSIBLE": false
+    },
+    "[11, 29]": {
+     "ever_CERTAIN": false,
+     "ever_POSSIBLE": false
+    },
+    "[12, 29]": {
+     "ever_CERTAIN": false,
+     "ever_POSSIBLE": false
+    },
+    "[14, 31]": {
+     "ever_CERTAIN": false,
+     "ever_POSSIBLE": false
+    },
+    "[14, 32]": {
+     "ever_CERTAIN": false,
+     "ever_POSSIBLE": false
+    },
+    "[16, 31]": {
+     "ever_CERTAIN": false,
+     "ever_POSSIBLE": false
+    }
+   },
+   "VERDICT": "LEGITIMATE_CAUSAL_PROVENANCE_DISTINCTION__NOT_AN_IMPLEMENTATION_DEFECT"
+  },
+  "518_SHAM": {
+   "index": 518,
+   "t_m": 1269,
+   "A_end_row": 1591,
+   "A_rows": 323,
+   "first_disagreeing_rows": [
+    {
+     "row": 1521,
+     "A_cells": [
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       10
+      ],
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       13
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       24,
+       18
+      ],
+      [
+       25,
+       18
+      ],
+      [
+       30,
+       18
+      ],
+      [
+       32,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "C_CERTAIN_cells": [
+      [
+       16,
+       20
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       10
+      ],
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       13
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       24,
+       18
+      ],
+      [
+       25,
+       18
+      ]
+     ],
+     "raw_occupied_cells": [
+      [
+       16,
+       20
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       10
+      ],
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       13
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       24,
+       18
+      ],
+      [
+       25,
+       18
+      ],
+      [
+       30,
+       18
+      ],
+      [
+       32,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "missing_from_C": [
+      [
+       30,
+       18
+      ],
+      [
+       32,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "detail": [
+      {
+       "cell": [
+        30,
+        18
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          30,
+          18
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        32,
+        17
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          32,
+          17
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        33,
+        17
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          32,
+          17
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      }
+     ]
+    },
+    {
+     "row": 1525,
+     "A_cells": [
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       10
+      ],
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       13
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       18
+      ],
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "C_CERTAIN_cells": [
+      [
+       15,
+       20
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       10
+      ],
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       13
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       18
+      ]
+     ],
+     "raw_occupied_cells": [
+      [
+       15,
+       20
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       10
+      ],
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       13
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       18
+      ],
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "missing_from_C": [
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "detail": [
+      {
+       "cell": [
+        30,
+        17
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          30,
+          17
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        33,
+        17
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          33,
+          17
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      }
+     ]
+    },
+    {
+     "row": 1526,
+     "A_cells": [
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       10
+      ],
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       13
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       18
+      ],
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "C_CERTAIN_cells": [
+      [
+       15,
+       20
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       10
+      ],
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       13
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       18
+      ]
+     ],
+     "raw_occupied_cells": [
+      [
+       15,
+       20
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       10
+      ],
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       13
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       18
+      ],
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "missing_from_C": [
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "detail": [
+      {
+       "cell": [
+        30,
+        17
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          30,
+          17
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        33,
+        17
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          33,
+          17
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      }
+     ]
+    },
+    {
+     "row": 1527,
+     "A_cells": [
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       14
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       19
+      ],
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "C_CERTAIN_cells": [
+      [
+       14,
+       20
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       9
+      ],
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       14
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       19
+      ]
+     ],
+     "raw_occupied_cells": [
+      [
+       14,
+       20
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       9
+      ],
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       14
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       19
+      ],
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "missing_from_C": [
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "detail": [
+      {
+       "cell": [
+        30,
+        17
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          30,
+          17
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        33,
+        17
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          33,
+          17
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      }
+     ]
+    },
+    {
+     "row": 1528,
+     "A_cells": [
+      [
+       20,
+       16
+      ],
+      [
+       21,
+       14
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       19
+      ],
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "C_CERTAIN_cells": [
+      [
+       14,
+       20
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       9
+      ],
+      [
+       20,
+       16
+      ],
+      [
+       21,
+       14
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       19
+      ]
+     ],
+     "raw_occupied_cells": [
+      [
+       14,
+       20
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       9
+      ],
+      [
+       20,
+       16
+      ],
+      [
+       21,
+       14
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       19
+      ],
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "missing_from_C": [
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "detail": [
+      {
+       "cell": [
+        30,
+        17
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          30,
+          17
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        33,
+        17
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          33,
+          17
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      }
+     ]
+    },
+    {
+     "row": 1529,
+     "A_cells": [
+      [
+       20,
+       16
+      ],
+      [
+       21,
+       14
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       19
+      ],
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "C_CERTAIN_cells": [
+      [
+       14,
+       21
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       9
+      ],
+      [
+       20,
+       16
+      ],
+      [
+       21,
+       14
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       19
+      ]
+     ],
+     "raw_occupied_cells": [
+      [
+       14,
+       21
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       9
+      ],
+      [
+       20,
+       16
+      ],
+      [
+       21,
+       14
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       25,
+       19
+      ],
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "missing_from_C": [
+      [
+       30,
+       17
+      ],
+      [
+       33,
+       17
+      ]
+     ],
+     "detail": [
+      {
+       "cell": [
+        30,
+        17
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          30,
+          17
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      },
+      {
+       "cell": [
+        33,
+        17
+       ],
+       "in_A": true,
+       "in_C_CERTAIN": false,
+       "in_C_POSSIBLE": false,
+       "S_of_d": [
+        {
+         "source": [
+          33,
+          17
+         ],
+         "was_CERTAIN": false
+        }
+       ],
+       "S_is_non_empty": true,
+       "every_source_certain": false,
+       "S_intersect_POSSIBLE_is_empty": true
+      }
+     ]
+    }
+   ],
+   "EVER_CERTAIN_OR_POSSIBLE_AT_ANY_ROW": {
+    "[30, 17]": {
+     "ever_CERTAIN": false,
+     "ever_POSSIBLE": false
+    },
+    "[30, 18]": {
+     "ever_CERTAIN": false,
+     "ever_POSSIBLE": false
+    },
+    "[32, 17]": {
+     "ever_CERTAIN": false,
+     "ever_POSSIBLE": false
+    },
+    "[33, 17]": {
+     "ever_CERTAIN": false,
+     "ever_POSSIBLE": false
+    }
+   },
+   "VERDICT": "LEGITIMATE_CAUSAL_PROVENANCE_DISTINCTION__NOT_AN_IMPLEMENTATION_DEFECT"
+  }
+ },
+ "WITNESS_CONTENT_HASH": "bfcf6dd43302d7130ea706d268caef77497dc2e0928e2e1c9726f9e0d99a69ca"
+}

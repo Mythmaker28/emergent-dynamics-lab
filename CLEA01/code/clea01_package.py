@@ -11,7 +11,7 @@ What it builds, all from git objects and never from the working tree:
                                   tip, which is the ref carried by OMLDCT02_FINAL_FULL.bundle
                                   already on Windows. The increment is therefore restorable there
                                   with no network and no container.
-  CLEA01_FINAL_CAPSULE.tar        `git archive HEAD CLEA01` — the tree AS COMMITTED.
+  CLEA01_FINAL_EVIDENCE_CAPSULE.tar        `git archive HEAD CLEA01` — the tree AS COMMITTED.
   CLEA01_FINAL_SHA256SUMS         plain `sha256sum` format, verifiable by any tool.
   CLEA01_FINAL_EXTERNAL_MANIFEST.json  what the package is, digested by the parent's canonical rule.
 
@@ -41,10 +41,10 @@ def main():
     br = git("rev-parse", "--abbrev-ref", "HEAD")
     tip = git("rev-parse", "HEAD")
     commits = git("rev-list", "--reverse", f"{BASE}..{tip}").split()
-    assert len(commits) == 4, f"CLEA01 is four intentional commits, found {len(commits)}"
+    assert len(commits) == 5, f"CLEA01 closes at five commits, found {len(commits)}"
 
     inc = f"{OUT}/CLEA01_FINAL_INCREMENT.bundle"
-    cap = f"{OUT}/CLEA01_FINAL_CAPSULE.tar"
+    cap = f"{OUT}/CLEA01_FINAL_EVIDENCE_CAPSULE.tar"
     for p in (inc, cap):
         if os.path.exists(p):
             os.remove(p)
@@ -64,7 +64,7 @@ def main():
     with open(f"{OUT}/CLEA01_CHECKER_RAW.txt", "wb") as w:
         w.write(open(f"{REPO}/CLEA01/review/CLEA01_CHECKER_RAW.txt", "rb").read())
 
-    package = ["CLEA01_FINAL_INCREMENT.bundle", "CLEA01_FINAL_CAPSULE.tar",
+    package = ["CLEA01_FINAL_INCREMENT.bundle", "CLEA01_FINAL_EVIDENCE_CAPSULE.tar",
                "CLEA01_FINAL_REPORT.md", "CLEA01_FINAL_DISPOSITION.json",
                "CLEA01_CHECKER_RAW.txt"]
     sums = {f: H.file_sha256(f"{OUT}/{f}") for f in package}
@@ -79,20 +79,31 @@ def main():
         "TIP": tip,
         "COMMITS": {f"C{i+1}": c for i, c in enumerate(commits)},
         "INTENTIONAL_COMMITS": len(commits),
-        "MAX_INTENTIONAL_COMMITS": 4,
-        "NO_C5": True,
+        "MAX_INTENTIONAL_COMMITS_AUDIT_LAUNCHER": 4,
+        "C5_AUTHORISED_BY": "the closure launcher, which mandates seventeen further artefacts and "
+                            "sets no commit cap. The audit launcher's cap of four applied to the "
+                            "audit phase and C4 recorded NO_C5 under it; that is superseded, not "
+                            "contradicted, and the supersession is stated rather than glossed.",
         "BUNDLE_PREREQ": f"{BASE} (the OMLDCT02 C5 terminal tip)",
         "BUNDLE_PREREQ_IS_ALREADY_DURABLE_ON_WINDOWS_AS":
             "OMLDCT02/OMLDCT02_FINAL_FULL.bundle",
+        "CLEA01_FINAL_FULL_BUNDLE": "NOT_PRODUCED",
         "NO_FULL_BUNDLE_AND_WHY":
-            "the repository pack is ~571 MiB (the TLMR01 archives), past the bridge ceiling. "
-            "The increment plus the already-durable OMLDCT02 full bundle carries the same history.",
+            "the closure launcher names CLEA01_FINAL_FULL.bundle. It cannot be produced through "
+            "this session's only durable channel and the reason is measured, not asserted: the "
+            "repository pack is 571.43 MiB (the TLMR01 scientific archives dominate it), the device "
+            "bridge caps a committed file at 20 MB and a call at 100 MB, and a 124 MiB stage in the "
+            "other direction already failed twice with a wall-clock timeout. A full bundle would "
+            "therefore exist only inside a container that is discarded, which is the opposite of "
+            "durability. What replaces it is exact rather than approximate: the increment below, "
+            "plus the seven-bundle chain already on Windows, restores the tip byte-for-byte — "
+            "verified, not claimed, in CLEA01_DURABILITY_RECORD.json.",
         "RESTORE_PROCEDURE": [
             "git clone OMLDCT02/OMLDCT02_FINAL_FULL.bundle edl",
             "git -C edl fetch ../CLEA01/CLEA01_FINAL_INCREMENT.bundle "
             "'refs/heads/*:refs/heads/*' --force",
             "git -C edl rev-parse " + tip + "   # must resolve",
-            "or, without git at all: tar xf CLEA01_FINAL_CAPSULE.tar",
+            "or, without git at all: tar xf CLEA01_FINAL_EVIDENCE_CAPSULE.tar",
         ],
         "PACKAGE": sums,
         "GATES": {g["gate"]: g["VERDICT"] for g in gates["GATES"]},
@@ -105,6 +116,8 @@ def main():
         "CAUSAL_EMERGENCE_STATUS": disp["CAUSAL_EMERGENCE_STATUS"],
         "CHECKERS_DISPATCHED": 1,
         "LOAD_BEARING_DEFECT_COUNT": adj.get("LOAD_BEARING_DEFECT_COUNT"),
+        "LAUNCHERS_COMMITTED": ["CLEA01/launcher/CLEA01_LAUNCHER_01_AUDIT.txt",
+                                "CLEA01/launcher/CLEA01_LAUNCHER_02_CLOSURE.txt"],
         "CHECKER_RETURN_TXT_SHA256": H.file_sha256(
             f"{REPO}/CLEA01/review/CLEA01_CHECKER_RAW.txt"),
         "N_CONTENT_HASHES_CHECKED": ver["N_CHECKED"],

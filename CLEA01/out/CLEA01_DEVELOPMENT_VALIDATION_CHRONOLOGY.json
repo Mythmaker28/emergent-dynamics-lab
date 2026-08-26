@@ -1,0 +1,78 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "10 \u2014 split chronology and validation isolation",
+ "GENERATED_UTC": "2026-08-26T21:57:22.033227+00:00",
+ "RECIPE": "SHA256(f\"{OMLDCT02_TIP}|CLEA01|{base_seed}\") \u2014 sort ascending by the first 64 bits with the pair index as tie-break, first 22 are DEVELOPMENT.",
+ "OMLDCT02_TIP_USED": "84000ff3a67fd4e550934313019decda05219da0",
+ "N_PAIRS": 33,
+ "N_DEVELOPMENT": 22,
+ "N_VALIDATION": 11,
+ "RECOMPUTED_FROM_SCRATCH": true,
+ "DIGEST_PREFIXES_MATCHING": 33,
+ "OF": 33,
+ "ASSIGNMENT_DISAGREEMENTS": [],
+ "ASSIGNMENT_REPRODUCES": true,
+ "CONTENT_CHECK_INDEPENDENT_OF_ANY_TIMESTAMP": {
+  "what": "the manifest's DEVELOPMENT and VALIDATION index sets are compared with the index sets the two sweeps were actually run over. If the manifest had been rewritten after the outcomes were known, these would no longer coincide.",
+  "dev_results_indices_equal_manifest_DEVELOPMENT": true,
+  "val_results_indices_equal_manifest_VALIDATION": true,
+  "n_dev_results": 22,
+  "n_val_results": 11
+ },
+ "ORDERING_EVIDENCE": {
+  "SURVIVING_MTIMES": {
+   "code/clea01_lineage_i2.py": "2026-08-26T19:55:51.142422+00:00",
+   "code/clea01_lineage_i1.py": "2026-08-26T19:56:02.566574+00:00",
+   "code/clea01_run.py": "2026-08-26T19:57:27.978924+00:00",
+   "work/dev_results.json": "2026-08-26T20:04:11.141237+00:00",
+   "code/clea01_specificity.py": "2026-08-26T20:12:43.878306+00:00",
+   "work/dev_spec.json": "2026-08-26T20:13:59.003254+00:00",
+   "code/clea01_fixtures.py": "2026-08-26T20:19:03.340755+00:00",
+   "code/clea01_g4_containment.py": "2026-08-26T20:19:47.769428+00:00",
+   "work/val_results.json": "2026-08-26T20:22:31.979248+00:00",
+   "work/val_spec.json": "2026-08-26T20:23:44.707321+00:00",
+   "work/dev_g4.json": "2026-08-26T20:31:32.466338+00:00",
+   "work/val_g4.json": "2026-08-26T20:34:10.976223+00:00",
+   "code/clea01_assemble.py": "2026-08-26T20:36:59.327678+00:00",
+   "out/CLEA01_SPLIT_MANIFEST.json": "2026-08-26T21:08:50.047770+00:00",
+   "out/CLEA01_PARENT_BINDING.json": "2026-08-26T21:08:50.046891+00:00",
+   "out/CLEA01_IDENTITY_MODELS.json": "2026-08-26T21:08:50.047251+00:00",
+   "out/CLEA01_CAUSAL_GRAPH_DEFINITION.json": "2026-08-26T21:08:50.047450+00:00",
+   "review/CLEA01_CHECKER_RAW.txt": "2026-08-26T21:06:20.466531+00:00"
+  },
+  "WHAT_I_DESTROYED": "CLEA01_PARENT_BINDING.json, CLEA01_IDENTITY_MODELS.json, CLEA01_CAUSAL_GRAPH_DEFINITION.json and CLEA01_SPLIT_MANIFEST.json all now carry mtime 21:08:50, because I re-digested them at 21:08 under the corrected hash rule. Their original mtimes are gone from the filesystem. This is my doing, not an accident of the environment, and it is recorded rather than worked around.",
+  "WHAT_PRESERVES_THEM": "the independent checker read those mtimes at 21:06, before the overwrite, and its verbatim return records them: parent binding 19:52, identity models 19:54:34, split manifest 19:54:55, graph definition 19:57:27. That return was written, hashed and externalised before any finding was acted on. The evidence is therefore second-hand but its custody is intact.",
+  "CHECKER_RETURN_SHA256": "c5048e3c4d09db7611677d6a4cf464fbddf7dbeb698df35d2cf4f1fa384cfb12",
+  "A_STRUCTURAL_ARGUMENT_THAT_USES_NO_MTIME": "clea01_run.py cannot select the DEVELOPMENT indices without reading the split manifest; dev_results.json is its output and contains exactly the manifest's 22 DEVELOPMENT indices. So the manifest, with this assignment, existed before the first per-pair evaluation completed. The same holds for the validation sweep.",
+  "GIT_CANNOT_CORROBORATE_THE_WITHIN_MISSION_ORDER": "all four CLEA01 commits were authored between 21:11 and 21:15, after the analysis. The mission was uncommitted while it ran \u2014 the checker's finding 9, accepted. Git attests to the content from C1 onward and to nothing before it.",
+  "GIT_LOG": [
+   "cd0c3f2cc8d5fff71b2ac4ac26764906864c7b75|2026-08-26T21:15:18+00:00|CLEA01 C4: terminal \u2014 the lineage object is sound and distinct, and is unidentifiable in the arm the experiment is about",
+   "d8f9e02dcb0389d1e426bd4118b5dac860cd71dd|2026-08-26T21:12:02+00:00|CLEA01 C3: one checker, no load-bearing defect, ten corrections to me \u2014 including a scan that was structurally blind and an audit trail I never committed",
+   "26c93e0b8d2a2516da2947deb736259584b80d84|2026-08-26T21:12:02+00:00|CLEA01 C2: the audit over all 66 arms \u2014 Model C is sound and distinct from the locked component, and in the treated arm it IS the ambient population",
+   "53bb9123cf2a341fdb15a114897f974e60c2735f|2026-08-26T21:11:20+00:00|CLEA01 C1: the parent binding, the three identity models frozen before any pair outcome, the split, and two implementations of Model C"
+  ]
+ },
+ "INDEX_664": {
+  "known_before_CLEA01": true,
+  "SPLIT": "DEVELOPMENT",
+  "ADJUDICATION": "it carries no distinguishing information. Its Model A duration is 0 in both arms (terminal MERGE at the fork), so no split assignment of it could move a gate. The checker tested six alternative encodings and found 664 would have been VALIDATION under three of them, with no effect. Prior knowledge of it is therefore not a leak that matters, and it is disclosed rather than defended."
+ },
+ "POST_A_CLAIM_FRACTION": {
+  "added": "after the first development sweep (20:04) and before the validation set was opened (20:22). Code mtime 20:12:43.",
+  "introduces_a_rule_constant_or_threshold": false,
+  "what_it_is": "a ratio of two sums under rules already frozen.",
+  "why_it_was_added": "an ambient-inheritance test was required and the first sweep did not record one.",
+  "DOES_IT_CARRY_A_LOAD_BEARING_GATE_ALONE": false,
+  "WHY_NOT": "G9's content does not depend on it. The same fact \u2014 that in the treated arm CERTAIN equals the occupied set on every post-fork row \u2014 follows from C_minus_B_exposure, which the FIRST development sweep recorded, and the checker reproduced it by row-walking six pairs independently.",
+  "DISCLOSURE_GAP_FOUND_BY_THE_CHECKER": "until the checker said so, the post-hoc status lived only in a source docstring and in no externalised artefact.",
+  "CLASSIFICATION": "POST_DEVELOPMENT_DIAGNOSTIC__DECLARED__NOT_LOAD_BEARING"
+ },
+ "G4_STRONG_CONTAINMENT_FORM": {
+  "code_mtime": "2026-08-26T20:19:47.769428+00:00",
+  "written_after_the_development_sweep": true,
+  "written_before_validation_opened": true,
+  "direction": "it goes AGAINST the operator's own model \u2014 it is the test that produced the two G4 failures. A post-hoc strengthening that costs the author is not self-serving, but it is still post-hoc and is declared here."
+ },
+ "VALIDATION_ISOLATION_VERDICT": "the content check passes with no timestamp involved, and every piece of code that touches the validation set has an mtime earlier than the validation sweep. The ordering rests partly on the checker's pre-overwrite observation rather than on the filesystem, and that weakening is mine.",
+ "CHRONOLOGY_CONTENT_HASH": "0fd5e26e27fb4a9b4fed5cfe336b59e127843e511fb49cc33a40d0a66427ad7f"
+}

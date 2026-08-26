@@ -1,0 +1,65 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "9 \u2014 ambient false-positive rejection adjudication",
+ "GENERATED_UTC": "2026-08-26T22:05:29.790025+00:00",
+ "WHAT_AN_INTERVAL_IS": "the archives contain exactly one ambient continuation per arm \u2014 the rows after Model A's identity ends during which the world still carries Y. So the interval count is an arm count, and the row, cell and mass accounting is given alongside it so the arm count cannot flatter anything.",
+ "AMBIENT_INTERVALS_B_RETAINS": {
+  "SELECTIVE": 31,
+  "SHAM": 33
+ },
+ "AMBIENT_INTERVALS_C_REJECTS": {
+  "SELECTIVE": 0,
+  "SHAM": 2
+ },
+ "AMBIENT_INTERVALS_C_RETAINS_WITH_CERTAIN_WITNESS": {
+  "SELECTIVE": 31,
+  "SHAM": 31
+ },
+ "AMBIENT_INTERVALS_C_RETAINS_ONLY_AS_POSSIBLE": {
+  "SELECTIVE": 0,
+  "SHAM": 0
+ },
+ "NO_AMBIENT_CONTINUATION_TO_JUDGE": {
+  "SELECTIVE": 2,
+  "SHAM": 0,
+  "which": [
+   [
+    450,
+    "SELECTIVE"
+   ],
+   [
+    482,
+    "SELECTIVE"
+   ]
+  ]
+ },
+ "CELL_LEVEL": {
+  "SELECTIVE_occupied_cell_rows_after_A": 43742251,
+  "SELECTIVE_cell_rows_rejected_outright": 0,
+  "SHAM_occupied_cell_rows_after_A": 48501541,
+  "SHAM_cell_rows_rejected_outright": 6059558,
+  "MEANING": "rejected outright means not even POSSIBLE \u2014 no admissible source of the cell lies in the lineage envelope at all."
+ },
+ "MASS_LEVEL": {
+  "SELECTIVE_world_mass_after_A": 47842758,
+  "SELECTIVE_certain_mass_after_A": 47842758,
+  "SHAM_world_mass_after_A": 53082918,
+  "SHAM_certain_mass_after_A": 9718648,
+  "SHAM_median_claim_fraction": 0.004772692064055625,
+  "SHAM_median_rejected_fraction": 0.005182935395949187
+ },
+ "MACHINE_READABLE_CAUSAL_PATH_REQUIRED": true,
+ "THE_WITNESS": "for 'd is CERTAIN at t+1' the witness is the pair (S(d), CERTAIN(t)) with S non-empty and contained in CERTAIN(t). Enumerable, and checkable by either implementation with no reference to any label. Exhibited cell by cell in section 7.",
+ "ALL_UNCERTAIN_BRANCHES_REPRESENTED": "yes \u2014 that is what POSSIBLE is. Every arm reports both ends of the bracket.",
+ "MUTATION_FIXTURE": {
+  "mutations": 4,
+  "includes_a_control_that_must_not_be_destroyed": true,
+  "PASS": true,
+  "source": "clea01_fixtures.py, 16 of 16 pass, reproduced by the checker"
+ },
+ "DID_C_COLLAPSE_TO_B_AFTER_INTERVENTION": true,
+ "ON_WHICH_ARM": "SELECTIVE only",
+ "EVIDENCE": "CERTAIN equals the occupied set on 100 per cent of post-fork rows in all 31 askable SELECTIVE arms, and only 0 of 43742251 SELECTIVE occupied cell-rows after A are rejected. The masks do not differ 'by a few cells'; on every post-fork row they do not differ at all.",
+ "VERDICT": "PASS_ON_SHAM__COLLAPSED_TO_B_ON_SELECTIVE",
+ "AMBIENT_SPECIFICITY_CONTENT_HASH": "426540ff16799e230bb054c66de58449e4b8d498cabe34cd9560c6207c823d34"
+}

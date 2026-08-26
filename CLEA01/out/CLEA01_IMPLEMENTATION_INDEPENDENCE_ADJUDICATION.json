@@ -1,0 +1,122 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "11 \u2014 implementation independence",
+ "GENERATED_UTC": "2026-08-26T21:53:51.666491+00:00",
+ "WHAT_THEY_SHARE": {
+  "shared_physical_constants": "yes \u2014 L = 36 and the nine Moore-1 offsets are written separately in each file but are the same constants.",
+  "shared_predecessor_definition": "yes, by design: both encode S(d) = Y-occupied cells within toroidal Chebyshev 1. That is the causal assumption under test and it is common-mode.",
+  "shared_dilation_or_morphology_primitive": "no \u2014 i1 enumerates nine offsets per cell; i2 uses nine np.roll shifts.",
+  "shared_identity_logic": "none. Neither reads any identity field.",
+  "independent_component_implementation": "no \u2014 the flood fill _n_groups is byte-identical in body between the two files.",
+  "independent_ancestry_implementation": "yes \u2014 the CERTAIN/POSSIBLE step operator differs (set subset test versus boolean morphology).",
+  "independent_aggregation": "no \u2014 duration, exposure, event attribution and the output dictionary are the same code.",
+  "MEASURED_IDENTICAL_NON_TRIVIAL_LINES": 35,
+  "i1_lines": 122,
+  "i2_lines": 122,
+  "THE_AUDIT_CLAIMED": "the archive, the frozen constants, and the rule text. No code.",
+  "THAT_CLAIM_IS": "FALSE \u2014 corrected here, as the checker required."
+ },
+ "EQUIVALENCE": {
+  "claim": "occ & dilate(certain) & ~dilate(occ_prev & ~certain) equals the set-based criterion 'S(d) non-empty and S(d) subset of CERTAIN'",
+  "PROOF": "dilate(certain)[d] is true iff some Moore-1 neighbour of d is CERTAIN; dilate(occ_prev & ~certain)[d] is true iff some Moore-1 neighbour of d is occupied-but-not-certain. Under the PRECONDITION certain subset occ_prev, the first conjunct is exactly 'S(d) contains a certain cell' and the negated second is exactly 'S(d) contains no non-certain cell'. Together: S(d) non-empty and S(d) subset of CERTAIN. The nine offsets are symmetric under negation, so np.roll dilation is the correct neighbour test in both directions.",
+  "PRECONDITION": "CERTAIN(t) subset of occ(t). The pipeline maintains it by construction: CERTAIN(t_m) = root & occ(t_m) and every subsequent CERTAIN is masked by occ. The audit's proof sketch omitted the condition; that omission is the checker's MINOR finding and it is corrected here.",
+  "RANDOM_TEST_N": 4000,
+  "MISMATCHES_AGAINST_THE_LITERAL_RULE_TEXT": {
+   "i1_set_subset": 0,
+   "i2_morphology": 0,
+   "i3_neighbour_count": 0
+  },
+  "PRECONDITION_DELIBERATELY_BROKEN_N": 2000,
+  "MISMATCHES_WHEN_THE_PRECONDITION_IS_BROKEN": {
+   "i2_morphology": 1721
+  },
+  "READING": "equivalence holds under the precondition and fails without it. It is a conditional identity, not an unconditional one."
+ },
+ "NAMED_STRUCTURAL_CASES": [
+  {
+   "case": "ordinary persistence",
+   "literal_rule_text": true,
+   "i1_set_subset": true,
+   "i2_morphology": true,
+   "i3_neighbour_count": true,
+   "ALL_FOUR_MATCH_THE_HAND_ANSWER": true
+  },
+  {
+   "case": "birth beside a certain cell",
+   "literal_rule_text": true,
+   "i1_set_subset": true,
+   "i2_morphology": true,
+   "i3_neighbour_count": true,
+   "ALL_FOUR_MATCH_THE_HAND_ANSWER": true
+  },
+  {
+   "case": "death: nothing survives",
+   "literal_rule_text": true,
+   "i1_set_subset": true,
+   "i2_morphology": true,
+   "i3_neighbour_count": true,
+   "ALL_FOUR_MATCH_THE_HAND_ANSWER": true
+  },
+  {
+   "case": "split into two groups",
+   "literal_rule_text": true,
+   "i1_set_subset": true,
+   "i2_morphology": true,
+   "i3_neighbour_count": true,
+   "ALL_FOUR_MATCH_THE_HAND_ANSWER": true
+  },
+  {
+   "case": "merge of two certain sources",
+   "literal_rule_text": true,
+   "i1_set_subset": true,
+   "i2_morphology": true,
+   "i3_neighbour_count": true,
+   "ALL_FOUR_MATCH_THE_HAND_ANSWER": true
+  },
+  {
+   "case": "ambiguous predecessor: one certain, one not",
+   "literal_rule_text": true,
+   "i1_set_subset": true,
+   "i2_morphology": true,
+   "i3_neighbour_count": true,
+   "ALL_FOUR_MATCH_THE_HAND_ANSWER": true
+  },
+  {
+   "case": "two possible ancestors, neither certain",
+   "literal_rule_text": true,
+   "i1_set_subset": true,
+   "i2_morphology": true,
+   "i3_neighbour_count": true,
+   "ALL_FOUR_MATCH_THE_HAND_ANSWER": true
+  },
+  {
+   "case": "toroidal seam: diagonal wrap is one hop",
+   "literal_rule_text": true,
+   "i1_set_subset": true,
+   "i2_morphology": true,
+   "i3_neighbour_count": true,
+   "ALL_FOUR_MATCH_THE_HAND_ANSWER": true
+  },
+  {
+   "case": "blocked: source occupied but not certain",
+   "literal_rule_text": true,
+   "i1_set_subset": true,
+   "i2_morphology": true,
+   "i3_neighbour_count": true,
+   "ALL_FOUR_MATCH_THE_HAND_ANSWER": true
+  },
+  {
+   "case": "empty predecessor set: unreachable cell",
+   "literal_rule_text": true,
+   "i1_set_subset": true,
+   "i2_morphology": true,
+   "i3_neighbour_count": true,
+   "ALL_FOUR_MATCH_THE_HAND_ANSWER": true
+  }
+ ],
+ "ALL_NAMED_CASES_PASS_ON_ALL_FOUR_ROUTES": true,
+ "WHAT_AGREEMENT_DOES_AND_DOES_NOT_ESTABLISH": "four routes agreeing establishes that the rule is encoded consistently. It does NOT establish that the causal assumption is right, because all four encode the SAME predecessor relation. The assumption is supported instead by the derivation of the kernel from the engine source and by the archive invariant \u2014 see section 5.",
+ "SCIENTIFICALLY_INDEPENDENT": false,
+ "EQUIVALENT_ENCODINGS": true,
+ "IMPLEMENTATION_INDEPENDENCE_CONTENT_HASH": "baba21a318598484730d8005bd545a0ed29c6afb81a20b286334c9ed1d2eec82"
+}

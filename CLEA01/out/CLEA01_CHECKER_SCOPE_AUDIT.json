@@ -1,0 +1,50 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "2 \u2014 checker scope audit",
+ "GENERATED_UTC": "2026-08-26T22:03:57.811921+00:00",
+ "WINDOW": {
+  "from": "2026-08-26 20:37:00",
+  "to": "2026-08-26 21:06:30",
+  "why": "the audit's last artefact is 20:36:59 and the checker return was written at 21:06:20. Anything the checker touched in the repository must fall in between."
+ },
+ "REPOSITORY_FILES_TOUCHED_IN_THE_WINDOW": [
+  "CLEA01/review/CLEA01_CHECKER_RAW.txt",
+  "CLEA01/code/__pycache__/clea01_fixtures.cpython-311.pyc"
+ ],
+ "MODIFIED_NO_REPOSITORY_FILE": true,
+ "MODIFIED_NO_REPOSITORY_FILE_QUALIFIED": "the only two paths in the window are the checker's own return, which I wrote, and a __pycache__ .pyc left by re-running clea01_fixtures.py, which the checker reports doing. A bytecode cache is not a source or artefact modification. No CLEA01 code, no CLEA01 artefact and no OMLDCT02 file was altered.",
+ "CONSTRUCTED_NO_WORLD": false,
+ "RAN_NO_ENGINE": false,
+ "THE_ONE_SCOPE_EXCESS_AND_WHAT_IT_COSTS": "the checker's own return says it ran 4000 randomised single-cell trials under the frozen spec and 400 full _one_step calls. Those are engine runs and world constructions, and the mandate said neither. I do not soften that: it is a scope excess, self-declared by the checker, and it is recorded here rather than omitted because it flatters no one. What it does NOT do is contaminate the record. No archive was written anywhere after 20:00 \u2014 checked across the whole filesystem \u2014 the 66 OMLDCT02 archives are untouched, no seed from the manifest was drawn, and nothing in the terminal disposition rests on those trials: section 5 of this closure re-establishes the same kernel conclusion twice over without running anything, by deriving the displacement set from the engine source and by measuring it on 25,577 single-source archive rows.",
+ "NO_NEW_ARCHIVE_ANYWHERE_AFTER_20_00": true,
+ "OMLDCT02_RAW_ARCHIVES_TOUCHED": 0,
+ "DREW_NO_SEED_FROM_THE_MANIFEST": "not independently verifiable from here; the checker describes the trials as randomised and no seed manifest file was read or written in the window. Stated as unverified rather than asserted.",
+ "WROTE_SCRATCH_ONLY_OUTSIDE_THE_REPOSITORY": true,
+ "TWELVE_MANDATED_POINTS": [
+  "parent binding",
+  "the A/B/C definitions",
+  "causal-edge validity",
+  "absence of hidden online IDs",
+  "non-vacuity",
+  "ambient false-positive rejection",
+  "known-success preservation",
+  "split manifest chronology",
+  "validation-set isolation",
+  "two independent implementations",
+  "causal-emergence estimator",
+  "terminal disposition"
+ ],
+ "FINDINGS_1_TO_12_MAP_ONTO_THEM_IN_ORDER": true,
+ "ALL_TWELVE_ATTACKED": true,
+ "EXTRA_FINDINGS_BEYOND_THE_TWELVE": [
+  13,
+  14,
+  15,
+  16,
+  17
+ ],
+ "EXACTLY_ONE_VERDICT_RETURNED": true,
+ "NO_MISSING_LOAD_BEARING_ATTACK": true,
+ "CONSEQUENCE": "no missing attack prevents the terminal disposition from being verified, so section 2's CLEA01_TECHNICALLY_INVALID mapping is not triggered.",
+ "SCOPE_AUDIT_CONTENT_HASH": "b6aa06b49ccc87f062dae507ab3a3e34a72cda1634aa4d9c6e908a729c125bad"
+}

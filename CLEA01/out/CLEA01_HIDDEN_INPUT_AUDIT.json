@@ -1,0 +1,309 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "6 \u2014 hidden input audit",
+ "GENERATED_UTC": "2026-08-26T21:52:36.897440+00:00",
+ "WHY_THIS_REPLACES_THE_G7_SCAN": "the original scan stripped comments AND string literals. In Python a dict field access is a string literal, so `rec[\"VERDICT\"]` was invisible to it. Here string literals count as USE and only docstrings count as MENTION. The checker found this and it is not argued away.",
+ "SCRIPTS_SCANNED": [
+  "clea01_assemble.py",
+  "clea01_close_parent.py",
+  "clea01_close_specificity.py",
+  "clea01_fixtures.py",
+  "clea01_g4_containment.py",
+  "clea01_lineage_i1.py",
+  "clea01_lineage_i2.py",
+  "clea01_package.py",
+  "clea01_run.py",
+  "clea01_specificity.py",
+  "clea01_verify.py"
+ ],
+ "N_SCRIPTS": 11,
+ "SELF_EXCLUDED": "clea01_close_hidden.py",
+ "SELF_EXCLUSION_REASON": "this file carries the token list as data and would match every token by construction.",
+ "PER_FILE_PER_FUNCTION_USE": {
+  "clea01_assemble.py": {
+   "load": [
+    "ADMISSIBLE",
+    "PAIR_MEASUREMENTS"
+   ],
+   "main": [
+    "E3_DURATION",
+    "E3_EXPOSURE"
+   ]
+  },
+  "clea01_close_parent.py": {
+   "main": [
+    "ADMISSIBLE"
+   ],
+   "recompute_parent": [
+    "ADMISSIBLE"
+   ]
+  },
+  "clea01_close_specificity.py": {
+   "main": [
+    "ADMISSIBLE",
+    "PAIR_MEASUREMENTS",
+    "interval_end"
+   ]
+  },
+  "clea01_g4_containment.py": {
+   "a_cells_by_row": [
+    "ids_at",
+    "named_at"
+   ],
+   "main": [
+    "ADMISSIBLE"
+   ]
+  },
+  "clea01_package.py": {
+   "main": [
+    "VERDICT"
+   ]
+  },
+  "clea01_run.py": {
+   "main": [
+    "ADMISSIBLE"
+   ]
+  },
+  "clea01_specificity.py": {
+   "main": [
+    "ADMISSIBLE",
+    "PAIR_MEASUREMENTS",
+    "interval_end"
+   ]
+  }
+ },
+ "DOCSTRING_ONLY": {
+  "clea01_lineage_i1.py": [
+   "outcome"
+  ]
+ },
+ "CLASSIFIED": [
+  {
+   "file": "clea01_lineage_i1.py",
+   "function": "<docstring>",
+   "token": "outcome",
+   "on_the_ancestry_path": false,
+   "CLASS": "MENTIONED_IN_DOCUMENTATION"
+  },
+  {
+   "file": "clea01_assemble.py",
+   "function": "load",
+   "token": "ADMISSIBLE",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_assemble.py",
+   "function": "main",
+   "token": "E3_DURATION",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_assemble.py",
+   "function": "main",
+   "token": "E3_EXPOSURE",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_assemble.py",
+   "function": "load",
+   "token": "PAIR_MEASUREMENTS",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_close_parent.py",
+   "function": "main",
+   "token": "ADMISSIBLE",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_close_parent.py",
+   "function": "recompute_parent",
+   "token": "ADMISSIBLE",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_close_specificity.py",
+   "function": "main",
+   "token": "ADMISSIBLE",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_close_specificity.py",
+   "function": "main",
+   "token": "PAIR_MEASUREMENTS",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_close_specificity.py",
+   "function": "main",
+   "token": "interval_end",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_g4_containment.py",
+   "function": "main",
+   "token": "ADMISSIBLE",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_g4_containment.py",
+   "function": "a_cells_by_row",
+   "token": "ids_at",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_g4_containment.py",
+   "function": "a_cells_by_row",
+   "token": "named_at",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_package.py",
+   "function": "main",
+   "token": "VERDICT",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_run.py",
+   "function": "main",
+   "token": "ADMISSIBLE",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_specificity.py",
+   "function": "main",
+   "token": "ADMISSIBLE",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_specificity.py",
+   "function": "main",
+   "token": "PAIR_MEASUREMENTS",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  },
+  {
+   "file": "clea01_specificity.py",
+   "function": "main",
+   "token": "interval_end",
+   "on_the_ancestry_path": false,
+   "CLASS": "READ_FOR_AFTER_THE_FACT_COMPARISON"
+  }
+ ],
+ "ANCESTRY_PATH_DEFINITION": [
+  "clea01_lineage_i1.py::_n_groups",
+  "clea01_lineage_i1.py::load_rows",
+  "clea01_lineage_i1.py::run",
+  "clea01_lineage_i1.py::sources",
+  "clea01_lineage_i2.py::dilate",
+  "clea01_lineage_i2.py::grid_at",
+  "clea01_lineage_i2.py::load_grids",
+  "clea01_lineage_i2.py::run"
+ ],
+ "RUNTIME_ARCHIVE_KEYS_TOUCHED": {
+  "clea01_lineage_i1": [
+   "c_nY",
+   "c_t",
+   "c_x",
+   "c_y",
+   "meta",
+   "xbirth",
+   "ybirth",
+   "ydeath"
+  ],
+  "clea01_lineage_i2": [
+   "c_nY",
+   "c_t",
+   "c_x",
+   "c_y",
+   "meta",
+   "xbirth",
+   "ybirth",
+   "ydeath"
+  ],
+  "ldfma01_raw (Model A reconstruction, imported by the G4 containment test)": [
+   "c_nY",
+   "c_t",
+   "c_x",
+   "c_y",
+   "k_a0x",
+   "k_a0y",
+   "k_nY",
+   "k_ncells",
+   "k_sox",
+   "k_soy",
+   "k_t",
+   "k_xd",
+   "meta",
+   "s",
+   "xbirth",
+   "ybirth",
+   "ydeath"
+  ]
+ },
+ "RUNTIME_PROBE": {
+  "archive": "/home/claude/OMLDCT02_raw/OMLDCT02_i0010_s1819855435_SHAM.npz",
+  "index": 10,
+  "method": "numpy.load was wrapped so every __getitem__ key was recorded while each implementation actually propagated CERTAIN and POSSIBLE on a real archive. No world was constructed."
+ },
+ "FORBIDDEN_ARCHIVE_KEYS": [
+  "c_cand",
+  "c_cid",
+  "c_free",
+  "c_nSY",
+  "k_a0x",
+  "k_a0y",
+  "k_id",
+  "k_ncells",
+  "k_sox",
+  "k_soy",
+  "k_xd"
+ ],
+ "FORBIDDEN_KEYS_TOUCHED_AT_RUNTIME_BY_THE_ANCESTRY_PATH": {
+  "clea01_lineage_i1": [],
+  "clea01_lineage_i2": []
+ },
+ "MODEL_A_RECONSTRUCTION_PROBE": {
+  "archive_keys_touched": [
+   "c_nY",
+   "c_t",
+   "c_x",
+   "c_y",
+   "k_a0x",
+   "k_a0y",
+   "k_nY",
+   "k_ncells",
+   "k_sox",
+   "k_soy",
+   "k_t",
+   "k_xd",
+   "meta",
+   "s",
+   "xbirth",
+   "ybirth",
+   "ydeath"
+  ],
+  "online_identity_keys_touched": [],
+  "READS_ONLINE_IDENTITY_FIELDS": false,
+  "WHY_ITS_OTHER_KEYS_ARE_NOT_A_FINDING": "k_ncells, k_a0y, k_a0x, k_soy, k_sox and k_xd are physical component summaries. LDFMA01 reconstructs the locked spatial component, so reading them is that model's definition, not a hidden input. It is used only to produce Model A's per-row cells for the G4 containment comparison; it never touches Model C's CERTAIN or POSSIBLE.",
+  "AN_EARLIER_VERSION_OF_THIS_AUDIT_GOT_THIS_WRONG": "the first run folded these keys into the two required flags and reported both as true. That was an over-broad rule, not a finding: it scoped a question about Model C's ancestry over code that computes Model A. Corrected here, and recorded rather than silently fixed."
+ },
+ "FUTURE_OUTCOME_USED_TO_DEFINE_ANCESTRY": false,
+ "ONLINE_ID_USED_TO_DEFINE_ANCESTRY": false,
+ "HIDDEN_INPUT_CONTENT_HASH": "a48a232583529c58b404b1667f0b664d2ed53af2889ed20508a33b203b96432f"
+}

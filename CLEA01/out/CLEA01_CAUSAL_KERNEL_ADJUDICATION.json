@@ -1,0 +1,163 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "5 \u2014 causal transport kernel adjudication",
+ "GENERATED_UTC": "2026-08-26T22:05:29.787074+00:00",
+ "NO_ENGINE_WAS_RUN_AND_NO_WORLD_WAS_CONSTRUCTED": true,
+ "TWO_INDEPENDENT_ROUTES": "derive the reachable set from the engine SOURCE; measure it from the ARCHIVES. Neither requires executing the engine.",
+ "ENGINE_SOURCE": {
+  "CHAIN": {
+   "kinetics (frozen reference)": {
+    "path": "/home/claude/edl/ORR01/code/kinetics.py",
+    "sha256": "d6b9e24daefd9a9ddd42780fa24da444a344a2773bb7836a8e168e44f026c4c4"
+   },
+   "lawspec_v2 (WorldV2)": {
+    "path": "/home/claude/edl/ORR01/code/lawspec_v2.py",
+    "sha256": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94"
+   },
+   "engine_obtc (WorldOBTC, verbatim copy + counters)": {
+    "path": "/home/claude/edl/OBTC02/code/engine_obtc.py",
+    "sha256": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30"
+   },
+   "pqec01_observer (PQECWorld, the class that runs)": {
+    "path": "/home/claude/edl/PQEC01/code/pqec01_observer.py",
+    "sha256": "d8ff4b9da05c95641c7f69cef4c8b2ffe4c45f17975e8f348d5c5e0f2b6bba21"
+   }
+  },
+  "OBSERVER_ITERATES_EN_NEI": true,
+  "SUB_SHIFTS": {
+   "kinetics._diffuse (inline tuple)": [
+    [
+     1,
+     0
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     -1,
+     1
+    ]
+   ],
+   "engine_obtc.NEI": [
+    [
+     1,
+     0
+    ],
+    [
+     -1,
+     0
+    ],
+    [
+     1,
+     1
+    ],
+    [
+     -1,
+     1
+    ]
+   ]
+  },
+  "ALL_SOURCES_AGREE_ON_THE_SUB_SHIFTS": true,
+  "DERIVED_DISPLACEMENT_SET": [
+   [
+    -1,
+    -1
+   ],
+   [
+    -1,
+    0
+   ],
+   [
+    -1,
+    1
+   ],
+   [
+    0,
+    -1
+   ],
+   [
+    0,
+    0
+   ],
+   [
+    0,
+    1
+   ],
+   [
+    1,
+    -1
+   ],
+   [
+    1,
+    0
+   ],
+   [
+    1,
+    1
+   ]
+  ],
+  "DERIVED_SET_IS_EXACTLY_MOORE_1": true,
+  "WHY_THE_OPPOSING_PAIR_CANCELS": "the four offered moves are +y, -y, +x, -x. Taking both moves on one axis returns the particle to its own row or column, so the net displacement on each axis lies in {-1, 0, +1} and never in {-2, +2}.",
+  "DIFFUSE_REREADS_OCCUPANCY_EACH_PASS": true,
+  "DESTINATION_BLOCKING_IS_APPLIED": true,
+  "BLOCKING_CAN_ONLY_SHRINK_THE_SUPPORT": "accepted = min(movers, dest_free) <= movers, so capacity refusal removes displacements and never adds one. A blocked hop leaves the particle in place, which is (0,0) and already in the kernel.",
+  "WITHIN_STEP_ORDER": [
+   "_diffuse",
+   "_diffuse",
+   "_diffuse",
+   "_diffuse",
+   "_react",
+   "_decay",
+   "_feed_and_outflow"
+  ],
+  "REACT_SOURCE": "(self):\n        rng, sp = self.rng, self.sp\n        nX, nY = self.n[\"X\"], self.n[\"Y\"]\n        pair = nX * nY\n        free0 = np.maximum(self.free(), 0)\n        for prod, res, kk in ((\"X\", \"SX\", sp.kX), (\"Y\", \"SY\", sp.kY)):\n            p = np.minimum(1.0, kk * pair)\n            cand = np.minimum(self.n[res], free0)\n            if prod == \"Y\" and self.hazard_armed:\n                # exact cumulative hazard of at least one Y birth this step:\n                #   P(no birth in a cell) = (1-p)^cand   =>  -log = cand * -log(1-p)\n                m = (cand > 0) & (p > 0)\n                if m.any():\n                    self.H3_exact += float(\n                        (cand[m] * (-np.log1p(-np.minimum(p",
+  "PAIR_IS_ELEMENTWISE": true,
+  "CANDIDATES_ARE_SAME_CELL": true,
+  "BOTH_BIRTHS_REQUIRE_nY_GT_0_AT_THE_SAME_CELL": true,
+  "WHY": "p = min(1, k * nX * nY) is elementwise, so at a cell with nY = 0 the birth probability is exactly 0 for BOTH the X channel and the Y channel. Neither birth can occur where there is no Y, and neither can occur at a different cell.",
+  "EXCHANGE_POOL_MENTIONS_Y_COUNTS": false,
+  "EXCHANGE_EXCERPT": "(self):\n        rng, sp = self.rng_feed, self.sp\n        # how many units the reservoir offers, per cell, per species: the SAME rule as the\n        # legacy feed except that it is not capped by free capacity, because nothing is added\n        offers = {}\n        for s in (\"SX\", \"SY\"):\n            room = np.maximum(sp.S0 - self.n[s], 0)\n            offers[s] = rng.binomial(room, sp.phi)\n        want = offers[\"SX\"] + offers[\"SY\"]\n        pool = np.stack([self.n[k] for k in self.exchangeable])\n     "
+ },
+ "ARCHIVE_MEASUREMENT": {
+  "arms": 66,
+  "consecutive_row_pairs_compared": 668041,
+  "cells_with_no_Moore_1_predecessor": 0,
+  "LOWER_BOUND_CONCLUSION": "0 violations over 668041 row pairs. If the true one-step support were wider than Moore-1, cells with no admissible source would appear. None do, in any arm.",
+  "single_source_rows_used_for_the_upper_bound": 25577,
+  "observed_displacement_histogram": {
+   "-1,-1": 15,
+   "-1,0": 651,
+   "-1,1": 15,
+   "0,-1": 649,
+   "0,0": 23106,
+   "0,1": 661,
+   "1,-1": 21,
+   "1,0": 641,
+   "1,1": 16
+  },
+  "distinct_offsets_observed": 9,
+  "max_chebyshev_observed": 1,
+  "OBSERVED_SET_EQUALS_MOORE_1": true,
+  "UPPER_BOUND_CONCLUSION": "on rows whose predecessor support is a single cell, every occupied cell of the next row is a direct observation of a reachable displacement. Over 25577 such rows the observed set is exactly the nine Moore-1 offsets, all four diagonals included, and never exceeds them.",
+  "WHY_THE_DIAGONALS_MATTER": "a von Neumann kernel would exclude them. They are observed 15, 15, 21 and 16 times in the archives, so excluding them would have made S(d) too small and CERTAIN too large \u2014 the direction that OVER-claims."
+ },
+ "POSSIBLE_PREDECESSOR_SET": "S(d, t+1) = the Y-occupied cells of row t within toroidal Chebyshev distance 1 of d. This is the set of cells from which d's mass COULD have come.",
+ "CERTAIN_PREDECESSOR_SET": "the subset of S(d, t+1) lying in CERTAIN(t). d is CERTAIN at t+1 iff S(d) is non-empty and equals its certain subset \u2014 that is, no admissible source is outside the lineage.",
+ "SEQUENTIAL_OCCUPANCY_REREADS": "handled: each of the four passes re-reads self.n[sname], so a particle may accept a subset of the four offered moves. The subset sum is bounded by the opposing-pair cancellation, which is what keeps the support at Moore-1 rather than widening it to Chebyshev 2.",
+ "DESTINATION_BLOCKING": "handled: accepted = min(movers, dest_free) <= movers. Blocking removes displacements and never adds one, and a blocked particle stays put, which is (0,0) and already in the kernel.",
+ "REACTION_BIRTH_AND_REMOVAL_TIMING": "diffusion precedes reaction and decay within a step, and the archive row is written after the step. A Y born at d during the step is born where nY(d) > 0 already held at react time, so it introduces no displacement of its own. Removal only empties cells.",
+ "BIRTHS_ARE_CELL_LOCAL": true,
+ "THE_ONLY_OTHER_CHANNEL": "lawspec_v2._exchange operates on SX and SY only and never on Y.",
+ "KERNEL_IS_TOO_NARROW": false,
+ "KERNEL_IS_TOO_BROAD": false,
+ "LOAD_BEARING_MISMATCH": false,
+ "VERDICT": "EXACT \u2014 the derived set and the measured set coincide, and both equal the toroidal Moore-1 neighbourhood including self.",
+ "SOUNDNESS_CONSEQUENCE": "because the kernel is exactly the reachable set, membership of CERTAIN implies by induction that all of a cell's Y mass descends from the root. CERTAIN can under-claim; it cannot over-claim.",
+ "ONE_CONSERVATIVE_ASYMMETRY": "on the single transition t_m to t_m+1 of the SELECTIVE arm the archive row t_m is pre-intervention, so S(d) includes parent cells whose Y was already removed. S is too large there, hence CERTAIN too small. The error direction is safe.",
+ "KERNEL_CONTENT_HASH": "25a1f00dfeff18436269b441ac9b1c014f3c73fd47c3194210f4316cc62e73b4"
+}

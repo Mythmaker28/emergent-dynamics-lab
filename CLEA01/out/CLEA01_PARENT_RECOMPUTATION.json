@@ -1,0 +1,167 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "4 \u2014 parent recomputation",
+ "GENERATED_UTC": "2026-08-26T21:50:53.318158+00:00",
+ "METHOD": "the six bound numbers are recomputed from the sealed ledger and from constants read out of the runner's AST. No OMLDCT02 summary document is consulted for any of them except LOAD_BEARING_DEFECTS, which is a property of the parent's own adjudication and has no other source.",
+ "CLAIMED": {
+  "BASE_SEEDS_ATTEMPTED": 805,
+  "VALID_MATCHED_PAIRS": 33,
+  "MINIMUM_REQUIRED": 41,
+  "HARD_ARM_INSTANCE_COUNT": 510.56902,
+  "HARD_CEILING": 512,
+  "TECHNICAL_FAILURES": 0,
+  "LOAD_BEARING_DEFECTS": 0
+ },
+ "RECOMPUTED": {
+  "BASE_SEEDS_ATTEMPTED": 805,
+  "VALID_MATCHED_PAIRS": 33,
+  "MINIMUM_REQUIRED": 41,
+  "HARD_ARM_INSTANCE_COUNT": 510.56902,
+  "HARD_CEILING": 512,
+  "TECHNICAL_FAILURES": 0,
+  "LOAD_BEARING_DEFECTS": 0
+ },
+ "AGREEMENT": {
+  "BASE_SEEDS_ATTEMPTED": true,
+  "VALID_MATCHED_PAIRS": true,
+  "MINIMUM_REQUIRED": true,
+  "HARD_ARM_INSTANCE_COUNT": true,
+  "HARD_CEILING": true,
+  "TECHNICAL_FAILURES": true,
+  "LOAD_BEARING_DEFECTS": true
+ },
+ "ALL_SIX_AGREE": true,
+ "PROVENANCE": {
+  "ledger_path": "/home/claude/edl/OMLDCT02/work/OMLDCT02_SEALED_LEDGER.jsonl",
+  "ledger_sha256": "c79919456ad1a42efe4bafb96f923fa73dc669debb5f55f8fe39b5c717772c5e",
+  "ledger_rows": 805,
+  "indices_contiguous": true,
+  "index_min": 0,
+  "index_max": 804
+ },
+ "OMLDCT02_FINAL_DISPOSITION": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS",
+ "OMLDCT02_PAIRED_STATISTICS": "DESCRIPTIVE_ONLY__NO_INFERENTIAL_WEIGHT",
+ "P_VALUE_SCAN": {
+  "METHOD": "AST over every CLEA01 executable \u2014 identifiers, attributes, dict keys and string literals count as USE; module and function docstrings are separated out and count as MENTION. Plus a raw byte scan of every artefact in CLEA01/out.",
+  "SCRIPTS_SCANNED": [
+   "clea01_assemble.py",
+   "clea01_close_specificity.py",
+   "clea01_fixtures.py",
+   "clea01_g4_containment.py",
+   "clea01_lineage_i1.py",
+   "clea01_lineage_i2.py",
+   "clea01_package.py",
+   "clea01_run.py",
+   "clea01_specificity.py",
+   "clea01_verify.py"
+  ],
+  "SELF_EXCLUDED_AND_WHY": {
+   "file": "clea01_close_parent.py",
+   "reason": "it holds the banned-token list as data, so it matches every token by construction. Scanning it would report a hit that means the opposite of a violation. Same rule as the G7 banned-token list.",
+   "tokens_it_declares": [
+    "p_dur",
+    "p_exp",
+    "exact_two_sided_p",
+    "pratt",
+    "signed_rank",
+    "wilcoxon",
+    "p_value",
+    "pvalue",
+    "AND_RULE_PASSES",
+    "SUPPORTED",
+    "0.4009",
+    "0.2311"
+   ]
+  },
+  "N_SCRIPTS": 10,
+  "EXECUTABLE_OR_DATA_HITS": {},
+  "DOCSTRING_ONLY_MENTIONS": {},
+  "ARTEFACT_BYTE_HITS": {
+   "CLEA01_PARENT_RECOMPUTATION.json": {
+    "parent_p_values": [
+     "0.4009",
+     "0.2311"
+    ],
+    "tokens": [
+     "p_dur",
+     "p_exp",
+     "exact_two_sided_p",
+     "pratt",
+     "signed_rank",
+     "wilcoxon",
+     "p_value",
+     "pvalue",
+     "AND_RULE_PASSES",
+     "SUPPORTED"
+    ],
+    "PER_TOKEN": {
+     "p_dur": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": "ning it would report a hit that means the opposite of a violation. Same rule as the G7 banned-token list.\",\n   \"tokens_it_declares\": [\n    \"p_dur\",\n    \"p_exp\",\n    \"exact_two_sided_p\",\n    \"pratt\",\n    \"signed_rank\",\n    \"wilcoxon\",\n    \"p_value\",\n    \"pvalue"
+     },
+     "p_exp": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": " report a hit that means the opposite of a violation. Same rule as the G7 banned-token list.\",\n   \"tokens_it_declares\": [\n    \"p_dur\",\n    \"p_exp\",\n    \"exact_two_sided_p\",\n    \"pratt\",\n    \"signed_rank\",\n    \"wilcoxon\",\n    \"p_value\",\n    \"pvalue\",\n    \"AND_R"
+     },
+     "exact_two_sided_p": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": " that means the opposite of a violation. Same rule as the G7 banned-token list.\",\n   \"tokens_it_declares\": [\n    \"p_dur\",\n    \"p_exp\",\n    \"exact_two_sided_p\",\n    \"pratt\",\n    \"signed_rank\",\n    \"wilcoxon\",\n    \"p_value\",\n    \"pvalue\",\n    \"AND_RULE_PASSES\",\n"
+     },
+     "pratt": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": "of a violation. Same rule as the G7 banned-token list.\",\n   \"tokens_it_declares\": [\n    \"p_dur\",\n    \"p_exp\",\n    \"exact_two_sided_p\",\n    \"pratt\",\n    \"signed_rank\",\n    \"wilcoxon\",\n    \"p_value\",\n    \"pvalue\",\n    \"AND_RULE_PASSES\",\n    \"SUPPORTED\",\n    \"0.4"
+     },
+     "signed_rank": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": "n. Same rule as the G7 banned-token list.\",\n   \"tokens_it_declares\": [\n    \"p_dur\",\n    \"p_exp\",\n    \"exact_two_sided_p\",\n    \"pratt\",\n    \"signed_rank\",\n    \"wilcoxon\",\n    \"p_value\",\n    \"pvalue\",\n    \"AND_RULE_PASSES\",\n    \"SUPPORTED\",\n    \"0.4009\",\n    \"0."
+     },
+     "wilcoxon": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": " G7 banned-token list.\",\n   \"tokens_it_declares\": [\n    \"p_dur\",\n    \"p_exp\",\n    \"exact_two_sided_p\",\n    \"pratt\",\n    \"signed_rank\",\n    \"wilcoxon\",\n    \"p_value\",\n    \"pvalue\",\n    \"AND_RULE_PASSES\",\n    \"SUPPORTED\",\n    \"0.4009\",\n    \"0.2311\"\n   ]\n  },\n  \""
+     },
+     "p_value": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": " list.\",\n   \"tokens_it_declares\": [\n    \"p_dur\",\n    \"p_exp\",\n    \"exact_two_sided_p\",\n    \"pratt\",\n    \"signed_rank\",\n    \"wilcoxon\",\n    \"p_value\",\n    \"pvalue\",\n    \"AND_RULE_PASSES\",\n    \"SUPPORTED\",\n    \"0.4009\",\n    \"0.2311\"\n   ]\n  },\n  \"N_SCRIPTS\": 10,\n"
+     },
+     "pvalue": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": "kens_it_declares\": [\n    \"p_dur\",\n    \"p_exp\",\n    \"exact_two_sided_p\",\n    \"pratt\",\n    \"signed_rank\",\n    \"wilcoxon\",\n    \"p_value\",\n    \"pvalue\",\n    \"AND_RULE_PASSES\",\n    \"SUPPORTED\",\n    \"0.4009\",\n    \"0.2311\"\n   ]\n  },\n  \"N_SCRIPTS\": 10,\n  \"EXECUTABLE_O"
+     },
+     "AND_RULE_PASSES": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": "es\": [\n    \"p_dur\",\n    \"p_exp\",\n    \"exact_two_sided_p\",\n    \"pratt\",\n    \"signed_rank\",\n    \"wilcoxon\",\n    \"p_value\",\n    \"pvalue\",\n    \"AND_RULE_PASSES\",\n    \"SUPPORTED\",\n    \"0.4009\",\n    \"0.2311\"\n   ]\n  },\n  \"N_SCRIPTS\": 10,\n  \"EXECUTABLE_OR_DATA_HITS\": "
+     },
+     "SUPPORTED": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": " \"p_exp\",\n    \"exact_two_sided_p\",\n    \"pratt\",\n    \"signed_rank\",\n    \"wilcoxon\",\n    \"p_value\",\n    \"pvalue\",\n    \"AND_RULE_PASSES\",\n    \"SUPPORTED\",\n    \"0.4009\",\n    \"0.2311\"\n   ]\n  },\n  \"N_SCRIPTS\": 10,\n  \"EXECUTABLE_OR_DATA_HITS\": {},\n  \"DOCSTRING_ONLY_M"
+     },
+     "0.4009": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": "act_two_sided_p\",\n    \"pratt\",\n    \"signed_rank\",\n    \"wilcoxon\",\n    \"p_value\",\n    \"pvalue\",\n    \"AND_RULE_PASSES\",\n    \"SUPPORTED\",\n    \"0.4009\",\n    \"0.2311\"\n   ]\n  },\n  \"N_SCRIPTS\": 10,\n  \"EXECUTABLE_OR_DATA_HITS\": {},\n  \"DOCSTRING_ONLY_MENTIONS\": {},\n  \""
+     },
+     "0.2311": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": "p\",\n    \"pratt\",\n    \"signed_rank\",\n    \"wilcoxon\",\n    \"p_value\",\n    \"pvalue\",\n    \"AND_RULE_PASSES\",\n    \"SUPPORTED\",\n    \"0.4009\",\n    \"0.2311\"\n   ]\n  },\n  \"N_SCRIPTS\": 10,\n  \"EXECUTABLE_OR_DATA_HITS\": {},\n  \"DOCSTRING_ONLY_MENTIONS\": {},\n  \"ARTEFACT_BYTE_"
+     }
+    },
+    "CLASSIFICATION": "ALL_SELF_REFERENTIAL_OR_NEGATED"
+   },
+   "CLEA01_STRUCTURAL_GATES.json": {
+    "parent_p_values": [],
+    "tokens": [
+     "exact_two_sided_p"
+    ],
+    "PER_TOKEN": {
+     "exact_two_sided_p": {
+      "verdict": "SELF_REFERENTIAL_OR_NEGATED__NOT_A_USE",
+      "excerpt": "RMINAL_LABEL, descent_level, identity_carried, E3_DURATION, E3_EXPOSURE, COMPLETE_TURNOVER, FUNCTIONAL, PAIR_MEASUREMENTS, FROZEN_ANALYSIS, exact_two_sided_p or AND_RULE \\u2014 in executable code or in prose. Both read exactly c_t, c_y, c_x, c_nY, meta and the"
+     }
+    },
+    "CLASSIFICATION": "ALL_SELF_REFERENTIAL_OR_NEGATED"
+   }
+  }
+ },
+ "OMLDCT02_PAIRED_HYPOTHESIS_REINTERPRETED": false,
+ "WHY": "no CLEA01 identity model, gate, witness or terminal reads a paired p-value. The only places the token family appears are the G7 banned-token list, which exists to forbid them, and prose that says they were not used.",
+ "PARENT_RECOMPUTATION_CONTENT_HASH": "a319a1de92c71bb09767b817d4b4be94a21aa0324675f241f271672fa1d81bd2"
+}

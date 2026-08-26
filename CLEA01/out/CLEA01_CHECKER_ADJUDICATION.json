@@ -1,101 +1,612 @@
 {
  "MISSION": "CLEA01",
- "SECTION": "checker adjudication",
- "GENERATED_UTC": "2026-08-26T21:09:45.636304+00:00",
+ "SECTION": "3 \u2014 checker adjudication",
+ "GENERATED_UTC": "2026-08-26T22:03:57.822714+00:00",
  "MAX_INDEPENDENT_CHECKERS": 1,
  "CHECKERS_DISPATCHED": 1,
  "REVIEW_CASCADE": "none",
- "CHECKER_RETURN": "CLEA01/review/CLEA01_CHECKER_RAW.txt",
  "CHECKER_RETURN_SHA256": "c5048e3c4d09db7611677d6a4cf464fbddf7dbeb698df35d2cf4f1fa384cfb12",
- "WRITTEN_HASHED_AND_EXTERNALISED_BEFORE_ANY_FINDING_WAS_ACTED_ON": true,
  "LOAD_BEARING_DEFECT_COUNT": 0,
  "I_ACCEPT_THE_CHECKER_IN_FULL": true,
- "NEW_SCIENTIFIC_ENGINE_RUNS": 0,
- "TEN_CORRECTIONS_I_ACCEPT": [
+ "N_ITEMS_ADJUDICATED": 20,
+ "EACH_ADJUDICATED_EXACTLY_ONCE": true,
+ "AREAS": [
+  "parent binding",
+  "Models A/B/C",
+  "transport kernel",
+  "causal-edge validity",
+  "hidden-ID exclusion",
+  "non-vacuity",
+  "ambient specificity",
+  "known-success preservation",
+  "split chronology",
+  "validation isolation",
+  "implementation independence",
+  "structural gates",
+  "terminal disposition"
+ ],
+ "ITEMS": [
   {
-   "n": 1,
-   "my_claim": "G7 basis: a tokenised scan with comments and string literals stripped",
-   "the_truth": "structurally blind. In Python a dict field access IS a string literal, so the scan could not see the very thing it looked for \u2014 the checker showed clea01_assemble.py scanning clean while containing [\"E3_DURATION\"]. It also covered 2 of 7 scripts.",
-   "fixed": "re-scanned over raw text across all seven scripts plus an AST enumeration of every string subscript. The verdict stands: neither ancestry-defining implementation contains any forbidden token anywhere. The tokens appear only in the tabulation and gate scripts."
+   "id": 1,
+   "title": "PARENT BINDING",
+   "severity": "NONE",
+   "verdict": "ACCEPTED",
+   "arith": "805 ledger rows with next_index 805; 33 ADMISSIBLE; TARGET_VALID_PAIRED_BLOCKS = 41; round(running + cost, 5) accumulation reproducing 510.56902 exactly, naive float sum 510.56902000000395, exact rational 510569/1000; MAX_PRIMARY_ARM_INSTANCES = 512; no row with technical_failure; 13 adjudication items with LOAD_BEARING_DEFECT_COUNT 0; 66 of 66 archive hashes matching the sealed record.",
+   "effect": {
+    "parent binding": "confirms it"
+   },
+   "minimum": "none",
+   "taken": "re-verified independently in section 4 of this closure. All six numbers reproduce from the sealed ledger and the runner AST, without reading an OMLDCT02 summary.",
+   "effect_full": {
+    "parent binding": "confirms it",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "no effect",
+    "terminal disposition": "no effect"
+   }
   },
   {
-   "n": 2,
-   "my_claim": "G3 fails because a few particles out of 1.7 million is not non-vacuity",
-   "the_truth": "a magnitude judgement, contradicting my own NO_PERFORMANCE_THRESHOLD_WAS_INTRODUCED",
-   "fixed": "restated threshold-free: in the SELECTIVE arm CERTAIN equals the full occupied set on 100% of post-fork rows, and C's certain duration equals the ambient duration exactly in 33 of 33. The only difference is the single pre-intervention row."
+   "id": 2,
+   "title": "THE A/B/C DEFINITIONS",
+   "severity": "NONE",
+   "verdict": "ACCEPTED",
+   "arith": "B_exposure minus C_possible_exposure ranges 2 to 1,891,199 over 66 arms, so POSSIBLE never equals B and the bracket is not vacuous.",
+   "effect": {
+    "Models A/B/C": "confirms three distinct objects; B is not a straw man"
+   },
+   "minimum": "none",
+   "taken": "recorded. The finding that B is defined generously against my own hypothesis is carried into the report.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "confirms three distinct objects; B is not a straw man",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "no effect",
+    "terminal disposition": "no effect"
+   }
   },
   {
-   "n": 3,
-   "my_claim": "the G4 cells are of ambiguous origin",
-   "the_truth": "they were never CERTAIN and never POSSIBLE at any row. They have NO causal path to the daughter at all.",
-   "fixed": "escalated. In at least 2 of 66 arms the qualified OMLDCT02 E3 component provably contains Y mass with no causal path to the daughter. Recorded because the parent's record does not contain it. It changes no OMLDCT02 number and reinterprets no OMLDCT02 test."
+   "id": 3,
+   "title": "CAUSAL-EDGE VALIDITY",
+   "severity": "NONE",
+   "verdict": "ACCEPTED",
+   "arith": "net displacement (a-b, c-d) with a,b,c,d in {0,1} over the four frozen sub-shifts; 0 archive invariant violations; row cadence one tl_record per _one_step; event label t+1 for the transition t to t+1; pair = nX * nY elementwise.",
+   "effect": {
+    "transport kernel": "confirms it in both directions",
+    "causal-edge validity": "confirms it",
+    "non-vacuity": "supplies the soundness of CERTAIN, which I had not stated"
+   },
+   "minimum": "state the soundness consequence, which is load-bearing and which I omitted",
+   "taken": "stated in C3 and re-established here mechanically in section 5: the displacement set is DERIVED from the sub-shifts by subset sum and equals Moore-1 exactly, and it is MEASURED from 25,577 single-source archive rows as exactly nine offsets with maximum Chebyshev 1.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "confirms it in both directions",
+    "causal-edge validity": "confirms it",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "supplies the soundness of CERTAIN, which I had not stated",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "no effect",
+    "terminal disposition": "no effect"
+   }
   },
   {
-   "n": 4,
-   "my_claim": "the two implementations share the archive, the constants and the rule text, and no code",
-   "the_truth": "FALSE. About 28 non-trivial lines are identical. G2 tests the propagation operator only; archive reading, event labelling, horizon handling and exposure accounting are common-mode.",
-   "fixed": "stated, and recorded that the checker closed the gap another way \u2014 by deriving the row cadence and event labels from the engine source, verifying the kernel on 4000 engine trials, and writing a third implementation that reproduced all 13 quantities on all 66 arms."
+   "id": 4,
+   "title": "ABSENCE OF HIDDEN ONLINE IDs \u2014 evidence overstated",
+   "severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "arith": "the G7 scan covered 2 of 7 scripts; stripping string literals makes a dict field access invisible, so clea01_assemble.py reported 'executable-code hits: []' while containing [\"E3_DURATION\"], [\"E3_EXPOSURE\"], [\"identity_termination_type\"] and [\"PAIR_MEASUREMENTS\"].",
+   "effect": {
+    "hidden-ID exclusion": "the conclusion stands; the stated basis did not support it",
+    "structural gates": "G7's BASIS rewritten; verdict unchanged"
+   },
+   "minimum": "replace the scan with one that treats string literals as USE, over every script",
+   "taken": "section 6 of this closure replaces it entirely: an AST scan over all scripts where string literals COUNT as use and only docstrings count as mention, plus a runtime probe that wraps numpy.load and records the archive keys each implementation actually requests. Both implementations touch exactly c_t, c_y, c_x, c_nY, meta, ybirth, ydeath, xbirth \u2014 zero forbidden keys.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "the conclusion stands; the stated basis did not support it",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "G7's BASIS rewritten; verdict unchanged",
+    "terminal disposition": "no effect"
+   }
   },
   {
-   "n": 5,
-   "my_claim": "the four C = A coincidences are arms where the whole Y population died with the lineage",
-   "the_truth": "true for two of the four. At (10, SHAM) and (471, SHAM) the world went on without the lineage.",
-   "fixed": "corrected in the artefact with all four rows written out."
+   "id": 5,
+   "title": "NON-VACUITY \u2014 confirmed; G3 argued by magnitude",
+   "severity": "MATERIAL (wording)",
+   "verdict": "ACCEPTED",
+   "arith": "33 of 33 SELECTIVE arms have exactly 2 components at t_m with 'other' mass 0; C_minus_B_exposure equals minus the parent's fork-row mass in 33 of 33; C's CERTAIN duration equals B's duration in 33 of 33; row-walking six pairs gives CERTAIN equal to the full occupied set on 100.0% of post-fork rows (10,247 / 10,218 / 10,125 / 9,893 / 9,730 / 10,444) against 0.0% in the same six SHAM arms.",
+   "effect": {
+    "non-vacuity": "strengthened",
+    "structural gates": "G3's basis restated without a magnitude judgement",
+    "terminal disposition": "unchanged"
+   },
+   "minimum": "restate G3's FAIL in threshold-free terms",
+   "taken": "done in C3 and carried here. G3 now fails on the set identity, not on a particle count. Section 7 additionally supplies the qualitative structural exhibit the closure launcher requires, so non-vacuity versus A no longer rests on a ratio either.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "strengthened",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "G3's basis restated without a magnitude judgement",
+    "terminal disposition": "unchanged"
+   }
   },
   {
-   "n": 6,
-   "my_claim": "the post-hoc status of POST_A_CLAIM_FRACTION was declared",
-   "the_truth": "only in a source docstring, in no externalised artefact",
-   "fixed": "declared in the non-vacuity artefact, with the checker's demonstration that the same conclusion follows from an observable the FIRST development sweep already recorded."
+   "id": 6,
+   "title": "AMBIENT FALSE-POSITIVE REJECTION",
+   "severity": "NONE",
+   "verdict": "ACCEPTED",
+   "arith": "POST_A_CLAIM_FRACTION re-implemented from scratch, 0 disagreements on 66 arms; exactly 1.0 in exactly 31 SELECTIVE arms, undefined in 2 (450, 482) where post-A world mass is zero; parent_emptied and daughter_untouched true 33/33; SHAM median 0.00745.",
+   "effect": {
+    "ambient specificity": "confirms PASS_ON_SHAM / NOT_TESTABLE_ON_SELECTIVE"
+   },
+   "minimum": "none",
+   "taken": "section 9 of this closure adds the interval accounting the launcher asks for and does not stop the walk when POSSIBLE empties, so rejected ambient mass is counted rather than truncated.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "confirms PASS_ON_SHAM / NOT_TESTABLE_ON_SELECTIVE",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "no effect",
+    "terminal disposition": "no effect"
+   }
   },
   {
-   "n": 7,
-   "my_claim": "implicit \u2014 that the audit had the programme's usual audit trail",
-   "the_truth": "the entire mission was uncommitted when the checker ran. Every ordering claim in sections 2 and 6 rested on file mtimes I control.",
-   "fixed": "committed now, with the ordering declared rather than implied. It cannot retroactively become a prospective freeze and I do not pretend otherwise."
+   "id": 7,
+   "title": "KNOWN-SUCCESS PRESERVATION \u2014 my explanation understated it",
+   "severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "arith": "402 SHAM rows 1153-1155, cells (8,27), (11/12,29), (14,32), (16,31); 518 SHAM rows 1521-1526, cells (30,17/18), (32,17), (33,17). Each has |S| = 1, its single source is non-CERTAIN, and it was never CERTAIN and never POSSIBLE at any earlier row.",
+   "effect": {
+    "known-success preservation": "G4 FAIL confirmed and its meaning escalated",
+    "Models A/B/C": "Model A's CORE_R centroid rule absorbs mass with no causal path",
+    "parent binding": "a finding against OMLDCT02's E3 component, recorded, changing no OMLDCT02 number"
+   },
+   "minimum": "state that the cells have NO causal path, not merely uncertain origin, and escalate it beyond a gate footnote",
+   "taken": "done in C3; and section 8 of this closure republishes both arms row by row and recomputes, for every missing cell, whether it was EVER CERTAIN or EVER POSSIBLE at any row. All are false, independently reproducing the checker.",
+   "effect_full": {
+    "parent binding": "a finding against OMLDCT02's E3 component, recorded, changing no OMLDCT02 number",
+    "Models A/B/C": "Model A's CORE_R centroid rule absorbs mass with no causal path",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "G4 FAIL confirmed and its meaning escalated",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "no effect",
+    "terminal disposition": "no effect"
+   }
   },
   {
-   "n": 8,
-   "my_claim": "implicit \u2014 that the artefacts were reproducible",
-   "the_truth": "seven of ten had no committed generating script. This is the OMLDCT01 failure mode recurring in a mission run by the person who wrote the module built to prevent it.",
-   "fixed": "declared in CLEA01_DIGEST_VERIFICATION.json. A committed verifier now recomputes every content digest. Writing that verifier exposed two more defects of mine: it forgot to exclude each artefact's own hash key, and three artefacts had been re-digested on documents still carrying their previous digest. Both fixed under one stated rule; all seven now reproduce."
+   "id": "7b",
+   "title": "clea01_g4_containment.py written after the development sweep",
+   "severity": "MINOR",
+   "verdict": "ACCEPTED",
+   "arith": "code mtime 20:19:47, development sweep 20:04:11, validation opened 20:22:31.",
+   "effect": {
+    "known-success preservation": "the strong containment form is post-hoc",
+    "validation isolation": "written before validation opened, so the rule holds"
+   },
+   "minimum": "declare it",
+   "taken": "declared in section 10 of this closure, with the direction noted: the test cost me two gate failures, so it is post-hoc but not self-serving. NOT adjudicated in the C3 record \u2014 that omission is recorded below.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "the strong containment form is post-hoc",
+    "split chronology": "no effect",
+    "validation isolation": "written before validation opened, so the rule holds",
+    "implementation independence": "no effect",
+    "structural gates": "no effect",
+    "terminal disposition": "no effect"
+   }
   },
   {
-   "n": 9,
-   "my_claim": "G6's headline: 42,593 replacements and 373,987 split rows",
-   "the_truth": "dominated by arms where CERTAIN is the whole world, where a split is the ambient population coming apart",
-   "fixed": "non-degenerate figures recorded: 1,404 replacements across 22 arms and 37,944 split rows across 23 arms, from SHAM arms that do not saturate. G6 survives; the headline was inflated."
+   "id": 8,
+   "title": "SPLIT MANIFEST CHRONOLOGY",
+   "severity": "NONE",
+   "verdict": "ACCEPTED",
+   "arith": "SHA256(tip + '|CLEA01|' + str(seed)) reproduces 33 of 33 digest prefixes; sorting by the first 64 bits with index tie-break and cutting at 22 reproduces the assignment with zero disagreements. Under 4 of 6 alternative encodings index 402 lands in DEVELOPMENT, which would have made G8 a clean PASS; the encoding used is one of the two that puts the contradiction in VALIDATION.",
+   "effect": {
+    "split chronology": "confirms it; the encoding choice went against me"
+   },
+   "minimum": "none",
+   "taken": "section 10 recomputes the split from scratch: 33 of 33 prefixes and 0 assignment disagreements, plus a content check that needs no timestamp at all.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "confirms it; the encoding choice went against me",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "no effect",
+    "terminal disposition": "no effect"
+   }
   },
   {
-   "n": 10,
-   "my_claim": "fraction of local X births causally downstream of the lineage",
-   "the_truth": "it measures X births CATALYSED AT CELLS whose Y is certainly lineage. An X birth also needs nX and nSX at that cell, and X diffuses at p_hop_X = 1.0.",
-   "fixed": "wording corrected in the artefact."
+   "id": 9,
+   "title": "VALIDATION-SET ISOLATION \u2014 two audit-trail gaps",
+   "severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "arith": "mtime chain 19:52 binding, 19:54:34 models, 19:54:55 split, 19:55 i2, 19:56 i1, 19:57 run, 19:57:27 graph, 20:04 dev sweep, 20:12 specificity code, 20:13 dev spec, 20:19 fixtures and G4 code, 20:22-20:23 validation opened. git status reported '?? CLEA01/' \u2014 the whole mission uncommitted.",
+   "effect": {
+    "validation isolation": "substance intact, audit trail absent",
+    "split chronology": "ordering rested on mtimes I control"
+   },
+   "minimum": "externalise the post-hoc disclosure; commit the mission",
+   "taken": "both done. The disclosure is in the artefacts since C2 and is restated in section 10. The mission is committed C1-C4 and this closure adds a fifth. A NEW cost is recorded in section 10: re-digesting four artefacts at 21:08 overwrote their original mtimes, so that evidence now survives only inside the checker's pre-overwrite return.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "ordering rested on mtimes I control",
+    "validation isolation": "substance intact, audit trail absent",
+    "implementation independence": "no effect",
+    "structural gates": "no effect",
+    "terminal disposition": "no effect"
+   }
+  },
+  {
+   "id": 10,
+   "title": "TWO IMPLEMENTATIONS \u2014 independence overstated",
+   "severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "arith": "i1 and i2 share 28 non-trivial identical source lines by the checker's count, 35 by the difflib measure in section 11: led(), the _n_groups flood-fill body, the archive extraction lines, the loop skeleton, break conditions, duration and exposure accounting and the output dictionary. A third implementation written from the rule text by neighbour counting agrees on all 13 quantities on all 66 arms.",
+   "effect": {
+    "implementation independence": "G2 tests the propagation operator only",
+    "structural gates": "G2 verdict unchanged, scope narrowed"
+   },
+   "minimum": "withdraw the 'no code' claim and state what G2 actually tests",
+   "taken": "withdrawn in C3. Section 11 measures the overlap instead of asserting anything, and records SCIENTIFICALLY_INDEPENDENT = false, EQUIVALENT_ENCODINGS = true.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "G2 tests the propagation operator only",
+    "structural gates": "G2 verdict unchanged, scope narrowed",
+    "terminal disposition": "no effect"
+   }
+  },
+  {
+   "id": "10b",
+   "title": "the equivalence proof omits its precondition",
+   "severity": "MINOR",
+   "verdict": "ACCEPTED",
+   "arith": "4000 random configurations: 0 mismatches between the literal rule text, i1, i2 and a counting route. 2000 configurations with CERTAIN not contained in occ_prev: the checker got 2000 of 2000 mismatching; my own generator, which breaks the precondition only probabilistically, gets 1721 of 2000. Both show the identity is conditional.",
+   "effect": {
+    "implementation independence": "the equivalence holds only under CERTAIN subset occ"
+   },
+   "minimum": "state the precondition with the proof",
+   "taken": "stated in section 11, with my own 1721/2000 reported rather than the checker's cleaner number, because my generator is the one I ran. NOT adjudicated in the C3 record.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "the equivalence holds only under CERTAIN subset occ",
+    "structural gates": "no effect",
+    "terminal disposition": "no effect"
+   }
+  },
+  {
+   "id": 11,
+   "title": "CAUSAL-EMERGENCE ESTIMATOR NOT COMPUTED",
+   "severity": "NONE",
+   "verdict": "ACCEPTED",
+   "arith": "in the SELECTIVE arm the lineage and ambient macrostates are the same partition on every post-fork row, so the comparison is degenerate in the treated arm.",
+   "effect": {
+    "structural gates": "the substantive reason is stronger than the procedural one"
+   },
+   "minimum": "give the substantive reason as well as the procedural one",
+   "taken": "both are given, in C3 and in CLEA01_CAUSAL_EMERGENCE_FINAL_STATUS.json.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "the substantive reason is stronger than the procedural one",
+    "terminal disposition": "no effect"
+   }
+  },
+  {
+   "id": 12,
+   "title": "TERMINAL DISPOSITION \u2014 selection correct",
+   "severity": "NONE",
+   "verdict": "ACCEPTED",
+   "arith": "terminal 2 names the LOCKED COMPONENT; C differs from A in 62 of 66 arms by a median duration factor of 22.8 and a maximum of 10,667, and in 2 arms A is not contained in C. C's failure is against B, not against A.",
+   "effect": {
+    "terminal disposition": "confirms the third string"
+   },
+   "minimum": "none",
+   "taken": "the terminal is unchanged by this closure.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "no effect",
+    "terminal disposition": "confirms the third string"
+   }
+  },
+  {
+   "id": "12b",
+   "title": "the gate scoring is softer than it reads",
+   "severity": "MINOR",
+   "verdict": "ACCEPTED",
+   "arith": "scored literally G3 would PASS, since C differs from B numerically in 66 of 66; and G5 sits inside N_PASS = 6 while being untestable on the arm that matters, which is what G9 is failed for.",
+   "effect": {
+    "structural gates": "the headline 'six pass, three fail' overstates the pass side"
+   },
+   "minimum": "say so where the gates are scored",
+   "taken": "CLEA01_STRUCTURAL_GATES_FINAL.json now reports N_UNQUALIFIED_PASS separately from N_PASS and marks G5 as NOT_IDENTIFIABLE on the treated arm rather than counting it whole. G3's FAIL is restated on the set identity so that it no longer depends on a magnitude reading. NOT adjudicated in the C3 record.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "the headline 'six pass, three fail' overstates the pass side",
+    "terminal disposition": "no effect"
+   }
+  },
+  {
+   "id": 13,
+   "title": "TEST_1's explanatory note is factually wrong",
+   "severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "arith": "(10, SHAM): C ends at 951 while B runs 10,247 with exposure 1,172,068. (471, SHAM): C ends at 119 while B runs 1,028. Only (450, SELECTIVE) and (482, SELECTIVE) fit the note. C_equals_B is False for all 66 arms.",
+   "effect": {
+    "non-vacuity": "the 62/66 verdict stands; the attached explanation was wrong for two of the four cases it explained"
+   },
+   "minimum": "correct the note and publish the four rows",
+   "taken": "corrected in C2/C3 with all four rows published in CLEA01_NONVACUITY_AND_SPECIFICITY.json.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "the 62/66 verdict stands; the attached explanation was wrong for two of the four cases it explained",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "no effect",
+    "terminal disposition": "no effect"
+   }
+  },
+  {
+   "id": 14,
+   "title": "seven of ten artefacts have no generating script",
+   "severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "arith": "only CLEA01_MATCHED_PAIR_MODEL_COMPARISON.{json,csv} and CLEA01_IDENTITY_DISAGREEMENT_LEDGER.csv came from committed code. All seven *_CONTENT_HASH fields nevertheless reproduce under the parent's canonical rule.",
+   "effect": {
+    "validation isolation": "provenance not reproducible from code",
+    "structural gates": "no gate number is wrong"
+   },
+   "minimum": "declare it; do not let it recur",
+   "taken": "declared at C3 and carried forward unchanged \u2014 the seven original artefacts still have no generating script and that is not retro-fitted. Every artefact produced by this closure has one: nine committed scripts produce all of them.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "provenance not reproducible from code",
+    "implementation independence": "no effect",
+    "structural gates": "no gate number is wrong",
+    "terminal disposition": "no effect"
+   }
+  },
+  {
+   "id": 15,
+   "title": "the launcher is absent from the repository",
+   "severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "arith": "no CLEA01 launcher, handoff or section text anywhere in /home/claude/edl or /home/claude. The ten gates, the section-8 gating rule and the four terminal strings existed only in the operator's prose.",
+   "effect": {
+    "structural gates": "unverifiable by any checker",
+    "terminal disposition": "the permitted vocabulary was unverifiable"
+   },
+   "minimum": "put the launcher under version control",
+   "taken": "CLOSED. Both launchers are committed at CLEA01/launcher/ \u2014 the audit launcher verbatim and the closure launcher transcribed with a transcription note. A reader can now check the gate list, the gating rule and the four terminal strings against the source. This finding was NOT adjudicated in the C3 record; it is the one MATERIAL finding the ten corrections missed.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "unverifiable by any checker",
+    "terminal disposition": "the permitted vocabulary was unverifiable"
+   }
+  },
+  {
+   "id": 16,
+   "title": "G6's headline is dominated by the degenerate arm",
+   "severity": "MINOR",
+   "verdict": "ACCEPTED",
+   "arith": "checker's partition by ARM: 288,398 of 373,987 split rows (77%) and 35,476 of 42,593 replacements (83%) come from SELECTIVE; the SHAM remainder is 85,589 rows across 28 arms and 7,117 replacements across 27. My partition by SATURATION: 335,930 split rows and 41,189 replacements come from the 36 arms with claim fraction 1.0, leaving 37,944 rows across 23 arms and 1,404 replacements across 22 in non-saturating SHAM arms. Both partitions are exact and sum to the same totals; mine is the stricter one because it also removes the five saturating SHAM arms.",
+   "effect": {
+    "structural gates": "G6 PASS survives on either partition; the headline was inflated"
+   },
+   "minimum": "report the non-degenerate figures",
+   "taken": "reported since C2. The two partitions are reconciled explicitly here so the difference between my number and the checker's is not mistaken for a disagreement.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "no effect",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "G6 PASS survives on either partition; the headline was inflated",
+    "terminal disposition": "no effect"
+   }
+  },
+  {
+   "id": 17,
+   "title": "'downstream X production' overstates the attribution",
+   "severity": "MINOR",
+   "verdict": "ACCEPTED",
+   "arith": "an accepted X birth at d requires nX(d) > 0 and nSX(d) > 0 as well as nY(d) > 0, and X diffuses at p_hop_X = 1.0.",
+   "effect": {
+    "ambient specificity": "the number is right, the wording claimed more"
+   },
+   "minimum": "reword",
+   "taken": "reworded at C2/C3: the quantity measures X births CATALYSED AT CELLS whose Y is certainly lineage.",
+   "effect_full": {
+    "parent binding": "no effect",
+    "Models A/B/C": "no effect",
+    "transport kernel": "no effect",
+    "causal-edge validity": "no effect",
+    "hidden-ID exclusion": "no effect",
+    "non-vacuity": "no effect",
+    "ambient specificity": "the number is right, the wording claimed more",
+    "known-success preservation": "no effect",
+    "split chronology": "no effect",
+    "validation isolation": "no effect",
+    "implementation independence": "no effect",
+    "structural gates": "no effect",
+    "terminal disposition": "no effect"
+   }
   }
  ],
- "TWO_THINGS_THE_CHECKER_ESTABLISHED_THAT_I_HAD_NOT": [
-  "CERTAIN is provably SOUND by induction, because the Moore-1 kernel is exactly the reachable displacement set. Membership implies all of a cell's Y mass descends from the root; CERTAIN can under-claim and can never over-claim. This is what turns a SELECTIVE claim fraction of 1.0 from a suspected false positive into a proof of takeover, and I had not stated it.",
-  "a conservative asymmetry in the model's favour: on the single transition t_m to t_m+1 of the SELECTIVE arm the archive row is pre-intervention, so the source set is too large and CERTAIN is too small."
- ],
- "WHAT_THE_CHECKER_VERIFIED_BY_REDOING_IT": [
-  "the transport kernel, analytically from three engine sources and empirically on 4000 randomised single-cell trials and 400 full step calls: maximum Chebyshev displacement 1, mass escaping Moore-1 zero, and all nine displacements observed",
-  "the archive row cadence and the event-ledger label convention, from the engine source",
-  "a third independent implementation on all 66 arms: 0 disagreements on all 13 quantities",
-  "POST_A_CLAIM_FRACTION reimplemented on all 66 arms: 0 disagreements",
-  "the parent's six bound numbers, all 66 archive hashes, all 33 split digests, all 7 content hashes",
-  "both G4 failures walked cell by cell",
-  "the split derivation reproduced 33 of 33, plus six alternative encodings showing that four of them would have made G8 a clean pass \u2014 the encoding used went against me",
-  "that no p-value is computed or interpreted anywhere in CLEA01"
- ],
+ "A_CORRECTION_TO_MY_OWN_EARLIER_RECORD": {
+  "what_C3_said": "TEN_CORRECTIONS_I_ACCEPT",
+  "what_the_checker_returned": "17 numbered findings, of which eight are MATERIAL and five carry MINOR sub-items",
+  "the_ten_covered": [
+   "10",
+   "13",
+   "14",
+   "16",
+   "17",
+   "4",
+   "5",
+   "7",
+   "9"
+  ],
+  "never_adjudicated_in_writing_at_C3": [
+   "7b",
+   "10b",
+   "12b",
+   "15"
+  ],
+  "of_those_this_one_is_MATERIAL": "15 \u2014 the launcher absent from the repository",
+  "why_it_matters": "an under-counted finding list is the same class of error as an overstated scan: the record claims more coverage than it had. It is corrected here by adjudicating all seventeen, and finding 15 is not merely adjudicated but closed \u2014 both launchers are now committed.",
+  "does_it_change_any_number": false,
+  "is_it_load_bearing": false
+ },
+ "NO_LOAD_BEARING_FINDING_WAS_DOWNGRADED": true,
+ "NO_MATERIAL_FINDING_WAS_PROMOTED_TO_MANUFACTURE_INVALIDITY": true,
  "TERMINAL_UNCHANGED_BY_THE_ADJUDICATION": true,
  "FINAL_DISPOSITION": "CAUSAL_LINEAGE_NOT_IDENTIFIABLE_FROM_EXISTING_ARCHIVES__LINEAGE_ROUTE_PAUSED",
- "WHY_NOT_THE_ALTERNATIVES": {
-  "OBJECT_IDENTIFIED": "requires all ten gates; G3, G4 and G9 fail",
-  "NOT_DISTINCT_FROM_LOCKED_COMPONENT": "false on the facts \u2014 C differs from A in 62 of 66 arms and in 2 arms A is not even contained in C. C's failure is against B, not against A. Selecting it would put a false statement in the record.",
-  "TECHNICALLY_INVALID": "requires a load-bearing defect; there is none"
- },
- "REPRODUCTION_STATUS": "NOT_TESTED",
- "HEREDITY_STATUS": "NOT_TESTED",
- "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
- "ADJUDICATION_CONTENT_HASH": "05760dc4f59b04cdf03e3cf98dfd038cfe438e0491739dc7fd08f54c3958ddd8"
+ "ADJUDICATION_CONTENT_HASH": "080a1b8ac01ef617119b7d1db3cd498a38e31beb98beabb6285de53e14cfd02d"
 }

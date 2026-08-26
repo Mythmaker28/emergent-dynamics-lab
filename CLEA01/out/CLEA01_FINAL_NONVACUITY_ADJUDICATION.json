@@ -1,0 +1,251 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "7 \u2014 final non-vacuity adjudication",
+ "GENERATED_UTC": "2026-08-26T22:05:29.787544+00:00",
+ "N_ARMS": 66,
+ "PER_ARM_TABLE": "CLEA01_MATCHED_PAIR_MODEL_COMPARISON.csv \u2014 A, B, C-CERTAIN and C-POSSIBLE duration, exposure and terminal reason for all 66 arms.",
+ "C_VERSUS_A": {
+  "arms_where_C_certain_differs_from_A": 62,
+  "of": 66,
+  "arms_where_they_coincide": [
+   [
+    10,
+    "SHAM"
+   ],
+   [
+    450,
+    "SELECTIVE"
+   ],
+   [
+    471,
+    "SHAM"
+   ],
+   [
+    482,
+    "SELECTIVE"
+   ]
+  ],
+  "duration_ratio": {
+   "n": 66,
+   "min": 1.0,
+   "median": 22.806680035092114,
+   "max": 10667.0
+  }
+ },
+ "C_VERSUS_B": {
+  "arms_numerically_different": 66,
+  "of": 66,
+  "SELECTIVE_C_minus_B_exposure": {
+   "n": 33,
+   "min": -4,
+   "median": -1,
+   "max": -1
+  },
+  "SHAM_C_minus_B_exposure": {
+   "n": 33,
+   "min": -1987193,
+   "median": -1713291,
+   "max": -2
+  },
+  "THE_NUMERICAL_DIFFERENCE_IS_NOT_THE_ARGUMENT": "in the SELECTIVE arm the difference is one to four particles out of roughly 1.7 million particle-steps, and the closure launcher rightly refuses that as evidence of anything. The threshold-free statement replaces it: in the treated arm CERTAIN equals the full occupied set on 100 per cent of post-fork rows, and C's certain duration equals the ambient duration exactly in 33 of 33.",
+  "SELECTIVE_arms_where_certain_duration_equals_ambient_duration": 33,
+  "SELECTIVE_arms_with_POST_A_CLAIM_FRACTION_exactly_1": 31
+ },
+ "C_CERTAIN_VERSUS_C_POSSIBLE": {
+  "arms_where_they_differ_in_duration": 21,
+  "SHAM_possible_minus_certain_duration": {
+   "n": 33,
+   "min": 0,
+   "median": 7948,
+   "max": 10634
+  },
+  "SELECTIVE_possible_minus_certain_duration": {
+   "n": 33,
+   "min": 0,
+   "median": 0,
+   "max": 0
+  },
+  "MEANING": "the bracket is genuinely a bracket. Where it is wide, the archives leave the ancestry of that mass open; where it is tight, they settle it."
+ },
+ "SELECTIVE_VERSUS_SHAM": {
+  "SELECTIVE_POST_A_CLAIM_FRACTION": {
+   "n": 31,
+   "min": 1.0,
+   "median": 1.0,
+   "max": 1.0
+  },
+  "SHAM_POST_A_CLAIM_FRACTION": {
+   "n": 33,
+   "min": 0.0,
+   "median": 0.004772692064055625,
+   "max": 1.0
+  }
+ },
+ "THE_QUALITATIVE_REQUIREMENT": {
+  "requirement_a": "at least one load-bearing continuation that A terminates but C retains through an explicit causal witness",
+  "requirement_b": "at least one ambient continuation that B retains but C rejects for lack of a causal path",
+  "BOTH_MET_IN_ONE_ARM": true,
+  "EXHIBIT": {
+   "SELECTION_RULE": "among SHAM arms with C_certain_duration > A_duration and POST_A_REJECTED_FRACTION > 0.5, take the largest (C_certain_duration - A_duration); ties broken by smallest index.",
+   "N_CANDIDATE_ARMS": 4,
+   "ARM_SELECTED": {
+    "index": 298,
+    "arm": "SHAM",
+    "t_m": 392
+   },
+   "A_duration": 18,
+   "C_certain_duration": 1231,
+   "B_duration": 10607,
+   "A_ended_at_row": 410,
+   "C_certain_ended_at_row": 1623,
+   "POST_A_CLAIM_FRACTION": 0.0006948499203432506,
+   "POST_A_REJECTED_FRACTION": 0.9993051500796567,
+   "CELLS_REJECTED_OVER_THE_WHOLE_POST_A_WINDOW": 1720372,
+   "OCCUPIED_CELLS_OVER_THE_WHOLE_POST_A_WINDOW": 1721687,
+   "EXHIBIT_ROW_SELECTION": "the post-A row inside C's certain interval with the most outright-rejected occupied cells; ties to the earlier row. 1213 rows qualified.",
+   "FIRST_QUALIFYING_ROW": 411,
+   "WITNESS_A_ROW": 1511,
+   "WITNESS_A_N_CERTAIN_CELLS_ON_THAT_ROW": 1,
+   "WITNESS_A_EXAMPLES": [
+    {
+     "cell": [
+      8,
+      25
+     ],
+     "S_of_d": [
+      {
+       "source": [
+        8,
+        25
+       ],
+       "was_CERTAIN": true
+      }
+     ],
+     "S_is_non_empty": true,
+     "every_source_certain": true
+    }
+   ],
+   "WITNESS_A_MEANS": "Model A's identity ended at row 410. On row 1511, 1 cells are still CERTAIN, and for each one the witness is enumerable: every admissible source on the previous row was itself CERTAIN. The continuation is 1231 rows long \u2014 1213 rows beyond where A stopped.",
+   "WITNESS_B_ROW": 1511,
+   "WITNESS_B_N_OCCUPIED_CELLS_REJECTED_ON_THAT_ROW": 14,
+   "WITNESS_B_EXAMPLES": [
+    {
+     "cell": [
+      18,
+      13
+     ],
+     "S_of_d": [
+      {
+       "source": [
+        18,
+        13
+       ],
+       "was_POSSIBLE": false
+      }
+     ],
+     "S_intersect_POSSIBLE_is_empty": true,
+     "reason": "every admissible source of this cell is outside the lineage envelope, so no causal path from the daughter root reaches it"
+    },
+    {
+     "cell": [
+      19,
+      17
+     ],
+     "S_of_d": [
+      {
+       "source": [
+        19,
+        17
+       ],
+       "was_POSSIBLE": false
+      }
+     ],
+     "S_intersect_POSSIBLE_is_empty": true,
+     "reason": "every admissible source of this cell is outside the lineage envelope, so no causal path from the daughter root reaches it"
+    },
+    {
+     "cell": [
+      20,
+      7
+     ],
+     "S_of_d": [
+      {
+       "source": [
+        20,
+        7
+       ],
+       "was_POSSIBLE": false
+      }
+     ],
+     "S_intersect_POSSIBLE_is_empty": true,
+     "reason": "every admissible source of this cell is outside the lineage envelope, so no causal path from the daughter root reaches it"
+    },
+    {
+     "cell": [
+      21,
+      17
+     ],
+     "S_of_d": [
+      {
+       "source": [
+        21,
+        17
+       ],
+       "was_POSSIBLE": false
+      }
+     ],
+     "S_intersect_POSSIBLE_is_empty": true,
+     "reason": "every admissible source of this cell is outside the lineage envelope, so no causal path from the daughter root reaches it"
+    },
+    {
+     "cell": [
+      22,
+      5
+     ],
+     "S_of_d": [
+      {
+       "source": [
+        22,
+        5
+       ],
+       "was_POSSIBLE": false
+      }
+     ],
+     "S_intersect_POSSIBLE_is_empty": true,
+     "reason": "every admissible source of this cell is outside the lineage envelope, so no causal path from the daughter root reaches it"
+    },
+    {
+     "cell": [
+      23,
+      15
+     ],
+     "S_of_d": [
+      {
+       "source": [
+        23,
+        15
+       ],
+       "was_POSSIBLE": false
+      },
+      {
+       "source": [
+        24,
+        15
+       ],
+       "was_POSSIBLE": false
+      }
+     ],
+     "S_intersect_POSSIBLE_is_empty": true,
+     "reason": "every admissible source of this cell is outside the lineage envelope, so no causal path from the daughter root reaches it"
+    }
+   ],
+   "WITNESS_B_MEANS": "on the same row the world carries 14 occupied cells that Model B counts and Model C rejects outright \u2014 not as uncertain, but as unreachable: none of their admissible sources is even POSSIBLE.",
+   "BOTH_WITNESSES_COME_FROM_THE_SAME_ARM_AND_THE_SAME_ROW": true
+  },
+  "NO_FITTED_MAGNITUDE_THRESHOLD": true,
+  "WHY_NOT": "the selection rule is stated before it is applied, 4 arms satisfy it, and the exhibit is a set relation on named cells with enumerated sources \u2014 no quantity is compared to a cut-off anywhere."
+ },
+ "VERDICT_VERSUS_A": "DISTINCT \u2014 qualitatively, not by epsilon.",
+ "VERDICT_VERSUS_B": "DISTINCT ON SHAM, NOT DISTINCT ON SELECTIVE.",
+ "NONVACUITY_FINAL_CONTENT_HASH": "52ab6e0d6ae65e639ab6ed73927caa010558c3aeb124e75664ffc9830d1cf626"
+}

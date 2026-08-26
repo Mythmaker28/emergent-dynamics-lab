@@ -2,11 +2,28 @@
  "MISSION": "CLEA01",
  "SECTION": "digest verification",
  "THE_RULE": "H.content_digest of the artefact with its OWN hash key removed. content_digest already strips GENERATED_UTC. Stated here because the first version of this verifier omitted the key exclusion and reported all seven as unreproducible, and because three artefacts had been re-digested on documents that still carried their previous digest. Both defects were mine and both are fixed.",
- "DECLARED_DEFECT": "seven of the ten artefacts have no committed generating script. Declared, not argued away. Their content digests are verifiable; their provenance is not reproducible from code.",
+ "DECLARED_DEFECT": "seven of the ORIGINAL ten artefacts have no committed generating script, and that is carried forward unchanged rather than retro-fitted: CLEA01_PARENT_BINDING.json, CLEA01_IDENTITY_MODELS.json, CLEA01_CAUSAL_GRAPH_DEFINITION.json, CLEA01_SPLIT_MANIFEST.json, CLEA01_NONVACUITY_AND_SPECIFICITY.json, CLEA01_STRUCTURAL_GATES.json and CLEA01_CAUSAL_EMERGENCE_DIAGNOSTIC.json. Every artefact produced by the C5 closure has a committed generator. Original text: seven of the ten artefacts have no committed generating script. Declared, not argued away. Their content digests are verifiable; their provenance is not reproducible from code.",
  "ARTEFACTS_WITH_A_COMMITTED_GENERATOR": {
   "CLEA01_MATCHED_PAIR_MODEL_COMPARISON.json": "clea01_assemble.py",
   "CLEA01_MATCHED_PAIR_MODEL_COMPARISON.csv": "clea01_assemble.py",
-  "CLEA01_IDENTITY_DISAGREEMENT_LEDGER.csv": "clea01_assemble.py"
+  "CLEA01_IDENTITY_DISAGREEMENT_LEDGER.csv": "clea01_assemble.py",
+  "CLEA01_CHECKER_RETURN_STATUS.json": "clea01_close_checker.py",
+  "CLEA01_CHECKER_SCOPE_AUDIT.json": "clea01_close_checker.py",
+  "CLEA01_CHECKER_ADJUDICATION.json": "clea01_close_checker.py",
+  "CLEA01_CHECKER_ADJUDICATION.md": "clea01_close_checker.py",
+  "CLEA01_PARENT_RECOMPUTATION.json": "clea01_close_parent.py",
+  "CLEA01_CAUSAL_KERNEL_ADJUDICATION.json": "clea01_close_kernel.py + clea01_close_assemble.py",
+  "CLEA01_HIDDEN_INPUT_AUDIT.json": "clea01_close_hidden.py",
+  "CLEA01_FINAL_NONVACUITY_ADJUDICATION.json": "clea01_close_witness.py + clea01_close_assemble.py",
+  "CLEA01_KNOWN_SUCCESS_ADJUDICATION.json": "clea01_close_witness.py + clea01_close_assemble.py",
+  "CLEA01_AMBIENT_SPECIFICITY_ADJUDICATION.json": "clea01_close_specificity.py + clea01_close_assemble.py",
+  "CLEA01_DEVELOPMENT_VALIDATION_CHRONOLOGY.json": "clea01_close_chronology.py",
+  "CLEA01_IMPLEMENTATION_INDEPENDENCE_ADJUDICATION.json": "clea01_close_impl.py",
+  "CLEA01_STRUCTURAL_GATES_FINAL.json": "clea01_close_gates.py",
+  "CLEA01_CAUSAL_EMERGENCE_FINAL_STATUS.json": "clea01_close_gates.py",
+  "CLEA01_FINAL_DISPOSITION.json": "clea01_close_final.py",
+  "CLEA01_FINAL_REPORT.md": "clea01_close_final.py",
+  "SHA256SUMS": "clea01_close_final.py"
  },
  "CHECKS": [
   {
@@ -68,21 +85,117 @@
   {
    "artefact": "CLEA01_CHECKER_ADJUDICATION.json",
    "key": "ADJUDICATION_CONTENT_HASH",
-   "recorded": "05760dc4f59b04cdf03e3cf98dfd038cfe438e0491739dc7fd08f54c3958ddd8",
-   "recomputed": "05760dc4f59b04cdf03e3cf98dfd038cfe438e0491739dc7fd08f54c3958ddd8",
+   "recorded": "080a1b8ac01ef617119b7d1db3cd498a38e31beb98beabb6285de53e14cfd02d",
+   "recomputed": "080a1b8ac01ef617119b7d1db3cd498a38e31beb98beabb6285de53e14cfd02d",
    "REPRODUCIBLE": true,
-   "file_sha256": "2b6428dff66cd3fcf2ac03ca6f951c1ffc1d56ff9fe5559fe4f71d822dff3aab"
+   "file_sha256": "1ae326fcbf1bfaa656ee88eea5068e25c558a936cfb3de633dff1d6fadf2161a"
   },
   {
    "artefact": "CLEA01_FINAL_DISPOSITION.json",
    "key": "DISPOSITION_CONTENT_HASH",
-   "recorded": "d4d8fa125646cd5f5d76007a45953f1259587ee762f5cb4dddb04bc7e500c06e",
-   "recomputed": "d4d8fa125646cd5f5d76007a45953f1259587ee762f5cb4dddb04bc7e500c06e",
+   "recorded": "3f3f7782ee6fbe5ca0648ce456dd223982ca5e8832929200fdeacad23e54d8ff",
+   "recomputed": "3f3f7782ee6fbe5ca0648ce456dd223982ca5e8832929200fdeacad23e54d8ff",
    "REPRODUCIBLE": true,
-   "file_sha256": "3b51671d7aac393fdf6c4233e0e74dd19004f42062e1954de7787a3e16d6f995"
+   "file_sha256": "e8ebdd3cd8bf63132fbd88fade0e7e096059e5e043df45e97e98fdab26cdc129"
+  },
+  {
+   "artefact": "CLEA01_CHECKER_RETURN_STATUS.json",
+   "key": "RETURN_STATUS_CONTENT_HASH",
+   "recorded": "13c1af0f7988f9721c586e1675e517686ff31d1410ff7b526877daf4c3f87e1b",
+   "recomputed": "13c1af0f7988f9721c586e1675e517686ff31d1410ff7b526877daf4c3f87e1b",
+   "REPRODUCIBLE": true,
+   "file_sha256": "bc31dd15b47bcafa4230a21b6db17abebc1cf8c8f93d1669a1c88e02c4974e8c"
+  },
+  {
+   "artefact": "CLEA01_CHECKER_SCOPE_AUDIT.json",
+   "key": "SCOPE_AUDIT_CONTENT_HASH",
+   "recorded": "b6aa06b49ccc87f062dae507ab3a3e34a72cda1634aa4d9c6e908a729c125bad",
+   "recomputed": "b6aa06b49ccc87f062dae507ab3a3e34a72cda1634aa4d9c6e908a729c125bad",
+   "REPRODUCIBLE": true,
+   "file_sha256": "2eeabc6925a00b4c773edba3f98b0c26c03ed01c771e40adb37a6dc261b58b28"
+  },
+  {
+   "artefact": "CLEA01_PARENT_RECOMPUTATION.json",
+   "key": "PARENT_RECOMPUTATION_CONTENT_HASH",
+   "recorded": "a319a1de92c71bb09767b817d4b4be94a21aa0324675f241f271672fa1d81bd2",
+   "recomputed": "a319a1de92c71bb09767b817d4b4be94a21aa0324675f241f271672fa1d81bd2",
+   "REPRODUCIBLE": true,
+   "file_sha256": "6ad0944448b0c67ee556a4b5b8222bfed167a2cc6ec11b37a2ec9b0b590d5e6d"
+  },
+  {
+   "artefact": "CLEA01_CAUSAL_KERNEL_ADJUDICATION.json",
+   "key": "KERNEL_CONTENT_HASH",
+   "recorded": "25a1f00dfeff18436269b441ac9b1c014f3c73fd47c3194210f4316cc62e73b4",
+   "recomputed": "25a1f00dfeff18436269b441ac9b1c014f3c73fd47c3194210f4316cc62e73b4",
+   "REPRODUCIBLE": true,
+   "file_sha256": "c250e3f7a807349bf106ef40cdc85fd2278761d516256240e1aa5d7607e0fa2e"
+  },
+  {
+   "artefact": "CLEA01_HIDDEN_INPUT_AUDIT.json",
+   "key": "HIDDEN_INPUT_CONTENT_HASH",
+   "recorded": "a48a232583529c58b404b1667f0b664d2ed53af2889ed20508a33b203b96432f",
+   "recomputed": "a48a232583529c58b404b1667f0b664d2ed53af2889ed20508a33b203b96432f",
+   "REPRODUCIBLE": true,
+   "file_sha256": "895f7bc915c85d38f3351db13b0fc33d79be5d3f1eff3a545f1bd7a61a9e76b1"
+  },
+  {
+   "artefact": "CLEA01_FINAL_NONVACUITY_ADJUDICATION.json",
+   "key": "NONVACUITY_FINAL_CONTENT_HASH",
+   "recorded": "52ab6e0d6ae65e639ab6ed73927caa010558c3aeb124e75664ffc9830d1cf626",
+   "recomputed": "52ab6e0d6ae65e639ab6ed73927caa010558c3aeb124e75664ffc9830d1cf626",
+   "REPRODUCIBLE": true,
+   "file_sha256": "791d049115a7d1ed3f37e22c3d4e057b19821afd95f47f07aadc9e02b199e0c3"
+  },
+  {
+   "artefact": "CLEA01_KNOWN_SUCCESS_ADJUDICATION.json",
+   "key": "KNOWN_SUCCESS_CONTENT_HASH",
+   "recorded": "e872dd6d8aa3c4b561a892b948ebc7730aa1dc9c0b60d9f75a95d445f998f21c",
+   "recomputed": "e872dd6d8aa3c4b561a892b948ebc7730aa1dc9c0b60d9f75a95d445f998f21c",
+   "REPRODUCIBLE": true,
+   "file_sha256": "6c70b19ab2db6e959481eaf0bed9ed14ab362a4cafb9c3a21e05e8cdbc76833c"
+  },
+  {
+   "artefact": "CLEA01_AMBIENT_SPECIFICITY_ADJUDICATION.json",
+   "key": "AMBIENT_SPECIFICITY_CONTENT_HASH",
+   "recorded": "426540ff16799e230bb054c66de58449e4b8d498cabe34cd9560c6207c823d34",
+   "recomputed": "426540ff16799e230bb054c66de58449e4b8d498cabe34cd9560c6207c823d34",
+   "REPRODUCIBLE": true,
+   "file_sha256": "e5cc1c5f28d8a767956c96428a6c93d9b9bea754e241b22d547c9f90d4862d51"
+  },
+  {
+   "artefact": "CLEA01_DEVELOPMENT_VALIDATION_CHRONOLOGY.json",
+   "key": "CHRONOLOGY_CONTENT_HASH",
+   "recorded": "0fd5e26e27fb4a9b4fed5cfe336b59e127843e511fb49cc33a40d0a66427ad7f",
+   "recomputed": "0fd5e26e27fb4a9b4fed5cfe336b59e127843e511fb49cc33a40d0a66427ad7f",
+   "REPRODUCIBLE": true,
+   "file_sha256": "e808df5433b5bd52d26e08c84c484e16cdbf68a0f8fed85179fc83c1d3304df2"
+  },
+  {
+   "artefact": "CLEA01_IMPLEMENTATION_INDEPENDENCE_ADJUDICATION.json",
+   "key": "IMPLEMENTATION_INDEPENDENCE_CONTENT_HASH",
+   "recorded": "baba21a318598484730d8005bd545a0ed29c6afb81a20b286334c9ed1d2eec82",
+   "recomputed": "baba21a318598484730d8005bd545a0ed29c6afb81a20b286334c9ed1d2eec82",
+   "REPRODUCIBLE": true,
+   "file_sha256": "d60e43b6854a7273a20355c4ab1cf71fae24a7a3c394ba481d87053d87193bab"
+  },
+  {
+   "artefact": "CLEA01_STRUCTURAL_GATES_FINAL.json",
+   "key": "GATES_FINAL_CONTENT_HASH",
+   "recorded": "9a88d0480c394d5ce6c0fe1bc1aa1cff2fab3ef0fab4478a85ccc465d3bc04db",
+   "recomputed": "9a88d0480c394d5ce6c0fe1bc1aa1cff2fab3ef0fab4478a85ccc465d3bc04db",
+   "REPRODUCIBLE": true,
+   "file_sha256": "47e16c4fe08bf2b4afdd31f39993b24f79514aff687b5ad7c15570211aec6307"
+  },
+  {
+   "artefact": "CLEA01_CAUSAL_EMERGENCE_FINAL_STATUS.json",
+   "key": "CAUSAL_EMERGENCE_FINAL_CONTENT_HASH",
+   "recorded": "72bd8864a05be1e27395e744a9cb16a98823dde29eadcd8fd36aafb66031aa4c",
+   "recomputed": "72bd8864a05be1e27395e744a9cb16a98823dde29eadcd8fd36aafb66031aa4c",
+   "REPRODUCIBLE": true,
+   "file_sha256": "49faf8a6f410929c95cf864c777942671fcb9bfbdc60fe14181e2d835b21235f"
   }
  ],
- "N_CHECKED": 9,
- "N_REPRODUCIBLE": 9,
+ "N_CHECKED": 21,
+ "N_REPRODUCIBLE": 21,
  "ALL_CONTENT_HASHES_REPRODUCE": true
 }
