@@ -1,0 +1,79 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "checker adjudication",
+ "GENERATED_UTC": "2026-08-26T19:27:42.194304+00:00",
+ "MAX_INDEPENDENT_CHECKERS": 1,
+ "CHECKERS_RUN": 1,
+ "REVIEW_CASCADE": "none",
+ "CHECKER_RETURN": "OMLDCT02/review/OMLDCT02_CHECKER_RAW.md",
+ "CHECKER_RETURN_SHA256": "5de5155ea3c4f42fe7cb338235970d65ed56d19d62582c3688f4d2b272b23a63",
+ "CHECKER_RETURN_WRITTEN_AND_EXTERNALISED_BEFORE_ANY_FINDING_WAS_ACTED_ON": true,
+ "LOAD_BEARING_DEFECT_COUNT": 0,
+ "I_ACCEPT_THE_CHECKER_IN_FULL": true,
+ "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0,
+ "NOTHING_WAS_REPAIRED": "not one line of method code was touched after the checker reported. Two of its MATERIAL findings are bugs I could fix in minutes; fixing them would change a file inside METHODS_HASH after world 1, which section 11 makes campaign-level invalidity. They are recorded and handed forward instead.",
+ "FIVE_CLAIMS_OF_MINE_THE_CHECKER_CORRECTED": [
+  {
+   "my_claim": "the C2 commit message: 'METHODS_HASH over 36 files' and 'every one of the 36 bound method files'",
+   "the_truth": "39. The manifest and the freeze both say 39 and the digest is over 39.",
+   "severity": "MINOR",
+   "status": "CORRECTED HERE. The commit message is immutable and stands wrong."
+  },
+  {
+   "my_claim": "C1 commit message: 'a freeze edited after C2 closes it again'",
+   "the_truth": "FALSE for two fields. content_digest() strips METHODS_HASH and SEED_SET_HASH as self-referential, so editing either inside the freeze leaves FREEZE_CONTENT_HASH unchanged and the gate open. Editing ALPHA does correctly close it.",
+   "severity": "MATERIAL",
+   "status": "CORRECTED HERE, NOT PATCHED."
+  },
+  {
+   "my_claim": "the guard 'reads git, not the working tree'",
+   "the_truth": "two thirds true. It reads git for the token and the freeze, but the working tree for the seed manifest \u2014 and a missing seed manifest silently empties the seed leg of the scale rule. A deleted working-tree freeze also opens the gate, because live_ok stays None and the test is 'is not False', while the returned record still says the freeze differs.",
+   "severity": "MATERIAL",
+   "status": "CORRECTED HERE, NOT PATCHED."
+  },
+  {
+   "my_claim": "omldct02_c3_raw.py 'chooses nothing'",
+   "the_truth": "WRONG. It holds the undefined-log policy \u2014 log(S)-log(H) when both are positive, 0.0 when they are equal, None otherwise \u2014 and the None branch drives OMLDCT02_TECHNICALLY_INVALID. That rule FIRED: index 664 has duration 0 in both arms. It is a decision rule, it sits outside METHODS_HASH, and I said it was glue.",
+   "severity": "MATERIAL",
+   "why_it_is_not_load_bearing": "the file was committed at C3, before any endpoint value existed; the branch it took is the one the frozen PRATT_EXACT_SIGN_FLIP requires, because Pratt keeps a tie as a valid zero-difference pair; and the checker showed that dropping index 664 entirely gives p = 0.3999 and 0.2240 and the SAME terminal.",
+   "status": "CORRECTED HERE."
+  },
+  {
+   "my_claim": "the pre-run disclosure P(reaching 41 pairs) = 0.9999",
+   "the_truth": "computed by plugging the point estimate 22/256 into the simulator with NO propagation of that estimate's own sampling error, from 22 events. At the lower 95% bound of the same estimate the frozen simulator returns 0.64; at the observed rate, 0.076. The under-accrual that ended this campaign sat inside the sizing estimate's own confidence interval before world 1.",
+   "severity": "MATERIAL",
+   "why_it_is_not_load_bearing": "the freeze records these_are_disclosures_not_gates = true; no frozen design quantity moved; and the outcome maps to the terminal the owner's own frozen decision names for this case.",
+   "status": "CORRECTED HERE. This is the checker's strongest criticism and I accept it without qualification. I framed a foreseeable sizing weakness as a yield surprise."
+  }
+ ],
+ "WHAT_THE_CHECKER_CONFIRMED_INDEPENDENTLY": [
+  "regenerated all 1030 seeds from the prose alone, field for field including every nonce",
+  "recomputed all five digests in a fresh clone with its own encoder",
+  "audited 14 hash labels for collisions and found none \u2014 OMLDCT01's one-label-two-quantities defect does not recur",
+  "proved C2 precedes world 1 from git topology, the pre-C2 guard record and mtime forensics, and stated the evidentiary limit that the reflog was destroyed",
+  "re-executed the prefix, fork and intervention for all 33 pairs from the frozen seeds and reproduced every hash",
+  "recomputed the instance count from raw t_m and prefix_steps: 510.569 across 805 seeds, 0 mismatches",
+  "wrote an independent brute-force Pratt enumerator with exact Fraction arithmetic and ran 194 cases plus 120 scipy cross-checks: 0 mismatches",
+  "ran 4000 randomised trials against decide(): 0 rule violations, terminal mapping exact",
+  "recomputed the whole DECISION block byte-for-byte from the measurements",
+  "found zero forbidden vocabulary anywhere",
+  "corroborated the rollback narrative by mtime forensics on all 66 archives"
+ ],
+ "MINOR_FINDINGS_RECORDED_NOT_REPAIRED": [
+  "hl_interval uses the untied signed-rank null, inconsistent with the Pratt ranking used for the p-value. Reported-only; enters no frozen decision.",
+  "omldct02_selftest.py hardcodes an absolute out path and is the only file in METHODS_HASH that is not relocatable.",
+  "omldct02_verify_freeze.main() defaults to write=True, so verifying dirties the artefact it verifies \u2014 which is how my own post-rollback rewrite happened, and the checker reproduced it by accident.",
+  "the archive metadata's rng_hash_after is taken at the horizon, not after the intervention. The substantive claim lives in INTERVENTION_AUDIT.rng_unchanged, which the checker replicated true for all 66 arm instances.",
+  "the destroyed batch-03 machine work is charged zero against the ceiling, consistent with the frozen technical-retry rule but worth stating: actual engine work was about 588 world-equivalents against a 512 accounting.",
+  "the batch-01 and batch-02 run logs were destroyed while untracked; the sealed ledger and the recovery record are their only attestation."
+ ],
+ "TERMINAL_AFTER_ADJUDICATION": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS",
+ "TERMINAL_UNCHANGED_BY_THE_CHECKER": true,
+ "N_VALID_PAIRED_BLOCKS": 33,
+ "DURATION_EXACT_P": 0.40094630466774106,
+ "EXPOSURE_EXACT_P": 0.23110615275800228,
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "ADJUDICATION_CONTENT_HASH": "3e802cc9ebb7b5eff13e71f21d9dc5517a84290625ba61c3cc7f4a1eb78fdb7e"
+}

@@ -1,0 +1,130 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "final adjudication \u2014 the thirteen named items, each exactly once",
+ "GENERATED_UTC": "2026-08-26T19:38:37.283193+00:00",
+ "CHECKER_RETURN_VERBATIM": [
+  "OMLDCT02/review/OMLDCT02_CHECKER_RAW.txt",
+  "OMLDCT02/review/OMLDCT02_CHECKER_RAW.md"
+ ],
+ "CHECKER_RETURN_TXT_SHA256": "1558ecda2a2b5370cca101ccefa2773a6e86c8a444798cea99d43f88e3f0bf48",
+ "CHECKER_RETURN_MD_SHA256": "5de5155ea3c4f42fe7cb338235970d65ed56d19d62582c3688f4d2b272b23a63",
+ "BOTH_CARRY_THE_IDENTICAL_CHECKER_BODY": true,
+ "EXTERNALISED_TO_WINDOWS_AND_READ_BACK_BEFORE_ANY_FINDING_WAS_ADJUDICATED": true,
+ "CHECKERS_DISPATCHED": 1,
+ "NO_SECOND_CHECKER": true,
+ "NO_REVIEW_CASCADE": true,
+ "NO_WORLD_RUN_AFTER_THE_CEILING": true,
+ "NO_SCIENTIFIC_CODE_REPAIRED": true,
+ "NOTHING_FROZEN_WAS_ALTERED": {
+  "MINIMUM_VALID_PAIR_COUNT": 41,
+  "HARD_RESOURCE_CEILING": 512,
+  "endpoints": "unchanged",
+  "Pratt rule": "unchanged",
+  "AND rule": "unchanged",
+  "law": "unchanged",
+  "seed set": "unchanged"
+ },
+ "ITEMS": [
+  {
+   "item": "post-C2 status of omldct02_c3_raw.py",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "MATERIAL",
+   "VERDICT": "MATERIAL, NOT LOAD-BEARING. It is genuinely outside METHODS_HASH and it genuinely contains a decision rule \u2014 the undefined-log policy \u2014 which I wrongly described as glue. The rule fired at index 664, where both arms have duration 0.",
+   "BASIS": "the file was committed at C3 before any endpoint value existed anywhere; the branch it took is the one the frozen PRATT_EXACT_SIGN_FLIP requires, since Pratt keeps a tie as a valid zero-difference pair; and the checker showed that removing index 664 entirely leaves the terminal unchanged. It did not influence the scientific result."
+  },
+  {
+   "item": "rollback and deterministic replay of batch 03",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "NONE",
+   "VERDICT": "CLEAN. The replay is scientifically byte-equivalent.",
+   "BASIS": "the re-run returned admissible pairs at the same indices with the same seeds \u2014 450/s2191075399 and 468/s313532382 \u2014 and the campaign totals landed on 521 seeds, 24 pairs, 334.01137 instances, identical to the pre-rollback figures. The checker independently re-derived the fork from the frozen seed for all 33 pairs and reproduced every hash, and corroborated the narrative by mtime forensics on all 66 archives."
+  },
+  {
+   "item": "exact hard arm-instance accounting",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "NONE",
+   "VERDICT": "CLEAN for the number; one MINOR semantic note recorded.",
+   "BASIS": "the checker recomputed 510.569 from raw t_m and prefix_steps across 805 seeds with 0 mismatches \u2014 5,616,259 engine steps over 11000 \u2014 matching the manifest's 510.56902. The ceiling holds with 1.431 headroom and the runner's +2.0 lookahead makes a breach structurally impossible. MINOR: the machine work destroyed by the rollback and redone is charged zero, consistent with the frozen technical-retry rule but worth stating."
+  },
+  {
+   "item": "C3-before-analysis chronology",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "NONE",
+   "VERDICT": "CLEAN.",
+   "BASIS": "C3 f36bc09 is an ancestor of C4 a3292f5. The checker enumerated every distinct key in the C3-committed sealed ledger \u2014 53 keys, none matching duration, exposure, endpoint, termination or log \u2014 and confirmed the C3 capsule contains neither the frozen analysis nor the pair measurements. omldct02_c3_raw.py is byte-identical at C3, at C4 and in the working tree."
+  },
+  {
+   "item": "seed uniqueness and disjointness",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "NONE",
+   "VERDICT": "CLEAN.",
+   "BASIS": "the checker regenerated all 1030 seeds from the manifest's prose alone, without importing mission code, and matched field for field including every nonce. 1030 distinct; zero overlap with the 480 OMLDCT01 seeds, with the four pilots, or with anything in a 3592-seed whole-repository harvest of its own."
+  },
+  {
+   "item": "fork-state identity",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "NONE",
+   "VERDICT": "CLEAN.",
+   "BASIS": "all 33 pairs record identical physical and RNG state across arms at t_m, with 33 distinct phys hashes and 33 distinct rng hashes so they are not constants. The checker re-executed the prefix, fork and intervention for every admissible seed and reproduced t_m, prefix_steps, both fork hashes and both cell sets exactly."
+  },
+  {
+   "item": "SELECTIVE fidelity",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "NONE",
+   "VERDICT": "CLEAN.",
+   "BASIS": "independently replicated for all 33: parent emptied, daughter untouched, occupancy conserved (Y removed equals WY gained), and no random number consumed. The physical hash changes, as it must."
+  },
+  {
+   "item": "SHAM inertness",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "NONE",
+   "VERDICT": "CLEAN.",
+   "BASIS": "independently replicated for all 33: nothing removed, physical and RNG hashes unchanged, daughter untouched. intervene(arm, ()) is genuinely a no-op. All 33 pairs nonetheless diverge afterwards, so the arms are not accidentally identical."
+  },
+  {
+   "item": "independent locked-daughter reconstruction",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "NONE",
+   "VERDICT": "CLEAN.",
+   "BASIS": "the daughter is identified once, in the shared prefix, before the fork; the identical cell list goes to both classifiers on both arms. Zero disagreements across 132 endpoint computations on duration, exposure, termination type, interval end, min and max nY and the full nY histogram. No later substitution is representable."
+  },
+  {
+   "item": "the Pratt exact implementation",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "NONE",
+   "VERDICT": "CLEAN; one MINOR note on a reported-only interval.",
+   "BASIS": "the checker wrote an independent brute-force enumerator in exact rational arithmetic with its own midrank routine and explicit 2^m sign-flip enumeration: 194 cases including heavy ties and zeros, 0 mismatches on p, W+, n_nonzero and n_zero; plus 120 untied cases against scipy's exact Wilcoxon, 0 mismatches. MINOR: hl_interval uses the untied null, inconsistent with the Pratt ranking. It is reported-only and enters no frozen decision."
+  },
+  {
+   "item": "the AND rule",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "NONE",
+   "VERDICT": "CLEAN.",
+   "BASIS": "decide() is exactly the six-condition intersection-union rule the owner froze. 4000 randomised trials across n in {33,40,41,45} with injected zeros: 0 rule violations, terminal mapping exact in every one. It cannot return SUPPORTED unless all six conditions hold, and it tests the pair count first."
+  },
+  {
+   "item": "the claim ceiling",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "MATERIAL",
+   "VERDICT": "CLEAN in vocabulary; ONE BREACH IN INTERPRETATION, which I retract here.",
+   "BASIS": "zero occurrences of organism, daughter organism, life created, self-replication demonstrated, autonomous cohesion or alive anywhere. But the C4 message and the final report interpreted the paired p-values on an under-accrued sample, which the owner has now forbidden. Retracted in OMLDCT02_UNDER_ACCRUAL_INTERPRETATION_RULE.json and struck from the final report."
+  },
+  {
+   "item": "Windows final durability",
+   "ADJUDICATED_ONCE": true,
+   "SEVERITY": "NONE",
+   "VERDICT": "PASS.",
+   "BASIS": "the full chain restores from Windows bytes alone to the final tip with fsck 0, FREEZE_VERIFICATION = PASS on all five digests in the restored clone, the four terminal strings present and no fifth, and the checker's verbatim return hash matching the adjudication. All 66 raw archives verify by sha256 and size in five device-verified batches."
+  }
+ ],
+ "LOAD_BEARING_DEFECT_COUNT": 0,
+ "DECISION_MAPPING_APPLIED": "no load-bearing defect and valid paired blocks < 41 -> INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS",
+ "VALID_PAIRED_BLOCK_COUNT": 33,
+ "MINIMUM_VALID_PAIR_COUNT": 41,
+ "FINAL_DISPOSITION": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS",
+ "UNDER_ACCRUAL_STATUS": "UNDER_ACCRUED__STATISTICS_DESCRIPTIVE_ONLY",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "ADJUDICATION_CONTENT_HASH": "8722f2c2e9e40b23f1826de8824ba4c60baa05eb2e02369fd2ce5706c07529a5"
+}

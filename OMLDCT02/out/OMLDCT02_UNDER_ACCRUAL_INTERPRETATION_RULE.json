@@ -1,0 +1,30 @@
+{
+ "MISSION": "OMLDCT02",
+ "SECTION": "under-accrual interpretation rule \u2014 owner instruction, and a retraction of mine",
+ "GENERATED_UTC": "2026-08-26T19:38:37.283193+00:00",
+ "THE_OWNER_INSTRUCTION": "Do not interpret fewer than 41 pairs using the paired p-values, even if they were computed descriptively.",
+ "WHY_IT_BINDS_HERE": "33 valid paired blocks were retained against a frozen minimum of 41. The campaign is under-accrued, so the paired statistics carry no inferential weight of any kind.",
+ "STATUS_OF_THE_TWO_P_VALUES": "DESCRIPTIVE_ONLY__NO_INFERENTIAL_WEIGHT",
+ "WHAT_THEY_MAY_BE_USED_FOR": "nothing beyond recording that the frozen analysis ran to completion on the retained pairs and produced finite values. They may not be used to argue for an effect, against an effect, for equivalence, for the adequacy of the design, or for what a larger sample would have shown.",
+ "I_RETRACT_THE_FOLLOWING_STATEMENTS_OF_MINE": [
+  {
+   "where": "C4 commit message and OMLDCT02_FINAL_REPORT.md",
+   "retracted": "\"the shortfall is not what withheld support: neither exact p-value comes near 0.05. Reaching 41 pairs would not have changed the disposition on this data.\"",
+   "why": "that is an inference from the paired p-values on an under-accrued sample, and it is a counterfactual about a sample size never reached. The owner has now ruled it out and the ruling is right \u2014 it was the one place in the record where I let 33 pairs speak as if they were 41."
+  },
+  {
+   "where": "C4 commit message and OMLDCT02_FINAL_REPORT.md",
+   "retracted": "\"at p = 0.40 and p = 0.23 that is not distinguishable from noise\"",
+   "why": "same defect in the opposite direction. Arguing that the positive medians mean nothing BECAUSE the p-values are large is still interpreting the p-values. The medians mean nothing because the campaign under-accrued, which needs no p-value to say."
+  },
+  {
+   "where": "OMLDCT02_CHECKER_ADJUDICATION.json, my note on the checker's MINOR wording finding",
+   "retracted": "the parenthetical \"had the threshold been met by these 33, the terminal would be NOT_DETECTED, still not SUPPORTED\"",
+   "why": "another counterfactual on a sample size never reached."
+  }
+ ],
+ "WHAT_STANDS_UNCHANGED": "the frozen analysis artefact itself. The p-values were computed by bound code under the frozen rule and are recorded as computed. Deleting them would be worse than labelling them: it would hide what the pipeline did. They are labelled.",
+ "THE_CORRECT_STATEMENT": "33 valid paired blocks were retained against a frozen minimum of 41. The campaign under-accrued. Nothing about the effect of parent removal on the locked daughter is established, and nothing about its absence is established either.",
+ "NO_EQUIVALENCE_MARGIN_EXISTS": true,
+ "RULE_CONTENT_HASH": "504505d4ef2c9229275a3a3117eda1616a8f6baaadd45a4def5557162ae48445"
+}
