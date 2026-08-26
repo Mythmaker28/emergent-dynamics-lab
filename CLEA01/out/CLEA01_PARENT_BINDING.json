@@ -1,0 +1,132 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "1 \u2014 parent binding",
+ "GENERATED_UTC": "2026-08-26T19:52:25.229098+00:00",
+ "PARENT_PROGRAM": "OMLDCT02 \u2014 ONE-MATCHED-LOCKED-DAUGHTER-CONTROL-TEST-02",
+ "PARENT_FINAL_TIP": "84000ff3a67fd4e550934313019decda05219da0",
+ "TIP_RESOLVED_FROM": "git bundle list-heads on the verified Windows OMLDCT02_FINAL_FULL.bundle, whose sha256 re-checked clean on the device before the read",
+ "PARENT_FINAL_DISPOSITION": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS",
+ "OMLDCT02_PAIRED_STATISTICS": "DESCRIPTIVE_ONLY__NO_INFERENTIAL_WEIGHT",
+ "CLEA01_MAY_NOT_PROMOTE_REJECT_OR_REINTERPRET_THE_OMLDCT02_PAIRED_HYPOTHESIS": true,
+ "INDEPENDENT_REVERIFICATION": {
+  "method": "recomputed from the sealed ledger and the archives on disk, not from OMLDCT02's own summary fields",
+  "base_seeds_attempted": {
+   "required": 805,
+   "observed": 805,
+   "AGREES": true
+  },
+  "valid_matched_pairs": {
+   "required": 33,
+   "observed": 33,
+   "AGREES": true
+  },
+  "minimum_required": 41,
+  "hard_arm_instance_count": {
+   "required": 510.56902,
+   "recorded_sum_of_rounded_per_seed_costs": 510.56902000000395,
+   "AGREES": true,
+   "EXACT_RATIONAL_SUM_FROM_RAW_FIELDS": "510569/1000",
+   "exact_as_float": 510.569,
+   "A_SMALL_THING_WORTH_STATING": "the ledger stores each per-seed cost as round(x, 5). The sum of 805 rounded values is 510.56902; the exact rational sum recomputed from t_m and prefix_steps is exactly 510569/1000 = 510.569. They differ by 2.0e-05, a rounding artefact and not a discrepancy. Both are under the ceiling and both round to 510.569 at the precision the record quotes."
+  },
+  "hard_ceiling": 512,
+  "ceiling_respected": true,
+  "technical_failures": {
+   "required": 0,
+   "observed": 0,
+   "AGREES": true
+  },
+  "load_bearing_defects": {
+   "required": 0,
+   "observed": 0,
+   "AGREES": true
+  },
+  "index_order_contiguous_from_zero": true,
+  "archives_rehashed_against_the_sealed_ledger": {
+   "n": 66,
+   "matching": 66,
+   "ALL_MATCH": true
+  }
+ },
+ "BOUND_OBJECTS": {
+  "TLMR01": {
+   "developmental_law_C_worlds": 256,
+   "role": "the sizing basis and the 22+4 developmental removal worlds the E3 qualification used"
+  },
+  "FIMRCC01": {
+   "role": "closed at its precondition gate; supplies the selected law binding"
+  },
+  "LDFMA01": {
+   "tip": "2101b301a2444a4a825a6cd338a8db7334c53c9f",
+   "handoff_sha256": "e3ec4b929069a794b648feffc9b7b5d9315a7b96a74711fcd99746f931523029",
+   "role": "the scientific parent; classifier A lives in LDFMA01/code/ldfma01_raw.py"
+  },
+  "OMLDCT01": {
+   "tip": "d8b5007744ce14ea056d8cdab8e4fd520086ba53",
+   "disposition": "OMLDCT01_TECHNICALLY_INVALID",
+   "final_disposition_sha256": "a71feab6617bf8435b232a142ec1fa09b40c7defc81caa2cdeb556e25847613b"
+  },
+  "OMLDCT02_C1_TO_C5": {
+   "C1": "8953d97",
+   "C2": "5dded59",
+   "C3": "f36bc09",
+   "C4": "a3292f5",
+   "C5": "84000ff",
+   "intentional_commits": 5
+  },
+  "OMLDCT02_PAIRED_ARCHIVES": {
+   "n": 66,
+   "all_present_and_hash_matched": true,
+   "durable_on_windows": "five verified batch packages, 16+16+16+16+2"
+  },
+  "SEALED_LEDGER": {
+   "sha256": "c79919456ad1a42efe4bafb96f923fa73dc669debb5f55f8fe39b5c717772c5e",
+   "rows": 805
+  },
+  "RAW_CHECKER_RETURN": {
+   "txt_sha256": "1558ecda2a2b5370cca101ccefa2773a6e86c8a444798cea99d43f88e3f0bf48",
+   "md_sha256": "5de5155ea3c4f42fe7cb338235970d65ed56d19d62582c3688f4d2b272b23a63"
+  },
+  "CHECKER_ADJUDICATION": {
+   "sha256": "5651364ec2eb55ebcd8798425c9e2a62e455d495b083ccc4352db009215b6e78",
+   "items": 13,
+   "load_bearing": 0
+  },
+  "FINAL_DISPOSITION": {
+   "sha256": "f70a69ada98f48a1af8201f1ae8a0b24f44e7844788e522ad381e957c978c28d",
+   "value": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS"
+  }
+ },
+ "FROZEN_PHYSICS_INHERITED_UNCHANGED": {
+  "law": "LAW_C_MCTT01",
+  "bits": {
+   "kY": "0x3f50763f01e8e5b2",
+   "muY": "0x3f484713dc1c8ab5",
+   "p_hop_Y": "0x3fba462ec93926a0"
+  },
+  "L": 36,
+  "CORE_R": 5.0,
+  "NEED": 250,
+  "T_HORIZON": 11000,
+  "LATEST_ALLOWED_TRIGGER": 6500
+ },
+ "WHAT_I_HAVE_ALREADY_SEEN_AND_MUST_DECLARE": {
+  "aggregate_OMLDCT02_summaries": "known \u2014 the launcher acknowledges this and calls the CLEA01 validation developmental rather than confirmatory for exactly that reason",
+  "per_pair_rows_seen_before_this_binding": [
+   664
+  ],
+  "what_was_seen_of_row_664": "SELECTIVE_duration 0, SHAM_duration 0, SELECTIVE_exposure 1, SHAM_exposure 1, both terminations MERGE \u2014 read while verifying the OMLDCT02 checker's finding that the undefined-log branch had fired",
+  "the_other_32_per_pair_rows": "NOT_OPENED at the time of this binding",
+  "why_this_is_declared": "section 2 requires the identity models to be frozen before pair outcomes are read, and section 6 requires the split to precede reading per-pair outcome fields. One row was already known. Hiding that would make both freezes look cleaner than they are."
+ },
+ "NEW_SCIENTIFIC_ENGINE_RUNS": 0,
+ "NEW_WORLD_CONSTRUCTIONS": 0,
+ "NEW_SEEDS": 0,
+ "NEW_TRAJECTORIES": 0,
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+ "PARENT_BINDING_CONTENT_HASH": "3278e0514b5c745b4d538b01723d0f81cf6fb4c4ca877d13212e6c367399d678"
+}

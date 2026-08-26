@@ -1,0 +1,81 @@
+{
+ "MISSION": "CLEA01",
+ "SECTION": "2 \u2014 the three identity models, frozen before any pair outcome is read",
+ "GENERATED_UTC": "2026-08-26T19:54:34.344388+00:00",
+ "MAX_IDENTITY_MODELS": 3,
+ "MODELS_DEFINED": 3,
+ "MAX_SELECTED_IDENTITY_MODELS": 1,
+ "FROZEN_PHYSICS_THESE_RULES_REST_ON": {
+  "within_step_order": [
+   "diffuse X",
+   "diffuse Y",
+   "diffuse SX",
+   "diffuse SY",
+   "react",
+   "decay",
+   "feed and outflow"
+  ],
+  "source": "ORR01/code/kinetics.py::_one_step, unchanged in OBTC02/code/engine_obtc.py",
+  "Y_transport": "_diffuse applies NEI = ((1,0),(-1,0),(1,1),(-1,1)) SEQUENTIALLY within one step, each pass moving a binomial subset of the CURRENT occupancy with probability p_hop_Y/4. A particle can therefore be moved by the +y pass and by the +x pass in the same step, but each pass can move it at most once. The net displacement is a sum of a subset of {(+1,0),(-1,0),(0,+1),(0,-1)}, and the +y and -y passes cancel, so the reachable displacement set is exactly {-1,0,1} x {-1,0,1}: the toroidal Moore neighbourhood including self.",
+  "WHY_THIS_MATTERS": "a rule built on the von Neumann 4-neighbourhood would under-count the admissible sources of a cell's mass and would therefore OVER-claim certainty. The Moore neighbourhood is the conservative and exact kernel.",
+  "Y_birth_is_cell_local": "_react_core computes pair = nX * nY elementwise and draws births ~ Binomial(min(nSY, free), min(1, kY * nX * nY)) at the SAME cell. A Y birth at cell c requires nY(c) > 0 at react time, which is after the hop. The new Y has an exact single-cell ancestor set, not a neighbourhood.",
+  "X_birth_is_cell_local": "the same loop produces X from SX with p = min(1, kX * nX * nY), so an accepted local X birth at cell c also requires nY(c) > 0 at react time. Local X production is exactly downstream of the Y occupying that cell.",
+  "decay": "a Y removal converts Y to WY at its own cell. Occupancy is conserved.",
+  "archive_semantics": "a cell row for step t is written AFTER the whole step. So the Y mass on row t+1 arrived from cells within Moore-1 on row t, whether it hopped there or was born there from Y that hopped there."
+ },
+ "MODEL_A": {
+  "name": "LOCKED_SPATIAL_DAUGHTER",
+  "object": "the original daughter component at the admissible fork",
+  "continuation": "only under the frozen mutual-unique spatial identity rule at CORE_R: a link survives when the previous centre has exactly one candidate within CORE_R and that candidate has exactly one candidate back",
+  "terminates_on": [
+   "split",
+   "merge",
+   "tie or ambiguity",
+   "out of range",
+   "empty component",
+   "administrative horizon"
+  ],
+  "no_later_component_may_replace_it": true,
+  "implementation": "already frozen and qualified in OMLDCT02: classifiers A and B agreed on all 33 pairs, both arms, on duration, exposure, termination type, interval end, min and max nY and the full nY histogram. CLEA01 re-uses those values and computes nothing new for Model A."
+ },
+ "MODEL_B": {
+  "name": "AMBIENT_POPULATION",
+  "object": "all Y-organising components in the world after the intervention",
+  "role": "NEGATIVE SPECIFICITY CONTROL. It reproduces the broad object that produced the earlier saturated ambient endpoint. It is NOT an acceptable reproduction object and CLEA01 may not select it.",
+  "continuation": "none required \u2014 the object is the whole post-intervention Y population, so it persists for as long as any Y exists",
+  "why_it_is_here": "a candidate object that cannot be distinguished from B has explained nothing. B is the thing Model C must be shown NOT to be."
+ },
+ "MODEL_C": {
+  "name": "DISTRIBUTED_CAUSAL_LINEAGE",
+  "object": "a time-directed causal subgraph rooted in the originally locked daughter at the fork",
+  "ROOT": "the locked daughter cell set at t_m, taken verbatim from the fork ledger field FORK.locked_daughter_cells. It is a frozen input, identical in both arms by construction, and it is the ONLY seeding information Model C receives.",
+  "STATE": "for every step t >= t_m, two sets of Y-occupied cells: CERTAIN(t) and POSSIBLE(t), with CERTAIN(t) a subset of POSSIBLE(t). The bracket IS the set-valued causal relation the launcher requires; no weight, no threshold and no tuned parameter enters anywhere.",
+  "INITIALISATION": "CERTAIN(t_m) = POSSIBLE(t_m) = the locked daughter cells at t_m.",
+  "ADMISSIBLE_SOURCE_SET": "S(d, t+1) = { c : c is Y-occupied on row t and c lies within toroidal Chebyshev distance 1 of d }. This is the exact reachable-displacement kernel derived above.",
+  "CERTAIN_RULE": "d is in CERTAIN(t+1) iff d is Y-occupied on row t+1, S(d, t+1) is non-empty, and every member of S(d, t+1) is in CERTAIN(t). In words: every route by which mass could have reached d came from the lineage.",
+  "POSSIBLE_RULE": "d is in POSSIBLE(t+1) iff d is Y-occupied on row t+1 and at least one member of S(d, t+1) is in POSSIBLE(t).",
+  "SPLIT": "no special rule. The bracket propagates and may cover several spatially disconnected components at once. A split does not terminate Model C \u2014 that is the whole point of the model.",
+  "MERGE": "a cell fed by both lineage and non-lineage sources is POSSIBLE but NOT CERTAIN. That is provenance from every contributing branch, expressed as a bracket rather than as an invented genealogy.",
+  "Y_BIRTH_ATTRIBUTION": "an accepted Y birth recorded at (t+1, d) is CERTAIN-lineage iff S(d, t+1) is a non-empty subset of CERTAIN(t), and POSSIBLE-lineage iff S(d, t+1) meets POSSIBLE(t). It is judged on the pre-state, never on whether the newborn survived.",
+  "Y_REMOVAL_ATTRIBUTION": "identically, on the same pre-state rule. A removal that empties a cell removes it from both sets at the next row, which is what the physics does.",
+  "X_BIRTH_ATTRIBUTION": "an accepted local X birth recorded at (t+1, d) is CERTAIN-downstream iff S(d, t+1) is a non-empty subset of CERTAIN(t), POSSIBLE-downstream iff S(d, t+1) meets POSSIBLE(t). Judged on the pre-state so that it does not depend on post-decay occupancy.",
+  "TERMINATION": "CERTAIN terminates at the first row where CERTAIN is empty; POSSIBLE at the first row where POSSIBLE is empty. Neither can revive: a cell can only enter a set through a source already in it.",
+  "THE_REPORTED_OBJECT": "CERTAIN. POSSIBLE is the uncertainty envelope and is reported on every quantity, always, and is never used to make a claim.",
+  "WHY_THIS_REJECTS_AMBIENT_SUCCESSION": "an ambient component that merely comes to occupy a nearby cell has at least one non-lineage admissible source, so it can never be CERTAIN. Occupying a neighbouring cell, or performing the same function, buys nothing.",
+  "WHAT_MODEL_C_MAY_NOT_USE": [
+   "online component IDs (c_cid)",
+   "online identity IDs (k_id)",
+   "the online selected-daughter ID after the fork",
+   "the online turnover verdict",
+   "the online primary verdict",
+   "the online terminal label",
+   "the SELECTIVE/SHAM paired effect",
+   "any future survival or exposure outcome"
+  ],
+  "NO_INVENTED_GENEALOGY": "no molecular parent-child relation is asserted anywhere. Where ancestry is not determined by the physics, the bracket widens; it is never resolved by preference."
+ },
+ "MACHINE_CHECKABLE_INVARIANT": "for every occupied cell d on row t+1 with t+1 > t_m, S(d, t+1) must be non-empty \u2014 Y mass cannot appear where no Moore-1 neighbour held Y on the previous row. Any violation is an archive or kernel error, not a lineage finding, and is reported as such.",
+ "FROZEN_BEFORE": "any per-pair outcome field beyond the single row already declared in the parent binding, and before the development/validation split is drawn",
+ "NEW_SCIENTIFIC_ENGINE_RUNS": 0,
+ "IDENTITY_MODELS_CONTENT_HASH": "f21c68e5f9bcf18d7a39b6b5b889006870622c19d382eb92c9a33987475119c9"
+}
