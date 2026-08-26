@@ -1,0 +1,326 @@
+{
+ "MISSION": "EVCS01",
+ "SECTION": "6 \u2014 checker adjudication",
+ "GENERATED_UTC": "2026-08-26T23:50:29.992679+00:00",
+ "MAX_INDEPENDENT_CHECKERS": 1,
+ "CHECKERS_DISPATCHED": 1,
+ "REVIEW_CASCADE": "none",
+ "CHECKER_RETURN": "EVCS01/review/EVCS01_CHECKER_RAW.txt",
+ "CHECKER_RETURN_SHA256": "47f1ca04e581466f62503493f108fcee452176b3810aa3abc50d1877c308bc98",
+ "WRITTEN_AND_HASHED_BEFORE_ANY_FINDING_WAS_ACTED_ON": true,
+ "LOAD_BEARING_DEFECT_COUNT": 0,
+ "I_ACCEPT_THE_CHECKER_IN_FULL": true,
+ "N_FINDINGS": 28,
+ "N_MATERIAL": 9,
+ "N_MINOR": 6,
+ "ITEMS": [
+  {
+   "id": 1,
+   "finding": "guard (a), method committed before measurement, HOLDS",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "verified from git by the checker: both measurement files byte-identical at C1 and C2, launcher blob 2af82a18 unchanged, no amend, no earlier EVCS01 object, five dangling blobs all read and none EVCS01's. Nothing to correct."
+  },
+  {
+   "id": 2,
+   "finding": "the REPORTING code was not pre-committed",
+   "checker_severity": "MINOR",
+   "verdict": "ACCEPTED",
+   "action": "true. evcs01_raw_artefact.py arrived at C2, after the numbers, and it decides what a reader sees. Guard 1 said 'the measurement code' and is weaker than it reads. Nothing was smuggled \u2014 the AFFECTED_ARMS filter is a plain non-zero test \u2014 but the guard should have covered reporting too. Recorded; a future self-issued launcher must say so."
+  },
+  {
+   "id": 3,
+   "finding": "guard (b), inconvenient result named in advance and reported honestly, HOLDS",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "nothing to correct."
+  },
+  {
+   "id": 4,
+   "finding": "guard (c) holds in the instrument and FAILS in the commit prose",
+   "checker_severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "action": "the C2 subject line and body render exactly the magnitude verdict launcher section 4 pre-committed not to render. Retracted below. The commit is immutable and stands wrong."
+  },
+  {
+   "id": 5,
+   "finding": "Gate 0 is TRUE, independently re-verified on all 66 arms",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "the checker rebuilt Model A with union-find, integer centroids, forward-only identity and coordinate sets, and reproduced all four quantities in 66 of 66. Stronger evidence than the gate itself provided."
+  },
+  {
+   "id": 6,
+   "finding": "Gate 0 is framed as more discriminating than it is",
+   "checker_severity": "MINOR",
+   "verdict": "ACCEPTED",
+   "action": "three points all correct: the row count is arithmetically implied by the duration, the max(a_end, interval_end) guard never bites, and the gate largely compares LDFMA01's classifier against itself. The launcher's 'no partial credit and no tolerance' rhetoric implied an independence the test does not have. The genuinely independent verification is the checker's."
+  },
+  {
+   "id": 7,
+   "finding": "the three-class partition is exhaustive and disjoint on real data",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "C + P + N equals the parent's E3_EXPOSURE in 66 of 66, and the checker asserted CERTAIN subset POSSIBLE at every classified row of every arm rather than arguing it."
+  },
+  {
+   "id": 8,
+   "finding": "the classes are model-relative and the artefacts do not say what they rest on",
+   "checker_severity": "MINOR",
+   "verdict": "ACCEPTED",
+   "action": "NO_CAUSAL_PATH is only meaningful if the one-step support really is Moore-1. The checker re-verified that on the exact data walked here: 0 violations over 611,581 row pairs. But no EVCS01 artefact said the class depends on CLEA01_CAUSAL_KERNEL_ADJUDICATION. Stated below. Also accepted: row t_m is 100 per cent CERTAIN by construction in every arm."
+  },
+  {
+   "id": 9,
+   "finding": "no threshold in the code or artefacts; one in the prose",
+   "checker_severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "action": "same defect as finding 4. The sizing self-tests' magnitude bands are authorised by launcher section 5, are on sampling-yield quantities, and were frozen at C1 \u2014 not a back door. The EXAMPLE_ROWS asymmetry is real and is why finding 21(b) went unnoticed."
+  },
+  {
+   "id": 10,
+   "finding": "nothing monkey-patched, no parent file touched",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "nothing to correct."
+  },
+  {
+   "id": 11,
+   "finding": "the CERTAIN/POSSIBLE recurrence IS re-specified, contrary to the explicit claim",
+   "checker_severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "action": "true and not arguable. evcs01_measure.py retypes the two lines instead of calling I2.run, while its docstring and the hashed artefact both say 'imported unchanged, not re-specified'. The checker verified the retyping is faithful on all four points that could drift and proved equivalence empirically on 66 of 66 arms \u2014 a wrong claim attached to right numbers. The claim is corrected below; the code is NOT touched, because it is a frozen measurement."
+  },
+  {
+   "id": 12,
+   "finding": "the SELECTIVE degeneracy disclosure was genuinely made in advance",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "the checker tested the mechanism rather than accepting it: 33 of 33 SELECTIVE arms are exactly one component at t_m+1, and 23 of them later split into 2-4 while staying CERTAIN, which is what the degeneracy predicts."
+  },
+  {
+   "id": 13,
+   "finding": "the degenerate number is still used to imply the endpoint is clean, in the headline",
+   "checker_severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "action": "the C2 subject line's 'clean in 64 arms' counts all 33 SELECTIVE arms \u2014 the very arms I declared uninformative two paragraphs later. The disclosure was made in the body and undone in the headline. A subject line is what travels. Retracted below."
+  },
+  {
+   "id": 14,
+   "finding": "the sizing arithmetic holds, independently re-derived",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "the checker's vectorised negative-binomial reproduces the per-draw bootstrap within Monte Carlo error, and confirmed the instrument is deterministic across re-runs."
+  },
+  {
+   "id": 15,
+   "finding": "the C2 commit message's three sizing numbers contradict the artefact in the same commit",
+   "checker_severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "action": "true, and worse than a typo: 784.8 / 628.8 / 0.078 came from an uncommitted 3000-replicate development run I did before the artefact existed, and I then quoted it in the permanent record. The authoritative values are the artefact's. Corrected below; the commit is immutable and stands wrong."
+  },
+  {
+   "id": 16,
+   "finding": "the ten self-tests are five real tests, two duplicates, two near-unfailable, one tautology",
+   "checker_severity": "MINOR",
+   "verdict": "ACCEPTED",
+   "action": "the judgement is right, including that test 10 reads a hard-coded literal 110 lines above. The originals are kept so the C1 freeze is not rewritten, they are marked weak in the code, and four data-dependent tests that can actually fail are added at C3."
+  },
+  {
+   "id": 17,
+   "finding": "the 95 per cent ceiling is not a 95 per cent ceiling",
+   "checker_severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "action": "the most substantive finding against this mission. REQUIRED_CEILING conditioned on the admissible rate being exactly 33/805. Propagating the rate's own posterior, a campaign freezing 785 attains about 85 per cent. I reproduced the checker's numbers independently: 0.8537 against its 0.8552 at ceiling 785, and 0.1575 against its 0.1611 at ceiling 512. This is, in milder form, the exact error the instrument exists to prevent. FIXED, not merely disclosed: the instrument now returns both ceilings and names the rate-uncertain one as the one to freeze."
+  },
+  {
+   "id": 18,
+   "finding": "the COMMON_CAUSE diagnosis is contradicted by both campaigns' own committed records",
+   "checker_severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "action": "the mission's central prescriptive claim and it was wrong. FIMRCC01 ran ZERO worlds \u2014 FRESH_WORLD_COUNT 0, SELECTIVE_ARM_EXECUTED false \u2014 and its 0.0165 is the number that STOPPED it at the precondition gate; its power criterion worked. And OMLDCT02_DESIGN_RECOMPUTED.json, written before world 1, contains RECOMPUTED_WITH_THE_INSTANCE_CEILING_ALONE with P_reaching_target 0.9999 \u2014 OMLDCT02 DID check its target against its ceiling. 'Frozen independently and never checked against each other' is false of both. The real common cause is the one this mission measured: the sizing rate was wrong. Also accepted: calling accrual probability 'power' put one label over two quantities, which is the failure omldct02_hashes.py exists to prevent. Corrected below, and the same correction is owed to the owner, who was told the wrong diagnosis in conversation before this mission existed."
+  },
+  {
+   "id": 19,
+   "finding": "the non-exchangeability evidence is overstated by four orders of magnitude",
+   "checker_severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "action": "the 4.16e-07 binomial tail treats a 256-sample estimate as a known parameter. I recomputed the proper two-sample comparison myself: Fisher exact p = 0.008710, chi-square with continuity correction 0.007734 \u2014 the published tail overstated by a factor of about 2.1e4. The conclusion 'do not size from that set' survives; the strength does not. Corrected in the instrument."
+  },
+  {
+   "id": 20,
+   "finding": "the checker would select the referral terminal, conditional on five corrections",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "all five corrections are made at C3 and are listed in CORRECTIONS_MADE."
+  },
+  {
+   "id": 21,
+   "finding": "CLEA01's arm count was already exact, and EVCS01's own data refutes CLEA01's stronger sentence without saying so",
+   "checker_severity": "MATERIAL",
+   "verdict": "ACCEPTED",
+   "action": "(a) the novelty was overstated. CLEA01's G4 ran over all 66 arms; the three-row truncation limited the listing, never the determination, and CLEA01_FINAL_REPORT.md already said 'passes 64 of 66'. The arm fraction is a corollary of the parent's committed result, not a new measurement. What is genuinely new is the mass and row extent. (b) the correction I held and did not report: CLEA01 states every cell A carries and C does not was 'never CERTAIN and never POSSIBLE at any row'. My own data refutes that for 402 SHAM \u2014 525 of its 1221 non-CERTAIN units, 43 per cent, across 81 of 238 rows, DO have a causal path. CLEA01's sentence held only on the three rows it republished. Published below as a correction to a closed parent mission."
+  },
+  {
+   "id": 22,
+   "finding": "every artefact has a committed generating script",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "the OMLDCT01 and CLEA01 failure mode is not repeated here."
+  },
+  {
+   "id": 23,
+   "finding": "two provenance gaps in the hashed sizing artefact",
+   "checker_severity": "MINOR",
+   "verdict": "ACCEPTED",
+   "action": "the frozen output recorded 'caller-supplied' instead of naming its own ledger, and a scipy-conditional mutation made SIZING_CONTENT_HASH environment-dependent. Both fixed at C3."
+  },
+  {
+   "id": 24,
+   "finding": "all three content hashes reproduce under the parent's canonical rule",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "the checker re-implemented content_digest from CANONICAL_RULES rather than importing it."
+  },
+  {
+   "id": 25,
+   "finding": "nothing needs the paired p-values and OMLDCT02 is not reinterpreted",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "nothing to correct."
+  },
+  {
+   "id": 26,
+   "finding": "the composition artefact carries none of the claim-ceiling lines",
+   "checker_severity": "MINOR",
+   "verdict": "ACCEPTED",
+   "action": "it shows SELECTIVE and SHAM exposure side by side at n = 33 with no ceiling attached. A reader who opens that file alone gets the arm contrast bare. Fixed at C3."
+  },
+  {
+   "id": 27,
+   "finding": "no forbidden claim, including in denial",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "nothing to correct."
+  },
+  {
+   "id": 28,
+   "finding": "launcher section 7 says 'no fifth string' over a list of three",
+   "checker_severity": "NONE",
+   "verdict": "ACCEPTED",
+   "action": "a leftover from the four-string template of the parent launchers. Harmless, and the checker is right that it is a tell about how a self-issued launcher gets assembled."
+  }
+ ],
+ "EACH_ADJUDICATED_EXACTLY_ONCE": true,
+ "CORRECTIONS_MADE": [
+  {
+   "id": "C3-1",
+   "from_finding": [
+    4,
+    13
+   ],
+   "RETRACTED": "the C2 commit subject line 'the endpoint is clean in 64 arms and materially foreign in one', and the body sentence '4.4 per cent across 33 SHAM arms is not that'.",
+   "WHY": "both render a magnitude verdict launcher section 4 pre-committed not to render, and the 64 folds in 33 arms I had myself declared uninformative.",
+   "REPLACED_BY": "31 of 33 SHAM arms carry no non-CERTAIN mass. 2 of 33 do. The 33 SELECTIVE arms are uninformative by construction and are evidence of nothing. The SHAM distribution is published; what counts as substantial is the reader's to decide.",
+   "THE_COMMIT_IS_IMMUTABLE_AND_STANDS_WRONG": true
+  },
+  {
+   "id": "C3-2",
+   "from_finding": [
+    15
+   ],
+   "RETRACTED": "the C2 commit message's sizing triple 784.8 / 628.8 / 0.078.",
+   "WHY": "it came from an uncommitted 3000-replicate development run, not from the artefact committed in the same commit.",
+   "REPLACED_BY": "the artefact's values at the committed default of 20000 replicates: 95 per cent ceiling 785.146 conditional on a known rate, median 629.013, P(41 | 512) 0.07495. And, after the C3 correction, the ceiling a successor should actually freeze is the rate-uncertain one.",
+   "THE_COMMIT_IS_IMMUTABLE_AND_STANDS_WRONG": true
+  },
+  {
+   "id": "C3-3",
+   "from_finding": [
+    11
+   ],
+   "RETRACTED": "'the operator is imported unchanged from clea01_lineage_i2 and not re-specified here', in the evcs01_measure.py docstring and in OPERATOR_IMPORTED_UNCHANGED_FROM.",
+   "WHY": "the two recurrence lines are retyped, not called.",
+   "REPLACED_BY": "the dilation primitive and the Model A reconstruction are imported and called unchanged; the two-line CERTAIN/POSSIBLE recurrence is RE-TYPED from CLEA01's and was verified faithful by the checker line by line and empirically on 66 of 66 arms. The measurement code itself is not touched at C3.",
+   "THE_COMMIT_IS_IMMUTABLE_AND_STANDS_WRONG": true
+  },
+  {
+   "id": "C3-4",
+   "from_finding": [
+    17
+   ],
+   "RETRACTED": "REQUIRED_CEILING as a 95 per cent ceiling.",
+   "WHY": "it conditioned on the admissible rate being exactly 33/805 and ignored that rate's own sampling uncertainty \u2014 in milder form the exact error the instrument exists to prevent.",
+   "REPLACED_BY": "the instrument now returns both. Freezing the old value attains about 85 per cent, not 95, which I reproduced independently at 0.8537.",
+   "FIXED_IN_CODE_NOT_ONLY_DISCLOSED": true
+  },
+  {
+   "id": "C3-5",
+   "from_finding": [
+    18
+   ],
+   "RETRACTED": "'in both, a pair target and a cost ceiling were frozen independently and never checked against each other', wherever it appears \u2014 the sizing docstring, launcher section 1, both commit messages, the artefact's COMMON_CAUSE field, and what I told the owner in conversation before this mission existed.",
+   "WHY": "contradicted by both campaigns' own committed records. FIMRCC01 ran zero worlds and its 0.0165 stopped it at the gate; OMLDCT02's pre-run design file records P_reaching_target 0.9999 against the 512 ceiling. Both checked. A successor taking the stated lesson would do exactly what OMLDCT02 already did and fail the same way.",
+   "REPLACED_BY": "the check was performed in both campaigns. What failed is the RATE the check was performed at: OMLDCT02 checked its target against its ceiling at 22/256 and got 0.9999; at the realised 33/805 the same check gives 0.075. The lesson is not 'check the target against the ceiling' \u2014 they did \u2014 it is 'the yield estimate is the fragile input, and a check conditioned on a point estimate inherits its bias'. That is also why C3-4 matters.",
+   "THIS_CORRECTION_IS_ALSO_OWED_TO_THE_OWNER_IN_CONVERSATION": true
+  },
+  {
+   "id": "C3-6",
+   "from_finding": [
+    19
+   ],
+   "RETRACTED": "the binomial tail 4.16e-07 as the evidence for non-exchangeability.",
+   "WHY": "it treats a 256-sample estimate as a known parameter.",
+   "REPLACED_BY": "Fisher exact p = 0.008710 on [[22, 234], [33, 772]], chi-square with continuity correction 0.007734, Wilson intervals 0.0574-0.1267 against 0.0293-0.0570. The conclusion survives; the strength was overstated by about 2.1e4."
+  },
+  {
+   "id": "C3-7",
+   "from_finding": [
+    21
+   ],
+   "RETRACTED": "'CLEA01's floor of at least 2 arms is now a measurement: exactly 2 of 66', and the launcher's claim that the arm fraction 'was never measured'.",
+   "WHY": "CLEA01's G4 covered all 66 arms and its final report already stated 64 of 66.",
+   "REPLACED_BY": "the arm count was already exact in the parent. What EVCS01 adds is the mass and row extent: 735 NO_CAUSAL_PATH and 525 POSSIBLE_ONLY units over 182 rows, 13 rows of zero CERTAIN mass, first foreign row 1153 against t_m 1106."
+  },
+  {
+   "id": "C3-8",
+   "from_finding": [
+    21
+   ],
+   "A_CORRECTION_TO_A_CLOSED_PARENT_MISSION": true,
+   "TARGET": "CLEA01_FINAL_REPORT.md and CLEA01_KNOWN_SUCCESS_ADJUDICATION.json",
+   "WHAT_CLEA01_SAYS": "every cell Model A carries and Model C does not was never CERTAIN and never POSSIBLE at any row. Not ambiguous origin \u2014 no causal path at all.",
+   "WHAT_THIS_MISSION_MEASURED": "in 402 SHAM, 525 of the 1221 non-CERTAIN units \u2014 43 per cent, across 81 of 238 interval rows \u2014 ARE POSSIBLE. They do have a causal path to the daughter; it is simply not exclusive. CLEA01's sentence held only on the three rows it republished (1153-1155, where POSSIBLE_ONLY is zero) and does not hold over the interval.",
+   "WHAT_IS_UNAFFECTED": "518 SHAM, where POSSIBLE_ONLY is 0 and CLEA01's sentence holds exactly; the G4 verdict of 64 of 66; CLEA01's terminal disposition; and every OMLDCT02 number.",
+   "WHY_I_DID_NOT_NOTICE": "the EXAMPLE_ROWS cap in the frozen measurement fires only on rows carrying NO_CAUSAL_PATH mass, so no POSSIBLE_ONLY row ever reached the published artefact. The cap was frozen at C1 before I knew POSSIBLE_ONLY mass would exist, so it is honest \u2014 and it still made the exemplars one-sided in exactly the direction I was looking.",
+   "CLEA01_IS_NOT_REOPENED": "no CLEA01 file is modified. The correction is recorded here, in the mission that measured it."
+  },
+  {
+   "id": "C3-9",
+   "from_finding": [
+    8,
+    26
+   ],
+   "ADDED": "the composition artefact now states that NO_CAUSAL_PATH is meaningful only if the one-step support is Moore-1, names CLEA01_CAUSAL_KERNEL_ADJUDICATION as what establishes that, notes that row t_m is 100 per cent CERTAIN by construction, and carries the claim-ceiling lines it was missing."
+  },
+  {
+   "id": "C3-10",
+   "from_finding": [
+    16,
+    23
+   ],
+   "ADDED": "four data-dependent self-tests that can fail; the four the checker judged weak are marked as such in the code; the frozen output now names its own ledger; and the scipy-conditional mutation that made the content hash environment-dependent is gone. One consequence is disclosed rather than hidden: renaming REQUIRED_CEILING to the rate-uncertain quantity silently changed what frozen self-test 5 asserts. It still passes, on a different quantity; the original quantity is covered by new test 12."
+  }
+ ],
+ "THREE_CLAIMS_I_RE_VERIFIED_MYSELF_RATHER_THAN_ACCEPTING": {
+  "finding 17": "P(41 | 785) with the rate uncertain: checker 0.8552, mine 0.8537. P(41 | 512): checker 0.1611, mine 0.1575.",
+  "finding 19": "Fisher exact on [[22,234],[33,772]]: checker 0.0087, mine 0.008710. chi-square with continuity correction: checker 0.0077, mine 0.007734.",
+  "finding 21b": "402 SHAM composition from my own committed raw: C 859, P 525, N 696, sum 2080 equal to the recorded E3_EXPOSURE. 525 of 1221 non-CERTAIN units, 43.0 per cent, are POSSIBLE. CLEA01's sentence is refuted for this arm by my own data."
+ },
+ "NO_LOAD_BEARING_FINDING_WAS_DOWNGRADED": true,
+ "NO_MATERIAL_FINDING_WAS_PROMOTED_TO_MANUFACTURE_INVALIDITY": true,
+ "WHY_NOT_TECHNICALLY_INVALID": "the checker argued that case first and at full strength, and I considered it. Launcher section 6 reserves that terminal for a confirmed load-bearing defect and there is none: every recorded number reproduces under a fully independent re-implementation. All three guard breaches are in prose a third commit can correct without touching a digit. And the checker's own observation applies \u2014 a self-issued mission that declares itself invalid escapes its own findings, so reaching for it here would be self-serving in the other direction.",
+ "WHY_NOT_NOT_MEASURABLE": "the composition was measured, exactly and reproducibly, and independently confirmed on all 66 arms. Degenerate is not unmeasurable, and the degeneracy was pre-declared rather than discovered. Choosing that string would erase 735 units of foreign mass and 525 of ambiguous mass across 182 rows of the control arm.",
+ "FINAL_DISPOSITION": "E3_ENDPOINT_COMPOSITION_MEASURED__DECISION_REFERRED_TO_THE_OWNER",
+ "ADJUDICATION_CONTENT_HASH": "35ca32829501a9c7e20ff4d4cc6a6de76f5a825aa2b7a6a305922253e99fc996"
+}

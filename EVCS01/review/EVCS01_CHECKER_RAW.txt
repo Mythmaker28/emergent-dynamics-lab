@@ -1,0 +1,363 @@
+EVCS01 — INDEPENDENT ADVERSARIAL CHECKER, VERBATIM RETURN
+
+One checker. No second checker, no review cascade. This is the return exactly as delivered,
+written and externalised BEFORE any finding was acted on.
+
+Checker agent id: a5253273f414644c4
+Target: /home/claude/edl, mission EVCS01, commits 2c80d6d (C1) and db4b60d (C2)
+
+---
+
+I have completed the full check. Everything below was recomputed by me from the archives and the git object store; I did not run the physics engine, construct a world, draw a seed, or modify any file under `/home/claude/edl` (verified: `git -C /home/claude/edl status --porcelain` is empty after all my runs). All scratch work is under `/tmp/claude-0/.../scratchpad`.
+
+---
+
+# EVCS01 — INDEPENDENT ADVERSARIAL CHECKER RETURN
+
+## What I built before judging anything
+
+I wrote my own reconstruction rather than calling the operator's, at `/tmp/claude-0/-home-claude/fff274dc-978c-5bc4-a247-4e2ba532686a/scratchpad/indep.py`. It differs from `clea01_g4_containment` / `clea01_lineage_i2` in every stage that could hide a shared bug:
+
+- components by **union-find over an explicit pair scan**, not BFS flood-fill;
+- centroid offsets accumulated as **exact integers** then divided once, not float-summed left-to-right;
+- identity followed **forward only** from `t_m` through the mutual-unique link rule, instead of building the whole running-id trace and indexing into it;
+- CERTAIN/POSSIBLE propagated with **explicit Python set operations over coordinate tuples**, not boolean morphology over `np.roll`.
+
+It reproduces the frozen *rules* (toroidal single-linkage at `CORE_R=5`, the anchored centroid, the mutual-unique link, Moore-1 dilation), never the operator's code path.
+
+---
+
+## ATTACK 1 — THE SELF-ISSUE GUARDS
+
+### Finding 1. Guard (a) — method committed before measurement — HOLDS, verified from git and not from prose. SEVERITY: NONE
+
+- `git diff 2c80d6d db4b60d -- EVCS01/code/evcs01_measure.py EVCS01/code/evcs01_sizing.py` is **empty**. Both measurement files are byte-identical at C1 and C2.
+- The launcher blob is `2af82a18e9d9f172d9ca5863a28a7ad0877b0e8f` at **both** `2c80d6d:EVCS01/launcher/...` and `HEAD:...`. Not one character of the pre-registration moved after the numbers existed.
+- `git log --all --oneline -- EVCS01/` returns exactly two commits. No EVCS01 path exists anywhere earlier in history.
+- The reflog shows **no amend** on either EVCS01 commit — notable, because `CLEA01 C4`, `CLEA01 C5` and `OMLDCT02 C5` were all amended.
+- `git fsck --full` reports five dangling blobs. I read all five: `OMLDCT02_RAW_BATCH_05.tar`, two SHA256SUMS files, `OMLDCT02_RUN_STATE.json`, `OMLDCT02_FREEZE_VERIFICATION`. None is EVCS01 output. There is no evidence of a measurement predating `2c80d6d`.
+
+### Finding 2. The *reporting* code was not pre-committed. SEVERITY: MINOR
+
+`evcs01_raw_artefact.py` was added at C2, after the numbers existed. It decides what a reader sees: which arms get an `AFFECTED_ARMS` entry, which fields are published, how the aggregates are cut. Guard 1 as worded covers "the measurement code", so this is not a literal breach, but the guard is weaker than it reads. In fact nothing was smuggled — the `AFFECTED_ARMS` filter is `if NO_CAUSAL_PATH or POSSIBLE_ONLY`, a plain non-zero test — and the one selection rule that *could* have been tuned (the `len(per_row) < 8` example-row cap) sits in `evcs01_measure.py` and **was** pre-committed at C1.
+
+### Finding 3. Guard (b) — inconvenient result named in advance, reported honestly when it did not occur — HOLDS. SEVERITY: NONE
+
+Launcher §4, in the C1 blob, names it in advance and in the exact words. C2 reports the non-occurrence without hedging: *"THE INCONVENIENT RESULT I NAMED IN ADVANCE DID NOT OCCUR AT AGGREGATE LEVEL, AND I SAY SO PLAINLY… My pre-named worry is not vindicated at the aggregate."* This is the single strongest structural fact in the mission's favour and I could not find a way to attack it.
+
+### Finding 4. Guard (c) — no threshold, no verdict on the science — HOLDS IN THE INSTRUMENT, FAILS IN THE COMMIT PROSE. SEVERITY: MATERIAL
+
+I searched for a hidden cut-off everywhere. In `evcs01_measure.py` the only numeric tests are `v == 0` (skip zero mass), `m_c == 0` (zero-CERTAIN rows), truthiness of `m_n`, and the pre-committed 8-row display cap. In `evcs01_raw_artefact.py` the only test is the non-zero `AFFECTED_ARMS` filter. **No magnitude threshold exists in the code or in the artefacts.**
+
+But launcher §4 pre-committed: *"NO THRESHOLD separates 'substantial' from 'negligible'. The distribution is published and the reader decides."* The C2 commit message decides, twice:
+
+- subject line: *"the endpoint is **clean** in 64 arms and **materially** foreign in one"*;
+- body: *"4.4 per cent across 33 SHAM arms **is not that**."*
+
+"Clean", "materially" and "is not that" are magnitude judgements on the science, rendered by the operator in the permanent record, and they implicitly demote 518 SHAM's 2.3 % to immaterial. That is guard 3's substance breached in prose while the instrument stays clean. It is correctable in C3 without touching a number.
+
+---
+
+## ATTACK 2 — GATE 0
+
+### Finding 5. Gate 0 is TRUE. Independently re-verified on all 66 arms, not a sample. SEVERITY: NONE
+
+My independent reconstruction reproduces the parent's `interval_end`, `E3_DURATION`, `E3_EXPOSURE` **and** `n_rows_in_interval` **exactly in 66 of 66 arms**, against `OMLDCT02_PAIR_MEASUREMENTS.json` classifier `A`. Sample of the ledger:
+
+```
+   10|SELECTIVE dur 637/637 exp  831/831  rows 638/638  end 1389/1389
+   10|SHAM      dur 951/951 exp  952/952  rows 952/952  end 1703/1703
+  402|SHAM      dur 237/237 exp 2080/2080 rows 238/238  end 1343/1343
+  518|SHAM      dur 322/322 exp 1669/1669 rows 323/323  end 1591/1591
+  664|SELECTIVE dur   0/0   exp    1/1    rows   1/1    end  333/333
+ALL_MATCH = True   66
+```
+
+I also verified the input chain: **all 66 `.npz` archives reproduce their recorded sha256 and byte count** from `OMLDCT02_SEALED_LEDGER.jsonl` (66 checked, 0 mismatches), and both inputs are committed (`OMLDCT02/work/OMLDCT02_SEALED_LEDGER.jsonl` at `f36bc09`, `OMLDCT02_PAIR_MEASUREMENTS.json` at `a3292f5`).
+
+### Finding 6. Gate 0 is framed as more discriminating than it is. SEVERITY: MINOR
+
+Three separate points:
+
+1. **It is two quantities, not three.** `n_rows_in_interval == E3_DURATION + 1` in **all 66 arms** (I checked the committed `work/evcs01_raw.json` directly). Identities are contiguous by construction of `World.trace`, so the row-count check is arithmetically implied by the duration check and adds nothing.
+2. **`A_end_reconstructed == interval_end_recorded` in all 66 arms**, so the `upto = max(a_end, interval_end_recorded)` guard on line 56 never bites and was never exercised.
+3. **The gate largely compares LDFMA01's classifier against itself.** The parent reached `ldfma01_raw.World.trace` through `omldct02_e3_a`; EVCS01 reaches the same function through `clea01_g4_containment`. The gate can only fail if the archives changed or if EVCS01's row-window logic differs from the parent's. That is worth testing, and the artefact's own claim — *"bit-identical in its aggregates to the object OMLDCT02 qualified"* — is exactly right. The launcher's *"no partial credit and no tolerance"* rhetoric implies an independence the test does not have. The genuinely independent verification of the parent's 66 pairs is the one in Finding 5, and it is mine, not EVCS01's.
+
+---
+
+## ATTACK 3 — THE THREE-CLASS PARTITION
+
+### Finding 7. Exhaustive and disjoint. Verified arithmetically on real data in every arm. SEVERITY: NONE
+
+`CERTAIN + POSSIBLE_ONLY + NO_CAUSAL_PATH == E3_EXPOSURE_recomputed == E3_EXPOSURE_recorded` in **66 of 66 arms**, in my own walk and in the committed artefact (`artefact arms where C+P+N != E3_EXPOSURE: 0`). My aggregates match the artefact to the digit:
+
+```
+SELECTIVE  n=33  total 18204  C 18204  P   0  N   0   → 1.000000 / 0 / 0
+SHAM       n=33  total 16765  C 15505  P 525  N 735   → 0.924843 / 0.031315 / 0.043841
+                 15505 + 525 + 735 = 16765 ✓   696 + 39 = 735 ✓
+```
+
+Nothing is double-counted or dropped: the `if certain / elif possible / else` is a strict partition of Model A's cells, and cells with `nY == 0` contribute zero to every class and zero to exposure, so exposure is preserved identically.
+
+**CERTAIN ⊆ POSSIBLE on real data, not just in argument.** The induction is sound (`certain(t+1) = occ ∧ dil(certain) ∧ ¬dil(…) ⊆ occ ∧ dil(possible) = possible(t+1)`, with `certain(t_m) = possible(t_m)`), but I did not take the argument on trust: my walk carries `assert certain <= possible` at **every classified row of every arm**. It never fired.
+
+### Finding 8. The classes are model-relative, and the artefacts do not say what they rest on. SEVERITY: MINOR
+
+`NO_CAUSAL_PATH` means "no Moore-1 admissible source is even POSSIBLE". If the true one-step support were wider than Moore-1, foreign mass would be an artefact of the operator. I did not accept CLEA01's word for this: I recomputed the invariant on exactly the data EVCS01 walks —
+
+```
+row pairs checked from t_m to the horizon, all 66 arms: 611,581
+cells occupied at t+1 with no Moore-1 predecessor:            0
+```
+
+So the finding is not a kernel artefact. But no EVCS01 artefact states that the validity of `NO_CAUSAL_PATH` depends on `CLEA01_CAUSAL_KERNEL_ADJUDICATION`, and EVCS01 never re-checks it. A reader of `EVCS01_E3_COMPOSITION_RAW.json` alone cannot tell what the class means. Separately: row `t_m` is 100 % CERTAIN by construction in every arm, since `certain(t_m) = root ∩ occ0` and Gate 0 *requires* A's component at `t_m` to equal the daughter cell set exactly — one row per interval is uninformative by design and this is nowhere noted.
+
+---
+
+## ATTACK 4 — DID A THRESHOLD ENTER BY THE BACK DOOR
+
+### Finding 9. Not through the code or the artefacts. Yes, through the prose. SEVERITY: MATERIAL (already scored at Finding 4)
+
+I checked the three places the launcher's cardinal sin would hide:
+
+- **The composition instrument**: clean. Only `== 0`, truthiness, and a pre-committed display cap. `NO_THRESHOLD_IS_APPLIED_ANYWHERE: true` is a true statement about the composition artefact.
+- **The "affected arms" selection**: clean. `NO_CAUSAL_PATH or POSSIBLE_ONLY` is a non-zero test, not a magnitude test.
+- **The sizing self-tests**: they *do* contain magnitude bands (`< 0.12`, `> 0.03`, `700 ≤ ceiling ≤ 900`, `> 1.8×`). These are authorised by launcher §5, which explicitly demands "a self-test that fails if any of those moves", they are on sampling-yield quantities and not on the science, and — decisively — they were committed at C1 before any number existed. Not a back door.
+- **Prose arguing from magnitude while claiming no threshold**: found, in the C2 commit message, as Finding 4.
+
+One asymmetry worth naming under this heading: because `evcs01_measure.py`'s `EXAMPLE_ROWS` cap fires only `if m_n` — only on rows carrying NO_CAUSAL_PATH mass — **no POSSIBLE_ONLY row ever reaches the published artefact**. In 402 SHAM the first NO_CAUSAL_PATH row is 1153 and the first POSSIBLE_ONLY row is 1253, so all eight examples are drawn from the class the operator was looking for. This was pre-committed at C1 before he knew POSSIBLE_ONLY mass would exist, so it is honest — but it makes the published exemplars one-sided, and it matters for Finding 16(b).
+
+---
+
+## ATTACK 5 — WERE CLEA01'S FROZEN RULES IMPORTED UNCHANGED
+
+### Finding 10. Nothing was monkey-patched and no parent file was touched. SEVERITY: NONE
+
+- `git diff b9f4804 HEAD -- CLEA01/ LDFMA01/ OMLDCT02/ FIMRCC01/ TLMR01/` is **empty**. Not one byte of any parent mission changed under EVCS01.
+- No `setattr`, no `sys.modules` manipulation, no `import *`, no attribute writes on `I2`, `G4` or `H`. Every use is a read or a call. `L = I2.L` is a read.
+- The Model A reconstruction is **genuinely imported**: `G4.a_cells_by_row(...)` is called directly.
+
+### Finding 11. But the CERTAIN/POSSIBLE recurrence IS re-specified, contrary to the explicit claim. SEVERITY: MATERIAL
+
+`evcs01_measure.py` lines 71–72 **retype** the recurrence rather than calling `I2.run`:
+
+```python
+certain = occ & I2.dilate(certain) & ~I2.dilate(prev_occ & ~certain)
+possible = occ & I2.dilate(possible)
+```
+
+Meanwhile the module docstring says the operator is *"imported unchanged from clea01_lineage_i2 and **not re-specified here**"*, and the hashed artefact carries `OPERATOR_IMPORTED_UNCHANGED_FROM: "CLEA01/code/clea01_lineage_i2.py"`. Launcher §4 required *"imported unchanged, not re-specified"*. That requirement is not literally met.
+
+I then checked whether the retyping is faithful, line by line against `clea01_lineage_i2.run` lines 78–95, on all four points that could drift:
+
+- **row `t_m`**: identical. `certain = root & occ0`, `possible = certain.copy()`, exposure taken from `nY0`. Same in both.
+- **the first transition**: identical. At `t_m+1` both use `prev_occ = occ0`, so the parent — still occupied on row `t_m`, since the archive writes row `t_m` *before* the removal takes effect — correctly blocks certainty. I confirmed this in the raw data for indices 10 and 402.
+- **update order**: `certain` is reassigned before `possible` is computed, but `possible`'s recurrence reads only the old `possible` and `occ`, so order is irrelevant.
+- **the two deliberate departures**: EVCS01 does not `break` on empty POSSIBLE and walks past `a_end`. Both are *required* for classification and neither can change a class, because empty CERTAIN and empty POSSIBLE are absorbing states of the recurrence.
+
+And I proved equivalence empirically: my independent set-based implementation reproduces **every** per-arm C/P/N triple in all 66 arms (`per-arm disagreements between the artefact and my independent walk: 0`). So this is a wrong claim attached to right numbers — MATERIAL, not load-bearing.
+
+---
+
+## ATTACK 6 — THE SELECTIVE DEGENERACY DISCLOSURE
+
+### Finding 12. The disclosure was genuinely made in advance and the mechanism is genuinely true. SEVERITY: NONE
+
+Pre-declared: launcher §4 bullet 1, in the C1 blob (hash `2af82a18…`, unchanged). Carried in the artefact as a dedicated field. Repeated in the C2 body.
+
+I tested the *mechanism* rather than accepting it. The naive test misleads: at row `t_m` the SELECTIVE world has **more than one component in all 33 arms**, because the archive writes row `t_m` before the removal takes effect. At row `t_m+1`:
+
+```
+SELECTIVE arms where the whole world is exactly ONE component at t_m+1:  33 of 33
+```
+
+Given that, plus zero Moore-1 violations, 100 % CERTAIN follows by induction: if every occupied cell is certain then `prev_occ & ~certain` is empty, the blocking term never fires, and `certain(t+1) = occ(t+1)` forever. Twenty-three of the 33 SELECTIVE arms later split into 2–4 components, and all of them stay CERTAIN — exactly as the degeneracy predicts. The launcher's claim is correct and the number is genuinely uninformative.
+
+### Finding 13. The number is nonetheless still used to imply the endpoint is clean — in the most visible place. SEVERITY: MATERIAL
+
+The C2 commit **subject line** reads: *"the endpoint is clean in 64 arms and materially foreign in one."* 64 = 66 − 2, which counts **all 33 SELECTIVE arms** in the "clean" tally — the very 33 arms the operator himself declared uninformative two paragraphs later. The honest headline is: *31 of 33 SHAM arms carry no non-CERTAIN mass; the 33 SELECTIVE arms are uninformative by construction and are not evidence of anything.* A subject line is what travels. This is the disclosure being made in the body and undone in the headline.
+
+---
+
+## ATTACK 7 — THE SIZING INSTRUMENT
+
+### Finding 14. The arithmetic holds. Independently re-derived. SEVERITY: NONE
+
+From `OMLDCT02_SEALED_LEDGER.jsonl`, computed by me:
+
+```
+n_seeds                 805        (753 not triggered + 19 triggered-not-carried + 33 admissible)
+admissible              33         rate = 33/805 = 0.0409937888
+total instance cost     510.569020 (ledger RUN_STATE: 510.56902, STOPPED = HARD_ARM_INSTANCE_CEILING)
+cost per admissible     510.569020 / 33 = 15.4717884848
+mean cost | admissible  1.922141   mean cost | not admissible  0.579195
+analytic E[cost to 41]  41(1.922141) + 959.15(0.579195) = 634.34
+```
+
+Against the artefact: `admissible_rate 0.040993788819875775` ✓, `cost_per_admissible_pair 15.471788484848485` ✓.
+
+My own vectorised negative-binomial simulation, different RNG stream and different algorithm from the operator's per-draw loop, reproduces his bootstrap:
+
+| quantity | mine (200 k reps) | instrument (20 k reps) |
+|---|---|---|
+| p50 cost to 41 pairs | 628.8 – 629.8 | 629.013 |
+| p95 cost to 41 pairs | 784.4 – 788.0 | 785.146 |
+| P(41 pairs \| ceiling 512) | 0.0734 ± 0.0006 | 0.07495 (se 0.0019) |
+
+The two P estimates differ by 0.0016 against a combined standard error of about 0.0020 — consistent. And the instrument is genuinely **deterministic**: I re-ran it and got `785.1 / 0.0750 / 629.0` again, identically. The launcher's pre-committed targets (`~0.076`, `~800`) are met.
+
+### Finding 15. The C2 commit message's three sizing numbers do not match the artefact committed in the same commit. SEVERITY: MATERIAL
+
+```
+C2 commit message : ceiling 784.8   median 628.8              P(41|512) 0.078
+C2 artefact       : ceiling 785.1458135000072
+                    median  629.0131700000054                 P(41|512) 0.07495
+```
+
+I could not reproduce the message's triple at any replicate count: 2000 → `784.6 / 631.2 / 0.0795`; 5000 → `783.5 / 628.8 / 0.0770`; 10000 → `784.2 / 628.5 / 0.0755`; 20000 (the committed default) → `785.1 / 629.0 / 0.0750`. The permanent record therefore quotes an **uncommitted development run**. I score this MATERIAL rather than LOAD_BEARING because the artefact is the authoritative hashed object, it reproduces exactly, the discrepancy is inside Monte Carlo noise of the same quantity, and no conclusion or hash depends on it. C3 must quote the artefact values.
+
+### Finding 16. The ten self-tests are five real tests, two duplicates, two near-unfailable, and one tautology. SEVERITY: MINOR
+
+- **Test 10** — `TLMR01_DEVELOPMENTAL_SIZING["DO_NOT_SIZE_FROM_THIS"] is True` reads a hard-coded `True` literal defined 110 lines above in the same file. It cannot fail under any data, ever.
+- **Tests 6 and 7 are the same fact.** `refuse_or_warn(512, s)` returns `REFUSED` **iff** `512 < s["MEDIAN_COST"]`, which is verbatim test 6's predicate.
+- **Test 8** accepts `VERDICT in ("OK", "WARNED")`, so it can only fail if the median cost exceeded 800.
+- **Test 9's** numerator `22/256` is hard-coded, so only half of it is data-dependent.
+- Genuinely discriminating and data-dependent: tests **1–5**. Those five *do* satisfy the launcher's actual requirement ("a self-test that fails if any of those moves"). "Ten self-tests all passing" oversells the guard by a factor of two.
+
+### Finding 17. The 95 % ceiling is not a 95 % ceiling. SEVERITY: MATERIAL
+
+`REQUIRED_CEILING = 785.1` is the 95th percentile of the cost to reach 41 pairs **conditional on the admissible rate being exactly 33/805**. It ignores the sampling uncertainty in that rate, whose Wilson 95 % interval is **0.0293 – 0.0570**. Propagating that uncertainty (Jeffreys posterior Beta(33.5, 772.5), identical cost pools, 20 000 draws each):
+
+```
+                              p50      p95      p99
+rate fixed at 33/805         628.8    784.4    858.8     ← reproduces the instrument
+rate ~ Jeffreys posterior    628.3    893.1   1036.4
+
+P(41 pairs | ceiling 785):   rate fixed 0.9507      rate uncertain 0.8552
+P(41 pairs | ceiling 512):   rate fixed 0.0747      rate uncertain 0.1611
+```
+
+A future campaign that freezes 785 on this instrument's advice attains about **85.5 %**, not 95 %. This is the instrument's headline output and the one number a successor would actually freeze. It is also, in milder form, the exact error the instrument exists to prevent: treating a finite-sample yield estimate as a known parameter — the same move that made 22/256 look usable. In fairness, the method (*"by bootstrap over the ledger"*) was pre-committed in launcher §5, so this is a defect in the frozen method rather than in its execution. The retrospective 0.075 for OMLDCT02 is fine as a retrospective statement conditioned on the observed rate; the forward-looking 785 is where this bites.
+
+### Finding 18. FIMRCC01's 0.0165 is correctly sourced and correctly recomputed — but the COMMON_CAUSE diagnosis is wrong about both campaigns, and "power" covers two different quantities. SEVERITY: MATERIAL
+
+**Sourcing and arithmetic — correct.** `FIMRCC01_FINAL_DISPOSITION.json` carries `LOCKED_DAUGHTER_N50_P_K_GE_2 = 0.0165`, with `LOCKED_DAUGHTER_WORLD_LEVEL_RATE = "1/256"`, `K_REQUIREMENT = 2`, `N_BASE_BLOCKS_DECLARED = 50`. I recompute `P(k ≥ 2 | n = 50, p = 1/256) = 0.01650894337`. Exact.
+
+**Characterisation — wrong on three counts.**
+
+1. FIMRCC01 was not "frozen with single-digit power" and then run. It ran **zero** worlds: `FRESH_WORLD_COUNT = 0`, `FRESH_SEEDS_CONSUMED = 0`, `SELECTIVE_ARM_EXECUTED = false`, `SHAM_ARM_EXECUTED = false`. The 0.0165 is the number that **stopped** it at the precondition gate. Its power criterion worked.
+2. FIMRCC01's prereg carries `CRITERION_3_POWER: "at least 80 % power at n = 50 blocks, evaluated at the candidate's own TLMR01 rate"` — an explicit target-versus-size check, made in advance.
+3. For OMLDCT02, `OMLDCT02_DESIGN_RECOMPUTED.json` (2026-08-25, before world 1) contains `RECOMPUTED_WITH_THE_INSTANCE_CEILING_ALONE: {P_reaching_target: 0.9999, instances_used_max: 510.58}`. **OMLDCT02 explicitly checked its 41-pair target against its 512-instance ceiling before running.**
+
+So the claim — repeated in the `evcs01_sizing.py` docstring, launcher §1, both commit messages, and the artefact's `COMMON_CAUSE` field — that *"in both, a pair target and a cost ceiling were frozen independently and never checked against each other"* is contradicted by the committed record of both campaigns. The real common cause is the one EVCS01 itself measured: **the sizing rate was wrong**. A successor that takes the stated lesson will do precisely what OMLDCT02 already did, and fail the same way. This is the mission's central prescriptive claim and it misdiagnoses its own evidence.
+
+Separately, `TWO_CAMPAIGNS_FROZEN_WITH_SINGLE_DIGIT_POWER` puts one label over two quantities: FIMRCC01's 0.0165 is a detection probability for a `k ≥ 2` rule (evaluated post hoc at the observed rate); OMLDCT02's 0.075 is the probability of **accruing the sample**, which says nothing about rejecting anything. That is exactly the failure `omldct02_hashes.py` was written to prevent ("one label over two quantities"). Note the direction, in fairness: calling accrual probability "power" makes OMLDCT02 look *better* than it was, so the error is not self-flattering.
+
+### Finding 19. TLMR01 non-exchangeability — computed correctly, hedged honestly, evidence overstated by four orders of magnitude. SEVERITY: MATERIAL
+
+Sourcing verified against `OMLDCT02_DESIGN_RECOMPUTED.json` `SIZING_DATA`: `n_worlds 256, n_admissible 22, n_triggered_not_carried 4, n_no_trigger 230` (22+4+230 = 256 ✓, and `p_admissible_per_seed 0.08594` ✓). My arithmetic:
+
+```
+805 × 22/256                       = 69.1796875          ✓ artefact
+binom.cdf(33, 805, 22/256)         = 4.163814e-07        ✓ artefact
+(22/256) / (33/805)                = 2.0964              → the "> 1.8×" self-test passes ✓
+trigger 26/256 = 0.1016 vs 52/805 = 0.0646               ✓
+carried|triggered 22/26 = 0.8462 vs 33/52 = 0.6346       ✓
+```
+
+Every number is exactly what it is labelled. But `binomial_tail_P_X_le_33` is placed as the **evidence** for non-exchangeability while treating a 256-sample estimate as a known parameter. The correct two-sample comparison on `[[22, 234], [33, 772]]` gives **Fisher exact p = 0.0087** (chi-square with continuity correction, 0.0077). Wilson intervals: 0.0574–0.1267 versus 0.0293–0.0570 — they barely fail to overlap. The **conclusion** ("do not size from that set") survives comfortably; the strength attached to it does not, by about four orders of magnitude.
+
+The hedge is honest and I verified it: the 256 developmental archives are not in the repository or in the container, so the stated explanation (that "carried" meant something laxer before the E3 rule was rebuilt) genuinely cannot be checked. `WHY_IT_CANNOT_BE_DIAGNOSED` is properly stated.
+
+---
+
+## ATTACK 8 — DOES THE TERMINAL OVERSTATE OR UNDERSTATE
+
+The operator has not chosen. The obvious choice is `E3_ENDPOINT_COMPOSITION_MEASURED__DECISION_REFERRED_TO_THE_OWNER`. I argue the other two first, as required.
+
+**The strongest case for `EVCS01_TECHNICALLY_INVALID`.** Launcher §0 is explicit: *"If any of the three fails, the mission is EVCS01_TECHNICALLY_INVALID."* Guard 3 is "NO THRESHOLD AND NO VERDICT ON THE SCIENCE", and §4 pre-committed that the reader, not the operator, decides what "substantial" means. The C2 subject line renders the verdict anyway — *"clean in 64 arms and materially foreign in one"* — and does so on a tally that folds in 33 arms the operator himself declared uninformative. That is not a marginal slip: it is the guard breached in the mission's most quoted line, in the direction that flatters the programme's measuring instrument. Add Finding 2 (the reporting code was not pre-committed) as a partial breach of guard 1, and Finding 11 (the frozen operator was re-specified while the artefact asserts it was not) as a breach of a §4 method requirement, and a literalist reading of §0 reaches TECHNICALLY_INVALID. A self-issued launcher, one checker, no cascade — the case for maximum severity is real.
+
+**Why it fails.** §6 reserves that terminal for *"a confirmed load-bearing defect"*, and there is none. Every recorded number in every artefact reproduces exactly under a fully independent re-implementation. The launcher blob and both measurement files are byte-identical since before any number existed. The inconvenient result was named in advance and reported as *not* having occurred — the one thing a self-issued mandate cannot fake. All three breaches are in prose that C3 can correct without touching a digit. And there is a perverse incentive to notice: a self-issued mission that declares itself invalid escapes its own findings. Invalidating here would be disproportionate and, in its own way, self-serving.
+
+**The strongest case for `E3_ENDPOINT_COMPOSITION_NOT_MEASURABLE_FROM_EXISTING_ARCHIVES`.** Half the data yields nothing. The operator concedes that all 33 SELECTIVE arms are degenerate by construction — I verified the mechanism myself and it is airtight — so the *treated* arm, the one the experiment is about, produces no measurable composition at all. CLEA01 closed with the finding that the lineage object *"is unidentifiable in the arm the experiment is about."* On that reading, what EVCS01 measured is the composition of the **control** arm only, and the endpoint's composition where it matters is not measurable from these archives. That is a serious argument and it is the strongest case for the second string.
+
+**Why it fails.** The composition *was* measured — exactly, reproducibly, and independently confirmed by me on all 66 arms, with the three classes summing to the parent's own `E3_EXPOSURE` in every one. Degenerate is not the same as unmeasurable, and the launcher pre-declared the degeneracy rather than discovering it. Choosing this string would erase a real result: 735 units of foreign mass and 525 units of ambiguous mass across 182 rows of the control arm, with 13 rows counted in `E3_DURATION` containing no daughter-descended mass at all.
+
+### Finding 20. I would select `E3_ENDPOINT_COMPOSITION_MEASURED__DECISION_REFERRED_TO_THE_OWNER`. SEVERITY: NONE, conditional on C3 corrections
+
+It neither overstates nor understates. It asserts only that a composition was measured — true, and verified — and it refers the judgement of what that composition means to the owner, which is the one thing a self-issued mandate has no standing to decide. I would make it conditional on C3: correcting the three sizing numerals of Finding 15, retracting "clean in 64 arms" per Finding 13, disclosing the rate-uncertainty limitation of `REQUIRED_CEILING` per Finding 17, correcting the COMMON_CAUSE diagnosis per Finding 18, and reporting the CLEA01 correction in Finding 21(b).
+
+---
+
+## THE PROGRAMME'S RECURRING FAILURE MODES
+
+### Finding 21. CLEA01's arm count was already exact, and EVCS01's own data refutes CLEA01's stronger sentence without saying so. SEVERITY: MATERIAL
+
+**(a) The novelty is overstated.** Launcher §1 says *"'At least 2' is a floor, not a measurement… The real quantity — **in what fraction of arms**, and how much of E3_EXPOSURE — was never measured,"* and C2 says *"CLEA01's floor of 'at least 2 arms' is now a measurement: exactly 2 of 66."* But CLEA01's G4 ran over **all 66 arms**; the three-row truncation limited the *listing* of failures, never the pass/fail determination, which is settled by the first miss. I read its committed work files directly:
+
+```
+arms covered by CLEA01 G4:                66
+arms failing strong containment:  [(518,'SHAM',323 rows,3), (402,'SHAM',238 rows,3)]
+```
+
+and `CLEA01_FINAL_REPORT.md` already states *"Strong containment passes 64 of 66, failing at 402 SHAM and 518 SHAM."* The arm fraction is a **corollary of the parent's committed result**, not a new measurement. What IS genuinely new, real, and worth the mission is the mass and row extent — 735 NO_CAUSAL_PATH and 525 POSSIBLE_ONLY units over 182 rows, 13 rows of zero CERTAIN mass, first foreign row 1153 against `t_m` 1106 (all verified independently).
+
+**(b) The correction that is not reported.** `CLEA01_FINAL_REPORT.md` states: *"every cell Model A carries and Model C does not was **never CERTAIN and never POSSIBLE at any row**. Not ambiguous origin — no causal path at all."* EVCS01's own measurement refutes that for 402 SHAM. My row-level walk:
+
+```
+402 SHAM  t_m = 1106, a_end = 1343, 238 interval rows
+  first row with NO_CAUSAL_PATH mass : 1153   (C=5, P=0, N=4)
+  first row with POSSIBLE_ONLY  mass : 1253   (C=5, P=1, N=5)
+  rows with P > 0: 81      rows with N > 0: 169
+  totals C 859 + P 525 + N 696 = 2080 ✓
+```
+
+**525 of that arm's 1221 non-CERTAIN units — 43 % of them, across 81 of 238 rows — do have a causal path.** CLEA01's sentence held only on the three rows it republished (1153–1155, where P = 0). EVCS01 holds the full-interval measurement that corrects its parent and does not report the correction; and because the `EXAMPLE_ROWS` cap fires only on NO_CAUSAL_PATH rows, no POSSIBLE_ONLY row ever reaches the artefact for a reader to notice. This is, in my judgement, the most interesting thing the mission found and did not say.
+
+For what it is worth, the operator's *mechanism* for 402 is right and I confirmed it: at row 1153 Model A's component spans nine cells straddling both the daughter region and the surviving parent's region (`(8,27),(11,29),(14,32),(16,31)` near the parent's `t_m` cells versus `(19,26),(20,28),(21,29),(24,26),(24,29)` near the daughter's), which is the `CORE_R` single-linkage rule absorbing the parent's descendants. And `CLEA01_STRUCTURAL_GATES_FINAL.json` G8 confirms 402 SHAM was CLEA01's only validation contradiction, already attributed to "the centroid-versus-provenance difference recorded under G4."
+
+### Finding 22. Every artefact has a committed generating script. The OMLDCT01/CLEA01 failure mode is NOT repeated. SEVERITY: NONE
+
+`out/EVCS01_GATE0_RECONSTRUCTION_IDENTITY.json`, `out/EVCS01_E3_COMPOSITION_RAW.json` and `out/EVCS01_SIZING_INSTRUMENT.json` ← `code/evcs01_raw_artefact.py`, committed in the same commit. `work/evcs01_raw.json` and `work/evcs01_raw.log` ← `code/evcs01_measure.py`, committed at C1. Both external inputs are committed. All 66 archives verify. Nothing here is a heredoc.
+
+### Finding 23. Two provenance gaps in the hashed sizing artefact. SEVERITY: MINOR
+
+`FROZEN_OUTPUT_FOR_THE_CURRENT_DESIGN.LEDGER` records `"caller-supplied"` rather than the path or a digest, because `run_self_tests` loads the ledger and passes it positionally into `size_campaign`. The artefact that *is* the instrument's frozen output does not name its own input. Second, `run_self_tests` mutates the module-level `TLMR01_DEVELOPMENTAL_SIZING` dict to fill `binomial_tail_P_X_le_33` **only if scipy imports**, and that dict is then embedded and hashed — so `SIZING_CONTENT_HASH` is environment-dependent.
+
+### Finding 24. All three `*_CONTENT_HASH` fields reproduce under the parent's canonical rule. SEVERITY: NONE
+
+I re-implemented `content_digest` independently from `CANONICAL_RULES` (sort_keys, `(',',':')`, ensure_ascii, no trailing newline, excluding `SELF_REFERENTIAL` + `GENERATED_UTC` + the document's own key) rather than importing `omldct02_hashes`:
+
+```
+GATE0_CONTENT_HASH        f2e144fa9afa886f…   MATCH
+COMPOSITION_CONTENT_HASH  ba721983efea69e9…   MATCH
+SIZING_CONTENT_HASH       83062508908cba16…   MATCH
+```
+
+### Finding 25. Nothing claimed here needs the paired OMLDCT02 p-values, and OMLDCT02's result is not reinterpreted. SEVERITY: NONE
+
+No p-value, alpha, test statistic, rejection or significance language appears anywhere in EVCS01's code or artefacts; the only matches are restatements of the owner's own rule. Gate 0 **reproduces** the parent's numbers rather than revising them, and the composition partitions one endpoint without contrasting the arms inferentially.
+
+### Finding 26. But the composition artefact carries none of the §8 preservation lines. SEVERITY: MINOR
+
+`EVCS01_E3_COMPOSITION_RAW.json` prints SELECTIVE and SHAM `E3_EXPOSURE_TOTAL` side by side (18204 versus 16765) at n = 33 pairs, and contains **no** `OMLDCT02_STATUS`, no `OMLDCT02_PAIRED_STATISTICS = DESCRIPTIVE_ONLY`, no `H3_STATUS`. Those appear only in the commit messages and, partially, in the sizing artefact — not in the artefact that actually shows both arms together. A reader who opens the composition file alone gets the arm contrast with no claim ceiling attached.
+
+### Finding 27. No forbidden claim, including in denial. SEVERITY: NONE
+
+"organism", "daughter organism", "life created", "self-replication", "minority window", "Kamimura" appear **nowhere** in EVCS01 outside the launcher's own prohibition list. Launcher line 227 — *"Nothing measured here establishes reproduction"* — is a claim ceiling of the same kind as the `REPRODUCTION_STATUS = NOT_TESTED` line §8 mandates, and I do not read it as a forbidden denial.
+
+### Finding 28. Trivial, but a tell. SEVERITY: NONE
+
+Launcher §7 is headed *"TERMINAL DISPOSITIONS — use exactly one, **no fifth string**"* and then lists **three**. A leftover from a four-string template. Harmless; noted only because it is a small piece of evidence about how the self-issued launcher was assembled.
+
+---
+
+## WHAT I CHECKED AND COULD NOT BREAK
+
+Stated plainly, because a checker who only lists defects is not being honest either. The composition is right. I rebuilt Model A from scratch with a different component algorithm, a different centroid accumulation, a different identity-tracking strategy and a different set representation, and reproduced **every** number in **every** one of the 66 arms — the parent's four endpoint quantities, the three-class decomposition per arm, both aggregates, all six fractions, the row counts, the first-foreign-row indices. The partition is exhaustive and disjoint on real data, not merely in argument. The Moore-1 kernel that `NO_CAUSAL_PATH` depends on holds with zero violations over 611,581 row pairs. All 66 archives are byte-intact. All three content hashes reproduce. The sizing instrument is deterministic and its bootstrap is correct for what it computes. The pre-registration is byte-identical to what was frozen before any number existed, and the operator reported his own pre-named worry as **not** vindicated. There is no load-bearing defect here.
+
+---
+
+LOAD_BEARING_DEFECT_COUNT = 0
+
+CHECKER_VERDICT = I find no load-bearing defect, and I say so plainly: every number recorded in every EVCS01 artefact reproduces exactly under a fully independent re-implementation I wrote from the frozen rules rather than from the operator's code — Gate 0 in 66 of 66 arms on all four quantities, the three-class partition summing to the parent's own E3_EXPOSURE in 66 of 66, all three content hashes under the parent's canonical rule, the realised rate 33/805, the cost per pair 15.4718, and the bootstrap percentiles within Monte Carlo error of my own — while git shows the launcher blob and both measurement files byte-identical since before any measurement existed, no amend, no earlier EVCS01 object, and no parent file touched. What I do find is nine MATERIAL defects, all of them prose or framing attached to right numbers, and they cluster in one revealing direction: the mission is more careful in its instruments than in its narration. The C2 commit message quotes three sizing numerals (784.8, 628.8, 0.078) that contradict the hashed artefact in the same commit and that I could not reproduce at any replicate count; its subject line renders exactly the magnitude verdict launcher §4 pre-committed not to render, on a "clean in 64 arms" tally that folds in the 33 arms the operator himself declared uninformative; the CERTAIN/POSSIBLE recurrence is re-specified in code that claims not to re-specify it; the instrument's headline 95 % ceiling of 785 is only a 95 % ceiling if the yield rate is known exactly, and is really about 85.5 % once the rate's own Wilson interval is propagated — the very error the instrument exists to prevent; the COMMON_CAUSE diagnosis that "a target and a cost ceiling were frozen independently and never checked against each other" is contradicted by both campaigns' committed records, since FIMRCC01 ran zero worlds and stopped *because* of its 0.0165 and carried an explicit 80 %-power criterion, and OMLDCT02's own pre-run design file records P_reaching_target = 0.9999 against the 512 ceiling; the 4.16e-07 binomial tail overstates the TLMR01 non-exchangeability evidence by four orders of magnitude against a proper Fisher exact p = 0.0087; and most tellingly, EVCS01's own data refutes CLEA01's claim that the foreign mass was "never POSSIBLE" — 525 of 402 SHAM's 1221 non-CERTAIN units across 81 rows do have a causal path — a correction of its parent that the mission holds in hand and does not report. I would select E3_ENDPOINT_COMPOSITION_MEASURED__DECISION_REFERRED_TO_THE_OWNER, conditional on C3 correcting the three sizing numerals, retracting "clean in 64 arms", disclosing the rate-uncertainty limitation of REQUIRED_CEILING, correcting the common-cause diagnosis, and publishing the CLEA01 POSSIBLE_ONLY correction; TECHNICALLY_INVALID would be disproportionate to prose defects a third commit can fix and would conveniently let a self-issued mission escape its own findings, and NOT_MEASURABLE would erase a composition that was, verifiably, measured.

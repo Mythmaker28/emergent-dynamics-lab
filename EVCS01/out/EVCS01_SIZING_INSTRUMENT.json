@@ -1,19 +1,26 @@
 {
  "MISSION": "EVCS01",
- "SECTION": "5 \u2014 the campaign sizing instrument",
- "GENERATED_UTC": "2026-08-26T23:07:38.631485+00:00",
+ "SECTION": "5 \u2014 the campaign sizing instrument, corrected at C3",
+ "GENERATED_UTC": "2026-08-26T23:50:29.990887+00:00",
  "INSTRUMENT": "EVCS01/code/evcs01_sizing.py",
+ "SUPERSEDES": "the C1/C2 version, preserved in git at 2c80d6d and db4b60d. Nothing is rewritten; both corrections came from the checker.",
  "DETERMINISTIC": true,
  "BOOTSTRAP_SEED": 20260826,
- "FROZEN_OUTPUT_FOR_THE_CURRENT_DESIGN": {
-  "LEDGER": "caller-supplied",
+ "FROZEN_OUTPUT": {
+  "LEDGER": "/home/claude/edl/OMLDCT02/work/OMLDCT02_SEALED_LEDGER.jsonl",
   "n_seeds": 805,
   "admissible": 33,
   "admissible_rate": 0.040993788819875775,
   "cost_per_admissible_pair": 15.471788484848485,
+  "admissible_rate_95_CI": [
+   0.028383373077089154,
+   0.057091288346960055
+  ],
   "TARGET_PAIRS": 41,
   "CONFIDENCE": 0.95,
-  "REQUIRED_CEILING": 785.1458135000072,
+  "REQUIRED_CEILING_IF_THE_RATE_WERE_KNOWN_EXACTLY": 785.1458135000072,
+  "REQUIRED_CEILING": 887.1149005000087,
+  "WHICH_CEILING_TO_FREEZE": "REQUIRED_CEILING, the rate-uncertain one. The other is what this instrument returned at C1/C2 and it is optimistic: it conditions on the ledger's rate being the truth. The checker showed a campaign freezing the optimistic value attains about 85 per cent, not 95. Corrected at C3.",
   "COST_DISTRIBUTION": {
    "p5": 496.90397400000376,
    "p25": 571.8221525000046,
@@ -29,12 +36,10 @@
   "STOP_RULE": "stop on PAIRS, not on cost. The ceiling is a cost bound, not a stopping rule. A ceiling that binds must be news, not a result. Pre-register an interim re-estimate that may only RAISE the ceiling, never lower the target."
  },
  "P_41_PAIRS_AT_THE_OMLDCT02_CEILING_512": 0.07495,
+ "P_41_PAIRS_AT_THE_RATE_KNOWN_CEILING_ONCE_THE_RATE_IS_UNCERTAIN": 0.857,
  "THE_INSTRUMENT_REFUSES_512": {
   "VERDICT": "REFUSED",
   "why": "a ceiling of 512 is below the median cost 629.0 of accruing 41 pairs. More than half of all campaigns under this design end on the ceiling with the target unmet. That is not a risk, it is the expected outcome."
- },
- "THE_INSTRUMENT_ACCEPTS_800": {
-  "VERDICT": "OK"
  },
  "SELF_TESTS": [
   {
@@ -76,9 +81,32 @@
   {
    "test": "sizing from TLMR01 is flagged DO_NOT_SIZE_FROM_THIS",
    "PASS": true
+  },
+  {
+   "test": "the rate-uncertain ceiling exceeds the rate-known ceiling",
+   "PASS": true
+  },
+  {
+   "test": "the rate-uncertain ceiling for 41 pairs is between 830 and 960",
+   "PASS": true
+  },
+  {
+   "test": "the rate-known ceiling attains well under 95 percent once the rate is uncertain",
+   "PASS": true
+  },
+  {
+   "test": "the ledger names itself rather than reporting caller-supplied",
+   "PASS": true
   }
  ],
+ "N_SELF_TESTS": 14,
  "ALL_SELF_TESTS_PASS": true,
+ "FOUR_OF_THE_ORIGINAL_TEN_ARE_WEAK_AND_THE_CHECKER_WAS_RIGHT": {
+  "a ceiling of 512 for 41 pairs is REFUSED by the instrument": "duplicate of test 6",
+  "a ceiling of 800 for 41 pairs is not refused": "near-unfailable",
+  "the TLMR01 developmental rate is more than 1.8x the realised rate": "half hard-coded",
+  "sizing from TLMR01 is flagged DO_NOT_SIZE_FROM_THIS": "tautology \u2014 reads a literal"
+ },
  "TLMR01_DEVELOPMENTAL_SIZING": {
   "source": "the 256 developmental LAW_C_MCTT01 worlds, per OMLDCT02_DESIGN_RECOMPUTED.json",
   "n_worlds": 256,
@@ -89,7 +117,18 @@
   "NOT_EXCHANGEABLE_WITH_THE_PROSPECTIVE_LEDGER": {
    "expected_admissible_in_805_seeds_at_the_sizing_rate": 69.1796875,
    "observed": 33,
-   "binomial_tail_P_X_le_33": 4.163814282174877e-07,
+   "binomial_tail_P_X_le_33": 4.163814e-07,
+   "THAT_TAIL_IS_THE_WRONG_EVIDENCE_AND_IS_KEPT_ONLY_TO_BE_CORRECTED": "it treats the 256-world estimate as a known parameter. The checker was right. The correct two-sample comparison of [[22, 234], [33, 772]] gives Fisher exact p = 0.008710 and chi-square with continuity correction p = 0.007734. The conclusion survives comfortably; the strength attached to it was overstated by about 2.1e4.",
+   "fisher_exact_two_sample_p": 0.00871,
+   "chi2_continuity_corrected_p": 0.007734,
+   "wilson_95_CI_sizing": [
+    0.0574,
+    0.1267
+   ],
+   "wilson_95_CI_realised": [
+    0.0293,
+    0.057
+   ],
    "trigger_rate_sizing": 0.1015625,
    "trigger_rate_realised": 0.06459627329192547,
    "carried_given_triggered_sizing": 0.8461538461538461,
@@ -98,20 +137,15 @@
   },
   "DO_NOT_SIZE_FROM_THIS": true
  },
- "TWO_CAMPAIGNS_FROZEN_WITH_SINGLE_DIGIT_POWER": {
-  "FIMRCC01": {
-   "rule": "k >= 2 of n = 50 blocks",
-   "power_at_the_observed_rate_1_in_256": 0.0165,
-   "source": "FIMRCC01_FINAL_DISPOSITION.json LOCKED_DAUGHTER_N50_P_K_GE_2"
-  },
-  "OMLDCT02": {
-   "rule": "41 valid paired blocks under a 512 arm-instance ceiling",
-   "power_at_the_realised_rate": 0.07495,
-   "source": "recomputed here from OMLDCT02_SEALED_LEDGER.jsonl"
-  },
-  "COMMON_CAUSE": "a target and a cost ceiling frozen independently and never checked against each other. This instrument exists so that check is not optional."
+ "WHAT_ACTUALLY_WENT_WRONG_IN_THE_PARENT_CAMPAIGNS": {
+  "THE_C2_DIAGNOSIS_WAS_WRONG": "I wrote that a target and a ceiling were frozen independently and never checked against each other. Both campaigns checked.",
+  "FIMRCC01": "ran ZERO worlds. FRESH_WORLD_COUNT 0, SELECTIVE_ARM_EXECUTED false. Its 0.0165 is the number that STOPPED it at the precondition gate, and its pre-registration carried an explicit 80 per cent power criterion. Its sizing discipline worked.",
+  "OMLDCT02": "checked. OMLDCT02_DESIGN_RECOMPUTED.json, written before world 1, records RECOMPUTED_WITH_THE_INSTANCE_CEILING_ALONE with P_reaching_target 0.9999.",
+  "THE_REAL_COMMON_CAUSE": "the RATE the check was performed at. OMLDCT02 checked its 41-pair target against its 512-instance ceiling at 22/256 and got 0.9999. At the realised 33/805 the identical check gives 0.075. The fragile input is the yield estimate, and a check conditioned on a point estimate inherits that estimate's bias \u2014 which is why this instrument now propagates the rate's own uncertainty.",
+  "TWO_LABELS_OVER_ONE_WORD": "FIMRCC01's 0.0165 is a detection probability for a k>=2 rule; OMLDCT02's 0.075 is the probability of ACCRUING the sample and says nothing about rejecting anything. Calling both 'power' put one label over two quantities."
  },
  "THESE_ARE_SAMPLING_YIELD_QUANTITIES_NOT_THE_PAIRED_ENDPOINTS": true,
- "THE_OWNERS_RULE_IS_UNTOUCHED": "fewer than 41 pairs may not be interpreted using the paired p-values. Nothing here does.",
- "SIZING_CONTENT_HASH": "83062508908cba16c907baf50a5007a86b8ee15f6e80fe91e1f242e487549083"
+ "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED",
+ "OMLDCT02_PAIRED_STATISTICS": "DESCRIPTIVE_ONLY__NO_INFERENTIAL_WEIGHT",
+ "SIZING_CONTENT_HASH": "1691522661bc1e022051265d0f6eb0b7ce838f1caa0c92561f8281502a389ab1"
 }
