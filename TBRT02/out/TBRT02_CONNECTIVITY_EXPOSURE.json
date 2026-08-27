@@ -1,0 +1,11 @@
+{
+ "RECORDS": {},
+ "MISSION": "TBRT02",
+ "SECTION": "connectivity exposure, post hoc, NON-ADJUDICATIVE",
+ "GENERATED_UTC": "2026-08-27T03:20:33.792238+00:00",
+ "NON_ADJUDICATIVE": "These fields are EXPOSURE ONLY and enter no verdict. No gate, no disposition and no adjudication in TBRT02 reads them. They exist so that the connected-component definition of a centre can be tested later without re-spending the campaign.",
+ "WHY_NOT_IN_THE_SEALED_LEDGER": "the ledger is written by tbrt02_fork.one_seed, pinned by METHODS_HASH in the committed master freeze. Editing it would make METHODS_HASH unverifiable, which is how TBRT01 died. Computed from the archives instead; nothing is lost because the archives record every Y-occupied cell on every row.",
+ "MOTIVE": "a centre defined as a connected component is a contested modelling assumption. Recording this now means the assumption can be tested later without re-spending the campaign. It does not change any criterion.",
+ "TOROIDAL_LABELLING": "scipy.ndimage.label is not periodic, so the field is tiled 3x3, labelled once, and the centre tile's labels are unified through the wrap by union-find.",
+ "N_ADMISSIBLE_TRIPLES_COVERED": 0
+}
