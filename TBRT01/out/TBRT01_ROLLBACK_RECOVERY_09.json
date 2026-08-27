@@ -1,0 +1,54 @@
+{
+ "MISSION": "TBRT01",
+ "SECTION": "rollback recovery record",
+ "GENERATED_UTC": "2026-08-27T02:10:16.180471+00:00",
+ "WHAT_HAPPENED": "the container rolled back to 82f6c847ebf5789e3133c33a8a366cb144300952 (FDOT01 C2), destroying every git object created after it. That is the ninth rollback of this programme and by far the largest: TLMR01, FIMRCC01, LDFMA01, OMLDCT01, OMLDCT02, CLEA01, EVCS01 and TBRT01 all vanished from the container, along with every raw archive.",
+ "DETECTED_AT": "a scheduled TBRT01 check-in, when tbrt01_run.py could not be opened.",
+ "WHAT_WAS_RECOVERED_AND_HOW": {
+  "method": "the 119 MiB self-contained bundle cannot cross the device bridge \u2014 three wall-clock timeouts. But the container still held 82f6c847, which is an ANCESTOR of the whole chain. So the chain was restored on the device from Windows bytes, and an increment 82f6c847..EVCS01 was cut there and staged back. It is 1,552,003 bytes. The bridge moves it without effort.",
+  "recovered_tip": "2e303f8b8ebc80750bd197b0d2e62a148754b2e7",
+  "increment_sha256": "e1e74e387c1d1537199983d890317fdc78b534fa0feef0795cf94bf25f20e268",
+  "git_fsck": "clean",
+  "CLEA01_content_hashes_reproduce": "21 of 21",
+  "EVCS01_sha256sums": "6 of 6 OK"
+ },
+ "WHAT_IS_PERMANENTLY_LOST": {
+  "TBRT01_method_files": [
+   "TBRT01/code/tbrt01_seeds.py",
+   "TBRT01/code/tbrt01_guard.py",
+   "TBRT01/code/tbrt01_displace.py",
+   "TBRT01/code/tbrt01_fixtures.py",
+   "TBRT01/code/tbrt01_fork.py",
+   "TBRT01/code/tbrt01_run.py",
+   "TBRT01/code/tbrt01_freeze.py",
+   "TBRT01/design/TBRT01_PREREGISTRATION.md"
+  ],
+  "n_lost": 8,
+  "TBRT01_raw_archives": "all of them; 27 or more, three per admissible triple",
+  "why_they_are_lost": "TBRT01 C1 and C2 were committed to git but never bundled or capsuled to Windows. The rollback took the only copy."
+ },
+ "METHODS_FILES_PINNED_BY_THE_FREEZE": 18,
+ "METHODS_FILES_STILL_PRESENT_AND_MATCHING": 10,
+ "METHODS_HASH_CAN_BE_VERIFIED": false,
+ "THEREFORE": "TBRT01 CANNOT BE RESUMED UNDER ITS OWN FREEZE. A freeze exists to prove which code ran. Eight of its eighteen pinned files no longer exist and cannot be reconstructed to their pinned digests. Resuming would mean running different code under an old freeze, which is precisely the OMLDCT01 failure mode this programme was rebuilt to prevent.",
+ "WHAT_THE_SURVIVING_LEDGER_STILL_PROVES": {
+  "seeds_run": 114,
+  "admissible_triples": 9,
+  "every_intervention_check_passed_on_every_triple": true,
+  "separation_from_the_daughter_min": 17,
+  "separation_max": 18,
+  "reading": "a validated PILOT of the DISPLACED intervention, not a campaign. The mechanism works in production: Y mass conserved exactly, WY untouched, the daughter untouched, the parent emptied, the competitor 17 to 18 cells away on a torus whose maximum is 18, and all three arms diverging. That is worth keeping and it is kept."
+ },
+ "MY_ERROR_AND_IT_IS_MINE": "I externalised the sealed ledger at every check-in and argued that the archives did not need externalising because the engine is deterministic and they regenerate from the seeds. That reasoning is correct about archives and WRONG about code, because you regenerate archives WITH the code. I protected the data and forgot the instrument. The eight files existed only in a git history that existed only in the container.",
+ "THE_RULE_THAT_FOLLOWS": "a mission's method files must be externalised to Windows at C1, before any world runs, not at closure. A commit is not durability in this environment.",
+ "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED",
+ "CLEA01_STATUS": "CLOSED__LINEAGE_ROUTE_PAUSED__NOT_REOPENED",
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+ "RECOVERY_CONTENT_HASH": "d8887402ff4dcdf017c6cc129474b4587124670cfdf2ad90dcdf3740746e5b82"
+}
