@@ -1,0 +1,271 @@
+{
+ "MISSION": "TBRT02",
+ "GUARD_RULE": "a construction is SCIENTIFIC-SCALE when L > 5, or horizon >= NEED = 250, or the seed appears in the TBRT02 seed manifest. The three are OR-ed: any one makes the construction capable of producing a candidate admissible triple, or spends a frozen seed, and both are forbidden before a committed C2.",
+ "MAX_FIXTURE_L": 5,
+ "NEED": 250,
+ "CERTIFICATION": [
+  {
+   "seed": 910000001,
+   "L": 5,
+   "horizon": 40,
+   "seed_in_a_manifest": false,
+   "SCIENTIFIC_SCALE": false
+  },
+  {
+   "seed": 910000002,
+   "L": 5,
+   "horizon": 40,
+   "seed_in_a_manifest": false,
+   "SCIENTIFIC_SCALE": false
+  },
+  {
+   "seed": 910000003,
+   "L": 5,
+   "horizon": 40,
+   "seed_in_a_manifest": false,
+   "SCIENTIFIC_SCALE": false
+  }
+ ],
+ "FIXTURES": [
+  {
+   "seed": 910000001,
+   "parent_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "daughter_cells": [
+    [
+     1,
+     1
+    ]
+   ],
+   "Y_total_before": 3,
+   "Y_total_after": 3,
+   "1_Y_MASS_CONSERVED_EXACTLY": true,
+   "removal_sends_Y_to_WY_instead": {
+    "removed": 2,
+    "Y_after": 1,
+    "WY_after": 2,
+    "rng_unchanged": true
+   },
+   "2_NO_RANDOM_CONSUMED": true,
+   "3_DAUGHTER_UNTOUCHED": true,
+   "destination": [
+    3,
+    3
+   ],
+   "antipode_of_the_daughter": [
+    3,
+    3
+   ],
+   "search_radius_used": 0,
+   "4_DESTINATION_BEYOND_ONE_STEP_OF_EVERY_DAUGHTER_CELL": true,
+   "chebyshev_destination_to_daughter": [
+    2
+   ],
+   "5_DIFFERENT_FROM_REMOVAL": true,
+   "5b_ONLY_Y_AND_WY_DIFFER_FROM_THE_UNTREATED_STATE": true,
+   "5c_WY_UNTOUCHED_BY_DISPLACEMENT": true,
+   "phys_hash_untreated": "9abc679fc24bcf9f012d4ce535e58cf349b7cfa4d4f8ad885211d57a2de133a7",
+   "phys_hash_displaced": "e3536ce2ef5e2da5367b089848861548bc14227821bcce4db820958051650946",
+   "phys_hash_removed": "53e279ed8f45efe5f116e03cec283c92bf799d7ac54ff0a83b312c9c14decddd",
+   "audit": {
+    "moved": 2,
+    "destination": [
+     3,
+     3
+    ],
+    "antipode_of_the_daughter": [
+     3,
+     3
+    ],
+    "search_radius_used": 0,
+    "cells_rejected_for_capacity": 0,
+    "cells_rejected_for_being_within_the_daughters_reach": 0,
+    "chebyshev_to_the_nearest_daughter_cell": 2,
+    "MIN_SEPARATION_FROM_THE_DAUGHTER": 2,
+    "Y_before": 3,
+    "Y_after": 3,
+    "Y_conserved": true,
+    "source_cells": [
+     [
+      0,
+      0
+     ]
+    ],
+    "daughter_cells": [
+     [
+      1,
+      1
+     ]
+    ]
+   },
+   "6_DETERMINISTIC": true,
+   "7_REFUSES_WHEN_CAPACITY_IS_ABSENT": true,
+   "ALL_CHECKS_PASS": true
+  },
+  {
+   "seed": 910000002,
+   "parent_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "daughter_cells": [
+    [
+     1,
+     1
+    ]
+   ],
+   "Y_total_before": 3,
+   "Y_total_after": 3,
+   "1_Y_MASS_CONSERVED_EXACTLY": true,
+   "removal_sends_Y_to_WY_instead": {
+    "removed": 2,
+    "Y_after": 1,
+    "WY_after": 2,
+    "rng_unchanged": true
+   },
+   "2_NO_RANDOM_CONSUMED": true,
+   "3_DAUGHTER_UNTOUCHED": true,
+   "destination": [
+    3,
+    3
+   ],
+   "antipode_of_the_daughter": [
+    3,
+    3
+   ],
+   "search_radius_used": 0,
+   "4_DESTINATION_BEYOND_ONE_STEP_OF_EVERY_DAUGHTER_CELL": true,
+   "chebyshev_destination_to_daughter": [
+    2
+   ],
+   "5_DIFFERENT_FROM_REMOVAL": true,
+   "5b_ONLY_Y_AND_WY_DIFFER_FROM_THE_UNTREATED_STATE": true,
+   "5c_WY_UNTOUCHED_BY_DISPLACEMENT": true,
+   "phys_hash_untreated": "9abc679fc24bcf9f012d4ce535e58cf349b7cfa4d4f8ad885211d57a2de133a7",
+   "phys_hash_displaced": "e3536ce2ef5e2da5367b089848861548bc14227821bcce4db820958051650946",
+   "phys_hash_removed": "53e279ed8f45efe5f116e03cec283c92bf799d7ac54ff0a83b312c9c14decddd",
+   "audit": {
+    "moved": 2,
+    "destination": [
+     3,
+     3
+    ],
+    "antipode_of_the_daughter": [
+     3,
+     3
+    ],
+    "search_radius_used": 0,
+    "cells_rejected_for_capacity": 0,
+    "cells_rejected_for_being_within_the_daughters_reach": 0,
+    "chebyshev_to_the_nearest_daughter_cell": 2,
+    "MIN_SEPARATION_FROM_THE_DAUGHTER": 2,
+    "Y_before": 3,
+    "Y_after": 3,
+    "Y_conserved": true,
+    "source_cells": [
+     [
+      0,
+      0
+     ]
+    ],
+    "daughter_cells": [
+     [
+      1,
+      1
+     ]
+    ]
+   },
+   "6_DETERMINISTIC": true,
+   "7_REFUSES_WHEN_CAPACITY_IS_ABSENT": true,
+   "ALL_CHECKS_PASS": true
+  },
+  {
+   "seed": 910000003,
+   "parent_cells": [
+    [
+     0,
+     0
+    ]
+   ],
+   "daughter_cells": [
+    [
+     1,
+     1
+    ]
+   ],
+   "Y_total_before": 3,
+   "Y_total_after": 3,
+   "1_Y_MASS_CONSERVED_EXACTLY": true,
+   "removal_sends_Y_to_WY_instead": {
+    "removed": 2,
+    "Y_after": 1,
+    "WY_after": 2,
+    "rng_unchanged": true
+   },
+   "2_NO_RANDOM_CONSUMED": true,
+   "3_DAUGHTER_UNTOUCHED": true,
+   "destination": [
+    3,
+    3
+   ],
+   "antipode_of_the_daughter": [
+    3,
+    3
+   ],
+   "search_radius_used": 0,
+   "4_DESTINATION_BEYOND_ONE_STEP_OF_EVERY_DAUGHTER_CELL": true,
+   "chebyshev_destination_to_daughter": [
+    2
+   ],
+   "5_DIFFERENT_FROM_REMOVAL": true,
+   "5b_ONLY_Y_AND_WY_DIFFER_FROM_THE_UNTREATED_STATE": true,
+   "5c_WY_UNTOUCHED_BY_DISPLACEMENT": true,
+   "phys_hash_untreated": "9abc679fc24bcf9f012d4ce535e58cf349b7cfa4d4f8ad885211d57a2de133a7",
+   "phys_hash_displaced": "e3536ce2ef5e2da5367b089848861548bc14227821bcce4db820958051650946",
+   "phys_hash_removed": "53e279ed8f45efe5f116e03cec283c92bf799d7ac54ff0a83b312c9c14decddd",
+   "audit": {
+    "moved": 2,
+    "destination": [
+     3,
+     3
+    ],
+    "antipode_of_the_daughter": [
+     3,
+     3
+    ],
+    "search_radius_used": 0,
+    "cells_rejected_for_capacity": 0,
+    "cells_rejected_for_being_within_the_daughters_reach": 0,
+    "chebyshev_to_the_nearest_daughter_cell": 2,
+    "MIN_SEPARATION_FROM_THE_DAUGHTER": 2,
+    "Y_before": 3,
+    "Y_after": 3,
+    "Y_conserved": true,
+    "source_cells": [
+     [
+      0,
+      0
+     ]
+    ],
+    "daughter_cells": [
+     [
+      1,
+      1
+     ]
+    ]
+   },
+   "6_DETERMINISTIC": true,
+   "7_REFUSES_WHEN_CAPACITY_IS_ABSENT": true,
+   "ALL_CHECKS_PASS": true
+  }
+ ],
+ "ALL_FIXTURES_ARE_NON_SCIENTIFIC": true,
+ "N_FIXTURES": 3,
+ "ALL_PASS": true
+}
