@@ -1,0 +1,394 @@
+{
+ "MISSION": "TBRT02",
+ "SECTION": "C4 \u2014 the analysis",
+ "GENERATED_UTC": "2026-08-28T05:02:36+00:00",
+ "PARENT_C3_CONTENT_HASH": "63c780cc4fd5ce5bb042720bb6316d8c2f89a73d86f983b876129ff65a658d41",
+ "METHODS_HASH": "21571fb4cb1df9ac2e9089924e9d6ee5d4d63c920a007e188bdc24e0d94d1f99",
+ "N_TRIPLES": 41,
+ "THE_HEADLINE": "the frozen refutation condition did not fire \u2014 and it COULD NOT HAVE. Under the only reading its own words support, the intersection it tests is empty by construction, for every possible sequence of rows. The zero is therefore uninformative, and the pre-registered sequential bound must not be read as evidence about the world.",
+ "1_WHAT_WAS_FROZEN_IN_WORDS": "if the CERTAIN set of the daughter's lineage ever absorbs a descendant of the displaced mass, Model C is REFUTED. One absorption suffices. No threshold, no magnitude judgement, checkable by enumeration.",
+ "2_IT_WAS_NEVER_OPERATIONALISED_IN_CODE": {
+  "claim": "no file under TBRT02/code contained any procedure for the words absorb / refute / descendant before the campaign; the three fixtures certify the intervention mechanics (mass conservation, no randomness consumed, Chebyshev >= 2, determinism, refusal without capacity) and nothing about the enumeration.",
+  "consequence": "the mapping from those words to an enumeration was made AFTER the raw was closed at C3. That is a real degree of freedom. It was neutralised the only honest way available: three readings were declared in TBRT02/work/TBRT02_C4_ANALYSIS_NOTES.md, committed at 2a78e68, BEFORE any of them was computed, and all are reported.",
+  "notes_commit": "2a78e68"
+ },
+ "3_THE_THREE_READINGS": {
+  "R1_strict": "CERTAIN(daughter) intersect DESC(competitor) \u2014 the frozen condition, literally",
+  "R2_permissive": "POSSIBLE(daughter) intersect DESC(competitor)",
+  "R3_quantum": "a Y quantum descended from the displaced mass occupying a CERTAIN cell \u2014 NOT COMPUTABLE from the archives: schema TLMR01-ARCHIVE-1 carries no hop ledger (no pq_yhop among its arrays), so quantum identity is not recoverable. Recorded as not computable rather than silently dropped.",
+  "DESC_definition": "the ANY-source closure from the competitor cell \u2014 the same rule the frozen model calls POSSIBLE, applied to the competitor root."
+ },
+ "4_TWO_DEFECTS_IN_MY_OWN_INSTRUMENT_FOUND_BEFORE_USE": {
+  "first": "the competitor's descendant set was seeded at t_m, but the archive records the fork row BEFORE the intervention, so the destination cell is absent there. Symptom: the displaced mass appeared to die instantly in every world.",
+  "second": "after seeding at t_m+1 instead, three worlds (85, 240, 347) still showed nothing. Cell-by-cell check: no ydeath row and an occupied Moore-1 neighbour \u2014 the quantum had HOPPED on the first step and the seeding lost it.",
+  "root_cause": "the t_m row predates the intervention, so it lacks the displaced mass AND still carries the parent's Y. The second half affects the frozen Model C as applied here: in SELECTIVE and DISPLACED the parent cell counts as a source at the first transition. Not an error in CLEA01, where the recorded row was the right start.",
+  "resolution": "both variants computed side by side, neither chosen on its result."
+ },
+ "5_THE_TWO_VARIANTS": {
+  "A": "prev(t_m) = the recorded row, exactly as clea01_lineage_i1.run does",
+  "B": "prev(t_m) = the row reconstructed to its post-intervention state from meta.intervention alone (parent_cells, competitor_cell, competitor_mass) \u2014 no free parameter",
+  "B_reconstruction_audited_per_world": {
+   "DISPLACED_mass_conserved_on_every_world": true,
+   "SHAM_rows_unchanged": true,
+   "parent_Y_removed_min_med_max": [
+    1,
+    1,
+    4
+   ]
+  },
+  "THE_TWO_VARIANTS_AGREE_ON_EVERY_HEADLINE": true
+ },
+ "6_R1_THE_FROZEN_CONDITION_ENUMERATED": {
+  "variant_A_triples_fired": 0,
+  "variant_B_triples_fired": 0,
+  "variant_A_total_rows": 0,
+  "variant_B_total_rows": 0,
+  "OUT_OF": 41
+ },
+ "7_WHY_THAT_ZERO_IS_NOT_EVIDENCE": {
+  "proof": "let d be a cell at t+1. d in CERTAIN(t+1) requires S(d,t) non-empty and contained in CERTAIN(t). d in DESC(t+1) requires S(d,t) to meet DESC(t). Both together force some c in CERTAIN(t) intersect DESC(t). At t_m the two roots are disjoint, because the displacement enforces Chebyshev >= 2 from every daughter cell (MIN_SEPARATION_FROM_THE_DAUGHTER = 2, certified by fixture 4). By induction the intersection is empty at every step, for EVERY sequence of rows.",
+  "adversarial_search": {
+   "FROZEN_all_sources_CERTAIN": {
+    "worlds": 4000,
+    "fired": 0,
+    "median_first_step": null
+   },
+   "RELAXED_any_source_control": {
+    "worlds": 4000,
+    "fired": 1720,
+    "median_first_step": 11
+   },
+   "SEARCH_IS_CAPABLE": true,
+   "FROZEN_RULE_EVER_FIRED": false,
+   "PARAMS": {
+    "n_worlds": 4000,
+    "steps": 60,
+    "density": 0.02,
+    "seed": 20260828,
+    "L": 36,
+    "SEPARATION": 2
+   }
+  },
+  "reading": "4000 synthetic worlds unconstrained by the engine's physics \u2014 cells free to appear and vanish \u2014 fired the frozen rule 0 times. The SAME search, with the daughter side relaxed from ALL-sources to ANY-source, fired 1720 times at a median of 11 steps. The search is demonstrably capable; the rule is not.",
+  "CONCLUSION": "the frozen refutation condition is VACUOUS. CERTAIN is immune to contamination BY DEFINITION \u2014 'all ancestral paths lead to the root' cannot admit a foreign path \u2014 so the condition tests the definition, not the world. The claim in tbrt02_displace.py that the displacement makes Model C 'falsifiable instead of merely self-consistent' is NOT established by this condition."
+ },
+ "8_THE_SEQUENTIAL_READING_MUST_NOT_BE_USED": {
+  "preregistered_value_at_n_41": 0.070461,
+  "formula_as_frozen": "1 - alpha**(1/n)",
+  "alpha": 0.05,
+  "ITS_ONLY_VALIDITY_CONDITION_AS_FROZEN": "a triple's ADMISSIBILITY must be decided WITHOUT reference to whether absorption occurs. If admissible triples were selected on their outcome the bound would be void.",
+  "WHY_IT_IS_WITHHELD": "the bound is a statement about a Bernoulli parameter that the statistic could in principle have detected. Here the statistic is identically zero by construction, so there is no parameter to bound. Reporting 'the per-triple absorption probability is at most 7.05 per cent' would dress a tautology as a measurement. It is therefore NOT reported as a finding. The instrument itself is sound and remains available to any successor whose statistic can vary."
+ },
+ "9_R2_WHAT_THE_DATA_DO_SAY": {
+  "status": "SECONDARY AND NOT PRE-REGISTERED. Declared before computation, not before the raw.",
+  "variant_A_triples_contaminated": 17,
+  "variant_B_triples_contaminated": 17,
+  "OUT_OF": 41,
+  "first_contact_steps_after_t_m_variant_B": {
+   "n": 17,
+   "min": 562,
+   "median": 1252,
+   "mean": 1333.5,
+   "max": 1983
+  },
+  "internal_consistency": {
+   "claim": "in DISPLACED, R2 fires exactly on the worlds where POSSIBLE is not identical to CERTAIN",
+   "holds": true
+  },
+  "competitor_viability_variant_B": {
+   "DESC_duration": {
+    "n": 41,
+    "min": 49,
+    "median": 2214,
+    "mean": 5279.8,
+    "max": 10629
+   },
+   "DESC_max_cells": {
+    "n": 41,
+    "min": 1,
+    "median": 4,
+    "mean": 121.6,
+    "max": 274
+   },
+   "worlds_where_the_displaced_mass_left_no_descendant": 0,
+   "note": "under variant A three worlds looked dead on arrival; that was the seeding defect, not the world. Under B the minimum descendant lifetime is 49 steps."
+  }
+ },
+ "10_ARM_SUMMARIES": {
+  "VARIANT_A": {
+   "SHAM": {
+    "CERTAIN_duration": {
+     "n": 41,
+     "min": 13,
+     "median": 1791,
+     "mean": 3101.0,
+     "max": 10554
+    },
+    "POSSIBLE_duration": {
+     "n": 41,
+     "min": 13,
+     "median": 10136,
+     "mean": 8497.1,
+     "max": 10629
+    },
+    "CERTAIN_exposure": {
+     "n": 41,
+     "min": 14,
+     "median": 10469,
+     "mean": 331047.8,
+     "max": 1969521
+    },
+    "POSSIBLE_exposure": {
+     "n": 41,
+     "min": 14,
+     "median": 1691671,
+     "mean": 1433293.1,
+     "max": 2055609
+    },
+    "CERTAIN_max_cells": {
+     "n": 41,
+     "min": 1,
+     "median": 11,
+     "mean": 58.5,
+     "max": 278
+    },
+    "worlds_where_POSSIBLE_is_IDENTICAL_to_CERTAIN": 15
+   },
+   "SELECTIVE": {
+    "CERTAIN_duration": {
+     "n": 41,
+     "min": 15,
+     "median": 10093,
+     "mean": 7345.5,
+     "max": 10629
+    },
+    "POSSIBLE_duration": {
+     "n": 41,
+     "min": 15,
+     "median": 10093,
+     "mean": 7345.5,
+     "max": 10629
+    },
+    "CERTAIN_exposure": {
+     "n": 41,
+     "min": 16,
+     "median": 1609419,
+     "mean": 1175242.5,
+     "max": 2264516
+    },
+    "POSSIBLE_exposure": {
+     "n": 41,
+     "min": 16,
+     "median": 1609419,
+     "mean": 1175242.5,
+     "max": 2264516
+    },
+    "CERTAIN_max_cells": {
+     "n": 41,
+     "min": 1,
+     "median": 242,
+     "mean": 178.9,
+     "max": 303
+    },
+    "worlds_where_POSSIBLE_is_IDENTICAL_to_CERTAIN": 41
+   },
+   "DISPLACED": {
+    "CERTAIN_duration": {
+     "n": 41,
+     "min": 13,
+     "median": 2896,
+     "mean": 5067.1,
+     "max": 10552
+    },
+    "POSSIBLE_duration": {
+     "n": 41,
+     "min": 13,
+     "median": 10136,
+     "mean": 8238.6,
+     "max": 10629
+    },
+    "CERTAIN_exposure": {
+     "n": 41,
+     "min": 14,
+     "median": 39631,
+     "mean": 640988.9,
+     "max": 1861603
+    },
+    "POSSIBLE_exposure": {
+     "n": 41,
+     "min": 14,
+     "median": 1588455,
+     "mean": 1336651.8,
+     "max": 1989494
+    },
+    "CERTAIN_max_cells": {
+     "n": 41,
+     "min": 1,
+     "median": 36,
+     "mean": 109.3,
+     "max": 268
+    },
+    "worlds_where_POSSIBLE_is_IDENTICAL_to_CERTAIN": 24
+   }
+  },
+  "VARIANT_B": {
+   "SHAM": {
+    "CERTAIN_duration": {
+     "n": 41,
+     "min": 13,
+     "median": 1791,
+     "mean": 3101.0,
+     "max": 10554
+    },
+    "POSSIBLE_duration": {
+     "n": 41,
+     "min": 13,
+     "median": 10136,
+     "mean": 8497.1,
+     "max": 10629
+    },
+    "CERTAIN_exposure": {
+     "n": 41,
+     "min": 14,
+     "median": 10469,
+     "mean": 331047.8,
+     "max": 1969521
+    },
+    "POSSIBLE_exposure": {
+     "n": 41,
+     "min": 14,
+     "median": 1691671,
+     "mean": 1433293.1,
+     "max": 2055609
+    },
+    "CERTAIN_max_cells": {
+     "n": 41,
+     "min": 1,
+     "median": 11,
+     "mean": 58.5,
+     "max": 278
+    },
+    "worlds_where_POSSIBLE_is_IDENTICAL_to_CERTAIN": 15
+   },
+   "SELECTIVE": {
+    "CERTAIN_duration": {
+     "n": 41,
+     "min": 15,
+     "median": 10093,
+     "mean": 7345.5,
+     "max": 10629
+    },
+    "POSSIBLE_duration": {
+     "n": 41,
+     "min": 15,
+     "median": 10093,
+     "mean": 7345.5,
+     "max": 10629
+    },
+    "CERTAIN_exposure": {
+     "n": 41,
+     "min": 16,
+     "median": 1609419,
+     "mean": 1175242.5,
+     "max": 2264516
+    },
+    "POSSIBLE_exposure": {
+     "n": 41,
+     "min": 16,
+     "median": 1609419,
+     "mean": 1175242.5,
+     "max": 2264516
+    },
+    "CERTAIN_max_cells": {
+     "n": 41,
+     "min": 1,
+     "median": 242,
+     "mean": 178.9,
+     "max": 303
+    },
+    "worlds_where_POSSIBLE_is_IDENTICAL_to_CERTAIN": 41
+   },
+   "DISPLACED": {
+    "CERTAIN_duration": {
+     "n": 41,
+     "min": 13,
+     "median": 2896,
+     "mean": 5067.1,
+     "max": 10552
+    },
+    "POSSIBLE_duration": {
+     "n": 41,
+     "min": 13,
+     "median": 10136,
+     "mean": 8238.6,
+     "max": 10629
+    },
+    "CERTAIN_exposure": {
+     "n": 41,
+     "min": 14,
+     "median": 39631,
+     "mean": 640988.9,
+     "max": 1861603
+    },
+    "POSSIBLE_exposure": {
+     "n": 41,
+     "min": 14,
+     "median": 1588455,
+     "mean": 1336651.8,
+     "max": 1989494
+    },
+    "CERTAIN_max_cells": {
+     "n": 41,
+     "min": 1,
+     "median": 36,
+     "mean": 109.3,
+     "max": 268
+    },
+    "worlds_where_POSSIBLE_is_IDENTICAL_to_CERTAIN": 24
+   }
+  }
+ },
+ "11_THE_CLEA01_FAILURE_MODE_REPRODUCED": {
+  "SELECTIVE": "41/41 worlds have POSSIBLE identical to CERTAIN \u2014 removing the parent leaves the daughter as the only Y source, so everything descends from her and the lineage object explains nothing. This is precisely why CLEA01 closed, reproduced here without exception.",
+  "SHAM": "15/41",
+  "DISPLACED": "24/41",
+  "WHAT_THE_DISPLACEMENT_ACTUALLY_BOUGHT": "in 17 of 41 worlds the competitor's descendants reach the daughter's POSSIBLE set, so the permissive lineage is no longer trivially the ambient population. In the remaining 24 the two fronts never meet within the horizon and the degeneracy CLEA01 identified persists. That is a partial repair, not a solved problem, and it is not what the frozen condition was adjudicating."
+ },
+ "12_EXPLORATORY_PAIRED_CONTRASTS": {
+  "status": "EXPLORATORY. The frozen primary adjudication is the refutation condition and nothing else. No error rate is claimed for anything in this block and no hypothesis is declared tested by it.",
+  "variant_B_paired_by_index": {
+   "SELECTIVE_minus_SHAM_CERTAIN_duration": {
+    "n": 41,
+    "min": -8941,
+    "median": 7700,
+    "mean": 4244.5,
+    "max": 10480,
+    "n_positive": 24,
+    "n_zero": 7,
+    "n_negative": 10
+   },
+   "DISPLACED_minus_SHAM_CERTAIN_duration": {
+    "n": 41,
+    "min": -10393,
+    "median": 875,
+    "mean": 1966.0,
+    "max": 9919,
+    "n_positive": 24,
+    "n_zero": 4,
+    "n_negative": 13
+   }
+  }
+ },
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+ "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED",
+ "CLEA01_STATUS": "CLOSED__LINEAGE_ROUTE_PAUSED__NOT_REOPENED",
+ "MODEL_C_STATUS": "NOT_REFUTED AND NOT CORROBORATED BY THIS EXPERIMENT \u2014 the adjudicating condition cannot discriminate. Its CERTAIN set remains sound by construction, which was never in question.",
+ "NOTHING_HERE_ESTABLISHES_ANY_CLAIM_ABOUT_LINEAGE_IN_THE_WORLD": true,
+ "C4_CONTENT_HASH": "bae660a9c873531e990e54e5921204894c3763b73a4419124579b1af5c40ecb3"
+}
