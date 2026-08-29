@@ -1,3 +1,10 @@
+> **RETIRÉE — 2026-08-29.** La section 1 de ce document est FAUSSE : elle déclare que la
+> trajectoire de `n_components` n'a jamais été examinée. TLMR01 l'avait examinée et publiée
+> quatre jours plus tôt (`TLMR01/out/TLMR01_ANALYSIS.json`, M1/M2/M4, `LAW_C_MCTT01`, 256
+> mondes). Voir `RPP98_WITHDRAWAL.md` et `RPP98_CHECKER_ADJUDICATION.json` — seize constats,
+> seize acceptés. Le document est conservé tel qu'il a été gelé, bandeau excepté : ce que j'ai
+> affirmé doit rester lisible à côté de sa réfutation.
+
 # RPP98 — pré-enregistrement, écrit AVANT toute mesure
 
 **Ceci est un vrai pré-enregistrement**, à la différence de RPP97 qui portait
