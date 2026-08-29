@@ -39,6 +39,66 @@ PATHS = ["TBRT02/code", "TBRT02/out", "TBRT02/work",
          "PQEC01/out/PQEC01_MASTER_FREEZE.json"]
 
 
+# --- added after the twenty-third rollback, 2026-08-29 -------------------------------------
+# RPP97 was written, committed, and lost: it lived only in git inside the container, because this
+# list named TBRT02 and nothing else. A commit is not durability here — the TBRT02 freeze already
+# said so and I still let a new mission fall outside the payload.
+#
+# The fix is NOT to pack the whole laboratory: everything older than the base bundle is already
+# durable in it, and pulling it all in blows the Project's 2 MB budget. The fix is a list that
+# FAILS LOUDLY. ACTIVE_MISSIONS below must be extended THE DAY a mission is created, and the
+# packer refuses silence: any mission directory holding a file newer than the newest file it
+# actually packed is reported in PATHS_UNPACKED_AND_RECENT, which the caller must not ignore.
+ACTIVE_MISSIONS = ["TBRT02", "RPP97"]
+for _m in ACTIVE_MISSIONS:
+    for _sub in ("code", "out", "work"):
+        _rel = f"{_m}/{_sub}"
+        if os.path.isdir(os.path.join(REPO, _rel)) and _rel not in PATHS:
+            PATHS.append(_rel)
+
+
+def _newest_packed_mtime(packed):
+    """Newest mtime among everything actually packed; PATHS holds both directories and files."""
+    newest = 0.0
+    for rel in packed:
+        full = os.path.join(REPO, rel)
+        if os.path.isfile(full):
+            newest = max(newest, os.path.getmtime(full)); continue
+        for root, _, files in os.walk(full):
+            for f in files:
+                try:
+                    newest = max(newest, os.path.getmtime(os.path.join(root, f)))
+                except OSError:
+                    pass
+    return newest
+
+
+def _unpacked_but_recent(packed, newest_packed_mtime):
+    """Mission directories carrying work newer than anything we packed. A non-empty list means
+    the payload is behind the laboratory and ACTIVE_MISSIONS needs extending."""
+    import glob as _glob
+    out = []
+    for d in sorted(_glob.glob(os.path.join(REPO, "*"))):
+        b = os.path.basename(d)
+        if not os.path.isdir(d) or b in ACTIVE_MISSIONS:
+            continue
+        if not (b[:1].isupper() and any(c.isdigit() for c in b)):
+            continue
+        if any(f"{b}/{s}" in packed for s in ("code", "out", "work")):
+            continue
+        for root, _, files in os.walk(d):
+            for f in files:
+                try:
+                    if os.path.getmtime(os.path.join(root, f)) > newest_packed_mtime:
+                        out.append(b)
+                        break
+                except OSError:
+                    pass
+            if b in out:
+                break
+    return sorted(set(out))
+
+
 def sha(p):
     h = hashlib.sha256()
     with open(p, "rb") as f:
@@ -64,6 +124,10 @@ def main():
          "FITS": os.path.getsize(b64p) <= B64_BUDGET,
          "n_members": len(tarfile.open(tgz).getnames()),
          "paths_packed": present, "paths_absent": absent, "ledger_lines": lines,
+         "ACTIVE_MISSIONS": ACTIVE_MISSIONS,
+         "PATHS_UNPACKED_AND_RECENT": _unpacked_but_recent(present, _newest_packed_mtime(present)),
+         "IF_THAT_LIST_IS_NOT_EMPTY": "a mission is doing work this payload does not carry. Extend "
+             "ACTIVE_MISSIONS before the next rollback, not after it.",
          "GIT_PROVENANCE_IS_NOT_IN_HERE": "the guard runs on every seed and reads git; restore the "
              "branch from the Windows bundles, it does not fit in the Project",
          "SELECTS_NOTHING_ON_A_RESULT": True}
