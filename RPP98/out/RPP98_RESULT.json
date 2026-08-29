@@ -1,0 +1,308 @@
+{
+ "MISSION": "RPP98",
+ "PREREGISTRATION": "RPP98/out/RPP98_PREREGISTRATION.md",
+ "CAPABILITY": "RPP98/out/RPP98_CAPABILITY.json",
+ "GENERATED_UTC": "2026-08-29T22:39:30+00:00",
+ "QUESTION": "les transitions vers deux composantes ou plus se produisent-elles ailleurs que dans la fenetre selectionnee par le declencheur gele, et si oui : combien, quand, et combien de temps la separation tient-elle",
+ "DEFINITIONS": {
+  "MULTI_MIN": 2,
+  "PERSISTENT_MIN_DUREE": 250,
+  "n_components": "nombre de composantes de simple liaison toroidale des cellules Y-occupees, adjacence <= CORE_R = 5.0, FDOT01/code/fdot01_centres.components, ecrit dans s[:,7]",
+  "n_components_zero": "Y eteint : aucune cellule occupee"
+ },
+ "INTEGRITE_DES_SERIES": {
+  "n_archives": 123,
+  "all_contiguous": true,
+  "all_11000_steps": true,
+  "n_archives_with_a_zero_step": 19,
+  "t_first_zero_dist": {
+   "n": 19,
+   "min": 761.0,
+   "q1": 1064.5,
+   "median": 1525.0,
+   "q3": 1860.0,
+   "max": 3221.0,
+   "mean": 1543.3157894736842
+  }
+ },
+ "N_EPISODES_PAR_ARCHIVE": {
+  "n": 123,
+  "min": 1.0,
+  "q1": 28.0,
+  "median": 42.0,
+  "q3": 51.5,
+  "max": 83.0,
+  "mean": 38.699186991869915
+ },
+ "FRACTION_PERSISTANTS_PAR_ARCHIVE": {
+  "n": 123,
+  "min": 0.017241379310344827,
+  "q1": 0.04210992907801418,
+  "median": 0.058823529411764705,
+  "q3": 0.093841642228739,
+  "max": 1.0,
+  "mean": 0.13270818960359956
+ },
+ "DUREE_TOUS_EPISODES": {
+  "n": 4760,
+  "min": 1.0,
+  "q1": 2.0,
+  "median": 7.0,
+  "q3": 20.0,
+  "max": 2957.0,
+  "mean": 63.98802521008403
+ },
+ "MASSE_PARENT_TOUS_EPISODES": {
+  "n": 4760,
+  "min": 2.0,
+  "q1": 51.0,
+  "median": 88.0,
+  "q3": 110.0,
+  "max": 225.0,
+  "mean": 78.48256302521008
+ },
+ "N_EPISODES_TARDIFS_PAR_ARCHIVE": {
+  "n": 123,
+  "min": 0.0,
+  "q1": 26.0,
+  "median": 37.0,
+  "q3": 47.0,
+  "max": 79.0,
+  "mean": 35.357723577235774
+ },
+ "MASSE_PARENT_EPISODES_TARDIFS": {
+  "n": 4349,
+  "min": 2.0,
+  "q1": 69.0,
+  "median": 92.0,
+  "q3": 111.0,
+  "max": 225.0,
+  "mean": 85.68843412278684
+ },
+ "FRACTION_DU_TEMPS_PAR_ARCHIVE": {
+  "n": 123,
+  "min": 0.022727272727272728,
+  "q1": 0.21063636363636362,
+  "median": 0.24309090909090908,
+  "q3": 0.28504545454545455,
+  "max": 0.37663636363636366,
+  "mean": 0.22511677753141168
+ },
+ "TOTAUX": {
+  "n_episodes": 4760,
+  "n_persistants": 274,
+  "n_tardifs": 4349,
+  "n_tardifs_persistants": 148,
+  "n_chevauchant_t_m": 123,
+  "n_archives_sans_episode": 0,
+  "n_archives_sans_tardif": 16,
+  "n_archives_avec_tardif_persistant": 87,
+  "n_max_global": 13
+ },
+ "PAR_BRAS_APRES_t_m": {
+  "SHAM": {
+   "n_archives": 41,
+   "N_EPISODES_TARDIFS_PAR_ARCHIVE": {
+    "n": 41,
+    "min": 0.0,
+    "q1": 29.0,
+    "median": 42.0,
+    "q3": 48.0,
+    "max": 79.0,
+    "mean": 40.48780487804878
+   },
+   "N_TARDIFS_PERSISTANTS_PAR_ARCHIVE": {
+    "n": 41,
+    "min": 0.0,
+    "q1": 1.0,
+    "median": 1.0,
+    "q3": 2.0,
+    "max": 4.0,
+    "mean": 1.3170731707317074
+   },
+   "DUREE_EPISODES_TARDIFS": {
+    "n": 1660,
+    "min": 1.0,
+    "q1": 2.0,
+    "median": 6.0,
+    "q3": 17.0,
+    "max": 2462.0,
+    "mean": 40.753614457831326
+   },
+   "MASSE_PARENT_EPISODES_TARDIFS": {
+    "n": 1660,
+    "min": 2.0,
+    "q1": 71.75,
+    "median": 92.0,
+    "q3": 111.25,
+    "max": 205.0,
+    "mean": 87.15481927710843
+   },
+   "n_archives_avec_au_moins_un_tardif_persistant": 31
+  },
+  "SELECTIVE": {
+   "n_archives": 41,
+   "N_EPISODES_TARDIFS_PAR_ARCHIVE": {
+    "n": 41,
+    "min": 0.0,
+    "q1": 1.0,
+    "median": 40.0,
+    "q3": 49.0,
+    "max": 79.0,
+    "mean": 33.292682926829265
+   },
+   "N_TARDIFS_PERSISTANTS_PAR_ARCHIVE": {
+    "n": 41,
+    "min": 0.0,
+    "q1": 0.0,
+    "median": 1.0,
+    "q3": 2.0,
+    "max": 3.0,
+    "mean": 1.3170731707317074
+   },
+   "DUREE_EPISODES_TARDIFS": {
+    "n": 1365,
+    "min": 1.0,
+    "q1": 3.0,
+    "median": 7.0,
+    "q3": 19.0,
+    "max": 2456.0,
+    "mean": 51.062271062271066
+   },
+   "MASSE_PARENT_EPISODES_TARDIFS": {
+    "n": 1365,
+    "min": 2.0,
+    "q1": 55.0,
+    "median": 89.0,
+    "q3": 111.0,
+    "max": 218.0,
+    "mean": 79.43369963369963
+   },
+   "n_archives_avec_au_moins_un_tardif_persistant": 29
+  },
+  "DISPLACED": {
+   "n_archives": 41,
+   "N_EPISODES_TARDIFS_PAR_ARCHIVE": {
+    "n": 41,
+    "min": 0.0,
+    "q1": 25.0,
+    "median": 36.0,
+    "q3": 42.0,
+    "max": 63.0,
+    "mean": 32.292682926829265
+   },
+   "N_TARDIFS_PERSISTANTS_PAR_ARCHIVE": {
+    "n": 41,
+    "min": 0.0,
+    "q1": 0.0,
+    "median": 1.0,
+    "q3": 1.0,
+    "max": 4.0,
+    "mean": 0.975609756097561
+   },
+   "DUREE_EPISODES_TARDIFS": {
+    "n": 1324,
+    "min": 1.0,
+    "q1": 2.0,
+    "median": 6.0,
+    "q3": 17.0,
+    "max": 2217.0,
+    "mean": 41.01586102719033
+   },
+   "MASSE_PARENT_EPISODES_TARDIFS": {
+    "n": 1324,
+    "min": 2.0,
+    "q1": 75.0,
+    "median": 94.0,
+    "q3": 112.0,
+    "max": 225.0,
+    "mean": 90.29833836858006
+   },
+   "n_archives_avec_au_moins_un_tardif_persistant": 27
+  }
+ },
+ "BORNE_DE_TRIVIALITE": {
+  "definition": "si les episodes sont innombrables et longs de un ou deux pas, ils ne decrivent qu'un scintillement du critere de liaison",
+  "n_episodes_duree_1": 706,
+  "n_episodes_duree_le_2": 1212,
+  "fraction_duree_le_2": 0.2546218487394958,
+  "n_episodes_duree_ge_250": 274,
+  "fraction_des_pas_a_deux_ou_plus_passes_dans_un_episode_persistant": 0.7513781136832981
+ },
+ "SECTION_6_NUL_1_aucun_persistant_tardif": false,
+ "SECTION_6_NUL_2_indistinguable_du_scintillement": false,
+ "NON_PREENREGISTRE__CONTEXTE_SEUL": {
+  "avertissement": "ces chiffres n'etaient pas enumeres a la section 3 ; ils sont donnes pour que le lecteur voie le denominateur et la chronologie, et sont signales comme tels plutot que fondus dans les grandeurs gelees",
+  "fraction_du_temps_denominateur_11000_inclut_les_pas_ou_Y_est_eteint": true,
+  "n_archives_ou_Y_s_eteint": 19,
+  "OMISSION_DE_LA_SECTION_3": "la question de la section 1 demande COMBIEN, QUAND et COMBIEN DE TEMPS ; la section 3 a enumere le combien et le combien de temps mais a oublie d'enumerer le quand. t_start et n_max sont des attributs definis a la section 2 ; ils sont rapportes ici, sous cette etiquette, plutot que passes sous silence.",
+  "t_start_TOUS_EPISODES": {
+   "n": 4760,
+   "min": 58.0,
+   "q1": 2436.0,
+   "median": 3329.0,
+   "q3": 4033.0,
+   "max": 10768.0,
+   "mean": 3161.889075630252
+  },
+  "t_start_EPISODES_TARDIFS": {
+   "n": 4349,
+   "min": 446.0,
+   "q1": 2752.0,
+   "median": 3442.0,
+   "q3": 4093.0,
+   "max": 10768.0,
+   "mean": 3410.6778569786156
+  },
+  "t_start_EPISODES_TARDIFS_PERSISTANTS": {
+   "n": 148,
+   "min": 532.0,
+   "q1": 1411.0,
+   "median": 1926.0,
+   "q3": 2560.0,
+   "max": 6304.0,
+   "mean": 2054.527027027027
+  },
+  "duree_EPISODES_TARDIFS_PERSISTANTS": {
+   "n": 148,
+   "min": 251.0,
+   "q1": 336.25,
+   "median": 582.0,
+   "q3": 1200.0,
+   "max": 2462.0,
+   "mean": 822.6351351351351
+  },
+  "n_max_TOUS_EPISODES": {
+   "n": 4760,
+   "min": 2.0,
+   "q1": 2.0,
+   "median": 2.0,
+   "q3": 3.0,
+   "max": 13.0,
+   "mean": 2.682563025210084
+  },
+  "n_episodes_avec_n_max_ge_3": 1472
+ },
+ "STATUTS_INCHANGES": {
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "HEREDITY_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+  "X_LAWSPEC_BASELINE": "UNCHANGED",
+  "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+  "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+  "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED",
+  "CLEA01_STATUS": "CLOSED__LINEAGE_ROUTE_PAUSED__NOT_REOPENED",
+  "TBRT02_STATUS": "CLOSED__RAW_COMPLETE__PRIMARY_ADJUDICATION_INCONCLUSIVE_BY_CONSTRUCTION",
+  "RPP97_STATUS": "WITHDRAWN_AS_A_DESCRIPTION__ARITHMETIC_SOUND__SCIENCE_MIS_SPECIFIED"
+ },
+ "VOCABULAIRE": "episode multi-composantes ; transition vers deux composantes. Jamais division, ni corps qui se divise : rien ici ne distingue un objet qui se scinde de deux amas qui derivent au-dela du rayon de liaison.",
+ "CODE_SHA256": {
+  "RPP98/code/rpp98_episodes.py": "0fcdf596402c9f255ea6b4b09778375dda4e6bccbf7b61305eb34ae2be412d5b",
+  "RPP98/code/rpp98_capability.py": "0b0dc5af862ca1fbdc3a09fd6387c3049981ebed4b4ac1a5f1a58c08b2b2c98a",
+  "RPP98/code/rpp98_measure.py": "df1ed8b593c5a3db24a2231f67a547cab077dea8988f70b9342bc78bdb308fe7",
+  "RPP98/code/rpp98_aggregate.py": "7a910647674aece568869f14e8837d4af7a564726611b2ab0b2dc20e42c8b7cb"
+ },
+ "CAPABILITY_CONTENT_HASH": "8f11a554ea6de35109df47ae3c2110f813197a504779513ba9bdb49ddb1631d7",
+ "RESULT_CONTENT_HASH": "be27af801cd89d08e75e7d0ce670b3e93a0c6448dda8555baacc3e2ea39b5c65"
+}
