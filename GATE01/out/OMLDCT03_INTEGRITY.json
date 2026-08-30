@@ -1,0 +1,79 @@
+{
+ "MODULE": "GATE01/code/edl_integrity_gate.py",
+ "SECTION": "porte d'integrite generique — etape SEPAREE, a passer AVANT toute mesure",
+ "MISSION_QUI_LA_PASSE": "OMLDCT03",
+ "GENERATED_UTC": "2026-08-30T06:33:46+00:00",
+ "LEDGER_PATTERN": "TBRT02/work/TBRT02_SEALED_LEDGER_*.jsonl",
+ "LEDGER_FILES": [
+  "TBRT02/work/TBRT02_SEALED_LEDGER_0.jsonl",
+  "TBRT02/work/TBRT02_SEALED_LEDGER_1.jsonl"
+ ],
+ "ARCHIVE_DIR": "/home/claude/TBRT02_raw",
+ "N_ADMISSIBLE_TRIPLES": 41,
+ "N_ARCHIVES_EXPECTED": 123,
+ "UNICITE": {
+  "n_rows_total": 885,
+  "n_admissible": 41,
+  "indices_unique": true,
+  "seeds_unique": true,
+  "n_distinct_indices": 41,
+  "n_distinct_seeds": 41
+ },
+ "OCTETS": {
+  "sha256_match": 0,
+  "sha256_mismatch": 0,
+  "missing": 123,
+  "MISMATCHES": [],
+  "MISSING_NAMES": [
+   "TBRT02_i0085_s1448082384_DISPLACED.npz",
+   "TBRT02_i0085_s1448082384_SELECTIVE.npz",
+   "TBRT02_i0085_s1448082384_SHAM.npz",
+   "TBRT02_i0094_s900507874_DISPLACED.npz",
+   "TBRT02_i0094_s900507874_SELECTIVE.npz",
+   "TBRT02_i0094_s900507874_SHAM.npz",
+   "TBRT02_i0113_s1342771967_DISPLACED.npz",
+   "TBRT02_i0113_s1342771967_SELECTIVE.npz",
+   "TBRT02_i0113_s1342771967_SHAM.npz",
+   "TBRT02_i0118_s3637463811_DISPLACED.npz",
+   "TBRT02_i0118_s3637463811_SELECTIVE.npz",
+   "TBRT02_i0118_s3637463811_SHAM.npz",
+   "TBRT02_i0124_s1683812884_DISPLACED.npz",
+   "TBRT02_i0124_s1683812884_SELECTIVE.npz",
+   "TBRT02_i0124_s1683812884_SHAM.npz",
+   "TBRT02_i0182_s2264900717_DISPLACED.npz",
+   "TBRT02_i0182_s2264900717_SELECTIVE.npz",
+   "TBRT02_i0182_s2264900717_SHAM.npz",
+   "TBRT02_i0198_s3119402102_DISPLACED.npz",
+   "TBRT02_i0198_s3119402102_SELECTIVE.npz"
+  ],
+  "n_missing_names_listed": 20
+ },
+ "CONTENU": {
+  "n_arms_read": 0,
+  "meta_integrity_ok": 0,
+  "steps_executed_equals_row_count": 0,
+  "step_index_contiguous": 0,
+  "distinct_horizons": []
+ },
+ "FIDELITE_DU_FORK": {
+  "PHYSICAL_STATE_IDENTICAL": 41,
+  "RNG_STATE_IDENTICAL": 41,
+  "ALL_THREE_ARMS_DIVERGED": 41
+ },
+ "FIDELITE_DE_L_INTERVENTION": {
+  "SELECTIVE_parent_emptied": 41,
+  "SELECTIVE_daughter_untouched": 41,
+  "SELECTIVE_occupancy_conserved": 41,
+  "SELECTIVE_rng_unchanged": 41,
+  "SHAM_removed_nothing": 41,
+  "SHAM_phys_unchanged": 41
+ },
+ "ALL_ARCHIVE_HASHES_MATCH": false,
+ "NO_DUPLICATE_SCIENTIFIC_SEED": true,
+ "ALL_CONTENT_CHECKS_PASS": false,
+ "ALL_FIDELITY_CHECKS_PASS": true,
+ "INTEGRITY_GATE_PASSES": false,
+ "POURQUOI_ELLE_REFUSE_SI_ELLE_NE_PEUT_PAS_VERIFIER": "un repertoire d'archives vide donne sha256_match = 0 et missing > 0, donc ALL_ARCHIVE_HASHES_MATCH faux, donc refus. Une porte qui passerait faute de donnees certifierait le vide.",
+ "ELLE_NE_CORRIGE_RIEN": true,
+ "GATE_CONTENT_HASH": "9f41b0a79b12df9dfdc45eb601bb3f4622624ff098eb752ce5097d6f7174bd85"
+}
