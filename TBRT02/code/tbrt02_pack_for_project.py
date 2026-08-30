@@ -49,7 +49,7 @@ PATHS = ["TBRT02/code", "TBRT02/out", "TBRT02/work",
 # FAILS LOUDLY. ACTIVE_MISSIONS below must be extended THE DAY a mission is created, and the
 # packer refuses silence: any mission directory holding a file newer than the newest file it
 # actually packed is reported in PATHS_UNPACKED_AND_RECENT, which the caller must not ignore.
-ACTIVE_MISSIONS = ["TBRT02", "RPP97", "RPP98", "GATE01", "FIMRCC02"]
+ACTIVE_MISSIONS = ["TBRT02", "RPP97", "RPP98", "GATE01", "FIMRCC02", "OMLDCT03"]
 for _m in ACTIVE_MISSIONS:
     for _sub in ("code", "out", "work"):
         _rel = f"{_m}/{_sub}"
