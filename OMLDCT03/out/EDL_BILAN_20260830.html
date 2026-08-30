@@ -1,0 +1,262 @@
+<title>Où en est le laboratoire Ising</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,400;0,500;1,6..72,400&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#F1F4F6; --panel:#FFFFFF; --ink:#161C23; --ink-soft:#4A555F;
+  --mute:#6E7982; --rule:#D3DAE0; --rule-soft:#E4E9ED;
+  --accent:#0E6B72; --accent-soft:#E2EFEF;
+  --rust:#95462F; --rust-soft:#F3E6E1;
+  --amber:#7A5A16; --amber-soft:#F2ECDC;
+  --shadow:0 1px 2px rgba(20,28,35,.05),0 8px 24px -16px rgba(20,28,35,.28);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0D1115; --panel:#141A20; --ink:#DEE4EA; --ink-soft:#A6B1BB;
+    --mute:#7E8A94; --rule:#28313A; --rule-soft:#1D242B;
+    --accent:#57C2C8; --accent-soft:#12292B;
+    --rust:#D3846B; --rust-soft:#2C1D17;
+    --amber:#C7A44E; --amber-soft:#2A2416;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -18px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0D1115; --panel:#141A20; --ink:#DEE4EA; --ink-soft:#A6B1BB;
+  --mute:#7E8A94; --rule:#28313A; --rule-soft:#1D242B;
+  --accent:#57C2C8; --accent-soft:#12292B;
+  --rust:#D3846B; --rust-soft:#2C1D17;
+  --amber:#C7A44E; --amber-soft:#2A2416;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -18px rgba(0,0,0,.8);
+}
+*{box-sizing:border-box}
+body{
+  background:var(--ground); color:var(--ink);
+  font-family:"Newsreader",Georgia,"Times New Roman",serif;
+  font-size:18px; line-height:1.62; margin:0;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px 96px}
+.lab{font-family:"Source Sans 3",system-ui,sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-variant-numeric:tabular-nums}
+
+/* ---- masthead ---- */
+header{padding:64px 0 34px;border-bottom:2px solid var(--ink)}
+h1{font-size:clamp(34px,5.2vw,54px);line-height:1.08;font-weight:400;margin:14px 0 0;
+  letter-spacing:-.018em;text-wrap:balance;max-width:17ch}
+.standfirst{font-size:20px;line-height:1.55;color:var(--ink-soft);max-width:60ch;margin:20px 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:26px}
+.meta div{display:flex;flex-direction:column;gap:3px}
+.meta b{font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:500;color:var(--ink);
+  font-variant-numeric:tabular-nums}
+
+/* ---- generic section ---- */
+section{padding-top:58px}
+h2{font-family:"Source Sans 3",sans-serif;font-size:13px;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 4px;
+  padding-bottom:9px;border-bottom:1px solid var(--rule)}
+h3{font-size:25px;font-weight:400;line-height:1.24;margin:26px 0 10px;letter-spacing:-.012em;
+  text-wrap:balance}
+p{margin:0 0 16px;max-width:66ch}
+.lede{font-size:21px;line-height:1.5;max-width:60ch}
+strong{font-weight:500;color:var(--ink)}
+em.q{font-style:italic;color:var(--ink-soft)}
+
+/* ---- verdict panel ---- */
+.verdict{background:var(--panel);border:1px solid var(--rule);border-left:4px solid var(--accent);
+  border-radius:3px;padding:28px 30px;margin-top:26px;box-shadow:var(--shadow)}
+.verdict p:last-child{margin-bottom:0}
+
+/* ---- instrument strip ---- */
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:1px;
+  background:var(--rule);border:1px solid var(--rule);border-radius:3px;margin:26px 0 8px;
+  overflow:hidden}
+.cell{background:var(--panel);padding:17px 18px 15px;display:flex;flex-direction:column;gap:5px}
+.cell .v{font-family:"IBM Plex Mono",monospace;font-size:27px;font-weight:500;line-height:1;
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.cell .k{font-family:"Source Sans 3",sans-serif;font-size:11px;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--mute)}
+.cell .n{font-size:14px;line-height:1.4;color:var(--ink-soft)}
+.cell.hi .v{color:var(--accent)}
+.caption{font-size:14px;color:var(--mute);max-width:70ch;margin:10px 0 0}
+
+/* ---- chips ---- */
+.chip{display:inline-flex;align-items:center;gap:7px;font-family:"IBM Plex Mono",monospace;
+  font-size:12px;padding:3px 9px;border-radius:2px;white-space:nowrap}
+.chip::before{content:"";width:6px;height:6px;border-radius:1px;background:currentColor;flex:none}
+.chip.ok{color:var(--accent);background:var(--accent-soft)}
+.chip.no{color:var(--rust);background:var(--rust-soft)}
+.chip.hold{color:var(--amber);background:var(--amber-soft)}
+
+/* ---- ledger table ---- */
+.scroll{overflow-x:auto;margin:22px 0 0;border:1px solid var(--rule);border-radius:3px;
+  background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:520px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--rule-soft);vertical-align:top}
+th{font-family:"Source Sans 3",sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--mute);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---- sequence ---- */
+ol.seq{list-style:none;counter-reset:s;padding:0;margin:26px 0 0;
+  display:flex;flex-direction:column;gap:0}
+ol.seq li{counter-increment:s;display:grid;grid-template-columns:52px 1fr;gap:20px;
+  padding:22px 0;border-top:1px solid var(--rule)}
+ol.seq li::before{content:counter(s,decimal-leading-zero);font-family:"IBM Plex Mono",monospace;
+  font-size:13px;color:var(--mute);padding-top:5px}
+ol.seq h4{font-size:19px;font-weight:400;margin:0 0 6px;display:flex;flex-wrap:wrap;
+  align-items:baseline;gap:11px}
+ol.seq h4 span.mission{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--rust)}
+ol.seq p{font-size:16px;margin:0 0 8px}
+ol.seq p:last-child{margin-bottom:0}
+.taught{font-size:15px;color:var(--ink-soft);border-left:2px solid var(--rule);padding-left:14px}
+
+/* ---- established list ---- */
+ul.est{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:1px;background:var(--rule);
+  border:1px solid var(--rule);border-radius:3px;overflow:hidden}
+ul.est li{background:var(--panel);padding:16px 18px}
+ul.est h4{font-family:"Source Sans 3",sans-serif;font-size:14px;font-weight:600;margin:0 0 5px;
+  letter-spacing:.01em}
+ul.est p{font-size:15px;margin:0;color:var(--ink-soft)}
+
+.foot{margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);font-size:14px;
+  color:var(--mute);max-width:72ch}
+@media (max-width:640px){
+  body{font-size:17px}
+  .wrap{padding:0 20px 72px}
+  ol.seq li{grid-template-columns:36px 1fr;gap:14px}
+}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="lab">Laboratoire Ising &middot; bilan d'étape</div>
+  <h1>Où en est le laboratoire</h1>
+  <p class="standfirst">Quarante missions, un test confirmatoire enfin exécuté à son effectif requis, et un mur chiffré qui explique pourquoi tout le reste s'arrête.</p>
+  <div class="meta">
+    <div><span class="lab">Date</span><b>30 août 2026</b></div>
+    <div><span class="lab">Branche</span><b>9bf07fa</b></div>
+    <div><span class="lab">Missions publiées</span><b>38</b></div>
+    <div><span class="lab">Fichiers de résultat</span><b>435</b></div>
+    <div><span class="lab">Archives scellées</span><b>123 / 123 vérifiées</b></div>
+  </div>
+</header>
+
+<section>
+  <h2>La réponse en une phrase</h2>
+  <div class="verdict">
+    <p class="lede">Sur 41 paires appariées à la même graine, retirer le parent ne change pas de façon détectable la durée de vie de l'identité qu'on suivait. <strong>Ce n'est pas une absence d'effet : c'est une absence de preuve d'effet</strong>, et le pré-enregistrement impose de le dire ainsi.</p>
+    <p>C'est le premier test confirmatoire de tout le programme à avoir été exécuté à l'effectif que son propre gel exigeait. Il a été gelé le 25 août — critère, statistique, seuil, règle des égalités — par une mission qui ne pouvait pas voir ces données. Rien n'a été choisi après coup.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Le test, et ce qu'il a rendu</h2>
+  <div class="strip">
+    <div class="cell hi"><span class="k">Paires retenues</span><span class="v">41 / 41</span><span class="n">aucune écartée</span></div>
+    <div class="cell"><span class="k">Durée &middot; p exact</span><span class="v">0,246</span><span class="n">ne rejette pas</span></div>
+    <div class="cell"><span class="k">Exposition &middot; p exact</span><span class="v">0,348</span><span class="n">ne rejette pas</span></div>
+    <div class="cell"><span class="k">Effet estimé</span><span class="v">1,40&times;</span><span class="n">intervalle 0,79&times; à 2,31&times;</span></div>
+  </div>
+  <p class="caption">Wilcoxon apparié exact, rangs de Pratt, α = 0,05, énumération complète — aucune approximation. La règle gelée exigeait que <em>les deux</em> critères rejettent : aucun ne le fait.</p>
+
+  <h3>Ce que l'intervalle autorise encore</h3>
+  <p>L'estimation ponctuelle penche du côté d'une identité qui dure <em>plus</em> longtemps quand son parent est retiré. Mais l'intervalle va de 0,79× à 2,31× : ce test ne permet d'exclure ni une multiplication par deux, ni une diminution d'un cinquième. C'est la phrase qui compte, et elle manquait à ma première rédaction — un vérificateur adverse me l'a fait ajouter.</p>
+
+  <h3>Deux réserves qui changent ce que le résultat veut dire</h3>
+  <p>Dans <strong>9 paires sur 41</strong>, l'espèce suivie s'éteint entièrement du côté traité, contre <strong>0</strong> du côté témoin. Le chiffre publié mélange donc deux populations opposées : un écart positif chez les mondes que le traitement ne tue pas, un écart négatif chez ceux qu'il tue.</p>
+  <p>Et le retrait supprime précisément l'objet qui pouvait embrouiller le suivi. Dans le bras traité, l'objet suivi est presque toujours seul au monde — il n'y a plus rien avec quoi le confondre. Une part de « ça dure plus longtemps » est un artefact de mesure, pas un fait sur les objets.</p>
+</section>
+
+<section>
+  <h2>Le mur, chiffré</h2>
+  <p>C'est le fait le plus important du dossier, et il est établi depuis le 25 août. Le critère que le programme veut tester se heurte à deux impasses, mesurées et non supposées.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Critère</th><th>Ce qu'il donne</th><th>Pourquoi il ne sert pas</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="n">E0</td>
+          <td class="n">22 / 22 mondes</td>
+          <td>Il vaut la même chose partout. Un critère qui ne varie jamais ne porte aucune information.</td>
+        </tr>
+        <tr>
+          <td class="n">E1 / E2</td>
+          <td class="n">1 / 256 &nbsp;=&nbsp; 0,0039</td>
+          <td>Soit <strong>1,22 fois</strong> le plancher de ce qui arriverait tout seul. Aucun nombre de mondes supplémentaires ne répare un rapport de 1,22.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption">À l'effectif prévu, le critère pré-déclaré avait 1,65 % de chances de se déclencher. C'est cette arithmétique, et non un manque de soin, qui explique la longue série de missions terminées en « non identifiable » ou « sous-puissant ».</p>
+</section>
+
+<section>
+  <h2>Trois retraits, et ce que chacun a appris</h2>
+  <p>L'ordre compte : chaque retrait a produit une garde que la mission suivante a dû franchir. C'est la seule séquence du dossier où la chronologie porte de l'information.</p>
+  <ol class="seq">
+    <li>
+      <h4>Je me suis trompé de molécule <span class="mission">RPP97</span></h4>
+      <p>J'avais bâti tout un mécanisme sur l'idée qu'une espèce était consommée. Elle est produite. Quinze constats, quinze acceptés, zéro rejeté.</p>
+      <p class="taught">A produit : l'obligation de tester une statistique contre le temps absolu et contre l'exposition avant de la publier.</p>
+    </li>
+    <li>
+      <h4>La question était déjà répondue <span class="mission">RPP98</span></h4>
+      <p>J'ai écrit noir sur blanc que personne n'avait jamais examiné une certaine trajectoire. Une mission antérieure l'avait publiée quatre jours plus tôt, sur 256 mondes au lieu de mes 41. Seize constats, seize acceptés.</p>
+      <p class="taught">A produit : une porte d'antériorité mécanique, qui fouille le dépôt avant qu'une question soit gelée et exige un verdict écrit sur chaque travail antérieur trouvé.</p>
+    </li>
+    <li>
+      <h4>Du faux sur des données non lues <span class="mission">FIMRCC02</span></h4>
+      <p>J'ai déclaré qu'aucun test pré-enregistré n'existait. Il était dans le dépôt depuis cinq jours, avec son seuil de 41 paires. Seize constats, seize acceptés.</p>
+      <p class="taught">A produit : ce test-ci. Et la règle qu'une réouverture demande ton autorisation explicite, pas la mienne.</p>
+    </li>
+  </ol>
+</section>
+
+<section>
+  <h2>Ce qui tient</h2>
+  <p>Six entrées sur quarante missions. Elles sont solides, et deux d'entre elles sont structurelles plutôt que confirmatoires.</p>
+  <ul class="est">
+    <li><h4>Le noyau causal, exact</h4><p>Le support d'influence à un pas est exactement le voisinage immédiat : zéro violation sur 668 041 paires de lignes. Établi, pas estimé.</p></li>
+    <li><h4>Les taux de séparation, mesurés</h4><p>8 292 transitions vers deux centres ou plus sur 1,54 million de pas, avec les durées de séparation et leurs façons de finir, sur 256 mondes.</p></li>
+    <li><h4>Le matériel de TBRT02</h4><p>41 triplets appariés, 123 archives scellées, empreintes vérifiées deux fois par un vérificateur indépendant.</p></li>
+    <li><h4>Un point de lignée qualifié</h4><p>Taux de succès supérieur à 0,10, établi le 21 août.</p></li>
+    <li><h4>Les préconditions du test apparié</h4><p>Toutes deux franchies, la fidélité du retrait auditée plutôt que supposée, 26 mondes sur 26.</p></li>
+    <li><h4>Le test exécuté, ci-dessus</h4><p>Résultat nul pré-enregistré. Un nul honnête vaut mieux qu'un positif retiré.</p></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Ce qui reste non testé</h2>
+  <p>Ces quatre statuts n'ont pas bougé d'un cran depuis le début du programme, et rien dans ce bilan ne les déplace. Je les rapporte sans condition, à chaque mission, précisément pour qu'ils ne se déplacent jamais par inadvertance.</p>
+  <p style="display:flex;flex-wrap:wrap;gap:9px;margin-top:20px;max-width:none">
+    <span class="chip no">H3 — non testé</span>
+    <span class="chip no">Reproduction — non testé</span>
+    <span class="chip no">Hérédité — non testé</span>
+    <span class="chip no">Cohésion autonome — non établie</span>
+    <span class="chip hold">Route lignée — en pause</span>
+    <span class="chip hold">Article compagnon — non soumis</span>
+  </p>
+</section>
+
+<section>
+  <h2>La décision qui t'appartient</h2>
+  <p>Le programme est à un point où la question n'est plus « quelle mesure faire ensuite » mais « que faire du mur ». Trois voies, et aucune n'est la mienne à choisir.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Voie</th><th>Ce qu'elle suppose</th><th>Ce qu'elle coûte</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Accepter le mur</strong></td><td>Que le dispositif actuel ne peut pas trancher, et le publier comme tel.</td><td>Rien de plus. Le dossier est déjà écrit.</td></tr>
+        <tr><td><strong>Changer le critère</strong></td><td>Qu'un autre observable, pré-enregistré avant toute mesure, se tienne plus loin du plancher.</td><td>Une conception neuve, gelée à l'aveugle, sur des graines jamais vues.</td></tr>
+        <tr><td><strong>Changer l'architecture</strong></td><td>Que le modèle lui-même doive bouger pour que la question soit posable.</td><td>Le plus cher, et le statut « nécessité d'un changement d'architecture » reste explicitement <em class="q">non établi</em>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="caption">Mon jugement sur le choix des questions a échoué trois fois de suite. La réparation n'est pas d'essayer plus fort : c'est de te rendre le choix avec les chiffres en main.</p>
+</section>
+
+<p class="foot">Tous les chiffres de cette page proviennent des fichiers de résultat commités et vérifiés au sha256. Rien ici ne porte sur ce que ces objets sont : le vocabulaire du vivant reste exclu du dossier, y compris pour le nier. Les 123 archives ont été rapatriées, vérifiées une à une contre leur sceau, et le conteneur est reparti en arrière vingt-cinq fois sans qu'aucune donnée soit perdue.</p>
+
+</div>
