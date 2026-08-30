@@ -20,6 +20,17 @@ Usage :
 
 La porte ne remplace pas le jugement. Elle empeche de ne pas avoir regarde.
 
+CE QU'UN REFUS SIGNIFIE, ET CE QU'IL NE SIGNIFIE PAS. Constate sur OMLDCT03 et ecrit ici pour
+qu'un futur operateur ne s'y trompe pas : la porte ne sait pas distinguer
+
+    « cette question est deja repondue, ne la refais pas »        -> RPP98, retiree
+    « ce dispositif est gele et attend d'etre execute, execute-le » -> OMLDCT03, valide
+
+Les deux se presentent identiquement : un fichier anterieur qui parle des memes grandeurs. Un
+REFUS veut dire « quelqu'un a deja travaille ici, va lire avant de decider », jamais « arrete-toi ».
+La decision reste humaine, et c'est pour cela qu'OMLDCT03 a demande une autorisation explicite
+avant de partir.
+
 REGLE SUR LES TERMES, apprise en la construisant. Les termes doivent etre les NOMS DES
 GRANDEURS, pas les mots du concept. Sur la question meme de RPP98 :
 

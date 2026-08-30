@@ -1,0 +1,956 @@
+{
+ "MODULE": "OMLDCT03/code/omldct03_integrity.py",
+ "SECTION": "porte d'integrite — etape SEPAREE, a passer AVANT toute mesure. Reponse au constat F5 du checker d'OMLDCT03, qui etait deja le F15 de RPP98.",
+ "GENERATED_UTC": "2026-08-30T05:09:53+00:00",
+ "SOURCE_OF_TRUTH": "TBRT02/work/TBRT02_SEALED_LEDGER_*.jsonl",
+ "ARCHIVE_DIR": "/home/claude/TBRT02_raw",
+ "UNICITE": {
+  "n_rows_total": 885,
+  "n_admissible": 41,
+  "indices_unique": true,
+  "seeds_unique": true,
+  "n_distinct_indices": 41,
+  "n_distinct_seeds": 41
+ },
+ "OCTETS": {
+  "sha256_match": 123,
+  "sha256_mismatch": 0,
+  "missing": 0,
+  "MISMATCHES": [],
+  "expected": 123
+ },
+ "CONTENU": {
+  "n_arms_read": 123,
+  "meta_integrity_ok": 123,
+  "steps_executed_equals_row_count": 123,
+  "step_index_contiguous": 123,
+  "distinct_horizons": [
+   11000
+  ]
+ },
+ "FIDELITE_DU_FORK": {
+  "PHYSICAL_STATE_IDENTICAL": 41,
+  "RNG_STATE_IDENTICAL": 41,
+  "ALL_THREE_ARMS_DIVERGED": 41
+ },
+ "FIDELITE_DE_L_INTERVENTION": {
+  "SELECTIVE_parent_emptied": 41,
+  "SELECTIVE_daughter_untouched": 41,
+  "SELECTIVE_occupancy_conserved": 41,
+  "SELECTIVE_rng_unchanged": 41,
+  "SHAM_removed_nothing": 41,
+  "SHAM_phys_unchanged": 41
+ },
+ "N_ADMISSIBLE_TRIPLES": 41,
+ "PER_TRIPLE": [
+  {
+   "index": 85,
+   "seed": 1448082384,
+   "t_m": 685,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4277877
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 72159
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4712993
+    }
+   }
+  },
+  {
+   "index": 94,
+   "seed": 900507874,
+   "t_m": 416,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4724027
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4231536
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4330667
+    }
+   }
+  },
+  {
+   "index": 113,
+   "seed": 1342771967,
+   "t_m": 1673,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3796675
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3434208
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3948022
+    }
+   }
+  },
+  {
+   "index": 118,
+   "seed": 3637463811,
+   "t_m": 1108,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3788310
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3611524
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3708494
+    }
+   }
+  },
+  {
+   "index": 124,
+   "seed": 1683812884,
+   "t_m": 1060,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3927427
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 71137
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4078807
+    }
+   }
+  },
+  {
+   "index": 182,
+   "seed": 2264900717,
+   "t_m": 713,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 74953
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4313833
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4993178
+    }
+   }
+  },
+  {
+   "index": 198,
+   "seed": 3119402102,
+   "t_m": 847,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4439959
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4101943
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4143719
+    }
+   }
+  },
+  {
+   "index": 231,
+   "seed": 1574924611,
+   "t_m": 506,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4034092
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4474469
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4061142
+    }
+   }
+  },
+  {
+   "index": 240,
+   "seed": 1979183767,
+   "t_m": 445,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 73352
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4911142
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4122162
+    }
+   }
+  },
+  {
+   "index": 279,
+   "seed": 1044121835,
+   "t_m": 517,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4735090
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4352340
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4780193
+    }
+   }
+  },
+  {
+   "index": 312,
+   "seed": 855318205,
+   "t_m": 525,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4455703
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4014040
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4707901
+    }
+   }
+  },
+  {
+   "index": 321,
+   "seed": 4155142768,
+   "t_m": 1641,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3550234
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 89224
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3888184
+    }
+   }
+  },
+  {
+   "index": 347,
+   "seed": 4278471531,
+   "t_m": 1108,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 79030
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 84072
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3829842
+    }
+   }
+  },
+  {
+   "index": 361,
+   "seed": 376848581,
+   "t_m": 1041,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3735733
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3887149
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4323656
+    }
+   }
+  },
+  {
+   "index": 365,
+   "seed": 213607112,
+   "t_m": 906,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4562225
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 2245962
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3852451
+    }
+   }
+  },
+  {
+   "index": 391,
+   "seed": 3792158933,
+   "t_m": 500,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4277031
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4208411
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4788014
+    }
+   }
+  },
+  {
+   "index": 393,
+   "seed": 980873942,
+   "t_m": 1247,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3815807
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 77678
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4551887
+    }
+   }
+  },
+  {
+   "index": 411,
+   "seed": 636002685,
+   "t_m": 649,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4438974
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4153419
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4233215
+    }
+   }
+  },
+  {
+   "index": 415,
+   "seed": 2847004121,
+   "t_m": 370,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4348074
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 5416651
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4731134
+    }
+   }
+  },
+  {
+   "index": 425,
+   "seed": 2539679263,
+   "t_m": 530,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3983732
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4389159
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4250666
+    }
+   }
+  },
+  {
+   "index": 461,
+   "seed": 960138963,
+   "t_m": 863,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4506795
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4444590
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4630252
+    }
+   }
+  },
+  {
+   "index": 464,
+   "seed": 405171448,
+   "t_m": 540,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4444333
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4225060
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4438709
+    }
+   }
+  },
+  {
+   "index": 491,
+   "seed": 189541500,
+   "t_m": 549,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4550490
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4701699
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4496336
+    }
+   }
+  },
+  {
+   "index": 507,
+   "seed": 3382530094,
+   "t_m": 1552,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3340133
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 80287
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3814318
+    }
+   }
+  },
+  {
+   "index": 511,
+   "seed": 2537777747,
+   "t_m": 373,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4947614
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4393224
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4683598
+    }
+   }
+  },
+  {
+   "index": 530,
+   "seed": 4051161481,
+   "t_m": 549,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3434816
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 70588
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4600885
+    }
+   }
+  },
+  {
+   "index": 545,
+   "seed": 1893176630,
+   "t_m": 714,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4182029
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4069801
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4401679
+    }
+   }
+  },
+  {
+   "index": 549,
+   "seed": 258671125,
+   "t_m": 447,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4584670
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4603989
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4377841
+    }
+   }
+  },
+  {
+   "index": 566,
+   "seed": 1771664471,
+   "t_m": 1073,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3848338
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4161574
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4033904
+    }
+   }
+  },
+  {
+   "index": 573,
+   "seed": 872323836,
+   "t_m": 693,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4246801
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 68361
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4041309
+    }
+   }
+  },
+  {
+   "index": 593,
+   "seed": 21222316,
+   "t_m": 1627,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3411532
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3618960
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4064337
+    }
+   }
+  },
+  {
+   "index": 595,
+   "seed": 300287273,
+   "t_m": 1023,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3922364
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 69988
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3693975
+    }
+   }
+  },
+  {
+   "index": 636,
+   "seed": 3605318574,
+   "t_m": 617,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4596308
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 73245
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4339656
+    }
+   }
+  },
+  {
+   "index": 664,
+   "seed": 2916336241,
+   "t_m": 595,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4072706
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4592762
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4364819
+    }
+   }
+  },
+  {
+   "index": 724,
+   "seed": 3845307706,
+   "t_m": 1239,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4183691
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4413541
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4121912
+    }
+   }
+  },
+  {
+   "index": 732,
+   "seed": 3581668915,
+   "t_m": 856,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4506239
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4087149
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4169048
+    }
+   }
+  },
+  {
+   "index": 768,
+   "seed": 1811391209,
+   "t_m": 479,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3950361
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 71760
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4266162
+    }
+   }
+  },
+  {
+   "index": 780,
+   "seed": 3887916953,
+   "t_m": 646,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 68972
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3666192
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 78507
+    }
+   }
+  },
+  {
+   "index": 793,
+   "seed": 2464723753,
+   "t_m": 1568,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 3689450
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 81471
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 79131
+    }
+   }
+  },
+  {
+   "index": 827,
+   "seed": 2833493710,
+   "t_m": 919,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4495868
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4050217
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4427787
+    }
+   }
+  },
+  {
+   "index": 866,
+   "seed": 573170435,
+   "t_m": 1006,
+   "ARMS": {
+    "DISPLACED": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 84624
+    },
+    "SELECTIVE": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4103452
+    },
+    "SHAM": {
+     "present": true,
+     "sha256_matches_the_seal": true,
+     "bytes": 4586101
+    }
+   }
+  }
+ ],
+ "ALL_ARCHIVE_HASHES_MATCH": true,
+ "NO_DUPLICATE_SCIENTIFIC_SEED": true,
+ "ALL_CONTENT_CHECKS_PASS": true,
+ "ALL_FIDELITY_CHECKS_PASS": true,
+ "INTEGRITY_GATE_PASSES": true,
+ "CE_QUE_CETTE_PORTE_NE_FAIT_PAS": "elle ne corrige rien, ne repare rien et ne relance rien. Elle constate. Un echec ici est un fait sur les donnees, pas un probleme a contourner.",
+ "MANIFEST_CONTENT_HASH": "d090f2ff20ff8d687f5a2dcabb26a9b6f7f27339a3a7c6f128f790c69979d26a"
+}

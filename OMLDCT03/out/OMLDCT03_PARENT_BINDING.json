@@ -1,0 +1,133 @@
+{
+ "MODULE": "OMLDCT03/out/OMLDCT03_PARENT_BINDING.json",
+ "SECTION": "liaison du gel parent par HACHAGE et non par horodatage. Reponse au constat F9, qui etait deja un point accepte contre FIMRCC02. Et reemission du bloc de clauses heritees, que FIMRCC01 et LDFMA01 exigent de tout successeur et que je n'avais pas reemis.",
+ "GENERATED_UTC": "2026-08-30T05:10:27+00:00",
+ "PARENT_FREEZE": {
+  "path": "OMLDCT02/out/OMLDCT02_MASTER_FREEZE.json",
+  "FREEZE_FILE_SHA256": "b709e2adf80b31e373b9b6d123ca3e6b6c6b6ac2521c7b5609bb2022e7467f6c",
+  "GENERATED_UTC_declared": "2026-08-25T22:30:05.022074+00:00",
+  "THIS_FREEZE_PRECEDES_EVERY_SCIENTIFIC_WORLD": true
+ },
+ "LES_CHAMPS_GELES_LUS_DU_FICHIER_ET_NON_TRANSCRITS": {
+  "PRIMARY_ENDPOINT": "paired post-intervention duration of the same locked daughter identity",
+  "COPRIMARY_ENDPOINT": "paired post-intervention locked-daughter particle-step exposure",
+  "SIGN_CONVENTION": "SELECTIVE minus SHAM, on the paired log difference",
+  "PAIRED_TEST": "two-sided exact Wilcoxon signed-rank with Pratt ranking; the conditional sign-flip distribution is enumerated by dynamic programming. No normal approximation anywhere.",
+  "ALPHA": 0.05,
+  "MINIMUM_VALID_PAIR_COUNT": 41,
+  "ZERO_DIFFERENCE_TREATMENT": "PRATT_EXACT_SIGN_FLIP",
+  "NULL_RESULT_INTERPRETATION": "INCONCLUSIVE__NO_CLAIM_OF_EQUIVALENCE__NO_CLAIM_OF_NO_EFFECT",
+  "ACCRUAL_RULE": "process the frozen base seeds in index order until 41 technically valid admissible pairs are retained, or the hard 512-arm-instance ceiling is exhausted. A base seed without an admissible trigger consumes its predeclared cost and is never selectively replaced. A technical retry uses the identical seed and arm. A scientific non-trigger consumes its seed.",
+  "MAX_PRIMARY_ARM_INSTANCES": 512,
+  "TARGET_VALID_PAIRED_BLOCKS": 41,
+  "SECOND_CLEAN_RESTART": "forbidden",
+  "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0,
+  "TERMINAL_VOCABULARY": [
+   "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_SUPPORTED",
+   "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+   "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS",
+   "OMLDCT02_TECHNICALLY_INVALID"
+  ],
+  "NO_FIFTH_DISPOSITION": true,
+  "CLAIM_CEILING": "a positive result establishes at most that, under one frozen law, selective removal of the parent changed both the post-removal identity duration and the particle-step exposure of the same locked daughter relative to a bit-identical sham, with concordant effect direction.",
+  "IT_DOES_NOT_ESTABLISH": [
+   "constituent turnover",
+   "minimal reproduction",
+   "strong self-reproduction",
+   "heredity",
+   "multigeneration",
+   "living status",
+   "architecture necessity"
+  ],
+  "SUPPORT_REQUIRES": [
+   "n_valid_pairs >= 41",
+   "p_duration < 0.05",
+   "p_exposure < 0.05",
+   "median_duration_difference != 0",
+   "median_exposure_difference != 0",
+   "both median effects have the same sign"
+  ],
+  "FORBIDDEN_WORDS_FOR_A_NON_POSITIVE_RESULT": [
+   "NO_EFFECT",
+   "EQUIVALENT",
+   "UNCHANGED"
+  ],
+  "MATCHED_DESIGN": {
+   "unit": "the base block — one seed, one trigger, both arms",
+   "arms": [
+    "SELECTIVE_PARENT_REMOVAL",
+    "SHAM_NO_REMOVAL"
+   ],
+   "time_origin": "t_m, the frozen trigger step, identical in both arms by construction",
+   "procedure": [
+    "one common prefix to the frozen functional-maturity time t_m",
+    "lock the uniquely reconstructed daughter",
+    "record complete physical and RNG state",
+    "fork two bit-identical continuations"
+   ],
+   "the_originally_locked_daughter_is_followed": true,
+   "forbidden": [
+    "later daughter replacement",
+    "identity restart",
+    "later interval substitution",
+    "ambient-population identity substitution"
+   ],
+   "identity_terminates_at": [
+    "split",
+    "merge",
+    "tie or ambiguity",
+    "empty component",
+    "administrative horizon"
+   ],
+   "one_base_seed_contributes_at_most_one_valid_paired_observation": true
+  },
+  "SEED_SET_HASH": "998f6fabaf166c029e0c9fadabc26bc83837e7c728ae83c8410c93d1afb3a019",
+  "N_BASE_SEEDS": 1024
+ },
+ "CE_QUE_LA_TRANSCRIPTION_A_TRONQUE": "le champ PAIRED_TEST du fichier de resultat s'arrete a « rangs de Pratt » et laisse tomber « the conditional sign-flip distribution is enumerated by dynamic programming. No normal approximation anywhere. » Le texte complet est ci-dessus, lu du fichier.",
+ "LES_TROIS_CHAMPS_QUE_J_AI_MIS_DE_COTE_SANS_LES_NOMMER": {
+  "ACCRUAL_RULE": "process the frozen base seeds in index order until 41 technically valid admissible pairs are retained, or the hard 512-arm-instance ceiling is exhausted. A base seed without an admissible trigger consumes its predeclared cost and is never selectively replaced. A technical retry uses the identical seed and arm. A scientific non-trigger consumes its seed.",
+  "MAX_PRIMARY_ARM_INSTANCES": 512,
+  "SEED_SET_HASH": "998f6fabaf166c029e0c9fadabc26bc83837e7c728ae83c8410c93d1afb3a019",
+  "aveu": "mon autorisation ecrivait « ne modifier un seul champ du gel ». Ces trois-la ont ete mis de cote en silence. C'est le constat F1, accepte, et le statut de la mission a ete renomme en consequence."
+ },
+ "CLAUSES_HERITEES_REEMISES": {
+  "source": [
+   "FIMRCC01/out/FIMRCC01_FINAL_DISPOSITION.json:INHERITED_CLAUSES_RE_EMITTED_VERBATIM",
+   "LDFMA01/out/HANDOFF_ONE_MATCHED_LOCKED_DAUGHTER_CONTROL_TEST_01.md section 4"
+  ],
+  "EVERY_SUCCESSOR_MUST_RE_EMIT_THESE_CLAUSES": true,
+  "VERBATIM": {
+   "MEASUREMENT_NOT_POINT_SEARCH": "true",
+   "ONE_ZERO_RUN_DETOUR_ONLY": "spent — no further finite-size mission",
+   "SECOND_FINITE_SIZE_EXTENSION": "forbidden",
+   "NEW_SIZE_LADDER": "forbidden",
+   "POST_OUTCOME_SIZE_RETUNING": "forbidden",
+   "NEW_PARAMETER_SWEEP": "forbidden",
+   "GENERIC_CALIBRATION_SUCCESSOR": "forbidden",
+   "INTERPOLATION": "forbidden",
+   "RESPONSE_SURFACE": "forbidden",
+   "EVERY_SUCCESSOR_MUST_RE_EMIT_THESE_CLAUSES": "true",
+   "REOPENING_FINITE_SIZE_REQUIRES_EXPLICIT_HUMAN_AUTHORISATION": "true",
+   "MAX_INDEPENDENT_CHECKERS": "1",
+   "MAX_REVIEW_CASCADES": "0",
+   "CHECKER_RETURN_WRITTEN_BEFORE_ANY_FINDING_IS_ACTED_ON": "mandatory",
+   "SECOND_TARGETED_MEASUREMENT_CAMPAIGN": "forbidden"
+  }
+ },
+ "STATUTS": {
+  "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED",
+  "OMLDCT03_STATUS": "FROZEN_STATISTICAL_PROCEDURE_EXECUTED_AT_ITS_REQUIRED_N_ON_A_MATCHED_SAMPLE_OBTAINED_OUTSIDE_ITS_ACCRUAL_RULE__EFFECT_NOT_DETECTED__INCONCLUSIVE",
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "HEREDITY_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED"
+ },
+ "CODE_SHA256": {
+  "OMLDCT03/code/omldct03_admissibility.py": "443014ff250f88293cbb7a57867b73850731b933abeacf6922bcc5955dc5b9cc",
+  "OMLDCT03/code/omldct03_frozen_test.py": "5dac165686314015115d0705e041e82bfb427b8e152d88750a3ad9753b71f3f2",
+  "OMLDCT03/code/omldct03_adjudicate.py": "3cbb69e33622712fc755a09f9f4c7437e43d2d781021ce2731b2cf33b0e092de",
+  "OMLDCT03/code/omldct03_integrity.py": "2c575e13f6099851f1c1423a39fe999fbc97949611ec1da0dc497218402eccc6"
+ },
+ "BINDING_CONTENT_HASH": "418633a01c5bac66c1cd2d7d0cb001c41d8981ae19118d47fcceab7c2259829a"
+}
