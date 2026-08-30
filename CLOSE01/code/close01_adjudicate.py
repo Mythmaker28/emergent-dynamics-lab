@@ -1,0 +1,210 @@
+"""CLOSE01 — adjudication. Le retour du checker est commite verbatim en bdd62e1, AVANT ceci."""
+from __future__ import annotations
+import os, sys, json, subprocess
+REPO = os.environ.get("TBRT02_REPO", "/home/claude/edl")
+sys.path.insert(0, os.path.join(REPO, "OMLDCT02/code"))
+import omldct02_hashes as H
+V = "CLOSE01/out/CLOSE01_CHECKER_RETURN_VERBATIM.md"
+
+F = {
+ "F1_LE_SEUL_TEST_CONFIRMATOIRE_EST_FAUX": {
+   "verdict": "ACCEPTED", "gravite": "FATALE — et pas seulement pour le document",
+   "constat": ("j'ai ecrit qu'OMLDCT03 etait le SEUL test confirmatoire pre-enregistre du "
+     "programme. C'est faux, et la phrase se trouvait dans la QUESTION que j'ai posee a "
+     "l'operateur pour qu'il decide de clore."),
+   "verifie_par_moi_meme": {
+     "FDFLT01_MASTER_FREEZE": {"FREEZE_IS_COMMITTED_ALONE_BEFORE_ANY_SCIENTIFIC_START": True,
+       "PRIMARY_N": 192, "PRIMARY_ALPHA": 0.05, "PRIMARY_CRITICAL_SUCCESS_COUNT": 27,
+       "REJECT_H0_IF": "SUCCESS_COUNT >= 27", "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0},
+     "FDFLT01_FINAL_DISPOSITION": {"PRIMARY_SUCCESS_COUNT": 53,
+       "PRIMARY_EXACT_P_VALUE": 5.255896417897822e-12,
+       "PRIMARY_EXACT_TEST_REJECTS_H0": True, "TECHNICALLY_VALID": True},
+     "lecture": ("c'est un test confirmatoire pre-enregistre, gel commite seul avant tout monde, "
+       "execute a son effectif prevu, et qui REJETTE son nul. Mon dossier le cite lui-meme en "
+       "section 3. Le document se contredit entre sa section 3 et son propre titre.")},
+   "CE_QUE_J_AI_FAIT_DE_PIRE_QUE_L_ERREUR": ("j'ai mis cette phrase fausse dans la question posee "
+     "a l'operateur. Il a decide sur une premisse fausse. Je le lui ai dit des que le checker me "
+     "l'a montre, avant toute correction du document, et il a choisi de revoir la decision."),
+   "les_nuances_qui_restent_vraies": ["FDFLT01 est a LAW_A_B1, une autre loi que tout le reste de la section 3",
+     "son plafond de revendication gele est « depasse 0,10. Rien de plus. »",
+     "il ne survit pas au seuil de timing le plus tardif que sa propre mission a teste",
+     "cela ne renverse donc pas le tableau, mais cela interdit la phrase que j'ai ecrite"]},
+
+ "F2_LE_MUR_N_EST_PAS_ARITHMETIQUE_MAIS_BUDGETAIRE": {
+   "verdict": "ACCEPTED", "gravite": "FATALE — la disposition etait nommee sur cette phrase",
+   "constat": ("j'ai ecrit « aucun effectif ne repare un rapport de 1,22 » et « ce n'est pas un "
+     "probleme de puissance ». Les deux sont fausses."),
+   "verifie_par_moi_meme": {"N=50": "k*=2, puissance 0,0165", "N=10 000": "k*=43, puissance 0,2845",
+     "N=42 000": "k*=155, puissance 0,7711", "N=50 000": "k*=182, puissance 0,8390",
+     "N=100 000": "k*=351, puissance 0,9804"},
+   "et_j_avais_omis_le_champ_qui_me_contredisait": ("la source porte STATUS = [CLAIM_ALIGNED, "
+     "NOT_DECISION_CAPABLE_AT_THE_FROZEN_N]. Elle borne l'incapacite A L'EFFECTIF GELE, dans la "
+     "chaine de statut elle-meme. J'ai repris six champs de cet objet et laisse celui-la."),
+   "la_phrase_juste": ("reparer ce critere sur le denominateur monde demande environ 50 000 "
+     "mondes, soit une cinquantaine de fois le plafond d'abordabilite que le programme s'est "
+     "lui-meme donne (E6, 1024 mondes). C'est une limite de budget, chiffree — pas une "
+     "impossibilite arithmetique.")},
+
+ "F3_J_AI_OMIS_LE_CHIFFRE_VOISIN_QUI_VAUT_QUARANTE_FOIS_PLUS": {
+   "verdict": "ACCEPTED", "gravite": "PORTANTE",
+   "constat": ("le meme objet publie DEUX assurances : 0,0165 au denominateur monde et 0,6697 au "
+     "denominateur des mondes ayant subi un retrait. J'ai copie la premiere et laisse la seconde."),
+   "ce_que_cela_cachait": ("le rendement du declencheur est de 22 mondes sur 256, soit 8,6 pour "
+     "cent. Le « mur » est arithmetiquement l'enonce que 91,4 pour cent du calcul ne produit "
+     "aucune unite informative. C'est une piste — ameliorer le rendement du declencheur change "
+     "l'economie du probleme — et je l'ai supprimee au lieu de la disposer.")},
+
+ "F6_J_AI_PUBLIE_LA_RESERVE_QUI_BAISSE_ET_TU_LA_MESURE_QUI_MONTE": {
+   "verdict": "ACCEPTED", "gravite": "PORTANTE — c'est une divulgation asymetrique dans mon sens",
+   "constat": ("j'ecris que le chiffre publie melange un ecart positif et un ecart negatif, sans "
+     "les magnitudes. Sur les 32 paires ou le confondant nomme est absent, le critere primaire "
+     "seul donne p = 0,0433 avec un rapport median de 1,88 — il franchit l'alpha gele."),
+   "l_objection_de_principe_tient": ("toutes ces restrictions conditionnent sur une variable "
+     "post-traitement, interdite nommement par le pre-enregistrement. OMLDCT03 a eu raison de les "
+     "refuser COMME RESULTATS. Mais CLOSE01 n'est pas OMLDCT03 : c'est le registre terminal, il "
+     "discute deja le confondant dans le sens qui soutient le mur, et il tait le chiffre qui "
+     "pointe dans l'autre.")},
+
+ "F5_F7_DEUX_CONSTATS_DEJA_ACCEPTES_QUE_LA_CLOTURE_NE_REPREND_PAS": {
+   "verdict": "ACCEPTED", "gravite": "PORTANTE",
+   "F5": ("la contamination — un contraste apparie de meme sens sur CES memes 41 graines, publie "
+     "deux jours avant, p = 0,0243 — est un constat accepte d'OMLDCT03 et ne figure pas parmi les "
+     "trois reserves de la cloture"),
+   "F7": ("le terminal se termine par INCONCLUSIVE_UNDER_FROZEN_POWER et la puissance gelee n'est "
+     "toujours pas ecrite : 0,402 a la borne basse de Wilson, 0,971 au point, 1,000 a la borne haute")},
+
+ "F4_F8_F9_F10_F11_F12_LA_SECTION_ETABLI_NE_TIENT_PAS_A_LA_PORTEE_DE_SES_SOURCES": {
+   "verdict": "ACCEPTED", "gravite": "PORTANTE — c'est la section qu'un successeur prendra pour du solide",
+   "les_defauts": [
+     "F4 : j'ai transforme l'echec d'un critere en absolution de tout le registre terminal, en "
+     "retirant la nuance « la grande majorite » que mon propre inventaire portait",
+     "F8 : j'ai appele « preconditions du test apparie » des preconditions qui portaient sur un "
+     "autre corpus et un autre test, et attache 26/26 a un bloc de fidelite qui vaut 22/22",
+     "F9 : j'ai pool les strates que TLMR01 avait justement resolues, appele « runs » 16 368 "
+     "segments a exactement deux centres — d'ou un compte superieur aux 8 292 entrees, ce qui est "
+     "arithmetiquement incoherent tel que presente — et laisse tomber le mot « descriptifs »",
+     "F10 : je n'ai pas nomme la loi de FDFLT01, qui n'est pas celle de tout le reste",
+     "F11 : je n'ai pas ecrit que le troisieme bras n'est pas celui que le pre-enregistrement "
+     "nommait, alors que mon propre inventaire exigeait que ce soit ecrit au titre",
+     "F12 : j'ai remplace une entree etablie par une autre en gardant le compte de six"]},
+
+ "F13_F14_LA_SECTION_SUR_MES_PROPRES_ERREURS_EST_COMPLAISANTE": {
+   "verdict": "ACCEPTED", "gravite": "PORTANTE",
+   "F13": ("« le calcul etait juste a chaque fois » est faux : le centroide etait plancher au lieu "
+     "de moyenne, c_cand n'etait pas la propension, j'ai ecrit « monte » sur des chiffres qui "
+     "baissaient, et le resultat de RPP97 n'etait meme pas reproductible depuis le depot"),
+   "F14": ("j'ai credite FIMRCC02 de deux gardes qui existaient AVANT elle et qu'elle a violees : "
+     "l'exigence d'autorisation humaine vient de FIMRCC01, et le test gele vient d'OMLDCT02. Et "
+     "j'ai tu que la garde de RPP97 a echoue des la mission suivante, et que la porte de RPP98 "
+     "etait du theatre jusqu'a ce qu'un checker la repare.")},
+
+ "F15_F16_F17_LE_LEGS_EST_INCOMPLET_ET_PAR_ENDROITS_FAUX": {
+   "verdict": "ACCEPTED", "gravite": "PORTANTE — c'est la section dont l'objet ENTIER est la transmission",
+   "F15": ("j'ai repris le cadrage causal « le retrait eteint dans 12 contre 2 » que ma propre "
+     "adjudication avait retire : le contraste cause est 11 extinctions et 1 sauvetage"),
+   "F16": ("j'ai donne au successeur le moins dangereux des deux modes d'echec de la porte. Celui "
+     "qui compte est le FAUX PASSAGE : deux termes obscurs donnent zero fichier et la porte passe"),
+   "F17": ("le legs tait les quatre choses concretes que le registre nomme et qu'un successeur "
+     "pourrait faire, dont trois sur des donnees qui existent deja"),
+   "les_quatre_pistes_tues": [
+     "pre-enregistrer en CODE la condition au niveau du corps, avec un test de capacite, et la "
+     "lire sur les 41 triplets — les archives portent deja c_cid",
+     "la comparaison au mecanisme de deplation du coeur (Reynolds, Ponce-Dawson, Pearson 1997), "
+     "mesurable sur les series par pas deja archivees",
+     "le cadre des RISQUES CONCURRENTS pour la mortalite differentielle : analyse cause-specifique "
+     "ou composite ordonne",
+     "E3/E4/E5 de FIMRCC01, toujours FUTURE_QUESTION_RECORDED__NOT_AUTHORISED"],
+   "et_le_legs_primaire_que_j_ai_omis": ("« une condition de refutation doit etre OPERATIONNALISEE "
+     "EN CODE avant le premier monde, et livree avec un test de capacite. Une condition dont on "
+     "n'a jamais montre qu'elle PEUT se declencher n'est pas un test. » C'est la lecon la plus "
+     "transferable du programme et elle ne figurait pas dans mes six points.")},
+
+ "F18_LA_PROVENANCE_EST_AU_PRESENT_POUR_UNE_VERIFICATION_ACTUELLEMENT_IMPOSSIBLE": {
+   "verdict": "ACCEPTED", "gravite": "PORTANTE pour un registre terminal",
+   "constat": ("j'ecris « 123 archives verifiees au sha256 » au present, alors que la derniere "
+     "execution commitee de ma propre porte d'integrite porte missing = 123 et "
+     "INTEGRITY_GATE_PASSES = false. La verification a eu lieu historiquement ; elle ne peut pas "
+     "avoir lieu maintenant, et le chiffre etait une chaine ecrite en dur."),
+   "et_le_point_unique_de_defaillance_n_est_pas_dit": ("les 41 tars et TOUT l'historique git — "
+     "chaque hachage, chaque retour de checker, toute la provenance — vivent sur le meme disque, "
+     "celui de l'operateur. Je l'ai consigne un commit plus tot et la cloture n'en dit rien.")},
+
+ "F19_F20_F21_GOUVERNANCE_ET_DECOUVRABILITE": {
+   "verdict": "ACCEPTED", "gravite": "MATERIELLE",
+   "F19": ("le bloc de clauses heritees n'est pas reemis — cinquieme repetition d'un constat "
+     "accepte ; et je cite le terminal d'OMLDCT03 d'AVANT son adjudication, celui-la meme que "
+     "j'avais retire comme trop large"),
+   "F20": ("le docstring de mon script dit « aucun chiffre n'est ecrit de memoire ». Faux : douze "
+     "valeurs sont relues, la majorite des chiffres portants sont des litteraux — dans un document "
+     "dont le sujet est la provenance"),
+   "F21": ("le contrat d'entree du depot, AGENTS.md, prescrit un ordre de lecture ou aucune des "
+     "quarante missions n'apparait. Un successeur qui suit le point d'entree declare n'atteindra "
+     "jamais CLOSE01, et je ne l'ai ni corrige ni signale.")},
+
+ "F22_DROPS_MINEURS": {"verdict": "ACCEPTED", "gravite": "MATERIELLE",
+   "liste": ["le noyau causal : 668 041 etablit la borne INFERIEURE ; la coincidence des ensembles "
+     "repose sur 25 577 lignes a source unique — j'ai donne un chiffre pour les deux",
+     "la regle ET presentee comme severite alors que rho = 0,975 et que les signes concordent 41/41",
+     "le plafond de revendication gele d'OMLDCT02 jamais cite",
+     "l'echelle de l'objet suivi — 1 a 6 particules — jamais dite a un successeur",
+     "le deficit d'accrual chiffre nulle part alors qu'il vaut 3 a 5 paires",
+     "la couverture de l'intervalle, 0,95034, non enoncee",
+     "« l'espece suivie s'eteint » inverse ce qui est suivi : Y est l'espece ambiante, "
+     "l'objet suivi est l'identite de la fille"]},
+}
+
+d = {
+ "MISSION": "CLOSE01",
+ "GENERATED_UTC": subprocess.run(["date", "-u", "+%Y-%m-%dT%H:%M:%S+00:00"],
+                                 capture_output=True, text=True).stdout.strip(),
+ "CHECKER_RETURN_VERBATIM": V,
+ "CHECKER_RETURN_SHA256": H.file_sha256(os.path.join(REPO, V)),
+ "CHECKER_RETURN_COMMITTED_BEFORE_THIS_FILE": "bdd62e1",
+ "N_FINDINGS": 22, "N_ACCEPTED": 22, "N_REJECTED": 0,
+ "FINDINGS": F,
+ "CLOSE01_DOSSIER_STATUS": ("WITHDRAWN_AS_WRITTEN__ITS_HEADLINE_CLAIM_IS_FALSE__"
+                            "ITS_DISPOSITION_WAS_NAMED_ON_A_FALSE_ARITHMETIC_IMPOSSIBILITY"),
+ "CE_QUI_EST_RETIRE": [
+   "« le seul test confirmatoire pre-enregistre du programme » — FDFLT01 en est un autre, execute, "
+   "qui rejette son nul",
+   "« aucun effectif ne repare un rapport de 1,22 » et « ce n'est pas un probleme de puissance » — "
+   "environ 50 000 mondes atteignent 84 pour cent",
+   "la disposition PROGRAMME_CLOSED_ON_A_QUANTIFIED_INSTRUMENT_LIMIT, qui etait nommee sur cette "
+   "impossibilite",
+   "« la longue serie de dispositions terminales n'est pas un defaut de soin »",
+   "« le calcul etait juste a chaque fois »",
+   "les deux gardes creditees a FIMRCC02, qui existaient avant elle et qu'elle a violees",
+   "« 123 archives verifiees » au present"],
+ "CE_QUI_TIENT": ("les sections 0 et 7 : la cloture ne revendique ni absence, ni equivalence, ni "
+   "changement de statut, et le dit deux fois. Les chiffres copies des fichiers sont exacts et les "
+   "deux hachages de contenu se reproduisent. La reserve sur la regle d'accrual est honnete."),
+ "LE_CONSTAT_SUR_MOI": (
+   "le checker le dit et il a raison : la maniere dont ce document echoue est la maniere dont les "
+   "trois missions retirees ont echoue. Affirmer une unicite sans avoir cherche. Affirmer une "
+   "impossibilite que la source bornait a un seul dispositif. Se crediter de gardes qu'on a "
+   "violees. La difference est qu'ici l'erreur etait passee dans la QUESTION posee a l'operateur, "
+   "donc dans sa decision. Je le lui ai dit avant de corriger quoi que ce soit."),
+ "CE_QUE_L_OPERATEUR_A_DECIDE_APRES_RECTIFICATION": "revoir la decision avec les vrais chiffres",
+ "STATUTS_INCHANGES": {
+   "H3_STATUS": "NOT_TESTED", "REPRODUCTION_STATUS": "NOT_TESTED",
+   "HEREDITY_STATUS": "NOT_TESTED", "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+   "X_LAWSPEC_BASELINE": "UNCHANGED", "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+   "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+   "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED",
+   "CLEA01_STATUS": "CLOSED__LINEAGE_ROUTE_PAUSED__NOT_REOPENED",
+   "TBRT02_STATUS": "CLOSED__RAW_COMPLETE__PRIMARY_ADJUDICATION_INCONCLUSIVE_BY_CONSTRUCTION",
+   "FIMRCC01_E3_E4_E5_STATUS": "FUTURE_QUESTION_RECORDED__NOT_AUTHORISED",
+   "OBFOR01_HISTORICAL_WINDOW_STATUS": "NOT_PORTABLE",
+   "RPP97_STATUS": "WITHDRAWN_AS_A_DESCRIPTION__ARITHMETIC_SOUND__SCIENCE_MIS_SPECIFIED",
+   "RPP98_STATUS": "WITHDRAWN__THE_QUESTION_WAS_ALREADY_ANSWERED_BY_TLMR01__AND_THE_COUNTED_EVENT_IS_NOT_THE_CLAIMED_EVENT",
+   "FIMRCC02_STATUS": "WITHDRAWN__A_PREREGISTERED_TEST_ALREADY_EXISTS__AND_THE_CENTRAL_PREMISE_IS_FALSE_BY_DEFINITION",
+   "OMLDCT03_STATUS": ("FROZEN_STATISTICAL_PROCEDURE_EXECUTED_AT_ITS_REQUIRED_N_ON_A_MATCHED_"
+                       "SAMPLE_OBTAINED_OUTSIDE_ITS_ACCRUAL_RULE__EFFECT_NOT_DETECTED__INCONCLUSIVE")},
+ "VOCABULAIRE": "rien ici ne porte sur ce que ces objets sont.",
+}
+d["ADJUDICATION_CONTENT_HASH"] = H.content_digest(d, extra_excluded=("ADJUDICATION_CONTENT_HASH",))
+json.dump(d, open(f"{REPO}/CLOSE01/out/CLOSE01_CHECKER_ADJUDICATION.json", "w"),
+          indent=1, ensure_ascii=False)
+print("constats", d["N_FINDINGS"], "acceptes", d["N_ACCEPTED"], "rejetes", d["N_REJECTED"])
+print("STATUT :", d["CLOSE01_DOSSIER_STATUS"])
+print("hash :", d["ADJUDICATION_CONTENT_HASH"][:16])
