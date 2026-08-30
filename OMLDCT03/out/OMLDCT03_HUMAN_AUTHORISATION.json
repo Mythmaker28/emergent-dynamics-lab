@@ -1,0 +1,49 @@
+{
+ "MISSION": "OMLDCT03",
+ "SECTION": "0 — l'autorisation humaine, enregistree AVANT toute lecture d'archive",
+ "GENERATED_UTC": "2026-08-30T04:11:15+00:00",
+ "POURQUOI_CE_FICHIER_EXISTE": "FIMRCC01/out/FIMRCC01_FINAL_DISPOSITION.json porte REOPENING_REQUIRES = « an explicit new human authorisation and a newly derived matched-control design. Nothing in this mission authorises one. » FIMRCC02 a rouvert sans, et c'est le constat F10 de son checker, accepte. Cette fois l'autorisation est demandee et enregistree avant la premiere archive.",
+ "LA_QUESTION_POSEE_A_L_OPERATEUR_VERBATIM": "OMLDCT02 porte un test confirmatoire gele avant tout monde (Wilcoxon apparie exact, rangs de Pratt, alpha = 0,05) qui exigeait 41 paires et s'est arrete a 33. TBRT02 a livre exactement 41 triplets du meme traitement, sur des graines disjointes. Le dossier exige une autorisation humaine explicite pour rouvrir cette route. Que fait-on ?",
+ "LA_REPONSE_DE_L_OPERATEUR": "Autoriser le test gele",
+ "OPERATEUR": "Tommy Lepesteur, proprietaire du programme",
+ "CE_QUE_L_AUTORISATION_COUVRE": [
+  "rapatrier les 123 archives scellees de TBRT02 dans le conteneur",
+  "compter combien des 41 triplets donnent des paires ADMISSIBLES au sens des criteres GELES d'OMLDCT02 — sans changer un seul critere",
+  "si et seulement si le compte atteint MINIMUM_VALID_PAIR_COUNT = 41, executer le test gele TEL QU'IL EST GELE",
+  "si le compte est inferieur a 41, ne pas executer : la regle gelee le dit elle-meme, et s'arreter est alors le respect du gel, pas un echec"
+ ],
+ "CE_QUE_L_AUTORISATION_NE_COUVRE_PAS": [
+  "modifier un seul champ du gel OMLDCT02 — ni l'endpoint, ni le test, ni alpha, ni la regle de Pratt, ni le seuil de 41",
+  "substituer un autre critere si celui-la ne donne pas le resultat espere",
+  "un endpoint composite, un sous-ensemble de survivants, ou toute restriction post-traitement",
+  "reouvrir E3, E4 ou E5 de FIMRCC01, qui restent FUTURE_QUESTION_RECORDED__NOT_AUTHORISED"
+ ],
+ "LES_TROIS_RETRAITS_QUI_PRECEDENT": {
+  "RPP97": "WITHDRAWN_AS_A_DESCRIPTION__ARITHMETIC_SOUND__SCIENCE_MIS_SPECIFIED",
+  "RPP98": "WITHDRAWN__THE_QUESTION_WAS_ALREADY_ANSWERED_BY_TLMR01__AND_THE_COUNTED_EVENT_IS_NOT_THE_CLAIMED_EVENT",
+  "FIMRCC02": "WITHDRAWN__A_PREREGISTERED_TEST_ALREADY_EXISTS__AND_THE_CENTRAL_PREMISE_IS_FALSE_BY_DEFINITION",
+  "ce_qu_ils_ont_en_commun": "dans les trois cas j'ai choisi la question moi-meme et je me suis trompe. Ici je ne choisis rien : la question, l'endpoint, le test, le seuil et la regle des egalites ont ete geles le 25 aout par une mission qui ne pouvait pas voir ces donnees."
+ },
+ "LA_DISCIPLINE_QUE_JE_M_IMPOSE_ICI": [
+  "j'execute le CODE GELE d'OMLDCT02 la ou il existe, je ne le reimplemente pas",
+  "l'admissibilite est comptee AVANT de regarder la moindre duree — le compte ne revele pas le resultat",
+  "si le compte atteint 41, le test s'execute une fois, et son resultat est ce qu'il est",
+  "un checker adverse, retour VERBATIM commite AVANT usage",
+  "aucune statistique secondaire n'est ajoutee apres coup"
+ ],
+ "STATUTS_INCHANGES": {
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "HEREDITY_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+  "X_LAWSPEC_BASELINE": "UNCHANGED",
+  "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+  "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+  "CLEA01_STATUS": "CLOSED__LINEAGE_ROUTE_PAUSED__NOT_REOPENED",
+  "TBRT02_STATUS": "CLOSED__RAW_COMPLETE__PRIMARY_ADJUDICATION_INCONCLUSIVE_BY_CONSTRUCTION",
+  "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__ACCRUAL_REOPENED_UNDER_HUMAN_AUTHORISATION",
+  "FIMRCC01_E3_E4_E5_STATUS": "FUTURE_QUESTION_RECORDED__NOT_AUTHORISED"
+ },
+ "VOCABULAIRE": "rien ici ne porte sur ce que ces objets sont.",
+ "AUTHORISATION_CONTENT_HASH": "8cffbb6c5ee085b436f590f5e7c5cd730c994f0e6b84ea4e5a5e4dd06c56ebe1"
+}
