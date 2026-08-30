@@ -38,8 +38,15 @@ import os, sys, json, re, subprocess
 REPO = os.environ.get("TBRT02_REPO", "/home/claude/edl")
 OUT = os.path.join(REPO, "GATE01/out")
 VERDICTS = ("ANSWERS_THE_QUESTION", "ADJACENT_BUT_DIFFERENT", "IRRELEVANT")
+# Une porte qui passe sur un ensemble vide n'est pas une porte : deux termes obscurs qui ne
+# co-occurrent nulle part donnaient zero fichier signale et sortie 0. Constat F6, adopte.
+MIN_FLAGGED = 10
+# Trois chaines REASON pour dix-huit fichiers, c'est du remplissage. Constat F6, adopte.
+MIN_DISTINCT_REASONS = 5
 # les repertoires de sortie publies : c'est la qu'un resultat anterieur se trouve
-PUBLISHED = re.compile(r"/(out|work)/[^/]+\.(json|md|jsonl)$")
+# review/ est inclus depuis le constat F6 : les retours de checker adverses y vivent, et c'est
+# l'anteriorite la plus lourde du programme. .txt aussi, pour la meme raison.
+PUBLISHED = re.compile(r"/(out|work|review)/[^/]+\.(json|md|jsonl|txt)$")
 CODE = re.compile(r"/code/[^/]+\.py$")
 
 
@@ -50,8 +57,11 @@ def _walk(mission):
         for f in files:
             p = os.path.join(root, f)
             rel = os.path.relpath(p, REPO)
-            if rel.startswith(mission + "/") or rel.startswith("GATE01/"):
-                continue                       # ni soi-meme, ni la porte elle-meme
+            if rel.startswith(mission + "/") or rel.startswith("GATE01/code/"):
+                continue          # ni soi-meme, ni le code de la porte. GATE01/out EST scanne :
+                                  # la carte d'anteriorite du programme y vit, et une porte qui ne
+                                  # peut pas voir l'inventaire de ce qui est etabli n'est pas une
+                                  # porte. Constat F6 du checker de FIMRCC02, adopte.
             yield p, rel
 
 
@@ -108,6 +118,18 @@ def check(mission):
         print(f"REFUS : {path} n'existe pas. La porte n'a pas ete franchie.")
         return 1
     doc = json.load(open(path))
+    if doc.get("N_FLAGGED", 0) < MIN_FLAGGED:
+        print(f"REFUS : seulement {doc.get('N_FLAGGED',0)} fichier(s) signale(s). Une porte qui ne "
+              f"trouve presque rien n'a pas cherche : les termes sont trop rares ou trop prives. "
+              f"Il en faut au moins {MIN_FLAGGED}. Relancez le scan avec les NOMS DES GRANDEURS "
+              f"que la question manipule, pas ceux de la mission parente.")
+        return 1
+    reasons = {v.get("REASON") for v in doc["FLAGGED"].values() if v.get("REASON")}
+    if doc["FLAGGED"] and len(reasons) < MIN_DISTINCT_REASONS:
+        print(f"REFUS : {len(reasons)} justification(s) distincte(s) pour "
+              f"{len(doc['FLAGGED'])} fichiers. Des verdicts recopies ne sont pas des verdicts. "
+              f"Il en faut au moins {MIN_DISTINCT_REASONS}.")
+        return 1
     unjudged = [k for k, v in doc["FLAGGED"].items()
                 if v.get("VERDICT") not in VERDICTS or not v.get("REASON")]
     answers = [k for k, v in doc["FLAGGED"].items() if v.get("VERDICT") == "ANSWERS_THE_QUESTION"]

@@ -1,16 +1,16 @@
 {
  "MISSION": "FIMRCC02",
  "TERMS": [
-  "F_INTEGRATED",
-  "K_REQUIREMENT",
-  "prospective power",
-  "paired",
-  "FUTURE_QUESTION_RECORDED",
-  "sign test",
-  "power_at_n50"
+  "matched-control power",
+  "paired log difference",
+  "MINIMUM_VALID_PAIR_COUNT",
+  "PRATT",
+  "Wilcoxon",
+  "identity lifetime",
+  "matched control"
  ],
- "GENERATED_UTC": "2026-08-30T02:11:01+00:00",
- "N_FLAGGED": 18,
+ "GENERATED_UTC": "2026-08-30T02:50:36+00:00",
+ "N_FLAGGED": 30,
  "RULE": "un fichier est signale s'il mentionne au moins DEUX des termes. Chaque fichier signale doit recevoir un VERDICT et une REASON avant le gel. Un seul ANSWERS_THE_QUESTION interdit de geler la question telle quelle.",
  "VERDICTS_ADMIS": [
   "ANSWERS_THE_QUESTION",
@@ -18,306 +18,500 @@
   "IRRELEVANT"
  ],
  "FLAGGED": {
-  "FIMRCC01/out/FIMRCC01_ENDPOINT_ADJUDICATION.json": {
+  "OMLDCT01/out/OMLDCT01_HUMAN_DECISION_ADDENDUM.json": {
    "terms_found": [
-    "F_INTEGRATED",
-    "K_REQUIREMENT",
-    "prospective power",
-    "paired",
-    "FUTURE_QUESTION_RECORDED",
-    "power_at_n50"
+    "paired log difference",
+    "MINIMUM_VALID_PAIR_COUNT",
+    "PRATT",
+    "Wilcoxon"
    ],
-   "n_terms": 6,
+   "n_terms": 4,
    "kind": "published",
-   "GENERATED_UTC": "2026-08-25T17:10:47.727154+00:00",
+   "GENERATED_UTC": "2026-08-25T21:16:34.793403+00:00",
    "sample_lines": [
-    "\"F_INTEGRATED\": 0.0032015171041760242,",
-    "\"K_REQUIREMENT\": 2,",
-    "\"their prospective power is therefore not identified\",",
-    "\"name\": \"paired count contrasts\",",
-    "\"E3_STATUS\": \"FUTURE_QUESTION_RECORDED__NOT_AUTHORISED\",",
-    "\"power_at_n50_per_removal_world\": 1.0,"
+    "\"Wilcoxon signed-rank on the paired log difference\",",
+    "\"MINIMUM_VALID_PAIR_COUNT\": 41,",
+    "\"ZERO_DIFFERENCE_TREATMENT\": \"PRATT_EXACT_SIGN_FLIP\",",
+    "\"Wilcoxon signed-rank on the paired log difference\","
    ],
    "VERDICT": "ADJACENT_BUT_DIFFERENT",
-   "REASON": "mission parente : elle gele E3/E4/E5, calcule la puissance de E0/E1/E2 et declare explicitement celle de E3/E4/E5 non identifiee. Parent, pas reponse."
+   "REASON": "trace d'une decision humaine sur cette route — pertinent pour la gouvernance, pas pour la question statistique elle-meme."
   },
-  "FIMRCC01/code/fimrcc01_closure.py": {
+  "OMLDCT01/out/OMLDCT01_MASTER_FREEZE.json": {
    "terms_found": [
-    "F_INTEGRATED",
-    "K_REQUIREMENT",
-    "prospective power",
-    "paired",
-    "FUTURE_QUESTION_RECORDED"
+    "paired log difference",
+    "MINIMUM_VALID_PAIR_COUNT",
+    "PRATT",
+    "Wilcoxon"
    ],
-   "n_terms": 5,
-   "kind": "code",
-   "GENERATED_UTC": null,
-   "sample_lines": [
-    "\"F_INTEGRATED\":F,\"test\":\"exact one-sided binomial, alpha = 0.05, against F_INTEGRATED\"},",
-    "\"FROZEN_DESIGN\":{\"N_BASE_BLOCKS\":50,\"K_REQUIREMENT\":K_REQ,",
-    "\"their prospective power is therefore not identified\",",
-    "\"E3_E4_E5\":{\"name\":\"paired count contrasts\",",
-    "\"E3_STATUS\":\"FUTURE_QUESTION_RECORDED__NOT_AUTHORISED\","
-   ],
-   "VERDICT": "ADJACENT_BUT_DIFFERENT",
-   "REASON": "mission parente : elle gele E3/E4/E5, calcule la puissance de E0/E1/E2 et declare explicitement celle de E3/E4/E5 non identifiee. Parent, pas reponse."
-  },
-  "FIMRCC01/out/FIMRCC01_ENDPOINT_ADJUDICATION.md": {
-   "terms_found": [
-    "F_INTEGRATED",
-    "K_REQUIREMENT",
-    "prospective power",
-    "paired",
-    "FUTURE_QUESTION_RECORDED"
-   ],
-   "n_terms": 5,
+   "n_terms": 4,
    "kind": "published",
-   "GENERATED_UTC": null,
+   "GENERATED_UTC": "2026-08-25T21:21:02.445287+00:00",
    "sample_lines": [
-    "against `F_INTEGRATED = 0.0032015171041760242`.",
-    "Frozen design: `N_BASE_BLOCKS = 50`, `K_REQUIREMENT = 2`, exact one-sided binomial at α = 0.05",
-    "- their prospective power is therefore **not identified**;",
-    "| E5 | ambient population, paired | count | median 93 | 0.09 | yes | not identified | — |",
-    "E3_STATUS = FUTURE_QUESTION_RECORDED__NOT_AUTHORISED"
+    "\"SIGN_CONVENTION\": \"SELECTIVE minus SHAM, on the paired log difference\",",
+    "\"MINIMUM_VALID_PAIR_COUNT\": 41,",
+    "\"ZERO_DIFFERENCE_TREATMENT\": \"PRATT_EXACT_SIGN_FLIP\",",
+    "\"PAIRED_TEST\": \"Wilcoxon signed-rank, two-sided, alpha 0.05, Pratt zeros, exact conditional sign-flip distribution by dynamic programming \\u2014 no normal approximation\","
    ],
-   "VERDICT": "ADJACENT_BUT_DIFFERENT",
-   "REASON": "mission parente : elle gele E3/E4/E5, calcule la puissance de E0/E1/E2 et declare explicitement celle de E3/E4/E5 non identifiee. Parent, pas reponse."
+   "VERDICT": "ANSWERS_THE_QUESTION",
+   "REASON": "le gel predecesseur du meme estimande apparie ; OMLDCT01 s'est termine TECHNICALLY_INVALID mais son estimande et son test sont les memes objets."
   },
-  "FIMRCC01/out/FIMRCC01_FINAL_REPORT.md": {
+  "OMLDCT01/out/OMLDCT01_STOP_RECORD.md": {
    "terms_found": [
-    "F_INTEGRATED",
-    "K_REQUIREMENT",
-    "prospective power",
-    "paired"
+    "paired log difference",
+    "MINIMUM_VALID_PAIR_COUNT",
+    "PRATT",
+    "Wilcoxon"
    ],
    "n_terms": 4,
    "kind": "published",
    "GENERATED_UTC": null,
    "sample_lines": [
-    "F_INTEGRATED (endpoint-matched floor) = 0.0032015171041760242",
-    "K_REQUIREMENT at N = 50               = 2",
-    "The paired count contrasts survive discrimination but their prospective power is **not",
-    "| E5 | ambient population, paired | median 93 | future question, not authorised |"
+    "> **DECISION RULE.** Wilcoxon signed-rank on the paired log difference, two-sided, α = 0.05, **on",
+    "MINIMUM_VALID_PAIR_COUNT          = <n>",
+    "ZERO_DIFFERENCE_TREATMENT         = <Pratt | Wilcoxon-drop | exact-sign>",
+    "> **DECISION RULE.** Wilcoxon signed-rank on the paired log difference, two-sided, α = 0.05, **on"
    ],
    "VERDICT": "ADJACENT_BUT_DIFFERENT",
-   "REASON": "mission parente : elle gele E3/E4/E5, calcule la puissance de E0/E1/E2 et declare explicitement celle de E3/E4/E5 non identifiee. Parent, pas reponse."
+   "REASON": "pourquoi OMLDCT01 s'est arrete ; contexte de la route, pas reponse."
   },
-  "FIMRCC01/code/fimrcc01_endpoint_table.py": {
+  "OMLDCT02/code/omldct02_freeze.py": {
    "terms_found": [
-    "F_INTEGRATED",
-    "paired",
-    "power_at_n50"
+    "paired log difference",
+    "MINIMUM_VALID_PAIR_COUNT",
+    "PRATT",
+    "Wilcoxon"
+   ],
+   "n_terms": 4,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "\"SIGN_CONVENTION\": \"SELECTIVE minus SHAM, on the paired log difference\",",
+    "\"MINIMUM_VALID_PAIR_COUNT\": 41,",
+    "\"PAIRED_TEST\": \"two-sided exact Wilcoxon signed-rank with Pratt ranking; the conditional \"",
+    "\"PAIRED_TEST\": \"two-sided exact Wilcoxon signed-rank with Pratt ranking; the conditional \""
+   ],
+   "VERDICT": "ANSWERS_THE_QUESTION",
+   "REASON": "le code qui produit ce gel ; il contient la regle de Pratt et l'enumeration exacte."
+  },
+  "OMLDCT02/out/OMLDCT02_MASTER_FREEZE.json": {
+   "terms_found": [
+    "paired log difference",
+    "MINIMUM_VALID_PAIR_COUNT",
+    "PRATT",
+    "Wilcoxon"
+   ],
+   "n_terms": 4,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-25T22:30:05.022074+00:00",
+   "sample_lines": [
+    "\"SIGN_CONVENTION\": \"SELECTIVE minus SHAM, on the paired log difference\",",
+    "\"MINIMUM_VALID_PAIR_COUNT\": 41,",
+    "\"PAIRED_TEST\": \"two-sided exact Wilcoxon signed-rank with Pratt ranking; the conditional sign-flip distribution is enumerated by dynamic programming. No normal approximation anywhere.\",",
+    "\"PAIRED_TEST\": \"two-sided exact Wilcoxon signed-rank with Pratt ranking; the conditional sign-flip distribution is enumerated by dynamic programming. No normal approximation anywhere.\","
+   ],
+   "VERDICT": "ANSWERS_THE_QUESTION",
+   "REASON": "porte le test confirmatoire GELE de la persistance de la fille : Wilcoxon apparie exact avec rangs de Pratt, alpha 0.05, SELECTIVE moins SHAM sur la difference des log-durees, MINIMUM_VALID_PAIR_COUNT = 41, et THIS_FREEZE_PRECEDES_EVERY_SCIENTIFIC_WORLD. Gele le 25 aout, avant que la table de mortalite existe. C'est le fichier dont l'absence supposee justifiait FIMRCC02 tout entiere."
+  },
+  "LDFMA01/code/ldfma01_corrections.py": {
+   "terms_found": [
+    "paired log difference",
+    "Wilcoxon",
+    "identity lifetime"
    ],
    "n_terms": 3,
    "kind": "code",
    "GENERATED_UTC": null,
    "sample_lines": [
-    "rate256=k/256                    # per world run, the denominator F_INTEGRATED is matched to",
-    "\"re-scoping the mission around a paired between-arm contrast is REFERRED TO THE OWNER, \"",
-    "\"power_at_n50_per_removal_world\":round(pw22,4),"
+    "\"decision_rule\":\"Wilcoxon signed-rank on the paired log difference, two-sided, alpha 0.05\",",
+    "\"decision_rule\":\"Wilcoxon signed-rank on the paired log difference, two-sided, alpha 0.05\",",
+    "\"independent and sufficient. The denominator argument is WITHDRAWN — identity lifetime is \""
    ],
    "VERDICT": "ADJACENT_BUT_DIFFERENT",
-   "REASON": "mission parente : elle gele E3/E4/E5, calcule la puissance de E0/E1/E2 et declare explicitement celle de E3/E4/E5 non identifiee. Parent, pas reponse."
+   "REASON": "corrections d'instrument, dont le defaut d'attribution qui explique l'etroitesse de E4."
   },
-  "FIMRCC01/out/FIMRCC01_ENDPOINT_TABLE.json": {
+  "LDFMA01/code/ldfma01_routes.py": {
    "terms_found": [
-    "F_INTEGRATED",
-    "paired",
-    "power_at_n50"
+    "matched-control power",
+    "Wilcoxon",
+    "identity lifetime"
+   ],
+   "n_terms": 3,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "json.dump({\"MISSION\":\"LDFMA01\",\"SECTION\":\"6 — matched-control power\",\"GENERATED_UTC\":U,",
+    "\"decision_rule\":\"Wilcoxon signed-rank on the paired log-lifetime difference, two-sided, alpha 0.05\",",
+    "\"causal_estimand\":\"the paired within-block difference in post-trigger identity lifetime between \""
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "code d'arbitrage ; porte les memes grandeurs sans publier de resultat."
+  },
+  "LDFMA01/out/HANDOFF_ONE_MATCHED_LOCKED_DAUGHTER_CONTROL_TEST_01.md": {
+   "terms_found": [
+    "paired log difference",
+    "Wilcoxon",
+    "identity lifetime"
    ],
    "n_terms": 3,
    "kind": "published",
-   "GENERATED_UTC": "2026-08-25T16:37:10.993594+00:00",
+   "GENERATED_UTC": null,
    "sample_lines": [
-    "\"F_INTEGRATED\": 0.0032015171041760242,",
-    "\"name\": \"ambient population, paired\",",
-    "\"power_at_n50_per_removal_world\": 1.0,"
+    "**DECISION RULE.** Wilcoxon signed-rank on the paired log difference, two-sided, α = 0.05, on both",
+    "**DECISION RULE.** Wilcoxon signed-rank on the paired log difference, two-sided, α = 0.05, on both",
+    "**PRIMARY ENDPOINT.** The locked daughter's **post-removal identity lifetime** — steps of survival"
    ],
-   "VERDICT": "ADJACENT_BUT_DIFFERENT",
-   "REASON": "porte le champ POWER_NOT_ESTIMABLE_IN_ADVANCE pour E3, E4 et E5, avec sa raison : « no matched control arm exists anywhere in TLMR01's 512 worlds ». C'est exactement le trou que FIMRCC02 comble ; ce fichier pose la question, il n'y repond pas."
+   "VERDICT": "ANSWERS_THE_QUESTION",
+   "REASON": "publie une table de PUISSANCE a n = 41 blocs apparies pour le dispositif SELECTIVE/SHAM forke. Ma cloture affirmait avoir identifie cette puissance pour la premiere fois."
   },
-  "FIMRCC01/out/FIMRCC01_PRECONDITION_CLOSURE_REPORT.md": {
+  "LDFMA01/out/LDFMA01_ROUTE_ARBITRATION_FINAL.json": {
    "terms_found": [
-    "F_INTEGRATED",
-    "prospective power",
-    "paired"
+    "paired log difference",
+    "Wilcoxon",
+    "identity lifetime"
+   ],
+   "n_terms": 3,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-25T19:21:18.118399+00:00",
+   "sample_lines": [
+    "\"decision_rule\": \"Wilcoxon signed-rank on the paired log difference, two-sided, alpha 0.05\",",
+    "\"decision_rule\": \"Wilcoxon signed-rank on the paired log difference, two-sided, alpha 0.05\",",
+    "\"primary\": \"the daughter's post-removal identity lifetime (persistence)\","
+   ],
+   "VERDICT": "ANSWERS_THE_QUESTION",
+   "REASON": "l'arbitrage de route qui a choisi ce dispositif ; contient le raisonnement de puissance."
+  },
+  "OMLDCT01/code/omldct01_analysis.py": {
+   "terms_found": [
+    "MINIMUM_VALID_PAIR_COUNT",
+    "PRATT",
+    "Wilcoxon"
+   ],
+   "n_terms": 3,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "MINIMUM_VALID_PAIR_COUNT=41",
+    "\"\"\"OMLDCT01 — the frozen paired analysis: exact Pratt signed-rank by conditional sign-flip",
+    "rather than plain Wilcoxon.\"\"\""
+   ],
+   "VERDICT": "IRRELEVANT",
+   "REASON": "partage le vocabulaire apparie sans porter sur la duree de l'identite verrouillee."
+  },
+  "OMLDCT01/code/omldct01_bind.py": {
+   "terms_found": [
+    "paired log difference",
+    "Wilcoxon",
+    "identity lifetime"
+   ],
+   "n_terms": 3,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "\"THE_EXACT_HANDOFF_TEXT\":\"DECISION RULE. Wilcoxon signed-rank on the paired log difference, \"",
+    "{\"item\":\"paired statistic\",\"present\":has(r\"Wilcoxon signed-rank\"),\"quote\":\"Wilcoxon signed-rank\"},",
+    "{\"item\":\"primary endpoint named\",\"present\":has(r\"PRIMARY ENDPOINT.*identity lifetime\"),"
+   ],
+   "VERDICT": "IRRELEVANT",
+   "REASON": "partage le vocabulaire apparie sans porter sur la duree de l'identite verrouillee."
+  },
+  "OMLDCT01/out/OMLDCT01_CAUSAL_ESTIMAND.json": {
+   "terms_found": [
+    "paired log difference",
+    "Wilcoxon",
+    "identity lifetime"
+   ],
+   "n_terms": 3,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-25T20:10:45.917832+00:00",
+   "sample_lines": [
+    "\"THE_EXACT_HANDOFF_TEXT\": \"DECISION RULE. Wilcoxon signed-rank on the paired log difference, two-sided, alpha = 0.05, on both the primary and the co-primary. Declared before world 1 and not revisable.\",",
+    "\"quote\": \"Wilcoxon signed-rank\"",
+    "\"quote\": \"PRIMARY ENDPOINT. The locked daughter's post-removal identity lifetime\""
+   ],
+   "VERDICT": "IRRELEVANT",
+   "REASON": "partage le vocabulaire apparie sans porter sur la duree de l'identite verrouillee."
+  },
+  "OMLDCT01/out/OMLDCT01_HUMAN_DECISION_ADDENDUM.md": {
+   "terms_found": [
+    "MINIMUM_VALID_PAIR_COUNT",
+    "PRATT",
+    "Wilcoxon"
    ],
    "n_terms": 3,
    "kind": "published",
    "GENERATED_UTC": null,
    "sample_lines": [
-    "| ratio to `F_INTEGRATED` | 26.8× | **1.22×** |",
-    "The three surviving candidates are paired count contrasts. Their prospective power is not",
-    "The three surviving candidates are paired count contrasts. Their prospective power is not"
+    "MINIMUM_VALID_PAIR_COUNT          = 41",
+    "ZERO_DIFFERENCE_TREATMENT         = PRATT_EXACT_SIGN_FLIP",
+    "shown to differ from plain Wilcoxon on a six-pair case (p = 0.625 vs 0.875); all-zero differences"
+   ],
+   "VERDICT": "IRRELEVANT",
+   "REASON": "partage le vocabulaire apparie sans porter sur la duree de l'identite verrouillee."
+  },
+  "OMLDCT02/code/omldct02_analysis.py": {
+   "terms_found": [
+    "MINIMUM_VALID_PAIR_COUNT",
+    "PRATT",
+    "Wilcoxon"
+   ],
+   "n_terms": 3,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "MINIMUM_VALID_PAIR_COUNT=41",
+    "\"\"\"OMLDCT02 — the frozen paired analysis: exact Pratt signed-rank by conditional sign-flip",
+    "rather than plain Wilcoxon.\"\"\""
    ],
    "VERDICT": "ADJACENT_BUT_DIFFERENT",
-   "REASON": "mission parente : elle gele E3/E4/E5, calcule la puissance de E0/E1/E2 et declare explicitement celle de E3/E4/E5 non identifiee. Parent, pas reponse."
+   "REASON": "mission qui a execute le contraste sur 33 paires et s'est arretee sous l'accrual requis ; ses resultats sont des donnees, son gel est la reponse."
   },
-  "CSC01/code/analysis_csc.py": {
+  "OMLDCT02/out/OMLDCT02_FINAL_ADJUDICATION.json": {
    "terms_found": [
-    "paired",
-    "sign test"
+    "MINIMUM_VALID_PAIR_COUNT",
+    "PRATT",
+    "Wilcoxon"
+   ],
+   "n_terms": 3,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-26T19:38:37.283193+00:00",
+   "sample_lines": [
+    "\"MINIMUM_VALID_PAIR_COUNT\": 41,",
+    "\"Pratt rule\": \"unchanged\",",
+    "\"BASIS\": \"the checker wrote an independent brute-force enumerator in exact rational arithmetic with its own midrank routine and explicit 2^m sign-flip enumeration: 194 cases including heavy ties and zeros, 0 mismatches on p, W+, n_nonzero and n_zero; plus 120 untied cases against scipy's exact Wilco"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mission qui a execute le contraste sur 33 paires et s'est arretee sous l'accrual requis ; ses resultats sont des donnees, son gel est la reponse."
+  },
+  "OMLDCT02/review/OMLDCT02_CHECKER_RAW.md": {
+   "terms_found": [
+    "MINIMUM_VALID_PAIR_COUNT",
+    "PRATT",
+    "Wilcoxon"
+   ],
+   "n_terms": 3,
+   "kind": "published",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "`H.content_digest` strips `METHODS_HASH` and `SEED_SET_HASH` (they are in `SELF_REFERENTIAL`) before hashing. I demonstrated: setting `METHODS_HASH` or `SEED_SET_HASH` to zeros inside the freeze leaves `FREEZE_CONTENT_HASH` **unchanged**, while changing `ALPHA`, `MINIMUM_VALID_PAIR_COUNT` or `FORBID",
+    "**14. Pratt implementation — SEVERITY: NONE (one MINOR sub-note)**",
+    "I wrote an independent brute-force enumerator (exact `Fraction` arithmetic, own midrank routine, explicit 2^m sign-flip enumeration) and ran **194 cases** — hand-built plus randomized, deliberately loaded with zeros and heavy ties. **0 mismatches** on p, W+, `n_nonzero` and `n_zero`. Cross-checked *"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mission qui a execute le contraste sur 33 paires et s'est arretee sous l'accrual requis ; ses resultats sont des donnees, son gel est la reponse."
+  },
+  "OMLDCT02/review/OMLDCT02_CHECKER_RAW.txt": {
+   "terms_found": [
+    "MINIMUM_VALID_PAIR_COUNT",
+    "PRATT",
+    "Wilcoxon"
+   ],
+   "n_terms": 3,
+   "kind": "published",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "`H.content_digest` strips `METHODS_HASH` and `SEED_SET_HASH` (they are in `SELF_REFERENTIAL`) before hashing. I demonstrated: setting `METHODS_HASH` or `SEED_SET_HASH` to zeros inside the freeze leaves `FREEZE_CONTENT_HASH` **unchanged**, while changing `ALPHA`, `MINIMUM_VALID_PAIR_COUNT` or `FORBID",
+    "**14. Pratt implementation — SEVERITY: NONE (one MINOR sub-note)**",
+    "I wrote an independent brute-force enumerator (exact `Fraction` arithmetic, own midrank routine, explicit 2^m sign-flip enumeration) and ran **194 cases** — hand-built plus randomized, deliberately loaded with zeros and heavy ties. **0 mismatches** on p, W+, `n_nonzero` and `n_zero`. Cross-checked *"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mission qui a execute le contraste sur 33 paires et s'est arretee sous l'accrual requis ; ses resultats sont des donnees, son gel est la reponse."
+  },
+  "CLEA01/code/clea01_close_parent.py": {
+   "terms_found": [
+    "PRATT",
+    "Wilcoxon"
    ],
    "n_terms": 2,
    "kind": "code",
    "GENERATED_UTC": null,
    "sample_lines": [
-    "# the paired difference in the cohesion statistic, seed by seed",
-    "# exact two-sided sign test on the paired differences"
+    "P_TOKENS = [\"p_dur\", \"p_exp\", \"exact_two_sided_p\", \"pratt\", \"signed_rank\", \"wilcoxon\",",
+    "P_TOKENS = [\"p_dur\", \"p_exp\", \"exact_two_sided_p\", \"pratt\", \"signed_rank\", \"wilcoxon\","
    ],
    "VERDICT": "IRRELEVANT",
-   "REASON": "partage un vocabulaire de puissance mais ne porte pas sur E3/E4/E5 apparies."
+   "REASON": "partage le vocabulaire apparie sans porter sur la duree de l'identite verrouillee."
   },
-  "CSC01/out/_analysis.json": {
+  "CLEA01/out/CLEA01_PARENT_RECOMPUTATION.json": {
    "terms_found": [
-    "paired",
-    "sign test"
+    "PRATT",
+    "Wilcoxon"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-26T21:50:53.318158+00:00",
+   "sample_lines": [
+    "\"pratt\",",
+    "\"wilcoxon\","
+   ],
+   "VERDICT": "IRRELEVANT",
+   "REASON": "partage le vocabulaire apparie sans porter sur la duree de l'identite verrouillee."
+  },
+  "LDFMA01/out/LDFMA01_MATCHED_CONTROL_ENDPOINTS.json": {
+   "terms_found": [
+    "Wilcoxon",
+    "identity lifetime"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-25T18:45:09.512295+00:00",
+   "sample_lines": [
+    "\"decision_rule\": \"Wilcoxon signed-rank on the paired log-lifetime difference, two-sided, alpha 0.05\",",
+    "\"causal_estimand\": \"the paired within-block difference in post-trigger identity lifetime between the SELECTIVE and SHAM arms on the same seed\","
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "analyse du mecanisme d'echec de la fille verrouillee ; motive le dispositif apparie."
+  },
+  "LDFMA01/review/LDFMA01_CHECKER_RAW.txt": {
+   "terms_found": [
+    "identity lifetime",
+    "matched control"
    ],
    "n_terms": 2,
    "kind": "published",
    "GENERATED_UTC": null,
    "sample_lines": [
-    "\"paired_cohesion_statistic\": [",
-    "\"reading\": \"the sign test is DESCRIPTIVE. The frozen success criterion is 5 of 6 arms COHESION_ACHIEVED, and that criterion is what decides the disposition.\""
+    "I computed, per world, λ_w = muY × `daughter_particle_steps_after_t_m`, then Σ_w [1(birth observed) × (1 − e^(−λ_w))] = **5.81 expected COMPLETE worlds; 5 observed under t-1**. Per-world λ ranges 0.061 to 1.268 (mean 0.383), so P(no removal) ≈ 0.68 per world by physics alone. Exposure = occupancy × ",
+    "My reasoning, stated so it can be overturned on its own terms. The reconstruction is sound — 37/37 parent hashes exact, three internal passes identical on every core verdict, zero component-count disagreements across ~286,000 step-comparisons, no online-id leakage — so `FIMRCC01_RECORD_NOT_INTERPRET"
    ],
-   "VERDICT": "IRRELEVANT",
-   "REASON": "partage un vocabulaire de puissance mais ne porte pas sur E3/E4/E5 apparies."
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "analyse du mecanisme d'echec de la fille verrouillee ; motive le dispositif apparie."
   },
-  "FIMRCC01/code/fimrcc01_endpoint_preregistration.py": {
+  "OMLDCT01/code/omldct01_selftest.py": {
    "terms_found": [
-    "F_INTEGRATED",
-    "paired"
+    "PRATT",
+    "Wilcoxon"
    ],
    "n_terms": 2,
    "kind": "code",
    "GENERATED_UTC": null,
    "sample_lines": [
-    "\"floor\":\"F_INTEGRATED = 0.0032015171041760242 for endpoints matched to it; a candidate whose \"",
-    "\"kind\":\"count per world, used as a paired between-arm contrast\",\"proximity_rank\":3},"
-   ],
-   "VERDICT": "ADJACENT_BUT_DIFFERENT",
-   "REASON": "mission parente : elle gele E3/E4/E5, calcule la puissance de E0/E1/E2 et declare explicitement celle de E3/E4/E5 non identifiee. Parent, pas reponse."
-  },
-  "FIMRCC01/out/FIMRCC01_ENDPOINT_PREREGISTRATION.json": {
-   "terms_found": [
-    "F_INTEGRATED",
-    "paired"
-   ],
-   "n_terms": 2,
-   "kind": "published",
-   "GENERATED_UTC": "2026-08-25T16:31:48.018905+00:00",
-   "sample_lines": [
-    "\"floor\": \"F_INTEGRATED = 0.0032015171041760242 for endpoints matched to it; a candidate whose definition differs from the one F_INTEGRATED was matched to must state its own floor or be struck under criterion 1\"",
-    "\"kind\": \"count per world, used as a paired between-arm contrast\","
-   ],
-   "VERDICT": "ADJACENT_BUT_DIFFERENT",
-   "REASON": "mission parente : elle gele E3/E4/E5, calcule la puissance de E0/E1/E2 et declare explicitement celle de E3/E4/E5 non identifiee. Parent, pas reponse."
-  },
-  "FIMRCC01/out/FIMRCC01_FINAL_DISPOSITION.json": {
-   "terms_found": [
-    "K_REQUIREMENT",
-    "FUTURE_QUESTION_RECORDED"
-   ],
-   "n_terms": 2,
-   "kind": "published",
-   "GENERATED_UTC": "2026-08-25T17:10:47.727154+00:00",
-   "sample_lines": [
-    "\"K_REQUIREMENT\": 2,",
-    "\"E3_STATUS\": \"FUTURE_QUESTION_RECORDED__NOT_AUTHORISED\","
-   ],
-   "VERDICT": "ADJACENT_BUT_DIFFERENT",
-   "REASON": "mission parente : elle gele E3/E4/E5, calcule la puissance de E0/E1/E2 et declare explicitement celle de E3/E4/E5 non identifiee. Parent, pas reponse."
-  },
-  "FMRT01/out/FMRT01_FINAL_REPORT.md": {
-   "terms_found": [
-    "paired",
-    "sign test"
-   ],
-   "n_terms": 2,
-   "kind": "published",
-   "GENERATED_UTC": null,
-   "sample_lines": [
-    "- **A paired 3-arm common-seed blocks** — 150 worlds for power 0.80 at q = 0.40; contrast matched — the three arms are bit-identical immediately before the intervention, by construction",
-    "Discordant pairs 9, exact two-sided sign test `p = 0.1796875`. Direction: removing the parent centre lowers criterion-D passage on the same blocks. **No decision is attached to"
+    "rm=case(\"mixed zero and non-zero under Pratt\",mixed,mixed,N,",
+    "# Pratt vs plain Wilcoxon must differ, or the zero method is doing nothing. Checked on a SMALL"
    ],
    "VERDICT": "IRRELEVANT",
-   "REASON": "partage un vocabulaire de puissance mais ne porte pas sur E3/E4/E5 apparies."
+   "REASON": "partage le vocabulaire apparie sans porter sur la duree de l'identite verrouillee."
   },
-  "TLMR01/code/tlmr01_design.py": {
+  "OMLDCT01/out/OMLDCT01_DESIGN_RECOMPUTED.json": {
    "terms_found": [
-    "F_INTEGRATED",
-    "paired"
+    "MINIMUM_VALID_PAIR_COUNT",
+    "Wilcoxon"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-25T21:16:34.793403+00:00",
+   "sample_lines": [
+    "\"MINIMUM_VALID_PAIR_COUNT\": \"unchanged at 41\",",
+    "\"test\": \"Wilcoxon signed-rank, two-sided, alpha 0.05\","
+   ],
+   "VERDICT": "IRRELEVANT",
+   "REASON": "partage le vocabulaire apparie sans porter sur la duree de l'identite verrouillee."
+  },
+  "OMLDCT01/out/OMLDCT01_FIVE_LINE_SELF_TEST.json": {
+   "terms_found": [
+    "PRATT",
+    "Wilcoxon"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-25T21:14:51.184387+00:00",
+   "sample_lines": [
+    "\"case\": \"mixed zero and non-zero under Pratt\",",
+    "\"PRATT_DIFFERS_FROM_PLAIN_WILCOXON_ON_THE_MIXED_CASE\": {"
+   ],
+   "VERDICT": "IRRELEVANT",
+   "REASON": "partage le vocabulaire apparie sans porter sur la duree de l'identite verrouillee."
+  },
+  "OMLDCT02/code/omldct02_c3_raw.py": {
+   "terms_found": [
+    "paired log difference",
+    "PRATT"
    ],
    "n_terms": 2,
    "kind": "code",
    "GENERATED_UTC": null,
    "sample_lines": [
-    "\"name\":\"F_INTEGRATED\",",
-    "\"not repaired, and neither is used to transport a quantity from one law to another. \""
+    "- the sign convention \"SELECTIVE minus SHAM, on the paired log difference\" is written into the",
+    "- the paired statistic, the Pratt zero treatment, the exact distribution, alpha, the minimum pair"
    ],
-   "VERDICT": "IRRELEVANT",
-   "REASON": "partage un vocabulaire de puissance mais ne porte pas sur E3/E4/E5 apparies."
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mission qui a execute le contraste sur 33 paires et s'est arretee sous l'accrual requis ; ses resultats sont des donnees, son gel est la reponse."
   },
-  "TLMR01/code/tlmr01_report.py": {
+  "OMLDCT02/code/omldct02_selftest.py": {
    "terms_found": [
-    "F_INTEGRATED",
-    "paired"
+    "PRATT",
+    "Wilcoxon"
    ],
    "n_terms": 2,
    "kind": "code",
    "GENERATED_UTC": null,
    "sample_lines": [
-    "a(\"Floor `F_INTEGRATED = %.17g`, the exact one-sided lower 95 %% bound on BPRTC01's published\"%DZ.FLOOR[\"value\"])",
-    "a(\"  and p\\\\*(128) exceeds that. This was stated in the pre-run methods and is not repaired here.\")"
+    "rm=case(\"mixed zero and non-zero under Pratt\",mixed,mixed,N,",
+    "# Pratt vs plain Wilcoxon must differ, or the zero method is doing nothing. Checked on a SMALL"
    ],
-   "VERDICT": "IRRELEVANT",
-   "REASON": "partage un vocabulaire de puissance mais ne porte pas sur E3/E4/E5 apparies."
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mission qui a execute le contraste sur 33 paires et s'est arretee sous l'accrual requis ; ses resultats sont des donnees, son gel est la reponse."
   },
-  "TLMR01/out/TLMR01_FINAL_REPORT.md": {
+  "OMLDCT02/out/OMLDCT02_FINAL_REPORT.md": {
    "terms_found": [
-    "F_INTEGRATED",
-    "paired"
+    "PRATT",
+    "Wilcoxon"
    ],
    "n_terms": 2,
    "kind": "published",
    "GENERATED_UTC": null,
    "sample_lines": [
-    "Floor `F_INTEGRATED = 0.0032015171041760242`, the exact one-sided lower 95 % bound on BPRTC01's published",
-    "and p\\*(128) exceeds that. This was stated in the pre-run methods and is not repaired here."
+    "- **The exact Pratt test is correct.** An independent brute-force enumerator with exact rational",
+    "arithmetic agreed on 194 cases, and 120 further cases matched scipy's exact Wilcoxon. The scipy"
    ],
-   "VERDICT": "IRRELEVANT",
-   "REASON": "partage un vocabulaire de puissance mais ne porte pas sur E3/E4/E5 apparies."
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mission qui a execute le contraste sur 33 paires et s'est arretee sous l'accrual requis ; ses resultats sont des donnees, son gel est la reponse."
   },
-  "TLMR01/out/TLMR01_POWER_RULE.json": {
+  "OMLDCT02/out/OMLDCT02_FIVE_LINE_SELF_TEST.json": {
    "terms_found": [
-    "F_INTEGRATED",
-    "paired"
+    "PRATT",
+    "Wilcoxon"
    ],
    "n_terms": 2,
    "kind": "published",
-   "GENERATED_UTC": "2026-08-24T22:51:48.937510+00:00",
+   "GENERATED_UTC": "2026-08-25T22:30:04.742883+00:00",
    "sample_lines": [
-    "\"name\": \"F_INTEGRATED\",",
-    "\"LAW_B_POINT_D10\": \"n = 128 gives p* = 0.0232115, while BPRTC01 measured this exact chain at this exact law as 3 of 256 = 0.0117188. The design is therefore UNDERPOWERED at LAW_B relative to its own inherited expectation: at that rate it sees two or more events only about 44 per cent of the time. Th"
+    "\"case\": \"mixed zero and non-zero under Pratt\",",
+    "\"PRATT_DIFFERS_FROM_PLAIN_WILCOXON_ON_THE_MIXED_CASE\": {"
    ],
-   "VERDICT": "IRRELEVANT",
-   "REASON": "partage un vocabulaire de puissance mais ne porte pas sur E3/E4/E5 apparies."
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mission qui a execute le contraste sur 33 paires et s'est arretee sous l'accrual requis ; ses resultats sont des donnees, son gel est la reponse."
   },
-  "TLMR01/out/TLMR01_PRE_RUN_METHODS.md": {
+  "OMLDCT02/out/OMLDCT02_FROZEN_ANALYSIS.json": {
    "terms_found": [
-    "F_INTEGRATED",
-    "paired"
+    "paired log difference",
+    "MINIMUM_VALID_PAIR_COUNT"
    ],
    "n_terms": 2,
    "kind": "published",
-   "GENERATED_UTC": null,
+   "GENERATED_UTC": "2026-08-26T19:00:09.851119+00:00",
    "sample_lines": [
-    "Floor `F_INTEGRATED = 0.0032015171041760242`, the exact one-sided lower 95 % bound on **BPRTC01's published",
-    "256, and p\\*(128) is larger than that. It is stated here rather than repaired later by pooling"
+    "\"SIGN_CONVENTION\": \"SELECTIVE minus SHAM, on the paired log difference\",",
+    "\"MINIMUM_VALID_PAIR_COUNT\": 41,"
    ],
-   "VERDICT": "IRRELEVANT",
-   "REASON": "partage un vocabulaire de puissance mais ne porte pas sur E3/E4/E5 apparies."
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mission qui a execute le contraste sur 33 paires et s'est arretee sous l'accrual requis ; ses resultats sont des donnees, son gel est la reponse."
+  },
+  "OMLDCT02/out/OMLDCT02_HUMAN_DECISION_BINDING.json": {
+   "terms_found": [
+    "MINIMUM_VALID_PAIR_COUNT",
+    "PRATT"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-25T22:30:03.697720+00:00",
+   "sample_lines": [
+    "\"MINIMUM_VALID_PAIR_COUNT\": 41,",
+    "\"ZERO_DIFFERENCE_TREATMENT\": \"PRATT_EXACT_SIGN_FLIP\","
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mission qui a execute le contraste sur 33 paires et s'est arretee sous l'accrual requis ; ses resultats sont des donnees, son gel est la reponse."
   }
  },
- "RETROACTIF": null
+ "RETROACTIF": "porte REPAREE apres le constat F6, puis repassee sur la question de FIMRCC02 avec les NOMS DES GRANDEURS. Elle refuse, en designant le fichier meme dont l'absence supposee justifiait la mission."
 }
