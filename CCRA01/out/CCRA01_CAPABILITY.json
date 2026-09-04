@@ -1,0 +1,76 @@
+{
+ "MISSION": "CCRA01",
+ "SECTION": "capability test",
+ "SPEC_VERSION": "CCRA01-FROZEN-1",
+ "REAL_DATA_READ": false,
+ "DATA_SOURCE": "synthetic, fabricated inside this file by random.Random with fixed seeds",
+ "ALPHA": 0.025,
+ "CHECKS": [
+  {
+   "id": "C1_CAN_CROSS",
+   "what": "Sous une regle de generation connue pour le permettre, la statistique doit franchir son seuil et rendre CONFIRMATOIRE.",
+   "n_pairs": 41,
+   "terminal": "CONFIRMATOIRE",
+   "m_discordant": 41,
+   "k_selective_worse": 29,
+   "k_critical": 28,
+   "p_one_sided": 0.005753894867666531,
+   "PASS": true
+  },
+  {
+   "id": "C2_DOES_NOT_CROSS_UNDER_LABEL_PERMUTATION",
+   "what": "Un replicat nul graine doit etre non confirmatoire, et sur 2000 replicats permutes le taux empirique de franchissement doit rester au voisinage de alpha.",
+   "seeded_replicate_terminal": "NEGATIF",
+   "seeded_replicate_p": 0.05863760297870613,
+   "n_replicates": 2000,
+   "n_crossings": 27,
+   "empirical_type_I_rate": 0.0135,
+   "acceptance_bound": 0.04,
+   "alpha": 0.025,
+   "min_m_over_replicates": 41,
+   "PASS": true
+  },
+  {
+   "id": "C3_ADVERSARIAL_MERGE_DURATION_INFLATION",
+   "what": "On retire le canal MERGE du seul bras SELECTIVE, en le convertissant en une terminaison de rang 1 plus tardive. Le programme ne doit PAS rendre CONFIRMATOIRE dans la direction pre-declaree.",
+   "n_selective_MERGE_records_converted": 11,
+   "terminal_before_the_artifact": "NEGATIF",
+   "terminal_after_the_artifact": "NEGATIF",
+   "k_selective_worse_before": 23,
+   "k_selective_worse_after": 22,
+   "p_after": 0.3776143287523155,
+   "DIAGNOSTIC_rank_degrading_variant_terminal": "NEGATIF",
+   "DIAGNOSTIC_NOTE": "La variante ou le canal ulterieur peut etre de rang 0 est rapportee sans assertion: la preregistration 3.4 la place dans l'effet TOTAL, non dans un biais.",
+   "PASS": true
+  },
+  {
+   "id": "C4_EXACT_ARITHMETIC_DIFFERENTIAL",
+   "what": "La queue binomiale exacte est recoupee contre une enumeration exhaustive des 2^m sequences de signes. Deux chemins independants vers la meme valeur.",
+   "m_range_enumerated": "0..14",
+   "n_mismatches": 0,
+   "resolution_floor_m": 6,
+   "two_pow_minus_floor": 0.015625,
+   "two_pow_minus_floor_minus_one": 0.03125,
+   "alpha": 0.025,
+   "PASS": true
+  },
+  {
+   "id": "C5_ADVERSARIAL_ARM_DEPENDENT_RENAMING",
+   "what": "Dans le seul bras SELECTIVE, chaque OUT_OF_RANGE devient NO_COMPONENT_AT_THE_NEXT_STEP. La decision doit etre identique bit a bit.",
+   "terminal_before": "NEGATIF",
+   "terminal_after": "NEGATIF",
+   "primary_identical": true,
+   "p_before": "342160141249/549755813888",
+   "p_after": "342160141249/549755813888",
+   "naive_string_statistic_before": 6,
+   "naive_string_statistic_after": 14,
+   "MEASURED_ARTIFACT_AVOIDED": 8,
+   "NOTE": "La statistique naive fondee sur les chaines se deplace de 8 paires sous un pur renommage; la statistique gelee ne bouge pas.",
+   "PASS": true
+  }
+ ],
+ "N_CHECKS": 5,
+ "N_PASSED": 5,
+ "CAPABILITY": "PASS",
+ "LEGACY_NOTE": "Une condition dont on n'a jamais montre qu'elle peut se declencher n'est pas un test. C1 montre qu'elle peut; C2 montre qu'elle ne se declenche pas a tort; C3 et C5 montrent qu'elle resiste aux deux artefacts nommes dans la preregistration; C4 verifie l'arithmetique par un second chemin."
+}
