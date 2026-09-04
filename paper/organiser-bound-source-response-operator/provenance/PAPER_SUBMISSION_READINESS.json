@@ -1,130 +1,32 @@
 {
- "SECTION": "LRCPS01 §17 submission readiness",
- "SCORE": 86,
- "MAXIMUM": 100,
- "COMPONENTS": [
-  {
-   "COMPONENT": "manuscript and supplement compile to PDF",
-   "WEIGHT": 10,
-   "EARNED": 10,
-   "EVIDENCE": "MANUSCRIPT.pdf 10 pages, SUPPLEMENT.pdf 7 pages",
-   "NOTE": ""
+  "status": "READY_FOR_REVIEW",
+  "mission": "ISING-LIFE-MANUSCRIPT-V2-FINAL-SEAL-01",
+  "gates": {
+    "major_claims_bound_and_qualified": "36 claim records; source hashes and pointers checked; manual scope audit",
+    "numbers_match_data": "48 bound rows; 28 fresh arms and 147 historical archives recomputed",
+    "figures_and_tables_reproducible": "four figures and all-arm table rebuilt from existing inputs; standalone byte agreement",
+    "required_tests_pass": "four tests plus raw, source, PDF and standalone checks",
+    "closed_routes_preserved": "negative dispositions explicit; zero new scientific or predictor simulations",
+    "unrelated_sources_preserved": "482 input hashes match; final Git scope recorded in GIT_SCOPE_AUDIT.json",
+    "self_contained_reading": "revised English manuscript, supplement, README and French handoff",
+    "no_formal_publication_or_merge": "only the user-authorized Git branch/draft-PR workflow; no submission, deposit, DOI or merge"
   },
-  {
-   "COMPONENT": "no placeholder text anywhere",
-   "WEIGHT": 5,
-   "EARNED": 5,
-   "EVIDENCE": "lint check E3",
-   "NOTE": ""
+  "independent_peer_review": false,
+  "journal_submission_ready": false,
+  "publication_authorized": false,
+  "source_manifest_sha256": "02f6b5689d5b3a3efba2fb8ae738487b2a8b61979746ed5b1dc40492c04883ec",
+  "evidence_records": {
+    "AUDIT_RESULTS": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+    "PAPER_CLAIM_LINT": "a7c5e1f7aa06074f3516e6a8452e64f3a7bab6e1eb5d5d5cc6773aff83977646",
+    "PDF_QA": "22a2b6e2412fb93047fbec13d4d3eed4a34fbd6ae70db2f8825048014b28930e",
+    "VISUAL_QA": "846e573b40fa615e4bffdbd8ec15525110234a611327bd9fe606183a50c71031",
+    "STANDALONE_REBUILD": "0b6550ba2623c5b0315e758d930ac44b38065a456a6cd20c526837b504c23179"
   },
-  {
-   "COMPONENT": "figures present as PDF, PNG and source data",
-   "WEIGHT": 5,
-   "EARNED": 5,
-   "EVIDENCE": "4 figures, each with three artefacts",
-   "NOTE": ""
-  },
-  {
-   "COMPONENT": "every reported number traced to a hashed source file",
-   "WEIGHT": 12,
-   "EARNED": 12,
-   "EVIDENCE": "213 reconciliation rows, all carrying SOURCE_HASH and JSON_PATH",
-   "NOTE": ""
-  },
-  {
-   "COMPONENT": "no number reaches the page except through a generated macro",
-   "WEIGHT": 8,
-   "EARNED": 8,
-   "EVIDENCE": "lint check E5 on the manuscript body",
-   "NOTE": ""
-  },
-  {
-   "COMPONENT": "every load-bearing claim bound to existing rows",
-   "WEIGHT": 5,
-   "EARNED": 5,
-   "EVIDENCE": "20 claims, 15 load-bearing, self-test PASS",
-   "NOTE": ""
-  },
-  {
-   "COMPONENT": "claim linter at zero load-bearing errors",
-   "WEIGHT": 10,
-   "EARNED": 10,
-   "EVIDENCE": "LOAD_BEARING_CLAIM_LINT_ERRORS = 0",
-   "NOTE": ""
-  },
-  {
-   "COMPONENT": "no reused passage",
-   "WEIGHT": 5,
-   "EARNED": 5,
-   "EVIDENCE": "longest common run 8 words against 7 targets",
-   "NOTE": ""
-  },
-  {
-   "COMPONENT": "bibliography closed in both directions",
-   "WEIGHT": 5,
-   "EARNED": 5,
-   "EVIDENCE": "11 entries, all cited, no dangling citation",
-   "NOTE": ""
-  },
-  {
-   "COMPONENT": "primary result is prospective, not retrospective",
-   "WEIGHT": 8,
-   "EARNED": 8,
-   "EVIDENCE": "the two absolute predictions and their ratio carry PRE_RUN status and the methods hash was FROZEN before the confirmation arms ran",
-   "NOTE": ""
-  },
-  {
-   "COMPONENT": "declared falsifier existed and could have fired",
-   "WEIGHT": 6,
-   "EARNED": 6,
-   "EVIDENCE": "either absolute endpoint outside the margin, a ratio interval containing unity, or a single extinction or invalid arm would have been visible in the endpoint table",
-   "NOTE": ""
-  },
-  {
-   "COMPONENT": "independent unit is the arm throughout",
-   "WEIGHT": 6,
-   "EARNED": 6,
-   "EVIDENCE": "no frame, step, particle or birth event is counted as a replicate in any confirmatory statement",
-   "NOTE": ""
-  },
-  {
-   "COMPONENT": "independent adversarial review of this manuscript",
-   "WEIGHT": 6,
-   "EARNED": 0,
-   "EVIDENCE": "ADVERSARIAL_REVIEWS = 0 for this mission by budget",
-   "NOTE": "Scored zero against our own interest. No one outside this session has attacked this text."
-  },
-  {
-   "COMPONENT": "independent replication of the confirmation arms",
-   "WEIGHT": 5,
-   "EARNED": 0,
-   "EVIDENCE": "the 28 arms were run once, by one implementation, in one session",
-   "NOTE": "Scored zero. Re-running them is possible from the committed code and seeds, and has not been done."
-  },
-  {
-   "COMPONENT": "coverage beyond a single parameter point",
-   "WEIGHT": 4,
-   "EARNED": 1,
-   "EVIDENCE": "one lattice size for the confirmation, three sizes in the historical record, two mobility settings, one source strength",
-   "NOTE": "One quarter credit: the historical record spans three lattice sizes, which is why the estimator diagnosis is not a single-size artefact, but the confirmation itself is not replicated across the parameter space."
-  }
- ],
- "WHAT_THE_SCORE_MEANS": "The mechanical properties of this package are as good as this session can make them: every number is bound to a hashed file, the linter is at zero, nothing is reused, and the falsifier was real and public before the data existed. The missing points are not cosmetic and are not recoverable by more writing: no independent party has attacked the text, no independent party has re-run the arms, and the confirmation stands at a single parameter point. A journal reviewer would raise exactly those three.",
- "POINTS_NOT_EARNED_AND_WHY": [
-  {
-   "COMPONENT": "independent adversarial review of this manuscript",
-   "LOST": 6,
-   "NOTE": "Scored zero against our own interest. No one outside this session has attacked this text."
-  },
-  {
-   "COMPONENT": "independent replication of the confirmation arms",
-   "LOST": 5,
-   "NOTE": "Scored zero. Re-running them is possible from the committed code and seeds, and has not been done."
-  },
-  {
-   "COMPONENT": "coverage beyond a single parameter point",
-   "LOST": 3,
-   "NOTE": "One quarter credit: the historical record spans three lattice sizes, which is why the estimator diagnosis is not a single-size artefact, but the confirmation itself is not replicated across the parameter space."
-  }
- ]
+  "limits": [
+    "Stored intermediate frame summaries are not full lattice snapshots.",
+    "No independent full-engine reproduction.",
+    "PQEC raw bytes are external and only their already-executed audit is shipped.",
+    "Historical run-budget compliance UNKNOWN.",
+    "Originality certification and journal requirements not evaluated."
+  ]
 }

@@ -1,530 +1,318 @@
 \documentclass[11pt]{article}
 \input{preamble}
 \input{numbers}
-
-\title{\bfseries A prospectively frozen operator for the extent of a\\
-source-maintained field on a capacity-limited lattice}
+\title{\bfseries Conditional prediction of source-maintained lattice fields:\\
+prospective agreement and limits of mechanistic discrimination}
 \author{Emergent Dynamics Laboratory}
-\date{}
-
+\date{Manuscript V2 --- 4 September 2026\\\small Independent research; not peer reviewed}
 \begin{document}
 \maketitle
-
 \begin{abstract}
-\noindent
-The extent of a field maintained by a localised source in a discrete, capacity-limited medium is
-set jointly by transport, mortality and the source's own history, and a continuum reading of it
-is not available at the scale studied here: it errs by \absContinuumErrorStaticPercent\pc{} and
-\absContinuumErrorMobilePercent\pc{} against the discrete operator. Such extents are ordinarily
-reported after the fact, so it is rarely possible to say whether a model predicted them or
-accommodated them. We therefore constructed a one-step conditional operator directly from frozen
-kinetics, derived an equivalence margin of \equivalenceMarginPercent\pc{} from named error terms,
-froze two absolute predictions and their ratio, hashed the analysis code, and only then ran
-\freshArmsRun{} fresh arms. The observed medians met the frozen predictions to
-$\freshStaticDeviationPercent\pc$ and $+\freshMobileDeviationPercent\pc$, and the mobility ratio
-to $+\freshRatioDeviationPercent\pc$ with unity excluded; every interval lay wholly inside the
-margin, with no extinction and no invalid arm. We then asked why an earlier record had shown
-deficits of $\cellStaticMedianObservedPercent\pc$ and $\cellMobileMedianObservedPercent\pc$. Over
-\radialProfileMobileArms{} historical arms the cumulative radial profile follows the operator at
-every one of \radialProfileRadiiTested{} radii, maximum absolute $z$ of
-\radialProfileMaxAbsZ{}, so the field was never in deficit; a surrogate with no lattice dynamics
-at all already carries $\cellStaticMedianSurrogatePercent\pc$ to
-$\cellMobileMedianSurrogatePercent\pc$, and the remainder requires the source's own wandering,
-which moves the construction from $\mSixSequentialStepZeroBaselineMTwoLevel\pc$ to
-$\mSixSequentialStepOneAddSharedTrajectory\pc$ and then to
-$\mSixSequentialStepTwoAddEmpiricalBirthFlux\pc$ once the empirical birth flux is added. The
-operator is exact given the state but the marginal density equation does not close, and the
-qualification holds at one parameter point.
+A localised source can maintain a particle field without establishing an autonomous individual.
+We reassess a frozen source--transport--decay predictor using its original lattice records and
+subsequent claim audit. The predictor uses a birth-flux law measured on historical runs and is
+therefore conditional on that input. At one parameter point, 28 fresh simulation arms
+(14 static-source and 14 mobile-source arms) give deviations of \VStaticError\%, \VMobileError\%
+and \VRatioError\% from the frozen predictions for the two median-summarised radii and their
+ratio. All satisfy the pre-run point tolerance of $\pm\VMargin\%$. This agreement has limited
+discriminating power: a predictor that copies the historical means also satisfies all three
+criteria. Removing the shared source trajectory from the frozen construction gives a mobile
+deviation of \VNoSharedError\%, outside the tolerance. However, the previously claimed large
+birth-flux-shape effect is not sustained by stored predictor replicas. Historical residual
+magnitudes also depend on outcome-based inclusion. We report these limits together with the
+positive agreement, distinguish pre-run decisions from later statistical diagnostics, and
+retain the negative results of related individuality studies. No new scientific or predictor
+simulations were performed for this revision. The result is conditional compatibility at the
+tested settings, not a closed full-state theory or evidence of biological individuality.
 \end{abstract}
 
-\begin{statusbox}
-\small
-\textbf{Scope statement.} This paper concerns a transport-and-mortality field around a source in
-a lattice model. It makes no claim about biology. The following are reported unconditionally and
-without qualification:
+\section{Introduction}
+A maintained spatial field and a persistent individual are different empirical objects.
+A field may be sustained by a local source even when its particles turn over; demonstrating this
+does not establish a lineage, reproduction, heredity or autonomous cohesion. The present paper
+addresses the narrower measurement problem: whether a source--transport--decay construction
+anticipated the spatial extent reported by a particular simulation protocol.
 
-\smallskip
-\noindent
-\statusline{H3\_STATUS}{NOT\_TESTED} \quad
-\statusline{REPRODUCTION\_STATUS}{NOT\_TESTED} \quad
-\statusline{HEREDITY\_STATUS}{NOT\_TESTED}\\[2pt]
-\statusline{AUTONOMOUS\_COHESION\_STATUS}{NOT\_ESTABLISHED} \quad
-\statusline{X\_LAWSPEC\_BASELINE}{UNCHANGED}\\[2pt]
-\statusline{ARCHITECTURE\_CHANGE\_NECESSITY}{NOT\_ESTABLISHED}
-\end{statusbox}
+The original OBFOR01 study compared a discrete predictor with fresh engine runs. Its subsequent
+SEAL01 audit preserved the numerical agreement but restricted its interpretation.
+This revision incorporates that audit into a single account of prediction, measurement and
+discrimination. OBFOR01 and SEAL01 are internal programme identifiers for the evidence packages,
+not external literature citations.
 
-\section{The quantity, and why it is not trivial}
+Random-walk and stochastic-process theory provide background for discrete transport and
+state-dependent dynamics \citep{spitzer1976,gardiner2009}. They do not validate the specific
+implementation or establish novelty for this result. Here the scientific evidence is the
+archived protocol, source code, run arrays, pre-run predictions and audit outputs.
+We do not assert that this system or its summary statistic represents a general class of
+biological organisations.
 
-A localised source injects particles into a medium; the particles move, and they die. At
-stationarity the field around the source has a characteristic extent. Writing down that extent
-looks like a textbook exercise: balance injection against decay, take the diffusion limit, read
-off a localisation length. The exercise fails here for three separate reasons, and the failures
-are the reason the quantity is worth measuring rather than deriving.
+\section{Methods}
+\subsection{Lattice engine and event order}
+The engine has a periodic square lattice with side $L=\VLattice$ and per-cell capacity
+$\VCapacity$. Its recorded species are $X,Y,S_X,S_Y,W_X,W_Y$.
+The source is one $Y$ particle; $X$ is the reported field, $S_X,S_Y$ are reservoir species,
+and $W_X,W_Y$ record decay products.
+The frozen point has reservoir target $\VReservoirTarget$, exchange-offer probability
+$\VFeed$, waste-outflow probability $\VOutflow$, $X$ mortality $\VMortality$,
+and $X$ reaction coefficient $\VReaction$. Both $Y$ production and $Y$ mortality are zero.
+The initial condition supplies one central source and $\VSeedX$ initial $X$ particles,
+as specified by the archived seeding function.
 
-First, the medium is discrete and the reported extent is quantised. The observable used
-throughout this paper, written $r_{80}$, is the smallest \emph{achievable} lattice distance at
-which the empirical cumulative field first reaches $0.8$. It is therefore supported on the
-discrete set of achievable toroidal distances, not on the real line, and near the values of
-interest that set is coarse. A continuum expression with the same localisation length is not a
-good approximation to it: against the discrete operator it errs by
-$\continuumErrorStaticPercent\pc$ in the static condition and $\continuumErrorMobilePercent\pc$
-in the mobile one. Coarse-graining the lattice away is not available at this scale
-\citep{hughes1995,spitzer1976}.
+For each transported species, the engine executes four sequential directed passes:
+$+y,-y,+x,-x$. Each pass offers movers with binomial probability $p_{\rm hop}/4$ and accepts
+at most the destination's free capacity. Because these passes are sequential, a particle can
+move in more than one pass of a step. Here $p_{\rm hop}=\VHop$.
+Transport of $X,Y,S_X,S_Y$ precedes reaction, then decay, then balanced reservoir exchange
+and waste outflow. The exchange implementation replaces members of its declared exchangeable
+pool; it is not an unconstrained addition of particles. The exact pool, random-stream
+separation and update operations are supplied in the frozen code listed in the supplement.
 
-Second, transport is capacity-limited. A move is refused when the destination cell is full, so
-the one-step transport factor is a function of the occupancy, which is itself the quantity being
-propagated. The equation for the mean density therefore does not close; we return to this in
-Section~\ref{sec:construction} and again in Section~\ref{sec:discussion}, because it is the
-principal thing this paper does \emph{not} resolve \citep{liggett1985}.
+In the static condition only the source hop probability is set to zero. In the mobile
+condition it has the frozen nonzero value. No other parameter differs. The architecture
+imposes a capacity, but transport rejection is rare at this point: the observed mean rejected
+fraction of offered $X$ hops is \VBlockedMean. Agreement here does not validate predictions
+for a densely blocked regime.
 
-Third, the source has a history. When the source is mobile, every particle alive at a given
-instant was born somewhere along one shared trajectory. Their displacements are not independent
-draws around a fixed point: they share a common, autocorrelated origin process. Ignoring that
-shared history is the single largest error one can make in this system, as
-Section~\ref{sec:mechanism} shows quantitatively.
+\subsection{Observable and independent unit}
+For field occupancy $n_X(i,t)$ and toroidal distance $d(i,Y_t)$ from the source, define
+\[
+r_{80}(t)=\min\left\{r:
+ \frac{\sum_{i:d(i,Y_t)\le r}n_X(i,t)}{\sum_i n_X(i,t)}\ge0.8\right\}.
+\]
+The radius is an achievable lattice distance, computed by a left first crossing of the
+cumulative mass. It is not the radius about the cloud's own centre.
+Each engine arm runs for 11\,000 steps, with sampling every 50 steps.
+Analysis uses steps strictly greater than 2\,000, leaving 180 frames per arm.
+The primary arm statistic is the median radius over these frames.
+The condition estimate is the arithmetic mean of the arm medians; the mobility ratio is the
+mobile mean divided by the static mean. The independent unit is the seeded arm, not the
+frame, particle or event. Static and mobile seed sets are disjoint and are not paired.
 
-Because of these three features, the extent is a measured quantity in a model, and the
-methodological question becomes sharp: can it be \emph{predicted}? Extents of this kind are
-ordinarily reported after the data exist, which makes it impossible to distinguish a model that
-predicted a number from one that accommodated it. The design below was built to remove that
-ambiguity, at the cost of committing publicly to two numbers and a tolerance before running
-anything.
+\subsection{Predictor and information supplied to it}
+The frozen construction, M6, simulates the unblocked transport--decay process.
+It retains event order, periodic geometry, finite duration, the same summary rule and one
+source trajectory shared by all particles within a simulated arm. The source trajectory is
+generated by the predictor; it is not a trajectory observed in a fresh engine arm.
 
-\section{Model and observable}
-\label{sec:model}
+The birth-flux law is different: it is measured from \VHistoricalFluxArms{} historical
+engine arms, before the fresh runs, and is supplied to M6 as an empirical distribution of
+accepted per-step births. The source law is not derived from reservoir dynamics.
+No fresh radius or fresh source path enters a frozen prediction.
+This is a conditional prediction, even if its numerical sensitivity to the supplied flux
+is small. Figure~\ref{fig:flow} distinguishes these inputs.
+The predictor omits capacity rejection and does not close the nonlinear marginal density
+equation. We make no claim that the agreement identifies the full state-transition operator.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{fig1_model_and_event_order.pdf}
-\caption{\textbf{The model and the reported observable.} \textbf{(a)}~A point source on a
-periodic lattice with a per-cell capacity; the reported radius is the smallest achievable
-toroidal distance at which the empirical cumulative field first reaches $0.8$. The particle
-positions drawn here are schematic and are not measured data. \textbf{(b)}~The event order,
-read directly from the kinetics module rather than from any description of it.}
-\label{fig:model}
+\begin{figure}[htbp]
+\centering\includegraphics[width=\textwidth]{fig1_model_and_event_order.pdf}
+\caption{Information supplied to the predictor and used for comparison. This is a schematic
+of the archived calculation, not a particle snapshot. The measured historical birth-flux
+law is the conditioning input. Fresh outcomes enter only the comparison.}
+\label{fig:flow}
 \end{figure}
 
-The medium is a periodic square lattice of side $L=36$ with a capacity of $16$ particles per
-cell. A single source cell injects particles of the reported species; particles hop to nearest
-neighbours with probability $p_{\mathrm{hop}}=\pHop$ per step, subject to capacity, and die with
-probability $\muX$ per step. Two conditions are compared: \emph{static}, in which the source
-is immobilised, and \emph{mobile}, in which it performs its own walk. Nothing else differs
-between them.
 
-The event order within one step matters and was read from the kinetics module itself, not from a
-description of it: transport of each species in turn, then reaction, then decay, then feed and
-outflow (Figure~\ref{fig:model}b). One consequence is used later: because reaction runs after
-transport, a particle born in step $t$ takes no step in step~$t$. Every one of the
-\birthPositionTotalBirthRecords{} birth records examined across \birthPositionArms{} arms occurred
-at the source cell exactly, with maximum coordinate offsets of
-$\birthPositionMaxAbsDy{}$ and $\birthPositionMaxAbsDx{}$; the point-source idealisation is not an
-assumption here but a checked property of the implementation.
+\subsection{Pre-run decision and later diagnostics}
+The frozen decision for each primary endpoint is
+$|\widehat\theta/\theta_{\rm pred}-1|\le0.029$.
+The margin uses named model-error terms and a sampling allowance based on historical
+dispersion. Its construction therefore uses historical information.
+The seed allocation, point predictions, tolerance and an ablation ranking rule were present
+in Git before the fresh-arm commit. Fourteen load-bearing files match the freeze byte for byte.
+This is a verified repository sequence, not a claim of independent public time-stamping.
 
-Each run of the model is called an \emph{arm} and is the unit of analysis throughout. An arm runs
-for $11\,000$ steps, of which the first $2\,000$ are discarded as burn-in, and the field is
-sampled every $50$ steps thereafter, giving $180$ frames per arm. The within-arm summary is the
-\emph{median} of $r_{80}$ over those frames; that rule was fixed by an earlier protocol and is
-inherited here unchanged, which turns out to matter a great deal
-(Section~\ref{sec:estimator}). Across arms we take the arithmetic mean. Frames, steps, particles
-and birth events are never treated as independent replicates for any confirmatory statement.
+The adjudication implementation and whole-interval rules appeared after the fresh runs.
+Normal intervals, Student-$t$ diagnostics and equivalence-test probabilities must consequently
+be labelled post-freeze. A point tolerance is not a pre-registered statistical equivalence
+test \citep{wellek2010}. We retain the point decision as the criterion of record and report
+sampling and predictor uncertainty separately. The supplement gives diagnostic arithmetic
+without promoting it to a prospective endpoint.
 
-The burn-in is adequate for the mass but only marginally so for the shape. The mass relaxes with
-an e-folding time of \relaxationMassEFolding{} steps, so the burn-in is
-\relaxationBurnInInMassEFoldings{} e-foldings and leaves a residual mass deficit of
-\relaxationResidualMassDeficitAtTheStartOfTheWindow{}. The slowest shape mode on this torus has a
-time constant of \relaxationSlowestTorusShapeMode{} steps, so the same burn-in is only
-\relaxationBurnInInShapeEFoldings{} e-foldings of it and leaves a residual shape deficit of
-\relaxationResidualShapeDeficitAtTheStartOfTheWindow{}. That finite-time effect is not assumed
-away: it is carried inside the construction, which starts from an empty lattice and burns in for
-exactly the protocol duration.
+\subsection{Audit and reconstruction}
+We verified source hashes against pinned Git objects, recomputed arm summaries from all
+28 raw NPZ files, checked frame counts and cadence, and reconstructed each final-state digest.
+We independently recomputed the final radius from each final lattice.
+The archives contain per-frame summaries and a final lattice, not every intermediate lattice;
+the present audit does not independently reconstruct every frame radius from particle states.
+No engine trajectory was rerun.
 
-\section{Construction of the operator, and the freeze}
-\label{sec:construction}
+Historical inclusion sensitivity was recomputed from existing OBDI02 and OBTC02 archives.
+Predictor-uncertainty and birth-flux comparisons use the stored SEAL01 arrays:
+16 replicas of the 30-arm predictor calculation in each archived condition.
+These are existing predictor calculations, not additional physical-engine confirmations.
+All figures and tables are regenerated by the accompanying scripts.
 
-\subsection{The one-step conditional operator}
+\section{Results}
+\subsection{The frozen predictions satisfy the point criterion}
+All 28 declared fresh arms are present and included. None is recorded as extinct.
+The raw arrays reproduce the archived medians, means, within-arm dispersions and blocking
+fractions. Table~\ref{tab:primary} gives the primary comparison and the stored predictor
+Monte Carlo dispersion. Figure~\ref{fig:fresh} displays each arm.
 
-Conditional on the state $S_t$, the expected occupancy vector obeys
-\begin{equation}
-\mathbb{E}\!\left[n(t+1) \,\middle|\, S_t\right] \;=\; T(S_t)\, n(t) \;+\; b(S_t),
-\label{eq:operator}
-\end{equation}
-and this form is exact for this engine, not an approximation to it. Transport contributes a
-$T$ that is a function of the occupancy, because the number of movers accepted out of a cell is
-the minimum of the number offered and the free capacity at the destination; reaction contributes
-a $b$ that is likewise state-dependent, being the minimum of the available substrate and the free
-capacity at the source cell; and decay contributes an exactly linear factor $(1-\muX)$ with no
-state dependence at all. In the surviving record, births equalled that minimum in
-\couplingFractionOfStepsWhereBirthsEqualMinnsxfree{} of steps, and the source cell had zero free
-capacity in \couplingFractionOfStepsWithZeroFreeCapacityAtTheOrganiser{} of them, measured over
-\couplingArms{} arms.
-
-Equation~\eqref{eq:operator} does not survive taking expectations. Since $T$ and $n$ are both
-functions of the same occupancy, $\mathbb{E}[T(S)n] \neq \mathbb{E}[T(S)]\,\mathbb{E}[n]$, and the
-marginal density equation therefore does not close \citep{vankampen2007,gardiner2009}. What
-\emph{is} available is that the unblocked limit is a genuine closed linear operator, and that the
-departure from it is bounded: over a mean lifetime a particle is offered
-\capacityPerLifetimeOfferedHops{} hops and expects \capacityPerLifetimeExpectedRefusals{}
-refusals, so \capacityCertifiedFractionNeverRefused{} of particles are never refused at all.
-Removing that fraction of moves, and concentrating every removal adversarially on outward moves,
-changes the reported radius by \capacityImpliedChangeInREightZeroPercent\pc{}. The stationary
-profile therefore closes approximately, with a certified bound; the marginal density does not
-close at all. We record both, and we do not present the first as though it were the second.
-
-\begin{center}
-\small
-\begin{tabular}{ll}
-\toprule
-\texttt{FULL\_ONE\_STEP\_CONDITIONAL\_OPERATOR} & \texttt{\closureFullOneStepConditionalOperator} \\
-\texttt{STATIONARY\_PROFILE\_CLOSURE} & \texttt{\closureStationaryProfileClosure} \\
-\texttt{MARGINAL\_DENSITY\_CLOSURE} & \texttt{\closureMarginalDensityClosure} \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-\subsection{Terms measured, and terms dropped}
-
-Four candidate corrections were measured before the confirmation arms were designed, and three
-of them were dropped on the evidence rather than on judgement. The finite torus contributes
-nothing to the reported radius, because that radius is quantised to achievable lattice distances
-whose spacing near these values exceeds the correction. The finite horizon contributes
-$\relaxationBurnInInMassEFoldings$ e-foldings of mass relaxation and is carried inside the
-construction rather than corrected for. The intra-step order contributes
-\marginIntraStepOrderResidualPercent\pc{}. Capacity rejection contributes
-\marginCapacityCertifiedErrorOnREightZeroPercent\pc{}. Two terms were retained because they are
-large: the shared source trajectory, and the endogeneity of the birth flux. The birth flux is
-over-dispersed relative to Poisson, with a variance-to-mean ratio of
-\birthFluxVarianceOverMean{}, and the stationary population it implies,
-\populationCheckNXStarPredictedAsBOverMu{}, agrees with the observed
-\populationCheckNXObserved{} to a ratio of \populationCheckRatio{}. The age distribution of the
-standing population is the geometric one \citep{feller1968} to within a ratio of \ageRatio{}
-across \ageMolecules{} particles.
-
-\subsection{The equivalence margin, and what it is not}
-
-The tolerance was derived before any confirmation arm existed, from named terms, and was not
-chosen to accommodate anything. The model-error terms combine in quadrature to
-\marginModelErrorQuadraturePercent\pc{}; two sampling standard errors at \budgetArmsPerCondition{}
-arms per condition amount to \marginTwoSamplingSePercent\pc{}; the declared margin is
-\equivalenceMarginPercent\pc{}. The point that matters is the referent \citep{wellek2010}: the margin is applied to
-the distance between the observation and the construction's \emph{point prediction}, not to the
-distance from zero. A margin built to contain the historical numbers instead would have had to be
-about twice as wide.
-
-\subsection{Freeze and inertness}
-
-Before any confirmation arm ran, the two absolute predictions and their ratio were written into a
-protocol file and the analysis modules were hashed; the frozen predictions carry the status
-\texttt{\predictionStatus{}} and the methods hash \texttt{\methodsCoreHashStatus{}}. The
-apparatus that records the runs was checked separately: over \inertnessSteps{} steps an
-instrumented engine and a plain one reach a bit-identical state, hash
-\texttt{\inertnessStateHash{}}, so
-\texttt{INSTRUMENTATION\_\allowbreak{}ALTERS\_\allowbreak{}THE\_\allowbreak{}LAW}~\texttt{=}~\texttt{\inertnessAltersTheLaw}. This is one
-paired run at one seed; it falsifies interference, it does not prove inertness for every
-trajectory.
-
-\section{Prospective confirmation}
-\label{sec:confirmation}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.82\textwidth]{fig2_prospective_confirmation.pdf}
-\caption{\textbf{Prospective confirmation on \freshArmsRun{} fresh arms.} \textbf{(a)}~The frozen
-prediction (line) with its equivalence margin (band) against the \budgetArmsPerCondition{} arms
-of each condition (points) and their mean with a $95\pc$ interval (diamond).
-\textbf{(b)}~The three pre-declared endpoints; every interval lies wholly inside the margin, and
-unity is excluded for the ratio.}
-\label{fig:confirmation}
-\end{figure}
-
-\freshArmsRun{} arms were then run, \budgetArmsPerCondition{} per condition, on seeds drawn from
-a register that excludes every seed appearing anywhere in the historical record. All
-\freshArmsAnalysable{} were analysable: \freshExtinctions{} extinctions,
-\technicalTechnicallyInvalidRuns{} technically invalid runs, and no protocol violation. Each arm
-recorded \technicalHopLedgerRowsPerArm{} hop-ledger rows,
-\technicalSourceSubstepLedgerRowsPerArm{} source-substep rows and
-\technicalBirthSubstepLedgerRowsPerArm{} birth-substep rows.
-
-\begin{table}[t]
-\centering
-\small
-\caption{The three pre-declared endpoints. The predictions and the margin were fixed before any
-of these arms existed. \emph{Strict pass} means the whole confidence interval, not only the point
-estimate, lies inside the margin.}
-\label{tab:endpoints}
-\begin{tabular}{lS[table-format=1.4]S[table-format=1.4]S[table-format=+1.2]lc}
-\toprule
-Endpoint & {Predicted} & {Observed} & {Deviation (\%)} & {$95\pc$ interval (\%)} & Strict pass \\
-\midrule
-Static absolute  & \freshStaticPredicted & \freshStaticObserved & \freshStaticDeviationPercent
-  & $[\freshStaticCiNineFiveLow,\ +\freshStaticCiNineFiveHigh]$ & yes \\
-Mobile absolute  & \freshMobilePredicted & \freshMobileObserved & \freshMobileDeviationPercent
-  & $[\freshMobileCiNineFiveLow,\ +\freshMobileCiNineFiveHigh]$ & yes \\
-Mobile / static  & \freshRatioPredicted & \freshRatioObserved & \freshRatioDeviationPercent
-  & $[\freshRatioCiNineFiveLow,\ +\freshRatioCiNineFiveHigh]$ & yes \\
-\bottomrule
+\begin{table}[htbp]\centering\small
+\caption{Primary point comparisons. Monte Carlo s.d. is reported in percent as in SEAL01;
+it describes repeated predictor calculations, not variation among engine arms.
+The ratio dispersion uses the archived propagation convention.}\label{tab:primary}
+\begin{tabular}{lrrrr}\toprule
+Endpoint & Predicted & Observed & Error (\%) & MC s.d. (\%)\\\midrule
+Static & \VStaticPredicted & \VStaticObserved & \VStaticError & \VStaticMCSD\\
+Mobile & \VMobilePredicted & \VMobileObserved & \VMobileError & \VMobileMCSD\\
+Mobile/static & \VRatioPredicted & \VRatioObserved & \VRatioError & \VRatioMCSD\\\bottomrule
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:endpoints} and Figure~\ref{fig:confirmation} give the result. The static
-prediction was met to $\freshStaticDeviationPercent\pc$ and the mobile one to
-$+\freshMobileDeviationPercent\pc$, against a margin of \equivalenceMarginPercent\pc{}; in both
-cases the entire confidence interval lies inside the margin, which is a stricter criterion than
-the one that was declared. The ratio of the two conditions was predicted at
-\freshRatioPredicted{} and observed at \freshRatioObserved{}, a deviation of
-$+\freshRatioDeviationPercent\pc$, and unity lies outside its interval: source mobility increases
-the extent, by a margin the construction anticipated.
+The three point deviations are inside $\pm\VMargin\%$.
+The sealed disposition is
+\begin{quote}\small
+\path{CONDITIONAL_FULL_CAPACITY_SOURCE_RESPONSE_OPERATOR_QUALIFIED}
+\end{quote}
+The label records this bounded result; it does not imply an exact theory of capacity effects.
 
-What this would have looked like had it failed is worth stating, because it is what makes the
-agreement informative. Either absolute endpoint outside $\pm\equivalenceMarginPercent\pc$, or a
-ratio interval containing unity, or a single extinction or technically invalid arm, would have
-been visible in exactly this table. The predictions were on the record beforehand; the arms were
-run once; the seeds were not replaced.
-
-Two further observations bound what the agreement means. Capacity blocking averaged
-\blockedFractionXMean{} across the \freshArmsRun{} arms, with a maximum of
-\technicalBlockedFractionXMax{}; the full-capacity label in this work refers to the source term,
-not to a saturated lattice, and the regime tested here is not capacity-limited. And the
-qualification is bounded: it holds at one parameter point, on one lattice, for two mobility
-settings. The functional dependence on hop rate is not measured, only the contrast between the
-two settings that were frozen. The adjudicated disposition of the programme is
-\texttt{\disposition{}}.
-
-\section{The residual was in the summary rule, not in the field}
-\label{sec:estimator}
-
-\begin{figure}[p]
-\centering
-\includegraphics[width=0.92\textwidth]{fig3_summary_rule_artefact.pdf}
-\caption{\textbf{The summary rule, not the field.} \textbf{(a)}~Observed minus predicted
-cumulative radial profile at \radialProfileRadiiTested{} radii. Over
-\radialProfileMobileArms{} historical mobile arms the largest standardised deviation is
-\radialProfileMaxAbsZ{} and the largest difference \radialProfileMaxAbsDifference{}. The static
-curve rests on \radialProfileStaticArms{} arms and is shown for completeness only; see the
-caveat in the text. \textbf{(b)}~The historical residual at three lattice sizes under the frozen
-median rule and under the mean rule, on the same frames. \textbf{(c)}~Four summary cells under
-three accounts. \textbf{(d)}~Within-arm dispersion under the same three accounts.}
-\label{fig:estimator}
+\begin{figure}[htbp]\centering
+\includegraphics[width=\textwidth]{fig2_prospective_confirmation.pdf}
+\caption{Fresh comparisons. (A) Each dot is one arm median; the horizontal red mark is the
+frozen M6 prediction, and the black diamond is the observed condition mean with one standard
+error across arms. (B) Point deviations for M6 and the historical-copy baseline. The band
+shows the frozen tolerance, not a confidence interval. The baseline comparison is a later
+diagnostic. Both predictors pass all three point criteria.}\label{fig:fresh}
 \end{figure}
 
-The construction just tested was not built in a vacuum. An earlier record, made under the same
-frozen rules, had shown the reported radius falling \emph{below} the ideal operator's value:
-$\cellStaticMedianObservedPercent\pc$ in the static condition and
-$\cellMobileMedianObservedPercent\pc$ in the mobile one, the latter over
-\historicalMobileMedianResidualN{} arms at $z=\historicalMobileMedianResidualZ{}$. A deficit that
-size, that consistent, and that clearly larger in the mobile condition reads like physics. It is
-not.
 
-\subsection{The field agrees at every radius}
+\subsection{Agreement does not uniquely identify the predictor}
+A baseline that copies historical condition means gives fresh deviations of
+\VBaselineStaticError\%, \VBaselineMobileError\% and \VBaselineRatioError\%.
+All also satisfy the frozen tolerance. The baseline uses three static historical arms and
+41 mobile historical arms at the same lattice size; it contains no transport model.
+It was evaluated in the later seal. Its inputs existed before the fresh runs, but this
+comparison was not itself a pre-run primary endpoint.
 
-The first thing to check is whether the shortfall is in the field or in how the field is
-summarised. Over \radialProfileMobileArms{} historical mobile arms the observed cumulative radial
-profile follows the operator at every one of \radialProfileRadiiTested{} radii: the largest
-standardised deviation is \radialProfileMaxAbsZ{} and the largest difference in cumulative
-probability is \radialProfileMaxAbsDifference{} (Figure~\ref{fig:estimator}a). The cloud is where
-the operator says it is. Only the summarised quantile is not.
+The fresh mobile observation differs by \VNoSharedError\% from the construction with the
+shared source path removed, and by \VIdealError\% from the uncorrected ideal reference.
+These fixed alternatives lie outside the point tolerance (Figure~\ref{fig:ablations}A).
+The pre-run ablation rule required the full construction to be closer than the no-shared-path
+variant; it did not prescribe a new statistical model-selection test.
+Thus the comparisons support retaining a shared path within the examined construction,
+while the successful historical baseline prevents a claim of unique mechanistic identification.
 
-The same comparison in the static condition is \emph{not} informative and we do not use it. It
-rests on \radialProfileStaticArms{} arms. Its largest standardised deviation is
-\radialProfileStaticMaxAbsZ{}, but that occurs at a radius where the absolute difference,
-\radialProfileStaticMaxAbsDifference{}, is no larger than at radii whose standardised deviation is
-below one --- a standard error estimated from three arms can collapse by chance, and here it did.
-The flag recorded in the source programme is scoped
-\texttt{\radialProfileFlagScope{}} accordingly, and we report the static cell as not evaluated
-rather than quietly averaging it in.
+\subsection{The earlier birth-flux-shape interpretation is withdrawn}
+The frozen Poisson-source variant is farther from the fresh mobile mean than M6, but it
+still passes the same point tolerance. A ratio of distances is not evidence that it is rejected.
+Stored SEAL01 replicas give mobile predictor residual means of \VEmpiricalMean\% for the
+empirical flux and \VPoissonMean\% for the Poisson flux.
+Their difference is $\VBirthDifference\pm\VBirthSE$ percentage points (one standard error;
+Figure~\ref{fig:ablations}B). The earlier large effect had the opposite sign.
+It cannot support the former causal attribution to birth-flux shape or the corresponding
+factorial decomposition. A smaller effect is unresolved by the present account.
+Conditionality remains, because the predictor still requires the measured input.
 
-\subsection{A surrogate with no dynamics reproduces part of the deficit}
-
-Take the operator's own stationary law, draw particles from it independently at the observed
-per-frame counts, and apply the identical summary rule. There is no lattice, no transport, no
-capacity, no source: only the estimator. That surrogate is already biased downwards, by
-$\cellStaticMedianSurrogatePercent\pc$ in the static condition and
-$\cellMobileMedianSurrogatePercent\pc$ in the mobile one, over \iidStaticArms{} surrogate arms of
-\iidStaticFrames{} frames each. The mechanism is elementary and was flagged in the estimator's own
-definition: $r_{80}$ is a finite-sample quantile of a first crossing, which is a minimum over
-distance, and minima of noisy crossings are biased downwards
-\citep{serfling1980,redner2001}.
-
-That accounts for most of the static deficit --- $\cellStaticMedianSurrogatePercent\pc$ against
-$\cellStaticMedianObservedPercent\pc$ observed --- and we say so no more strongly than that.
-
-\subsection{It does not account for the mobile deficit}
-
-In the mobile condition the surrogate reaches only
-$\cellMobileMedianSurrogatePercent\pc$ against $\cellMobileMedianObservedPercent\pc$ observed
-(Figure~\ref{fig:estimator}c). Roughly three quarters of the mobile deficit is not an estimator
-artefact in this sense, and something in the dynamics has to supply it. What supplies it is the
-source's own wandering, quantified in Section~\ref{sec:mechanism}: adding the shared trajectory
-moves the construction from $\mSixSequentialStepZeroBaselineMTwoLevel\pc$ to
-$\mSixSequentialStepOneAddSharedTrajectory\pc$, and adding the empirical birth flux takes it to
-$\mSixSequentialStepTwoAddEmpiricalBirthFlux\pc$, against
-$\cellMobileMedianObservedPercent\pc$ observed. The construction slightly overshoots; its own
-Monte-Carlo standard error at that point is \marginMSixMonteCarloSeMobilePercent\pc{}.
-
-\subsection{Dispersion orders the two accounts}
-
-Dispersion separates the accounts more cleanly than the central value does. The observed
-within-arm standard deviation in the mobile condition is \dispersionMobileWithinArmSd{}; the
-surrogate produces \dispersionIidMobileWithinArmSd{}, less than half of it; the full construction
-produces \mSixDispersionMobileWithinArmSdSimulated{}
-(Figure~\ref{fig:estimator}d). On the fresh arms the same comparison was a pre-declared secondary
-control and was met: predicted \secondaryWithinArmSdMobilePredicted{} against
-\secondaryWithinArmSdMobileObserved{} observed in the mobile condition, and
-\secondaryWithinArmSdStaticPredicted{} against \secondaryWithinArmSdStaticObserved{} in the
-static. The mobile per-frame series is also right-skewed, at
-\dispersionMobileWithinArmSkew{} against \dispersionStaticWithinArmSkew{} in the static
-condition, which is what puts a median below its mean.
-
-\subsection{Changing the summary rule removes most of the discrepancy}
-
-On identical frames, the historical mobile deficit is
-$\cellMobileMedianObservedPercent\pc$ under the frozen median rule and
-$\cellMobileMeanObservedPercent\pc$ under the mean rule (Figure~\ref{fig:estimator}b). The choice
-of summary rule, not the field, carries the bulk of it. The mean rule was also a pre-declared
-control on the fresh arms and was met:
-$\secondaryMeanSummaryStaticObservedPercent\pc$ observed against
-$\secondaryMeanSummaryStaticPredicted\pc$ predicted in the static condition, and
-$\secondaryMeanSummaryMobileObservedPercent\pc$ against
-$\secondaryMeanSummaryMobilePredicted\pc$ in the mobile one.
-
-Two qualifications belong here rather than in the discussion. The mean rule is not unbiased ---
-under the surrogate it is in fact slightly \emph{worse} than the median in the static condition,
-$\cellStaticMeanSurrogatePercent\pc$ against $\cellStaticMedianSurrogatePercent\pc$ --- it is
-merely less biased where it matters. And the construction's largest single disagreement with the
-historical record is here: it predicts $\cellMobileMeanConstructionPercent\pc$ for the mobile mean
-against $\cellMobileMeanObservedPercent\pc$ observed, an overshoot of about a percentage point
-and a quarter. That cell is the weakest agreement in this paper and we do not present it as
-though it were among the strongest.
-
-\section{What the agreement depends on}
-\label{sec:mechanism}
-
-\begin{figure}[t]
-\centering
+\begin{figure}[htbp]\centering
 \includegraphics[width=\textwidth]{fig4_mechanism_ablation.pdf}
-\caption{\textbf{What the agreement depends on.} \textbf{(a)}~Distance between the observed
-mobile radius and four constructions. \textbf{(b)}~The same constructions built up in physical
-order. \textbf{(c)}~The two main effects and their interaction in a two-by-two decomposition.}
-\label{fig:mechanism}
+\caption{Model comparisons and the withdrawn flux attribution. (A) Point errors relative
+to four frozen constructions; the Poisson variant is inside the same tolerance as M6.
+(B) Existing replica means from SEAL01, with 30 predictor arms per replica.
+Horizontal lines are means over the 16 stored replicas. These are post-outcome predictor
+diagnostics and are not additional fresh engine arms.}\label{fig:ablations}
 \end{figure}
 
-An agreement is only informative if one can say what it would have taken to break it. We
-therefore removed each retained ingredient in turn and measured how far the prediction moved from
-the observed mobile radius, \ablationObservedMobileMedian{}. The full construction sits
-\ablationDistFull{} lattice units away. Replacing the endogenous birth flux by a Poisson source of
-the same mean moves it to \ablationDistPoisson{}, about four and a half times further. Removing
-the shared source trajectory moves it to \ablationDistNoShared{}, about fifteen times further.
-The uncorrected ideal value, \ablationPredIdeal{}, is furthest of all
-(Figure~\ref{fig:mechanism}a).
 
-Built up in physical order rather than torn down (Figure~\ref{fig:mechanism}b), the discrete
-kernel with a Poisson source gives $\mSixSequentialStepZeroBaselineMTwoLevel\pc$; adding the
-shared trajectory gains $\mSixSequentialStepOneGain{}$ percentage points; adding the empirical
-birth flux gains a further $\mSixSequentialStepTwoGain{}$. In a two-by-two design over the same
-two factors the main effects are $\mSixFactorialMainEffectSharedTrajectory{}$ and
-$\mSixFactorialMainEffectBirthFlux{}$ percentage points and the interaction is
-$+\mSixFactorialInteraction{}$, which is small enough that the two ingredients can be read
-additively here \citep{boxhunterhunter2005,cox1958}. We note the standing caveat on such
-decompositions: the two main effects and the interaction sum to the total by construction, so
-their sum is not independent evidence for either.
+\subsection{The historical residual depends on inclusion}
+The original developmental summary selected arms with a surviving source, terminal $X$
+population at least 40 and at least 50 finite analysis frames.
+Since terminal population is an outcome, the selected residual cannot be reported as an
+unconditional property of the dynamics. Table~\ref{tab:filter} and Figure~\ref{fig:filter}
+reproduce the existing sensitivity analysis.
 
-The reason the shared trajectory matters so much is visible in the dispersion. Removing it
-collapses the within-arm standard deviation from \mSixDispersionMobileWithinArmSdSimulated{} to
-\ablationNoSharedTrajectoryWithinArmSd{} --- that is, onto the static width --- and the
-median penalty collapses with it. The mobile deficit is not a different physical regime; it is
-the same estimator acting on a wider per-frame distribution, and the distribution is wider
-because every particle alive at a given moment was born somewhere along one wandering path.
+\begin{table}[htbp]\centering\small
+\caption{Historical mobile inclusion sensitivity. All rows retain final $Y\ge1$;
+the last still requires a finite radius. Rows overlap and are not independent studies.}\label{tab:filter}
+\begin{tabular}{lrrr}\toprule
+Rule & Arms & Residual (\%) & SE (\%)\\\midrule
+Terminal $X\ge40$, at least 50 frames & \VSelectedN & \VSelectedResidual & \VSelectedSE\\
+At least 50 frames & \VNoPopulationN & \VNoPopulationResidual & \VNoPopulationSE\\
+At least one finite radius & \VFiniteOnlyN & \VFiniteOnlyResidual & \VFiniteOnlySE\\\bottomrule
+\end{tabular}
+\end{table}
 
-Two ingredients that might have been expected to matter do not. Capacity is one: blocking is
-\blockedFractionXMean{} on average and its adversarial effect on the reported radius is
-\capacityImpliedChangeInREightZeroPercent\pc{}, two orders of magnitude below the residual under
-study. The finite torus is the other: it leaves the reported radius unchanged at every size
-tested, because that radius is quantised more coarsely than the correction.
+The magnitude changes substantially as the filter is relaxed.
+The widest row includes nearly extinguished fields and has larger uncertainty.
+It does not prove a zero residual. The 28 fresh arms do not undergo this selection:
+all declared arms remain in the primary analysis.
 
-\section{Project history, and what did not survive}
-\label{sec:history}
+\begin{figure}[htbp]\centering
+\includegraphics[width=.94\textwidth]{fig3_summary_rule_artefact.pdf}
+\caption{Sensitivity of the historical radius summary to outcome-based inclusion.
+Bars are one standard error across arms. Even the most permissive row is conditional
+on an extant source and an available finite-radius summary.}\label{fig:filter}
+\end{figure}
 
-This paper is one result of a longer programme, and honesty about the rest of that programme is
-part of reporting this one.
 
-A line of work addressed to a different question --- whether a region of the parameter space of
-this architecture has certain properties --- was carried out in earlier sessions. It included a
-prospective calibration exercise and a subsequent arbitration over which route to take. The raw
-archives of that work did not survive the container resets during which this paper was written.
-Their narrative records exist outside this repository; their bytes do not. No quantity, figure,
-table or abstract sentence in this paper draws on any of it, and none of it is reconstructed from
-memory here.
+\section{Related results and limits of scope}
+MYQBD01, PQEC01 and FLCR01 address the distinct problem of source succession and
+two-centre organisation. MYQBD01 found organiser-only exposure insufficient to identify
+the full descendant environment. PQEC01 retains \VPQArchives{} raw worlds, verified against
+its manifest, but FLCR01 withdraws their prospective-confirmatory status because the
+discovery/validation separation was not preserved. They are post-outcome developmental data.
+FLCR01 rejects the necessity of a labelled founder's survival and supports a lineage
+criterion, while retaining
+\path{LINEAGE_CRITERION_SUPPORTED__OPERATOR_NOT_IDENTIFIED_FROM_PQEC01}.
+A founder particle, a lineage, a source-response operator and a two-centre world are not
+interchangeable units. None of these contextual findings extends the confirmation reported here.
 
-What follows from that, stated plainly: whether the architecture admits a parameter region with
-the properties that line of work was asking about is \textbf{not tested} by this paper. The
-status is \texttt{NOT\_\allowbreak{}TESTED}, which is a statement about the absence of a test
-and not about the answer. A reader will find no sentence anywhere in this paper asserting a
-negative answer to that question either; nothing here bears on it in either direction, and the
-evidence that might have borne on it is no longer available to be examined.
+EXP-SC-IOM-00 belongs to a separate scaffold-memory architecture. Its interpretive erratum
+retains low-dimensional causal experience memory and explicitly records
+\textbf{INDIVIDUATION: FAIL}. High-dimensional internal variation is not established
+high-dimensional history storage. This result is included as a documentary boundary, using
+its pinned report and erratum; its raw simulation was not rerun in this revision.
+It is not evidence for individuality in the source-maintained lattice model.
 
-The historical arms used in Section~\ref{sec:estimator} come from programmes whose raw archives
-are likewise not all present in this session. They are used descriptively --- to characterise a
-record that motivated the analysis --- and never as confirmatory replicates. Every confirmatory
-statement in this paper rests on the \freshArmsRun{} fresh arms of
-Section~\ref{sec:confirmation}, whose seeds, final state hashes and ledger sizes are listed in
-the supplement.
+The shared repository name does not make Route E, the persistence manuscripts or the
+scaffold-memory architecture part of the present dataset. Their results are not pooled here.
+Historical stop dispositions, including any
+\path{STOP__ARCHITECTURE_CHANGE_REQUIRED}, remain attached to their originating experiments;
+this paper neither reverses them nor exports them as a universal claim.
+PMCR01 and the other closed routes are not reopened.
 
 \section{Discussion}
-\label{sec:discussion}
+The supported result is specific: a predictor conditional on a historical engine input
+stated three point predictions before fresh engine outcomes existed, and
+those outcomes satisfied its frozen tolerance. A fixed no-shared-path construction fails
+the mobile point comparison, whereas both the full predictor and a historical-copy baseline
+pass. The observation supports a useful construction at the tested settings but does not
+uniquely identify the generating mechanism.
 
-Three things are established here, at one parameter point.
+The audit changes two parts of the interpretation. First, a larger distance from an observation
+does not imply model rejection when both distances satisfy the same rule.
+Second, the historical residual combines the observable with an outcome-dependent inclusion
+rule. A general theorem that a first-crossing quantile must be biased downward is not derived
+here; the sign and magnitude of the observed summary effects remain empirical and conditional
+on the analysed distributions.
 
-An operator built from the microscopic rules, with two named corrections and a margin derived
-from named error terms, predicted the stationary extent of a source-maintained field before the
-confirming data existed, and the data met it. The agreement is not confined to the summary
-statistic; the full radial profile follows the operator over \radialProfileMobileArms{} arms.
-Mobility increases the extent, by an amount the construction anticipated to within
-$+\freshRatioDeviationPercent\pc$.
+Uncertainty also limits the apparent precision of agreement. The frozen numerical predictions
+have Monte Carlo dispersion. Whole-interval rules and corrected small-sample diagnostics
+were introduced after the runs and cannot be presented as pre-registered successes.
+There is one engine implementation, one confirmatory lattice size, one parameter point and
+two source-mobility conditions. No independent full-engine replication or general
+parameter dependence is established.
 
-A residual that had every appearance of physics was largely an artefact of a summary rule. That
-diagnosis is worth more than the specific number attached to it, because the ingredients are
-generic: a first-crossing quantile is a minimum, minima of noisy crossings are biased downwards,
-right-skewed per-frame distributions put medians below means, and a wandering source widens the
-per-frame distribution without moving the underlying law. Any measurement that summarises a
-first-crossing length within a replicate and then averages across replicates is exposed to the
-same effect.
-
-The agreement depends on ingredients that can be named and removed, and removing them degrades
-it by factors of four and fifteen. That is what distinguishes this from a fit.
-
-What is not established is at least as important. The marginal density equation does not close,
-and nothing here closes it; the stationary profile closes only approximately, with a certified
-bound, and the reader should not read the agreement in Section~\ref{sec:confirmation} as an
-agreement of a closed theory. The qualification holds at one lattice size, one source strength
-and two mobility settings; the dependence on hop rate is a contrast, not a curve. The
-construction's account of the mobile \emph{mean} summary is its weakest, overshooting by about a
-percentage point and a quarter. And the static radial profile comparison, on three arms, is not
-informative in either direction.
-
-\begin{statusbox}
-\small
-\textbf{Status lines, repeated.}
-\statusline{H3\_STATUS}{NOT\_TESTED};
-\statusline{REPRODUCTION\_STATUS}{NOT\_TESTED};
-\statusline{HEREDITY\_STATUS}{NOT\_TESTED};
-\statusline{AUTONOMOUS\_COHESION\_STATUS}{NOT\_ESTABLISHED};
-\statusline{X\_LAWSPEC\_BASELINE}{UNCHANGED};
-\statusline{ARCHITECTURE\_CHANGE\_NECESSITY}{NOT\_ESTABLISHED}.
-No claim of biological reproduction, heredity, living status or autonomous cohesion is made
-anywhere in this paper, and no experiment reported here bears on any of them.
-\end{statusbox}
+For this paper, reproduction and heredity remain \textbf{NOT TESTED}; autonomous cohesion
+and biological individuality remain \textbf{NOT ESTABLISHED}.
+The external memory programme's individuation failure remains a failure.
+This revision adds no experimental success and authorises no successor simulation.
+Its contribution is a reproducible, narrower account of the source-response result and the
+comparisons that limit what it can mean.
 
 \section*{Data, code and provenance}
-
-Every number in this paper is emitted as a macro by \texttt{code/\allowbreak{}emit\_\allowbreak{}numbers.py} from
-\texttt{provenance/\allowbreak{}PAPER\_\allowbreak{}NUMERICAL\_\allowbreak{}RECONCILIATION.json}, which records for each value its
-estimand, its unit of analysis, the source file it was read from, that file's SHA-256, the JSON
-path within it, and the sections in which it may appear. No number in this paper was taken from
-prose. The four figures are regenerated by \texttt{code/\allowbreak{}make\_\allowbreak{}figures.py} and each ships a
-source-data file. The evidence tier of every programme cited is recorded in
-\texttt{provenance/\allowbreak{}PAPER\_\allowbreak{}SOURCE\_\allowbreak{}BINDING.json}, and what is missing, together with why, is
-recorded in \texttt{provenance/\allowbreak{}PAPER\_\allowbreak{}MISSING\_\allowbreak{}EVIDENCE\_\allowbreak{}MATRIX.md}.
+The review package includes the manuscript, supplement, claim--evidence matrix, deterministic
+figure and table scripts, numerical reconciliation, source manifest and raw inputs needed
+for its main figures. The source-response history is pinned at
+\path{06c592313df96601de8d2a89676d5a5cf79fc414}; the original delivered paper is preserved in
+Git at \path{0a872ac}. The V2 source and audit identify every included file by SHA-256.
+PQEC01 raw archives remain a separately identified external package; their complete hash and
+schema verification is supplied, while only their developmental status is used here.
+The historical mission's governing run-budget authorisation is not in the delivered evidence;
+its compliance remains \textbf{UNKNOWN}, which is not a finding of violation.
+No publication, new DOI, public deposition or merge accompanies this revision.
 
 \bibliographystyle{plainnat}
 \bibliography{../bibliography/references}
-
 \end{document}
