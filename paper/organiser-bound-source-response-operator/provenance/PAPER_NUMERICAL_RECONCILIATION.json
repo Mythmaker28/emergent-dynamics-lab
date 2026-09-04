@@ -1,0 +1,488 @@
+{
+  "version": "V2",
+  "N_ROWS": 48,
+  "ROWS": [
+    {
+      "NAME": "Lattice",
+      "VALUE": 36,
+      "UNITS": "model units",
+      "EVIDENCE_LEVEL": "FROZEN_METHOD",
+      "SOURCE_FILE": "OBFOR01/out/_freeze.json",
+      "SOURCE_SHA256": "b3624cb92822cc805904304ea93876bc092e8796e9ea740582062bbd7b44acc6",
+      "JSON_PATH": "FREEZE_MANIFEST/frozen_point/L",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "Capacity",
+      "VALUE": 16,
+      "UNITS": "model units",
+      "EVIDENCE_LEVEL": "FROZEN_METHOD",
+      "SOURCE_FILE": "OBFOR01/out/_freeze.json",
+      "SOURCE_SHA256": "b3624cb92822cc805904304ea93876bc092e8796e9ea740582062bbd7b44acc6",
+      "JSON_PATH": "FREEZE_MANIFEST/frozen_point/CAP",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "ReservoirTarget",
+      "VALUE": 3,
+      "UNITS": "model units",
+      "EVIDENCE_LEVEL": "FROZEN_METHOD",
+      "SOURCE_FILE": "OBFOR01/out/_freeze.json",
+      "SOURCE_SHA256": "b3624cb92822cc805904304ea93876bc092e8796e9ea740582062bbd7b44acc6",
+      "JSON_PATH": "FREEZE_MANIFEST/frozen_point/S0",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "Feed",
+      "VALUE": 0.2,
+      "UNITS": "model units",
+      "EVIDENCE_LEVEL": "FROZEN_METHOD",
+      "SOURCE_FILE": "OBFOR01/out/_freeze.json",
+      "SOURCE_SHA256": "b3624cb92822cc805904304ea93876bc092e8796e9ea740582062bbd7b44acc6",
+      "JSON_PATH": "FREEZE_MANIFEST/frozen_point/phi",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "Outflow",
+      "VALUE": 0.05,
+      "UNITS": "model units",
+      "EVIDENCE_LEVEL": "FROZEN_METHOD",
+      "SOURCE_FILE": "OBFOR01/out/_freeze.json",
+      "SOURCE_SHA256": "b3624cb92822cc805904304ea93876bc092e8796e9ea740582062bbd7b44acc6",
+      "JSON_PATH": "FREEZE_MANIFEST/frozen_point/omega",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "Mortality",
+      "VALUE": 0.004,
+      "UNITS": "model units",
+      "EVIDENCE_LEVEL": "FROZEN_METHOD",
+      "SOURCE_FILE": "OBFOR01/out/_freeze.json",
+      "SOURCE_SHA256": "b3624cb92822cc805904304ea93876bc092e8796e9ea740582062bbd7b44acc6",
+      "JSON_PATH": "FREEZE_MANIFEST/frozen_point/muX",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "Reaction",
+      "VALUE": 1.0,
+      "UNITS": "model units",
+      "EVIDENCE_LEVEL": "FROZEN_METHOD",
+      "SOURCE_FILE": "OBFOR01/out/_freeze.json",
+      "SOURCE_SHA256": "b3624cb92822cc805904304ea93876bc092e8796e9ea740582062bbd7b44acc6",
+      "JSON_PATH": "FREEZE_MANIFEST/frozen_point/kX",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "Hop",
+      "VALUE": 0.10263340389897246,
+      "UNITS": "model units",
+      "EVIDENCE_LEVEL": "FROZEN_METHOD",
+      "SOURCE_FILE": "OBFOR01/out/_freeze.json",
+      "SOURCE_SHA256": "b3624cb92822cc805904304ea93876bc092e8796e9ea740582062bbd7b44acc6",
+      "JSON_PATH": "FREEZE_MANIFEST/frozen_point/p_hop",
+      "DECIMALS": 9
+    },
+    {
+      "NAME": "SeedX",
+      "VALUE": 4,
+      "UNITS": "model units",
+      "EVIDENCE_LEVEL": "FROZEN_METHOD",
+      "SOURCE_FILE": "OBFOR01/out/_freeze.json",
+      "SOURCE_SHA256": "b3624cb92822cc805904304ea93876bc092e8796e9ea740582062bbd7b44acc6",
+      "JSON_PATH": "FREEZE_MANIFEST/frozen_point/X_SEED",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "Margin",
+      "VALUE": 2.9,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "FROZEN_POINT_RULE",
+      "SOURCE_FILE": "OBFOR01/out/_freeze.json",
+      "SOURCE_SHA256": "b3624cb92822cc805904304ea93876bc092e8796e9ea740582062bbd7b44acc6",
+      "JSON_PATH": "RESIDUAL_TOLERANCE/EQUIVALENCE_MARGIN_percent",
+      "DECIMALS": 1
+    },
+    {
+      "NAME": "StaticPredicted",
+      "VALUE": 6.007630361527475,
+      "UNITS": "lattice units or ratio",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/static/predicted",
+      "DECIMALS": 4
+    },
+    {
+      "NAME": "StaticObserved",
+      "VALUE": 5.999119238860436,
+      "UNITS": "lattice units or ratio",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/static/observed",
+      "DECIMALS": 4
+    },
+    {
+      "NAME": "StaticError",
+      "VALUE": -0.14167187651131785,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/static/relative_error_percent",
+      "DECIMALS": 2
+    },
+    {
+      "NAME": "StaticMCSD",
+      "VALUE": 0.3149614424197004,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/static/prediction_mc_sd_percent",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "StaticSE",
+      "VALUE": 0.46300108498306264,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/static/se_percent",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "MobilePredicted",
+      "VALUE": 8.057449850229872,
+      "UNITS": "lattice units or ratio",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/mobile/predicted",
+      "DECIMALS": 4
+    },
+    {
+      "NAME": "MobileObserved",
+      "VALUE": 8.077146148389195,
+      "UNITS": "lattice units or ratio",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/mobile/observed",
+      "DECIMALS": 4
+    },
+    {
+      "NAME": "MobileError",
+      "VALUE": 0.24444828730469936,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/mobile/relative_error_percent",
+      "DECIMALS": 2
+    },
+    {
+      "NAME": "MobileMCSD",
+      "VALUE": 0.5626702876946909,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/mobile/prediction_mc_sd_percent",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "MobileSE",
+      "VALUE": 0.725338315203404,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/mobile/se_percent",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "RatioPredicted",
+      "VALUE": 1.3412026648359268,
+      "UNITS": "lattice units or ratio",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/ratio/predicted",
+      "DECIMALS": 4
+    },
+    {
+      "NAME": "RatioObserved",
+      "VALUE": 1.3463886658674735,
+      "UNITS": "lattice units or ratio",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/ratio/observed",
+      "DECIMALS": 4
+    },
+    {
+      "NAME": "RatioError",
+      "VALUE": 0.38666796357589295,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/ratio/relative_error_percent",
+      "DECIMALS": 2
+    },
+    {
+      "NAME": "RatioMCSD",
+      "VALUE": 0.6448244434460627,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/ratio/prediction_mc_sd_percent",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "RatioSE",
+      "VALUE": 0.8627015619198192,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/ratio/se_percent",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "StaticTOST",
+      "VALUE": 2.382641635779968e-05,
+      "UNITS": "p value",
+      "EVIDENCE_LEVEL": "POST_FREEZE_DIAGNOSTIC",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/static/diagnostic_tost_p",
+      "DECIMALS": 6
+    },
+    {
+      "NAME": "MobileTOST",
+      "VALUE": 0.001437807098757528,
+      "UNITS": "p value",
+      "EVIDENCE_LEVEL": "POST_FREEZE_DIAGNOSTIC",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "endpoints/mobile/diagnostic_tost_p",
+      "DECIMALS": 6
+    },
+    {
+      "NAME": "SelectedN",
+      "VALUE": 116,
+      "UNITS": "arms",
+      "EVIDENCE_LEVEL": "OUTCOME_CONDITIONED_DEVELOPMENTAL",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "historical_levels/A_mission_rule__nX_final_ge_40_and_ge_50_frames/n",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "SelectedResidual",
+      "VALUE": -5.100648800559171,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "OUTCOME_CONDITIONED_DEVELOPMENTAL",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "historical_levels/A_mission_rule__nX_final_ge_40_and_ge_50_frames/percent",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "SelectedSE",
+      "VALUE": 0.30778409048558053,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "OUTCOME_CONDITIONED_DEVELOPMENTAL",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "historical_levels/A_mission_rule__nX_final_ge_40_and_ge_50_frames/se_percent",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "NoPopulationN",
+      "VALUE": 126,
+      "UNITS": "arms",
+      "EVIDENCE_LEVEL": "OUTCOME_CONDITIONED_DEVELOPMENTAL",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "historical_levels/B_drop_the_population_threshold__keep_ge_50_frames/n",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "NoPopulationResidual",
+      "VALUE": -4.347644780628923,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "OUTCOME_CONDITIONED_DEVELOPMENTAL",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "historical_levels/B_drop_the_population_threshold__keep_ge_50_frames/percent",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "NoPopulationSE",
+      "VALUE": 0.47839691245949895,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "OUTCOME_CONDITIONED_DEVELOPMENTAL",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "historical_levels/B_drop_the_population_threshold__keep_ge_50_frames/se_percent",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "FiniteOnlyN",
+      "VALUE": 129,
+      "UNITS": "arms",
+      "EVIDENCE_LEVEL": "OUTCOME_CONDITIONED_DEVELOPMENTAL",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "historical_levels/C_no_outcome_dependent_threshold_at_all/n",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "FiniteOnlyResidual",
+      "VALUE": -2.1439939634253946,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "OUTCOME_CONDITIONED_DEVELOPMENTAL",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "historical_levels/C_no_outcome_dependent_threshold_at_all/percent",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "FiniteOnlySE",
+      "VALUE": 1.5385589413344598,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "OUTCOME_CONDITIONED_DEVELOPMENTAL",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "historical_levels/C_no_outcome_dependent_threshold_at_all/se_percent",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "BirthDifference",
+      "VALUE": 0.4144240154032204,
+      "UNITS": "percentage points",
+      "EVIDENCE_LEVEL": "POST_OUTCOME_DIAGNOSTIC",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "replicates/difference_pp",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "BirthSE",
+      "VALUE": 0.19629596067616356,
+      "UNITS": "percentage points",
+      "EVIDENCE_LEVEL": "POST_OUTCOME_DIAGNOSTIC",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "replicates/se_pp",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "EmpiricalMean",
+      "VALUE": -4.803296104989181,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "POST_OUTCOME_DIAGNOSTIC",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "replicates/stats/mobile_empirical/mean",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "PoissonMean",
+      "VALUE": -5.217720120392402,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "POST_OUTCOME_DIAGNOSTIC",
+      "SOURCE_FILE": "paper/organiser-bound-source-response-operator/provenance/AUDIT_RESULTS.json",
+      "SOURCE_SHA256": "790f05b24a9dd0c3d590845545d53e4b123f79f2553c7147108eb5445040e180",
+      "JSON_PATH": "replicates/stats/mobile_poisson/mean",
+      "DECIMALS": 3
+    },
+    {
+      "NAME": "NoSharedError",
+      "VALUE": -3.5518705481669466,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "POST_OUTCOME_MODEL_COMPARISON",
+      "SOURCE_FILE": "SEAL01/out/OBFOR01_SEAL_REPAIR_EVIDENCE.json",
+      "SOURCE_SHA256": "8a13cf2db2d4ac37ba68a88732dedaf77c226ab599a236ffb9c6a55bc9af1e35",
+      "JSON_PATH": "R4_DISCRIMINATING_POWER/WHAT_THE_TEST_DOES_REJECT/the model with the shared trajectory removed/relative_error_percent",
+      "DECIMALS": 2
+    },
+    {
+      "NAME": "IdealError",
+      "VALUE": -5.464154872172111,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "POST_OUTCOME_MODEL_COMPARISON",
+      "SOURCE_FILE": "SEAL01/out/OBFOR01_SEAL_REPAIR_EVIDENCE.json",
+      "SOURCE_SHA256": "8a13cf2db2d4ac37ba68a88732dedaf77c226ab599a236ffb9c6a55bc9af1e35",
+      "JSON_PATH": "R4_DISCRIMINATING_POWER/WHAT_THE_TEST_DOES_REJECT/the uncorrected ideal operator/mobile/relative_error_percent",
+      "DECIMALS": 2
+    },
+    {
+      "NAME": "BaselineStaticError",
+      "VALUE": 0.46692321565864336,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "POST_OUTCOME_BASELINE_COMPARISON",
+      "SOURCE_FILE": "SEAL01/out/OBFOR01_SEAL_REPAIR_EVIDENCE.json",
+      "SOURCE_SHA256": "8a13cf2db2d4ac37ba68a88732dedaf77c226ab599a236ffb9c6a55bc9af1e35",
+      "JSON_PATH": "R4_DISCRIMINATING_POWER/NULL_SCORED_ON_THE_THREE_FROZEN_ENDPOINTS/static/relative_error_percent",
+      "DECIMALS": 2
+    },
+    {
+      "NAME": "BaselineMobileError",
+      "VALUE": -0.30852261208645926,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "POST_OUTCOME_BASELINE_COMPARISON",
+      "SOURCE_FILE": "SEAL01/out/OBFOR01_SEAL_REPAIR_EVIDENCE.json",
+      "SOURCE_SHA256": "8a13cf2db2d4ac37ba68a88732dedaf77c226ab599a236ffb9c6a55bc9af1e35",
+      "JSON_PATH": "R4_DISCRIMINATING_POWER/NULL_SCORED_ON_THE_THREE_FROZEN_ENDPOINTS/mobile/relative_error_percent",
+      "DECIMALS": 2
+    },
+    {
+      "NAME": "BaselineRatioError",
+      "VALUE": -0.7718419186387715,
+      "UNITS": "percent",
+      "EVIDENCE_LEVEL": "POST_OUTCOME_BASELINE_COMPARISON",
+      "SOURCE_FILE": "SEAL01/out/OBFOR01_SEAL_REPAIR_EVIDENCE.json",
+      "SOURCE_SHA256": "8a13cf2db2d4ac37ba68a88732dedaf77c226ab599a236ffb9c6a55bc9af1e35",
+      "JSON_PATH": "R4_DISCRIMINATING_POWER/NULL_SCORED_ON_THE_THREE_FROZEN_ENDPOINTS/ratio/relative_error_percent",
+      "DECIMALS": 2
+    },
+    {
+      "NAME": "HistoricalFluxArms",
+      "VALUE": 40,
+      "UNITS": "arms",
+      "EVIDENCE_LEVEL": "FROZEN_INPUT_PROVENANCE",
+      "SOURCE_FILE": "SEAL01/out/OBFOR01_SEAL_REPAIR_EVIDENCE.json",
+      "SOURCE_SHA256": "8a13cf2db2d4ac37ba68a88732dedaf77c226ab599a236ffb9c6a55bc9af1e35",
+      "JSON_PATH": "R3_HISTORICAL_ARMS_BEHIND_THE_BIRTH_FLUX",
+      "DECIMALS": 0
+    },
+    {
+      "NAME": "BlockedMean",
+      "VALUE": 0.0004042448545858995,
+      "UNITS": "fraction",
+      "EVIDENCE_LEVEL": "RAW_RECOMPUTED",
+      "SOURCE_FILE": "OBFOR01/out/_adjudication.json",
+      "SOURCE_SHA256": "fe108f5dba130c99b1cac84b79112afbe202b05fa96bc076c20239918c2c6fb5",
+      "JSON_PATH": "TECHNICAL/blocked_fraction_X_mean",
+      "DECIMALS": 7
+    },
+    {
+      "NAME": "PQArchives",
+      "VALUE": 128,
+      "UNITS": "archives",
+      "EVIDENCE_LEVEL": "POST_OUTCOME_DEVELOPMENTAL",
+      "SOURCE_FILE": "PQEC01/out/PQEC01_RAW_MANIFEST.json",
+      "SOURCE_SHA256": "399cfbaae06fc479d661717f98e2ba7e56964eefd250ea4a846f05982b8fe88b",
+      "JSON_PATH": "N_ARCHIVES",
+      "DECIMALS": 0
+    }
+  ],
+  "supersedes": "Original 213 rows in Git 0a872ac; original rows are not current scientific claims.",
+  "source_manifest_sha256": "02f6b5689d5b3a3efba2fb8ae738487b2a8b61979746ed5b1dc40492c04883ec"
+}

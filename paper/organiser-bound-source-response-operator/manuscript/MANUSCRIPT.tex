@@ -1,0 +1,318 @@
+\documentclass[11pt]{article}
+\input{preamble}
+\input{numbers}
+\title{\bfseries Conditional prediction of source-maintained lattice fields:\\
+prospective agreement and limits of mechanistic discrimination}
+\author{Emergent Dynamics Laboratory}
+\date{Manuscript V2 --- 4 September 2026\\\small Independent research; not peer reviewed}
+\begin{document}
+\maketitle
+\begin{abstract}
+A localised source can maintain a particle field without establishing an autonomous individual.
+We reassess a frozen source--transport--decay predictor using its original lattice records and
+subsequent claim audit. The predictor uses a birth-flux law measured on historical runs and is
+therefore conditional on that input. At one parameter point, 28 fresh simulation arms
+(14 static-source and 14 mobile-source arms) give deviations of \VStaticError\%, \VMobileError\%
+and \VRatioError\% from the frozen predictions for the two median-summarised radii and their
+ratio. All satisfy the pre-run point tolerance of $\pm\VMargin\%$. This agreement has limited
+discriminating power: a predictor that copies the historical means also satisfies all three
+criteria. Removing the shared source trajectory from the frozen construction gives a mobile
+deviation of \VNoSharedError\%, outside the tolerance. However, the previously claimed large
+birth-flux-shape effect is not sustained by stored predictor replicas. Historical residual
+magnitudes also depend on outcome-based inclusion. We report these limits together with the
+positive agreement, distinguish pre-run decisions from later statistical diagnostics, and
+retain the negative results of related individuality studies. No new scientific or predictor
+simulations were performed for this revision. The result is conditional compatibility at the
+tested settings, not a closed full-state theory or evidence of biological individuality.
+\end{abstract}
+
+\section{Introduction}
+A maintained spatial field and a persistent individual are different empirical objects.
+A field may be sustained by a local source even when its particles turn over; demonstrating this
+does not establish a lineage, reproduction, heredity or autonomous cohesion. The present paper
+addresses the narrower measurement problem: whether a source--transport--decay construction
+anticipated the spatial extent reported by a particular simulation protocol.
+
+The original OBFOR01 study compared a discrete predictor with fresh engine runs. Its subsequent
+SEAL01 audit preserved the numerical agreement but restricted its interpretation.
+This revision incorporates that audit into a single account of prediction, measurement and
+discrimination. OBFOR01 and SEAL01 are internal programme identifiers for the evidence packages,
+not external literature citations.
+
+Random-walk and stochastic-process theory provide background for discrete transport and
+state-dependent dynamics \citep{spitzer1976,gardiner2009}. They do not validate the specific
+implementation or establish novelty for this result. Here the scientific evidence is the
+archived protocol, source code, run arrays, pre-run predictions and audit outputs.
+We do not assert that this system or its summary statistic represents a general class of
+biological organisations.
+
+\section{Methods}
+\subsection{Lattice engine and event order}
+The engine has a periodic square lattice with side $L=\VLattice$ and per-cell capacity
+$\VCapacity$. Its recorded species are $X,Y,S_X,S_Y,W_X,W_Y$.
+The source is one $Y$ particle; $X$ is the reported field, $S_X,S_Y$ are reservoir species,
+and $W_X,W_Y$ record decay products.
+The frozen point has reservoir target $\VReservoirTarget$, exchange-offer probability
+$\VFeed$, waste-outflow probability $\VOutflow$, $X$ mortality $\VMortality$,
+and $X$ reaction coefficient $\VReaction$. Both $Y$ production and $Y$ mortality are zero.
+The initial condition supplies one central source and $\VSeedX$ initial $X$ particles,
+as specified by the archived seeding function.
+
+For each transported species, the engine executes four sequential directed passes:
+$+y,-y,+x,-x$. Each pass offers movers with binomial probability $p_{\rm hop}/4$ and accepts
+at most the destination's free capacity. Because these passes are sequential, a particle can
+move in more than one pass of a step. Here $p_{\rm hop}=\VHop$.
+Transport of $X,Y,S_X,S_Y$ precedes reaction, then decay, then balanced reservoir exchange
+and waste outflow. The exchange implementation replaces members of its declared exchangeable
+pool; it is not an unconstrained addition of particles. The exact pool, random-stream
+separation and update operations are supplied in the frozen code listed in the supplement.
+
+In the static condition only the source hop probability is set to zero. In the mobile
+condition it has the frozen nonzero value. No other parameter differs. The architecture
+imposes a capacity, but transport rejection is rare at this point: the observed mean rejected
+fraction of offered $X$ hops is \VBlockedMean. Agreement here does not validate predictions
+for a densely blocked regime.
+
+\subsection{Observable and independent unit}
+For field occupancy $n_X(i,t)$ and toroidal distance $d(i,Y_t)$ from the source, define
+\[
+r_{80}(t)=\min\left\{r:
+ \frac{\sum_{i:d(i,Y_t)\le r}n_X(i,t)}{\sum_i n_X(i,t)}\ge0.8\right\}.
+\]
+The radius is an achievable lattice distance, computed by a left first crossing of the
+cumulative mass. It is not the radius about the cloud's own centre.
+Each engine arm runs for 11\,000 steps, with sampling every 50 steps.
+Analysis uses steps strictly greater than 2\,000, leaving 180 frames per arm.
+The primary arm statistic is the median radius over these frames.
+The condition estimate is the arithmetic mean of the arm medians; the mobility ratio is the
+mobile mean divided by the static mean. The independent unit is the seeded arm, not the
+frame, particle or event. Static and mobile seed sets are disjoint and are not paired.
+
+\subsection{Predictor and information supplied to it}
+The frozen construction, M6, simulates the unblocked transport--decay process.
+It retains event order, periodic geometry, finite duration, the same summary rule and one
+source trajectory shared by all particles within a simulated arm. The source trajectory is
+generated by the predictor; it is not a trajectory observed in a fresh engine arm.
+
+The birth-flux law is different: it is measured from \VHistoricalFluxArms{} historical
+engine arms, before the fresh runs, and is supplied to M6 as an empirical distribution of
+accepted per-step births. The source law is not derived from reservoir dynamics.
+No fresh radius or fresh source path enters a frozen prediction.
+This is a conditional prediction, even if its numerical sensitivity to the supplied flux
+is small. Figure~\ref{fig:flow} distinguishes these inputs.
+The predictor omits capacity rejection and does not close the nonlinear marginal density
+equation. We make no claim that the agreement identifies the full state-transition operator.
+
+\begin{figure}[htbp]
+\centering\includegraphics[width=\textwidth]{fig1_model_and_event_order.pdf}
+\caption{Information supplied to the predictor and used for comparison. This is a schematic
+of the archived calculation, not a particle snapshot. The measured historical birth-flux
+law is the conditioning input. Fresh outcomes enter only the comparison.}
+\label{fig:flow}
+\end{figure}
+
+
+\subsection{Pre-run decision and later diagnostics}
+The frozen decision for each primary endpoint is
+$|\widehat\theta/\theta_{\rm pred}-1|\le0.029$.
+The margin uses named model-error terms and a sampling allowance based on historical
+dispersion. Its construction therefore uses historical information.
+The seed allocation, point predictions, tolerance and an ablation ranking rule were present
+in Git before the fresh-arm commit. Fourteen load-bearing files match the freeze byte for byte.
+This is a verified repository sequence, not a claim of independent public time-stamping.
+
+The adjudication implementation and whole-interval rules appeared after the fresh runs.
+Normal intervals, Student-$t$ diagnostics and equivalence-test probabilities must consequently
+be labelled post-freeze. A point tolerance is not a pre-registered statistical equivalence
+test \citep{wellek2010}. We retain the point decision as the criterion of record and report
+sampling and predictor uncertainty separately. The supplement gives diagnostic arithmetic
+without promoting it to a prospective endpoint.
+
+\subsection{Audit and reconstruction}
+We verified source hashes against pinned Git objects, recomputed arm summaries from all
+28 raw NPZ files, checked frame counts and cadence, and reconstructed each final-state digest.
+We independently recomputed the final radius from each final lattice.
+The archives contain per-frame summaries and a final lattice, not every intermediate lattice;
+the present audit does not independently reconstruct every frame radius from particle states.
+No engine trajectory was rerun.
+
+Historical inclusion sensitivity was recomputed from existing OBDI02 and OBTC02 archives.
+Predictor-uncertainty and birth-flux comparisons use the stored SEAL01 arrays:
+16 replicas of the 30-arm predictor calculation in each archived condition.
+These are existing predictor calculations, not additional physical-engine confirmations.
+All figures and tables are regenerated by the accompanying scripts.
+
+\section{Results}
+\subsection{The frozen predictions satisfy the point criterion}
+All 28 declared fresh arms are present and included. None is recorded as extinct.
+The raw arrays reproduce the archived medians, means, within-arm dispersions and blocking
+fractions. Table~\ref{tab:primary} gives the primary comparison and the stored predictor
+Monte Carlo dispersion. Figure~\ref{fig:fresh} displays each arm.
+
+\begin{table}[htbp]\centering\small
+\caption{Primary point comparisons. Monte Carlo s.d. is reported in percent as in SEAL01;
+it describes repeated predictor calculations, not variation among engine arms.
+The ratio dispersion uses the archived propagation convention.}\label{tab:primary}
+\begin{tabular}{lrrrr}\toprule
+Endpoint & Predicted & Observed & Error (\%) & MC s.d. (\%)\\\midrule
+Static & \VStaticPredicted & \VStaticObserved & \VStaticError & \VStaticMCSD\\
+Mobile & \VMobilePredicted & \VMobileObserved & \VMobileError & \VMobileMCSD\\
+Mobile/static & \VRatioPredicted & \VRatioObserved & \VRatioError & \VRatioMCSD\\\bottomrule
+\end{tabular}
+\end{table}
+
+The three point deviations are inside $\pm\VMargin\%$.
+The sealed disposition is
+\begin{quote}\small
+\path{CONDITIONAL_FULL_CAPACITY_SOURCE_RESPONSE_OPERATOR_QUALIFIED}
+\end{quote}
+The label records this bounded result; it does not imply an exact theory of capacity effects.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\textwidth]{fig2_prospective_confirmation.pdf}
+\caption{Fresh comparisons. (A) Each dot is one arm median; the horizontal red mark is the
+frozen M6 prediction, and the black diamond is the observed condition mean with one standard
+error across arms. (B) Point deviations for M6 and the historical-copy baseline. The band
+shows the frozen tolerance, not a confidence interval. The baseline comparison is a later
+diagnostic. Both predictors pass all three point criteria.}\label{fig:fresh}
+\end{figure}
+
+
+\subsection{Agreement does not uniquely identify the predictor}
+A baseline that copies historical condition means gives fresh deviations of
+\VBaselineStaticError\%, \VBaselineMobileError\% and \VBaselineRatioError\%.
+All also satisfy the frozen tolerance. The baseline uses three static historical arms and
+41 mobile historical arms at the same lattice size; it contains no transport model.
+It was evaluated in the later seal. Its inputs existed before the fresh runs, but this
+comparison was not itself a pre-run primary endpoint.
+
+The fresh mobile observation differs by \VNoSharedError\% from the construction with the
+shared source path removed, and by \VIdealError\% from the uncorrected ideal reference.
+These fixed alternatives lie outside the point tolerance (Figure~\ref{fig:ablations}A).
+The pre-run ablation rule required the full construction to be closer than the no-shared-path
+variant; it did not prescribe a new statistical model-selection test.
+Thus the comparisons support retaining a shared path within the examined construction,
+while the successful historical baseline prevents a claim of unique mechanistic identification.
+
+\subsection{The earlier birth-flux-shape interpretation is withdrawn}
+The frozen Poisson-source variant is farther from the fresh mobile mean than M6, but it
+still passes the same point tolerance. A ratio of distances is not evidence that it is rejected.
+Stored SEAL01 replicas give mobile predictor residual means of \VEmpiricalMean\% for the
+empirical flux and \VPoissonMean\% for the Poisson flux.
+Their difference is $\VBirthDifference\pm\VBirthSE$ percentage points (one standard error;
+Figure~\ref{fig:ablations}B). The earlier large effect had the opposite sign.
+It cannot support the former causal attribution to birth-flux shape or the corresponding
+factorial decomposition. A smaller effect is unresolved by the present account.
+Conditionality remains, because the predictor still requires the measured input.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=\textwidth]{fig4_mechanism_ablation.pdf}
+\caption{Model comparisons and the withdrawn flux attribution. (A) Point errors relative
+to four frozen constructions; the Poisson variant is inside the same tolerance as M6.
+(B) Existing replica means from SEAL01, with 30 predictor arms per replica.
+Horizontal lines are means over the 16 stored replicas. These are post-outcome predictor
+diagnostics and are not additional fresh engine arms.}\label{fig:ablations}
+\end{figure}
+
+
+\subsection{The historical residual depends on inclusion}
+The original developmental summary selected arms with a surviving source, terminal $X$
+population at least 40 and at least 50 finite analysis frames.
+Since terminal population is an outcome, the selected residual cannot be reported as an
+unconditional property of the dynamics. Table~\ref{tab:filter} and Figure~\ref{fig:filter}
+reproduce the existing sensitivity analysis.
+
+\begin{table}[htbp]\centering\small
+\caption{Historical mobile inclusion sensitivity. All rows retain final $Y\ge1$;
+the last still requires a finite radius. Rows overlap and are not independent studies.}\label{tab:filter}
+\begin{tabular}{lrrr}\toprule
+Rule & Arms & Residual (\%) & SE (\%)\\\midrule
+Terminal $X\ge40$, at least 50 frames & \VSelectedN & \VSelectedResidual & \VSelectedSE\\
+At least 50 frames & \VNoPopulationN & \VNoPopulationResidual & \VNoPopulationSE\\
+At least one finite radius & \VFiniteOnlyN & \VFiniteOnlyResidual & \VFiniteOnlySE\\\bottomrule
+\end{tabular}
+\end{table}
+
+The magnitude changes substantially as the filter is relaxed.
+The widest row includes nearly extinguished fields and has larger uncertainty.
+It does not prove a zero residual. The 28 fresh arms do not undergo this selection:
+all declared arms remain in the primary analysis.
+
+\begin{figure}[htbp]\centering
+\includegraphics[width=.94\textwidth]{fig3_summary_rule_artefact.pdf}
+\caption{Sensitivity of the historical radius summary to outcome-based inclusion.
+Bars are one standard error across arms. Even the most permissive row is conditional
+on an extant source and an available finite-radius summary.}\label{fig:filter}
+\end{figure}
+
+
+\section{Related results and limits of scope}
+MYQBD01, PQEC01 and FLCR01 address the distinct problem of source succession and
+two-centre organisation. MYQBD01 found organiser-only exposure insufficient to identify
+the full descendant environment. PQEC01 retains \VPQArchives{} raw worlds, verified against
+its manifest, but FLCR01 withdraws their prospective-confirmatory status because the
+discovery/validation separation was not preserved. They are post-outcome developmental data.
+FLCR01 rejects the necessity of a labelled founder's survival and supports a lineage
+criterion, while retaining
+\path{LINEAGE_CRITERION_SUPPORTED__OPERATOR_NOT_IDENTIFIED_FROM_PQEC01}.
+A founder particle, a lineage, a source-response operator and a two-centre world are not
+interchangeable units. None of these contextual findings extends the confirmation reported here.
+
+EXP-SC-IOM-00 belongs to a separate scaffold-memory architecture. Its interpretive erratum
+retains low-dimensional causal experience memory and explicitly records
+\textbf{INDIVIDUATION: FAIL}. High-dimensional internal variation is not established
+high-dimensional history storage. This result is included as a documentary boundary, using
+its pinned report and erratum; its raw simulation was not rerun in this revision.
+It is not evidence for individuality in the source-maintained lattice model.
+
+The shared repository name does not make Route E, the persistence manuscripts or the
+scaffold-memory architecture part of the present dataset. Their results are not pooled here.
+Historical stop dispositions, including any
+\path{STOP__ARCHITECTURE_CHANGE_REQUIRED}, remain attached to their originating experiments;
+this paper neither reverses them nor exports them as a universal claim.
+PMCR01 and the other closed routes are not reopened.
+
+\section{Discussion}
+The supported result is specific: a predictor conditional on a historical engine input
+stated three point predictions before fresh engine outcomes existed, and
+those outcomes satisfied its frozen tolerance. A fixed no-shared-path construction fails
+the mobile point comparison, whereas both the full predictor and a historical-copy baseline
+pass. The observation supports a useful construction at the tested settings but does not
+uniquely identify the generating mechanism.
+
+The audit changes two parts of the interpretation. First, a larger distance from an observation
+does not imply model rejection when both distances satisfy the same rule.
+Second, the historical residual combines the observable with an outcome-dependent inclusion
+rule. A general theorem that a first-crossing quantile must be biased downward is not derived
+here; the sign and magnitude of the observed summary effects remain empirical and conditional
+on the analysed distributions.
+
+Uncertainty also limits the apparent precision of agreement. The frozen numerical predictions
+have Monte Carlo dispersion. Whole-interval rules and corrected small-sample diagnostics
+were introduced after the runs and cannot be presented as pre-registered successes.
+There is one engine implementation, one confirmatory lattice size, one parameter point and
+two source-mobility conditions. No independent full-engine replication or general
+parameter dependence is established.
+
+For this paper, reproduction and heredity remain \textbf{NOT TESTED}; autonomous cohesion
+and biological individuality remain \textbf{NOT ESTABLISHED}.
+The external memory programme's individuation failure remains a failure.
+This revision adds no experimental success and authorises no successor simulation.
+Its contribution is a reproducible, narrower account of the source-response result and the
+comparisons that limit what it can mean.
+
+\section*{Data, code and provenance}
+The review package includes the manuscript, supplement, claim--evidence matrix, deterministic
+figure and table scripts, numerical reconciliation, source manifest and raw inputs needed
+for its main figures. The source-response history is pinned at
+\path{06c592313df96601de8d2a89676d5a5cf79fc414}; the original delivered paper is preserved in
+Git at \path{0a872ac}. The V2 source and audit identify every included file by SHA-256.
+PQEC01 raw archives remain a separately identified external package; their complete hash and
+schema verification is supplied, while only their developmental status is used here.
+The historical mission's governing run-budget authorisation is not in the delivered evidence;
+its compliance remains \textbf{UNKNOWN}, which is not a finding of violation.
+No publication, new DOI, public deposition or merge accompanies this revision.
+
+\bibliographystyle{plainnat}
+\bibliography{../bibliography/references}
+\end{document}

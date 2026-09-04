@@ -2440,3 +2440,8 @@ Docker/CI never built -> clean reproduction INCOMPLETE.
 VERDICTS: THEOREM PACKAGE: PASS. LARGE DISTRIBUTIONAL HOLD-OUT: FAIL. CLEAN REPRODUCTION: INCOMPLETE.
 CROSS-SUBSTRATE: STRUCTURAL PASS. PUBLICATION STATUS: NOT READY. EXTERNAL HUMAN REVIEW: PENDING.
 DROPLET CAUSAL-CONTINUITY PILOT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+
+## 2026-09-04 — manuscript V2 narrative and review-base decision
+
+Select conditional prediction with limited mechanistic discrimination as the source-response paper's single narrative. Incorporate SEAL01 rather than retain the pre-SEAL overclaims. The numerical OBFOR01 point pass is preserved; Poisson and historical-baseline passes prevent unique mechanistic identification. Preserve all negative programme dispositions and introduce no new experiment. Original paper bytes remain at 0a872ac. Use archive/ising-life-flcr01-recovered-06c5923 as the draft-PR base so a recovered scientific line is not mixed into the unrelated remote main history. This is an editorial decision, not a science gate reopening.

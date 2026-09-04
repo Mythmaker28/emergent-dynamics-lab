@@ -1,0 +1,164 @@
+\documentclass[11pt]{article}
+\input{../manuscript/preamble}
+\input{../manuscript/numbers}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\title{\bfseries Supplement to: Conditional prediction of source-maintained lattice fields}
+\author{Emergent Dynamics Laboratory}
+\date{V2 --- 4 September 2026}
+\begin{document}\maketitle
+This supplement accompanies the revised source-response manuscript. The main claim is conditional
+point compatibility. Reconstruction uses existing bytes and introduces no engine or predictor simulations.
+
+\section{Exact protocol and implementation}
+The authoritative protocol is \path{OBTC02/code/obtc02_protocol.yaml}; the fresh allocation and
+decision rule are in \path{OBFOR01/out/_freeze.json}.
+At each directed transport pass, the offered count is binomial and the accepted count is
+clipped to destination free capacity, using the state left by the preceding pass.
+Reaction uses local $X\,Y$, substrate availability and capacity. $X$ and $Y$ decay into their
+respective waste species. The balanced exchange layer is implemented in
+\path{ORR01/code/lawspec_v2.py}, not by a continuum approximation.
+
+The exact source chain supplied with the package is:
+\begin{itemize}
+\item \path{ORR01/code/kinetics.py}, \path{lawspec_v2.py}, \path{observe.py}: physical update,
+reservoir exchange and recorder;
+\item \path{OBTC02/code/engine_obtc.py}, \path{protocol_obtc02.py},
+\path{metrics_obtc.py}, \path{guard_obtc.py}: seeded world, protocol and observable;
+\item \path{OBFOR01/code/run_obfor01.py}: fresh runner and sub-step ledgers;
+\item \path{OBFOR01/code/m6_obfor01.py}: conditional predictor and ablation switches;
+\item \path{SEAL01/code/seal_repair.py} and \path{seal_flow_and_numbers.py}:
+historical seal calculations, preserved as source evidence.
+\end{itemize}
+Names without directory prefixes inherit the preceding directory.
+Legacy scripts retain original container paths and are not the V2 portable entry points.
+The V2 pipeline is \path{code/reproduce.py}; it operates on the included raw records and
+does not invoke legacy engine or predictor runners.
+
+The fresh seeds are 9300000--9300013 for the static condition and 9300014--9300027 for the
+mobile condition. The original freeze excludes all recorded retired seeds.
+There are 220 sampled frames in an arm; the 180 with step greater than 2\,000 enter the
+analysis. All frames and ledgers are checked for shape, and frame steps for cadence and completeness.
+The median uses the discrete radius about the source, not about a fitted centre.
+
+The source starts with the frozen seeding routine. The physics generator, feed generator and
+diagnostic tracker have the distinct roles recorded in the source code. No diagnostic
+particle identifier affects the physical rates. Original paths remain in the immutable
+source tree rather than being silently rewritten.
+
+\section{Provenance and chronology}
+The restored scientific tip is
+\path{06c592313df96601de8d2a89676d5a5cf79fc414}.
+The original LRCPS01 paper package is preserved at \path{0a872ac}; V2 changes its interpretation,
+not the engine or raw data.
+The pre-run OBFOR01 freeze is
+\path{050e666ed40dbcc18cc26d87e2e4b17b7c096ed6},
+and the first fresh-arm commit is
+\path{0148acc7dcdc52d10d0a0d62cd6048f7a8624462}.
+The freeze is an ancestor of the raw-data commit, and fourteen listed load-bearing
+files have the same Git blobs at the freeze and restored tip.
+See \path{provenance/GIT_FREEZE_VERIFICATION.json}.
+
+This demonstrates recorded pre-run ordering, not an external registration timestamp.
+The governing historical run-budget mandate is absent, so its compliance is
+\textbf{UNKNOWN}, not certified and not asserted violated.
+The observer-inertness record compares one seed in plain and instrumented engines for
+1\,500 steps and reports equal final states.
+V2 verifies that record's source binding but does not rerun the engine fixture.
+It is not a proof of all possible observer trajectories.
+
+\section{All fresh arms}
+This table is generated from the raw NPZ files.
+Each row contributes one independent unit to its condition mean.
+Full per-arm digests and checks are in \path{provenance/FRESH_ARM_RECOMPUTATION.csv}.
+{\small\input{S4_arms}}
+
+\section{Decision rule, uncertainty and diagnostics}
+For an absolute endpoint, let $\bar r$ be the mean of the 14 arm medians and $p$ its
+frozen prediction. The criterion of record is
+\[
+ |e|\le2.9,\qquad e=100(\bar r/p-1).
+\]
+Its sampling standard error is $100s/(\sqrt{14}p)$, with $s$ the sample standard deviation
+across arms: \VStaticSE\% static and \VMobileSE\% mobile.
+The predictor dispersions from stored SEAL01 replica means are
+\VStaticMCSD\% and \VMobileMCSD\% on the seal's reported scale.
+They describe repeated 30-arm predictor calculations, not extra engine arms.
+
+For $R=\bar r_M/\bar r_S$, disjoint seed sets give the first-order relative standard error
+\[
+ s_{\rm rel}=\sqrt{(s_M/(\sqrt{14}\bar r_M))^2+
+                       (s_S/(\sqrt{14}\bar r_S))^2}.
+\]
+On the scale $100(R/p_R-1)$ it becomes $100(R/p_R)s_{\rm rel}$, or \VRatioSE\%.
+The historical adjudication omitted $R/p_R$ in this diagnostic scale conversion.
+V2 records this small correction; the frozen point result is unchanged.
+The reported ratio predictor dispersion \VRatioMCSD\% uses the inherited quadrature
+propagation, not an independently simulated ratio distribution.
+
+A whole-interval rule was not frozen. The post-freeze absolute equivalence diagnostics
+use the smaller distance to the boundary and Student's $t$ upper tail with 13 degrees of freedom:
+\[
+ p_{\rm diagnostic}=
+ {\Pr}\left(T_{13}\ge\frac{2.9-|e|}{\mathrm{SE}(e)}\right).
+\]
+They give \VStaticTOST{} static and \VMobileTOST{} mobile.
+These probabilities condition on the point predictions; they do not integrate predictor
+uncertainty or correct for model selection, and are not independent confirmatory evidence.
+The original normal-tail probabilities are superseded.
+
+\section{Historical selection and stored predictor replicas}
+The historical audit reads 147 archived arms across selected OBDI02 and OBTC02 conditions.
+For OBDI02 mobile arms it retains a final source and evaluates the three nested inclusion
+levels in the main text. The widest level still requires at least one finite radius.
+The original key \emph{no outcome-dependent threshold at all} is therefore overbroad.
+V2 labels it \emph{at least one finite radius} and discloses final-source conditioning.
+The reference radius reproduces the frozen operator implementation; this is not a new
+validation of its full transition-kernel exactness.
+
+SEAL01's \path{_repair_replicates.npz} stores four arrays of 16 predictor means:
+mobile empirical, mobile Poisson, static empirical and mobile Poisson at doubled intensity.
+The archive stores radii; V2 converts them to residual percentages against the frozen
+reference radius before calculating means and standard deviations.
+No new replicas are sampled.
+The empirical-minus-Poisson difference is $\VBirthDifference\pm\VBirthSE$ percentage points.
+It does not sustain the earlier large, opposite-sign birth-flux attribution.
+
+\section{Programme boundaries and negative findings}
+The claim matrix binds contextual dispositions as well as positive results.
+MYQBD01 remains \path{EXISTING_Q_DATA_INSUFFICIENT__PROSPECTIVE_Q_CALIBRATION_REQUIRED}.
+Its scalar exposure result for a first birth is not a fully identified two-source spatial
+operator. Organiser-only ledgers do not supply descendant exposures.
+
+PQEC01's \VPQArchives{} worlds are developmental despite their raw provenance.
+FLCR01 withdraws prospective-confirmatory claims and does not reconstruct a held-out split
+after outcomes. Its founder rejection does not establish reproduction.
+Neither its candidate screen nor a two-centre classification is a qualified source-response operator.
+
+The separate EXP-SC-IOM-00 report and erratum are pinned at
+\path{4282fc6ead915639711f5096c7825d3880a640d4}.
+The erratum retains low-dimensional causal experience memory and
+\textbf{INDIVIDUATION: FAIL}; it reduces the storage claim to high-dimensional internal
+variation without established high-dimensional history information.
+Only these documentary boundaries are used. This architecture is not part of the
+28-arm dataset. Route E, the persistence papers, PMCR01 and H13-SHIELD supply no positive claim or run.
+
+\section{Reproduction and limits}
+From the paper directory, run \path{python code/reproduce.py}.
+This verifies the pinned source manifest, recomputes raw summaries, emits numerical macros,
+tables and four figures, and checks claim bindings.
+With Tectonic available, \path{python code/reproduce.py --tectonic /path/to/tectonic}
+also rebuilds both PDFs. Python requirements and exact audited versions are supplied.
+
+The source manifest is an input; the audit never refreshes it to make failing hashes pass.
+The package includes existing raw data used by the figures.
+PQEC01's larger raw package remains external. Its 128-file hash and schema audit is included
+and can be repeated using \path{audit_final.py --pqec-raw} with the extracted raw directory.
+Without that directory, a new build does not claim to have reverified those external bytes.
+
+The final-lattice radius and digest are checked for every fresh arm.
+Intermediate radii are checked against stored summaries because full intermediate
+lattices are not archived here.
+No independent engine replication, parameter sweep, manuscript peer review,
+publication, DOI or merge is claimed.
+\end{document}

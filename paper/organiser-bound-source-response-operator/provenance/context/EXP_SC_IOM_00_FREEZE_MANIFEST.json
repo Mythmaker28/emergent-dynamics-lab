@@ -1,0 +1,31 @@
+{
+  "experiment": "EXP-SC-INDIVIDUAL-ORGANIZATIONAL-MEMORY-00",
+  "branch": "exp/sc-individual-organizational-memory-00",
+  "starting_commit": "709f963e7d88efa8ca5ae44733b555c1a1350d80",
+  "physics": "frozen scaffold engine 7c91b91 + bounded memory extension (lam_m=0 recovers frozen bit-identically)",
+  "mem_params": {"eta_w":0.05,"eta_d1":0.03,"eta_d2":0.003,"eta_t":0.01,"D_m":0.01,"lam_m":0.25,"k_exp":2.0,"k_up":1.0,"n_comp":2},
+  "environment": {"python":"3.10.12","numpy":"2.2.6","scipy":"1.15.3"},
+  "families": {"dev":"30000-30039 / seeds 30100-30103","prospective":"31000-31031 / 31100-31103","HMC_SEALED":"9501-9516","HSI_heldout":"not reused"},
+  "frozen_probe": "N+0.5x15",
+  "source_blobs": {
+    "engine.py":"497e233345d03312c740a57d10d4aaa89e603fd2",
+    "config.py":"a1e1bc60c808eb4d90f649262eb32087876c2760",
+    "harness.py":"a8fae3af690c165a729f8598d1c50ca2d8fdb0d1",
+    "experiment.py":"4f60f23921154d26651e4bc0d71b87d946adb703",
+    "continuous.py":"3b112080ee48285baa3018d950e29b71dbb9fbd1",
+    "certify.py":"241902e4c592a4edfc9eb2d143b959429270db3a"
+  },
+  "frozen_physics_blobs_UNCHANGED": {
+    "scaffold/engine.py":"7c91b9112ab3dde57621251a159d3c1368ad2311",
+    "scaffold/observables.py":"196539e07b9b62d11b47a6310c3fdaa1a0308223"
+  },
+  "data_blobs": {
+    "central_dev.pkl":"2454a3f6e6dd9df6b711fac7a8ab71cadf78a9b7",
+    "central_prospective.pkl":"c4178142bc96e13d479f22490aa1f151ec4881d6",
+    "cont_dev.pkl":"df2aa7ea53f87226287e722fb930e4246c3d44b5",
+    "cont_prospective.pkl":"69e26ed0d78dc4abb56b033d178aef05649a65a7",
+    "certificate.json":"6f72f43a461ed57026947e21c41db46c964e6a1d"
+  },
+  "verdict": "PASS — HISTORY-CLASS MEMORY ONLY",
+  "next_project": "higher-dimensional / multi-coupled memory (match high-cardinality writing with high-cardinality readout)"
+}

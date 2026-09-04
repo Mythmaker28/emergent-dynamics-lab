@@ -34,3 +34,6 @@
 | EXP-GT-A0-20260713-001 | 2026-07-13 | ontology audit of A | **FAILED — ONTOLOGY** (benchmark-label error; D-052 repair withdrawn) | D-053 |
 | EXP-GT-ACERT-20260713-001 | 2026-07-13 | architecture resolution certificate | **QUALIFIED** (development) — tol 0, resolution 4 steps / 1 edge / 1 node | D-055 |
 | EXP-GT-03-20260713-001 | 2026-07-13 | frozen factorized observer, held-out | **FAILED — IMPLEMENTATION** (phase invariance; over-abstention x2) | D-056 |
+
+
+| ISING-LIFE-MANUSCRIPT-V2-FINAL-SEAL-01 | 2026-09-04 | Astra / primary editor and auditor | Recovered LRCPS01 source-response paper revised to V2; zero new scientific/predictor simulations | No active experiment | 06c5923 | astra/ising-life-manuscript-v2-final-seal-01 | READY_FOR_REVIEW after explicit gates | docs/agent_journals/2026-09-04/FINAL_SEAL_01_astra.md |

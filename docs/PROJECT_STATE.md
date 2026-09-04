@@ -297,3 +297,8 @@ prospective worlds are **BURNED** (`DIAGNOSTIC_ONLY`).
 
 **EXP-SC-01 remains BLOCKED** and will stay blocked until the *complete minimal hierarchy* — not merely gate
 detection — qualifies prospectively.
+
+
+## ISING-LIFE-MANUSCRIPT-V2-FINAL-SEAL-01 — 2026-09-04
+
+Editorial closeout in an isolated clone at 06c592313df96601de8d2a89676d5a5cf79fc414. No active experiment is introduced and no experiment state changes. The source-response paper is revised to V2 with SEAL01 conditionality, baseline discrimination, uncertainty and selection corrections. Review status is determined by paper/organiser-bound-source-response-operator/provenance/PAPER_SUBMISSION_READINESS.json. Read paper/organiser-bound-source-response-operator/ASTRA_HANDOFF_FR.md for the complete handoff. Closed routes remain closed; the next authorized action is critical manuscript review.
