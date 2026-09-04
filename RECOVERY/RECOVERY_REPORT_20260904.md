@@ -92,7 +92,9 @@ jamais à s'y substituer.
 ## 5. Ce qui est ABSENT de cette récupération
 
 - **Toutes les archives brutes** (123 fichiers, ~440 Mo). Aucun `.npz`, `.tar.zst`
-  ni `.bundle`. Arbre récupéré : 5,0 Mo.
+  ni `.bundle`. Charge récupérée : 246 fichiers, **3 963 075 octets** (arbre complet
+  hors `.git` au premier commit : 4 053 773 octets — le « 5,0 Mo » de la première
+  rédaction était faux de 25 %, finding F28).
 - Les sorties de **FDOT01, FDFLT01, OMLDCT02, TLMR01, ORR01, OBTC02, FMRCT01,
   FMRT01** : `code/` seulement, pas de `out/`. En particulier
   `OMLDCT02_MASTER_FREEZE.json` est absent — le gel qu'OMLDCT03 déclare exécuter
