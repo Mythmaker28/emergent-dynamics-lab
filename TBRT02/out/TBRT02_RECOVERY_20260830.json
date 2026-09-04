@@ -1,0 +1,30 @@
+{
+ "MISSION": "TBRT02/EDL",
+ "EVENEMENT": "VINGT-QUATRIEME RETOUR ARRIERE DU CONTENEUR",
+ "GENERATED_UTC": "2026-08-30T02:04:28+00:00",
+ "HEAD_TROUVE_AU_REVEIL": "82f6c84 — FDOT01 C2, la meme signature que le vingt-troisieme",
+ "HEAD_RESTAURE": "7d33534",
+ "DELAI": "le retour arriere s'est produit moins de vingt minutes apres la derniere sauvegarde des trois canaux",
+ "CE_QUI_A_ETE_PERDU_PUIS_REPRIS": {
+  "depot_git": "integralement repris depuis le paquet Windows TBRT02_INCREMENT.bundle (2 965 579 octets), ecrit 2 minutes avant le retour arriere",
+  "verification_avant_tout_fetch": "sha256 du paquet de base concatene = e1e74e387c1d1537199983d890317fdc78b534fa0feef0795cf94bf25f20e268, verifie AVANT le premier git fetch",
+  "METHODS_HASH": "21571fb4cb1df9ac2e9089924e9d6ee5d4d63c920a007e188bdc24e0d94d1f99 — recalcule, identique",
+  "hachages_de_contenu": "C5, RPP98 capacite, RPP98 resultat, RPP98 adjudication, RPP97 adjudication : cinq sur cinq identiques",
+  "retours_de_checker_verbatim": {
+   "RPP98": "b03c6396a79eb4181459003d6e034276d11a7025892dcf99a365f3ad20a4d6c0 — identique",
+   "RPP97": "bc54b44b9f30e71f899e95bd4bec32530072258d57272ce4c1baf0f503850285 — identique"
+  },
+  "registre_scelle": "885 lignes, 41 admissibles — identique",
+  "GATE01": "present, cree quelques minutes avant le retour arriere et deja dans ACTIVE_MISSIONS — c'est precisement la correction faite apres le vingt-troisieme"
+ },
+ "CE_QUI_N_EST_PAS_RAPATRIE": {
+  "chemin": "/home/claude/TBRT02_raw",
+  "contenu": "les 123 archives .npz scellees",
+  "pourquoi": "elles sont intactes sur le disque de Tommy sous forme de 41 tars TRIPLE_*.tar, et un retour arriere du conteneur ne les touche pas. Les rapatrier maintenant n'ajoute AUCUNE durabilite : cela n'achete que de la disponibilite immediate, dont la tache suivante (inventaire d'anteriorite, qui ne lit que des fichiers out/) n'a pas besoin.",
+  "cout_de_reprise": "41 tars, 3 par appel, environ 14 appels de pont",
+  "a_faire_avant_toute_nouvelle_mesure": true
+ },
+ "CE_QUE_CET_INCIDENT_ETABLIT": "la chaine de durabilite a tenu une deuxieme fois, et cette fois sans aucune reconstruction : zero graine recalculee, zero fichier reecrit de memoire, zero ecart de hachage. Le vingt-troisieme avait coute RPP97 parce que le paquet de projet ne listait pas la mission ; la correction faite alors — ACTIVE_MISSIONS etendu le jour meme ou une mission nait — a couvert GATE01, ne le jour meme.",
+ "REFUS_MAINTENU": "push GitHub 403 par le proxy, non contourne, aucun jeton demande",
+ "RECOVERY_CONTENT_HASH": "b4cde9f572b4b6403958e2844afaaae51d63c86e2d91350077b9fc77390a0f7e"
+}

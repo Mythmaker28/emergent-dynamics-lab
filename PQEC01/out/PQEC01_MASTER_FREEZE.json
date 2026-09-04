@@ -1,0 +1,974 @@
+{
+ "PROGRAM": "PROSPECTIVE-Q-ENVIRONMENT-CALIBRATION-01",
+ "SHORT_NAME": "PQEC01",
+ "PARENT_TIP": "86291212955d4a4816efc1ebd671fbd234bf574c",
+ "FREEZE_IS_COMMITTED_ALONE_BEFORE_ANY_SCIENTIFIC_START": true,
+ "PQEC01_METHODS_HASH": "a1c910c870e92a2a8d33c8fdbc0d29224b7d02a7d9ab1c490383db2bd20e8142",
+ "SCIENTIFIC_QUESTION": "Can a prospectively frozen, independently seeded calibration identify the event-aligned spatial environment encountered by one and two mobile Y lineages well enough to derive an executable (kY, muY) candidate region for a later, disjoint confirmatory test?",
+ "INDEPENDENT_UNIT": "ONE WORLD. Frames, cells, particles and event rows are never independent experimental units.",
+ "INHERITED_FROZEN_CONSTANTS": {
+  "CAP": 16,
+  "S0": 3,
+  "phi": 0.2,
+  "omega": 0.05,
+  "muX": 0.004,
+  "kX": 1.0,
+  "L": 36,
+  "X_SEED": 4,
+  "p_hop_X": 0.10263340389897246,
+  "p_hop_Y_mobile": 0.10263340389897246,
+  "T_HORIZON": 11000,
+  "T_WINDOW": 9000,
+  "BURN_IN": 2000,
+  "CORE_R": 5.0,
+  "TAU_SEP": 125.0,
+  "ALPHA_SURVIVAL": 0.5,
+  "N_STAR": 10.0,
+  "GAMMA_SEP": 0.5,
+  "MIN_EVENTS": 1.0
+ },
+ "PHASE_A": {
+  "PURPOSE": "characterize the mobile source/X environment WITHOUT dynamic Y feedback",
+  "kY": 0.0,
+  "muY": 0.0,
+  "p_hop_Y": 0.10263340389897246,
+  "branch": "MOBILE",
+  "X_SOURCE_LAWSPEC": "UNCHANGED (LAWSPEC_V2_EXCHANGE, frozen OBTC02 point)",
+  "N_WORLDS": 40,
+  "LABEL": "A0",
+  "RECORDS": "the full pre-reaction six-species field at EVERY step, plus all ledgers"
+ },
+ "PHASE_B": {
+  "PURPOSE": "observe real first births, co-location, movement, separation and environmental feedback",
+  "INITIAL_CONDITION": "exactly one Y (the organiser), mobile branch, same X baseline",
+  "NUMBER_OF_POINTS": 2,
+  "N_WORLDS_PER_POINT": 44,
+  "POINT_B1": {
+   "LABEL": "B1",
+   "ROLE": "central maximin point",
+   "kY": 2.5118864315095822e-05,
+   "muY": 9.261187281287937e-05,
+   "SELECTION_RULE": "argmax over the frozen log grid of the MINIMUM normalized distance to the five frozen boundaries; ties broken by first-encountered in the deterministic grid order",
+   "MARGINS_DECADES": {
+    "first_birth_not_too_rare": -0.1447351985519443,
+    "no_immediate_clamp": 1.3958800173440749,
+    "founder_not_extinct": -0.14141957122855517,
+    "no_premature_third_centre": -0.1512669611246217,
+    "numerical_precision": 4.033333333333333
+   },
+   "MIN_MARGIN_DECADES": -0.1512669611246217,
+   "ALL_BOUNDARIES_SATISFIED": false
+  },
+  "POINT_B2": {
+   "LABEL": "B2",
+   "ROLE": "operator-identification point",
+   "kY": 2.1544346900318823e-05,
+   "muY": 1e-08,
+   "SELECTION_RULE": "argmax of expected co-located steps over the frozen coarse grid, restricted to points whose clamp and founder-extinction margins are at least B1's; evaluated on a frozen 2000-step design horizon so the score is a design quantity, not a prediction of the run",
+   "DESIGN_SCORE_EXPECTED_COLOCATED_STEPS": 174.91736659198682,
+   "MARGINS_DECADES": {
+    "first_birth_not_too_rare": -0.21140186521861165,
+    "no_immediate_clamp": 1.4625466840107422,
+    "founder_not_extinct": 0.30098222327049295,
+    "no_premature_third_centre": -0.08962758757726176,
+    "numerical_precision": 4.0
+   }
+  },
+  "BOTH_POINTS_FROZEN_BEFORE_PHASE_A_BEGINS": true,
+  "B2_NOT_SELECTED_AFTER_SEEING_B1_OUTCOMES": true
+ },
+ "PROSPECTIVE_FINDING_DECLARED_BEFORE_ANY_RUN": {
+  "STATEMENT": "NO admissible (kY, muY) satisfies all five frozen boundaries simultaneously. The maximin point falls short by 0.1513 decades (a factor of 1.42); three boundaries are violated there at once: first-birth-not-too-rare, founder-not-extinct and no-premature-third-centre.",
+  "WHY_IT_IS_DECLARED_NOW": "this is a property of the FROZEN boundary arithmetic and the parent's measured magnitudes. It is computable before a single world runs, so it is preregistered rather than discovered later. Recording it after the fact would look like a post-hoc excuse.",
+  "WHAT_IT_DOES_NOT_MEAN": "it is NOT structural preclusion, and it does NOT abort the calibration. PQEC01's task is to IDENTIFY the environmental operator from measured worlds, not to satisfy the window. The boundary arithmetic uses the parent's MEAN exposure as a proxy; the calibration replaces that proxy with measured, position-resolved, world-level quantities, which can move every boundary.",
+  "CONSEQUENCE_PREREGISTERED": "the candidate-region derivation may return an EMPTY region. That outcome is declared admissible here, in advance, and will not be treated as a failure of the calibration or as grounds for retuning."
+ },
+ "STOP_RULES_PER_WORLD_ORDERED": [
+  {
+   "id": "EXTINCT",
+   "condition": "N_Y == 0 (founder and all descendants gone)"
+  },
+  {
+   "id": "PREMATURE_THIRD_CENTRE",
+   "condition": "N_CENTRES(t) >= 3, where a CENTRE is a single-linkage cluster of occupied Y cells at toroidal Euclidean distance <= CORE_R = 5.0",
+   "binding": "this is the parent's frozen third-centre notion made per-world observable; it is NOT replaced by an N_Y proxy"
+  },
+  {
+   "id": "MAX_PERMITTED_Y",
+   "condition": "N_Y > N_STAR = 10"
+  },
+  {
+   "id": "INTEGRITY_FAILURE",
+   "condition": "free(x) < 0 anywhere, or occupancy > CAP anywhere, or the organiser cell cannot be located while N_Y > 0"
+  },
+  {
+   "id": "HORIZON",
+   "condition": "t reaches T_HORIZON = 11000"
+  }
+ ],
+ "PROXY_VARIABLES_ALSO_RECORDED_BUT_NOT_ADJUDICATIVE": [
+  "N_Y",
+  "max pairwise Y distance",
+  "number of occupied Y cells"
+ ],
+ "SEED_RULE": {
+  "FORMULA": "seed = 940000000 + int(SHA256(parent_tip|program|phase|point|index)[:12], 16) mod 50000000",
+  "BAND": [
+   940000000,
+   989999999
+  ],
+  "DISJOINT_FROM": "the OBFOR01 development band 9300000-9300027 and the non-scientific fixture band 77000001-77900001",
+  "COLLISION_RESOLUTION": "deterministic re-hash with index + 10000*bump; never manual",
+  "ALL_SEEDS_PUBLISHED_IN_THIS_FREEZE": true,
+  "NO_SEED_MAY_CHANGE_AFTER_OUTCOMES_ARE_OPENED": true,
+  "UNIQUE_SEEDS": true,
+  "SEEDS": {
+   "A": [
+    {
+     "index": 0,
+     "seed": 970247606,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 1,
+     "seed": 950550891,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 2,
+     "seed": 941818304,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 3,
+     "seed": 983718995,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 4,
+     "seed": 950918058,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 5,
+     "seed": 981463531,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 6,
+     "seed": 964136804,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 7,
+     "seed": 987080529,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 8,
+     "seed": 952675162,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 9,
+     "seed": 940707807,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 10,
+     "seed": 948648574,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 11,
+     "seed": 983260155,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 12,
+     "seed": 953464496,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 13,
+     "seed": 950153464,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 14,
+     "seed": 959003162,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 15,
+     "seed": 940941418,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 16,
+     "seed": 944310510,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 17,
+     "seed": 941818973,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 18,
+     "seed": 968793083,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 19,
+     "seed": 986202838,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 20,
+     "seed": 983192947,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 21,
+     "seed": 950424325,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 22,
+     "seed": 951640143,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 23,
+     "seed": 975431620,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 24,
+     "seed": 948649467,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 25,
+     "seed": 976923327,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 26,
+     "seed": 974306448,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 27,
+     "seed": 941238339,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 28,
+     "seed": 984076192,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 29,
+     "seed": 941800635,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 30,
+     "seed": 981413209,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 31,
+     "seed": 953537674,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 32,
+     "seed": 950327065,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 33,
+     "seed": 958500852,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 34,
+     "seed": 943046772,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 35,
+     "seed": 966818388,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 36,
+     "seed": 971380574,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 37,
+     "seed": 940476109,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 38,
+     "seed": 972708360,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 39,
+     "seed": 952291848,
+     "split": "DISCOVERY"
+    }
+   ],
+   "B1": [
+    {
+     "index": 0,
+     "seed": 942104457,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 1,
+     "seed": 964832813,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 2,
+     "seed": 984926519,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 3,
+     "seed": 980160103,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 4,
+     "seed": 985002422,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 5,
+     "seed": 973414108,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 6,
+     "seed": 950265832,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 7,
+     "seed": 957760836,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 8,
+     "seed": 961401796,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 9,
+     "seed": 964348423,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 10,
+     "seed": 954932320,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 11,
+     "seed": 972899442,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 12,
+     "seed": 948144737,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 13,
+     "seed": 941531409,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 14,
+     "seed": 957357991,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 15,
+     "seed": 959574951,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 16,
+     "seed": 978098288,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 17,
+     "seed": 944881843,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 18,
+     "seed": 986563095,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 19,
+     "seed": 977581696,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 20,
+     "seed": 950639211,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 21,
+     "seed": 982042871,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 22,
+     "seed": 960856267,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 23,
+     "seed": 979644336,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 24,
+     "seed": 961848369,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 25,
+     "seed": 950130140,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 26,
+     "seed": 948401949,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 27,
+     "seed": 943470984,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 28,
+     "seed": 980328882,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 29,
+     "seed": 973819266,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 30,
+     "seed": 942070244,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 31,
+     "seed": 984994512,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 32,
+     "seed": 950302476,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 33,
+     "seed": 955153022,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 34,
+     "seed": 985310591,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 35,
+     "seed": 984253947,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 36,
+     "seed": 982276419,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 37,
+     "seed": 966307960,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 38,
+     "seed": 945497148,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 39,
+     "seed": 950085585,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 40,
+     "seed": 958845720,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 41,
+     "seed": 967791007,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 42,
+     "seed": 958795488,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 43,
+     "seed": 949060103,
+     "split": "VALIDATION"
+    }
+   ],
+   "B2": [
+    {
+     "index": 0,
+     "seed": 952591689,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 1,
+     "seed": 967852247,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 2,
+     "seed": 942552035,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 3,
+     "seed": 973852476,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 4,
+     "seed": 957719806,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 5,
+     "seed": 963804288,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 6,
+     "seed": 966438778,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 7,
+     "seed": 940565777,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 8,
+     "seed": 941377808,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 9,
+     "seed": 960967674,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 10,
+     "seed": 968995017,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 11,
+     "seed": 966153195,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 12,
+     "seed": 956361991,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 13,
+     "seed": 972041382,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 14,
+     "seed": 980820476,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 15,
+     "seed": 967065063,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 16,
+     "seed": 947638651,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 17,
+     "seed": 966270202,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 18,
+     "seed": 951092510,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 19,
+     "seed": 942600591,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 20,
+     "seed": 987469641,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 21,
+     "seed": 983505834,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 22,
+     "seed": 966253201,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 23,
+     "seed": 957030645,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 24,
+     "seed": 966161656,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 25,
+     "seed": 949115275,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 26,
+     "seed": 942760172,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 27,
+     "seed": 966840968,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 28,
+     "seed": 986391292,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 29,
+     "seed": 981241043,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 30,
+     "seed": 945232182,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 31,
+     "seed": 970832578,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 32,
+     "seed": 987071224,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 33,
+     "seed": 952998766,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 34,
+     "seed": 947942706,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 35,
+     "seed": 976162527,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 36,
+     "seed": 958115840,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 37,
+     "seed": 953794064,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 38,
+     "seed": 958333012,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 39,
+     "seed": 957160105,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 40,
+     "seed": 955063215,
+     "split": "VALIDATION"
+    },
+    {
+     "index": 41,
+     "seed": 987797495,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 42,
+     "seed": 970864850,
+     "split": "DISCOVERY"
+    },
+    {
+     "index": 43,
+     "seed": 960395155,
+     "split": "VALIDATION"
+    }
+   ]
+  },
+  "RESERVE_SEEDS_ORDERED": {
+   "A": [
+    {
+     "index": 0,
+     "seed": 980947570
+    },
+    {
+     "index": 1,
+     "seed": 949810088
+    },
+    {
+     "index": 2,
+     "seed": 940224136
+    },
+    {
+     "index": 3,
+     "seed": 968300104
+    },
+    {
+     "index": 4,
+     "seed": 976087493
+    }
+   ],
+   "B1": [
+    {
+     "index": 0,
+     "seed": 968053043
+    },
+    {
+     "index": 1,
+     "seed": 964938787
+    },
+    {
+     "index": 2,
+     "seed": 971169677
+    },
+    {
+     "index": 3,
+     "seed": 964593246
+    },
+    {
+     "index": 4,
+     "seed": 950099491
+    }
+   ],
+   "B2": [
+    {
+     "index": 0,
+     "seed": 975576197
+    },
+    {
+     "index": 1,
+     "seed": 963546230
+    },
+    {
+     "index": 2,
+     "seed": 976315100
+    },
+    {
+     "index": 3,
+     "seed": 976912995
+    },
+    {
+     "index": 4,
+     "seed": 942140079
+    }
+   ]
+  }
+ },
+ "SAMPLE_SIZE_DERIVATION": {
+  "PHASE_A": {
+   "distribution_free_10th_percentile_floor": 29,
+   "derivation_quantile": "n >= ln(0.05)/ln(0.90); the minimum of n worlds is then a 95% one-sided lower bound for the 10th world-level percentile of exposure",
+   "precision_floor_at_1pct_relative_SE": 27,
+   "derivation_precision": "n >= (sd/(target*mean))^2 with the parent's world-level dispersion sd = 0.162990 about mean 3.169730",
+   "N_A": 40,
+   "achieved_relative_SE": 0.008130353736989367,
+   "margin_over_floor": 11,
+   "JUSTIFICATION": "N_A = 40 exceeds both frozen floors (quantile 29, precision 27), attains a 0.81% relative standard error on the world-level mean exposure, and leaves the remaining budget divisible into two equal Phase-B points. It is not 'about thirty'."
+  },
+  "PHASE_B": {
+   "mandated_floor_per_point": 29,
+   "N_B_PER_POINT": 44,
+   "POINTS": 2,
+   "zero_count_95pct_upper_bound_on_a_per_world_rate": 0.06581877114493395,
+   "JUSTIFICATION": "N_B = 44 per point is the largest equal allocation of the remaining budget; it exceeds the mandated floor of 29 by 15 and bounds any unobserved per-world event rate above by 0.066 at 95%."
+  },
+  "TOTAL_OUTCOME_INFORMATIVE_STARTS": 128,
+  "CAP": 128,
+  "WITHIN_CAP": true
+ },
+ "ANALYSIS_SPLIT": {
+  "RULE": "DISCOVERY if int(SHA256('SPLIT|parent_tip|seed')[:8],16) mod 3 < 2 else VALIDATION -- a hash of the FROZEN SEED, never of an outcome",
+  "TARGET_RATIO": "two thirds discovery, one third validation",
+  "REALISED": {
+   "A": {
+    "DISCOVERY": 31,
+    "VALIDATION": 9
+   },
+   "B1": {
+    "DISCOVERY": 29,
+    "VALIDATION": 15
+   },
+   "B2": {
+    "DISCOVERY": 28,
+    "VALIDATION": 16
+   }
+  },
+  "VALIDATION_IS_NOT_TOUCHED_UNTIL_THE_OPERATOR_IS_FROZEN": true,
+  "NO_REFIT_AFTER_VIEWING_VALIDATION": true
+ },
+ "FROZEN_ANALYSIS_FORMULAS": {
+  "free": "CAP - (nX+nY+nSX+nSY+nWX+nWY)",
+  "candidate_Y": "min(nSY, free)",
+  "candidate_X": "min(nSX, free)",
+  "Q_POSITION": "nX * min(nSY, free)",
+  "world_exposure_E_w": "mean over t in [BURN_IN, T_end) of Q at the founder cell",
+  "world_low_quantile_S_w": "the 10th percentile over t in [BURN_IN, T_end) of the founder-cell Q",
+  "branch_lower_bound": "the MINIMUM over worlds of S_w; with N >= 29 this is a 95% one-sided distribution-free lower bound for the 10th world-level percentile",
+  "exact_first_birth_law": "P(no Y birth in world w) = prod_t (1 - p_t)^(c_t), with p_t = min(1, kY*nX_t*nY_t) and c_t = min(nSY_t, free_t) at the occupied Y cell -- the engine's own binomial, not an approximation",
+  "radial_exposure": "mean of Q_POSITION over cells at toroidal distance in [r, r+1) from the source, averaged over t, then over worlds",
+  "feedback_delta": "E_B[.] - E_A[.] for nSY, free and N_X, compared at the DISTRIBUTION level across worlds; never as a paired trajectory",
+  "colocation_duration": "number of consecutive steps with >= 2 Y in one centre",
+  "separation_time": "first step at which two centres exist, measured from the first birth",
+  "uncertainty": "world-level; the estimator of any branch quantity is the mean over worlds and its standard error uses N_worlds, never N_frames"
+ },
+ "INCLUSION_RULES": {
+  "EVERY_STARTED_WORLD_IS_INCLUDED": true,
+  "NO_EXCLUSION_BY_OUTCOME": true,
+  "EXPLICITLY_NOT_TECHNICAL_INVALIDITY": [
+   "extinction",
+   "no birth",
+   "no separation",
+   "low Q",
+   "high Q",
+   "boundary contact",
+   "an unfavourable scientific outcome"
+  ],
+  "TECHNICAL_INVALIDITY_ONLY": [
+   "corrupt serialization",
+   "process interruption",
+   "observer schema failure",
+   "checksum failure",
+   "engine invariant violation (free < 0 or occ > CAP)"
+  ],
+  "REPLACEMENT_POLICY": "a technically invalid world is replaced by the next unused reserve seed, in the frozen order; BOTH the failed start and the replacement are counted and appear in the run ledger"
+ },
+ "OUTCOME_FIREWALL": {
+  "DURING_EXECUTION_THE_OPERATOR_MAY_INSPECT_ONLY": [
+   "process return code",
+   "expected file existence",
+   "file size",
+   "schema",
+   "checksum",
+   "the technical-validity flags defined above"
+  ],
+  "MAY_NOT_INSPECT_UNTIL_ALL_STARTS_COMPLETE": [
+   "Y birth counts",
+   "extinction",
+   "separation",
+   "Q",
+   "spatial profiles",
+   "third-centre outcomes",
+   "any primary scientific value"
+  ]
+ },
+ "TERMINAL_DISPOSITIONS": [
+  "PROSPECTIVE_Q_ENVIRONMENT_OPERATOR_IDENTIFIED",
+  "PROSPECTIVE_Q_ENVIRONMENT_OPERATOR_NOT_IDENTIFIED__ADDITIONAL_INSTRUMENTATION_REQUIRED",
+  "EXISTING_ARCHITECTURE_FEEDBACK_PRECLUDES_CONTROLLED_WINDOW",
+  "CALIBRATION_TECHNICALLY_INVALID"
+ ],
+ "DECISION_GATES_ALL_REQUIRED_FOR_THE_POSITIVE_DISPOSITION": [
+  "PROSPECTIVE_FREEZE_PRECEDES_ALL_RUNS",
+  "INSTRUMENTATION_INERTNESS",
+  "ALL_FROZEN_STARTS_ACCOUNTED_FOR",
+  "NO_OUTCOME_DRIVEN_REPLACEMENT",
+  "PHASE_A_SPATIAL_OPERATOR_IDENTIFIED",
+  "PHASE_B_REAL_DESCENDANT_EXPOSURE_RECORDED",
+  "FIRST_BIRTH_OPERATOR_VALIDATED",
+  "TWO_Y_OPERATOR_IDENTIFIED",
+  "FEEDBACK_CONTROLLED_OR_EXPLICITLY_MODELLED",
+  "INTERNAL_VALIDATION_PASS",
+  "CANDIDATE_REGION_POSITIVE_WIDTH",
+  "NO_SINGLE_WORLD_DOMINANCE",
+  "NO_FRAME_PSEUDOREPLICATION"
+ ],
+ "FORBIDDEN_IN_THIS_PROGRAMME": [
+  "reproduction claim",
+  "heredity claim",
+  "autonomous cohesion claim",
+  "life claim",
+  "architecture change",
+  "new species",
+  "new physics state variable",
+  "adaptive retuning",
+  "outcome-driven seed/horizon/sample-size change",
+  "arm replacement after scientific failure",
+  "manuscript drafting"
+ ],
+ "TOMMY_ACTION_REQUIRED": "NONE"
+}

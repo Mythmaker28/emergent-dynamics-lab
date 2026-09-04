@@ -1,0 +1,32 @@
+{
+ "MISSION": "EDL",
+ "EVENEMENT": "VINGT-SEPTIEME RETOUR ARRIERE DU CONTENEUR",
+ "GENERATED_UTC": "2026-08-30T06:34:15+00:00",
+ "HEAD_AU_REVEIL": "82f6c84",
+ "HEAD_RESTAURE": "e7cd103",
+ "DELAI": "environ trente minutes apres le vingt-sixieme",
+ "RESTAURATION": {
+  "sha256_du_paquet_de_base": "verifie AVANT le premier fetch",
+  "METHODS_HASH": "identique",
+  "hachages_de_contenu": "9 sur 9 identiques",
+  "retours_de_checker_verbatim": "4 sur 4 identiques a l'octet",
+  "bilan": "present",
+  "reconstruction": "aucune"
+ },
+ "TRAVAIL_FAIT_PENDANT_L_ATTENTE": {
+  "quoi": "GATE01/code/edl_integrity_gate.py — la porte d'integrite, generalisee",
+  "pourquoi": "le docstring de la version d'OMLDCT03 affirmait qu'elle etait « ecrite pour etre reutilisable ». Elle ne l'etait pas : le motif du registre et le repertoire d'archives y sont codes en dur, donc un successeur aurait du l'editer pour s'en servir — donc ne s'en serait pas servi. C'est la forme la plus commune d'un outil « reutilisable ».",
+  "ce_qui_n_a_PAS_ete_touche": "OMLDCT03/code/omldct03_integrity.py et son manifeste. Ce dernier porte un hachage de contenu publie qui inclut le nom du module ; on ne modifie pas les entrees d'un artefact publie. La version gelee reste le proces-verbal de ce qui a tourne.",
+  "LE_CONTROLE_CROISE_A_TROUVE_UN_DEFAUT_DANS_MA_PROPRE_GENERALISATION": "ma premiere version avait PERDU EN SILENCE le controle ALL_THREE_ARMS_DIVERGED et deux compteurs d'unicite. Je l'ai su parce que j'ai compare la generalisation au manifeste gele avant de m'en servir, au lieu de la declarer fidele. Corrige : elle reproduit desormais exactement la porte gelee sur tout ce qui est verifiable sans les archives.",
+  "PROPRIETE_VERIFIEE": "archives absentes, la porte REFUSE et sort en code 1. Elle ne certifie pas le vide. C'est le meme defaut que la porte d'anteriorite avait, et qui avait ete corrige apres le retrait de FIMRCC02."
+ },
+ "CE_QUI_RESTE_EN_ATTENTE": "la decision de l'operateur : accepter le mur, changer le critere, ou changer l'architecture. Aucune mesure n'est autorisee avant, et les 123 archives ne sont deliberement pas rapatriees.",
+ "REFUS_MAINTENU": "push GitHub 403 par le proxy, non contourne, aucun jeton demande",
+ "STATUTS_INCHANGES": {
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "HEREDITY_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED"
+ },
+ "RECOVERY_CONTENT_HASH": "2d95b90e20451566411f30530b600879a24f54eb9f1d33dcc57c44eda7587e0b"
+}

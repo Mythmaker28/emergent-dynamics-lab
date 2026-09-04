@@ -1,0 +1,56 @@
+{
+ "CHANGED": [
+  {
+   "B1": 2.5118864315095822e-05,
+   "MCTT01": 0.001004754572603833,
+   "factor": 40.0,
+   "parameter": "kY",
+   "why": "the YMCTD01 selection. Raising kY is what lets the daughter complete its constituent turnover before the separation competitor reaches it."
+  },
+  {
+   "B1": 9.261187281287937e-05,
+   "MCTT01": 0.000740894982503035,
+   "factor": 8.0,
+   "parameter": "muY",
+   "why": "the YMCTD01 selection. It supplies the removal leg of the turnover; without it a birth alone is not a turnover."
+  }
+ ],
+ "GENERATED_UTC": "2026-08-23T23:27:31.192751+00:00",
+ "MISSION": "MCTT01",
+ "MOBILITY_IS_AN_ALREADY_EXECUTED_VALUE": true,
+ "MOBILITY_RETUNED": false,
+ "NEW_ARCHITECTURE": false,
+ "NEW_SUBSTRATE": false,
+ "NEW_X_LAWSPEC": false,
+ "N_CHANGED": 2,
+ "N_UNCHANGED": 20,
+ "SECTION": "2 \u2014 physics diff from B1",
+ "UNCHANGED": [
+  "p_hop_Y",
+  "L",
+  "CAP",
+  "S0",
+  "phi",
+  "omega",
+  "muX",
+  "kX",
+  "p_hop_X",
+  "X_SEED",
+  "CORE_R",
+  "T_HORIZON",
+  "LATEST_ALLOWED_TRIGGER",
+  "initial condition",
+  "feed/exchange law",
+  "scheduler",
+  "centre classifier",
+  "trigger rule",
+  "parent-removal intervention",
+  "engine",
+  "LawSpec"
+ ],
+ "rho": {
+  "B1": 0.7731277228220925,
+  "MCTT01": 4.12219958672435,
+  "note": "rho is a derived quantity, not a free parameter; it moves because kY and muY do."
+ }
+}

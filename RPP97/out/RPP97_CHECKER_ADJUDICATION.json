@@ -1,0 +1,141 @@
+{
+ "MISSION": "RPP97",
+ "SECTION": "C4-bis \u2014 the adversarial checker's fifteen findings, adjudicated",
+ "GENERATED_UTC": "2026-08-29T22:28:23+00:00",
+ "THE_RESULT_FILE_IS_NOT_REWRITTEN": "RPP97_RESULT.json stands as submitted (26d52b9) and the checker's return stands verbatim at 2e390d2, sha256 bc54b44b9f30e71f899e95bd4bec32530072258d57272ce4c1baf0f503850285. This file is the response.",
+ "HEADLINE": "RPP97 IS WITHDRAWN AS A DESCRIPTION. Not softened, not narrowed \u2014 withdrawn. Its mechanism translation names the wrong species, its temporal contrast is an artefact of absolute time, and its central claim is asserted at a scope its own windows cannot reach. The checker verified every arithmetic figure and demolished the science on top of it. That is the correct outcome for a post-hoc file and it is recorded as such.",
+ "EVERY_FIGURE_I_RECHECKED_REPRODUCED": true,
+ "WHAT_I_RECHECKED_MYSELF_RATHER_THAN_TRUSTING": {
+  "F1_is_X_consumed_anywhere": "read ORR01/code/kinetics.py:116-133 directly. The loop is for prod, res, kk in ((\"X\",\"SX\",kX),(\"Y\",\"SY\",kY)); n[res] -= births; n[prod] += births. X is the PRODUCT. SX is the consumed reservoir. The species fed toward S0 at rate phi are SX and SY (kinetics.py:147-148). The checker is right without qualification.",
+  "F3_t_m_range": {
+   "min": 370,
+   "median": 713,
+   "max": 1673,
+   "triples_with_t_m_at_least_2000": 0,
+   "FAR_truncated_in": "41 of 41",
+   "FAR_entirely_empty_in": "27 of 41"
+  },
+  "F2_scale_free_ratio": {
+   "definition": "C = 16*k_xd/nX_total, the disc being exactly 1/16 of the lattice",
+   "worlds_with_both_windows": 14,
+   "FAR_median": 14.9,
+   "PRE_median": 6.44,
+   "C_FALLS_from_FAR_to_PRE_in": "14 of 14"
+  },
+  "F4_late_body_size": {
+   "largest_component_ever_over_15_SHAM_archives": {
+    "min": 239,
+    "median": 250,
+    "max": 279
+   },
+   "my_windows_close_at": "t_m - 1, at most 1672"
+  }
+ },
+ "F1_X_IS_NOT_THE_SUBSTRATE": {
+  "verdict": "ACCEPTED IN FULL. LOAD-BEARING.",
+  "what_I_claimed": "that X plays the substrate's role because Y birth propensity is kY*nX*nY.",
+  "why_it_is_wrong": "X is never consumed. It is autocatalytically PRODUCED from SX at p = min(1, kX*nX*nY) with kX = 1.0 \u2014 fastest exactly where the mechanism says the feed should be starved. The depletable species are SX and SY. I also dropped the factor min(nSY, free) from the birth propensity, and that dropped factor IS the substrate-and-capacity term.",
+  "how_bad": "the mechanism translation is mis-specified at its root. S1 and S2 measured the autocatalyst, not the feed. Every statement RPP97 makes about depletion is about the wrong quantity.",
+  "the_worst_part": "TBRT02's own C5 bequest, which I wrote, named 'the per-step component and FREE-CAPACITY series' as the instrument for exactly this comparison. I substituted X and did not notice I had departed from my own instruction.",
+  "what_the_checker_found_on_the_right_fields": "rim-core contrast on SY, on free capacity and on nY over 2877 component-steps in 39 worlds: median +0.0008, -0.0018 and +0.0000, fractions positive 0.509, 0.497, 0.496. Null on every field, including the correct ones."
+ },
+ "F2_THE_RISE_IS_ABSOLUTE_TIME": {
+  "verdict": "ACCEPTED IN FULL. LOAD-BEARING.",
+  "the_algebra_I_missed": "S2 = (nX_total/1296)*(C-1). It is an UNNORMALISED density difference, so it scales linearly with nX_total. My defence \u2014 'nX_total rises, so the falling-denominator artefact is unavailable' \u2014 names the very quantity that manufactures the rise.",
+  "on_the_scale_free_measure_the_sign_reverses": "C falls from 14.90 to 6.44, in 14 of 14 worlds. Recomputed by me. The neighbourhood becomes RELATIVELY POORER in X approaching t_m \u2014 the opposite of what my headline reported.",
+  "the_confound_test_I_should_have_run": "the checker's leave-one-world-out predictor, knowing only the absolute step numbers, predicts +0.475 against an observed +0.375. Absolute time OVER-explains the effect; the residual runs the other way in 11 of 14 worlds.",
+  "and_the_sign_carries_no_information": "S2 > 0 in 41 of 41 worlds at t = 0, before a single reaction is recorded. '123 of 123 positive in PRE' is a property of the initial condition."
+ },
+ "F3_THE_FAR_WINDOW_IS_THE_STARTUP_TRANSIENT": {
+  "verdict": "ACCEPTED IN FULL. LOAD-BEARING. A design defect I did NOT find.",
+  "what": "no triple has t_m >= 2000, so the nominal FAR window extends before t = 0 in all 41. It is entirely empty in 27, and in the surviving 14 it is [0, t_m-1000] \u2014 always beginning at t = 0, lengths 7 to 674 steps out of a nominal 1001.",
+  "consequence": "the comparison labelled 'far from division versus just before' is really 'the single-organiser startup transient versus a window in which the world has two components BY THE TRIGGER'S OWN DEFINITION'. The result file reports FAR n=14 against PRE n=41 and never explains the asymmetry. That silence is mine.",
+  "I_found_the_between_arm_defect_and_missed_this_one": "and this one is worse, because the between-arm control being empty merely made a column redundant, while this makes the temporal control incomparable to what it controls."
+ },
+ "F4_THE_PRECONDITION_CLAIM_OVERREACHES_ITS_WINDOWS": {
+  "verdict": "ACCEPTED. LOAD-BEARING for the reading, not for the arithmetic.",
+  "what_I_wrote": "'at the scale where division happens in these worlds there is no interior to starve'.",
+  "why_the_scope_is_wrong": "t_m is not a size event \u2014 it is the 250th consecutive step at exactly two components. The trigger SELECTS a window in which the bodies are necessarily tiny. In the same archives the largest component later reaches a median of 250 cells (my recomputation, min 239, max 279 over 15 archives). Both my windows close before any extended body exists.",
+  "the_fair_reading": "not 'the precondition does not hold' and not 'the mechanism is refuted', but 'the mechanism is absent where it is testable, and RPP97 did not look there'.",
+  "the_conclusion_that_WAS_available_and_that_I_did_not_reach": "the checker measured compactness of the late bodies: maximum ever attained per world 0.420 to 0.556, never 0.7, where 1.0 is a filled disc. A 250-cell component has radius of gyration 14 against 6.3 for a filled disc of that mass, spanning 17 per cent of the lattice. The late bodies are PERCOLATING CLOUDS, not spots. So there is indeed no extended spot with an interior anywhere \u2014 but by an argument I neither made nor measured. Cell count stops supporting my claim after t = 1200."
+ },
+ "F5_I_COMPUTED_324_S1_VALUES_AND_REPORTED_ONLY_THE_COUNT": {
+  "verdict": "ACCEPTED. LOAD-BEARING for the reading sentence.",
+  "what": "median -0.500, 60.2 per cent negative under my own code \u2014 the REFUTING sign, and one of the four incompatibility conditions my own statement listed. I printed 'S1_defined: 324' and then wrote 'this is NOT evidence against the mechanism' without showing the values.",
+  "the_fair_correction_the_checker_supplies": "with the centroid bug fixed the same values give median 0.000 and 47.7 per cent negative \u2014 null rather than refuting. Either way it should have been printed with its caveat (n = 1 world, 4-cell objects), not hidden behind a count."
+ },
+ "F6_THE_CENTROID_IS_FLOORED_NOT_AVERAGED": {
+  "verdict": "ACCEPTED. My bit-identity claim is FALSE.",
+  "what": "rpp97_stats.centroid_frozen uses soy // m; the frozen centroid is a true mean, soy / m. TLMR01 stores (a0, soy, sox) precisely so an offline reader can reproduce the float expression, and I defeated that.",
+  "measured_by_the_checker": "differs in 6.1 per cent of window component-steps, 64.6 per cent over the horizon; 38.1 per cent of evaluable S1 values change; the pooled S1 median moves from -0.500 to 0.000. S2 unaffected."
+ },
+ "F7_THREEFOLD_PSEUDO_REPLICATION": {
+  "verdict": "ACCEPTED",
+  "what": "I diagnosed the shared prefix in section 3 and then left the inflated denominators standing as headline evidence in section 2. Real independent n is 41 worlds, not 123 archives; and 14, not 42, for the paired change. A second inflation: S2 is appended per component, and PRE has two components at 10209 of 10250 steps."
+ },
+ "F8_MY_FOURTH_INCOMPATIBILITY_CONDITION_WAS_NEVER_EVALUATED_AND_IT_FIRES": {
+  "verdict": "ACCEPTED. Under-claim.",
+  "what": "my statement listed 'maximum contrast occurring AFTER t_m' as incompatible. My measurement reads only [t_m-2000, t_m-1] and never loads anything at or after t_m. The checker evaluated it: the maximum is at t - t_m of about +750 to +1000. By my own pre-declared criterion this is an incompatible observation, and my file neither reports it nor admits the condition went unevaluated."
+ },
+ "F9_THE_AGGREGATION_CODE_IS_NOT_COMMITTED": {
+  "verdict": "ACCEPTED. MATERIAL for reproducibility.",
+  "what": "rpp97_measure.py produces the per-archive shards and stops. Nothing in the repository produces RPP97_RESULT.json; its tables came from uncommitted ad-hoc code. In a programme whose bequest is 'operationalise in code before the first world', that is not a footnote.",
+  "also": "median_size_when_undefined is a median of per-archive medians, not a pooled median. It happens to be correct here because every per-archive median is 1. That is luck, not method."
+ },
+ "F10_THE_CITED_NUMBERS_CONTRADICT_THEIR_OWN_SENTENCE": {
+  "verdict": "ACCEPTED",
+  "what": "I wrote 'nX_total RISES' and cited 272 at t_m-250 then 252 at t_m-1 \u2014 a FALL across the window. The general claim holds across worlds (rises in 38 of 41) but my one cited archive contradicts the sentence it was cited for."
+ },
+ "F11_I_MISDESCRIBED_c_cand": {
+  "verdict": "ACCEPTED",
+  "what": "c_cand stores round(1e6 * min(1, kY*nX*nY)) \u2014 a capped, scaled, rounded PROBABILITY, not the propensity 'telle quelle', and not the birth propensity at all, which carries the min(nSY, free) factor I dropped. This is the root of F1."
+ },
+ "F12_UNLICENSED_NOUNS": {
+  "verdict": "ACCEPTED. This is the class of language the programme forbids.",
+  "what": "I wrote 'the bodies that divide' and 'the division events' while the same file sets REPRODUCTION_STATUS = NOT_TESTED. What t_m marks is: two single-linkage components held for 250 steps. In 23 of 41 worlds that is two lone molecules on two lone cells, with 2 to 5 Y in the entire world. Nothing establishes that anything divided rather than that two molecules drifted more than five cells apart. My status fields were guarded and my nouns were not.",
+  "correction_adopted": "the neutral description is 'a transition to two components', and nothing stronger is licensed by this raw."
+ },
+ "F13_THE_STRONGER_ALTERNATIVE_WAS_NOT_NAMED": {
+  "verdict": "ACCEPTED. Under-claim.",
+  "what": "I named co-location. The kinetics supply a stronger one: the body MAKES X where it sits, SX to X at kX = 1.0 with decay length 2.5 inside a disc of radius 5. That predicts S2 > 0 deterministically, and its signature is visible \u2014 S2 > 0 in 41 of 41 worlds at t = 0 with all X inside the disc, collapsing to +0.07 once the body stops being a point."
+ },
+ "F14_THE_REMEDY_I_PRESCRIBED_IS_NOT_COMPUTABLE_FROM_THIS_RAW": {
+  "verdict": "ACCEPTED. Under-statement.",
+  "what": "control discs elsewhere are not merely post-hoc, they are IMPOSSIBLE here: c_nX exists only on Y-occupied cells, the only off-support reading is k_xd at centroids, and there is no X-death or X-hop ledger. Separating production from co-location needs NEW WORLDS."
+ },
+ "F15_LABELS_AND_THE_DISCARDED_GAP": {
+  "verdict": "ACCEPTED. Cosmetic but telling.",
+  "what": "'mean' in the by-arm table is a mean of per-archive medians, unlabelled. And my code loads [t_m-2000, t_m-1] then discards the 750-step gap [t_m-1000, t_m-250] \u2014 the ONLY stretch of the pre-t_m trajectory that is neither the startup transient nor the trigger's own selection window. I threw away the one window not selected by construction."
+ },
+ "FINDINGS_ACCEPTED": 15,
+ "FINDINGS_REJECTED": 0,
+ "FINDINGS_PARTIAL": 0,
+ "WHAT_SURVIVES_OF_RPP97": [
+  "the arithmetic: every headline figure reproduces, and the measurement is deterministic",
+  "the post-hoc disclaimer in section 0, placed first and never walked back",
+  "the capability test, which is genuine and did what it claimed",
+  "the self-reported empty between-arm control, correct and verified",
+  "the conclusion that no extended spot with a starved interior exists in these worlds \u2014 but established by the checker's compactness measurement, not by my cell counts"
+ ],
+ "RPP97_STATUS": "WITHDRAWN_AS_A_DESCRIPTION__ARITHMETIC_SOUND__SCIENCE_MIS_SPECIFIED",
+ "WHAT_A_SUCCESSOR_MUST_DO_DIFFERENTLY": [
+  "measure the FEED \u2014 SY and free capacity \u2014 not the autocatalyst X",
+  "normalise: use a scale-free ratio, never an unnormalised density difference against a moving total",
+  "check the window is reachable before freezing it: no triple has t_m >= 2000, so a 2000-step lookback was empty or truncated in every world, and one line of arithmetic would have shown it",
+  "place at least one window AFTER t_m, where the bodies are two hundred times larger",
+  "test for a confound with absolute time by a leave-one-out predictor before claiming a trend",
+  "commit the aggregation code, not only the measurement code",
+  "guard the nouns as carefully as the status fields"
+ ],
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+ "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED",
+ "CLEA01_STATUS": "CLOSED__LINEAGE_ROUTE_PAUSED__NOT_REOPENED",
+ "TBRT02_STATUS": "CLOSED__RAW_COMPLETE__PRIMARY_ADJUDICATION_INCONCLUSIVE_BY_CONSTRUCTION",
+ "ADJUDICATION_CONTENT_HASH": "698476ae09a4cf66a0b4730794042745fbc8e8904bf6e8a48fad111e23395644"
+}
