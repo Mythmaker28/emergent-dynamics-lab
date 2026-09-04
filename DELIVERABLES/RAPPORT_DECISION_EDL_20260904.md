@@ -486,7 +486,10 @@ exige les brutes également).
 | Gel CCRA01 | `CCRA01/out/CCRA01_PREREGISTRATION.md` · `CCRA01/code/ccra01_frozen.py` | `2cae5619…` · `df1d4d6e…`, commit `c363afd` |
 | Capacité + résultat CCRA01 | `CCRA01/out/CCRA01_CAPABILITY.json` · `CCRA01_RESULT.json` | 5/5 PASS · `NEGATIF` |
 | Scripts de reconstruction | `RECOVERY/scripts/*.py` | exécutés, `ALL_CHECKS_PASS` |
-| Bundle de récupération | `EDL_RECOVERY_20260904.bundle` | empreinte au §5.1 |
+| Bundle de récupération | `EDL_RECOVERY_20260904.bundle` | **empreinte publiée hors du bundle** — elle ne peut pas y figurer : voir le document de Projet `claude/durability/EDL_RECOVERY_20260904.md` et le message de livraison | Vérification finale exécutée sur
+l'arbre publié : `ALL_CHECKS_PASS = true` (arbre 246/246, `METHODS_HASH` 17/17,
+empreintes 7/7, verbatims), OMLDCT03 **12/12**, capacité CCRA01 **5/5**, arbre git
+propre.
 | Draft PR | **non créée** — GitHub 403 | bloquée |
 
 ### 5.1 Interdits respectés
