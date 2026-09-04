@@ -1,0 +1,233 @@
+{
+ "SECTION": "LRCPS01 §16 result inventory",
+ "PRIMARY_NARRATIVE": "N1",
+ "N_RESULTS": 4,
+ "N_RESULTS_CARRYING_NUMBERS": 3,
+ "RESULTS": [
+  {
+   "RESULT_ID": "A",
+   "TITLE": "A frozen operator predicted the source-response radius before the confirming arms existed, and the arms met the prediction",
+   "CLAIMS": [
+    "A1",
+    "A2",
+    "A3",
+    "A5"
+   ],
+   "TIER": "QUALIFIED",
+   "SECTIONS": [
+    "3",
+    "4"
+   ],
+   "FIGURES": [
+    "Fig1",
+    "Fig2"
+   ],
+   "INDEPENDENT_UNIT": "arm (seed)",
+   "N_INDEPENDENT": 28,
+   "FALSIFIER_THAT_DID_NOT_FIRE": "either absolute endpoint outside +/-2.9 %, or any of the 15 radii disagreeing, or a single extinction or technically invalid arm",
+   "RECONCILIATION_LABELS": [
+    "equivalence_margin_percent",
+    "fresh_arms_analysable",
+    "fresh_arms_invalid",
+    "fresh_arms_run",
+    "fresh_extinctions",
+    "fresh_mobile_ci95_high",
+    "fresh_mobile_ci95_low",
+    "fresh_mobile_deviation_percent",
+    "fresh_mobile_observed",
+    "fresh_mobile_pass",
+    "fresh_mobile_predicted",
+    "fresh_ratio_ci95_high",
+    "fresh_ratio_ci95_low",
+    "fresh_ratio_deviation_percent",
+    "fresh_ratio_observed",
+    "fresh_ratio_pass",
+    "fresh_ratio_predicted",
+    "fresh_static_ci95_high",
+    "fresh_static_ci95_low",
+    "fresh_static_deviation_percent",
+    "fresh_static_observed",
+    "fresh_static_pass",
+    "fresh_static_predicted",
+    "inertness_alters_the_law",
+    "inertness_state_hash",
+    "inertness_state_identical",
+    "inertness_steps",
+    "prediction_status",
+    "r80_mobile_predicted_frozen",
+    "r80_static_predicted_frozen",
+    "ratio_one_excluded"
+   ],
+   "N_LABELS": 31,
+   "ALL_LABELS_BOUND": true,
+   "SOURCE_FILES": [
+    "_adjudication.json",
+    "_observables_exact.json",
+    "_validation.json"
+   ]
+  },
+  {
+   "RESULT_ID": "B",
+   "TITLE": "The historical negative residual is dominated by the summary rule, and dispersion separates that account from the full construction",
+   "CLAIMS": [
+    "B0",
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7"
+   ],
+   "TIER": "QUALIFIED",
+   "SECTIONS": [
+    "5"
+   ],
+   "FIGURES": [
+    "Fig3"
+   ],
+   "INDEPENDENT_UNIT": "arm (seed)",
+   "N_INDEPENDENT": 116,
+   "FALSIFIER_THAT_DID_NOT_FIRE": "an estimator-only surrogate returning a positive or null median bias, or a mean summary as biased as the median",
+   "RECONCILIATION_LABELS": [
+    "cell_mobile_mean_construction_percent",
+    "cell_mobile_mean_observed_percent",
+    "cell_mobile_median_construction_percent",
+    "cell_mobile_median_observed_percent",
+    "cell_mobile_median_surrogate_percent",
+    "cell_static_mean_construction_percent",
+    "cell_static_mean_observed_percent",
+    "cell_static_median_observed_percent",
+    "cell_static_median_surrogate_percent",
+    "dispersion_iid_mobile_within_arm_sd",
+    "dispersion_iid_static_within_arm_sd",
+    "dispersion_mobile_within_arm_sd",
+    "dispersion_mobile_within_arm_skew",
+    "dispersion_static_within_arm_sd",
+    "dispersion_static_within_arm_skew",
+    "historical_mobile_median_residual_n",
+    "historical_mobile_median_residual_percent",
+    "historical_mobile_median_residual_z",
+    "historical_static_mean_residual_percent",
+    "historical_static_median_residual_n",
+    "historical_static_median_residual_percent",
+    "historical_static_median_residual_z",
+    "iid_mobile_arms",
+    "iid_mobile_frames",
+    "iid_mobile_median_ratio",
+    "iid_mobile_median_summary",
+    "iid_mobile_population_r80",
+    "iid_static_arms",
+    "iid_static_frames",
+    "iid_static_median_ratio",
+    "iid_static_median_summary",
+    "iid_static_population_r80",
+    "m6_dispersion_mobile_within_arm_sd_simulated",
+    "m6_dispersion_mobile_within_arm_skew_simulated",
+    "m6_dispersion_static_within_arm_sd_simulated",
+    "m6_sequential_step_0_baseline_M2_level",
+    "m6_sequential_step_1_add_shared_trajectory",
+    "m6_sequential_step_2_add_empirical_birth_flux",
+    "profile_agrees_at_every_radius",
+    "radial_profile_flag_scope",
+    "radial_profile_max_abs_difference",
+    "radial_profile_max_abs_z",
+    "radial_profile_mobile_arms",
+    "radial_profile_radii_tested",
+    "radial_profile_static_arms",
+    "radial_profile_static_max_abs_difference",
+    "radial_profile_static_max_abs_z",
+    "secondary_mean_summary_mobile_observed_percent",
+    "secondary_mean_summary_mobile_predicted",
+    "secondary_mean_summary_static_observed_percent",
+    "secondary_mean_summary_static_predicted",
+    "secondary_within_arm_sd_mobile_observed",
+    "secondary_within_arm_sd_mobile_predicted",
+    "secondary_within_arm_sd_static_observed",
+    "secondary_within_arm_sd_static_predicted"
+   ],
+   "N_LABELS": 55,
+   "ALL_LABELS_BOUND": true,
+   "SOURCE_FILES": [
+    "_adjudication.json",
+    "_m6.json",
+    "_residual.json"
+   ]
+  },
+  {
+   "RESULT_ID": "C",
+   "TITLE": "Which ingredients the agreement depends on, and what remains open",
+   "CLAIMS": [
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6"
+   ],
+   "TIER": "QUALIFIED",
+   "SECTIONS": [
+    "6"
+   ],
+   "FIGURES": [
+    "Fig4"
+   ],
+   "INDEPENDENT_UNIT": "arm (seed) for the measured couplings; analytic for the ablations",
+   "N_INDEPENDENT": 57,
+   "FALSIFIER_THAT_DID_NOT_FIRE": "an ablated construction sitting closer to the observation than the full one",
+   "RECONCILIATION_LABELS": [
+    "ablation_dist_full",
+    "ablation_dist_no_shared",
+    "ablation_dist_poisson",
+    "ablation_observed_mobile_median",
+    "ablation_pred_full",
+    "ablation_pred_ideal",
+    "ablation_pred_no_shared",
+    "ablation_pred_poisson",
+    "birth_flux_variance_over_mean",
+    "blocked_fraction_X_mean",
+    "closure_full_one_step_conditional_operator",
+    "closure_marginal_density_closure",
+    "closure_stationary_profile_closure",
+    "continuum_error_mobile_percent",
+    "continuum_error_static_percent",
+    "coupling_fraction_of_steps_where_births_equal_minnsxfree",
+    "coupling_fraction_of_steps_with_zero_free_capacity_at_the_organiser",
+    "disposition",
+    "m6_verdict",
+    "marginal_closure_remains_open",
+    "secondary_status_endogenous_source_correction",
+    "secondary_status_estimator_correction",
+    "secondary_status_full_operator_error",
+    "secondary_status_historical_window_status"
+   ],
+   "N_LABELS": 24,
+   "ALL_LABELS_BOUND": true,
+   "SOURCE_FILES": [
+    "_adjudication.json",
+    "_m6.json",
+    "_mechanisms.json"
+   ]
+  },
+  {
+   "RESULT_ID": "D",
+   "TITLE": "The lineage line of work, and what did not survive",
+   "CLAIMS": [
+    "D1",
+    "D2"
+   ],
+   "TIER": "LOST_DOCUMENTARY / NOT_TESTED",
+   "SECTIONS": [
+    "7"
+   ],
+   "FIGURES": [],
+   "INDEPENDENT_UNIT": "none — no quantity is carried",
+   "N_INDEPENDENT": 0,
+   "FALSIFIER_THAT_DID_NOT_FIRE": "not applicable; nothing is asserted",
+   "RECONCILIATION_LABELS": [],
+   "N_LABELS": 0,
+   "ALL_LABELS_BOUND": true,
+   "SOURCE_FILES": []
+  }
+ ]
+}

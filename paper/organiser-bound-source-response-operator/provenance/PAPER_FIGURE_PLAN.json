@@ -1,0 +1,148 @@
+{
+ "SECTION": "LRCPS01 §11 figure plan",
+ "MAX_MAIN_FIGURES_ALLOWED": 6,
+ "MAIN_FIGURES_PLANNED": 4,
+ "RULE": "a figure exists only to carry a claim from the matrix; every panel is regenerated from a hashed source file by code/make_figures.py; no panel carries LOST or NOT_TESTED evidence",
+ "FIGURES": [
+  {
+   "ID": "Fig1",
+   "FILE": "fig1_model_and_event_order",
+   "SECTION": "2",
+   "CLAIMS": [
+    "A1"
+   ],
+   "WHY_IT_EXISTS": "the reader cannot judge any later number without the event order and the exact definition of the reported radius",
+   "PANELS": [
+    "a schematic lattice with the source cell and the reported radius",
+    "the seven-substep event order read from the kinetics module"
+   ],
+   "SCHEMATIC_CONTENT_DISCLOSED": "panel a is a schematic; the particle positions drawn in it are not measured data and the caption says so"
+  },
+  {
+   "ID": "Fig2",
+   "FILE": "fig2_prospective_confirmation",
+   "SECTION": "4",
+   "CLAIMS": [
+    "A1",
+    "A2",
+    "A3"
+   ],
+   "WHY_IT_EXISTS": "it is the paper's central result and its falsifier: the reader must see the frozen line, the margin, and every individual arm",
+   "PANELS": [
+    "28 individual arms against the frozen prediction and its margin",
+    "the three pre-declared endpoints with their intervals against the margin"
+   ],
+   "SCHEMATIC_CONTENT_DISCLOSED": "none"
+  },
+  {
+   "ID": "Fig3",
+   "FILE": "fig3_summary_rule_artefact",
+   "SECTION": "5",
+   "CLAIMS": [
+    "B0",
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7"
+   ],
+   "WHY_IT_EXISTS": "the second result needs four things side by side: that the field agrees, that the record disagrees only under one summary rule, how far a dynamics-free surrogate gets, and where it stops",
+   "PANELS": [
+    "profile difference at 15 radii, both conditions, arm counts stated",
+    "the historical residual by lattice size under the two summary rules",
+    "four summary cells under observation, surrogate and full construction",
+    "within-arm dispersion under the same three accounts"
+   ],
+   "SCHEMATIC_CONTENT_DISCLOSED": "none"
+  },
+  {
+   "ID": "Fig4",
+   "FILE": "fig4_mechanism_ablation",
+   "SECTION": "6",
+   "CLAIMS": [
+    "C1",
+    "B3"
+   ],
+   "WHY_IT_EXISTS": "an ablation claim is only readable as a picture of distances",
+   "PANELS": [
+    "distance from the observation for four constructions",
+    "the same constructions built up in physical order",
+    "the two main effects and the interaction"
+   ],
+   "SCHEMATIC_CONTENT_DISCLOSED": "none"
+  }
+ ],
+ "FIGURES_DROPPED": [
+  {
+   "ID": "Fig5 (planned)",
+   "SUBJECT": "the lineage calibration surface",
+   "WHY_DROPPED": "its evidence is LOST_DOCUMENTARY and was in any case adjudicated invalid"
+  },
+  {
+   "ID": "Fig6 (planned)",
+   "SUBJECT": "the route-arbitration atlas",
+   "WHY_DROPPED": "same loss; nothing survives to regenerate it from"
+  }
+ ],
+ "GENERATED": {
+  "fig1_model_and_event_order": {
+   "pdf": "figures/fig1_model_and_event_order.pdf",
+   "png": "figures/fig1_model_and_event_order.png",
+   "source_data": "figure_data/fig1_model_and_event_order.json",
+   "pdf_sha256": "46605f6249b459f9a2b4100fb4ab2e7180b4f4a50209b3688ecb25002a808ec8",
+   "source_data_sha256": "f2c6a98c2fc5ddac947a9b2b1c68e222fd56710ded1203e8a71ff4a8958d9810",
+   "SOURCE_FILES": {
+    "_mechanisms": "3398951266eea2597aa25fcf2237012127d3740fc7afb1ef3b7b95fb21dd15b3",
+    "_residual": "28cda160c1c0ff98976ed8fe3051cbcefee778bce0cb78e699a735923f3e2211"
+   },
+   "REGENERATED_BY": "code/make_figures.py",
+   "CONTAINS_LOST_OR_NOT_TESTED_EVIDENCE": false,
+   "CAPTION": "The model and the reported observable. (a) A point source on a periodic lattice with a per-cell capacity; the reported radius is the smallest achievable toroidal distance at which the empirical cumulative field first reaches 0.8. (b) The event order read directly from the kinetics module. The lattice sketch is schematic; no arrangement of particles in it is measured data."
+  },
+  "fig2_prospective_confirmation": {
+   "pdf": "figures/fig2_prospective_confirmation.pdf",
+   "png": "figures/fig2_prospective_confirmation.png",
+   "source_data": "figure_data/fig2_prospective_confirmation.json",
+   "pdf_sha256": "59cbc67efbb9c3415c888b80b7d2a6da9e433beb29b8e20c8577a619e2da5f0c",
+   "source_data_sha256": "da49158fec81f9fa3734b804537dbc85af489afbf87d227abb74e50da7da98a4",
+   "SOURCE_FILES": {
+    "_adjudication": "fe108f5dba130c99b1cac84b79112afbe202b05fa96bc076c20239918c2c6fb5"
+   },
+   "REGENERATED_BY": "code/make_figures.py",
+   "CONTAINS_LOST_OR_NOT_TESTED_EVIDENCE": false,
+   "CAPTION": "Prospective confirmation on 28 fresh arms. (a) The frozen prediction (line) with its equivalence margin (band) against the 14 arms of each condition (points) and their mean with a 95 % interval (diamond). (b) The three pre-declared endpoints; every interval lies wholly inside the margin, and unity is excluded for the ratio."
+  },
+  "fig3_summary_rule_artefact": {
+   "pdf": "figures/fig3_summary_rule_artefact.pdf",
+   "png": "figures/fig3_summary_rule_artefact.png",
+   "source_data": "figure_data/fig3_summary_rule_artefact.json",
+   "pdf_sha256": "606096d5f97c428f87acd72fc2b0421290a391fc8bd6c62f97c49126cb4e092a",
+   "source_data_sha256": "bd1ce3aefb9768a844985c8a033b16ec2fac5813e18054daea03a04be170fdd8",
+   "SOURCE_FILES": {
+    "_residual": "28cda160c1c0ff98976ed8fe3051cbcefee778bce0cb78e699a735923f3e2211",
+    "_m6": "4d4d0e83c07ccc731b4a2b2adbb68edc4cb16fecb9055d423a6b7d6018f5a1c7",
+    "_adjudication": "fe108f5dba130c99b1cac84b79112afbe202b05fa96bc076c20239918c2c6fb5"
+   },
+   "REGENERATED_BY": "code/make_figures.py",
+   "CONTAINS_LOST_OR_NOT_TESTED_EVIDENCE": false,
+   "CAPTION": "The summary rule, not the field. (a) Observed minus predicted cumulative radial profile at 15 radii. Over 116 historical mobile arms the largest standardised deviation is 0.64 and the largest difference 0.0038. The static curve rests on three arms and is shown for completeness only: it is not powered for a per-radius test, and its largest standardised deviation, 8.90, occurs where the absolute difference is no larger than at radii whose standardised deviation is below one. (b) The historical residual at three lattice sizes under the frozen median rule and under the mean rule. (c) A surrogate that draws particles independently from the predicted law and applies the same summary rule, with no lattice dynamics whatever, is already biased downwards under the median rule and nearly unbiased under the mean. (d) The surrogate does not account for the observed mobile dispersion; the full construction does."
+  },
+  "fig4_mechanism_ablation": {
+   "pdf": "figures/fig4_mechanism_ablation.pdf",
+   "png": "figures/fig4_mechanism_ablation.png",
+   "source_data": "figure_data/fig4_mechanism_ablation.json",
+   "pdf_sha256": "b2ad0c41c2740b4c396f47cbbeae2d605af87645cdfdc89a525732fd2b6f1fe3",
+   "source_data_sha256": "457f012283b2f6061e022d9c3b66f58b4275d12ce5ffec48174ad99a2e83dca7",
+   "SOURCE_FILES": {
+    "_adjudication": "fe108f5dba130c99b1cac84b79112afbe202b05fa96bc076c20239918c2c6fb5",
+    "_m6": "4d4d0e83c07ccc731b4a2b2adbb68edc4cb16fecb9055d423a6b7d6018f5a1c7",
+    "_mechanisms": "3398951266eea2597aa25fcf2237012127d3740fc7afb1ef3b7b95fb21dd15b3"
+   },
+   "REGENERATED_BY": "code/make_figures.py",
+   "CONTAINS_LOST_OR_NOT_TESTED_EVIDENCE": false,
+   "CAPTION": "What the agreement depends on. (a) Distance between the observed mobile radius and four constructions; the full one is nearest and each ablation is further. (b) The same constructions built up in physical order. (c) The two main effects and their interaction in a two-by-two decomposition; the interaction is small."
+  }
+ }
+}

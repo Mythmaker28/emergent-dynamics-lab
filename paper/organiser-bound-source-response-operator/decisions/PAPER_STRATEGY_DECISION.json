@@ -1,0 +1,39 @@
+{
+ "SECTION": "LRCPS01 §2 paper strategy decision",
+ "DECISION": "COMPANION_PAPER",
+ "V3_EXTENSION_PRECONDITIONS": {
+  "named_persistence_V1_V2_package_present": false,
+  "named_persistence_V1_V2_paths_found": [],
+  "candidate_shares_estimand_with_an_existing_manuscript": false,
+  "candidate_shares_source_data_with_an_existing_manuscript": false
+ },
+ "EXISTING_MANUSCRIPTS": {
+  "docs/paper/MANUSCRIPT.md": {
+   "sha256": "2d2e0cae7d010b615dcd0c2e91627fc722fcc6052b9d42ab66befdd9c0788135",
+   "title": "Set-Valued Causal Metrology under Drift and Reference Contamination",
+   "words": 1441,
+   "estimand": "scalar causal-response magnitude q read on contaminated reference channels"
+  },
+  "docs/consolidation/SET_IDENTIFICATION_MANUSCRIPT.md": {
+   "sha256": "72ce3b8a91b14e408cee5a098cbfda41fe2490a544e9e3eefbfc22f6cf7a9a84",
+   "title": "SET-IDENTIFICATION MANUSCRIPT (repaired T6)",
+   "words": 513,
+   "estimand": "scalar causal-response magnitude q read on contaminated reference channels"
+  },
+  "docs/replication/THEOREM_MANUSCRIPT.md": {
+   "sha256": "513f55b5835dcbcf448278292ad8a0c83dd1fd3f4d7de84f33b6ca12c13b8d89",
+   "title": "CRD IDENTIFIABILITY — THEOREM MANUSCRIPT (independent treatment)",
+   "words": 584,
+   "estimand": "scalar causal-response magnitude q read on contaminated reference channels"
+  }
+ },
+ "CANDIDATE_ESTIMAND": "the steady-state radial extent r80 of the X field around a source of fixed full-capacity strength, and its dependence on source mobility, in the frozen ORR01/LawSpec-v2 lattice",
+ "DECISION_RULE": "A V3 extension requires (a) the named persistence V1/V2 manuscript package to be mechanically present in the repository, and (b) a demonstrated overlap of estimand or source data with it. Precondition (a) fails: no file in the repository, tracked or untracked, is that package. Extending a document that is not present cannot be done mechanically and would have to be done from memory, which this mission forbids. Precondition (b) also fails against the three manuscripts that ARE present: they estimate a scalar causal-response magnitude q on contaminated reference channels from synthetic hold-outs, and cite no OBFOR01/ORR01/OBTC02 archive. The two questions are disjoint. Therefore: companion paper.",
+ "CONSEQUENCES": [
+  "The companion paper carries its own abstract, introduction, methods, results and discussion.",
+  "It cites the set-valued causal metrology manuscripts as prior work of the same laboratory, not as a parent.",
+  "No sentence, figure or table is inherited from them; §13 will audit this mechanically.",
+  "No claim of continuity with an absent V1/V2 package is made anywhere in the manuscript."
+ ],
+ "ABSENT_PACKAGE_HANDLING": "NAMED_PERSISTENCE_V1_V2_PACKAGE = NOT_PRESENT_IN_REPOSITORY. No comparison, overlap figure or continuity claim is made against it. Its absence is reported, not worked around."
+}

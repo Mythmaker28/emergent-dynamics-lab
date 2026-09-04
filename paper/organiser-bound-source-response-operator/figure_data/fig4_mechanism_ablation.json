@@ -1,0 +1,58 @@
+{
+ "FIGURE": "fig4_mechanism_ablation",
+ "CAPTION": "What the agreement depends on. (a) Distance between the observed mobile radius and four constructions; the full one is nearest and each ablation is further. (b) The same constructions built up in physical order. (c) The two main effects and their interaction in a two-by-two decomposition; the interaction is small.",
+ "SOURCE_FILES": {
+  "_adjudication": "fe108f5dba130c99b1cac84b79112afbe202b05fa96bc076c20239918c2c6fb5",
+  "_m6": "4d4d0e83c07ccc731b4a2b2adbb68edc4cb16fecb9055d423a6b7d6018f5a1c7",
+  "_mechanisms": "3398951266eea2597aa25fcf2237012127d3740fc7afb1ef3b7b95fb21dd15b3"
+ },
+ "DATA": {
+  "ABLATION": {
+   "RULE": "the full model must sit closer to the fresh mobile observation than the model with the shared organiser trajectory removed",
+   "observed_mobile_median": 8.077146148389195,
+   "distance_to_the_full_model": 0.019696298159322723,
+   "distance_to_the_model_without_the_shared_trajectory": 0.2974549914110174,
+   "distance_to_the_model_with_a_poisson_source": 0.08889427618408696,
+   "predictions": {
+    "full": 8.057449850229872,
+    "no_shared_trajectory": 8.374601139800212,
+    "poisson_births": 8.166040424573282,
+    "ideal_population_value": 8.54400374531753
+   },
+   "FULL_MODEL_WINS": true,
+   "FULL_MODEL_BEATS_THE_POISSON_SOURCE": true,
+   "FULL_MODEL_BEATS_THE_UNCORRECTED_IDEAL_VALUE": true
+  },
+  "SEQUENTIAL": {
+   "ORDER": "physically ordered: start from the discrete kernel on the finite torus with a Poisson point source and frames treated as independent draws, then add the shared organiser trajectory, then the measured birth flux",
+   "step_0_baseline_M2_level": -0.6563165225781153,
+   "step_1_add_shared_trajectory": -4.4237260657965845,
+   "step_1_gain": -3.767409543218469,
+   "step_2_add_empirical_birth_flux": -5.69468260538053,
+   "step_2_gain": -1.2709565395839455,
+   "total": -5.038366082802415
+  },
+  "FACTORIAL": {
+   "DESIGN": "2 x 2 on {shared trajectory, empirical birth flux}",
+   "neither": -0.6563165225781153,
+   "shared_only": -4.4237260657965845,
+   "births_only": -1.9827075287760398,
+   "both": -5.69468260538053,
+   "main_effect_shared_trajectory": -3.7396923099114794,
+   "main_effect_birth_flux": -1.298673772890935,
+   "interaction": 0.055434466613978994,
+   "WARNING": "the two main effects and the interaction sum to the total by construction; no single mechanism is credited with the whole residual, and the ordering-dependent sequential table is reported beside this one because attribution is not order-free"
+  },
+  "BIRTH_FLUX": 1.2853655936680608,
+  "CAPACITY": {
+   "what_it_computes": "a refusal removes exactly one accepted move from a molecule's history; the displacement variance is carried one unit per accepted move, so the fractional change in M2 equals the fraction of offered moves refused",
+   "fraction_of_moves_removed": 0.00035541465411388754,
+   "implied_change_in_M2_percent": 0.03554146541138875,
+   "implied_change_in_r80_percent": 0.017770732705694375
+  },
+  "CONTINUUM": {
+   "static": -18.74233612061722,
+   "mobile": -19.293241888785307
+  }
+ }
+}

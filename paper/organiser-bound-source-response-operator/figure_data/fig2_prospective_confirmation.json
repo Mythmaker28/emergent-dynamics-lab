@@ -1,0 +1,107 @@
+{
+ "FIGURE": "fig2_prospective_confirmation",
+ "CAPTION": "Prospective confirmation on 28 fresh arms. (a) The frozen prediction (line) with its equivalence margin (band) against the 14 arms of each condition (points) and their mean with a 95 % interval (diamond). (b) The three pre-declared endpoints; every interval lies wholly inside the margin, and unity is excluded for the ratio.",
+ "SOURCE_FILES": {
+  "_adjudication": "fe108f5dba130c99b1cac84b79112afbe202b05fa96bc076c20239918c2c6fb5"
+ },
+ "DATA": {
+  "ARM_VALUES": {
+   "S_median": {
+    "n": 14,
+    "mean": 5.999119238860436,
+    "sd": 0.1040756735118315,
+    "se": 0.027815393755644097,
+    "values": [
+     6.082762530298219,
+     5.830951894845301,
+     6.082762530298219,
+     6.082762530298219,
+     6.0,
+     5.91547594742265,
+     6.082762530298219,
+     6.0,
+     6.082762530298219,
+     6.0,
+     5.830951894845301,
+     6.082762530298219,
+     6.082762530298219,
+     5.830951894845301
+    ]
+   },
+   "M_median": {
+    "n": 14,
+    "mean": 8.077146148389195,
+    "sd": 0.21867656744320332,
+    "se": 0.05844377099201655,
+    "values": [
+     8.0,
+     8.365746312736945,
+     7.810249675906654,
+     8.246211251235321,
+     8.06225774829855,
+     7.615773105863909,
+     8.06225774829855,
+     8.06225774829855,
+     8.06225774829855,
+     8.54400374531753,
+     8.06225774829855,
+     8.06225774829855,
+     8.06225774829855,
+     8.06225774829855
+    ]
+   }
+  },
+  "ENDPOINTS": {
+   "STATIC_ABSOLUTE_PROFILE_COMPATIBILITY": {
+    "NAME": "static",
+    "predicted": 6.007630361527475,
+    "observed": 5.999119238860436,
+    "n": 14,
+    "relative_deviation": -0.0014167187651131785,
+    "relative_deviation_percent": -0.14167187651131785,
+    "se_relative_percent": 0.46300108498306264,
+    "ci95_relative_percent": [
+     -1.0491540030781206,
+     0.765810250055485
+    ],
+    "margin_percent": 2.9,
+    "PASS": true,
+    "STRICT_PASS_WHOLE_INTERVAL_INSIDE": true
+   },
+   "MOBILE_ABSOLUTE_PROFILE_COMPATIBILITY": {
+    "NAME": "mobile",
+    "predicted": 8.057449850229872,
+    "observed": 8.077146148389195,
+    "n": 14,
+    "relative_deviation": 0.0024444828730469936,
+    "relative_deviation_percent": 0.24444828730469936,
+    "se_relative_percent": 0.725338315203404,
+    "ci95_relative_percent": [
+     -1.1772148104939724,
+     1.666111385103371
+    ],
+    "margin_percent": 2.9,
+    "PASS": true,
+    "STRICT_PASS_WHOLE_INTERVAL_INSIDE": true
+   },
+   "MOBILE_STATIC_RATIO_COMPATIBILITY": {
+    "NAME": "ratio",
+    "predicted": 1.3412026648359268,
+    "observed": 1.3463886658674735,
+    "relative_deviation_percent": 0.38666796357589295,
+    "se_relative_percent": 0.8593786201100329,
+    "ci95_relative_percent": [
+     -1.2977141318397711,
+     2.071050058991557
+    ],
+    "margin_percent": 2.9,
+    "PASS": true,
+    "STRICT_PASS_WHOLE_INTERVAL_INSIDE": true,
+    "RATIO_ONE_EXCLUDED": true
+   },
+   "FULL_MODEL_RESIDUAL_EQUIVALENCE": {
+    "PASS": true
+   }
+  }
+ }
+}

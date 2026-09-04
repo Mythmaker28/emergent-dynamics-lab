@@ -1,0 +1,313 @@
+\documentclass[11pt]{article}
+\input{../manuscript/preamble}
+\input{../manuscript/numbers}
+\usepackage{longtable}
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+
+\title{\bfseries Supplementary material for\\
+A prospectively frozen operator for the extent of a\\
+source-maintained field on a capacity-limited lattice}
+\author{Emergent Dynamics Laboratory}
+\date{}
+
+\begin{document}
+\maketitle
+
+\noindent
+This supplement contains the material a reader needs in order to check the main text rather than
+to take it on trust: what was frozen and when, the term-by-term construction of the tolerance,
+the individual arms, the arithmetic behind each endpoint, the record the second result is drawn
+from, and an explicit account of what is missing from this work and why. Every number here is
+emitted from the same reconciliation file as the main text.
+
+\tableofcontents
+
+\section{Provenance, freeze and inertness}
+
+\subsection{What was frozen, and when}
+
+Two absolute predictions and their ratio were written into a protocol file and hashed before any
+confirmation arm existed. The frozen predictions carry the status \texttt{\predictionStatus{}}
+and the methods hash carries \texttt{\methodsCoreHashStatus{}}. The methods hash itself is
+\texttt{\methodsCoreHash{}}, taken over the files listed in Table~\ref{tab:methods}; the list of
+files recorded as missing from that hash was empty.
+
+\input{S1_methods}
+
+\subsection{The apparatus does not perturb the system}
+
+An instrumented engine and a plain one were run from the same seed for \inertnessSteps{} steps and
+their full lattice states compared byte for byte. They are identical, with common final state hash
+
+\smallskip
+\noindent\hspace*{1em}\texttt{\inertnessStateHash{}}
+\smallskip
+
+\noindent
+so that
+\texttt{STATE\_\allowbreak{}IDENTICAL} \texttt{=} \texttt{\inertnessStateIdentical} and
+\texttt{INSTRUMENTATION\_\allowbreak{}ALTERS\_\allowbreak{}THE\_\allowbreak{}LAW} \texttt{=}
+\texttt{\inertnessAltersTheLaw}. This is a single paired run at a single seed. It is sufficient to
+falsify interference and insufficient to prove inertness for every trajectory, and we claim only
+the former.
+
+\subsection{Evidence tiers}
+
+Each programme contributing to this work carries one of five tiers, assigned mechanically from
+what survives in the session that produced this paper rather than from what was once true:
+\texttt{QUALIFIED} (recomputable from surviving hashed bytes and adjudicated in its own
+programme), \texttt{DEVELOPMENTAL} (recorded, but not produced under a freeze that would let it
+carry a claim), \texttt{INVALID} (adjudicated technically invalid), \texttt{LOST\_\allowbreak{}%
+DOCUMENTARY} (the programme ran, its narrative record exists elsewhere, its bytes do not), and
+\texttt{NOT\_\allowbreak{}TESTED}. The assignment is in
+\texttt{provenance/\allowbreak{}PAPER\_\allowbreak{}SOURCE\_\allowbreak{}BINDING.json}. Every
+confirmatory statement in the main text rests on \texttt{QUALIFIED} evidence only.
+
+\section{The operator and the observable}
+
+\subsection{Exact definition of the reported radius}
+
+Let $w_i$ be the occupancy of cell $i$ and $d_i$ its toroidal distance to the source cell. Sort
+the cells by $d$, form the cumulative sum of $w$ normalised by the total, and take
+\[
+r_q \;=\; d\!\left[\ \operatorname{searchsorted}\!\left(\ \frac{\operatorname{cumsum}(w_{\text{sorted by }d})}{N},\ q,\ \text{side}=\text{left}\right)\right],
+\quad\quad q = 0.8 .
+\]
+Three properties of this estimator matter for Section~5 of the main text and are stated in the
+source programme's own definition block: it is a finite-sample quantile of about $120$ particles
+and not a population quantity; it is a \emph{first crossing}, that is a minimum over $d$, and
+minima of noisy crossings are biased downwards; and it is supported on the discrete set of
+achievable toroidal distances.
+
+\subsection{Event order}
+
+The within-step order was read from the kinetics module: transport of each species in turn, then
+reaction, then decay, then feed and outflow. Because reaction runs after transport, a particle
+born in step $t$ takes no step in step $t$; and because every one of the
+\birthPositionTotalBirthRecords{} recorded births across \birthPositionArms{} arms occurred at the
+source cell exactly, with maximum offsets \birthPositionMaxAbsDy{} and
+\birthPositionMaxAbsDx{}, the point-source idealisation is a checked property rather than an
+assumption.
+
+\subsection{Where the closure fails}
+
+Conditional on the state the operator is exact. Taking expectations fails because the transport
+factor and the occupancy are functions of the same state. The relevant measured couplings, over
+\couplingArms{} arms, are: births equalled the minimum of available substrate and free capacity in
+\couplingFractionOfStepsWhereBirthsEqualMinnsxfree{} of steps, and the source cell had no free
+capacity in \couplingFractionOfStepsWithZeroFreeCapacityAtTheOrganiser{} of them. Hence
+\texttt{\closureFullOneStepConditionalOperator} for the conditional operator,
+\texttt{\closureStationaryProfileClosure} for the stationary profile, and
+\texttt{\closureMarginalDensityClosure} for the marginal density.
+
+\section{The equivalence margin, term by term}
+
+\input{S3_margin}
+
+\noindent
+The margin is applied to the distance between the observation and the construction's point
+prediction. It is not a band around zero. The construction predicted a deficit of
+$\cellStaticMedianConstructionPercent\pc$ for the static condition and
+$\cellMobileMedianConstructionPercent\pc$ for the mobile one; a tolerance built instead to contain the historical numbers would have had to be
+about twice as wide as this one.
+
+\section{The confirmation arms}
+
+Budget and rules were fixed before any arm ran: \budgetArmsPerCondition{} arms per condition, a
+hard cap of \budgetHardCapTotalArms{} in total, and
+\texttt{NO\_\allowbreak{}SEED\_\allowbreak{}REPLACEMENT}~\texttt{=}~\texttt{\budgetNoSeedReplacement}
+--- an extinction consumes its seed and is never replaced, rerun or deleted. In the event there
+were \freshExtinctions{} extinctions and \technicalTechnicallyInvalidRuns{} technically invalid
+runs, and all \freshArmsAnalysable{} arms were analysable.
+
+\input{S4_arms}
+
+\section{Endpoint arithmetic}
+
+\begin{center}
+\small
+\begin{tabular}{lrrr}
+\toprule
+& Static & Mobile & Ratio \\ \midrule
+Predicted            & \freshStaticPredicted  & \freshMobilePredicted  & \freshRatioPredicted \\
+Observed             & \freshStaticObserved   & \freshMobileObserved   & \freshRatioObserved \\
+Arms                 & \freshSMedianN         & \freshMMedianN         & --- \\
+Across-arm s.d.      & \freshSMedianSd        & \freshMMedianSd        & --- \\
+Across-arm s.e.      & \freshSMedianSe        & \freshMMedianSe        & --- \\
+Deviation (\%)       & \freshStaticDeviationPercent & \freshMobileDeviationPercent & \freshRatioDeviationPercent \\
+$95\pc$ lower (\%)   & \freshStaticCiNineFiveLow  & \freshMobileCiNineFiveLow  & \freshRatioCiNineFiveLow \\
+$95\pc$ upper (\%)   & \freshStaticCiNineFiveHigh & \freshMobileCiNineFiveHigh & \freshRatioCiNineFiveHigh \\
+Margin (\%)          & \equivalenceMarginPercent & \equivalenceMarginPercent & \equivalenceMarginPercent \\
+Pass                 & \freshStaticPass       & \freshMobilePass       & \freshRatioPass \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+Unity lies outside the ratio interval
+(\texttt{RATIO\_\allowbreak{}ONE\_\allowbreak{}EXCLUDED}~\texttt{=}~\texttt{\ratioOneExcluded}).
+The unit of analysis is the arm throughout; frames, steps, particles and birth events are never
+counted as replicates.
+
+\section{The historical record and the estimator surrogate}
+
+\subsection{The radial profile at every radius}
+
+\input{S6_radial}
+
+\noindent
+The mobile column rests on \radialProfileMobileArms{} arms and its largest standardised deviation
+is \radialProfileMaxAbsZ{}. The static column rests on \radialProfileStaticArms{} arms; its
+largest standardised deviation is \radialProfileStaticMaxAbsZ{}, at a radius where the absolute
+difference \radialProfileStaticMaxAbsDifference{} is no larger than at radii whose standardised
+deviation is below one. A standard error estimated from three arms can collapse by chance, and
+here it did. The flag recorded by the source programme is scoped
+\texttt{\radialProfileFlagScope{}}, and we report the static cell as not evaluated. It is printed
+above so that a reader can see exactly what was set aside, not because it supports anything.
+
+\subsection{The record by lattice size}
+
+\begin{center}
+\small
+\begin{tabular}{lrrr}
+\toprule
+& $L=36$ & $L=72$ & $L=96$ \\ \midrule
+Arms                     & \historicalLThreeSixMedianResidualN & \historicalLSevenTwoMedianResidualN & \historicalLNineSixMedianResidualN \\
+Median-rule residual (\%) & \historicalLThreeSixMedianResidualPercent & \historicalLSevenTwoMedianResidualPercent & \historicalLNineSixMedianResidualPercent \\
+Mean-rule residual (\%)   & \historicalLThreeSixMeanResidualPercent & \historicalLSevenTwoMeanResidualPercent & \historicalLNineSixMeanResidualPercent \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+The median-rule deficit is present at all three sizes and the mean-rule deficit is not, on
+identical frames.
+
+\subsection{The surrogate}
+
+The surrogate draws particles independently from the operator's own stationary law at the observed
+per-frame counts and applies the identical summary rule, over \iidStaticArms{} surrogate arms of
+\iidStaticFrames{} frames. It contains no lattice, no transport, no capacity and no source. Its
+biases are $\cellStaticMedianSurrogatePercent\pc$ and $\cellStaticMeanSurrogatePercent\pc$ in the
+static condition and $\cellMobileMedianSurrogatePercent\pc$ and
+$\cellMobileMeanSurrogatePercent\pc$ in the mobile one. Note that in the static condition the mean
+rule is the \emph{worse} of the two under the surrogate: the mean rule is not unbiased, only less
+biased where it matters.
+
+\subsection{The four summary cells under three accounts}
+
+\begin{center}
+\small
+\begin{tabular}{lrrr}
+\toprule
+Cell & Observed (\%) & Surrogate (\%) & Construction (\%) \\ \midrule
+static, median rule & \cellStaticMedianObservedPercent & \cellStaticMedianSurrogatePercent & \cellStaticMedianConstructionPercent \\
+static, mean rule   & \cellStaticMeanObservedPercent   & \cellStaticMeanSurrogatePercent   & \cellStaticMeanConstructionPercent \\
+mobile, median rule & \cellMobileMedianObservedPercent & \cellMobileMedianSurrogatePercent & \cellMobileMedianConstructionPercent \\
+mobile, mean rule   & \cellMobileMeanObservedPercent   & \cellMobileMeanSurrogatePercent   & \cellMobileMeanConstructionPercent \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+The construction's weakest cell is the mobile mean, where it predicts
+$\cellMobileMeanConstructionPercent\pc$ against $\cellMobileMeanObservedPercent\pc$ observed.
+
+\section{Constructions, ablations and the terms that were dropped}
+
+\input{S7_models}
+
+\noindent
+Removing the shared source trajectory collapses the within-arm standard deviation from
+\mSixDispersionMobileWithinArmSdSimulated{} to \ablationNoSharedTrajectoryWithinArmSd{}, onto the
+static width, and the median penalty collapses with it. Flattening the birth flux to a Poisson
+source of the same mean costs \ablationPoissonBirthsLosesPercentagePoints{} percentage points.
+In the two-by-two design the main effects are
+\mSixFactorialMainEffectSharedTrajectory{} and \mSixFactorialMainEffectBirthFlux{} percentage
+points with an interaction of $+\mSixFactorialInteraction{}$; the three quantities sum to the
+total by construction, so their sum is not independent evidence for any of them.
+
+\subsection{Terms measured and then dropped}
+
+\begin{center}
+\small
+\begin{tabular}{lll}
+\toprule
+Term & Size on the reported radius & Status \\ \midrule
+finite torus & unchanged at every size tested & \texttt{\secondaryStatusFiniteTorusCorrection} \\
+finite horizon & carried inside the construction & \texttt{\secondaryStatusFiniteTimeCorrection} \\
+intra-step order & \marginIntraStepOrderResidualPercent\pc & \texttt{\secondaryStatusIntraStepOrderCorrection} \\
+capacity rejection & \capacityImpliedChangeInREightZeroPercent\pc & \texttt{\secondaryStatusCapacityRejectionCorrection} \\
+endogenous source & retained & \texttt{\secondaryStatusEndogenousSourceCorrection} \\
+estimator & retained & \texttt{\secondaryStatusEstimatorCorrection} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+Capacity is negligible here for a reason that can be stated in one line: over a mean lifetime a
+particle is offered \capacityPerLifetimeOfferedHops{} hops and expects
+\capacityPerLifetimeExpectedRefusals{} refusals, so
+\capacityCertifiedFractionNeverRefused{} of particles are never refused at all, and removing that
+fraction of moves while concentrating every removal adversarially on outward moves changes the
+reported radius by \capacityImpliedChangeInREightZeroPercent\pc{}. The birth flux, by contrast, is
+over-dispersed at a variance-to-mean ratio of \birthFluxVarianceOverMean{} against $1$ for a
+Poisson source, and it is retained.
+
+\section{What is missing from this work, and why}
+
+\begin{center}
+\small
+\begin{tabular}{p{0.22\textwidth}p{0.16\textwidth}p{0.52\textwidth}}
+\toprule
+Evidence & Status & Consequence for this paper \\ \midrule
+Two earlier programmes on a different question &
+\texttt{LOST\_\allowbreak{}DOCUMENTARY} &
+Their raw archives did not survive the container resets during which this paper was written. No
+quantity, figure, table or abstract sentence draws on them; they appear in Section~7 of the main
+text as project history with no number attached. \\[4pt]
+A named earlier manuscript package &
+\texttt{NOT\_\allowbreak{}PRESENT} &
+No file in the repository is that package. This paper is therefore a companion rather than an
+extension, and makes no continuity claim against it. \\[4pt]
+Part of the raw record behind the historical arms &
+\texttt{DOCUMENTARY\_\allowbreak{}ONLY} &
+Those arms are described, never used as confirmatory replicates. Every confirmatory statement
+rests on the \freshArmsRun{} fresh arms. \\[4pt]
+Biological questions of the wider project &
+\texttt{NOT\_\allowbreak{}TESTED} &
+No surviving programme tests them, and none is asserted here in any direction. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+For the avoidance of doubt, repeated from the main text:
+
+\smallskip
+\noindent
+\begin{tabular}{@{}ll@{}}
+\texttt{H3\_STATUS} & \texttt{NOT\_TESTED} \\
+\texttt{REPRODUCTION\_STATUS} & \texttt{NOT\_TESTED} \\
+\texttt{HEREDITY\_STATUS} & \texttt{NOT\_TESTED} \\
+\texttt{AUTONOMOUS\_COHESION\_STATUS} & \texttt{NOT\_ESTABLISHED} \\
+\texttt{X\_LAWSPEC\_BASELINE} & \texttt{UNCHANGED} \\
+\texttt{ARCHITECTURE\_CHANGE\_NECESSITY} & \texttt{NOT\_ESTABLISHED} \\
+\end{tabular}
+
+\section{Reproducing the numbers in this paper}
+
+Each of the \nReconciliationRows{} rows of
+\texttt{provenance/\allowbreak{}PAPER\_\allowbreak{}NUMERICAL\_\allowbreak{}RECONCILIATION.json}
+carries a manuscript label, a value, its units, its estimand, its unit of analysis, its evidence
+tier, the source file and that file's SHA-256, the JSON path within the file, the recomputed
+value, the rounding rule, and the sections in which the value may appear. The macros used by the
+main text and this supplement are generated from that file by
+\texttt{code/\allowbreak{}emit\_\allowbreak{}numbers.py}, so a number cannot appear in the text
+unless it appears in the reconciliation first. The four main figures are regenerated by
+\texttt{code/\allowbreak{}make\_\allowbreak{}figures.py}, and each writes a source-data file
+alongside its PDF.
+
+\end{document}

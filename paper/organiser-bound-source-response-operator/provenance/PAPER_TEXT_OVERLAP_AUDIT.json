@@ -1,0 +1,88 @@
+{
+ "SECTION": "LRCPS01 §13 text overlap audit and §14 bibliography discipline",
+ "OUR_WORDS": 5815,
+ "METHOD": "exact 8-gram shingle intersection after removing LaTeX control sequences, markdown syntax and punctuation, plus an exact longest-common-contiguous-run computation over the word sequences",
+ "TARGETS": {
+  "docs/paper/MANUSCRIPT.md": {
+   "TARGET_WORDS": 1494,
+   "SHINGLE_LENGTH": 8,
+   "SHARED_SHINGLES": 0,
+   "SHARED_FRACTION_OF_OURS": 0.0,
+   "EVERY_SHARED_SHINGLE": [],
+   "LONGEST_COMMON_RUN_WORDS": 5
+  },
+  "docs/consolidation/SET_IDENTIFICATION_MANUSCRIPT.md": {
+   "TARGET_WORDS": 522,
+   "SHINGLE_LENGTH": 8,
+   "SHARED_SHINGLES": 0,
+   "SHARED_FRACTION_OF_OURS": 0.0,
+   "EVERY_SHARED_SHINGLE": [],
+   "LONGEST_COMMON_RUN_WORDS": 3
+  },
+  "docs/replication/THEOREM_MANUSCRIPT.md": {
+   "TARGET_WORDS": 653,
+   "SHINGLE_LENGTH": 8,
+   "SHARED_SHINGLES": 0,
+   "SHARED_FRACTION_OF_OURS": 0.0,
+   "EVERY_SHARED_SHINGLE": [],
+   "LONGEST_COMMON_RUN_WORDS": 2
+  },
+  "docs/paper/FINAL_CLAIM_TABLE.md": {
+   "TARGET_WORDS": 486,
+   "SHINGLE_LENGTH": 8,
+   "SHARED_SHINGLES": 0,
+   "SHARED_FRACTION_OF_OURS": 0.0,
+   "EVERY_SHARED_SHINGLE": [],
+   "LONGEST_COMMON_RUN_WORDS": 3
+  },
+  "docs/paper/PUBLICATION_READINESS.md": {
+   "TARGET_WORDS": 141,
+   "SHINGLE_LENGTH": 8,
+   "SHARED_SHINGLES": 0,
+   "SHARED_FRACTION_OF_OURS": 0.0,
+   "EVERY_SHARED_SHINGLE": [],
+   "LONGEST_COMMON_RUN_WORDS": 2
+  },
+  "OBFOR01/out/OBFOR01_FINAL_REPORT.md": {
+   "TARGET_WORDS": 3424,
+   "SHINGLE_LENGTH": 8,
+   "SHARED_SHINGLES": 2,
+   "SHARED_FRACTION_OF_OURS": 0.000355,
+   "EVERY_SHARED_SHINGLE": [
+    "h3 status not tested reproduction status not tested",
+    "status not tested autonomous cohesion status not established"
+   ],
+   "LONGEST_COMMON_RUN_WORDS": 8
+  },
+  "OBTR01/out/OBTR01_FINAL_REPORT.md": {
+   "TARGET_WORDS": 4937,
+   "SHINGLE_LENGTH": 8,
+   "SHARED_SHINGLES": 2,
+   "SHARED_FRACTION_OF_OURS": 0.000355,
+   "EVERY_SHARED_SHINGLE": [
+    "h3 status not tested reproduction status not tested",
+    "status not tested autonomous cohesion status not established"
+   ],
+   "LONGEST_COMMON_RUN_WORDS": 8
+  }
+ },
+ "WORST_TARGET": "OBFOR01/out/OBFOR01_FINAL_REPORT.md",
+ "WORST_LONGEST_COMMON_RUN_WORDS": 8,
+ "MAX_SHARED_FRACTION": 0.000355,
+ "BIBLIOGRAPHY": {
+  "N_ENTRIES": 11,
+  "N_CITED": 11,
+  "UNCITED_ENTRIES": [],
+  "CITATIONS_WITHOUT_AN_ENTRY": [],
+  "ENTRIES_STANDING_IN_FOR_OUR_OWN_RESULTS": [],
+  "SELF_CITATIONS": [],
+  "RULE": "every entry is a document that exists independently of this laboratory; no entry cites an internal programme, a session transcript, or a result of ours; anything we could not verify against a copy in this session is omitted entirely rather than guessed at"
+ },
+ "VERDICT": "NO_REUSED_PASSAGE",
+ "SHARED_SHINGLES_THAT_ARE_THE_MANDATED_STATUS_BLOCK": [
+  "h3 status not tested reproduction status not tested",
+  "status not tested autonomous cohesion status not established"
+ ],
+ "SHARED_SHINGLES_OUTSIDE_THE_MANDATED_BLOCK": [],
+ "NOTE_ON_THE_MANDATED_BLOCK": "The status lines are required to be reported verbatim, so they necessarily recur in every document of this programme. They are the only shared text found, and they are excluded from the reuse verdict for that reason, not hidden from it: every shared shingle is listed above."
+}

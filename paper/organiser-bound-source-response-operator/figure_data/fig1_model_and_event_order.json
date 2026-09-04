@@ -1,0 +1,38 @@
+{
+ "FIGURE": "fig1_model_and_event_order",
+ "CAPTION": "The model and the reported observable. (a) A point source on a periodic lattice with a per-cell capacity; the reported radius is the smallest achievable toroidal distance at which the empirical cumulative field first reaches 0.8. (b) The event order read directly from the kinetics module. The lattice sketch is schematic; no arrangement of particles in it is measured data.",
+ "SOURCE_FILES": {
+  "_mechanisms": "3398951266eea2597aa25fcf2237012127d3740fc7afb1ef3b7b95fb21dd15b3",
+  "_residual": "28cda160c1c0ff98976ed8fe3051cbcefee778bce0cb78e699a735923f3e2211"
+ },
+ "DATA": {
+  "EVENT_ORDER": [
+   "_diffuse(\"X\"",
+   "_diffuse(\"Y\"",
+   "_diffuse(\"SX\"",
+   "_diffuse(\"SY\"",
+   "_react()",
+   "_decay()",
+   "_feed_and_outflow()"
+  ],
+  "CONSTANTS": {
+   "L": 36,
+   "CAP": 16,
+   "S0": 3,
+   "phi": 0.2,
+   "omega": 0.05,
+   "muX": 0.004,
+   "kX": 1.0,
+   "p_hop": 0.10263340389897246,
+   "X_SEED": 4,
+   "BURN_IN": 2000,
+   "T_HORIZON": 11000,
+   "SAMPLE_EVERY": 50
+  },
+  "ESTIMATOR_PROPERTIES": [
+   "a finite-sample quantile of about 120 particles, not a population quantity",
+   "a FIRST CROSSING, i.e. a minimum over d, and minima of noisy crossings are biased downward",
+   "supported on the discrete set of achievable toroidal distances"
+  ]
+ }
+}

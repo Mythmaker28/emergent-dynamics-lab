@@ -1,0 +1,24 @@
+{
+ "SECTION": "LRCPS01 §18 terminal disposition",
+ "CANDIDATES": {
+  "MANUSCRIPT_V1_COMPLETE__INDEPENDENT_REVIEW_ELIGIBLE": "a complete compiled manuscript and supplement exist, every load-bearing claim is bound to surviving hashed bytes, the linter is at zero, and the next step is an adversarial read by a party that did not write it",
+  "MANUSCRIPT_V1_COMPLETE__REVIEW_BLOCKED_BY_NAMED_GAPS": "the manuscript compiles but a named gap prevents it being handed to a reviewer",
+  "MANUSCRIPT_NOT_COMPLETABLE__EVIDENCE_INSUFFICIENT": "the surviving evidence cannot support a manuscript at all",
+  "V3_EXTENSION_PRODUCED": "an existing manuscript package was extended rather than a companion written"
+ },
+ "TESTS": {
+  "a compiled manuscript exists": true,
+  "a compiled supplement exists": true,
+  "no placeholder text": true,
+  "LOAD_BEARING_CLAIM_LINT_ERRORS is zero": true,
+  "every load-bearing claim is bound": true,
+  "at least one QUALIFIED result carries the paper": true,
+  "no claim rests on LOST or NOT_TESTED evidence": true,
+  "no reused passage": true,
+  "the named V1/V2 package was extended": false
+ },
+ "DISPOSITION": "MANUSCRIPT_V1_COMPLETE__INDEPENDENT_REVIEW_ELIGIBLE",
+ "READINESS_SCORE": 86,
+ "JOURNAL_SUBMISSION": "FORBIDDEN_BY_THIS_MISSION__NOT_ATTEMPTED",
+ "WHAT_ELIGIBLE_DOES_NOT_MEAN": "Review-eligible is not submission-ready and is not a quality verdict. It means the package is in a state where an adversarial reader can attack it without first having to repair it. The three unearned readiness components are precisely what such a reader should go after."
+}
