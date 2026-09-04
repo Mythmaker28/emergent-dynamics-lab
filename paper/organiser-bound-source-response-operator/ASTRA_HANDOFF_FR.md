@@ -67,6 +67,9 @@ Aucune action technique bloquante. Ouvrir manuscript/MANUSCRIPT.pdf, puis supple
 
 Branche : astra/ising-life-manuscript-v2-final-seal-01.
 
-Base scientifique : 06c592313df96601de8d2a89676d5a5cf79fc414. Commit 8fd1b99 : journal initial. Commit 0a872ac : sources et rendus originaux du manuscrit, avant révision. La branche de base de la PR archive/ising-life-flcr01-recovered-06c5923 pointe sur le tip scientifique récupéré. Les références finales et l'URL de draft PR sont enregistrées dans provenance/GIT_DELIVERY.json et ajoutées ci-dessous après vérification distante.
+Base scientifique : 06c592313df96601de8d2a89676d5a5cf79fc414. Commit 8fd1b99 : journal initial. Commit 0a872ac : sources et rendus originaux du manuscrit, avant révision. La branche de base de la PR archive/ising-life-flcr01-recovered-06c5923 pointe sur le tip scientifique récupéré. Les références vérifiées sont enregistrées dans provenance/GIT_DELIVERY.json.
 
 Les archives originales, les autres checkouts sales et ai-credit-sweeper ont été préservés. La suppression des anciens documents redondants concerne uniquement la copie de manuscrit restaurée dans cette branche ; leurs versions originales restent dans 0a872ac.
+
+
+Révision scientifique V2 commitée et poussée : d59d61838705ffd5ffd0d6534a6a854e06148511. Draft PR ouverte et non fusionnée : https://github.com/Mythmaker28/emergent-dynamics-lab/pull/34. Un commit documentaire suivant enregistre cette remise ; les PDF et les sorties validées restent identiques.
