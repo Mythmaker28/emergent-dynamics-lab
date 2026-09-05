@@ -1,0 +1,483 @@
+{
+ "PROGRAM": "BOUNDED-POST-REMOVAL-TURNOVER-CALIBRATION-01",
+ "SHORT_NAME": "BPRTC01",
+ "GENERATED_UTC": "2026-08-23T00:03:17.028930+00:00",
+ "PARENT_TIP": "ca8031806a70ae23953599e8e6a38c181ff827db",
+ "PARENT_DISPOSITION": "BOUNDED_POST_REMOVAL_TURNOVER_DESIGN_DERIVED__EXPERIMENT_ELIGIBLE",
+ "FREEZE_IS_COMMITTED_ALONE_BEFORE_ANY_FRESH_WORLD": true,
+ "FRESH_ARCHIVES_EXISTING_AT_FREEZE_TIME": 0,
+ "POINT": {
+  "LABEL": "POINT_D10",
+  "p_hop_Y": 0.010263340389897247,
+  "muY": 9.261187281287937e-05,
+  "kY": 2.5118864315095822e-05,
+  "B1_p_hop_Y": 0.10263340389897246,
+  "ratio_to_B1": 0.1,
+  "ONLY_P_HOP_Y_CHANGED": "PASS",
+  "SPEC_DIFF_AGAINST_B1": {
+   "p_hop_Y": {
+    "B1": 0.10263340389897246,
+    "BPRTC01": 0.010263340389897247
+   }
+  },
+  "EXECUTION_PATH": [
+   "protocol_obtc02.spec_for",
+   "pqec01_observer.build_world(p_hop_Y=...)",
+   "lawspec_v2.spec_with",
+   "kinetics.World._one_step",
+   "self._diffuse(\"Y\", self.sp.p_hop_Y)",
+   "WorldOBTC._diffuse -> rng.binomial(n, p_hop/4.0)"
+  ],
+  "DERIVATION": "exact argmax of q_trigger * q_birth2 * q_turn over p_hop_Y with muY pinned at B1; flat within 5 % over p_hop_B1/8.6 .. p_hop_B1/12.2",
+  "INHERITED_FROZEN_CONSTANTS": {
+   "CAP": 16,
+   "S0": 3,
+   "phi": 0.2,
+   "omega": 0.05,
+   "muX": 0.004,
+   "kX": 1.0,
+   "L": 36,
+   "X_SEED": 4,
+   "p_hop_X": 0.10263340389897246,
+   "p_hop_Y_mobile": 0.10263340389897246,
+   "T_HORIZON": 11000,
+   "T_WINDOW": 9000,
+   "BURN_IN": 2000,
+   "CORE_R": 5.0,
+   "TAU_SEP": 125.0,
+   "ALPHA_SURVIVAL": 0.5,
+   "N_STAR": 10.0,
+   "GAMMA_SEP": 0.5,
+   "MIN_EVENTS": 1.0
+  }
+ },
+ "ENGINE": {
+  "path": "OBTC01/code/engine_obtc.py",
+  "sha256": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30",
+  "reimplementation_from_reports": "FORBIDDEN \u2014 the engine is imported, never retyped"
+ },
+ "NEW_PARAMETER_POINTS": 1,
+ "PARAMETER_RETUNING": "forbidden",
+ "ADAPTIVE_SAMPLE_SIZE": "forbidden",
+ "INTERPOLATION": "forbidden",
+ "NEW_SPECIES": 0,
+ "NEW_ARCHITECTURE": "forbidden",
+ "SUBSTRATE_CHANGE": "forbidden",
+ "CORE_R_CHANGE": "forbidden",
+ "kY_CHANGE": "forbidden",
+ "muY_CHANGE": "forbidden",
+ "DESIGN": {
+  "name": "DESIGN_S_SELECTIVE_ONLY",
+  "PRIMARY_SCIENTIFIC_WORLDS": 256,
+  "MAX_TECHNICAL_RESERVES": 6,
+  "RESERVES_MAY_ONLY_REPLACE_A_TECHNICAL_FAILURE": true,
+  "ONE_TRAJECTORY_PER_SEED": true,
+  "WHY_NO_SHAM_OR_GLOBAL_OFF": "derived in the parent handoff: this run makes no causal claim, the GLOBAL_OFF zero is structural because X birth is Y-gated, and SHAM was proven a bit-exact no-op in fixtures. Deferring both triples the worlds available for the scarce measurement.",
+  "NO_ADAPTIVE_TRANSFER_AFTER_OUTCOMES": true,
+  "ALLOCATION_FROZEN_IN_ADVANCE": true
+ },
+ "TRIGGER": {
+  "rule": "the frozen FDFLT01 functional maturation: a maximal run of exactly two spatial centres lasting NEED = 250 steps with no third centre in the run, and the weaker centre's local X mass at least F_PRIMARY = 1 - 1/e of the stronger's; the event is at run_start + NEED - 1",
+  "NEED": 250,
+  "F_PRIMARY": 0.6321205588285577,
+  "LATEST_ALLOWED_TRIGGER": 6500,
+  "UNCHANGED_FROM": "FDFLT01 via FMRT01 and FMRCT01"
+ },
+ "HORIZON": {
+  "T_HORIZON": 11000,
+  "EVERY_TRAJECTORY_RUNS_THE_FULL_HORIZON": true,
+  "ONLY_BREAK": "a genuine engine invariant failure, which is a technical fault, not an outcome"
+ },
+ "DESCENT_RULE": {
+  "module": "FMRCT01/code/fmrct01_descent.py",
+  "unchanged": true,
+  "literal_MRCI01_clause_4_reported_alongside": true
+ },
+ "IDENTITY_RULE": "FDOT01 link(): a link continues an identity only when the previous component has exactly one candidate within CORE_R and the current component has exactly one; ties, splits and merges all terminate the identity",
+ "RELAXING_THE_STRICT_IDENTITY_RULE": "forbidden",
+ "INTERVENTION": {
+  "arm": "SELECTIVE_PARENT_REMOVAL only",
+  "channel": "Y -> WY, the engine's declared organiser-off channel",
+  "deterministic": true,
+  "consumes_no_random_number": true,
+  "applied_in_line_at_t_m": true,
+  "descent_ambiguous": "NO REMOVAL. The world still runs the full horizon and still counts in the denominator; it contributes no measurement."
+ },
+ "TURNOVER_CRITERION": "COMPLETE: at least one Y birth AND at least one Y death inside ONE strict identity interval, both strictly after t_m, with the identity's Y count never reaching zero inside the interval",
+ "FUNCTIONAL_CRITERION": "ACTIVE_LOCAL_X_PRODUCTION: at least one X birth inside the identity strictly before the first post-removal Y death, at least one strictly after it, and the identity survives the death by at least one step",
+ "DESIGNATED_EPISODE": "one per independent world: the FIRST maximal run of consecutive steps t > t_m on which the primary daughter identity holds nY >= 2",
+ "MEASURED_DURATIONS": {
+  "EPISODE_DURATION_NY_GE_2": "gating, G3",
+  "TWO_Y_CHAIN_DURATION": "prediction test only, never gating"
+ },
+ "GATES": [
+  {
+   "id": "G1",
+   "name": "POST_REMOVAL_TWO_Y_WORLDS",
+   "statement": "the number of worlds carrying at least one post-removal nY >= 2 episode inside the primary daughter identity is at least 5",
+   "numerator": "N_WORLDS_WITH_DESIGNATED_EPISODE",
+   "denominator": "absolute count, not a rate",
+   "threshold": 5,
+   "comparison": ">=",
+   "predicted": 10.210397559595291
+  },
+  {
+   "id": "G2",
+   "name": "COMPLETE_TURNOVER_PRESENT",
+   "statement": "at least one COMPLETE constituent turnover strictly after parent removal, inside one primary daughter identity interval, under the unchanged strict identity rule",
+   "numerator": "N_WORLDS_WITH_COMPLETE_TURNOVER",
+   "denominator": "absolute count, not a rate",
+   "threshold": 1,
+   "comparison": ">=",
+   "predicted": 2.246295013778191
+  },
+  {
+   "id": "G3",
+   "name": "TWO_Y_EPISODE_DURATION_SHIFT",
+   "statement": "the median EPISODE_DURATION_NY_GE_2 over the designated episodes, censored observations included at their observed value, is at least 400 steps",
+   "numerator": "MEDIAN_EPISODE_DURATION_NY_GE_2",
+   "denominator": "the designated episodes, one per world",
+   "threshold": 400,
+   "comparison": ">=",
+   "predicted": 962,
+   "B1_measured": 132
+  },
+  {
+   "id": "G4",
+   "name": "DAUGHTER_EXTINCTION_RATE",
+   "statement": "the fraction of removed worlds in which the world's total Y mass reaches zero at some step in (t_m, HORIZON] is below 0.50",
+   "numerator": "N_WORLDS_DAUGHTER_EXTINCT",
+   "denominator": "N_WORLDS_REMOVED",
+   "threshold": 0.5,
+   "comparison": "<"
+  },
+  {
+   "id": "G5",
+   "name": "THIRD_CENTRE_RATE",
+   "statement": "the fraction of removed worlds in which the number of centres reaches 3 or more at some step in (t_m, HORIZON] is below 0.50",
+   "numerator": "N_WORLDS_THIRD_CENTRE",
+   "denominator": "N_WORLDS_REMOVED",
+   "threshold": 0.5,
+   "comparison": "<"
+  },
+  {
+   "id": "G6",
+   "name": "FUNCTION_ACROSS_EVERY_TURNOVER",
+   "statement": "every COMPLETE turnover counted by G2 also satisfies the unchanged functional criterion on both sides",
+   "numerator": "N_TURNOVERS_FUNCTIONAL",
+   "denominator": "N_WORLDS_WITH_COMPLETE_TURNOVER",
+   "threshold": 1.0,
+   "comparison": "==",
+   "note": "vacuously true if G2 fails; the conjunction with G2 is what carries the claim"
+  }
+ ],
+ "TECHNICAL_VALIDITY": {
+  "id": "G7",
+  "name": "TECHNICAL_VALIDITY",
+  "statement": "every primary world completed the full horizon with engine integrity intact; every removal removed exactly the parent identity's Y mass and nothing else; the runtime methods hash verification passed in every worker process; no seed, threshold, gate or classifier changed after C2",
+  "not_a_scientific_gate": true
+ },
+ "TERMINAL_DISPOSITIONS_ALLOWED": [
+  "BOUNDED_TURNOVER_DESIGN_TECHNICALLY_INVALID",
+  "NO_POST_REMOVAL_TURNOVER_POINT_IDENTIFIED_WITHIN_BOUNDED_DESIGN",
+  "ONE_POST_REMOVAL_TURNOVER_POINT_IDENTIFIED__FRESH_CAUSAL_CONFIRMATION_ELIGIBLE"
+ ],
+ "NO_FOURTH_RESULT": true,
+ "NO_POST_OUTCOME_SCIENTIFIC_REPAIRS": true,
+ "MAX_UNEXTERNALISED_COMPLETED_WORLDS": 16,
+ "PREDICTIONS": {
+  "p_hop_Y": 0.010263340389897247,
+  "muY": 9.261187281287937e-05,
+  "q_turn": 0.22000073950766194,
+  "q_birth2": 0.31584698183403725,
+  "q_trigger": 0.12627749435999508,
+  "median_two_Y_episode": 962,
+  "mean_two_Y_episode_muY0": 1428.8040611535853,
+  "survival_curve": {
+   "100": 0.9813461345084675,
+   "250": 0.9405431875393419,
+   "500": 0.8023956698135345,
+   "1000": 0.47884175608773794,
+   "2000": 0.14787887096095964,
+   "4000": 0.01375970256541117
+  },
+  "added_formation_delay": 1281.3860243251368,
+  "E_nY_ge_2_worlds_in_256": 10.210397559595291,
+  "E_complete_turnovers_in_256": 2.246295013778191,
+  "P_ge5_episodes": 0.9744852988680299,
+  "P_ge1_turnover": 0.8942095484656016,
+  "P_point_qualifies": 0.8713940590871478
+ },
+ "B1_REFERENCE": {
+  "q_turn_exact": 0.026752446544608517,
+  "q_turn_measured": 0.024449534422600155,
+  "q_birth2_exact": 0.34513926603899037,
+  "q_birth2_measured": 0.3283582089552239,
+  "median_two_Y_episode_exact": 116,
+  "median_two_Y_episode_measured": 132,
+  "two_Y_separation_scale_muY0": 147.41803682844846
+ },
+ "MODEL_STATUS": "MECHANISTIC_DESIGN_MODEL \u2014 a design instrument, NOT confirmatory evidence",
+ "SEEDS": {
+  "derivation": "seed = int(SHA256(parent_tip || BPRTC01 || selected_point || KIND || index)[:16],16) mod (2^32-1)",
+  "total": 262,
+  "unique": true,
+  "disjoint_from_every_surviving_registry": true,
+  "registries_checked": {
+   "FMRCT01/out/FMRCT01_SEED_MANIFEST.json": 380,
+   "FDOT01/out/FDOT01_SEED_MANIFEST.json": 166,
+   "FDFLT01/out/FDFLT01_SEED_MANIFEST.json": 198,
+   "FMRT01/out/FMRT01_SEED_BLOCK_MANIFEST.json": 85
+  }
+ },
+ "FIXTURES": {
+  "n_organisational_cases": 13,
+  "all_pass": true,
+  "two_independent_implementations": [
+   "bprtc01_episode.py (A)",
+   "bprtc01_episode_b.py (B)"
+  ],
+  "removal_channel_checked": true,
+  "diffusion_law_checked_against_the_engine": true
+ },
+ "CLAIM_CEILING": {
+  "even_a_full_pass_establishes_only": "ONE_POST_REMOVAL_TURNOVER_POINT_IDENTIFIED__FRESH_CAUSAL_CONFIRMATION_ELIGIBLE",
+  "may_not_establish": [
+   "minimal reproduction",
+   "self-reproduction",
+   "heredity",
+   "anything about a REGION of the architecture"
+  ],
+  "FMRCT01_PRIMARY_RESULT": "K_0_UNCHANGED, not rescored"
+ },
+ "UNCONDITIONAL": {
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "HEREDITY_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+  "X_LAWSPEC_BASELINE": "UNCHANGED",
+  "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED"
+ },
+ "NO_POOLING_WITH_ANY_PREVIOUS_EXPERIMENT": true,
+ "METHODS_MANIFEST": [
+  {
+   "path": "BPRTC01/code/bprtc01_analyse.py",
+   "sha256": "f7a1d7556db0d4de99091bd61fc4cdcb244ad1f778846a36b042f11f65cf887a",
+   "bytes": 8244,
+   "imported_as": "bprtc01_analyse",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_analyse.py"
+  },
+  {
+   "path": "BPRTC01/code/bprtc01_durability.py",
+   "sha256": "e14fb409fda4f74a3e30fb25a9482f21651360f5d37c993bc636278b3c5b6f34",
+   "bytes": 2825,
+   "imported_as": "bprtc01_durability",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_durability.py"
+  },
+  {
+   "path": "BPRTC01/code/bprtc01_episode.py",
+   "sha256": "5834440725705a91c90c9fef6f9d3633a3909db32978ed4a0b7ac6b5fc1fa029",
+   "bytes": 9081,
+   "imported_as": "bprtc01_episode",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_episode.py"
+  },
+  {
+   "path": "BPRTC01/code/bprtc01_episode_b.py",
+   "sha256": "98d0baf620f00adb0003a688f37014bc90552dc38e587a0173ebae4b6e22f739",
+   "bytes": 7790,
+   "imported_as": "bprtc01_episode_b",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_episode_b.py"
+  },
+  {
+   "path": "BPRTC01/code/bprtc01_fixtures.py",
+   "sha256": "60363cf20ebca8d964a9a1eb5715f406681bc3b0b8a621ddbab645e6dc41caa7",
+   "bytes": 16599,
+   "imported_as": "bprtc01_fixtures",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_fixtures.py"
+  },
+  {
+   "path": "BPRTC01/code/bprtc01_freeze.py",
+   "sha256": "dc3f260045b7c422546374569bbd821d9dd3a6f1be39b1d675707a01d867d60a",
+   "bytes": 8247,
+   "imported_as": "__main__",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_freeze.py"
+  },
+  {
+   "path": "BPRTC01/code/bprtc01_gates.py",
+   "sha256": "99b4ac67a86d709cc625215833f6871f4715ff2e9ce91356eccb68e152bcf4ff",
+   "bytes": 9762,
+   "imported_as": "bprtc01_gates",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_gates.py"
+  },
+  {
+   "path": "BPRTC01/code/bprtc01_predict.py",
+   "sha256": "6449dcd57bea262c1cfe952775892ef6744258b09b3e93a7fbe2d0a3a891bff6",
+   "bytes": 5351,
+   "imported_as": "bprtc01_predict",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_predict.py"
+  },
+  {
+   "path": "BPRTC01/code/bprtc01_run.py",
+   "sha256": "2da6ef3bebac5f2afaaed8e2a187dcbe377ba0b60fea424b98aa6ec0d89951c3",
+   "bytes": 8635,
+   "imported_as": "bprtc01_run",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_run.py"
+  },
+  {
+   "path": "BPRTC01/code/bprtc01_runtime.py",
+   "sha256": "40f7364fe04163000c5ba677589d57d24968300ba54c70b84d7aafa0a7766ed6",
+   "bytes": 1410,
+   "imported_as": "bprtc01_runtime",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_runtime.py"
+  },
+  {
+   "path": "BPRTC01/code/bprtc01_seeds.py",
+   "sha256": "19d46a2ca3a245a43d21947a97f84c68247367503862066160154823aea8fac6",
+   "bytes": 2113,
+   "imported_as": "bprtc01_seeds",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_seeds.py"
+  },
+  {
+   "path": "BPRTC01/code/bprtc01_select.py",
+   "sha256": "b89bd11e15b0e760a03e45946ce25810c6e5382e4c9b9e4038c472a2d436bd27",
+   "bytes": 3246,
+   "imported_as": "bprtc01_select",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_select.py"
+  },
+  {
+   "path": "BPRTC01/code/bprtc01_world.py",
+   "sha256": "35cecf23e40101c3f0df0649dbf3b8190080811abbb8821d15126705b3f24ad9",
+   "bytes": 1372,
+   "imported_as": "bprtc01_world",
+   "runtime_path": "/home/claude/edl/BPRTC01/code/bprtc01_world.py"
+  },
+  {
+   "path": "FDFLT01/code/fdflt01_endpoint.py",
+   "sha256": "144f2fe16a792a57e2791869fac14d50cdf4d313a9e752dfe0c6f1a2f0677066",
+   "bytes": 8621,
+   "imported_as": "fdflt01_endpoint",
+   "runtime_path": "/home/claude/edl/FDFLT01/code/fdflt01_endpoint.py"
+  },
+  {
+   "path": "FDOT01/code/fdot01_centres.py",
+   "sha256": "e53513d464ac4a332a652c947f2ceed0fad2e5bd23c4eaa8fabcb1c52d608333",
+   "bytes": 8731,
+   "imported_as": "fdot01_centres",
+   "runtime_path": "/home/claude/edl/FDOT01/code/fdot01_centres.py"
+  },
+  {
+   "path": "FDOT01/code/fdot01_world.py",
+   "sha256": "566ec83854a3ea66efce58b58dd3bbc162390e11d4a98af23657f10471b52cd8",
+   "bytes": 2297,
+   "imported_as": "fdot01_world",
+   "runtime_path": "/home/claude/edl/FDOT01/code/fdot01_world.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_descent.py",
+   "sha256": "32363c56dd7595567710ec17974b0f640c329c7beb4c803c4bdecfec751efa02",
+   "bytes": 3912,
+   "imported_as": "fmrct01_descent",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_descent.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_event_b.py",
+   "sha256": "aa1e891df608687b34548c19bd67d35fcb5b5059f2d3fc580ea27fca9e63cc27",
+   "bytes": 5074,
+   "imported_as": "fmrct01_event_b",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_event_b.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_track.py",
+   "sha256": "a276f254fdeb3fb4647b6c409bf4237207950b585904117531240ee9f7d2a213",
+   "bytes": 9980,
+   "imported_as": "fmrct01_track",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_track.py"
+  },
+  {
+   "path": "FMRCT01/code/fmrct01_world.py",
+   "sha256": "1980644f4f8e92d2485120b730ffc836f80baffd4edb5aefe8cad502f032a9f6",
+   "bytes": 4091,
+   "imported_as": "fmrct01_world",
+   "runtime_path": "/home/claude/edl/FMRCT01/code/fmrct01_world.py"
+  },
+  {
+   "path": "FMRT01/code/fmrt01_endpoint.py",
+   "sha256": "6f5e8c7092c785630a47cfa73edeaede1c2aafdd05a22327687ab5b1a84db30b",
+   "bytes": 2604,
+   "imported_as": "fmrt01_endpoint",
+   "runtime_path": "/home/claude/edl/FMRT01/code/fmrt01_endpoint.py"
+  },
+  {
+   "path": "FMRT01/code/fmrt01_identity.py",
+   "sha256": "686e0810f6c6b9b81c81c96e6c185b1decf79f98d98a0b79dc2c34ba48fc7aea",
+   "bytes": 2864,
+   "imported_as": "fmrt01_identity",
+   "runtime_path": "/home/claude/edl/FMRT01/code/fmrt01_identity.py"
+  },
+  {
+   "path": "MCM01/code/kinetics.py",
+   "sha256": "d6b9e24daefd9a9ddd42780fa24da444a344a2773bb7836a8e168e44f026c4c4",
+   "bytes": 7251,
+   "imported_as": "kinetics",
+   "runtime_path": "/home/claude/ORR01/code/kinetics.py"
+  },
+  {
+   "path": "OBTC01/code/engine_obtc.py",
+   "sha256": "2172deae5bbabf37238cf7712cb17663c151494befcf85505c537a7cac0ded30",
+   "bytes": 10167,
+   "imported_as": "engine_obtc",
+   "runtime_path": "/home/claude/OBTC02/code/engine_obtc.py"
+  },
+  {
+   "path": "OBTC01/code/guard_obtc.py",
+   "sha256": "ae6f6f241fdf7ae481e8443f135dbb276a0dc0d20d1d67da28d1f6710b7b5c9d",
+   "bytes": 4143,
+   "imported_as": "guard_obtc",
+   "runtime_path": "/home/claude/OBTC02/code/guard_obtc.py"
+  },
+  {
+   "path": "OBTC01/code/metrics_obtc.py",
+   "sha256": "8f7d4d5fd920653ced75ae65497e0470b67f074722e152605d62ebfbbb7e007c",
+   "bytes": 10382,
+   "imported_as": "metrics_obtc",
+   "runtime_path": "/home/claude/OBTC02/code/metrics_obtc.py"
+  },
+  {
+   "path": "OBTC02/code/gate_obtc02.py",
+   "sha256": "4857758f4aade1509ef5d7ca19566d2852197a2cc9dab6f24b81304acef3b7c7",
+   "bytes": 24743,
+   "imported_as": "gate_obtc02",
+   "runtime_path": "/home/claude/OBTC02/code/gate_obtc02.py"
+  },
+  {
+   "path": "OBTC02/code/protocol_obtc02.py",
+   "sha256": "0b39875cef0aea3fef2ba0beaab7516208d3f3e4d9bd351b880d30e2ada2c8fe",
+   "bytes": 10298,
+   "imported_as": "protocol_obtc02",
+   "runtime_path": "/home/claude/OBTC02/code/protocol_obtc02.py"
+  },
+  {
+   "path": "ORR01/code/lawspec_v2.py",
+   "sha256": "899b7158746d83fafe619b7308b31bdab4351a1e34cd3bb4e48d9b5609bbdf94",
+   "bytes": 8497,
+   "imported_as": "lawspec_v2",
+   "runtime_path": "/home/claude/ORR01/code/lawspec_v2.py"
+  },
+  {
+   "path": "ORR01/code/observe.py",
+   "sha256": "55840f35f44ccd424c4b71c80d591614d01c9143ca21e9c14e87e0faeeec2fbd",
+   "bytes": 13994,
+   "imported_as": "observe",
+   "runtime_path": "/home/claude/ORR01/code/observe.py"
+  },
+  {
+   "path": "PQEC01/code/pqec01_observer.py",
+   "sha256": "d8ff4b9da05c95641c7f69cef4c8b2ffe4c45f17975e8f348d5c5e0f2b6bba21",
+   "bytes": 8934,
+   "imported_as": "pqec01_observer",
+   "runtime_path": "/home/claude/edl/PQEC01/code/pqec01_observer.py"
+  }
+ ],
+ "N_METHODS_FILES": 31,
+ "CONTAINER_HEAD_AT_FREEZE": "3d811754b33b771e798faa56cfe824d0a15a2536"
+}

@@ -1,0 +1,310 @@
+{
+ "MISSION": "RPP98",
+ "SECTION": "test de capacité, exécuté avant l'ouverture de toute archive",
+ "PREREGISTRATION": "RPP98/out/RPP98_PREREGISTRATION.md",
+ "GENERATED_UTC": "2026-08-29T22:36:18+00:00",
+ "MULTI_MIN": 2,
+ "PERSISTENT_MIN_DUREE": 250,
+ "CASES": [
+  {
+   "case": "constante_a_1",
+   "note": "le monde reste un seul amas : aucun épisode",
+   "expected": [],
+   "got": [],
+   "PASS": true
+  },
+  {
+   "case": "un_plateau_de_17",
+   "note": "longueur exacte, bornes exactes",
+   "expected": [
+    {
+     "t_start": 30,
+     "t_end": 46,
+     "duree": 17,
+     "n_max": 2
+    }
+   ],
+   "got": [
+    {
+     "t_start": 30,
+     "t_end": 46,
+     "duree": 17,
+     "n_max": 2
+    }
+   ],
+   "PASS": true
+  },
+  {
+   "case": "deux_plateaux_separes",
+   "note": "deux, pas un",
+   "expected": [
+    {
+     "t_start": 10,
+     "t_end": 14,
+     "duree": 5,
+     "n_max": 2
+    },
+    {
+     "t_start": 60,
+     "t_end": 62,
+     "duree": 3,
+     "n_max": 2
+    }
+   ],
+   "got": [
+    {
+     "t_start": 10,
+     "t_end": 14,
+     "duree": 5,
+     "n_max": 2
+    },
+    {
+     "t_start": 60,
+     "t_end": 62,
+     "duree": 3,
+     "n_max": 2
+    }
+   ],
+   "PASS": true
+  },
+  {
+   "case": "creneau_un_pas",
+   "note": "durée 1, non persistant : vérifié plus bas",
+   "expected": [
+    {
+     "t_start": 20,
+     "t_end": 20,
+     "duree": 1,
+     "n_max": 2
+    }
+   ],
+   "got": [
+    {
+     "t_start": 20,
+     "t_end": 20,
+     "duree": 1,
+     "n_max": 2
+    }
+   ],
+   "PASS": true
+  },
+  {
+   "case": "separes_par_un_seul_pas",
+   "note": "l'erreur classique serait d'en faire un seul de 20",
+   "expected": [
+    {
+     "t_start": 10,
+     "t_end": 19,
+     "duree": 10,
+     "n_max": 2
+    },
+    {
+     "t_start": 21,
+     "t_end": 29,
+     "duree": 9,
+     "n_max": 2
+    }
+   ],
+   "got": [
+    {
+     "t_start": 10,
+     "t_end": 19,
+     "duree": 10,
+     "n_max": 2
+    },
+    {
+     "t_start": 21,
+     "t_end": 29,
+     "duree": 9,
+     "n_max": 2
+    }
+   ],
+   "PASS": true
+  },
+  {
+   "case": "bord_gauche",
+   "note": "commence au tout premier pas de la série",
+   "expected": [
+    {
+     "t_start": 0,
+     "t_end": 5,
+     "duree": 6,
+     "n_max": 2
+    }
+   ],
+   "got": [
+    {
+     "t_start": 0,
+     "t_end": 5,
+     "duree": 6,
+     "n_max": 2
+    }
+   ],
+   "PASS": true
+  },
+  {
+   "case": "bord_droit",
+   "note": "un épisode encore ouvert à la fin doit être fermé et rapporté",
+   "expected": [
+    {
+     "t_start": 35,
+     "t_end": 39,
+     "duree": 5,
+     "n_max": 2
+    }
+   ],
+   "got": [
+    {
+     "t_start": 35,
+     "t_end": 39,
+     "duree": 5,
+     "n_max": 2
+    }
+   ],
+   "PASS": true
+  },
+  {
+   "case": "n_max_au_milieu",
+   "note": "un seul épisode, n_max = 4",
+   "expected": [
+    {
+     "t_start": 10,
+     "t_end": 19,
+     "duree": 10,
+     "n_max": 4
+    }
+   ],
+   "got": [
+    {
+     "t_start": 10,
+     "t_end": 19,
+     "duree": 10,
+     "n_max": 4
+    }
+   ],
+   "PASS": true
+  },
+  {
+   "case": "zero_coupe",
+   "note": "zéro n'est pas une absence de donnée, c'est Y éteint",
+   "expected": [
+    {
+     "t_start": 10,
+     "t_end": 14,
+     "duree": 5,
+     "n_max": 2
+    },
+    {
+     "t_start": 16,
+     "t_end": 18,
+     "duree": 3,
+     "n_max": 2
+    }
+   ],
+   "got": [
+    {
+     "t_start": 10,
+     "t_end": 14,
+     "duree": 5,
+     "n_max": 2
+    },
+    {
+     "t_start": 16,
+     "t_end": 18,
+     "duree": 3,
+     "n_max": 2
+    }
+   ],
+   "PASS": true
+  },
+  {
+   "case": "trou_dans_t",
+   "note": "cinq pas manquants : deux épisodes, pas un de 40",
+   "expected": [
+    {
+     "t_start": 0,
+     "t_end": 19,
+     "duree": 20,
+     "n_max": 2
+    },
+    {
+     "t_start": 25,
+     "t_end": 39,
+     "duree": 15,
+     "n_max": 2
+    }
+   ],
+   "got": [
+    {
+     "t_start": 0,
+     "t_end": 19,
+     "duree": 20,
+     "n_max": 2
+    },
+    {
+     "t_start": 25,
+     "t_end": 39,
+     "duree": 15,
+     "n_max": 2
+    }
+   ],
+   "PASS": true
+  }
+ ],
+ "SEUIL_DE_PERSISTANCE": {
+  "duree_249": {
+   "duree": 249,
+   "persistant": false
+  },
+  "duree_250": {
+   "duree": 250,
+   "persistant": true
+  },
+  "duree_251": {
+   "duree": 251,
+   "persistant": true
+  }
+ },
+ "SEUIL_EST_UN_SUPERIEUR_OU_EGAL": true,
+ "TARDIF_ET_CHEVAUCHEMENT": {
+  "t_m_au_milieu": {
+   "chevauche": true,
+   "tardif": false
+  },
+  "commence_exactement_en_t_m": {
+   "chevauche": true,
+   "tardif": false
+  },
+  "commence_un_pas_apres_t_m": {
+   "chevauche": false,
+   "tardif": true
+  },
+  "entierement_avant_t_m": {
+   "chevauche": false,
+   "tardif": false
+  }
+ },
+ "TARDIF_EST_STRICT": true,
+ "MASSE_PARENT": {
+  "episode_au_premier_pas": null,
+  "episode_a_t_start_20": 137,
+  "valeur_attendue_a_19": 137
+ },
+ "MASSE_PARENT_EST_LUE_AU_BON_PAS": true,
+ "BORNE_DE_TRIVIALITE": {
+  "serie": "alternance 2,1,2,1 sur 1000 pas",
+  "n_episodes": 500,
+  "duree_max": 1,
+  "n_persistants": 0
+ },
+ "PEUT_RENDRE_BEAUCOUP_ET_AUCUN_PERSISTANT": true,
+ "PEUT_RENDRE_UN_PERSISTANT_TARDIF": true,
+ "ALL_CASES_PASS": true,
+ "MEASUREMENT_MAY_PROCEED": true,
+ "NO_ARCHIVE_WAS_OPENED_TO_PRODUCE_THIS_FILE": true,
+ "CODE_SHA256": {
+  "RPP98/code/rpp98_episodes.py": "0fcdf596402c9f255ea6b4b09778375dda4e6bccbf7b61305eb34ae2be412d5b",
+  "RPP98/code/rpp98_capability.py": "0b0dc5af862ca1fbdc3a09fd6387c3049981ebed4b4ac1a5f1a58c08b2b2c98a"
+ },
+ "CAPABILITY_CONTENT_HASH": "8f11a554ea6de35109df47ae3c2110f813197a504779513ba9bdb49ddb1631d7"
+}

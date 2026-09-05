@@ -1,0 +1,33 @@
+{
+ "MISSION": "EDL",
+ "EVENEMENT": "COUPURE DU PONT + VINGT-HUITIEME RETOUR ARRIERE",
+ "GENERATED_UTC": "2026-08-30T20:45:45+00:00",
+ "LA_SITUATION_INEDITE": "les deux evenements se sont produits ENSEMBLE : le pont vers l'ordinateur de l'operateur est tombe, et un retour arriere du conteneur est survenu pendant la coupure. C'est la premiere fois que la restauration etait impossible au moment ou elle devenait necessaire.",
+ "DUREE_DE_LA_COUPURE": "environ 07:00 a 20:00 UTC le 2026-08-30, verifiee absente a 07:22, 08:25, 09:28, 11:30, 15:32 et 19:34",
+ "HEAD_PENDANT_LA_COUPURE": "82f6c84",
+ "HEAD_RESTAURE": "41f6a8e",
+ "CE_QUI_A_ETE_FAIT_PENDANT_LA_COUPURE": [
+  "verifier que le troisieme canal tenait : le document du Projet decode proprement, tar.gz valide de 264 membres, 1 099 716 octets b64 — la version la plus recente",
+  "NE PAS depaqueter ce document sur l'arbre revenu en arriere : cela n'aurait ajoute aucune durabilite (copie d'un canal durable vers un canal qui ne l'est pas) et aurait desaligne l'arbre de travail de HEAD, compliquant la vraie restauration",
+  "NE RIEN commiter tant que HEAD valait 82f6c84",
+  "dire a l'operateur, des la premiere constatation, que rouvrir son application etait la seule action qui debloquait la situation",
+  "espacer les verifications de 60 a 120 puis 480 minutes plutot que de sonder a vide"
+ ],
+ "RESTAURATION": {
+  "sha256_du_paquet_de_base": "verifie AVANT le premier fetch",
+  "METHODS_HASH": "identique",
+  "hachages_de_contenu": "9 sur 9 identiques",
+  "retours_de_checker_verbatim": "4 sur 4 identiques a l'octet",
+  "porte_generique_et_bilan": "presents",
+  "reconstruction": "aucune"
+ },
+ "CE_QUE_L_INCIDENT_ETABLIT": "la chaine a tenu meme quand son canal principal etait injoignable pendant treize heures. Le point faible n'est pas la redondance des donnees — deux copies independantes ont suffi — mais le fait que l'historique git ne vit que sur le disque de l'operateur : le document du Projet porte les fichiers et pas la provenance. Ce n'est pas corrige ici et c'est note comme tel.",
+ "REFUS_MAINTENU": "push GitHub 403 par le proxy, non contourne, aucun jeton demande",
+ "STATUTS_INCHANGES": {
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "HEREDITY_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED"
+ },
+ "RECOVERY_CONTENT_HASH": "12e2aab9c1ae69365dc4a2b3c03abef95083e0f194010b5ce3a210746c20a0fb"
+}

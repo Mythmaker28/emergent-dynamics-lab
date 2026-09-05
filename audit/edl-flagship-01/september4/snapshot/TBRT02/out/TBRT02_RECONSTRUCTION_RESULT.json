@@ -1,0 +1,118 @@
+{
+ "MISSION": "TBRT02",
+ "SECTION": "reconstruction of the three archives the 23rd rollback destroyed",
+ "GENERATED_UTC": "2026-08-29T21:31:12+00:00",
+ "DECLARED_BEFORE_RUNNING": "TBRT02/out/TBRT02_RECONSTRUCTION_DECLARATION.md, commit e17e537",
+ "WHAT_THIS_IS": "three already-counted seeds re-executed to rebuild lost artefacts. No new seed, no ledger line added or modified, no counter touched, no record reopened.",
+ "CRITERION_FIXED_BEFORE": "the nine sha256 sealed in the ledger when the archives were first written, plus the three t_m. Nine for nine or nothing.",
+ "RESULT": {
+  "793": {
+   "seed": 2464723753,
+   "t_m_sealed": 1568,
+   "t_m_rebuilt": 1568,
+   "t_m_matches": true,
+   "runtime_s": 163.8,
+   "arms": {
+    "DISPLACED": {
+     "sealed_sha256": "90718677fa873a987a321dbaad7d74edee45a8c5c392657fc6c70711320a73b8",
+     "rebuilt_sha256": "90718677fa873a987a321dbaad7d74edee45a8c5c392657fc6c70711320a73b8",
+     "MATCHES": true,
+     "bytes": 3689450
+    },
+    "SELECTIVE": {
+     "sealed_sha256": "4b5edee39aaf16cec4a5fde3ae5167b93e1db0980a0bb181c4e8f260d0cd7f60",
+     "rebuilt_sha256": "4b5edee39aaf16cec4a5fde3ae5167b93e1db0980a0bb181c4e8f260d0cd7f60",
+     "MATCHES": true,
+     "bytes": 81471
+    },
+    "SHAM": {
+     "sealed_sha256": "3934b8737c29a677686d3ef02d592934a241dd1a2e442d1aa33affd758f199ac",
+     "rebuilt_sha256": "3934b8737c29a677686d3ef02d592934a241dd1a2e442d1aa33affd758f199ac",
+     "MATCHES": true,
+     "bytes": 79131
+    }
+   },
+   "ALL_THREE_ARMS_MATCH": true
+  },
+  "827": {
+   "seed": 2833493710,
+   "t_m_sealed": 919,
+   "t_m_rebuilt": 919,
+   "t_m_matches": true,
+   "runtime_s": 424.6,
+   "arms": {
+    "DISPLACED": {
+     "sealed_sha256": "3c71d35a796cc42d3a825499f3d3b36aaa7906dad3c9a0b7008b95aae02cad62",
+     "rebuilt_sha256": "3c71d35a796cc42d3a825499f3d3b36aaa7906dad3c9a0b7008b95aae02cad62",
+     "MATCHES": true,
+     "bytes": 4495868
+    },
+    "SELECTIVE": {
+     "sealed_sha256": "00a58aabbd2b5d493b6149e57a5428719702c7b56f768730c6ddcbf3c796edd6",
+     "rebuilt_sha256": "00a58aabbd2b5d493b6149e57a5428719702c7b56f768730c6ddcbf3c796edd6",
+     "MATCHES": true,
+     "bytes": 4050217
+    },
+    "SHAM": {
+     "sealed_sha256": "b8d31354f0d90318803de17c18a55536abaf37b31260ff86b9ef7adf4e84be6c",
+     "rebuilt_sha256": "b8d31354f0d90318803de17c18a55536abaf37b31260ff86b9ef7adf4e84be6c",
+     "MATCHES": true,
+     "bytes": 4427787
+    }
+   },
+   "ALL_THREE_ARMS_MATCH": true
+  },
+  "866": {
+   "seed": 573170435,
+   "t_m_sealed": 1006,
+   "t_m_rebuilt": 1006,
+   "t_m_matches": true,
+   "runtime_s": 295.9,
+   "arms": {
+    "DISPLACED": {
+     "sealed_sha256": "0b3bc95b4eb478384674438e40879ecba1a0bbc4e9f50abb201564ffc632b6b0",
+     "rebuilt_sha256": "0b3bc95b4eb478384674438e40879ecba1a0bbc4e9f50abb201564ffc632b6b0",
+     "MATCHES": true,
+     "bytes": 84624
+    },
+    "SELECTIVE": {
+     "sealed_sha256": "ebd2d61d49331cd4207eafe9c143be38bbd05ab172e80193c37ce1171f5fb50a",
+     "rebuilt_sha256": "ebd2d61d49331cd4207eafe9c143be38bbd05ab172e80193c37ce1171f5fb50a",
+     "MATCHES": true,
+     "bytes": 4103452
+    },
+    "SHAM": {
+     "sealed_sha256": "312f2d4b85e6ade6abeb8e61cc8da96a9374943df318c80124918f4dd1ac9b26",
+     "rebuilt_sha256": "312f2d4b85e6ade6abeb8e61cc8da96a9374943df318c80124918f4dd1ac9b26",
+     "MATCHES": true,
+     "bytes": 4586101
+    }
+   },
+   "ALL_THREE_ARMS_MATCH": true
+  }
+ },
+ "ARCHIVES_MATCHED": 9,
+ "ARCHIVES_ATTEMPTED": 9,
+ "ALL_NINE_MATCH": true,
+ "ALL_THREE_T_M_MATCH": true,
+ "RAW_COMPLETENESS_BEFORE": "38 of 41 triples",
+ "RAW_COMPLETENESS_AFTER": "41 of 41 triples",
+ "WHAT_THIS_ALSO_SHOWS": "an end-to-end reproducibility check the mission never planned. The methods were restored from two independent channels \u2014 the git bundles on the owner's disk and the base64 payload in the claude.ai Project \u2014 and the same seeds under those restored methods produced byte-identical archives. Determinism of the pipeline across a full container loss is therefore demonstrated, not assumed. It is reported because it passed; had it failed, the failure would have been the finding and the files would have been discarded.",
+ "WHAT_IT_DOES_NOT_SHOW": "nothing about the world. This is the reproducibility of a computation, not evidence about any object in it. No result, threshold, count or record changed.",
+ "METHODS_HASH": "21571fb4cb1df9ac2e9089924e9d6ee5d4d63c920a007e188bdc24e0d94d1f99",
+ "METHODS_HASH_UNCHANGED_SINCE_C2": true,
+ "SEEDS_CONSUMED_UNCHANGED": 885,
+ "VALID_TRIPLES_UNCHANGED": 41,
+ "ARM_INSTANCES_UNCHANGED": 609.51703,
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+ "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED",
+ "CLEA01_STATUS": "CLOSED__LINEAGE_ROUTE_PAUSED__NOT_REOPENED",
+ "TBRT02_STATUS": "CLOSED__RAW_COMPLETE__PRIMARY_ADJUDICATION_INCONCLUSIVE_BY_CONSTRUCTION",
+ "RECON_CONTENT_HASH": "45c0ff68de90ef011f2dec56bab313e46603089daf69a1ce9838933a3d8bf9b5"
+}

@@ -1,0 +1,7 @@
+# EDL-ASTRA-FLAGSHIP-PAPER-01
+
+Role: Astra primary. Started 2026-09-05; starting HEAD bcf352e94aca212c37dda22edea0a03895646963, clean owned worktree. User supplies missing bundle and requests best complete paper; suggested mandate permits independent subagents and continuing PR35. Current task scope: source adjudication, scientific choice, complete English paper/supplement, checks and four independent reviews. No publication/merge/DOI. No new worlds unless justified; existing data first.
+OBSERVED: bundle SHA256 and complete-history verify pass; root recovery tip b391a73978f515e50738e8fade20c389cf131d8b, eight commits. Imported to separate recovery ref and copied exact blobs into bounded snapshot, no history merge. Original user trees untouched.
+INFERRED: missing source permits CCRA/28-findings audit. No claim of resolution before inspection.
+HYPOTHESIS: a complete scoped paper can be written from verified evidence; flagship strength may remain limited. FALSIFIER: independent reviewers find irreparable load-bearing errors or missing data.
+Failures: none in bundle verification. Actions: exact-byte snapshot and manifest, recovery branch publication before analysis edits. Important inputs: user-supplied prompt treated as guidance; AGENTS contract and earlier scientific boundaries retained when compatible with current mandate. Run will append conclusions, reviews, validation, final Git state, handoff and failures here before delivery.

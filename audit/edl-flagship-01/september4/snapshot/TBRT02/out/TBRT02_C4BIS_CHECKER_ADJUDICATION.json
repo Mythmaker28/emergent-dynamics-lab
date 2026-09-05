@@ -1,0 +1,220 @@
+{
+ "MISSION": "TBRT02",
+ "SECTION": "C4-bis \u2014 the adversarial checker's findings, adjudicated",
+ "GENERATED_UTC": "2026-08-28T06:09:36+00:00",
+ "C4_IS_NOT_REWRITTEN": "C4 stands at commit 9bebfda exactly as it was submitted. The checker's return stands verbatim at 803457e, sha256 15bdd90cba3db1e6000a880c735f34355e9dfe3a99d5c2d15df33b60fe651c67. This file is the response.",
+ "PARENT_C4_CONTENT_HASH": "bae660a9c873531e990e54e5921204894c3763b73a4419124579b1af5c40ecb3",
+ "EVERY_CHECKER_FIGURE_I_RECHECKED_REPRODUCED": true,
+ "WHAT_I_RECHECKED_MYSELF_RATHER_THAN_TRUSTING": [
+  "R5 recomputed from c_cid with my own row reconstruction and my own neighbourhood code",
+  "the A-versus-B field comparison over all 123 world-arms",
+  "parent-to-daughter and competitor-to-daughter Chebyshev distances over all 41 triples",
+  "the right-censoring counts per arm",
+  "the non-degenerate-lineage counts per arm",
+  "the capability search instrumented for survival, size and adjacency",
+  "the addendum content-hash reproduction attempt over every subset of its four candidate fields"
+ ],
+ "F1": {
+  "severity": "MATERIAL, LOAD-BEARING",
+  "verdict": "ACCEPTED IN FULL",
+  "what_the_checker_showed": "a fifth reading \u2014 a cell of CERTAIN(daughter) and a cell of DESC(competitor) carrying the SAME c_cid at the same step, i.e. belonging to the same body under FDOT01's frozen component rule (toroidal single-linkage at CORE_R = 5.0, written into every archive row) \u2014 is computable with no free parameter and is NOT vacuous.",
+  "MY_INDEPENDENT_REPRODUCTION": {
+   "R1_fired": 0,
+   "R2_fired": 17,
+   "R5_fired": 17,
+   "out_of": 41,
+   "R5_first_fire_steps_after_t_m_min_med_max": [
+    383,
+    1076,
+    1745
+   ],
+   "R2_first_fire_steps_after_t_m_min_med_max": [
+    562,
+    1252,
+    1983
+   ],
+   "R5_world_set_equals_R2_world_set": true,
+   "R5_strictly_earlier_than_R2_in_every_fired_world": true,
+   "R5_indices": [
+    94,
+    279,
+    312,
+    321,
+    365,
+    391,
+    415,
+    491,
+    511,
+    545,
+    566,
+    573,
+    593,
+    595,
+    636,
+    724,
+    827
+   ]
+  },
+  "WHAT_I_WITHDRAW": "C4's THE_HEADLINE says 'the only reading its own words support'. That is FALSE and is withdrawn. C4 section 7's CONCLUSION 'the frozen refutation condition is VACUOUS' is narrowed to: THE STRICT CELL-MEMBERSHIP READING (R1) IS VACUOUS.",
+  "WHAT_SURVIVES": "the induction and the capability search are untouched \u2014 R1 cannot fire, and that remains proved and searched. What fails is my claim that R1 exhausted the readings.",
+  "WHY_I_MISSED_IT": "I enumerated readings over the objects my own instrument already produced \u2014 cells and quanta \u2014 and never over the object the freeze's own question names. The freeze asks about 'an organisation issued from the daughter' and a source 'it could wrongly absorb'. Both are body-level nouns. The body was already defined and already in the archives, in a column I had loaded and not used.",
+  "WHAT_R5_DOES_NOT_LICENCE": "R5 was constructed after the numbers were known, by the checker, and reproduced after the numbers were known, by me. It CANNOT be used to declare Model C refuted. A post-hoc reading that fires is worth exactly as much as a post-hoc reading that does not: nothing, as adjudication. Both are reported; neither adjudicates."
+ },
+ "F2": {
+  "severity": "MATERIAL",
+  "verdict": "ACCEPTED \u2014 the decision stands, the argument is replaced",
+  "what_C4_argued": "the statistic is identically zero by construction, so there is no parameter to bound. That premise is exactly what F1 narrows, so it is reading-dependent.",
+  "THE_ARGUMENT_THAT_REPLACES_IT": "chronology. The readings R1/R2/R3 were declared at commit 2a78e68, AFTER the raw closed at ec4f83b. No operationalisation of the frozen sentence predates the data. Two defensible post-hoc readings of the same sentence disagree about whether the event occurred: R1 gives 0 of 41, R5 gives 17 of 41. A zero-event anytime-valid bound requires the STATISTIC \u2014 not merely the admissibility rule \u2014 to be fixed independently of the data. It was not. The bound is therefore inadmissible whatever R1's status.",
+  "the_number_is_still_printed_not_suppressed": 0.070461,
+  "the_instrument_itself_is_not_impugned": "the addendum's construction is sound and remains available to any successor whose statistic is fixed before the raw."
+ },
+ "F3": {
+  "severity": "MINOR",
+  "verdict": "ACCEPTED \u2014 my stated root cause was WRONG",
+  "MY_RECOMPUTATION": {
+   "A_vs_B_differences_on_daughter_side_fields_over_123_world_arms": {
+    "CERTAIN_duration": 0,
+    "POSSIBLE_duration": 0,
+    "CERTAIN_exposure": 0,
+    "POSSIBLE_exposure": 0,
+    "CERTAIN_max_cells": 0,
+    "CERTAIN_steps": 0,
+    "POSSIBLE_steps": 0,
+    "R1_rows": 0,
+    "R2_rows": 0
+   },
+   "parent_to_daughter_chebyshev_min_med_max": [
+    5,
+    10,
+    17
+   ],
+   "competitor_to_daughter_chebyshev_min_med_max": [
+    17,
+    18,
+    18
+   ]
+  },
+  "what_I_claimed": "that leaving the parent's Y in the t_m row disqualifies daughter-adjacent cells from CERTAIN in SELECTIVE and DISPLACED.",
+  "why_it_is_wrong": "the minimum parent-to-daughter Chebyshev distance over the 41 triples is 5. A parent cell is never inside the Moore-1 neighbourhood of a daughter cell, so it can never be a source of one. The mechanism cannot bite in any of these worlds.",
+  "consequence": "variants A and B are identical on every daughter-side quantity in all 123 world-arms. C4 section 10 presents them as two blocks; they are one. Variant B changes only the competitor seeding, and only in the 3 worlds where the displaced quantum hopped on the first step. B remains the correct initial condition \u2014 the checker agrees \u2014 but it is a correctness repair, not an independent corroboration."
+ },
+ "F4": {
+  "severity": "MINOR (underclaim)",
+  "verdict": "ACCEPTED",
+  "correction": "R3 is not merely not computable from these archives; it is provably vacuous. Y birth is autocatalytic (p = min(1, kY * nX * nY), hence p = 0 wherever nY = 0), so Y can never appear in a cell holding no Y, and the per-step Y displacement is at most Chebyshev 1. Every Y quantum in a cell at t+1 therefore came from that cell's Moore-1 sources at t. The same induction closes at the mass level. No re-run with a tagged-mass tracker could rescue R1.",
+  "secondary": "the mechanism C4 gave for R3's non-computability is also wrong: a hop ledger would not recover quantum identity either, because it records counts moved and only X is tracked by identity.",
+  "I_did_not_independently_rerun_the_engine_to_confirm_this": true
+ },
+ "F5": {
+  "severity": "MINOR to MATERIAL for the summary blocks",
+  "verdict": "ACCEPTED",
+  "correction": "every duration in C4 sections 10 and 12 is right-censored at the horizon and C4 never says so.",
+  "MY_RECOMPUTATION_variant_B": {
+   "SHAM": {
+    "CERTAIN_right_censored_of_41": 8,
+    "POSSIBLE_right_censored_of_41": 34
+   },
+   "SELECTIVE": {
+    "CERTAIN_right_censored_of_41": 29,
+    "POSSIBLE_right_censored_of_41": 29
+   },
+   "DISPLACED": {
+    "CERTAIN_right_censored_of_41": 16,
+    "POSSIBLE_right_censored_of_41": 33
+   }
+  },
+  "reading": "SELECTIVE's CERTAIN_duration median of 10093 is, in 29 of 41 worlds, simply the horizon. The censoring is heavier in the arm with the longer durations, so the reported contrasts are attenuated lower bounds rather than inflated \u2014 but reporting a censored quantity as a duration without saying so is a reporting defect, and it is conceded."
+ },
+ "F6": {
+  "severity": "MINOR",
+  "verdict": "ACCEPTED",
+  "correction": "DESC is a POSSIBLE-descendant closure. It certifies actual descent only while it is disjoint from POSSIBLE(daughter); after first contact a DESC cell may hold daughter-descended mass. The pooled DESC_duration and DESC_max_cells figures in C4 section 9 are therefore upper bounds, not measurements, and the block label 'competitor viability' overstates them.",
+  "what_survives": "the specific claim that no world left the displaced mass without descendants is sound: under variant B the minimum descendant lifetime is 49 steps and first contact never occurs before step 562, so descent is certified in all 41 before any ambiguity can arise."
+ },
+ "F7": {
+  "severity": "MINOR (framing)",
+  "verdict": "ACCEPTED \u2014 and this is the sentence I should have written",
+  "MY_RECOMPUTATION_non_degenerate_lineage_object_variant_B": {
+   "SHAM": "26/41",
+   "SELECTIVE": "0/41",
+   "DISPLACED": "17/41"
+  },
+  "THE_SENTENCE": "relative to the untreated control, the displacement REDUCED rather than increased the frequency of a non-degenerate lineage object: 17 of 41 treated worlds against 26 of 41 in SHAM. Both numbers were in C4 and I did not subtract them.",
+  "why_that_happens": "the displacement moves the competing source to Chebyshev 17-18 from the daughter, so the two fronts meet less often than when the parent is simply left where it is. The intervention bought ground truth about WHICH source a cell descends from, and paid for it in contact frequency.",
+  "what_it_does_not_mean": "SHAM is not a treatment and its 26 of 41 is not a better result; it is the untreated baseline against which the treatment must be judged, and on this metric the treatment did not beat it."
+ },
+ "F8": {
+  "severity": "MINOR",
+  "verdict": "ACCEPTED \u2014 the proof as written was incomplete",
+  "the_gap": "C4's proof cites Chebyshev >= 2 for the base case at t_m, where >= 1 would do, and omits the step where >= 2 is actually load-bearing: in variant A the competitor set is INJECTED outside the recursion at t_m+1, and an induction does not cover an injected set.",
+  "the_patch": "the competitor cell has no daughter cell in its Moore-1 neighbourhood precisely because separation >= 2, so its source set at t_m does not meet CERTAIN(t_m); a non-empty source set is required for CERTAIN membership, so the injected cell cannot itself be in CERTAIN(t_m+1). With that step added the induction closes for both variants.",
+  "measured": "competitor-to-daughter Chebyshev is 17 to 18 in the 41 worlds, against a required minimum of 2."
+ },
+ "F9": {
+  "severity": "COSMETIC",
+  "verdict": "ACCEPTED",
+  "correction": "the intersections are evaluated only after the first update, so t = t_m itself is never tested. Unreachable here given the enforced separation, but a successor that relaxed the separation would lose a t_m-time firing silently. Recorded as a known instrument gap."
+ },
+ "F10": {
+  "severity": "MINOR",
+  "verdict": "ACCEPTED on both halves",
+  "overstatement_withdrawn": "C4 says the synthetic worlds are 'unconstrained by the engine's physics \u2014 cells free to appear and vanish'. They are not: every cell of the next row is drawn inside the Moore-1 neighbourhood of the current live sets. The code says so; the C4 prose did not.",
+  "MY_INSTRUMENTED_RERUN": {
+   "rows_both_sets_alive": 136895,
+   "rows_CERTAIN_adjacent_to_DESC": 7560,
+   "worlds_with_adjacency": 1548,
+   "CERTAIN_survival_steps_median": 51,
+   "CERTAIN_survival_steps_mean": 41.8,
+   "CERTAIN_max_size_median": 17
+  },
+  "reading": "over the same 4000 worlds the frozen branch's CERTAIN set survives a median of 51 of 60 steps and reaches a median maximum of 17 cells; both sets are alive together on 136895 rows; and the two live sets are Moore-1 ADJACENT on 7560 rows across 1548 worlds \u2014 in direct contact, and the intersection still never occurred. That is stronger evidence for R1's vacuity than the control alone, and C4 did not have it."
+ },
+ "F11": {
+  "severity": "MINOR",
+  "verdict": "ACCEPTED",
+  "correction": "C4 pins METHODS_HASH, which covers acquisition, and pins nothing that produced its own numbers. The analysis code and the frozen Model C are pinned here.",
+  "ANALYSIS_CODE_SHA256": {
+   "TBRT02/code/tbrt02_lineage_c4.py": "bdeab11f78432286dfbad2bfaa5305fd59eecca3d075bc26ffcde18209d02238",
+   "TBRT02/code/tbrt02_r1_capability.py": "148e601fef408e4e73f56cddaf56ade2e643f56053a0170dfc384175a1607ef5",
+   "TBRT02/code/tbrt02_c4_close.py": "12e746c926d8dc48e7461789483c389b229dece6db16239f5fcbf904bf6903ce",
+   "TBRT02/code/tbrt02_r5_independent.py": "fd1b2f3e3ebb3ae170d206446560fcf87bd278a96c55300d3430ee9b6622aadf",
+   "TBRT02/code/tbrt02_capability_instrumented.py": "ffaf9f2397f7556d7dd106daaca781c5ce987f01ca51229bfcd416e914eb90c1",
+   "TBRT02/code/tbrt02_c4bis_close.py": "56bcb60e16a3b5115a50655ca830d578e9fea7ceb444a2400c8f58dc61034d95",
+   "CLEA01/code/clea01_lineage_i1.py": "798a88e03567ba81eae82fcac06bfff596f8e6ee3e2b4d337d558b5b96518b6d",
+   "FDOT01/code/fdot01_centres.py": "e53513d464ac4a332a652c947f2ceed0fad2e5bd23c4eaa8fabcb1c52d608333"
+  },
+  "known_gap_left_open_and_declared": "the variant-A per-archive files were written by a build of the enumerator predating commit ee7338e, which added the variant machinery. The checker regenerated 15 archives on the current variant-A path and found 0 mismatches. Given F3 \u2014 A and B agree on every daughter-side field anyway \u2014 nothing in the conclusions rests on those files, but the provenance gap is recorded rather than papered over."
+ },
+ "F12": {
+  "severity": "MINOR",
+  "verdict": "ACCEPTED \u2014 and verified here rather than quoted",
+  "stored_ADDENDUM_CONTENT_HASH": "faa9ff993fe24e0f32047b7e2c95d489a335e10d43b6175712b7ea6df8a0fbc0",
+  "reproduces_under_any_subset_of_its_four_candidate_excluded_fields": null,
+  "control_the_three_that_do_verify": {
+   "FREEZE_CONTENT_HASH": true,
+   "C3_CONTENT_HASH": true,
+   "C4_CONTENT_HASH": true
+  },
+  "consequence": "the addendum's self-hash provides no integrity guarantee for the pre-registered readings C4 quoted from it. Its git provenance is single-commit and clean, and the value quoted at n = 41 was independently recomputed from the closed form. Inherited defect, recorded, not repaired here \u2014 repairing another mission's frozen artefact is not this mission's business."
+ },
+ "WHAT_C4_SAID_THAT_STILL_STANDS_AFTER_THE_CHECK": [
+  "the refutation condition was frozen in words and never operationalised in code before the raw",
+  "R1 cannot fire \u2014 proved, and searched over 4000 worlds including 7560 rows of direct contact",
+  "the sequential bound must not be reported (for the chronological reason of F2, not C4's)",
+  "SELECTIVE reproduces CLEA01's degeneracy on 41 of 41 worlds",
+  "two defects in my own enumeration, found and corrected before use, both recorded",
+  "no claim about lineage, heredity, reproduction or life is made anywhere"
+ ],
+ "WHAT_THIS_EXPERIMENT_ADJUDICATES": "nothing. The frozen primary condition cannot discriminate under the strict reading and no reading was fixed before the data under any other. The mission produced 41 clean triples, an intact raw, and a demonstration that its own adjudicating instrument was not built.",
+ "H3_STATUS": "NOT_TESTED",
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "HEREDITY_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+ "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED",
+ "CLEA01_STATUS": "CLOSED__LINEAGE_ROUTE_PAUSED__NOT_REOPENED",
+ "MODEL_C_STATUS": "NOT_REFUTED AND NOT CORROBORATED BY THIS EXPERIMENT",
+ "C4BIS_CONTENT_HASH": "c290b1cacb1779532907a4327ba77223d3b7bc7008dc8f7e407d80b274534a44"
+}

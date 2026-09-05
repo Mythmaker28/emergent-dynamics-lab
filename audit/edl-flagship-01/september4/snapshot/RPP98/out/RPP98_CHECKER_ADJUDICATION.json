@@ -1,0 +1,208 @@
+{
+ "MISSION": "RPP98",
+ "GENERATED_UTC": "2026-08-29T23:05:00+00:00",
+ "CHECKER_RETURN_VERBATIM": "RPP98/out/RPP98_CHECKER_RETURN_VERBATIM.md",
+ "CHECKER_RETURN_SHA256": "b03c6396a79eb4181459003d6e034276d11a7025892dcf99a365f3ad20a4d6c0",
+ "CHECKER_RETURN_COMMITTED_BEFORE_THIS_FILE": "bf47b4d",
+ "N_FINDINGS": 16,
+ "N_ACCEPTED": 16,
+ "N_REJECTED": 0,
+ "FINDINGS": {
+  "F1_THE_QUESTION_WAS_ALREADY_ANSWERED": {
+   "verdict": "ACCEPTED",
+   "gravite": "FATALE — c'est la mission entiere",
+   "constat": "§1 et le message de commit 15f0ab3 declarent que la trajectoire complete de n_components n'a jamais ete examinee. C'est faux. TLMR01 l'a examinee et publiee.",
+   "ce_que_j_ai_verifie_moi_meme": {
+    "fichier": "TLMR01/out/TLMR01_ANALYSIS.json",
+    "GENERATED_UTC": "2026-08-25T14:07:05.834284+00:00 — quatre jours avant RPP98",
+    "loi": "PER_LAW.LAW_C_MCTT01 — la loi exacte que TBRT02 fait tourner",
+    "N_WORLDS": 256,
+    "M1_transitions_1_vers_2_ou_plus": {
+     "k": 8292,
+     "n_pas_a_un_centre": 1541980,
+     "taux": 0.005378
+    },
+    "M2_runs_multi_centres": {
+     "n": 16368,
+     "atteignant_la_maturation": 44,
+     "terminators": {
+      "FORMED_A_THIRD_CENTRE": 8434,
+      "MERGED_TO_ONE_CENTRE": 7900,
+      "LOST_A_CENTRE_TO_A_SINGLE_Y": 34
+     }
+    },
+    "M4_median_horizon_fraction_single_centre": 0.7496818181818181
+   },
+   "pourquoi_c_est_ma_question": "« combien, quand, et pendant combien de temps la separation tient-elle » EST M1 (combien), M2 (combien de temps et comment ca finit) et M4 (la fraction du temps). Mon n_episodes = 4760 est le numerateur de M1 restreint aux 123 archives de TBRT02 ; le taux par pas se reproduit a 2 pour cent du taux LAW_C publie par TLMR01.",
+   "ce_que_ma_section_0_a_fait": "elle a balaye le retour du checker de RPP97 et rien d'autre. Elle filtre les resultats deja vus et ne cherche pas les travaux anterieurs du programme. J'ai meme cite TLMR01/code/tlmr01_world.py par son chemin dans mes propres DEFINITIONS sans ouvrir tlmr01_offline.py a cote.",
+   "consequence": "RPP98 est retiree. Ce n'est pas une restriction, c'est un retrait."
+  },
+  "F2_THE_COUNTED_EVENT_IS_NOT_THE_CLAIMED_EVENT": {
+   "verdict": "ACCEPTED",
+   "gravite": "FATALE pour le titre",
+   "constat": "j'ai emprunte le seuil du declencheur gele (250) et pas son objet. Le declencheur court sur l'etat EXACTEMENT deux centres, qu'un troisieme centre brise, plus une porte locale sur X. Mon episode fusionne deux-et-plus.",
+   "ce_que_j_ai_verifie_moi_meme": {
+    "episodes_tardifs_persistants": 148,
+    "dont_n_max_atteint_3_ou_plus": 146
+   },
+   "chiffre_du_checker_que_je_n_ai_pas_recalcule": "5 des 148 contiennent un run de 250 pas dans l'etat gele ; 2 franchiraient les portes gelees ; dans les deux, les composantes font 1 et 1, ou 1 et 2 cellules",
+   "consequence": "le titre du commit f0403d4 est une affirmation sur la question du declencheur, appuyee sur le comptage d'un evenement strictement plus faible. 148 dans 87 archives contre 2 dans 41 mondes."
+  },
+  "F3_THREEFOLD_PSEUDO_REPLICATION": {
+   "verdict": "ACCEPTED",
+   "gravite": "PORTANTE pour tous les n publies",
+   "constat": "le meme constat que RPP97 a accepte quatre commits plus tot, repete a l'identique.",
+   "ce_que_j_ai_verifie_moi_meme": {
+    "prefixe_s_0_a_t_m_identique_entre_les_trois_bras": "41 / 41",
+    "unite_independante_reelle": "41 graines, pas 123 archives"
+   },
+   "consequence": "« 87 archives sur 123 » est une redite au triple de « 41 mondes sur 41 ». Toutes les distributions poolees a n=123 ou n=4760 sont surevaluees."
+  },
+  "F4_PERSISTENCE_BY_CONSTRUCTION": {
+   "verdict": "ACCEPTED",
+   "gravite": "PORTANTE",
+   "ce_que_j_ai_verifie_moi_meme": {
+    "n_components_a_t_m_vaut_2": "123 / 123",
+    "duree_min_de_l_episode_qui_enjambe_t_m": 250,
+    "tous_persistants": true
+   },
+   "consequence": "123 des 274 episodes persistants sont persistants par la definition meme de t_m. n_chevauchant_t_m = 123 n'est pas une observation, c'est un forcage. Le minimum publie de la fraction de temps, 0.0227..., est exactement 250/11000."
+  },
+  "F5_MASSE_PARENT_IS_ABSOLUTE_TIME": {
+   "verdict": "ACCEPTED",
+   "gravite": "PORTANTE — c'est la deuxieme erreur fatale de RPP97",
+   "ce_que_j_ai_verifie_moi_meme": {
+    "pearson_t_start_masse_parent": 0.826,
+    "spearman": 0.771,
+    "mediane_masse_parent_episodes_avant_t_m": 2,
+    "mediane_masse_parent_episodes_tardifs": 92,
+    "mediane_masse_parent_tardifs_PERSISTANTS": 13
+   },
+   "consequence": "le couple MASSE_PARENT_TOUS / MASSE_PARENT_TARDIFS que la section 3 met cote a cote est une comparaison de dates. Et les separations qui tiennent se produisent dans des mondes petits ou mourants — mediane 13 cellules — pas dans les nuages tardifs de 200 cellules. Je m'etais premuni contre la forme DENSITE de l'erreur de RPP97 et je suis entre dans sa forme TEMPS."
+  },
+  "F6_UNNORMALISED_AGAINST_AN_ARM_DEPENDENT_DENOMINATOR": {
+   "verdict": "ACCEPTED",
+   "gravite": "PORTANTE — c'est le defaut fatal de RPP97 reformule",
+   "ce_que_j_ai_verifie_moi_meme": {
+    "tardifs_par_1000_pas_VIVANTS_apres_t_m_mediane": {
+     "SHAM": 4.17,
+     "SELECTIVE": 3.78,
+     "DISPLACED": 3.48
+    }
+   },
+   "consequence": "le premier quartile SELECTIVE de 1 episode tardif n'est pas un fait sur les separations : ce sont 12 mondes morts. Normalise par l'exposition, le contraste entre bras disparait. Le denominateur correct, n_zero_steps, est calcule par rpp98_measure.py et jamais utilise."
+  },
+  "F7_SECTION_4_CHECKED_THE_CALENDAR_NOT_THE_WINDOW": {
+   "verdict": "ACCEPTED",
+   "gravite": "PORTANTE — la section 4 existe pour empecher exactement ca",
+   "ce_que_j_ai_verifie_moi_meme": {
+    "fraction_de_la_fenetre_post_t_m_ou_Y_est_encore_vivant": {
+     "SHAM": {
+      "moyenne": 0.954,
+      "min": 0.0298,
+      "archives_sous_50_pourcent": "2/41"
+     },
+     "SELECTIVE": {
+      "moyenne": 0.718,
+      "min": 0.0016,
+      "archives_sous_50_pourcent": "12/41"
+     },
+     "DISPLACED": {
+      "moyenne": 0.891,
+      "min": 0.0131,
+      "archives_sous_50_pourcent": "5/41"
+     }
+    }
+   },
+   "consequence": "« il n'y a rien a tronquer » etait vrai du calendrier et faux de la fenetre. Elle est vide par extinction, et differentiellement dans le bras dont l'intervention cause l'extinction."
+  },
+  "F8_TRIVIALITY_BOUND_TESTS_THE_DIMENSION_THAT_COULD_NOT_FAIL": {
+   "verdict": "ACCEPTED",
+   "gravite": "PORTANTE pour les sections 5 et 6",
+   "consequence": "SECTION_6_NUL_2 est inatteignable par construction (F4) et le fichier l'enregistre comme un false mesure. La trivialite reelle est de TAILLE, pas de duree : un grain d'une cellule a plus de cinq cellules pendant 400 pas produit un « episode persistant ». k_ncells de la SECONDE composante etait dans le meme tableau, deja ouvert."
+  },
+  "F9_SELECTIVE_TRUNCATES_THE_t_m_EPISODE_AT_t_m": {
+   "verdict": "ACCEPTED",
+   "gravite": "PORTANTE pour DUREE_TOUS_EPISODES",
+   "ce_que_j_ai_verifie_moi_meme": {
+    "n_components_a_t_m_plus_1_vaut_1": {
+     "SELECTIVE": "41/41",
+     "SHAM": "0/41",
+     "DISPLACED": "0/41"
+    }
+   },
+   "consequence": "41 durees mecaniquement tronquees a exactement 250 sont poolees sans marqueur dans la distribution des durees. Et ma frontiere tardif = strictement apres t_m coincide avec post-intervention par accident : je l'ai justifiee par la strictesse, pas par la semantique de l'archive."
+  },
+  "F10_A_THREE_ARM_CONTRAST_WITH_NO_TEST": {
+   "verdict": "ACCEPTED",
+   "gravite": "PORTANTE",
+   "consequence": "cinq distributions par bras cote a cote, sans test, sans intervalle, sans denominateur, et sans dire que les trois bras d'une graine ne sont pas independants. Ce que le tableau montre, c'est F6 et F5."
+  },
+  "F11_SELECTIVE_APPLICATION_OF_MY_OWN_HONESTY_LABEL": {
+   "verdict": "ACCEPTED",
+   "gravite": "MATERIELLE",
+   "consequence": "n_archives_avec_tardif_persistant = 87 n'est pas une grandeur pre-enregistree et c'est le chiffre que mon commit met en avant, non etiquete. t_start et n_max, inoffensifs, sont mis en quarantaine avec des excuses. L'etiquette est posee la ou elle ne coute rien."
+  },
+  "F12_SECTION_0_FILTERED_OUTCOMES_AND_DISCARDED_INHERITED_ERRORS": {
+   "verdict": "ACCEPTED",
+   "gravite": "MATERIELLE — c'est le mecanisme qui a laisse passer F3 et F7",
+   "consequence": "ma section 0 reprend six grandeurs mesurees du checker de RPP97 et aucun de ses constats de METHODE, alors que j'avais accepte les quinze. Un dispositif d'honnetete oriente dans un seul sens."
+  },
+  "F13_masse_parent_IS_A_CELL_COUNT_CALLED_A_MASS_AND_parent_IS_A_FORBIDDEN_NOUN": {
+   "verdict": "ACCEPTED",
+   "gravite": "MATERIELLE",
+   "consequence": "k_ncells compte des CELLULES ; k_nY, la masse de Y, est dans la colonne d'a cote, inutilisee. Et ma section 9 interdit de supposer qu'un objet s'est scinde, puis je nomme un attribut masse_parent, defini a t_start-1 : la regle de vocabulaire garde la prose et pas le schema. Le checker note aussi que la branche None ne peut jamais se declencher — l'extinction de Y est absorbante — donc ma docstring soigne un cas impossible."
+  },
+  "F14_THE_CAPABILITY_GATE_IS_POSITIONED_WHERE_THE_LAST_MISSION_DID_NOT_FAIL": {
+   "verdict": "ACCEPTED",
+   "gravite": "MATERIELLE",
+   "consequence": "le detecteur est correct — le checker l'a attaque avec ses propres entrees et n'a rien trouve. Mais MEASUREMENT_MAY_PROCEED ne certifie que lui. Les trois erreurs portantes de RPP97 etaient toutes dans la traduction scientifique, aucune dans un detecteur. J'ai blinde la porte ou l'on n'etait pas entre."
+  },
+  "F15_THE_MEASURE_NEVER_CHECKS_THE_ARCHIVES_AGAINST_THE_SEALS": {
+   "verdict": "ACCEPTED",
+   "gravite": "MATERIELLE pour la provenance, non portante",
+   "consequence": "rpp98_measure.py lit le registre scelle pour ADMISSIBLE et ne lit jamais d[sha256]. Le checker a fait la verification a ma place : 123/123 concordent, 0 ecart, 0 manquant, et meta.t_m concorde 123/123."
+  },
+  "F16_MINOR": {
+   "verdict": "ACCEPTED",
+   "gravite": "COSMETIQUE",
+   "consequence": "DEFINITIONS ne dit pas que l'adjacence est EUCLIDIENNE — en Chebyshev-5 la serie differerait sur 12 pour cent des pas ; dist() rapporte des moyennes a cote de medianes sur des comptages tres asymetriques ; le registre est lu sans dedoublonnage, sauf par une assertion en aval."
+  }
+ },
+ "RPP98_STATUS": "WITHDRAWN__THE_QUESTION_WAS_ALREADY_ANSWERED_BY_TLMR01__AND_THE_COUNTED_EVENT_IS_NOT_THE_CLAIMED_EVENT",
+ "CE_QUI_EST_RETIRE": [
+  "la question de la section 1 comme question NEUVE — elle ne l'est pas",
+  "le titre du commit f0403d4 : « la fenetre du declencheur n'est pas le seul lieu ou la question se pose » — affirme a la portee du declencheur, etabli pour un evenement plus faible",
+  "« 87 archives sur 123 » a la portee de l'archive — l'unite est la graine, 41",
+  "les deux grandeurs masse_parent comme description d'autre chose que du temps absolu",
+  "le tableau par bras comme contraste — il montre l'extinction differentielle, pas les separations"
+ ],
+ "CE_QUI_TIENT": {
+  "arithmetique": "le checker a tout recalcule avec son propre code : chaque chiffre publie se reproduit, les sept blocs dist() a la derniere decimale, et les hachages de contenu et de code verifient",
+  "le_detecteur": "correct, y compris sur les entrees adverses que le checker a construites",
+  "la_provenance_des_archives": "123/123 sha256 concordent avec le registre scelle, 0 ecart",
+  "MAIS": "un calcul juste d'une grandeur deja publiee sur une question deja repondue n'est pas un resultat. La reproductibilite computationnelle de RPP98 est etablie ; sa contribution scientifique est nulle."
+ },
+ "LE_CONSTAT_SUR_MOI_PLUTOT_QUE_SUR_LA_MISSION": "deux missions de suite retirees. J'ai ecrit les sections 0, 3 et 4 de RPP98 specifiquement pour ne pas repeter les quatre echecs de RPP97, et trois des quatre sont revenus : le temps absolu (F5), la statistique non normalisee (F6), la fenetre vide par construction (F7), plus la pseudo-replication au triple que j'avais acceptee quatre commits plus tot (F3). Un dispositif ecrit contre une erreur nommee ne protege pas contre la meme erreur deguisee. Et le constat fatal, F1, ne relevait d'aucun raffinement statistique : il suffisait de chercher dans le depot avant de geler la question.",
+ "CE_QUE_JE_CHANGE_EN_PROCEDURE_ET_NON_EN_INTENTION": [
+  "PORTE 1 — ANTERIORITE : avant qu'un pre-enregistrement soit gele, un agent adverse dont l'unique tache est de trouver dans le depot un travail anterieur repondant a la question. Cout : un agent. Aurait tue RPP98 avant l'ouverture de la premiere archive.",
+  "PORTE 2 — UNITE : l'unite independante est la graine de base. A ecrire dans le code d'agregation, pas dans la prose.",
+  "PORTE 3 — CONFONDANTS OBLIGATOIRES : toute grandeur rapportee est testee contre le temps absolu et contre l'exposition (pas vivants) avant d'etre publiee, pas apres.",
+  "PORTE 4 — L'OBJET AVANT LE SEUIL : si un seuil est emprunte a une definition gelee, l'ETAT auquel il s'applique doit etre le meme etat, ou la difference doit etre ecrite au titre."
+ ],
+ "STATUTS_INCHANGES": {
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "HEREDITY_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+  "X_LAWSPEC_BASELINE": "UNCHANGED",
+  "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+  "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+  "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED",
+  "CLEA01_STATUS": "CLOSED__LINEAGE_ROUTE_PAUSED__NOT_REOPENED",
+  "TBRT02_STATUS": "CLOSED__RAW_COMPLETE__PRIMARY_ADJUDICATION_INCONCLUSIVE_BY_CONSTRUCTION",
+  "RPP97_STATUS": "WITHDRAWN_AS_A_DESCRIPTION__ARITHMETIC_SOUND__SCIENCE_MIS_SPECIFIED"
+ },
+ "VOCABULAIRE": "rien ici ne porte sur ce que ces objets sont. Ni division, ni corps qui se divise : l'attribut masse_parent lui-meme est retire du vocabulaire (F13).",
+ "ADJUDICATION_CONTENT_HASH": "1e7c195e67cb5d157e9bb07b633deea856ae8002f87e46e6e977522a3852d270"
+}

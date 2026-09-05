@@ -1,0 +1,426 @@
+{
+ "MISSION": "RPP98",
+ "TERMS": [
+  "n_components",
+  "single_centre",
+  "two_centre",
+  "terminators",
+  "MERGED_TO_ONE_CENTRE",
+  "descent",
+  "run_length"
+ ],
+ "GENERATED_UTC": "2026-08-29T23:07:02+00:00",
+ "N_FLAGGED": 25,
+ "RULE": "un fichier est signale s'il mentionne au moins DEUX des termes. Chaque fichier signale doit recevoir un VERDICT et une REASON avant le gel. Un seul ANSWERS_THE_QUESTION interdit de geler la question telle quelle.",
+ "VERDICTS_ADMIS": [
+  "ANSWERS_THE_QUESTION",
+  "ADJACENT_BUT_DIFFERENT",
+  "IRRELEVANT"
+ ],
+ "FLAGGED": {
+  "TLMR01/code/tlmr01_analysis_fixture.py": {
+   "terms_found": [
+    "single_centre",
+    "two_centre",
+    "terminators",
+    "MERGED_TO_ONE_CENTRE"
+   ],
+   "n_terms": 4,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "\"M4\":{\"single_centre_steps\":sum(expo.values()),\"by_occupancy\":expo,",
+    "\"failure_modes\":{\"deadline\":0,\"not_exactly_two_centres\":0,",
+    "\"terminators\":{\"MERGED_TO_ONE_CENTRE\":eps.get(n,0)-mat.get(n,0)}}",
+    "\"terminators\":{\"MERGED_TO_ONE_CENTRE\":eps.get(n,0)-mat.get(n,0)}}"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "TLMR01/code/tlmr01_design.py": {
+   "terms_found": [
+    "n_components",
+    "two_centre",
+    "MERGED_TO_ONE_CENTRE",
+    "descent"
+   ],
+   "n_terms": 4,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "\"also_recorded\":\"the FULL transition table n_components(t) -> n_components(t+1) by n, so \"",
+    "\"failure_modes_reported_separately\":[\"deadline\",\"not_exactly_two_centres\",\"local_x_ratio\"],",
+    "\"outcomes\":[\"MATURED_TO_FUNCTIONAL_MATURITY\",\"MERGED_TO_ONE_CENTRE\",\"FORMED_A_THIRD_CENTRE\",",
+    "\"note\":\"of 6 triggers, 2 were TRIGGER_DESCENT_AMBIGUOUS and 1 REMOVAL_NOT_APPLIED\"},"
+   ],
+   "VERDICT": "ANSWERS_THE_QUESTION",
+   "REASON": "annonce la table de transition COMPLETE n_components(t) -> n_components(t+1) par n, explicitement pour qu'aucune definition ulterieure d'une separation n'exige de relance."
+  },
+  "TLMR01/code/tlmr01_offline.py": {
+   "terms_found": [
+    "single_centre",
+    "two_centre",
+    "terminators",
+    "MERGED_TO_ONE_CENTRE"
+   ],
+   "n_terms": 4,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "return {\"single_centre_steps\":tot,\"by_occupancy\":by,",
+    "\"GATE_exactly_two_centres\":bool(len(cl)==2),",
+    "n=e[\"n_at_separation\"]; d=by.setdefault(n,{\"episodes\":0,\"matured\":0,\"terminators\":{}})",
+    "\"C\":\"MERGED_TO_ONE_CENTRE\",\"F\":\"INTEGRITY_FAULT\"}.get(nx,\"UNCLASSIFIED\")"
+   ],
+   "VERDICT": "ANSWERS_THE_QUESTION",
+   "REASON": "le code qui calcule M1, M2 et M4 en parcourant la trajectoire complete, for t in range(A.T)."
+  },
+  "TLMR01/out/TLMR01_ANALYSIS.json": {
+   "terms_found": [
+    "single_centre",
+    "two_centre",
+    "terminators",
+    "MERGED_TO_ONE_CENTRE"
+   ],
+   "n_terms": 4,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-25T14:07:05.834284+00:00",
+   "sample_lines": [
+    "\"M4_single_centre_exposure\": {",
+    "\"not_exactly_two_centres\": 0,",
+    "\"terminators\": {",
+    "\"MERGED_TO_ONE_CENTRE\": 263,"
+   ],
+   "VERDICT": "ANSWERS_THE_QUESTION",
+   "REASON": "M1 = 8292 transitions vers deux centres ou plus ; M2 = 16368 runs multi-centres dont 44 atteignant la maturation, avec terminateurs ; M4 = fraction mediane de l'horizon a un seul centre 0.7497. Publie le 2026-08-25 pour LAW_C_MCTT01 sur 256 mondes. C'est combien, quand et combien de temps — la question de RPP98 mot pour mot."
+  },
+  "FIMRCC01/code/fimrcc01_independent.py": {
+   "terms_found": [
+    "two_centre",
+    "terminators",
+    "MERGED_TO_ONE_CENTRE"
+   ],
+   "n_terms": 3,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "\"GATE_exactly_two_centres\":bool(len(cl)==2),",
+    "n=e[\"n_at_separation\"]; d=by.setdefault(n,{\"episodes\":0,\"matured\":0,\"terminators\":{}})",
+    "\"C\":\"MERGED_TO_ONE_CENTRE\",\"F\":\"INTEGRITY_FAULT\"}.get(st[j+1],\"UNCLASSIFIED\")"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "LDFMA01/code/ldfma01_raw.py": {
+   "terms_found": [
+    "terminators",
+    "MERGED_TO_ONE_CENTRE",
+    "descent"
+   ],
+   "n_terms": 3,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "\"episode_terminators\":{},",
+    "\"C\":\"MERGED_TO_ONE_CENTRE\",\"F\":\"INTEGRITY_FAULT\"}.get(st[j+1],\"UNCLASSIFIED\")",
+    "* the state machine, the link rule, the descent rule, the maturation run detector, the gates,"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "TLMR01/code/tlmr01_report.py": {
+   "terms_found": [
+    "single_centre",
+    "two_centre",
+    "terminators"
+   ],
+   "n_terms": 3,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "m=d[\"M4_single_centre_exposure\"]",
+    "fm.get(\"deadline\",0),fm.get(\"not_exactly_two_centres\",0),fm.get(\"local_x_ratio\",0)))",
+    "a(\"| terminators `INTEGRITY_FAULT`, `UNCLASSIFIED` | unreachable by construction; the integrity flag is per world and the run is maximal |\")"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "TLMR01/out/HANDOFF_FRESH_INTEGRATED_MINIMAL_REPRODUCTION_CAUSAL_CONFIRMATION_01.md": {
+   "terms_found": [
+    "n_components",
+    "two_centre",
+    "terminators"
+   ],
+   "n_terms": 3,
+   "kind": "published",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "run: at every step, `len(comps) == s.n_components`, component ids contiguous `0..k-1`, and the",
+    "| `failure_modes.not_exactly_two_centres` | the frozen state S already requires exactly two centres |",
+    "| terminators `INTEGRITY_FAULT`, `UNCLASSIFIED` | unreachable by construction |"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "TLMR01/out/TLMR01_CHECKER_ADJUDICATION.json": {
+   "terms_found": [
+    "n_components",
+    "two_centre",
+    "terminators"
+   ],
+   "n_terms": 3,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-25T14:41:23.983398+00:00",
+   "sample_lines": [
+    "\"action\": \"Recorded in a tautology register so no successor inherits it as evidence. The gate's PASS is not withdrawn from the frozen record \\u2014 the freeze is not rewritten \\u2014 but it is annotated as carrying no information. The check it should have been is the checker's own: len(comps) == s.n",
+    "\"adjudication\": \"Upheld on all three. ONLY_Y_LAW_FIELDS_DIFFER tests a dict for having the keys it was built with. failure_modes.not_exactly_two_centres cannot fire because state S already requires ncen == 2. INTEGRITY_FAULT and UNCLASSIFIED terminators are unreachable by construction. The checker a",
+    "\"adjudication\": \"Upheld on all three. ONLY_Y_LAW_FIELDS_DIFFER tests a dict for having the keys it was built with. failure_modes.not_exactly_two_centres cannot fire because state S already requires ncen == 2. INTEGRITY_FAULT and UNCLASSIFIED terminators are unreachable by construction. The checker a"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "TLMR01/out/TLMR01_MEASUREMENT_OBJECTS.json": {
+   "terms_found": [
+    "n_components",
+    "two_centre",
+    "MERGED_TO_ONE_CENTRE"
+   ],
+   "n_terms": 3,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-24T22:51:47.549130+00:00",
+   "sample_lines": [
+    "\"also_recorded\": \"the FULL transition table n_components(t) -> n_components(t+1) by n, so no later definition of a fork needs a re-run\",",
+    "\"not_exactly_two_centres\",",
+    "\"MERGED_TO_ONE_CENTRE\","
+   ],
+   "VERDICT": "ANSWERS_THE_QUESTION",
+   "REASON": "definit M1, M2 et M4 comme objets de mesure du programme, un jour avant leur publication."
+  },
+  "FIMRCC01/code/fimrcc01_closure.py": {
+   "terms_found": [
+    "terminators",
+    "descent"
+   ],
+   "n_terms": 2,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "kk for r in DES for kk,vv in r[\"terminators\"].items() for _ in range(vv))),",
+    "\"the frozen FMRCT01 descent rule\","
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "FIMRCC01/code/fimrcc01_independent_descent.py": {
+   "terms_found": [
+    "terminators",
+    "descent"
+   ],
+   "n_terms": 2,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "\"terminators\":{}}",
+    "FMRCT01 descent rule applied to the INDEPENDENT components, and uses the archive's record only as"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "FIMRCC01/out/FIMRCC01_PRECONDITION_B_RESULT.json": {
+   "terms_found": [
+    "MERGED_TO_ONE_CENTRE",
+    "descent"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-25T17:10:47.727154+00:00",
+   "sample_lines": [
+    "\"MERGED_TO_ONE_CENTRE\": 1117,",
+    "\"the frozen FMRCT01 descent rule\","
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "FLRS02/code/flrs02_atlas.py": {
+   "terms_found": [
+    "single_centre",
+    "two_centre"
+   ],
+   "n_terms": 2,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "REF=json.load(open(f\"{OUT}/_A0_reference.json\"))[\"A0_SINGLE_CENTRE_REFERENCE\"]",
+    "R[\"P_GEOMETRIC_TWO_CENTRES\"]=rate(sum(r[\"first_S\"]>=0 for r in W),n,\"reaches exactly two spatial centres\")"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "FLRS02/code/flrs02_decide.py": {
+   "terms_found": [
+    "single_centre",
+    "two_centre"
+   ],
+   "n_terms": 2,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "ATL[\"B1\"][\"A0_SINGLE_CENTRE_REFERENCE\"][\"local_X_within_CORE_R_mean\"],",
+    "\"CANDIDATE_CONFLICT_3_X_integrity_collapses_where_two_centre_episodes_are_common\":{"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "FLRS02/out/FLRS02_B1_DIRECT_ATLAS.json": {
+   "terms_found": [
+    "single_centre",
+    "two_centre"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "\"A0_SINGLE_CENTRE_REFERENCE\": {",
+    "\"P_GEOMETRIC_TWO_CENTRES\": {"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "FLRS02/out/FLRS02_B2_DIRECT_ATLAS.json": {
+   "terms_found": [
+    "single_centre",
+    "two_centre"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "\"A0_SINGLE_CENTRE_REFERENCE\": {",
+    "\"P_GEOMETRIC_TWO_CENTRES\": {"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "OMLDCT02/code/omldct02_fork.py": {
+   "terms_found": [
+    "n_components",
+    "descent"
+   ],
+   "n_terms": 2,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "\"s\": [\"t\", \"nY_total\", \"nX_total\", \"nSY_total\", \"nSX_total\", \"free_min\", \"n_y_cells\", \"n_components\"],",
+    "at = {\"descent_level\": trig.descent_level, \"descent_step\": trig.descent_step,"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "RPP97/out/RPP97_CHECKER_RETURN_VERBATIM.md": {
+   "terms_found": [
+    "n_components",
+    "descent"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "5. **The `TBRT02` claim that \"at t=11000 a world carries ~266 Y cells.\"** I could not locate that sentence anywhere in the repository (grepped `TBRT02/out`, all `*.md`/`*.json`). What I measured at the final recorded step across the 123 archives: `n_y_cells` min 0, median **224**, mean 192, max 271;",
+    "9. **The other frozen modules in the import chain** — `pqec01_observer`, `fdot01_world`, `fmrct01_world`, `mrci01_descent`, `fdflt01_endpoint` beyond the maturation state machine — were read only as far as needed to establish what `t_m` is and what the kinetics do."
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "TLMR01/code/tlmr01_analyse.py": {
+   "terms_found": [
+    "single_centre",
+    "terminators"
+   ],
+   "n_terms": 2,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "tot=sum(r[\"M4\"][\"single_centre_steps\"] for r in rows)",
+    "n_=int(n_); e=ep.setdefault(n_,{\"episodes\":0,\"matured\":0,\"terminators\":{}})"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "TLMR01/code/tlmr01_paths.py": {
+   "terms_found": [
+    "two_centre",
+    "descent"
+   ],
+   "n_terms": 2,
+   "kind": "code",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "rec(\"components_two_centres\",len(CC.components([(10,10),(10,16)])),2)",
+    "import fmrct01_descent as DS"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "TLMR01/out/TLMR01_ARCHIVE_SCHEMA.json": {
+   "terms_found": [
+    "n_components",
+    "descent"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-24T23:08:30.326977+00:00",
+   "sample_lines": [
+    "\"n_components\"",
+    "\"terminal_descent_level\","
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "TLMR01/out/TLMR01_FINAL_REPORT.md": {
+   "terms_found": [
+    "two_centre",
+    "terminators"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "| `failure_modes.not_exactly_two_centres` | the frozen state S already requires exactly two centres, so a matured episode cannot fail this gate |",
+    "| terminators `INTEGRITY_FAULT`, `UNCLASSIFIED` | unreachable by construction; the integrity flag is per world and the run is maximal |"
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "TLMR01/out/TLMR01_PATH_COVERAGE.json": {
+   "terms_found": [
+    "two_centre",
+    "descent"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": "2026-08-24T22:46:46.214777+00:00",
+   "sample_lines": [
+    "\"case\": \"components_two_centres\",",
+    "\"case\": \"descent_exact_tie\","
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  },
+  "TLMR01/out/TLMR01_WRITER_QUALIFICATION.json": {
+   "terms_found": [
+    "single_centre",
+    "descent"
+   ],
+   "n_terms": 2,
+   "kind": "published",
+   "GENERATED_UTC": null,
+   "sample_lines": [
+    "\"M4_single_centre_steps\": 8858,",
+    "\"descent_level\","
+   ],
+   "VERDICT": "ADJACENT_BUT_DIFFERENT",
+   "REASON": "mentionne les memes grandeurs mais ne publie pas la distribution des episodes multi-composantes sur l'horizon complet ; juge apres lecture du fichier, pas sur son nom."
+  }
+ },
+ "RETROACTIF": "Cette porte n'existait pas quand RPP98 a ete gelee. Elle est passee APRES le retrait, sur la question meme de RPP98, pour etablir qu'elle aurait tire. Elle tire : TLMR01/out/TLMR01_ANALYSIS.json arrive en tete des fichiers publies."
+}
