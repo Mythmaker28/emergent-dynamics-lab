@@ -1,0 +1,254 @@
+{
+  "mission": "LCI-CAUSAL-TURNOVER-PREREG-03",
+  "status": "DEV \u2014 NON-PROSPECTIVE \u2014 NOT A CONFIRMATION",
+  "G0_feasibility": {
+    "n_seeds": 10,
+    "n_eligible": 8,
+    "n_feasible": 4,
+    "feasibility_fraction": 0.5,
+    "failure_modes": {
+      "1": 1,
+      "2": 1,
+      "0": 2
+    },
+    "deep_step_min": 793,
+    "deep_step_max": 890,
+    "deep_step_median": 839.0
+  },
+  "G1_storage_rest": {
+    "DD_mem": 6177.799792278829,
+    "off": 5.1934207379756516e-05,
+    "note": "rest storage (unchanged from confirm-02 architecture)"
+  },
+  "G3_deep_storage": {
+    "note": "DEV underpowered (few worlds); descriptive only",
+    "deep_own_dose_R2": 0.13520418069826556,
+    "deep_neigh_dose_R2": 0.5804777225451667,
+    "n_samples": 12
+  },
+  "G4_deep_causal": {
+    "rest_own_worldCI": [
+      0.16974171583701309,
+      0.19354843930021645,
+      0.2260978676598545
+    ],
+    "deep_own_worldCI": [
+      0.1142318495726242,
+      0.13125560232653652,
+      0.14827935508044887
+    ],
+    "deep_own_sham_worldCI": [
+      0.11423185401969002,
+      0.1312556074669026,
+      0.14827936091411517
+    ],
+    "deep_own_neigh_worldCI": [
+      0.11423186857551723,
+      0.13125562850289,
+      0.14827938843026273
+    ],
+    "deep_own_mean": 0.13125560232653652,
+    "deep_sham_mean": -5.1403660587349504e-09,
+    "deep_neigh_mean": -2.6176353455179917e-08,
+    "deep_abl_mean": 0.0,
+    "deep_fixed_mean": 0.13602108316161995,
+    "worlds_deep_own_pos": 4,
+    "nW": 4,
+    "note": "DEV n_feasible small; interventional readout coupled by construction (own>0 is a LOW bar)"
+  },
+  "G5_retention": {
+    "deep_over_rest_ratio_mean": 0.6833924438927548,
+    "deep_minus_rest_worldCI": [
+      -0.08557331411048867,
+      -0.06229283697367991,
+      -0.0457953305461622
+    ],
+    "per_world_ratio": [
+      0.602,
+      0.696,
+      0.785,
+      0.651
+    ],
+    "note": "no 0.50 threshold invented; retention reported descriptively (DEV)"
+  },
+  "global_channel": {
+    "up_ref_start_mean": 0.0003643612854220586,
+    "up_ref_deep_mean": 0.0002484702533858043,
+    "separability": "own vs neighbour at deep = G4.deep_own_neigh_worldCI (must exclude 0)"
+  },
+  "passive_decay_null": {
+    "n": 4,
+    "deep_reached": [
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "per_seed": [
+    {
+      "seed": 50001,
+      "eligible": true,
+      "feasible": false,
+      "deep_step": null,
+      "deep_M": null,
+      "reason": "tracker_event:1:SPLIT@153",
+      "rest_own": [
+        0.347,
+        0.093,
+        0.215
+      ],
+      "deep_own": null
+    },
+    {
+      "seed": 50002,
+      "eligible": true,
+      "feasible": true,
+      "deep_step": 847,
+      "deep_M": [
+        0.19399027122102552,
+        0.24979364401673357,
+        0.14509491462257568
+      ],
+      "reason": null,
+      "rest_own": [
+        0.514,
+        0.1,
+        0.118
+      ],
+      "deep_own": [
+        0.182,
+        0.109,
+        0.149
+      ]
+    },
+    {
+      "seed": 50003,
+      "eligible": true,
+      "feasible": false,
+      "deep_step": null,
+      "deep_M": null,
+      "reason": "tracker_event:2:LOST@236",
+      "rest_own": [
+        0.135,
+        0.234,
+        0.072
+      ],
+      "deep_own": null
+    },
+    {
+      "seed": 50004,
+      "eligible": true,
+      "feasible": true,
+      "deep_step": 793,
+      "deep_M": [
+        0.2494180137355821,
+        0.24976935420627078,
+        0.21932890413506204
+      ],
+      "reason": null,
+      "rest_own": [
+        0.203,
+        0.116,
+        0.182
+      ],
+      "deep_own": [
+        0.178,
+        0.091,
+        0.08
+      ]
+    },
+    {
+      "seed": 50005,
+      "eligible": true,
+      "feasible": true,
+      "deep_step": 831,
+      "deep_M": [
+        0.16378143695398298,
+        0.23030102225923835,
+        0.24993830710442896
+      ],
+      "reason": null,
+      "rest_own": [
+        0.392,
+        0.062,
+        0.118
+      ],
+      "deep_own": [
+        0.243,
+        0.112,
+        0.094
+      ]
+    },
+    {
+      "seed": 50006,
+      "eligible": true,
+      "feasible": false,
+      "deep_step": null,
+      "deep_M": null,
+      "reason": "tracker_event:0:SPLIT@692",
+      "rest_own": [
+        0.291,
+        0.307,
+        0.208
+      ],
+      "deep_own": null
+    },
+    {
+      "seed": 50007,
+      "eligible": true,
+      "feasible": true,
+      "deep_step": 890,
+      "deep_M": [
+        0.22705715851499184,
+        0.21010424776025538,
+        0.2496506369279655
+      ],
+      "reason": null,
+      "rest_own": [
+        0.352,
+        0.07,
+        0.096
+      ],
+      "deep_own": [
+        0.127,
+        0.081,
+        0.129
+      ]
+    },
+    {
+      "seed": 50008,
+      "eligible": false,
+      "feasible": null,
+      "deep_step": null,
+      "deep_M": null,
+      "reason": "fewer_than_K_eligible",
+      "rest_own": null,
+      "deep_own": null
+    },
+    {
+      "seed": 50009,
+      "eligible": true,
+      "feasible": false,
+      "deep_step": null,
+      "deep_M": null,
+      "reason": "tracker_event:0:SPLIT@436",
+      "rest_own": [
+        0.438,
+        0.388,
+        0.189
+      ],
+      "deep_own": null
+    },
+    {
+      "seed": 50010,
+      "eligible": false,
+      "feasible": null,
+      "deep_step": null,
+      "deep_M": null,
+      "reason": "fewer_than_K_eligible",
+      "rest_own": null,
+      "deep_own": null
+    }
+  ]
+}

@@ -1,5 +1,9 @@
 # Project State
 
+## CURRENT DELIVERY ON THIS REVIEW BRANCH — 2026-09-05
+
+EDL-ASTRA-FLAGSHIP-PAPER-01 delivers the complete bounded B article under `paper/causal-persistence-ownership-01/`. Scientific disposition: **FLAGSHIP_CLAIM_NOT_SUPPORTED_BUT_B_DELIVERED**. Fifty recorded primary worlds,21 admissible; causal erasure effect verified, local predictive-exclusion conjunction unmet. No absence-of-ownership, unique maintenance, life or heredity claim. Four internal reviews and clean-copy reconstruction are complete; this is not external peer review. No new worlds, no main merge, no submission or DOI. PR35 is the review vehicle. The historical research state below is not a new execution authorization. Next action: Tommy reads the article and decides whether to seek specialized-journal submission.
+
 ## CURRENT QUESTION
 
 Can CORE V0 local particle laws produce auditable high phenotype continuity under low material retention, beyond tracker and static-flux artefacts?

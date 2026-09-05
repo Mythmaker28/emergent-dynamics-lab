@@ -47,10 +47,10 @@ for fid,severity,title in titles:
               'corrected_evidence':evidence,'independent_reasoning':reason})
 assert len(rows)==28
 with (ROOT/'FINDINGS_28_MATRIX.csv').open('w',encoding='utf-8-sig',newline='') as f:
- w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
+ w=csv.DictWriter(f,fieldnames=list(rows[0]),lineterminator='\n');w.writeheader();w.writerows(rows)
 statuses={}
 for r in rows:statuses[r['independent_disposition']]=statuses.get(r['independent_disposition'],0)+1
 (ROOT/'FINDINGS_DISPOSITION.json').write_text(json.dumps({'count':28,'source_sha256':hashlib.sha256(checker.read_bytes()).hexdigest(),
  'counts':statuses,'first_five':[r for r in rows if int(r['finding'][1:])<=5],
- 'scope':'Direct present-file inspection; original report/matrix versions are represented mainly by checker quotations. Preserved manuscript v0.1 can be compared directly. Accepted does not mean corrected or publishable.'},ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+ 'scope':'Direct present-file inspection; original report/matrix versions are represented mainly by checker quotations. Preserved manuscript v0.1 can be compared directly. Accepted does not mean corrected or publishable.'},ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
 print(statuses)

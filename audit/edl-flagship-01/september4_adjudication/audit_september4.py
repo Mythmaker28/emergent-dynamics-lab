@@ -26,7 +26,7 @@ RANK={'OUT_OF_RANGE':0,'NO_COMPONENT_AT_THE_NEXT_STEP':0,
 def read(path):return json.loads(path.read_text(encoding='utf-8'))
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def save(name,value):
- (HERE/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+ (HERE/name).write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8',newline='\n')
 def git(*args):return subprocess.check_output(['git','-C',str(REPO),*args])
 def tail(n,k):return Fraction(sum(math.comb(n,j) for j in range(k,n+1)),2**n)
 def score(records,key='duration',rank_only=False):

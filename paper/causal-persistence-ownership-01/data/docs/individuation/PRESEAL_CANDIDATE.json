@@ -1,0 +1,69 @@
+{
+  "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-03C",
+  "status": "AUTHORITATIVE PRESEAL CANDIDATE - NOT AUTHORIZED - NO 54xxx EXECUTED",
+  "operator_authorization": false,
+  "claude_go_for_seal_is_authorization": false,
+  "integration_branch": "codex/lci-causal-turnover-preseal-integration-03c",
+  "integration_parent": "cd74eda96cbcf6e1489f8a6572d1eda8f619b8a1",
+  "claude_parent": "244bc3262580f1344db1b00582f626a48c75ab4e",
+  "canonical_protocol": "docs/individuation/PRESEAL_CANDIDATE_PROTOCOL.md",
+  "canonical_analysis_implementation": [
+    "experiments/individuation/turnover_statistics.py",
+    "experiments/individuation/turnover_ownership_analyze.py"
+  ],
+  "seed_plan": {
+    "primary": "54001-54050",
+    "primary_count": 50,
+    "reserve": "54051-54096",
+    "reserve_count": 46,
+    "total_hard_cap": 96,
+    "minimum_valid_original_worlds": 18,
+    "reserve_activation": "all primary complete AND valid_worlds < 18; feasibility projection only; ascending seeds; stop at 18 valid or seed 54096"
+  },
+  "scope_contract": {
+    "label_for_every_scope": "own cumulative dose",
+    "L": "target memory, frozen 11-D features",
+    "N": "periodic geometric-nearest neighbour, same 11-D features",
+    "P": "target + nearest + farther neighbour, frozen 33-D features",
+    "E": "complete target-centred physical field stack with target m1/m2 cells exactly zeroed",
+    "G": "complete target-centred physical field stack without masking",
+    "B": "frozen 8-D body/environment baseline",
+    "labels_in_feature_sidecars": false,
+    "diagnostic_cohorts_in_features": false
+  },
+  "inference_contract": {
+    "outer_validation": "leave one original world/seed out",
+    "ridge_lambda": 1.0,
+    "scaling": "training worlds only",
+    "uncertainty": "Student-t interval over fixed original-world fold scores",
+    "secondary_bootstrap": "fixed original-world fold scores only; no model refitting",
+    "duplicate_world_cv_retraining": false,
+    "post_outcome_feature_choice": false,
+    "coordinate_switching": false
+  },
+  "event_contract": {
+    "evidence_followup_frames": 5,
+    "classes": [
+      "FISSION",
+      "TRANSIENT_FRAGMENTATION",
+      "MERGE",
+      "LOSS",
+      "DEATH",
+      "AMBIGUOUS"
+    ],
+    "daughter_selected_as_continuation": false
+  },
+  "ablation_contract": {
+    "lambda_plus_only": {
+      "lam_plus": 0.0,
+      "lam_minus": 0.15
+    },
+    "full_ablation_reported_separately": true
+  },
+  "execution_manifest": "docs/individuation/TURNOVER_EXECUTION_MANIFEST_03C.json",
+  "execution_manifest_git_blob": "e109d7eabbc944b1d25d743c13c2f7561e7fccca",
+  "approval_template": "docs/individuation/TURNOVER_EXECUTION_APPROVAL_TEMPLATE_03C.json",
+  "approval_template_authorized": false,
+  "dev_diagnostics": "EXPLORATORY ONLY; n=4 feasible worlds; not prospective evidence",
+  "claims": "No identity, individual-memory, reproduction, heredity, active-reconstruction, or evolution claim is authorized."
+}
