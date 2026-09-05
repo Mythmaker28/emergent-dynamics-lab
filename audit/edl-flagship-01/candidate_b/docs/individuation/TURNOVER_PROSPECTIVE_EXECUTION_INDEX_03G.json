@@ -1,0 +1,73 @@
+{
+  "schema": "LCI-TURNOVER-PROSPECTIVE-EXECUTION-INDEX-03G-v1",
+  "status": "CERTIFIED",
+  "run_id": "RUN-20260716-2337-LCI-PROSPECTIVE-03G-001",
+  "authorization_id": "LCI-03G-AUTH-20260716T213725Z-001",
+  "authorization_commit": "c158bc0b848710edeafd425f31dfcbd5aefc0934",
+  "authorization": {
+    "path": "docs/individuation/TURNOVER_AUTHORIZATION_03G.json",
+    "git_blob": "71b80575980aff1d1f7513a77a56a2b7fb660600",
+    "sha256": "c468e071acd10284ccd24bdb035857038c4958287ac27e8cf7b50c9e5a7b415c"
+  },
+  "final_seal": {
+    "path": "docs/individuation/FINAL_SEAL_MANIFEST_03G.json",
+    "git_blob": "ae0b58100d6f4ed001e7355c16bf6c4157bd2b95",
+    "sha256": "cdf7277a00e3017a1389e9334d983364b9aa0af88c646cdec2999e6ad88757fd"
+  },
+  "canonical_run_directory": "results/LCI-TURNOVER-PROSPECTIVE-03G",
+  "execution": {
+    "start_mode": "fresh",
+    "seeds_started": 50,
+    "seeds_completed": 50,
+    "seed_first": 54001,
+    "seed_last": 54050,
+    "reserve_seeds_executed": 0,
+    "valid_worlds": 21,
+    "minimum_valid_worlds": 18
+  },
+  "ledger": {
+    "path": "results/LCI-TURNOVER-PROSPECTIVE-03G/execution_ledger_03g.jsonl",
+    "git_blob": "a9c474ebcef42b1f2e53d852c14f4c221857960c",
+    "sha256": "a8a6bd27ca301f852ad555d3bab48622da3a2c384f84f1e773b53da9f5d90eac",
+    "entries": 108,
+    "state": "CERTIFIED",
+    "tip_hash": "0d579d0fa40fd19afe7bfc26140133fc9c57de2b656a7606aa5a5bd8591791aa"
+  },
+  "ledger_anchor": {
+    "path": "results/LCI-TURNOVER-PROSPECTIVE-03G/execution_ledger_03g.anchor.json",
+    "git_blob": "aabcdd609a67cfe239128af32980826ad4ab159b",
+    "sha256": "03d601dcd1e9a064678186cd49e5f66d05a98d1c52753cf0e04ce97c3ca81496"
+  },
+  "raw_manifest": {
+    "path": "results/LCI-TURNOVER-PROSPECTIVE-03G/raw_manifest_03g.json",
+    "git_blob": "3740c4e1d3d8b338d8a744b672093b58a2666ab5",
+    "sha256": "ce8d2cb0b6158965acaeef3553f44c7f9bf0ef9b9567c858ff5cbb27f903a328",
+    "raw_record_count": 50,
+    "raw_record_bytes": 4217762,
+    "raw_hash_mismatches": 0
+  },
+  "analysis_certificate": {
+    "path": "results/LCI-TURNOVER-PROSPECTIVE-03G/analysis/analysis_certificate_03g.json",
+    "git_blob": "9ff8293b9daf0e4968393cb2a8819226c2e78d3a",
+    "sha256": "b7b4ad18720e0d7058cd485d04c4edf9376d789e167a23f692be9a6275064546"
+  },
+  "analysis_report": {
+    "path": "results/LCI-TURNOVER-PROSPECTIVE-03G/analysis/analysis_report_03g.md",
+    "git_blob": "772e90751c87ab5c74e33374ac37e27b5d7c518e",
+    "sha256": "67f8b2b076b6b9db80da6c11c7534cf0eedb096d1ba2c30362902926281ed73c"
+  },
+  "outcome": {
+    "code": "B",
+    "name": "causal feeding effect without ownership",
+    "gates": {
+      "FEASIBILITY": true,
+      "G_OWN_PERM": true,
+      "G_LOCAL_EXCLUSION": false,
+      "G_CAUSAL": true,
+      "DISTRIBUTED_ENV": false
+    },
+    "authorized_wording": "A specific local causal feeding effect survives deep turnover, but the target's own graded history is not established as locally owned. This is a passive local causal remnant and not individual memory."
+  },
+  "one_execution_only": true,
+  "additional_execution_authorized": false
+}

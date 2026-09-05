@@ -2440,3 +2440,6 @@ Docker/CI never built -> clean reproduction INCOMPLETE.
 VERDICTS: THEOREM PACKAGE: PASS. LARGE DISTRIBUTIONAL HOLD-OUT: FAIL. CLEAN REPRODUCTION: INCOMPLETE.
 CROSS-SUBSTRATE: STRUCTURAL PASS. PUBLICATION STATUS: NOT READY. EXTERNAL HUMAN REVIEW: PENDING.
 DROPLET CAUSAL-CONTINUITY PILOT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## EDL-ASTRA-FLAGSHIP-AUDIT-01 — 2026-09-05
+WRITE B as a scoped methods-paper nucleus; HOLD synthesis C pending source audit; retain PR34 as companion. Recovered raw sources published separately. No flagship manuscript, new world or recycled experimental authorization. Evidence and nine-criterion matrix: audit/edl-flagship-01/. This append records the current audit branch only and does not merge histories.

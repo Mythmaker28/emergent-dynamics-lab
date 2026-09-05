@@ -297,3 +297,6 @@ prospective worlds are **BURNED** (`DIAGNOSTIC_ONLY`).
 
 **EXP-SC-01 remains BLOCKED** and will stay blocked until the *complete minimal hierarchy* — not merely gate
 detection — qualifies prospectively.
+
+## Isolated branch update — EDL-ASTRA-FLAGSHIP-AUDIT-01, 2026-09-05
+This branch records an existing-data audit, not a new experimental route. FDFLT01 53/192 and persistence candidate B core results independently verified; OMLDCT03 outside frozen accrual and inconclusive. FLAGSHIP_NOT_YET_JUSTIFIED. CCRA01/Sept-4 findings await exact bundle. No new worlds authorized. See audit/edl-flagship-01/ASTRA_INDEPENDENT_AUDIT_FR.md. Earlier state text is historical, not a renewed execution instruction.
