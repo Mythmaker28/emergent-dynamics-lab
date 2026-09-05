@@ -24,3 +24,11 @@ Failures/dead ends: initial model-source SHA mismatch traced to19 historical CRL
 Final outputs and evidence: paper/causal-persistence-ownership-01, audit/edl-flagship-01/september4_adjudication, remote recovery/astra-edl-september4-verified atb391a739. Original dirty user repositories untouched; no cleanup/reset or main change. StartingHEADbcf352e94aca212c37dda22edea0a03895646963. Durable intermediate commitscc1f186b and85b912f4. Final content/delivery commits and push/PR status are recorded in the closing entry below.
 
 Handoff: FLAGSHIP_CLAIM_NOT_SUPPORTED_BUT_B_DELIVERED. Only next human action is reading the manuscript and deciding whether to pursue specialized-journal submission. No submission, DOI, merge or notification to external researchers performed.
+
+## Final delivery record — 2026-09-05
+
+Final clean-copy check: CLEAN_REPRO_CHECK_20260905T014051917162Z.json; 241 build inputs, 222 scientific entries, 25/25 artifacts byte-identical. Both PDFs retain the reviewed hashes and the 17-page visual evidence. All four internal reviews are closed within their declared scopes. Git index hashes matched every one of the 304 article files at the content commit.
+
+Content ending Git state: 5ed4c350edafb0401c9e9b1d979f5064e173dc4f, committed and pushed to origin/astra/edl-flagship-audit-01. Author-written outputs use LF; binary Git attributes override a global PDF text-diff driver. The original third-party font license and frozen scientific sources retain exact bytes and are excluded from editorial whitespace checks. The gated authored check passes. September JSON semantic comparison to 85b912f4 also passes: serialization changed no values.
+
+This final metadata commit adds the standalone hash-verified ZIP and final release manifest, without changing the manuscript or numerical outputs. The remaining release operation is to verify the pushed branch HEAD and mark existing PR35 ready for review; the actual remote status is recorded by GitHub and the final delivery message. No scientific follow-up is scheduled. The only next author action is to read the article and decide on a specialized submission. No unresolved reproducible major/fatal finding applies to the delivered B claim set; historical C limitations remain visible and are not adopted.

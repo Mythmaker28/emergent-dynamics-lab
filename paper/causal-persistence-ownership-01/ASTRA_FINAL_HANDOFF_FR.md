@@ -61,3 +61,9 @@ Une seule PR est utilisée: [PR35](https://github.com/Mythmaker28/emergent-dynam
 ## Action unique de Tommy
 
 **Lire le manuscrit et décider s'il doit être proposé à une revue spécialisée.** Aucune fusion, soumission, publication ou création de DOI n'a été effectuée. Le paquet ne nécessite pas un nouveau téléversement de source pour cette décision.
+
+## Clôture de livraison
+
+Le contenu scientifique, les PDF et les quatre revues sont enregistrés et poussés dans le commit [`5ed4c350edafb0401c9e9b1d979f5064e173dc4f`](https://github.com/Mythmaker28/emergent-dynamics-lab/commit/5ed4c350edafb0401c9e9b1d979f5064e173dc4f). Le commit de livraison suivant ajoute cette clôture, le manifeste final et `paper/EDL_PAPER_REVIEW_PACKAGE.zip` avec son SHA-256. Le manifeste énumère tous les fichiers du paquet; le ZIP a été rouvert et chaque membre comparé à son empreinte.
+
+La reconstruction finale indépendante est `CLEAN_REPRO_CHECK_20260905T014051917162Z.json`: 241 entrées de build, 222 sources scientifiques, 25 sorties sur 25 identiques à l’octet. Les PDF gardent les empreintes contrôlées lors de l’inspection des 17 pages. La PR35 constitue le véhicule de revue; son état et son HEAD distant font foi pour la livraison, sans fusion dans main.
