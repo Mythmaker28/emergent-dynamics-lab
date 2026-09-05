@@ -1,0 +1,93 @@
+{
+ "ALL_CHECKS_PASS": true,
+ "AUTHORITY": "YMCTD01/out/YMCTD01_SELECTED_POINT.json (machine-readable), NOT the handoff prose",
+ "CENTRE_CLASSIFIER": "toroidal single-linkage components at radius CORE_R = 5.0, squared distance compared with <=, imported byte-unchanged from fdot01_centres via fmrct01_track. Unchanged.",
+ "FEED_EXCHANGE_LAW": "lawspec_v2 _exchange: per cell and species, offers ~ Binomial(max(S0-n,0), phi), removals drawn without replacement from the exchangeable pool {SX,SY,WX,WY}, insertions split hypergeometrically. Unchanged from B1.",
+ "GENERATED_UTC": "2026-08-23T23:27:31.192751+00:00",
+ "HANDOFF_PROSE_REPR_DIFFERS_BUT_THE_DOUBLE_DOES_NOT": {
+  "kY_canonical": "0.001004754572603833",
+  "kY_prose": "0.0010047545726038329",
+  "muY_canonical": "0.000740894982503035",
+  "muY_prose": "0.00074089498250303496",
+  "same_double": true
+ },
+ "INHERITED_UNCHANGED": {
+  "CAP": 16,
+  "CORE_R": 5.0,
+  "L": 36,
+  "LATEST_ALLOWED_TRIGGER": 6500,
+  "S0": 3,
+  "T_HORIZON": 11000,
+  "X_SEED": 4,
+  "kX": 1.0,
+  "muX": 0.004,
+  "omega": 0.05,
+  "p_hop_X": 0.10263340389897246,
+  "phi": 0.2
+ },
+ "INITIAL_CONDITION": "seed_one_organiser: one Y and X_SEED = 4 X at the lattice centre (L//2, L//2); SX and SY set to S0 = 3 in every cell by fresh_world. Unchanged from B1.",
+ "MISSION": "MCTT01",
+ "MOBILITY_CONSTANCY": "p_hop_Y is a Spec field read by kinetics._diffuse at every step. It is set once at construction and never written again; there is no code path that changes it at the fork or at the removal. The runner asserts spec identity after construction and the intervention touches only n['Y'] and n['WY'].",
+ "PARENT_REMOVAL_INTERVENTION": "fmrct01_world.intervene: the parent component's Y are moved to WY through the same channel a spontaneous decay uses. Occupancy is conserved exactly and no random number is consumed, which the runner verifies by comparing the generator hash across the call. Unchanged.",
+ "SCHEDULER": "the frozen WorldV2._one_step order, unchanged: diffuse, react, decay, exchange.",
+ "SECTION": "2 \u2014 the selected law",
+ "SELECTED": {
+  "kY": 0.001004754572603833,
+  "kY_bits": "0x3f50763f01e8e5b2",
+  "kY_x_B1": 40,
+  "muY": 0.000740894982503035,
+  "muY_bits": "0x3f484713dc1c8ab5",
+  "muY_x_B1": 8,
+  "p_hop_Y": 0.10263340389897246,
+  "p_hop_Y_bits": "0x3fba462ec93926a0",
+  "rho": 4.12219958672435
+ },
+ "TRIGGER": "the frozen FDFLT01 functional-maturation event with the FMRCT01 latest-trigger rule (t <= 6500 and exactly two centres at maturation and the frozen local-X ratio). Unchanged.",
+ "VERIFICATION_CHECKS": [
+  {
+   "claim": "p_hop_Y is bit-for-bit the already-executed B1 double",
+   "verified": true
+  },
+  {
+   "claim": "p_hop_Y equals p_hop_X, as at B1 \u2014 mobility is not made species-specific",
+   "verified": true
+  },
+  {
+   "claim": "every printed literal of p_hop_Y is the same double",
+   "verified": true
+  },
+  {
+   "claim": "every printed literal of kY is the same double (handoff prose included)",
+   "verified": true
+  },
+  {
+   "claim": "every printed literal of muY is the same double (handoff prose included)",
+   "verified": true
+  },
+  {
+   "claim": "kY is exactly 40x the B1 kY to within one ulp",
+   "verified": true
+  },
+  {
+   "claim": "muY is exactly 8x the B1 muY to within one ulp",
+   "verified": true
+  },
+  {
+   "claim": "kY*64 < 1, so the exact expectation identity still holds (no per-cell clamp saturation)",
+   "verified": true
+  },
+  {
+   "claim": "kY and muY are the ONLY intended Y-law changes from B1",
+   "verified": true
+  },
+  {
+   "claim": "horizon is the inherited 11000",
+   "verified": true
+  },
+  {
+   "claim": "latest allowed trigger is the inherited 6500",
+   "verified": true
+  }
+ ],
+ "X_LAWSPEC_BASELINE": "UNCHANGED"
+}

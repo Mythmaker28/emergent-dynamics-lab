@@ -1,0 +1,69 @@
+{
+  "count": 28,
+  "source_sha256": "f1d5b1b0044162adb18dd9a4c25bd11eb480654048acf6d2873740e3404084a1",
+  "counts": {
+    "RESOLVED": 14,
+    "RESOLVED_WITH_LIMITS": 2,
+    "ADDRESSED_NOT_EXHAUSTIVE": 1,
+    "RESOLVED_WITH_SCOPE": 7,
+    "PARTIAL": 4
+  },
+  "first_five": [
+    {
+      "finding": "F1",
+      "original_severity": "FATALE",
+      "title": "Les deux scripts de vérification ne sont **pas** dans le bundle, ni dans le commit",
+      "author_disposition": "ACCEPTED",
+      "independent_disposition": "RESOLVED",
+      "correction_commits": "6c77300",
+      "original_evidence": "REVIEW01/out/REVIEW01_CHECKER_RETURN_VERBATIM.md:11",
+      "corrected_evidence": "RECOVERY/scripts/",
+      "independent_reasoning": "Both verification scripts enter Git before the supplied final bundle. Git history and final presence verified; the first fe6b631 bundle omitted them."
+    },
+    {
+      "finding": "F2",
+      "original_severity": "FATALE",
+      "title": "Le McNemar « 9 contre 0, p = 0,0039 » n'existe que par la chaîne de caractères",
+      "author_disposition": "ACCEPTED",
+      "independent_disposition": "RESOLVED",
+      "correction_commits": "23eb684",
+      "original_evidence": "REVIEW01/out/REVIEW01_CHECKER_RETURN_VERBATIM.md:25",
+      "corrected_evidence": "DELIVERABLES/MS_EDL_NONEXCHANGEABILITY_v0.2.md:113",
+      "independent_reasoning": "The erroneous 9-versus-0 event test is removed. Paired whole-world mortality 11/1/1/28 independently matches 82 raw reads; its two-sided sign p=.00634765625 is descriptive of that endpoint."
+    },
+    {
+      "finding": "F3",
+      "original_severity": "FATALE",
+      "title": "« The programme has recorded per-step connectivity exposure » : le fichier est vide",
+      "author_disposition": "ACCEPTED",
+      "independent_disposition": "RESOLVED",
+      "correction_commits": "23eb684",
+      "original_evidence": "REVIEW01/out/REVIEW01_CHECKER_RETURN_VERBATIM.md:38",
+      "corrected_evidence": "DELIVERABLES/MS_EDL_NONEXCHANGEABILITY_v0.2.md:336",
+      "independent_reasoning": "The empty connectivity record set and need to re-read raw are explicitly stated. Original JSON remains 1186 bytes with no observations. Raw availability is now independently repaired in the parent audit."
+    },
+    {
+      "finding": "F4",
+      "original_severity": "FATALE",
+      "title": "Le dimensionnement du §4 est faux d'un facteur ≈ 2 ; « 45 s méd. » et « 337 s max » ne sont dans aucun artefact",
+      "author_disposition": "ACCEPTED",
+      "independent_disposition": "RESOLVED_WITH_LIMITS",
+      "correction_commits": "23eb684",
+      "original_evidence": "REVIEW01/out/REVIEW01_CHECKER_RETURN_VERBATIM.md:48",
+      "corrected_evidence": "DELIVERABLES/RAPPORT_DECISION_EDL_20260904.md:434",
+      "independent_reasoning": "Runtime mean89.3809/median85.1/max627.6 and batch proxy10.8514h reproduce. The105.4774h projection is conditional on historical throughput. The power estimate is separately limited; no future guarantee follows."
+    },
+    {
+      "finding": "F5",
+      "original_severity": "FATALE",
+      "title": "« Aucune expérience n'est justifiée » est sur-déterminée : l'adjudication acceptée du programme nomme quatre routes, vous en examinez une",
+      "author_disposition": "ACCEPTED",
+      "independent_disposition": "ADDRESSED_NOT_EXHAUSTIVE",
+      "correction_commits": "c363afd;0fdc550;23eb684",
+      "original_evidence": "REVIEW01/out/REVIEW01_CHECKER_RETURN_VERBATIM.md:69",
+      "corrected_evidence": "CCRA01/out/CCRA01_PREREGISTRATION.md",
+      "independent_reasoning": "CCRA01 was specified and executed on existing data, and two additional raw-data routes are left open. This addresses the omitted route. It does not prove that every possible new experiment lacks value, nor that the replacement ordinal estimand resolves the mechanism."
+    }
+  ],
+  "scope": "Direct present-file inspection; original report/matrix versions are represented mainly by checker quotations. Preserved manuscript v0.1 can be compared directly. Accepted does not mean corrected or publishable."
+}

@@ -1,0 +1,147 @@
+{
+ "MISSION": "CLOSE01",
+ "SECTION": "1 — dossier de cloture du programme",
+ "GENERATED_UTC": "2026-08-30T20:49:38+00:00",
+ "AUTHORISATION": {
+  "fichier": "CLOSE01/out/CLOSE01_HUMAN_AUTHORISATION.json",
+  "hash": "3486ab3678c7a9efac210551516cfc0a5b6d5b6b5986ea59fe786e4660646558",
+  "reponse": "Accepter le mur et clore le dossier"
+ },
+ "LA_CLOTURE_EN_UNE_PHRASE": "le dispositif actuel ne peut pas trancher la question qu'il a ete construit pour poser, et l'arithmetique de ce blocage est etablie et chiffree ; le seul test confirmatoire pre-enregistre du programme a ete execute a son effectif requis et ne detecte pas d'effet, sans que cela autorise a conclure qu'il n'y en a pas.",
+ "1_LE_MUR_TEL_QU_IL_EST_CHIFFRE": {
+  "source": "FIMRCC01/out/FIMRCC01_ENDPOINT_ADJUDICATION.json, 2026-08-25",
+  "E0_le_critere_herite": {
+   "statut": [
+    "SATURATED",
+    "NON_DISCRIMINATING",
+    "NOT_ELIGIBLE_AS_PRIMARY"
+   ],
+   "mesure": "22/22 FUNCTIONAL among removal worlds",
+   "lecture": "il vaut la meme chose partout ; un critere qui ne varie jamais ne porte aucune information"
+  },
+  "E1_E2_le_critere_restreint": {
+   "k_parmi_les_mondes_traites": "1/22",
+   "taux_au_niveau_monde": "1/256",
+   "valeur": 0.00390625,
+   "rapport_au_plancher_apparie": 1.2201,
+   "assurance_du_critere_pre_declare_a_N_50": 0.0165,
+   "POURQUOI_AUCUN_EFFECTIF_NE_REPARE": "le taux mesure est 1,22 fois le plancher apparie. Un rapport de 1,22 ne se repare pas en ajoutant des mondes : ce n'est pas un probleme de puissance, c'est un probleme de separation entre le signal et le plancher."
+  },
+  "CE_QUE_LE_MUR_EXPLIQUE": "la longue serie de dispositions terminales en « non identifiable », « insuffisant », « sous-puissant » ou « techniquement invalide » n'est pas un defaut de soin. C'est le meme obstacle rencontre par des routes differentes."
+ },
+ "2_LE_SEUL_TEST_CONFIRMATOIRE_EXECUTE": {
+  "mission": "OMLDCT03",
+  "le_gel": {
+   "origine": "OMLDCT02_MASTER_FREEZE.json, 2026-08-25T22:30:05, avant tout monde",
+   "test": "Wilcoxon apparie exact, rangs de Pratt, enumeration complete",
+   "alpha": 0.05,
+   "effectif_requis": 41,
+   "regle": "les DEUX criteres doivent rejeter, et dans la meme direction"
+  },
+  "n_paires_retenues": 41,
+  "duree": {
+   "p_exact_bilateral": 0.24638633591985126,
+   "Hodges_Lehmann_en_facteur": 1.395,
+   "intervalle_en_facteur": [
+    0.788,
+    2.309
+   ],
+   "rejette": false,
+   "n_egalites": 0
+  },
+  "exposition": {
+   "p_exact_bilateral": 0.34791725337890966,
+   "Hodges_Lehmann_en_facteur": 1.372,
+   "intervalle_en_facteur": [
+    0.733,
+    2.396
+   ],
+   "rejette": false,
+   "n_egalites": 0
+  },
+  "regle_ET": false,
+  "TERMINAL": "MATCHED_LOCKED_DAUGHTER_CONTROL_EFFECT_NOT_DETECTED__INCONCLUSIVE_UNDER_FROZEN_POWER",
+  "INTERPRETATION_GELEE": "INCONCLUSIVE__NO_CLAIM_OF_EQUIVALENCE__NO_CLAIM_OF_NO_EFFECT",
+  "CE_QUE_L_INTERVALLE_AUTORISE_ENCORE": "de 0,79 a 2,31 fois sur la duree. Ce test n'exclut ni un doublement ni une baisse d'un cinquieme. C'est la phrase qui compte et elle manquait a ma premiere redaction ; un verificateur adverse me l'a fait ajouter.",
+  "DEUX_RESERVES_QUI_CHANGENT_CE_QUE_LE_RESULTAT_VEUT_DIRE": [
+   "dans 9 paires sur 41 l'espece suivie s'eteint entierement du cote traite, contre 0 du cote temoin : le chiffre publie melange un ecart positif chez les mondes que le traitement ne tue pas et un ecart negatif chez ceux qu'il tue",
+   "le retrait supprime l'objet meme qui fournissait la composante concurrente au suivi ; une part de « ca dure plus longtemps » est un artefact de mesure, pas un fait sur les objets"
+  ],
+  "ET_UNE_RESERVE_DE_PORTEE": "la regle d'accrual du gel n'a pas ete honoree : sous le plafond de 512 instances qu'OMLDCT02 avait gele, le flux disponible s'epuise avant 41 paires. Ce qui a ete execute est la PROCEDURE STATISTIQUE gelee, a son effectif requis, sur un echantillon obtenu hors de sa regle de recrutement."
+ },
+ "3_CE_QUI_EST_ETABLI": {
+  "noyau_causal": "le support d'influence a un pas est EXACTEMENT le voisinage de Moore-1 torique : zero violation sur 668 041 paires de lignes, l'ensemble derive et l'ensemble mesure coincident. Structurel et exact.",
+  "taux_de_separation_mesures": {
+   "source": "TLMR01, 256 mondes a LAW_C_MCTT01, 2026-08-25",
+   "transitions_vers_deux_centres_ou_plus": 8292,
+   "sur_pas_a_un_centre": 1541980,
+   "runs_multi_centres": 16368,
+   "dont_atteignant_la_maturation": 44,
+   "fraction_mediane_a_un_seul_centre": 0.7496818181818181
+  },
+  "point_de_lignee_qualifie": "FDFLT01, taux de succes superieur a 0,10, 2026-08-21",
+  "preconditions_du_test_apparie": "FIMRCC01, A et B toutes deux PASS, fidelite auditee, 26 mondes sur 26",
+  "le_materiel": "TBRT02 : 41 triplets apparies a la meme graine, 123 archives scellees, prefixe identique bit a bit jusqu'a l'intervention, verifie deux fois par des verificateurs independants",
+  "le_test_execute": "OMLDCT03, ci-dessus — un nul pre-enregistre, ce qui est un resultat"
+ },
+ "4_CE_QUI_EST_RETIRE_ET_CE_QUE_CHAQUE_RETRAIT_A_PRODUIT": {
+  "RPP97": {
+   "statut": "WITHDRAWN_AS_A_DESCRIPTION__ARITHMETIC_SOUND__SCIENCE_MIS_SPECIFIED",
+   "constats": "15 acceptes, 0 rejetes",
+   "l_erreur": "un mecanisme bati sur l'idee qu'une espece etait consommee ; elle est produite",
+   "la_garde_produite": "tester toute statistique contre le temps absolu et contre l'exposition avant publication"
+  },
+  "RPP98": {
+   "statut": "WITHDRAWN__THE_QUESTION_WAS_ALREADY_ANSWERED_BY_TLMR01__AND_THE_COUNTED_EVENT_IS_NOT_THE_CLAIMED_EVENT",
+   "constats": "16 acceptes, 0 rejetes",
+   "l_erreur": "avoir declare neuve une question publiee quatre jours plus tot sur 256 mondes",
+   "la_garde_produite": "GATE01, une porte d'anteriorite mecanique et opposable"
+  },
+  "FIMRCC02": {
+   "statut": "WITHDRAWN__A_PREREGISTERED_TEST_ALREADY_EXISTS__AND_THE_CENTRAL_PREMISE_IS_FALSE_BY_DEFINITION",
+   "constats": "16 acceptes, 0 rejetes",
+   "l_erreur": "avoir declare qu'aucun test pre-enregistre n'existait ; il etait dans le depot depuis cinq jours",
+   "la_garde_produite": "l'exigence d'une autorisation humaine explicite pour rouvrir une route, et le test lui-meme"
+  },
+  "CE_QUE_LA_SERIE_MONTRE": "les trois retraits ont la meme cause : j'ai choisi la question moi-meme et je me suis trompe. Le calcul etait juste a chaque fois. Ce qui a echoue est le jugement sur ce qui etait neuf et sur ce que le critere mesurait vraiment."
+ },
+ "5_CE_QUI_N_A_JAMAIS_ETE_TESTE": {
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "HEREDITY_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+  "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+  "X_LAWSPEC_BASELINE": "UNCHANGED",
+  "REMARQUE": "ces statuts n'ont pas bouge d'un cran depuis le debut du programme et rien dans cette cloture ne les deplace. Ils sont rapportes sans condition a chaque mission precisement pour qu'ils ne se deplacent jamais par inadvertance."
+ },
+ "6_LE_LEGS__CE_QU_UN_SUCCESSEUR_DOIT_SAVOIR": [
+  "le mur est arithmetique, pas methodologique : un critere a 1,22 fois son plancher ne se sauve pas par l'effectif. Un successeur doit chercher un observable qui se tienne plus loin du plancher, ou etablir — et non supposer — qu'un changement d'architecture est necessaire.",
+  "l'unite independante est la graine de base, jamais l'archive : trois bras d'une meme graine partagent un prefixe identique bit a bit.",
+  "toute restriction post-traitement est interdite, y compris la restriction aux survivants, et cette interdiction est gelee depuis le 25 aout.",
+  "la mortalite differentielle — le retrait eteint l'espece dans 12 des 41 mondes traites contre 2 temoins — contamine tout comptage post-intervention. Elle est mesuree, elle est documentee, et elle n'a jamais fait l'objet d'une etude propre.",
+  "GATE01 doit etre passee avec les NOMS DES GRANDEURS avant tout gel : des termes vagues signalent deux cents fichiers et la porte est contournee.",
+  "un retour de checker se commite VERBATIM avant d'etre traite. C'est la seule raison pour laquelle les trois retraits sont lisibles aujourd'hui."
+ ],
+ "7_CE_QUE_CETTE_CLOTURE_NE_DIT_PAS": [
+  "une affirmation qu'il n'y a rien a trouver — le test execute est INCONCLUSIVE, pas negatif",
+  "une revendication d'equivalence ou d'absence d'effet : le gel l'interdit nommement",
+  "un abandon des donnees : les 41 triplets et les 123 archives restent scellees et verifiables",
+  "un changement de statut pour H3, la reproduction, l'heredite ou la cohesion autonome, qui restent exactement ou ils ont toujours ete"
+ ],
+ "PROVENANCE": {
+  "branche": "codex/one-matched-locked-daughter-control-test-02",
+  "commits_depuis_la_base": 156,
+  "METHODS_HASH": "21571fb4cb1df9ac2e9089924e9d6ee5d4d63c920a007e188bdc24e0d94d1f99",
+  "retours_de_checker_verbatim_conserves": {
+   "RPP97": "bc54b44b9f30e71f899e95bd4bec32530072258d57272ce4c1baf0f503850285",
+   "RPP98": "b03c6396a79eb4181459003d6e034276d11a7025892dcf99a365f3ad20a4d6c0",
+   "FIMRCC02": "7690b8b166ead59e0dccddf4047ee2db6ffc6436fe1a1b52c0deccb3786d4692",
+   "OMLDCT03": "6f860f4da31570588e5bf3e1fa554f3187fd1ffd5cd08da6cde136351e815fdd"
+  },
+  "archives_scellees": "123, verifiees au sha256 contre le registre scelle",
+  "retours_arriere_du_conteneur_traverses": 28
+ },
+ "CLOSE01_DISPOSITION": "PROGRAMME_CLOSED_ON_A_QUANTIFIED_INSTRUMENT_LIMIT__NO_CLAIM_OF_ABSENCE__ALL_TERMINAL_STATUSES_UNCHANGED",
+ "VOCABULAIRE": "rien ici ne porte sur ce que ces objets sont. Le vocabulaire du vivant reste exclu du dossier, y compris pour le nier.",
+ "CLOSURE_CONTENT_HASH": "3a7489c52d9a776ee55299b459150a0beede0a0c2c608b8e066930a55091b6e9"
+}

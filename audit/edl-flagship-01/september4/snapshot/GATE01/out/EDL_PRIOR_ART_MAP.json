@@ -1,0 +1,115 @@
+{
+ "MISSION": "INV01 — inventaire d'anteriorite du programme",
+ "GENERATED_UTC": "2026-08-30T02:07:38+00:00",
+ "POURQUOI": "RPP98 a ete retiree parce que sa question etait deja repondue dans ce depot. Une porte mecanique (GATE01) ne suffit pas si personne ne sait ce que le programme a deja etabli. Cet inventaire est la carte, lue mission par mission dans les fichiers publies.",
+ "PERIMETRE": {
+  "missions_avec_un_repertoire_out": 38,
+  "fichiers_publies_parcourus": 435,
+  "methode": "extraction mecanique de toute cle contenant STATUS, DISPOSITION, VERDICT, CONCLUSION, ESTABLISHED, OUTCOME ou ANSWER, puis lecture des fichiers charnieres"
+ },
+ "CE_QUI_EST_ETABLI": {
+  "CLEA01_NOYAU_CAUSAL": {
+   "quoi": "le support causal a un pas est EXACTEMENT le voisinage de Moore-1 torique, self inclus",
+   "preuve": "0 violation sur 668 041 paires de lignes, dans tous les bras ; l'ensemble derive et l'ensemble mesure coincident",
+   "date": "2026-08-26",
+   "fichier": "CLEA01/out/CLEA01_CAUSAL_KERNEL_ADJUDICATION.json",
+   "force": "EXACT, structurel"
+  },
+  "TLMR01_M1_A_M5": {
+   "quoi": "les taux de transition 1 -> deux centres ou plus, les longueurs de run multi-centres, leurs terminateurs, et l'exposition a un seul centre, par loi",
+   "preuve": "512 mondes, 3 lois ; LAW_C_MCTT01 : M1 8292/1541980, M2 16368 runs dont 44 murs, M4 mediane 0.7497",
+   "date": "2026-08-25",
+   "fichier": "TLMR01/out/TLMR01_ANALYSIS.json",
+   "force": "MESURE DIRECTE — et c'est le fichier qui a tue RPP98"
+  },
+  "FDFLT01_POINT_DE_LIGNEE": {
+   "quoi": "DIRECT_FUNCTIONAL_LINEAGE_POINT_QUALIFIED__SUCCESS_RATE_EXCEEDS_0_10",
+   "date": "2026-08-21",
+   "fichier": "FDFLT01/out/FDFLT01_FINAL_DISPOSITION.json",
+   "force": "qualifie"
+  },
+  "FIMRCC01_PRECONDITIONS": {
+   "quoi": "preconditions A et B toutes deux PASS ; fidelite du retrait selectif auditee, pas supposee",
+   "preuve": "26/26 mondes au niveau monde",
+   "date": "2026-08-25",
+   "force": "PASS"
+  },
+  "OBFOR01_OPERATEUR": {
+   "quoi": "FULL_CAPACITY_SOURCE_RESPONSE_OPERATOR_QUALIFIED",
+   "reserve": "HISTORICAL_WINDOW_STATUS = NOT_PORTABLE",
+   "force": "qualifie sous reserve"
+  },
+  "TBRT02_LE_MATERIEL": {
+   "quoi": "41 triplets apparies SHAM / SELECTIVE / DISPLACED a LAW_C, 123 archives scellees",
+   "preuve": "123/123 sha256 concordent, verifie deux fois par un checker adverse independant",
+   "date": "2026-08-28",
+   "force": "DONNEES VALIDES — l'adjudication primaire, elle, est non concluante par construction"
+  }
+ },
+ "LE_MUR": {
+  "LE_MUR_CENTRAL_DU_PROGRAMME": {
+   "ou": "FIMRCC01/out/FIMRCC01_ENDPOINT_ADJUDICATION.json, 2026-08-25",
+   "quoi": "E0, le critere herite non restreint, est SATURE : 22 mondes sur 22. Il ne porte aucune information. E1/E2, le meme critere restreint a la fille verrouillee, est aligne sur la revendication mais NON CAPABLE DE DECIDER : taux au niveau monde 1/256 = 0,0039, soit 1,22 fois seulement le plancher apparie F_INTEGRATED = 0,0032.",
+   "pourquoi_aucun_N_ne_repare": "a N = 50 le critere K >= 2 pre-declare a environ 1,65 % d'assurance ; et comme le rapport au plancher est de 1,22, aucun N plus grand ne le repare.",
+   "consequence": "CONFIRMATION_PRECONDITIONS_NOT_MET__LINEAGE_ROUTE_PAUSED"
+  }
+ },
+ "CE_QUI_EST_RETIRE_INVALIDE_OU_EN_PAUSE": {
+  "FMRT01": "MINIMAL_REPRODUCTION_TEST_TECHNICALLY_INVALID, puis adjuge MINIMAL_REPRODUCTION_NOT_QUALIFIED__DAUGHTER_INDEPENDENCE_NOT_ESTABLISHED",
+  "MRFA01": "DAUGHTER_AUTONOMY_CRITERION_NOT_IDENTIFIABLE__EXACT_MISSING_OBJECT_NAMED",
+  "OMLDCT01": "OMLDCT01_TECHNICALLY_INVALID",
+  "OMLDCT02": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS",
+  "CLEA01": "CAUSAL_LINEAGE_NOT_IDENTIFIABLE_FROM_EXISTING_ARCHIVES__LINEAGE_ROUTE_PAUSED (le noyau causal, lui, tient)",
+  "MYQBD01": "EXISTING_Q_DATA_INSUFFICIENT__PROSPECTIVE_Q_CALIBRATION_REQUIRED",
+  "PQEC01": "PROSPECTIVE_Q_ENVIRONMENT_OPERATOR_NOT_IDENTIFIED__ADDITIONAL_INSTRUMENTATION_REQUIRED",
+  "FLCR01": "LINEAGE_CRITERION_SUPPORTED__OPERATOR_NOT_IDENTIFIED_FROM_PQEC01 ; FEEDBACK_STATUS = UNRESOLVED_NOT_CONTROLLED",
+  "OBTC01": "AUDIT_INVALID",
+  "OBDI01_OBDI02": "DOMAIN_TEST_UNDERPOWERED",
+  "MCM01": "MINCORE_CLOUD_MAINTENANCE_FAIL",
+  "ORR01": "CRITICALITY_STATUS = NOT_VALID",
+  "PMCR01": "EXISTING_ARCHITECTURE_WINDOW_NOT_YET_PROSPECTIVELY_LOCATED",
+  "TBRT02": "CLOSED__RAW_COMPLETE__PRIMARY_ADJUDICATION_INCONCLUSIVE_BY_CONSTRUCTION",
+  "RPP97": "WITHDRAWN_AS_A_DESCRIPTION__ARITHMETIC_SOUND__SCIENCE_MIS_SPECIFIED",
+  "RPP98": "WITHDRAWN__THE_QUESTION_WAS_ALREADY_ANSWERED_BY_TLMR01__AND_THE_COUNTED_EVENT_IS_NOT_THE_CLAIMED_EVENT"
+ },
+ "CE_QUI_EST_REELLEMENT_OUVERT": {
+  "E3_E4_E5_DE_FIMRCC01": {
+   "statut_enregistre": "FUTURE_QUESTION_RECORDED__NOT_AUTHORISED, sur les trois",
+   "definitions_gelees_le_2026_08_25": {
+    "E3": "le nombre de pas pendant lesquels l'intervalle d'identite de la fille survit strictement apres t_m, sous la regle de liaison gelee, COMPARE ENTRE BRAS SUR LA MEME GRAINE",
+    "E4": "le nombre de naissances Y et de morts Y attribuees a l'intervalle de la fille apres t_m, COMPARE ENTRE BRAS SUR LA MEME GRAINE",
+    "E5": "le nombre d'intervalles satisfaisant le COMPLETE_TURNOVER gele n'importe ou dans le monde apres t_m, COMPARE ENTRE BRAS SUR LA MEME GRAINE"
+   },
+   "LA_RAISON_EXACTE_DU_BLOCAGE": "citation du fichier : « the inherited data contain no matched no-removal arm at LAW_C, anywhere in 512 worlds ». Les trois criteres sont des contrastes APPARIES entre bras, et il n'existait aucun bras sans retrait apparie a LAW_C.",
+   "CE_QUI_A_CHANGE_DEPUIS": "TBRT02 a construit exactement cela : 41 graines a LAW_C avec, sur la MEME graine et le meme prefixe bit a bit jusqu'a t_m, un bras SHAM sans retrait et un bras SELECTIVE avec retrait. Le bras apparie sans retrait que FIMRCC01 declarait inexistant dans 512 mondes existe depuis le 2026-08-28.",
+   "POURQUOI_CE_N_EST_PAS_UNE_QUESTION_QUE_J_INVENTE": "elle est ecrite, gelee et datee dans le depot cinq jours avant que je la relise, avec sa raison de blocage nommee ; et la raison nommee ne tient plus. C'est le contraire exact de RPP98, ou j'avais invente une question en declarant a tort que personne ne l'avait posee.",
+   "CE_QUI_DOIT_ETRE_FAIT_AVANT_TOUT_GEL": [
+    "1. PUISSANCE D'ABORD. E1/E2 sont morts de puissance et FIMRCC01 note que la puissance prospective de E3/E4/E5 n'est PAS identifiee. Sur 41 graines appariees, calculer ce qu'un contraste apparie peut detecter, AVANT de geler quoi que ce soit. Si la reponse est rien, la mission s'arrete la et c'est un resultat.",
+    "2. CONTAMINATION. J'ai deja beaucoup vu des archives TBRT02 : C3, C4, C4bis, C5, RPP97, RPP98 et deux retours de checker. Une section 0 doit enumerer tout cela, y compris les constats de METHODE et pas seulement les grandeurs — c'est le constat F12 de RPP98.",
+    "3. L'ARME EST DISPLACED, PAS GLOBAL_OFF. FIMRCC01 exigeait SELECTIVE, SHAM et GLOBAL_OFF. TBRT02 fournit SELECTIVE, SHAM et DISPLACED. Le contraste SELECTIVE contre SHAM est disponible ; le troisieme bras n'est pas celui que le pre-enregistrement nommait, et cela doit etre ecrit au titre, pas en note.",
+    "4. UNITE = 41 GRAINES, jamais 123 archives. A ecrire dans le code d'agregation.",
+    "5. CONFONDANTS : temps absolu et exposition (pas vivants apres t_m ; Y s'eteint dans 12 des 41 bras SELECTIVE, 5 DISPLACED, 2 SHAM) testes avant publication, pas apres.",
+    "6. GATE01 passe avec les NOMS DES GRANDEURS avant le gel."
+   ],
+   "LE_RISQUE_HONNETE": "l'extinction differentielle de Y (F6/F7 de RPP98) frappe precisement le bras SELECTIVE. Un contraste apparie de comptes apres t_m mesurera en partie la mort du monde et non la persistance de la fille. C'est le premier confondant a neutraliser, et il pourrait a lui seul rendre E3/E4/E5 non interpretables. Il faut le savoir avant de geler."
+  },
+  "STATUTS_JAMAIS_TESTES": "H3, REPRODUCTION, HEREDITE et COHESION AUTONOME apparaissent en NOT_TESTED / NOT_ESTABLISHED dans a peu pres chaque mission depuis le debut. Rien dans cet inventaire ne les deplace."
+ },
+ "LA_FORME_DU_DOSSIER": "sur trente-huit missions, la grande majorite des dispositions terminales sont de la forme « non identifiable depuis les archives existantes », « insuffisant », « sous-puissant » ou « techniquement invalide ». Ce n'est pas un accident de qualite : c'est le meme mur repete — le critere que le programme veut tester ou bien sature, ou bien se produit a un taux trop proche du plancher apparie. Les resultats franchement positifs se comptent sur une main, et deux d'entre eux sont structurels (le noyau causal de CLEA01) ou descriptifs (les mesures M1-M5 de TLMR01) plutot que confirmatoires.",
+ "STATUTS_INCHANGES": {
+  "H3_STATUS": "NOT_TESTED",
+  "REPRODUCTION_STATUS": "NOT_TESTED",
+  "HEREDITY_STATUS": "NOT_TESTED",
+  "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+  "X_LAWSPEC_BASELINE": "UNCHANGED",
+  "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+  "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+  "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED",
+  "CLEA01_STATUS": "CLOSED__LINEAGE_ROUTE_PAUSED__NOT_REOPENED",
+  "TBRT02_STATUS": "CLOSED__RAW_COMPLETE__PRIMARY_ADJUDICATION_INCONCLUSIVE_BY_CONSTRUCTION",
+  "RPP97_STATUS": "WITHDRAWN_AS_A_DESCRIPTION__ARITHMETIC_SOUND__SCIENCE_MIS_SPECIFIED",
+  "RPP98_STATUS": "WITHDRAWN__THE_QUESTION_WAS_ALREADY_ANSWERED_BY_TLMR01__AND_THE_COUNTED_EVENT_IS_NOT_THE_CLAIMED_EVENT"
+ },
+ "VOCABULAIRE": "rien ici ne porte sur ce que ces objets sont.",
+ "MAP_CONTENT_HASH": "499750b03a450290f5b8c2413e7b0991a832b950153b8950d6b7d4787efd1b42"
+}

@@ -1,0 +1,65 @@
+{
+  "schema": "LCI-TURNOVER-DECISION-TREE-03E-v1",
+  "mission": "LCI-CAUSAL-TURNOVER-PRESEAL-REPAIR-03E",
+  "status": "FROZEN BEFORE PROSPECTIVE DATA — authoritative for protocol, analysis and verdict generation",
+  "central_question": "Does the target droplet retain its own graded causal information through deep material turnover under the passive-copy C1c architecture, stored locally rather than recoverable equally from a geometric neighbour, a target-memory-masked environment, or the target-memory-removed global world?",
+  "gate_definitions": {
+    "FEASIBILITY": "n_valid_worlds >= 18 (geometrically eligible + deep snapshot reached + rest & deep assay geometry valid), at hard cap 96",
+    "G_OWN_PERM": "L own-dose held-out mean skill exceeds within-original-world dose permutation null at frozen p < 0.05",
+    "G_LOCAL_EXCLUSION": "L has strictly lower held-out loss than N, E (local env, target memory masked), Gm (global, target memory removed) AND B; each paired Student-t lower 95% bound > 0",
+    "G_CAUSAL": "deep own (intact-minus-erase) world-level lower CI > 0 AND own > sham AND own > neighbour AND lambda_plus-only ablation collapse AND fixed-mask directionally consistent AND >= 18 worlds",
+    "G_INCREMENT": "P-over-L or Gf-over-L improvement (interpretive only; NON-GATING; cannot rescue a failed G_LOCAL_EXCLUSION)",
+    "DISTRIBUTED_ENV": "G_LOCAL_EXCLUSION fails specifically because E or Gm own-dose skill lower CI > 0 while L does not strictly beat it (own-dose recoverable from target-memory-removed environment/global)"
+  },
+  "evaluation_precedence": ["E", "F", "A", "C", "B", "D"],
+  "outcomes": {
+    "E": {
+      "name": "feasibility failure",
+      "boolean": "NOT FEASIBILITY",
+      "authorized_wording": "Fewer than 18 geometrically valid worlds were obtained at the hard cap; the turnover-survival question is not answerable on this family. No biological or scientific negative conclusion is drawn.",
+      "forbidden_claims": ["any storage/causal/individuation conclusion", "any negative conclusion about C1c"],
+      "active_reconstruction_justified": false
+    },
+    "F": {
+      "name": "distributed / environmental access (locality invalidated)",
+      "boolean": "FEASIBILITY AND DISTRIBUTED_ENV",
+      "authorized_wording": "Own-dose information is recoverable at comparable skill from the target-memory-removed environment (E) or global (Gm) representation; target-local ownership is not established. This is distributed or environmental access, not local individual memory.",
+      "forbidden_claims": ["local ownership", "individual memory", "individuation"],
+      "active_reconstruction_justified": false
+    },
+    "A": {
+      "name": "turnover-surviving causal individuation SUPPORTED",
+      "boolean": "FEASIBILITY AND G_OWN_PERM AND G_LOCAL_EXCLUSION AND G_CAUSAL",
+      "authorized_wording": "On the passive-copy C1c architecture, the target's own graded dose information is decodable from its local memory beyond a within-world null and beyond neighbour/environment/global representations, AND its own-erasure causally and specifically reduces its own feeding at deep turnover. This supports turnover-surviving, target-specific causal information storage. It is NOT a claim of identity, life, reproduction, heredity, active reconstruction, or evolution.",
+      "forbidden_claims": ["identity", "life", "reproduction", "heredity", "evolution", "active reconstruction"],
+      "active_reconstruction_justified": false
+    },
+    "C": {
+      "name": "silent stored trace (storage without causal expression)",
+      "boolean": "FEASIBILITY AND G_OWN_PERM AND G_LOCAL_EXCLUSION AND (NOT G_CAUSAL)",
+      "authorized_wording": "Own-dose information survives locally at deep turnover, but a specific causal effect of own-memory erasure on own feeding is not established. This is a silent stored trace; causal individuation is not established.",
+      "forbidden_claims": ["causal individuation", "identity", "individual agency"],
+      "active_reconstruction_justified": false
+    },
+    "B": {
+      "name": "passive local causal remnant; no individual memory",
+      "boolean": "FEASIBILITY AND G_CAUSAL AND (NOT (G_OWN_PERM AND G_LOCAL_EXCLUSION))",
+      "authorized_wording": "A local causal feeding effect survives deep turnover, but the target's own graded history is not distinguishable from neighbour/environment/global representations. This is a passively-compatible, algebraically-coupled local causal remnant, not individual memory. This is the outcome that would MOTIVATE (not confirm) an active-reconstruction architecture.",
+      "forbidden_claims": ["individual memory", "individuation", "ownership"],
+      "active_reconstruction_justified": true
+    },
+    "D": {
+      "name": "passive C1c turnover persistence fails",
+      "boolean": "FEASIBILITY AND (NOT (G_OWN_PERM AND G_LOCAL_EXCLUSION)) AND (NOT G_CAUSAL)",
+      "authorized_wording": "Neither own graded storage nor a specific causal expression survives deep turnover. Passive-copy C1c turnover persistence of target-specific information fails. This negative would MOTIVATE (not confirm) an active-reconstruction architecture.",
+      "forbidden_claims": ["identity", "any positive individuation"],
+      "active_reconstruction_justified": true
+    }
+  },
+  "global_forbidden_claims": ["identity", "life", "reproduction", "heredity", "evolution", "active reconstruction as demonstrated"],
+  "notes": [
+    "A positive direct feeding contrast alone can never select outcome A: G_CAUSAL is necessary but not sufficient; A also requires G_OWN_PERM and G_LOCAL_EXCLUSION.",
+    "G-full (Gf) nests target memory and is diagnostic only; L is never required to beat Gf.",
+    "Active reconstruction is not implemented and not launched in this mission; outcomes B and D only mark it as scientifically justified for a FUTURE, separately-authorized architecture."
+  ]
+}

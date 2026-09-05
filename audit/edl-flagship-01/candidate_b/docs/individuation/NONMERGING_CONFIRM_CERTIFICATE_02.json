@@ -1,0 +1,318 @@
+{
+  "mission": "LCI-CAUSAL-NONMERGING-CONFIRM-02",
+  "n_seeds": 32,
+  "n_eligible": 23,
+  "n_g0_valid": 23,
+  "nonfusing_fraction": 1.0,
+  "G0": {
+    "passed": true,
+    "valid_worlds": 23,
+    "min_valid": 12,
+    "worlds_ok": true,
+    "nonfusing_fraction": 1.0,
+    "min_fraction": 0.85,
+    "frac_ok": true
+  },
+  "G1": {
+    "passed": true,
+    "DD_mem": 2590.0484470532206,
+    "diag": 0.18686203237973162,
+    "off": 7.030993427940622e-05
+  },
+  "G2": {
+    "passed": true,
+    "dose_R2": 0.6908517710812216,
+    "dose_ci": [
+      0.5812680051877672,
+      0.8241650210611119
+    ],
+    "dose_null95": 0.15306406118017543,
+    "dose_p": 0.0001999600079984003,
+    "order_R2": 0.375538457118857,
+    "order_null95": 0.10560937206682695,
+    "order_p": 0.0001999600079984003,
+    "neighbour_dose_R2": -0.014269612843656132
+  },
+  "G3": {
+    "passed": true,
+    "own_worldCI": [
+      0.19258340353198225,
+      0.2232705006888931,
+      0.25834348856712364
+    ],
+    "own_sham_worldCI": [
+      0.19258340936897145,
+      0.22327050786001332,
+      0.25834349474282664
+    ],
+    "own_neigh_worldCI": [
+      0.19258547407545254,
+      0.2232796197850636,
+      0.25835620845415364
+    ],
+    "own_mean": 0.2236416257421648,
+    "sham_mean": -6.777303240351992e-09,
+    "neigh_mean": -7.316792126109839e-06,
+    "ablation_ratio": 0.0,
+    "ablation_mean": 0.0,
+    "own_fixed_mean": 0.20679489102504786,
+    "worlds_own_pos": 23,
+    "nW": 23,
+    "note": "readout is directly coupled to m+ by construction; ablation~0 is a manipulation check"
+  },
+  "G4": {
+    "passed": true,
+    "own_neigh_worldCI": [
+      0.19258547407545254,
+      0.2232796197850636,
+      0.25835620845415364
+    ],
+    "neigh_mean": -7.316792126109839e-06,
+    "note": "neighbour effect ~0 (perfect locality); bijective tracker => no shared components"
+  },
+  "G5": {
+    "passed": true,
+    "own_fixed_worldCI": [
+      0.1799347054467802,
+      0.20662443770537392,
+      0.23438471691982812
+    ],
+    "same_sign_worlds": 23,
+    "tracked_over_fixed": 1.0814659135610676
+  },
+  "G6": {
+    "passed": true,
+    "rule": "G0 & G1 & G2 & G3 & G4"
+  },
+  "per_seed": [
+    {
+      "seed": 53001,
+      "eligible": false,
+      "reason": "fewer_than_K_eligible"
+    },
+    {
+      "seed": 53002,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.02001953125,
+      "own_tracked": 0.2543094292375591,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53003,
+      "eligible": false,
+      "reason": "fewer_than_K_eligible"
+    },
+    {
+      "seed": 53004,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.0224609375,
+      "own_tracked": 0.20666772354717558,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53005,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.027099609375,
+      "own_tracked": 0.32825780036254965,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53006,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.0302734375,
+      "own_tracked": 0.23603819747264673,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53007,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.020751953125,
+      "own_tracked": 0.17559414381131214,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53008,
+      "eligible": false,
+      "reason": "fewer_than_K_eligible"
+    },
+    {
+      "seed": 53009,
+      "eligible": false,
+      "reason": "fewer_than_K_eligible"
+    },
+    {
+      "seed": 53010,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.056396484375,
+      "own_tracked": 0.47597936276217884,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53011,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.0302734375,
+      "own_tracked": 0.33383794301785547,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53012,
+      "eligible": false,
+      "reason": "fewer_than_K_eligible"
+    },
+    {
+      "seed": 53013,
+      "eligible": false,
+      "reason": "fewer_than_K_eligible"
+    },
+    {
+      "seed": 53014,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.025146484375,
+      "own_tracked": 0.20383034760787874,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53015,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.02099609375,
+      "own_tracked": 0.13569643517507549,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53016,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.027099609375,
+      "own_tracked": 0.13715881745402317,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53017,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.019287109375,
+      "own_tracked": 0.1773659679052321,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53018,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.0283203125,
+      "own_tracked": 0.2891229327841011,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53019,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.024658203125,
+      "own_tracked": 0.2782837848961786,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53020,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.02880859375,
+      "own_tracked": 0.2686059981347384,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53021,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.02880859375,
+      "own_tracked": 0.25582221992329046,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53022,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.038818359375,
+      "own_tracked": 0.23162228174254818,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53023,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.02392578125,
+      "own_tracked": 0.19619330839832502,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53024,
+      "eligible": false,
+      "reason": "fewer_than_K_eligible"
+    },
+    {
+      "seed": 53025,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.02001953125,
+      "own_tracked": 0.2096190413875035,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53026,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.01806640625,
+      "own_tracked": 0.18050202219471925,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53027,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.017822265625,
+      "own_tracked": 0.18159924309791733,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53028,
+      "eligible": false,
+      "reason": "fewer_than_K_eligible"
+    },
+    {
+      "seed": 53029,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.027587890625,
+      "own_tracked": 0.19436078058334472,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53030,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.01416015625,
+      "own_tracked": 0.10937233266228574,
+      "invalid_reason": null
+    },
+    {
+      "seed": 53031,
+      "eligible": false,
+      "reason": "fewer_than_K_eligible"
+    },
+    {
+      "seed": 53032,
+      "eligible": true,
+      "g0_valid": true,
+      "max_cov": 0.011962890625,
+      "own_tracked": 0.08391727791135233,
+      "invalid_reason": null
+    }
+  ]
+}

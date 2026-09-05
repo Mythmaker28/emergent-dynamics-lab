@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "steps": [
+    {
+      "script": "verify_sources.py",
+      "exit_code": 0,
+      "stdout": "{\"methods\": \"21571fb4cb1df9ac2e9089924e9d6ee5d4d63c920a007e188bdc24e0d94d1f99\", \"FDFLT01_frozen_files\": 28, \"B_seal_verified\": true, \"CCRA_count_conditional_p\": 0.8944882011955997, \"branches\": [{\"ref\": \"main\", \"commit\": \"f382dbf077699aa65c80328b6519035d1cda4a57\", \"merge_base_with_recovered\": \"e17f431c7c1aab8ad9bfeb3420a8c5022e311553\", \"exclusive_commits_ref\": 199, \"exclusive_commits_recovered\": 266}, {\"ref\": \"PR34\", \"commit\": \"22ce04d50f2b3ab25b39cbdc1ec5c3c89570e3c6\", \"merge_base_with_recovered\": \"06c592313df96601de8d2a89676d5a5cf79fc414\", \"exclusive_commits_ref\": 4, \"exclusive_commits_recovered\": 161}, {\"ref\": \"persistence_v1\", \"commit\": \"06fd9524f5c7ffb329ee850a10bd9959f2f0bde5\", \"merge_base_with_recovered\": \"e17f431c7c1aab8ad9bfeb3420a8c5022e311553\", \"exclusive_commits_ref\": 51, \"exclusive_commits_recovered\": 266}, {\"ref\": \"OMLDCT02\", \"commit\": \"99b8044a037ccfb690131bdccbfa579985d73da8\", \"merge_base_with_recovered\": \"99b8044a037ccfb690131bdccbfa579985d73da8\", \"exclusive_commits_ref\": 0, \"exclusive_commits_recovered\": 117}, {\"ref\": \"recovered_history\", \"commit\": \"5372fd86ba98b5b21a50143ca9c36b25d191daac\", \"merge_base_with_recovered\": \"5372fd86ba98b5b21a50143ca9c36b25d191daac\", \"exclusive_commits_ref\": 0, \"exclusive_commits_recovered\": 0}]}\n",
+      "stderr": ""
+    },
+    {
+      "script": "recompute_fdflt.py",
+      "exit_code": 0,
+      "stdout": "{\"n\": 192, \"successes\": 53, \"fraction\": 0.2760416666666667, \"exact_one_sided_p\": 5.255896417897822e-12, \"CP_one_sided_lower95\": 0.2232489797460382, \"CP_two_sided95\": [0.2141167653565565, 0.3450244900217544], \"critical_success_count\": 27, \"birth_worlds\": 66, \"joint_timing\": 58, \"sensitivity\": {\"T_50\": 55, \"T_primary\": 53, \"T_80\": 39, \"T_90\": 21}, \"integrity_failures\": 0, \"excluded\": 0, \"reserve_worlds\": 0, \"seed_formula_verified\": 198, \"unique_seeds\": 192, \"fields_compared\": 5184, \"mismatches\": [], \"raw_kind\": \"192 endpoint-bearing X/core NPZ; not full six-plane originals\", \"raw_scalar_rows_reconstructed\": 1291322, \"science_worlds_run\": 0, \"engine_imports\": []}\n",
+      "stderr": ""
+    },
+    {
+      "script": "recompute_omldct.py",
+      "exit_code": 0,
+      "stdout": "reconstructed pairs 10\nreconstructed pairs 20\nreconstructed pairs 30\nreconstructed pairs 40\n{\"n_pairs\": 41, \"archive_hash_and_content_pass\": 123, \"raw_endpoint_comparisons\": 492, \"endpoint_mismatches\": [], \"duration\": {\"W_plus\": 521.0, \"exact_two_sided_p\": 0.24638633591985126, \"median_difference\": 0.21357410029805912, \"hodges_lehmann\": 0.3330781223665489, \"hl_interval\": [-0.23853947588423452, 0.8369882167858358], \"n_zero\": 0, \"n_nonzero\": 41}, \"exposure\": {\"W_plus\": 504.0, \"exact_two_sided_p\": 0.34791725337890966, \"median_difference\": 0.5694680843784337, \"hodges_lehmann\": 0.3161356967977471, \"hl_interval\": [-0.31096591919555827, 0.8738989882841586], \"n_zero\": 0, \"n_nonzero\": 41}, \"12_statistics_match\": true, \"termination_counts\": {\"SELECTIVE\": {\"NO_COMPONENT_AT_THE_NEXT_STEP\": 9, \"SPLIT_OR_TIE\": 32}, \"SHAM\": {\"SPLIT_OR_TIE\": 28, \"OUT_OF_RANGE\": 6, \"MERGE\": 7}}, \"frozen_statistical_AND_pass\": false, \"recorded_instance_cost_first_crossing_512\": {\"index\": 738, \"admissible\": 36, \"cost\": 512.5576600000036}, \"recorded_total_instance_cost\": 609.5170300000046, \"two_arm_prefix_accounting_first_crossing_512\": {\"index\": 789, \"admissible\": 38, \"cost\": 512.1262727272767}, \"two_arm_prefix_accounting_total\": 571.6493636363683, \"triggered_without_executed_arms\": 12, \"status\": \"RECOMPUTED_SAME_DATA__OUTSIDE_OMLDCT02_FROZEN_ACCRUAL__INCONCLUSIVE\", \"interval_caveat\": \"Frozen Walsh interval uses untied null order indices even with ties/zeros. Numerical reproduction is not a proof of nominal coverage.\", \"science_worlds_run\": 0}\n",
+      "stderr": ""
+    },
+    {
+      "script": "check_interval.py",
+      "exit_code": 0,
+      "stdout": "{\"n\": 41, \"first_cdf_index_exceeding_alpha_half\": 280, \"frozen_interval_coverage_under_continuous_symmetric_untied_model\": 0.948765799596913, \"corrected_conservative_coverage_same_model\": 0.9503413156517126, \"corrections_nonadjudicative\": {\"duration\": {\"distinct_absolute_differences\": 41, \"descriptive_corrected_order_interval\": [-0.24315860236862985, 0.8377658219192385], \"frozen_interval\": [-0.23853947588423452, 0.8369882167858358]}, \"exposure\": {\"distinct_absolute_differences\": 41, \"descriptive_corrected_order_interval\": [-0.3183239115118148, 0.8749490226195547], \"frozen_interval\": [-0.31096591919555827, 0.8738989882841586]}}, \"frozen_files_modified\": false, \"scope\": \"Off-by-one in frozen CI endpoints; not a validation of symmetry or iid assumptions for these data.\"}\n",
+      "stderr": ""
+    },
+    {
+      "script": "recompute_candidate_b.py",
+      "exit_code": 0,
+      "stdout": "{\"raw_worlds\": 50, \"valid_worlds\": 21, \"max_absolute_difference_new_vs_03M\": 1.1657341758564144e-15, \"gates_from_03M\": {\"FEASIBILITY\": true, \"G_OWN_PERM\": true, \"G_LOCAL_EXCLUSION\": false, \"G_CAUSAL\": true, \"DISTRIBUTED_ENV\": false}, \"outcome_from_03M\": \"B\"}\n",
+      "stderr": ""
+    },
+    {
+      "script": "build_inventory.py",
+      "exit_code": 0,
+      "stdout": "provenance matrix rows 34 invalid B worlds 29\n",
+      "stderr": ""
+    },
+    {
+      "script": "test_audit.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "....\n----------------------------------------------------------------------\nRan 4 tests in 0.004s\n\nOK\n"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "results/CANDIDATE_B_03M_RERUN.json",
+      "sha256": "5df09b0b77a06986263e51d11541b14f55067a7785675738ad9aac08c8c30925"
+    },
+    {
+      "path": "results/CANDIDATE_B_INDEPENDENT.json",
+      "sha256": "f25becb10a88860c6506aa11dacda048dffc93952c283505aabca2e647ab31eb"
+    },
+    {
+      "path": "results/CANDIDATE_B_INVALIDITY.json",
+      "sha256": "19f8505765e471e6a79e7ec358a3349d8787bf1cc4c74e6bf022d6f6f3e144f1"
+    },
+    {
+      "path": "results/FDFLT01_INDEPENDENT.json",
+      "sha256": "0da04085ee9c76ddaa1d0a6b2e58b1e62373e225c2498ff0f154e3b83d392cde"
+    },
+    {
+      "path": "results/FDFLT01_PER_WORLD.json",
+      "sha256": "297dd1a49f9392ce8dc6d08ffbb2036fabd55fd12c80bdde6dc550182290b66d"
+    },
+    {
+      "path": "results/GIT_TIMELINES.json",
+      "sha256": "44b36a01e948df1e7e5654a6f4cdb7de2b5c8792fe2c820c559c77593916e0be"
+    },
+    {
+      "path": "results/OMLDCT03_INDEPENDENT.json",
+      "sha256": "84b7223da2ee32a84e41dc8ec1311f16f01d10c271f90a19b346874190341727"
+    },
+    {
+      "path": "results/OMLDCT03_INTERVAL_INDEX_AUDIT.json",
+      "sha256": "1823e9bb3187e3c3e5b25e4ae36be1f3f8d3c7234dcd25767077e710a0e09d6d"
+    },
+    {
+      "path": "results/OMLDCT03_PER_PAIR.json",
+      "sha256": "edd324d0296d529757246aa3be5e017aed5774c585eafc5cc16f09fc0ede9b8c"
+    },
+    {
+      "path": "results/SOURCE_VERIFICATION.json",
+      "sha256": "24eaaf6bcecbbd3ff0fc7590704fc3af7bbdf625fe93cd0dfe634e9e3d9eee92"
+    }
+  ],
+  "science_worlds_run": 0,
+  "note": "Analytic fixtures and existing-data recomputation only. Sept-4 artifacts are separately verified by september4_adjudication/audit_september4.py; no new worlds."
+}

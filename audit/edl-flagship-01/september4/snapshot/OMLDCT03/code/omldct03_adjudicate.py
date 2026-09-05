@@ -1,0 +1,238 @@
+"""OMLDCT03 — adjudication. Le retour du checker est commite verbatim en dfab44a, AVANT ceci."""
+from __future__ import annotations
+import os, sys, json, math, subprocess
+REPO = os.environ.get("TBRT02_REPO", "/home/claude/edl")
+sys.path.insert(0, os.path.join(REPO, "OMLDCT02/code"))
+import omldct02_hashes as H
+V = "OMLDCT03/out/OMLDCT03_CHECKER_RETURN_VERBATIM.md"
+
+F = {
+ "F1_LA_REGLE_D_ACCRUAL_GELEE_N_A_PAS_ETE_HONOREE": {
+   "verdict": "ACCEPTED", "gravite": "PORTANTE — elle restreint ce que « le test gele a ete execute » peut vouloir dire",
+   "constat": ("le gel d'OMLDCT02 ne fige pas seulement l'endpoint, le test, alpha et le seuil de "
+     "41. Il fige aussi ACCRUAL_RULE, MAX_PRIMARY_ARM_INSTANCES = 512 et SEED_SET_HASH. J'ai "
+     "importe le seuil et laisse derriere moi la regle qui le gouverne."),
+   "verifie_par_moi_meme": {
+     "recoutage_du_flux_TBRT02_a_deux_bras": "593,510 instances au total",
+     "le_plafond_gele_de_512_s_epuise": "a l'indice 760, avec 36 paires admissibles",
+     "le_checker_annonce": "indice 789, 38 paires, total 571,649",
+     "ECART_AVEC_LE_CHECKER": ("nos deux chiffrages different sur le cout des graines non "
+       "declenchees — j'utilise prefix_steps/H, lui autre chose. 36 contre 38. LE CONSTAT EST "
+       "INVARIANT : sous les deux chiffrages le plafond gele s'epuise AVANT 41 paires. Je rapporte "
+       "mon chiffre et le sien plutot que d'adopter le sien sans l'avoir refait."),
+     "OMLDCT02_lui_meme": "CAMPAIGN_STOPPED = HARD_ARM_INSTANCE_CEILING, 510,569 sur 512 depenses"},
+   "ce_que_cela_change": ("le terminal reste vrai, les chiffres restent justes, mais la phrase « le "
+     "test GELE d'OMLDCT02 est EXECUTE » est plus large que ce qui a eu lieu. La description "
+     "exacte est celle du checker, que j'adopte mot pour mot : la PROCEDURE STATISTIQUE gelee "
+     "d'OMLDCT02, executee a son effectif requis sur un echantillon apparie obtenu HORS de sa "
+     "regle d'accrual."),
+   "et_mon_autorisation_dit_le_contraire_de_ce_que_j_ai_fait": ("j'ai ecrit « ne modifier un seul "
+     "champ du gel » puis mis de cote trois champs sans les nommer. C'est le defaut le plus grave "
+     "de la mission et il est de gouvernance, pas d'arithmetique.")},
+
+ "F2_LA_MORTALITE_DIFFERENTIELLE_N_EST_PAS_RAPPORTEE": {
+   "verdict": "ACCEPTED", "gravite": "PORTANTE pour l'interpretation ; le terminal resiste",
+   "verifie_par_moi_meme": {
+     "extinction_totale_de_Y_dans_la_fenetre_de_la_fille": {"SELECTIVE": 9, "SHAM": 0},
+     "mediane_log_duree_paires_AVEC_une_extinction": "-0,3548 sur 13 paires",
+     "mediane_log_duree_les_autres": "+0,6325 sur 28 paires",
+     "lecture": ("le p publie de 0,246 est un MELANGE : un contraste positif chez les mondes que "
+       "le traitement ne tue pas, et un contraste negatif chez ceux qu'il tue.")},
+   "ce_que_je_ne_fais_pas": ("aucune des restrictions du checker n'est adoptee comme resultat : "
+     "toutes conditionnent sur une variable post-traitement, que le pre-enregistrement de "
+     "FIMRCC01 interdit nommement et que mon autorisation exclut explicitement. Elles sont des "
+     "diagnostics, pas des analyses alternatives."),
+   "ce_qui_est_grave": ("j'avais ecrit moi-meme, deux heures plus tot, dans "
+     "GATE01/out/EDL_PRIOR_ART_MAP.json : « un contraste apparie de comptes apres t_m mesurera en "
+     "partie la mort du monde et non la persistance de la fille. C'est le premier confondant a "
+     "neutraliser. » Je ne l'ai pas neutralise et je ne l'ai meme pas mentionne."),
+   "le_terminal_resiste": ("le checker a essaye toutes les specifications qu'il pouvait construire, "
+     "y compris les deux qui favorisent le plus un rejet et le pool illegitime de 74 paires : "
+     "la regle ET echoue partout.")},
+
+ "F3_LES_DEUX_BRAS_NE_POSENT_PAS_LE_MEME_PROBLEME_DE_SUIVI": {
+   "verdict": "ACCEPTED", "gravite": "PORTANTE pour l'interpretation",
+   "constat": ("l'intervention retire le parent. Le parent est l'objet qui fournit la composante "
+     "concurrente. Donc une part de « l'identite dure plus longtemps sous SELECTIVE » est « il "
+     "n'y a plus rien avec quoi le suivi puisse la confondre »."),
+   "verifie_par_moi_meme": {
+     "types_de_terminaison_SELECTIVE": {"SPLIT_OR_TIE": 32, "NO_COMPONENT_AT_THE_NEXT_STEP": 9,
+                                        "MERGE": 0, "OUT_OF_RANGE": 0},
+     "types_de_terminaison_SHAM": {"SPLIT_OR_TIE": 28, "MERGE": 7, "OUT_OF_RANGE": 6,
+                                   "NO_COMPONENT_AT_THE_NEXT_STEP": 0},
+     "MERGE_est_arithmetiquement_impossible_avec_une_seule_composante": True,
+     "zero_MERGE_dans_SELECTIVE_contre_sept_dans_SHAM": "le mecanisme se lit dans la table"},
+   "consequence": ("cette asymetrie structurelle appartient au resultat et doit etre ecrite a cote "
+     "de lui. Le CLAIM_CEILING gele la couvre — un resultat positif aurait ete dans les bornes — "
+     "mais je n'ai cite ni CLAIM_CEILING ni IT_DOES_NOT_ESTABLISH nulle part.")},
+
+ "F4_LA_REGLE_D_ADMISSIBILITE_COMMITEE_N_EST_PAS_LA_REGLE_GELEE": {
+   "verdict": "ACCEPTED", "gravite": "MATERIELLE pour le dossier ; nulle numeriquement",
+   "constat": ("le fichier d'admissibilite porte une cle nommee LA_REGLE_APPLIQUEE_EST_CELLE_"
+     "D_OMLDCT02_ET_N_EST_PAS_LA_MIENNE et la phrase qu'elle contient est fausse : il manque la "
+     "clause sur identity_termination_type, et j'ajoute deux clauses que la regle gelee n'a pas."),
+   "verifie_par_moi_meme": ("A et B s'accordent sur le type de terminaison dans les 82 bras, donc "
+     "la retention sous la regle complete vaut bien 41 et la porte a ete ouverte sur un compte que "
+     "la regle gelee soutient. La revendication est juste ; le fichier qui la porte ne l'est pas.")},
+
+ "F5_AUCUNE_PORTE_D_INTEGRITE_N_A_ETE_PASSEE": {
+   "verdict": "ACCEPTED", "gravite": "MATERIELLE pour la provenance ; non portante",
+   "constat": ("mon code lit le registre scelle pour ADMISSIBLE et ne lit jamais d[sha256]. "
+     "OMLDCT02 en fait une ETAPE SEPAREE qui tourne AVANT la mesure et produit "
+     "OMLDCT02_RAW_MANIFEST.json. OMLDCT03 n'a pas d'equivalent."),
+   "c_est_le_constat_F15_de_RPP98_MOT_POUR_MOT": ("deux missions plus tard, la meme ligne est "
+     "reecrite contre les memes archives. Je l'avais accepte alors."),
+   "note": ("j'avais verifie les 123 sha256 a la main au moment du rapatriement, et le checker les "
+     "a reverifies. Rien n'est faux dans les donnees. Ce qui est faux, c'est que la mission ne le "
+     "sache pas par elle-meme.")},
+
+ "F6_MON_PIPELINE_NE_PEUT_PAS_ATTEINDRE_LE_QUATRIEME_TERMINAL_GELE": {
+   "verdict": "ACCEPTED", "gravite": "LATENTE, non declenchee",
+   "constat": ("j'ai collapse C3, C4 et C5 en un script dont l'objet d'analyse EST le dernier mot. "
+     "Le drapeau d'invalidite technique n'est pas emis, et une difference de log indefinie serait "
+     "reetiquetee d'invalidite technique en manque d'accrual. Sous ce code aucune entree ne peut "
+     "produire OMLDCT02_TECHNICALLY_INVALID."),
+   "consequence": ("zero desaccord, zero difference indefinie, n = 41 : rien de publie n'est "
+     "affecte. Mais « decide() est appele INCHANGE » est vrai de decide() et faux du pipeline.")},
+
+ "F7_LA_CONTAMINATION_N_EST_PAS_ENUMEREE": {
+   "verdict": "ACCEPTED", "gravite": "MATERIELLE — elle n'entame pas l'alpha, elle entame le mot « confirmatoire »",
+   "constat": ("TBRT02_C4_ANALYSIS.json section 12, commite deux jours avant, publie sur CES MEMES "
+     "41 graines un contraste apparie SELECTIVE moins SHAM de duree : 24 positifs, 7 nuls, 10 "
+     "negatifs, test des signes p = 0,0243 — et il pointe dans le meme sens que mon resultat. "
+     "OMLDCT02 avait deja publie les deux medianes positives sur 33 paires depuis le 26 aout."),
+   "ce_que_cela_coute_exactement": ("cela n'enfle pas l'erreur de type I : tout choix de "
+     "conception etait gele le 25 aout avant l'existence des mondes, et la seule discretion que "
+     "j'ai exercee etait entierement determinee — les 41 triplets admissibles, aucun sous-"
+     "ensemble. Ce que cela coute, c'est la revendication d'aveuglement : la decision D'EXECUTER "
+     "a ete prise avec le signe d'un contraste correle sur les memes graines deja en main."),
+   "ma_section_0_enumere_les_trois_retraits_et_pas_un_seul_regard_anterieur_sur_ces_archives":
+     "troisieme mission d'affilee sur ce meme defaut ; je l'avais moi-meme ecrit comme consigne"},
+
+ "F8_LE_COPRIMAIRE_N_EST_PAS_UN_SECOND_CRITERE": {
+   "verdict": "ACCEPTED", "gravite": "MATERIELLE",
+   "verifie_par_moi_meme": {"correlation_de_Pearson_entre_les_deux_criteres": 0.9751,
+                            "meme_signe": "41 paires sur 41"},
+   "consequence": ("la regle ET est presentee comme un dispositif de severite ; a rho = 0,975 elle "
+     "n'achete presque rien. Et « les deux medianes sont positives ET CONCORDANTES » offre la "
+     "concordance comme corroboration alors qu'elle est ici quasi garantie par construction. "
+     "C'est un critere rapporte deux fois.")},
+
+ "F9_GOUVERNANCE": {
+   "verdict": "ACCEPTED", "gravite": "MATERIELLE — deux de ces points repetent des constats deja acceptes",
+   "les_manques": [
+     "le bloc de clauses heritees que FIMRCC01 et LDFMA01 exigent de tout successeur n'est pas "
+     "reemis ; OMLDCT02, lui, le reemettait",
+     "GATE01 n'a pas ete passee — la porte batie en reponse au retrait de RPP98 et reparee apres "
+     "celui de FIMRCC02, sautee par la quatrieme mission de la serie",
+     "le gel est lie par un horodatage et non par un hachage, et les chaines gelees sont "
+     "transcrites a la main ; PAIRED_TEST est tronque",
+     "aucun CODE_SHA256, aucun SHA256SUMS dans OMLDCT03/out",
+     "j'ai improvise une chaine de statut, OMLDCT02_STATUS = ..._ACCRUAL_REOPENED_UNDER_HUMAN_"
+     "AUTHORISATION, sous un gel qui porte NO_FIFTH_DISPOSITION = true. Corrige ci-dessous."]},
+
+ "F10_UNE_PHRASE_DU_MESSAGE_DE_COMMIT_ENONCE_UN_POINT_NON_REJETANT_COMME_UN_FAIT": {
+   "verdict": "ACCEPTED", "gravite": "MATERIELLE ; le JSON est propre, le commit est immuable",
+   "la_phrase": ("« Les deux medianes sont POSITIVES et concordantes — l'identite dure plus "
+     "longtemps dans le bras ou son parent est retire — mais aucune ne rejette »"),
+   "constat": ("la proposition entre tirets est un enonce general au present attache a p = 0,246. "
+     "La phrase qui l'entoure la retire et le JSON ne la fait jamais, mais elle n'aurait pas du "
+     "etre ecrite, et F3 en fait la lecture que la structure du critere soutient le moins."),
+   "la_phrase_qui_manquait_et_que_j_ajoute": {
+     "duree": "Hodges-Lehmann 1,40x, intervalle sans distribution 0,79x a 2,31x",
+     "exposition": "1,37x, intervalle 0,73x a 2,40x",
+     "lecture": ("une multiplication par 2,3 de la duree d'identite de la fille apres "
+       "l'intervention n'est PAS exclue par ce test, et une diminution de 21 pour cent non plus. "
+       "C'est la phrase dont un lecteur a besoin et elle manquait.")}},
+
+ "F11_MINEURS": {"verdict": "ACCEPTED", "gravite": "COSMETIQUE A MATERIELLE",
+   "liste": ["le registre est lu sans dedoublonnage et sans assertion d'unicite",
+     "ADMISSIBILITY_CONTENT_HASH est transcrit et non recalcule",
+     "si TBRT02 avait donne plus de 41 triplets admissibles, mon code les aurait tous pris au lieu "
+     "des 41 premiers dans l'ordre d'indice comme la regle d'accrual le dirige",
+     "work/omldct03_pairs.json — les durees — a ete commite dans un commit dont le message porte "
+     "sur la durabilite ; la separation est une discipline de graphe de commits, pas une barriere "
+     "d'information, et la glisser dans un commit sans rapport en sape le seul interet",
+     "E3_EXPOSURE_SYMMETRIC_VARIANT est calcule par le classificateur gele expressement pour que "
+     "la fenetre soit mesuree et non supposee, et n'est jamais rapporte (p = 0,3348 contre 0,3479)",
+     "la couverture nominale de l'intervalle, 0,95034, n'est pas enoncee"]},
+}
+
+d = {
+ "MISSION": "OMLDCT03",
+ "GENERATED_UTC": subprocess.run(["date", "-u", "+%Y-%m-%dT%H:%M:%S+00:00"],
+                                 capture_output=True, text=True).stdout.strip(),
+ "CHECKER_RETURN_VERBATIM": V,
+ "CHECKER_RETURN_SHA256": H.file_sha256(os.path.join(REPO, V)),
+ "CHECKER_RETURN_COMMITTED_BEFORE_THIS_FILE": "dfab44a",
+ "N_FINDINGS": len(F), "N_ACCEPTED": sum(1 for v in F.values() if v["verdict"] == "ACCEPTED"),
+ "N_REJECTED": sum(1 for v in F.values() if v["verdict"] != "ACCEPTED"),
+ "UNE_CORRECTION_A_L_ARITHMETIQUE_DU_CHECKER": (
+   "F1 : le checker chiffre l'epuisement du plafond gele a l'indice 789 avec 38 paires ; mon "
+   "propre recoutage donne l'indice 760 avec 36 paires. Nos chiffrages different sur le cout des "
+   "graines non declenchees. Le constat est invariant — sous les deux, le plafond s'epuise avant "
+   "41 paires — mais je rapporte les deux chiffres plutot que d'adopter le sien sans l'avoir refait."),
+ "FINDINGS": F,
+
+ "LE_RESULTAT_TIENT": {
+   "ce_que_le_checker_a_verifie_avec_SON_PROPRE_CODE": [
+     "les 41 paires et les 82 bras reproduisent exactement sur la duree, l'exposition et le type "
+     "de terminaison, sous une reimplementation independante de toute la chaine",
+     "toutes les statistiques publiees reproduisent au dernier chiffre, les p en rationnels exacts",
+     "123 archives sur 123 concordent au sha256 ; le prefixe est identique bit a bit entre les "
+     "trois bras des 41 triplets, sur tous les tableaux",
+     "les graines de TBRT02 et d'OMLDCT02 sont disjointes : 0 recouvrement",
+     "le traitement SELECTIVE de TBRT02 EST celui d'OMLDCT02 — memes appels, memes bits de loi, "
+     "8 fichiers de methode sur 8 identiques",
+     "aucune troncature administrative, aucune chaine de terminaison illegitime, aucun mauvais "
+     "ensemble de cellules filles"],
+   "verdict_du_checker_mot_pour_mot": ("« Say it plainly: the numbers are right and the analysis "
+     "is the frozen one. »"),
+   "le_terminal_resiste_a_toutes_les_specifications_essayees": True},
+
+ "OMLDCT03_STATUS": ("FROZEN_STATISTICAL_PROCEDURE_EXECUTED_AT_ITS_REQUIRED_N_ON_A_MATCHED_SAMPLE_"
+                     "OBTAINED_OUTSIDE_ITS_ACCRUAL_RULE__EFFECT_NOT_DETECTED__INCONCLUSIVE"),
+ "CE_QUI_EST_RETIRE_DE_MES_PROPRES_FORMULATIONS": [
+   "« le test GELE d'OMLDCT02 est EXECUTE » — trop large : la procedure statistique l'a ete, "
+   "l'experience gelee, avec sa regle d'accrual, ne l'a pas ete",
+   "la phrase du message de commit sur la duree, retiree",
+   "la phrase du fichier d'admissibilite sur la regle appliquee, fausse et corrigee ici",
+   "OMLDCT02_STATUS = ..._ACCRUAL_REOPENED_UNDER_HUMAN_AUTHORISATION, improvise sous un gel qui "
+   "porte NO_FIFTH_DISPOSITION ; restaure a INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS"],
+
+ "CE_QUE_CETTE_MISSION_EST_ET_N_EST_PAS": (
+   "c'est la premiere mission de cette serie qui survit a son checker. Trois l'ont precedee et "
+   "toutes trois ont ete retirees. Celle-ci ne l'est pas : son arithmetique est juste, son analyse "
+   "est la gelee, et son terminal resiste. Mais elle porte onze constats acceptes, dont trois "
+   "repetent des defauts que j'avais deja acceptes dans les missions precedentes — la porte "
+   "d'integrite non passee, la contamination non enumeree, le gel lie par un horodatage. Survivre "
+   "n'est pas etre exemplaire."),
+
+ "LE_RESULTAT_EN_UNE_PHRASE": (
+   "sur 41 paires appariees a la meme graine, la duree d'identite de la fille verrouillee apres "
+   "l'intervention n'est pas distinguee entre le bras ou son parent est retire et le bras temoin : "
+   "p exact bilateral 0,2464 sur la duree et 0,3479 sur l'exposition, la regle ET echoue, et "
+   "l'intervalle sans distribution va de 0,79x a 2,31x. Le gel le dit lui-meme : INCONCLUSIVE, "
+   "aucune revendication d'equivalence, aucune revendication d'absence d'effet."),
+
+ "STATUTS": {
+   "H3_STATUS": "NOT_TESTED", "REPRODUCTION_STATUS": "NOT_TESTED",
+   "HEREDITY_STATUS": "NOT_TESTED", "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+   "X_LAWSPEC_BASELINE": "UNCHANGED", "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+   "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+   "OMLDCT02_STATUS": "INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS__UNCHANGED",
+   "CLEA01_STATUS": "CLOSED__LINEAGE_ROUTE_PAUSED__NOT_REOPENED",
+   "TBRT02_STATUS": "CLOSED__RAW_COMPLETE__PRIMARY_ADJUDICATION_INCONCLUSIVE_BY_CONSTRUCTION",
+   "RPP97_STATUS": "WITHDRAWN_AS_A_DESCRIPTION__ARITHMETIC_SOUND__SCIENCE_MIS_SPECIFIED",
+   "RPP98_STATUS": "WITHDRAWN__THE_QUESTION_WAS_ALREADY_ANSWERED_BY_TLMR01__AND_THE_COUNTED_EVENT_IS_NOT_THE_CLAIMED_EVENT",
+   "FIMRCC02_STATUS": "WITHDRAWN__A_PREREGISTERED_TEST_ALREADY_EXISTS__AND_THE_CENTRAL_PREMISE_IS_FALSE_BY_DEFINITION",
+   "FIMRCC01_E3_E4_E5_STATUS": "FUTURE_QUESTION_RECORDED__NOT_AUTHORISED"},
+ "VOCABULAIRE": ("rien ici ne porte sur ce que ces objets sont. « Mort du monde » designe "
+                 "l'extinction de l'espece Y au sens du registre."),
+}
+d["ADJUDICATION_CONTENT_HASH"] = H.content_digest(d, extra_excluded=("ADJUDICATION_CONTENT_HASH",))
+json.dump(d, open(f"{REPO}/OMLDCT03/out/OMLDCT03_CHECKER_ADJUDICATION.json", "w"),
+          indent=1, ensure_ascii=False)
+print("constats", d["N_FINDINGS"], "acceptes", d["N_ACCEPTED"], "rejetes", d["N_REJECTED"])
+print("OMLDCT03_STATUS", d["OMLDCT03_STATUS"])
+print("hash", d["ADJUDICATION_CONTENT_HASH"][:16])

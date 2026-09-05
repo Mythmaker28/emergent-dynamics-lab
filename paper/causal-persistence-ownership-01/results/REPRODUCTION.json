@@ -1,0 +1,157 @@
+{
+  "status": "PASS",
+  "science_worlds_run": 0,
+  "steps": [
+    {
+      "script": "scripts/analyze.py",
+      "exit_code": 0,
+      "stdout": "{\"status\": \"PASS\", \"worlds\": 50, \"valid\": 21, \"input_files_verified\": 222, \"max_diff\": 1.1657341758564144e-15, \"new_worlds\": 0}",
+      "stderr": ""
+    },
+    {
+      "script": "reviews/statistics/recompute_sensitivity.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"raw_worlds\": 50,\n  \"valid_worlds\": 21,\n  \"invalid_reasons\": {\n    \"tracker_event:0:SPLIT@621\": 1,\n    \"fewer_than_three_geometrically_eligible_targets\": 17,\n    \"tracker_event:0:SPLIT@109\": 1,\n    \"tracker_event:1:SPLIT@541\": 1,\n    \"tracker_event:1:SPLIT@49\": 1,\n    \"tracker_event:2:SPLIT@128\": 1,\n    \"tracker_event:1:SPLIT@137\": 1,\n    \"tracker_event:0:SPLIT@207\": 1,\n    \"tracker_event:2:LOST@402\": 1,\n    \"tracker_event:1:SPLIT@432\": 1,\n    \"tracker_event:2:SPLIT@77\": 1,\n    \"tracker_event:0:SPLIT@69\": 1,\n    \"tracker_event:2:SPLIT@439\": 1\n  },\n  \"independent_permutation\": {\n    \"observed\": 0.3954457381162892,\n    \"n_ge_observed\": 0,\n    \"p_plus_one\": 0.000999000999000999,\n    \"null_p95\": 0.1483314370687328,\n    \"reps\": 1000,\n    \"seed\": 20260715\n  },\n  \"jackknife_full_refit_diagnostic\": {\n    \"own_skill\": {\n      \"mean\": 0.3954457381162892,\n      \"jackknife_se\": 0.07504411465002941,\n      \"diagnostic_lower\": 0.23890645802389912,\n      \"diagnostic_upper\": 0.5519850182086793,\n      \"deletion_mean_min\": 0.3599947753421503,\n      \"deletion_mean_max\": 0.43515493383594234,\n      \"deletion_frozen_lower_gt_zero_count\": 21\n    },\n    \"N\": {\n      \"mean\": 0.5304158891259365,\n      \"jackknife_se\": 0.14024764774873089,\n      \"diagnostic_lower\": 0.23786442235706523,\n      \"diagnostic_upper\": 0.8229673558948079,\n      \"deletion_mean_min\": 0.4323677019099718,\n      \"deletion_mean_max\": 0.5761951377722994,\n      \"deletion_frozen_lower_gt_zero_count\": 21\n    },\n    \"E\": {\n      \"mean\": 0.20716772718764456,\n      \"jackknife_se\": 0.17551823211609802,\n      \"diagnostic_lower\": -0.15895688933526134,\n      \"diagnostic_upper\": 0.5732923437105505,\n      \"deletion_mean_min\": 0.10838421926476191,\n      \"deletion_mean_max\": 0.31168779441837824,\n      \"deletion_frozen_lower_gt_zero_count\": 5\n    },\n    \"Gm\": {\n      \"mean\": 0.4894835470881119,\n      \"jackknife_se\": 0.6194590582195931,\n      \"diagnostic_lower\": -0.8026854054356961,\n      \"diagnostic_upper\": 1.78165249961192,\n      \"deletion_mean_min\": 0.14645746586425162,\n      \"deletion_mean_max\": 0.8198545546232066,\n      \"deletion_frozen_lower_gt_zero_count\": 18\n    },\n    \"B\": {\n      \"mean\": 0.14460985825989398,\n      \"jackknife_se\": 0.10307410562120584,\n      \"diagnostic_lower\": -0.07039895842556232,\n      \"diagnostic_upper\": 0.35961867494535027,\n      \"deletion_mean_min\": 0.10704092596882572,\n      \"deletion_mean_max\": 0.18857632458756632,\n      \"deletion_frozen_lower_gt_zero_count\": 5\n    }\n  },\n  \"causal_independent_world_checks\": {\n    \"own\": {\n      \"mean\": 0.1648449906580111,\n      \"lower\": 0.14432164288380295,\n      \"upper\": 0.18536833843221923,\n      \"minimum\": 0.10087364945999,\n      \"maximum\": 0.25757848231577274,\n      \"worlds_positive\": 21,\n      \"worlds_negative\": 0,\n      \"worlds_zero\": 0,\n      \"sign_test_two_sided\": 9.5367431640625e-07,\n      \"scope\": \"conditional valid-world directional consistency; post hoc, median/sign target\"\n    },\n    \"own_minus_neighbour\": {\n      \"mean\": 0.16484503032120526,\n      \"lower\": 0.14432167143566121,\n      \"upper\": 0.1853683892067493,\n      \"minimum\": 0.10087365967853394,\n      \"maximum\": 0.2575786170061242,\n      \"worlds_positive\": 21,\n      \"worlds_negative\": 0,\n      \"worlds_zero\": 0,\n      \"sign_test_two_sided\": 9.5367431640625e-07,\n      \"scope\": \"conditional valid-world directional consistency; post hoc, median/sign target\"\n    },\n    \"own_minus_sham\": {\n      \"mean\": 0.16484499583238912,\n      \"lower\": 0.14432164808611123,\n      \"upper\": 0.18536834357866702,\n      \"minimum\": 0.10087365373879294,\n      \"maximum\": 0.25757848194530125,\n      \"worlds_positive\": 21,\n      \"worlds_negative\": 0,\n      \"worlds_zero\": 0,\n      \"sign_test_two_sided\": 9.5367431640625e-07,\n      \"scope\": \"conditional valid-world directional consistency; post hoc, median/sign target\"\n    },\n    \"fixed\": {\n      \"mean\": 0.14215748284026702,\n      \"lower\": 0.12460948987366664,\n      \"upper\": 0.15970547580686742,\n      \"minimum\": 0.07665307800513022,\n      \"maximum\": 0.23702858267236726,\n      \"worlds_positive\": 21,\n      \"worlds_negative\": 0,\n      \"worlds_zero\": 0,\n      \"sign_test_two_sided\": 9.5367431640625e-07,\n      \"scope\": \"conditional valid-world directional consistency; post hoc, median/sign target\"\n    },\n    \"plus_ablation_residual\": {\n      \"mean\": 0.018141247651741264,\n      \"lower\": 0.01321844143945965,\n      \"upper\": 0.02306405386402288,\n      \"minimum\": -0.004182717812302987,\n      \"maximum\": 0.04365486368520995,\n      \"worlds_positive\": 20,\n      \"worlds_negative\": 1,\n      \"worlds_zero\": 0,\n      \"sign_test_two_sided\": 2.09808349609375e-05,\n      \"scope\": \"conditional valid-world directional consistency; post hoc, median/sign target\"\n    },\n    \"half_own_minus_residual\": {\n      \"mean\": 0.0642812476772643,\n      \"lower\": 0.057429859831825344,\n      \"upper\": 0.07113263552270326,\n      \"minimum\": 0.03867051040448943,\n      \"maximum\": 0.09182672912027678,\n      \"worlds_positive\": 21,\n      \"worlds_negative\": 0,\n      \"worlds_zero\": 0,\n      \"sign_test_two_sided\": 9.5367431640625e-07,\n      \"scope\": \"conditional valid-world directional consistency; post hoc, median/sign target\"\n    }\n  }\n}",
+      "stderr": ""
+    },
+    {
+      "script": "reviews/complex_systems/source_check.py",
+      "exit_code": 0,
+      "stdout": "{\n  \"inputs\": {\n    \"mode\": \"STANDALONE_PAPER_INPUTS\",\n    \"manifest_files_verified\": 222,\n    \"manifest_sha256\": \"6b68184185d6225a1cfbae7d175fcf06609e17d0d81ebd38b4af8475513a2884\"\n  },\n  \"worlds\": 50,\n  \"valid_worlds\": 21,\n  \"target_material_values\": 63,\n  \"min_own_snapshot_material_fraction\": 0.11040420029690902,\n  \"max_own_snapshot_material_fraction\": 0.2499750506918562,\n  \"mean_own_snapshot_material_fraction\": 0.21457909846134263,\n  \"all_valid_targets_retain_positive_own_snapshot_material\": true,\n  \"all_valid_targets_meet_quarter_bound\": true,\n  \"maximum_cross_target_fraction_at_recorded_frames\": 5.250205492529906e-12,\n  \"cross_target_observations\": 5121,\n  \"ablation_branches_checked_in_valid_worlds\": 336,\n  \"invalid_ablation_branches_in_valid_worlds\": [],\n  \"material_interpretation\": \"Own-mask snapshot label only. Unlabelled remainder may be fresh feed or initially outside target masks. Recorded frames are not necessarily exact deep snapshot.\",\n  \"scaffold_parameters\": {\n    \"size\": 64,\n    \"dt\": 0.1,\n    \"chi0\": 9.5,\n    \"D_rho\": 0.07778,\n    \"D_c\": 0.68,\n    \"s\": 0.2,\n    \"delta\": 0.06909,\n    \"g0\": 0.06154,\n    \"k\": 0.02588,\n    \"F\": 0.02421,\n    \"D_N\": 0.5,\n    \"N0\": 1.0,\n    \"rho_max\": 1.0,\n    \"c_sat\": 1.0,\n    \"a\": 2.0,\n    \"K\": 0.5,\n    \"D_int\": 0.008,\n    \"tau\": 0.2,\n    \"beta\": 0.1\n  },\n  \"memory_parameters\": {\n    \"eta_w\": 0.015,\n    \"eta_d1\": 0.35,\n    \"eta_d2\": 0.006,\n    \"eta_t\": 0.01,\n    \"D_m\": 0.01,\n    \"lam_plus\": 0.25,\n    \"lam_minus\": 0.15,\n    \"k_exp\": 1.0,\n    \"k_up\": 1.0,\n    \"n_comp\": 2\n  },\n  \"effective_memory_laplacian_coefficient\": 0.0125,\n  \"scope\": \"Persisted per-world scientific records and static code only; not engine reproduction.\"\n}",
+      "stderr": ""
+    },
+    {
+      "script": "scripts/build_documents.py",
+      "exit_code": 0,
+      "stdout": "[{\"path\": \"MANUSCRIPT.pdf\", \"pages\": 8, \"bytes\": 380784, \"sha256\": \"0ed41ee9aad7cf9f7a4e40dc6aa2e6632133bb2001f9048684f6f22ceffde8d9\", \"characters_extracted\": 28932}, {\"path\": \"SUPPLEMENT.pdf\", \"pages\": 9, \"bytes\": 416595, \"sha256\": \"7a9ad1f38e89b5054114b1d729a8726c7e21e8bb00325859e28c215685db7a07\", \"characters_extracted\": 25124}]",
+      "stderr": ""
+    }
+  ],
+  "environment": {
+    "python": "3.12.10",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "numpy": "2.5.1",
+      "scipy": "1.18.0",
+      "matplotlib": "3.11.0"
+    }
+  },
+  "artifacts": [
+    {
+      "path": "results/COHORT_ACCOUNTING.csv",
+      "sha256": "9500d2c053569f4311a7da493582b71a082b9500d053e45f62c304c714132949",
+      "bytes": 2891
+    },
+    {
+      "path": "results/FOLD_LOSSES.csv",
+      "sha256": "8db09b71ea59fbcc2a47ccacb1fb7bcd8fbc3badc41b955f28d0e342b6d7f6d7",
+      "bytes": 3343
+    },
+    {
+      "path": "results/HISTORICAL_03M_REPLAY.json",
+      "sha256": "5df09b0b77a06986263e51d11541b14f55067a7785675738ad9aac08c8c30925",
+      "bytes": 358389
+    },
+    {
+      "path": "results/PDF_BUILD.json",
+      "sha256": "30b8c3691b370685f4f43f525d0108cead695389d40957453bad115645a83fed",
+      "bytes": 467
+    },
+    {
+      "path": "results/PREDICTIONS.csv",
+      "sha256": "5ceb8e60f6a0aa5ffe6f5c5de3ab9412cc7da5e412375a339d57eafe20ae39ab",
+      "bytes": 10778
+    },
+    {
+      "path": "results/RESOLVED_VALUES.json",
+      "sha256": "e7d481bc1c502c8ddf2321405e82dd805152460f2bc3dbbf44d4c651bb6b1ad5",
+      "bytes": 5121
+    },
+    {
+      "path": "results/SUMMARY.json",
+      "sha256": "c7610232acf9f441d0f6b4d8a037ba8fc478a26f7a3bdf075b1d124e3c1a0267",
+      "bytes": 3557
+    },
+    {
+      "path": "results/TEXT_VALUES.json",
+      "sha256": "de89470951ca42528a191b5d162c836d749ff8fad95912be3286d1fecc8b4a29",
+      "bytes": 1322
+    },
+    {
+      "path": "results/WORLD_LEVEL_DATA.csv",
+      "sha256": "439fc2a56d39bba6ca56b0650202c25755c1581affd35f9eb9cb4746ca02f6a8",
+      "bytes": 4644
+    },
+    {
+      "path": "figures/figure_1_population_turnover.pdf",
+      "sha256": "bff2a026b77679c7acdda19c0e5de3ed1a53b6516524bb43fb1439716636cea2",
+      "bytes": 44861
+    },
+    {
+      "path": "figures/figure_1_population_turnover.png",
+      "sha256": "add21312b91a87c7c6a183b2029e1b0ef3161a5f23cb2e81e8149c8cbfabde5e",
+      "bytes": 93642
+    },
+    {
+      "path": "figures/figure_2_causal_contrasts.pdf",
+      "sha256": "20ec22e637055c286746f276513d7357877aaed9b94f54b31a3b0043c08a1079",
+      "bytes": 68031
+    },
+    {
+      "path": "figures/figure_2_causal_contrasts.png",
+      "sha256": "f68cd9e2ac009b19d0e17be649209031589d1934fa684ebba00e02cb72e2462c",
+      "bytes": 96784
+    },
+    {
+      "path": "figures/figure_3_access_comparisons.pdf",
+      "sha256": "fea914876439b04a4d4aad48949577e499192c1849b6004a42169ee69111935f",
+      "bytes": 65647
+    },
+    {
+      "path": "figures/figure_3_access_comparisons.png",
+      "sha256": "0ff643129446be371fc2aa20bbc2ddcee6d0e217b7ff71164ed8a342e3045e8a",
+      "bytes": 87501
+    },
+    {
+      "path": "figures/figure_4_predictions.pdf",
+      "sha256": "566715cf06b7b667758dd4f8e533f77bf7e1d8b4e019c3150cc83b6eb394f86d",
+      "bytes": 15491
+    },
+    {
+      "path": "figures/figure_4_predictions.png",
+      "sha256": "abefbfd710c1ff26cfb30fb8e1d0e6d528fe96603b87670afb1cea10f5d4c759",
+      "bytes": 184203
+    },
+    {
+      "path": "figures/figure_5_protocol.pdf",
+      "sha256": "f29ff0ee066ab47d941320227bdb618484a56c2d3215b92d58bed3e67ca8e3e1",
+      "bytes": 59694
+    },
+    {
+      "path": "figures/figure_5_protocol.png",
+      "sha256": "7a17e5894646cca30cb73a1cdac239f4a6fd663fa5f7d40b1d6a6adc8ab1bc27",
+      "bytes": 127244
+    },
+    {
+      "path": "MANUSCRIPT.pdf",
+      "sha256": "0ed41ee9aad7cf9f7a4e40dc6aa2e6632133bb2001f9048684f6f22ceffde8d9",
+      "bytes": 380784
+    },
+    {
+      "path": "SUPPLEMENT.pdf",
+      "sha256": "7a9ad1f38e89b5054114b1d729a8726c7e21e8bb00325859e28c215685db7a07",
+      "bytes": 416595
+    },
+    {
+      "path": "MANUSCRIPT_RESOLVED.md",
+      "sha256": "1cafd6abbe715f1142b7fb0ce9adcde3b864da9cde014f75947349434d7ade08",
+      "bytes": 28540
+    },
+    {
+      "path": "SUPPLEMENT_RESOLVED.md",
+      "sha256": "3e314d8b901ab332d3a3194f029b59226398dfd24857e498899c7658232a47ce",
+      "bytes": 25790
+    }
+  ],
+  "scope": "Same-data numerical reconstruction and document rendering; no regeneration of spatial trajectories."
+}

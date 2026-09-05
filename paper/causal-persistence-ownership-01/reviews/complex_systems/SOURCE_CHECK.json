@@ -1,0 +1,145 @@
+{
+  "ablation_branches_checked_in_valid_worlds": 336,
+  "all_valid_targets_meet_quarter_bound": true,
+  "all_valid_targets_retain_positive_own_snapshot_material": true,
+  "cross_target_observations": 5121,
+  "effective_memory_laplacian_coefficient": 0.0125,
+  "inputs": {
+    "manifest_files_verified": 222,
+    "manifest_sha256": "6b68184185d6225a1cfbae7d175fcf06609e17d0d81ebd38b4af8475513a2884",
+    "mode": "STANDALONE_PAPER_INPUTS"
+  },
+  "invalid_ablation_branches_in_valid_worlds": [],
+  "invalid_reasons": {
+    "fewer_than_three_geometrically_eligible_targets": 17,
+    "tracker_event:0:SPLIT@109": 1,
+    "tracker_event:0:SPLIT@207": 1,
+    "tracker_event:0:SPLIT@621": 1,
+    "tracker_event:0:SPLIT@69": 1,
+    "tracker_event:1:SPLIT@137": 1,
+    "tracker_event:1:SPLIT@432": 1,
+    "tracker_event:1:SPLIT@49": 1,
+    "tracker_event:1:SPLIT@541": 1,
+    "tracker_event:2:LOST@402": 1,
+    "tracker_event:2:SPLIT@128": 1,
+    "tracker_event:2:SPLIT@439": 1,
+    "tracker_event:2:SPLIT@77": 1
+  },
+  "material_interpretation": "Own-mask snapshot label only. Unlabelled remainder may be fresh feed or initially outside target masks. Recorded frames are not necessarily exact deep snapshot.",
+  "max_own_snapshot_material_fraction": 0.2499750506918562,
+  "maximum_cross_target_fraction_at_recorded_frames": 5.250205492529906e-12,
+  "mean_own_snapshot_material_fraction": 0.21457909846134263,
+  "memory_parameters": {
+    "D_m": 0.01,
+    "eta_d1": 0.35,
+    "eta_d2": 0.006,
+    "eta_t": 0.01,
+    "eta_w": 0.015,
+    "k_exp": 1.0,
+    "k_up": 1.0,
+    "lam_minus": 0.15,
+    "lam_plus": 0.25,
+    "n_comp": 2
+  },
+  "min_own_snapshot_material_fraction": 0.11040420029690902,
+  "scaffold_parameters": {
+    "D_N": 0.5,
+    "D_c": 0.68,
+    "D_int": 0.008,
+    "D_rho": 0.07778,
+    "F": 0.02421,
+    "K": 0.5,
+    "N0": 1.0,
+    "a": 2.0,
+    "beta": 0.1,
+    "c_sat": 1.0,
+    "chi0": 9.5,
+    "delta": 0.06909,
+    "dt": 0.1,
+    "g0": 0.06154,
+    "k": 0.02588,
+    "rho_max": 1.0,
+    "s": 0.2,
+    "size": 64,
+    "tau": 0.2
+  },
+  "scope": "Persisted per-world scientific records and static code only; not engine reproduction.",
+  "source_blobs": {
+    "causal_constants": {
+      "path": "experiments/individuation/causal_confirm.py",
+      "revision": "06fd9524f5c7ffb329ee850a10bd9959f2f0bde5",
+      "sha256": "ba695bbbfb9b012875baec8a9dd3bbbd553768f290844ffc01649c9236093e2f"
+    },
+    "engine": {
+      "path": "edlab/experiments/sc_mcm/engine.py",
+      "revision": "06fd9524f5c7ffb329ee850a10bd9959f2f0bde5",
+      "sha256": "8bc8f518313ad3b17fff2d8de21d65d1d76d71ae1744ac0cbd8618afa8f410f9"
+    },
+    "hmc_config": {
+      "path": "edlab/experiments/sc_hmc/config.py",
+      "revision": "06fd9524f5c7ffb329ee850a10bd9959f2f0bde5",
+      "sha256": "2243bc537c7cd73f9bbf677b9bc52595af8ea2ee0f689481c57cb2147fcd8b8b"
+    },
+    "initial_state": {
+      "path": "edlab/experiments/exp_sc_00.py",
+      "revision": "06fd9524f5c7ffb329ee850a10bd9959f2f0bde5",
+      "sha256": "31ca2b55d79e326ab212f13b72962c48a28be16a4fddbc477fcb391ad4164afe"
+    },
+    "material_tracer": {
+      "path": "experiments/individuation/material_tracer.py",
+      "revision": "06fd9524f5c7ffb329ee850a10bd9959f2f0bde5",
+      "sha256": "d1f5a48d21b2939f639122b89da4e68ec178907cfbb459afd837eeaeb2b1f72d"
+    },
+    "memory_neighbour_mean": {
+      "path": "edlab/experiments/sc_iom/engine.py",
+      "revision": "06fd9524f5c7ffb329ee850a10bd9959f2f0bde5",
+      "sha256": "a120602ee91af72888d87214de265d838eac28e78c03ae94194452cba11a9351"
+    },
+    "scaffold": {
+      "path": "edlab/substrates/scaffold/engine.py",
+      "revision": "06fd9524f5c7ffb329ee850a10bd9959f2f0bde5",
+      "sha256": "b45162b207875c1722d6062d9514b73d39c9559c8aeddc357e4f34561bdf4367"
+    },
+    "scopes_03e": {
+      "path": "experiments/individuation/turnover_scope_features_03e.py",
+      "revision": "06fd9524f5c7ffb329ee850a10bd9959f2f0bde5",
+      "sha256": "86b1eb6a15f4a33544abbbb1ed1060899fbbffe986fd06c72c31c4ef86bfc6cc"
+    },
+    "scopes_03g": {
+      "path": "experiments/individuation/turnover_scope_features_03g.py",
+      "revision": "06fd9524f5c7ffb329ee850a10bd9959f2f0bde5",
+      "sha256": "7bcd05c52094aca6dbd27282b53e93a381e044b7a3229e6e1972fe8ad55d6742"
+    },
+    "storage_history": {
+      "path": "experiments/individuation/turnover_engine_03g.py",
+      "revision": "06fd9524f5c7ffb329ee850a10bd9959f2f0bde5",
+      "sha256": "7a7736d2c95b08e073327bfa6984cefa6d8055da49943ced887567ae6cddc8f9"
+    }
+  },
+  "target_material_values": 63,
+  "valid_seeds": [
+    54002,
+    54008,
+    54015,
+    54016,
+    54019,
+    54020,
+    54021,
+    54024,
+    54026,
+    54027,
+    54029,
+    54032,
+    54034,
+    54035,
+    54036,
+    54038,
+    54040,
+    54043,
+    54045,
+    54046,
+    54049
+  ],
+  "valid_worlds": 21,
+  "worlds": 50
+}

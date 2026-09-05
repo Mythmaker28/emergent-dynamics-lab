@@ -36,3 +36,6 @@
 | EXP-GT-03-20260713-001 | 2026-07-13 | frozen factorized observer, held-out | **FAILED — IMPLEMENTATION** (phase invariance; over-abstention x2) | D-056 |
 
 | EDL-ASTRA-FLAGSHIP-AUDIT-01-RECOVERY | 2026-09-05 | isolated source recovery | 123 sealed TBRT02 archives and 192 FDFLT01 core archives | NO_NEW_WORLDS | see audit/edl-flagship-01/recovery |
+| EDL-ASTRA-FLAGSHIP-AUDIT-01 | 2026-09-05 | independent existing-data audit | FDFLT01 53/192 and B core verified; OMLDCT03 inconclusive; CCRA missing | FLAGSHIP_NOT_YET_JUSTIFIED | audit/edl-flagship-01/README.md |
+
+| EDL-ASTRA-FLAGSHIP-PAPER-01 | 2026-09-05 | primary + four internal review roles + September auditor | complete bounded B paper, existing-data reconstruction, source recovery/erratum | NO_NEW_WORLDS | bcf352e9 -> delivery commits on PR35 | FLAGSHIP_CLAIM_NOT_SUPPORTED_BUT_B_DELIVERED | paper/causal-persistence-ownership-01/README.md; docs/agent_journals/2026-09-05/flagship-paper-01.md |

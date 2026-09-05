@@ -1,0 +1,88 @@
+{
+  "certificate": "LCI-CAUSAL-CONFIRMATION-01",
+  "tip_preseal": "8b2e12d",
+  "parent_audit": "53fd2b6",
+  "family": "52001-52024 (sealed, run once)",
+  "eligible_worlds": 13,
+  "seeds": [
+    52001,
+    52004,
+    52005,
+    52006,
+    52008,
+    52010,
+    52011,
+    52012,
+    52013,
+    52017,
+    52018,
+    52021,
+    52022
+  ],
+  "eligibility": "13/24 = 0.54 (geometric, outcome-independent)",
+  "C-K1_storage": {
+    "verdict": "PASS/REPLICATED",
+    "DD_mem": 5951,
+    "diag": 0.2028022997517873,
+    "off": 3.522219077408788e-05
+  },
+  "C-K2a_storage_readout": {
+    "verdict": "PASS/REPLICATED",
+    "own_dose_R2": 0.754,
+    "own_order_R2": 0.303,
+    "neighbour_dose_R2": -0.231
+  },
+  "G3_behavioural_causal": {
+    "verdict": "ESTABLISHED",
+    "eff_own_worldCI": [
+      1.628,
+      2.027,
+      2.483
+    ],
+    "worlds_positive": "13/13",
+    "SNR": 8.93,
+    "ablation_ratio": 0.0,
+    "neighbour_ratio": 0.104,
+    "sham_ratio": 0.148,
+    "sham_note": "marginal<0.15; own exceeds sham 6.8x; sham-corrected eff +1.73",
+    "double_diss_ratio": 1.128,
+    "washout_survival_CI": [
+      1.566,
+      1.977,
+      2.411
+    ],
+    "tracker_indep_fixed_CI": [
+      0.361,
+      0.528,
+      0.729
+    ]
+  },
+  "G3_decode_secondary": {
+    "verdict": "INDETERMINATE (underpowered at 13 worlds; pre-declared non-gating)",
+    "note": "collapses under ablation; weak positive pooled corr(dose,eff)=+0.26"
+  },
+  "C-K3_deep_turnover": {
+    "verdict": "INDETERMINATE (inherited, NOT re-tested this confirmation; post-PRESEAL change forbidden)",
+    "inherited": "dose 0.368 [0.14,0.72]; order NEGATIVE -0.659"
+  },
+  "C-K5_tracker_independence": {
+    "verdict": "PASS (fixed-mask readout confirms)"
+  },
+  "G6_causal_individuation": {
+    "verdict": "PASS (G1&G2 storage AND G3 behavioural causal)"
+  },
+  "decision": "ACTIVE-RECONSTRUCTION JUSTIFIED (Case A) per frozen rule; REPLICATE recommended first; NOT launched (forbidden this mission)",
+  "falsified": [
+    "strong-null local individuation impossible",
+    "residual-nutrient-confound null (double dissociation + ablation reject it)"
+  ],
+  "provenance": {
+    "main": "f3921a4 intact",
+    "V4": "23b53ae intact",
+    "release": "intact",
+    "pushed": false,
+    "tagged": false,
+    "published": false,
+    "active_reconstruction_launched": false
+  }
+}

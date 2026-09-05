@@ -2440,3 +2440,11 @@ Docker/CI never built -> clean reproduction INCOMPLETE.
 VERDICTS: THEOREM PACKAGE: PASS. LARGE DISTRIBUTIONAL HOLD-OUT: FAIL. CLEAN REPRODUCTION: INCOMPLETE.
 CROSS-SUBSTRATE: STRUCTURAL PASS. PUBLICATION STATUS: NOT READY. EXTERNAL HUMAN REVIEW: PENDING.
 DROPLET CAUSAL-CONTINUITY PILOT remains BLOCKED. EXP-SC-01 remains BLOCKED.
+
+## EDL-ASTRA-FLAGSHIP-AUDIT-01 — 2026-09-05
+WRITE B as a scoped methods-paper nucleus; HOLD synthesis C pending source audit; retain PR34 as companion. Recovered raw sources published separately. No flagship manuscript, new world or recycled experimental authorization. Evidence and nine-criterion matrix: audit/edl-flagship-01/. This append records the current audit branch only and does not merge histories.
+
+
+## EDL-ASTRA-FLAGSHIP-PAPER-01 — 2026-09-05: deliver bounded B
+
+The supplied September bundle is hash-verified and its eight commits/28 findings adjudicated. CCRA01 is a retrospective ordinal reanalysis, not an identified common mechanism or a source of extra B worlds. Deliver B as a complete computational assay case study; do not pool incompatible FDFLT/TBRT/CCRA architectures. Preserve the positive conditional erasure effect and the unmet local-access criterion, with uncertainty/RNG/material/mask limitations explicit. No new simulation campaign was executed. Four internal reviewer roles close reproducible objections against the final claim set; novelty remains specialized (indicative13/20). Correct the integrator's prior cost error from36 at760 to38 at789 by charging only actual forks. Publication/merge remains unauthorized. Exact next action: Tommy reviews the manuscript and decides whether to pursue a specialist submission.
