@@ -1,0 +1,284 @@
+{
+  "PHASE_B_DESCRIPTIVE": {
+    "POINT": "B1",
+    "kY": 2.5118864315095822e-05,
+    "muY": 9.261187281287937e-05,
+    "N_worlds": 44,
+    "N_with_first_birth": 16,
+    "N_lineage_extinctions": 28,
+    "N_reaching_geometric_S": 16,
+    "geometric_separation_time_distribution": {
+      "n": 16,
+      "min": 18,
+      "median": 101.0,
+      "mean": 125.4375,
+      "max": 262
+    },
+    "N_reaching_P": 7,
+    "P_before_geometric_separation": 0,
+    "P_after_S_but_before_functional_maturation": {
+      "T_50": 0,
+      "T_primary": 0,
+      "T_80": 0,
+      "T_90": 0
+    },
+    "P_only_after_functional_maturation": {
+      "T_50": 6,
+      "T_primary": 6,
+      "T_80": 5,
+      "T_90": 5
+    },
+    "X_source_integrity_failures": 0,
+    "S_duration_worlds_reaching_S_sorted": [
+      4624,
+      4522,
+      3268,
+      2924,
+      2278,
+      2114,
+      1937,
+      1490,
+      1270,
+      1073,
+      1022,
+      685,
+      448,
+      383,
+      360,
+      55
+    ],
+    "N_with_S_lasting_ge_T_50": 15,
+    "N_with_S_lasting_ge_T_primary": 15,
+    "N_with_S_lasting_ge_T_80": 13,
+    "N_with_S_lasting_ge_T_90": 12,
+    "WEAK_CENTRE_X_RATIO": {
+      "T_50": {
+        "n": 15,
+        "median": 0.7788461538461539,
+        "mean": 0.6742917458036444,
+        "min": 0.015151515151515152,
+        "max": 0.8983050847457628,
+        "required_fraction": 0.5
+      },
+      "T_primary": {
+        "n": 15,
+        "median": 0.7395833333333334,
+        "mean": 0.6849466127906861,
+        "min": 0.016666666666666666,
+        "max": 0.9418604651162791,
+        "required_fraction": 0.6321205588285577
+      },
+      "T_80": {
+        "n": 13,
+        "median": 0.7878787878787878,
+        "mean": 0.6860281707558469,
+        "min": 0.015151515151515152,
+        "max": 0.9710144927536232,
+        "required_fraction": 0.8
+      },
+      "T_90": {
+        "n": 12,
+        "median": 0.6323446060835065,
+        "mean": 0.5973355958157187,
+        "min": 0.0,
+        "max": 0.9452054794520548,
+        "required_fraction": 0.9
+      }
+    }
+  },
+  "ATLAS": {
+    "POINT": "B1",
+    "N_WORLDS": 44,
+    "UNIT": "one world; steps and episodes are never independent replicates",
+    "INTERVAL": "Clopper-Pearson exact binomial, 95%",
+    "RATES": {
+      "P_FIRST_BIRTH": {
+        "quantity": "at least one dynamic Y birth",
+        "n": 44,
+        "count": 16,
+        "point_estimate": 0.36363636363636365,
+        "exact_binomial_95": [
+          0.2240801400787238,
+          0.5222785035613743
+        ]
+      },
+      "P_LINEAGE_NON_EXTINCTION": {
+        "quantity": "lineage alive at the recorded horizon",
+        "n": 44,
+        "count": 16,
+        "point_estimate": 0.36363636363636365,
+        "exact_binomial_95": [
+          0.2240801400787238,
+          0.5222785035613743
+        ]
+      },
+      "P_GEOMETRIC_TWO_CENTRES": {
+        "quantity": "reaches exactly two spatial centres",
+        "n": 44,
+        "count": 16,
+        "point_estimate": 0.36363636363636365,
+        "exact_binomial_95": [
+          0.2240801400787238,
+          0.5222785035613743
+        ]
+      },
+      "P_FUNCTIONAL_MATURATION_T_50": {
+        "quantity": "two centres held >= 172.9400 steps with no third centre before the event",
+        "n": 44,
+        "count": 15,
+        "point_estimate": 0.3409090909090909,
+        "exact_binomial_95": [
+          0.2049173469694818,
+          0.49919498929429984
+        ]
+      },
+      "P_FUNCTIONAL_MATURATION_T_primary": {
+        "quantity": "two centres held >= 249.4997 steps with no third centre before the event",
+        "n": 44,
+        "count": 15,
+        "point_estimate": 0.3409090909090909,
+        "exact_binomial_95": [
+          0.2049173469694818,
+          0.49919498929429984
+        ]
+      },
+      "P_FUNCTIONAL_MATURATION_T_80": {
+        "quantity": "two centres held >= 401.5542 steps with no third centre before the event",
+        "n": 44,
+        "count": 13,
+        "point_estimate": 0.29545454545454547,
+        "exact_binomial_95": [
+          0.16764398122867644,
+          0.45202184808405527
+        ]
+      },
+      "P_FUNCTIONAL_MATURATION_T_90": {
+        "quantity": "two centres held >= 574.4942 steps with no third centre before the event",
+        "n": 44,
+        "count": 12,
+        "point_estimate": 0.2727272727272727,
+        "exact_binomial_95": [
+          0.14957684376530808,
+          0.4278964124555005
+        ]
+      },
+      "P_THIRD_BEFORE_FUNCTION": {
+        "quantity": "third centre appears before the primary functional maturation event",
+        "n": 44,
+        "count": 0,
+        "point_estimate": 0.0,
+        "exact_binomial_95": [
+          0.0,
+          0.08041993976357587
+        ]
+      },
+      "P_X_INTEGRITY": {
+        "quantity": "no X/source integrity failure",
+        "n": 44,
+        "count": 44,
+        "point_estimate": 1.0,
+        "exact_binomial_95": [
+          0.9195800602364241,
+          1.0
+        ]
+      },
+      "P_JOINT_FUNCTIONAL_SUCCESS_T_50": {
+        "quantity": "all seven conditions including the direct local-X response requirement",
+        "n": 44,
+        "count": 14,
+        "point_estimate": 0.3181818181818182,
+        "exact_binomial_95": [
+          0.18609883717486994,
+          0.4757814214972089
+        ]
+      },
+      "P_JOINT_FUNCTIONAL_SUCCESS_T_primary": {
+        "quantity": "all seven conditions including the direct local-X response requirement",
+        "n": 44,
+        "count": 13,
+        "point_estimate": 0.29545454545454547,
+        "exact_binomial_95": [
+          0.16764398122867644,
+          0.45202184808405527
+        ]
+      },
+      "P_JOINT_FUNCTIONAL_SUCCESS_T_80": {
+        "quantity": "all seven conditions including the direct local-X response requirement",
+        "n": 44,
+        "count": 9,
+        "point_estimate": 0.20454545454545456,
+        "exact_binomial_95": [
+          0.09804317636059107,
+          0.35304505677824954
+        ]
+      },
+      "P_JOINT_FUNCTIONAL_SUCCESS_T_90": {
+        "quantity": "all seven conditions including the direct local-X response requirement",
+        "n": 44,
+        "count": 6,
+        "point_estimate": 0.13636363636363635,
+        "exact_binomial_95": [
+          0.05173082948627348,
+          0.27350689090382385
+        ]
+      }
+    },
+    "DIAGNOSTIC_CONDITIONALS": {
+      "P_function_given_reached_S": {
+        "T_50": {
+          "quantity": "conditional",
+          "n": 16,
+          "count": 14,
+          "point_estimate": 0.875,
+          "exact_binomial_95": [
+            0.6165237631507365,
+            0.9844863961845861
+          ]
+        },
+        "T_primary": {
+          "quantity": "conditional",
+          "n": 16,
+          "count": 13,
+          "point_estimate": 0.8125,
+          "exact_binomial_95": [
+            0.5435434537683883,
+            0.9595262660940541
+          ]
+        },
+        "T_80": {
+          "quantity": "conditional",
+          "n": 16,
+          "count": 9,
+          "point_estimate": 0.5625,
+          "exact_binomial_95": [
+            0.29877689908317784,
+            0.8024658594673321
+          ]
+        },
+        "T_90": {
+          "quantity": "conditional",
+          "n": 16,
+          "count": 6,
+          "point_estimate": 0.375,
+          "exact_binomial_95": [
+            0.1519836750811221,
+            0.6456539056979218
+          ]
+        }
+      },
+      "WARNING": "conditional rates are diagnostics only; the direct-test decision uses unconditional world probabilities"
+    }
+  },
+  "A0_SINGLE_CENTRE_REFERENCE": {
+    "n_samples": 800,
+    "n_worlds": 40,
+    "local_X_within_CORE_R_mean": 61.7175,
+    "sd": 25.179012532069493,
+    "median": 68.0,
+    "q10": 1.8000000000000114,
+    "q90": 85.0,
+    "total_N_X_mean": 109.35375,
+    "captured_fraction_within_CORE_R": 0.5643839374507047,
+    "sampling": "late window (last 2000 steps, every 100th), single-centre control point kY=0 muY=0"
+  }
+}

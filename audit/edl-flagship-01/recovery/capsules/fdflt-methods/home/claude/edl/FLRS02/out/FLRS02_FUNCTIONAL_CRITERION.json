@@ -1,0 +1,90 @@
+{
+  "SECTION": "FLRS02 \u00a73 + \u00a74 \u2014 functional criterion, frozen before any lineage outcome",
+  "GENERATED_UTC": "2026-08-20T23:01:51.655821+00:00",
+  "FROZEN_BEFORE_OUTCOME_ACCESS": true,
+  "TWO_LEVELS": {
+    "SOURCE_FUNCTION_ONSET": {
+      "definition": "the step at which a spatial centre first sustains a local X source, i.e. the centre carries at least one Y and a non-empty accepted-birth candidate pool",
+      "observable": "ycells candY > 0 at a cell belonging to the centre",
+      "timescale": "immediate \u2014 an event, not a relaxation"
+    },
+    "PROFILE_MATURATION": {
+      "definition": "the step at which the centre's local X cloud has relaxed to the chosen fraction f of the level it would sustain",
+      "observable": "local X mass within CORE_R of the centre",
+      "governing_rate": "muX, established as the slowest mode above",
+      "law": "N_X(t) = N_inf (1 - (1-muX)^t)  =>  T(f) = ln(1-f)/ln(1-muX)"
+    }
+  },
+  "SPECTRUM_DEMONSTRATION": {
+    "operator": "n -> (1-muX) * Hop(n); Hop is the engine's four ordered sub-shifts, separable per axis",
+    "n_modes": 1296,
+    "slowest_mode_index": [
+      0,
+      0
+    ],
+    "slowest_rate_per_step": 0.004008021397538822,
+    "k0_mode_rate_per_step": 0.004008021397538822,
+    "minus_log_1_minus_muX": 0.004008021397538822,
+    "SLOWEST_MODE_IS_THE_POPULATION_MODE": true,
+    "K0_RATE_EQUALS_MU_RATE": true,
+    "second_slowest_mode_index": [
+      0,
+      1
+    ],
+    "second_slowest_rate_per_step": 0.004767922398573943,
+    "second_slowest_e_folding_steps": 209.7349571585087,
+    "spectral_gap_ratio_second_over_first": 1.189595045950041,
+    "INTERPRETATION": "every spatial mode decays strictly faster than the uniform population mode, so the long-time relaxation of ANY positive local X functional is governed by muX. The population e-folding is therefore the correct primary relaxation mode for the functional observable."
+  },
+  "PRIMARY_FUNCTIONAL_CRITERION": {
+    "f_primary": 0.6321205588285577,
+    "T_primary_steps": 249.49966599830609,
+    "justification": "one e-folding of the slowest \u2014 and therefore governing \u2014 relaxation mode of the X field",
+    "ADOPTED_BECAUSE_THE_SPECTRUM_DEMONSTRATES_IT": true
+  },
+  "MANDATORY_SENSITIVITY_BAND": {
+    "T_50": 172.93999003737392,
+    "T_primary": 249.49966599830609,
+    "T_80": 401.55422159731904,
+    "T_90": 574.494211634693,
+    "purpose": "determine whether the route decision depends critically on one arbitrary response fraction"
+  },
+  "RETIRED_CRITERIA": {
+    "H_HOLD_16": {
+      "status": "RETIRED",
+      "response_fraction_it_actually_delivered": 0.06211537852021787,
+      "reason": "it was the median of an observed S-run distribution, never a derived maturity requirement"
+    },
+    "X_BIRTHS_101": {
+      "status": "RETIRED",
+      "reason": "the pre_removal_level of one OBTC02 arm, not a derived threshold"
+    },
+    "REHABILITATION_RULE": "neither may be reinstated because it yields a favourable historical outcome"
+  },
+  "LINEAGE_EVENT_DEFINITION": {
+    "STATES": {
+      "E": "no Y",
+      "O": "one organising centre",
+      "C": "multiple Y but one spatial centre",
+      "S": "exactly two spatial centres",
+      "P": "three or more spatial centres",
+      "F": "X/source integrity failure"
+    },
+    "CENTRE_RULE": "toroidal single-linkage over Y-occupied cells with adjacency distance <= CORE_R (5.0)",
+    "FOUNDER_IDENTITY": "irrelevant \u2014 no genealogy is constructed or required",
+    "FUNCTIONAL_TWO_CENTRE_SUCCESS_REQUIRES_ALL_OF": [
+      "1. at least one dynamic Y birth occurs",
+      "2. the lineage does not go extinct before functional maturation",
+      "3. exactly two spatial centres form under the frozen centre classifier",
+      "4. both centres remain spatially distinct for at least T(f) consecutive steps",
+      "5. both centres exhibit the required local X response",
+      "6. no third centre appears BEFORE the functional maturation event",
+      "7. X/source integrity remains acceptable until that event"
+    ],
+    "EXPLICITLY_NOT_REQUIRED": [
+      "survival of the original founder particle",
+      "old C1/C2/C3 formulas as substitutes for directly recorded events"
+    ]
+  },
+  "UNIT": "one world; steps and episodes are NEVER independent replicates"
+}

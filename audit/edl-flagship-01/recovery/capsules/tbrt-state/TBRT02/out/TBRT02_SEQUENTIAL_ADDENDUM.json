@@ -1,0 +1,69 @@
+{
+ "MISSION": "TBRT02",
+ "SECTION": "sequential addendum \u2014 a pre-declared SECONDARY reading",
+ "DECLARED_AT_UTC": "2026-08-27T03:19:42.339309+00:00",
+ "DECLARED_AT_SEEDS_DONE": 9,
+ "DECLARED_AT_VALID_TRIPLES": 0,
+ "DECLARED_BEFORE_ANY_TRIPLE_EXISTED": true,
+ "PARENT_FREEZE_SHA256": "a677b0b2c664fa2e1b283856529af9e274f8df9dd3bf8711c661f6d18021451f",
+ "PARENT_FREEZE_CONTENT_HASH": "09a7e0ea6135272a2ca77a82ced3d9a861c6d9eeb964bf7e305d675d78b151e8",
+ "DOES_NOT_MODIFY_THE_MASTER_FREEZE": true,
+ "HOW_THAT_IS_CHECKABLE": "the freeze file's sha256 is recorded above and the guard refuses every scientific-scale construction whenever the working-tree freeze differs from the committed one. If this addendum had touched it, the campaign would have stopped rather than continued.",
+ "PRIMARY_ADJUDICATION_UNCHANGED": "the frozen refutation condition remains primary and sole: if the CERTAIN set of the daughter's lineage ever absorbs a descendant of the displaced mass, Model C is REFUTED. One absorption suffices. This addendum adds NO criterion and removes none. It only pre-declares how a run of zero absorptions is to be READ.",
+ "WHY_IT_IS_NEEDED": "the freeze says the arm-instance ceiling is not a stopping rule and that a binding ceiling is a failure of the design. That is honest but incomplete: OMLDCT02 stopped on its ceiling at 33 of 41 pairs and rendered INSUFFICIENT_ADMISSIBLE_PAIRED_BLOCKS \u2014 a verdict that discards the evidence actually collected. A run of zero absorptions is evidence about the absorption rate at ANY length, and it should be reported as a bound rather than as nothing.",
+ "ALPHA": 0.05,
+ "INSTRUMENT": {
+  "statistic": "S_n = the number of admissible triples in which the CERTAIN set absorbed a descendant of the displaced mass. Binary per triple and absorbing: the frozen refutation fires on the first one.",
+  "martingale": "M_n(p) = (1-p)^(-n) while S_n = 0, and M_n(p) = 0 from the first absorption.",
+  "why_it_is_a_martingale": "under Bernoulli(p) per triple, E[M_{n+1}/M_n | S_n = 0] = (1-p)(1-p)^(-1) + p*0 = 1, and M_0 = 1.",
+  "ville": "for a non-negative martingale of mean 1, P(exists n : M_n >= 1/alpha) <= alpha.",
+  "inversion": "M_n >= 1/alpha  <=>  (1-p)^n <= alpha  <=>  p >= 1 - alpha^(1/n).",
+  "BOUND": "p_max(n) = 1 - alpha^(1/n), an ANYTIME-VALID upper bound on the per-triple absorption probability given zero absorptions in n admissible triples."
+ },
+ "VERIFIED_THREE_INDEPENDENT_WAYS": {
+  "closed_form": "1 - alpha**(1/n)",
+  "bisection": "solve (1-p)^n = alpha by 200 bisection steps with the power taken as a literal repeated product, sharing no code path with the closed form. Maximum disagreement over n in {33,41,59,80}: 5.55e-17, i.e. floating-point exact.",
+  "monte_carlo": "200,000 simulated runs at p = p_max(n): the observed probability of seeing zero absorptions is 0.0502 at n=33, 0.0500 at n=41 and 0.0492 at n=59, against the nominal 0.05. The coverage is exact, as it must be for this bound.",
+  "TOOLKIT_REFERENCE_NOT_RELIED_ON": "an external suggestion cited ELAB_TOOLKIT/elab_evalue.py verify_zero_event_bound. That file exists under the synced elab skill, but the verification recorded here is my own and does not import it. A bound this consequential is not taken on another program's word."
+ },
+ "AN_HONEST_NUANCE_ABOUT_THE_WORD_ANYTIME_VALID": "for the zero-event case this bound coincides exactly with the one-sided Clopper-Pearson upper bound at fixed n. So anytime-validity costs nothing in width \u2014 and that is precisely why it is worth declaring. The value it adds is not tightness but LICENCE: the fixed-n bound is only valid at an n chosen in advance, while this one may be read at whatever n the campaign actually stops at, including an n forced by a binding ceiling. That is the case this addendum exists for.",
+ "PREREGISTERED_READINGS": {
+  "20": 0.139108,
+  "25": 0.112928,
+  "30": 0.095034,
+  "33": 0.086781,
+  "35": 0.082032,
+  "41": 0.070461,
+  "45": 0.064404,
+  "50": 0.058155,
+  "59": 0.049508,
+  "70": 0.041893,
+  "80": 0.036754,
+  "100": 0.029513
+ },
+ "THE_TWO_STATEMENTS_THIS_BUYS": {
+  "a": "if the ceiling binds at 33 triples with no absorption, the campaign reports 'the per-triple absorption probability is at most 8.68 per cent at alpha = 0.05', NOT 'insufficient'.",
+  "b": "41 triples buy 7.05 per cent, not materially better. Five per cent needs 59. The target of 41 was set for the primary adjudication and is NOT changed by this addendum; this is a statement about what a null run would be worth, declared before any triple exists."
+ },
+ "IT_COSTS_NOTHING_IN_POWER": "0.070461 at n=41 is tighter than the rule-of-three approximation 3/41 = 0.073171. Recomputed here rather than asserted.",
+ "A_BETTING_CONFIDENCE_SEQUENCE_IS_NOT_USED_AND_WHY": "for a purely absorbing zero-event statistic the betting sequence is roughly twice as wide, and it buys generality this design does not need. Declared so that no one later swaps instruments and calls it the same reading.",
+ "SELECTION_BIAS_CAVEAT": {
+  "the_only_validity_condition": "a triple's ADMISSIBILITY must be decided WITHOUT reference to whether absorption occurs. If admissible triples were selected on their outcome the bound would be void.",
+  "VERIFIED_MECHANICALLY_FROM_SOURCE": true,
+  "evidence": "in TBRT02/code/tbrt02_fork.py, the non-admissible early return is at line 61, the three arms are first forked at line 70, the DISPLACED intervention is applied at line 89, and no arm is stepped forward until line 120. Admissibility is therefore settled from the common prefix alone, before any arm exists and long before any trajectory in which an absorption could be observed. The trigger reads only the prefix world.",
+  "corollary": "the absorption outcome is computed in ANALYSIS, from the archives, after the campaign. It cannot reach back into the admissibility decision."
+ },
+ "WHAT_THIS_ADDENDUM_DOES_NOT_DO": [
+  "it does not change the target of 41 triples",
+  "it does not change the 926 arm-instance ceiling",
+  "it does not change the refutation condition",
+  "it does not change any seed, any threshold or any frozen value",
+  "it does not license stopping early on a favourable reading"
+ ],
+ "REPRODUCTION_STATUS": "NOT_TESTED",
+ "H3_STATUS": "NOT_TESTED",
+ "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+ "X_LAWSPEC_BASELINE": "UNCHANGED",
+ "COMPANION_PAPER_V1_1_STATUS": "UNPUBLISHED__NOT_SUBMITTED__PUBLICATION_DEFERRED",
+ "ADDENDUM_CONTENT_HASH": "faa9ff993fe24e0f32047b7e2c95d489a335e10d43b6175712b7ea6df8a0fbc0"
+}

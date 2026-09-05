@@ -1,0 +1,26 @@
+{
+  "SECTION": "FDFLT01 \u00a72 \u2014 frozen decision rule, committed before any scientific world exists",
+  "PRIMARY_N": 192,
+  "PRIMARY_NULL_RATE": 0.1,
+  "PRIMARY_ALPHA": 0.05,
+  "TEST": "one-sided exact binomial, H0: p <= 0.10 against H1: p > 0.10",
+  "PRIMARY_CRITICAL_SUCCESS_COUNT": 27,
+  "REJECT_H0_IF": "SUCCESS_COUNT >= 27",
+  "P_p0_X_ge_critical": 0.04450131521669012,
+  "P_p0_X_ge_critical_minus_1": 0.06930072552207894,
+  "SIZE_IS_AT_MOST_ALPHA": true,
+  "DEVELOPMENTAL_B1_SUCCESS": "13 / 44",
+  "DEVELOPMENTAL_B1_RATE": 0.29545454545454547,
+  "DEVELOPMENTAL_B1_LOWER_95": 0.16764398122867644,
+  "DEVELOPMENTAL_SOURCE": "recomputed from FLRS02_B1_DIRECT_ATLAS.json bytes; not copied from any launcher",
+  "POWER_AT_DEVELOPMENTAL_LOWER_BOUND": 0.8652958451678221,
+  "POWER_AT_DEVELOPMENTAL_POINT_ESTIMATE": 0.9999998516675284,
+  "PRIMARY_CLAIM_PASSES_IF": "the exact one-sided 95% lower confidence bound on the fresh rate exceeds 0.10",
+  "EQUIVALENCE_OF_THE_TWO_STATEMENTS": {
+    "note": "X >= critical and lower-bound > p0 are the same event for the Clopper-Pearson bound at this alpha",
+    "smallest_X_with_one_sided_lower_bound_above_p0": 27
+  },
+  "NO_NORMAL_APPROXIMATION_ANYWHERE": true,
+  "FROZEN_BEFORE_ANY_RUN": true,
+  "MAY_NOT_CHANGE_AFTER_OUTCOMES": true
+}

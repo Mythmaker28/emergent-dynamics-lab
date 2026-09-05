@@ -1,0 +1,339 @@
+version: 1
+mission: ORGANIZER-BOUND-TURNOVER-CLOUD-02
+short: OBTC02
+question: 'Does the balanced chemostat, with NO added cohesion, produce an X cloud that is bounded relative
+  to the organiser, maintained by a local birth-death flux, traversed by material turnover, causally dependent
+  on the organiser, quantitatively predicted by a source-transport-decay operator, robust to seeds and
+  to domain size, without global saturation and without wall confinement?
+
+  '
+lawspec:
+  base: BALANCED_CHEMOSTAT
+  added_cohesion: NONE
+  C3_neighbour_protected_decay: FORBIDDEN
+  note: 'the engine is the frozen ORR01 kinetics with the LawSpec v2 exchange operator. OBTC01 adds instrumentation,
+    a molecular tracker drawing from a separate generator, and two declared interventions. No rate is
+    changed.
+
+    '
+point:
+  L: 36
+  L_large: 72
+  CAP: 16
+  S0: 3
+  phi: 0.2
+  omega: 0.05
+  muX: 0.004
+  muY: 0.0
+  kX: 1.0
+  kY: 0.0
+  p_hop: 0.10263340389897246
+  X_SEED: 4
+window:
+  BURN_IN: 2000
+  T_WINDOW: 9000
+  HORIZON: 11000
+  SAMPLE_EVERY: 50
+  SOURCE_OFF_AT: 4000
+analytic:
+  a_X: 0.05
+  a_Y: 0.05
+  D_X: 0.025
+  D_relative: 0.05
+  ell_X_isolated: 2.5
+  ell_relative: 3.5355339059327386
+  core_radius_cells: 5.0
+  static_r80: 6.082762530298219
+  organiser_frame_r80: 8.54400374531753
+  core_to_organiser_mean_modulus: 3.1238776430613733
+  optimal_lag_steps: 249.0
+  source_off_e_folding_steps: 249.49966599830609
+  source_off_half_life_steps: 172.93999003737392
+gate:
+  POPULATION_STATIONARY:
+    never_zero: true
+    N_X_min: 20
+    fraction_above_N_X_min: 0.95
+    max_relative_drift_first_to_last_third: 0.2
+  RELATIVE_LOCALIZATION:
+    statistic: r80 of the X mass about the ORGANISER's cell
+    absolute_bound: 12.8
+    domain_fraction_bound: 0.35
+    fraction_of_frames_required: 0.95
+  DOMAIN_SIZE_INVARIANCE:
+    scope: across arms
+    statistic: median r80 about the cloud's own centre
+    max_relative_difference_between_domains: 0.25
+    rejected_alternative: r80 proportional to L, which would give +100 % at L = 72
+  SOURCE_ATTACHMENT:
+    median_core_to_organiser_max: 7.81
+    unwrapped_position_correlation_min: 0.5
+    fraction_of_frames_with_an_organiser: 0.99
+  CORE_CONTINUITY:
+    core_exists_fraction_min: 0.8
+    max_median_step_displacement_over_N3: 0.25
+    reported_not_gated:
+    - connected-component identity coverage
+    - fusion and fission counts
+    why_not_gated: 'CSC01 correction D-5 established that a 4-adjacency identity chain breaks on a live
+      core whenever one bridging cell empties. Positional continuity is the physical property; the component
+      label is a measurement artefact and is reported, not gated.
+
+      '
+  MATERIAL_TURNOVER:
+    replacements_min: 10.0
+    fraction_of_initial_units_still_present_max: 0.05
+    fraction_of_final_units_born_in_window_min: 0.9
+  FREE_CAPACITY_PRESERVED:
+    mean_free_at_organiser_min: 0.5
+  NO_GLOBAL_FILLING:
+    mean_occupancy_fraction_max: 0.6
+    occupancy_drift_max: 0.05
+  NO_TRUE_WINDING:
+    frames_with_real_winding_max: 0
+    test: tiling lift, 5 x 5 copies, differentially verified against a BFS universal-cover lift
+    forbidden_test: LEGACY_EXTENT_PROXY
+  NO_KINETIC_FREEZE:
+    mean_births_per_step_min: 0.1
+    mean_deaths_per_step_min: 0.1
+  CAUSAL_SOURCE_DEPENDENCE:
+    scope: across arms
+    source_off_e_folding_window:
+    - 0.5
+    - 2.0
+    source_off_residual_max: 0.05
+    no_source_control_must_not_maintain: true
+  MODEL_PREDICTION_COMPATIBILITY:
+    envelope: the N2 GENERATIVE null, evaluated at the arm's own N_X, pre-registered in the freeze
+    quantiles:
+    - 0.01
+    - 0.99
+    statistics:
+    - r80
+    - Rg
+    - organiser_to_core
+    - core_fraction
+    - main_mass_fraction
+    - n_eff_components
+    min_statistics_inside_envelope: 5
+    note: 'N2 conditions on NOTHING that was realised: the organiser''s walk, the ages, the transport
+      and the deaths are generated from the frozen Spec. Only the sample size is matched, and every shape
+      statistic of the null is invariant to the birth intensity.
+
+      '
+nulls:
+  N0:
+    kind: CONDITIONAL_NULL
+    conditions_on:
+    - N_X
+    - domain
+    draws: 200
+  N1:
+    kind: CONDITIONAL_NULL
+    conditions_on:
+    - observed organiser trajectory
+    - observed births
+    draws: 200
+    instants: 9
+    quantile: 0.05
+  N2:
+    kind: GENERATIVE_NULL
+    conditions_on:
+    - nothing realised
+    - sample size only
+    draws: 300
+  N3:
+    kind: CONDITIONAL_NULL
+    conditions_on:
+    - marginal distribution of core positions
+    draws: 4000
+  reading: 'a null that is handed the realised births and the realised organiser path cannot confirm the
+    generative mechanism; it can only bound the excess beyond it. Only N2 tests the mechanism.
+
+    '
+protocol:
+  conditions:
+    P:
+      name: mobile organiser
+      arms: 6
+      seeds:
+      - 9101
+      - 9102
+      - 9103
+      - 9104
+      - 9105
+      - 9106
+      L: 36
+      intervention: none
+      role: PRINCIPAL
+    S:
+      name: organiser immobilised
+      arms: 3
+      seeds:
+      - 9201
+      - 9202
+      - 9203
+      L: 36
+      intervention: p_hop_Y = 0 in the Spec; nothing else changes
+      role: static profile and relaxation time
+    R:
+      name: source removed after burn-in
+      arms: 3
+      seeds:
+      - 9301
+      - 9302
+      - 9303
+      L: 36
+      intervention: at SOURCE_OFF_AT the organiser is decayed Y -> WY through the same channel a spontaneous
+        decay uses; occupancy is conserved exactly; no X is moved, created or destroyed and no resource
+        is touched
+      role: causal dependence
+    N:
+      name: no source
+      arms: 2
+      seeds:
+      - 9401
+      - 9402
+      L: 36
+      intervention: no organiser is seeded
+      role: control
+    D:
+      name: larger domain
+      arms: 3
+      seeds:
+      - 9501
+      - 9502
+      - 9503
+      L: 72
+      intervention: none
+      role: domain-size invariance
+    E:
+      name: exogenous frozen trajectory
+      arms: 0
+      role: opened ONLY if the analysis shows the organiser's motion is materially coupled to X; the coupling
+        is measured by the blocked-hop counters
+  forbidden_seeds:
+    reason: consumed by earlier missions, used for discovery, or inscribed in the frozen OBTC01 manifest.
+      Seed 8101 was executed and opened; the rest of the OBTC01 families are retired as a methodological
+      precaution even though they never ran.
+    values:
+    - 5001
+    - 5002
+    - 5003
+    - 5004
+    - 5005
+    - 5006
+    - 6101
+    - 6102
+    - 6103
+    - 6104
+    - 6105
+    - 6106
+    - 6201
+    - 6202
+    - 6301
+    - 6302
+    - 6303
+    - 6304
+    - 7001
+    - 7002
+    - 8101
+    - 8102
+    - 8103
+    - 8104
+    - 8105
+    - 8106
+    - 8201
+    - 8202
+    - 8203
+    - 8301
+    - 8302
+    - 8303
+    - 8401
+    - 8402
+    - 8501
+    - 8502
+    - 8503
+  qualification_requires:
+    P_arms_passing_all_per_arm_conditions: 5
+    D_arms_passing: 2
+    R_arms_showing_the_predicted_decay: 3
+    N_arms_not_maintaining: 2
+  seed_generation_rule: the OBTC02 families are the OBTC01 families with the leading digit advanced from
+    8 to 9, condition by condition, preserving the arm counts exactly. The rule is frozen here, before
+    any run, and produces a set provably disjoint from every seed used by MINCORE, MTW01, MCM01, ORR01,
+    CSC01 and OBTC01.
+sequential_rule:
+- - run technically invalid
+  - STOP
+- - provenance not verified
+  - STOP
+- - gate certificate not PASS
+  - STOP
+- - winding test disagrees with the independent implementation
+  - STOP
+- - online and post hoc gates disagree anywhere
+  - STOP
+- - the legacy extent proxy enters any gate condition
+  - STOP
+- - the chemostat loses its exact occupancy balance in any arm
+  - STOP
+- - a required raw field is missing from any arm
+  - STOP
+- - the principal condition forms no cloud on the first two seeds
+  - STOP
+- - the larger domain shows a radius proportional to L
+  - STOP
+- - a control contradicts the mechanism
+  - STOP
+- - the start ledger diverges from the arm records
+  - STOP
+- - a bug is found after the results are opened
+  - STOP and the disposition becomes AUDIT_INVALID
+- - no manual resumption after a stop is permitted in this mission
+  - ABSOLUTE
+budget:
+  caps:
+    calibration: 4
+    confirmation: 24
+    control: 8
+    cost_probe: 2
+  non_scientific_classes:
+  - cost_probe
+replicates:
+  mission: ORGANIZER-BOUND-TURNOVER-CLOUD-01
+  frozen_spec_sha256: 4008a92bc73f440a84143ee12b7dedbe05950a6aebbcf0200cc4ab3a59de3091
+  scientific_content: IDENTICAL. Only the seed families change, and a technical validity layer is ADDED.
+    No threshold, formula, intervention, window, domain size, null or LawSpec is touched.
+technical_validity:
+  purpose: RUN_TECHNICALLY_VALID is evaluated BEFORE any scientific criterion. A technically invalid run
+    consumes its start, counts as neither a scientific success nor a scientific failure, and fires the
+    stop rule immediately.
+  checks:
+  - zero spatial frames received
+  - frame count differs from the expected count
+  - frame indices differ between stream and table
+  - frame index checksum differs
+  - duplicated frame
+  - missing frame
+  - indices not strictly increasing
+  - online and post hoc disagree
+  - a required raw field is absent
+  - start counter inconsistent
+  - temporal boundary error
+  - run ended incomplete
+  - RNG state absent
+  - file corruption
+  frame_transport_invariants:
+  - EXPECTED_FRAME_COUNT
+  - STREAM_FRAME_COUNT
+  - TABLE_FRAME_COUNT
+  - STREAM_FRAME_INDEX_SHA256
+  - TABLE_FRAME_INDEX_SHA256
+  - STREAM_SPATIAL_PAYLOAD_SHA256
+  - TABLE_SPATIAL_PAYLOAD_SHA256
+  frame_call_contract: online.frame() must be called exactly once per eligible frame, after the frame
+    is fully built, before the index is updated, and with the same identifier as the saved row.
+  third_boundary_convention: bucket(i) = min(2, i // (T_WINDOW // 3)) on the 0-based index of the post-burn-in
+    step. This reproduces the array split n//3 EXACTLY for every horizon, not only for horizons divisible
+    by three. The WRITTEN convention - three equal consecutive blocks - is unchanged.

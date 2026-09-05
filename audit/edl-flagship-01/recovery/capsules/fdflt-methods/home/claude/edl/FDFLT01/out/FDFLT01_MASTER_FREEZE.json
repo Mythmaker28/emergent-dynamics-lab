@@ -1,0 +1,179 @@
+{
+  "PROGRAM": "FRESH-DIRECT-FUNCTIONAL-LINEAGE-TEST-01",
+  "SHORT_NAME": "FDFLT01",
+  "GENERATED_UTC": "2026-08-20T23:59:35.146454+00:00",
+  "PARENT_PROGRAM": "FUNCTIONAL-LINEAGE-ROUTE-SELECTION-02",
+  "PARENT_TIP": "ba72111f9f6fc28f2158e2d3e2e399f4987874c1",
+  "PARENT_TIP_SOURCE": "resolved from FLRS02_INCREMENT_MANIFEST.json on the Windows recovery disk",
+  "PARENT_DISPOSITION": "ONE_EXISTING_POINT_DIRECT_TEST_JUSTIFIED",
+  "FREEZE_IS_COMMITTED_ALONE_BEFORE_ANY_SCIENTIFIC_START": true,
+  "COMPLETE_PRE_RUN_METHODS_HASH": "PASS",
+  "METHODS_HASH": "d403ccd3976be5ceabd167bfe21750ce08782a52aa0dc6e7019a226fcef24759",
+  "SCIENTIFIC_QUESTION": "At the exact frozen B1 law, does the probability of the predeclared complete functional two-centre lineage event exceed 0.10?",
+  "INDEPENDENT_UNIT": "one world",
+  "POINT": {
+    "LABEL": "B1",
+    "kY": 2.5118864315095822e-05,
+    "muY": 9.261187281287937e-05,
+    "OTHER_PARAMETERS": "inherited byte-for-byte from PQEC01_MASTER_FREEZE.json INHERITED_FROZEN_CONSTANTS",
+    "INHERITED_FROZEN_CONSTANTS": {
+      "CAP": 16,
+      "S0": 3,
+      "phi": 0.2,
+      "omega": 0.05,
+      "muX": 0.004,
+      "kX": 1.0,
+      "L": 36,
+      "X_SEED": 4,
+      "p_hop_X": 0.10263340389897246,
+      "p_hop_Y_mobile": 0.10263340389897246,
+      "T_HORIZON": 11000,
+      "T_WINDOW": 9000,
+      "BURN_IN": 2000,
+      "CORE_R": 5.0,
+      "TAU_SEP": 125.0,
+      "ALPHA_SURVIVAL": 0.5,
+      "N_STAR": 10.0,
+      "GAMMA_SEP": 0.5,
+      "MIN_EVENTS": 1.0
+    }
+  },
+  "EXECUTION_LAW": {
+    "METHOD": "the frozen PQEC01 runner pqec01_run.run_world is IMPORTED AND EXECUTED, not reimplemented",
+    "pqec01_run_sha256": "3b88f901b118e1e2df6fac864aee6c24b62c7dae890dd28b4207eaba59ea2b96",
+    "pqec01_observer_sha256": "d8ff4b9da05c95641c7f69cef4c8b2ffe4c45f17975e8f348d5c5e0f2b6bba21",
+    "ONLY_NON_PHYSICAL_DIFFERENCES": [
+      "raw output directory",
+      "tag prefix F instead of B",
+      "outcome firewall on what leaves the worker"
+    ],
+    "STOP_RULES": [
+      {
+        "id": "EXTINCT",
+        "condition": "N_Y == 0 (founder and all descendants gone)"
+      },
+      {
+        "id": "PREMATURE_THIRD_CENTRE",
+        "condition": "N_CENTRES(t) >= 3, where a CENTRE is a single-linkage cluster of occupied Y cells at toroidal Euclidean distance <= CORE_R = 5.0",
+        "binding": "this is the parent's frozen third-centre notion made per-world observable; it is NOT replaced by an N_Y proxy"
+      },
+      {
+        "id": "MAX_PERMITTED_Y",
+        "condition": "N_Y > N_STAR = 10"
+      },
+      {
+        "id": "INTEGRITY_FAILURE",
+        "condition": "free(x) < 0 anywhere, or occupancy > CAP anywhere, or the organiser cell cannot be located while N_Y > 0"
+      },
+      {
+        "id": "HORIZON",
+        "condition": "t reaches T_HORIZON = 11000"
+      }
+    ],
+    "HORIZON": 11000
+  },
+  "PRIMARY_ENDPOINT": {
+    "f_primary": 0.6321205588285577,
+    "T_primary_continuous": 249.49966599830609,
+    "T_PRIMARY_STEPS": 250,
+    "INTEGER_CONVENTION": "need_steps = ceil(T(f)); the maturation event is at episode_start + need_steps - 1",
+    "CONVENTION_VERIFIED_AGAINST_PARENT": "the pre-run equivalence gate reproduces the FLRS02 result exactly",
+    "BAND_STEPS": {
+      "T_50": 173,
+      "T_primary": 250,
+      "T_80": 402,
+      "T_90": 575
+    },
+    "FRACTIONS": {
+      "T_50": 0.5,
+      "T_primary": 0.6321205588285577,
+      "T_80": 0.8,
+      "T_90": 0.9
+    },
+    "SEVEN_CONDITIONS": [
+      "F1 at least one dynamic Y birth",
+      "F2 no extinction before functional maturation",
+      "F3 exactly two spatial centres under the frozen classifier",
+      "F4 the two centres remain distinct for the complete primary maturation duration",
+      "F5 the weaker centre's local X response reaches the frozen fraction",
+      "F6 no third spatial centre before functional maturation completes",
+      "F7 X/source integrity valid through functional maturation"
+    ],
+    "FOUNDER_SURVIVAL_REQUIRED": false,
+    "PARTICLE_GENEALOGY": "none constructed"
+  },
+  "DECISION_RULE": {
+    "PRIMARY_N": 192,
+    "PRIMARY_NULL_RATE": 0.1,
+    "PRIMARY_ALPHA": 0.05,
+    "PRIMARY_CRITICAL_SUCCESS_COUNT": 27,
+    "REJECT_H0_IF": "SUCCESS_COUNT >= 27",
+    "P_p0_X_ge_critical": 0.04450131521669012,
+    "POWER_AT_DEVELOPMENTAL_LOWER_BOUND": 0.8652958451678221,
+    "DEVELOPMENTAL_B1_SUCCESS": "13 / 44",
+    "DEVELOPMENTAL_B1_LOWER_95": 0.16764398122867644
+  },
+  "SEEDS": {
+    "N_PRIMARY": 192,
+    "N_RESERVE": 6,
+    "FORMULA": "seed = 940000000 + int(SHA256(parent_tip|FDFLT01|B1|kind|index + 10000*bump)[:12],16) mod 50000000",
+    "DISJOINT_FROM_KNOWN": true,
+    "ALL_UNIQUE": true
+  },
+  "TECHNICAL_FAILURE_DEFINITIONS": [
+    "returncode != 0 (process interruption or unhandled exception)",
+    "archive absent after the write",
+    "schema_ok False (corrupt or incomplete serialization)",
+    "engine_invariants_ok False (engine invariant violation preventing a readable outcome)",
+    "sha256 recomputation over the written bytes disagrees with the value recorded at write time"
+  ],
+  "NO_SCIENTIFIC_FAILURE_MAY_TRIGGER_REPLACEMENT": true,
+  "OUTCOME_FIREWALL": {
+    "EXPOSED": [
+      "opaque arm token",
+      "completed flag",
+      "technical failure flag",
+      "checksum written flag"
+    ],
+    "WITHHELD": [
+      "seed",
+      "success",
+      "birth count",
+      "centre count",
+      "stop reason",
+      "steps_recorded",
+      "runtime",
+      "file size",
+      "X response",
+      "extinction",
+      "third-centre event"
+    ]
+  },
+  "PRE_RUN_GATES": {
+    "EQUIVALENCE_WITH_PARENT": true,
+    "PERSISTENT_CENTRE_IDENTITY": true
+  },
+  "DEVELOPMENTAL_DATA_MAY_NOT_ENTER": [
+    "the 192-world primary estimate",
+    "the test statistic",
+    "the confidence interval",
+    "the success count",
+    "the final confirmation claim"
+  ],
+  "CLAIM_CEILING": "a positive result establishes at most that the probability of the predeclared complete functional two-centre lineage event at the frozen B1 law exceeds 0.10. It does not establish reproduction, heredity, evolution, life, multi-generation descent, a parameter-space region, or a universal lineage mechanism.",
+  "TERMINAL_DISPOSITIONS": [
+    "DIRECT_FUNCTIONAL_LINEAGE_POINT_QUALIFIED__SUCCESS_RATE_EXCEEDS_0_10",
+    "DIRECT_FUNCTIONAL_LINEAGE_POINT_NOT_QUALIFIED__SUCCESS_RATE_NOT_SHOWN_ABOVE_0_10",
+    "DIRECT_FUNCTIONAL_LINEAGE_TEST_TECHNICALLY_INVALID"
+  ],
+  "FORBIDDEN": [
+    "parameter retuning",
+    "interpolation",
+    "adaptive sample size",
+    "adaptive stopping of the batch",
+    "founder survival gate",
+    "post-outcome scientific repair",
+    "pooling developmental worlds"
+  ],
+  "MAX_POST_OUTCOME_SCIENTIFIC_REPAIRS": 0
+}

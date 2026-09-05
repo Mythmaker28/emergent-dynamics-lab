@@ -34,3 +34,5 @@
 | EXP-GT-A0-20260713-001 | 2026-07-13 | ontology audit of A | **FAILED — ONTOLOGY** (benchmark-label error; D-052 repair withdrawn) | D-053 |
 | EXP-GT-ACERT-20260713-001 | 2026-07-13 | architecture resolution certificate | **QUALIFIED** (development) — tol 0, resolution 4 steps / 1 edge / 1 node | D-055 |
 | EXP-GT-03-20260713-001 | 2026-07-13 | frozen factorized observer, held-out | **FAILED — IMPLEMENTATION** (phase invariance; over-abstention x2) | D-056 |
+
+| EDL-ASTRA-FLAGSHIP-AUDIT-01-RECOVERY | 2026-09-05 | isolated source recovery | 123 sealed TBRT02 archives and 192 FDFLT01 core archives | NO_NEW_WORLDS | see audit/edl-flagship-01/recovery |
