@@ -1,5 +1,7 @@
 # Recovery verification
 
+> **Statut historique, remplacé pour la livraison PAPER-01.** Le bundle du 4 septembre a depuis été récupéré, vérifié et adjudiqué. Voir [le rapport de septembre](september4_adjudication/SEPTEMBER4_ADJUDICATION_FR.md) et [l’article livré](../../paper/causal-persistence-ownership-01/README.md). Les demandes de bundle et états non vérifiés ci-dessous ne décrivent plus le dossier courant.
+
 Status: **RECOVERY_VERIFIED for the recovered August history and named raw evidence; SEPTEMBER_4_PACKAGE_NOT_LOCATED**.
 
 Source repository `C:\Users\tommy\Documents\ising-v3-recovery\ising v3` was inspected and left untouched. Its main was `f3921a4d`, with 19 historical Windows-invalid missing cache paths and untracked recovery/experiment residue. No dirty sibling was repaired, reset, cleaned, or merged. The current audit uses owned bare repository `C:\Users\tommy\Documents\edl-astra-flagship-audit-01-repository.git` and isolated worktree `C:\Users\tommy\Documents\edl-astra-flagship-audit-01`.

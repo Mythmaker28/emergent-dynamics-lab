@@ -1,0 +1,560 @@
+{
+  "allowed_imports": [
+    "__future__",
+    "argparse",
+    "fractions",
+    "itertools",
+    "json",
+    "math",
+    "random",
+    "sys"
+  ],
+  "full_json_equal_to_original": true,
+  "capability": {
+    "MISSION": "CCRA01",
+    "SECTION": "capability test",
+    "SPEC_VERSION": "CCRA01-FROZEN-1",
+    "REAL_DATA_READ": false,
+    "DATA_SOURCE": "synthetic, fabricated inside this file by random.Random with fixed seeds",
+    "ALPHA": 0.025,
+    "CHECKS": [
+      {
+        "id": "C1_CAN_CROSS",
+        "what": "Sous une regle de generation connue pour le permettre, la statistique doit franchir son seuil et rendre CONFIRMATOIRE.",
+        "n_pairs": 41,
+        "terminal": "CONFIRMATOIRE",
+        "m_discordant": 41,
+        "k_selective_worse": 29,
+        "k_critical": 28,
+        "p_one_sided": 0.005753894867666531,
+        "PASS": true
+      },
+      {
+        "id": "C2_DOES_NOT_CROSS_UNDER_LABEL_PERMUTATION",
+        "what": "Un replicat nul graine doit etre non confirmatoire, et sur 2000 replicats permutes le taux empirique de franchissement doit rester au voisinage de alpha.",
+        "seeded_replicate_terminal": "NEGATIF",
+        "seeded_replicate_p": 0.05863760297870613,
+        "n_replicates": 2000,
+        "n_crossings": 27,
+        "empirical_type_I_rate": 0.0135,
+        "acceptance_bound": 0.04,
+        "alpha": 0.025,
+        "min_m_over_replicates": 41,
+        "PASS": true
+      },
+      {
+        "id": "C3_ADVERSARIAL_MERGE_DURATION_INFLATION",
+        "what": "On retire le canal MERGE du seul bras SELECTIVE, en le convertissant en une terminaison de rang 1 plus tardive. Le programme ne doit PAS rendre CONFIRMATOIRE dans la direction pre-declaree.",
+        "n_selective_MERGE_records_converted": 11,
+        "terminal_before_the_artifact": "NEGATIF",
+        "terminal_after_the_artifact": "NEGATIF",
+        "k_selective_worse_before": 23,
+        "k_selective_worse_after": 22,
+        "p_after": 0.3776143287523155,
+        "DIAGNOSTIC_rank_degrading_variant_terminal": "NEGATIF",
+        "DIAGNOSTIC_NOTE": "La variante ou le canal ulterieur peut etre de rang 0 est rapportee sans assertion: la preregistration 3.4 la place dans l'effet TOTAL, non dans un biais.",
+        "PASS": true
+      },
+      {
+        "id": "C4_EXACT_ARITHMETIC_DIFFERENTIAL",
+        "what": "La queue binomiale exacte est recoupee contre une enumeration exhaustive des 2^m sequences de signes. Deux chemins independants vers la meme valeur.",
+        "m_range_enumerated": "0..14",
+        "n_mismatches": 0,
+        "resolution_floor_m": 6,
+        "two_pow_minus_floor": 0.015625,
+        "two_pow_minus_floor_minus_one": 0.03125,
+        "alpha": 0.025,
+        "PASS": true
+      },
+      {
+        "id": "C5_ADVERSARIAL_ARM_DEPENDENT_RENAMING",
+        "what": "Dans le seul bras SELECTIVE, chaque OUT_OF_RANGE devient NO_COMPONENT_AT_THE_NEXT_STEP. La decision doit etre identique bit a bit.",
+        "terminal_before": "NEGATIF",
+        "terminal_after": "NEGATIF",
+        "primary_identical": true,
+        "p_before": "342160141249/549755813888",
+        "p_after": "342160141249/549755813888",
+        "naive_string_statistic_before": 6,
+        "naive_string_statistic_after": 14,
+        "MEASURED_ARTIFACT_AVOIDED": 8,
+        "NOTE": "La statistique naive fondee sur les chaines se deplace de 8 paires sous un pur renommage; la statistique gelee ne bouge pas.",
+        "PASS": true
+      }
+    ],
+    "N_CHECKS": 5,
+    "N_PASSED": 5,
+    "CAPABILITY": "PASS",
+    "LEGACY_NOTE": "Une condition dont on n'a jamais montre qu'elle peut se declencher n'est pas un test. C1 montre qu'elle peut; C2 montre qu'elle ne se declenche pas a tort; C3 et C5 montrent qu'elle resiste aux deux artefacts nommes dans la preregistration; C4 verifie l'arithmetique par un second chemin."
+  },
+  "run": {
+    "MISSION": "CCRA01",
+    "SECTION": "frozen run",
+    "SPEC_VERSION": "CCRA01-FROZEN-1",
+    "PREREGISTRATION": "CCRA01_PREREGISTRATION.md",
+    "SIGN_CONVENTION": "SELECTIVE minus SHAM",
+    "ESTIMAND": "theta = P(SELECTIVE strictement pire) - P(SELECTIVE strictement meilleur), sur le composite ordonne lexicographique (rang, duree). Effet TOTAL.",
+    "PREREGISTERED_DIRECTION": "theta > 0 : SELECTIVE est plus souvent la pire des deux.",
+    "TEST": "test des signes apparie, exact, unilateral, alpha = 1/40",
+    "MAPPING": {
+      "OUT_OF_RANGE": "NO_LINKABLE_SUCCESSOR",
+      "NO_COMPONENT_AT_THE_NEXT_STEP": "NO_LINKABLE_SUCCESSOR",
+      "SPLIT_OR_TIE": "AMBIGUOUS_CONTINUATION",
+      "MERGE": "AMBIGUOUS_CONTINUATION",
+      "REACHED_THE_WINDOW_HORIZON": "NO_TERMINATION_OBSERVED"
+    },
+    "CAUSE_RANK_WORST_TO_BEST": {
+      "NO_LINKABLE_SUCCESSOR": 0,
+      "AMBIGUOUS_CONTINUATION": 1,
+      "NO_TERMINATION_OBSERVED": 2
+    },
+    "RETENTION_RULE": "les 41 paires entrent toutes; aucune exclusion conditionnelle a une variable realisee apres le traitement",
+    "TERMINAL": "NEGATIF",
+    "REASON": "THRESHOLD_NOT_CROSSED_AT_ADEQUATE_RESOLUTION",
+    "CLAIM": "Un critere gele a ete execute et n'a pas ete franchi, a une resolution demontree suffisante pour qu'il put l'etre. Aucune revendication d'equivalence ni d'absence d'effet.",
+    "INTEGRITY_FAILURES": [],
+    "PRIMARY": {
+      "n_pairs": 41,
+      "n_selective_worse": 17,
+      "n_selective_better": 24,
+      "n_ties": 0,
+      "m_discordant": 41,
+      "resolution_floor_m": 6,
+      "DESIGN_COULD_HAVE_REJECTED": true,
+      "k_critical_at_alpha": 28,
+      "p_one_sided_exact": "983500178123/1099511627776",
+      "p_one_sided_float": 0.8944882011955997,
+      "alpha_exact": "1/40",
+      "alpha_float": 0.025,
+      "CROSSES_THRESHOLD": false,
+      "net_theta_hat": -0.17073170731707318
+    },
+    "S1_exposure_tiebreak": {
+      "n_pairs": 41,
+      "n_selective_worse": 17,
+      "n_selective_better": 24,
+      "n_ties": 0,
+      "m_discordant": 41,
+      "resolution_floor_m": 6,
+      "DESIGN_COULD_HAVE_REJECTED": true,
+      "k_critical_at_alpha": 28,
+      "p_one_sided_exact": "983500178123/1099511627776",
+      "p_one_sided_float": 0.8944882011955997,
+      "alpha_exact": "1/40",
+      "alpha_float": 0.025,
+      "CROSSES_THRESHOLD": false,
+      "net_theta_hat": -0.17073170731707318,
+      "NOTE": "S1, secondaire, NON confirmatoire."
+    },
+    "DESCRIPTIVE": {
+      "S2_termination_string_by_arm": {
+        "SELECTIVE": {
+          "NO_COMPONENT_AT_THE_NEXT_STEP": 9,
+          "SPLIT_OR_TIE": 32
+        },
+        "SHAM": {
+          "SPLIT_OR_TIE": 28,
+          "OUT_OF_RANGE": 6,
+          "MERGE": 7
+        }
+      },
+      "S3_cause_by_arm": {
+        "SELECTIVE": {
+          "NO_LINKABLE_SUCCESSOR": 9,
+          "AMBIGUOUS_CONTINUATION": 32
+        },
+        "SHAM": {
+          "AMBIGUOUS_CONTINUATION": 35,
+          "NO_LINKABLE_SUCCESSOR": 6
+        }
+      },
+      "S4_pairs_decided_by_rank_alone": 11,
+      "S4_pairs_decided_by_the_duration_tiebreak": 30,
+      "S4_pairs_fully_tied": 0,
+      "NOTE": "S2, S3 and S4 are descriptive. They cannot create or cancel the primary conclusion. In particular the split between OUT_OF_RANGE and NO_COMPONENT_AT_THE_NEXT_STEP inside S2 is arm-dependent by construction (preregistration 2.3) and must not be read as two causes."
+    },
+    "PER_PAIR_SCORES": [
+      {
+        "index": 85,
+        "SELECTIVE_cause": "NO_LINKABLE_SUCCESSOR",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 0,
+        "SHAM_rank": 1,
+        "rank_decided": true,
+        "W": -1
+      },
+      {
+        "index": 94,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": -1
+      },
+      {
+        "index": 113,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": -1
+      },
+      {
+        "index": 118,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 124,
+        "SELECTIVE_cause": "NO_LINKABLE_SUCCESSOR",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 0,
+        "SHAM_rank": 1,
+        "rank_decided": true,
+        "W": -1
+      },
+      {
+        "index": 182,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": -1
+      },
+      {
+        "index": 198,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 231,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "NO_LINKABLE_SUCCESSOR",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 0,
+        "rank_decided": true,
+        "W": 1
+      },
+      {
+        "index": 240,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 279,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 312,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 321,
+        "SELECTIVE_cause": "NO_LINKABLE_SUCCESSOR",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 0,
+        "SHAM_rank": 1,
+        "rank_decided": true,
+        "W": -1
+      },
+      {
+        "index": 347,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 361,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 365,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 391,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": -1
+      },
+      {
+        "index": 393,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": -1
+      },
+      {
+        "index": 411,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": -1
+      },
+      {
+        "index": 415,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 425,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 461,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 464,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": -1
+      },
+      {
+        "index": 491,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 507,
+        "SELECTIVE_cause": "NO_LINKABLE_SUCCESSOR",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 0,
+        "SHAM_rank": 1,
+        "rank_decided": true,
+        "W": -1
+      },
+      {
+        "index": 511,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": -1
+      },
+      {
+        "index": 530,
+        "SELECTIVE_cause": "NO_LINKABLE_SUCCESSOR",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 0,
+        "SHAM_rank": 1,
+        "rank_decided": true,
+        "W": -1
+      },
+      {
+        "index": 545,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 549,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 566,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 573,
+        "SELECTIVE_cause": "NO_LINKABLE_SUCCESSOR",
+        "SHAM_cause": "NO_LINKABLE_SUCCESSOR",
+        "SELECTIVE_rank": 0,
+        "SHAM_rank": 0,
+        "rank_decided": false,
+        "W": -1
+      },
+      {
+        "index": 593,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "NO_LINKABLE_SUCCESSOR",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 0,
+        "rank_decided": true,
+        "W": 1
+      },
+      {
+        "index": 595,
+        "SELECTIVE_cause": "NO_LINKABLE_SUCCESSOR",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 0,
+        "SHAM_rank": 1,
+        "rank_decided": true,
+        "W": -1
+      },
+      {
+        "index": 636,
+        "SELECTIVE_cause": "NO_LINKABLE_SUCCESSOR",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 0,
+        "SHAM_rank": 1,
+        "rank_decided": true,
+        "W": -1
+      },
+      {
+        "index": 664,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 724,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": -1
+      },
+      {
+        "index": 732,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 768,
+        "SELECTIVE_cause": "NO_LINKABLE_SUCCESSOR",
+        "SHAM_cause": "NO_LINKABLE_SUCCESSOR",
+        "SELECTIVE_rank": 0,
+        "SHAM_rank": 0,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 780,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 793,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "NO_LINKABLE_SUCCESSOR",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 0,
+        "rank_decided": true,
+        "W": 1
+      },
+      {
+        "index": 827,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "AMBIGUOUS_CONTINUATION",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 1,
+        "rank_decided": false,
+        "W": 1
+      },
+      {
+        "index": 866,
+        "SELECTIVE_cause": "AMBIGUOUS_CONTINUATION",
+        "SHAM_cause": "NO_LINKABLE_SUCCESSOR",
+        "SELECTIVE_rank": 1,
+        "SHAM_rank": 0,
+        "rank_decided": true,
+        "W": 1
+      }
+    ],
+    "REPRODUCTION_STATUS": "NOT_TESTED",
+    "HEREDITY_STATUS": "NOT_TESTED",
+    "H3_STATUS": "NOT_TESTED",
+    "AUTONOMOUS_COHESION_STATUS": "NOT_ESTABLISHED",
+    "ARCHITECTURE_CHANGE_NECESSITY": "NOT_ESTABLISHED",
+    "WHAT_THIS_TEST_DOES_NOT_SAY": [
+      "rien sur une capacite de la fille verrouillee",
+      "rien sur un mecanisme",
+      "rien sur les hasards cause-specifiques par canal, non identifiables ici",
+      "rien sur la duree en tant que grandeur",
+      "rien hors de ce jeu de parametres gele",
+      "rien sur le bras DISPLACED"
+    ]
+  }
+}

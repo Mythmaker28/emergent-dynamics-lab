@@ -78,11 +78,16 @@ def main():
  cost2=0.;admitted2=0;cross2=None
  for r in sorted(ledger,key=lambda x:x['index']):
   H=r['horizon'];prefix=r['prefix_steps']
-  cost2+=prefix/H+(2*(H-prefix)/H if r.get('TRIGGERED') else 0)
+  # A trigger may fail identity checks before any fork: continuations exist
+  # only for archived triples. Previous audit overcharged 12 such triggers.
+  cost2+=prefix/H+(2*(H-prefix)/H if 'ARCHIVES' in r else 0)
   admitted2+=bool(r.get('ADMISSIBLE'))
   if cost2>=512 and cross2 is None:cross2={'index':r['index'],'admissible':admitted2,'cost':cost2}
  result['two_arm_prefix_accounting_first_crossing_512']=cross2
  result['two_arm_prefix_accounting_total']=cost2
+ result['triggered_without_executed_arms']=sum(bool(r.get('TRIGGERED')) and 'ARCHIVES' not in r for r in ledger)
+ assert result['triggered_without_executed_arms']==12
+ assert cross2['index']==789 and cross2['admissible']==38
  result['status']='RECOMPUTED_SAME_DATA__OUTSIDE_OMLDCT02_FROZEN_ACCRUAL__INCONCLUSIVE'
  result['interval_caveat']='Frozen Walsh interval uses untied null order indices even with ties/zeros. Numerical reproduction is not a proof of nominal coverage.'
  result['science_worlds_run']=0

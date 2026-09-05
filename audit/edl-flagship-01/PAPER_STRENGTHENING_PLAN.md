@@ -1,5 +1,7 @@
 # Plan de renforcement sans nouveaux mondes
 
+> **Statut historique, remplacé pour la livraison PAPER-01.** Le bundle du 4 septembre a depuis été récupéré, vérifié et adjudiqué. Voir [le rapport de septembre](september4_adjudication/SEPTEMBER4_ADJUDICATION_FR.md) et [l’article livré](../../paper/causal-persistence-ownership-01/README.md). Les demandes de bundle et états non vérifiés ci-dessous ne décrivent plus le dossier courant.
+
 **Décision : renforcer B comme papier spécialisé; maintenir C en attente du paquet source; conserver A comme compagnon.** Ne pas rédiger une nouvelle version anglaise présentée comme papier phare sur une base encore incomplète.
 
 | Priorité | Modification concrète | Critère de clôture |

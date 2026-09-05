@@ -1,5 +1,7 @@
 # Choix du manuscrit
 
+> **Statut historique, remplacé pour la livraison PAPER-01.** Le bundle du 4 septembre a depuis été récupéré, vérifié et adjudiqué. Voir [le rapport de septembre](september4_adjudication/SEPTEMBER4_ADJUDICATION_FR.md) et [l’article livré](../../paper/causal-persistence-ownership-01/README.md). Les demandes de bundle et états non vérifiés ci-dessous ne décrivent plus le dossier courant.
+
 **B est le meilleur noyau vérifié. C n'est pas encore admissible comme papier phare. A reste un compagnon.** Notes éditoriales subjectives sur 20, après lecture des textes et contrôle des données; elles ne sont pas des probabilités. Pour la colonne « risque », **20 signifie risque maximal**. Pour les huit autres, 20 signifie le plus favorable. La note globale est un jugement argumenté, pas une moyenne mélangeant ces directions.
 
 | Critère /20 | A — PR34 | B — Persistence v1 | C — Nouvelle synthèse |

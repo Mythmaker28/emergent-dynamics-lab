@@ -1,6 +1,6 @@
 # EDL flagship audit 01
 
-Start with [ASTRA_INDEPENDENT_AUDIT_FR.md](ASTRA_INDEPENDENT_AUDIT_FR.md). Verdict: **FLAGSHIP_NOT_YET_JUSTIFIED**. FDFLT01 53/192 is verified from endpoint-bearing raw core; B is the best supported manuscript nucleus; CCRA01 and five September-4 fatal findings remain unverified.
+Current delivery: [complete paper package](../../paper/causal-persistence-ownership-01/README.md). The September bundle is verified and all 28 findings are individually [adjudicated](september4_adjudication/SEPTEMBER4_ADJUDICATION_FR.md). The earlier audit remains below as history. Its two-arm acquisition cost has an explicit corrected erratum (index789, 38 pairs).
 
 The requested deliverables are this report, [recovery verification](RECOVERY_VERIFICATION.md), [provenance gap matrix](DATA_PROVENANCE_GAP_MATRIX.csv), [decision matrix](FLAGSHIP_DECISION_MATRIX.md), [strengthening plan](PAPER_STRENGTHENING_PLAN.md), scripts, raw evidence and machine-readable results. No new manuscript is presented as a verified flagship.
 
@@ -24,4 +24,4 @@ The first missing YAML dependency was removed by reading only three unique numer
 
 The recovery helpers in `recovery/` record original Windows locations and are session-specific preservation utilities. Do not rerun them as scientific analyses. The reproducible entry point is `scripts/reproduce_all.py` and its PASS result is `results/VALIDATION.json`.
 
-Scope: no main write, merge, submission, DOI, experiment run, or Sweeper change. The only requested human input is the precisely identified missing Sept-4 bundle.
+Scope: no main write, merge, submission, DOI, experiment run, or Sweeper change. The formerly missing Sept-4 bundle has been supplied and verified. No further source upload is requested.

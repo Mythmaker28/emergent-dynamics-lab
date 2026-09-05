@@ -1,0 +1,43 @@
+{
+  "prior_script": "audit/edl-flagship-01/scripts/recompute_omldct.py",
+  "error": "Used TRIGGERED to charge two complete continuations, even for 12 triggers rejected before the fork.",
+  "n_triggers_without_archives": 12,
+  "example": {
+    "ADMISSIBLE": false,
+    "REASON": "TRIGGERED_IDENTITY_NOT_CARRIED",
+    "TRIGGERED": true,
+    "horizon": 11000,
+    "index": 96,
+    "instance_cost": 0.06391,
+    "integrity_ok_prefix": true,
+    "kY": 0.001004754572603833,
+    "law": "LAW_C_MCTT01",
+    "mission": "TBRT02",
+    "muY": 0.000740894982503035,
+    "p_hop_Y": 0.10263340389897246,
+    "prefix_limit_used": 6501,
+    "prefix_steps": 703,
+    "runtime_s": 3.3,
+    "seed": 1169785814,
+    "t_m": 702,
+    "technical_failure": false
+  },
+  "correct_exact_two_arm_prefix_cost": 571.6493636363683,
+  "rounded_recorded_cost_minus_one_real_arm": 571.6493936363636,
+  "first_seed_crossing_512": {
+    "index": 789,
+    "spent": 512.1262727272767,
+    "pairs": 38
+  },
+  "completed_before_that_seed": {
+    "last_completed_index": 788,
+    "spent": 511.5352727272767,
+    "pairs": 38
+  },
+  "historical_checker_511_535_is_cost_before_index789": true,
+  "withdraw_prior_astra_claims": [
+    "593.509909 two-arm total",
+    "index 760 with 36 pairs as the two-arm stopping point"
+  ],
+  "unchanged_conclusion": "41 pairs still exceed the frozen two-arm accrual; only 38 admissible pairs are available when the budget binds."
+}

@@ -11,5 +11,5 @@ def main():
   if p.returncode:save('VALIDATION.json',{'status':'FAIL','steps':completed});raise SystemExit(p.returncode)
  files=sorted(p for p in OUT.glob('*.json') if p.name!='VALIDATION.json')
  save('VALIDATION.json',{'status':'PASS','steps':completed,'outputs':[{'path':str(p.relative_to(HERE)).replace('\\','/'),'sha256':sha(p)} for p in files],
-      'science_worlds_run':0,'note':'Analytic fixtures and existing-data recomputation only. Does not validate absent Sept-4 artifacts.'})
+      'science_worlds_run':0,'note':'Analytic fixtures and existing-data recomputation only. Sept-4 artifacts are separately verified by september4_adjudication/audit_september4.py; no new worlds.'})
 if __name__=='__main__':main()
