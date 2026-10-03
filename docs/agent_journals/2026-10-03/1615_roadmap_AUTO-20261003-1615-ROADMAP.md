@@ -3,11 +3,12 @@
 role: auto-backlog agent `claude`, roadmap writer, documentation only
 run ID: `AUTO-20261003-1615-ROADMAP`
 start: 2026-10-03 16:15Z (backlog reservation); run lock acquired 16:27:10Z
-end: 2026-10-03 17:06Z (commit of this journal)
+end: 2026-10-03 17:10Z (second commit of this journal)
 starting git state: `main` = `f382dbf077699aa65c80328b6519035d1cda4a57` (merge of PR #30), clean;
 branch `auto/roadmap` created from it
-ending git state: `auto/roadmap` = `f382dbf` + one commit (`ROADMAP.md`, this journal, one
-`docs/RUN_INDEX.md` row), pushed; pull request to `main` opened for the owner, not merged
+ending git state: `auto/roadmap` = `f382dbf` + two commits, pushed: `00b7e31` adds `ROADMAP.md`,
+this journal and one `docs/RUN_INDEX.md` row; the second records in this journal the suite run on
+`00b7e31`. Pull request to `main` opened for the owner, not merged
 scope: one backlog task from the owner's `auto-backlog` list (`Mythmaker28/ai-credit-sweeper`,
 `AUTONOMOUS_MODE.md` rules): "Rédiger un ROADMAP.md de projet à partir du README, d'AGENTS.md, des
 PR ouvertes et de l'historique". Documentation only: no code, test, experiment, state file or
@@ -29,8 +30,9 @@ decision file changed.
    `requirements-lock.txt`. For the second run, the uncommitted `ROADMAP.md` was moved out of the
    worktree so that the tree was clean, as for the first run.
 4. Wrote `ROADMAP.md` and checked each statement against the source it cites.
-5. Added this journal and the `docs/RUN_INDEX.md` row, committed, pushed `auto/roadmap`, opened
-   the pull request, released the lock.
+5. Added this journal and the `docs/RUN_INDEX.md` row and committed them with `ROADMAP.md`
+   (`00b7e31`). Ran the suite again on that commit with a clean tree, recorded the result here in
+   a second commit, pushed `auto/roadmap`, opened the pull request and released the lock.
 
 ## Important files
 
@@ -57,6 +59,7 @@ python3 -m venv <venv>                      # outside the repository
 <venv>/bin/python -m pytest -q -p no:cacheprovider     # 16:20:48–16:23:59Z
 <venv>/bin/python -m pip install 'scipy==1.15.3'
 <venv>/bin/python -m pytest -q -p no:cacheprovider     # 16:49:42–16:52:50Z
+<venv>/bin/python -m pytest -q -p no:cacheprovider     # on 00b7e31, 17:06:31–17:09:39Z
 <venv>/bin/python -m edlab.runtime_lock acquire --run-id AUTO-20261003-1615-ROADMAP \
   --task-identity auto-backlog-claude-roadmap \
   --starting-head f382dbf077699aa65c80328b6519035d1cda4a57 --experiment NONE
@@ -88,6 +91,11 @@ git merge-tree --write-tree --name-only --no-messages f382dbf origin/<pr-branch>
   7 `caused_by_stop_pinned_verifier_unavailable` and 5 `inherited_historical`, without node IDs.
   Its `suite.after` collected 1 510 tests; this run collected 7 more and counted 7 more passes.
   The difference was not investigated.
+- The same suite on `00b7e31`, which adds `ROADMAP.md`, this journal and the `RUN_INDEX` row,
+  with `scipy==1.15.3` and a clean tree before and after: 1 517 collected, 1 483 passed,
+  12 failed, 22 skipped, in 187 s. The 12 `FAILED` lines, node IDs and messages, are identical to
+  those of the run on `f382dbf` with `scipy`. No module or test refers to the three files, and the
+  tree walks in `tests/` cover temporary or run directories only.
 - `scipy` is imported by `edlab/substrates/chemotaxis/diagnostics.py`,
   `edlab/substrates/motile_polar/observables.py` and `edlab/experiments/sc_hsi/core.py`, pinned at
   line 5 of `requirements-lock.txt`, and absent from `pyproject.toml`.
@@ -166,6 +174,8 @@ These are decisions about this run, not scientific decisions.
   six rows outside it.
 - No self-merge. The suite is not green (failures that predate this run), so under
   `AUTONOMOUS_MODE.md` the pull request waits for the owner.
+- The suite run on `00b7e31` is recorded in a second commit rather than by amending `00b7e31`, so
+  that the tested commit stays in the pushed history.
 
 ## Unresolved risks
 
