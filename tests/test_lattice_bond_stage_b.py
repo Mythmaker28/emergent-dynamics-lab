@@ -513,7 +513,11 @@ def test_independent_tracker_matches_split_merge_tie_and_collapse(scenario):
         masks = [wide_separation, collapsed, wide_separation]
 
     frames, raw_frames, raw_tracker = _parity_frames(masks, tracker)
-    production = track_components(frames, tracker)
+    production = track_components(
+        frames,
+        tracker,
+        sampled_frames=tuple(range(len(frames))),
+    )
     independent = raw_reproduce.track_components(raw_frames, shape, raw_tracker)
 
     production_tracks = [
