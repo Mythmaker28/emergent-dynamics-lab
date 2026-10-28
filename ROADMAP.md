@@ -5,6 +5,9 @@ the five open pull requests. Sources: `README.md`, `AGENTS.md`, `docs/RESEARCH_C
 `docs/PROJECT_STATE.md`, `docs/DECISION_LOG.md`, `docs/EXPERIMENT_INDEX.md`, `docs/RUN_INDEX.md`,
 the decision files in `docs/individuation/`, the latest journal, the open PRs and the Git history.
 
+Corrected on 2026-10-28 (run `AUTO-20261028-0300-PRMERGES`): the status of H2 and H3 in §4,
+and the root commit and PR #11 facts in §6. Everything else still describes the snapshot.
+
 **This roadmap authorizes nothing.** It is a reading aid. Where it disagrees with
 `docs/PROJECT_STATE.md`, `docs/DECISION_LOG.md`, a decision file or the latest journal, those
 prevail. No scientific step starts without an explicit owner decision recorded in the repository.
@@ -215,7 +218,7 @@ has only one later entry, the un-numbered boundary correction.
 | #15–#16 | 2026-08-02 | empty-right non-unit cadence tracker repair; mandatory `sampled_frames` lifecycle requalification (stop review) |
 | #17–#21 | 2026-08-03 | owned pipeline runner (human review); readiness architecture 01 and its human review; measurement feasibility and route selection 01R (human review); paper: persistence without ownership v1 |
 | #22–#29 | 2026-08-04 | axis convention and frame closure 01S and its human review; Route E pre-run blocker closure 00, its human review, revisions 1 and 2, authorized integration; execution boundary correction 00 |
-| #30 | 2026-08-05 | Route E pilot readiness 00 (merge `f382dbf`, the current `main`) |
+| #30 | 2026-08-05 | Route E pilot readiness 00 (merge `f382dbf`, `main` at this snapshot) |
 
 PR #11 has no merge commit of its own. GitHub marks it merged (2026-07-18T20:40:54Z) because its
 head `44d91f0` reached `main` through the merge of #12 (`6a958c6`), which contains it.
