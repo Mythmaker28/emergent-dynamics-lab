@@ -151,8 +151,8 @@ owner's words.
 | Step | Done when |
 |---|---|
 | H1. Declare `scipy` in `pyproject.toml`, or mark the tests that need it. It is imported by `edlab/substrates/chemotaxis/diagnostics.py`, `edlab/substrates/motile_polar/observables.py` and `edlab/experiments/sc_hsi/core.py`, and pinned to 1.15.3 in `requirements-lock.txt`. With that version installed, 15 of the 16 `scipy` failures pass. | A fresh `pip install -e '.[dev]'` gives no `ModuleNotFoundError`. |
-| H2. Adapt the 4 `test_lattice_bond_stage_b` tests to the mandatory `sampled_frames` argument. Keep their node IDs: `test_historical_13b` in `tests/test_future_route_e_execution_boundary_00.py` pins them "so a rename or a deletion cannot pass as a repair". Check PR #31 first: it edits this file. | The 4 tests pass under the same node IDs, or the owner records why one stays. |
-| H3. The other 8 failures have recorded causes but no repair. The pilot attributes the 7 verifier failures to `STOP_PINNED_VERIFIER_UNAVAILABLE`, which its decision lists in `deferred_confirmatory_stops`. The scramble failure is raised by the guard in `swap_support` (`edlab/experiments/exp_mo_00_gate0.py:62`); §9.3 of the pre-run blocker closure report records it, and no repair was authorized there. PR #31 installs a verifier and edits both verifier test files; whether it fixes the 7 was not checked. | Each failure is repaired, or the owner records why it stays. |
+| H2. Adapt the 4 `test_lattice_bond_stage_b` tests to the mandatory `sampled_frames` argument. Keep their node IDs: `test_historical_13b` in `tests/test_future_route_e_execution_boundary_00.py` pins them "so a rename or a deletion cannot pass as a repair". Check PR #31 first: it edits this file. | The 4 tests pass under the same node IDs, or the owner records why one stays. Done by PR #38 (`8c08e9c`, 2026-10-28): the 4 pass under the same node IDs. |
+| H3. The other 8 failures have recorded causes but no repair. The pilot attributes the 7 verifier failures to `STOP_PINNED_VERIFIER_UNAVAILABLE`, which its decision lists in `deferred_confirmatory_stops`. The scramble failure is raised by the guard in `swap_support` (`edlab/experiments/exp_mo_00_gate0.py:62`); §9.3 of the pre-run blocker closure report records it, and no repair was authorized there. PR #31 installs a verifier and edits both verifier test files; whether it fixes the 7 was not checked. At `8c08e9c` (2026-10-28) the 8 still fail; see `docs/TEST_STATUS.md`. | Each failure is repaired, or the owner records why it stays. |
 | H4. CI: `.github/workflows/nasi-ci.yml` runs on every push and pull request. It runs the NASI and point_cert reproduction (Python 3.10 and 3.12, plus a container job) but never `pytest tests/`. The audit in #33 flags the unfiltered trigger. | CI runs `pytest tests/` once H1–H3 are done; the owner has decided the trigger scope. |
 | H5. README: it still presents `CORE V0` particle dynamics, retired by D-021, as the current substrate, and its commands are PowerShell only. | The README points to the current state and has POSIX commands. |
 | H6. *Owner wording*: the charter's "Current substrate and causal ladder" and the "Authorized sequence" in `AGENTS.md` still describe the CORE V0 → EXP03-C ladder, exhausted by D-020/D-021. | The text matches the current line or is marked historical. |
@@ -176,9 +176,10 @@ owner's words.
 
 ## 6. History
 
-The Git history of `main` starts on 2026-07-14 (root commits `b473ded`, the CRD-03 freeze, and
-`d0f47b6`, 2026-07-15). DECISION_LOG entries start on 2026-07-10, so the first decisions predate
-the history.
+The Git history of `main` starts on 2026-07-10 with a single root commit, `5fa941b` ("feat:
+establish falsifiable CORE V0 laboratory"), which also creates `docs/DECISION_LOG.md`; its
+entries start the same day. (The first version of this file named `b473ded` and `d0f47b6`, of
+2026-07-14 and 2026-07-15, as root commits; both have parents.)
 
 ### Decisions (`docs/DECISION_LOG.md`)
 
@@ -216,7 +217,8 @@ has only one later entry, the un-numbered boundary correction.
 | #22–#29 | 2026-08-04 | axis convention and frame closure 01S and its human review; Route E pre-run blocker closure 00, its human review, revisions 1 and 2, authorized integration; execution boundary correction 00 |
 | #30 | 2026-08-05 | Route E pilot readiness 00 (merge `f382dbf`, the current `main`) |
 
-PR #11 is not among the merges.
+PR #11 has no merge commit of its own. GitHub marks it merged (2026-07-18T20:40:54Z) because its
+head `44d91f0` reached `main` through the merge of #12 (`6a958c6`), which contains it.
 
 ---
 
