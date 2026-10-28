@@ -40,8 +40,10 @@ scramble test raises "support overlaps its own translate: displacement would not
 mass". The number of non-skipped tests is unchanged (1,495).
 
 Without SciPy (`pip install -e '.[dev]'` only) on the same commit: **1,472 passed, 23 failed,
-22 skipped**. The 23 are the eight above plus 15 tests that raise
-`ModuleNotFoundError: No module named 'scipy'`, against 27 failures at `f382dbf`.
+22 skipped**, against 27 failures at `f382dbf`. The 23 failing node IDs are the eight above
+plus 15 others. Sixteen of the 23 raise `ModuleNotFoundError: No module named 'scipy'`: the
+15, and the scramble test, which fails at the SciPy import instead of the conservation guard.
+The seven Route E tests fail as above.
 
 ## Classification
 

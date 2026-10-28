@@ -82,12 +82,15 @@ Without SciPy, the same commands with `pip install -e '.[dev]'` only.
   "support overlaps its own translate: displacement would not conserve mass".
 - The four Stage-B node IDs (items 3–6) pass when run by name: 4 passed.
 - `8c08e9c` without SciPy (`pip install -e '.[dev]'` only; `scipy` absent from the venv):
-  **1,472 passed, 23 failed, 22 skipped** (247.8 s). The 23 are the eight above plus 15 in
-  `tests/test_scaffold.py` (7), `tests/test_multistable_phenotype.py` (5),
-  `tests/test_chemotaxis.py` (2) and `tests/test_motile_polar.py` (1). Rerun of those 15 by
-  node ID with `--tb=line`: 15 failed, all with `ModuleNotFoundError: No module named
+  **1,472 passed, 23 failed, 22 skipped** (247.8 s). The 23 failing node IDs are the eight
+  above plus 15 in `tests/test_scaffold.py` (7), `tests/test_multistable_phenotype.py` (5),
+  `tests/test_chemotaxis.py` (2) and `tests/test_motile_polar.py` (1). Reruns by node ID with
+  `--tb=line` in the same venv: the 15 fail with `ModuleNotFoundError: No module named
   'scipy'`, raised at `edlab/substrates/chemotaxis/diagnostics.py:55` (14) and
-  `edlab/substrates/motile_polar/observables.py:47` (1).
+  `edlab/substrates/motile_polar/observables.py:47` (1). Of the eight, the seven Route E tests
+  fail with `configuration_error` as above, and the scramble test fails with the same
+  `ModuleNotFoundError` at `observables.py:47` instead of the conservation message. Sixteen of
+  the 23 failures are therefore SciPy import errors.
 - No Python, YAML or TOML file in the repository mentions `RUN_INDEX`, `agent_journals`,
   `TEST_STATUS` or `ROADMAP`, so these documentation files cannot change a test result.
 
@@ -121,7 +124,10 @@ clear the scramble failure.
 
 ## Failures and dead ends
 
-None in this part.
+- The first no-SciPy wording, pushed in `f1e97af`, read "the eight above plus 15 tests that
+  raise `ModuleNotFoundError`", which implied 15 SciPy import errors. Rerunning the eight
+  without SciPy showed 16, because the scramble test also fails at the import; corrected in
+  the next commit of `auto/test-status`.
 
 ## Decisions
 
