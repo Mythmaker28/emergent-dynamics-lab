@@ -5,15 +5,19 @@ documentation-only pull requests under the owner's consent of 2026-10-28
 
 run ID: `AUTO-20261028-0300-PRMERGES`
 
-start/end: 2026-10-28 03:00Z / open; this part covers PRs #38 and #37, and the run
-continues with PR #36
+start/end: 2026-10-28 03:00Z / 2026-10-28 03:54Z; part 1 covers PRs #38 and #37, part 2
+(below) PR #36
 
 starting Git state: `main` at `f382dbf077699aa65c80328b6519035d1cda4a57`; open test-only or
 documentation-only pull requests #38 (`auto/fix-stage-b-sampled-frames`), #37
 (`auto/test-status`) and #36 (`auto/roadmap`)
 
-ending Git state of this part: `main` at `8c08e9c` (merge of #38); `auto/test-status` tip
-holds a merge of `8c08e9c` (`bb5afba`) and the corrections below, for merge as #37
+ending Git state of part 1: `main` at `8c08e9c` (merge of #38); `auto/test-status` tip
+holds a merge of `8c08e9c` (`bb5afba`) and the corrections below, for merge as #37 (merged as
+`eb663c9`)
+
+ending Git state of part 2: `main` at `eb663c9` (merge of #37); `auto/roadmap` tip holds a
+merge of `eb663c9` (`9c93545`), the `ROADMAP.md` corrections and this part, for merge as #36
 
 assigned scope: merge the open test-only and documentation-only pull requests in a safe
 order after checking each one, and correct the factual errors found while checking. No code,
@@ -146,6 +150,119 @@ clear the scramble failure.
   `8c08e9c` checkout. Production code is identical in all compared commits (#37 and #38
   change tests and documentation only), so the code under test was the same.
 
+## Handoff (part 1)
+
+Continued in part 2.
+
+# Part 2: PR #36 (`auto/roadmap`)
+
+## Actions
+
+7. Checked the history facts in `ROADMAP.md` §6, and the H1 facts in §4, against Git and the
+   GitHub API (commands below).
+8. Corrected `ROADMAP.md` (`79850e1`, `87d286e`): the root commit and PR #11 in §6; H2 marked
+   done by #38 and the H3 status at `8c08e9c` in §4; a dated correction note under the
+   snapshot line; "the current `main`" in the merges table now reads "`main` at this
+   snapshot".
+9. Merged #37 with a merge commit after `nasi-ci` passed on `857226a`: `eb663c9`.
+10. Merged `main` (`eb663c9`) into `auto/roadmap` (`9c93545`), resolving the
+    `docs/RUN_INDEX.md` conflict by keeping all rows, newest first.
+11. Wrote this part and set this run's `docs/RUN_INDEX.md` row to its final state.
+
+Changed in part 2: `ROADMAP.md`, `docs/RUN_INDEX.md`, this journal. No code, data,
+experiment, state, decision, parameter or scientific result changed.
+
+## Commands (part 2)
+
+```bash
+git rev-parse --is-shallow-repository          # false: complete history
+git rev-list --max-parents=0 main
+git log -1 --format='%h parents=%p %ad %s' --date=short b473ded
+git log -1 --format='%h parents=%p %ad %s' --date=short d0f47b6
+git show 5fa941b --stat --format= | grep DECISION_LOG
+git log --first-parent --merges --format='%h %s' main | grep -E '#1[12]\b'
+git merge-base --is-ancestor 44d91f0 6a958c6 && echo ancestor
+git log -1 --format='%h %cI %s' 6a958c6
+grep -rn --include=*.py -E '^\s*(import scipy|from scipy)' edlab
+grep -n -i scipy requirements-lock.txt pyproject.toml
+```
+
+PR #11 metadata: GitHub REST API, `GET /repos/Mythmaker28/emergent-dynamics-lab/pulls/11`.
+
+## OBSERVED (part 2)
+
+- The clone is complete (not shallow). `main` has a single root commit, `5fa941b` ("feat:
+  establish falsifiable CORE V0 laboratory"), authored and committed on 2026-07-10. It adds
+  `docs/DECISION_LOG.md` with D-001 to D-006, dated 2026-07-10.
+- `b473ded` (2026-07-14, the CRD-03 freeze) has parent `68635f0`; `d0f47b6` (2026-07-15) has
+  parent `a07b95b`. Neither is a root commit.
+- PR #11 (API): `merged: true`, `merged_at` 2026-07-18T20:40:54Z, head `44d91f0`, base
+  `88f9540`. No first-parent merge on `main` names #11; `44d91f0` is an ancestor of
+  `6a958c6`, the merge of #12, committed at 2026-07-18T20:40:53Z, one second before that
+  `merged_at`.
+- `scipy` is imported at `edlab/substrates/chemotaxis/diagnostics.py:55`,
+  `edlab/substrates/motile_polar/observables.py:47` and `edlab/experiments/sc_hsi/core.py:10`
+  (the last at module level), pinned as `scipy==1.15.3` in `requirements-lock.txt`, and not
+  mentioned in `pyproject.toml`, as `ROADMAP.md` H1 states.
+- The roadmap journal records, on `f382dbf`, 1,468 passed, 27 failed and 22 skipped without
+  SciPy, 16 of them SciPy import errors (`test_scaffold` 7, `test_multistable_phenotype` 5,
+  `test_chemotaxis` 2, `test_motile_polar` 2), and 1,483 / 12 / 22 with it. Part 1 found the
+  same 16 by module on `8c08e9c`.
+
+## INFERRED (part 2)
+
+Between `f382dbf` and `8c08e9c` only the four Stage-B outcomes changed, in both
+environments; #38 did not touch the SciPy failures.
+
+GitHub marked #11 merged when the merge of #12, which contains its head, reached `main`; the
+two times differ by one second. `ROADMAP.md` §6 gives this as the reason.
+
+## HYPOTHESIS (part 2)
+
+None new. The `ROADMAP.md` corrections rest on the observations and the inference above.
+
+## WHAT WOULD FALSIFY THIS? (part 2)
+
+- A second root commit in a complete clone of `main`.
+- A merge commit for #11 on the first-parent history of `main`, or `44d91f0` not reachable
+  from `6a958c6`.
+- A timeline of #11 that records its merge by another route than the push of `6a958c6`.
+
+## Errata to other journals (part 2, not rewritten)
+
+- `docs/agent_journals/2026-10-03/1615_roadmap_AUTO-20261003-1615-ROADMAP.md`, OBSERVED:
+  "PR #11 is not among the merges into `main`. The Git history starts on 2026-07-14;
+  `docs/DECISION_LOG.md` starts on 2026-07-10." The history starts on 2026-07-10, with the
+  root commit that creates the log. #11 has no merge commit of its own, but its head is in
+  `main` through the merge of #12, and GitHub records #11 as merged.
+- Same journal, "Failures and dead ends": "the first decisions predate the history". They do
+  not: D-001 to D-006 are in the root commit, of the same date. The other reason it gives,
+  several PRs sharing a branch, was not checked here.
+
+## Decisions (part 2)
+
+- `ROADMAP.md` keeps its 2026-10-03 snapshot: only facts found wrong and the status of the
+  two hygiene steps touched by #38 were changed, and the change is dated in the file.
+- `docs/PROJECT_STATE.md`, `docs/EXPERIMENT_INDEX.md` and `docs/DECISION_LOG.md` are not
+  updated (end-of-run steps 5 to 7): no project state, experiment or decision changed. No
+  experiment is active.
+
+## Unresolved risks (part 2)
+
+- The other claims of `ROADMAP.md` (its sections 1 to 3 and 5, the decision table, and the
+  remaining hygiene steps) were not re-checked in this run.
+- `docs/PROJECT_STATE.md` is still stale (ROADMAP H7); updating it records owner decisions and
+  is left to the owner.
+
 ## Handoff
 
-Continues in the PR #36 part of this run.
+Run tests: none in part 2 (documentation only); the part 1 results on `8c08e9c` still apply,
+because `eb663c9` and this part change documentation only.
+
+Next authorized action: ROADMAP §4 H1, which is also `docs/TEST_STATUS.md` repair step 4.
+It is a packaging change with no scientific content, within the owner's consent of 2026-10-28
+("t'as mon accord ... j'ai juste envie que ça fonctionne"). Declare `scipy` in `pyproject.toml` so
+that a fresh `pip install -e '.[dev]'` installs it, using the `requirements-lock.txt` pin
+(`scipy==1.15.3`) as the reference. Then rerun the complete suite in a fresh venv: the expected
+result is 1,487 passed, 8 failed, 22 skipped, as recorded with SciPy at `8c08e9c`. It does not
+cover the seven verifier failures or the motile-polar fixture, which need the owner (H3).
