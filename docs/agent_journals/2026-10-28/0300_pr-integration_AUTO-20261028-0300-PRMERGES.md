@@ -5,7 +5,7 @@ documentation-only pull requests under the owner's consent of 2026-10-28
 
 run ID: `AUTO-20261028-0300-PRMERGES`
 
-start/end: 2026-10-28 03:00Z / 2026-10-28 03:54Z; part 1 covers PRs #38 and #37, part 2
+start/end: 2026-10-28 03:00Z / 2026-10-28 04:08Z; part 1 covers PRs #38 and #37, part 2
 (below) PR #36
 
 starting Git state: `main` at `f382dbf077699aa65c80328b6519035d1cda4a57`; open test-only or
@@ -168,6 +168,9 @@ Continued in part 2.
 10. Merged `main` (`eb663c9`) into `auto/roadmap` (`9c93545`), resolving the
     `docs/RUN_INDEX.md` conflict by keeping all rows, newest first.
 11. Wrote this part and set this run's `docs/RUN_INDEX.md` row to its final state.
+12. Ran the complete suite on `c81ea31`, the pull-request head after action 11, with the
+    part 1 commands from the `auto/roadmap` checkout (`edlab` imported from it), and listed
+    the files that name `docs/RUN_INDEX.md` (commands below).
 
 Changed in part 2: `ROADMAP.md`, `docs/RUN_INDEX.md`, this journal. No code, data,
 experiment, state, decision, parameter or scientific result changed.
@@ -185,9 +188,20 @@ git merge-base --is-ancestor 44d91f0 6a958c6 && echo ancestor
 git log -1 --format='%h %cI %s' 6a958c6
 grep -rn --include=*.py -E '^\s*(import scipy|from scipy)' edlab
 grep -n -i scipy requirements-lock.txt pyproject.toml
+git grep -l RUN_INDEX -- ':!docs' ':!*.md'      # no output
+git grep -l RUN_INDEX -- 'docs/individuation/*.json'
+git grep -n 'docs/RUN_INDEX.md": "' -- 'docs/individuation/*.json'
+git show HEAD:docs/RUN_INDEX.md | sha256sum
+for f in $(git grep -l RUN_INDEX -- 'docs/individuation/*.json'); do
+  git grep -l -F "$(basename "$f")" -- ':!docs'
+done
+grep -n -A15 'SOURCE_HASH_PATHS = ' edlab/substrates/lattice_bond/stage_b.py
 ```
 
 PR #11 metadata: GitHub REST API, `GET /repos/Mythmaker28/emergent-dynamics-lab/pulls/11`.
+The complete suite: the part 1 commands, run from this checkout. The two runs were compared
+with `grep '^FAILED'` and `grep '^E '` on their outputs, after
+`sed -E 's/0x[0-9a-f]+/0xADDR/g'` masked memory addresses.
 
 ## OBSERVED (part 2)
 
@@ -208,6 +222,20 @@ PR #11 metadata: GitHub REST API, `GET /repos/Mythmaker28/emergent-dynamics-lab/
   SciPy, 16 of them SciPy import errors (`test_scaffold` 7, `test_multistable_phenotype` 5,
   `test_chemotaxis` 2, `test_motile_polar` 2), and 1,483 / 12 / 22 with it. Part 1 found the
   same 16 by module on `8c08e9c`.
+- `c81ea31`, complete suite with SciPy, part 1 environment: **1,487 passed, 8 failed,
+  22 skipped** (260.0 s). The eight failing node IDs are those of `8c08e9c`, and the 29 `E`
+  lines of their failure reports are identical once memory addresses are masked.
+- Outside `docs/`, no file other than Markdown names `RUN_INDEX`. Under
+  `docs/individuation/`, seven JSON records name `docs/RUN_INDEX.md`: six source allowlists
+  and `CAUSAL_ADDRESSABILITY_ARCHITECTURE_01_STAGE_A_QUALIFICATION.json`. Four allowlists
+  give it a SHA-256 (`bac0b0fe…`, `92f55555…`, `2d8b8fc2…`, `f3e856d8…`); none equals that of
+  the file at `c81ea31` (`f9c605dd…`).
+- Outside `docs/`, three files name one of the seven records, and no test file does:
+  `edlab/substrates/lattice_bond/stage_b.py` lists
+  `INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_SOURCE_ALLOWLIST.json` in `SOURCE_HASH_PATHS`, the
+  exact set of files whose manifest hashes it checks, which does not contain
+  `docs/RUN_INDEX.md`; the two `analysis/interventional_individuality_stage_b_autopsy*.py`
+  scripts read `INTERVENTIONAL_INDIVIDUALITY_00_STAGE_B_AUTOPSY_SOURCE_ALLOWLIST.json`.
 
 ## INFERRED (part 2)
 
@@ -239,6 +267,15 @@ None new. The `ROADMAP.md` corrections rest on the observations and the inferenc
   not: D-001 to D-006 are in the root commit, of the same date. The other reason it gives,
   several PRs sharing a branch, was not checked here.
 
+## Errata to part 1 (not rewritten)
+
+- OBSERVED, last bullet: the search covered Python, YAML and TOML files only, and seven JSON
+  records name `docs/RUN_INDEX.md` (OBSERVED, part 2), so the search alone does not show that
+  these documentation files cannot change a test result. The direct check is the complete
+  suite: the same counts and the same eight failures on `8c08e9c` and on `c81ea31`, which
+  contains #37 and the #36 changes. The part 1 decision on #37 cites that bullet; its
+  conclusion holds on this direct check.
+
 ## Decisions (part 2)
 
 - `ROADMAP.md` keeps its 2026-10-03 snapshot: only facts found wrong and the status of the
@@ -256,8 +293,8 @@ None new. The `ROADMAP.md` corrections rest on the observations and the inferenc
 
 ## Handoff
 
-Run tests: none in part 2 (documentation only); the part 1 results on `8c08e9c` still apply,
-because `eb663c9` and this part change documentation only.
+Run tests: the complete suite on `c81ea31`, with SciPy: 1,487 passed, 8 failed, 22 skipped,
+the same eight failures as on `8c08e9c` (OBSERVED, part 2).
 
 Next authorized action: ROADMAP §4 H1, which is also `docs/TEST_STATUS.md` repair step 4.
 It is a packaging change with no scientific content, within the owner's consent of 2026-10-28
