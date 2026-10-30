@@ -19,10 +19,25 @@ class ActiveRunError(RuntimeError):
     pass
 
 
+class UnreadableLockError(ActiveRunError):
+    """A lock file exists but cannot be parsed; it is treated as held."""
+
+
 def read_lock(path: Path = DEFAULT_LOCK) -> dict[str, Any] | None:
     if not path.exists():
         return None
-    return json.loads(path.read_text(encoding="utf-8"))
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise UnreadableLockError(
+            f"unreadable lock at {path} ({exc}); left in place, verify its owner"
+        ) from exc
+    if not isinstance(payload, dict):
+        raise UnreadableLockError(
+            f"unreadable lock at {path} (not a JSON object); left in place, "
+            "verify its owner"
+        )
+    return payload
 
 
 def acquire_lock(
@@ -47,7 +62,10 @@ def acquire_lock(
     try:
         descriptor = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_EXCL)
     except FileExistsError as exc:
-        existing = read_lock(path)
+        try:
+            existing = read_lock(path)
+        except UnreadableLockError as unreadable:
+            existing = str(unreadable)
         raise ActiveRunError(
             f"SKIPPED_DUE_TO_ACTIVE_RUN: existing lock={existing}"
         ) from exc

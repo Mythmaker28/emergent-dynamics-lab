@@ -49,15 +49,21 @@ def _git_scope_clean(output_dir: Path) -> bool:
         check=True,
         capture_output=True,
     ).stdout
-    for entry in status.split(b"\0"):
+    fields = iter(status.split(b"\0"))
+    for entry in fields:
         if not entry:
             continue
-        path = entry[3:].decode("utf-8", errors="surrogateescape").replace("\\", "/")
-        if allowed_prefix and (
-            path == allowed_prefix or path.startswith(f"{allowed_prefix}/")
-        ):
-            continue
-        return False
+        paths = [entry[3:]]
+        if b"R" in entry[:2] or b"C" in entry[:2]:
+            # With -z, a rename or copy puts its source path in the next field.
+            paths.append(next(fields, b""))
+        for raw in paths:
+            path = raw.decode("utf-8", errors="surrogateescape").replace("\\", "/")
+            if allowed_prefix and (
+                path == allowed_prefix or path.startswith(f"{allowed_prefix}/")
+            ):
+                continue
+            return False
     return True
 
 
