@@ -1,5 +1,7 @@
 # Run Index
 
+The six rows from `EXP-GT-A0-20260713-001` to `ROUTE-E-PILOT-READINESS-00` were written after this table in 5- and 3-column formats. On 2026-10-30 (run `AUTO-20261030-0016-SWEEPER`) they were moved into it with their text unchanged: the decision ID that had its own column is appended to Status, `see journal` and `see Scope` mark columns the original row did not have, and the journal paths were added.
+
 | RUN ID | Date | Agent / role | Scope | Experiment ID | Start HEAD | End HEAD | Status | Journal path |
 |---|---|---|---|---|---|---|---|---|
 | AUTO-20261028-0300-PRMERGES | 2026-10-28 | agent claude (Claude Code cloud session) / integrator of test-only and documentation-only PRs under owner consent | Verify and merge PRs #38, #37, #36; correct factual errors found; no code or scientific change | NONE — integration and documentation only | f382dbf | `auto/roadmap` tip (PR #36) | COMPLETED_PR_INTEGRATION | `docs/agent_journals/2026-10-28/0300_pr-integration_AUTO-20261028-0300-PRMERGES.md` |
@@ -77,10 +79,9 @@
 | RUN-20260710-2330-EXPRD00 | 2026-07-10 | primary / opus-4-8 (lock lifted) | open RD substrate qualification + measurement controls | EXP-RD-00-20260710-001 | 5d171f8 | (pending push) | COMPLETED_QUALIFIED | `docs/agent_journals/2026-07-10/2256_exprd00_RUN-20260710-2330-EXPRD00.md` |
 | RUN-20260710-2345-EXPRD00B | 2026-07-10 | primary / opus-4-8 (lock lifted) | temporal-feed-cohort tracer + blind OPEN/CLOSED RD map | EXP-RD-00B / EXP-RD-01 | a5f03be | (pending push) | COMPLETED_SCREEN_CANDIDATES | `docs/agent_journals/2026-07-10/2311_exprd00b_RUN-20260710-2345-EXPRD00B.md` |
 | RUN-20260711-0000-EXPRD02 | 2026-07-11 | primary / opus-4-8 (lock lifted) | frozen chain: hold-out, alias audit, causal intervention, observer sensitivity, adversarial re-audit | EXP-RD-02-20260711-001 | 762e691 | (pending push) | COMPLETED_NEGATIVE | `docs/agent_journals/2026-07-11/0010_exprd02-adversarial-reaudit_RUN-20260711-0000-EXPRD02.md` |
-
-| EXP-GT-A0-20260713-001 | 2026-07-13 | ontology audit of A | **FAILED — ONTOLOGY** (benchmark-label error; D-052 repair withdrawn) | D-053 |
-| EXP-GT-ACERT-20260713-001 | 2026-07-13 | architecture resolution certificate | **QUALIFIED** (development) — tol 0, resolution 4 steps / 1 edge / 1 node | D-055 |
-| EXP-GT-03-20260713-001 | 2026-07-13 | frozen factorized observer, held-out | **FAILED — IMPLEMENTATION** (phase invariance; over-abstention x2) | D-056 |
-| A1R4-VERIFIABLE-CLOSURE-00 | 2026-08-04 | engineering only; no scientific run; 3 STOPs declared; branch codex/route-e-a1r4-verifiable-closure |
-| A1R5-MECHANICAL-TRUST-CLOSURE-00 | 2026-08-04 | engineering only; 8 overclaims retracted; 3 STOPs open; no scientific run |
-| ROUTE-E-PILOT-READINESS-00 | 2026-08-05 | exploratory pilot 24 laws x 2 IC = 48 worlds, 299 s; 48/48 mechanically ineligible (wrapping); PILOT_DESIGN_RISK_OBSERVED; no k, no 42/9, no confirmatory |
+| EXP-GT-A0-20260713-001 | 2026-07-13 | see journal | ontology audit of A | see journal | see journal | see journal | **FAILED — ONTOLOGY** (benchmark-label error; D-052 repair withdrawn); D-053 | `docs/agent_journals/2026-07-13/0400_expgta0_ontology_audit.md` |
+| EXP-GT-ACERT-20260713-001 | 2026-07-13 | see journal | architecture resolution certificate | see journal | see journal | see journal | **QUALIFIED** (development) — tol 0, resolution 4 steps / 1 edge / 1 node; D-055 | `docs/agent_journals/2026-07-13/1830_expgtacert_certificate.md` |
+| EXP-GT-03-20260713-001 | 2026-07-13 | see journal | frozen factorized observer, held-out | see journal | see journal | see journal | **FAILED — IMPLEMENTATION** (phase invariance; over-abstention x2); D-056 | `docs/agent_journals/2026-07-13/2130_expgt03_the_null_that_could_not_fire.md` |
+| A1R4-VERIFIABLE-CLOSURE-00 | 2026-08-04 | see journal | engineering only; no scientific run; 3 STOPs declared; branch codex/route-e-a1r4-verifiable-closure | see journal | see journal | see journal | see Scope | `docs/agent_journals/2026-08-04/2100_route-e-integrator_A1R4-VERIFIABLE-CLOSURE-00.md` |
+| A1R5-MECHANICAL-TRUST-CLOSURE-00 | 2026-08-04 | see journal | engineering only; 8 overclaims retracted; 3 STOPs open; no scientific run | see journal | see journal | see journal | see Scope | `docs/agent_journals/2026-08-04/2300_route-e-integrator_A1R5-MECHANICAL-TRUST-CLOSURE-00.md` |
+| ROUTE-E-PILOT-READINESS-00 | 2026-08-05 | see journal | exploratory pilot 24 laws x 2 IC = 48 worlds, 299 s; 48/48 mechanically ineligible (wrapping); PILOT_DESIGN_RISK_OBSERVED; no k, no 42/9, no confirmatory | see journal | see journal | see journal | see Scope | `docs/agent_journals/2026-08-05/0030_route-e-pilot_ROUTE-E-PILOT-READINESS-00.md` |
