@@ -5,15 +5,16 @@ Routine Sweeper of `ai-credit-sweeper` (slot T_MINUS_90M); CI-only change
 
 run ID: `AUTO-20261107-1942-PRIMARYREPRO`
 
-start/end: 2026-11-07 19:42Z / 2026-11-07 20:30Z (journal finalized; a first version was committed at
-20:27Z as `8736aaf`; the commit, the push, the CI check on the new head, the PR description
-update and the lock release follow, in that order)
+start/end: 2026-11-07 19:42Z / 2026-11-07 20:38Z (journal finalized; earlier versions were
+committed as `8736aaf` at 20:27Z and `b2d3005` at 20:30Z; the commit, the push, the backlog
+closure, the CI check on the new head, the PR description update and the lock release follow,
+in that order)
 
 starting Git state: `main` at `3e0e13b71c976d6dcf9602310084c908b8885541`, clean
 
 ending Git state: `auto/primary-repro-ci` = `3e0e13b` + `3f19431` (the job) + `8736aaf` (this
-journal and the `docs/RUN_INDEX.md` row) + the commit that adds action 9 to this journal; PR
-#41 open, not merged
+journal and the `docs/RUN_INDEX.md` row) + `b2d3005` (action 9) + the commit that adds action
+10 to this journal; PR #41 open, not merged; `main` still at `3e0e13b`
 
 assigned scope: the `ai-credit-sweeper` auto-backlog task, verbatim: "Ajouter à
 .github/workflows/nasi-ci.yml un job « primary-repro » (Python 3.10, versions Node 24 de
@@ -77,6 +78,9 @@ the push of this journal.
 9. Read the last 25 lines of the `tests (3.10)` and `primary-repro` job logs on `3f19431` for
    the runner's Node.js 20 warning, then amended this journal (OBSERVED, INFERRED, Unresolved
    risks, Handoff).
+10. Read the CI results on `8736aaf` and `b2d3005` and the hash and result lines of their four
+    `primary-repro` job logs, then amended this journal again. Earlier claims that these runs
+    contradict are kept, with a dated correction after each.
 
 Important files read: those in actions 1 and 2, `docs/TEST_STATUS.md`,
 `docs/paper/full/HEADLINE_NUMBER_ERRATUM.md`, `pyproject.toml`.
@@ -155,8 +159,10 @@ The OpenBLAS core in use was read with `scipy_openblas_get_corename64_` from the
 `numpy._core._multiarray_umath.__cpu_features__`. The decoded pixels of the committed and
 local PNGs were compared with Pillow and numpy.
 
-CI logs: job 128511028984 (push run 42408409047) and job 128511157620 (pull_request run
-42408450764), both on `3f19431`.
+CI logs (`primary-repro` jobs): 128511028984 (push run 42408409047) and 128511157620
+(pull_request run 42408450764) on `3f19431`; 128519402795 (push run 42411159695) and
+128519410957 (pull_request run 42411162406) on `8736aaf`; 128519989977 (push run 42411351756)
+and 128520003689 (pull_request run 42411356484) on `b2d3005`.
 
 ## OBSERVED
 
@@ -209,7 +215,26 @@ CI logs: job 128511028984 (push run 42408409047) and job 128511157620 (pull_requ
   `fig_longitudinal_v4.png` 2f49866701fb0b61, `fig_h1_certification_v4.png`
   4588d407833aeef8, `fig_h2_deepturnover_v4.png` eec40ea080c45d14,
   `fig_gate_summary_v4.png` cf4fff836a76c6ea, `synthesis_table.tex` 832e3fab70999c3c. The
-  manifest hash is not printed.
+  manifest hash is not printed. [Correction at 20:38Z: this was written from the two runs on
+  `3f19431` and holds for them; it does not hold for every run, see the next bullet.]
+- CI on `8736aaf` and `b2d3005`, which differ from `3f19431` only in this journal and
+  `docs/RUN_INDEX.md`: all 16 jobs of the four runs succeeded. The four `primary-repro` logs
+  contain the three lines quoted above, give the same `test_canonical` values and print
+  nothing at the `git status --porcelain` step. The printed `primary_results.json` prefix
+  depends on the run:
+
+  | commit | event | `primary-repro` job | `primary_results.json` |
+  |---|---|---|---|
+  | `3f19431` | push | 128511028984 | `b9fb6d75b75702f4` (committed) |
+  | `3f19431` | pull_request | 128511157620 | `b9fb6d75b75702f4` (committed) |
+  | `8736aaf` | push | 128519402795 | `8c02e08599794731` |
+  | `8736aaf` | pull_request | 128519410957 | `b9fb6d75b75702f4` (committed) |
+  | `b2d3005` | push | 128519989977 | `8c02e08599794731` |
+  | `b2d3005` | pull_request | 128520003689 | `b9fb6d75b75702f4` (committed) |
+
+  `8c02e08599794731` is the prefix this container gets with the SkylakeX core (below). In all
+  six runs the other 8 printed prefixes equal the committed files. No log names the CPU or the
+  OpenBLAS core.
 - Here, matplotlib reads the system file `/etc/matplotlib/matplotlibrc`, which sets
   `font.family: Inter, sans-serif, DejaVu Sans` and `text.hinting: no_hinting`; Inter is
   installed (18 files in `/usr/share/fonts/opentype/inter/`). Matplotlib's built-in default
@@ -250,6 +275,14 @@ CI logs: job 128511028984 (push run 42408409047) and job 128511157620 (pull_requ
   SIMD dispatch.
 - The machine that produced the committed outputs and the CI runner both render with
   matplotlib's built-in settings and get the same floats as the Haswell kernels.
+  [Correction at 20:38Z: this was written from the two runs on `3f19431`. The rendering part
+  holds for all six runs, which print the committed PNG hashes; the floats part holds for
+  four of the six only (OBSERVED table).]
+- Not every `ubuntu-latest` machine gets the same OpenBLAS kernels. The push runs on
+  `8736aaf` and `b2d3005` tested the code of `3f19431`, with numpy and scipy pinned, and
+  printed the `primary_results.json` bytes of this container's SkylakeX core, not the
+  committed bytes that the push run on `3f19431` printed. Both kinds of run passed, so the
+  verdict does not depend on which machine the job gets.
 - The job's verdict does not depend on either cause: the SkylakeX and Inter run here passes
   `--check`, its floats differ from the committed ones by at most 7.8e-16, about 14 orders
   of magnitude below the tolerances (0.06 and 0.08), and `REPRO_OUT` keeps all outputs out of
@@ -260,6 +293,18 @@ CI logs: job 128511028984 (push run 42408409047) and job 128511157620 (pull_requ
 The runner's CPU has no AVX-512, so its OpenBLAS uses Haswell-class kernels. On a runner
 where OpenBLAS selects SkylakeX, the job would print this container's hashes and still pass.
 
+[Correction at 20:38Z, after the runs on `8736aaf` and `b2d3005`: the first sentence is
+contradicted as a statement about every runner. Two of the six runs printed the
+`primary_results.json` bytes that OpenBLAS's SkylakeX core gives here, which the Haswell core
+here does not give (OBSERVED). The second sentence holds for `primary_results.json`: those two
+runs printed `8c02e08599794731` and passed. "This container's hashes" was imprecise: this
+container's PNG hashes come from its Inter matplotlibrc, and every run printed the committed
+PNG hashes.]
+
+Remaining hypothesis (20:38Z): the two runs with `8c02e08599794731` ran on CPUs with AVX-512,
+where OpenBLAS selects a SkylakeX-class core, and the four others on CPUs where it selects a
+Haswell-class core.
+
 ## WHAT WOULD FALSIFY THIS?
 
 - A rerun of the job on `3f19431`, or on a later commit that does not touch `reproduction/`,
@@ -269,7 +314,13 @@ where OpenBLAS selects SkylakeX, the job would print this container's hashes and
 - For the drift causes: a rerun here of the run with both matplotlib defaults and
   `OPENBLAS_CORETYPE=Haswell` that does not give the committed bytes.
 - For the hypothesis: a runner whose OpenBLAS reports the SkylakeX core and prints the
-  committed hashes, or a failed `primary-repro` job on such a runner.
+  committed hashes, or a failed `primary-repro` job on such a runner. [20:38Z: neither was
+  seen, since the logs do not report the core; the hash split contradicted the first sentence
+  instead.]
+- For the remaining hypothesis: a run that prints `8c02e08599794731` on a CPU without AVX-512,
+  or the committed `b9fb6d75b75702f4` where OpenBLAS reports a SkylakeX-class core. A step
+  printing the CPU flags and the OpenBLAS core would test it; none was added, as the task does
+  not ask for one.
 
 ## Failures and dead ends
 
@@ -284,6 +335,10 @@ where OpenBLAS selects SkylakeX, the job would print this container's hashes and
 - The first PR #41 description implied that the committed PNGs no longer reproduce. They do:
   the runner prints their exact hashes, and the drift is specific to this container
   (OBSERVED). The description is corrected after this push.
+- The hypothesis and the INFERRED bullet on the runner's floats were written at `8736aaf` from
+  the two runs on `3f19431`, as if one kind of machine served every job. Two of the next four
+  runs contradict them. Both are corrected in place with dated notes, and their first wording
+  is kept.
 
 ## Decisions
 
@@ -297,7 +352,8 @@ where OpenBLAS selects SkylakeX, the job would print this container's hashes and
   job writes nothing into the checkout, whatever the output bytes are on a given machine (the
   in-place run rewrote 7 of 10 tracked files).
 - No `OPENBLAS_CORETYPE` or matplotlib setting in the job: the tolerance checks do not need
-  them, and they would only make the bytes match where they are set.
+  them, and they would only make the bytes match where they are set. (20:38Z: the six runs
+  support this: their `primary_results.json` bytes vary while every check passes.)
 - No change to `reproduction/`, `release/`, the manuscript, `EXPECTED.json` or `CANONICAL`.
   The deep-h2 lower bound reads −0.785 here and −0.79 in `CANONICAL` (tolerance 0.10); the
   rounding is already explained in `docs/paper/full/HEADLINE_NUMBER_ERRATUM.md:46-48`.
@@ -321,13 +377,18 @@ where OpenBLAS selects SkylakeX, the job would print this container's hashes and
   same numpy wheel gives different JSON bytes (CSV identical) when OpenBLAS selects SkylakeX,
   and `release/README_RELEASE.md` tells readers to run in place, so a reader with an AVX-512
   CPU, or with a site matplotlibrc, sees tracked outputs change while every value stays within
-  tolerance. Whether to document this is the owner's call.
+  tolerance. Whether to document this is the owner's call. GitHub's `ubuntu-latest` runners
+  show the same split: two of six runs printed another `primary_results.json` hash from the
+  same lockfile. The job prints the hashes but does not compare them; a byte comparison would
+  need the OpenBLAS core pinned, for example with `OPENBLAS_CORETYPE=Haswell`, which restored
+  the committed bytes in this container only.
 - Draft PR #40 also adds a top row to `docs/RUN_INDEX.md`: whichever of #40 and #41 merges
   second will conflict there (keep both rows, newest first).
 
 ## Handoff
 
-Run tests: the four job steps pass locally on `3e0e13b` and in both CI runs on `3f19431`.
+Run tests: the four job steps pass locally on `3e0e13b`, in both CI runs on `3f19431` and in
+the four runs on `8736aaf` and `b2d3005`.
 pytest was not run in this session; its last records, on the same code, are 1,487 passed, 8
 failed, 22 skipped at `c81ea31` and in the PR #40 baseline on `3e0e13b`, the two commits
 differing only by a journal. The CI result on the final head of `auto/primary-repro-ci` is in
