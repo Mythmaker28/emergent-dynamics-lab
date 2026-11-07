@@ -5,13 +5,15 @@ Routine Sweeper of `ai-credit-sweeper` (slot T_MINUS_90M); CI-only change
 
 run ID: `AUTO-20261107-1942-PRIMARYREPRO`
 
-start/end: 2026-11-07 19:42Z / 2026-11-07 20:27Z (journal finalized; the commit, the push, the CI check
-on the new head, the PR description update and the lock release follow, in that order)
+start/end: 2026-11-07 19:42Z / 2026-11-07 20:30Z (journal finalized; a first version was committed at
+20:27Z as `8736aaf`; the commit, the push, the CI check on the new head, the PR description
+update and the lock release follow, in that order)
 
 starting Git state: `main` at `3e0e13b71c976d6dcf9602310084c908b8885541`, clean
 
-ending Git state: `auto/primary-repro-ci` = `3e0e13b` + `3f19431` (the job) + the commit that
-adds this journal and the `docs/RUN_INDEX.md` row; PR #41 open, not merged
+ending Git state: `auto/primary-repro-ci` = `3e0e13b` + `3f19431` (the job) + `8736aaf` (this
+journal and the `docs/RUN_INDEX.md` row) + the commit that adds action 9 to this journal; PR
+#41 open, not merged
 
 assigned scope: the `ai-credit-sweeper` auto-backlog task, verbatim: "Ajouter à
 .github/workflows/nasi-ci.yml un job « primary-repro » (Python 3.10, versions Node 24 de
@@ -71,7 +73,10 @@ the push of this journal.
    clone with outputs outside the tree; for this, searched `reproduction/figures.py` and
    `reproduction/primary.py` for font and `savefig` settings and read
    `release/ENVIRONMENT.md`.
-8. Wrote this journal and one `docs/RUN_INDEX.md` row.
+8. Wrote this journal and one `docs/RUN_INDEX.md` row (commit `8736aaf`, pushed).
+9. Read the last 25 lines of the `tests (3.10)` and `primary-repro` job logs on `3f19431` for
+   the runner's Node.js 20 warning, then amended this journal (OBSERVED, INFERRED, Unresolved
+   risks, Handoff).
 
 Important files read: those in actions 1 and 2, `docs/TEST_STATUS.md`,
 `docs/paper/full/HEADLINE_NUMBER_ERRATUM.md`, `pyproject.toml`.
@@ -193,6 +198,11 @@ CI logs: job 128511028984 (push run 42408409047) and job 128511157620 (pull_requ
   `../../_temp/repro`, and print nothing at the `git status --porcelain` step. Actions:
   `actions/checkout@v5` at `fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09`,
   `actions/setup-python@v6` at `ece7cb06caefa5fff74198d8649806c4678c61a1`.
+- On `3f19431`, the `tests (3.10)` job log (job 128511028956) ends with the runner warning
+  "Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to
+  run on Node.js 24: actions/checkout@v4, actions/setup-python@v5."; the last 25 lines of the
+  push-run `primary-repro` log (job 128511028984) contain no such warning and end with
+  "Cleaning up orphan processes".
 - The runner prints sha256 prefixes for 9 outputs, and all 9 equal the committed files:
   `primary_table.csv` 8cac07a6eb3d7b31, `primary_arrays.npz` b7e97a19b1968f22,
   `primary_figure.png` 1ff9e41e7a59d362, `primary_results.json` b9fb6d75b75702f4,
@@ -228,6 +238,10 @@ CI logs: job 128511028984 (push run 42408409047) and job 128511157620 (pull_requ
   or of `CANONICAL`, and when a step writes into the checkout: the two checks exit non-zero
   on such values (negative controls), each step runs under `bash -e`, and `test -z` fails on
   any `git status --porcelain` output.
+- `actions/checkout@v5` and `actions/setup-python@v6` do not target Node.js 20: the runner
+  names only the v4 and v5 actions as Node.js 20 actions forced onto Node.js 24, and warns in
+  the `tests (3.10)` job that uses them, not in `primary-repro`. The task's "versions Node 24"
+  is met as far as the runner reports it.
 - The in-place drift has two causes, both outside the repository: this container's
   `/etc/matplotlib/matplotlibrc` changes the figures, and OpenBLAS's runtime kernel choice
   (SkylakeX here) changes the JSON floats; the manifest records hashes of the other outputs
@@ -295,8 +309,8 @@ where OpenBLAS selects SkylakeX, the job would print this container's hashes and
 - ROADMAP §4 H4 still holds: CI does not run `pytest tests/`. The H4 text, a dated snapshot,
   does not mention this job.
 - The `tests` and `container` jobs still use `actions/checkout@v4` (`nasi-ci.yml:11`, `:36`)
-  and `actions/setup-python@v5` (`:12`). That v5 and v6 run on Node 24 comes from the task
-  text; this run did not check it.
+  and `actions/setup-python@v5` (`:12`); the runner already forces them from Node.js 20 onto
+  Node.js 24 and warns about it (OBSERVED).
 - `requirements-lock.txt` pins 3 of the 13 installed packages, and `setup-python` takes the
   latest 3.10 patch (3.10.22 on the runner; the lockfile comment and `release/ENVIRONMENT.md`
   name 3.10.12). A release of a transitive dependency can change the installed set.
@@ -322,4 +336,5 @@ the PR #41 description.
 Next authorized action: after the owner merges PR #41, the follow-up backlog task: move the
 `tests` and `container` jobs of `nasi-ci.yml` to `actions/checkout@v5` (lines 11 and 36) and
 `actions/setup-python@v6` (line 12) without changing their steps; done when every `uses:` in
-the file is v5 or v6 and the four jobs are green on the PR.
+the file is v5 or v6, the four jobs are green on the PR and no job log carries the Node.js 20
+warning.
