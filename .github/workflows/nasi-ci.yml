@@ -38,3 +38,22 @@ jobs:
         run: docker build -t emergent-metrology-repro .
       - name: Reproduce inside container (no host cache)
         run: docker run --rm emergent-metrology-repro make reproduce-all
+  primary-repro:
+    # Primary IsingV3 reproduction (release/README_RELEASE.md) with the pinned lockfile.
+    # Outputs go to $RUNNER_TEMP: run in place, it rewrites tracked reproduction/outputs/ files.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.10" }
+      - name: Install pinned reproduction dependencies
+        run: python -m pip install -r requirements-lock.txt
+      - name: Primary reproduction with tolerance check
+        run: REPRO_OUT="$RUNNER_TEMP/repro" python -m reproduction.primary --check
+      - name: Frozen canonical numbers
+        run: python -m reproduction.test_canonical
+      - name: Working tree unchanged
+        run: |
+          git status --porcelain
+          test -z "$(git status --porcelain)"
